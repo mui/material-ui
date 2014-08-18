@@ -1,0 +1,19 @@
+{
+  "name": "material-ui",
+  "version": "0.0.0",
+  "description": "Material Design UI components built with React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/callemall/material-ui.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/callemall/material-ui/issues"
+  },
+  "homepage": "https://github.com/callemall/material-ui"
+}
