@@ -1,0 +1,30 @@
+.keyWidth(@width) {
+	width: (@width * @desktop-keyline-increment);
+}
+
+.genKeyWidth(@width) {
+	.key-width-@{width} { .keyWidth(@width); }
+}
+
+.genKeyWidths(@i) when (@i > 0) {
+	.genKeyWidth(@i);
+
+	.genKeyWidths(@i - 1);
+}
+
+.keyHeight(@height) {
+	height: (@height * @desktop-keyline-increment);
+}
+
+.genKeyHeight(@height) {
+	.key-height-@{height} { .keyHeight(@height); }
+}
+
+.genKeyHeights(@i) when (@i > 0) {
+	.genKeyHeight(@i);
+
+	.genKeyHeights(@i - 1);
+}
+
+.genKeyWidths(20);
+.genKeyHeights(20);

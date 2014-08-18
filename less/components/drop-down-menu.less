@@ -1,0 +1,77 @@
+.drop-down-menu {
+	position: relative;
+	height: @desktop-toolbar-height;
+	font-size: @desktop-drop-down-menu-font-size;
+
+	&.open {
+		.menu-control,
+		.menu-control:hover {
+			.menu-control-bg {
+				opacity: 0;
+			}
+			.menu-label {
+				top: (@desktop-toolbar-height / 2);
+				opacity: 0;
+			}
+		}
+
+		.menu {
+			opacity: 1;
+		}
+	}
+
+	.menu-control {
+		cursor: pointer;
+		.clearfix();
+		height: 100%;
+
+		.menu-control-bg {
+			background-color: @drop-down-menu-color;
+			height: 100%;
+			width: 100%;
+			opacity: 0;
+		}
+
+		&:hover {
+			.menu-control-bg {
+				opacity: 1;
+			}
+		}
+
+		.menu-label {
+			line-height: @desktop-toolbar-height;
+			position: absolute;
+			padding-left: @desktop-gutter;
+			top: 0;
+			opacity: 1;
+		}
+
+		.icon-arrow-drop-down {
+			line-height: @desktop-toolbar-height;
+			position: absolute;
+			top: 0;
+			right: @desktop-gutter-less;
+			color: @drop-down-menu-icon-color;
+		}
+	}
+
+	.menu {
+		background-color: @drop-down-menu-color;
+		position: absolute;
+		top: 0;
+		overflow: hidden;
+		opacity: 0;
+
+		.paper-container {
+			padding-top: @desktop-gutter-less;
+			padding-bottom: @desktop-gutter-less;
+		}
+
+		.item {
+			padding-right: (@icon-size + (@desktop-gutter-less*2));
+			height: @desktop-drop-down-menu-item-height;
+			line-height: @desktop-drop-down-menu-item-height;
+		}
+	}
+
+}

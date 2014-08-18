@@ -1,0 +1,41 @@
+
+//
+// Scaffolding
+// --------------------------------------------------
+
+
+// Reset the box-sizing
+//
+// Heads up! This reset may cause conflicts with some third-party widgets.
+// For recommendations on resolving such conflicts, see
+// http://getbootstrap.com/getting-started/#third-box-sizing
+* {
+  .box-sizing(border-box);
+  .ease-out;
+
+  //Used to prevent collapsing margins
+  //overflow: hidden;
+}
+*:before,
+*:after {
+  .box-sizing(border-box);
+}
+
+html, 
+body {
+	height: 100%;
+	width: 100%;
+}
+
+//General icon styles
+[class^="icon-"], [class*=" icon-"] {
+	font-size: @icon-size;
+	display: inline-block;
+}
+
+html {
+	-webkit-font-smoothing: antialiased;
+	color: @body-text-color;
+	font-family: @contentFontFamily;
+	background-color: @canvas-color;
+}
