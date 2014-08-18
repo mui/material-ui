@@ -586,13 +586,13 @@
 	],
 	"height": 1024,
 	"metadata": {
-		"name": "reactive-paper-icons"
+		"name": "material-ui-icons"
 	},
 	"preferences": {
 		"fontPref": {
 			"prefix": "icon-",
 			"metadata": {
-				"fontFamily": "reactive-paper-icons",
+				"fontFamily": "material-ui-icons",
 				"majorVersion": 1,
 				"minorVersion": 0
 			},
