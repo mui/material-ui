@@ -1,4 +1,5 @@
 var React = require('react'),
+  Constants = require('../utils/constants.js'),
   classSet = require('../utils/class-set.js');
 
 module.exports = {
@@ -17,9 +18,10 @@ module.exports = {
 
   mergeClass: function(props) {
     var classObj = {},
-      classString = props.className || '';
+      classString = '';
 
     	if (this.state && this.state.classes) classString += ' ' + this.state.classes;
+      if (props.className) classString += ' ' + props.className;
       if (props.keyHeight) classString += ' key-height-' + props.keyHeight;
       if (props.keyWidth) classString += ' key-width-' + props.keyWidth;
       if (props.selected) classString += ' selected';
