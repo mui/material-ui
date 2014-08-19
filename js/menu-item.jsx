@@ -14,7 +14,7 @@ var MenuItem = React.createClass({
 
   getInitialState: function() {
   	return {
-  		classes: 'item'
+  		classes: 'mui-item'
   	}
   },
 

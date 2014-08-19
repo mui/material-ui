@@ -1,30 +1,30 @@
-.keyWidth(@width) {
+.mui-keyWidth(@width) {
 	width: (@width * @desktop-keyline-increment);
 }
 
-.genKeyWidth(@width) {
-	.key-width-@{width} { .keyWidth(@width); }
+.mui-genKeyWidth(@width) {
+	.mui-key-width-@{width} { .mui-keyWidth(@width); }
 }
 
-.genKeyWidths(@i) when (@i > 0) {
-	.genKeyWidth(@i);
+.mui-genKeyWidths(@i) when (@i > 0) {
+	.mui-genKeyWidth(@i);
 
-	.genKeyWidths(@i - 1);
+	.mui-genKeyWidths(@i - 1);
 }
 
-.keyHeight(@height) {
+.mui-keyHeight(@height) {
 	height: (@height * @desktop-keyline-increment);
 }
 
-.genKeyHeight(@height) {
-	.key-height-@{height} { .keyHeight(@height); }
+.mui-genKeyHeight(@height) {
+	.mui-key-height-@{height} { .mui-keyHeight(@height); }
 }
 
-.genKeyHeights(@i) when (@i > 0) {
-	.genKeyHeight(@i);
+.mui-genKeyHeights(@i) when (@i > 0) {
+	.mui-genKeyHeight(@i);
 
-	.genKeyHeights(@i - 1);
+	.mui-genKeyHeights(@i - 1);
 }
 
-.genKeyWidths(20);
-.genKeyHeights(20);
+.mui-genKeyWidths(20);
+.mui-genKeyHeights(20);

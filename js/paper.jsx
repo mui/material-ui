@@ -17,12 +17,12 @@ var Paper = React.createClass({
 
   getInitialState: function() {
   	return {
-  		classes: 'paper z-depth-top z-depth-' + this.props.zDepth
+  		classes: 'mui-paper mui-z-depth-top mui-z-depth-' + this.props.zDepth
   	};
   },
 
   render: function() {
-    var bottomClassName = 'paper-container z-depth-bottom z-depth-' + this.props.zDepth;
+    var bottomClassName = 'mui-paper-container mui-z-depth-bottom mui-z-depth-' + this.props.zDepth;
 
     return (
       <div className={this.state.mergedClasses}>

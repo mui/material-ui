@@ -19,7 +19,7 @@ var Button = React.createClass({
   },
 
   getInitialState: function() {
-    return { classes: 'paper-button'}
+    return { classes: 'mui-paper-button'}
   },
 
   render: function() {

@@ -30,7 +30,7 @@ var Menu = React.createClass({
 
   getInitialState: function() {
   	return {
-  		classes: 'menu'
+  		classes: 'mui-menu'
   	};
   },
 
@@ -64,7 +64,7 @@ var Menu = React.createClass({
 
         case Constants.MenuItemTypes.SUBHEADER:
           itemComponent = (
-            <div key={i} className="subheader">{item.text}</div>
+            <div key={i} className="mui-subheader">{item.text}</div>
           );
           break;
 

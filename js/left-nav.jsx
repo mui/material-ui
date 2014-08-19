@@ -16,7 +16,7 @@ var LeftNav = React.createClass({
 
   getInitialState: function() {
   	return {
-  		classes: 'left-nav'
+  		classes: 'mui-left-nav'
   	}
   },
 

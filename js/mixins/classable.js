@@ -22,9 +22,9 @@ module.exports = {
 
     	if (this.state && this.state.classes) classString += ' ' + this.state.classes;
       if (props.className) classString += ' ' + props.className;
-      if (props.keyHeight) classString += ' key-height-' + props.keyHeight;
-      if (props.keyWidth) classString += ' key-width-' + props.keyWidth;
-      if (props.selected) classString += ' selected';
+      if (props.keyHeight) classString += ' mui-key-height-' + props.keyHeight;
+      if (props.keyWidth) classString += ' mui-key-width-' + props.keyWidth;
+      if (props.selected) classString += ' mui-selected';
 
       classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;

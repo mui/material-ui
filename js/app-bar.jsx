@@ -8,7 +8,7 @@ var AppBar = React.createClass({
 
   getInitialState: function() {
   	return {
-  		classes: 'app-bar'
+  		classes: 'mui-app-bar'
   	}
   },
 
@@ -30,7 +30,7 @@ var AppBar = React.createClass({
 
   _getTitle: function() {
     return this.props.title ? (
-      <h1 className="app-bar-title">{this.props.title}</h1>
+      <h1 className="mui-app-bar-title">{this.props.title}</h1>
     ) : null;
   }
 
