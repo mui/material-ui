@@ -1,8 +1,15 @@
+/**
+ * @jsx React.DOM
+ */
+/**
+ * @jsx React.DOM
+ */
+
 var React = require('react'),
     Paper = require('./paper.jsx'),
     Classable = require('./mixins/classable.js');
 
-var Button = React.createClass({
+var PaperButton = React.createClass({
 
   propTypes: {
     label: React.PropTypes.string.isRequired,
@@ -54,4 +61,4 @@ var Button = React.createClass({
 
 });
 
-module.exports = Button;
+module.exports = PaperButton;
