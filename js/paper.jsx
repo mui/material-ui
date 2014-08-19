@@ -17,7 +17,7 @@ var Paper = React.createClass({
 
   getInitialState: function() {
   	return {
-  		classes: 'z-depth-top z-depth-' + this.props.zDepth
+  		classes: 'paper z-depth-top z-depth-' + this.props.zDepth
   	};
   },
 
