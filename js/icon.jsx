@@ -15,7 +15,7 @@ var Icon = React.createClass({
 
 	getInitialState: function() {
   	return {
-  		classes: 'icon-' + this.props.icon
+  		classes: 'mui-icon-' + this.props.icon
   	}
   },
 

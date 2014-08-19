@@ -590,7 +590,7 @@
 	},
 	"preferences": {
 		"fontPref": {
-			"prefix": "icon-",
+			"prefix": "mui-icon-",
 			"metadata": {
 				"fontFamily": "material-ui-icons",
 				"majorVersion": 1,
