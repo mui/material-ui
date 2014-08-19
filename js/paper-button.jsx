@@ -1,9 +1,6 @@
 /**
  * @jsx React.DOM
  */
-/**
- * @jsx React.DOM
- */
 
 var React = require('react'),
     Paper = require('./paper.jsx'),
@@ -30,7 +27,6 @@ var PaperButton = React.createClass({
   },
 
   render: function() {
-
     var zDepth;
 
     switch(this.props.type) {
@@ -43,7 +39,7 @@ var PaperButton = React.createClass({
       case 'fab':
         zDepth = 2;
         break;
-    } 
+    }
 
     return (
       <div className={this.state.mergedClasses} onClick={this._onClick}>

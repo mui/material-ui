@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/callemall/material-ui/issues"
   },
-  "homepage": "https://github.com/callemall/material-ui"
+  "homepage": "https://github.com/callemall/material-ui",
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
+  "dependencies": {}
 }
