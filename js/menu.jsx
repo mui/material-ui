@@ -16,7 +16,7 @@ var Menu = React.createClass({
 
 	propTypes: {
     onItemClick: React.PropTypes.func,
-    items: React.PropTypes.array.isRequired,
+    menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
     visible: React.PropTypes.bool,
     zDepth: React.PropTypes.number
@@ -48,26 +48,26 @@ var Menu = React.createClass({
 
   _getChildren: function() {
     var children = [],
-      item,
+      menuItem,
       itemComponent,
       isSelected;
 
-    for (var i=0; i < this.props.items.length; i++) {
-      item = this.props.items[i];
+    for (var i=0; i < this.props.menuItems.length; i++) {
+      menuItem = this.props.menuItems[i];
       isSelected = i === this.props.selectedIndex;
 
-      switch (item.type) {
+      switch (menuItem.type) {
 
         case Constants.MenuItemTypes.SUBHEADER:
           itemComponent = (
-            <div key={i} className="mui-subheader">{item.text}</div>
+            <div key={i} className="mui-subheader">{menuItem.text}</div>
           );
           break;
 
         default:
           itemComponent = (
             <MenuItem selected={isSelected} key={i} onClick={this._onItemClick}>
-              {item.text}
+              {menuItem.text}
             </MenuItem>
           );
       }
@@ -79,7 +79,7 @@ var Menu = React.createClass({
 
   _setHeightAndWidth: function() {
     var $el = $(this.getDOMNode()),
-      menuHeight = (Constants.KeyLines.Desktop.MENU_ITEM_HEIGHT * this.props.items.length) + (Constants.KeyLines.Desktop.GUTTER_LESS * 2),
+      menuHeight = (Constants.KeyLines.Desktop.MENU_ITEM_HEIGHT * this.props.menuItems.length) + (Constants.KeyLines.Desktop.GUTTER_LESS * 2),
       menuWidth = $el.width();
 
     //Make sure the width is an increment of the keylines
@@ -94,7 +94,7 @@ var Menu = React.createClass({
   },
 
   _onItemClick: function(e, key) {
-    if (this.props.onItemClick) this.props.onItemClick(e, key, this.props.items[key]);
+    if (this.props.onItemClick) this.props.onItemClick(e, key, this.props.menuItems[key]);
   }
 
 });

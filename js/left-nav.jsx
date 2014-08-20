@@ -14,7 +14,7 @@ var LeftNav = React.createClass({
   propTypes: {
     onChange: React.PropTypes.func,
     header: React.PropTypes.component,
-    items: React.PropTypes.array.isRequired,
+    menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number
   },
 
@@ -25,7 +25,7 @@ var LeftNav = React.createClass({
     return (
       <Paper zDepth={2} rounded={false} className={classes}>
         {this.props.header}
-        <Menu ref="menuItems" zDepth={0} items={this.props.items} selectedIndex={selectedIndex} onItemClick={this._onMenuItemClick} />
+        <Menu ref="menuItems" zDepth={0} menuItems={this.props.menuItems} selectedIndex={selectedIndex} onItemClick={this._onMenuItemClick} />
       </Paper>
     );
   },

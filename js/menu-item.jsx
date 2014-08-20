@@ -17,7 +17,7 @@ var MenuItem = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-item');
+    var classes = this.getClasses('mui-menu-item');
 
     return (
     	<div key={this.props.key} className={classes} onClick={this._onClick}>
