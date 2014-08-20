@@ -3,7 +3,6 @@
  */
  
 var React = require('react'),
-  KeyLine = require('./utils/key-line.js'),
   Classable = require('./mixins/classable.js');
 
 var MenuItem = React.createClass({

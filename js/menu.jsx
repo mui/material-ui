@@ -66,9 +66,7 @@ var Menu = React.createClass({
 
         default:
           itemComponent = (
-            <MenuItem selected={isSelected} key={i} onClick={this._onItemClick}>
-              {menuItem.text}
-            </MenuItem>
+            <MenuItem selected={isSelected} key={i} onClick={this._onItemClick}>{menuItem.text}</MenuItem>
           );
       }
       children.push(itemComponent);
@@ -85,11 +83,9 @@ var Menu = React.createClass({
     //Make sure the width is an increment of the keylines
     menuWidth = KeyLine.getIncrementalDim(menuWidth);
     $el
-      .css('width', menuWidth)
-      .css(this.props.visible ? {
-        'height': menuHeight
-      } : {
-        'height': 0
+      .css({
+        width: menuWidth,
+        height: this.props.visible ? menuHeight : 0
       });
   },
 
