@@ -19,18 +19,13 @@ var Paper = React.createClass({
     };
   },
 
-  getInitialState: function() {
-  	return {
-  		classes: 'mui-paper mui-z-depth-top mui-z-depth-' + this.props.zDepth
-  	};
-  },
-
   render: function() {
-    var bottomClassName = 'mui-paper-container mui-z-depth-bottom mui-z-depth-' + this.props.zDepth;
+    var classes = this.getClasses('mui-paper mui-z-depth-top mui-z-depth-' + this.props.zDepth),
+      insideClasses = 'mui-paper-container mui-z-depth-bottom mui-z-depth-' + this.props.zDepth;
 
     return (
-      <div className={this.state.mergedClasses}>
-      	<div className={bottomClassName}>
+      <div className={classes}>
+      	<div className={insideClasses}>
           {this.props.children}
         </div>
       </div>

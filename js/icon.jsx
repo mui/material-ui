@@ -13,15 +13,11 @@ var Icon = React.createClass({
 		icon: React.PropTypes.string.isRequired
 	},
 
-	getInitialState: function() {
-  	return {
-  		classes: 'mui-icon-' + this.props.icon
-  	}
-  },
-
 	render: function() {
+		var classes = this.getClasses('mui-icon-' + this.props.icon);
+
 		return (
-			<span className={this.state.mergedClasses}>
+			<span className={classes}>
 				{this.props.children}
 			</span>
 		);

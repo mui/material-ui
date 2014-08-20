@@ -16,15 +16,11 @@ var MenuItem = React.createClass({
     selected: React.PropTypes.bool
   },
 
-  getInitialState: function() {
-  	return {
-  		classes: 'mui-item'
-  	}
-  },
-
   render: function() {
+    var classes = this.getClasses('mui-item');
+
     return (
-    	<div key={this.props.key} className={this.state.mergedClasses} onClick={this._onClick}>
+    	<div key={this.props.key} className={classes} onClick={this._onClick}>
         {this.props.children}
       </div>
     );

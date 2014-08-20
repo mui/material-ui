@@ -27,13 +27,7 @@ var Menu = React.createClass({
       visible: true
     };
   },
-
-  getInitialState: function() {
-  	return {
-  		classes: 'mui-menu'
-  	};
-  },
-
+  
   componentDidMount: function() {
     this._setHeightAndWidth();
   },
@@ -43,8 +37,10 @@ var Menu = React.createClass({
   },
 
 	render: function() {
+    var classes = this.getClasses('mui-menu');
+
     return (
-			<Paper zDepth={this.props.zDepth} className={this.state.mergedClasses}>
+			<Paper zDepth={this.props.zDepth} className={classes}>
         {this._getChildren()}
       </Paper>
 		);

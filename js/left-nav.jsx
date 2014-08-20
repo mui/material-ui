@@ -18,17 +18,12 @@ var LeftNav = React.createClass({
     selectedIndex: React.PropTypes.number
   },
 
-  getInitialState: function() {
-  	return {
-  		classes: 'mui-left-nav'
-  	}
-  },
-
   render: function() {
-    var selectedIndex = this.props.selectedIndex;
+    var classes = this.getClasses('mui-left-nav'),
+      selectedIndex = this.props.selectedIndex;
 
     return (
-      <Paper zDepth={2} className={this.state.mergedClasses}>
+      <Paper zDepth={2} className={classes}>
         {this.props.header}
         <Menu ref="menuItems" zDepth={0} items={this.props.items} selectedIndex={selectedIndex} onItemClick={this._onMenuItemClick} />
       </Paper>

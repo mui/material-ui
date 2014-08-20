@@ -1,6 +1,5 @@
-var React = require('react'),
-  Constants = require('../utils/constants.js'),
-  classSet = require('../utils/class-set.js');
+var React = require('react/addons'),
+  classSet = React.addons.classSet;
 
 module.exports = {
 
@@ -8,33 +7,40 @@ module.exports = {
     className: React.PropTypes.string
   },
 
-  componentWillMount: function() {
-    this.mergeClass(this.props);
+  getClasses: function(additionalClasses) {
+    var classString = '', 
+      classObj = {};
+
+    //Initialize the classString with the classNames that were passed in
+    //and include all special common classes
+    if (this.props.className) classString += ' ' + this.props.className;
+    if (this.props.keyHeight) classString += ' mui-key-height-' + this.props.keyHeight;
+    if (this.props.keyWidth) classString += ' mui-key-width-' + this.props.keyWidth;
+    if (this.props.selected) classString += ' mui-selected';
+    if (this.state && this.state.open) classString += ' mui-open';
+
+    //Add in additional classes
+    if (typeof additionalClasses === 'object') {
+      classString += ' ' + classSet(additionalClasses);
+    } else {
+      classString += ' ' + additionalClasses;
+    }
+
+    classObj = this.getClassSet(classString);
+
+    return classSet(classObj);
   },
 
-  componentWillReceiveProps: function(newProps) {
-    this.mergeClass(newProps);
-  },
+  getClassSet: function(classString) {
+    var classObj = {};
 
-  mergeClass: function(props) {
-    var classObj = {},
-      classString = '';
-
-    	if (this.state && this.state.classes) classString += ' ' + this.state.classes;
-      if (props.className) classString += ' ' + props.className;
-      if (props.keyHeight) classString += ' mui-key-height-' + props.keyHeight;
-      if (props.keyWidth) classString += ' mui-key-width-' + props.keyWidth;
-      if (props.selected) classString += ' mui-selected';
-
+    if (classString) {
       classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
+    }
 
-      this.setState({
-        mergedClasses: classSet(classObj)
-      });
-
-    return this;
+    return classObj;
   }
 
 }

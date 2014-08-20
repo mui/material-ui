@@ -14,7 +14,7 @@ var PaperButton = React.createClass({
     onClick: React.PropTypes.func.isRequired
   },
 
-  mixins: [ Classable ],
+  mixins: [Classable],
 
   getDefaultProps: function() {
     return {
@@ -22,12 +22,9 @@ var PaperButton = React.createClass({
     };
   },
 
-  getInitialState: function() {
-    return { classes: 'mui-paper-button'}
-  },
-
   render: function() {
-    var zDepth;
+    var classes = this.getClasses('mui-paper-button'),
+      zDepth;
 
     switch(this.props.type) {
       case 'flat':
@@ -42,7 +39,7 @@ var PaperButton = React.createClass({
     }
 
     return (
-      <div className={this.state.mergedClasses} onClick={this._onClick}>
+      <div className={classes} onClick={this._onClick}>
         <Paper zDepth={zDepth}>
             {this.props.label}
         </Paper>
@@ -51,7 +48,6 @@ var PaperButton = React.createClass({
   },
 
   _onClick: function(e) {
-    //console.log(e);
     this.props.onClick(e);
   }
 

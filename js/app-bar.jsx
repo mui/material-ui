@@ -10,12 +10,6 @@ var AppBar = React.createClass({
 
   mixins: [Classable],
 
-  getInitialState: function() {
-  	return {
-  		classes: 'mui-app-bar'
-  	}
-  },
-
   getDefaultProps: function() {
   	return {
   		keyHeight: 1,
@@ -24,8 +18,10 @@ var AppBar = React.createClass({
   },
 
   render: function() {
+    var classes = this.getClasses('mui-app-bar');
+
     return (
-    	<Paper className={this.state.mergedClasses}>
+    	<Paper className={classes}>
         {this._getTitle()}
     		{this.props.children}
     	</Paper>

@@ -21,7 +21,6 @@ var DropDownMenu = React.createClass({
 
   getInitialState: function() {
   	return {
-  		classes: 'mui-drop-down-menu',
       open: false,
       selectedIndex: 0
   	}
@@ -48,12 +47,10 @@ var DropDownMenu = React.createClass({
   },
 
   render: function() {
-    var mergedClasses = this.state.mergedClasses;
-
-    if (this.state.open) mergedClasses += ' mui-open';
+    var classes = this.getClasses('mui-drop-down-menu');
 
     return (
-    	<div className={mergedClasses}>
+    	<div className={classes}>
         <div className="mui-menu-control" onClick={this._onControlClick}>
           <Paper className="mui-menu-control-bg" />
           <div className="mui-menu-label">
