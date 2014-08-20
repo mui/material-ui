@@ -21,7 +21,7 @@ var AppBar = React.createClass({
     var classes = this.getClasses('mui-app-bar');
 
     return (
-    	<Paper className={classes}>
+    	<Paper rounded={false} className={classes}>
         {this._getTitle()}
     		{this.props.children}
     	</Paper>

@@ -23,7 +23,7 @@ var LeftNav = React.createClass({
       selectedIndex = this.props.selectedIndex;
 
     return (
-      <Paper zDepth={2} className={classes}>
+      <Paper zDepth={2} rounded={false} className={classes}>
         {this.props.header}
         <Menu ref="menuItems" zDepth={0} items={this.props.items} selectedIndex={selectedIndex} onItemClick={this._onMenuItemClick} />
       </Paper>

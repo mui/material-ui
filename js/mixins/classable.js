@@ -7,9 +7,8 @@ module.exports = {
     className: React.PropTypes.string
   },
 
-  getClasses: function(additionalClasses) {
-    var classString = '', 
-      classObj = {};
+  getClasses: function(initialClasses, additionalClassObj) {
+    var classString = '';
 
     //Initialize the classString with the classNames that were passed in
     //and include all special common classes
@@ -19,16 +18,18 @@ module.exports = {
     if (this.props.selected) classString += ' mui-selected';
     if (this.state && this.state.open) classString += ' mui-open';
 
-    //Add in additional classes
-    if (typeof additionalClasses === 'object') {
-      classString += ' ' + classSet(additionalClasses);
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classSet(initialClasses);
     } else {
-      classString += ' ' + additionalClasses;
+      classString += ' ' + initialClasses;
     }
 
-    classObj = this.getClassSet(classString);
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classSet(additionalClassObj);
 
-    return classSet(classObj);
+    //Convert the class string into an object and run it through the class set
+    return classSet(this.getClassSet(classString));
   },
 
   getClassSet: function(classString) {
