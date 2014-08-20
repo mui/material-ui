@@ -1,28 +1,5 @@
 @ease-out-function: cubic-bezier(0.23, 1, 0.32, 1);
 
-.apply-transition(@val) {
-    -webkit-transition: @val;
-    -moz-transition:    @val;
-    -ms-transition:     @val;
-    -o-transition:      @val;
-    transition:         @val;
-}
-
 .ease-out(@duration: 450ms) {
-    .apply-transition(all @duration @ease-out-function);
-}
-
-.transition-delay(@delay: 0ms) {
-    -webkit-transition-delay: @delay;
-    -moz-transition-delay: @delay;
-    -ms-transition-delay: @delay;
-    -o-transition-delay: @delay;
-    transition-delay: @delay;
-}
-
-.transform-duration(@duration: 1s) {
-    -webkit-transition: -webkit-transform @duration;
-    -moz-transition: -moz-transform @duration;
-    -o-transition: -o-transform @duration;
-    transition: transform @duration;
+    .lh-transition(all @duration @ease-out-function);
 }
