@@ -3,15 +3,17 @@
 	border: 2px solid @radio-button-border-color;
 	border-radius: 100%;
 	height: @radio-button-size;
+	position: relative;
 	width: @radio-button-size;
 
 	.mui-radio-button-fill {
 		background-color: transparent;
-		border: 2px solid transparent;
 		border-radius: 100%;
 		height: @radio-button-size;
 		width: @radio-button-size;
 		position: absolute;
+		left: -2px;
+		top: -2px;
 		transform: scale(0);
 	}
 

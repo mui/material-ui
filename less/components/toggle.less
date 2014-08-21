@@ -1,6 +1,15 @@
 .mui-toggle {
 	position: relative;
 
+	.mui-toggle-bar {
+		background-color: @toggle-background-color;
+		height: @toggle-height;
+		left: @radio-button-size;
+		position: absolute;
+		top: 8px;
+		width: @toggle-width;
+	}
+
 	&.toggled {
 		.mui-toggle-bar {
 			background-color: @radio-button-checked-color;;
@@ -18,14 +27,5 @@
 				transform: scale(1.1);
 			}
 		}
-	}
-
-	.mui-toggle-bar {
-		background-color: @toggle-background-color;
-		height: @toggle-height;
-		left: @radio-button-size;
-		position: absolute;
-		top: 8px;
-		width: @toggle-width;
 	}
 }
