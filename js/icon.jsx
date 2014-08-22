@@ -10,7 +10,7 @@ var Icon = React.createClass({
 	mixins: [Classable],
 
 	propTypes: {
-		icon: React.PropTypes.string.isRequired
+		icon: React.PropTypes.string
 	},
 
 	render: function() {

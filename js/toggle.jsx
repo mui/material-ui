@@ -10,7 +10,7 @@ var React = require('react'),
 var Toggle = React.createClass({
 
   propTypes: {
-    onClick: React.PropTypes.func.isRequired
+    onToggle: React.PropTypes.func
   },
 
   mixins: [Classable],
@@ -41,7 +41,8 @@ var Toggle = React.createClass({
   },
 
   _onClick: function(e) {
-    this.setState({ toggled: !this.state.toggled });
+    if (this.props.onToggle) this.props.onToggle(e);
+      this.setState({ toggled: !this.state.toggled });
   }
 
 });

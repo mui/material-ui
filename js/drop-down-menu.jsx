@@ -6,6 +6,8 @@ var $ = require('jquery'),
   React = require('react'),
   Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
+  Constants = require('./utils/constants.js'),
+  KeyLine = require('./utils/key-line.js'),
   Paper = require('./paper.jsx'),
   Icon = require('./icon.jsx'),
   Menu = require('./menu.jsx');
@@ -58,7 +60,7 @@ var DropDownMenu = React.createClass({
           </div>
           <Icon icon="arrow-drop-down" />
         </div>
-        <Menu ref="menuItems" selectedIndex={this.state.selectedIndex} menuItems={this.props.menuItems} visible={this.state.open} onItemClick={this._onMenuItemClick} />
+        <Menu ref="menuItems" selectedIndex={this.state.selectedIndex} menuItems={this.props.menuItems} visible={this.state.open} setHeightWidth={true} onItemClick={this._onMenuItemClick} />
       </div>
     );
   },

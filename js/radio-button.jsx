@@ -9,7 +9,7 @@ var React = require('react'),
 var RadioButton = React.createClass({
 
   propTypes: {
-    onClick: React.PropTypes.func.isRequired
+    onClick: React.PropTypes.func,
   },
 
   mixins: [Classable],

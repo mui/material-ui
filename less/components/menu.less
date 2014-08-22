@@ -1,10 +1,58 @@
-.mui-menu {
+.mui-menu-container {
+	background-color: @white;
+}
 
+.mui-menu {
 	.mui-menu-item {
 		cursor: pointer;
+		height: @menu-item-height;
+		line-height: @menu-item-height;
+
+		&.mui-icon {
+			.mui-menu-item-icon {
+				.mui-text-light-black;
+				display: inline-block;
+				padding-right: @desktop-gutter;
+				position: relative;
+				top: -2px;
+				vertical-align: middle;
+			}
+		}
+
+		&.mui-number {
+			.mui-menu-item-number {
+				.mui-text-min-black;
+				display: inline-block;
+				float: right;
+				height: @menu-item-height;
+				line-height: @menu-item-height;
+			}
+		}
+
+		&.mui-toggle {
+			.mui-menu-item-toggle {
+				display: inline-block;
+				float: right;
+				padding-right: (@desktop-gutter + @radio-button-size);
+				position: relative;
+				top: @radio-button-size;
+			}
+		}
 
 		&.mui-selected {
 			color: @menu-item-selected-text-color;
+		}
+
+		.mui-menu-item-icon {
+			display: none;
+		}
+
+		.mui-menu-item-number {
+			display: none;
+		}
+
+		.mui-menu-item-toggle {
+			display: none;
 		}
 	}
 
@@ -13,5 +61,4 @@
 		padding-left: @desktop-gutter;
 		padding-right: @desktop-gutter;
 	}
-	
 }

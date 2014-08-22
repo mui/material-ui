@@ -19,12 +19,14 @@ var Menu = React.createClass({
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
     visible: React.PropTypes.bool,
+    setHeightWidth: React.PropTypes.bool,
     zDepth: React.PropTypes.number
   },
 
   getDefaultProps: function() {
     return { 
-      visible: true
+      visible: true,
+      setHeightWidth: false
     };
   },
   
@@ -66,7 +68,7 @@ var Menu = React.createClass({
 
         default:
           itemComponent = (
-            <MenuItem selected={isSelected} key={i} onClick={this._onItemClick}>{menuItem.text}</MenuItem>
+            <MenuItem selected={isSelected} key={i} icon={menuItem.icon} number={menuItem.number} toggle={menuItem.toggle} onClick={this._onItemClick} onToggle={this._onItemToggle}>{menuItem.text}</MenuItem>
           );
       }
       children.push(itemComponent);
@@ -76,21 +78,28 @@ var Menu = React.createClass({
   },
 
   _setHeightAndWidth: function() {
-    var $el = $(this.getDOMNode()),
-      menuHeight = (Constants.KeyLines.Desktop.MENU_ITEM_HEIGHT * this.props.menuItems.length) + (Constants.KeyLines.Desktop.GUTTER_LESS * 2),
-      menuWidth = $el.width();
+    if(this.props.setHeightWidth) {
+      var $el = $(this.getDOMNode()),
+        menuHeight = (Constants.KeyLines.Desktop.MENU_ITEM_HEIGHT * this.props.menuItems.length) + (Constants.KeyLines.Desktop.GUTTER_LESS * 2),
+        menuWidth = $el.width();
 
-    //Make sure the width is an increment of the keylines
-    menuWidth = KeyLine.getIncrementalDim(menuWidth);
-    $el
-      .css({
-        width: menuWidth,
-        height: this.props.visible ? menuHeight : 0
-      });
+      //Make sure the width is an increment of the keylines
+      menuWidth = KeyLine.getIncrementalDim(menuWidth);
+      $el
+        .css({
+          width: menuWidth,
+          height: this.props.visible ? menuHeight : 0
+        });
+    }
   },
 
   _onItemClick: function(e, key) {
     if (this.props.onItemClick) this.props.onItemClick(e, key, this.props.menuItems[key]);
+  },
+
+  _onItemToggle: function(e) {
+    if (this.props.onToggle) this.props.onToggle(e);
+      console.log("menu component heard toggle");
   }
 
 });
