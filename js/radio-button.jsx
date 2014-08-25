@@ -39,6 +39,7 @@ var RadioButton = React.createClass({
   },
 
   _onClick: function(e) {
+    if (this.props.onClick) this.props.onClick(e);
     this.setState({ checked: !this.state.checked });
   }
 

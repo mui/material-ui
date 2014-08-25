@@ -16,6 +16,7 @@ var Menu = React.createClass({
 
 	propTypes: {
     onItemClick: React.PropTypes.func,
+    onToggleClick: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
     visible: React.PropTypes.bool,
@@ -98,7 +99,7 @@ var Menu = React.createClass({
   },
 
   _onItemToggle: function(e) {
-    if (this.props.onToggle) this.props.onToggle(e);
+    if (this.props.onItemToggle) this.props.onItemToggle(e);
       console.log("menu component heard toggle");
   }
 
