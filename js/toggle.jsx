@@ -28,21 +28,25 @@ var Toggle = React.createClass({
 
   render: function() {
     var classes = this.getClasses('mui-toggle', {
-      'toggled': this.state.toggled === true
+      'mui-toggled': this.state.toggled === true
     })
 
     return (
-      <div className={classes} toggled={this.state.toggled} onClick={this._onClick}>
+      <div className={classes} onClick={this._onClick}>
         <div className="mui-toggle-bar">
         </div>
-        <RadioButton></RadioButton>
+        <RadioButton ref="radioButton" />
       </div>
     );
   },
 
   _onClick: function(e) {
-    if (this.props.onToggle) this.props.onToggle(e);
-      this.setState({ toggled: !this.state.toggled });
+    var toggledState = !this.state.toggled;
+
+    this.setState({ toggled: toggledState });
+    this.refs.radioButton.toggle();
+    
+    if (this.props.onToggle) this.props.onToggle(e, toggledState);
   }
 
 });

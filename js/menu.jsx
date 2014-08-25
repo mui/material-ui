@@ -98,9 +98,9 @@ var Menu = React.createClass({
     if (this.props.onItemClick) this.props.onItemClick(e, key, this.props.menuItems[key]);
   },
 
-  _onItemToggle: function(e) {
-    if (this.props.onItemToggle) this.props.onItemToggle(e);
-      console.log("menu component heard toggle");
+  _onItemToggle: function(e, key, toggled) {
+    if (this.props.onItemToggle) this.props.onItemToggle(e, key, this.props.menuItems[key], toggled);
+      console.log('Menu Toggle: ', key, toggled);
   }
 
 });

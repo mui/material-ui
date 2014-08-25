@@ -25,13 +25,17 @@ var RadioButton = React.createClass({
     };
   },
 
+  toggle: function() {
+    this.setState({ checked: !this.state.checked });
+  },
+
   render: function() {
     var classes = this.getClasses('mui-radio-button', {
-      'checked': this.state.checked === true
+      'mui-checked': this.state.checked === true
     })
 
     return (
-      <div className={classes} checked={this.state.checked} onClick={this._onClick}>
+      <div className={classes} onClick={this._onClick}>
         <div className="mui-radio-button-fill">
         </div>
       </div>
@@ -39,8 +43,11 @@ var RadioButton = React.createClass({
   },
 
   _onClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e);
-    this.setState({ checked: !this.state.checked });
+    var checkedState = this.state.checked;
+
+    this.toggle();
+
+    if (this.props.onClick) this.props.onClick(e, !checkedState);
   }
 
 });

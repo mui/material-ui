@@ -10,22 +10,13 @@
 		width: @toggle-width;
 	}
 
-	&.toggled {
+	&.mui-toggled {
 		.mui-toggle-bar {
 			background-color: @radio-button-checked-color;;
 		}
 
 		.mui-radio-button {
 			transform: translate((@toggle-width+@radio-button-size), 0);
-
-			.mui-radio-button-fill {
-				background-color: @radio-button-checked-color;
-				border-color: @radio-button-checked-color;
-				position: absolute;
-				left: -2px;
-				top: -2px;
-				transform: scale(1.1);
-			}
 		}
 	}
 }

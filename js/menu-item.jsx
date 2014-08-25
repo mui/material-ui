@@ -37,10 +37,13 @@ var MenuItem = React.createClass({
     return (
     	<div key={this.props.key} className={classes} onClick={this._onClick}>
         <Icon className="mui-menu-item-icon" icon={this.props.icon} />
+
         {this.props.children}
+
         <span className="mui-menu-item-number">
           {this.props.number}
         </span>
+
         <Toggle className="mui-menu-item-toggle" onToggle={this._onToggleClick} />
       </div>
     );
@@ -50,8 +53,8 @@ var MenuItem = React.createClass({
     if (this.props.onClick) this.props.onClick(e, this.props.key);
   },
 
-  _onToggleClick: function(e) {
-    if (this.props.onToggle) this.props.onToggle(e);
+  _onToggleClick: function(e, toggled) {
+    if (this.props.onToggle) this.props.onToggle(e, this.props.key, toggled);
   }
 
 });
