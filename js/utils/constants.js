@@ -10,7 +10,8 @@ module.exports = {
 	},
 
 	MenuItemTypes: {
-    SUBHEADER: 'SUBHEADER'
+    SUBHEADER: 'SUBHEADER',
+    NESTED: 'NESTED'
   }
 
 }

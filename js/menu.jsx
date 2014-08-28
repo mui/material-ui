@@ -8,6 +8,9 @@ var $ = require('jquery'),
 	Classable = require('./mixins/classable.js'),
   KeyLine = require('./utils/key-line.js'),
   Paper = require('./paper.jsx'),
+  Icon = require('./icon.jsx'),
+  Menu = require('./menu.jsx'),
+  MenuNestedItem = require('./menu-nested-item.jsx'),
   MenuItem = require('./menu-item.jsx');
 
 var Menu = React.createClass({
@@ -40,6 +43,7 @@ var Menu = React.createClass({
   },
 
 	render: function() {
+    console.log(this.props.menuItems);
     var classes = this.getClasses('mui-menu');
 
     return (
@@ -48,7 +52,7 @@ var Menu = React.createClass({
       </Paper>
 		);
 	},
-
+  
   _getChildren: function() {
     var children = [],
       menuItem,
@@ -64,6 +68,17 @@ var Menu = React.createClass({
         case Constants.MenuItemTypes.SUBHEADER:
           itemComponent = (
             <div key={i} className="mui-subheader">{menuItem.text}</div>
+          );
+          break;
+
+        case Constants.MenuItemTypes.NESTED:
+          itemComponent = (
+            <div key={i} className="mui-nested">
+              {menuItem.text}
+              <Icon className="mui-nested-arrow" icon="chevron-right" />
+              <Menu className="mui-menu-nested" menuItems={menuItem.items} zDepth={1} />
+            </div>
+            /*<MenuNestedItem selected={isSelected} key={i} menuItems={menuItem.items} onClick={this._onItemClick}>{menuItem.text}</MenuNestedItem>*/
           );
           break;
 
