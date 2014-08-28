@@ -1,5 +1,9 @@
 .mui-menu-container {
 	background-color: @white;
+
+	&.fixed-size {
+		width: 250px;
+	}
 }
 
 .mui-menu {
@@ -57,8 +61,41 @@
 	}
 
 	.mui-subheader,
+	.mui-nested,
 	.mui-menu-item {
 		padding-left: @desktop-gutter;
 		padding-right: @desktop-gutter;
 	}
+
+	.mui-nested {
+		position: relative;
+		margin: 0;
+		height: @desktop-subheader-height + @desktop-gutter-mini;
+		line-height: @desktop-subheader-height;
+		padding-top: @desktop-gutter-mini;
+		margin-top: @desktop-gutter-mini;
+
+		.mui-nested-arrow {
+			.mui-text-min-black;
+			float: right;
+			line-height: @menu-item-height;
+			position: relative;
+			left: 10px;
+		}
+
+		&:first-child {
+			height: @desktop-subheader-height;
+			border-top: none;
+			padding-top: 0;
+			margin-top: 0;
+		}
+	}
+
+	.mui-menu-nested {
+		position: absolute;
+		background-color: @white;
+		top: 0;
+		right: -128px;
+	}
+
 }
