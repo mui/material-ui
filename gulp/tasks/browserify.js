@@ -32,6 +32,7 @@ var bundler = watchify(browserify('./src/app/app.jsx', watchify.args));
       .pipe(source('app.js'))
       // Specify the output destination
       .pipe(gulp.dest('./build/'))
+      .pipe(gulp.dest('./'))
       // Log when bundling completes!
       .on('end', bundleLogger.end);
   };

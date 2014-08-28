@@ -7,5 +7,6 @@ gulp.task('less', function() {
     .pipe(sourcemaps.init())
     .pipe(less())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('build'))
+    .pipe(gulp.dest('./'));
 });
