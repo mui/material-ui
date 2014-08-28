@@ -20,6 +20,7 @@ var MenuNestedItem = React.createClass({
 
   getDefaultProps: function() {
     return { 
+      Mark: sux
     };
   },
 
