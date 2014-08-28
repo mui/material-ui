@@ -33174,13 +33174,11 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
     		React.DOM.h2(null, "Drop Down Menu"), 
     		DropDownMenu({menuItems: this.state.menuItems, onChange: this._onDropDownMenuChange}), 
         React.DOM.br(null), 
-        /*}
-        <h2>Sub-Menu</h2>
-        <div className="mui-menu-container fixed-size">
-          <Menu menuItems={this.state.subMenuItems} zDepth={1} />
-        </div>
-        <br />
-      */
+        React.DOM.h2(null, "Sub-Menu"), 
+        React.DOM.div({className: "mui-menu-container fixed-size"}, 
+          Menu({menuItems: this.state.subMenuItems, zDepth: 1})
+        ), 
+        React.DOM.br(null), 
         React.DOM.h2(null, "Attribute Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
           Menu({menuItems: this.state.attributeMenuItems, zDepth: 1})
