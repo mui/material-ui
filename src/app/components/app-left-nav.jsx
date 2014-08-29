@@ -5,8 +5,8 @@
 var React = require('react'),
   Dispatcher = require('../app-dispatcher.js'),
   Pages = require('./pages.jsx'),
-  PaperConstants = require('../../material-ui/js/utils/constants.js'),
-	LeftNav = require('../../material-ui/js/left-nav.jsx');
+  PaperConstants = require('../../../dist/js/utils/constants.js'),
+	LeftNav = require('../../../dist/js/left-nav.jsx');
 
 var AppLeftNav = React.createClass({
 

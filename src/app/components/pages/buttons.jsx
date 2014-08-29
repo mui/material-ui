@@ -3,7 +3,7 @@
  */
 
 var React = require('react'),
-	PaperButton = require('../../../material-ui/js/paper-button.jsx');
+	PaperButton = require('../../../../dist/js/paper-button.jsx');
 
 var ButtonPage = React.createClass({
 

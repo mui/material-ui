@@ -3,7 +3,7 @@
  */
 
 var React = require('react'),
-	Paper = require('../../../material-ui/js/paper.jsx'),
+	Paper = require('../../../../dist/js/paper.jsx'),
 	CodeBlock = require('./code-block.jsx');
 
 var CodeExample = React.createClass({

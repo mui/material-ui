@@ -3,7 +3,7 @@
  */
 
 var React = require('react'),
-  Input = require('../../../material-ui/js/input.jsx');
+  Input = require('../../../../dist/js/input.jsx');
 
 var InputsPage = React.createClass({
 

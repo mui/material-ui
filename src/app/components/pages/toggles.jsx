@@ -3,7 +3,7 @@
  */
 
 var React = require('react'),
-  Toggle = require('../../../material-ui/js/toggle.jsx');
+  Toggle = require('../../../../dist/js/toggle.jsx');
 
 var ButtonPage = React.createClass({
 

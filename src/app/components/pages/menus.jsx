@@ -3,10 +3,10 @@
  */
  
 var React = require('react'),
-	DropDownMenu = require('../../../material-ui/js/drop-down-menu.jsx'),
-  Paper = require('../../../material-ui/js/paper.jsx'),
-  PaperConstants = require('../../../material-ui/js/utils/constants.js'),
-  Menu = require('../../../material-ui/js/menu.jsx');
+	DropDownMenu = require('../../../../dist/js/drop-down-menu.jsx'),
+  Paper = require('../../../../dist/js/paper.jsx'),
+  PaperConstants = require('../../../../dist/js/utils/constants.js'),
+  Menu = require('../../../../dist/js/menu.jsx');
 
 
 var MenusPage = React.createClass({

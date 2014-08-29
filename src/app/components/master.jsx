@@ -4,8 +4,8 @@
 
 var Backbone = require('backbone'),
   React = require('react'),
-  AppCanvas = require('../../material-ui/js/app-canvas.jsx'),
-  AppBar = require('../../material-ui/js/app-bar.jsx'),
+  AppCanvas = require('../../../dist/js/app-canvas.jsx'),
+  AppBar = require('../../../dist/js/app-bar.jsx'),
   AppStateStore = require('../stores/app-state-store.js'),
   Pages = require('./pages.jsx'),
 	AppLeftNav = require('./app-left-nav.jsx');

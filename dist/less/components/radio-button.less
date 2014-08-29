@@ -1,0 +1,29 @@
+.mui-radio-button {
+	background-color: @radio-button-background-color;
+	border: 2px solid @radio-button-border-color;
+	border-radius: 100%;
+	height: @radio-button-size;
+	position: relative;
+	width: @radio-button-size;
+
+	.mui-radio-button-fill {
+		background-color: transparent;
+		border-radius: 100%;
+		height: @radio-button-size;
+		width: @radio-button-size;
+		position: absolute;
+		left: -2px;
+		top: -2px;
+		transform: scale(0);
+	}
+
+	&.mui-checked {
+		background-color: @radio-button-checked-color;
+
+		.mui-radio-button-fill {
+			background-color: @radio-button-checked-color;
+			border-color: @radio-button-checked-color;
+			transform: scale(1.1);
+		}
+	}
+}

@@ -3,7 +3,7 @@
  */
 
 var React = require('react'),
-    RadioButton = require('../../../material-ui/js/radio-button.jsx');
+    RadioButton = require('../../../../dist/js/radio-button.jsx');
 
 var RadioButtonPage = React.createClass({
 

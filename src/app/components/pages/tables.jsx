@@ -3,7 +3,7 @@
  */
  
 var React = require('react'),
-  Table = require('../../../material-ui/js/table.jsx');
+  Table = require('../../../../dist/js/table.jsx');
 
 
 var TablesPage = React.createClass({
