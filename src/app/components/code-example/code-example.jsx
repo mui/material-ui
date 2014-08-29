@@ -3,7 +3,7 @@
  */
 
 var React = require('react'),
-	Paper = require('../../../../dist/js/paper.jsx'),
+	mui = require('mui'),
 	CodeBlock = require('./code-block.jsx');
 
 var CodeExample = React.createClass({
@@ -14,13 +14,13 @@ var CodeExample = React.createClass({
 
 	render: function() {
 		return (
-			<Paper className="code-example">
+			<mui.Paper className="code-example">
     		<div className="example-label">example</div>
 	    	<div className="example-block">
 	    		{this.props.children}
 	    	</div>
 	    	<CodeBlock>{this.props.code}</CodeBlock>
-    	</Paper>
+    	</mui.Paper>
 		);
 	}
 

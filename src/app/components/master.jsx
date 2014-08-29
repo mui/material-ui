@@ -4,8 +4,7 @@
 
 var Backbone = require('backbone'),
   React = require('react'),
-  AppCanvas = require('../../../dist/js/app-canvas.jsx'),
-  AppBar = require('../../../dist/js/app-bar.jsx'),
+  mui = require('mui'),
   AppStateStore = require('../stores/app-state-store.js'),
   Pages = require('./pages.jsx'),
 	AppLeftNav = require('./app-left-nav.jsx');
@@ -34,13 +33,13 @@ var Master = React.createClass({
       currentMainComponent = page.mainContentComponent;
 
     return (
-      <AppCanvas predefinedLayout={1}>
-        <AppBar title={title} />
+      <mui.AppCanvas predefinedLayout={1}>
+        <mui.AppBar title={title} />
     		<AppLeftNav url={this.state.currentUrl} />
     		<div className="mui-app-content-canvas">
             {currentMainComponent}
         </div>
-      </AppCanvas>
+      </mui.AppCanvas>
     );
   },
 

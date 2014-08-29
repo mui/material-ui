@@ -3,10 +3,9 @@
  */
 
 var React = require('react'),
+  mui = require('mui'),
   Dispatcher = require('../app-dispatcher.js'),
-  Pages = require('./pages.jsx'),
-  PaperConstants = require('../../../dist/js/utils/constants.js'),
-	LeftNav = require('../../../dist/js/left-nav.jsx');
+  Pages = require('./pages.jsx');
 
 var AppLeftNav = React.createClass({
 
@@ -17,11 +16,11 @@ var AppLeftNav = React.createClass({
   getInitialState: function() {
     return {
       menuItems: [
-        { type: PaperConstants.MenuItemTypes.SUBHEADER, text: 'CSS Framework' },
+        { type: mui.Constants.MenuItemTypes.SUBHEADER, text: 'CSS Framework' },
         { payload: Pages.colors, text: Pages.colors.title },
         { payload: Pages.typography, text: Pages.typography.title },
         { payload: Pages.icons, text: Pages.icons.title },
-        { type: PaperConstants.MenuItemTypes.SUBHEADER, text: 'Components' },
+        { type: mui.Constants.MenuItemTypes.SUBHEADER, text: 'Components' },
         { payload: Pages.buttons, text: Pages.buttons.title },
         { payload: Pages.inputs, text: Pages.inputs.title },
         { payload: Pages.menus, text: Pages.menus.title },
@@ -44,7 +43,7 @@ var AppLeftNav = React.createClass({
     var header = <div className="logo" onClick={this._onHeaderClick}>material ui</div>;
 
     return (
-      <LeftNav 
+      <mui.LeftNav 
         header={header}
         menuItems={this.state.menuItems}
         selectedIndex={this.state.selectedIndex}
