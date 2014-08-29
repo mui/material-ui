@@ -11,7 +11,6 @@ var $ = require('jquery'),
   Paper = require('./paper.jsx'),
   Icon = require('./icon.jsx'),
   Menu = require('./menu.jsx'),
-  MenuNestedItem = require('./menu-nested-item.jsx'),
   MenuItem = require('./menu-item.jsx');
 
 var Menu = React.createClass({
