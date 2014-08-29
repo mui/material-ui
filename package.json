@@ -6,22 +6,28 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "react",
+    "material design"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
   },
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/callemall/material-ui/issues"
   },
-  "homepage": "https://github.com/callemall/material-ui",
+  "homepage": "http://callemall.github.io/material-ui/",
   "browserify": {
     "transform": [
       "reactify"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^2.1.1",
+    "react": "^0.11.1"
+  },
   "devDependencies": {
     "browserify": "^5.11.0",
     "reactify": "^0.14.0"
