@@ -1,6 +1,6 @@
 {
   "name": "material-ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Material Design UI components built with React",
   "main": "index.js",
   "scripts": {
