@@ -6,6 +6,7 @@ var $ = require('jquery'),
   React = require('react'),
   Constants = require('./utils/constants.js'),
 	Classable = require('./mixins/classable.js'),
+  ClickAwayable = require('./mixins/click-awayable'),
   KeyLine = require('./utils/key-line.js'),
   Paper = require('./paper.jsx'),
   Icon = require('./icon.jsx'),
@@ -15,27 +16,56 @@ var $ = require('jquery'),
 
 var Menu = React.createClass({
 
-	mixins: [Classable],
+	mixins: [Classable, ClickAwayable],
 
 	propTypes: {
+    onNestedItemClick: React.PropTypes.func,
     onItemClick: React.PropTypes.func,
     onToggleClick: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
     visible: React.PropTypes.bool,
     setHeightWidth: React.PropTypes.bool,
+    nested: React.PropTypes.bool,
     zDepth: React.PropTypes.number
+  },
+
+  getInitialState: function() {
+    return {
+      open: false
+    }
   },
 
   getDefaultProps: function() {
     return { 
       visible: true,
-      setHeightWidth: false
+      setHeightWidth: false,
+      nested: false
     };
   },
   
   componentDidMount: function() {
     this._setHeightAndWidth();
+
+    var _this = this;
+
+    if(this.props.nested === true) {
+      this.listenToClickAway(this, function() {
+        _this.setState({
+          open: false
+        });
+
+      var $el = $(_this.refs.nestedMenu.getDOMNode());
+
+      $el
+      .css({
+        "height": 0,
+        "opacity": 0,
+        "z-index": -2
+      });
+
+      });
+    }
   },
 
   componentDidUpdate: function() {
@@ -43,7 +73,6 @@ var Menu = React.createClass({
   },
 
 	render: function() {
-    console.log(this.props.menuItems);
     var classes = this.getClasses('mui-menu');
 
     return (
@@ -72,13 +101,18 @@ var Menu = React.createClass({
           break;
 
         case Constants.MenuItemTypes.NESTED:
+          var testRef = "testRef";
           itemComponent = (
-            <div key={i} className="mui-nested">
+            <div ref={testRef} key={i} className="mui-nested">
+              <span onClick={this._onNestedItemClick}>
               {menuItem.text}
+              </span>
               <Icon className="mui-nested-arrow" icon="chevron-right" />
-              <Menu className="mui-menu-nested" menuItems={menuItem.items} zDepth={1} />
+              <Menu ref="nestedMenu" className="mui-menu-nested" menuItems={menuItem.items} visible={this.state.open} onItemClick={this._onItemClick} zDepth={1} />
             </div>
-            /*<MenuNestedItem selected={isSelected} key={i} menuItems={menuItem.items} onClick={this._onItemClick}>{menuItem.text}</MenuNestedItem>*/
+            /*
+            <MenuNestedItem />
+            */
           );
           break;
 
@@ -107,6 +141,28 @@ var Menu = React.createClass({
           height: this.props.visible ? menuHeight : 0
         });
     }
+  },
+
+  expandNestedMenu: function(e, key, theRef) {
+    //console.log(theRef);
+    var $el = $(theRef.getDOMNode());
+    //console.log($el);
+
+
+    console.log(this.state.open);
+
+    $el
+    .css({
+      "height": this.state.open ? 0 : 300,
+      "opacity": this.state.open ? 0 : 1,
+      "z-index": this.state.open ? -2 : 1
+    });
+  },
+
+  _onNestedItemClick: function(e, key) {
+      this.setState({ open: !this.state.open });
+      var theRef = this.refs['nestedMenu'];
+      this.expandNestedMenu(e, key, theRef);
   },
 
   _onItemClick: function(e, key) {
