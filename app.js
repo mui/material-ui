@@ -34225,7 +34225,10 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
       subMenuItems: [
         { type: PaperConstants.MenuItemTypes.NESTED, text: 'Reports', items: [ { payload: '1', text: 'Nested Item 1' },
                                                                                { type: PaperConstants.MenuItemTypes.NESTED, text: 'Nested Item 2', items: [ { payload: '1', text: 'Nested Item 1' },
-                                                                                                                                                            { payload: '2', text: 'Nested Item 2' },
+                                                                                                                                                            { type: PaperConstants.MenuItemTypes.NESTED, text: 'Nested Item 2', items: [ { payload: '1', text: 'Nested Item 1' },
+                                                                                                                                                                                                                                        { payload: '2', text: 'Nested Item 2' },
+                                                                                                                                                                                                                                        { payload: '3', text: 'Nested Item 3' }
+                                                                                                                                                                                                                                      ] },
                                                                                                                                                             { payload: '3', text: 'Nested Item 3' }
                                                                                                                                                           ] },
                                                                                { payload: '2', text: 'Nested Item 3' },
@@ -34244,24 +34247,26 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
     		React.DOM.h2(null, "Drop Down Menu"), 
     		DropDownMenu({menuItems: this.state.menuItems, onChange: this._onDropDownMenuChange}), 
         React.DOM.br(null), 
-        React.DOM.h2(null, "Sub-Menu"), 
-        React.DOM.div({className: "mui-menu-container fixed-size"}, 
-          Menu({menuItems: this.state.subMenuItems, zDepth: 1})
-        ), 
-        React.DOM.br(null), 
+        /*
+        <h2>Sub-Menu</h2>
+        <div className="mui-menu-container fixed-size">
+          <Menu menuItems={this.state.subMenuItems} zDepth={1} nested={true} onItemClick={this._onItemClick} />
+        </div>
+        <br />
+        */
         React.DOM.h2(null, "Attribute Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
-          Menu({menuItems: this.state.attributeMenuItems, zDepth: 1})
+          Menu({menuItems: this.state.attributeMenuItems, zDepth: 1, onItemClick: this._onItemClick})
         ), 
         React.DOM.br(null), 
         React.DOM.h2(null, "Icon Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
-          Menu({menuItems: this.state.iconMenuItems, zDepth: 1})
+          Menu({menuItems: this.state.iconMenuItems, zDepth: 1, onItemClick: this._onItemClick})
         ), 
         React.DOM.br(null), 
         React.DOM.h2(null, "Filter Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
-          Menu({menuItems: this.state.filterMenuItems, zDepth: 1, onItemToggle: this._onFilterMenuToggle})
+          Menu({menuItems: this.state.filterMenuItems, zDepth: 1, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
         )
     	)
     );
@@ -34273,6 +34278,14 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
 
   _onFilterMenuToggle: function(e, key, menuItem, toggled) {
     console.log('Filter Menu Toggled: ', key, menuItem, toggled)
+  },
+
+  _onItemClick: function(e, key, menuItem) {
+    console.log("MENU ITEM CLICKED FROM MENUS.JSX", menuItem);
+  },
+
+  _onNestedItemClick: function(e, sNM) {
+    console.log('Nested Menu Index: ', sNM)
   }
 });
 
