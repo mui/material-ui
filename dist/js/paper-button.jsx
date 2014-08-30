@@ -9,12 +9,8 @@ var React = require('react'),
     Types = {
       RAISED: 'RAISED',
       FLAT: 'FLAT',
-      FAB: 'FAB'
-    },
-
-    Sizes = {
-      REGULAR: 'REGULAR',
-      MINI: 'MINI'
+      FAB: 'FAB',
+      FAB_MINI: 'FAB_MINI'
     },
 
     zDepths = {
@@ -26,8 +22,8 @@ var React = require('react'),
 var PaperButton = React.createClass({
 
   propTypes: {
+    primary: React.PropTypes.bool,
     label: React.PropTypes.string,
-    size: React.PropTypes.oneOf(Object.keys(Sizes)),
     type: React.PropTypes.oneOf(Object.keys(Types)),
     onClick: React.PropTypes.func.isRequired
   },
@@ -35,24 +31,24 @@ var PaperButton = React.createClass({
   mixins: [Classable],
 
   statics: {
-    Types: Types,
-    Sizes: Sizes
+    Types: Types
   },
 
   getDefaultProps: function() {
     return {
-      size: Sizes.REGULAR,
+      primary: false,
       type: Types.RAISED
     };
   },
 
   render: function() {
     var classes = this.getClasses('mui-paper-button', {
+      'mui-primary': this.props.primary,
       'mui-flat': this.props.type === Types.FLAT,
-      'mui-fab': ((this.props.type === Types.FAB) && (this.props.size === Sizes.REGULAR)),
-      'mui-fab-mini': ((this.props.type === Types.FAB) && (this.props.size === Sizes.MINI))
+      'mui-fab': this.props.type === Types.FAB,
+      'mui-fab-mini': this.props.type === Types.FAB_MINI
     }),
-      circle = this.props.type === Types.FAB,
+      circle = this.props.type === Types.FAB || this.props.type === Types.FAB_MINI,
       zDepth = zDepths[this.props.type];
 
     return (

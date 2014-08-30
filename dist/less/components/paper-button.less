@@ -7,7 +7,17 @@
 	line-height: @paper-button-height;
 	padding: 0;
 	cursor: pointer;
-	color: @paper-button-text-color;
+
+	.mui-paper {
+		height: 100%;
+		width: 100%;
+
+		.mui-paper-container {
+			padding: 0 @desktop-gutter-less;
+			color: @paper-button-default-text-color;
+			background-color: @paper-button-default-color;
+		}
+	}
 
 	&.mui-fab {
 		height: @fab-size;
@@ -21,19 +31,27 @@
 		min-width: @fab-mini-size;
 	}
 
-	.mui-paper {
-		height: 100%;
-		width: 100%;
-
-		.mui-paper-container {
-			padding: 0 @desktop-gutter-less;
-			background-color: @paper-button-color;
+	&.mui-primary,
+	&.mui-fab,
+	&.mui-fab-mini {
+		.mui-paper {
+			.mui-paper-container {
+				color: @paper-button-primary-text-color;
+				background-color: @paper-button-primary-color;
+			}
 		}
 	}
 
+	
 	&.mui-flat {
-		color: @paper-button-color;
-
+		&.mui-primary {
+			.mui-paper {
+				.mui-paper-container {
+					color: @paper-button-primary-color;
+				}
+			}
+		}
+		
 		.mui-paper {
 			.mui-paper-container {
 				background-color: inherit;

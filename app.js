@@ -654,12 +654,8 @@ var React = require('react'),
     Types = {
       RAISED: 'RAISED',
       FLAT: 'FLAT',
-      FAB: 'FAB'
-    },
-
-    Sizes = {
-      REGULAR: 'REGULAR',
-      MINI: 'MINI'
+      FAB: 'FAB',
+      FAB_MINI: 'FAB_MINI'
     },
 
     zDepths = {
@@ -671,8 +667,8 @@ var React = require('react'),
 var PaperButton = React.createClass({displayName: 'PaperButton',
 
   propTypes: {
+    primary: React.PropTypes.bool,
     label: React.PropTypes.string,
-    size: React.PropTypes.oneOf(Object.keys(Sizes)),
     type: React.PropTypes.oneOf(Object.keys(Types)),
     onClick: React.PropTypes.func.isRequired
   },
@@ -680,24 +676,24 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
   mixins: [Classable],
 
   statics: {
-    Types: Types,
-    Sizes: Sizes
+    Types: Types
   },
 
   getDefaultProps: function() {
     return {
-      size: Sizes.REGULAR,
+      primary: false,
       type: Types.RAISED
     };
   },
 
   render: function() {
     var classes = this.getClasses('mui-paper-button', {
+      'mui-primary': this.props.primary,
       'mui-flat': this.props.type === Types.FLAT,
-      'mui-fab': ((this.props.type === Types.FAB) && (this.props.size === Sizes.REGULAR)),
-      'mui-fab-mini': ((this.props.type === Types.FAB) && (this.props.size === Sizes.MINI))
+      'mui-fab': this.props.type === Types.FAB,
+      'mui-fab-mini': this.props.type === Types.FAB_MINI
     }),
-      circle = this.props.type === Types.FAB,
+      circle = this.props.type === Types.FAB || this.props.type === Types.FAB_MINI,
       zDepth = zDepths[this.props.type];
 
     return (
@@ -34081,22 +34077,64 @@ module.exports = Pages;
 
 var React = require('react'),
   mui = require('mui'),
-  PaperButton = mui.PaperButton;
+  PaperButton = mui.PaperButton,
+  CodeExample = require('../code-example/code-example.jsx');
 
 var ButtonPage = React.createClass({displayName: 'ButtonPage',
 
   render: function() {
     return (
     	React.DOM.div(null, 
+
     		React.DOM.h2(null, "Flat Buttons"), 
-    		PaperButton({type: PaperButton.Types.RAISED, label: "Add Contacts", onClick: this._onPaperButtonClick}), 
-        React.DOM.br(null), 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Add Contacts", onClick: this._onPaperButtonClick}), 
-        React.DOM.br(null), 
-        PaperButton({type: PaperButton.Types.FAB, size: PaperButton.Sizes.MINI, onClick: this._onPaperButtonClick}), 
-        React.DOM.br(null), 
-        PaperButton({type: PaperButton.Types.FAB, onClick: this._onPaperButtonClick})
+        this._getFlatExamples(), 
+
+        React.DOM.h2(null, "Raised Buttons"), 
+        this._getRaisedExamples(), 
+
+        React.DOM.h2(null, "Floating Action Buttons"), 
+        this._getFabExamples()
+
     	)
+    );
+  },
+
+  _getFlatExamples: function() {
+    var code = 
+      '<PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
+      '<PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} />';
+
+    return (
+      CodeExample({code: code}, 
+        PaperButton({type: PaperButton.Types.FLAT, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.FLAT, label: "Primary", primary: true, onClick: this._onPaperButtonClick})
+      )
+    );
+  },
+
+  _getRaisedExamples: function() {
+    var code = 
+      '<PaperButton type={PaperButton.Types.RAISED} label="Default" />\n' +
+      '<PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} />';
+
+    return (
+      CodeExample({code: code}, 
+        PaperButton({type: PaperButton.Types.RAISED, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.RAISED, label: "Primary", primary: true, onClick: this._onPaperButtonClick})
+      )
+    );
+  },
+
+  _getFabExamples: function() {
+    var code = 
+      '<PaperButton type={PaperButton.Types.FAB_MINI} />\n' +
+      '<PaperButton type={PaperButton.Types.FAB} />';
+
+    return (
+      CodeExample({code: code}, 
+        PaperButton({type: PaperButton.Types.FAB_MINI, onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.FAB, onClick: this._onPaperButtonClick})
+      )
     );
   },
 
@@ -34107,7 +34145,7 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 });
 
 module.exports = ButtonPage;
-},{"mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\colors.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-example.jsx","mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\colors.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
