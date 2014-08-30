@@ -50,7 +50,8 @@ var MenusPage = React.createClass({
                                                                                                                                                             { payload: '3', text: 'Nested Item 3' }
                                                                                                                                                           ] },
                                                                                { payload: '2', text: 'Nested Item 3' },
-                                                                               { payload: '3', text: 'Nested Item 4' }
+                                                                               { payload: '3', text: 'Nested Item 4' },
+                                                                               { payload: '4', text: 'Nested Item 5' }
                                                                              ] },
         { payload: '1', text: 'Audio Library'},
         { payload: '2', text: 'Settings'},
@@ -65,13 +66,11 @@ var MenusPage = React.createClass({
     		<h2>Drop Down Menu</h2>
     		<DropDownMenu menuItems={this.state.menuItems} onChange={this._onDropDownMenuChange} />
         <br />
-        {/*
         <h2>Sub-Menu</h2>
         <div className="mui-menu-container fixed-size">
-          <Menu menuItems={this.state.subMenuItems} zDepth={1} nested={true} onItemClick={this._onItemClick} />
+          <Menu ref="nestedMenuParent" menuItems={this.state.subMenuItems} zDepth={1} nested={true} onItemClick={this._onItemClick} onNestedItemClick={this._onNestedItemClick} />
         </div>
         <br />
-        */}
         <h2>Attribute Menu</h2>
         <div className="mui-menu-container">
           <Menu menuItems={this.state.attributeMenuItems} zDepth={1} onItemClick={this._onItemClick} />
@@ -99,7 +98,7 @@ var MenusPage = React.createClass({
   },
 
   _onItemClick: function(e, key, menuItem) {
-    console.log("MENU ITEM CLICKED FROM MENUS.JSX", menuItem);
+    console.log("Menu Item Click: ", menuItem);
   },
 
   _onNestedItemClick: function(e, sNM) {

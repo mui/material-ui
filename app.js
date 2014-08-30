@@ -450,17 +450,48 @@ var Menu = React.createClass({displayName: 'Menu',
           open: false
         });
 
-      var $el = $(_this.refs.nestedMenu.getDOMNode());
+        var self = _this;
+
+        for(var i = 0; i < 3; i++) {
+          self = self.refs.nestedMenu;
+          self.setState({ open: false });
+
+          $el = $(self.getDOMNode());
+
+          $el
+          .css({
+            "height": 0,
+            "opacity": self.state.open ? 1 : 0,
+            "z-index": self.state.open ? 1 : -2
+          });    
+        }
+
+      });
+    }
+  },
+
+  hide: function() {
+    var self = this;
+
+    for(var i = 0; i < 3; i++) {
+      self = self.refs.nestedMenu;
+      this.setState({ open: false });
+
+      $el = $(self.getDOMNode());
 
       $el
       .css({
         "height": 0,
-        "opacity": 0,
-        "z-index": -2
-      });
+        "opacity": self.state.open ? 1 : 0,
+        "z-index": self.state.open ? 1 : -2
+      });    
 
-      });
+      $el.css({"backgroundColor":'red'});
     }
+  },
+
+  componentWillUnmount: function() {
+    this.stopListeningToClickAway(this);
   },
 
   componentDidUpdate: function() {
@@ -496,18 +527,15 @@ var Menu = React.createClass({displayName: 'Menu',
           break;
 
         case Constants.MenuItemTypes.NESTED:
-          var testRef = "testRef";
+
           itemComponent = (
-            React.DOM.div({ref: testRef, key: i, className: "mui-nested"}, 
-              React.DOM.span({onClick: this._onNestedItemClick}, 
+            React.DOM.div({key: i, className: "mui-nested"}, 
+              React.DOM.span({onClick: this._onNestedMenuClick}, 
               menuItem.text
               ), 
               Icon({className: "mui-nested-arrow", icon: "chevron-right"}), 
-              Menu({ref: "nestedMenu", className: "mui-menu-nested", menuItems: menuItem.items, visible: this.state.open, onItemClick: this._onItemClick, zDepth: 1})
+              Menu({ref: "nestedMenu", className: "mui-menu-nested", menuItems: menuItem.items, onItemClick: this._onNestedItemClick, zDepth: 1})
             )
-            /*
-            <MenuNestedItem />
-            */
           );
           break;
 
@@ -538,30 +566,37 @@ var Menu = React.createClass({displayName: 'Menu',
     }
   },
 
-  expandNestedMenu: function(e, key, theRef) {
-    //console.log(theRef);
-    var $el = $(theRef.getDOMNode());
-    //console.log($el);
+  expandNestedMenu: function(e, key, ref) {
+    var $el = $(ref.getDOMNode()),
+        menuHeight = (Constants.KeyLines.Desktop.MENU_ITEM_HEIGHT_2 * ref.props.menuItems.length);
 
-
-    console.log(this.state.open);
+    var $elRight = (parseInt($el.css("width")) * -1);
 
     $el
     .css({
-      "height": this.state.open ? 0 : 300,
+      "right": $elRight,
+      "height": this.state.open ? 0 : menuHeight,
       "opacity": this.state.open ? 0 : 1,
       "z-index": this.state.open ? -2 : 1
     });
   },
 
-  _onNestedItemClick: function(e, key) {
+  _onNestedMenuClick: function(e, key) {
+    if (this.props.onNestedItemClick) this.props.onNestedItemClick(e, key, this.props.menuItems[key]);
       this.setState({ open: !this.state.open });
-      var theRef = this.refs['nestedMenu'];
-      this.expandNestedMenu(e, key, theRef);
+      var ref = this.refs['nestedMenu'];
+      this.expandNestedMenu(e, key, ref);
+  },
+
+  _onNestedItemClick: function(e, key) {
+    console.log("Nested Click");
   },
 
   _onItemClick: function(e, key) {
     if (this.props.onItemClick) this.props.onItemClick(e, key, this.props.menuItems[key]);
+    console.log("Item Click");
+    this.setState({ open: false });
+    //console.log(this.state.open);
   },
 
   _onItemToggle: function(e, key, toggled) {
@@ -1090,7 +1125,8 @@ module.exports = {
 			GUTTER: 24,
 			GUTTER_LESS: 16,
 			INCREMENT: 64,
-			MENU_ITEM_HEIGHT: 32
+			MENU_ITEM_HEIGHT: 32,
+			MENU_ITEM_HEIGHT_2: 48
 		}
 	},
 
@@ -34295,7 +34331,8 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
                                                                                                                                                             { payload: '3', text: 'Nested Item 3' }
                                                                                                                                                           ] },
                                                                                { payload: '2', text: 'Nested Item 3' },
-                                                                               { payload: '3', text: 'Nested Item 4' }
+                                                                               { payload: '3', text: 'Nested Item 4' },
+                                                                               { payload: '4', text: 'Nested Item 5' }
                                                                              ] },
         { payload: '1', text: 'Audio Library'},
         { payload: '2', text: 'Settings'},
@@ -34310,13 +34347,11 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
     		React.DOM.h2(null, "Drop Down Menu"), 
     		DropDownMenu({menuItems: this.state.menuItems, onChange: this._onDropDownMenuChange}), 
         React.DOM.br(null), 
-        /*
-        <h2>Sub-Menu</h2>
-        <div className="mui-menu-container fixed-size">
-          <Menu menuItems={this.state.subMenuItems} zDepth={1} nested={true} onItemClick={this._onItemClick} />
-        </div>
-        <br />
-        */
+        React.DOM.h2(null, "Sub-Menu"), 
+        React.DOM.div({className: "mui-menu-container fixed-size"}, 
+          Menu({ref: "nestedMenuParent", menuItems: this.state.subMenuItems, zDepth: 1, nested: true, onItemClick: this._onItemClick, onNestedItemClick: this._onNestedItemClick})
+        ), 
+        React.DOM.br(null), 
         React.DOM.h2(null, "Attribute Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
           Menu({menuItems: this.state.attributeMenuItems, zDepth: 1, onItemClick: this._onItemClick})
@@ -34344,7 +34379,7 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
   },
 
   _onItemClick: function(e, key, menuItem) {
-    console.log("MENU ITEM CLICKED FROM MENUS.JSX", menuItem);
+    console.log("Menu Item Click: ", menuItem);
   },
 
   _onNestedItemClick: function(e, sNM) {
@@ -34417,7 +34452,7 @@ module.exports = TablesPage;
  */
 
 var React = require('react'),
-  Toggle = require('../../../../dist/js/toggle.jsx');
+    mui = require('mui');
 
 var ButtonPage = React.createClass({displayName: 'ButtonPage',
 
@@ -34425,7 +34460,7 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
     return (
     	React.DOM.div(null, 
     		React.DOM.h2(null, "Toggles"), 
-        Toggle({onToggle: this._onToggle})
+        mui.Toggle({onToggle: this._onToggle})
     	)
     );
   },
@@ -34437,7 +34472,7 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 });
 
 module.exports = ButtonPage;
-},{"../../../../dist/js/toggle.jsx":"F:\\GitHub\\material-ui\\dist\\js\\toggle.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\typography.jsx":[function(require,module,exports){
+},{"mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\typography.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */

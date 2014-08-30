@@ -68,12 +68,12 @@
 	}
 
 	.mui-nested {
+		box-sizing: border-box;
+		cursor: pointer;
 		position: relative;
 		margin: 0;
-		height: @desktop-subheader-height + @desktop-gutter-mini;
+		height: @desktop-subheader-height;
 		line-height: @desktop-subheader-height;
-		padding-top: @desktop-gutter-mini;
-		margin-top: @desktop-gutter-mini;
 
 		.mui-nested-arrow {
 			.mui-text-min-black;
@@ -92,10 +92,10 @@
 	}
 
 	.mui-menu-nested {
+		box-sizing: border-box;
 		position: absolute;
 		background-color: @white;
 		top: 0;
-		right: -128px;
 		height: 0;
 		opacity: 0;
 		z-index: -2;

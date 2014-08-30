@@ -3,7 +3,7 @@
  */
 
 var React = require('react'),
-  Toggle = require('../../../../dist/js/toggle.jsx');
+    mui = require('mui');
 
 var ButtonPage = React.createClass({
 
@@ -11,7 +11,7 @@ var ButtonPage = React.createClass({
     return (
     	<div>
     		<h2>Toggles</h2>
-        <Toggle onToggle={this._onToggle} />
+        <mui.Toggle onToggle={this._onToggle} />
     	</div>
     );
   },
