@@ -5,7 +5,8 @@
   "private": true,
   "browser": {
     "mui": "./index.js",
-    "hljs": "./src/app/vendor/highlight-js/highlight.pack.js"
+    "hljs": "./src/app/vendor/highlight-js/highlight.pack.js",
+    "react": "react/addons"
   },
   "browserify": {
     "transform": [

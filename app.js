@@ -32,7 +32,7 @@
 
 
 
-},{"./app-router.js":"F:\\GitHub\\material-ui\\src\\app\\app-router.js","./components/master.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\master.jsx","backbone":"F:\\GitHub\\material-ui\\node_modules\\backbone\\backbone.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\app-bar.jsx":[function(require,module,exports){
+},{"./app-router.js":"F:\\GitHub\\material-ui\\src\\app\\app-router.js","./components/master.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\master.jsx","backbone":"F:\\GitHub\\material-ui\\node_modules\\backbone\\backbone.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\app-bar.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -608,7 +608,7 @@ var Menu = React.createClass({displayName: 'Menu',
 
 module.exports = Menu;
 },{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./menu-item.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu-item.jsx","./menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js","./utils/key-line.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js":[function(require,module,exports){
-var React = require('react/addons'),
+var React = require('react'),
   classSet = React.addons.classSet;
 
 module.exports = {
@@ -656,7 +656,7 @@ module.exports = {
 
 }
 
-},{"react/addons":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js":[function(require,module,exports){
+},{"react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js":[function(require,module,exports){
 var $ = require('jquery'),
   React = require('react');
 
@@ -750,6 +750,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
 });
 
 module.exports = PaperButton;
+
 },{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
@@ -34188,6 +34189,7 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 });
 
 module.exports = ButtonPage;
+
 },{"../code-example/code-example.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-example.jsx","mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\colors.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
@@ -34654,6 +34656,7 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
 });
 
 module.exports = TypographyPage;
+
 },{"../code-example/code-example.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-example.jsx","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\stores\\app-state-store.js":[function(require,module,exports){
 var _ = require('underscore'),
   Backbone = require('backbone'),
