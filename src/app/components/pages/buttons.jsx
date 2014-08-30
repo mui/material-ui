@@ -3,7 +3,8 @@
  */
 
 var React = require('react'),
-	PaperButton = require('../../../../dist/js/paper-button.jsx');
+  mui = require('mui'),
+  PaperButton = mui.PaperButton;
 
 var ButtonPage = React.createClass({
 
@@ -11,13 +12,13 @@ var ButtonPage = React.createClass({
     return (
     	<div>
     		<h2>Flat Buttons</h2>
-    		<PaperButton type="raised" label="Add Contacts" onClick={this._onPaperButtonClick}></PaperButton>
+    		<PaperButton type={PaperButton.Types.RAISED} label="Add Contacts" onClick={this._onPaperButtonClick}></PaperButton>
         <br />
-        <PaperButton type="flat" label="Add Contacts" onClick={this._onPaperButtonClick}></PaperButton>
+        <PaperButton type={PaperButton.Types.FLAT} label="Add Contacts" onClick={this._onPaperButtonClick}></PaperButton>
         <br />
-        <PaperButton type="fab" size="mini" onClick={this._onPaperButtonClick}></PaperButton>
+        <PaperButton type={PaperButton.Types.FAB} size={PaperButton.Sizes.MINI} onClick={this._onPaperButtonClick}></PaperButton>
         <br />
-        <PaperButton type="fab" onClick={this._onPaperButtonClick}></PaperButton>
+        <PaperButton type={PaperButton.Types.FAB} onClick={this._onPaperButtonClick}></PaperButton>
     	</div>
     );
   },

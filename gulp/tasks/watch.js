@@ -9,5 +9,5 @@ var gulp = require('gulp');
 gulp.task('watch', ['setWatch', 'browserSync'], function() {
   gulp.watch('src/www/**', ['markup']);
   gulp.watch('src/less/**', ['less']);
-  gulp.watch('src/material-ui/less/**', ['less']);
+  gulp.watch('dist/less/**', ['less']);
 });

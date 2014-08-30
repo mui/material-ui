@@ -4,46 +4,56 @@
 
 var React = require('react'),
     Paper = require('./paper.jsx'),
-    Classable = require('./mixins/classable.js');
+    Classable = require('./mixins/classable.js'),
+
+    Types = {
+      RAISED: 'RAISED',
+      FLAT: 'FLAT',
+      FAB: 'FAB'
+    },
+
+    Sizes = {
+      REGULAR: 'REGULAR',
+      MINI: 'MINI'
+    },
+
+    zDepths = {
+      FLAT: 0,
+      RAISED: 1,
+      FAB: 2
+    };
 
 var PaperButton = React.createClass({
 
   propTypes: {
-    label: React.PropTypes.string.isRequired,
-    size: React.PropTypes.string,
-    type: React.PropTypes.oneOf(['raised', 'flat', 'fab']),
+    label: React.PropTypes.string,
+    size: React.PropTypes.oneOf(Object.keys(Sizes)),
+    type: React.PropTypes.oneOf(Object.keys(Types)),
     onClick: React.PropTypes.func.isRequired
   },
 
   mixins: [Classable],
 
+  statics: {
+    Types: Types,
+    Sizes: Sizes
+  },
+
   getDefaultProps: function() {
     return {
-      size: 'regular',
-      type: "raised"
+      size: Sizes.REGULAR,
+      type: Types.RAISED
     };
   },
 
   render: function() {
     var classes = this.getClasses('mui-paper-button', {
-      'mui-fab': ((this.props.type === 'fab') && (this.props.size === 'regular')),
-      'mui-fab-mini': ((this.props.type === 'fab') && (this.props.size === 'mini'))
+      'mui-flat': this.props.type === Types.FLAT,
+      'mui-fab': ((this.props.type === Types.FAB) && (this.props.size === Sizes.REGULAR)),
+      'mui-fab-mini': ((this.props.type === Types.FAB) && (this.props.size === Sizes.MINI))
     }),
-      zDepth,
-      circle;
-
-    switch(this.props.type) {
-      case 'flat':
-        zDepth = 0;
-        break;
-      case 'raised':
-        zDepth = 1;
-        break;
-      case 'fab':
-        zDepth = 2;
-        circle = true;
-        break;
-    }
+      circle = this.props.type === Types.FAB,
+      zDepth = zDepths[this.props.type];
 
     return (
       <div className={classes} onClick={this._onClick}>
@@ -55,7 +65,7 @@ var PaperButton = React.createClass({
   },
 
   _onClick: function(e) {
-    this.props.onClick(e);
+    if (this.props.onClick) this.props.onClick(e);
   }
 
 });

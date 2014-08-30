@@ -7,6 +7,7 @@
 	line-height: @paper-button-height;
 	padding: 0;
 	cursor: pointer;
+	color: @paper-button-text-color;
 
 	&.mui-fab {
 		height: @fab-size;
@@ -27,7 +28,16 @@
 		.mui-paper-container {
 			padding: 0 @desktop-gutter-less;
 			background-color: @paper-button-color;
-			color: @paper-button-text-color;
+		}
+	}
+
+	&.mui-flat {
+		color: @paper-button-color;
+
+		.mui-paper {
+			.mui-paper-container {
+				background-color: inherit;
+			}
 		}
 	}
 }

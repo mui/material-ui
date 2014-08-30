@@ -649,46 +649,56 @@ module.exports = {
 
 var React = require('react'),
     Paper = require('./paper.jsx'),
-    Classable = require('./mixins/classable.js');
+    Classable = require('./mixins/classable.js'),
+
+    Types = {
+      RAISED: 'RAISED',
+      FLAT: 'FLAT',
+      FAB: 'FAB'
+    },
+
+    Sizes = {
+      REGULAR: 'REGULAR',
+      MINI: 'MINI'
+    },
+
+    zDepths = {
+      FLAT: 0,
+      RAISED: 1,
+      FAB: 2
+    };
 
 var PaperButton = React.createClass({displayName: 'PaperButton',
 
   propTypes: {
-    label: React.PropTypes.string.isRequired,
-    size: React.PropTypes.string,
-    type: React.PropTypes.oneOf(['raised', 'flat', 'fab']),
+    label: React.PropTypes.string,
+    size: React.PropTypes.oneOf(Object.keys(Sizes)),
+    type: React.PropTypes.oneOf(Object.keys(Types)),
     onClick: React.PropTypes.func.isRequired
   },
 
   mixins: [Classable],
 
+  statics: {
+    Types: Types,
+    Sizes: Sizes
+  },
+
   getDefaultProps: function() {
     return {
-      size: 'regular',
-      type: "raised"
+      size: Sizes.REGULAR,
+      type: Types.RAISED
     };
   },
 
   render: function() {
     var classes = this.getClasses('mui-paper-button', {
-      'mui-fab': ((this.props.type === 'fab') && (this.props.size === 'regular')),
-      'mui-fab-mini': ((this.props.type === 'fab') && (this.props.size === 'mini'))
+      'mui-flat': this.props.type === Types.FLAT,
+      'mui-fab': ((this.props.type === Types.FAB) && (this.props.size === Sizes.REGULAR)),
+      'mui-fab-mini': ((this.props.type === Types.FAB) && (this.props.size === Sizes.MINI))
     }),
-      zDepth,
-      circle;
-
-    switch(this.props.type) {
-      case 'flat':
-        zDepth = 0;
-        break;
-      case 'raised':
-        zDepth = 1;
-        break;
-      case 'fab':
-        zDepth = 2;
-        circle = true;
-        break;
-    }
+      circle = this.props.type === Types.FAB,
+      zDepth = zDepths[this.props.type];
 
     return (
       React.DOM.div({className: classes, onClick: this._onClick}, 
@@ -700,7 +710,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
   },
 
   _onClick: function(e) {
-    this.props.onClick(e);
+    if (this.props.onClick) this.props.onClick(e);
   }
 
 });
@@ -34070,7 +34080,8 @@ module.exports = Pages;
  */
 
 var React = require('react'),
-	PaperButton = require('../../../../dist/js/paper-button.jsx');
+  mui = require('mui'),
+  PaperButton = mui.PaperButton;
 
 var ButtonPage = React.createClass({displayName: 'ButtonPage',
 
@@ -34078,13 +34089,13 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
     return (
     	React.DOM.div(null, 
     		React.DOM.h2(null, "Flat Buttons"), 
-    		PaperButton({type: "raised", label: "Add Contacts", onClick: this._onPaperButtonClick}), 
+    		PaperButton({type: PaperButton.Types.RAISED, label: "Add Contacts", onClick: this._onPaperButtonClick}), 
         React.DOM.br(null), 
-        PaperButton({type: "flat", label: "Add Contacts", onClick: this._onPaperButtonClick}), 
+        PaperButton({type: PaperButton.Types.FLAT, label: "Add Contacts", onClick: this._onPaperButtonClick}), 
         React.DOM.br(null), 
-        PaperButton({type: "fab", size: "mini", onClick: this._onPaperButtonClick}), 
+        PaperButton({type: PaperButton.Types.FAB, size: PaperButton.Sizes.MINI, onClick: this._onPaperButtonClick}), 
         React.DOM.br(null), 
-        PaperButton({type: "fab", onClick: this._onPaperButtonClick})
+        PaperButton({type: PaperButton.Types.FAB, onClick: this._onPaperButtonClick})
     	)
     );
   },
@@ -34096,7 +34107,7 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 });
 
 module.exports = ButtonPage;
-},{"../../../../dist/js/paper-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper-button.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\colors.jsx":[function(require,module,exports){
+},{"mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\colors.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
