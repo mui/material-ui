@@ -70,7 +70,7 @@ var MenusPage = React.createClass({
         <br />
         <h2>Nested Menu</h2>
         <div className="example-menu">
-          <mui.Menu ref="nestedMenuParent" menuItems={nestedMenuItems} onItemClick={this._onItemClick} />
+          <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} />
         </div>
 
         <br />

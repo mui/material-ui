@@ -420,6 +420,7 @@ var NestedMenuItem = React.createClass({displayName: 'NestedMenuItem',
     key: React.PropTypes.number.isRequired,
     text: React.PropTypes.string,
     menuItems: React.PropTypes.array.isRequired,
+    zDepth: React.PropTypes.number,
     onItemClick: React.PropTypes.func,
     onMenuToggle: React.PropTypes.func
   },
@@ -458,7 +459,13 @@ var NestedMenuItem = React.createClass({displayName: 'NestedMenuItem',
     return (
       React.DOM.div({className: classes}, 
         MenuItem({key: this.props.key, iconRight: "arrow-drop-right", onClick: this._onParentItemClick}, this.props.text), 
-        Menu({ref: "nestedMenu", menuItems: this.props.menuItems, onItemClick: this._onMenuItemClick, hideable: true, visible: this.state.open})
+        Menu({
+          ref: "nestedMenu", 
+          menuItems: this.props.menuItems, 
+          onItemClick: this._onMenuItemClick, 
+          hideable: true, visible: this.state.open, 
+          zDepth: this.props.zDepth + 1}
+        )
       )
     );
   },
@@ -581,7 +588,7 @@ var Menu = React.createClass({displayName: 'Menu',
 
         case MenuItem.Types.NESTED:
           itemComponent = (
-            NestedMenuItem({ref: 'nestedMenuItem' + i, key: i, text: menuItem.text, menuItems: menuItem.items, onMenuToggle: this._onNestedMenuToggle, onItemClick: this._onNestedItemClick})
+            NestedMenuItem({ref: 'nestedMenuItem' + i, key: i, text: menuItem.text, menuItems: menuItem.items, zDepth: this.props.zDepth, onMenuToggle: this._onNestedMenuToggle, onItemClick: this._onNestedItemClick})
           );
           this._nestedMenuItems.push('nestedMenuItem' + i);
           break;
@@ -598,11 +605,13 @@ var Menu = React.createClass({displayName: 'Menu',
   },
 
   _renderVisibility: function() {
-    var _this = this,
-      $el = $(this.getDOMNode()),
-      $innerContainer = $el.children('.mui-paper-container').first();
+    var $el,
+      $innerContainer;
 
     if (this.props.hideable) {
+      $el = $(this.getDOMNode());
+      $innerContainer = $el.children('.mui-paper-container').first();
+
       $el.css({
         height: this.props.visible ? this._initialMenuHeight : 0
       });
@@ -34392,7 +34401,7 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
         React.DOM.br(null), 
         React.DOM.h2(null, "Nested Menu"), 
         React.DOM.div({className: "example-menu"}, 
-          mui.Menu({ref: "nestedMenuParent", menuItems: nestedMenuItems, onItemClick: this._onItemClick})
+          mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
         ), 
 
         React.DOM.br(null), 

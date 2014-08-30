@@ -22,6 +22,7 @@ var NestedMenuItem = React.createClass({
     key: React.PropTypes.number.isRequired,
     text: React.PropTypes.string,
     menuItems: React.PropTypes.array.isRequired,
+    zDepth: React.PropTypes.number,
     onItemClick: React.PropTypes.func,
     onMenuToggle: React.PropTypes.func
   },
@@ -60,7 +61,13 @@ var NestedMenuItem = React.createClass({
     return (
       <div className={classes}>
         <MenuItem key={this.props.key} iconRight="arrow-drop-right" onClick={this._onParentItemClick}>{this.props.text}</MenuItem>
-        <Menu ref="nestedMenu" menuItems={this.props.menuItems} onItemClick={this._onMenuItemClick} hideable={true} visible={this.state.open} />
+        <Menu
+          ref="nestedMenu"
+          menuItems={this.props.menuItems}
+          onItemClick={this._onMenuItemClick}
+          hideable={true} visible={this.state.open}
+          zDepth={this.props.zDepth + 1}
+        />
       </div>
     );
   },
@@ -183,7 +190,7 @@ var Menu = React.createClass({
 
         case MenuItem.Types.NESTED:
           itemComponent = (
-            <NestedMenuItem ref={'nestedMenuItem' + i} key={i} text={menuItem.text} menuItems={menuItem.items} onMenuToggle={this._onNestedMenuToggle} onItemClick={this._onNestedItemClick} />
+            <NestedMenuItem ref={'nestedMenuItem' + i} key={i} text={menuItem.text} menuItems={menuItem.items} zDepth={this.props.zDepth} onMenuToggle={this._onNestedMenuToggle} onItemClick={this._onNestedItemClick} />
           );
           this._nestedMenuItems.push('nestedMenuItem' + i);
           break;
@@ -200,11 +207,13 @@ var Menu = React.createClass({
   },
 
   _renderVisibility: function() {
-    var _this = this,
-      $el = $(this.getDOMNode()),
-      $innerContainer = $el.children('.mui-paper-container').first();
+    var $el,
+      $innerContainer;
 
     if (this.props.hideable) {
+      $el = $(this.getDOMNode());
+      $innerContainer = $el.children('.mui-paper-container').first();
+
       $el.css({
         height: this.props.visible ? this._initialMenuHeight : 0
       });
