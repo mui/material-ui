@@ -16,11 +16,11 @@ var AppLeftNav = React.createClass({
   getInitialState: function() {
     return {
       menuItems: [
-        { type: mui.Constants.MenuItemTypes.SUBHEADER, text: 'CSS Framework' },
+        { type: mui.MenuItem.Types.SUBHEADER, text: 'CSS Framework' },
         { payload: Pages.colors, text: Pages.colors.title },
         { payload: Pages.typography, text: Pages.typography.title },
         { payload: Pages.icons, text: Pages.icons.title },
-        { type: mui.Constants.MenuItemTypes.SUBHEADER, text: 'Components' },
+        { type: mui.MenuItem.Types.SUBHEADER, text: 'Components' },
         { payload: Pages.buttons, text: Pages.buttons.title },
         { payload: Pages.inputs, text: Pages.inputs.title },
         { payload: Pages.menus, text: Pages.menus.title },

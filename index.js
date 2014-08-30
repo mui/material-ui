@@ -1,7 +1,6 @@
 module.exports = {
 	AppBar: require('./dist/js/app-bar.jsx'),
 	AppCanvas: require('./dist/js/app-canvas.jsx'),
-	Constants: require('./dist/js/utils/constants.js'),
 	DropDownMenu: require('./dist/js/drop-down-menu.jsx'),
 	Icon: require('./dist/js/icon.jsx'),
 	Input: require('./dist/js/input.jsx'),

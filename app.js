@@ -115,7 +115,6 @@ var $ = require('jquery'),
   React = require('react'),
   Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
-  Constants = require('./utils/constants.js'),
   KeyLine = require('./utils/key-line.js'),
   Paper = require('./paper.jsx'),
   Icon = require('./icon.jsx'),
@@ -138,7 +137,9 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
   },
 
   componentDidMount: function() {
-    var _this = this;
+    var _this = this,
+      $el = $(this.getDOMNode()),
+      $menuItems = $(this.refs.menuItems.getDOMNode());
 
     this.listenToClickAway(this, function() {
       _this.setState({
@@ -146,15 +147,11 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
       });
     });
 
-    this._setWidth();
+    $el.css('width', $menuItems.width());
   },
 
   componentWillUnmount: function() {
     this.stopListeningToClickAway(this);
-  },
-
-  componentDidUpdate: function() {
-    this._setWidth();
   },
 
   render: function() {
@@ -169,16 +166,9 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
           ), 
           Icon({icon: "arrow-drop-down"})
         ), 
-        Menu({ref: "menuItems", selectedIndex: this.state.selectedIndex, menuItems: this.props.menuItems, visible: this.state.open, setHeightWidth: true, onItemClick: this._onMenuItemClick})
+        Menu({ref: "menuItems", selectedIndex: this.state.selectedIndex, menuItems: this.props.menuItems, hideable: true, visible: this.state.open, onItemClick: this._onMenuItemClick})
       )
     );
-  },
-
-  _setWidth: function() {
-    var $el = $(this.getDOMNode()),
-      $menuItems = $(this.refs.menuItems.getDOMNode());
-
-    $el.css('width', $menuItems.width());
   },
 
   _onControlClick: function(e) {
@@ -197,7 +187,7 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
 
 module.exports = DropDownMenu;
 
-},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js","./utils/key-line.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx":[function(require,module,exports){
+},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./utils/key-line.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -338,7 +328,12 @@ module.exports = LeftNav;
 var React = require('react'),
   Classable = require('./mixins/classable.js'),
   Icon = require('./icon.jsx'),
-  Toggle = require('./toggle.jsx');
+  Toggle = require('./toggle.jsx'),
+
+  Types = {
+    SUBHEADER: 'SUBHEADER',
+    NESTED: 'NESTED'
+  };
 
 var MenuItem = React.createClass({displayName: 'MenuItem',
 
@@ -347,11 +342,16 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
   propTypes: {
     key: React.PropTypes.number.isRequired,
     icon: React.PropTypes.string,
+    iconRight: React.PropTypes.string,
     number: React.PropTypes.string,
     toggle: React.PropTypes.bool,
-    onClick: React.PropTypes.func.isRequired,
+    onClick: React.PropTypes.func,
     onToggle: React.PropTypes.func,
     selected: React.PropTypes.bool
+  },
+
+  statics: {
+    Types: Types
   },
 
   getDefaultProps: function() {
@@ -361,23 +361,24 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
   },
 
   render: function() {
-    var classes = this.getClasses('mui-menu-item', {
-      'mui-icon': this.props.icon != null,
-      'mui-number': this.props.number != null,
-      'mui-toggle': this.props.toggle === true
-    });
+    var classes = this.getClasses('mui-menu-item'),
+      icon,
+      iconRight,
+      menuItemNumber,
+      toggle;
+
+    if (this.props.icon) icon = Icon({className: "mui-menu-item-icon", icon: this.props.icon});
+    if (this.props.iconRight) iconRight = Icon({className: "mui-menu-item-icon-right", icon: this.props.iconRight});
+    if (this.props.number !== undefined) menuItemNumber = React.DOM.span({className: "mui-menu-item-number"}, this.props.number);
+    if (this.props.toggle) toggle = Toggle({onToggle: this._onToggleClick});
 
     return (
     	React.DOM.div({key: this.props.key, className: classes, onClick: this._onClick}, 
-        Icon({className: "mui-menu-item-icon", icon: this.props.icon}), 
-
+        icon, 
         this.props.children, 
-
-        React.DOM.span({className: "mui-menu-item-number"}, 
-          this.props.number
-        ), 
-
-        Toggle({className: "mui-menu-item-toggle", onToggle: this._onToggleClick})
+        menuItemNumber, 
+        toggle, 
+        iconRight
       )
     );
   },
@@ -393,6 +394,7 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
 });
 
 module.exports = MenuItem;
+
 },{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./toggle.jsx":"F:\\GitHub\\material-ui\\dist\\js\\toggle.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
@@ -400,29 +402,26 @@ module.exports = MenuItem;
 
 var $ = require('jquery'),
   React = require('react'),
-  Constants = require('./utils/constants.js'),
 	Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
   KeyLine = require('./utils/key-line.js'),
   Paper = require('./paper.jsx'),
   Icon = require('./icon.jsx'),
-  Menu = require('./menu.jsx'),
   MenuItem = require('./menu-item.jsx');
 
-var Menu = React.createClass({displayName: 'Menu',
+/***********************
+ * Nested Menu Component
+ ***********************/
+var NestedMenuItem = React.createClass({displayName: 'NestedMenuItem',
 
-	mixins: [Classable, ClickAwayable],
+  mixins: [Classable, ClickAwayable],
 
-	propTypes: {
-    onNestedItemClick: React.PropTypes.func,
-    onItemClick: React.PropTypes.func,
-    onToggleClick: React.PropTypes.func,
+  propTypes: {
+    key: React.PropTypes.number.isRequired,
+    text: React.PropTypes.string,
     menuItems: React.PropTypes.array.isRequired,
-    selectedIndex: React.PropTypes.number,
-    visible: React.PropTypes.bool,
-    setHeightWidth: React.PropTypes.bool,
-    nested: React.PropTypes.bool,
-    zDepth: React.PropTypes.number
+    onItemClick: React.PropTypes.func,
+    onMenuToggle: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -431,75 +430,125 @@ var Menu = React.createClass({displayName: 'Menu',
     }
   },
 
-  getDefaultProps: function() {
-    return { 
-      visible: true,
-      setHeightWidth: false,
-      nested: false
-    };
-  },
-  
   componentDidMount: function() {
-    this._setHeightAndWidth();
-
     var _this = this;
 
-    if(this.props.nested === true) {
-      this.listenToClickAway(this, function() {
-        _this.setState({
-          open: false
-        });
+    this._positionNestedMenu();
 
-        var self = _this;
-
-        for(var i = 0; i < 3; i++) {
-          self = self.refs.nestedMenu;
-          self.setState({ open: false });
-
-          $el = $(self.getDOMNode());
-
-          $el
-          .css({
-            "height": 0,
-            "opacity": self.state.open ? 1 : 0,
-            "z-index": self.state.open ? 1 : -2
-          });    
-        }
-
-      });
-    }
+    this.listenToClickAway(this, function() {
+      _this._closeMenu();
+    });
   },
 
-  hide: function() {
-    var self = this;
+  componentWillUpdate: function(nextProps, nextState) {
+    if (this.props.onMenuToggle && this.state.open !== nextState.open) this.props.onMenuToggle(this.props.key, nextState.open);
+  },
 
-    for(var i = 0; i < 3; i++) {
-      self = self.refs.nestedMenu;
-      this.setState({ open: false });
-
-      $el = $(self.getDOMNode());
-
-      $el
-      .css({
-        "height": 0,
-        "opacity": self.state.open ? 1 : 0,
-        "z-index": self.state.open ? 1 : -2
-      });    
-
-      $el.css({"backgroundColor":'red'});
-    }
+  componentDidUpdate: function() {
+    this._positionNestedMenu();
   },
 
   componentWillUnmount: function() {
     this.stopListeningToClickAway(this);
   },
 
+  render: function() {
+    var classes = this.getClasses('mui-nested-menu-item');
+
+    return (
+      React.DOM.div({className: classes}, 
+        MenuItem({key: this.props.key, iconRight: "arrow-drop-right", onClick: this._onParentItemClick}, this.props.text), 
+        Menu({ref: "nestedMenu", menuItems: this.props.menuItems, onItemClick: this._onMenuItemClick, hideable: true, visible: this.state.open})
+      )
+    );
+  },
+
+  isOpen: function() {
+    return this.state.open;
+  },
+
+  _positionNestedMenu: function() {
+    var $el = $(this.getDOMNode()),
+      $nestedMenu = $(this.refs.nestedMenu.getDOMNode());
+
+    $nestedMenu.css({
+      left: $el.outerWidth()
+    });
+  },
+
+  _onParentItemClick: function() {
+    this.setState({ open: !this.state.open });
+  },
+
+  _onMenuItemClick: function(e, key, menuItem) {
+    var _this = this;
+
+    this._closeMenu(function() {
+      if (_this.props.onItemClick) _this.props.onItemClick(e, key, menuItem);
+    });
+  },
+
+  _closeMenu: function(callback) {
+    this.setState({ open: false }, callback);
+  }
+
+});
+
+/****************
+ * Menu Component
+ ****************/
+var Menu = React.createClass({displayName: 'Menu',
+
+	mixins: [Classable],
+
+	propTypes: {
+    onItemClick: React.PropTypes.func,
+    onToggleClick: React.PropTypes.func,
+    menuItems: React.PropTypes.array.isRequired,
+    selectedIndex: React.PropTypes.number,
+    hideable: React.PropTypes.bool,
+    visible: React.PropTypes.bool,
+    zDepth: React.PropTypes.number
+  },
+
+  getInitialState: function() {
+    return {
+      nestedMenuShown: false
+    }
+  },
+
+  getDefaultProps: function() {
+    return { 
+      hideable: false,
+      visible: true,
+      zDepth: 1
+    };
+  },
+  
+  componentDidMount: function() {
+    var $el = $(this.getDOMNode()),
+      menuWidth = $el.width();
+
+    //Make sure the width is an increment of the keylines
+    menuWidth = KeyLine.getIncrementalDim(menuWidth);
+    $el.css('width', menuWidth);
+
+    //Save the initial menu height for later
+    this._initialMenuHeight = $(this.getDOMNode()).height() + KeyLine.Desktop.GUTTER_LESS;
+
+    //Show or Hide the menu according to visibility
+    this._renderVisibility();
+  },
+
   componentDidUpdate: function() {
-    this._setHeightAndWidth();
+    this._renderVisibility();
   },
 
 	render: function() {
-    var classes = this.getClasses('mui-menu');
+    var classes = this.getClasses('mui-menu', {
+      'mui-menu-hideable': this.props.hideable,
+      'mui-visible': this.props.visible
+    });
 
     return (
 			Paper({zDepth: this.props.zDepth, className: classes}, 
@@ -507,6 +556,7 @@ var Menu = React.createClass({displayName: 'Menu',
       )
 		);
 	},
+
   
   _getChildren: function() {
     var children = [],
@@ -514,29 +564,26 @@ var Menu = React.createClass({displayName: 'Menu',
       itemComponent,
       isSelected;
 
+    //This array is used to keep track of all nested menu refs
+    this._nestedMenuItems = [];
+
     for (var i=0; i < this.props.menuItems.length; i++) {
       menuItem = this.props.menuItems[i];
       isSelected = i === this.props.selectedIndex;
 
       switch (menuItem.type) {
 
-        case Constants.MenuItemTypes.SUBHEADER:
+        case MenuItem.Types.SUBHEADER:
           itemComponent = (
             React.DOM.div({key: i, className: "mui-subheader"}, menuItem.text)
           );
           break;
 
-        case Constants.MenuItemTypes.NESTED:
-
+        case MenuItem.Types.NESTED:
           itemComponent = (
-            React.DOM.div({key: i, className: "mui-nested"}, 
-              React.DOM.span({onClick: this._onNestedMenuClick}, 
-              menuItem.text
-              ), 
-              Icon({className: "mui-nested-arrow", icon: "chevron-right"}), 
-              Menu({ref: "nestedMenu", className: "mui-menu-nested", menuItems: menuItem.items, onItemClick: this._onNestedItemClick, zDepth: 1})
-            )
+            NestedMenuItem({ref: 'nestedMenuItem' + i, key: i, text: menuItem.text, menuItems: menuItem.items, onMenuToggle: this._onNestedMenuToggle, onItemClick: this._onNestedItemClick})
           );
+          this._nestedMenuItems.push('nestedMenuItem' + i);
           break;
 
         default:
@@ -550,64 +597,64 @@ var Menu = React.createClass({displayName: 'Menu',
     return children;
   },
 
-  _setHeightAndWidth: function() {
-    if(this.props.setHeightWidth) {
-      var $el = $(this.getDOMNode()),
-        menuHeight = (Constants.KeyLines.Desktop.MENU_ITEM_HEIGHT * this.props.menuItems.length) + (Constants.KeyLines.Desktop.GUTTER_LESS * 2),
-        menuWidth = $el.width();
+  _renderVisibility: function() {
+    var _this = this,
+      $el = $(this.getDOMNode()),
+      $innerContainer = $el.children('.mui-paper-container').first();
 
-      //Make sure the width is an increment of the keylines
-      menuWidth = KeyLine.getIncrementalDim(menuWidth);
-      $el
-        .css({
-          width: menuWidth,
-          height: this.props.visible ? menuHeight : 0
-        });
+    if (this.props.hideable) {
+      $el.css({
+        height: this.props.visible ? this._initialMenuHeight : 0
+      });
+
+      //Set the overflow the of menu 
+      //This is needed in order to show the nested menus
+      if (this.state.nestedMenuShown) {
+        $innerContainer.css('overflow', 'visible');
+      } else {
+        setTimeout(function() {
+          $innerContainer.css('overflow', 'hidden');
+        }, 450);
+      }
     }
   },
 
-  expandNestedMenu: function(e, key, ref) {
-    var $el = $(ref.getDOMNode()),
-        menuHeight = (Constants.KeyLines.Desktop.MENU_ITEM_HEIGHT_2 * ref.props.menuItems.length);
+  _onNestedMenuToggle: function(key, menuShown) {
+    var hasOpenMenu = false;
 
-    var $elRight = (parseInt($el.css("width")) * -1);
+    this._nestedMenuItems.forEach(function(refKey) {
+      //Check all other nested menus to see if they're open
+      if (refKey !== 'nestedMenuItem' + key && this.refs[refKey].isOpen()) hasOpenMenu = true;
+    }, this);
 
-    $el
-    .css({
-      "right": $elRight,
-      "height": this.state.open ? 0 : menuHeight,
-      "opacity": this.state.open ? 0 : 1,
-      "z-index": this.state.open ? -2 : 1
-    });
+    if (this.state.nestedMenuShown !== menuShown) {
+      if (menuShown) {
+        this.setState({ nestedMenuShown: true });
+      } else {
+        if (!hasOpenMenu) {
+          this.setState({ nestedMenuShown: false });
+        }
+      }
+    }
   },
 
-  _onNestedMenuClick: function(e, key) {
-    if (this.props.onNestedItemClick) this.props.onNestedItemClick(e, key, this.props.menuItems[key]);
-      this.setState({ open: !this.state.open });
-      var ref = this.refs['nestedMenu'];
-      this.expandNestedMenu(e, key, ref);
-  },
-
-  _onNestedItemClick: function(e, key) {
-    console.log("Nested Click");
+  _onNestedItemClick: function(e, key, menuItem) {
+    if (this.props.onItemClick) this.props.onItemClick(e, key, menuItem);
   },
 
   _onItemClick: function(e, key) {
     if (this.props.onItemClick) this.props.onItemClick(e, key, this.props.menuItems[key]);
-    console.log("Item Click");
-    this.setState({ open: false });
-    //console.log(this.state.open);
   },
 
   _onItemToggle: function(e, key, toggled) {
     if (this.props.onItemToggle) this.props.onItemToggle(e, key, this.props.menuItems[key], toggled);
-      console.log('Menu Toggle: ', key, toggled);
   }
 
 });
 
 module.exports = Menu;
-},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./menu-item.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu-item.jsx","./menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js","./utils/key-line.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js":[function(require,module,exports){
+
+},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./menu-item.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu-item.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./utils/key-line.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js":[function(require,module,exports){
 var React = require('react'),
   classSet = React.addons.classSet;
 
@@ -1121,38 +1168,25 @@ var Toggle = React.createClass({displayName: 'Toggle',
 });
 
 module.exports = Toggle;
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./radio-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\radio-button.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./radio-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\radio-button.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js":[function(require,module,exports){
 module.exports = {
 
-	KeyLines: {
-		Desktop: {
-			GUTTER: 24,
-			GUTTER_LESS: 16,
-			INCREMENT: 64,
-			MENU_ITEM_HEIGHT: 32,
-			MENU_ITEM_HEIGHT_2: 48
-		}
+	Desktop: {
+		GUTTER: 24,
+		GUTTER_LESS: 16,
+		INCREMENT: 64,
+		MENU_ITEM_HEIGHT: 32
 	},
 
-	MenuItemTypes: {
-    SUBHEADER: 'SUBHEADER',
-    NESTED: 'NESTED'
-  }
-
-}
-},{}],"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js":[function(require,module,exports){
-var Constants = require('./constants.js');
-
-module.exports = {
 	getIncrementalDim: function(dim) {
-		return Math.ceil(dim / Constants.KeyLines.Desktop.INCREMENT) * Constants.KeyLines.Desktop.INCREMENT;	
+		return Math.ceil(dim / this.Desktop.INCREMENT) * this.Desktop.INCREMENT;	
 	}
 }
-},{"./constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js"}],"F:\\GitHub\\material-ui\\index.js":[function(require,module,exports){
+
+},{}],"F:\\GitHub\\material-ui\\index.js":[function(require,module,exports){
 module.exports = {
 	AppBar: require('./dist/js/app-bar.jsx'),
 	AppCanvas: require('./dist/js/app-canvas.jsx'),
-	Constants: require('./dist/js/utils/constants.js'),
 	DropDownMenu: require('./dist/js/drop-down-menu.jsx'),
 	Icon: require('./dist/js/icon.jsx'),
 	Input: require('./dist/js/input.jsx'),
@@ -1164,7 +1198,8 @@ module.exports = {
 	RadioButton: require('./dist/js/radio-button.jsx'),
 	Toggle: require('./dist/js/toggle.jsx')
 };
-},{"./dist/js/app-bar.jsx":"F:\\GitHub\\material-ui\\dist\\js\\app-bar.jsx","./dist/js/app-canvas.jsx":"F:\\GitHub\\material-ui\\dist\\js\\app-canvas.jsx","./dist/js/drop-down-menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\drop-down-menu.jsx","./dist/js/icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./dist/js/input.jsx":"F:\\GitHub\\material-ui\\dist\\js\\input.jsx","./dist/js/left-nav.jsx":"F:\\GitHub\\material-ui\\dist\\js\\left-nav.jsx","./dist/js/menu-item.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu-item.jsx","./dist/js/menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./dist/js/paper-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper-button.jsx","./dist/js/paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./dist/js/radio-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\radio-button.jsx","./dist/js/toggle.jsx":"F:\\GitHub\\material-ui\\dist\\js\\toggle.jsx","./dist/js/utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js"}],"F:\\GitHub\\material-ui\\node_modules\\backbone\\backbone.js":[function(require,module,exports){
+
+},{"./dist/js/app-bar.jsx":"F:\\GitHub\\material-ui\\dist\\js\\app-bar.jsx","./dist/js/app-canvas.jsx":"F:\\GitHub\\material-ui\\dist\\js\\app-canvas.jsx","./dist/js/drop-down-menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\drop-down-menu.jsx","./dist/js/icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./dist/js/input.jsx":"F:\\GitHub\\material-ui\\dist\\js\\input.jsx","./dist/js/left-nav.jsx":"F:\\GitHub\\material-ui\\dist\\js\\left-nav.jsx","./dist/js/menu-item.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu-item.jsx","./dist/js/menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./dist/js/paper-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper-button.jsx","./dist/js/paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./dist/js/radio-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\radio-button.jsx","./dist/js/toggle.jsx":"F:\\GitHub\\material-ui\\dist\\js\\toggle.jsx"}],"F:\\GitHub\\material-ui\\node_modules\\backbone\\backbone.js":[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -33887,11 +33922,11 @@ var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
   getInitialState: function() {
     return {
       menuItems: [
-        { type: mui.Constants.MenuItemTypes.SUBHEADER, text: 'CSS Framework' },
+        { type: mui.MenuItem.Types.SUBHEADER, text: 'CSS Framework' },
         { payload: Pages.colors, text: Pages.colors.title },
         { payload: Pages.typography, text: Pages.typography.title },
         { payload: Pages.icons, text: Pages.icons.title },
-        { type: mui.Constants.MenuItemTypes.SUBHEADER, text: 'Components' },
+        { type: mui.MenuItem.Types.SUBHEADER, text: 'Components' },
         { payload: Pages.buttons, text: Pages.buttons.title },
         { payload: Pages.inputs, text: Pages.inputs.title },
         { payload: Pages.menus, text: Pages.menus.title },
@@ -34290,87 +34325,90 @@ module.exports = InputsPage;
  */
  
 var React = require('react'),
-	DropDownMenu = require('../../../../dist/js/drop-down-menu.jsx'),
-  Paper = require('../../../../dist/js/paper.jsx'),
-  PaperConstants = require('../../../../dist/js/utils/constants.js'),
-  Menu = require('../../../../dist/js/menu.jsx');
+  mui = require('mui'),
+
+  menuItems = [
+    { payload: '1', text: 'Never' },
+    { payload: '2', text: 'Every Night' },
+    { payload: '3', text: 'Weeknights' },
+    { payload: '4', text: 'Weekends' },
+    { payload: '5', text: 'Weekly' },
+  ],
+
+  attributeMenuItems = [
+    { payload: '1', text: 'All', number: '22' },
+    { payload: '3', text: 'Uncategorized', number: '6'},
+    { payload: '4', text: 'Trash', number: '11' }
+  ],
+
+  iconMenuItems = [
+    { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },
+    { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },
+    { payload: '3', text: 'Starred', icon: 'mic', number: '3'},
+    { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }
+  ],
+
+  filterMenuItems = [
+    { payload: '1', text: 'Text Opt-In', toggle: true},
+    { payload: '2', text: 'Text Opt-Out', toggle: true},
+    { payload: '3', text: 'Voice Opt-Out', toggle: true}
+  ],
+
+  nestedMenuItems = [
+    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [
+      { payload: '1', text: 'Nested Item 1' },
+      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
+        { payload: '1', text: 'Nested Item 3' },
+        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
+          { payload: '1', text: 'Nested Item 5' },
+          { payload: '3', text: 'Nested Item 6' }
+        ] },
+        { payload: '3', text: 'Nested Item 7' }
+      ] },
+      { payload: '3', text: 'Nested Item 9' },
+      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
+        { payload: '1', text: 'Nested Item 3' },
+        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
+          { payload: '1', text: 'Nested Item 5' },
+          { payload: '3', text: 'Nested Item 6' }
+        ] },
+        { payload: '3', text: 'Nested Item 7' }
+      ] },
+      { payload: '4', text: 'Nested Item 10' }
+    ] },
+    { payload: '1', text: 'Audio Library'},
+    { payload: '2', text: 'Settings'},
+    { payload: '3', text: 'Logout'}
+  ];
 
 
 var MenusPage = React.createClass({displayName: 'MenusPage',
-
-	getInitialState: function() {
-  	return {
-      menuItems: [
-      	{ payload: '1', text: 'Never' },
-      	{ payload: '2', text: 'Every Night' },
-      	{ payload: '3', text: 'Weeknights' },
-        { payload: '4', text: 'Weekends' },
-        { payload: '5', text: 'Weekly' },
-    	],
-
-      attributeMenuItems: [
-        { payload: '1', text: 'All', number: '22' },
-        { payload: '3', text: 'Uncategorized', number: '6'},
-        { payload: '4', text: 'Trash', number: '11' }
-      ],
-
-      iconMenuItems: [
-        { payload: '1', text: 'Live Answer', icon: 'arrow-drop-down', number: '10' },
-        { payload: '2', text: 'Voicemail', icon: 'arrow-drop-down',  number: '5' },
-        { payload: '3', text: 'Starred', icon: 'arrow-drop-down', number: '3'},
-        { payload: '4', text: 'Shared', icon: 'arrow-drop-down',  number: '12' }
-      ],
-
-      filterMenuItems: [
-        { payload: '1', text: 'Text Opt-In', toggle: true},
-        { payload: '2', text: 'Text Opt-Out', toggle: true},
-        { payload: '3', text: 'Voice Opt-Out', toggle: true}
-      ],
-
-      subMenuItems: [
-        { type: PaperConstants.MenuItemTypes.NESTED, text: 'Reports', items: [ { payload: '1', text: 'Nested Item 1' },
-                                                                               { type: PaperConstants.MenuItemTypes.NESTED, text: 'Nested Item 2', items: [ { payload: '1', text: 'Nested Item 1' },
-                                                                                                                                                            { type: PaperConstants.MenuItemTypes.NESTED, text: 'Nested Item 2', items: [ { payload: '1', text: 'Nested Item 1' },
-                                                                                                                                                                                                                                        { payload: '2', text: 'Nested Item 2' },
-                                                                                                                                                                                                                                        { payload: '3', text: 'Nested Item 3' }
-                                                                                                                                                                                                                                      ] },
-                                                                                                                                                            { payload: '3', text: 'Nested Item 3' }
-                                                                                                                                                          ] },
-                                                                               { payload: '2', text: 'Nested Item 3' },
-                                                                               { payload: '3', text: 'Nested Item 4' },
-                                                                               { payload: '4', text: 'Nested Item 5' }
-                                                                             ] },
-        { payload: '1', text: 'Audio Library'},
-        { payload: '2', text: 'Settings'},
-        { payload: '3', text: 'Logout'}
-      ]
-  	}
-  },
 
   render: function() {
     return (
     	React.DOM.div(null, 
     		React.DOM.h2(null, "Drop Down Menu"), 
-    		DropDownMenu({menuItems: this.state.menuItems, onChange: this._onDropDownMenuChange}), 
+    		mui.DropDownMenu({menuItems: menuItems, onChange: this._onDropDownMenuChange}), 
         React.DOM.br(null), 
-        React.DOM.h2(null, "Sub-Menu"), 
-        React.DOM.div({className: "mui-menu-container fixed-size"}, 
-          Menu({ref: "nestedMenuParent", menuItems: this.state.subMenuItems, zDepth: 1, nested: true, onItemClick: this._onItemClick, onNestedItemClick: this._onNestedItemClick})
+        React.DOM.h2(null, "Nested Menu"), 
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({ref: "nestedMenuParent", menuItems: nestedMenuItems, onItemClick: this._onItemClick})
         ), 
+
         React.DOM.br(null), 
         React.DOM.h2(null, "Attribute Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
-          Menu({menuItems: this.state.attributeMenuItems, zDepth: 1, onItemClick: this._onItemClick})
+          mui.Menu({menuItems: attributeMenuItems, onItemClick: this._onItemClick})
         ), 
         React.DOM.br(null), 
         React.DOM.h2(null, "Icon Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
-          Menu({menuItems: this.state.iconMenuItems, zDepth: 1, onItemClick: this._onItemClick})
+          mui.Menu({menuItems: iconMenuItems, onItemClick: this._onItemClick})
         ), 
         React.DOM.br(null), 
         React.DOM.h2(null, "Filter Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
-          Menu({menuItems: this.state.filterMenuItems, zDepth: 1, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
+          mui.Menu({menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
         )
     	)
     );
@@ -34386,15 +34424,13 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
 
   _onItemClick: function(e, key, menuItem) {
     console.log("Menu Item Click: ", menuItem);
-  },
-
-  _onNestedItemClick: function(e, sNM) {
-    console.log('Nested Menu Index: ', sNM)
   }
+
 });
 
 module.exports = MenusPage;
-},{"../../../../dist/js/drop-down-menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\drop-down-menu.jsx","../../../../dist/js/menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","../../../../dist/js/paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","../../../../dist/js/utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\radio-buttons.jsx":[function(require,module,exports){
+
+},{"mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\radio-buttons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */

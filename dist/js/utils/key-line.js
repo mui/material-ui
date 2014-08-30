@@ -1,7 +1,13 @@
-var Constants = require('./constants.js');
-
 module.exports = {
+
+	Desktop: {
+		GUTTER: 24,
+		GUTTER_LESS: 16,
+		INCREMENT: 64,
+		MENU_ITEM_HEIGHT: 32
+	},
+
 	getIncrementalDim: function(dim) {
-		return Math.ceil(dim / Constants.KeyLines.Desktop.INCREMENT) * Constants.KeyLines.Desktop.INCREMENT;	
+		return Math.ceil(dim / this.Desktop.INCREMENT) * this.Desktop.INCREMENT;	
 	}
 }
