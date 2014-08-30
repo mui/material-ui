@@ -1,5 +1,6 @@
 .mui-toggle {
 	position: relative;
+	cursor: pointer;
 
 	.mui-toggle-bar {
 		background-color: @toggle-background-color;
@@ -16,7 +17,7 @@
 		}
 
 		.mui-radio-button {
-			transform: translate((@toggle-width+@radio-button-size), 0);
+			.lh-translate3d((@toggle-width+@radio-button-size), 0, 0);
 		}
 	}
 }

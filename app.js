@@ -73,7 +73,7 @@ var AppBar = React.createClass({displayName: 'AppBar',
 
 module.exports = AppBar;
 
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\app-canvas.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\app-canvas.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -106,7 +106,7 @@ var AppCanvas = React.createClass({displayName: 'AppCanvas',
 
 module.exports = AppCanvas;
 
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\drop-down-menu.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\drop-down-menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -197,7 +197,7 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
 
 module.exports = DropDownMenu;
 
-},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js","./utils/key-line.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx":[function(require,module,exports){
+},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js","./utils/key-line.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -226,7 +226,7 @@ var Icon = React.createClass({displayName: 'Icon',
 });
 
 module.exports = Icon;
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\input.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\input.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -289,7 +289,7 @@ var Input = React.createClass({displayName: 'Input',
 });
 
 module.exports = Input;
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\left-nav.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\left-nav.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -330,7 +330,7 @@ var LeftNav = React.createClass({displayName: 'LeftNav',
 
 module.exports = LeftNav;
 
-},{"./menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\menu-item.jsx":[function(require,module,exports){
+},{"./menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\menu-item.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -393,7 +393,7 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
 });
 
 module.exports = MenuItem;
-},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./toggle.jsx":"F:\\GitHub\\material-ui\\dist\\js\\toggle.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx":[function(require,module,exports){
+},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./toggle.jsx":"F:\\GitHub\\material-ui\\dist\\js\\toggle.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -607,7 +607,7 @@ var Menu = React.createClass({displayName: 'Menu',
 });
 
 module.exports = Menu;
-},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./menu-item.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu-item.jsx","./menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js","./utils/key-line.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js":[function(require,module,exports){
+},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./menu-item.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu-item.jsx","./menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js","./utils/key-line.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\key-line.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js":[function(require,module,exports){
 var React = require('react'),
   classSet = React.addons.classSet;
 
@@ -656,7 +656,7 @@ module.exports = {
 
 }
 
-},{"react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js":[function(require,module,exports){
+},{"react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\mixins\\click-awayable.js":[function(require,module,exports){
 var $ = require('jquery'),
   React = require('react');
 
@@ -677,7 +677,7 @@ module.exports = {
     $(document).off('click' + reactComp._rootNodeID);
   }
 }
-},{"jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\paper-button.jsx":[function(require,module,exports){
+},{"jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\paper-button.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -751,7 +751,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
 
 module.exports = PaperButton;
 
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -797,7 +797,7 @@ var Paper = React.createClass({displayName: 'Paper',
 
 module.exports = Paper;
 
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\radio-button.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\radio-button.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -853,7 +853,7 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
 });
 
 module.exports = RadioButton;
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\table-header.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\table-header.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -909,7 +909,7 @@ var TableHeader = React.createClass({displayName: 'TableHeader',
 });
 
 module.exports = TableHeader;
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\table-rows-item.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\table-rows-item.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -946,7 +946,7 @@ var TableRowItem = React.createClass({displayName: 'TableRowItem',
 });
 
 module.exports = TableRowItem;
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\table-rows.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\table-rows.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1009,7 +1009,7 @@ var TableRow = React.createClass({displayName: 'TableRow',
 });
 
 module.exports = TableRow;
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./table-rows-item.jsx":"F:\\GitHub\\material-ui\\dist\\js\\table-rows-item.jsx","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\table.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./table-rows-item.jsx":"F:\\GitHub\\material-ui\\dist\\js\\table-rows-item.jsx","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\table.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1066,7 +1066,7 @@ var Table = React.createClass({displayName: 'Table',
 });
 
 module.exports = Table;
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./table-header.jsx":"F:\\GitHub\\material-ui\\dist\\js\\table-header.jsx","./table-rows.jsx":"F:\\GitHub\\material-ui\\dist\\js\\table-rows.jsx","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\toggle.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./table-header.jsx":"F:\\GitHub\\material-ui\\dist\\js\\table-header.jsx","./table-rows.jsx":"F:\\GitHub\\material-ui\\dist\\js\\table-rows.jsx","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\toggle.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1121,7 +1121,7 @@ var Toggle = React.createClass({displayName: 'Toggle',
 });
 
 module.exports = Toggle;
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./radio-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\radio-button.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js":[function(require,module,exports){
+},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","./radio-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\radio-button.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js":[function(require,module,exports){
 module.exports = {
 
 	KeyLines: {
@@ -32399,10 +32399,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":"F:\\GitHub\\material-ui\\node_modules\\react\\lib\\emptyFunction.js","_process":"F:\\GitHub\\material-ui\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"F:\\GitHub\\material-ui\\node_modules\\react\\react.js":[function(require,module,exports){
-module.exports = require('./lib/React');
-
-},{"./lib/React":"F:\\GitHub\\material-ui\\node_modules\\react\\lib\\React.js"}],"F:\\GitHub\\material-ui\\node_modules\\underscore\\underscore.js":[function(require,module,exports){
+},{"./emptyFunction":"F:\\GitHub\\material-ui\\node_modules\\react\\lib\\emptyFunction.js","_process":"F:\\GitHub\\material-ui\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"F:\\GitHub\\material-ui\\node_modules\\underscore\\underscore.js":[function(require,module,exports){
 //     Underscore.js 1.7.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -33954,7 +33951,7 @@ var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
 
 module.exports = AppLeftNav;
 
-},{"../app-dispatcher.js":"F:\\GitHub\\material-ui\\src\\app\\app-dispatcher.js","./pages.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\pages.jsx","mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-block.jsx":[function(require,module,exports){
+},{"../app-dispatcher.js":"F:\\GitHub\\material-ui\\src\\app\\app-dispatcher.js","./pages.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\pages.jsx","mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-block.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -33984,7 +33981,7 @@ var CodeBlock = React.createClass({displayName: 'CodeBlock',
 });
 
 module.exports = CodeBlock;
-},{"hljs":"F:\\GitHub\\material-ui\\src\\app\\vendor\\highlight-js\\highlight.pack.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-example.jsx":[function(require,module,exports){
+},{"hljs":"F:\\GitHub\\material-ui\\src\\app\\vendor\\highlight-js\\highlight.pack.js","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-example.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34014,7 +34011,7 @@ var CodeExample = React.createClass({displayName: 'CodeExample',
 });
 
 module.exports = CodeExample;
-},{"./code-block.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-block.jsx","mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\master.jsx":[function(require,module,exports){
+},{"./code-block.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-block.jsx","mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\master.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34070,7 +34067,7 @@ var Master = React.createClass({displayName: 'Master',
 
 module.exports = Master;
 
-},{"../stores/app-state-store.js":"F:\\GitHub\\material-ui\\src\\app\\stores\\app-state-store.js","./app-left-nav.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\app-left-nav.jsx","./pages.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\pages.jsx","backbone":"F:\\GitHub\\material-ui\\node_modules\\backbone\\backbone.js","mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages.jsx":[function(require,module,exports){
+},{"../stores/app-state-store.js":"F:\\GitHub\\material-ui\\src\\app\\stores\\app-state-store.js","./app-left-nav.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\app-left-nav.jsx","./pages.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\pages.jsx","backbone":"F:\\GitHub\\material-ui\\node_modules\\backbone\\backbone.js","mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34190,7 +34187,7 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 
 module.exports = ButtonPage;
 
-},{"../code-example/code-example.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-example.jsx","mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\colors.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-example.jsx","mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\colors.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34210,7 +34207,7 @@ var ColorsPage = React.createClass({displayName: 'ColorsPage',
 
 module.exports = ColorsPage;
 
-},{"react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\home.jsx":[function(require,module,exports){
+},{"react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\home.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34229,7 +34226,7 @@ var HomePage = React.createClass({displayName: 'HomePage',
 
 module.exports = HomePage;
 
-},{"react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\icons.jsx":[function(require,module,exports){
+},{"react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\icons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34248,7 +34245,7 @@ var IconsPage = React.createClass({displayName: 'IconsPage',
 
 module.exports = IconsPage;
 
-},{"react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\inputs.jsx":[function(require,module,exports){
+},{"react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\inputs.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34287,7 +34284,7 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
 });
 
 module.exports = InputsPage;
-},{"../../../../dist/js/input.jsx":"F:\\GitHub\\material-ui\\dist\\js\\input.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\menus.jsx":[function(require,module,exports){
+},{"../../../../dist/js/input.jsx":"F:\\GitHub\\material-ui\\dist\\js\\input.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\menus.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34397,7 +34394,7 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
 });
 
 module.exports = MenusPage;
-},{"../../../../dist/js/drop-down-menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\drop-down-menu.jsx","../../../../dist/js/menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","../../../../dist/js/paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","../../../../dist/js/utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\radio-buttons.jsx":[function(require,module,exports){
+},{"../../../../dist/js/drop-down-menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\drop-down-menu.jsx","../../../../dist/js/menu.jsx":"F:\\GitHub\\material-ui\\dist\\js\\menu.jsx","../../../../dist/js/paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","../../../../dist/js/utils/constants.js":"F:\\GitHub\\material-ui\\dist\\js\\utils\\constants.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\radio-buttons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34427,7 +34424,7 @@ var RadioButtonPage = React.createClass({displayName: 'RadioButtonPage',
 });
 
 module.exports = RadioButtonPage;
-},{"../../../../dist/js/radio-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\radio-button.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\tables.jsx":[function(require,module,exports){
+},{"../../../../dist/js/radio-button.jsx":"F:\\GitHub\\material-ui\\dist\\js\\radio-button.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\tables.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34455,7 +34452,7 @@ var TablesPage = React.createClass({displayName: 'TablesPage',
 });
 
 module.exports = TablesPage;
-},{"../../../../dist/js/table.jsx":"F:\\GitHub\\material-ui\\dist\\js\\table.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\toggles.jsx":[function(require,module,exports){
+},{"../../../../dist/js/table.jsx":"F:\\GitHub\\material-ui\\dist\\js\\table.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\toggles.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34481,7 +34478,7 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 });
 
 module.exports = ButtonPage;
-},{"mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\typography.jsx":[function(require,module,exports){
+},{"mui":"F:\\GitHub\\material-ui\\index.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\components\\pages\\typography.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34657,7 +34654,7 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
 
 module.exports = TypographyPage;
 
-},{"../code-example/code-example.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-example.jsx","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\react.js"}],"F:\\GitHub\\material-ui\\src\\app\\stores\\app-state-store.js":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"F:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-example.jsx","jquery":"F:\\GitHub\\material-ui\\node_modules\\jquery\\dist\\jquery.js","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\src\\app\\stores\\app-state-store.js":[function(require,module,exports){
 var _ = require('underscore'),
   Backbone = require('backbone'),
   Dispatcher = require('../app-dispatcher.js'),
