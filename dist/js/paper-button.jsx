@@ -23,9 +23,10 @@ var PaperButton = React.createClass({
 
   propTypes: {
     primary: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     label: React.PropTypes.string,
     type: React.PropTypes.oneOf(Object.keys(Types)),
-    onClick: React.PropTypes.func.isRequired
+    onClick: React.PropTypes.func
   },
 
   mixins: [Classable],
@@ -37,6 +38,7 @@ var PaperButton = React.createClass({
   getDefaultProps: function() {
     return {
       primary: false,
+      disabled: false,
       type: Types.RAISED
     };
   },
@@ -44,12 +46,13 @@ var PaperButton = React.createClass({
   render: function() {
     var classes = this.getClasses('mui-paper-button', {
       'mui-primary': this.props.primary,
+      'mui-disabled': this.props.disabled,
       'mui-flat': this.props.type === Types.FLAT,
       'mui-fab': this.props.type === Types.FAB,
       'mui-fab-mini': this.props.type === Types.FAB_MINI
     }),
       circle = this.props.type === Types.FAB || this.props.type === Types.FAB_MINI,
-      zDepth = zDepths[this.props.type];
+      zDepth = this.props.disabled ? 0 : zDepths[this.props.type];
 
     return (
       <div className={classes} onClick={this._onClick}>
@@ -61,7 +64,7 @@ var PaperButton = React.createClass({
   },
 
   _onClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e);
+    if (!this.props.disabled && this.props.onClick) this.props.onClick(e);
   }
 
 });

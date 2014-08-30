@@ -58,4 +58,23 @@
 			}
 		}
 	}
+
+	&.mui-disabled {
+		cursor: default;
+
+		.mui-paper {
+			.mui-paper-container {
+				color: @paper-button-disabled-text-color;
+				background-color: @paper-button-disabled-color;
+			}
+		}
+
+		&.mui-flat {
+			.mui-paper {
+				.mui-paper-container {
+					background-color: inherit;
+				}
+			}
+		}
+	}
 }

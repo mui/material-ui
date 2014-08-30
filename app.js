@@ -703,9 +703,10 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
 
   propTypes: {
     primary: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     label: React.PropTypes.string,
     type: React.PropTypes.oneOf(Object.keys(Types)),
-    onClick: React.PropTypes.func.isRequired
+    onClick: React.PropTypes.func
   },
 
   mixins: [Classable],
@@ -717,6 +718,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
   getDefaultProps: function() {
     return {
       primary: false,
+      disabled: false,
       type: Types.RAISED
     };
   },
@@ -724,12 +726,13 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
   render: function() {
     var classes = this.getClasses('mui-paper-button', {
       'mui-primary': this.props.primary,
+      'mui-disabled': this.props.disabled,
       'mui-flat': this.props.type === Types.FLAT,
       'mui-fab': this.props.type === Types.FAB,
       'mui-fab-mini': this.props.type === Types.FAB_MINI
     }),
       circle = this.props.type === Types.FAB || this.props.type === Types.FAB_MINI,
-      zDepth = zDepths[this.props.type];
+      zDepth = this.props.disabled ? 0 : zDepths[this.props.type];
 
     return (
       React.DOM.div({className: classes, onClick: this._onClick}, 
@@ -741,7 +744,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
   },
 
   _onClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e);
+    if (!this.props.disabled && this.props.onClick) this.props.onClick(e);
   }
 
 });
@@ -34138,12 +34141,14 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
   _getFlatExamples: function() {
     var code = 
       '<PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
-      '<PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} />';
+      '<PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} />\n' +
+      '<PaperButton type={PaperButton.Types.FLAT} label="Disabled" disabled={true} />';
 
     return (
       CodeExample({code: code}, 
         PaperButton({type: PaperButton.Types.FLAT, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Primary", primary: true, onClick: this._onPaperButtonClick})
+        PaperButton({type: PaperButton.Types.FLAT, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.FLAT, label: "Disabled", disabled: true})
       )
     );
   },
@@ -34151,12 +34156,14 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
   _getRaisedExamples: function() {
     var code = 
       '<PaperButton type={PaperButton.Types.RAISED} label="Default" />\n' +
-      '<PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} />';
+      '<PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} />\n' +
+      '<PaperButton type={PaperButton.Types.RAISED} label="Disabled" disabled={true} />';
 
     return (
       CodeExample({code: code}, 
         PaperButton({type: PaperButton.Types.RAISED, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.RAISED, label: "Primary", primary: true, onClick: this._onPaperButtonClick})
+        PaperButton({type: PaperButton.Types.RAISED, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.RAISED, label: "Disabled", disabled: true})
       )
     );
   },

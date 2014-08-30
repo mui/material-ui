@@ -29,12 +29,14 @@ var ButtonPage = React.createClass({
   _getFlatExamples: function() {
     var code = 
       '<PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
-      '<PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} />';
+      '<PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} />\n' +
+      '<PaperButton type={PaperButton.Types.FLAT} label="Disabled" disabled={true} />';
 
     return (
       <CodeExample code={code}>
         <PaperButton type={PaperButton.Types.FLAT} label="Default" onClick={this._onPaperButtonClick} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} onClick={this._onPaperButtonClick} />
+        <PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} onClick={this._onPaperButtonClick} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <PaperButton type={PaperButton.Types.FLAT} label="Disabled" disabled={true} />
       </CodeExample>
     );
   },
@@ -42,12 +44,14 @@ var ButtonPage = React.createClass({
   _getRaisedExamples: function() {
     var code = 
       '<PaperButton type={PaperButton.Types.RAISED} label="Default" />\n' +
-      '<PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} />';
+      '<PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} />\n' +
+      '<PaperButton type={PaperButton.Types.RAISED} label="Disabled" disabled={true} />';
 
     return (
       <CodeExample code={code}>
         <PaperButton type={PaperButton.Types.RAISED} label="Default" onClick={this._onPaperButtonClick} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} onClick={this._onPaperButtonClick} />
+        <PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} onClick={this._onPaperButtonClick} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <PaperButton type={PaperButton.Types.RAISED} label="Disabled" disabled={true} />
       </CodeExample>
     );
   },
