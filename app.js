@@ -751,9 +751,10 @@ module.exports = {
  */
 
 var React = require('react'),
-    Paper = require('./paper.jsx'),
     Classable = require('./mixins/classable.js'),
-
+    Paper = require('./paper.jsx'),
+    Icon = require('./icon.jsx'),
+    
     Types = {
       RAISED: 'RAISED',
       FLAT: 'FLAT',
@@ -774,6 +775,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
     disabled: React.PropTypes.bool,
     label: React.PropTypes.string,
     type: React.PropTypes.oneOf(Object.keys(Types)),
+    icon: React.PropTypes.string,
     onClick: React.PropTypes.func
   },
 
@@ -793,20 +795,22 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
 
   render: function() {
     var classes = this.getClasses('mui-paper-button', {
-      'mui-primary': this.props.primary,
-      'mui-disabled': this.props.disabled,
-      'mui-flat': this.props.type === Types.FLAT,
-      'mui-fab': this.props.type === Types.FAB,
-      'mui-fab-mini': this.props.type === Types.FAB_MINI
-    }),
+        'mui-primary': this.props.primary,
+        'mui-disabled': this.props.disabled,
+        'mui-flat': this.props.type === Types.FLAT,
+        'mui-fab': this.props.type === Types.FAB,
+        'mui-fab-mini': this.props.type === Types.FAB_MINI
+      }),
       circle = this.props.type === Types.FAB || this.props.type === Types.FAB_MINI,
-      zDepth = this.props.disabled ? 0 : zDepths[this.props.type];
+      zDepth = this.props.disabled ? 0 : zDepths[this.props.type],
+      icon;
+
+    if (this.props.icon) icon = Icon({className: "mui-paper-button-icon", icon: this.props.icon});
 
     return (
-      React.DOM.div({className: classes, onClick: this._onClick}, 
-        Paper({zDepth: zDepth, circle: circle}, 
-            this.props.label
-        )
+      Paper({className: classes, zDepth: zDepth, circle: circle, onClick: this._onClick}, 
+        this.props.label, 
+        icon
       )
     );
   },
@@ -819,7 +823,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
 
 module.exports = PaperButton;
 
-},{"./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx":[function(require,module,exports){
+},{"./icon.jsx":"F:\\GitHub\\material-ui\\dist\\js\\icon.jsx","./mixins/classable.js":"F:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"F:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"F:\\GitHub\\material-ui\\dist\\js\\paper.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -834,7 +838,8 @@ var Paper = React.createClass({displayName: 'Paper',
   propTypes: {
     zDepth: React.PropTypes.number,
     rounded: React.PropTypes.bool,
-    circle: React.PropTypes.bool
+    circle: React.PropTypes.bool,
+    onClick: React.PropTypes.func
   },
 
   getDefaultProps: function() {
@@ -853,12 +858,16 @@ var Paper = React.createClass({displayName: 'Paper',
       });
 
     return (
-      React.DOM.div({className: classes}, 
+      React.DOM.div({className: classes, onClick: this._onClick}, 
       	React.DOM.div({className: insideClasses}, 
           this.props.children
         )
       )
     );
+  },
+
+  _onClick: function(e) {
+    if (this.props.onClick) this.props.onClick(e);
   }
 
 });
@@ -34224,13 +34233,13 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 
   _getFabExamples: function() {
     var code = 
-      '<PaperButton type={PaperButton.Types.FAB_MINI} />\n' +
-      '<PaperButton type={PaperButton.Types.FAB} />';
+      '<PaperButton type={PaperButton.Types.FAB_MINI} icon="phone" />\n' +
+      '<PaperButton type={PaperButton.Types.FAB} icon="phone" />';
 
     return (
       CodeExample({code: code}, 
-        PaperButton({type: PaperButton.Types.FAB_MINI, onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FAB, onClick: this._onPaperButtonClick})
+        PaperButton({type: PaperButton.Types.FAB_MINI, icon: "phone", onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.FAB, icon: "phone", onClick: this._onPaperButtonClick})
       )
     );
   },

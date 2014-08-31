@@ -12,7 +12,8 @@ var Paper = React.createClass({
   propTypes: {
     zDepth: React.PropTypes.number,
     rounded: React.PropTypes.bool,
-    circle: React.PropTypes.bool
+    circle: React.PropTypes.bool,
+    onClick: React.PropTypes.func
   },
 
   getDefaultProps: function() {
@@ -31,12 +32,16 @@ var Paper = React.createClass({
       });
 
     return (
-      <div className={classes}>
+      <div className={classes} onClick={this._onClick}>
       	<div className={insideClasses}>
           {this.props.children}
         </div>
       </div>
     );
+  },
+
+  _onClick: function(e) {
+    if (this.props.onClick) this.props.onClick(e);
   }
 
 });

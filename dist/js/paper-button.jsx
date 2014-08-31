@@ -3,9 +3,10 @@
  */
 
 var React = require('react'),
-    Paper = require('./paper.jsx'),
     Classable = require('./mixins/classable.js'),
-
+    Paper = require('./paper.jsx'),
+    Icon = require('./icon.jsx'),
+    
     Types = {
       RAISED: 'RAISED',
       FLAT: 'FLAT',
@@ -26,6 +27,7 @@ var PaperButton = React.createClass({
     disabled: React.PropTypes.bool,
     label: React.PropTypes.string,
     type: React.PropTypes.oneOf(Object.keys(Types)),
+    icon: React.PropTypes.string,
     onClick: React.PropTypes.func
   },
 
@@ -45,21 +47,23 @@ var PaperButton = React.createClass({
 
   render: function() {
     var classes = this.getClasses('mui-paper-button', {
-      'mui-primary': this.props.primary,
-      'mui-disabled': this.props.disabled,
-      'mui-flat': this.props.type === Types.FLAT,
-      'mui-fab': this.props.type === Types.FAB,
-      'mui-fab-mini': this.props.type === Types.FAB_MINI
-    }),
+        'mui-primary': this.props.primary,
+        'mui-disabled': this.props.disabled,
+        'mui-flat': this.props.type === Types.FLAT,
+        'mui-fab': this.props.type === Types.FAB,
+        'mui-fab-mini': this.props.type === Types.FAB_MINI
+      }),
       circle = this.props.type === Types.FAB || this.props.type === Types.FAB_MINI,
-      zDepth = this.props.disabled ? 0 : zDepths[this.props.type];
+      zDepth = this.props.disabled ? 0 : zDepths[this.props.type],
+      icon;
+
+    if (this.props.icon) icon = <Icon className="mui-paper-button-icon" icon={this.props.icon} />;
 
     return (
-      <div className={classes} onClick={this._onClick}>
-        <Paper zDepth={zDepth} circle={circle}>
-            {this.props.label}
-        </Paper>
-      </div>
+      <Paper className={classes} zDepth={zDepth} circle={circle} onClick={this._onClick}>
+        {this.props.label}
+        {icon}
+      </Paper>
     );
   },
 

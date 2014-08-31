@@ -58,13 +58,13 @@ var ButtonPage = React.createClass({
 
   _getFabExamples: function() {
     var code = 
-      '<PaperButton type={PaperButton.Types.FAB_MINI} />\n' +
-      '<PaperButton type={PaperButton.Types.FAB} />';
+      '<PaperButton type={PaperButton.Types.FAB_MINI} icon="phone" />\n' +
+      '<PaperButton type={PaperButton.Types.FAB} icon="phone" />';
 
     return (
       <CodeExample code={code}>
-        <PaperButton type={PaperButton.Types.FAB_MINI} onClick={this._onPaperButtonClick} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <PaperButton type={PaperButton.Types.FAB} onClick={this._onPaperButtonClick} />
+        <PaperButton type={PaperButton.Types.FAB_MINI} icon="phone" onClick={this._onPaperButtonClick} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <PaperButton type={PaperButton.Types.FAB} icon="phone" onClick={this._onPaperButtonClick} />
       </CodeExample>
     );
   },
