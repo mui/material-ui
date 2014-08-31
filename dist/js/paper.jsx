@@ -25,11 +25,11 @@ var Paper = React.createClass({
   },
 
   render: function() {
-    var insideClasses = 'mui-paper-container mui-z-depth-bottom mui-z-depth-' + this.props.zDepth,
-      classes = this.getClasses('mui-paper mui-z-depth-top mui-z-depth-' + this.props.zDepth, {
-        'mui-rounded': this.props.rounded,
-        'mui-circle': this.props.circle
-      });
+    var classes = this.getClasses('mui-paper mui-z-depth-' + this.props.zDepth, {
+          'mui-rounded': this.props.rounded,
+          'mui-circle': this.props.circle
+        }),
+        insideClasses = 'mui-paper-container mui-z-depth-bottom';
 
     return (
       <div className={classes} onClick={this._onClick}>
