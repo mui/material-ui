@@ -8,7 +8,6 @@ var $ = require('jquery'),
   ClickAwayable = require('./mixins/click-awayable'),
   KeyLine = require('./utils/key-line.js'),
   Paper = require('./paper.jsx'),
-  Icon = require('./icon.jsx'),
   MenuItem = require('./menu-item.jsx');
 
 /***********************
@@ -34,17 +33,17 @@ var NestedMenuItem = React.createClass({
   },
 
   componentDidMount: function() {
-    var _this = this;
-
     this._positionNestedMenu();
 
     this.listenToClickAway(this, function() {
-      _this._closeMenu();
-    });
+      this._closeMenu();
+    }.bind(this));
   },
 
   componentWillUpdate: function(nextProps, nextState) {
-    if (this.props.onMenuToggle && this.state.open !== nextState.open) this.props.onMenuToggle(this.props.key, nextState.open);
+    if (this.props.onMenuToggle && this.state.open !== nextState.open) {
+      this.props.onMenuToggle(this.props.key, nextState.open);
+    }
   },
 
   componentDidUpdate: function() {
@@ -60,14 +59,15 @@ var NestedMenuItem = React.createClass({
 
     return (
       <div className={classes}>
-        <MenuItem key={this.props.key} iconRight="arrow-drop-right" onClick={this._onParentItemClick}>{this.props.text}</MenuItem>
+        <MenuItem key={this.props.key} iconRight="arrow-drop-right" onClick={this._onParentItemClick}>
+          {this.props.text}
+        </MenuItem>
         <Menu
           ref="nestedMenu"
           menuItems={this.props.menuItems}
           onItemClick={this._onMenuItemClick}
           hideable={true} visible={this.state.open}
-          zDepth={this.props.zDepth + 1}
-        />
+          zDepth={this.props.zDepth + 1} />
       </div>
     );
   },
@@ -80,9 +80,7 @@ var NestedMenuItem = React.createClass({
     var $el = $(this.getDOMNode()),
       $nestedMenu = $(this.refs.nestedMenu.getDOMNode());
 
-    $nestedMenu.css({
-      left: $el.outerWidth()
-    });
+    $nestedMenu.css('left', $el.outerWidth());
   },
 
   _onParentItemClick: function() {
@@ -90,11 +88,9 @@ var NestedMenuItem = React.createClass({
   },
 
   _onMenuItemClick: function(e, key, menuItem) {
-    var _this = this;
-
     this._closeMenu(function() {
-      if (_this.props.onItemClick) _this.props.onItemClick(e, key, menuItem);
-    });
+      if (this.props.onItemClick) this.props.onItemClick(e, key, menuItem);
+    }.bind(this));
   },
 
   _closeMenu: function(callback) {
@@ -190,14 +186,30 @@ var Menu = React.createClass({
 
         case MenuItem.Types.NESTED:
           itemComponent = (
-            <NestedMenuItem ref={'nestedMenuItem' + i} key={i} text={menuItem.text} menuItems={menuItem.items} zDepth={this.props.zDepth} onMenuToggle={this._onNestedMenuToggle} onItemClick={this._onNestedItemClick} />
+            <NestedMenuItem 
+              ref={i} 
+              key={i} 
+              text={menuItem.text} 
+              menuItems={menuItem.items} 
+              zDepth={this.props.zDepth} 
+              onMenuToggle={this._onNestedMenuToggle} 
+              onItemClick={this._onNestedItemClick} />
           );
-          this._nestedMenuItems.push('nestedMenuItem' + i);
+          this._nestedMenuItems.push(i);
           break;
 
         default:
           itemComponent = (
-            <MenuItem selected={isSelected} key={i} icon={menuItem.icon} number={menuItem.number} toggle={menuItem.toggle} onClick={this._onItemClick} onToggle={this._onItemToggle}>{menuItem.text}</MenuItem>
+            <MenuItem 
+              selected={isSelected} 
+              key={i} 
+              icon={menuItem.icon} 
+              number={menuItem.number} 
+              toggle={menuItem.toggle} 
+              onClick={this._onItemClick} 
+              onToggle={this._onItemToggle}>
+              {menuItem.text}
+            </MenuItem>
           );
       }
       children.push(itemComponent);
@@ -218,7 +230,7 @@ var Menu = React.createClass({
         height: this.props.visible ? this._initialMenuHeight : 0
       });
 
-      //Set the overflow the of menu 
+      //Set the overflow of the menu 
       //This is needed in order to show the nested menus
       if (this.state.nestedMenuShown) {
         $innerContainer.css('overflow', 'visible');
@@ -233,18 +245,18 @@ var Menu = React.createClass({
   _onNestedMenuToggle: function(key, menuShown) {
     var hasOpenMenu = false;
 
+    //Check all other nested menus to see if they're open
     this._nestedMenuItems.forEach(function(refKey) {
-      //Check all other nested menus to see if they're open
-      if (refKey !== 'nestedMenuItem' + key && this.refs[refKey].isOpen()) hasOpenMenu = true;
+      if (refKey !== key && this.refs[refKey].isOpen()) hasOpenMenu = true;
     }, this);
 
+    //Only set the nestedMenuShown state if needed
+    //This is needed for multiple nested menu items in the same menu
     if (this.state.nestedMenuShown !== menuShown) {
       if (menuShown) {
         this.setState({ nestedMenuShown: true });
-      } else {
-        if (!hasOpenMenu) {
-          this.setState({ nestedMenuShown: false });
-        }
+      } else if (!hasOpenMenu) {
+        this.setState({ nestedMenuShown: false });
       }
     }
   },
