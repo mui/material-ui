@@ -1,5 +1,6 @@
 .mui-paper-button {
 	.mui-font-style-button;
+	.ease-out(300ms);
 
 	margin: 0;
 	display: inline-block;
@@ -9,17 +10,29 @@
 	padding: 0;
 	cursor: pointer;
 
+	.mui-paper-button-content {
+		position: relative;
+	}
+
 	.mui-paper-container {
 		padding: 0 @desktop-gutter-less;
 		color: @paper-button-default-text-color;
 		background-color: @paper-button-default-color;
+		position: relative;
+		overflow: hidden;
 	}
 
-	&.mui-fab,
-	&.mui-fab-mini {
+	.mui-ripple {
+		background-color: darken(@paper-button-default-color, 20%);
+	}
+
+	&:hover {
 		.mui-paper-container {
-			padding: 0;
-			text-align: center;
+			background-color: darken(@paper-button-default-color, 10%);
+		}
+
+		.mui-ripple {
+			background-color: darken(@paper-button-default-color, 20%);
 		}
 	}
 
@@ -28,8 +41,28 @@
 		width: @fab-size;
 		min-width: @fab-size;
 
+		.mui-paper-container {
+			padding: 0;
+			text-align: center;
+			color: @paper-button-primary-text-color;
+			background-color: @paper-button-primary-color;
+		}
+
 		.mui-paper-button-icon {
 			line-height: @fab-size;
+		}
+
+		.mui-ripple {
+			background-color: darken(@paper-button-primary-color, 20%);
+		}
+
+		&:hover {
+			.mui-paper-container {
+				background-color: darken(@paper-button-primary-color, 10%);
+			}
+			.mui-ripple {
+				background-color: darken(@paper-button-primary-color, 20%);
+			}
 		}
 	}
 
@@ -38,17 +71,48 @@
 		width: @fab-mini-size;
 		min-width: @fab-mini-size;
 
+		.mui-paper-container {
+			padding: 0;
+			text-align: center;
+			color: @paper-button-primary-text-color;
+			background-color: @paper-button-primary-color;
+		}
+
 		.mui-paper-button-icon {
 			line-height: @fab-mini-size;
 		}
+
+		.mui-ripple {
+			background-color: darken(@paper-button-primary-color, 20%);
+		}
+
+		&:hover {
+			.mui-paper-container {
+				background-color: darken(@paper-button-primary-color, 10%);
+			}
+			.mui-ripple {
+				background-color: darken(@paper-button-primary-color, 20%);
+			}
+		}
 	}
 
-	&.mui-primary,
-	&.mui-fab,
-	&.mui-fab-mini {
+	&.mui-primary {
 		.mui-paper-container {
 			color: @paper-button-primary-text-color;
 			background-color: @paper-button-primary-color;
+		}
+
+		.mui-ripple {
+			background-color: darken(@paper-button-primary-color, 20%);
+		}
+
+		&:hover {
+			.mui-paper-container {
+				background-color: darken(@paper-button-primary-color, 10%);
+			}
+			.mui-ripple {
+				background-color: darken(@paper-button-primary-color, 20%);
+			}
 		}
 	}
 	
@@ -57,10 +121,32 @@
 			.mui-paper-container {
 				color: @paper-button-primary-color;
 			}
+			.mui-ripple {
+				background-color: lighten(@paper-button-primary-color, 20%);
+			}
+
+			&:hover {
+				.mui-paper-container {
+					background-color: lighten(@paper-button-primary-color, 30%);
+				}
+				.mui-ripple {
+					background-color: lighten(@paper-button-primary-color, 20%);
+				}
+			}
 		}
 
 		.mui-paper-container {
 			background-color: inherit;
+		}
+
+		&:hover {
+			.mui-paper-container {
+				background-color: darken(@paper-button-default-color, 10%);
+			}
+
+			.mui-ripple {
+				background-color: darken(@paper-button-default-color, 20%);
+			}
 		}
 	}
 
@@ -78,4 +164,23 @@
 			}
 		}
 	}
+
+	.mui-ripple {
+		position: absolute;
+		
+		top: 50%;
+		left: 50%;
+		.lh-translate3d(-50%, -50%, 0);
+		opacity: 0;
+		width: 0;
+		height: 0;
+
+		.lh-border-radius(50%);
+
+		&.mui-show {
+			.lh-animation(ripple-animation .7s);
+		}
+	}
+
+	.lh-keyframes(~'ripple-animation, 0% { opacity: 0; } 25% { opacity: 1; } 100% { width: 150px; height: 150px; opacity: 0; }');
 }

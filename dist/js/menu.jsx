@@ -4,7 +4,7 @@
 
 var $ = require('jquery'),
   React = require('react'),
-  onTransitionEnd = require('./utils/on-transition-end.js'),
+  CssEvent = require('./utils/css-event.js'),
   KeyLine = require('./utils/key-line.js'),
 	Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
@@ -212,7 +212,7 @@ var Menu = React.createClass({
 
         //Set the overflow to visible after the animation is done so
         //that other nested menus can be shown
-        onTransitionEnd($el, function() {
+        CssEvent.onTransitionEnd($el, function() {
           $innerContainer.css('overflow', 'visible');
         });
 
