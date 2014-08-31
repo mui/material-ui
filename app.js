@@ -45,28 +45,28 @@ var AppBar = React.createClass({displayName: 'AppBar',
 
   mixins: [Classable],
 
+  propTypes: {
+    title : React.PropTypes.string
+  },
+
   getDefaultProps: function() {
   	return {
-  		keyHeight: 1,
       title: ''
   	}
   },
 
   render: function() {
-    var classes = this.getClasses('mui-app-bar');
+    var classes = this.getClasses('mui-app-bar'),
+      title;
+
+    if (this.props.title) title = React.DOM.h1({className: "mui-app-bar-title"}, this.props.title);
 
     return (
     	Paper({rounded: false, className: classes}, 
-        this._getTitle(), 
+        title, 
     		this.props.children
     	)
     );
-  },
-
-  _getTitle: function() {
-    return this.props.title ? (
-      React.DOM.h1({className: "mui-app-bar-title"}, this.props.title)
-    ) : null;
   }
 
 });
@@ -207,9 +207,7 @@ var Icon = React.createClass({displayName: 'Icon',
 		var classes = this.getClasses('mui-icon-' + this.props.icon);
 
 		return (
-			React.DOM.span({className: classes}, 
-				this.props.children
-			)
+			React.DOM.span({className: classes})
 		);
 	}
 
@@ -691,8 +689,6 @@ module.exports = {
     //Initialize the classString with the classNames that were passed in
     //and include all special common classes
     if (this.props.className) classString += ' ' + this.props.className;
-    if (this.props.keyHeight) classString += ' mui-key-height-' + this.props.keyHeight;
-    if (this.props.keyWidth) classString += ' mui-key-width-' + this.props.keyWidth;
     if (this.props.selected) classString += ' mui-selected';
     if (this.state && this.state.open) classString += ' mui-open';
 
