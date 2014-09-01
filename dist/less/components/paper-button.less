@@ -167,10 +167,18 @@
 		}
 	}
 
+	
+
 	//Animating opacity causes ripple to ignore border radius overflow hidden
 	//so animate using colors instead
+	@default-ripple-color-in: fade(@default-ripple-color, 100%);
+	@default-ripple-color-out: fade(@default-ripple-color, 0%);
+	@primary-ripple-color-in: fade(@primary-ripple-color, 100%);
+	@primary-ripple-color-out: fade(@primary-ripple-color, 0%);
+	@primary-flat-ripple-color-in: fade(@primary-flat-ripple-color, 100%);
+	@primary-flat-ripple-color-out: fade(@primary-flat-ripple-color, 0%);
 	//.lh-keyframes(~'ripple-animation, 0% { opacity: 0; } 25% { opacity: 1; } 100% { width: 150px; height: 150px; opacity: 0; }');
-	.lh-keyframes(~'ripple-default-animation, 0% { background-color: @{default-hover-color}; } 25% { background-color: @{default-ripple-color}; } 100% { width: 150px; height: 150px; background-color: @{default-hover-color}; }');
-	.lh-keyframes(~'ripple-primary-animation, 0% { background-color: @{primary-hover-color}; } 25% { background-color: @{primary-ripple-color}; } 100% { width: 150px; height: 150px; background-color: @{primary-hover-color}; }');
-	.lh-keyframes(~'ripple-flat-primary-animation, 0% { background-color: @{primary-flat-hover-color}; } 25% { background-color: @{primary-flat-ripple-color}; } 100% { width: 150px; height: 150px; background-color: @{primary-flat-hover-color}; }');
+	.lh-keyframes(~'ripple-default-animation, 0% { background-color: @{default-ripple-color-out}; } 25% { background-color: @{default-ripple-color-in}; } 100% { width: 150px; height: 150px; background-color: @{default-ripple-color-out}; }');
+	.lh-keyframes(~'ripple-primary-animation, 0% { background-color: @{primary-ripple-color-out}; } 25% { background-color: @{primary-ripple-color-in}; } 100% { width: 150px; height: 150px; background-color: @{primary-ripple-color-out}; }');
+	.lh-keyframes(~'ripple-flat-primary-animation, 0% { background-color: @{primary-flat-ripple-color-out}; } 25% { background-color: @{primary-flat-ripple-color-in}; } 100% { width: 150px; height: 150px; background-color: @{primary-flat-ripple-color-out}; }');
 }
