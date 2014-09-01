@@ -13,7 +13,9 @@ var Paper = React.createClass({
     zDepth: React.PropTypes.number,
     rounded: React.PropTypes.bool,
     circle: React.PropTypes.bool,
-    onClick: React.PropTypes.func
+    onClick: React.PropTypes.func,
+    onMouseDown: React.PropTypes.func,
+    onMouseUp: React.PropTypes.func
   },
 
   getDefaultProps: function() {
@@ -32,7 +34,7 @@ var Paper = React.createClass({
         insideClasses = 'mui-paper-container mui-z-depth-bottom';
 
     return (
-      <div className={classes} onClick={this._onClick}>
+      <div className={classes} onClick={this._onClick} onMouseDown={this._onMouseDown} onMouseUp={this._onMouseUp}>
       	<div className={insideClasses}>
           {this.props.children}
         </div>
@@ -42,6 +44,14 @@ var Paper = React.createClass({
 
   _onClick: function(e) {
     if (this.props.onClick) this.props.onClick(e);
+  },
+
+  _onMouseDown: function(e) {
+    if (this.props.onMouseDown) this.props.onMouseDown(e);
+  },
+
+  _onMouseUp: function(e) {
+    if (this.props.onMouseUp) this.props.onMouseUp(e);
   }
 
 });

@@ -1,4 +1,12 @@
 .mui-paper-button {
+
+	@default-hover-color: darken(@paper-button-default-color, 10%);
+	@default-ripple-color: darken(@paper-button-default-color, 20%);
+	@primary-hover-color: darken(@paper-button-primary-color, 10%);
+	@primary-ripple-color: darken(@paper-button-primary-color, 20%);
+	@primary-flat-hover-color: lighten(@paper-button-primary-color, 30%);
+	@primary-flat-ripple-color: lighten(@paper-button-primary-color, 20%);
+
 	.mui-font-style-button;
 	.ease-out(300ms);
 
@@ -23,16 +31,16 @@
 	}
 
 	.mui-ripple {
-		background-color: darken(@paper-button-default-color, 20%);
+		background-color: @default-ripple-color;
 	}
 
 	&:hover {
 		.mui-paper-container {
-			background-color: darken(@paper-button-default-color, 10%);
+			background-color: @default-hover-color;
 		}
 
 		.mui-ripple {
-			background-color: darken(@paper-button-default-color, 20%);
+			background-color: @default-ripple-color;
 		}
 	}
 
@@ -53,15 +61,15 @@
 		}
 
 		.mui-ripple {
-			background-color: darken(@paper-button-primary-color, 20%);
+			background-color: @primary-ripple-color;
 		}
 
 		&:hover {
 			.mui-paper-container {
-				background-color: darken(@paper-button-primary-color, 10%);
+				background-color: @primary-hover-color;
 			}
 			.mui-ripple {
-				background-color: darken(@paper-button-primary-color, 20%);
+				background-color: @primary-ripple-color;
 			}
 		}
 	}
@@ -83,15 +91,15 @@
 		}
 
 		.mui-ripple {
-			background-color: darken(@paper-button-primary-color, 20%);
+			background-color: @primary-ripple-color;
 		}
 
 		&:hover {
 			.mui-paper-container {
-				background-color: darken(@paper-button-primary-color, 10%);
+				background-color: @primary-hover-color;
 			}
 			.mui-ripple {
-				background-color: darken(@paper-button-primary-color, 20%);
+				background-color: @primary-ripple-color;
 			}
 		}
 	}
@@ -103,15 +111,15 @@
 		}
 
 		.mui-ripple {
-			background-color: darken(@paper-button-primary-color, 20%);
+			background-color: @primary-ripple-color;
 		}
 
 		&:hover {
 			.mui-paper-container {
-				background-color: darken(@paper-button-primary-color, 10%);
+				background-color: @primary-hover-color;
 			}
 			.mui-ripple {
-				background-color: darken(@paper-button-primary-color, 20%);
+				background-color: @primary-ripple-color;
 			}
 		}
 	}
@@ -122,15 +130,15 @@
 				color: @paper-button-primary-color;
 			}
 			.mui-ripple {
-				background-color: lighten(@paper-button-primary-color, 20%);
+				background-color: @primary-flat-ripple-color;
 			}
 
 			&:hover {
 				.mui-paper-container {
-					background-color: lighten(@paper-button-primary-color, 30%);
+					background-color: @primary-flat-hover-color;
 				}
 				.mui-ripple {
-					background-color: lighten(@paper-button-primary-color, 20%);
+					background-color: @primary-flat-ripple-color;
 				}
 			}
 		}
@@ -141,11 +149,11 @@
 
 		&:hover {
 			.mui-paper-container {
-				background-color: darken(@paper-button-default-color, 10%);
+				background-color: @default-hover-color;
 			}
 
 			.mui-ripple {
-				background-color: darken(@paper-button-default-color, 20%);
+				background-color: @default-ripple-color;
 			}
 		}
 	}
@@ -165,22 +173,47 @@
 		}
 	}
 
+
+
 	.mui-ripple {
 		position: absolute;
 		
-		top: 50%;
-		left: 50%;
-		.lh-translate3d(-50%, -50%, 0);
-		opacity: 0;
+		top: 100%;
+		left: 100%;
+		.lh-translate(-50%, -50%);
+		//opacity: 0;
 		width: 0;
 		height: 0;
 
 		.lh-border-radius(50%);
 
 		&.mui-show {
-			.lh-animation(ripple-animation .7s);
+			.lh-animation(ripple-default-animation .5s);
 		}
 	}
 
-	.lh-keyframes(~'ripple-animation, 0% { opacity: 0; } 25% { opacity: 1; } 100% { width: 150px; height: 150px; opacity: 0; }');
+	&.mui-fab,
+	&.mui-fab-mini,
+	&.mui-primary {
+		.mui-ripple {
+			&.mui-show {
+				.lh-animation(ripple-primary-animation .5s);
+			}
+		}
+	}
+
+	&.mui-flat.mui-primary {
+		.mui-ripple {
+			&.mui-show {
+				.lh-animation(ripple-flat-primary-animation .5s);
+			}
+		}
+	}
+
+	//Animating opacity causes ripple to ignore border radius overflow hidden
+	//so animate using colors instead
+	//.lh-keyframes(~'ripple-animation, 0% { opacity: 0; } 25% { opacity: 1; } 100% { width: 150px; height: 150px; opacity: 0; }');
+	.lh-keyframes(~'ripple-default-animation, 0% { background-color: @{default-hover-color}; } 25% { background-color: @{default-ripple-color}; } 100% { width: 150px; height: 150px; background-color: @{default-hover-color}; }');
+	.lh-keyframes(~'ripple-primary-animation, 0% { background-color: @{primary-hover-color}; } 25% { background-color: @{primary-ripple-color}; } 100% { width: 150px; height: 150px; background-color: @{primary-hover-color}; }');
+	.lh-keyframes(~'ripple-flat-primary-animation, 0% { background-color: @{primary-flat-hover-color}; } 25% { background-color: @{primary-flat-ripple-color}; } 100% { width: 150px; height: 150px; background-color: @{primary-flat-hover-color}; }');
 }

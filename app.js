@@ -802,17 +802,15 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
       y = e.pageY - $offset.top;
 
     //animate the ripple
-    if (this.props.type !== Types.FAB && this.props.type !== Types.FAB_MINI) {
-      $ripple.css({
-        top: y,
-        left: x
-      });
-      $ripple.addClass('mui-show');
-      CssEvent.onAnimationEnd($ripple, function() {
-        $ripple.removeClass('mui-show');
-      });
-    }
-  
+    $ripple.css({
+      top: y,
+      left: x
+    });
+    $ripple.addClass('mui-show');
+    CssEvent.onAnimationEnd($ripple, function() {
+      $ripple.removeClass('mui-show');
+    });
+
     //animate the zdepth change
     if (this.props.type !== Types.FLAT) {
       this.setState({ zDepth: originalZDepth + 1 });
@@ -842,7 +840,9 @@ var Paper = React.createClass({displayName: 'Paper',
     zDepth: React.PropTypes.number,
     rounded: React.PropTypes.bool,
     circle: React.PropTypes.bool,
-    onClick: React.PropTypes.func
+    onClick: React.PropTypes.func,
+    onMouseDown: React.PropTypes.func,
+    onMouseUp: React.PropTypes.func
   },
 
   getDefaultProps: function() {
@@ -861,7 +861,7 @@ var Paper = React.createClass({displayName: 'Paper',
         insideClasses = 'mui-paper-container mui-z-depth-bottom';
 
     return (
-      React.DOM.div({className: classes, onClick: this._onClick}, 
+      React.DOM.div({className: classes, onClick: this._onClick, onMouseDown: this._onMouseDown, onMouseUp: this._onMouseUp}, 
       	React.DOM.div({className: insideClasses}, 
           this.props.children
         )
@@ -871,6 +871,14 @@ var Paper = React.createClass({displayName: 'Paper',
 
   _onClick: function(e) {
     if (this.props.onClick) this.props.onClick(e);
+  },
+
+  _onMouseDown: function(e) {
+    if (this.props.onMouseDown) this.props.onMouseDown(e);
+  },
+
+  _onMouseUp: function(e) {
+    if (this.props.onMouseUp) this.props.onMouseUp(e);
   }
 
 });

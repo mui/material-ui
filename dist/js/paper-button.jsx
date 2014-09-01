@@ -92,17 +92,15 @@ var PaperButton = React.createClass({
       y = e.pageY - $offset.top;
 
     //animate the ripple
-    if (this.props.type !== Types.FAB && this.props.type !== Types.FAB_MINI) {
-      $ripple.css({
-        top: y,
-        left: x
-      });
-      $ripple.addClass('mui-show');
-      CssEvent.onAnimationEnd($ripple, function() {
-        $ripple.removeClass('mui-show');
-      });
-    }
-  
+    $ripple.css({
+      top: y,
+      left: x
+    });
+    $ripple.addClass('mui-show');
+    CssEvent.onAnimationEnd($ripple, function() {
+      $ripple.removeClass('mui-show');
+    });
+
     //animate the zdepth change
     if (this.props.type !== Types.FLAT) {
       this.setState({ zDepth: originalZDepth + 1 });
