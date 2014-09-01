@@ -30,17 +30,9 @@
 		overflow: hidden;
 	}
 
-	.mui-ripple {
-		background-color: @default-ripple-color;
-	}
-
 	&:hover {
 		.mui-paper-container {
 			background-color: @default-hover-color;
-		}
-
-		.mui-ripple {
-			background-color: @default-ripple-color;
 		}
 	}
 
@@ -60,16 +52,9 @@
 			line-height: @fab-size;
 		}
 
-		.mui-ripple {
-			background-color: @primary-ripple-color;
-		}
-
 		&:hover {
 			.mui-paper-container {
 				background-color: @primary-hover-color;
-			}
-			.mui-ripple {
-				background-color: @primary-ripple-color;
 			}
 		}
 	}
@@ -90,16 +75,9 @@
 			line-height: @fab-mini-size;
 		}
 
-		.mui-ripple {
-			background-color: @primary-ripple-color;
-		}
-
 		&:hover {
 			.mui-paper-container {
 				background-color: @primary-hover-color;
-			}
-			.mui-ripple {
-				background-color: @primary-ripple-color;
 			}
 		}
 	}
@@ -110,16 +88,9 @@
 			background-color: @paper-button-primary-color;
 		}
 
-		.mui-ripple {
-			background-color: @primary-ripple-color;
-		}
-
 		&:hover {
 			.mui-paper-container {
 				background-color: @primary-hover-color;
-			}
-			.mui-ripple {
-				background-color: @primary-ripple-color;
 			}
 		}
 	}
@@ -129,16 +100,10 @@
 			.mui-paper-container {
 				color: @paper-button-primary-color;
 			}
-			.mui-ripple {
-				background-color: @primary-flat-ripple-color;
-			}
 
 			&:hover {
 				.mui-paper-container {
 					background-color: @primary-flat-hover-color;
-				}
-				.mui-ripple {
-					background-color: @primary-flat-ripple-color;
 				}
 			}
 		}
@@ -150,10 +115,6 @@
 		&:hover {
 			.mui-paper-container {
 				background-color: @default-hover-color;
-			}
-
-			.mui-ripple {
-				background-color: @default-ripple-color;
 			}
 		}
 	}
@@ -173,18 +134,14 @@
 		}
 	}
 
-
-
 	.mui-ripple {
 		position: absolute;
 		
 		top: 100%;
 		left: 100%;
 		.lh-translate(-50%, -50%);
-		//opacity: 0;
 		width: 0;
 		height: 0;
-
 		.lh-border-radius(50%);
 
 		&.mui-show {
