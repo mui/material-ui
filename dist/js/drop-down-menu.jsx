@@ -6,7 +6,6 @@ var $ = require('jquery'),
   React = require('react'),
   Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
-  Constants = require('./utils/constants.js'),
   KeyLine = require('./utils/key-line.js'),
   Paper = require('./paper.jsx'),
   Icon = require('./icon.jsx'),
@@ -28,28 +27,21 @@ var DropDownMenu = React.createClass({
   	}
   },
 
+  componentClickAway: function() {
+    this.setState({ open: false });
+  },
+
   componentDidMount: function() {
-    var _this = this;
+    var $el = $(this.getDOMNode()),
+      $menuItems = $(this.refs.menuItems.getDOMNode());
 
-    this.listenToClickAway(this, function() {
-      _this.setState({
-        open: false
-      });
-    });
-
-    this._setWidth();
-  },
-
-  componentWillUnmount: function() {
-    this.stopListeningToClickAway(this);
-  },
-
-  componentDidUpdate: function() {
-    this._setWidth();
+    $el.css('width', $menuItems.width());
   },
 
   render: function() {
-    var classes = this.getClasses('mui-drop-down-menu');
+    var classes = this.getClasses('mui-drop-down-menu', {
+      'mui-open': this.state.open
+    });
 
     return (
     	<div className={classes}>
@@ -60,16 +52,9 @@ var DropDownMenu = React.createClass({
           </div>
           <Icon icon="arrow-drop-down" />
         </div>
-        <Menu ref="menuItems" selectedIndex={this.state.selectedIndex} menuItems={this.props.menuItems} visible={this.state.open} setHeightWidth={true} onItemClick={this._onMenuItemClick} />
+        <Menu ref="menuItems" selectedIndex={this.state.selectedIndex} menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
       </div>
     );
-  },
-
-  _setWidth: function() {
-    var $el = $(this.getDOMNode()),
-      $menuItems = $(this.refs.menuItems.getDOMNode());
-
-    $el.css('width', $menuItems.width());
   },
 
   _onControlClick: function(e) {

@@ -1,4 +1,4 @@
-var React = require('react/addons'),
+var React = require('react'),
   classSet = React.addons.classSet;
 
 module.exports = {
@@ -11,12 +11,7 @@ module.exports = {
     var classString = '';
 
     //Initialize the classString with the classNames that were passed in
-    //and include all special common classes
     if (this.props.className) classString += ' ' + this.props.className;
-    if (this.props.keyHeight) classString += ' mui-key-height-' + this.props.keyHeight;
-    if (this.props.keyWidth) classString += ' mui-key-width-' + this.props.keyWidth;
-    if (this.props.selected) classString += ' mui-selected';
-    if (this.state && this.state.open) classString += ' mui-open';
 
     //Add in initial classes
     if (typeof initialClasses === 'object') {

@@ -1,20 +1,23 @@
-var $ = require('jquery'),
-  React = require('react');
+var $ = require('jquery');
 
 module.exports = {
-  listenToClickAway: function(reactComp, callback) {
-    var clickEvent = 'click' + reactComp._rootNodeID;
+
+  //When the component mounts, listen to click events and check if we need to 
+  //Call the componentClickAway function.
+  componentDidMount: function() {
+    var clickEvent = 'click' + this._rootNodeID;
 
     $(document)
       .off(clickEvent)
       .on(clickEvent, function(e) {
-        if (reactComp.isMounted() && !$(e.target).closest(reactComp.getDOMNode()).length) {
-          callback();
+        if (this.isMounted() && !$(e.target).closest(this.getDOMNode()).length) {
+          if (this.componentClickAway) this.componentClickAway();
         }
-    });
+    }.bind(this));
   },
 
-  stopListeningToClickAway: function(reactComp) {
-    $(document).off('click' + reactComp._rootNodeID);
+  componentWillUnmount: function() {
+    $(document).off('click' + this._rootNodeID);
   }
+
 }

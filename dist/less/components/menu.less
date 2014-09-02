@@ -1,104 +1,78 @@
-.mui-menu-container {
-	background-color: @white;
-
-	&.fixed-size {
-		width: 250px;
-	}
-}
-
 .mui-menu {
-	.mui-menu-item {
-		cursor: pointer;
-		height: @menu-item-height;
-		line-height: @menu-item-height;
+	background-color: @menu-color;
 
-		&.mui-icon {
-			.mui-menu-item-icon {
-				.mui-text-light-black;
-				display: inline-block;
-				padding-right: @desktop-gutter;
-				position: relative;
-				top: -2px;
-				vertical-align: middle;
+	&.mui-menu-hideable {
+		top: 0;
+		opacity: 0;
+		position: absolute;
+		z-index: 1;
+
+		.mui-paper-container {
+			overflow: hidden;
+			padding: 0;
+		}
+
+		&.mui-visible {
+			& > .mui-paper-container {
+				padding-top: @desktop-gutter-mini;
+				padding-bottom: @desktop-gutter-mini;
 			}
 		}
+	}
 
-		&.mui-number {
-			.mui-menu-item-number {
-				.mui-text-min-black;
-				display: inline-block;
-				float: right;
-				height: @menu-item-height;
-				line-height: @menu-item-height;
-			}
-		}
-
-		&.mui-toggle {
-			.mui-menu-item-toggle {
-				display: inline-block;
-				float: right;
-				padding-right: (@desktop-gutter + @radio-button-size);
-				position: relative;
-				top: @radio-button-size;
-			}
-		}
-
-		&.mui-selected {
-			color: @menu-item-selected-text-color;
-		}
-
-		.mui-menu-item-icon {
-			display: none;
-		}
-
-		.mui-menu-item-number {
-			display: none;
-		}
-
-		.mui-menu-item-toggle {
-			display: none;
-		}
+	.mui-paper-container {
+		padding-top: @desktop-gutter-mini;
+		padding-bottom: @desktop-gutter-mini;
 	}
 
 	.mui-subheader,
-	.mui-nested,
 	.mui-menu-item {
 		padding-left: @desktop-gutter;
 		padding-right: @desktop-gutter;
 	}
 
-	.mui-nested {
-		position: relative;
-		margin: 0;
-		height: @desktop-subheader-height + @desktop-gutter-mini;
-		line-height: @desktop-subheader-height;
-		padding-top: @desktop-gutter-mini;
-		margin-top: @desktop-gutter-mini;
+	.mui-menu-item {
+		cursor: pointer;
+		height: @menu-item-height;
+		line-height: @menu-item-height;
 
-		.mui-nested-arrow {
-			.mui-text-min-black;
+		.mui-menu-item-number,
+		.mui-toggle,
+		.mui-menu-item-icon-right {
 			float: right;
+		}
+
+		.mui-menu-item-icon,
+		.mui-menu-item-icon-right {
 			line-height: @menu-item-height;
-			position: relative;
-			left: 10px;
 		}
 
-		&:first-child {
-			height: @desktop-subheader-height;
-			border-top: none;
-			padding-top: 0;
-			margin-top: 0;
+		.mui-menu-item-icon {
+			float: left;
+			margin-right: @desktop-gutter;
+		}
+
+		.mui-icon-arrow-drop-right {
+			margin-right: (@desktop-gutter-mini * -1);
+			color: @drop-down-menu-icon-color;
+		}
+
+		.mui-toggle {
+			margin-top: ((@menu-item-height - @radio-button-size) / 2);
+		}
+
+		&.mui-selected {
+			color: @menu-item-selected-text-color;
 		}
 	}
 
-	.mui-menu-nested {
-		position: absolute;
-		background-color: @white;
-		top: 0;
-		right: -128px;
-		height: 0;
-		opacity: 0;
-		z-index: -2;
-	}
+	.mui-nested-menu-item {
+		position: relative;
 
+		&.mui-open {
+			& > .mui-menu {
+				opacity: 1;
+			}
+		}
+	}
 }

@@ -1,13 +1,15 @@
 .mui-toggle {
 	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	width: (@toggle-width + @radio-button-size);
 
 	.mui-toggle-bar {
 		background-color: @toggle-background-color;
-		height: @toggle-height;
-		left: @radio-button-size;
+		height: @toggle-bar-height;
 		position: absolute;
 		top: 8px;
-		width: @toggle-width;
+		width: (@toggle-width + @radio-button-size);
 	}
 
 	&.mui-toggled {
@@ -16,7 +18,7 @@
 		}
 
 		.mui-radio-button {
-			transform: translate((@toggle-width+@radio-button-size), 0);
+			.lh-translate3d(@toggle-width, 0, 0);
 		}
 	}
 }

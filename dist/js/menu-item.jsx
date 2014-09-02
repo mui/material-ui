@@ -5,7 +5,12 @@
 var React = require('react'),
   Classable = require('./mixins/classable.js'),
   Icon = require('./icon.jsx'),
-  Toggle = require('./toggle.jsx');
+  Toggle = require('./toggle.jsx'),
+
+  Types = {
+    SUBHEADER: 'SUBHEADER',
+    NESTED: 'NESTED'
+  };
 
 var MenuItem = React.createClass({
 
@@ -14,11 +19,16 @@ var MenuItem = React.createClass({
   propTypes: {
     key: React.PropTypes.number.isRequired,
     icon: React.PropTypes.string,
+    iconRight: React.PropTypes.string,
     number: React.PropTypes.string,
     toggle: React.PropTypes.bool,
-    onClick: React.PropTypes.func.isRequired,
+    onClick: React.PropTypes.func,
     onToggle: React.PropTypes.func,
     selected: React.PropTypes.bool
+  },
+
+  statics: {
+    Types: Types
   },
 
   getDefaultProps: function() {
@@ -29,22 +39,25 @@ var MenuItem = React.createClass({
 
   render: function() {
     var classes = this.getClasses('mui-menu-item', {
-      'mui-icon': this.props.icon != null,
-      'mui-number': this.props.number != null,
-      'mui-toggle': this.props.toggle === true
-    });
+        'mui-selected': this.props.selected
+      }),
+      icon,
+      iconRight,
+      menuItemNumber,
+      toggle;
+
+    if (this.props.icon) icon = <Icon className="mui-menu-item-icon" icon={this.props.icon} />;
+    if (this.props.iconRight) iconRight = <Icon className="mui-menu-item-icon-right" icon={this.props.iconRight} />;
+    if (this.props.number !== undefined) menuItemNumber = <span className="mui-menu-item-number">{this.props.number}</span>;
+    if (this.props.toggle) toggle = <Toggle onToggle={this._onToggleClick} />;
 
     return (
     	<div key={this.props.key} className={classes} onClick={this._onClick}>
-        <Icon className="mui-menu-item-icon" icon={this.props.icon} />
-
+        {icon}
         {this.props.children}
-
-        <span className="mui-menu-item-number">
-          {this.props.number}
-        </span>
-
-        <Toggle className="mui-menu-item-toggle" onToggle={this._onToggleClick} />
+        {menuItemNumber}
+        {toggle}
+        {iconRight}
       </div>
     );
   },
