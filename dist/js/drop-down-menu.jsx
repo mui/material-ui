@@ -26,23 +26,16 @@ var DropDownMenu = React.createClass({
       selectedIndex: 0
   	}
   },
-
-  componentDidMount: function() {
-    var _this = this,
-      $el = $(this.getDOMNode()),
-      $menuItems = $(this.refs.menuItems.getDOMNode());
-
-    this.listenToClickAway(this, function() {
-      _this.setState({
-        open: false
-      });
-    });
-
-    $el.css('width', $menuItems.width());
+  
+  componentClickAway: function() {
+    this.setState({ open: false });
   },
 
-  componentWillUnmount: function() {
-    this.stopListeningToClickAway(this);
+  componentDidMount: function() {
+    var $el = $(this.getDOMNode()),
+      $menuItems = $(this.refs.menuItems.getDOMNode());
+
+    $el.css('width', $menuItems.width());
   },
 
   render: function() {

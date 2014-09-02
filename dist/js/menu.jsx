@@ -30,20 +30,16 @@ var NestedMenuItem = React.createClass({
     return { open: false }
   },
 
+  componentClickAway: function() {
+    this.setState({ open: false });
+  },
+
   componentDidMount: function() {
     this._positionNestedMenu();
-
-    this.listenToClickAway(this, function() {
-      this.setState({ open: false });
-    }.bind(this));
   },
 
   componentDidUpdate: function(prevProps, prevState) {
     this._positionNestedMenu();
-  },
-
-  componentWillUnmount: function() {
-    this.stopListeningToClickAway(this);
   },
 
   render: function() {
