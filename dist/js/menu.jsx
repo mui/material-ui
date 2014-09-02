@@ -43,7 +43,9 @@ var NestedMenuItem = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-nested-menu-item');
+    var classes = this.getClasses('mui-nested-menu-item', {
+      'mui-open': this.state.open
+    });
 
     return (
       <div className={classes}>

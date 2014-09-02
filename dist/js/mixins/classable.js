@@ -11,10 +11,7 @@ module.exports = {
     var classString = '';
 
     //Initialize the classString with the classNames that were passed in
-    //and include all special common classes
     if (this.props.className) classString += ' ' + this.props.className;
-    if (this.props.selected) classString += ' mui-selected';
-    if (this.state && this.state.open) classString += ' mui-open';
 
     //Add in initial classes
     if (typeof initialClasses === 'object') {

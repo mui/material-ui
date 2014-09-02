@@ -135,7 +135,7 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
       selectedIndex: 0
   	}
   },
-  
+
   componentClickAway: function() {
     this.setState({ open: false });
   },
@@ -148,7 +148,9 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
   },
 
   render: function() {
-    var classes = this.getClasses('mui-drop-down-menu');
+    var classes = this.getClasses('mui-drop-down-menu', {
+      'mui-open': this.state.open
+    });
 
     return (
     	React.DOM.div({className: classes}, 
@@ -352,7 +354,9 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
   },
 
   render: function() {
-    var classes = this.getClasses('mui-menu-item'),
+    var classes = this.getClasses('mui-menu-item', {
+        'mui-selected': this.props.selected
+      }),
       icon,
       iconRight,
       menuItemNumber,
@@ -432,7 +436,9 @@ var NestedMenuItem = React.createClass({displayName: 'NestedMenuItem',
   },
 
   render: function() {
-    var classes = this.getClasses('mui-nested-menu-item');
+    var classes = this.getClasses('mui-nested-menu-item', {
+      'mui-open': this.state.open
+    });
 
     return (
       React.DOM.div({className: classes}, 
@@ -642,10 +648,7 @@ module.exports = {
     var classString = '';
 
     //Initialize the classString with the classNames that were passed in
-    //and include all special common classes
     if (this.props.className) classString += ' ' + this.props.className;
-    if (this.props.selected) classString += ' mui-selected';
-    if (this.state && this.state.open) classString += ' mui-open';
 
     //Add in initial classes
     if (typeof initialClasses === 'object') {

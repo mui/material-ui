@@ -38,7 +38,9 @@ var MenuItem = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-menu-item'),
+    var classes = this.getClasses('mui-menu-item', {
+        'mui-selected': this.props.selected
+      }),
       icon,
       iconRight,
       menuItemNumber,

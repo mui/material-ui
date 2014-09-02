@@ -26,7 +26,7 @@ var DropDownMenu = React.createClass({
       selectedIndex: 0
   	}
   },
-  
+
   componentClickAway: function() {
     this.setState({ open: false });
   },
@@ -39,7 +39,9 @@ var DropDownMenu = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-drop-down-menu');
+    var classes = this.getClasses('mui-drop-down-menu', {
+      'mui-open': this.state.open
+    });
 
     return (
     	<div className={classes}>
