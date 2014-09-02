@@ -10,6 +10,100 @@
 	margin-top: 24px;
 	margin-bottom: 48px;
 
+	textarea {
+		background-color: transparent;
+		font-size: @input-font-size;
+		border: 0;
+		outline: none;
+		border-bottom: 1px solid lightgray;
+		padding: 0;
+		box-sizing: border-box;
+		padding-bottom: 14px;
+		width: @input-width;
+		//overflow: hidden;
+
+		&:focus, &:valid {
+			outline: none;
+			box-shadow: none;
+			padding: 0;
+			margin: 0;
+
+			&+.mui-input-placeholder {
+				font-size: 13px;
+				color: blue;
+				top: -27px;
+				/*
+				font-size: 16px !important;
+				font-weight: 400;
+				top: 8px;
+				transition: @transition;
+				*/
+
+				&+.mui-input-highlight {
+					width: 0;
+					background-color: blue;
+					transition: @transition;
+					left: 0;
+					top: 1px;
+
+					&+.mui-input-bar {
+
+						&::before, &::after {
+							background-color: blue;
+							width: 50%;
+						}
+
+						&+.mui-input-description {
+							display: block;
+						}
+					}
+				}
+			}
+		}
+
+		&:not(:focus) {
+			&+.mui-input-placeholder {
+				font-size: 16px;
+				color: gray;
+			}
+		}
+
+		&:not(:focus):valid {
+			&+.mui-input-placeholder {
+				font-size: 13px;
+				color: gray;
+
+				&+.mui-input-highlight {
+					&+.mui-input-bar {
+						&::before, &::after {
+							width: 0;
+							transition: none;
+						}
+
+						&+.mui-input-description {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+
+		&+.mui-input-placeholder {
+			position: absolute;
+			left: 0;
+			top: 8px;
+
+			&+.mui-input-highlight {
+				&+.mui-input-bar {
+					&+.mui-input-description {
+						position: relative;
+						top: 8px;
+					}
+				}			
+			}
+		}
+	}
+
 	input {
 		background-color: transparent;
 		font-size: @input-font-size;
@@ -90,7 +184,7 @@
 		background-color: transparent;
 		opacity: .25;
 		height: 19px;
-		top: -4px;
+		top: -3px;
 		width: (@input-width/2);
 		z-index: -1;
 		transition: none;
@@ -134,6 +228,43 @@
 	}
 
 	&.mui-error {
+		textarea {
+			&:focus, &:valid {
+				&+.mui-input-placeholder {
+					color: @input-error-color;
+
+					&+.mui-input-highlight {
+						width: 0;
+						background-color: red;
+
+						&+.mui-input-bar {
+
+							&::before, &::after {
+								background-color: @input-error-color;
+							}
+
+							&+.mui-input-description {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+
+			&+.mui-input-placeholder {
+				&+.mui-input-highlight {
+					&+.mui-input-bar {
+						&+.mui-input-description {
+							&+.mui-input-error {
+								position: relative;
+								top: 8px;
+							}
+						}
+					}
+				}
+			}
+		}
+
 		input {
 			&:focus, &:valid {
 				&+.mui-input-placeholder {
