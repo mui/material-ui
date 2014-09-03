@@ -4,6 +4,7 @@
  
 var React = require('react'),
   mui = require('mui'),
+  CodeExample = require('../code-example/code-example.jsx'),
 
   menuItems = [
     { payload: '1', text: 'Never' },
@@ -66,29 +67,112 @@ var MenusPage = React.createClass({
     return (
     	<div>
     		<h2>Drop Down Menu</h2>
-    		<mui.DropDownMenu menuItems={menuItems} onChange={this._onDropDownMenuChange} />
-        <br />
-        <h2>Nested Menu</h2>
-        <div className="example-menu">
-          <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} />
+        <div className="mui-menu-container">
+    		  {this._getDropDownMenuExample()}
         </div>
-
         <br />
         <h2>Attribute Menu</h2>
         <div className="mui-menu-container">
-          <mui.Menu menuItems={attributeMenuItems} onItemClick={this._onItemClick} />
+          {this._getAttributeMenuExample()}
         </div>
         <br />
         <h2>Icon Menu</h2>
         <div className="mui-menu-container">
-          <mui.Menu menuItems={iconMenuItems} onItemClick={this._onItemClick} />
+          {this._getIconMenuExample()}
         </div>
         <br />
         <h2>Filter Menu</h2>
         <div className="mui-menu-container">
-          <mui.Menu menuItems={filterMenuItems} onItemToggle={this._onFilterMenuToggle}  onItemClick={this._onItemClick} />
+          {this._getFilterMenuExample()}
         </div>
+        <h2>Nested Menu</h2>
+        <div className="example-menu">
+          <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} />
+        </div>
+        <br /><br /><br /><br /><br /><br /><br /><br />
     	</div>
+    );
+  },
+
+  _getDropDownMenuExample: function() {
+    var code = 
+      "var menuItems = [\n" +
+      " { payload: '1', text: 'Never' },\n" +
+      " { payload: '2', text: 'Every Night' },\n" +
+      " { payload: '3', text: 'Weeknights' },\n" +
+      " { payload: '4', text: 'Weekends' },\n" +
+      " { payload: '5', text: 'Weekly' },\n" +
+      "],\n\n" +
+
+      "<DropDownMenu menuItems={menuItems} />";
+
+    return (
+      <CodeExample code={code}>
+        <mui.DropDownMenu menuItems={menuItems} onChange={this._onDropDownMenuChange} />
+      </CodeExample>
+    );
+  },
+
+  _getAttributeMenuExample: function() {
+    var code = 
+      "var attributeMenuItems = [\n" +
+      "{ payload: '1', text: 'All', number: '22' },\n" +
+      "{ payload: '3', text: 'Uncategorized', number: '6'},\n" +
+      "{ payload: '4', text: 'Trash', number: '11' }\n" +
+      "];\n\n"  +
+
+      "<Menu menuItems={attributeMenuItems} />";
+
+    return (
+      <CodeExample code={code}>
+        <mui.Menu menuItems={attributeMenuItems} onItemClick={this._onItemClick} />
+      </CodeExample>
+    );
+  },
+
+  _getIconMenuExample: function() {
+    var code = 
+      "iconMenuItems = [\n" +
+      "{ payload: '1', text: 'Live Answer', icon: 'home', number: '10' },\n" +
+      "{ payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },\n" +
+      "{ payload: '3', text: 'Starred', icon: 'mic', number: '3'},\n" +
+      "{ payload: '4', text: 'Shared', icon: 'pie',  number: '12' }\n" +
+      "],\n\n" +
+
+      "<Menu menuItems={iconMenuItems} />";
+
+    return (
+      <CodeExample code={code}>
+        <mui.Menu menuItems={iconMenuItems} onItemClick={this._onItemClick} />
+      </CodeExample>
+    );
+  },
+
+  _getFilterMenuExample: function() {
+    var code = 
+      "filterMenuItems = [\n" +
+      "{ payload: '1', text: 'Text Opt-In', toggle: true},\n" +
+      "{ payload: '2', text: 'Text Opt-Out', toggle: true},\n" +
+      "{ payload: '3', text: 'Voice Opt-Out', toggle: true}\n" +
+      "],\n\n" +
+
+      "<Menu menuItems={filterMenuItems} />";
+
+    return (
+      <CodeExample code={code}>
+        <mui.Menu menuItems={filterMenuItems} onItemToggle={this._onFilterMenuToggle}  onItemClick={this._onItemClick} />
+      </CodeExample>
+    );
+  },
+
+  _getNestedMenuExample: function() {
+    var code = 
+      '<Menu menuItems={nestedMenuItems} />';
+
+    return (
+      <CodeExample code={code}>
+        <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} />
+      </CodeExample>
     );
   },
 

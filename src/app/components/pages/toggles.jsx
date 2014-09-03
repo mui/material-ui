@@ -3,16 +3,28 @@
  */
 
 var React = require('react'),
-    mui = require('mui');
+    mui = require('mui'),
+    CodeExample = require('../code-example/code-example.jsx');
 
-var ButtonPage = React.createClass({
+var TogglePage = React.createClass({
 
   render: function() {
     return (
     	<div>
     		<h2>Toggles</h2>
-        <mui.Toggle onToggle={this._onToggle} />
+        {this._getToggleExample()}
     	</div>
+    );
+  },
+
+  _getToggleExample: function() {
+    var code = 
+      '<Toggle />';
+
+    return (
+      <CodeExample code={code}>
+        <mui.Toggle onToggle={this._onToggle} />
+      </CodeExample>
     );
   },
 
@@ -22,4 +34,4 @@ var ButtonPage = React.createClass({
 
 });
 
-module.exports = ButtonPage;
+module.exports = TogglePage;

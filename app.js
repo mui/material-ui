@@ -985,220 +985,7 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
 });
 
 module.exports = RadioButton;
-},{"./mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","./paper.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper.jsx","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/dist/js/table-header.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var $ = require('jquery'),
-  React = require('react'),
-	Classable = require('./mixins/classable.js');
-
-var TableHeader = React.createClass({displayName: 'TableHeader',
-
-	mixins: [Classable],
-
-	propTypes: {
-    headerItems: React.PropTypes.array.isRequired
-  },
-
-  getDefaultProps: function() {
-    return { 
-    };
-  },
-
-	render: function() {
-    var classes = this.getClasses('mui-table-header');
-
-    return (
-			React.DOM.div({className: classes}, 
-        this._getChildren(), 
-        React.DOM.div({className: "mui-table-header-pagify"}, 
-          "(Pagify)"
-        )
-      )
-		);
-	},
-
-  _getChildren: function() {
-    var children = [],
-      headerItem,
-      itemComponent
-
-    for (var i=0; i < this.props.headerItems.length; i++) {
-      headerItem = this.props.headerItems[i];
-
-      itemComponent = (
-        React.DOM.div({key: i, className: "mui-table-header-column"}, headerItem.text)
-      );
-
-      children.push(itemComponent);
-    }
-
-    return children;
-  }
-
-});
-
-module.exports = TableHeader;
-},{"./mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","jquery":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/dist/js/table-rows-item.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var $ = require('jquery'),
-  React = require('react'),
-	Classable = require('./mixins/classable.js');
-
-var TableRowItem = React.createClass({displayName: 'TableRowItem',
-
-	mixins: [Classable],
-
-	propTypes: {
-  },
-
-  getDefaultProps: function() {
-    return { 
-    };
-  },
-
-	render: function() {
-    var classes = this.getClasses('mui-table-rows-item');
-
-    return (
-      React.DOM.div({className: classes}, 
-        "(TableRowItem)", 
-        React.DOM.div({className: "mui-table-rows-actions"}, 
-          "(Actions)"
-        )
-      )
-		);
-	}
-
-});
-
-module.exports = TableRowItem;
-},{"./mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","jquery":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/dist/js/table-rows.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var $ = require('jquery'),
-  React = require('react'),
-	Classable = require('./mixins/classable.js'),
-  TableRowsItem = require('./table-rows-item.jsx');
-
-var TableRow = React.createClass({displayName: 'TableRow',
-
-	mixins: [Classable],
-
-	propTypes: {
-    rowItems: React.PropTypes.array.isRequired
-  },
-
-  getDefaultProps: function() {
-    return { 
-    };
-  },
-
-	render: function() {
-    var classes = this.getClasses('mui-table-rows');
-
-    return (
-			React.DOM.div({className: classes}, 
-        this._getChildren()
-      )
-		);
-	},
-
-  _getChildren: function() {
-    var children = [],
-      rowItem,
-      itemComponent
-
-    for (var i=0; i < this.props.rowItems.length; i++) {
-      rowItem = this.props.rowItems[i];
-
-      /*
-      for(var prop in rowItem) {
-        if(rowItem.hasOwnProperty(prop)) {
-          console.log(prop);
-        }
-      }
-      console.log("--");
-      */
-
-      itemComponent = (
-        TableRowsItem(null)
-      );
-
-      children.push(itemComponent);
-    }
-
-    return children;
-  }
-
-});
-
-module.exports = TableRow;
-},{"./mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","./table-rows-item.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/table-rows-item.jsx","jquery":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/dist/js/table.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var $ = require('jquery'),
-  React = require('react'),
-	Classable = require('./mixins/classable.js'),
-  Paper = require('./paper.jsx');
-  TableHeader = require('./table-header.jsx'),
-  TableRows = require('./table-rows.jsx');
-
-var Table = React.createClass({displayName: 'Table',
-
-	mixins: [Classable],
-
-	propTypes: {
-  },
-
-
-  getDefaultProps: function() {
-    return { 
-    };
-  },
-
-  getInitialState: function() {
-    return {
-      headerItems: [
-        { payload: '1', text: 'Details' },
-        { payload: '2', text: 'Length' },
-        { payload: '3', text: 'Created' },
-        { payload: '4', text: 'Last Used' }
-      ],
-
-      rowItems: [
-        { payload: '1', col1: '1col1', col2: '1Col2', col3: '1Col3', col4: '1Col4' },
-        { payload: '2', col1: '2col1', col2: '2Col2', col3: '2Col3', col4: '2Col4' },
-        { payload: '3', col1: '3col1', col2: '3col2', col3: '3Col3', col4: '3Col4' },
-        { payload: '4', col1: '4col1', col2: '4col2', col3: '4Col3', col4: '4Col4' }
-      ]
-    }
-  },
-
-	render: function() {
-    var classes = this.getClasses('mui-table');
-
-    return (
-      Paper({zDepth: this.props.zDepth, className: classes}, 
-			 TableHeader({headerItems: this.state.headerItems}), 
-       TableRows({rowItems: this.state.rowItems})
-      )
-		);
-	}
-
-});
-
-module.exports = Table;
-},{"./mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","./paper.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper.jsx","./table-header.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/table-header.jsx","./table-rows.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/table-rows.jsx","jquery":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toggle.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","./paper.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper.jsx","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toggle.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34169,7 +33956,6 @@ var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
         { payload: Pages.inputs, text: Pages.inputs.title },
         { payload: Pages.menus, text: Pages.menus.title },
         { payload: Pages.radiobuttons, text: Pages.radiobuttons.title },
-        { payload: Pages.tables, text: Pages.tables.title },
         { payload: Pages.toggles, text: Pages.toggles.title },
         { payload: Pages.toolbars, text: Pages.toolbars.title }
       ]
@@ -34353,7 +34139,6 @@ var Home = require('./pages/home.jsx'),
 	Inputs = require('./pages/inputs.jsx'),
 	Menus = require('./pages/menus.jsx'),
 	RadioButtons = require('./pages/radio-buttons.jsx'),
-	Tables = require('./pages/tables.jsx'),
 	Toggles = require('./pages/toggles.jsx'),
 	Toolbar = require('./pages/toolbars.jsx'),
 	Typography = require('./pages/typography.jsx');
@@ -34366,7 +34151,6 @@ var Pages = {
 	inputs: { url: 'inputs', title: 'Inputs', mainContentComponent: Inputs(null) },
 	menus: { url: 'menus', title: 'Menus', mainContentComponent: Menus(null) },
 	radiobuttons: { url: 'radio-buttons', title: 'Radio Buttons', mainContentComponent: RadioButtons(null) },
-	tables: { url: 'table', title: 'Tables', mainContentComponent: Tables(null) },
 	toggles: { url: 'toggles', title: 'Toggles', mainContentComponent: Toggles(null) },
 	toolbars: { url: 'toolbar', title: 'Toolbars', mainContentComponent: Toolbar(null) },
 	typography: { url: 'typography', title: 'Typography', mainContentComponent: Typography(null) },
@@ -34383,7 +34167,7 @@ var Pages = {
 module.exports = Pages;
 
 
-},{"./pages/buttons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/buttons.jsx","./pages/colors.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/colors.jsx","./pages/home.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/home.jsx","./pages/icons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/icons.jsx","./pages/inputs.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/inputs.jsx","./pages/menus.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/menus.jsx","./pages/radio-buttons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/radio-buttons.jsx","./pages/tables.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/tables.jsx","./pages/toggles.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toggles.jsx","./pages/toolbars.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toolbars.jsx","./pages/typography.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/typography.jsx"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/buttons.jsx":[function(require,module,exports){
+},{"./pages/buttons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/buttons.jsx","./pages/colors.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/colors.jsx","./pages/home.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/home.jsx","./pages/icons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/icons.jsx","./pages/inputs.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/inputs.jsx","./pages/menus.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/menus.jsx","./pages/radio-buttons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/radio-buttons.jsx","./pages/toggles.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toggles.jsx","./pages/toolbars.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toolbars.jsx","./pages/typography.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/typography.jsx"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/buttons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34569,6 +34353,7 @@ module.exports = InputsPage;
  
 var React = require('react'),
   mui = require('mui'),
+  CodeExample = require('../code-example/code-example.jsx'),
 
   menuItems = [
     { payload: '1', text: 'Never' },
@@ -34631,29 +34416,112 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
     return (
     	React.DOM.div(null, 
     		React.DOM.h2(null, "Drop Down Menu"), 
-    		mui.DropDownMenu({menuItems: menuItems, onChange: this._onDropDownMenuChange}), 
-        React.DOM.br(null), 
-        React.DOM.h2(null, "Nested Menu"), 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
+        React.DOM.div({className: "mui-menu-container"}, 
+    		  this._getDropDownMenuExample()
         ), 
-
         React.DOM.br(null), 
         React.DOM.h2(null, "Attribute Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
-          mui.Menu({menuItems: attributeMenuItems, onItemClick: this._onItemClick})
+          this._getAttributeMenuExample()
         ), 
         React.DOM.br(null), 
         React.DOM.h2(null, "Icon Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
-          mui.Menu({menuItems: iconMenuItems, onItemClick: this._onItemClick})
+          this._getIconMenuExample()
         ), 
         React.DOM.br(null), 
         React.DOM.h2(null, "Filter Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
-          mui.Menu({menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
-        )
+          this._getFilterMenuExample()
+        ), 
+        React.DOM.h2(null, "Nested Menu"), 
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
+        ), 
+        React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null)
     	)
+    );
+  },
+
+  _getDropDownMenuExample: function() {
+    var code = 
+      "var menuItems = [\n" +
+      " { payload: '1', text: 'Never' },\n" +
+      " { payload: '2', text: 'Every Night' },\n" +
+      " { payload: '3', text: 'Weeknights' },\n" +
+      " { payload: '4', text: 'Weekends' },\n" +
+      " { payload: '5', text: 'Weekly' },\n" +
+      "],\n\n" +
+
+      "<DropDownMenu menuItems={menuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        mui.DropDownMenu({menuItems: menuItems, onChange: this._onDropDownMenuChange})
+      )
+    );
+  },
+
+  _getAttributeMenuExample: function() {
+    var code = 
+      "var attributeMenuItems = [\n" +
+      "{ payload: '1', text: 'All', number: '22' },\n" +
+      "{ payload: '3', text: 'Uncategorized', number: '6'},\n" +
+      "{ payload: '4', text: 'Trash', number: '11' }\n" +
+      "];\n\n"  +
+
+      "<Menu menuItems={attributeMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        mui.Menu({menuItems: attributeMenuItems, onItemClick: this._onItemClick})
+      )
+    );
+  },
+
+  _getIconMenuExample: function() {
+    var code = 
+      "iconMenuItems = [\n" +
+      "{ payload: '1', text: 'Live Answer', icon: 'home', number: '10' },\n" +
+      "{ payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },\n" +
+      "{ payload: '3', text: 'Starred', icon: 'mic', number: '3'},\n" +
+      "{ payload: '4', text: 'Shared', icon: 'pie',  number: '12' }\n" +
+      "],\n\n" +
+
+      "<Menu menuItems={iconMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        mui.Menu({menuItems: iconMenuItems, onItemClick: this._onItemClick})
+      )
+    );
+  },
+
+  _getFilterMenuExample: function() {
+    var code = 
+      "filterMenuItems = [\n" +
+      "{ payload: '1', text: 'Text Opt-In', toggle: true},\n" +
+      "{ payload: '2', text: 'Text Opt-Out', toggle: true},\n" +
+      "{ payload: '3', text: 'Voice Opt-Out', toggle: true}\n" +
+      "],\n\n" +
+
+      "<Menu menuItems={filterMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        mui.Menu({menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
+      )
+    );
+  },
+
+  _getNestedMenuExample: function() {
+    var code = 
+      '<Menu menuItems={nestedMenuItems} />';
+
+    return (
+      CodeExample({code: code}, 
+        mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
+      )
     );
   },
 
@@ -34673,26 +34541,34 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
 
 module.exports = MenusPage;
 
-},{"mui":"/Users/mark/Files/Call-Em-All/material-ui/index.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/radio-buttons.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/mark/Files/Call-Em-All/material-ui/index.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/radio-buttons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
 
 var React = require('react'),
-    RadioButton = require('../../../../dist/js/radio-button.jsx');
+  mui = require('mui'),
+  CodeExample = require('../code-example/code-example.jsx');
 
 var RadioButtonPage = React.createClass({displayName: 'RadioButtonPage',
-
-  propTypes: {
-  },
-
 
   render: function() {
     return (
     	React.DOM.div(null, 
     		React.DOM.h2(null, "Radio Button"), 
-        RadioButton({onClick: this._onRadioButtonClick})
+        this._getRadioButtonExample()
     	)
+    );
+  },
+
+  _getRadioButtonExample: function() {
+    var code = 
+      '<RadioButton />';
+
+    return (
+      CodeExample({code: code}, 
+        mui.RadioButton({onClick: this._onRadioButtonClick})
+      )
     );
   },
 
@@ -34703,50 +34579,34 @@ var RadioButtonPage = React.createClass({displayName: 'RadioButtonPage',
 });
 
 module.exports = RadioButtonPage;
-},{"../../../../dist/js/radio-button.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/radio-button.jsx","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/tables.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
- 
-var React = require('react'),
-  Table = require('../../../../dist/js/table.jsx');
-
-
-var TablesPage = React.createClass({displayName: 'TablesPage',
-
-	getInitialState: function() {
-  	return {
-  	}
-  },
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-    		React.DOM.h2(null, "Tables")
-        /*<Table zDepth={1} />*/
-    	)
-    );
-  }
-
-});
-
-module.exports = TablesPage;
-},{"../../../../dist/js/table.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/table.jsx","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toggles.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/mark/Files/Call-Em-All/material-ui/index.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toggles.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
 
 var React = require('react'),
-    mui = require('mui');
+    mui = require('mui'),
+    CodeExample = require('../code-example/code-example.jsx');
 
-var ButtonPage = React.createClass({displayName: 'ButtonPage',
+var TogglePage = React.createClass({displayName: 'TogglePage',
 
   render: function() {
     return (
     	React.DOM.div(null, 
     		React.DOM.h2(null, "Toggles"), 
-        mui.Toggle({onToggle: this._onToggle})
+        this._getToggleExample()
     	)
+    );
+  },
+
+  _getToggleExample: function() {
+    var code = 
+      '<Toggle />';
+
+    return (
+      CodeExample({code: code}, 
+        mui.Toggle({onToggle: this._onToggle})
+      )
     );
   },
 
@@ -34756,8 +34616,8 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 
 });
 
-module.exports = ButtonPage;
-},{"mui":"/Users/mark/Files/Call-Em-All/material-ui/index.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toolbars.jsx":[function(require,module,exports){
+module.exports = TogglePage;
+},{"../code-example/code-example.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/mark/Files/Call-Em-All/material-ui/index.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toolbars.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */

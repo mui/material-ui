@@ -3,20 +3,28 @@
  */
 
 var React = require('react'),
-    RadioButton = require('../../../../dist/js/radio-button.jsx');
+  mui = require('mui'),
+  CodeExample = require('../code-example/code-example.jsx');
 
 var RadioButtonPage = React.createClass({
-
-  propTypes: {
-  },
-
 
   render: function() {
     return (
     	<div>
     		<h2>Radio Button</h2>
-        <RadioButton onClick={this._onRadioButtonClick} />
+        {this._getRadioButtonExample()}
     	</div>
+    );
+  },
+
+  _getRadioButtonExample: function() {
+    var code = 
+      '<RadioButton />';
+
+    return (
+      <CodeExample code={code}>
+        <mui.RadioButton onClick={this._onRadioButtonClick} />
+      </CodeExample>
     );
   },
 
