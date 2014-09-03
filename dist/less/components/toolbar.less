@@ -1,0 +1,62 @@
+@toolbar-height: 56px;
+@toolbar-background-color: darken(#eeeeee, 5%);
+
+.mui-toolbar-container {
+	background-color: @white;
+	height: 320px;
+	width: 960px;
+}
+
+.mui-toolbar {
+	width: 100%;
+	background-color: @toolbar-background-color;
+	height: @toolbar-height;
+	line-height: @toolbar-height;
+	padding: 0 @desktop-gutter;
+
+	.mui-toolbar-group {
+		position: relative;
+
+		.mui-toolbar-title {
+			padding-right: 16px; 
+		}
+
+		.mui-toolbar-separator {
+			width: 1px;
+			background-color: rgba(0, 0, 0, .11);
+			display: inline-block;
+			position: relative;
+			top: 12px;
+			height: 32px;
+		}
+
+		.mui-paper-button {
+			vertical-align: middle;
+			top: -2px;
+			position: relative;
+		}
+
+		.mui-drop-down-menu {
+			display: inline-block;
+		}
+
+		.mui-icon {
+			line-height: @toolbar-height;
+			padding-left: 16px;
+			color: rgba(0, 0, 0, .40);
+			cursor: pointer;
+		}
+
+		&.mui-left {
+			float: left;
+		}
+
+		&.mui-right {
+			float: right;
+
+			* {
+				vertical-align: top;
+			}
+		}
+	}
+}

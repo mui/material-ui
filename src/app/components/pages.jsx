@@ -11,6 +11,7 @@ var Home = require('./pages/home.jsx'),
 	RadioButtons = require('./pages/radio-buttons.jsx'),
 	Tables = require('./pages/tables.jsx'),
 	Toggles = require('./pages/toggles.jsx'),
+	Toolbar = require('./pages/toolbars.jsx'),
 	Typography = require('./pages/typography.jsx');
 
 var Pages = {
@@ -23,6 +24,7 @@ var Pages = {
 	radiobuttons: { url: 'radio-buttons', title: 'Radio Buttons', mainContentComponent: <RadioButtons /> },
 	tables: { url: 'table', title: 'Tables', mainContentComponent: <Tables /> },
 	toggles: { url: 'toggles', title: 'Toggles', mainContentComponent: <Toggles /> },
+	toolbars: { url: 'toolbar', title: 'Toolbars', mainContentComponent: <Toolbar /> },
 	typography: { url: 'typography', title: 'Typography', mainContentComponent: <Typography /> },
 
 	getPage: function(url) {
