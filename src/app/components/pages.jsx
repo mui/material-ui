@@ -8,8 +8,7 @@ var Home = require('./pages/home.jsx'),
 	Icons = require('./pages/icons.jsx'),
 	Inputs = require('./pages/inputs.jsx'),
 	Menus = require('./pages/menus.jsx'),
-	RadioButtons = require('./pages/radio-buttons.jsx'),
-	Toggles = require('./pages/toggles.jsx'),
+	Switches = require('./pages/switches.jsx'),
 	Toolbar = require('./pages/toolbars.jsx'),
 	Typography = require('./pages/typography.jsx');
 
@@ -20,8 +19,7 @@ var Pages = {
 	icons: { url: 'icons', title: 'Icons', mainContentComponent: <Icons /> },
 	inputs: { url: 'inputs', title: 'Inputs', mainContentComponent: <Inputs /> },
 	menus: { url: 'menus', title: 'Menus', mainContentComponent: <Menus /> },
-	radiobuttons: { url: 'radio-buttons', title: 'Radio Buttons', mainContentComponent: <RadioButtons /> },
-	toggles: { url: 'toggles', title: 'Toggles', mainContentComponent: <Toggles /> },
+	switches: { url: 'switches', title: 'Switches', mainContentComponent: <Switches /> },
 	toolbars: { url: 'toolbar', title: 'Toolbars', mainContentComponent: <Toolbar /> },
 	typography: { url: 'typography', title: 'Typography', mainContentComponent: <Typography /> },
 

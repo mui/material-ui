@@ -5,7 +5,7 @@
 	width: (@toggle-width + @radio-button-size);
 
 	.mui-toggle-bar {
-		background-color: @toggle-background-color;
+		background-color: black;
 		height: @toggle-bar-height;
 		position: absolute;
 		top: 8px;
@@ -14,11 +14,18 @@
 
 	&.mui-toggled {
 		.mui-toggle-bar {
-			background-color: @radio-button-checked-color;;
+			background-color: black;
 		}
 
 		.mui-radio-button {
 			.lh-translate3d(@toggle-width, 0, 0);
+			border-color: @radio-button-checked-color;
+
+			.mui-radio-button-fill {
+				background-color: @radio-button-checked-color;
+				border-color: @radio-button-checked-color;
+				transform: scale(1.1);
+			}
 		}
 	}
 }

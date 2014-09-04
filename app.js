@@ -106,6 +106,66 @@ var AppCanvas = React.createClass({displayName: 'AppCanvas',
 
 module.exports = AppCanvas;
 
+},{"./mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/dist/js/checkbox.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+    Classable = require('./mixins/classable.js');
+
+var Checkbox = React.createClass({displayName: 'Checkbox',
+
+  propTypes: {
+    onCheck: React.PropTypes.func
+  },
+
+  mixins: [Classable],
+
+  getInitialState: function() {
+    return {
+      name: React.PropTypes.string.isRequired,
+      value: React.PropTypes.string.isRequired,
+      checked: false
+    }
+  },
+
+  getDefaultProps: function() {
+    return {
+    };
+  },
+
+  check: function() {
+    this.setState({ checked: !this.state.checked });
+    this.refs.checkbox.checked = !this.state.checked;
+
+  },
+
+  render: function() {
+    var classes = this.getClasses('mui-checkbox', {
+      'mui-checked': this.state.checked === true
+    })
+
+    return (
+      React.DOM.div({className: classes, onClick: this._onCheck}, 
+        React.DOM.input({ref: "checkbox", type: "checkbox", name: this.props.name, value: this.props.value}), 
+        React.DOM.span({className: "mui-checkbox-box"}), 
+        React.DOM.span({className: "mui-checkbox-check"})
+      )
+    );
+  },
+
+  _onCheck: function(e) {
+    var checkedState = this.state.checked;
+
+    this.check();
+
+    if (this.props.onCheck) this.props.onCheck(e, checkedState);
+  }
+
+});
+
+module.exports = Checkbox;
 },{"./mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/dist/js/drop-down-menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
@@ -1210,6 +1270,7 @@ module.exports = {
 module.exports = {
 	AppBar: require('./dist/js/app-bar.jsx'),
 	AppCanvas: require('./dist/js/app-canvas.jsx'),
+	Checkbox: require('./dist/js/checkbox.jsx'),
 	DropDownMenu: require('./dist/js/drop-down-menu.jsx'),
 	Icon: require('./dist/js/icon.jsx'),
 	Input: require('./dist/js/input.jsx'),
@@ -1224,7 +1285,7 @@ module.exports = {
 	ToolbarGroup: require('./dist/js/toolbar-group.jsx')
 };
 
-},{"./dist/js/app-bar.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/app-bar.jsx","./dist/js/app-canvas.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/app-canvas.jsx","./dist/js/drop-down-menu.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/drop-down-menu.jsx","./dist/js/icon.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/icon.jsx","./dist/js/input.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/input.jsx","./dist/js/left-nav.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/left-nav.jsx","./dist/js/menu-item.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/menu-item.jsx","./dist/js/menu.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/menu.jsx","./dist/js/paper-button.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper-button.jsx","./dist/js/paper.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper.jsx","./dist/js/radio-button.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/radio-button.jsx","./dist/js/toggle.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toggle.jsx","./dist/js/toolbar-group.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toolbar-group.jsx","./dist/js/toolbar.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toolbar.jsx"}],"/Users/mark/Files/Call-Em-All/material-ui/node_modules/backbone/backbone.js":[function(require,module,exports){
+},{"./dist/js/app-bar.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/app-bar.jsx","./dist/js/app-canvas.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/app-canvas.jsx","./dist/js/checkbox.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/checkbox.jsx","./dist/js/drop-down-menu.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/drop-down-menu.jsx","./dist/js/icon.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/icon.jsx","./dist/js/input.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/input.jsx","./dist/js/left-nav.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/left-nav.jsx","./dist/js/menu-item.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/menu-item.jsx","./dist/js/menu.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/menu.jsx","./dist/js/paper-button.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper-button.jsx","./dist/js/paper.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper.jsx","./dist/js/radio-button.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/radio-button.jsx","./dist/js/toggle.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toggle.jsx","./dist/js/toolbar-group.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toolbar-group.jsx","./dist/js/toolbar.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toolbar.jsx"}],"/Users/mark/Files/Call-Em-All/material-ui/node_modules/backbone/backbone.js":[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -33955,8 +34016,7 @@ var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
         { payload: Pages.buttons, text: Pages.buttons.title },
         { payload: Pages.inputs, text: Pages.inputs.title },
         { payload: Pages.menus, text: Pages.menus.title },
-        { payload: Pages.radiobuttons, text: Pages.radiobuttons.title },
-        { payload: Pages.toggles, text: Pages.toggles.title },
+        { payload: Pages.switches, text: Pages.switches.title },
         { payload: Pages.toolbars, text: Pages.toolbars.title }
       ]
     }
@@ -34138,8 +34198,7 @@ var Home = require('./pages/home.jsx'),
 	Icons = require('./pages/icons.jsx'),
 	Inputs = require('./pages/inputs.jsx'),
 	Menus = require('./pages/menus.jsx'),
-	RadioButtons = require('./pages/radio-buttons.jsx'),
-	Toggles = require('./pages/toggles.jsx'),
+	Switches = require('./pages/switches.jsx'),
 	Toolbar = require('./pages/toolbars.jsx'),
 	Typography = require('./pages/typography.jsx');
 
@@ -34150,8 +34209,7 @@ var Pages = {
 	icons: { url: 'icons', title: 'Icons', mainContentComponent: Icons(null) },
 	inputs: { url: 'inputs', title: 'Inputs', mainContentComponent: Inputs(null) },
 	menus: { url: 'menus', title: 'Menus', mainContentComponent: Menus(null) },
-	radiobuttons: { url: 'radio-buttons', title: 'Radio Buttons', mainContentComponent: RadioButtons(null) },
-	toggles: { url: 'toggles', title: 'Toggles', mainContentComponent: Toggles(null) },
+	switches: { url: 'switches', title: 'Switches', mainContentComponent: Switches(null) },
 	toolbars: { url: 'toolbar', title: 'Toolbars', mainContentComponent: Toolbar(null) },
 	typography: { url: 'typography', title: 'Typography', mainContentComponent: Typography(null) },
 
@@ -34167,7 +34225,7 @@ var Pages = {
 module.exports = Pages;
 
 
-},{"./pages/buttons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/buttons.jsx","./pages/colors.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/colors.jsx","./pages/home.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/home.jsx","./pages/icons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/icons.jsx","./pages/inputs.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/inputs.jsx","./pages/menus.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/menus.jsx","./pages/radio-buttons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/radio-buttons.jsx","./pages/toggles.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toggles.jsx","./pages/toolbars.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toolbars.jsx","./pages/typography.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/typography.jsx"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/buttons.jsx":[function(require,module,exports){
+},{"./pages/buttons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/buttons.jsx","./pages/colors.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/colors.jsx","./pages/home.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/home.jsx","./pages/icons.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/icons.jsx","./pages/inputs.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/inputs.jsx","./pages/menus.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/menus.jsx","./pages/switches.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/switches.jsx","./pages/toolbars.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toolbars.jsx","./pages/typography.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/typography.jsx"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/buttons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34541,45 +34599,7 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
 
 module.exports = MenusPage;
 
-},{"../code-example/code-example.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/mark/Files/Call-Em-All/material-ui/index.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/radio-buttons.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  mui = require('mui'),
-  CodeExample = require('../code-example/code-example.jsx');
-
-var RadioButtonPage = React.createClass({displayName: 'RadioButtonPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-    		React.DOM.h2(null, "Radio Button"), 
-        this._getRadioButtonExample()
-    	)
-    );
-  },
-
-  _getRadioButtonExample: function() {
-    var code = 
-      '<RadioButton />';
-
-    return (
-      CodeExample({code: code}, 
-        mui.RadioButton({onClick: this._onRadioButtonClick})
-      )
-    );
-  },
-
-  _onRadioButtonClick: function(e, checked) {
-    console.log('Clicked:', checked);
-  }
-
-});
-
-module.exports = RadioButtonPage;
-},{"../code-example/code-example.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/mark/Files/Call-Em-All/material-ui/index.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toggles.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/mark/Files/Call-Em-All/material-ui/index.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/switches.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34588,14 +34608,29 @@ var React = require('react'),
     mui = require('mui'),
     CodeExample = require('../code-example/code-example.jsx');
 
-var TogglePage = React.createClass({displayName: 'TogglePage',
+var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
 
   render: function() {
     return (
     	React.DOM.div(null, 
-    		React.DOM.h2(null, "Toggles"), 
+        React.DOM.h2(null, "Checkbox"), 
+        this._getCheckboxExample(), 
+        React.DOM.h2(null, "Radio Button"), 
+        this._getRadioButtonExample(), 
+    		React.DOM.h2(null, "Toggle"), 
         this._getToggleExample()
     	)
+    );
+  },
+
+  _getCheckboxExample: function() {
+    var code = 
+      '<Checkbox name="checkboxName" value="checkboxValue" />';
+
+    return (
+      CodeExample({code: code}, 
+        mui.Checkbox({name: "checkboxName", value: "checkboxValue", onClick: this._onRadioButtonClick})
+      )
     );
   },
 
@@ -34610,13 +34645,33 @@ var TogglePage = React.createClass({displayName: 'TogglePage',
     );
   },
 
+  _getRadioButtonExample: function() {
+    var code = 
+      '<RadioButton />';
+
+    return (
+      CodeExample({code: code}, 
+        mui.RadioButton({onClick: this._onRadioButtonClick})
+      )
+    );
+  },
+
+  _onCheck: function(e, checked) {
+    console.log('Checked: ', checked);
+  },
+
+
   _onToggle: function(e, toggled) {
     console.log('Toggled: ', toggled);
+  },
+
+  _onRadioButtonClick: function(e, checked) {
+    console.log('Clicked:', checked);
   }
 
 });
 
-module.exports = TogglePage;
+module.exports = SwitchesPage;
 },{"../code-example/code-example.jsx":"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/mark/Files/Call-Em-All/material-ui/index.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/src/app/components/pages/toolbars.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
