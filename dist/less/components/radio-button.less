@@ -7,6 +7,7 @@
 	position: relative;
 	width: @radio-button-size;
 
+
 	.mui-radio-button-fill {
 		background-color: transparent;
 		border-radius: 100%;
@@ -18,14 +19,15 @@
 		transform: scale(0);
 	}
 
-	&.mui-checked {
-		background-color: @white;
-		border-color: black;
+	input[type=radio] {
+		display: none;
 
-		.mui-radio-button-fill {
-			background-color: darken(black, 10%);
-			border-color: black;
-			transform: scale(.5);
+		&:checked {
+			&+.mui-radio-button-fill {
+				background-color: darken(black, 10%);
+				border-color: black;
+				transform: scale(.5);
+			}
 		}
 	}
 }

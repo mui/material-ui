@@ -117,6 +117,8 @@ var React = require('react'),
 var Checkbox = React.createClass({displayName: 'Checkbox',
 
   propTypes: {
+    name: React.PropTypes.string.isRequired,
+    value: React.PropTypes.string.isRequired,
     onCheck: React.PropTypes.func
   },
 
@@ -124,8 +126,6 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
 
   getInitialState: function() {
     return {
-      name: React.PropTypes.string.isRequired,
-      value: React.PropTypes.string.isRequired,
       checked: false
     }
   },
@@ -1001,6 +1001,8 @@ var React = require('react'),
 var RadioButton = React.createClass({displayName: 'RadioButton',
 
   propTypes: {
+    name: React.PropTypes.string,
+    value: React.PropTypes.string,
     onClick: React.PropTypes.func,
   },
 
@@ -1012,24 +1014,18 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
     }
   },
 
-  getDefaultProps: function() {
-    return {
-    };
-  },
-
   toggle: function() {
-    this.setState({ checked: !this.state.checked });
+    this.refs.radioButton.getDOMNode().checked = !this.refs.radioButton.getDOMNode().checked;
   },
 
   render: function() {
     var classes = this.getClasses('mui-radio-button', {
-      'mui-checked': this.state.checked === true
     })
 
     return (
       React.DOM.div({className: classes, onClick: this._onClick}, 
-        React.DOM.div({className: "mui-radio-button-fill"}
-        )
+        React.DOM.input({ref: "radioButton", type: "radio", name: this.props.name, value: this.props.value}), 
+        React.DOM.div({className: "mui-radio-button-fill"})
       )
     );
   },
@@ -34647,11 +34643,17 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
 
   _getRadioButtonExample: function() {
     var code = 
-      '<RadioButton />';
+      '<RadioButton name="radioButtonName" value="radioButtonValue1"/>\n' +
+      '<RadioButton name="radioButtonName" value="radioButtonValue2"/>\n' +
+      '<RadioButton name="radioButtonName" value="radioButtonValue3"/>';
 
     return (
       CodeExample({code: code}, 
-        mui.RadioButton({onClick: this._onRadioButtonClick})
+        React.DOM.form(null, 
+          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue1", onClick: this._onRadioButtonClick}), 
+          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue2", onClick: this._onRadioButtonClick}), 
+          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue3", onClick: this._onRadioButtonClick})
+        )
       )
     );
   },

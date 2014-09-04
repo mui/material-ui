@@ -45,11 +45,17 @@ var SwitchesPage = React.createClass({
 
   _getRadioButtonExample: function() {
     var code = 
-      '<RadioButton />';
+      '<RadioButton name="radioButtonName" value="radioButtonValue1"/>\n' +
+      '<RadioButton name="radioButtonName" value="radioButtonValue2"/>\n' +
+      '<RadioButton name="radioButtonName" value="radioButtonValue3"/>';
 
     return (
       <CodeExample code={code}>
-        <mui.RadioButton onClick={this._onRadioButtonClick} />
+        <form>
+          <mui.RadioButton name="radioButtonName" value="radioButtonValue1" onClick={this._onRadioButtonClick} />
+          <mui.RadioButton name="radioButtonName" value="radioButtonValue2" onClick={this._onRadioButtonClick} />
+          <mui.RadioButton name="radioButtonName" value="radioButtonValue3" onClick={this._onRadioButtonClick} />
+        </form>
       </CodeExample>
     );
   },

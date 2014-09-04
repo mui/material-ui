@@ -8,6 +8,8 @@ var React = require('react'),
 var Checkbox = React.createClass({
 
   propTypes: {
+    name: React.PropTypes.string.isRequired,
+    value: React.PropTypes.string.isRequired,
     onCheck: React.PropTypes.func
   },
 
@@ -15,8 +17,6 @@ var Checkbox = React.createClass({
 
   getInitialState: function() {
     return {
-      name: React.PropTypes.string.isRequired,
-      value: React.PropTypes.string.isRequired,
       checked: false
     }
   },
