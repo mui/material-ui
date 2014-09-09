@@ -137,7 +137,7 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
 
   check: function() {
     this.setState({ checked: !this.state.checked });
-    this.refs.checkbox.checked = !this.state.checked;
+    this.refs.checkbox.getDOMNode().checked = !this.refs.checkbox.getDOMNode().checked;
 
   },
 
@@ -160,7 +160,7 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
 
     this.check();
 
-    if (this.props.onCheck) this.props.onCheck(e, checkedState);
+    if (this.props.onClick) this.props.onClick(e, !checkedState);
   }
 
 });
@@ -1015,6 +1015,7 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
   },
 
   toggle: function() {
+    this.setState({ checked: !this.state.checked });
     this.refs.radioButton.getDOMNode().checked = !this.refs.radioButton.getDOMNode().checked;
   },
 
@@ -34621,11 +34622,21 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
 
   _getCheckboxExample: function() {
     var code = 
-      '<Checkbox name="checkboxName" value="checkboxValue" />';
+      '<form>\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue1" />\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue2" />\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue3" />\n' +
+      '</form>';
 
     return (
       CodeExample({code: code}, 
-        mui.Checkbox({name: "checkboxName", value: "checkboxValue", onClick: this._onRadioButtonClick})
+        React.DOM.form(null, 
+          mui.Checkbox({name: "checkboxName", value: "checkboxValue1", onClick: this._onCheck}), 
+          React.DOM.br(null), 
+          mui.Checkbox({name: "checkboxName", value: "checkboxValue2", onClick: this._onCheck}), 
+          React.DOM.br(null), 
+          mui.Checkbox({name: "checkboxName", value: "checkboxValue3", onClick: this._onCheck})
+        )
       )
     );
   },
@@ -34643,15 +34654,19 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
 
   _getRadioButtonExample: function() {
     var code = 
-      '<RadioButton name="radioButtonName" value="radioButtonValue1"/>\n' +
-      '<RadioButton name="radioButtonName" value="radioButtonValue2"/>\n' +
-      '<RadioButton name="radioButtonName" value="radioButtonValue3"/>';
+      '<form>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue1"/>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue2"/>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue3"/>\n' +
+      '</form>';
 
     return (
       CodeExample({code: code}, 
         React.DOM.form(null, 
           mui.RadioButton({name: "radioButtonName", value: "radioButtonValue1", onClick: this._onRadioButtonClick}), 
+          React.DOM.br(null), 
           mui.RadioButton({name: "radioButtonName", value: "radioButtonValue2", onClick: this._onRadioButtonClick}), 
+          React.DOM.br(null), 
           mui.RadioButton({name: "radioButtonName", value: "radioButtonValue3", onClick: this._onRadioButtonClick})
         )
       )

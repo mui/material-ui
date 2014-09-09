@@ -23,6 +23,7 @@ var RadioButton = React.createClass({
   },
 
   toggle: function() {
+    this.setState({ checked: !this.state.checked });
     this.refs.radioButton.getDOMNode().checked = !this.refs.radioButton.getDOMNode().checked;
   },
 

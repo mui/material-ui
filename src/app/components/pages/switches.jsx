@@ -23,11 +23,21 @@ var SwitchesPage = React.createClass({
 
   _getCheckboxExample: function() {
     var code = 
-      '<Checkbox name="checkboxName" value="checkboxValue" />';
+      '<form>\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue1" />\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue2" />\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue3" />\n' +
+      '</form>';
 
     return (
       <CodeExample code={code}>
-        <mui.Checkbox name="checkboxName" value="checkboxValue" onClick={this._onRadioButtonClick} />
+        <form>
+          <mui.Checkbox name="checkboxName" value="checkboxValue1" onClick={this._onCheck} />
+          <br />
+          <mui.Checkbox name="checkboxName" value="checkboxValue2" onClick={this._onCheck} />
+          <br />
+          <mui.Checkbox name="checkboxName" value="checkboxValue3" onClick={this._onCheck} />
+        </form> 
       </CodeExample>
     );
   },
@@ -45,15 +55,19 @@ var SwitchesPage = React.createClass({
 
   _getRadioButtonExample: function() {
     var code = 
-      '<RadioButton name="radioButtonName" value="radioButtonValue1"/>\n' +
-      '<RadioButton name="radioButtonName" value="radioButtonValue2"/>\n' +
-      '<RadioButton name="radioButtonName" value="radioButtonValue3"/>';
+      '<form>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue1"/>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue2"/>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue3"/>\n' +
+      '</form>';
 
     return (
       <CodeExample code={code}>
         <form>
           <mui.RadioButton name="radioButtonName" value="radioButtonValue1" onClick={this._onRadioButtonClick} />
+          <br />
           <mui.RadioButton name="radioButtonName" value="radioButtonValue2" onClick={this._onRadioButtonClick} />
+          <br />
           <mui.RadioButton name="radioButtonName" value="radioButtonValue3" onClick={this._onRadioButtonClick} />
         </form>
       </CodeExample>

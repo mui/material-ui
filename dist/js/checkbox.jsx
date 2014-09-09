@@ -28,7 +28,7 @@ var Checkbox = React.createClass({
 
   check: function() {
     this.setState({ checked: !this.state.checked });
-    this.refs.checkbox.checked = !this.state.checked;
+    this.refs.checkbox.getDOMNode().checked = !this.refs.checkbox.getDOMNode().checked;
 
   },
 
@@ -51,7 +51,7 @@ var Checkbox = React.createClass({
 
     this.check();
 
-    if (this.props.onCheck) this.props.onCheck(e, checkedState);
+    if (this.props.onClick) this.props.onClick(e, !checkedState);
   }
 
 });
