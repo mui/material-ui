@@ -5,20 +5,52 @@
 	width: (@toggle-width + @radio-button-size);
 
 	.mui-toggle-bar {
-		background-color: @toggle-background-color;
+		background-color: black;
 		height: @toggle-bar-height;
 		position: absolute;
 		top: 8px;
 		width: (@toggle-width + @radio-button-size);
 	}
 
+	.mui-radio-button {
+		.mui-radio-button-fill {
+			background-color: transparent;
+			border-radius: 100%;
+			height: @radio-button-size;
+			width: @radio-button-size;
+			position: absolute;
+			left: -2px;
+			top: -2px;
+			transform: scale(0);
+		}
+	}
+
 	&.mui-toggled {
 		.mui-toggle-bar {
-			background-color: @radio-button-checked-color;;
+			background-color: @radio-button-checked-color;
 		}
 
 		.mui-radio-button {
 			.lh-translate3d(@toggle-width, 0, 0);
+			border-color: @radio-button-checked-color;
+
+			.mui-radio-button-fill {
+				background-color: @radio-button-checked-color;
+				border-color: @radio-button-checked-color;
+				transform: scale(1.1);
+			}
+
+			input[type=radio] {
+				display: none;
+
+				&:checked {
+					&+.mui-radio-button-fill {
+						background-color: @radio-button-checked-color;
+						border-color: @radio-button-checked-color;
+						transform: scale(1.1);
+					}
+				}
+			}
 		}
 	}
 }

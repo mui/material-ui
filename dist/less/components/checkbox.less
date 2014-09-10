@@ -1,0 +1,48 @@
+.mui-checkbox {
+	//background-color: pink;
+	position: relative;
+	cursor: pointer;
+	width: 18px;
+	height: 18px;
+
+	input {
+		display: none;
+	}
+	
+	.mui-checkbox-box {
+		box-sizing: border-box;
+		position: absolute;
+		width: 18px;
+		background-color: transparent;
+		height: 18px;
+		border: 2px solid black;
+		border-radius: 3px;
+		transform-origin: 40% 90%;
+		transform: rotate(0deg) scale(1);
+	}
+
+	.mui-checkbox-check {
+		width: 15px;
+		height: 10px;
+		position: absolute;
+		border-bottom: 2px solid green;
+		border-left: 2px solid green;
+		left: 4px;
+		bottom: 6px;
+		transform-origin: 40% 100%;
+		transform: rotate(-45deg) scale(0);
+	}
+
+	&.mui-checked {
+		.mui-checkbox-box {
+			transform: rotate(45deg) scale(0);
+		}
+
+		.mui-checkbox-check {
+			transition-delay: .1s;
+			width: 18px;
+			height: 10px;
+			transform: rotate(-45deg) scale(1);
+		}
+	}
+}

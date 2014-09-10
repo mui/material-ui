@@ -9,6 +9,8 @@ var React = require('react'),
 var RadioButton = React.createClass({
 
   propTypes: {
+    name: React.PropTypes.string,
+    value: React.PropTypes.string,
     onClick: React.PropTypes.func,
   },
 
@@ -20,24 +22,19 @@ var RadioButton = React.createClass({
     }
   },
 
-  getDefaultProps: function() {
-    return {
-    };
-  },
-
   toggle: function() {
     this.setState({ checked: !this.state.checked });
+    this.refs.radioButton.getDOMNode().checked = !this.refs.radioButton.getDOMNode().checked;
   },
 
   render: function() {
     var classes = this.getClasses('mui-radio-button', {
-      'mui-checked': this.state.checked === true
     })
 
     return (
       <div className={classes} onClick={this._onClick}>
-        <div className="mui-radio-button-fill">
-        </div>
+        <input ref="radioButton" type="radio" name={this.props.name} value={this.props.value} />
+        <div className="mui-radio-button-fill" />
       </div>
     );
   },
