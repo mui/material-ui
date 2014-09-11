@@ -3,7 +3,6 @@
  */
 
 var React = require('react'),
-    mui = require('mui'),
     Classable = require('./mixins/classable.js');
 
 var ToolbarGroup = React.createClass({
