@@ -255,16 +255,21 @@ var Icon = React.createClass({displayName: 'Icon',
 	mixins: [Classable],
 
 	propTypes: {
-		icon: React.PropTypes.string
+		icon: React.PropTypes.string,
+    	onClick: React.PropTypes.func
 	},
 
 	render: function() {
 		var classes = this.getClasses('mui-icon mui-icon-' + this.props.icon);
 
 		return (
-			React.DOM.span({className: classes})
+			React.DOM.span({className: classes, onClick: this._onClick})
 		);
-	}
+	},
+
+	_onClick: function(e) {
+		if (this.props.onClick) this.props.onClick(e);
+	},
 
 });
 
@@ -1195,7 +1200,7 @@ var React = require('react'),
 var Toolbar = React.createClass({displayName: 'Toolbar',
 
   propTypes: {
-    groups: React.PropTypes.array
+    groups: React.PropTypes.array.isRequired
   },
 
   mixins: [Classable],
@@ -34535,9 +34540,9 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
   _getLabelMenuExample: function() {
     var code = 
       "var labelMenuItems = [\n" +
-      "{ payload: '1', text: 'Label1'},\n" +
-      "{ payload: '3', text: 'Label2'},\n" +
-      "{ payload: '4', text: 'Label3'}\n" +
+      "{ payload: '1', text: 'ID', data: '1234567890', icon: 'home' },\n" +
+      "{ payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
+      "{ payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
       "];\n\n"  +
 
       "<Menu menuItems={labelMenuItems} />";

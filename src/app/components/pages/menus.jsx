@@ -127,9 +127,9 @@ var MenusPage = React.createClass({
   _getLabelMenuExample: function() {
     var code = 
       "var labelMenuItems = [\n" +
-      "{ payload: '1', text: 'Label1'},\n" +
-      "{ payload: '3', text: 'Label2'},\n" +
-      "{ payload: '4', text: 'Label3'}\n" +
+      "{ payload: '1', text: 'ID', data: '1234567890', icon: 'home' },\n" +
+      "{ payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
+      "{ payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
       "];\n\n"  +
 
       "<Menu menuItems={labelMenuItems} />";
