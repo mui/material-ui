@@ -9,7 +9,7 @@ var React = require('react'),
 var Toolbar = React.createClass({
 
   propTypes: {
-    groups: React.PropTypes.array
+    groups: React.PropTypes.array.isRequired
   },
 
   mixins: [Classable],
