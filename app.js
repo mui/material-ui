@@ -446,6 +446,7 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
     icon: React.PropTypes.string,
     iconRight: React.PropTypes.string,
     number: React.PropTypes.string,
+    data: React.PropTypes.string,
     toggle: React.PropTypes.bool,
     onClick: React.PropTypes.func,
     onToggle: React.PropTypes.func,
@@ -467,11 +468,13 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
         'mui-selected': this.props.selected
       }),
       icon,
+      data,
       iconRight,
       menuItemNumber,
       toggle;
 
     if (this.props.icon) icon = Icon({className: "mui-menu-item-icon", icon: this.props.icon});
+    if (this.props.data) data = React.DOM.span({className: "mui-menu-item-data"}, this.props.data);
     if (this.props.iconRight) iconRight = Icon({className: "mui-menu-item-icon-right", icon: this.props.iconRight});
     if (this.props.number !== undefined) menuItemNumber = React.DOM.span({className: "mui-menu-item-number"}, this.props.number);
     if (this.props.toggle) toggle = Toggle({onToggle: this._onToggleClick});
@@ -480,6 +483,7 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
     	React.DOM.div({key: this.props.key, className: classes, onClick: this._onClick}, 
         icon, 
         this.props.children, 
+        data, 
         menuItemNumber, 
         toggle, 
         iconRight
@@ -683,6 +687,7 @@ var Menu = React.createClass({displayName: 'Menu',
               selected: isSelected, 
               key: i, 
               icon: menuItem.icon, 
+              data: menuItem.data, 
               number: menuItem.number, 
               toggle: menuItem.toggle, 
               onClick: this._onItemClick, 
@@ -1103,7 +1108,6 @@ module.exports = Toggle;
  */
 
 var React = require('react'),
-    mui = require('mui'),
     Classable = require('./mixins/classable.js');
 
 var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
@@ -1179,7 +1183,7 @@ var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
 });
 
 module.exports = ToolbarGroup;
-},{"./mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","mui":"/Users/mark/Files/Call-Em-All/material-ui/index.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toolbar.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","react":"/Users/mark/Files/Call-Em-All/material-ui/node_modules/react/addons.js"}],"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toolbar.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34418,8 +34422,14 @@ var React = require('react'),
     { payload: '5', text: 'Weekly' },
   ],
 
+  labelMenuItems = [
+    { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
+    { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
+    { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }
+  ],
+
   attributeMenuItems = [
-    { payload: '1', text: 'All', number: '22' },
+    { payload: '1', text: 'All', number: '22'},
     { payload: '3', text: 'Uncategorized', number: '6'},
     { payload: '4', text: 'Trash', number: '11' }
   ],
@@ -34427,7 +34437,7 @@ var React = require('react'),
   iconMenuItems = [
     { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },
     { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },
-    { payload: '3', text: 'Starred', icon: 'mic', number: '3'},
+    { payload: '3', text: 'Starred', icon: 'mic', number: '3' },
     { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }
   ],
 
@@ -34475,6 +34485,11 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
     		  this._getDropDownMenuExample()
         ), 
         React.DOM.br(null), 
+        React.DOM.h2(null, "Label Menu"), 
+        React.DOM.div({className: "mui-menu-container"}, 
+          this._getLabelMenuExample()
+        ), 
+        React.DOM.br(null), 
         React.DOM.h2(null, "Attribute Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
           this._getAttributeMenuExample()
@@ -34513,6 +34528,23 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
     return (
       CodeExample({code: code}, 
         mui.DropDownMenu({menuItems: menuItems, onChange: this._onDropDownMenuChange})
+      )
+    );
+  },
+
+  _getLabelMenuExample: function() {
+    var code = 
+      "var labelMenuItems = [\n" +
+      "{ payload: '1', text: 'Label1'},\n" +
+      "{ payload: '3', text: 'Label2'},\n" +
+      "{ payload: '4', text: 'Label3'}\n" +
+      "];\n\n"  +
+
+      "<Menu menuItems={labelMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        mui.Menu({menuItems: labelMenuItems, onItemClick: this._onItemClick})
       )
     );
   },

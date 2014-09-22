@@ -21,6 +21,7 @@ var MenuItem = React.createClass({
     icon: React.PropTypes.string,
     iconRight: React.PropTypes.string,
     number: React.PropTypes.string,
+    data: React.PropTypes.string,
     toggle: React.PropTypes.bool,
     onClick: React.PropTypes.func,
     onToggle: React.PropTypes.func,
@@ -42,11 +43,13 @@ var MenuItem = React.createClass({
         'mui-selected': this.props.selected
       }),
       icon,
+      data,
       iconRight,
       menuItemNumber,
       toggle;
 
     if (this.props.icon) icon = <Icon className="mui-menu-item-icon" icon={this.props.icon} />;
+    if (this.props.data) data = <span className="mui-menu-item-data">{this.props.data}</span>;
     if (this.props.iconRight) iconRight = <Icon className="mui-menu-item-icon-right" icon={this.props.iconRight} />;
     if (this.props.number !== undefined) menuItemNumber = <span className="mui-menu-item-number">{this.props.number}</span>;
     if (this.props.toggle) toggle = <Toggle onToggle={this._onToggleClick} />;
@@ -55,6 +58,7 @@ var MenuItem = React.createClass({
     	<div key={this.props.key} className={classes} onClick={this._onClick}>
         {icon}
         {this.props.children}
+        {data}
         {menuItemNumber}
         {toggle}
         {iconRight}

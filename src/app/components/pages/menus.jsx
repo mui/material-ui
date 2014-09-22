@@ -14,8 +14,14 @@ var React = require('react'),
     { payload: '5', text: 'Weekly' },
   ],
 
+  labelMenuItems = [
+    { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
+    { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
+    { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }
+  ],
+
   attributeMenuItems = [
-    { payload: '1', text: 'All', number: '22' },
+    { payload: '1', text: 'All', number: '22'},
     { payload: '3', text: 'Uncategorized', number: '6'},
     { payload: '4', text: 'Trash', number: '11' }
   ],
@@ -23,7 +29,7 @@ var React = require('react'),
   iconMenuItems = [
     { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },
     { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },
-    { payload: '3', text: 'Starred', icon: 'mic', number: '3'},
+    { payload: '3', text: 'Starred', icon: 'mic', number: '3' },
     { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }
   ],
 
@@ -71,6 +77,11 @@ var MenusPage = React.createClass({
     		  {this._getDropDownMenuExample()}
         </div>
         <br />
+        <h2>Label Menu</h2>
+        <div className="mui-menu-container">
+          {this._getLabelMenuExample()}
+        </div>
+        <br />
         <h2>Attribute Menu</h2>
         <div className="mui-menu-container">
           {this._getAttributeMenuExample()}
@@ -109,6 +120,23 @@ var MenusPage = React.createClass({
     return (
       <CodeExample code={code}>
         <mui.DropDownMenu menuItems={menuItems} onChange={this._onDropDownMenuChange} />
+      </CodeExample>
+    );
+  },
+
+  _getLabelMenuExample: function() {
+    var code = 
+      "var labelMenuItems = [\n" +
+      "{ payload: '1', text: 'Label1'},\n" +
+      "{ payload: '3', text: 'Label2'},\n" +
+      "{ payload: '4', text: 'Label3'}\n" +
+      "];\n\n"  +
+
+      "<Menu menuItems={labelMenuItems} />";
+
+    return (
+      <CodeExample code={code}>
+        <mui.Menu menuItems={labelMenuItems} onItemClick={this._onItemClick} />
       </CodeExample>
     );
   },
