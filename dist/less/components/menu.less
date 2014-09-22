@@ -33,7 +33,6 @@
 
 	.mui-menu-item {
 		cursor: pointer;
-		height: @menu-item-height;
 		line-height: @menu-item-height;
 
 		.mui-menu-item-number,
@@ -50,6 +49,18 @@
 		.mui-menu-item-icon {
 			float: left;
 			margin-right: @desktop-gutter;
+		}
+
+		.mui-menu-item-data {
+			display: block;
+			padding-left: (@desktop-gutter * 2);
+			line-height: @menu-item-data-height;
+			height: @menu-item-data-height;
+			vertical-align: top;
+			top: -12px;
+			position: relative;
+			font-weight: 300;
+			font-size: 12px;
 		}
 
 		.mui-icon-arrow-drop-right {

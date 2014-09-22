@@ -181,6 +181,7 @@ var Menu = React.createClass({
               selected={isSelected} 
               key={i} 
               icon={menuItem.icon} 
+              data={menuItem.data} 
               number={menuItem.number} 
               toggle={menuItem.toggle} 
               onClick={this._onItemClick} 
