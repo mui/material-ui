@@ -10,20 +10,25 @@ var Checkbox = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     value: React.PropTypes.string.isRequired,
-    onCheck: React.PropTypes.func
+    onCheck: React.PropTypes.func,
+    checked: React.PropTypes.bool
   },
 
   mixins: [Classable],
 
   getInitialState: function() {
     return {
-      checked: false
+      checked: this.props.checked || false
     }
   },
 
   getDefaultProps: function() {
     return {
     };
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({checked: nextProps.checked || false});
   },
 
   check: function() {
