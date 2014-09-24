@@ -28,7 +28,7 @@ var Checkbox = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    this.setState({checked: nextProps.checked || false});
+    if (nextProps.hasOwnProperty('checked')) this.setState({checked: nextProps.checked});
   },
 
   check: function() {
