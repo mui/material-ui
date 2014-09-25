@@ -23,7 +23,7 @@ var DropDownMenu = React.createClass({
   getInitialState: function() {
   	return {
       open: false,
-      selectedIndex: 0
+      selectedIndex: this.props.selectedIndex || 0
   	}
   },
 
@@ -36,6 +36,10 @@ var DropDownMenu = React.createClass({
       $menuItems = $(this.refs.menuItems.getDOMNode());
 
     $el.css('width', $menuItems.width());
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.hasOwnProperty('selectedIndex')) this.setState({selectedIndex: nextProps.selectedIndex});
   },
 
   render: function() {
