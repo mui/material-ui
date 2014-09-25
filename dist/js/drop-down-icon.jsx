@@ -3,7 +3,6 @@
  */
 
 var $ = require('jquery'),
-  mui = require('mui'),
   React = require('react'),
   Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
