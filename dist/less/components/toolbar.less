@@ -42,9 +42,16 @@
 
 		.mui-icon {
 			line-height: @toolbar-height;
-			padding-left: 16px;
+			padding-left: 24px;
 			color: rgba(0, 0, 0, .40);
 			cursor: pointer;
+
+			&:hover {
+				.mui-icon-highlight {
+					background-color: rgba(0, 0, 0, .1);
+					transition: none;
+				}
+			}
 		}
 
 		&.mui-left {
