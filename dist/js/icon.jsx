@@ -18,7 +18,9 @@ var Icon = React.createClass({
 		var classes = this.getClasses('mui-icon mui-icon-' + this.props.icon);
 
 		return (
-			<span className={classes} onClick={this._onClick} />
+			<span className={classes} onClick={this._onClick}>
+          		<span className="mui-icon-highlight">&nbsp;</span>
+          	</span>
 		);
 	},
 

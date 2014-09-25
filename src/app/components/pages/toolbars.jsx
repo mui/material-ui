@@ -21,6 +21,11 @@ var ToolbarPage = React.createClass({
       { payload: '7', text: 'Active Text' },
     ],
 
+    iconMenuItems = [
+      { payload: '1', text: 'Download' },
+      { payload: '2', text: 'Blah' }
+    ];
+
     leftItems = [
       //{ type: "title", title: "Broadcasts"},
       <mui.PaperButton type={PaperButton.Types.RAISED} label="Create Broadcast" primary={true} />
@@ -32,7 +37,8 @@ var ToolbarPage = React.createClass({
       { type: "separator"},
       <mui.Icon icon='sort' />,
       <mui.Icon icon='filter' />,
-      <mui.Icon icon='search' />
+      <mui.Icon icon='search' />,
+      <mui.DropDownIcon icon="chevron-down" menuItems={iconMenuItems} onChange={this._onDropDownMenuChange} />
     ];
 
     groups = [ 
@@ -48,7 +54,11 @@ var ToolbarPage = React.createClass({
         </div>
     	</div>
     );
-  }
+  },
+
+  _onDropDownMenuChange: function(e, key, menuItem) {
+    console.log('Menu Clicked: ', menuItem);
+  },
 
 });
 
