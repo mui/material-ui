@@ -9,6 +9,10 @@ module.exports = {
 	LeftNav: require('./dist/js/left-nav.jsx'),
 	MenuItem: require('./dist/js/menu-item.jsx'),
 	Menu: require('./dist/js/menu.jsx'),
+	Mixins: {
+		Classable: require('./dist/js/mixins/classable.js'),
+		ClickAwayable: require('./dist/js/mixins/click-awayable.js')
+	},
 	PaperButton: require('./dist/js/paper-button.jsx'),
 	Paper: require('./dist/js/paper.jsx'),
 	RadioButton: require('./dist/js/radio-button.jsx'),
