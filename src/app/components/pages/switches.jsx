@@ -78,7 +78,6 @@ var SwitchesPage = React.createClass({
     console.log('Checked: ', checked);
   },
 
-
   _onToggle: function(e, toggled) {
     console.log('Toggled: ', toggled);
   },

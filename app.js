@@ -117,10 +117,10 @@ var React = require('react'),
 var Checkbox = React.createClass({displayName: 'Checkbox',
 
   propTypes: {
+    checked: React.PropTypes.bool,
     name: React.PropTypes.string.isRequired,
-    value: React.PropTypes.string.isRequired,
     onCheck: React.PropTypes.func,
-    checked: React.PropTypes.bool
+    value: React.PropTypes.string.isRequired,
   },
 
   mixins: [Classable],
@@ -130,12 +130,7 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
       checked: this.props.checked || false
     }
   },
-
-  getDefaultProps: function() {
-    return {
-    };
-  },
-
+  
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.hasOwnProperty('checked')) this.setState({checked: nextProps.checked});
   },
@@ -1095,8 +1090,8 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
 
   propTypes: {
     name: React.PropTypes.string,
-    value: React.PropTypes.string,
     onClick: React.PropTypes.func,
+    value: React.PropTypes.string
   },
 
   mixins: [Classable],
@@ -1157,11 +1152,6 @@ var Toggle = React.createClass({displayName: 'Toggle',
     return {
       toggled: false
     }
-  },
-
-  getDefaultProps: function() {
-    return {
-    };
   },
 
   render: function() {
@@ -1367,6 +1357,10 @@ module.exports = {
 	LeftNav: require('./dist/js/left-nav.jsx'),
 	MenuItem: require('./dist/js/menu-item.jsx'),
 	Menu: require('./dist/js/menu.jsx'),
+	Mixins: {
+		Classable: require('./dist/js/mixins/classable.js'),
+		ClickAwayable: require('./dist/js/mixins/click-awayable.js')
+	},
 	PaperButton: require('./dist/js/paper-button.jsx'),
 	Paper: require('./dist/js/paper.jsx'),
 	RadioButton: require('./dist/js/radio-button.jsx'),
@@ -1375,7 +1369,7 @@ module.exports = {
 	ToolbarGroup: require('./dist/js/toolbar-group.jsx')
 };
 
-},{"./dist/js/app-bar.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/app-bar.jsx","./dist/js/app-canvas.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/app-canvas.jsx","./dist/js/checkbox.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/checkbox.jsx","./dist/js/drop-down-icon.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/drop-down-icon.jsx","./dist/js/drop-down-menu.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/drop-down-menu.jsx","./dist/js/icon.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/icon.jsx","./dist/js/input.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/input.jsx","./dist/js/left-nav.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/left-nav.jsx","./dist/js/menu-item.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/menu-item.jsx","./dist/js/menu.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/menu.jsx","./dist/js/paper-button.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper-button.jsx","./dist/js/paper.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper.jsx","./dist/js/radio-button.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/radio-button.jsx","./dist/js/toggle.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toggle.jsx","./dist/js/toolbar-group.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toolbar-group.jsx","./dist/js/toolbar.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toolbar.jsx"}],"/Users/mark/Files/Call-Em-All/material-ui/node_modules/backbone/backbone.js":[function(require,module,exports){
+},{"./dist/js/app-bar.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/app-bar.jsx","./dist/js/app-canvas.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/app-canvas.jsx","./dist/js/checkbox.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/checkbox.jsx","./dist/js/drop-down-icon.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/drop-down-icon.jsx","./dist/js/drop-down-menu.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/drop-down-menu.jsx","./dist/js/icon.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/icon.jsx","./dist/js/input.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/input.jsx","./dist/js/left-nav.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/left-nav.jsx","./dist/js/menu-item.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/menu-item.jsx","./dist/js/menu.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/menu.jsx","./dist/js/mixins/classable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/classable.js","./dist/js/mixins/click-awayable.js":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/mixins/click-awayable.js","./dist/js/paper-button.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper-button.jsx","./dist/js/paper.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/paper.jsx","./dist/js/radio-button.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/radio-button.jsx","./dist/js/toggle.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toggle.jsx","./dist/js/toolbar-group.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toolbar-group.jsx","./dist/js/toolbar.jsx":"/Users/mark/Files/Call-Em-All/material-ui/dist/js/toolbar.jsx"}],"/Users/mark/Files/Call-Em-All/material-ui/node_modules/backbone/backbone.js":[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -34827,7 +34821,6 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
   _onCheck: function(e, checked) {
     console.log('Checked: ', checked);
   },
-
 
   _onToggle: function(e, toggled) {
     console.log('Toggled: ', toggled);

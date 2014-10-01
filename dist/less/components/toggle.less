@@ -1,53 +1,72 @@
+@toggle-display: inline-block;
+@toggle-pointer: pointer;
+@toggle-position: relative;
+@toggle-width: 32px;
+
+@toggle-bar-fix-top: 8px;
+@toggle-bar-height: 1px;
+@toggle-bar-position: absolute;
+
+@toggle-radio-button-fill-background-color: transparent;
+@toggle-radio-button-fill-border-radius: 100%;
+@toggle-radio-button-fill-fix-left: -2px;
+@toggle-radio-button-fill-fix-top: -2px;
+@toggle-radio-button-fill-position: absolute;
+@toggle-radio-button-fill-transform: scale(0);
+
+@toggle-input-display: none;
+@toggle-radio-button-transform: scale(1.1);
+
 .mui-toggle {
-	position: relative;
-	cursor: pointer;
-	display: inline-block;
+	cursor: @toggle-position;
+	display: @toggle-display;
+	position: @toggle-position;
 	width: (@toggle-width + @radio-button-size);
 
 	.mui-toggle-bar {
-		background-color: black;
+		background-color: @toggle-bar-color;
 		height: @toggle-bar-height;
-		position: absolute;
-		top: 8px;
+		position: @toggle-bar-position;
+		top: @toggle-bar-fix-top;
 		width: (@toggle-width + @radio-button-size);
 	}
 
 	.mui-radio-button {
 		.mui-radio-button-fill {
-			background-color: transparent;
-			border-radius: 100%;
+			background-color: @toggle-radio-button-fill-background-color;
+			border-radius: @toggle-radio-button-fill-border-radius;
 			height: @radio-button-size;
+			left: @toggle-radio-button-fill-fix-left;
+			position: @toggle-radio-button-fill-position;
+			top: @toggle-radio-button-fill-fix-top;
+			transform: @toggle-radio-button-fill-transform;
 			width: @radio-button-size;
-			position: absolute;
-			left: -2px;
-			top: -2px;
-			transform: scale(0);
 		}
 	}
 
 	&.mui-toggled {
 		.mui-toggle-bar {
-			background-color: @radio-button-checked-color;
+			background-color: @toggle-checked-color;
 		}
 
 		.mui-radio-button {
 			.lh-translate3d(@toggle-width, 0, 0);
-			border-color: @radio-button-checked-color;
+			border-color: @toggle-checked-color;
 
 			.mui-radio-button-fill {
-				background-color: @radio-button-checked-color;
-				border-color: @radio-button-checked-color;
-				transform: scale(1.1);
+				background-color: @toggle-checked-color;
+				border-color: @toggle-checked-color;
+				transform: @toggle-radio-button-transform;
 			}
 
 			input[type=radio] {
-				display: none;
+				display: @toggle-input-display;
 
 				&:checked {
 					&+.mui-radio-button-fill {
-						background-color: @radio-button-checked-color;
-						border-color: @radio-button-checked-color;
-						transform: scale(1.1);
+						background-color: @toggle-checked-color;
+						border-color: @toggle-checked-color;
+						transform: @toggle-radio-button-transform;
 					}
 				}
 			}

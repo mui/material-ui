@@ -10,8 +10,8 @@ var RadioButton = React.createClass({
 
   propTypes: {
     name: React.PropTypes.string,
-    value: React.PropTypes.string,
     onClick: React.PropTypes.func,
+    value: React.PropTypes.string
   },
 
   mixins: [Classable],

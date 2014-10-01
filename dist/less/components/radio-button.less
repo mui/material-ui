@@ -1,33 +1,48 @@
+@radio-button-border-radius: 100%;
+@radio-button-cursor: pointer;
+@radio-button-display: inline-block;
+@radio-button-position: relative;
+@radio-button-size: 16px;
+
+@radio-button-fill-border-radius: 100%;
+@radio-button-fill-fix-left: -2px;
+@radio-button-fill-fix-top: -2px;
+@radio-button-fill-position: absolute;
+@radio-button-fill-transform: scale(0);
+
+@radio-button-input-display: none;
+
+@radio-button-input-checked-transform: scale(.5);
+
 .mui-radio-button {
-	display: inline-block;
-	cursor: pointer;
-	background-color: @white;
-	border: 2px solid black;
-	border-radius: 100%;
+	background-color: @radio-button-background-color;
+	border: 2px solid @radio-button-border-color;
+	border-radius: @radio-button-border-radius;
+	cursor: @radio-button-cursor;
+	display: @radio-button-display;
 	height: @radio-button-size;
-	position: relative;
+	position: @radio-button-position;
 	width: @radio-button-size;
 
-
 	.mui-radio-button-fill {
-		background-color: transparent;
-		border-radius: 100%;
+		background-color: @radio-button-background-color;
+		border-radius: @radio-button-fill-border-radius;
 		height: @radio-button-size;
+		left: @radio-button-fill-fix-left;
+		position: @radio-button-fill-position;
+		top: @radio-button-fill-fix-top;
+		transform: @radio-button-fill-transform;
 		width: @radio-button-size;
-		position: absolute;
-		left: -2px;
-		top: -2px;
-		transform: scale(0);
 	}
 
 	input[type=radio] {
-		display: none;
+		display: @radio-button-input-display;
 
 		&:checked {
 			&+.mui-radio-button-fill {
-				background-color: darken(black, 10%);
-				border-color: black;
-				transform: scale(.5);
+				background-color: @radio-button-check-color;
+				border-color: @radio-button-border-color;
+				transform: @radio-button-input-checked-transform;
 			}
 		}
 	}
