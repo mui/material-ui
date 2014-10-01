@@ -21,11 +21,6 @@ var Toggle = React.createClass({
     }
   },
 
-  getDefaultProps: function() {
-    return {
-    };
-  },
-
   render: function() {
     var classes = this.getClasses('mui-toggle', {
       'mui-toggled': this.state.toggled === true
