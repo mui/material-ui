@@ -34910,6 +34910,13 @@ var CodeExample = require('../code-example/code-example.jsx');
 
 var ToastsPage = React.createClass({displayName: 'ToastsPage',
 
+  getInitialState: function() {
+    return {
+      message: 'You have deleted your broadcast.',
+      action: 'undo'
+    }
+  },
+
   render: function() {
     return (
     	React.DOM.div(null, 
@@ -34921,21 +34928,19 @@ var ToastsPage = React.createClass({displayName: 'ToastsPage',
 
   _getToastExample: function() {
     var code = 
-      "<Toast />";
+      "";
 
     return (
       CodeExample({code: code}, 
-        React.DOM.button({onClick: this._triggerToast}, 
-          "Trigger Toast"
-        ), 
-      	mui.Toast({ref: "Toast", message: "Connection timed out. Showing limited broadcasts.", action: "undo"})
+        React.DOM.button({onClick: this.triggerToast}, "Trigger Toast"), 
+      	mui.Toast({ref: "Toast", message: this.state.message, action: this.state.action})
       )
     );
   },
 
-  _triggerToast: function() {
+  triggerToast: function() {
     this.refs.Toast.toggle();
-  }
+  },
 
 });
 

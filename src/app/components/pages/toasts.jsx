@@ -8,6 +8,13 @@ var CodeExample = require('../code-example/code-example.jsx');
 
 var ToastsPage = React.createClass({
 
+  getInitialState: function() {
+    return {
+      message: 'You have deleted your broadcast.',
+      action: 'undo'
+    }
+  },
+
   render: function() {
     return (
     	<div>
@@ -19,21 +26,19 @@ var ToastsPage = React.createClass({
 
   _getToastExample: function() {
     var code = 
-      "<Toast />";
+      "";
 
     return (
       <CodeExample code={code}>
-        <button onClick={this._triggerToast}>
-          Trigger Toast
-        </button>
-      	<mui.Toast ref="Toast" message="Connection timed out. Showing limited broadcasts." action="undo" />
+        <button onClick={this.triggerToast}>Trigger Toast</button>
+      	<mui.Toast ref="Toast" message={this.state.message} action={this.state.action} />
       </CodeExample>
     );
   },
 
-  _triggerToast: function() {
+  triggerToast: function() {
     this.refs.Toast.toggle();
-  }
+  },
 
 });
 
