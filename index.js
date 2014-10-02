@@ -17,6 +17,7 @@ module.exports = {
 	Paper: require('./dist/js/paper.jsx'),
 	RadioButton: require('./dist/js/radio-button.jsx'),
 	Toggle: require('./dist/js/toggle.jsx'),
+	Toast: require('./dist/js/toast.jsx'),
 	Toolbar: require('./dist/js/toolbar.jsx'),
 	ToolbarGroup: require('./dist/js/toolbar-group.jsx')
 };
