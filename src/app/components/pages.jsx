@@ -9,6 +9,7 @@ var Home = require('./pages/home.jsx'),
 	Inputs = require('./pages/inputs.jsx'),
 	Menus = require('./pages/menus.jsx'),
 	Switches = require('./pages/switches.jsx'),
+	Toasts = require('./pages/toasts.jsx'),
 	Toolbar = require('./pages/toolbars.jsx'),
 	Typography = require('./pages/typography.jsx');
 
@@ -20,6 +21,7 @@ var Pages = {
 	inputs: { url: 'inputs', title: 'Inputs', mainContentComponent: <Inputs /> },
 	menus: { url: 'menus', title: 'Menus', mainContentComponent: <Menus /> },
 	switches: { url: 'switches', title: 'Switches', mainContentComponent: <Switches /> },
+	toasts: { url: 'toasts', title: 'Toasts', mainContentComponent: <Toasts /> },
 	toolbars: { url: 'toolbar', title: 'Toolbars', mainContentComponent: <Toolbar /> },
 	typography: { url: 'typography', title: 'Typography', mainContentComponent: <Typography /> },
 

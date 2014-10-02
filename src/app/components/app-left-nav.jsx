@@ -25,6 +25,7 @@ var AppLeftNav = React.createClass({
         { payload: Pages.inputs, text: Pages.inputs.title },
         { payload: Pages.menus, text: Pages.menus.title },
         { payload: Pages.switches, text: Pages.switches.title },
+        //{ payload: Pages.toasts, text: Pages.toasts.title },
         { payload: Pages.toolbars, text: Pages.toolbars.title }
       ]
     }
