@@ -9,7 +9,8 @@
   },
   "keywords": [
     "react",
-    "material design"
+    "material design",
+    "material-ui"
   ],
   "repository": {
     "type": "git",
