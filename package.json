@@ -1,5 +1,6 @@
 {
   "name": "material-ui",
+  "author": "Call-em-all Engineering Team",
   "version": "0.1.0",
   "description": "Material Design UI components built with React",
   "main": "index.js",
