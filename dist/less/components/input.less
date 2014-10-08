@@ -32,17 +32,12 @@
 				font-size: 13px;
 				color: blue;
 				top: -27px;
-				/*
-				font-size: 16px !important;
-				font-weight: 400;
-				top: 8px;
-				transition: @transition;
-				*/
 
 				&+.mui-input-highlight {
 					width: 0;
 					background-color: blue;
-					transition: @transition;
+					//transition: @transition;
+					.ease-out;
 					left: 0;
 					top: 1px;
 
@@ -77,7 +72,6 @@
 					&+.mui-input-bar {
 						&::before, &::after {
 							width: 0;
-							transition: none;
 						}
 
 						&+.mui-input-description {
@@ -127,12 +121,14 @@
 				font-size: @input-placeholder-size !important;
 				font-weight: 300;
 				top: -32px;
-				transition: @transition;
+				//transition: @transition;
+				.ease-out;
 
 				&+.mui-input-highlight {
 					width: 0;
 					background-color: blue;
-					transition: @transition;
+					//transition: @transition;
+					.ease-out;
 
 					&+.mui-input-bar {
 
@@ -157,7 +153,6 @@
 					&+.mui-input-bar {
 						&::before, &::after {
 							width: 0;
-							transition: none;
 						}
 
 						&+.mui-input-description {
@@ -174,7 +169,8 @@
 			position: absolute;
 			top: -4px;
 			z-index: -1;
-			transition: @transition;
+			//transition: @transition;
+			.ease-out;
 		}
 	}
 
@@ -187,7 +183,6 @@
 		top: -3px;
 		width: (@input-width/2);
 		z-index: -1;
-		transition: none;
 	}
 
 	.mui-input-bar {
@@ -201,7 +196,8 @@
 			top: (-1 * @input-bar-height);
 			width: 0;
 			position: absolute;
-			transition: @transition;
+			//transition: @transition;
+			.ease-out;
 		}
 
 		&::before {
