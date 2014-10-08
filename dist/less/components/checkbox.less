@@ -27,6 +27,7 @@
 @checkbox-checked-check-width: 18px;
 
 .mui-checkbox {
+	.ease-out;
 	cursor: @checkbox-cursor;
 	height: @checkbox-size;
 	position: @checkbox-position;
@@ -37,6 +38,7 @@
 	}
 	
 	.mui-checkbox-box {
+		.ease-out;
 		background-color: @checkbox-box-background-color;
 		border: 2px solid @checkbox-box-border-color;
 		border-radius: @checkbox-box-border-radius;
@@ -49,6 +51,7 @@
 	}
 
 	.mui-checkbox-check {
+		.ease-out;
 		border-bottom: 2px solid @checkbox-check-color;
 		border-left: 2px solid @checkbox-check-color;
 		bottom: @checkbox-check-fix-left;
@@ -62,10 +65,12 @@
 
 	&.mui-checked {
 		.mui-checkbox-box {
+			.ease-out;
 			transform: rotate(45deg) scale(0);
 		}
 
 		.mui-checkbox-check {
+			.ease-out;
 			height: @checkbox-checked-check-height;
 			transform: @checkbox-checked-check-transform;
 			transition-delay: @checkbox-checked-check-transition-delay;
