@@ -1,19 +1,19 @@
-/**
- * @jsx React.DOM
- */
+/** @jsx React.DOM */
 
 var React = require('react');
 var Classable = require('./mixins/classable.js');
+var ClickAwayable = require('./mixins/click-awayable.js');
 
 var Toast = React.createClass({
 
-	mixins: [Classable],
+	mixins: [Classable, ClickAwayable],
 
 	propTypes: {
 		action: React.PropTypes.string,
 		icon: React.PropTypes.string,
 		message: React.PropTypes.string,
-    	onClick: React.PropTypes.func
+  	onClick: React.PropTypes.func,
+  	open: React.PropTypes.bool
 	},
 
 	getInitialState: function() {
@@ -22,39 +22,37 @@ var Toast = React.createClass({
 		}
 	},
 
-	render: function() {
-	    var classes = this.getClasses('mui-toast', {
-      		'mui-open': this.state.open
-	    }),
-	    	message,
-	    	action;
+	componentWillReceiveProps: function(nextProps) {
+		this.setState({ open: nextProps.open });
+	},
 
-	    if (this.props.message) message = <span className="mui-toast-message">{this.props.message}</span>;
-	    if (this.props.action) action = <span className="mui-toast-action" onClick={this._onActionClick}>{this.props.action}</span>;
+	componentClickAway: function() {
+		this.setState({ open: false });
+	},
+
+	render: function() {
+    var classes = this.getClasses('mui-toast', {
+				'mui-open': this.state.open
+  		}),
+    	message,
+	  	action;
+
+    if (this.props.message)
+    	message = <span className="mui-toast-message">{this.props.message}</span>;
+    if (this.props.action)
+    	action = <span className="mui-toast-action" onClick={this._onActionClick}>{this.props.action}</span>;
 
 		return (
 			<span className={classes}>
-          		{message}
-          		{action}
-          	</span>
+    		{message}
+    		{action}
+    	</span>
 		);
 	},
 
 	_onActionClick: function(e) {
 		if (this.props.onClick) this.props.onClick(e, this.props.action);
-
-		if (this.props.action === 'retry') {
-
-		}
-		else {
-			this.setState({ open: false });
-		}
-		
-	},
-
-	toggle: function(e) {
-		this.setState({ open: !this.state.open });
-		console.log(!this.state.open);
+		this.setState({ open: false });
 	}
 
 });
