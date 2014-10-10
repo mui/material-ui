@@ -8,6 +8,7 @@ var React = require('react'),
   Toggle = require('./toggle.jsx'),
 
   Types = {
+    LINK: 'LINK',
     SUBHEADER: 'SUBHEADER',
     NESTED: 'NESTED'
   };

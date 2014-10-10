@@ -16,6 +16,7 @@ var AppLeftNav = React.createClass({
   getInitialState: function() {
     return {
       menuItems: [
+        { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
         { type: mui.MenuItem.Types.SUBHEADER, text: 'CSS Framework' },
         { payload: Pages.colors, text: Pages.colors.title },
         { payload: Pages.typography, text: Pages.typography.title },
