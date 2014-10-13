@@ -13,13 +13,13 @@ var ButtonPage = React.createClass({
     return (
     	<div>
 
-    		<h2>Flat Buttons</h2>
+    		<h2 className="mui-font-style-headline">Flat Buttons</h2>
         {this._getFlatExamples()}
 
-        <h2>Raised Buttons</h2>
+        <h2 className="mui-font-style-headline">Raised Buttons</h2>
         {this._getRaisedExamples()}
 
-        <h2>Floating Action Buttons</h2>
+        <h2 className="mui-font-style-headline">Floating Action Buttons</h2>
         {this._getFabExamples()}
 
     	</div>

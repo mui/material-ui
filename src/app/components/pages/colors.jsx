@@ -9,7 +9,7 @@ var ColorsPage = React.createClass({
   render: function() {
   
     return (
-    	<h2>Color</h2>
+    	<h2 className="mui-font-style-headline">Color</h2>
     );
   }
 

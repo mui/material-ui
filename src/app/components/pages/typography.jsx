@@ -11,23 +11,23 @@ var TypographyPage = React.createClass({
   render: function() {
     return (
     	<div>
-	    	<h2>Roboto</h2>
+	    	<h2 className="mui-font-style-headline">Roboto</h2>
 	    	<p>
 	    		The Roboto font and 3 font weights (light, regular, and medium) are automatically included from <a href="http://www.google.com/fonts/specimen/Roboto">Google Fonts</a>
 	    	</p>
 
 	    	<br /><br /><br />
 
-	    	<h2>Vertical Rhythm</h2>
+	    	<h2 className="mui-font-style-headline">Vertical Rhythm</h2>
 	    	{this._getVerticalRhythmExample()}
 
-	    	<h2>Typographic Scale</h2>
+	    	<h2 className="mui-font-style-headline">Typographic Scale</h2>
 	    	{this._getScaleExample()}
 
-	    	<h2>Color Contrast</h2>
+	    	<h2 className="mui-font-style-headline">Color Contrast</h2>
 	    	{this._getColorExample()}
 
-	    	<h2>Tracking and Kerning</h2>
+	    	<h2 className="mui-font-style-headline">Tracking and Kerning</h2>
 	    	{this._getTrackingExample()}
     	</div>
     );

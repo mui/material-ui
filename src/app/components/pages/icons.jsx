@@ -19,7 +19,7 @@ var IconsPage = React.createClass({
   render: function() {
     return (
     	<div>
-			<h2>Icons</h2>
+			<h2 className="mui-font-style-headline">Icons</h2>
 			{this._getIconExample()}
 		</div>
     );

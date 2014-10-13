@@ -11,7 +11,7 @@ var RadioButtonPage = React.createClass({
   render: function() {
     return (
     	<div>
-    		<h2>Radio Button</h2>
+    		<h2 className="mui-font-style-headline">Radio Button</h2>
         {this._getRadioButtonExample()}
     	</div>
     );

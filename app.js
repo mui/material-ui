@@ -34399,13 +34399,13 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
     return (
     	React.DOM.div(null, 
 
-    		React.DOM.h2(null, "Flat Buttons"), 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Flat Buttons"), 
         this._getFlatExamples(), 
 
-        React.DOM.h2(null, "Raised Buttons"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Raised Buttons"), 
         this._getRaisedExamples(), 
 
-        React.DOM.h2(null, "Floating Action Buttons"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Floating Action Buttons"), 
         this._getFabExamples()
 
     	)
@@ -34475,7 +34475,7 @@ var ColorsPage = React.createClass({displayName: 'ColorsPage',
   render: function() {
   
     return (
-    	React.DOM.h2(null, "Color")
+    	React.DOM.h2({className: "mui-font-style-headline"}, "Color")
     );
   }
 
@@ -34524,7 +34524,7 @@ var IconsPage = React.createClass({displayName: 'IconsPage',
   render: function() {
     return (
     	React.DOM.div(null, 
-			React.DOM.h2(null, "Icons"), 
+			React.DOM.h2({className: "mui-font-style-headline"}, "Icons"), 
 			this._getIconExample()
 		)
     );
@@ -34564,7 +34564,7 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
   render: function() {
     return (
     	React.DOM.div(null, 
-    		React.DOM.h2(null, "Inputs"), 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Inputs"), 
         React.DOM.br(null), 
         Input({ref: "firstname", type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
         Input({ref: "lastname", type: "text", name: "lastname", placeholder: "Last Name", description: "Your last name as it appears on your credit card.."}), 
@@ -34572,14 +34572,14 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
         Input({ref: "addressline2", type: "text", name: "zipcode", placeholder: "Zip Code", description: "Your zip code as it appears on your credit card."}), 
         Input({ref: "city", type: "text", name: "city", placeholder: "City", description: "Your city as it appears on your credit card."}), 
         Input({ref: "state", type: "text", name: "state", placeholder: "State", description: "Your state as it appears on your credit card."}), 
-        React.DOM.h2(null, "Error Validation"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Error Validation"), 
         React.DOM.br(null), 
         Input({ref: "allegiance", type: "text", name: "allegiance", placeholder: "Allegiance", description: "The house of which you served under."}), 
     	  React.DOM.br(null), 
-        React.DOM.h2(null, "Floating"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Floating"), 
         React.DOM.br(null), 
         Input({ref: "username", type: "text", style: "floating", name: "Username", description: "The username associated with your account."}), 
-        React.DOM.h2(null, "Multi-Line"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Multi-Line"), 
         React.DOM.br(null), 
         Input({multiline: true, ref: "textmessage", type: "text", name: "textmessage", placeholder: "Text Message", description: "Your text message."}), 
         React.DOM.br(null), 
@@ -34667,31 +34667,31 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
   render: function() {
     return (
     	React.DOM.div(null, 
-    		React.DOM.h2(null, "Drop Down Menu"), 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Drop Down Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
     		  this._getDropDownMenuExample()
         ), 
         React.DOM.br(null), 
-        React.DOM.h2(null, "Label Menu"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Label Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
           this._getLabelMenuExample()
         ), 
         React.DOM.br(null), 
-        React.DOM.h2(null, "Attribute Menu"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Attribute Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
           this._getAttributeMenuExample()
         ), 
         React.DOM.br(null), 
-        React.DOM.h2(null, "Icon Menu"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Icon Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
           this._getIconMenuExample()
         ), 
         React.DOM.br(null), 
-        React.DOM.h2(null, "Filter Menu"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Filter Menu"), 
         React.DOM.div({className: "mui-menu-container"}, 
           this._getFilterMenuExample()
         ), 
-        React.DOM.h2(null, "Nested Menu"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Nested Menu"), 
         React.DOM.div({className: "example-menu"}, 
           mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
         ), 
@@ -34828,11 +34828,11 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
   render: function() {
     return (
     	React.DOM.div(null, 
-        React.DOM.h2(null, "Checkbox"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Checkbox"), 
         this._getCheckboxExample(), 
-        React.DOM.h2(null, "Radio Button"), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Radio Button"), 
         this._getRadioButtonExample(), 
-    		React.DOM.h2(null, "Toggle"), 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Toggle"), 
         this._getToggleExample()
     	)
     );
@@ -34927,7 +34927,7 @@ var ToastsPage = React.createClass({displayName: 'ToastsPage',
   render: function() {
     return (
     	React.DOM.div(null, 
-  			React.DOM.h2(null, "Toasts"), 
+  			React.DOM.h2({className: "mui-font-style-headline"}, "Toasts"), 
   			this._getToastExample()
   		)
     );
@@ -35003,7 +35003,7 @@ var ToolbarPage = React.createClass({displayName: 'ToolbarPage',
 
     return (
     	React.DOM.div(null, 
-    		React.DOM.h2(null, "Toolbars"), 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Toolbars"), 
         React.DOM.div({className: "mui-toolbar-container"}, 
           mui.Toolbar({groups: groups})
         )
@@ -35032,23 +35032,23 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
   render: function() {
     return (
     	React.DOM.div(null, 
-	    	React.DOM.h2(null, "Roboto"), 
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Roboto"), 
 	    	React.DOM.p(null, 
 	    		"The Roboto font and 3 font weights (light, regular, and medium) are automatically included from ", React.DOM.a({href: "http://www.google.com/fonts/specimen/Roboto"}, "Google Fonts")
 	    	), 
 
 	    	React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), 
 
-	    	React.DOM.h2(null, "Vertical Rhythm"), 
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Vertical Rhythm"), 
 	    	this._getVerticalRhythmExample(), 
 
-	    	React.DOM.h2(null, "Typographic Scale"), 
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Typographic Scale"), 
 	    	this._getScaleExample(), 
 
-	    	React.DOM.h2(null, "Color Contrast"), 
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Color Contrast"), 
 	    	this._getColorExample(), 
 
-	    	React.DOM.h2(null, "Tracking and Kerning"), 
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Tracking and Kerning"), 
 	    	this._getTrackingExample()
     	)
     );

@@ -18,7 +18,7 @@ var ToastsPage = React.createClass({
   render: function() {
     return (
     	<div>
-  			<h2>Toasts</h2>
+  			<h2 className="mui-font-style-headline">Toasts</h2>
   			{this._getToastExample()}
   		</div>
     );

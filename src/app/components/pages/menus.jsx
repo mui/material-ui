@@ -72,31 +72,31 @@ var MenusPage = React.createClass({
   render: function() {
     return (
     	<div>
-    		<h2>Drop Down Menu</h2>
+    		<h2 className="mui-font-style-headline">Drop Down Menu</h2>
         <div className="mui-menu-container">
     		  {this._getDropDownMenuExample()}
         </div>
         <br />
-        <h2>Label Menu</h2>
+        <h2 className="mui-font-style-headline">Label Menu</h2>
         <div className="mui-menu-container">
           {this._getLabelMenuExample()}
         </div>
         <br />
-        <h2>Attribute Menu</h2>
+        <h2 className="mui-font-style-headline">Attribute Menu</h2>
         <div className="mui-menu-container">
           {this._getAttributeMenuExample()}
         </div>
         <br />
-        <h2>Icon Menu</h2>
+        <h2 className="mui-font-style-headline">Icon Menu</h2>
         <div className="mui-menu-container">
           {this._getIconMenuExample()}
         </div>
         <br />
-        <h2>Filter Menu</h2>
+        <h2 className="mui-font-style-headline">Filter Menu</h2>
         <div className="mui-menu-container">
           {this._getFilterMenuExample()}
         </div>
-        <h2>Nested Menu</h2>
+        <h2 className="mui-font-style-headline">Nested Menu</h2>
         <div className="example-menu">
           <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} />
         </div>

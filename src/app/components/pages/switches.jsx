@@ -11,11 +11,11 @@ var SwitchesPage = React.createClass({
   render: function() {
     return (
     	<div>
-        <h2>Checkbox</h2>
+        <h2 className="mui-font-style-headline">Checkbox</h2>
         {this._getCheckboxExample()}
-        <h2>Radio Button</h2>
+        <h2 className="mui-font-style-headline">Radio Button</h2>
         {this._getRadioButtonExample()}
-    		<h2>Toggle</h2>
+    		<h2 className="mui-font-style-headline">Toggle</h2>
         {this._getToggleExample()}
     	</div>
     );

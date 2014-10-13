@@ -48,7 +48,7 @@ var ToolbarPage = React.createClass({
 
     return (
     	<div>
-    		<h2>Toolbars</h2>
+    		<h2 className="mui-font-style-headline">Toolbars</h2>
         <div className="mui-toolbar-container">
           <mui.Toolbar groups={groups} />
         </div>
