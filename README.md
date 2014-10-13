@@ -16,14 +16,14 @@ Use [browserify](http://browserify.org/) and [reactify](https://github.com/andre
 
 ## Usage
 
-Once material-ui is included in your project, you can access use the components this way:
+Once material-ui is included in your project, you can use the components this way:
 ```js
 /**
  * @jsx React.DOM
  */
 
 var React = require('react'),
-  mui = require('mui'),
+  mui = require('material-ui'),
   PaperButton = mui.PaperButton;
 
 var SomeAwesomeComponent = React.createClass({
