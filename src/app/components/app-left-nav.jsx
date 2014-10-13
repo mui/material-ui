@@ -16,7 +16,6 @@ var AppLeftNav = React.createClass({
   getInitialState: function() {
     return {
       menuItems: [
-        { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
         { type: mui.MenuItem.Types.SUBHEADER, text: 'CSS Framework' },
         { payload: Pages.colors, text: Pages.colors.title },
         { payload: Pages.typography, text: Pages.typography.title },
@@ -27,7 +26,11 @@ var AppLeftNav = React.createClass({
         { payload: Pages.menus, text: Pages.menus.title },
         { payload: Pages.switches, text: Pages.switches.title },
         //{ payload: Pages.toasts, text: Pages.toasts.title },
-        { payload: Pages.toolbars, text: Pages.toolbars.title }
+        { payload: Pages.toolbars, text: Pages.toolbars.title },
+        { type: mui.MenuItem.Types.SUBHEADER, text: 'Resources' },
+        { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
+        { type: mui.MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
+        { type: mui.MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
       ]
     }
   },
