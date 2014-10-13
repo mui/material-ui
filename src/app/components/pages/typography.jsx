@@ -13,12 +13,13 @@ var TypographyPage = React.createClass({
     	<div>
 	    	<h2 className="mui-font-style-headline">Roboto</h2>
 	    	<p>
-	    		The Roboto font and 3 font weights (light, regular, and medium) are automatically included from <a href="http://www.google.com/fonts/specimen/Roboto">Google Fonts</a>
+	    		The Roboto font and 3 font weights (light, regular, and medium) are automatically included from <a href="http://www.google.com/fonts/specimen/Roboto">Google Fonts</a>.
 	    	</p>
 
-	    	<br /><br /><br />
+	    	<br />
 
 	    	<h2 className="mui-font-style-headline">Vertical Rhythm</h2>
+	    	<p>Default styles for headings and paragraphs have consistent vertical rhythm. Click the text below to see. :)</p>
 	    	{this._getVerticalRhythmExample()}
 
 	    	<h2 className="mui-font-style-headline">Typographic Scale</h2>

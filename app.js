@@ -34488,13 +34488,78 @@ module.exports = ColorsPage;
  * @jsx React.DOM
  */
 
-var React = require('react');
+var React = require('react'),
+	CodeBlock = require('../code-example/code-block.jsx');;
 
 var HomePage = React.createClass({displayName: 'HomePage',
 
   render: function() {
+  	var usageCode =
+  		'/**\n' +
+ 			' * @jsx React.DOM\n' +
+ 			'*/\n\n' +
+ 			'var React = require(\'react\'),\n' +
+ 			'  mui = require(\'material-ui\'),\n' +
+ 			'  PaperButton = mui.PaperButton;\n\n' +
+ 			'var SomeAwesomeComponent = React.createClass({\n\n' +
+ 			'  render: function() {\n' +
+ 			'    return (\n' +
+ 			'        <PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
+ 			'    );\n' +
+ 			'  }\n\n' +
+ 			'});\n\n' +
+ 			'module.exports = SomeAwesomeComponent;';
+
+ 		var customizationCode = 
+ 			'@import "node_modules/material-ui/dist/less/scaffolding.less";\n\n' +
+ 			'//Define a custom less file to override any variables defined in scaffolding.less\n' +
+ 			'@import "my-custom-overrides.less";\n\n' +
+ 			'@import "node_modules/material-ui/dist/less/components.less";';
+
     return (
-    	React.DOM.p(null, "Home")
+    	React.DOM.div(null, 
+    		React.DOM.h2({className: "mui-font-style-headline"}, 
+    			React.DOM.span({className: "mui-font-style-display-1"}, "Material-UI"), React.DOM.br(null), 
+    			"A CSS framework and a set of React components that implement Google's Material Design"
+  			), 
+    		React.DOM.p(null, 
+    			"Material-UI came about from our love" + ' ' +
+    			"of ", React.DOM.a({href: "http://facebook.github.io/react/"}, "React"), " and ", React.DOM.a({href: "https://www.google.com/design/spec/material-design/introduction.html"}, "Google's" + ' ' +
+    			"Material Design"), ". We're currently using it on a project at ", React.DOM.a({href: "https://www.call-em-all.com/"}, "Call-Em-All"), " and plan on" + ' ' +
+    			"adding to it and making it better in the coming months."
+    		), 
+    	
+    		React.DOM.br(null), 
+
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Installation"), 
+    		React.DOM.p(null, 
+    			"Material-UI is available as an ", React.DOM.a({href: "https://www.npmjs.org/package/material-ui"}, "npm package"), "." + ' ' + 
+    			"Use ", React.DOM.a({href: "http://browserify.org/"}, "browserify"), " and ", React.DOM.a({href: "https://github.com/andreypopp/reactify"}, "reactify"), " for" + ' ' +
+    			"dependency management and JSX transformation. The CSS framework is written in ", React.DOM.a({href: "http://lesscss.org/"}, "Less"), "," + ' ' +
+    			"so you'll need to compile that as well."
+    		), 
+
+    		React.DOM.br(null), 
+
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Usage"), 
+    		React.DOM.p(null, 
+    			"Once material-ui is included in your project, you can use the components this way:"
+    		), 
+    		CodeBlock(null, usageCode), 
+
+    		React.DOM.br(null), React.DOM.br(null), 
+
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Customization"), 
+    		React.DOM.p(null, "The styles are separated into 2 less files:"), 
+    		React.DOM.li(null, "dist/less/scaffolding.less"), 
+    		React.DOM.li(null, "dist/less/components.less"), 
+    		React.DOM.p(null, 
+    			"This allows you to override any variables defined in custom-variables.less without having to" + ' ' +
+    			"modify material-ui source files directly. For example, your main.less file could look something like this:"
+    		), 
+    		CodeBlock(null, customizationCode)
+    		
+    	)
     );
   }
 
@@ -34502,7 +34567,7 @@ var HomePage = React.createClass({displayName: 'HomePage',
 
 module.exports = HomePage;
 
-},{"react":"D:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\src\\app\\components\\pages\\icons.jsx":[function(require,module,exports){
+},{"../code-example/code-block.jsx":"D:\\GitHub\\material-ui\\src\\app\\components\\code-example\\code-block.jsx","react":"D:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\src\\app\\components\\pages\\icons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -35034,12 +35099,13 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
     	React.DOM.div(null, 
 	    	React.DOM.h2({className: "mui-font-style-headline"}, "Roboto"), 
 	    	React.DOM.p(null, 
-	    		"The Roboto font and 3 font weights (light, regular, and medium) are automatically included from ", React.DOM.a({href: "http://www.google.com/fonts/specimen/Roboto"}, "Google Fonts")
+	    		"The Roboto font and 3 font weights (light, regular, and medium) are automatically included from ", React.DOM.a({href: "http://www.google.com/fonts/specimen/Roboto"}, "Google Fonts"), "."
 	    	), 
 
-	    	React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), 
+	    	React.DOM.br(null), 
 
 	    	React.DOM.h2({className: "mui-font-style-headline"}, "Vertical Rhythm"), 
+	    	React.DOM.p(null, "Default styles for headings and paragraphs have consistent vertical rhythm. Click the text below to see. :)"), 
 	    	this._getVerticalRhythmExample(), 
 
 	    	React.DOM.h2({className: "mui-font-style-headline"}, "Typographic Scale"), 
