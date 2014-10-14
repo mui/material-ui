@@ -302,48 +302,49 @@ var ColorsPage = React.createClass({
 						<li className="color deep-orange-A700">@deep-orange-A700</li>
 					</ul>
 
-					<ul className="color-group">
-						<li className="color brown-500"><span className="name">Brown</span>@brown-500</li>
-						<li className="color brown-50">@brown-50</li>
-						<li className="color brown-100">@brown-100</li>
-						<li className="color brown-200">@brown-200</li>
-						<li className="color brown-300">@brown-300</li>
-						<li className="color brown-400">@brown-400</li>
-						<li className="color brown-500">@brown-500</li>
-						<li className="color brown-600">@brown-600</li>
-						<li className="color brown-700">@brown-700</li>
-						<li className="color brown-800">@brown-800</li>
-						<li className="color brown-900">@brown-900</li>
-					</ul>
+					<div className="neutral">
+						<ul className="color-group">
+							<li className="color brown-500"><span className="name">Brown</span>@brown-500</li>
+							<li className="color brown-50">@brown-50</li>
+							<li className="color brown-100">@brown-100</li>
+							<li className="color brown-200">@brown-200</li>
+							<li className="color brown-300">@brown-300</li>
+							<li className="color brown-400">@brown-400</li>
+							<li className="color brown-500">@brown-500</li>
+							<li className="color brown-600">@brown-600</li>
+							<li className="color brown-700">@brown-700</li>
+							<li className="color brown-800">@brown-800</li>
+							<li className="color brown-900">@brown-900</li>
+						</ul>
 
-					<ul className="color-group">
-						<li className="color blue-grey-500"><span className="name">Blue Grey</span>@blue-grey-500</li>
-						<li className="color blue-grey-50">@blue-grey-50</li>
-						<li className="color blue-grey-100">@blue-grey-100</li>
-						<li className="color blue-grey-200">@blue-grey-200</li>
-						<li className="color blue-grey-300">@blue-grey-300</li>
-						<li className="color blue-grey-400">@blue-grey-400</li>
-						<li className="color blue-grey-500">@blue-grey-500</li>
-						<li className="color blue-grey-600">@blue-grey-600</li>
-						<li className="color blue-grey-700">@blue-grey-700</li>
-						<li className="color blue-grey-800">@blue-grey-800</li>
-						<li className="color blue-grey-900">@blue-grey-900</li>
-					</ul>
+						<ul className="color-group">
+							<li className="color blue-grey-500"><span className="name">Blue Grey</span>@blue-grey-500</li>
+							<li className="color blue-grey-50">@blue-grey-50</li>
+							<li className="color blue-grey-100">@blue-grey-100</li>
+							<li className="color blue-grey-200">@blue-grey-200</li>
+							<li className="color blue-grey-300">@blue-grey-300</li>
+							<li className="color blue-grey-400">@blue-grey-400</li>
+							<li className="color blue-grey-500">@blue-grey-500</li>
+							<li className="color blue-grey-600">@blue-grey-600</li>
+							<li className="color blue-grey-700">@blue-grey-700</li>
+							<li className="color blue-grey-800">@blue-grey-800</li>
+							<li className="color blue-grey-900">@blue-grey-900</li>
+						</ul>
 
-					<ul className="color-group">
-						<li className="color grey-500"><span className="name">Grey</span>@grey-500</li>
-						<li className="color grey-50">@grey-50</li>
-						<li className="color grey-100">@grey-100</li>
-						<li className="color grey-200">@grey-200</li>
-						<li className="color grey-300">@grey-300</li>
-						<li className="color grey-400">@grey-400</li>
-						<li className="color grey-500">@grey-500</li>
-						<li className="color grey-600">@grey-600</li>
-						<li className="color grey-700">@grey-700</li>
-						<li className="color grey-800">@grey-800</li>
-						<li className="color grey-900">@grey-900</li>
-					</ul>
-
+						<ul className="color-group">
+							<li className="color grey-500"><span className="name">Grey</span>@grey-500</li>
+							<li className="color grey-50">@grey-50</li>
+							<li className="color grey-100">@grey-100</li>
+							<li className="color grey-200">@grey-200</li>
+							<li className="color grey-300">@grey-300</li>
+							<li className="color grey-400">@grey-400</li>
+							<li className="color grey-500">@grey-500</li>
+							<li className="color grey-600">@grey-600</li>
+							<li className="color grey-700">@grey-700</li>
+							<li className="color grey-800">@grey-800</li>
+							<li className="color grey-900">@grey-900</li>
+						</ul>
+					</div>
 	    	</div>
 	    </div>
     );
