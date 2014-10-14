@@ -1,51 +1,35 @@
-@radio-button-border-radius: 100%;
-@radio-button-cursor: pointer;
-@radio-button-display: inline-block;
-@radio-button-position: relative;
-@radio-button-size: 16px;
-
-@radio-button-fill-border-radius: 100%;
-@radio-button-fill-fix-left: -2px;
-@radio-button-fill-fix-top: -2px;
-@radio-button-fill-position: absolute;
-@radio-button-fill-transform: scale(0);
-
-@radio-button-input-display: none;
-
-@radio-button-input-checked-transform: scale(.5);
-
 .mui-radio-button {
 	.ease-out;
 	background-color: @radio-button-background-color;
 	border: 2px solid @radio-button-border-color;
-	border-radius: @radio-button-border-radius;
-	cursor: @radio-button-cursor;
-	display: @radio-button-display;
+	border-radius: 100%;
+	cursor: pointer;
+	display: inline-block;
 	height: @radio-button-size;
-	position: @radio-button-position;
+	position: relative;
 	width: @radio-button-size;
 
 	.mui-radio-button-fill {
 		.ease-out;
 		background-color: @radio-button-background-color;
-		border-radius: @radio-button-fill-border-radius;
+		border-radius: 50%;
 		height: @radio-button-size;
-		left: @radio-button-fill-fix-left;
-		position: @radio-button-fill-position;
-		top: @radio-button-fill-fix-top;
-		transform: @radio-button-fill-transform;
+		position: absolute;
+		left: -2px;
+		top: -2px;
+		transform: scale(0);
 		width: @radio-button-size;
 	}
 
 	input[type=radio] {
-		display: @radio-button-input-display;
+		display: none;
 
 		&:checked {
 			&+.mui-radio-button-fill {
 				.ease-out;
 				background-color: @radio-button-check-color;
 				border-color: @radio-button-border-color;
-				transform: @radio-button-input-checked-transform;
+				transform: scale(.5);
 			}
 		}
 	}

@@ -35073,34 +35073,24 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
     return (
     	React.DOM.div(null, 
     		React.DOM.h2({className: "mui-font-style-headline"}, "Drop Down Menu"), 
-        React.DOM.div({className: "mui-menu-container"}, 
-    		  this._getDropDownMenuExample()
-        ), 
-        React.DOM.br(null), 
+    		this._getDropDownMenuExample(), 
+
         React.DOM.h2({className: "mui-font-style-headline"}, "Label Menu"), 
-        React.DOM.div({className: "mui-menu-container"}, 
-          this._getLabelMenuExample()
-        ), 
-        React.DOM.br(null), 
+        this._getLabelMenuExample(), 
+
         React.DOM.h2({className: "mui-font-style-headline"}, "Attribute Menu"), 
-        React.DOM.div({className: "mui-menu-container"}, 
-          this._getAttributeMenuExample()
-        ), 
-        React.DOM.br(null), 
+        this._getAttributeMenuExample(), 
+
         React.DOM.h2({className: "mui-font-style-headline"}, "Icon Menu"), 
-        React.DOM.div({className: "mui-menu-container"}, 
-          this._getIconMenuExample()
-        ), 
-        React.DOM.br(null), 
+        this._getIconMenuExample(), 
+
         React.DOM.h2({className: "mui-font-style-headline"}, "Filter Menu"), 
-        React.DOM.div({className: "mui-menu-container"}, 
-          this._getFilterMenuExample()
-        ), 
+        this._getFilterMenuExample(), 
+
         React.DOM.h2({className: "mui-font-style-headline"}, "Nested Menu"), 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
-        ), 
-        React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null)
+        this._getNestedMenuExample(), 
+
+        React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null)
     	)
     );
   },
@@ -35108,13 +35098,12 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
   _getDropDownMenuExample: function() {
     var code = 
       "var menuItems = [\n" +
-      " { payload: '1', text: 'Never' },\n" +
-      " { payload: '2', text: 'Every Night' },\n" +
-      " { payload: '3', text: 'Weeknights' },\n" +
-      " { payload: '4', text: 'Weekends' },\n" +
-      " { payload: '5', text: 'Weekly' },\n" +
-      "],\n\n" +
-
+      "   { payload: '1', text: 'Never' },\n" +
+      "   { payload: '2', text: 'Every Night' },\n" +
+      "   { payload: '3', text: 'Weeknights' },\n" +
+      "   { payload: '4', text: 'Weekends' },\n" +
+      "   { payload: '5', text: 'Weekly' },\n" +
+      "];\n\n" +
       "<DropDownMenu menuItems={menuItems} />";
 
     return (
@@ -35127,16 +35116,17 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
   _getLabelMenuExample: function() {
     var code = 
       "var labelMenuItems = [\n" +
-      "{ payload: '1', text: 'ID', data: '1234567890', icon: 'home' },\n" +
-      "{ payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
-      "{ payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
+      "   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },\n" +
+      "   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
+      "   { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
       "];\n\n"  +
-
       "<Menu menuItems={labelMenuItems} />";
 
     return (
       CodeExample({code: code}, 
-        mui.Menu({menuItems: labelMenuItems, onItemClick: this._onItemClick})
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: labelMenuItems, onItemClick: this._onItemClick})
+        )
       )
     );
   },
@@ -35144,16 +35134,17 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
   _getAttributeMenuExample: function() {
     var code = 
       "var attributeMenuItems = [\n" +
-      "{ payload: '1', text: 'All', number: '22' },\n" +
-      "{ payload: '3', text: 'Uncategorized', number: '6'},\n" +
-      "{ payload: '4', text: 'Trash', number: '11' }\n" +
+      "   { payload: '1', text: 'All', number: '22' },\n" +
+      "   { payload: '3', text: 'Uncategorized', number: '6'},\n" +
+      "   { payload: '4', text: 'Trash', number: '11' }\n" +
       "];\n\n"  +
-
       "<Menu menuItems={attributeMenuItems} />";
 
     return (
       CodeExample({code: code}, 
-        mui.Menu({menuItems: attributeMenuItems, onItemClick: this._onItemClick})
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: attributeMenuItems, onItemClick: this._onItemClick})
+        )
       )
     );
   },
@@ -35161,17 +35152,18 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
   _getIconMenuExample: function() {
     var code = 
       "iconMenuItems = [\n" +
-      "{ payload: '1', text: 'Live Answer', icon: 'home', number: '10' },\n" +
-      "{ payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },\n" +
-      "{ payload: '3', text: 'Starred', icon: 'mic', number: '3'},\n" +
-      "{ payload: '4', text: 'Shared', icon: 'pie',  number: '12' }\n" +
-      "],\n\n" +
-
+      "   { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },\n" +
+      "   { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },\n" +
+      "   { payload: '3', text: 'Starred', icon: 'mic', number: '3'},\n" +
+      "   { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }\n" +
+      "];\n\n" +
       "<Menu menuItems={iconMenuItems} />";
 
     return (
       CodeExample({code: code}, 
-        mui.Menu({menuItems: iconMenuItems, onItemClick: this._onItemClick})
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: iconMenuItems, onItemClick: this._onItemClick})
+        )
       )
     );
   },
@@ -35179,27 +35171,56 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
   _getFilterMenuExample: function() {
     var code = 
       "filterMenuItems = [\n" +
-      "{ payload: '1', text: 'Text Opt-In', toggle: true},\n" +
-      "{ payload: '2', text: 'Text Opt-Out', toggle: true},\n" +
-      "{ payload: '3', text: 'Voice Opt-Out', toggle: true}\n" +
-      "],\n\n" +
-
+      "   { payload: '1', text: 'Text Opt-In', toggle: true},\n" +
+      "   { payload: '2', text: 'Text Opt-Out', toggle: true},\n" +
+      "   { payload: '3', text: 'Voice Opt-Out', toggle: true}\n" +
+      "];\n\n" +
       "<Menu menuItems={filterMenuItems} />";
 
     return (
       CodeExample({code: code}, 
-        mui.Menu({menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
+        )
       )
     );
   },
 
   _getNestedMenuExample: function() {
     var code = 
+      "nestedMenuItems = [\n" +
+      "    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [\n" +
+      "      { payload: '1', text: 'Nested Item 1' },\n" +
+      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
+      "        { payload: '1', text: 'Nested Item 3' },\n" +
+      "        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
+      "          { payload: '1', text: 'Nested Item 5' },\n" +
+      "          { payload: '3', text: 'Nested Item 6' }\n" +
+      "        ] },\n" +
+      "        { payload: '3', text: 'Nested Item 7' }\n" +
+      "      ] },\n" +
+      "      { payload: '3', text: 'Nested Item 9' },\n" +
+      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
+      "        { payload: '1', text: 'Nested Item 3' },\n" +
+      "       { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
+      "          { payload: '1', text: 'Nested Item 5' },\n" +
+      "          { payload: '3', text: 'Nested Item 6' }\n" +
+      "        ] },\n" +
+      "        { payload: '3', text: 'Nested Item 7' }\n" +
+      "      ] },\n" +
+      "      { payload: '4', text: 'Nested Item 10' }\n" +
+      "    ] },\n" +
+      "    { payload: '1', text: 'Audio Library'},\n" +
+      "    { payload: '2', text: 'Settings'},\n" +
+      "    { payload: '3', text: 'Logout'}\n" +
+      "  ];\n\n" +
       '<Menu menuItems={nestedMenuItems} />';
 
     return (
       CodeExample({code: code}, 
-        mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
+        React.DOM.div({className: "example-menu-nested"}, 
+          mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
+        )
       )
     );
   },
