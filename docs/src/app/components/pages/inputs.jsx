@@ -9,7 +9,7 @@ var InputsPage = React.createClass({
 
 
   componentDidMount: function() {
-    console.log(this.refs.firstname);
+    console.log(this.refs.firstname.getValue());
   },
 
   render: function() {
