@@ -35088,9 +35088,7 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
         this._getFilterMenuExample(), 
 
         React.DOM.h2({className: "mui-font-style-headline"}, "Nested Menu"), 
-        this._getNestedMenuExample(), 
-
-        React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null)
+        this._getNestedMenuExample()
     	)
     );
   },

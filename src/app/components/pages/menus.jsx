@@ -89,8 +89,6 @@ var MenusPage = React.createClass({
 
         <h2 className="mui-font-style-headline">Nested Menu</h2>
         {this._getNestedMenuExample()}
-
-        <br /><br /><br /><br />
     	</div>
     );
   },
