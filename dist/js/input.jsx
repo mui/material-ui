@@ -74,7 +74,7 @@ var Input = React.createClass({
       case false:
         return (
           <div className={classes}>
-            <input type={this.props.type} name={this.props.name} required />
+            <input type={this.props.type} name={this.props.name} onChange={this.props.onChange} required />
             <span className="mui-input-placeholder">
               {this.props.placeholder}
             </span>
