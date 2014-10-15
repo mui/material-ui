@@ -9,7 +9,7 @@ var InputsPage = React.createClass({
 
 
   componentDidMount: function() {
-    console.log(this.refs.firstname.getValue());
+    //console.log(this.refs.firstname.getValue());
   },
 
   render: function() {
@@ -17,7 +17,7 @@ var InputsPage = React.createClass({
     	<div>
     		<h2 className="mui-font-style-headline">Inputs</h2>
         <br />
-        <mui.Input ref="firstname" type="text" name="firstname" placeholder="First Name" description="Your first name as it appears on your credit card." />
+        <mui.Input ref="firstname" onChange={this._onChange} type="text" name="firstname" placeholder="First Name" description="Your first name as it appears on your credit card." />
         <mui.Input ref="lastname" type="text" name="lastname" placeholder="Last Name" description="Your last name as it appears on your credit card.." />
         <mui.Input ref="addressline1" type="text" name="addressline1" placeholder="Address Line 1" description="Your address as it appears on your credit card." />
         <mui.Input ref="addressline2" type="text" name="zipcode" placeholder="Zip Code" description="Your zip code as it appears on your credit card." />
@@ -39,6 +39,10 @@ var InputsPage = React.createClass({
       </div>
     );
   },
+
+  _onChange: function(e, value) {
+    //console.log(value);
+  }
 
 });
 

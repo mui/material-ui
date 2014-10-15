@@ -72,8 +72,9 @@ var Input = React.createClass({
   },
 
   _onInputChange: function(e) {
-    this.setState({value: e.target.value});
-    if (this.props.onChange) this.props.onChange(e);
+    var value = e.target.value;
+    this.setState({value: value});
+    if (this.props.onChange) this.props.onChange(e, value);
   },
 
   _onTextAreaChange: function(e) {
