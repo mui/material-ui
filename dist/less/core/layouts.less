@@ -1,22 +1,15 @@
 .mui-predefined-layout-1 {
 
 	.mui-app-content-canvas {
-		height: 100%;
-		overflow: scroll;
-	}
-
-	.mui-app-content-canvas,
-	.mui-app-bar
-	 {
-		margin-left: @left-nav-width;
-	}
-
-	.mui-app-content-canvas {
 		padding: @desktop-gutter-more;
+		padding-top: (@app-bar-height + @desktop-gutter-more);
+		padding-left: (@left-nav-width + @desktop-gutter-more);
 	}
 
 	.mui-app-bar {
+		position: fixed;
 		height: @app-bar-height;
+		padding-left: @left-nav-width;
 	}
 	
 }

@@ -10,7 +10,7 @@ var Input = React.createClass({
 
   propTypes: {
     multiline: React.PropTypes.bool,
-    style: React.PropTypes.string,
+    inputStyle: React.PropTypes.string,
     error: React.PropTypes.string,
     label: React.PropTypes.string,
     description: React.PropTypes.string,
@@ -47,53 +47,24 @@ var Input = React.createClass({
 
   render: function() {
     var classes = this.getClasses('mui-input', {
-      'mui-floating': this.props.style === 'floating',
-      'mui-text': this.props.type === 'text',
-      'mui-error': this.state.error === true
-    })
+        'mui-floating': this.props.inputStyle === 'floating',
+        'mui-text': this.props.type === 'text',
+        'mui-error': this.state.error === true
+      }),
+      inputElement = this.props.multiline ? 
+        <textarea className="mui-input-textarea" rows={this.state.rows} onChange={this._onLineBreak} required /> :
+        <input type={this.props.type} name={this.props.name} onChange={this.props.onChange} required />;
 
-    switch(this.props.multiline) {
-      case true:
-        return (
-          <div className={classes}>
-            <textarea className="mui-input-textarea" rows={this.state.rows} onChange={this._onLineBreak} required />
-            <span className="mui-input-placeholder">
-              {this.props.placeholder}
-            </span>
-            <span className="mui-input-highlight">
-            </span>
-            <span className="mui-input-bar">
-            </span>
-            <span className="mui-input-description">
-              {this.props.description}
-            </span>
-            <span className="mui-input-error">
-              {this.props.error}
-            </span>
-          </div>
-        );
-      case false:
-        return (
-          <div className={classes}>
-            <input type={this.props.type} name={this.props.name} onChange={this.props.onChange} required />
-            <span className="mui-input-placeholder">
-              {this.props.placeholder}
-            </span>
-            <span className="mui-input-highlight">
-            </span>
-            <span className="mui-input-bar">
-            </span>
-            <span className="mui-input-description">
-              {this.props.description}
-            </span>
-            <span className="mui-input-error">
-              {this.props.error}
-            </span>
-          </div>
-        );
-    }
-
-
+    return (
+      <div ref={this.props.ref} className={classes}>
+        {inputElement}
+        <span className="mui-input-placeholder">{this.props.placeholder}</span>
+        <span className="mui-input-highlight"></span>
+        <span className="mui-input-bar"></span>
+        <span className="mui-input-description">{this.props.description}</span>
+        <span className="mui-input-error">{this.props.error}</span>
+      </div>
+    );
   },
 
   _onLineBreak: function(e) {
@@ -105,7 +76,7 @@ var Input = React.createClass({
         this.setState({ rows: ((this.state.rows) + 1)})
       }
     }
-  },
+  }
 
 });
 

@@ -1,14 +1,19 @@
 .mui-left-nav {
 	height: 100%;
-	position: absolute;
-	top: 0px;
+	position: fixed;
 	width: @left-nav-width;
 	background-color: @left-nav-color;
-
+	z-index: 10;
+	
 	.mui-menu {
 		.mui-menu-item {
 			height: @desktop-left-nav-menu-item-height;
 			line-height: @desktop-left-nav-menu-item-height;
+		}
+		a.mui-menu-item {
+			display: block;
+			text-decoration: none;
+			color: @body-text-color;
 		}
 	}
 }

@@ -156,6 +156,12 @@ var Menu = React.createClass({
 
       switch (menuItem.type) {
 
+        case MenuItem.Types.LINK:
+          itemComponent = (
+            <a key={i} className="mui-menu-item" href={menuItem.payload}>{menuItem.text}</a>
+          );
+        break;
+
         case MenuItem.Types.SUBHEADER:
           itemComponent = (
             <div key={i} className="mui-subheader">{menuItem.text}</div>

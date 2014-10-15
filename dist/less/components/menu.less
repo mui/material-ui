@@ -1,48 +1,18 @@
-@menu-hideable-fix-top: 0;
-@menu-hideable-opacity: 0;
-@menu-hideable-position: absolute;
-@menu-hideable-z-index: 1;
-
-@menu-hideable-container-overflow: hidden;
-@menu-hideable-container-padding: 0;
-
-	@menu-item-cursor: pointer;
-	@menu-item-height: 48px;
-	@menu-item-padding: @desktop-gutter;
-
-	@menu-item-number-float: right;
-
-	@menu-subheader-padding: @desktop-gutter;
-
-	@menu-item-icon-right-float: right;
-	@menu-item-icon-right-line-height: @menu-item-height;
-	@menu-item-icon-float: left;
-	@menu-item-icon-line-height: @menu-item-height;
-	@menu-item-icon-margin-right: @desktop-gutter;
-
-	@menu-item-data-height: 32px;
-	@menu-item-data-display: block;
-	@menu-item-data-padding-left: (@desktop-gutter * 2);
-	@menu-item-data-vertical-align: top;
-	@menu-item-data-fix-top: -12px;
-	@menu-item-data-position: relative;
-	@menu-item-data-font-weight: 300;
-	@menu-item-data-font-size: 12px;
-
-	@menu-item-toggle-float: right;
-
 .mui-menu {
+
+	* { .ease-out; }
+	
 	background-color: @menu-background-color;
 
 	&.mui-menu-hideable {
-		opacity: @menu-hideable-opacity;
-		position: @menu-hideable-position;
-		top: @menu-hideable-fix-top;
-		z-index: @menu-hideable-z-index;
+		opacity: 0;
+		position: absolute;
+		top: 0;
+		z-index: 1;
 
 		.mui-paper-container {
-			overflow: @menu-hideable-container-overflow;
-			padding: @menu-hideable-container-padding;
+			overflow: hidden;
+			padding: 0;
 		}
 
 		&.mui-visible {
@@ -65,36 +35,35 @@
 	}
 
 	.mui-menu-item {
-		cursor: @menu-item-cursor;
+		cursor: pointer;
 		line-height: @menu-item-height;
 		padding-left: @menu-item-padding;
 		padding-right: @menu-item-padding;
 
 		.mui-menu-item-number {
-			float: @menu-item-number-float;
+			float: right;
 		}
 
 		.mui-menu-item-icon-right {
-			line-height: @menu-item-icon-right-line-height;
-			float: @menu-item-icon-right-float;
+			line-height: @menu-item-height;
+			float: right;
 		}
 
 		.mui-menu-item-icon {
-			float: @menu-item-icon-float;
-			line-height: @menu-item-icon-line-height;
-			margin-right: @menu-item-icon-margin-right;
+			float: left;
+			line-height: @menu-item-height;
+			margin-right: @desktop-gutter;
 		}
 
 		.mui-menu-item-data {
-			display: @menu-item-data-display;
-			padding-left: @menu-item-data-padding-left;
+			display: block;
+			padding-left: (@desktop-gutter * 2);
 			line-height: @menu-item-data-height;
 			height: @menu-item-data-height;
-			vertical-align: @menu-item-data-vertical-align;
-			top: @menu-item-data-position;
-			position: @menu-item-data-position;
-			font-weight: @menu-item-data-font-weight;
-			font-size: @menu-item-data-font-size;
+			vertical-align: top;
+			top: -12px;
+			position: relative;
+			.mui-font-weight-light;
 		}
 
 		.mui-icon-arrow-drop-right {
@@ -104,7 +73,7 @@
 
 		.mui-toggle {
 			margin-top: ((@menu-item-height - @radio-button-size) / 2);
-			float: @menu-item-toggle-float;
+			float: right;
 		}
 
 		&.mui-selected {

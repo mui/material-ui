@@ -1,4 +1,7 @@
 .mui-drop-down-menu {
+
+	* { .ease-out; }
+
 	position: relative;
 	height: @desktop-toolbar-height;
 	font-size: @desktop-drop-down-menu-font-size;
@@ -33,9 +36,7 @@
 		}
 
 		&:hover {
-			.ease-out;
 			.mui-menu-control-bg {
-			.ease-out;
 				opacity: 1;
 			}
 		}
@@ -58,8 +59,6 @@
 	}
 
 	.mui-menu {
-		.ease-out;
-
 		.mui-menu-item {
 			padding-right: (@icon-size + (@desktop-gutter-less*2));
 			height: @desktop-drop-down-menu-item-height;
