@@ -365,7 +365,7 @@ var Input = React.createClass({displayName: 'Input',
 
   propTypes: {
     multiline: React.PropTypes.bool,
-    style: React.PropTypes.string,
+    inputStyle: React.PropTypes.string,
     error: React.PropTypes.string,
     label: React.PropTypes.string,
     description: React.PropTypes.string,
@@ -401,53 +401,24 @@ var Input = React.createClass({displayName: 'Input',
 
   render: function() {
     var classes = this.getClasses('mui-input', {
-      'mui-floating': this.props.style === 'floating',
-      'mui-text': this.props.type === 'text',
-      'mui-error': this.state.error === true
-    })
+        'mui-floating': this.props.inputStyle === 'floating',
+        'mui-text': this.props.type === 'text',
+        'mui-error': this.state.error === true
+      }),
+      inputElement = this.props.multiline ? 
+        React.DOM.textarea({className: "mui-input-textarea", rows: this.state.rows, onChange: this._onLineBreak, required: true}) :
+        React.DOM.input({type: this.props.type, name: this.props.name, required: true});
 
-    switch(this.props.multiline) {
-      case true:
-        return (
-          React.DOM.div({className: classes}, 
-            React.DOM.textarea({className: "mui-input-textarea", rows: this.state.rows, onChange: this._onLineBreak, required: true}), 
-            React.DOM.span({className: "mui-input-placeholder"}, 
-              this.props.placeholder
-            ), 
-            React.DOM.span({className: "mui-input-highlight"}
-            ), 
-            React.DOM.span({className: "mui-input-bar"}
-            ), 
-            React.DOM.span({className: "mui-input-description"}, 
-              this.props.description
-            ), 
-            React.DOM.span({className: "mui-input-error"}, 
-              this.props.error
-            )
-          )
-        );
-      case false:
-        return (
-          React.DOM.div({className: classes}, 
-            React.DOM.input({type: this.props.type, name: this.props.name, required: true}), 
-            React.DOM.span({className: "mui-input-placeholder"}, 
-              this.props.placeholder
-            ), 
-            React.DOM.span({className: "mui-input-highlight"}
-            ), 
-            React.DOM.span({className: "mui-input-bar"}
-            ), 
-            React.DOM.span({className: "mui-input-description"}, 
-              this.props.description
-            ), 
-            React.DOM.span({className: "mui-input-error"}, 
-              this.props.error
-            )
-          )
-        );
-    }
-
-
+    return (
+      React.DOM.div({ref: this.props.ref, className: classes}, 
+        inputElement, 
+        React.DOM.span({className: "mui-input-placeholder"}, this.props.placeholder), 
+        React.DOM.span({className: "mui-input-highlight"}), 
+        React.DOM.span({className: "mui-input-bar"}), 
+        React.DOM.span({className: "mui-input-description"}, this.props.description), 
+        React.DOM.span({className: "mui-input-error"}, this.props.error)
+      )
+    );
   },
 
   _onLineBreak: function(e) {
@@ -459,11 +430,12 @@ var Input = React.createClass({displayName: 'Input',
         this.setState({ rows: ((this.state.rows) + 1)})
       }
     }
-  },
+  }
 
 });
 
 module.exports = Input;
+
 },{"./mixins/classable.js":"D:\\GitHub\\material-ui\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\dist\\js\\paper.jsx","react":"D:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\dist\\js\\left-nav.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
@@ -34962,7 +34934,7 @@ module.exports = IconsPage;
  */
 
 var React = require('react'),
-  Input = require('../../../../dist/js/input.jsx');
+  mui = require('mui');
 
 var InputsPage = React.createClass({displayName: 'InputsPage',
 
@@ -34971,25 +34943,25 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
     	React.DOM.div(null, 
     		React.DOM.h2({className: "mui-font-style-headline"}, "Inputs"), 
         React.DOM.br(null), 
-        Input({ref: "firstname", type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
-        Input({ref: "lastname", type: "text", name: "lastname", placeholder: "Last Name", description: "Your last name as it appears on your credit card.."}), 
-        Input({ref: "addressline1", type: "text", name: "addressline1", placeholder: "Address Line 1", description: "Your address as it appears on your credit card."}), 
-        Input({ref: "addressline2", type: "text", name: "zipcode", placeholder: "Zip Code", description: "Your zip code as it appears on your credit card."}), 
-        Input({ref: "city", type: "text", name: "city", placeholder: "City", description: "Your city as it appears on your credit card."}), 
-        Input({ref: "state", type: "text", name: "state", placeholder: "State", description: "Your state as it appears on your credit card."}), 
+        mui.Input({ref: "firstname", type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
+        mui.Input({ref: "lastname", type: "text", name: "lastname", placeholder: "Last Name", description: "Your last name as it appears on your credit card.."}), 
+        mui.Input({ref: "addressline1", type: "text", name: "addressline1", placeholder: "Address Line 1", description: "Your address as it appears on your credit card."}), 
+        mui.Input({ref: "addressline2", type: "text", name: "zipcode", placeholder: "Zip Code", description: "Your zip code as it appears on your credit card."}), 
+        mui.Input({ref: "city", type: "text", name: "city", placeholder: "City", description: "Your city as it appears on your credit card."}), 
+        mui.Input({ref: "state", type: "text", name: "state", placeholder: "State", description: "Your state as it appears on your credit card."}), 
         React.DOM.h2({className: "mui-font-style-headline"}, "Error Validation"), 
         React.DOM.br(null), 
-        Input({ref: "allegiance", type: "text", name: "allegiance", placeholder: "Allegiance", description: "The house of which you served under."}), 
+        mui.Input({ref: "allegiance", type: "text", name: "allegiance", placeholder: "Allegiance", description: "The house of which you served under."}), 
     	  React.DOM.br(null), 
         React.DOM.h2({className: "mui-font-style-headline"}, "Floating"), 
         React.DOM.br(null), 
-        Input({ref: "username", type: "text", style: "floating", name: "Username", description: "The username associated with your account."}), 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Multi-Line"), 
-        React.DOM.br(null), 
-        Input({multiline: true, ref: "textmessage", type: "text", name: "textmessage", placeholder: "Text Message", description: "Your text message."}), 
-        React.DOM.br(null), 
-        React.DOM.br(null), 
-        React.DOM.br(null)
+        mui.Input({ref: "username", type: "text", inputStyle: "floating", name: "Username", description: "The username associated with your account."})
+        
+        /* TODO: Needs to be completed}
+        <h2 className="mui-font-style-headline">Multi-Line</h2>
+        <br />
+        <mui.Input multiline={true} ref="textmessage" type="text" name="textmessage" placeholder="Text Message" description="Your text message." />
+        {*/
       )
     );
   },
@@ -34997,7 +34969,7 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
 });
 
 module.exports = InputsPage;
-},{"../../../../dist/js/input.jsx":"D:\\GitHub\\material-ui\\dist\\js\\input.jsx","react":"D:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\src\\app\\components\\pages\\menus.jsx":[function(require,module,exports){
+},{"mui":"D:\\GitHub\\material-ui\\index.js","react":"D:\\GitHub\\material-ui\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\src\\app\\components\\pages\\menus.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
