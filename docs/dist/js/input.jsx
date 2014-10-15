@@ -12,7 +12,6 @@ var Input = React.createClass({
     multiline: React.PropTypes.bool,
     inputStyle: React.PropTypes.string,
     error: React.PropTypes.string,
-    label: React.PropTypes.string,
     description: React.PropTypes.string,
     placeholder: React.PropTypes.string,
     type: React.PropTypes.string.isRequired,
@@ -24,6 +23,7 @@ var Input = React.createClass({
 
   getInitialState: function() {
     return {
+      value: this.props.defaultValue,
       error: false,
       rows: 1
     }
@@ -52,8 +52,8 @@ var Input = React.createClass({
         'mui-error': this.state.error === true
       }),
       inputElement = this.props.multiline ? 
-        <textarea className="mui-input-textarea" rows={this.state.rows} onChange={this._onLineBreak} required /> :
-        <input type={this.props.type} name={this.props.name} onChange={this.props.onChange} required />;
+        <textarea value={this.state.value} className="mui-input-textarea" rows={this.state.rows} onChange={this._onTextAreaChange} required /> :
+        <input value={this.state.value} type={this.props.type} name={this.props.name} onChange={this._onInputChange} required />;
 
     return (
       <div ref={this.props.ref} className={classes}>
@@ -65,6 +65,16 @@ var Input = React.createClass({
         <span className="mui-input-error">{this.props.error}</span>
       </div>
     );
+  },
+
+  _onInputChange: function(e) {
+    this.setState({value: e.target.value});
+    if (this.props.onChange) this.props.onChange(e);
+  },
+
+  _onTextAreaChange: function(e) {
+    this._onLineBreak();
+    if (this.props.onChange) this.props.onChange(e);
   },
 
   _onLineBreak: function(e) {
