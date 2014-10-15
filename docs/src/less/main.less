@@ -1,0 +1,65 @@
+/* material-ui */
+@import "../../dist/less/scaffolding.less";
+@import "../../dist/less/components.less";
+
+/* hightlight.js for syntax highlighting */
+@import (less) "monokai_sublime.css";
+
+@import "color-palette.less";
+
+/* App Specific Styles */
+.mui-app-content-canvas {
+	//max-width: 825px;
+}
+
+.logo {
+	cursor: pointer;
+	.mui-font-style-headline;
+	.mui-text-full-white;
+	line-height: @app-bar-height;
+	.mui-font-weight-light;
+	background-color: @primary-1-color;
+	padding-left: @desktop-gutter;
+	padding-top: 0;
+	margin-bottom: @desktop-gutter-mini;
+}
+
+.baseline-grid {
+	background-image: url('images/baseline-20px-grid.gif');
+}
+
+.code-example {
+	max-width: (@desktop-keyline-increment * 14);
+	background-color: @white;
+	margin-bottom: 80px;
+
+	.example-label {
+		.mui-font-style-menu;
+		display: inline-block;
+		text-transform: uppercase;
+		color: @min-black;
+		padding: @desktop-gutter-mini;
+		border-right: solid 1px @border-color;
+		border-bottom: solid 1px @border-color;
+		margin-bottom: 0;
+		.lh-border-radius(0 0 2px 0);
+	}
+
+	.example-block,
+	.code-block {
+		padding: @desktop-gutter;
+	}
+
+	.code-block {
+		border-top: solid 1px @border-color;
+		.lh-border-radius(0 0 2px 2px);
+	}
+}
+
+.example-menu {
+	width: (64px * 4);
+}
+
+.example-menu-nested {
+	width: (64px * 3);
+}
