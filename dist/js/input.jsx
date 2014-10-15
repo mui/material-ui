@@ -16,7 +16,8 @@ var Input = React.createClass({
     description: React.PropTypes.string,
     placeholder: React.PropTypes.string,
     type: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired
+    name: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func
   },
 
   mixins: [Classable],
