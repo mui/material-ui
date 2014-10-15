@@ -16,7 +16,8 @@ var Input = React.createClass({
     description: React.PropTypes.string,
     placeholder: React.PropTypes.string,
     type: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired
+    name: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func
   },
 
   mixins: [Classable],
@@ -74,7 +75,7 @@ var Input = React.createClass({
       case false:
         return (
           <div className={classes}>
-            <input type={this.props.type} name={this.props.name} required />
+            <input type={this.props.type} name={this.props.name} onChange={this.props.onChange} required />
             <span className="mui-input-placeholder">
               {this.props.placeholder}
             </span>
