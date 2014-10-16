@@ -11,7 +11,8 @@ var RadioButton = React.createClass({
   propTypes: {
     name: React.PropTypes.string,
     onClick: React.PropTypes.func,
-    value: React.PropTypes.string
+    value: React.PropTypes.string,
+    label: React.PropTypes.string
   },
 
   mixins: [Classable],
@@ -34,6 +35,7 @@ var RadioButton = React.createClass({
     return (
       <div className={classes} onClick={this._onClick}>
         <input ref="radioButton" type="radio" name={this.props.name} value={this.props.value} />
+        <span className="mui-radio-button-label">{this.props.label}</span>
         <div className="mui-radio-button-fill" />
       </div>
     );
