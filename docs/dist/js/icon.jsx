@@ -11,7 +11,7 @@ var Icon = React.createClass({
 
 	propTypes: {
 		icon: React.PropTypes.string,
-    	onClick: React.PropTypes.func
+		onClick: React.PropTypes.func
 	},
 
 	render: function() {
@@ -19,14 +19,14 @@ var Icon = React.createClass({
 
 		return (
 			<span className={classes} onClick={this._onClick}>
-          		<span className="mui-icon-highlight">&nbsp;</span>
-          	</span>
+				<span className="mui-icon-highlight">&nbsp;</span>
+			</span>
 		);
 	},
 
 	_onClick: function(e) {
 		if (this.props.onClick) this.props.onClick(e);
-	},
+	}
 
 });
 

@@ -4,43 +4,105 @@
 
 var React = require('react'),
   	mui = require('mui'),
-  	CodeExample = require('../code-example/code-example.jsx'),
+    Icon = mui.Icon,
+    CodeExample = require('../code-example/code-example.jsx'),
 
-  	menuItems = [
-	    { payload: '1', text: 'Never' },
-	    { payload: '2', text: 'Every Night' },
-	    { payload: '3', text: 'Weeknights' },
-	    { payload: '4', text: 'Weekends' },
-	    { payload: '5', text: 'Weekly' },
-  	];
+    coreIcons = [
+      'arrow-drop-down', 
+      'arrow-drop-right',
+      'cancel',
+      'check',
+      'chevron-down',
+      'chevron-right',
+      'close',
+      'delete',
+      'help',
+      'home',
+      'menu',
+      'more-horiz',
+      'more-vert',
+      'search',
+      'settings'
+    ],
+
+    appIcons = [
+      'broadcast',
+      'cloud-download',
+      'cloud-upload',
+      'contacts',
+      'edit',
+      'favorite',
+      'favorite-outline',
+      'filter',
+      'group',
+      'group-add',
+      'mic',
+      'pause',
+      'person',
+      'person-add',
+      'phone',
+      'pie',
+      'play',
+      'sort',
+      'star',
+      'star-outline',
+      'stop',
+      'textsms'
+    ];
 
 var IconsPage = React.createClass({
 
   render: function() {
     return (
     	<div>
-			<h2 className="mui-font-style-headline">Icons</h2>
-			{this._getIconExample()}
+        <h2 className="mui-font-style-headline">Icon Component</h2>
+        {this._getComponentExample()}
+
+        <h2 className="mui-font-style-headline">Core Icons</h2>
+        <hr />
+        <div className="icon-group">
+          {this._getIconGroup(coreIcons)}
+        </div>
+
+        <br/>
+
+        <h2 className="mui-font-style-headline">App Icons</h2>
+        <hr />
+        <div className="icon-group">
+          {this._getIconGroup(appIcons)}
+        </div>
+        
 		</div>
     );
   },
 
-  _getIconExample: function() {
-    var code = 
-      "<Icon className='mui-menu-item-icon' icon='home' />";
+  _getIconGroup: function(icons) {
+    var iconExamples = [];
 
+    icons.forEach(function(icon) {
+      iconExamples.push(this._getIconExample(icon));
+    }, this);
+
+    return iconExamples;
+  },
+
+  _getIconExample: function(icon) {
     return (
-      {/*
-      <CodeExample code={code}>
-      	<mui.DropDownIcon icon="chevron-down" menuItems={menuItems} onChange={this._onDropDownMenuChange} />
-      </CodeExample>
-      */}
+      <div className="icon-example">
+        <Icon icon={icon} /><span>{icon}</span>
+      </div>
     );
   },
 
-  _onDropDownMenuChange: function(e, key, menuItem) {
-  	console.log('Menu Clicked: ', menuItem);
-  },
+  _getComponentExample: function() {
+    var code = '<Icon icon="home" />';
+
+    return (
+      <CodeExample code={code}>
+        <Icon icon='home' />
+      </CodeExample>
+    );
+  }
 
 });
 
