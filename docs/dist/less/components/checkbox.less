@@ -8,6 +8,7 @@
 @checkbox-box-box-sizing: border-box;
 @checkbox-box-position: absolute;
 @checkbox-box-size: 18px;
+@checkbox-label-spacing: @checkbox-box-size;
 @checkbox-box-transform-origin: 40% 90%;
 @checkbox-box-transform: rotate(0deg) scale(1);
 
@@ -36,6 +37,12 @@
 	input {
 		display: @checkbox-input-display;
 	}
+	
+	.mui-checkbox-label { 
+		position: relative;
+		left: @checkbox-label-spacing;
+		padding: 0 5px;
+	} 
 	
 	.mui-checkbox-box {
 		.ease-out;

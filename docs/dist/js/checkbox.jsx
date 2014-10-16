@@ -12,6 +12,7 @@ var Checkbox = React.createClass({
     name: React.PropTypes.string.isRequired,
     onCheck: React.PropTypes.func,
     value: React.PropTypes.string.isRequired,
+    onClick: React.PropTypes.func
   },
 
   mixins: [Classable],
