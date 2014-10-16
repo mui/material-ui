@@ -139,6 +139,7 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
     name: React.PropTypes.string.isRequired,
     onCheck: React.PropTypes.func,
     value: React.PropTypes.string.isRequired,
+    onClick: React.PropTypes.func
   },
 
   mixins: [Classable],
@@ -350,7 +351,7 @@ var Icon = React.createClass({displayName: 'Icon',
 
 	propTypes: {
 		icon: React.PropTypes.string,
-    	onClick: React.PropTypes.func
+		onClick: React.PropTypes.func
 	},
 
 	render: function() {
@@ -358,18 +359,19 @@ var Icon = React.createClass({displayName: 'Icon',
 
 		return (
 			React.DOM.span({className: classes, onClick: this._onClick}, 
-          		React.DOM.span({className: "mui-icon-highlight"}, " ")
-          	)
+				React.DOM.span({className: "mui-icon-highlight"}, " ")
+			)
 		);
 	},
 
 	_onClick: function(e) {
 		if (this.props.onClick) this.props.onClick(e);
-	},
+	}
 
 });
 
 module.exports = Icon;
+
 },{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\input.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
@@ -385,7 +387,6 @@ var Input = React.createClass({displayName: 'Input',
     multiline: React.PropTypes.bool,
     inputStyle: React.PropTypes.string,
     error: React.PropTypes.string,
-    label: React.PropTypes.string,
     description: React.PropTypes.string,
     placeholder: React.PropTypes.string,
     type: React.PropTypes.string.isRequired,
@@ -397,6 +398,7 @@ var Input = React.createClass({displayName: 'Input',
 
   getInitialState: function() {
     return {
+      value: this.props.defaultValue,
       error: false,
       rows: 1
     }
@@ -425,8 +427,8 @@ var Input = React.createClass({displayName: 'Input',
         'mui-error': this.state.error === true
       }),
       inputElement = this.props.multiline ? 
-        React.DOM.textarea({className: "mui-input-textarea", rows: this.state.rows, onChange: this._onLineBreak, required: true}) :
-        React.DOM.input({type: this.props.type, name: this.props.name, onChange: this.props.onChange, required: true});
+        React.DOM.textarea({value: this.state.value, className: "mui-input-textarea", rows: this.state.rows, onChange: this._onTextAreaChange, required: true}) :
+        React.DOM.input({value: this.state.value, type: this.props.type, name: this.props.name, onChange: this._onInputChange, required: true});
 
     return (
       React.DOM.div({ref: this.props.ref, className: classes}, 
@@ -438,6 +440,21 @@ var Input = React.createClass({displayName: 'Input',
         React.DOM.span({className: "mui-input-error"}, this.props.error)
       )
     );
+  },
+
+  getValue: function() {
+    return this.state.value;
+  },
+
+  _onInputChange: function(e) {
+    var value = e.target.value;
+    this.setState({value: value});
+    if (this.props.onChange) this.props.onChange(e, value);
+  },
+
+  _onTextAreaChange: function(e) {
+    this._onInputChange(e);
+    this._onLineBreak();
   },
 
   _onLineBreak: function(e) {
@@ -1089,7 +1106,8 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
   propTypes: {
     name: React.PropTypes.string,
     onClick: React.PropTypes.func,
-    value: React.PropTypes.string
+    value: React.PropTypes.string,
+    label: React.PropTypes.string
   },
 
   mixins: [Classable],
@@ -1112,7 +1130,8 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
     return (
       React.DOM.div({className: classes, onClick: this._onClick}, 
         React.DOM.input({ref: "radioButton", type: "radio", name: this.props.name, value: this.props.value}), 
-        React.DOM.div({className: "mui-radio-button-fill"})
+        React.DOM.div({className: "mui-radio-button-fill"}), 
+        React.DOM.span({className: "mui-radio-button-label"}, this.props.label)
       )
     );
   },
@@ -34905,43 +34924,105 @@ module.exports = HomePage;
 
 var React = require('react'),
   	mui = require('mui'),
-  	CodeExample = require('../code-example/code-example.jsx'),
+    Icon = mui.Icon,
+    CodeExample = require('../code-example/code-example.jsx'),
 
-  	menuItems = [
-	    { payload: '1', text: 'Never' },
-	    { payload: '2', text: 'Every Night' },
-	    { payload: '3', text: 'Weeknights' },
-	    { payload: '4', text: 'Weekends' },
-	    { payload: '5', text: 'Weekly' },
-  	];
+    coreIcons = [
+      'arrow-drop-down', 
+      'arrow-drop-right',
+      'cancel',
+      'check',
+      'chevron-down',
+      'chevron-right',
+      'close',
+      'delete',
+      'help',
+      'home',
+      'menu',
+      'more-horiz',
+      'more-vert',
+      'search',
+      'settings'
+    ],
+
+    appIcons = [
+      'broadcast',
+      'cloud-download',
+      'cloud-upload',
+      'contacts',
+      'edit',
+      'favorite',
+      'favorite-outline',
+      'filter',
+      'group',
+      'group-add',
+      'mic',
+      'pause',
+      'person',
+      'person-add',
+      'phone',
+      'pie',
+      'play',
+      'sort',
+      'star',
+      'star-outline',
+      'stop',
+      'textsms'
+    ];
 
 var IconsPage = React.createClass({displayName: 'IconsPage',
 
   render: function() {
     return (
     	React.DOM.div(null, 
-			React.DOM.h2({className: "mui-font-style-headline"}, "Icons"), 
-			this._getIconExample()
+        React.DOM.h2({className: "mui-font-style-headline"}, "Icon Component"), 
+        this._getComponentExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Core Icons"), 
+        React.DOM.hr(null), 
+        React.DOM.div({className: "icon-group"}, 
+          this._getIconGroup(coreIcons)
+        ), 
+
+        React.DOM.br(null), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "App Icons"), 
+        React.DOM.hr(null), 
+        React.DOM.div({className: "icon-group"}, 
+          this._getIconGroup(appIcons)
+        )
+        
 		)
     );
   },
 
-  _getIconExample: function() {
-    var code = 
-      "<Icon className='mui-menu-item-icon' icon='home' />";
+  _getIconGroup: function(icons) {
+    var iconExamples = [];
 
+    icons.forEach(function(icon) {
+      iconExamples.push(this._getIconExample(icon));
+    }, this);
+
+    return iconExamples;
+  },
+
+  _getIconExample: function(icon) {
     return (
-      {/*
-      <CodeExample code={code}>
-      	<mui.DropDownIcon icon="chevron-down" menuItems={menuItems} onChange={this._onDropDownMenuChange} />
-      </CodeExample>
-      */}
+      React.DOM.div({className: "icon-example"}, 
+        Icon({icon: icon}), React.DOM.span(null, icon)
+      )
     );
   },
 
-  _onDropDownMenuChange: function(e, key, menuItem) {
-  	console.log('Menu Clicked: ', menuItem);
-  },
+  _getComponentExample: function() {
+    var code = '<Icon icon="home" />';
+
+    return (
+      CodeExample({code: code}, 
+        Icon({icon: "home"})
+      )
+    );
+  }
 
 });
 
@@ -34959,7 +35040,7 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
 
 
   componentDidMount: function() {
-    console.log(this.refs.firstname.getDOMNode());
+    //console.log(this.refs.firstname.getValue());
   },
 
   render: function() {
@@ -34967,7 +35048,7 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
     	React.DOM.div(null, 
     		React.DOM.h2({className: "mui-font-style-headline"}, "Inputs"), 
         React.DOM.br(null), 
-        mui.Input({ref: "firstname", type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
+        mui.Input({ref: "firstname", onChange: this._onChange, type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
         mui.Input({ref: "lastname", type: "text", name: "lastname", placeholder: "Last Name", description: "Your last name as it appears on your credit card.."}), 
         mui.Input({ref: "addressline1", type: "text", name: "addressline1", placeholder: "Address Line 1", description: "Your address as it appears on your credit card."}), 
         mui.Input({ref: "addressline2", type: "text", name: "zipcode", placeholder: "Zip Code", description: "Your zip code as it appears on your credit card."}), 
@@ -34989,6 +35070,10 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
       )
     );
   },
+
+  _onChange: function(e, value) {
+    //console.log(value);
+  }
 
 });
 
