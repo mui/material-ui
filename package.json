@@ -1,7 +1,7 @@
 {
   "name": "material-ui",
   "author": "Call-em-all Engineering Team",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "description": "Material Design UI components built with React",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   },
   "keywords": [
     "react",
+    "react-component",
     "material design",
     "material-ui",
     "material ui"
