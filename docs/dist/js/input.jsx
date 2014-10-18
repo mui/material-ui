@@ -71,6 +71,14 @@ var Input = React.createClass({
     return this.state.value;
   },
 
+  setValue: function(txt) {
+    this.setState({value: txt});
+  },
+
+  clear: function() {
+    this.setValue("");
+  },
+
   _onInputChange: function(e) {
     var value = e.target.value;
     this.setState({value: value});
