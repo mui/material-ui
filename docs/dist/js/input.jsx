@@ -75,7 +75,7 @@ var Input = React.createClass({
     this.setState({value: txt});
   },
 
-  clear: function() {
+  clearValue: function() {
     this.setValue("");
   },
 
