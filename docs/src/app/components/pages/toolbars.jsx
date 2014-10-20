@@ -1,11 +1,8 @@
-/**
- * @jsx React.DOM
- */
+/** @jsx React.DOM */
 
-var React = require('react'),
-    mui = require('mui')
-    PaperButton = mui.PaperButton;
-
+var mui = require('mui');
+var PaperButton = mui.PaperButton;
+var React = require('react');
 
 var ToolbarPage = React.createClass({
 
@@ -23,22 +20,20 @@ var ToolbarPage = React.createClass({
 
     iconMenuItems = [
       { payload: '1', text: 'Download' },
-      { payload: '2', text: 'Blah' }
+      { payload: '2', text: 'More Info' }
     ];
 
-    leftItems = [
-      //{ type: "title", title: "Broadcasts"},
-      <mui.PaperButton type={PaperButton.Types.RAISED} label="Create Broadcast" primary={true} />
-    ],
-        
     rightItems = [
-      { type: "separator"},
-      <mui.DropDownMenu menuItems={filterOptions} />,
-      { type: "separator"},
       <mui.Icon icon='sort' />,
       <mui.Icon icon='filter' />,
       <mui.Icon icon='search' />,
-      <mui.DropDownIcon icon="chevron-down" menuItems={iconMenuItems} onChange={this._onDropDownMenuChange} />
+      <mui.DropDownIcon icon="chevron-down" menuItems={iconMenuItems} onChange={this._onDropDownMenuChange} />,
+      { type: "separator"},
+      <mui.PaperButton type={PaperButton.Types.RAISED} label="Create Broadcast" primary={true} />,
+    ],
+        
+    leftItems = [
+      <mui.DropDownMenu menuItems={filterOptions} />,
     ];
 
     groups = [ 

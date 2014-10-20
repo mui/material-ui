@@ -1,16 +1,14 @@
-/**
- * @jsx React.DOM
- */
+/** @jsx React.DOM */
 
-var React = require('react'),
-    Classable = require('./mixins/classable.js');
+var Classable = require('./mixins/classable.js');
+var React = require('react');
 
 var ToolbarGroup = React.createClass({
 
   propTypes: {
-    key: React.PropTypes.number.isRequired,
     float: React.PropTypes.string,
-    groupItems: React.PropTypes.array
+    groupItems: React.PropTypes.array,
+    key: React.PropTypes.number.isRequired
   },
 
   mixins: [Classable],

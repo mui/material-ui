@@ -60,9 +60,14 @@
 
 	.mui-menu {
 		.mui-menu-item {
+			transition: none;
 			padding-right: (@icon-size + (@desktop-gutter-less*2));
 			height: @desktop-drop-down-menu-item-height;
 			line-height: @desktop-drop-down-menu-item-height;
+
+			&:hover {
+				background-color: @menu-item-hover-color;
+			}
 		}
 	}
 

@@ -1,10 +1,9 @@
-/**
- * @jsx React.DOM
- */
+/** @jsx React.DOM */
 
-var React = require('react'),
-    ToolbarGroup = require('./toolbar-group.jsx'),
-    Classable = require('./mixins/classable.js');
+var Classable = require('./mixins/classable.js');
+var Paper = require('./paper.jsx');
+var React = require('react');
+var ToolbarGroup = require('./toolbar-group.jsx');
 
 var Toolbar = React.createClass({
 
