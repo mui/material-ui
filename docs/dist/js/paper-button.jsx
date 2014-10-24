@@ -49,7 +49,8 @@ var PaperButton = React.createClass({
   },
 
   getInitialState: function() {
-    return { zDepth: this.props.disabled ? 0 : zDepths[this.props.type] }
+    var zDepth = this.props.disabled ? 0 : zDepths[this.props.type];
+    return { zDepth: zDepth, initialZDepth: zDepth };
   },
 
   render: function() {
@@ -87,7 +88,6 @@ var PaperButton = React.createClass({
     var $el = $(this.getDOMNode()),
       $ripple = $(this.refs.ripple.getDOMNode()),
       $offset = $el.offset(),
-      originalZDepth = this.state.zDepth,
       x = e.pageX - $offset.left,
       y = e.pageY - $offset.top;
 
@@ -103,9 +103,9 @@ var PaperButton = React.createClass({
 
     //animate the zdepth change
     if (this.props.type !== Types.FLAT) {
-      this.setState({ zDepth: originalZDepth + 1 });
+      this.setState({ zDepth: this.state.initialZDepth + 1 });
       CssEvent.onTransitionEnd($el, function() {
-        this.setState({ zDepth: originalZDepth });
+        this.setState({ zDepth: this.state.initialZDepth });
       }.bind(this));
     }
   }
