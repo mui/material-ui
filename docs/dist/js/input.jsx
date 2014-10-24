@@ -53,12 +53,12 @@ var Input = React.createClass({
       }),
       inputElement = this.props.multiline ? 
         <textarea value={this.state.value} className="mui-input-textarea" rows={this.state.rows} onChange={this._onTextAreaChange} required /> :
-        <input value={this.state.value} type={this.props.type} name={this.props.name} onChange={this._onInputChange} required />;
+        <input ref="input" value={this.state.value} type={this.props.type} name={this.props.name} onChange={this._onInputChange} required />;
 
     return (
       <div ref={this.props.ref} className={classes}>
         {inputElement}
-        <span className="mui-input-placeholder">{this.props.placeholder}</span>
+        <span className="mui-input-placeholder" onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
@@ -83,6 +83,10 @@ var Input = React.createClass({
     var value = e.target.value;
     this.setState({value: value});
     if (this.props.onChange) this.props.onChange(e, value);
+  },
+
+  _onPlaceholderClick: function(e) {
+    this.refs.input.getDOMNode().focus();
   },
 
   _onTextAreaChange: function(e) {

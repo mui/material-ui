@@ -1,7 +1,7 @@
 @toolbar-background-color: darken(#eeeeee, 5%);
 @toolbar-height: 56px;
 @toolbar-icon-color: rgba(0, 0, 0, .40);
-@toolbar-separator-color: rgba(0, 0, 0, .11);
+@toolbar-separator-color: rgba(0, 0, 0, .175);
 @toolbar-menu-hover-color: rgba(0, 0, 0, .10);
 @toolbar-menu-hover-color: @white;
 
@@ -96,6 +96,10 @@
 
 			&:first-child {
 				margin-left: -24px !important;
+
+				.mui-toolbar-title {
+					margin-left: 24px !important;
+				}
 			}
 		}
 
