@@ -31,8 +31,12 @@ var LeftNav = React.createClass({
     };
   },
 
-  toggleOpenState: function() {
+  toggle: function() {
     this.setState({ open: !this.state.open });
+  },
+
+  close: function() {
+    this.setState({ open: false });
   },
 
   render: function() {
@@ -53,11 +57,11 @@ var LeftNav = React.createClass({
   },
 
   _onOverlayClick: function() {
-    this.setState({ open: false });
+    this.close();
   },
 
   _onMenuItemClick: function(e, key, payload) {
-    this.setState({ open: false });
+    this.close();
     if (this.props.onChange && this.props.selectedIndex !== key) this.props.onChange(e, key, payload);
   }
 

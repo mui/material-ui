@@ -44,7 +44,7 @@ var Master = React.createClass({
   },
 
   _onMenuIconClick: function() {
-    this.refs.leftNav.toggleOpenState();
+    this.refs.leftNav.toggle();
   },
 
   _onStoreChange: function() {

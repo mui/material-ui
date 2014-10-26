@@ -11,7 +11,7 @@ var AppLeftNav = React.createClass({
 
   propTypes: {
     url: React.PropTypes.string,
-    toggleOpenState: React.PropTypes.func
+    toggle: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -58,8 +58,8 @@ var AppLeftNav = React.createClass({
     );
   },
 
-  toggleOpenState: function() {
-    this.refs.leftNav.toggleOpenState();
+  toggle: function() {
+    this.refs.leftNav.toggle();
   },
 
   _setSelectedIndex: function(url) {
@@ -79,6 +79,7 @@ var AppLeftNav = React.createClass({
 
   _onHeaderClick: function() {
     if (this.props.url !== Pages.home.url) {
+      this.refs.leftNav.close();
       Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: Pages.home.url } ); 
     }
   },
