@@ -10,7 +10,8 @@ var React = require('react'),
 var AppLeftNav = React.createClass({
 
   propTypes: {
-    url: React.PropTypes.string
+    url: React.PropTypes.string,
+    toggleOpenState: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -48,11 +49,17 @@ var AppLeftNav = React.createClass({
 
     return (
       <mui.LeftNav 
+        ref="leftNav"
+        isInitiallyOpen={false}
         header={header}
         menuItems={this.state.menuItems}
         selectedIndex={this.state.selectedIndex}
         onChange={this._onLeftNavChange} />
     );
+  },
+
+  toggleOpenState: function() {
+    this.refs.leftNav.toggleOpenState();
   },
 
   _setSelectedIndex: function(url) {

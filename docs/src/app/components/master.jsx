@@ -34,13 +34,17 @@ var Master = React.createClass({
 
     return (
       <mui.AppCanvas predefinedLayout={1}>
-        <mui.AppBar title={title} />
-    		<AppLeftNav url={this.state.currentUrl} />
+        <mui.AppBar onMenuIconClick={this._onMenuIconClick} title={title} />
+    		<AppLeftNav ref="leftNav" url={this.state.currentUrl} />
     		<div className="mui-app-content-canvas">
             {currentMainComponent}
         </div>
       </mui.AppCanvas>
     );
+  },
+
+  _onMenuIconClick: function() {
+    this.refs.leftNav.toggleOpenState();
   },
 
   _onStoreChange: function() {
