@@ -22,6 +22,7 @@ var AppLeftNav = React.createClass({
         { payload: Pages.icons, text: Pages.icons.title },
         { type: mui.MenuItem.Types.SUBHEADER, text: 'Components' },
         { payload: Pages.buttons, text: Pages.buttons.title },
+        { payload: Pages.dialog, text: Pages.dialog.title },
         { payload: Pages.inputs, text: Pages.inputs.title },
         { payload: Pages.menus, text: Pages.menus.title },
         { payload: Pages.switches, text: Pages.switches.title },
