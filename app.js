@@ -8,7 +8,6 @@
 	var $ = require('jquery'),
 	  Backbone = require('backbone'),
 	  React = require('react'),
-	  //hljs = require('hljs'),
 	  AppRouter = require('./app-router.js'),
 	  MasterComponent = require('./components/master.jsx');
 
@@ -17,14 +16,8 @@
 	//Needed for React Developer Tools
 	window.React = React;
 
-	//Initialize the syntax highlighting plugin
-	//hljs.initHighlightingOnLoad();
-
 	//Render the main app component
-	React.renderComponent(
-		MasterComponent(null),
-	  document.body
-	);
+	React.renderComponent(MasterComponent(null), document.body);
 
 	Backbone.history.start();
 
@@ -32,7 +25,33 @@
 
 
 
-},{"./app-router.js":"/Users/Jay/Projects/material-ui/src/app/app-router.js","./components/master.jsx":"/Users/Jay/Projects/material-ui/src/app/components/master.jsx","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/app-bar.jsx":[function(require,module,exports){
+},{"./app-router.js":"/Users/Jay/Projects/material-ui/docs/src/app/app-router.js","./components/master.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/master.jsx","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/index.js":[function(require,module,exports){
+module.exports = {
+	AppBar: require('./js/app-bar.jsx'),
+	AppCanvas: require('./js/app-canvas.jsx'),
+	Checkbox: require('./js/checkbox.jsx'),
+	Dialog: require('./js/dialog.jsx'),
+	DropDownIcon: require('./js/drop-down-icon.jsx'),
+	DropDownMenu: require('./js/drop-down-menu.jsx'),
+	Icon: require('./js/icon.jsx'),
+	Input: require('./js/input.jsx'),
+	LeftNav: require('./js/left-nav.jsx'),
+	MenuItem: require('./js/menu-item.jsx'),
+	Menu: require('./js/menu.jsx'),
+	Mixins: {
+		Classable: require('./js/mixins/classable.js'),
+		ClickAwayable: require('./js/mixins/click-awayable.js')
+	},
+	PaperButton: require('./js/paper-button.jsx'),
+	Paper: require('./js/paper.jsx'),
+	RadioButton: require('./js/radio-button.jsx'),
+	Toggle: require('./js/toggle.jsx'),
+	Toast: require('./js/toast.jsx'),
+	Toolbar: require('./js/toolbar.jsx'),
+	ToolbarGroup: require('./js/toolbar-group.jsx')
+};
+
+},{"./js/app-bar.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/app-bar.jsx","./js/app-canvas.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/app-canvas.jsx","./js/checkbox.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/checkbox.jsx","./js/dialog.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/dialog.jsx","./js/drop-down-icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/drop-down-icon.jsx","./js/drop-down-menu.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/drop-down-menu.jsx","./js/icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx","./js/input.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/input.jsx","./js/left-nav.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/left-nav.jsx","./js/menu-item.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu-item.jsx","./js/menu.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu.jsx","./js/mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./js/mixins/click-awayable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js","./js/paper-button.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper-button.jsx","./js/paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./js/radio-button.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/radio-button.jsx","./js/toast.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toast.jsx","./js/toggle.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toggle.jsx","./js/toolbar-group.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toolbar-group.jsx","./js/toolbar.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toolbar.jsx"}],"/Users/Jay/Projects/material-ui/docs/dist/js/app-bar.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -73,7 +92,7 @@ var AppBar = React.createClass({displayName: 'AppBar',
 
 module.exports = AppBar;
 
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/app-canvas.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/app-canvas.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -106,7 +125,7 @@ var AppCanvas = React.createClass({displayName: 'AppCanvas',
 
 module.exports = AppCanvas;
 
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/checkbox.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/checkbox.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -117,10 +136,11 @@ var React = require('react'),
 var Checkbox = React.createClass({displayName: 'Checkbox',
 
   propTypes: {
+    checked: React.PropTypes.bool,
     name: React.PropTypes.string.isRequired,
-    value: React.PropTypes.string.isRequired,
     onCheck: React.PropTypes.func,
-    checked: React.PropTypes.bool
+    value: React.PropTypes.string.isRequired,
+    onClick: React.PropTypes.func
   },
 
   mixins: [Classable],
@@ -130,12 +150,7 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
       checked: this.props.checked || false
     }
   },
-
-  getDefaultProps: function() {
-    return {
-    };
-  },
-
+  
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.hasOwnProperty('checked')) this.setState({checked: nextProps.checked});
   },
@@ -171,7 +186,88 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
 });
 
 module.exports = Checkbox;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/drop-down-icon.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/dialog.jsx":[function(require,module,exports){
+/** @jsx React.DOM */
+
+var $ = require('jquery');
+var Classable = require('./mixins/classable');
+var Paper = require('./paper.jsx');
+var React = require('react');
+
+var Dialog = React.createClass({displayName: 'Dialog',
+
+	mixins: [Classable],
+
+	propTypes: {
+    openImmediately: React.PropTypes.bool,
+    title: React.PropTypes.string,
+    actions: React.PropTypes.array
+	},
+
+	getDefaultProps: function() {
+		return {
+			actions: []
+		};
+	},
+
+	getInitialState: function() {
+		return {
+			open: this.props.openImmediately || false
+		};
+	},
+
+	componentDidUpdate: function (prevProps, prevState) {
+    //calculate height and use that to center the dialog vertically
+    var $el = $(this.getDOMNode()),
+    	height = $el.innerHeight();
+
+  	$el.css('margin-top', -height / 2);
+	},
+
+	_handleClickAway: function() {
+		this.dismiss();
+	},
+
+	render: function() {
+		var mainClasses = this.getClasses('dialog', { 'show': this.state.open }),
+			actions = this.props.actions.map(function(a) {
+				if (a.onClick) return React.DOM.div({className: "action", onClick: a.onClick}, a.text);
+				return React.DOM.div({className: "action", onClick: this.dismiss}, a.text);
+			}.bind(this));
+
+		return (
+			React.DOM.div({className: mainClasses}, 
+				Paper({zDepth: 4}, 
+					React.DOM.h3({className: "dialog-title"}, 
+						this.props.title
+					), 
+					React.DOM.div({className: "dialog-content"}, 
+						this.props.children
+					), 
+					React.DOM.div({className: "dialog-actions"}, 
+						React.DOM.div({className: "actions-right"}, 
+							actions
+						)
+					)
+				), 
+				React.DOM.div({className: "dialog-overlay", onClick: this._handleClickAway})
+			)
+		);
+	},
+
+	dismiss: function() {
+		this.setState({ open: false });
+	},
+
+	show: function() {
+		this.setState({ open: true });
+	}
+
+});
+
+module.exports = Dialog;
+
+},{"./mixins/classable":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/drop-down-icon.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -243,7 +339,7 @@ var DropDownIcon = React.createClass({displayName: 'DropDownIcon',
 });
 
 module.exports = DropDownIcon;
-},{"./icon.jsx":"/Users/Jay/Projects/material-ui/dist/js/icon.jsx","./menu-item.jsx":"/Users/Jay/Projects/material-ui/dist/js/menu-item.jsx","./menu.jsx":"/Users/Jay/Projects/material-ui/dist/js/menu.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/Jay/Projects/material-ui/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper.jsx","./utils/key-line.js":"/Users/Jay/Projects/material-ui/dist/js/utils/key-line.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/drop-down-menu.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx","./menu-item.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu-item.jsx","./menu.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./utils/key-line.js":"/Users/Jay/Projects/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/drop-down-menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -296,7 +392,7 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
     return (
     	React.DOM.div({className: classes}, 
         React.DOM.div({className: "mui-menu-control", onClick: this._onControlClick}, 
-          Paper({className: "mui-menu-control-bg"}), 
+          Paper({className: "mui-menu-control-bg", zDepth: "0"}), 
           React.DOM.div({className: "mui-menu-label"}, 
             this.props.menuItems[this.state.selectedIndex].text
           ), 
@@ -323,7 +419,7 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
 
 module.exports = DropDownMenu;
 
-},{"./icon.jsx":"/Users/Jay/Projects/material-ui/dist/js/icon.jsx","./menu.jsx":"/Users/Jay/Projects/material-ui/dist/js/menu.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/Jay/Projects/material-ui/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper.jsx","./utils/key-line.js":"/Users/Jay/Projects/material-ui/dist/js/utils/key-line.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/icon.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx","./menu.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./utils/key-line.js":"/Users/Jay/Projects/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -337,7 +433,7 @@ var Icon = React.createClass({displayName: 'Icon',
 
 	propTypes: {
 		icon: React.PropTypes.string,
-    	onClick: React.PropTypes.func
+		onClick: React.PropTypes.func
 	},
 
 	render: function() {
@@ -345,19 +441,20 @@ var Icon = React.createClass({displayName: 'Icon',
 
 		return (
 			React.DOM.span({className: classes, onClick: this._onClick}, 
-          		React.DOM.span({className: "mui-icon-highlight"}, " ")
-          	)
+				React.DOM.span({className: "mui-icon-highlight"}, " ")
+			)
 		);
 	},
 
 	_onClick: function(e) {
 		if (this.props.onClick) this.props.onClick(e);
-	},
+	}
 
 });
 
 module.exports = Icon;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/input.jsx":[function(require,module,exports){
+
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/input.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -370,19 +467,20 @@ var Input = React.createClass({displayName: 'Input',
 
   propTypes: {
     multiline: React.PropTypes.bool,
-    style: React.PropTypes.string,
+    inputStyle: React.PropTypes.string,
     error: React.PropTypes.string,
-    label: React.PropTypes.string,
     description: React.PropTypes.string,
     placeholder: React.PropTypes.string,
     type: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired
+    name: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func
   },
 
   mixins: [Classable],
 
   getInitialState: function() {
     return {
+      value: this.props.defaultValue,
       error: false,
       rows: 1
     }
@@ -406,53 +504,51 @@ var Input = React.createClass({displayName: 'Input',
 
   render: function() {
     var classes = this.getClasses('mui-input', {
-      'mui-floating': this.props.style === 'floating',
-      'mui-text': this.props.type === 'text',
-      'mui-error': this.state.error === true
-    })
+        'mui-floating': this.props.inputStyle === 'floating',
+        'mui-text': this.props.type === 'text',
+        'mui-error': this.state.error === true
+      }),
+      inputElement = this.props.multiline ? 
+        React.DOM.textarea({value: this.state.value, className: "mui-input-textarea", rows: this.state.rows, onChange: this._onTextAreaChange, required: true}) :
+        React.DOM.input({ref: "input", value: this.state.value, type: this.props.type, name: this.props.name, onChange: this._onInputChange, required: true});
 
-    switch(this.props.multiline) {
-      case true:
-        return (
-          React.DOM.div({className: classes}, 
-            React.DOM.textarea({className: "mui-input-textarea", rows: this.state.rows, onChange: this._onLineBreak, required: true}), 
-            React.DOM.span({className: "mui-input-placeholder"}, 
-              this.props.placeholder
-            ), 
-            React.DOM.span({className: "mui-input-highlight"}
-            ), 
-            React.DOM.span({className: "mui-input-bar"}
-            ), 
-            React.DOM.span({className: "mui-input-description"}, 
-              this.props.description
-            ), 
-            React.DOM.span({className: "mui-input-error"}, 
-              this.props.error
-            )
-          )
-        );
-      case false:
-        return (
-          React.DOM.div({className: classes}, 
-            React.DOM.input({type: this.props.type, name: this.props.name, required: true}), 
-            React.DOM.span({className: "mui-input-placeholder"}, 
-              this.props.placeholder
-            ), 
-            React.DOM.span({className: "mui-input-highlight"}
-            ), 
-            React.DOM.span({className: "mui-input-bar"}
-            ), 
-            React.DOM.span({className: "mui-input-description"}, 
-              this.props.description
-            ), 
-            React.DOM.span({className: "mui-input-error"}, 
-              this.props.error
-            )
-          )
-        );
-    }
+    return (
+      React.DOM.div({ref: this.props.ref, className: classes}, 
+        inputElement, 
+        React.DOM.span({className: "mui-input-placeholder", onClick: this._onPlaceholderClick}, this.props.placeholder), 
+        React.DOM.span({className: "mui-input-highlight"}), 
+        React.DOM.span({className: "mui-input-bar"}), 
+        React.DOM.span({className: "mui-input-description"}, this.props.description), 
+        React.DOM.span({className: "mui-input-error"}, this.props.error)
+      )
+    );
+  },
 
+  getValue: function() {
+    return this.state.value;
+  },
 
+  setValue: function(txt) {
+    this.setState({value: txt});
+  },
+
+  clearValue: function() {
+    this.setValue("");
+  },
+
+  _onInputChange: function(e) {
+    var value = e.target.value;
+    this.setState({value: value});
+    if (this.props.onChange) this.props.onChange(e, value);
+  },
+
+  _onPlaceholderClick: function(e) {
+    this.refs.input.getDOMNode().focus();
+  },
+
+  _onTextAreaChange: function(e) {
+    this._onInputChange(e);
+    this._onLineBreak();
   },
 
   _onLineBreak: function(e) {
@@ -464,12 +560,12 @@ var Input = React.createClass({displayName: 'Input',
         this.setState({ rows: ((this.state.rows) + 1)})
       }
     }
-  },
+  }
 
 });
 
 module.exports = Input;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/left-nav.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/left-nav.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -510,7 +606,7 @@ var LeftNav = React.createClass({displayName: 'LeftNav',
 
 module.exports = LeftNav;
 
-},{"./menu.jsx":"/Users/Jay/Projects/material-ui/dist/js/menu.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/menu-item.jsx":[function(require,module,exports){
+},{"./menu.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/menu-item.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -521,18 +617,20 @@ var React = require('react'),
   Toggle = require('./toggle.jsx'),
 
   Types = {
+    LINK: 'LINK',
     SUBHEADER: 'SUBHEADER',
     NESTED: 'NESTED'
   };
 
 var MenuItem = React.createClass({displayName: 'MenuItem',
 
-	mixins: [Classable],
+  mixins: [Classable],
 
   propTypes: {
     key: React.PropTypes.number.isRequired,
     icon: React.PropTypes.string,
     iconRight: React.PropTypes.string,
+    attribute: React.PropTypes.string,
     number: React.PropTypes.string,
     data: React.PropTypes.string,
     toggle: React.PropTypes.bool,
@@ -558,21 +656,24 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
       icon,
       data,
       iconRight,
-      menuItemNumber,
+      attribute,
+      number,
       toggle;
 
     if (this.props.icon) icon = Icon({className: "mui-menu-item-icon", icon: this.props.icon});
     if (this.props.data) data = React.DOM.span({className: "mui-menu-item-data"}, this.props.data);
     if (this.props.iconRight) iconRight = Icon({className: "mui-menu-item-icon-right", icon: this.props.iconRight});
-    if (this.props.number !== undefined) menuItemNumber = React.DOM.span({className: "mui-menu-item-number"}, this.props.number);
+    if (this.props.number !== undefined) number = React.DOM.span({className: "mui-menu-item-number"}, this.props.number);
+    if (this.props.attribute !== undefined) attribute = React.DOM.span({className: "mui-menu-item-attribute"}, this.props.attribute);
     if (this.props.toggle) toggle = Toggle({onToggle: this._onToggleClick});
 
     return (
-    	React.DOM.div({key: this.props.key, className: classes, onClick: this._onClick}, 
+      React.DOM.div({key: this.props.key, className: classes, onClick: this._onClick}, 
         icon, 
         this.props.children, 
         data, 
-        menuItemNumber, 
+        attribute, 
+        number, 
         toggle, 
         iconRight
       )
@@ -591,7 +692,7 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
 
 module.exports = MenuItem;
 
-},{"./icon.jsx":"/Users/Jay/Projects/material-ui/dist/js/icon.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./toggle.jsx":"/Users/Jay/Projects/material-ui/dist/js/toggle.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/menu.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./toggle.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toggle.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -600,7 +701,7 @@ var $ = require('jquery'),
   React = require('react'),
   CssEvent = require('./utils/css-event.js'),
   KeyLine = require('./utils/key-line.js'),
-	Classable = require('./mixins/classable.js'),
+  Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
   Paper = require('./paper.jsx'),
   MenuItem = require('./menu-item.jsx');
@@ -679,9 +780,9 @@ var NestedMenuItem = React.createClass({displayName: 'NestedMenuItem',
  ****************/
 var Menu = React.createClass({displayName: 'Menu',
 
-	mixins: [Classable],
+  mixins: [Classable],
 
-	propTypes: {
+  propTypes: {
     onItemClick: React.PropTypes.func,
     onToggleClick: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
@@ -722,18 +823,18 @@ var Menu = React.createClass({displayName: 'Menu',
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
   },
 
-	render: function() {
+  render: function() {
     var classes = this.getClasses('mui-menu', {
       'mui-menu-hideable': this.props.hideable,
       'mui-visible': this.props.visible
     });
 
     return (
-			Paper({zDepth: this.props.zDepth, className: classes}, 
+      Paper({zDepth: this.props.zDepth, className: classes}, 
         this._getChildren()
       )
-		);
-	},
+    );
+  },
 
   _getChildren: function() {
     var children = [],
@@ -749,6 +850,12 @@ var Menu = React.createClass({displayName: 'Menu',
       isSelected = i === this.props.selectedIndex;
 
       switch (menuItem.type) {
+
+        case MenuItem.Types.LINK:
+          itemComponent = (
+            React.DOM.a({key: i, className: "mui-menu-item", href: menuItem.payload}, menuItem.text)
+          );
+        break;
 
         case MenuItem.Types.SUBHEADER:
           itemComponent = (
@@ -776,6 +883,7 @@ var Menu = React.createClass({displayName: 'Menu',
               key: i, 
               icon: menuItem.icon, 
               data: menuItem.data, 
+              attribute: menuItem.attribute, 
               number: menuItem.number, 
               toggle: menuItem.toggle, 
               onClick: this._onItemClick, 
@@ -836,7 +944,7 @@ var Menu = React.createClass({displayName: 'Menu',
 
 module.exports = Menu;
 
-},{"./menu-item.jsx":"/Users/Jay/Projects/material-ui/dist/js/menu-item.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/Jay/Projects/material-ui/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper.jsx","./utils/css-event.js":"/Users/Jay/Projects/material-ui/dist/js/utils/css-event.js","./utils/key-line.js":"/Users/Jay/Projects/material-ui/dist/js/utils/key-line.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js":[function(require,module,exports){
+},{"./menu-item.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu-item.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./utils/css-event.js":"/Users/Jay/Projects/material-ui/docs/dist/js/utils/css-event.js","./utils/key-line.js":"/Users/Jay/Projects/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js":[function(require,module,exports){
 var React = require('react'),
   classSet = React.addons.classSet;
 
@@ -880,7 +988,7 @@ module.exports = {
 
 }
 
-},{"react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/mixins/click-awayable.js":[function(require,module,exports){
+},{"react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js":[function(require,module,exports){
 var $ = require('jquery');
 
 module.exports = {
@@ -904,7 +1012,7 @@ module.exports = {
   }
 
 }
-},{"jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js"}],"/Users/Jay/Projects/material-ui/dist/js/paper-button.jsx":[function(require,module,exports){
+},{"jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/paper-button.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -956,7 +1064,8 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
   },
 
   getInitialState: function() {
-    return { zDepth: this.props.disabled ? 0 : zDepths[this.props.type] }
+    var zDepth = this.props.disabled ? 0 : zDepths[this.props.type];
+    return { zDepth: zDepth, initialZDepth: zDepth };
   },
 
   render: function() {
@@ -994,7 +1103,6 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
     var $el = $(this.getDOMNode()),
       $ripple = $(this.refs.ripple.getDOMNode()),
       $offset = $el.offset(),
-      originalZDepth = this.state.zDepth,
       x = e.pageX - $offset.left,
       y = e.pageY - $offset.top;
 
@@ -1010,9 +1118,9 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
 
     //animate the zdepth change
     if (this.props.type !== Types.FLAT) {
-      this.setState({ zDepth: originalZDepth + 1 });
+      this.setState({ zDepth: this.state.initialZDepth + 1 });
       CssEvent.onTransitionEnd($el, function() {
-        this.setState({ zDepth: originalZDepth });
+        this.setState({ zDepth: this.state.initialZDepth });
       }.bind(this));
     }
   }
@@ -1021,7 +1129,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
 
 module.exports = PaperButton;
 
-},{"./icon.jsx":"/Users/Jay/Projects/material-ui/dist/js/icon.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper.jsx","./utils/css-event.js":"/Users/Jay/Projects/material-ui/dist/js/utils/css-event.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/paper.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./utils/css-event.js":"/Users/Jay/Projects/material-ui/docs/dist/js/utils/css-event.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1082,7 +1190,7 @@ var Paper = React.createClass({displayName: 'Paper',
 
 module.exports = Paper;
 
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/radio-button.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/radio-button.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1095,8 +1203,9 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
 
   propTypes: {
     name: React.PropTypes.string,
-    value: React.PropTypes.string,
     onClick: React.PropTypes.func,
+    value: React.PropTypes.string,
+    label: React.PropTypes.string
   },
 
   mixins: [Classable],
@@ -1119,7 +1228,8 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
     return (
       React.DOM.div({className: classes, onClick: this._onClick}, 
         React.DOM.input({ref: "radioButton", type: "radio", name: this.props.name, value: this.props.value}), 
-        React.DOM.div({className: "mui-radio-button-fill"})
+        React.DOM.div({className: "mui-radio-button-fill"}), 
+        React.DOM.span({className: "mui-radio-button-label"}, this.props.label)
       )
     );
   },
@@ -1135,7 +1245,69 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
 });
 
 module.exports = RadioButton;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/toggle.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/toast.jsx":[function(require,module,exports){
+/** @jsx React.DOM */
+
+var React = require('react');
+var Classable = require('./mixins/classable.js');
+var ClickAwayable = require('./mixins/click-awayable.js');
+
+var Toast = React.createClass({displayName: 'Toast',
+
+	mixins: [Classable, ClickAwayable],
+
+	propTypes: {
+		action: React.PropTypes.string,
+		icon: React.PropTypes.string,
+		message: React.PropTypes.string,
+  	onClick: React.PropTypes.func,
+  	open: React.PropTypes.bool
+	},
+
+	getInitialState: function() {
+		return {
+			open: false
+		}
+	},
+
+	componentWillReceiveProps: function(nextProps) {
+		this.setState({ open: nextProps.open });
+	},
+
+	componentClickAway: function() {
+		this.setState({ open: false });
+	},
+
+	render: function() {
+    var classes = this.getClasses('mui-toast', {
+				'mui-open': this.state.open
+  		}),
+    	message,
+	  	action;
+
+    if (this.props.message)
+    	message = React.DOM.span({className: "mui-toast-message"}, this.props.message);
+    if (this.props.action)
+    	action = React.DOM.span({className: "mui-toast-action", onClick: this._onActionClick}, this.props.action);
+
+		return (
+			React.DOM.span({className: classes}, 
+    		message, 
+    		action
+    	)
+		);
+	},
+
+	_onActionClick: function(e) {
+		if (this.props.onClick) this.props.onClick(e, this.props.action);
+		this.setState({ open: false });
+	}
+
+});
+
+module.exports = Toast;
+
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/toggle.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1157,11 +1329,6 @@ var Toggle = React.createClass({displayName: 'Toggle',
     return {
       toggled: false
     }
-  },
-
-  getDefaultProps: function() {
-    return {
-    };
   },
 
   render: function() {
@@ -1190,20 +1357,18 @@ var Toggle = React.createClass({displayName: 'Toggle',
 });
 
 module.exports = Toggle;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper.jsx","./radio-button.jsx":"/Users/Jay/Projects/material-ui/dist/js/radio-button.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/toolbar-group.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./radio-button.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/radio-button.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/toolbar-group.jsx":[function(require,module,exports){
+/** @jsx React.DOM */
 
-var React = require('react'),
-    Classable = require('./mixins/classable.js');
+var Classable = require('./mixins/classable.js');
+var React = require('react');
 
 var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
 
   propTypes: {
-    key: React.PropTypes.number.isRequired,
     float: React.PropTypes.string,
-    groupItems: React.PropTypes.array
+    groupItems: React.PropTypes.array,
+    key: React.PropTypes.number.isRequired
   },
 
   mixins: [Classable],
@@ -1271,14 +1436,13 @@ var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
 });
 
 module.exports = ToolbarGroup;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/toolbar.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/toolbar.jsx":[function(require,module,exports){
+/** @jsx React.DOM */
 
-var React = require('react'),
-    ToolbarGroup = require('./toolbar-group.jsx'),
-    Classable = require('./mixins/classable.js');
+var Classable = require('./mixins/classable.js');
+var Paper = require('./paper.jsx');
+var React = require('react');
+var ToolbarGroup = require('./toolbar-group.jsx');
 
 var Toolbar = React.createClass({displayName: 'Toolbar',
 
@@ -1325,7 +1489,7 @@ var Toolbar = React.createClass({displayName: 'Toolbar',
 });
 
 module.exports = Toolbar;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./toolbar-group.jsx":"/Users/Jay/Projects/material-ui/dist/js/toolbar-group.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/dist/js/utils/css-event.js":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./toolbar-group.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toolbar-group.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/utils/css-event.js":[function(require,module,exports){
 
 
 module.exports = {
@@ -1340,7 +1504,7 @@ module.exports = {
 
 };
 
-},{}],"/Users/Jay/Projects/material-ui/dist/js/utils/key-line.js":[function(require,module,exports){
+},{}],"/Users/Jay/Projects/material-ui/docs/dist/js/utils/key-line.js":[function(require,module,exports){
 module.exports = {
 
 	Desktop: {
@@ -1355,31 +1519,1724 @@ module.exports = {
 	}
 }
 
-},{}],"/Users/Jay/Projects/material-ui/index.js":[function(require,module,exports){
-module.exports = {
-	AppBar: require('./dist/js/app-bar.jsx'),
-	AppCanvas: require('./dist/js/app-canvas.jsx'),
-	Checkbox: require('./dist/js/checkbox.jsx'),
-	DropDownIcon: require('./dist/js/drop-down-icon.jsx'),
-	DropDownMenu: require('./dist/js/drop-down-menu.jsx'),
-	Icon: require('./dist/js/icon.jsx'),
-	Input: require('./dist/js/input.jsx'),
-	LeftNav: require('./dist/js/left-nav.jsx'),
-	MenuItem: require('./dist/js/menu-item.jsx'),
-	Menu: require('./dist/js/menu.jsx'),
-	Mixins: {
-		Classable: require('./dist/js/mixins/classable.js'),
-		ClickAwayable: require('./dist/js/mixins/click-awayable.js')
+},{}],"/Users/Jay/Projects/material-ui/docs/src/app/app-dispatcher.js":[function(require,module,exports){
+var Dispatcher = require('./vendor/flux/dispatcher.js');
+var copyProperties = require('react/lib/copyProperties');
+
+var AppDispatcher = copyProperties(new Dispatcher(), {
+
+	ActionTypes: {
+		NAV_URL_CHANGE: 'nav-url-change',
+		NAV_USER_CLICK: 'nav-user-click'
 	},
-	PaperButton: require('./dist/js/paper-button.jsx'),
-	Paper: require('./dist/js/paper.jsx'),
-	RadioButton: require('./dist/js/radio-button.jsx'),
-	Toggle: require('./dist/js/toggle.jsx'),
-	Toolbar: require('./dist/js/toolbar.jsx'),
-	ToolbarGroup: require('./dist/js/toolbar-group.jsx')
+
+	dispatchAction: function(type, payload) {
+		this.dispatch({
+			type: type,
+			payload: payload
+		})
+	}
+
+});
+
+module.exports = AppDispatcher;
+},{"./vendor/flux/dispatcher.js":"/Users/Jay/Projects/material-ui/docs/src/app/vendor/flux/dispatcher.js","react/lib/copyProperties":"/Users/Jay/Projects/material-ui/node_modules/react/lib/copyProperties.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/app-router.js":[function(require,module,exports){
+var _ = require('underscore'),
+  Backbone = require('backbone'),
+  Dispatcher = require('./app-dispatcher.js'),
+
+  AppRouter = Backbone.Router.extend({
+
+    routes: {
+      '*path': 'handleDefaultRoute'
+    },
+
+    initialize: function() {
+      this.dispatchToken = Dispatcher.register(_.bind(this.onDispatched, this));
+    },
+
+    handleDefaultRoute: function(url) {
+      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_URL_CHANGE, { url: url });
+    },
+
+    onDispatched: function(action) {
+      switch (action.type) {
+        case Dispatcher.ActionTypes.NAV_USER_CLICK:
+          this.navigate(action.payload.url);
+          break;
+      }
+    }
+
+  });
+
+module.exports = new AppRouter();
+
+},{"./app-dispatcher.js":"/Users/Jay/Projects/material-ui/docs/src/app/app-dispatcher.js","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","underscore":"/Users/Jay/Projects/material-ui/node_modules/underscore/underscore.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/app-left-nav.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+  mui = require('mui'),
+  Dispatcher = require('../app-dispatcher.js'),
+  Pages = require('./pages.jsx');
+
+var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
+
+  propTypes: {
+    url: React.PropTypes.string
+  },
+
+  getInitialState: function() {
+    return {
+      menuItems: [
+        { type: mui.MenuItem.Types.SUBHEADER, text: 'CSS Framework' },
+        { payload: Pages.colors, text: Pages.colors.title },
+        { payload: Pages.typography, text: Pages.typography.title },
+        { payload: Pages.icons, text: Pages.icons.title },
+        { type: mui.MenuItem.Types.SUBHEADER, text: 'Components' },
+        { payload: Pages.buttons, text: Pages.buttons.title },
+        { payload: Pages.dialog, text: Pages.dialog.title },
+        { payload: Pages.inputs, text: Pages.inputs.title },
+        { payload: Pages.menus, text: Pages.menus.title },
+        { payload: Pages.switches, text: Pages.switches.title },
+        //{ payload: Pages.toasts, text: Pages.toasts.title },
+        { payload: Pages.toolbars, text: Pages.toolbars.title },
+        { type: mui.MenuItem.Types.SUBHEADER, text: 'Resources' },
+        { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
+        { type: mui.MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
+        { type: mui.MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
+      ]
+    }
+  },
+
+  componentWillMount: function() {
+    this._setSelectedIndex(this.props.url);
+  },
+
+  componentWillReceiveProps: function(newProps) {
+    this._setSelectedIndex(newProps.url);
+  },
+
+  render: function() {
+    var header = React.DOM.div({className: "logo", onClick: this._onHeaderClick}, "material ui");
+
+    return (
+      mui.LeftNav({
+        header: header, 
+        menuItems: this.state.menuItems, 
+        selectedIndex: this.state.selectedIndex, 
+        onChange: this._onLeftNavChange})
+    );
+  },
+
+  _setSelectedIndex: function(url) {
+    var item;
+
+    for (var i = 0; i < this.state.menuItems.length; i++) {
+      item = this.state.menuItems[i];
+
+      if (item.payload && item.payload.url === url) {
+        if (i !== this.state.selectedIndex) this.setState({ selectedIndex: i});
+        return;
+      }
+    };
+
+    this.setState({ selectedIndex: null});
+  },
+
+  _onHeaderClick: function() {
+    if (this.props.url !== Pages.home.url) {
+      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: Pages.home.url } ); 
+    }
+  },
+
+  _onLeftNavChange: function(e, key, item) {
+    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: item.payload.url } ); 
+  }
+
+});
+
+module.exports = AppLeftNav;
+
+},{"../app-dispatcher.js":"/Users/Jay/Projects/material-ui/docs/src/app/app-dispatcher.js","./pages.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-block.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var $ = require('jquery'),
+	React = require('react'),
+	hljs = require('hljs');
+
+var CodeBlock = React.createClass({displayName: 'CodeBlock',
+
+	componentDidMount: function() {
+		hljs.highlightBlock(this.getDOMNode());
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
+		hljs.highlightBlock(this.getDOMNode());
+	},
+
+	render: function() {
+		return (
+			React.DOM.pre({className: "code-block"}, 
+				React.DOM.code(null, this.props.children)
+			)
+		);
+	}
+
+});
+
+module.exports = CodeBlock;
+},{"hljs":"/Users/Jay/Projects/material-ui/docs/src/app/vendor/highlight-js/highlight.pack.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+	mui = require('mui'),
+	CodeBlock = require('./code-block.jsx');
+
+var CodeExample = React.createClass({displayName: 'CodeExample',
+
+	propTypes: {
+		code: React.PropTypes.string.isRequired
+	},
+
+	render: function() {
+		return (
+			mui.Paper({className: "code-example"}, 
+    		React.DOM.div({className: "example-label"}, "example"), 
+	    	React.DOM.div({className: "example-block"}, 
+	    		this.props.children
+	    	), 
+	    	CodeBlock(null, this.props.code)
+    	)
+		);
+	}
+
+});
+
+module.exports = CodeExample;
+},{"./code-block.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-block.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/master.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var Backbone = require('backbone'),
+  React = require('react'),
+  mui = require('mui'),
+  AppStateStore = require('../stores/app-state-store.js'),
+  Pages = require('./pages.jsx'),
+	AppLeftNav = require('./app-left-nav.jsx');
+
+var Master = React.createClass({displayName: 'Master',
+
+  mixins: [Backbone.Events],
+
+  getInitialState: function() {
+    return {
+      currentUrl: AppStateStore.get('currentUrl')
+    }
+  },
+
+  componentDidMount: function() {
+    this.listenTo(AppStateStore, 'change', this._onStoreChange);
+  },
+
+  componentWillUnMount: function() {
+    this.stopListening();
+  },
+
+  render: function() {
+    var page = Pages.getPage(this.state.currentUrl);
+      title = page.title,
+      currentMainComponent = page.mainContentComponent;
+
+    return (
+      mui.AppCanvas({predefinedLayout: 1}, 
+        mui.AppBar({title: title}), 
+    		AppLeftNav({url: this.state.currentUrl}), 
+    		React.DOM.div({className: "mui-app-content-canvas"}, 
+            currentMainComponent
+        )
+      )
+    );
+  },
+
+  _onStoreChange: function() {
+    this.setState({
+      currentUrl: AppStateStore.get('currentUrl')
+    });
+  }
+  
+});
+
+module.exports = Master;
+
+},{"../stores/app-state-store.js":"/Users/Jay/Projects/material-ui/docs/src/app/stores/app-state-store.js","./app-left-nav.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/app-left-nav.jsx","./pages.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages.jsx","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var Home = require('./pages/home.jsx'),
+	Buttons = require('./pages/buttons.jsx'),
+	Colors = require('./pages/colors.jsx'),
+	Dialog = require('./pages/dialog.jsx'),
+	Icons = require('./pages/icons.jsx'),
+	Inputs = require('./pages/inputs.jsx'),
+	Menus = require('./pages/menus.jsx'),
+	Switches = require('./pages/switches.jsx'),
+	Toasts = require('./pages/toasts.jsx'),
+	Toolbar = require('./pages/toolbars.jsx'),
+	Typography = require('./pages/typography.jsx');
+
+var Pages = {
+	home: { url: '', title: 'Introduction', mainContentComponent: Home(null) },
+	colors: { url: 'colors', title: 'Colors', mainContentComponent: Colors(null) },
+	buttons: { url: 'buttons', title: 'Buttons', mainContentComponent: Buttons(null) },
+	dialog: { url: 'dialog', title: 'Dialog', mainContentComponent: Dialog(null) },
+	icons: { url: 'icons', title: 'Icons', mainContentComponent: Icons(null) },
+	inputs: { url: 'inputs', title: 'Inputs', mainContentComponent: Inputs(null) },
+	menus: { url: 'menus', title: 'Menus', mainContentComponent: Menus(null) },
+	switches: { url: 'switches', title: 'Switches', mainContentComponent: Switches(null) },
+	toasts: { url: 'toasts', title: 'Toasts', mainContentComponent: Toasts(null) },
+	toolbars: { url: 'toolbar', title: 'Toolbars', mainContentComponent: Toolbar(null) },
+	typography: { url: 'typography', title: 'Typography', mainContentComponent: Typography(null) },
+
+	getPage: function(url) {
+		if (!url) return this.home;
+
+		for (prop in this) {
+			if (this[prop].url === url) return this[prop];
+		}
+	}
+}
+
+module.exports = Pages;
+
+
+},{"./pages/buttons.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/buttons.jsx","./pages/colors.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/colors.jsx","./pages/dialog.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/dialog.jsx","./pages/home.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/home.jsx","./pages/icons.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/icons.jsx","./pages/inputs.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/inputs.jsx","./pages/menus.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/menus.jsx","./pages/switches.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/switches.jsx","./pages/toasts.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/toasts.jsx","./pages/toolbars.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/toolbars.jsx","./pages/typography.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/typography.jsx"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/buttons.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+  mui = require('mui'),
+  PaperButton = mui.PaperButton,
+  CodeExample = require('../code-example/code-example.jsx');
+
+var ButtonPage = React.createClass({displayName: 'ButtonPage',
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Flat Buttons"), 
+        this._getFlatExamples(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Raised Buttons"), 
+        this._getRaisedExamples(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Floating Action Buttons"), 
+        this._getFabExamples()
+
+    	)
+    );
+  },
+
+  _getFlatExamples: function() {
+    var code = 
+      '<PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
+      '<PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} />\n' +
+      '<PaperButton type={PaperButton.Types.FLAT} label="Disabled" disabled={true} />';
+
+    return (
+      CodeExample({code: code}, 
+        PaperButton({type: PaperButton.Types.FLAT, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.FLAT, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.FLAT, label: "Disabled", disabled: true})
+      )
+    );
+  },
+
+  _getRaisedExamples: function() {
+    var code = 
+      '<PaperButton type={PaperButton.Types.RAISED} label="Default" />\n' +
+      '<PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} />\n' +
+      '<PaperButton type={PaperButton.Types.RAISED} label="Disabled" disabled={true} />';
+
+    return (
+      CodeExample({code: code}, 
+        PaperButton({type: PaperButton.Types.RAISED, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.RAISED, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.RAISED, label: "Disabled", disabled: true})
+      )
+    );
+  },
+
+  _getFabExamples: function() {
+    var code = 
+      '<PaperButton type={PaperButton.Types.FAB_MINI} icon="phone" />\n' +
+      '<PaperButton type={PaperButton.Types.FAB} icon="phone" />';
+
+    return (
+      CodeExample({code: code}, 
+        PaperButton({type: PaperButton.Types.FAB_MINI, icon: "phone", onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.FAB, icon: "phone", onClick: this._onPaperButtonClick})
+      )
+    );
+  },
+
+  _onPaperButtonClick: function(e) {
+  	console.log(e);
+  }
+
+});
+
+module.exports = ButtonPage;
+
+},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/colors.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react');
+
+var ColorsPage = React.createClass({displayName: 'ColorsPage',
+
+  render: function() {
+  	var mainColors = [
+  			'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue', 
+  			'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange'
+  		],
+  		neutralColors = ['Brown', 'Blue Grey', 'Grey'],
+  		colorGroups = [],
+  		neutralGroups = [];
+
+  	mainColors.forEach(function(color) {
+  		colorGroups.push(this._getColorGroup(color, true));
+  	}, this);
+
+  	neutralColors.forEach(function(color) {
+  		neutralGroups.push(this._getColorGroup(color, false));
+  	}, this);
+
+    return (
+    	React.DOM.div(null, 
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "UI Color Palette"), 
+	    	React.DOM.p(null, "We've created ", React.DOM.a({href: "http://lesscss.org/"}, "{less}"), " variables for every color used in the ", React.DOM.a({href: "https://www.google.com/design/spec/style/color.html#color-ui-color-palette"}, "UI Color Palette"), "."), 
+
+	    	React.DOM.div({className: "color-palette"}, 
+	    		colorGroups, 
+
+					React.DOM.div({className: "neutral"}, 
+						neutralGroups
+					)
+	    	)
+	    )
+    );
+  },
+
+  _getColorGroup: function(color, showAltPalette) {
+  	var mainPalette = [50,100,200,300,400,500,600,700,800,900],
+  		altPalette = ['A100','A200','A400','A700'],
+  		cssColor = color.toLowerCase().replace(' ', '-'),
+  		colors = [];
+
+  	mainPalette.forEach(function(mainValue) {
+  		colors.push(this._getColorBlock(cssColor, mainValue));
+  	}, this);
+
+  	if (showAltPalette) {
+	  	altPalette.forEach(function(altValue) {
+	  		colors.push(this._getColorBlock(cssColor, altValue));
+	  	}, this);
+	  }
+
+  	return (
+			React.DOM.ul({className: "color-group"}, 
+				this._getColorBlock(cssColor, 500, color), 
+				colors
+			)
+  	);
+  },
+
+  _getColorBlock: function(colorName, colorValue, colorTitle) {
+  	var colorClass = colorName + '-' + colorValue,
+  		classes = 'color ' + colorClass,
+  		colorText = '@' + colorClass,
+  		blockTitle;
+
+  	if (colorTitle) blockTitle = React.DOM.span({className: "name"}, colorTitle);
+
+  	return (
+  		React.DOM.li({className: classes}, blockTitle, colorText)
+  	);
+  }
+
+});
+
+module.exports = ColorsPage;
+
+},{"react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/dialog.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var CodeExample = require('../code-example/code-example.jsx');
+var mui = require('mui');
+var React = require('react');
+
+
+var DialogExample = React.createClass({displayName: 'DialogExample',
+
+	render: function() {
+		var code = 
+      "showDialog: function() {\n" +
+      "  this.refs.dialogExample.show();\n" +
+      "},\n\n" +
+      "render: function() {\n\n" +
+      "  var dialogActions = [\n" +
+      "    { text: 'CANCEL' },\n" +
+      "    { text: 'SUBMIT', onClick: this._onDialogSubmit }\n" +
+      "  ];\n\n" +
+      "  return (\n" +
+      "    <PaperButton label=\"DEMO\" onClick={this.showDialog} />\n" +
+      "    <Dialog ref=\"dialogExample\" title=\"Title\" actions={dialogActions} />\n" +
+      "  );\n" +
+      "}\n";
+
+		var	dialogActions = [
+			{ text: 'CANCEL' },
+			{ text: 'SUBMIT', onClick: this._onDialogSubmit }
+		];
+
+		return (
+			React.DOM.div(null, 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Drop Down Menu"), 
+    		CodeExample({code: code}, 
+    			mui.PaperButton({label: "DEMO", onClick: this.showDialog})
+    		), 
+    		mui.Dialog({ref: "dialogExample", title: "Title", actions: dialogActions}, 
+    			"This is an example of a dialog component built with Facebook's React and following" + ' ' + 
+    			"Google's Material Design principles."
+  			)
+  		)
+		);
+	},
+
+	showDialog: function() {
+		this.refs.dialogExample.show();
+	}
+
+});
+
+module.exports = DialogExample;
+},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/home.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+	CodeBlock = require('../code-example/code-block.jsx');;
+
+var HomePage = React.createClass({displayName: 'HomePage',
+
+  render: function() {
+  	var usageCode =
+  		'/**\n' +
+ 			' * @jsx React.DOM\n' +
+ 			'*/\n\n' +
+ 			'var React = require(\'react\'),\n' +
+ 			'  mui = require(\'material-ui\'),\n' +
+ 			'  PaperButton = mui.PaperButton;\n\n' +
+ 			'var SomeAwesomeComponent = React.createClass({\n\n' +
+ 			'  render: function() {\n' +
+ 			'    return (\n' +
+ 			'        <PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
+ 			'    );\n' +
+ 			'  }\n\n' +
+ 			'});\n\n' +
+ 			'module.exports = SomeAwesomeComponent;';
+
+ 		var customizationCode = 
+ 			'@import "node_modules/material-ui/dist/less/scaffolding.less";\n\n' +
+ 			'//Define a custom less file to override any variables defined in scaffolding.less\n' +
+ 			'@import "my-custom-overrides.less";\n\n' +
+ 			'@import "node_modules/material-ui/dist/less/components.less";';
+
+    return (
+    	React.DOM.div(null, 
+    		React.DOM.h2({className: "mui-font-style-headline"}, 
+    			React.DOM.span({className: "mui-font-style-display-1"}, "Material-UI"), React.DOM.br(null), 
+    			"A CSS framework and a set of React components that implement Google's Material Design"
+  			), 
+    		React.DOM.p(null, 
+    			"Material-UI came about from our love" + ' ' +
+    			"of ", React.DOM.a({href: "http://facebook.github.io/react/"}, "React"), " and ", React.DOM.a({href: "https://www.google.com/design/spec/material-design/introduction.html"}, "Google's" + ' ' +
+    			"Material Design"), ". We're currently using it on a project at ", React.DOM.a({href: "https://www.call-em-all.com/"}, "Call-Em-All"), " and plan on" + ' ' +
+    			"adding to it and making it better in the coming months."
+    		), 
+    	
+    		React.DOM.br(null), 
+
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Installation"), 
+    		React.DOM.p(null, 
+    			"Material-UI is available as an ", React.DOM.a({href: "https://www.npmjs.org/package/material-ui"}, "npm package"), "." + ' ' + 
+    			"Use ", React.DOM.a({href: "http://browserify.org/"}, "browserify"), " and ", React.DOM.a({href: "https://github.com/andreypopp/reactify"}, "reactify"), " for" + ' ' +
+    			"dependency management and JSX transformation. The CSS framework is written in ", React.DOM.a({href: "http://lesscss.org/"}, "Less"), "," + ' ' +
+    			"so you'll need to compile that as well."
+    		), 
+
+    		React.DOM.br(null), 
+
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Usage"), 
+    		React.DOM.p(null, 
+    			"Once material-ui is included in your project, you can use the components this way:"
+    		), 
+    		CodeBlock(null, usageCode), 
+
+    		React.DOM.br(null), React.DOM.br(null), 
+
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Customization"), 
+    		React.DOM.p(null, "The styles are separated into 2 less files:"), 
+    		React.DOM.li(null, "dist/less/scaffolding.less"), 
+    		React.DOM.li(null, "dist/less/components.less"), 
+    		React.DOM.p(null, 
+    			"This allows you to override any variables defined in custom-variables.less without having to" + ' ' +
+    			"modify material-ui source files directly. For example, your main.less file could look something like this:"
+    		), 
+    		CodeBlock(null, customizationCode)
+    		
+    	)
+    );
+  }
+
+});
+
+module.exports = HomePage;
+
+},{"../code-example/code-block.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-block.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/icons.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+  	mui = require('mui'),
+    Icon = mui.Icon,
+    CodeExample = require('../code-example/code-example.jsx'),
+
+    coreIcons = [
+      'arrow-drop-down', 
+      'arrow-drop-right',
+      'cancel',
+      'check',
+      'chevron-down',
+      'chevron-right',
+      'close',
+      'delete',
+      'help',
+      'home',
+      'menu',
+      'more-horiz',
+      'more-vert',
+      'search',
+      'settings'
+    ],
+
+    appIcons = [
+      'broadcast',
+      'cloud-download',
+      'cloud-upload',
+      'contacts',
+      'edit',
+      'favorite',
+      'favorite-outline',
+      'filter',
+      'group',
+      'group-add',
+      'mic',
+      'pause',
+      'person',
+      'person-add',
+      'phone',
+      'pie',
+      'play',
+      'sort',
+      'star',
+      'star-outline',
+      'stop',
+      'textsms'
+    ];
+
+var IconsPage = React.createClass({displayName: 'IconsPage',
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Icon Component"), 
+        this._getComponentExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Core Icons"), 
+        React.DOM.hr(null), 
+        React.DOM.div({className: "icon-group"}, 
+          this._getIconGroup(coreIcons)
+        ), 
+
+        React.DOM.br(null), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "App Icons"), 
+        React.DOM.hr(null), 
+        React.DOM.div({className: "icon-group"}, 
+          this._getIconGroup(appIcons)
+        )
+        
+		)
+    );
+  },
+
+  _getIconGroup: function(icons) {
+    var iconExamples = [];
+
+    icons.forEach(function(icon) {
+      iconExamples.push(this._getIconExample(icon));
+    }, this);
+
+    return iconExamples;
+  },
+
+  _getIconExample: function(icon) {
+    return (
+      React.DOM.div({className: "icon-example"}, 
+        Icon({icon: icon}), React.DOM.span(null, icon)
+      )
+    );
+  },
+
+  _getComponentExample: function() {
+    var code = '<Icon icon="home" />';
+
+    return (
+      CodeExample({code: code}, 
+        Icon({icon: "home"})
+      )
+    );
+  }
+
+});
+
+module.exports = IconsPage;
+
+},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/inputs.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+  mui = require('mui');
+
+var InputsPage = React.createClass({displayName: 'InputsPage',
+
+
+  componentDidMount: function() {
+    //console.log(this.refs.firstname.getValue());
+  },
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Inputs"), 
+        React.DOM.br(null), 
+        mui.Input({ref: "firstname", onChange: this._onChange, type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
+        mui.Input({ref: "lastname", type: "text", name: "lastname", placeholder: "Last Name", description: "Your last name as it appears on your credit card.."}), 
+        mui.Input({ref: "addressline1", type: "text", name: "addressline1", placeholder: "Address Line 1", description: "Your address as it appears on your credit card."}), 
+        mui.Input({ref: "addressline2", type: "text", name: "zipcode", placeholder: "Zip Code", description: "Your zip code as it appears on your credit card."}), 
+        mui.Input({ref: "city", type: "text", name: "city", placeholder: "City", description: "Your city as it appears on your credit card."}), 
+        mui.Input({ref: "state", type: "text", name: "state", placeholder: "State", description: "Your state as it appears on your credit card."}), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Error Validation"), 
+        React.DOM.br(null), 
+        mui.Input({ref: "allegiance", type: "text", name: "allegiance", placeholder: "Allegiance", description: "The house of which you served under."}), 
+    	  React.DOM.br(null), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Floating"), 
+        React.DOM.br(null), 
+        mui.Input({ref: "username", type: "text", inputStyle: "floating", name: "Username", description: "The username associated with your account."})
+        
+        /* TODO: Needs to be completed}
+        <h2 className="mui-font-style-headline">Multi-Line</h2>
+        <br />
+        <mui.Input multiline={true} ref="textmessage" type="text" name="textmessage" placeholder="Text Message" description="Your text message." />
+        {*/
+      )
+    );
+  },
+
+  _onChange: function(e, value) {
+    //console.log(value);
+  }
+
+});
+
+module.exports = InputsPage;
+},{"mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/menus.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+ 
+var React = require('react'),
+  mui = require('mui'),
+  CodeExample = require('../code-example/code-example.jsx'),
+
+  menuItems = [
+    { payload: '1', text: 'Never' },
+    { payload: '2', text: 'Every Night' },
+    { payload: '3', text: 'Weeknights' },
+    { payload: '4', text: 'Weekends' },
+    { payload: '5', text: 'Weekly' },
+  ],
+
+  labelMenuItems = [
+    { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
+    { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
+    { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }
+  ],
+
+  numberMenuItems = [
+    { payload: '1', text: 'All', number: '22'},
+    { payload: '3', text: 'Uncategorized', number: '6'},
+    { payload: '4', text: 'Trash', number: '11' }
+  ],
+
+  iconMenuItems = [
+    { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },
+    { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },
+    { payload: '3', text: 'Starred', icon: 'mic', number: '3' },
+    { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }
+  ],
+
+  filterMenuItems = [
+    { payload: '1', text: 'Text Opt-In', toggle: true},
+    { payload: '2', text: 'Text Opt-Out', toggle: true},
+    { payload: '3', text: 'Voice Opt-Out', toggle: true}
+  ],
+
+  nestedMenuItems = [
+    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [
+      { payload: '1', text: 'Nested Item 1' },
+      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
+        { payload: '1', text: 'Nested Item 3' },
+        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
+          { payload: '1', text: 'Nested Item 5' },
+          { payload: '3', text: 'Nested Item 6' }
+        ] },
+        { payload: '3', text: 'Nested Item 7' }
+      ] },
+      { payload: '3', text: 'Nested Item 9' },
+      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
+        { payload: '1', text: 'Nested Item 3' },
+        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
+          { payload: '1', text: 'Nested Item 5' },
+          { payload: '3', text: 'Nested Item 6' }
+        ] },
+        { payload: '3', text: 'Nested Item 7' }
+      ] },
+      { payload: '4', text: 'Nested Item 10' }
+    ] },
+    { payload: '1', text: 'Audio Library'},
+    { payload: '2', text: 'Settings'},
+    { payload: '3', text: 'Logout'}
+  ];
+
+
+var MenusPage = React.createClass({displayName: 'MenusPage',
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Drop Down Menu"), 
+    		this._getDropDownMenuExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Label Menu"), 
+        this._getLabelMenuExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Number Menu"), 
+        this._getNumberMenuExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Icon Menu"), 
+        this._getIconMenuExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Filter Menu"), 
+        this._getFilterMenuExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Nested Menu"), 
+        this._getNestedMenuExample()
+    	)
+    );
+  },
+
+  _getDropDownMenuExample: function() {
+    var code = 
+      "var menuItems = [\n" +
+      "   { payload: '1', text: 'Never' },\n" +
+      "   { payload: '2', text: 'Every Night' },\n" +
+      "   { payload: '3', text: 'Weeknights' },\n" +
+      "   { payload: '4', text: 'Weekends' },\n" +
+      "   { payload: '5', text: 'Weekly' },\n" +
+      "];\n\n" +
+      "<DropDownMenu menuItems={menuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        mui.DropDownMenu({menuItems: menuItems, onChange: this._onDropDownMenuChange})
+      )
+    );
+  },
+
+  _getLabelMenuExample: function() {
+    var code = 
+      "var labelMenuItems = [\n" +
+      "   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },\n" +
+      "   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
+      "   { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
+      "];\n\n"  +
+      "<Menu menuItems={labelMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: labelMenuItems, onItemClick: this._onItemClick})
+        )
+      )
+    );
+  },
+
+  _getNumberMenuExample: function() {
+    var code = 
+      "var numberMenuItems = [\n" +
+      "   { payload: '1', text: 'All', number: '22' },\n" +
+      "   { payload: '3', text: 'Uncategorized', number: '6'},\n" +
+      "   { payload: '4', text: 'Trash', number: '11' }\n" +
+      "];\n\n"  +
+      "<Menu menuItems={numberMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: numberMenuItems, onItemClick: this._onItemClick})
+        )
+      )
+    );
+  },
+
+  _getIconMenuExample: function() {
+    var code = 
+      "iconMenuItems = [\n" +
+      "   { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },\n" +
+      "   { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },\n" +
+      "   { payload: '3', text: 'Starred', icon: 'mic', number: '3'},\n" +
+      "   { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }\n" +
+      "];\n\n" +
+      "<Menu menuItems={iconMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: iconMenuItems, onItemClick: this._onItemClick})
+        )
+      )
+    );
+  },
+
+  _getFilterMenuExample: function() {
+    var code = 
+      "filterMenuItems = [\n" +
+      "   { payload: '1', text: 'Text Opt-In', toggle: true},\n" +
+      "   { payload: '2', text: 'Text Opt-Out', toggle: true},\n" +
+      "   { payload: '3', text: 'Voice Opt-Out', toggle: true}\n" +
+      "];\n\n" +
+      "<Menu menuItems={filterMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
+        )
+      )
+    );
+  },
+
+  _getNestedMenuExample: function() {
+    var code = 
+      "nestedMenuItems = [\n" +
+      "    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [\n" +
+      "      { payload: '1', text: 'Nested Item 1' },\n" +
+      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
+      "        { payload: '1', text: 'Nested Item 3' },\n" +
+      "        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
+      "          { payload: '1', text: 'Nested Item 5' },\n" +
+      "          { payload: '3', text: 'Nested Item 6' }\n" +
+      "        ] },\n" +
+      "        { payload: '3', text: 'Nested Item 7' }\n" +
+      "      ] },\n" +
+      "      { payload: '3', text: 'Nested Item 9' },\n" +
+      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
+      "        { payload: '1', text: 'Nested Item 3' },\n" +
+      "       { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
+      "          { payload: '1', text: 'Nested Item 5' },\n" +
+      "          { payload: '3', text: 'Nested Item 6' }\n" +
+      "        ] },\n" +
+      "        { payload: '3', text: 'Nested Item 7' }\n" +
+      "      ] },\n" +
+      "      { payload: '4', text: 'Nested Item 10' }\n" +
+      "    ] },\n" +
+      "    { payload: '1', text: 'Audio Library'},\n" +
+      "    { payload: '2', text: 'Settings'},\n" +
+      "    { payload: '3', text: 'Logout'}\n" +
+      "  ];\n\n" +
+      '<Menu menuItems={nestedMenuItems} />';
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.div({className: "example-menu-nested"}, 
+          mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
+        )
+      )
+    );
+  },
+
+  _onDropDownMenuChange: function(e, key, menuItem) {
+  	console.log('Menu Clicked: ', menuItem);
+  },
+
+  _onFilterMenuToggle: function(e, key, menuItem, toggled) {
+    console.log('Filter Menu Toggled: ', key, menuItem, toggled)
+  },
+
+  _onItemClick: function(e, key, menuItem) {
+    console.log("Menu Item Click: ", menuItem);
+  }
+
+});
+
+module.exports = MenusPage;
+},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/switches.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+    mui = require('mui'),
+    CodeExample = require('../code-example/code-example.jsx');
+
+var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Checkbox"), 
+        this._getCheckboxExample(), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Radio Button"), 
+        this._getRadioButtonExample(), 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Toggle"), 
+        this._getToggleExample()
+    	)
+    );
+  },
+
+  _getCheckboxExample: function() {
+    var code = 
+      '<form>\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue1" />\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue2" />\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue3" />\n' +
+      '</form>';
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.form(null, 
+          mui.Checkbox({name: "checkboxName", value: "checkboxValue1", onClick: this._onCheck}), 
+          React.DOM.br(null), 
+          mui.Checkbox({name: "checkboxName", value: "checkboxValue2", onClick: this._onCheck}), 
+          React.DOM.br(null), 
+          mui.Checkbox({name: "checkboxName", value: "checkboxValue3", onClick: this._onCheck})
+        )
+      )
+    );
+  },
+
+  _getToggleExample: function() {
+    var code = 
+      '<Toggle />';
+
+    return (
+      CodeExample({code: code}, 
+        mui.Toggle({onToggle: this._onToggle})
+      )
+    );
+  },
+
+  _getRadioButtonExample: function() {
+    var code = 
+      '<form>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue1"/>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue2"/>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue3"/>\n' +
+      '</form>';
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.form(null, 
+          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue1", onClick: this._onRadioButtonClick}), 
+          React.DOM.br(null), 
+          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue2", onClick: this._onRadioButtonClick}), 
+          React.DOM.br(null), 
+          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue3", onClick: this._onRadioButtonClick})
+        )
+      )
+    );
+  },
+
+  _onCheck: function(e, checked) {
+    console.log('Checked: ', checked);
+  },
+
+  _onToggle: function(e, toggled) {
+    console.log('Toggled: ', toggled);
+  },
+
+  _onRadioButtonClick: function(e, checked) {
+    console.log('Clicked:', checked);
+  }
+
+});
+
+module.exports = SwitchesPage;
+},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/toasts.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react');
+var mui = require('mui');
+var CodeExample = require('../code-example/code-example.jsx');
+
+var ToastsPage = React.createClass({displayName: 'ToastsPage',
+
+  getInitialState: function() {
+    return {
+      message: 'You have deleted your broadcast.',
+      action: 'undo'
+    }
+  },
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+  			React.DOM.h2({className: "mui-font-style-headline"}, "Toasts"), 
+  			this._getToastExample()
+  		)
+    );
+  },
+
+  _getToastExample: function() {
+    var code = 
+      "";
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.button({onClick: this.triggerToast}, "Trigger Toast"), 
+      	mui.Toast({ref: "Toast", message: this.state.message, action: this.state.action})
+      )
+    );
+  },
+
+  triggerToast: function() {
+    this.refs.Toast.toggle();
+  },
+
+});
+
+module.exports = ToastsPage;
+},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/toolbars.jsx":[function(require,module,exports){
+/** @jsx React.DOM */
+
+var mui = require('mui');
+var PaperButton = mui.PaperButton;
+var React = require('react');
+
+var ToolbarPage = React.createClass({displayName: 'ToolbarPage',
+
+  render: function() {
+
+    var filterOptions = [
+      { payload: '1', text: 'All Broadcasts' },
+      { payload: '2', text: 'All Voice' },
+      { payload: '3', text: 'All Text' },
+      { payload: '4', text: 'Complete Voice' },
+      { payload: '5', text: 'Complete Text' },
+      { payload: '6', text: 'Active Voice' },
+      { payload: '7', text: 'Active Text' },
+    ],
+
+    iconMenuItems = [
+      { payload: '1', text: 'Download' },
+      { payload: '2', text: 'More Info' }
+    ];
+
+    rightItems = [
+      mui.Icon({icon: "sort"}),
+      mui.Icon({icon: "filter"}),
+      mui.Icon({icon: "search"}),
+      mui.DropDownIcon({icon: "chevron-down", menuItems: iconMenuItems, onChange: this._onDropDownMenuChange}),
+      { type: "separator"},
+      mui.PaperButton({type: PaperButton.Types.RAISED, label: "Create Broadcast", primary: true}),
+    ],
+        
+    leftItems = [
+      mui.DropDownMenu({menuItems: filterOptions}),
+    ];
+
+    groups = [ 
+      mui.ToolbarGroup({key: 0, float: "left", groupItems: leftItems}),
+      mui.ToolbarGroup({key: 1, float: "right", groupItems: rightItems})
+    ];
+
+    return (
+    	React.DOM.div(null, 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Toolbars"), 
+        React.DOM.div({className: "mui-toolbar-container"}, 
+          mui.Toolbar({groups: groups})
+        )
+    	)
+    );
+  },
+
+  _onDropDownMenuChange: function(e, key, menuItem) {
+    console.log('Menu Clicked: ', menuItem);
+  },
+
+});
+
+module.exports = ToolbarPage;
+},{"mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/typography.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var $ = require('jquery'),
+	React = require('react'),
+	CodeExample = require('../code-example/code-example.jsx');
+
+var TypographyPage = React.createClass({displayName: 'TypographyPage',
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Roboto"), 
+	    	React.DOM.p(null, 
+	    		"The Roboto font and 3 font weights (light, regular, and medium) are automatically included from ", React.DOM.a({href: "http://www.google.com/fonts/specimen/Roboto"}, "Google Fonts"), "."
+	    	), 
+
+	    	React.DOM.br(null), 
+
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Vertical Rhythm"), 
+	    	React.DOM.p(null, "Default styles for headings and paragraphs have consistent vertical rhythm. Click the text below to see. :)"), 
+	    	this._getVerticalRhythmExample(), 
+
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Typographic Scale"), 
+	    	this._getScaleExample(), 
+
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Color Contrast"), 
+	    	this._getColorExample(), 
+
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Tracking and Kerning"), 
+	    	this._getTrackingExample()
+    	)
+    );
+  },
+
+  _getVerticalRhythmExample: function() {
+  	var code = 
+  		'<h1>h1. Html Heading</h1>\n' +
+			'<h2>h2. Html Heading</h2>\n' +
+			'<h1>h1. Html Heading</h1>\n' +
+			'<h2>h2. Html Heading</h2>\n' +
+			'<h3>h3. Html Heading</h3>\n' +
+			'<h4>h4. Html Heading</h4>\n' +
+			'<h5>h5. Html Heading</h5>\n' +
+			'<h6>h6. Html Heading</h6>\n' +
+			'<p>\n'+
+			'	p. Lorem ipsum dolor sit amet, sed docendi suscipit scripserit eu, persius invenire\n' +
+			'	id sea. Ius dicant facilis propriae an, ut vim nonumy meliore lucilius, usu nonumes \n' +
+			'	phaedrum ad. Ea nam error audiam, oratio nostrud pro id. Ut sea cetero labitur \n' +
+			'	gubergren, munere maiorum nostrum vim ut, te feugiat vulputate cum. Choro volumus \n' +
+			'	sapientem te sed, legimus splendide ad nec.\n' +
+			'</p>';
+
+		return (
+			CodeExample({code: code}, 
+				React.DOM.div({ref: "verticalRhythmContainer", onClick: this._onClick}, 
+		    	React.DOM.h1(null, "h1. Html Heading"), 
+		    	React.DOM.h2(null, "h2. Html Heading"), 
+		    	React.DOM.h3(null, "h3. Html Heading"), 
+		    	React.DOM.h4(null, "h4. Html Heading"), 
+		    	React.DOM.h5(null, "h5. Html Heading"), 
+		    	React.DOM.h6(null, "h6. Html Heading"), 
+		    	React.DOM.p(null, "p. Lorem ipsum dolor sit amet, sed docendi suscipit scripserit eu, persius invenire id sea. Ius dicant facilis propriae an, ut vim nonumy meliore lucilius, usu nonumes phaedrum ad. Ea nam error audiam, oratio nostrud pro id. Ut sea cetero labitur gubergren, munere maiorum nostrum vim ut, te feugiat vulputate cum. Choro volumus sapientem te sed, legimus splendide ad nec.")
+    		)
+			)
+		);
+  },
+
+  _getScaleExample: function() {
+  	var code = 
+  		'<div className="mui-font-style-display-4">Light 112px</div>\n' +
+    	'<div className="mui-font-style-display-3">Regular 56px</div>\n' +
+    	'<div className="mui-font-style-display-2">Regular 45px</div>\n' +
+    	'<div className="mui-font-style-display-1">Regular 34px</div>\n' +
+    	'<div className="mui-font-style-headline">Regular 24px</div>\n' +
+    	'<div className="mui-font-style-title">Medium 20px</div>\n' +
+    	'<div className="mui-font-style-subhead-1">Regular 15px</div>\n' +
+    	'<div className="mui-font-style-body-2">Medium 13px</div>\n' +
+    	'<div className="mui-font-style-body-1">Regular 13px</div>\n' +
+    	'<div className="mui-font-style-caption">Regular 12px</div>\n' +
+    	'<div className="mui-font-style-menu">Medium 13px</div>\n' +
+    	'<div className="mui-font-style-button">MEDIUM (ALL CAPS) 14px</div>';
+
+		return (
+			CodeExample({code: code}, 
+				React.DOM.div({className: "mui-font-style-display-4"}, "Light 112px"), 
+	    	React.DOM.div({className: "mui-font-style-display-3"}, "Regular 56px"), 
+	    	React.DOM.div({className: "mui-font-style-display-2"}, "Regular 45px"), 
+	    	React.DOM.div({className: "mui-font-style-display-1"}, "Regular 34px"), 
+	    	React.DOM.div({className: "mui-font-style-headline"}, "Regular 24px"), 
+	    	React.DOM.div({className: "mui-font-style-title"}, "Medium 20px"), 
+	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Regular 15px"), 
+	    	React.DOM.div({className: "mui-font-style-body-2"}, "Medium 13px"), 
+	    	React.DOM.div({className: "mui-font-style-body-1"}, "Regular 13px"), 
+	    	React.DOM.div({className: "mui-font-style-caption"}, "Regular 12px"), 
+	    	React.DOM.div({className: "mui-font-style-menu"}, "Medium 13px"), 
+	    	React.DOM.div({className: "mui-font-style-button"}, "MEDIUM (ALL CAPS) 14px")
+			)
+		);
+  },
+
+  _getColorExample: function() {
+  	var code = 
+  		'<div className="mui-font-style-display-4">Black 54%</div>\n' +
+    	'<div className="mui-font-style-display-3">Black 54%</div>\n' +
+    	'<div className="mui-font-style-display-2">Black 54%</div>\n' +
+    	'<div className="mui-font-style-display-1">Black 54%</div>\n' +
+    	'<div className="mui-font-style-headline">Black 87%</div>\n' +
+    	'<div className="mui-font-style-title">Black 87%</div>\n' +
+    	'<div className="mui-font-style-subhead-1">Black 87%</div>\n' +
+    	'<div className="mui-font-style-body-2">Black 87%</div>\n' +
+    	'<div className="mui-font-style-body-1">Black 87%</div>\n' +
+    	'<div className="mui-font-style-caption">Black 54%</div>\n' +
+    	'<div className="mui-font-style-menu">Black 87%</div>\n' +
+    	'<div className="mui-font-style-button">Black 87%</div>';
+
+		return (
+			CodeExample({code: code}, 
+				React.DOM.div({className: "mui-font-style-display-4"}, "Black 54%"), 
+	    	React.DOM.div({className: "mui-font-style-display-3"}, "Black 54%"), 
+	    	React.DOM.div({className: "mui-font-style-display-2"}, "Black 54%"), 
+	    	React.DOM.div({className: "mui-font-style-display-1"}, "Black 54%"), 
+	    	React.DOM.div({className: "mui-font-style-headline"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-title"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-body-2"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-body-1"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-caption"}, "Black 54%"), 
+	    	React.DOM.div({className: "mui-font-style-menu"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-button"}, "Black 87%")
+			)
+		);
+  },
+
+  _getTrackingExample: function() {
+  	var code = 
+  		'<div className="mui-font-style-display-4">Tracking -10px</div>\n' +
+    	'<div className="mui-font-style-display-3">Tracking -5px</div>\n' +
+    	'<div className="mui-font-style-display-2">Tracking 0px</div>\n' +
+    	'<div className="mui-font-style-display-1">Tracking 0px</div>\n' +
+    	'<div className="mui-font-style-headline">Tracking 0px</div>\n' +
+    	'<div className="mui-font-style-title">Tracking 5px</div>\n' +
+    	'<div className="mui-font-style-subhead-1">Tracking 10px</div>\n' +
+    	'<div className="mui-font-style-body-2">Tracking 10px</div>\n' +
+    	'<div className="mui-font-style-body-1">Tracking 10px</div>\n' +
+    	'<div className="mui-font-style-caption">Tracking 20px</div>\n' +
+    	'<div className="mui-font-style-menu">Tracking 10px</div>\n' +
+    	'<div className="mui-font-style-button">Tracking 10px</div>';
+
+		return (
+			CodeExample({code: code}, 
+				React.DOM.div({className: "mui-font-style-display-4"}, "Tracking -10px"), 
+	    	React.DOM.div({className: "mui-font-style-display-3"}, "Tracking -5px"), 
+	    	React.DOM.div({className: "mui-font-style-display-2"}, "Tracking 0px"), 
+	    	React.DOM.div({className: "mui-font-style-display-1"}, "Tracking 0px"), 
+	    	React.DOM.div({className: "mui-font-style-headline"}, "Tracking 0px"), 
+	    	React.DOM.div({className: "mui-font-style-title"}, "Tracking 5px"), 
+	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Tracking 10px"), 
+	    	React.DOM.div({className: "mui-font-style-body-2"}, "Tracking 10px"), 
+	    	React.DOM.div({className: "mui-font-style-body-1"}, "Tracking 10px"), 
+	    	React.DOM.div({className: "mui-font-style-caption"}, "Tracking 20px"), 
+	    	React.DOM.div({className: "mui-font-style-menu"}, "Tracking 10px"), 
+	    	React.DOM.div({className: "mui-font-style-button"}, "Tracking 10px")
+			)
+		);
+  },
+
+  _onClick: function(e) {
+  	$(this.refs.verticalRhythmContainer.getDOMNode()).toggleClass('baseline-grid');
+  }
+
+});
+
+module.exports = TypographyPage;
+
+},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/stores/app-state-store.js":[function(require,module,exports){
+var _ = require('underscore'),
+  Backbone = require('backbone'),
+  Dispatcher = require('../app-dispatcher.js'),
+
+  AppStateStore = Backbone.Model.extend({
+
+    defaults: {
+      currentUrl: null
+    },
+
+    initialize: function() {
+      this.dispatchToken = Dispatcher.register(_.bind(this.onDispatched, this));
+    },
+
+    onDispatched: function(action) {
+      switch (action.type) {
+        case Dispatcher.ActionTypes.NAV_URL_CHANGE:
+        case Dispatcher.ActionTypes.NAV_USER_CLICK:
+          this.set('currentUrl', action.payload.url);
+          break;
+      }
+    }
+
+  });
+
+module.exports = new AppStateStore();
+
+},{"../app-dispatcher.js":"/Users/Jay/Projects/material-ui/docs/src/app/app-dispatcher.js","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","underscore":"/Users/Jay/Projects/material-ui/node_modules/underscore/underscore.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/vendor/flux/dispatcher.js":[function(require,module,exports){
+/*
+ * Copyright (c) 2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule Dispatcher
+ * @typechecks
+ */
+
+var invariant = require('./invariant');
+
+var _lastID = 1;
+var _prefix = 'ID_';
+
+/**
+ * Dispatcher is used to broadcast payloads to registered callbacks. This is
+ * different from generic pub-sub systems in two ways:
+ *
+ *   1) Callbacks are not subscribed to particular events. Every payload is
+ *      dispatched to every registered callback.
+ *   2) Callbacks can be deferred in whole or part until other callbacks have
+ *      been executed.
+ *
+ * For example, consider this hypothetical flight destination form, which
+ * selects a default city when a country is selected:
+ *
+ *   var flightDispatcher = new Dispatcher();
+ *
+ *   // Keeps track of which country is selected
+ *   var CountryStore = {country: null};
+ *
+ *   // Keeps track of which city is selected
+ *   var CityStore = {city: null};
+ *
+ *   // Keeps track of the base flight price of the selected city
+ *   var FlightPriceStore = {price: null}
+ *
+ * When a user changes the selected city, we dispatch the payload:
+ *
+ *   flightDispatcher.dispatch({
+ *     actionType: 'city-update',
+ *     selectedCity: 'paris'
+ *   });
+ *
+ * This payload is digested by `CityStore`:
+ *
+ *   flightDispatcher.register(function(payload)) {
+ *     if (payload.actionType === 'city-update') {
+ *       CityStore.city = payload.selectedCity;
+ *     }
+ *   });
+ *
+ * When the user selects a country, we dispatch the payload:
+ *
+ *   flightDispatcher.dispatch({
+ *     actionType: 'country-update',
+ *     selectedCountry: 'australia'
+ *   });
+ *
+ * This payload is digested by both stores:
+ *
+ *    CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
+ *     if (payload.actionType === 'country-update') {
+ *       CountryStore.country = payload.selectedCountry;
+ *     }
+ *   });
+ *
+ * When the callback to update `CountryStore` is registered, we save a reference
+ * to the returned token. Using this token with `waitFor()`, we can guarantee
+ * that `CountryStore` is updated before the callback that updates `CityStore`
+ * needs to query its data.
+ *
+ *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
+ *     if (payload.actionType === 'country-update') {
+ *       // `CountryStore.country` may not be updated.
+ *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
+ *       // `CountryStore.country` is now guaranteed to be updated.
+ *
+ *       // Select the default city for the new country
+ *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
+ *     }
+ *   });
+ *
+ * The usage of `waitFor()` can be chained, for example:
+ *
+ *   FlightPriceStore.dispatchToken =
+ *     flightDispatcher.register(function(payload)) {
+ *       switch (payload.actionType) {
+ *         case 'country-update':
+ *           flightDispatcher.waitFor([CityStore.dispatchToken]);
+ *           FlightPriceStore.price =
+ *             getFlightPriceStore(CountryStore.country, CityStore.city);
+ *           break;
+ *
+ *         case 'city-update':
+ *           FlightPriceStore.price =
+ *             FlightPriceStore(CountryStore.country, CityStore.city);
+ *           break;
+ *     }
+ *   });
+ *
+ * The `country-update` payload will be guaranteed to invoke the stores'
+ * registered callbacks in order: `CountryStore`, `CityStore`, then
+ * `FlightPriceStore`.
+ */
+
+  function Dispatcher() {"use strict";
+    this.$Dispatcher_callbacks = {};
+    this.$Dispatcher_isPending = {};
+    this.$Dispatcher_isHandled = {};
+    this.$Dispatcher_isDispatching = false;
+    this.$Dispatcher_pendingPayload = null;
+  }
+
+  /**
+   * Registers a callback to be invoked with every dispatched payload. Returns
+   * a token that can be used with `waitFor()`.
+   *
+   * @param {function} callback
+   * @return {string}
+   */
+  Dispatcher.prototype.register=function(callback) {"use strict";
+    var id = _prefix + _lastID++;
+    this.$Dispatcher_callbacks[id] = callback;
+    return id;
+  };
+
+  /**
+   * Removes a callback based on its token.
+   *
+   * @param {string} id
+   */
+  Dispatcher.prototype.unregister=function(id) {"use strict";
+    invariant(
+      this.$Dispatcher_callbacks[id],
+      'Dispatcher.unregister(...): `%s` does not map to a registered callback.',
+      id
+    );
+    delete this.$Dispatcher_callbacks[id];
+  };
+
+  /**
+   * Waits for the callbacks specified to be invoked before continuing execution
+   * of the current callback. This method should only be used by a callback in
+   * response to a dispatched payload.
+   *
+   * @param {array<string>} ids
+   */
+  Dispatcher.prototype.waitFor=function(ids) {"use strict";
+    invariant(
+      this.$Dispatcher_isDispatching,
+      'Dispatcher.waitFor(...): Must be invoked while dispatching.'
+    );
+    for (var ii = 0; ii < ids.length; ii++) {
+      var id = ids[ii];
+      if (this.$Dispatcher_isPending[id]) {
+        invariant(
+          this.$Dispatcher_isHandled[id],
+          'Dispatcher.waitFor(...): Circular dependency detected while ' +
+          'waiting for `%s`.',
+          id
+        );
+        continue;
+      }
+      invariant(
+        this.$Dispatcher_callbacks[id],
+        'Dispatcher.waitFor(...): `%s` does not map to a registered callback.',
+        id
+      );
+      this.$Dispatcher_invokeCallback(id);
+    }
+  };
+
+  /**
+   * Dispatches a payload to all registered callbacks.
+   *
+   * @param {object} payload
+   */
+  Dispatcher.prototype.dispatch=function(payload) {"use strict";
+    invariant(
+      !this.$Dispatcher_isDispatching,
+      'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.'
+    );
+    this.$Dispatcher_startDispatching(payload);
+    try {
+      for (var id in this.$Dispatcher_callbacks) {
+        if (this.$Dispatcher_isPending[id]) {
+          continue;
+        }
+        this.$Dispatcher_invokeCallback(id);
+      }
+    } finally {
+      this.$Dispatcher_stopDispatching();
+    }
+  };
+
+  /**
+   * Is this Dispatcher currently dispatching.
+   *
+   * @return {boolean}
+   */
+  Dispatcher.prototype.isDispatching=function() {"use strict";
+    return this.$Dispatcher_isDispatching;
+  };
+
+  /**
+   * Call the calback stored with the given id. Also do some internal
+   * bookkeeping.
+   *
+   * @param {string} id
+   * @internal
+   */
+  Dispatcher.prototype.$Dispatcher_invokeCallback=function(id) {"use strict";
+    this.$Dispatcher_isPending[id] = true;
+    this.$Dispatcher_callbacks[id](this.$Dispatcher_pendingPayload);
+    this.$Dispatcher_isHandled[id] = true;
+  };
+
+  /**
+   * Set up bookkeeping needed when dispatching.
+   *
+   * @param {object} payload
+   * @internal
+   */
+  Dispatcher.prototype.$Dispatcher_startDispatching=function(payload) {"use strict";
+    for (var id in this.$Dispatcher_callbacks) {
+      this.$Dispatcher_isPending[id] = false;
+      this.$Dispatcher_isHandled[id] = false;
+    }
+    this.$Dispatcher_pendingPayload = payload;
+    this.$Dispatcher_isDispatching = true;
+  };
+
+  /**
+   * Clear bookkeeping used for dispatching.
+   *
+   * @internal
+   */
+  Dispatcher.prototype.$Dispatcher_stopDispatching=function() {"use strict";
+    this.$Dispatcher_pendingPayload = null;
+    this.$Dispatcher_isDispatching = false;
+  };
+
+
+module.exports = Dispatcher;
+},{"./invariant":"/Users/Jay/Projects/material-ui/docs/src/app/vendor/flux/invariant.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/vendor/flux/invariant.js":[function(require,module,exports){
+/**
+ * Copyright (c) 2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule invariant
+ */
+
+"use strict";
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var invariant = function(condition, format, a, b, c, d, e, f) {
+  if (false) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error(
+        'Minified exception occurred; use the non-minified dev environment ' +
+        'for the full error message and additional helpful warnings.'
+      );
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(
+        'Invariant Violation: ' +
+        format.replace(/%s/g, function() { return args[argIndex++]; })
+      );
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
 };
 
-},{"./dist/js/app-bar.jsx":"/Users/Jay/Projects/material-ui/dist/js/app-bar.jsx","./dist/js/app-canvas.jsx":"/Users/Jay/Projects/material-ui/dist/js/app-canvas.jsx","./dist/js/checkbox.jsx":"/Users/Jay/Projects/material-ui/dist/js/checkbox.jsx","./dist/js/drop-down-icon.jsx":"/Users/Jay/Projects/material-ui/dist/js/drop-down-icon.jsx","./dist/js/drop-down-menu.jsx":"/Users/Jay/Projects/material-ui/dist/js/drop-down-menu.jsx","./dist/js/icon.jsx":"/Users/Jay/Projects/material-ui/dist/js/icon.jsx","./dist/js/input.jsx":"/Users/Jay/Projects/material-ui/dist/js/input.jsx","./dist/js/left-nav.jsx":"/Users/Jay/Projects/material-ui/dist/js/left-nav.jsx","./dist/js/menu-item.jsx":"/Users/Jay/Projects/material-ui/dist/js/menu-item.jsx","./dist/js/menu.jsx":"/Users/Jay/Projects/material-ui/dist/js/menu.jsx","./dist/js/mixins/classable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/classable.js","./dist/js/mixins/click-awayable.js":"/Users/Jay/Projects/material-ui/dist/js/mixins/click-awayable.js","./dist/js/paper-button.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper-button.jsx","./dist/js/paper.jsx":"/Users/Jay/Projects/material-ui/dist/js/paper.jsx","./dist/js/radio-button.jsx":"/Users/Jay/Projects/material-ui/dist/js/radio-button.jsx","./dist/js/toggle.jsx":"/Users/Jay/Projects/material-ui/dist/js/toggle.jsx","./dist/js/toolbar-group.jsx":"/Users/Jay/Projects/material-ui/dist/js/toolbar-group.jsx","./dist/js/toolbar.jsx":"/Users/Jay/Projects/material-ui/dist/js/toolbar.jsx"}],"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js":[function(require,module,exports){
+module.exports = invariant;
+},{}],"/Users/Jay/Projects/material-ui/docs/src/app/vendor/highlight-js/highlight.pack.js":[function(require,module,exports){
+(function (global){
+;__browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
+var hljs=new function(){function j(v){return v.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")}function t(v){return v.nodeName.toLowerCase()}function h(w,x){var v=w&&w.exec(x);return v&&v.index==0}function r(w){var v=(w.className+" "+(w.parentNode?w.parentNode.className:"")).split(/\s+/);v=v.map(function(x){return x.replace(/^lang(uage)?-/,"")});return v.filter(function(x){return i(x)||x=="no-highlight"})[0]}function o(x,y){var v={};for(var w in x){v[w]=x[w]}if(y){for(var w in y){v[w]=y[w]}}return v}function u(x){var v=[];(function w(y,z){for(var A=y.firstChild;A;A=A.nextSibling){if(A.nodeType==3){z+=A.nodeValue.length}else{if(t(A)=="br"){z+=1}else{if(A.nodeType==1){v.push({event:"start",offset:z,node:A});z=w(A,z);v.push({event:"stop",offset:z,node:A})}}}}return z})(x,0);return v}function q(w,y,C){var x=0;var F="";var z=[];function B(){if(!w.length||!y.length){return w.length?w:y}if(w[0].offset!=y[0].offset){return(w[0].offset<y[0].offset)?w:y}return y[0].event=="start"?w:y}function A(H){function G(I){return" "+I.nodeName+'="'+j(I.value)+'"'}F+="<"+t(H)+Array.prototype.map.call(H.attributes,G).join("")+">"}function E(G){F+="</"+t(G)+">"}function v(G){(G.event=="start"?A:E)(G.node)}while(w.length||y.length){var D=B();F+=j(C.substr(x,D[0].offset-x));x=D[0].offset;if(D==w){z.reverse().forEach(E);do{v(D.splice(0,1)[0]);D=B()}while(D==w&&D.length&&D[0].offset==x);z.reverse().forEach(A)}else{if(D[0].event=="start"){z.push(D[0].node)}else{z.pop()}v(D.splice(0,1)[0])}}return F+j(C.substr(x))}function m(y){function v(z){return(z&&z.source)||z}function w(A,z){return RegExp(v(A),"m"+(y.cI?"i":"")+(z?"g":""))}function x(D,C){if(D.compiled){return}D.compiled=true;D.k=D.k||D.bK;if(D.k){var z={};var E=function(G,F){if(y.cI){F=F.toLowerCase()}F.split(" ").forEach(function(H){var I=H.split("|");z[I[0]]=[G,I[1]?Number(I[1]):1]})};if(typeof D.k=="string"){E("keyword",D.k)}else{Object.keys(D.k).forEach(function(F){E(F,D.k[F])})}D.k=z}D.lR=w(D.l||/\b[A-Za-z0-9_]+\b/,true);if(C){if(D.bK){D.b="\\b("+D.bK.split(" ").join("|")+")\\b"}if(!D.b){D.b=/\B|\b/}D.bR=w(D.b);if(!D.e&&!D.eW){D.e=/\B|\b/}if(D.e){D.eR=w(D.e)}D.tE=v(D.e)||"";if(D.eW&&C.tE){D.tE+=(D.e?"|":"")+C.tE}}if(D.i){D.iR=w(D.i)}if(D.r===undefined){D.r=1}if(!D.c){D.c=[]}var B=[];D.c.forEach(function(F){if(F.v){F.v.forEach(function(G){B.push(o(F,G))})}else{B.push(F=="self"?D:F)}});D.c=B;D.c.forEach(function(F){x(F,D)});if(D.starts){x(D.starts,C)}var A=D.c.map(function(F){return F.bK?"\\.?("+F.b+")\\.?":F.b}).concat([D.tE,D.i]).map(v).filter(Boolean);D.t=A.length?w(A.join("|"),true):{exec:function(F){return null}};D.continuation={}}x(y)}function c(S,L,J,R){function v(U,V){for(var T=0;T<V.c.length;T++){if(h(V.c[T].bR,U)){return V.c[T]}}}function z(U,T){if(h(U.eR,T)){return U}if(U.eW){return z(U.parent,T)}}function A(T,U){return !J&&h(U.iR,T)}function E(V,T){var U=M.cI?T[0].toLowerCase():T[0];return V.k.hasOwnProperty(U)&&V.k[U]}function w(Z,X,W,V){var T=V?"":b.classPrefix,U='<span class="'+T,Y=W?"":"</span>";U+=Z+'">';return U+X+Y}function N(){if(!I.k){return j(C)}var T="";var W=0;I.lR.lastIndex=0;var U=I.lR.exec(C);while(U){T+=j(C.substr(W,U.index-W));var V=E(I,U);if(V){H+=V[1];T+=w(V[0],j(U[0]))}else{T+=j(U[0])}W=I.lR.lastIndex;U=I.lR.exec(C)}return T+j(C.substr(W))}function F(){if(I.sL&&!f[I.sL]){return j(C)}var T=I.sL?c(I.sL,C,true,I.continuation.top):e(C);if(I.r>0){H+=T.r}if(I.subLanguageMode=="continuous"){I.continuation.top=T.top}return w(T.language,T.value,false,true)}function Q(){return I.sL!==undefined?F():N()}function P(V,U){var T=V.cN?w(V.cN,"",true):"";if(V.rB){D+=T;C=""}else{if(V.eB){D+=j(U)+T;C=""}else{D+=T;C=U}}I=Object.create(V,{parent:{value:I}})}function G(T,X){C+=T;if(X===undefined){D+=Q();return 0}var V=v(X,I);if(V){D+=Q();P(V,X);return V.rB?0:X.length}var W=z(I,X);if(W){var U=I;if(!(U.rE||U.eE)){C+=X}D+=Q();do{if(I.cN){D+="</span>"}H+=I.r;I=I.parent}while(I!=W.parent);if(U.eE){D+=j(X)}C="";if(W.starts){P(W.starts,"")}return U.rE?0:X.length}if(A(X,I)){throw new Error('Illegal lexeme "'+X+'" for mode "'+(I.cN||"<unnamed>")+'"')}C+=X;return X.length||1}var M=i(S);if(!M){throw new Error('Unknown language: "'+S+'"')}m(M);var I=R||M;var D="";for(var K=I;K!=M;K=K.parent){if(K.cN){D+=w(K.cN,D,true)}}var C="";var H=0;try{var B,y,x=0;while(true){I.t.lastIndex=x;B=I.t.exec(L);if(!B){break}y=G(L.substr(x,B.index-x),B[0]);x=B.index+y}G(L.substr(x));for(var K=I;K.parent;K=K.parent){if(K.cN){D+="</span>"}}return{r:H,value:D,language:S,top:I}}catch(O){if(O.message.indexOf("Illegal")!=-1){return{r:0,value:j(L)}}else{throw O}}}function e(y,x){x=x||b.languages||Object.keys(f);var v={r:0,value:j(y)};var w=v;x.forEach(function(z){if(!i(z)){return}var A=c(z,y,false);A.language=z;if(A.r>w.r){w=A}if(A.r>v.r){w=v;v=A}});if(w.language){v.second_best=w}return v}function g(v){if(b.tabReplace){v=v.replace(/^((<[^>]+>|\t)+)/gm,function(w,z,y,x){return z.replace(/\t/g,b.tabReplace)})}if(b.useBR){v=v.replace(/\n/g,"<br>")}return v}function p(z){var y=b.useBR?z.innerHTML.replace(/\n/g,"").replace(/<br>|<br [^>]*>/g,"\n").replace(/<[^>]*>/g,""):z.textContent;var A=r(z);if(A=="no-highlight"){return}var v=A?c(A,y,true):e(y);var w=u(z);if(w.length){var x=document.createElementNS("http://www.w3.org/1999/xhtml","pre");x.innerHTML=v.value;v.value=q(w,u(x),y)}v.value=g(v.value);z.innerHTML=v.value;z.className+=" hljs "+(!A&&v.language||"");z.result={language:v.language,re:v.r};if(v.second_best){z.second_best={language:v.second_best.language,re:v.second_best.r}}}var b={classPrefix:"hljs-",tabReplace:null,useBR:false,languages:undefined};function s(v){b=o(b,v)}function l(){if(l.called){return}l.called=true;var v=document.querySelectorAll("pre code");Array.prototype.forEach.call(v,p)}function a(){addEventListener("DOMContentLoaded",l,false);addEventListener("load",l,false)}var f={};var n={};function d(v,x){var w=f[v]=x(this);if(w.aliases){w.aliases.forEach(function(y){n[y]=v})}}function k(){return Object.keys(f)}function i(v){return f[v]||f[n[v]]}this.highlight=c;this.highlightAuto=e;this.fixMarkup=g;this.highlightBlock=p;this.configure=s;this.initHighlighting=l;this.initHighlightingOnLoad=a;this.registerLanguage=d;this.listLanguages=k;this.getLanguage=i;this.inherit=o;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.BE={b:"\\\\[\\s\\S]",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE]};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE]};this.PWM={b:/\b(a|an|the|are|I|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such)\b/};this.CLCM={cN:"comment",b:"//",e:"$",c:[this.PWM]};this.CBCM={cN:"comment",b:"/\\*",e:"\\*/",c:[this.PWM]};this.HCM={cN:"comment",b:"#",e:"$",c:[this.PWM]};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.CSSNM={cN:"number",b:this.NR+"(%|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc|px|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?",r:0};this.RM={cN:"regexp",b:/\//,e:/\/[gim]*/,i:/\n/,c:[this.BE,{b:/\[/,e:/\]/,r:0,c:[this.BE]}]};this.TM={cN:"title",b:this.IR,r:0};this.UTM={cN:"title",b:this.UIR,r:0}}();hljs.registerLanguage("javascript",function(a){return{aliases:["js"],k:{keyword:"in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const class",literal:"true false null undefined NaN Infinity",built_in:"eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document"},c:[{cN:"pi",b:/^\s*('|")use strict('|")/,r:10},a.ASM,a.QSM,a.CLCM,a.CBCM,a.CNM,{b:"("+a.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[a.CLCM,a.CBCM,a.RM,{b:/</,e:/>;/,r:0,sL:"xml"}],r:0},{cN:"function",bK:"function",e:/\{/,eE:true,c:[a.inherit(a.TM,{b:/[A-Za-z$_][0-9A-Za-z$_]*/}),{cN:"params",b:/\(/,e:/\)/,c:[a.CLCM,a.CBCM],i:/["'\(]/}],i:/\[|%/},{b:/\$[(.]/},{b:"\\."+a.IR,r:0}]}});hljs.registerLanguage("css",function(a){var b="[a-zA-Z-][a-zA-Z0-9_-]*";var c={cN:"function",b:b+"\\(",rB:true,eE:true,e:"\\("};return{cI:true,i:"[=/|']",c:[a.CBCM,{cN:"id",b:"\\#[A-Za-z0-9_-]+"},{cN:"class",b:"\\.[A-Za-z0-9_-]+",r:0},{cN:"attr_selector",b:"\\[",e:"\\]",i:"$"},{cN:"pseudo",b:":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+"},{cN:"at_rule",b:"@(font-face|page)",l:"[a-z-]+",k:"font-face page"},{cN:"at_rule",b:"@",e:"[{;]",c:[{cN:"keyword",b:/\S+/},{b:/\s/,eW:true,eE:true,r:0,c:[c,a.ASM,a.QSM,a.CSSNM]}]},{cN:"tag",b:b,r:0},{cN:"rules",b:"{",e:"}",i:"[^\\s]",r:0,c:[a.CBCM,{cN:"rule",b:"[^\\s]",rB:true,e:";",eW:true,c:[{cN:"attribute",b:"[A-Z\\_\\.\\-]+",e:":",eE:true,i:"[^\\s]",starts:{cN:"value",eW:true,eE:true,c:[c,a.CSSNM,a.QSM,a.ASM,a.CBCM,{cN:"hexcolor",b:"#[0-9A-Fa-f]+"},{cN:"important",b:"!important"}]}}]}]}]}});hljs.registerLanguage("xml",function(a){var c="[A-Za-z0-9\\._:-]+";var d={b:/<\?(php)?(?!\w)/,e:/\?>/,sL:"php",subLanguageMode:"continuous"};var b={eW:true,i:/</,r:0,c:[d,{cN:"attribute",b:c,r:0},{b:"=",r:0,c:[{cN:"value",v:[{b:/"/,e:/"/},{b:/'/,e:/'/},{b:/[^\s\/>]+/}]}]}]};return{aliases:["html","xhtml","rss","atom","xsl","plist"],cI:true,c:[{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},{cN:"comment",b:"<!--",e:"-->",r:10},{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[b],starts:{e:"</style>",rE:true,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[b],starts:{e:"<\/script>",rE:true,sL:"javascript"}},{b:"<%",e:"%>",sL:"vbscript"},d,{cN:"pi",b:/<\?\w+/,e:/\?>/,r:10},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:"[^ /><]+",r:0},b]}]}});hljs.registerLanguage("http",function(a){return{i:"\\S",c:[{cN:"status",b:"^HTTP/[0-9\\.]+",e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{cN:"request",b:"^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",rB:true,e:"$",c:[{cN:"string",b:" ",e:" ",eB:true,eE:true}]},{cN:"attribute",b:"^\\w",e:": ",eE:true,i:"\\n|\\s|=",starts:{cN:"string",e:"$"}},{b:"\\n\\n",starts:{sL:"",eW:true}}]}});hljs.registerLanguage("json",function(a){var e={literal:"true false null"};var d=[a.QSM,a.CNM];var c={cN:"value",e:",",eW:true,eE:true,c:d,k:e};var b={b:"{",e:"}",c:[{cN:"attribute",b:'\\s*"',e:'"\\s*:\\s*',eB:true,eE:true,c:[a.BE],i:"\\n",starts:c}],i:"\\S"};var f={b:"\\[",e:"\\]",c:[a.inherit(c,{cN:null})],i:"\\S"};d.splice(d.length,0,b,f);return{c:d,k:e,i:"\\S"}});
+; browserify_shim__define__module__export__(typeof hljs != "undefined" ? hljs : window.hljs);
+
+}).call(global, undefined, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js":[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -34031,1399 +35888,4 @@ module.exports = warning;
   }
 }.call(this));
 
-},{}],"/Users/Jay/Projects/material-ui/src/app/app-dispatcher.js":[function(require,module,exports){
-var Dispatcher = require('./vendor/flux/dispatcher.js');
-var copyProperties = require('react/lib/copyProperties');
-
-var AppDispatcher = copyProperties(new Dispatcher(), {
-
-	ActionTypes: {
-		NAV_URL_CHANGE: 'nav-url-change',
-		NAV_USER_CLICK: 'nav-user-click'
-	},
-
-	dispatchAction: function(type, payload) {
-		this.dispatch({
-			type: type,
-			payload: payload
-		})
-	}
-
-});
-
-module.exports = AppDispatcher;
-},{"./vendor/flux/dispatcher.js":"/Users/Jay/Projects/material-ui/src/app/vendor/flux/dispatcher.js","react/lib/copyProperties":"/Users/Jay/Projects/material-ui/node_modules/react/lib/copyProperties.js"}],"/Users/Jay/Projects/material-ui/src/app/app-router.js":[function(require,module,exports){
-var _ = require('underscore'),
-  Backbone = require('backbone'),
-  Dispatcher = require('./app-dispatcher.js'),
-
-  AppRouter = Backbone.Router.extend({
-
-    routes: {
-      '*path': 'handleDefaultRoute'
-    },
-
-    initialize: function() {
-      this.dispatchToken = Dispatcher.register(_.bind(this.onDispatched, this));
-    },
-
-    handleDefaultRoute: function(url) {
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_URL_CHANGE, { url: url });
-    },
-
-    onDispatched: function(action) {
-      switch (action.type) {
-        case Dispatcher.ActionTypes.NAV_USER_CLICK:
-          this.navigate(action.payload.url);
-          break;
-      }
-    }
-
-  });
-
-module.exports = new AppRouter();
-
-},{"./app-dispatcher.js":"/Users/Jay/Projects/material-ui/src/app/app-dispatcher.js","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","underscore":"/Users/Jay/Projects/material-ui/node_modules/underscore/underscore.js"}],"/Users/Jay/Projects/material-ui/src/app/components/app-left-nav.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  mui = require('mui'),
-  Dispatcher = require('../app-dispatcher.js'),
-  Pages = require('./pages.jsx');
-
-var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
-
-  propTypes: {
-    url: React.PropTypes.string
-  },
-
-  getInitialState: function() {
-    return {
-      menuItems: [
-        { type: mui.MenuItem.Types.SUBHEADER, text: 'CSS Framework' },
-        { payload: Pages.colors, text: Pages.colors.title },
-        { payload: Pages.typography, text: Pages.typography.title },
-        { payload: Pages.icons, text: Pages.icons.title },
-        { type: mui.MenuItem.Types.SUBHEADER, text: 'Components' },
-        { payload: Pages.buttons, text: Pages.buttons.title },
-        { payload: Pages.inputs, text: Pages.inputs.title },
-        { payload: Pages.menus, text: Pages.menus.title },
-        { payload: Pages.switches, text: Pages.switches.title },
-        { payload: Pages.toolbars, text: Pages.toolbars.title }
-      ]
-    }
-  },
-
-  componentWillMount: function() {
-    this._setSelectedIndex(this.props.url);
-  },
-
-  componentWillReceiveProps: function(newProps) {
-    this._setSelectedIndex(newProps.url);
-  },
-
-  render: function() {
-    var header = React.DOM.div({className: "logo", onClick: this._onHeaderClick}, "material ui");
-
-    return (
-      mui.LeftNav({
-        header: header, 
-        menuItems: this.state.menuItems, 
-        selectedIndex: this.state.selectedIndex, 
-        onChange: this._onLeftNavChange})
-    );
-  },
-
-  _setSelectedIndex: function(url) {
-    var item;
-
-    for (var i = 0; i < this.state.menuItems.length; i++) {
-      item = this.state.menuItems[i];
-
-      if (item.payload && item.payload.url === url) {
-        if (i !== this.state.selectedIndex) this.setState({ selectedIndex: i});
-        return;
-      }
-    };
-
-    this.setState({ selectedIndex: null});
-  },
-
-  _onHeaderClick: function() {
-    if (this.props.url !== Pages.home.url) {
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: Pages.home.url } ); 
-    }
-  },
-
-  _onLeftNavChange: function(e, key, item) {
-    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: item.payload.url } ); 
-  }
-
-});
-
-module.exports = AppLeftNav;
-
-},{"../app-dispatcher.js":"/Users/Jay/Projects/material-ui/src/app/app-dispatcher.js","./pages.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages.jsx","mui":"/Users/Jay/Projects/material-ui/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/code-example/code-block.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var $ = require('jquery'),
-	React = require('react'),
-	hljs = require('hljs');
-
-var CodeBlock = React.createClass({displayName: 'CodeBlock',
-
-	componentDidMount: function() {
-		hljs.highlightBlock(this.getDOMNode());
-	},
-
-	componentDidUpdate: function(prevProps, prevState) {
-		hljs.highlightBlock(this.getDOMNode());
-	},
-
-	render: function() {
-		return (
-			React.DOM.pre({className: "code-block"}, 
-				React.DOM.code(null, this.props.children)
-			)
-		);
-	}
-
-});
-
-module.exports = CodeBlock;
-},{"hljs":"/Users/Jay/Projects/material-ui/src/app/vendor/highlight-js/highlight.pack.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/code-example/code-example.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-	mui = require('mui'),
-	CodeBlock = require('./code-block.jsx');
-
-var CodeExample = React.createClass({displayName: 'CodeExample',
-
-	propTypes: {
-		code: React.PropTypes.string.isRequired
-	},
-
-	render: function() {
-		return (
-			mui.Paper({className: "code-example"}, 
-    		React.DOM.div({className: "example-label"}, "example"), 
-	    	React.DOM.div({className: "example-block"}, 
-	    		this.props.children
-	    	), 
-	    	CodeBlock(null, this.props.code)
-    	)
-		);
-	}
-
-});
-
-module.exports = CodeExample;
-},{"./code-block.jsx":"/Users/Jay/Projects/material-ui/src/app/components/code-example/code-block.jsx","mui":"/Users/Jay/Projects/material-ui/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/master.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var Backbone = require('backbone'),
-  React = require('react'),
-  mui = require('mui'),
-  AppStateStore = require('../stores/app-state-store.js'),
-  Pages = require('./pages.jsx'),
-	AppLeftNav = require('./app-left-nav.jsx');
-
-var Master = React.createClass({displayName: 'Master',
-
-  mixins: [Backbone.Events],
-
-  getInitialState: function() {
-    return {
-      currentUrl: AppStateStore.get('currentUrl')
-    }
-  },
-
-  componentDidMount: function() {
-    this.listenTo(AppStateStore, 'change', this._onStoreChange);
-  },
-
-  componentWillUnMount: function() {
-    this.stopListening();
-  },
-
-  render: function() {
-    var page = Pages.getPage(this.state.currentUrl);
-      title = page.title,
-      currentMainComponent = page.mainContentComponent;
-
-    return (
-      mui.AppCanvas({predefinedLayout: 1}, 
-        mui.AppBar({title: title}), 
-    		AppLeftNav({url: this.state.currentUrl}), 
-    		React.DOM.div({className: "mui-app-content-canvas"}, 
-            currentMainComponent
-        )
-      )
-    );
-  },
-
-  _onStoreChange: function() {
-    this.setState({
-      currentUrl: AppStateStore.get('currentUrl')
-    });
-  }
-  
-});
-
-module.exports = Master;
-
-},{"../stores/app-state-store.js":"/Users/Jay/Projects/material-ui/src/app/stores/app-state-store.js","./app-left-nav.jsx":"/Users/Jay/Projects/material-ui/src/app/components/app-left-nav.jsx","./pages.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages.jsx","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","mui":"/Users/Jay/Projects/material-ui/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/pages.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var Home = require('./pages/home.jsx'),
-	Buttons = require('./pages/buttons.jsx'),
-	Colors = require('./pages/colors.jsx'),
-	Icons = require('./pages/icons.jsx'),
-	Inputs = require('./pages/inputs.jsx'),
-	Menus = require('./pages/menus.jsx'),
-	Switches = require('./pages/switches.jsx'),
-	Toolbar = require('./pages/toolbars.jsx'),
-	Typography = require('./pages/typography.jsx');
-
-var Pages = {
-	home: { url: '', title: 'Introduction', mainContentComponent: Home(null) },
-	colors: { url: 'colors', title: 'Colors', mainContentComponent: Colors(null) },
-	buttons: { url: 'buttons', title: 'Buttons', mainContentComponent: Buttons(null) },
-	icons: { url: 'icons', title: 'Icons', mainContentComponent: Icons(null) },
-	inputs: { url: 'inputs', title: 'Inputs', mainContentComponent: Inputs(null) },
-	menus: { url: 'menus', title: 'Menus', mainContentComponent: Menus(null) },
-	switches: { url: 'switches', title: 'Switches', mainContentComponent: Switches(null) },
-	toolbars: { url: 'toolbar', title: 'Toolbars', mainContentComponent: Toolbar(null) },
-	typography: { url: 'typography', title: 'Typography', mainContentComponent: Typography(null) },
-
-	getPage: function(url) {
-		if (!url) return this.home;
-
-		for (prop in this) {
-			if (this[prop].url === url) return this[prop];
-		}
-	}
-}
-
-module.exports = Pages;
-
-
-},{"./pages/buttons.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages/buttons.jsx","./pages/colors.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages/colors.jsx","./pages/home.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages/home.jsx","./pages/icons.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages/icons.jsx","./pages/inputs.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages/inputs.jsx","./pages/menus.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages/menus.jsx","./pages/switches.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages/switches.jsx","./pages/toolbars.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages/toolbars.jsx","./pages/typography.jsx":"/Users/Jay/Projects/material-ui/src/app/components/pages/typography.jsx"}],"/Users/Jay/Projects/material-ui/src/app/components/pages/buttons.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  mui = require('mui'),
-  PaperButton = mui.PaperButton,
-  CodeExample = require('../code-example/code-example.jsx');
-
-var ButtonPage = React.createClass({displayName: 'ButtonPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-
-    		React.DOM.h2(null, "Flat Buttons"), 
-        this._getFlatExamples(), 
-
-        React.DOM.h2(null, "Raised Buttons"), 
-        this._getRaisedExamples(), 
-
-        React.DOM.h2(null, "Floating Action Buttons"), 
-        this._getFabExamples()
-
-    	)
-    );
-  },
-
-  _getFlatExamples: function() {
-    var code = 
-      '<PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
-      '<PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} />\n' +
-      '<PaperButton type={PaperButton.Types.FLAT} label="Disabled" disabled={true} />';
-
-    return (
-      CodeExample({code: code}, 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Disabled", disabled: true})
-      )
-    );
-  },
-
-  _getRaisedExamples: function() {
-    var code = 
-      '<PaperButton type={PaperButton.Types.RAISED} label="Default" />\n' +
-      '<PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} />\n' +
-      '<PaperButton type={PaperButton.Types.RAISED} label="Disabled" disabled={true} />';
-
-    return (
-      CodeExample({code: code}, 
-        PaperButton({type: PaperButton.Types.RAISED, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.RAISED, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.RAISED, label: "Disabled", disabled: true})
-      )
-    );
-  },
-
-  _getFabExamples: function() {
-    var code = 
-      '<PaperButton type={PaperButton.Types.FAB_MINI} icon="phone" />\n' +
-      '<PaperButton type={PaperButton.Types.FAB} icon="phone" />';
-
-    return (
-      CodeExample({code: code}, 
-        PaperButton({type: PaperButton.Types.FAB_MINI, icon: "phone", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FAB, icon: "phone", onClick: this._onPaperButtonClick})
-      )
-    );
-  },
-
-  _onPaperButtonClick: function(e) {
-  	console.log(e);
-  }
-
-});
-
-module.exports = ButtonPage;
-
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/pages/colors.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react');
-
-var ColorsPage = React.createClass({displayName: 'ColorsPage',
-
-  render: function() {
-  
-    return (
-    	React.DOM.h2(null, "Color")
-    );
-  }
-
-});
-
-module.exports = ColorsPage;
-
-},{"react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/pages/home.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react');
-
-var HomePage = React.createClass({displayName: 'HomePage',
-
-  render: function() {
-    return (
-    	React.DOM.p(null, "Home")
-    );
-  }
-
-});
-
-module.exports = HomePage;
-
-},{"react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/pages/icons.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  	mui = require('mui'),
-  	CodeExample = require('../code-example/code-example.jsx'),
-
-  	menuItems = [
-	    { payload: '1', text: 'Never' },
-	    { payload: '2', text: 'Every Night' },
-	    { payload: '3', text: 'Weeknights' },
-	    { payload: '4', text: 'Weekends' },
-	    { payload: '5', text: 'Weekly' },
-  	];
-
-var IconsPage = React.createClass({displayName: 'IconsPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-			React.DOM.h2(null, "Icons"), 
-			this._getIconExample()
-		)
-    );
-  },
-
-  _getIconExample: function() {
-    var code = 
-      "<Icon className='mui-menu-item-icon' icon='home' />";
-
-    return (
-      {/*
-      <CodeExample code={code}>
-      	<mui.DropDownIcon icon="chevron-down" menuItems={menuItems} onChange={this._onDropDownMenuChange} />
-      </CodeExample>
-      */}
-    );
-  },
-
-  _onDropDownMenuChange: function(e, key, menuItem) {
-  	console.log('Menu Clicked: ', menuItem);
-  },
-
-});
-
-module.exports = IconsPage;
-
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/pages/inputs.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  Input = require('../../../../dist/js/input.jsx');
-
-var InputsPage = React.createClass({displayName: 'InputsPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-    		React.DOM.h2(null, "Inputs"), 
-        React.DOM.br(null), 
-        Input({ref: "firstname", type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
-        Input({ref: "lastname", type: "text", name: "lastname", placeholder: "Last Name", description: "Your last name as it appears on your credit card.."}), 
-        Input({ref: "addressline1", type: "text", name: "addressline1", placeholder: "Address Line 1", description: "Your address as it appears on your credit card."}), 
-        Input({ref: "addressline2", type: "text", name: "zipcode", placeholder: "Zip Code", description: "Your zip code as it appears on your credit card."}), 
-        Input({ref: "city", type: "text", name: "city", placeholder: "City", description: "Your city as it appears on your credit card."}), 
-        Input({ref: "state", type: "text", name: "state", placeholder: "State", description: "Your state as it appears on your credit card."}), 
-        React.DOM.h2(null, "Error Validation"), 
-        React.DOM.br(null), 
-        Input({ref: "allegiance", type: "text", name: "allegiance", placeholder: "Allegiance", description: "The house of which you served under."}), 
-    	  React.DOM.br(null), 
-        React.DOM.h2(null, "Floating"), 
-        React.DOM.br(null), 
-        Input({ref: "username", type: "text", style: "floating", name: "Username", description: "The username associated with your account."}), 
-        React.DOM.h2(null, "Multi-Line"), 
-        React.DOM.br(null), 
-        Input({multiline: true, ref: "textmessage", type: "text", name: "textmessage", placeholder: "Text Message", description: "Your text message."}), 
-        React.DOM.br(null), 
-        React.DOM.br(null), 
-        React.DOM.br(null)
-      )
-    );
-  },
-
-});
-
-module.exports = InputsPage;
-},{"../../../../dist/js/input.jsx":"/Users/Jay/Projects/material-ui/dist/js/input.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/pages/menus.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
- 
-var React = require('react'),
-  mui = require('mui'),
-  CodeExample = require('../code-example/code-example.jsx'),
-
-  menuItems = [
-    { payload: '1', text: 'Never' },
-    { payload: '2', text: 'Every Night' },
-    { payload: '3', text: 'Weeknights' },
-    { payload: '4', text: 'Weekends' },
-    { payload: '5', text: 'Weekly' },
-  ],
-
-  labelMenuItems = [
-    { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
-    { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
-    { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }
-  ],
-
-  attributeMenuItems = [
-    { payload: '1', text: 'All', number: '22'},
-    { payload: '3', text: 'Uncategorized', number: '6'},
-    { payload: '4', text: 'Trash', number: '11' }
-  ],
-
-  iconMenuItems = [
-    { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },
-    { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },
-    { payload: '3', text: 'Starred', icon: 'mic', number: '3' },
-    { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }
-  ],
-
-  filterMenuItems = [
-    { payload: '1', text: 'Text Opt-In', toggle: true},
-    { payload: '2', text: 'Text Opt-Out', toggle: true},
-    { payload: '3', text: 'Voice Opt-Out', toggle: true}
-  ],
-
-  nestedMenuItems = [
-    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [
-      { payload: '1', text: 'Nested Item 1' },
-      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
-        { payload: '1', text: 'Nested Item 3' },
-        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
-          { payload: '1', text: 'Nested Item 5' },
-          { payload: '3', text: 'Nested Item 6' }
-        ] },
-        { payload: '3', text: 'Nested Item 7' }
-      ] },
-      { payload: '3', text: 'Nested Item 9' },
-      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
-        { payload: '1', text: 'Nested Item 3' },
-        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
-          { payload: '1', text: 'Nested Item 5' },
-          { payload: '3', text: 'Nested Item 6' }
-        ] },
-        { payload: '3', text: 'Nested Item 7' }
-      ] },
-      { payload: '4', text: 'Nested Item 10' }
-    ] },
-    { payload: '1', text: 'Audio Library'},
-    { payload: '2', text: 'Settings'},
-    { payload: '3', text: 'Logout'}
-  ];
-
-
-var MenusPage = React.createClass({displayName: 'MenusPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-    		React.DOM.h2(null, "Drop Down Menu"), 
-        React.DOM.div({className: "mui-menu-container"}, 
-    		  this._getDropDownMenuExample()
-        ), 
-        React.DOM.br(null), 
-        React.DOM.h2(null, "Label Menu"), 
-        React.DOM.div({className: "mui-menu-container"}, 
-          this._getLabelMenuExample()
-        ), 
-        React.DOM.br(null), 
-        React.DOM.h2(null, "Attribute Menu"), 
-        React.DOM.div({className: "mui-menu-container"}, 
-          this._getAttributeMenuExample()
-        ), 
-        React.DOM.br(null), 
-        React.DOM.h2(null, "Icon Menu"), 
-        React.DOM.div({className: "mui-menu-container"}, 
-          this._getIconMenuExample()
-        ), 
-        React.DOM.br(null), 
-        React.DOM.h2(null, "Filter Menu"), 
-        React.DOM.div({className: "mui-menu-container"}, 
-          this._getFilterMenuExample()
-        ), 
-        React.DOM.h2(null, "Nested Menu"), 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
-        ), 
-        React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), React.DOM.br(null)
-    	)
-    );
-  },
-
-  _getDropDownMenuExample: function() {
-    var code = 
-      "var menuItems = [\n" +
-      " { payload: '1', text: 'Never' },\n" +
-      " { payload: '2', text: 'Every Night' },\n" +
-      " { payload: '3', text: 'Weeknights' },\n" +
-      " { payload: '4', text: 'Weekends' },\n" +
-      " { payload: '5', text: 'Weekly' },\n" +
-      "],\n\n" +
-
-      "<DropDownMenu menuItems={menuItems} />";
-
-    return (
-      CodeExample({code: code}, 
-        mui.DropDownMenu({menuItems: menuItems, onChange: this._onDropDownMenuChange})
-      )
-    );
-  },
-
-  _getLabelMenuExample: function() {
-    var code = 
-      "var labelMenuItems = [\n" +
-      "{ payload: '1', text: 'ID', data: '1234567890', icon: 'home' },\n" +
-      "{ payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
-      "{ payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
-      "];\n\n"  +
-
-      "<Menu menuItems={labelMenuItems} />";
-
-    return (
-      CodeExample({code: code}, 
-        mui.Menu({menuItems: labelMenuItems, onItemClick: this._onItemClick})
-      )
-    );
-  },
-
-  _getAttributeMenuExample: function() {
-    var code = 
-      "var attributeMenuItems = [\n" +
-      "{ payload: '1', text: 'All', number: '22' },\n" +
-      "{ payload: '3', text: 'Uncategorized', number: '6'},\n" +
-      "{ payload: '4', text: 'Trash', number: '11' }\n" +
-      "];\n\n"  +
-
-      "<Menu menuItems={attributeMenuItems} />";
-
-    return (
-      CodeExample({code: code}, 
-        mui.Menu({menuItems: attributeMenuItems, onItemClick: this._onItemClick})
-      )
-    );
-  },
-
-  _getIconMenuExample: function() {
-    var code = 
-      "iconMenuItems = [\n" +
-      "{ payload: '1', text: 'Live Answer', icon: 'home', number: '10' },\n" +
-      "{ payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },\n" +
-      "{ payload: '3', text: 'Starred', icon: 'mic', number: '3'},\n" +
-      "{ payload: '4', text: 'Shared', icon: 'pie',  number: '12' }\n" +
-      "],\n\n" +
-
-      "<Menu menuItems={iconMenuItems} />";
-
-    return (
-      CodeExample({code: code}, 
-        mui.Menu({menuItems: iconMenuItems, onItemClick: this._onItemClick})
-      )
-    );
-  },
-
-  _getFilterMenuExample: function() {
-    var code = 
-      "filterMenuItems = [\n" +
-      "{ payload: '1', text: 'Text Opt-In', toggle: true},\n" +
-      "{ payload: '2', text: 'Text Opt-Out', toggle: true},\n" +
-      "{ payload: '3', text: 'Voice Opt-Out', toggle: true}\n" +
-      "],\n\n" +
-
-      "<Menu menuItems={filterMenuItems} />";
-
-    return (
-      CodeExample({code: code}, 
-        mui.Menu({menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
-      )
-    );
-  },
-
-  _getNestedMenuExample: function() {
-    var code = 
-      '<Menu menuItems={nestedMenuItems} />';
-
-    return (
-      CodeExample({code: code}, 
-        mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
-      )
-    );
-  },
-
-  _onDropDownMenuChange: function(e, key, menuItem) {
-  	console.log('Menu Clicked: ', menuItem);
-  },
-
-  _onFilterMenuToggle: function(e, key, menuItem, toggled) {
-    console.log('Filter Menu Toggled: ', key, menuItem, toggled)
-  },
-
-  _onItemClick: function(e, key, menuItem) {
-    console.log("Menu Item Click: ", menuItem);
-  }
-
-});
-
-module.exports = MenusPage;
-
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/pages/switches.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-    mui = require('mui'),
-    CodeExample = require('../code-example/code-example.jsx');
-
-var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-        React.DOM.h2(null, "Checkbox"), 
-        this._getCheckboxExample(), 
-        React.DOM.h2(null, "Radio Button"), 
-        this._getRadioButtonExample(), 
-    		React.DOM.h2(null, "Toggle"), 
-        this._getToggleExample()
-    	)
-    );
-  },
-
-  _getCheckboxExample: function() {
-    var code = 
-      '<form>\n' +
-      ' <Checkbox name="checkboxName" value="checkboxValue1" />\n' +
-      ' <Checkbox name="checkboxName" value="checkboxValue2" />\n' +
-      ' <Checkbox name="checkboxName" value="checkboxValue3" />\n' +
-      '</form>';
-
-    return (
-      CodeExample({code: code}, 
-        React.DOM.form(null, 
-          mui.Checkbox({name: "checkboxName", value: "checkboxValue1", onClick: this._onCheck}), 
-          React.DOM.br(null), 
-          mui.Checkbox({name: "checkboxName", value: "checkboxValue2", onClick: this._onCheck}), 
-          React.DOM.br(null), 
-          mui.Checkbox({name: "checkboxName", value: "checkboxValue3", onClick: this._onCheck})
-        )
-      )
-    );
-  },
-
-  _getToggleExample: function() {
-    var code = 
-      '<Toggle />';
-
-    return (
-      CodeExample({code: code}, 
-        mui.Toggle({onToggle: this._onToggle})
-      )
-    );
-  },
-
-  _getRadioButtonExample: function() {
-    var code = 
-      '<form>\n' +
-      ' <RadioButton name="radioButtonName" value="radioButtonValue1"/>\n' +
-      ' <RadioButton name="radioButtonName" value="radioButtonValue2"/>\n' +
-      ' <RadioButton name="radioButtonName" value="radioButtonValue3"/>\n' +
-      '</form>';
-
-    return (
-      CodeExample({code: code}, 
-        React.DOM.form(null, 
-          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue1", onClick: this._onRadioButtonClick}), 
-          React.DOM.br(null), 
-          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue2", onClick: this._onRadioButtonClick}), 
-          React.DOM.br(null), 
-          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue3", onClick: this._onRadioButtonClick})
-        )
-      )
-    );
-  },
-
-  _onCheck: function(e, checked) {
-    console.log('Checked: ', checked);
-  },
-
-
-  _onToggle: function(e, toggled) {
-    console.log('Toggled: ', toggled);
-  },
-
-  _onRadioButtonClick: function(e, checked) {
-    console.log('Clicked:', checked);
-  }
-
-});
-
-module.exports = SwitchesPage;
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/pages/toolbars.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-    mui = require('mui')
-    PaperButton = mui.PaperButton;
-
-
-var ToolbarPage = React.createClass({displayName: 'ToolbarPage',
-
-  render: function() {
-
-    var filterOptions = [
-      { payload: '1', text: 'All Broadcasts' },
-      { payload: '2', text: 'All Voice' },
-      { payload: '3', text: 'All Text' },
-      { payload: '4', text: 'Complete Voice' },
-      { payload: '5', text: 'Complete Text' },
-      { payload: '6', text: 'Active Voice' },
-      { payload: '7', text: 'Active Text' },
-    ],
-
-    iconMenuItems = [
-      { payload: '1', text: 'Download' },
-      { payload: '2', text: 'Blah' }
-    ];
-
-    leftItems = [
-      //{ type: "title", title: "Broadcasts"},
-      mui.PaperButton({type: PaperButton.Types.RAISED, label: "Create Broadcast", primary: true})
-    ],
-        
-    rightItems = [
-      { type: "separator"},
-      mui.DropDownMenu({menuItems: filterOptions}),
-      { type: "separator"},
-      mui.Icon({icon: "sort"}),
-      mui.Icon({icon: "filter"}),
-      mui.Icon({icon: "search"}),
-      mui.DropDownIcon({icon: "chevron-down", menuItems: iconMenuItems, onChange: this._onDropDownMenuChange})
-    ];
-
-    groups = [ 
-      mui.ToolbarGroup({key: 0, float: "left", groupItems: leftItems}),
-      mui.ToolbarGroup({key: 1, float: "right", groupItems: rightItems})
-    ];
-
-    return (
-    	React.DOM.div(null, 
-    		React.DOM.h2(null, "Toolbars"), 
-        React.DOM.div({className: "mui-toolbar-container"}, 
-          mui.Toolbar({groups: groups})
-        )
-    	)
-    );
-  },
-
-  _onDropDownMenuChange: function(e, key, menuItem) {
-    console.log('Menu Clicked: ', menuItem);
-  },
-
-});
-
-module.exports = ToolbarPage;
-},{"mui":"/Users/Jay/Projects/material-ui/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/components/pages/typography.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var $ = require('jquery'),
-	React = require('react'),
-	CodeExample = require('../code-example/code-example.jsx');
-
-var TypographyPage = React.createClass({displayName: 'TypographyPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-	    	React.DOM.h2(null, "Roboto"), 
-	    	React.DOM.p(null, 
-	    		"The Roboto font and 3 font weights (light, regular, and medium) are automatically included from ", React.DOM.a({href: "http://www.google.com/fonts/specimen/Roboto"}, "Google Fonts")
-	    	), 
-
-	    	React.DOM.br(null), React.DOM.br(null), React.DOM.br(null), 
-
-	    	React.DOM.h2(null, "Vertical Rhythm"), 
-	    	this._getVerticalRhythmExample(), 
-
-	    	React.DOM.h2(null, "Typographic Scale"), 
-	    	this._getScaleExample(), 
-
-	    	React.DOM.h2(null, "Color Contrast"), 
-	    	this._getColorExample(), 
-
-	    	React.DOM.h2(null, "Tracking and Kerning"), 
-	    	this._getTrackingExample()
-    	)
-    );
-  },
-
-  _getVerticalRhythmExample: function() {
-  	var code = 
-  		'<h1>h1. Html Heading</h1>\n' +
-			'<h2>h2. Html Heading</h2>\n' +
-			'<h1>h1. Html Heading</h1>\n' +
-			'<h2>h2. Html Heading</h2>\n' +
-			'<h3>h3. Html Heading</h3>\n' +
-			'<h4>h4. Html Heading</h4>\n' +
-			'<h5>h5. Html Heading</h5>\n' +
-			'<h6>h6. Html Heading</h6>\n' +
-			'<p>\n'+
-			'	p. Lorem ipsum dolor sit amet, sed docendi suscipit scripserit eu, persius invenire\n' +
-			'	id sea. Ius dicant facilis propriae an, ut vim nonumy meliore lucilius, usu nonumes \n' +
-			'	phaedrum ad. Ea nam error audiam, oratio nostrud pro id. Ut sea cetero labitur \n' +
-			'	gubergren, munere maiorum nostrum vim ut, te feugiat vulputate cum. Choro volumus \n' +
-			'	sapientem te sed, legimus splendide ad nec.\n' +
-			'</p>';
-
-		return (
-			CodeExample({code: code}, 
-				React.DOM.div({ref: "verticalRhythmContainer", onClick: this._onClick}, 
-		    	React.DOM.h1(null, "h1. Html Heading"), 
-		    	React.DOM.h2(null, "h2. Html Heading"), 
-		    	React.DOM.h3(null, "h3. Html Heading"), 
-		    	React.DOM.h4(null, "h4. Html Heading"), 
-		    	React.DOM.h5(null, "h5. Html Heading"), 
-		    	React.DOM.h6(null, "h6. Html Heading"), 
-		    	React.DOM.p(null, "p. Lorem ipsum dolor sit amet, sed docendi suscipit scripserit eu, persius invenire id sea. Ius dicant facilis propriae an, ut vim nonumy meliore lucilius, usu nonumes phaedrum ad. Ea nam error audiam, oratio nostrud pro id. Ut sea cetero labitur gubergren, munere maiorum nostrum vim ut, te feugiat vulputate cum. Choro volumus sapientem te sed, legimus splendide ad nec.")
-    		)
-			)
-		);
-  },
-
-  _getScaleExample: function() {
-  	var code = 
-  		'<div className="mui-font-style-display-4">Light 112px</div>\n' +
-    	'<div className="mui-font-style-display-3">Regular 56px</div>\n' +
-    	'<div className="mui-font-style-display-2">Regular 45px</div>\n' +
-    	'<div className="mui-font-style-display-1">Regular 34px</div>\n' +
-    	'<div className="mui-font-style-headline">Regular 24px</div>\n' +
-    	'<div className="mui-font-style-title">Medium 20px</div>\n' +
-    	'<div className="mui-font-style-subhead-1">Regular 15px</div>\n' +
-    	'<div className="mui-font-style-body-2">Medium 13px</div>\n' +
-    	'<div className="mui-font-style-body-1">Regular 13px</div>\n' +
-    	'<div className="mui-font-style-caption">Regular 12px</div>\n' +
-    	'<div className="mui-font-style-menu">Medium 13px</div>\n' +
-    	'<div className="mui-font-style-button">MEDIUM (ALL CAPS) 14px</div>';
-
-		return (
-			CodeExample({code: code}, 
-				React.DOM.div({className: "mui-font-style-display-4"}, "Light 112px"), 
-	    	React.DOM.div({className: "mui-font-style-display-3"}, "Regular 56px"), 
-	    	React.DOM.div({className: "mui-font-style-display-2"}, "Regular 45px"), 
-	    	React.DOM.div({className: "mui-font-style-display-1"}, "Regular 34px"), 
-	    	React.DOM.div({className: "mui-font-style-headline"}, "Regular 24px"), 
-	    	React.DOM.div({className: "mui-font-style-title"}, "Medium 20px"), 
-	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Regular 15px"), 
-	    	React.DOM.div({className: "mui-font-style-body-2"}, "Medium 13px"), 
-	    	React.DOM.div({className: "mui-font-style-body-1"}, "Regular 13px"), 
-	    	React.DOM.div({className: "mui-font-style-caption"}, "Regular 12px"), 
-	    	React.DOM.div({className: "mui-font-style-menu"}, "Medium 13px"), 
-	    	React.DOM.div({className: "mui-font-style-button"}, "MEDIUM (ALL CAPS) 14px")
-			)
-		);
-  },
-
-  _getColorExample: function() {
-  	var code = 
-  		'<div className="mui-font-style-display-4">Black 54%</div>\n' +
-    	'<div className="mui-font-style-display-3">Black 54%</div>\n' +
-    	'<div className="mui-font-style-display-2">Black 54%</div>\n' +
-    	'<div className="mui-font-style-display-1">Black 54%</div>\n' +
-    	'<div className="mui-font-style-headline">Black 87%</div>\n' +
-    	'<div className="mui-font-style-title">Black 87%</div>\n' +
-    	'<div className="mui-font-style-subhead-1">Black 87%</div>\n' +
-    	'<div className="mui-font-style-body-2">Black 87%</div>\n' +
-    	'<div className="mui-font-style-body-1">Black 87%</div>\n' +
-    	'<div className="mui-font-style-caption">Black 54%</div>\n' +
-    	'<div className="mui-font-style-menu">Black 87%</div>\n' +
-    	'<div className="mui-font-style-button">Black 87%</div>';
-
-		return (
-			CodeExample({code: code}, 
-				React.DOM.div({className: "mui-font-style-display-4"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-display-3"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-display-2"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-display-1"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-headline"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-title"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-body-2"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-body-1"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-caption"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-menu"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-button"}, "Black 87%")
-			)
-		);
-  },
-
-  _getTrackingExample: function() {
-  	var code = 
-  		'<div className="mui-font-style-display-4">Tracking -10px</div>\n' +
-    	'<div className="mui-font-style-display-3">Tracking -5px</div>\n' +
-    	'<div className="mui-font-style-display-2">Tracking 0px</div>\n' +
-    	'<div className="mui-font-style-display-1">Tracking 0px</div>\n' +
-    	'<div className="mui-font-style-headline">Tracking 0px</div>\n' +
-    	'<div className="mui-font-style-title">Tracking 5px</div>\n' +
-    	'<div className="mui-font-style-subhead-1">Tracking 10px</div>\n' +
-    	'<div className="mui-font-style-body-2">Tracking 10px</div>\n' +
-    	'<div className="mui-font-style-body-1">Tracking 10px</div>\n' +
-    	'<div className="mui-font-style-caption">Tracking 20px</div>\n' +
-    	'<div className="mui-font-style-menu">Tracking 10px</div>\n' +
-    	'<div className="mui-font-style-button">Tracking 10px</div>';
-
-		return (
-			CodeExample({code: code}, 
-				React.DOM.div({className: "mui-font-style-display-4"}, "Tracking -10px"), 
-	    	React.DOM.div({className: "mui-font-style-display-3"}, "Tracking -5px"), 
-	    	React.DOM.div({className: "mui-font-style-display-2"}, "Tracking 0px"), 
-	    	React.DOM.div({className: "mui-font-style-display-1"}, "Tracking 0px"), 
-	    	React.DOM.div({className: "mui-font-style-headline"}, "Tracking 0px"), 
-	    	React.DOM.div({className: "mui-font-style-title"}, "Tracking 5px"), 
-	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-body-2"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-body-1"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-caption"}, "Tracking 20px"), 
-	    	React.DOM.div({className: "mui-font-style-menu"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-button"}, "Tracking 10px")
-			)
-		);
-  },
-
-  _onClick: function(e) {
-  	$(this.refs.verticalRhythmContainer.getDOMNode()).toggleClass('baseline-grid');
-  }
-
-});
-
-module.exports = TypographyPage;
-
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/src/app/components/code-example/code-example.jsx","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/src/app/stores/app-state-store.js":[function(require,module,exports){
-var _ = require('underscore'),
-  Backbone = require('backbone'),
-  Dispatcher = require('../app-dispatcher.js'),
-
-  AppStateStore = Backbone.Model.extend({
-
-    defaults: {
-      currentUrl: null
-    },
-
-    initialize: function() {
-      this.dispatchToken = Dispatcher.register(_.bind(this.onDispatched, this));
-    },
-
-    onDispatched: function(action) {
-      switch (action.type) {
-        case Dispatcher.ActionTypes.NAV_URL_CHANGE:
-        case Dispatcher.ActionTypes.NAV_USER_CLICK:
-          this.set('currentUrl', action.payload.url);
-          break;
-      }
-    }
-
-  });
-
-module.exports = new AppStateStore();
-
-},{"../app-dispatcher.js":"/Users/Jay/Projects/material-ui/src/app/app-dispatcher.js","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","underscore":"/Users/Jay/Projects/material-ui/node_modules/underscore/underscore.js"}],"/Users/Jay/Projects/material-ui/src/app/vendor/flux/dispatcher.js":[function(require,module,exports){
-/*
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule Dispatcher
- * @typechecks
- */
-
-var invariant = require('./invariant');
-
-var _lastID = 1;
-var _prefix = 'ID_';
-
-/**
- * Dispatcher is used to broadcast payloads to registered callbacks. This is
- * different from generic pub-sub systems in two ways:
- *
- *   1) Callbacks are not subscribed to particular events. Every payload is
- *      dispatched to every registered callback.
- *   2) Callbacks can be deferred in whole or part until other callbacks have
- *      been executed.
- *
- * For example, consider this hypothetical flight destination form, which
- * selects a default city when a country is selected:
- *
- *   var flightDispatcher = new Dispatcher();
- *
- *   // Keeps track of which country is selected
- *   var CountryStore = {country: null};
- *
- *   // Keeps track of which city is selected
- *   var CityStore = {city: null};
- *
- *   // Keeps track of the base flight price of the selected city
- *   var FlightPriceStore = {price: null}
- *
- * When a user changes the selected city, we dispatch the payload:
- *
- *   flightDispatcher.dispatch({
- *     actionType: 'city-update',
- *     selectedCity: 'paris'
- *   });
- *
- * This payload is digested by `CityStore`:
- *
- *   flightDispatcher.register(function(payload)) {
- *     if (payload.actionType === 'city-update') {
- *       CityStore.city = payload.selectedCity;
- *     }
- *   });
- *
- * When the user selects a country, we dispatch the payload:
- *
- *   flightDispatcher.dispatch({
- *     actionType: 'country-update',
- *     selectedCountry: 'australia'
- *   });
- *
- * This payload is digested by both stores:
- *
- *    CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
- *     if (payload.actionType === 'country-update') {
- *       CountryStore.country = payload.selectedCountry;
- *     }
- *   });
- *
- * When the callback to update `CountryStore` is registered, we save a reference
- * to the returned token. Using this token with `waitFor()`, we can guarantee
- * that `CountryStore` is updated before the callback that updates `CityStore`
- * needs to query its data.
- *
- *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
- *     if (payload.actionType === 'country-update') {
- *       // `CountryStore.country` may not be updated.
- *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
- *       // `CountryStore.country` is now guaranteed to be updated.
- *
- *       // Select the default city for the new country
- *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
- *     }
- *   });
- *
- * The usage of `waitFor()` can be chained, for example:
- *
- *   FlightPriceStore.dispatchToken =
- *     flightDispatcher.register(function(payload)) {
- *       switch (payload.actionType) {
- *         case 'country-update':
- *           flightDispatcher.waitFor([CityStore.dispatchToken]);
- *           FlightPriceStore.price =
- *             getFlightPriceStore(CountryStore.country, CityStore.city);
- *           break;
- *
- *         case 'city-update':
- *           FlightPriceStore.price =
- *             FlightPriceStore(CountryStore.country, CityStore.city);
- *           break;
- *     }
- *   });
- *
- * The `country-update` payload will be guaranteed to invoke the stores'
- * registered callbacks in order: `CountryStore`, `CityStore`, then
- * `FlightPriceStore`.
- */
-
-  function Dispatcher() {"use strict";
-    this.$Dispatcher_callbacks = {};
-    this.$Dispatcher_isPending = {};
-    this.$Dispatcher_isHandled = {};
-    this.$Dispatcher_isDispatching = false;
-    this.$Dispatcher_pendingPayload = null;
-  }
-
-  /**
-   * Registers a callback to be invoked with every dispatched payload. Returns
-   * a token that can be used with `waitFor()`.
-   *
-   * @param {function} callback
-   * @return {string}
-   */
-  Dispatcher.prototype.register=function(callback) {"use strict";
-    var id = _prefix + _lastID++;
-    this.$Dispatcher_callbacks[id] = callback;
-    return id;
-  };
-
-  /**
-   * Removes a callback based on its token.
-   *
-   * @param {string} id
-   */
-  Dispatcher.prototype.unregister=function(id) {"use strict";
-    invariant(
-      this.$Dispatcher_callbacks[id],
-      'Dispatcher.unregister(...): `%s` does not map to a registered callback.',
-      id
-    );
-    delete this.$Dispatcher_callbacks[id];
-  };
-
-  /**
-   * Waits for the callbacks specified to be invoked before continuing execution
-   * of the current callback. This method should only be used by a callback in
-   * response to a dispatched payload.
-   *
-   * @param {array<string>} ids
-   */
-  Dispatcher.prototype.waitFor=function(ids) {"use strict";
-    invariant(
-      this.$Dispatcher_isDispatching,
-      'Dispatcher.waitFor(...): Must be invoked while dispatching.'
-    );
-    for (var ii = 0; ii < ids.length; ii++) {
-      var id = ids[ii];
-      if (this.$Dispatcher_isPending[id]) {
-        invariant(
-          this.$Dispatcher_isHandled[id],
-          'Dispatcher.waitFor(...): Circular dependency detected while ' +
-          'waiting for `%s`.',
-          id
-        );
-        continue;
-      }
-      invariant(
-        this.$Dispatcher_callbacks[id],
-        'Dispatcher.waitFor(...): `%s` does not map to a registered callback.',
-        id
-      );
-      this.$Dispatcher_invokeCallback(id);
-    }
-  };
-
-  /**
-   * Dispatches a payload to all registered callbacks.
-   *
-   * @param {object} payload
-   */
-  Dispatcher.prototype.dispatch=function(payload) {"use strict";
-    invariant(
-      !this.$Dispatcher_isDispatching,
-      'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.'
-    );
-    this.$Dispatcher_startDispatching(payload);
-    try {
-      for (var id in this.$Dispatcher_callbacks) {
-        if (this.$Dispatcher_isPending[id]) {
-          continue;
-        }
-        this.$Dispatcher_invokeCallback(id);
-      }
-    } finally {
-      this.$Dispatcher_stopDispatching();
-    }
-  };
-
-  /**
-   * Is this Dispatcher currently dispatching.
-   *
-   * @return {boolean}
-   */
-  Dispatcher.prototype.isDispatching=function() {"use strict";
-    return this.$Dispatcher_isDispatching;
-  };
-
-  /**
-   * Call the calback stored with the given id. Also do some internal
-   * bookkeeping.
-   *
-   * @param {string} id
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_invokeCallback=function(id) {"use strict";
-    this.$Dispatcher_isPending[id] = true;
-    this.$Dispatcher_callbacks[id](this.$Dispatcher_pendingPayload);
-    this.$Dispatcher_isHandled[id] = true;
-  };
-
-  /**
-   * Set up bookkeeping needed when dispatching.
-   *
-   * @param {object} payload
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_startDispatching=function(payload) {"use strict";
-    for (var id in this.$Dispatcher_callbacks) {
-      this.$Dispatcher_isPending[id] = false;
-      this.$Dispatcher_isHandled[id] = false;
-    }
-    this.$Dispatcher_pendingPayload = payload;
-    this.$Dispatcher_isDispatching = true;
-  };
-
-  /**
-   * Clear bookkeeping used for dispatching.
-   *
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_stopDispatching=function() {"use strict";
-    this.$Dispatcher_pendingPayload = null;
-    this.$Dispatcher_isDispatching = false;
-  };
-
-
-module.exports = Dispatcher;
-},{"./invariant":"/Users/Jay/Projects/material-ui/src/app/vendor/flux/invariant.js"}],"/Users/Jay/Projects/material-ui/src/app/vendor/flux/invariant.js":[function(require,module,exports){
-/**
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule invariant
- */
-
-"use strict";
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var invariant = function(condition, format, a, b, c, d, e, f) {
-  if (false) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  }
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error(
-        'Minified exception occurred; use the non-minified dev environment ' +
-        'for the full error message and additional helpful warnings.'
-      );
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(
-        'Invariant Violation: ' +
-        format.replace(/%s/g, function() { return args[argIndex++]; })
-      );
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-};
-
-module.exports = invariant;
-},{}],"/Users/Jay/Projects/material-ui/src/app/vendor/highlight-js/highlight.pack.js":[function(require,module,exports){
-(function (global){
-;__browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
-var hljs=new function(){function j(v){return v.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")}function t(v){return v.nodeName.toLowerCase()}function h(w,x){var v=w&&w.exec(x);return v&&v.index==0}function r(w){var v=(w.className+" "+(w.parentNode?w.parentNode.className:"")).split(/\s+/);v=v.map(function(x){return x.replace(/^lang(uage)?-/,"")});return v.filter(function(x){return i(x)||x=="no-highlight"})[0]}function o(x,y){var v={};for(var w in x){v[w]=x[w]}if(y){for(var w in y){v[w]=y[w]}}return v}function u(x){var v=[];(function w(y,z){for(var A=y.firstChild;A;A=A.nextSibling){if(A.nodeType==3){z+=A.nodeValue.length}else{if(t(A)=="br"){z+=1}else{if(A.nodeType==1){v.push({event:"start",offset:z,node:A});z=w(A,z);v.push({event:"stop",offset:z,node:A})}}}}return z})(x,0);return v}function q(w,y,C){var x=0;var F="";var z=[];function B(){if(!w.length||!y.length){return w.length?w:y}if(w[0].offset!=y[0].offset){return(w[0].offset<y[0].offset)?w:y}return y[0].event=="start"?w:y}function A(H){function G(I){return" "+I.nodeName+'="'+j(I.value)+'"'}F+="<"+t(H)+Array.prototype.map.call(H.attributes,G).join("")+">"}function E(G){F+="</"+t(G)+">"}function v(G){(G.event=="start"?A:E)(G.node)}while(w.length||y.length){var D=B();F+=j(C.substr(x,D[0].offset-x));x=D[0].offset;if(D==w){z.reverse().forEach(E);do{v(D.splice(0,1)[0]);D=B()}while(D==w&&D.length&&D[0].offset==x);z.reverse().forEach(A)}else{if(D[0].event=="start"){z.push(D[0].node)}else{z.pop()}v(D.splice(0,1)[0])}}return F+j(C.substr(x))}function m(y){function v(z){return(z&&z.source)||z}function w(A,z){return RegExp(v(A),"m"+(y.cI?"i":"")+(z?"g":""))}function x(D,C){if(D.compiled){return}D.compiled=true;D.k=D.k||D.bK;if(D.k){var z={};var E=function(G,F){if(y.cI){F=F.toLowerCase()}F.split(" ").forEach(function(H){var I=H.split("|");z[I[0]]=[G,I[1]?Number(I[1]):1]})};if(typeof D.k=="string"){E("keyword",D.k)}else{Object.keys(D.k).forEach(function(F){E(F,D.k[F])})}D.k=z}D.lR=w(D.l||/\b[A-Za-z0-9_]+\b/,true);if(C){if(D.bK){D.b="\\b("+D.bK.split(" ").join("|")+")\\b"}if(!D.b){D.b=/\B|\b/}D.bR=w(D.b);if(!D.e&&!D.eW){D.e=/\B|\b/}if(D.e){D.eR=w(D.e)}D.tE=v(D.e)||"";if(D.eW&&C.tE){D.tE+=(D.e?"|":"")+C.tE}}if(D.i){D.iR=w(D.i)}if(D.r===undefined){D.r=1}if(!D.c){D.c=[]}var B=[];D.c.forEach(function(F){if(F.v){F.v.forEach(function(G){B.push(o(F,G))})}else{B.push(F=="self"?D:F)}});D.c=B;D.c.forEach(function(F){x(F,D)});if(D.starts){x(D.starts,C)}var A=D.c.map(function(F){return F.bK?"\\.?("+F.b+")\\.?":F.b}).concat([D.tE,D.i]).map(v).filter(Boolean);D.t=A.length?w(A.join("|"),true):{exec:function(F){return null}};D.continuation={}}x(y)}function c(S,L,J,R){function v(U,V){for(var T=0;T<V.c.length;T++){if(h(V.c[T].bR,U)){return V.c[T]}}}function z(U,T){if(h(U.eR,T)){return U}if(U.eW){return z(U.parent,T)}}function A(T,U){return !J&&h(U.iR,T)}function E(V,T){var U=M.cI?T[0].toLowerCase():T[0];return V.k.hasOwnProperty(U)&&V.k[U]}function w(Z,X,W,V){var T=V?"":b.classPrefix,U='<span class="'+T,Y=W?"":"</span>";U+=Z+'">';return U+X+Y}function N(){if(!I.k){return j(C)}var T="";var W=0;I.lR.lastIndex=0;var U=I.lR.exec(C);while(U){T+=j(C.substr(W,U.index-W));var V=E(I,U);if(V){H+=V[1];T+=w(V[0],j(U[0]))}else{T+=j(U[0])}W=I.lR.lastIndex;U=I.lR.exec(C)}return T+j(C.substr(W))}function F(){if(I.sL&&!f[I.sL]){return j(C)}var T=I.sL?c(I.sL,C,true,I.continuation.top):e(C);if(I.r>0){H+=T.r}if(I.subLanguageMode=="continuous"){I.continuation.top=T.top}return w(T.language,T.value,false,true)}function Q(){return I.sL!==undefined?F():N()}function P(V,U){var T=V.cN?w(V.cN,"",true):"";if(V.rB){D+=T;C=""}else{if(V.eB){D+=j(U)+T;C=""}else{D+=T;C=U}}I=Object.create(V,{parent:{value:I}})}function G(T,X){C+=T;if(X===undefined){D+=Q();return 0}var V=v(X,I);if(V){D+=Q();P(V,X);return V.rB?0:X.length}var W=z(I,X);if(W){var U=I;if(!(U.rE||U.eE)){C+=X}D+=Q();do{if(I.cN){D+="</span>"}H+=I.r;I=I.parent}while(I!=W.parent);if(U.eE){D+=j(X)}C="";if(W.starts){P(W.starts,"")}return U.rE?0:X.length}if(A(X,I)){throw new Error('Illegal lexeme "'+X+'" for mode "'+(I.cN||"<unnamed>")+'"')}C+=X;return X.length||1}var M=i(S);if(!M){throw new Error('Unknown language: "'+S+'"')}m(M);var I=R||M;var D="";for(var K=I;K!=M;K=K.parent){if(K.cN){D+=w(K.cN,D,true)}}var C="";var H=0;try{var B,y,x=0;while(true){I.t.lastIndex=x;B=I.t.exec(L);if(!B){break}y=G(L.substr(x,B.index-x),B[0]);x=B.index+y}G(L.substr(x));for(var K=I;K.parent;K=K.parent){if(K.cN){D+="</span>"}}return{r:H,value:D,language:S,top:I}}catch(O){if(O.message.indexOf("Illegal")!=-1){return{r:0,value:j(L)}}else{throw O}}}function e(y,x){x=x||b.languages||Object.keys(f);var v={r:0,value:j(y)};var w=v;x.forEach(function(z){if(!i(z)){return}var A=c(z,y,false);A.language=z;if(A.r>w.r){w=A}if(A.r>v.r){w=v;v=A}});if(w.language){v.second_best=w}return v}function g(v){if(b.tabReplace){v=v.replace(/^((<[^>]+>|\t)+)/gm,function(w,z,y,x){return z.replace(/\t/g,b.tabReplace)})}if(b.useBR){v=v.replace(/\n/g,"<br>")}return v}function p(z){var y=b.useBR?z.innerHTML.replace(/\n/g,"").replace(/<br>|<br [^>]*>/g,"\n").replace(/<[^>]*>/g,""):z.textContent;var A=r(z);if(A=="no-highlight"){return}var v=A?c(A,y,true):e(y);var w=u(z);if(w.length){var x=document.createElementNS("http://www.w3.org/1999/xhtml","pre");x.innerHTML=v.value;v.value=q(w,u(x),y)}v.value=g(v.value);z.innerHTML=v.value;z.className+=" hljs "+(!A&&v.language||"");z.result={language:v.language,re:v.r};if(v.second_best){z.second_best={language:v.second_best.language,re:v.second_best.r}}}var b={classPrefix:"hljs-",tabReplace:null,useBR:false,languages:undefined};function s(v){b=o(b,v)}function l(){if(l.called){return}l.called=true;var v=document.querySelectorAll("pre code");Array.prototype.forEach.call(v,p)}function a(){addEventListener("DOMContentLoaded",l,false);addEventListener("load",l,false)}var f={};var n={};function d(v,x){var w=f[v]=x(this);if(w.aliases){w.aliases.forEach(function(y){n[y]=v})}}function k(){return Object.keys(f)}function i(v){return f[v]||f[n[v]]}this.highlight=c;this.highlightAuto=e;this.fixMarkup=g;this.highlightBlock=p;this.configure=s;this.initHighlighting=l;this.initHighlightingOnLoad=a;this.registerLanguage=d;this.listLanguages=k;this.getLanguage=i;this.inherit=o;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.BE={b:"\\\\[\\s\\S]",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE]};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE]};this.PWM={b:/\b(a|an|the|are|I|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such)\b/};this.CLCM={cN:"comment",b:"//",e:"$",c:[this.PWM]};this.CBCM={cN:"comment",b:"/\\*",e:"\\*/",c:[this.PWM]};this.HCM={cN:"comment",b:"#",e:"$",c:[this.PWM]};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.CSSNM={cN:"number",b:this.NR+"(%|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc|px|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?",r:0};this.RM={cN:"regexp",b:/\//,e:/\/[gim]*/,i:/\n/,c:[this.BE,{b:/\[/,e:/\]/,r:0,c:[this.BE]}]};this.TM={cN:"title",b:this.IR,r:0};this.UTM={cN:"title",b:this.UIR,r:0}}();hljs.registerLanguage("javascript",function(a){return{aliases:["js"],k:{keyword:"in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const class",literal:"true false null undefined NaN Infinity",built_in:"eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document"},c:[{cN:"pi",b:/^\s*('|")use strict('|")/,r:10},a.ASM,a.QSM,a.CLCM,a.CBCM,a.CNM,{b:"("+a.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[a.CLCM,a.CBCM,a.RM,{b:/</,e:/>;/,r:0,sL:"xml"}],r:0},{cN:"function",bK:"function",e:/\{/,eE:true,c:[a.inherit(a.TM,{b:/[A-Za-z$_][0-9A-Za-z$_]*/}),{cN:"params",b:/\(/,e:/\)/,c:[a.CLCM,a.CBCM],i:/["'\(]/}],i:/\[|%/},{b:/\$[(.]/},{b:"\\."+a.IR,r:0}]}});hljs.registerLanguage("css",function(a){var b="[a-zA-Z-][a-zA-Z0-9_-]*";var c={cN:"function",b:b+"\\(",rB:true,eE:true,e:"\\("};return{cI:true,i:"[=/|']",c:[a.CBCM,{cN:"id",b:"\\#[A-Za-z0-9_-]+"},{cN:"class",b:"\\.[A-Za-z0-9_-]+",r:0},{cN:"attr_selector",b:"\\[",e:"\\]",i:"$"},{cN:"pseudo",b:":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+"},{cN:"at_rule",b:"@(font-face|page)",l:"[a-z-]+",k:"font-face page"},{cN:"at_rule",b:"@",e:"[{;]",c:[{cN:"keyword",b:/\S+/},{b:/\s/,eW:true,eE:true,r:0,c:[c,a.ASM,a.QSM,a.CSSNM]}]},{cN:"tag",b:b,r:0},{cN:"rules",b:"{",e:"}",i:"[^\\s]",r:0,c:[a.CBCM,{cN:"rule",b:"[^\\s]",rB:true,e:";",eW:true,c:[{cN:"attribute",b:"[A-Z\\_\\.\\-]+",e:":",eE:true,i:"[^\\s]",starts:{cN:"value",eW:true,eE:true,c:[c,a.CSSNM,a.QSM,a.ASM,a.CBCM,{cN:"hexcolor",b:"#[0-9A-Fa-f]+"},{cN:"important",b:"!important"}]}}]}]}]}});hljs.registerLanguage("xml",function(a){var c="[A-Za-z0-9\\._:-]+";var d={b:/<\?(php)?(?!\w)/,e:/\?>/,sL:"php",subLanguageMode:"continuous"};var b={eW:true,i:/</,r:0,c:[d,{cN:"attribute",b:c,r:0},{b:"=",r:0,c:[{cN:"value",v:[{b:/"/,e:/"/},{b:/'/,e:/'/},{b:/[^\s\/>]+/}]}]}]};return{aliases:["html","xhtml","rss","atom","xsl","plist"],cI:true,c:[{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},{cN:"comment",b:"<!--",e:"-->",r:10},{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[b],starts:{e:"</style>",rE:true,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[b],starts:{e:"<\/script>",rE:true,sL:"javascript"}},{b:"<%",e:"%>",sL:"vbscript"},d,{cN:"pi",b:/<\?\w+/,e:/\?>/,r:10},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:"[^ /><]+",r:0},b]}]}});hljs.registerLanguage("http",function(a){return{i:"\\S",c:[{cN:"status",b:"^HTTP/[0-9\\.]+",e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{cN:"request",b:"^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",rB:true,e:"$",c:[{cN:"string",b:" ",e:" ",eB:true,eE:true}]},{cN:"attribute",b:"^\\w",e:": ",eE:true,i:"\\n|\\s|=",starts:{cN:"string",e:"$"}},{b:"\\n\\n",starts:{sL:"",eW:true}}]}});hljs.registerLanguage("json",function(a){var e={literal:"true false null"};var d=[a.QSM,a.CNM];var c={cN:"value",e:",",eW:true,eE:true,c:d,k:e};var b={b:"{",e:"}",c:[{cN:"attribute",b:'\\s*"',e:'"\\s*:\\s*',eB:true,eE:true,c:[a.BE],i:"\\n",starts:c}],i:"\\S"};var f={b:"\\[",e:"\\]",c:[a.inherit(c,{cN:null})],i:"\\S"};d.splice(d.length,0,b,f);return{c:d,k:e,i:"\\S"}});
-; browserify_shim__define__module__export__(typeof hljs != "undefined" ? hljs : window.hljs);
-
-}).call(global, undefined, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}]},{},["./src/app/app.jsx"]);
