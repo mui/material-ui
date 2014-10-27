@@ -15,12 +15,13 @@ var React = require('react'),
 
 var MenuItem = React.createClass({
 
-	mixins: [Classable],
+  mixins: [Classable],
 
   propTypes: {
     key: React.PropTypes.number.isRequired,
     icon: React.PropTypes.string,
     iconRight: React.PropTypes.string,
+    attribute: React.PropTypes.string,
     number: React.PropTypes.string,
     data: React.PropTypes.string,
     toggle: React.PropTypes.bool,
@@ -46,21 +47,24 @@ var MenuItem = React.createClass({
       icon,
       data,
       iconRight,
-      menuItemNumber,
+      attribute,
+      number,
       toggle;
 
     if (this.props.icon) icon = <Icon className="mui-menu-item-icon" icon={this.props.icon} />;
     if (this.props.data) data = <span className="mui-menu-item-data">{this.props.data}</span>;
     if (this.props.iconRight) iconRight = <Icon className="mui-menu-item-icon-right" icon={this.props.iconRight} />;
-    if (this.props.number !== undefined) menuItemNumber = <span className="mui-menu-item-number">{this.props.number}</span>;
+    if (this.props.number !== undefined) number = <span className="mui-menu-item-number">{this.props.number}</span>;
+    if (this.props.attribute !== undefined) attribute = <span className="mui-menu-item-attribute">{this.props.attribute}</span>;
     if (this.props.toggle) toggle = <Toggle onToggle={this._onToggleClick} />;
 
     return (
-    	<div key={this.props.key} className={classes} onClick={this._onClick}>
+      <div key={this.props.key} className={classes} onClick={this._onClick}>
         {icon}
         {this.props.children}
         {data}
-        {menuItemNumber}
+        {attribute}
+        {number}
         {toggle}
         {iconRight}
       </div>

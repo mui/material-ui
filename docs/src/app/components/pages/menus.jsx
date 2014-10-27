@@ -20,7 +20,7 @@ var React = require('react'),
     { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }
   ],
 
-  attributeMenuItems = [
+  numberMenuItems = [
     { payload: '1', text: 'All', number: '22'},
     { payload: '3', text: 'Uncategorized', number: '6'},
     { payload: '4', text: 'Trash', number: '11' }
@@ -78,8 +78,8 @@ var MenusPage = React.createClass({
         <h2 className="mui-font-style-headline">Label Menu</h2>
         {this._getLabelMenuExample()}
 
-        <h2 className="mui-font-style-headline">Attribute Menu</h2>
-        {this._getAttributeMenuExample()}
+        <h2 className="mui-font-style-headline">Number Menu</h2>
+        {this._getNumberMenuExample()}
 
         <h2 className="mui-font-style-headline">Icon Menu</h2>
         {this._getIconMenuExample()}
@@ -129,19 +129,19 @@ var MenusPage = React.createClass({
     );
   },
 
-  _getAttributeMenuExample: function() {
+  _getNumberMenuExample: function() {
     var code = 
-      "var attributeMenuItems = [\n" +
+      "var numberMenuItems = [\n" +
       "   { payload: '1', text: 'All', number: '22' },\n" +
       "   { payload: '3', text: 'Uncategorized', number: '6'},\n" +
       "   { payload: '4', text: 'Trash', number: '11' }\n" +
       "];\n\n"  +
-      "<Menu menuItems={attributeMenuItems} />";
+      "<Menu menuItems={numberMenuItems} />";
 
     return (
       <CodeExample code={code}>
         <div className="example-menu">
-          <mui.Menu menuItems={attributeMenuItems} onItemClick={this._onItemClick} />
+          <mui.Menu menuItems={numberMenuItems} onItemClick={this._onItemClick} />
         </div>
       </CodeExample>
     );
