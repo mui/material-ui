@@ -30,9 +30,6 @@ var Master = React.createClass({
   },
 
   render: function() {
-    //console.log('render');
-    //console.log(this.state.currentUrl);
-    //console.log(Pages.getPage(this.state.currentUrl));
     var page = Pages.getPage(this.state.currentUrl),
       title = page.title,
       currentMainComponent = page.mainContentComponent,
@@ -40,15 +37,12 @@ var Master = React.createClass({
 
     if (page.subPages) {
       var menuItems = [],
-        //currentSubPageUrl = this.state.currentUrl.split('/')[1],
         i = 0,
         selectedIndex,
         currentSubPage;
-//console.log(this.state.currentUrl);
+
       for (prop in page.subPages) {
         currentSubPage = page.subPages[prop];
-        //console.log(currentSubPage.url, currentSubPageUrl);
-        //console.log(currentSubPageUrl);
 
         if (this.state.currentUrl === currentSubPage.url) {
           selectedIndex = i;

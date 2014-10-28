@@ -17,6 +17,7 @@ var AppLeftNav = React.createClass({
   getInitialState: function() {
     return {
       menuItems: [
+
         { payload: Pages.getStarted, text: Pages.getStarted.title },
         { payload: Pages.cssFramework, text: Pages.cssFramework.title },
         { payload: Pages.components, text: Pages.components.title },

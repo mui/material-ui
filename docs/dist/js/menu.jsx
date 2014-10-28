@@ -6,7 +6,7 @@ var $ = require('jquery'),
   React = require('react'),
   CssEvent = require('./utils/css-event.js'),
   KeyLine = require('./utils/key-line.js'),
-	Classable = require('./mixins/classable.js'),
+  Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
   Paper = require('./paper.jsx'),
   MenuItem = require('./menu-item.jsx');
@@ -85,9 +85,9 @@ var NestedMenuItem = React.createClass({
  ****************/
 var Menu = React.createClass({
 
-	mixins: [Classable],
+  mixins: [Classable],
 
-	propTypes: {
+  propTypes: {
     onItemClick: React.PropTypes.func,
     onToggleClick: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
@@ -128,18 +128,18 @@ var Menu = React.createClass({
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
   },
 
-	render: function() {
+  render: function() {
     var classes = this.getClasses('mui-menu', {
       'mui-menu-hideable': this.props.hideable,
       'mui-visible': this.props.visible
     });
 
     return (
-			<Paper zDepth={this.props.zDepth} className={classes}>
+      <Paper zDepth={this.props.zDepth} className={classes}>
         {this._getChildren()}
       </Paper>
-		);
-	},
+    );
+  },
 
   _getChildren: function() {
     var children = [],
@@ -188,6 +188,7 @@ var Menu = React.createClass({
               key={i} 
               icon={menuItem.icon} 
               data={menuItem.data} 
+              attribute={menuItem.attribute}
               number={menuItem.number} 
               toggle={menuItem.toggle} 
               onClick={this._onItemClick} 

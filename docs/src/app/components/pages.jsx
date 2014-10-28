@@ -6,6 +6,7 @@ var Home = require('./pages/home.jsx'),
 	GetStarted = require('./pages/get-started.jsx'),
 	Buttons = require('./pages/buttons.jsx'),
 	Colors = require('./pages/colors.jsx'),
+	Dialog = require('./pages/dialog.jsx'),
 	Icons = require('./pages/icons.jsx'),
 	Inputs = require('./pages/inputs.jsx'),
 	Menus = require('./pages/menus.jsx'),
@@ -39,6 +40,7 @@ var Pages = {
 		title: 'Components',
 		subPages: {
 			buttons: { url: 'components/buttons', title: 'Buttons', mainContentComponent: <Buttons /> },
+			dialog: { url: 'components/dialog', title: 'Dialog', mainContentComponent: <Dialog /> },
 			inputs: { url: 'components/inputs', title: 'Inputs', mainContentComponent: <Inputs /> },
 			menus: { url: 'components/menus', title: 'Menus', mainContentComponent: <Menus /> },
 			switches: { url: 'components/switches', title: 'Switches', mainContentComponent: <Switches /> },
@@ -46,7 +48,7 @@ var Pages = {
 			toolbars: { url: 'components/toolbar', title: 'Toolbars', mainContentComponent: <Toolbar /> }
 		}
 	},
-	
+
 	getPage: function(url) {
 		if (!url) return this.home;
 
