@@ -10,7 +10,26 @@
 
 /* App Specific Styles */
 .mui-app-content-canvas {
-	//max-width: 825px;
+
+	@subNavWidth: (@desktop-keyline-increment * 4 + 1);
+	.clearfix();
+	height: 100%;
+	
+	.subNav {
+		height: 100%;
+		width: @subNavWidth;
+		float: left;
+		border-right: solid 1px @grey-300;
+	}
+
+	.subContent {
+		.clearfix();
+		.lh-calc(width, ~'100% - @{subNavWidth}');
+		float: left;
+		padding: @desktop-gutter;
+		border-left: solid 1px @grey-300;
+		margin-left: -1px;
+	}
 }
 
 .logo {

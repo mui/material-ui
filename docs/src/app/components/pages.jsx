@@ -1,8 +1,9 @@
-/**
+/**;
  * @jsx React.DOM
  */
 
 var Home = require('./pages/home.jsx'),
+	GetStarted = require('./pages/get-started.jsx'),
 	Buttons = require('./pages/buttons.jsx'),
 	Colors = require('./pages/colors.jsx'),
 	Icons = require('./pages/icons.jsx'),
@@ -14,22 +15,48 @@ var Home = require('./pages/home.jsx'),
 	Typography = require('./pages/typography.jsx');
 
 var Pages = {
-	home: { url: '', title: 'Introduction', mainContentComponent: <Home /> },
-	colors: { url: 'colors', title: 'Colors', mainContentComponent: <Colors /> },
-	buttons: { url: 'buttons', title: 'Buttons', mainContentComponent: <Buttons /> },
-	icons: { url: 'icons', title: 'Icons', mainContentComponent: <Icons /> },
-	inputs: { url: 'inputs', title: 'Inputs', mainContentComponent: <Inputs /> },
-	menus: { url: 'menus', title: 'Menus', mainContentComponent: <Menus /> },
-	switches: { url: 'switches', title: 'Switches', mainContentComponent: <Switches /> },
-	toasts: { url: 'toasts', title: 'Toasts', mainContentComponent: <Toasts /> },
-	toolbars: { url: 'toolbar', title: 'Toolbars', mainContentComponent: <Toolbar /> },
-	typography: { url: 'typography', title: 'Typography', mainContentComponent: <Typography /> },
-
+	home: { 
+		url: '', 
+		title: 'material ui', 
+		mainContentComponent: <Home /> 
+	},
+	getStarted: {
+		url: 'get-started',
+		title: 'Get Started',
+		mainContentComponent: <GetStarted />
+	},
+	cssFramework: { 
+		url: 'css-framework/colors', 
+		title: 'Css Framework', 
+		subPages: {
+			colors: { url: 'css-framework/colors', title: 'Colors', mainContentComponent: <Colors /> },
+			typography: { url: 'css-framework/typography', title: 'Typography', mainContentComponent: <Typography /> },
+			icons: { url: 'css-framework/icons', title: 'Icons', mainContentComponent: <Icons /> }
+		}
+	},
+	components: {
+		url: 'components/buttons',
+		title: 'Components',
+		subPages: {
+			buttons: { url: 'components/buttons', title: 'Buttons', mainContentComponent: <Buttons /> },
+			inputs: { url: 'components/inputs', title: 'Inputs', mainContentComponent: <Inputs /> },
+			menus: { url: 'components/menus', title: 'Menus', mainContentComponent: <Menus /> },
+			switches: { url: 'components/switches', title: 'Switches', mainContentComponent: <Switches /> },
+			//toasts: { url: 'components/toasts', title: 'Toasts', mainContentComponent: <Toasts /> },
+			toolbars: { url: 'components/toolbar', title: 'Toolbars', mainContentComponent: <Toolbar /> }
+		}
+	},
+	
 	getPage: function(url) {
 		if (!url) return this.home;
 
+		//Only match the first part of the url
+		var rootUrl = url.split('/')[0],
+			currentPage;
+
 		for (prop in this) {
-			if (this[prop].url === url) return this[prop];
+			currentPage = this[prop];
+			if (currentPage.url.split('/')[0] === rootUrl) return currentPage;
 		}
 	}
 }
