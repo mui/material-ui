@@ -9,28 +9,34 @@
 @import "icon-group.less";
 
 /* App Specific Styles */
-.mui-app-content-canvas {
+.mui-app-canvas {
 
-	@subNavWidth: (@desktop-keyline-increment * 4 + 1);
-	.clearfix();
 	height: 100%;
-	
-	.subNav {
-		height: 100%;
-		width: @subNavWidth;
-		float: left;
-		border-right: solid 1px @grey-300;
-	}
 
-	.subContent {
+	.mui-app-content-canvas {
+
+		@subNavWidth: (@desktop-keyline-increment * 4 + 1);
 		.clearfix();
-		.lh-calc(width, ~'100% - @{subNavWidth}');
-		float: left;
-		padding: @desktop-gutter;
-		border-left: solid 1px @grey-300;
-		margin-left: -1px;
+		height: 100%;
+		
+		.subNav {
+			height: 100%;
+			width: @subNavWidth;
+			float: left;
+			border-right: solid 1px @grey-300;
+		}
+
+		.subContent {
+			.clearfix();
+			.lh-calc(width, ~'100% - @{subNavWidth}');
+			float: left;
+			padding: @desktop-gutter;
+			border-left: solid 1px @grey-300;
+			margin-left: -1px;
+		}
 	}
 }
+
 
 .logo {
 	cursor: pointer;

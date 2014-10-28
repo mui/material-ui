@@ -31,8 +31,7 @@ var Pages = {
 		title: 'Css Framework', 
 		subPages: {
 			colors: { url: 'css-framework/colors', title: 'Colors', mainContentComponent: <Colors /> },
-			typography: { url: 'css-framework/typography', title: 'Typography', mainContentComponent: <Typography /> },
-			icons: { url: 'css-framework/icons', title: 'Icons', mainContentComponent: <Icons /> }
+			typography: { url: 'css-framework/typography', title: 'Typography', mainContentComponent: <Typography /> }
 		}
 	},
 	components: {
@@ -41,6 +40,7 @@ var Pages = {
 		subPages: {
 			buttons: { url: 'components/buttons', title: 'Buttons', mainContentComponent: <Buttons /> },
 			dialog: { url: 'components/dialog', title: 'Dialog', mainContentComponent: <Dialog /> },
+			icons: { url: 'components/icons', title: 'Icons', mainContentComponent: <Icons /> },
 			inputs: { url: 'components/inputs', title: 'Inputs', mainContentComponent: <Inputs /> },
 			menus: { url: 'components/menus', title: 'Menus', mainContentComponent: <Menus /> },
 			switches: { url: 'components/switches', title: 'Switches', mainContentComponent: <Switches /> },
