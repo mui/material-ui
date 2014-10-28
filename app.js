@@ -1994,7 +1994,7 @@ var DialogExample = React.createClass({displayName: 'DialogExample',
 
 	render: function() {
 		var code = 
-      "showDialog: function() {\n" +
+      "_showDialog: function() {\n" +
       "  this.refs.dialogExample.show();\n" +
       "},\n\n" +
       "render: function() {\n\n" +
@@ -2003,8 +2003,11 @@ var DialogExample = React.createClass({displayName: 'DialogExample',
       "    { text: 'SUBMIT', onClick: this._onDialogSubmit }\n" +
       "  ];\n\n" +
       "  return (\n" +
-      "    <PaperButton label=\"DEMO\" onClick={this.showDialog} />\n" +
-      "    <Dialog ref=\"dialogExample\" title=\"Title\" actions={dialogActions} />\n" +
+      "    <PaperButton label=\"DEMO\" onClick={this._showDialog} />\n" +
+      "    <Dialog ref=\"dialogExample\" title=\"Title\" actions={dialogActions}>\n" +
+      "      This is an example of a dialog component built with Facebook's React and following\n" +
+      "      Google's Material Design principles.\n" +
+      "    </Dialog>\n" +
       "  );\n" +
       "}\n";
 
@@ -2015,9 +2018,8 @@ var DialogExample = React.createClass({displayName: 'DialogExample',
 
 		return (
 			React.DOM.div(null, 
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Drop Down Menu"), 
     		CodeExample({code: code}, 
-    			mui.PaperButton({label: "DEMO", onClick: this.showDialog})
+    			mui.PaperButton({label: "DEMO", onClick: this._showDialog})
     		), 
     		mui.Dialog({ref: "dialogExample", title: "Title", actions: dialogActions}, 
     			"This is an example of a dialog component built with Facebook's React and following" + ' ' + 
@@ -2027,7 +2029,7 @@ var DialogExample = React.createClass({displayName: 'DialogExample',
 		);
 	},
 
-	showDialog: function() {
+	_showDialog: function() {
 		this.refs.dialogExample.show();
 	}
 
