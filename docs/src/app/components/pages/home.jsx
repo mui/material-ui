@@ -54,7 +54,7 @@ var HomePage = React.createClass({
             <div className="home-contribute">
                 <div className="content-container">
                     <h3>Want to help make this project awesome? Check out our repo.</h3>
-                    <PaperButton type={PaperButton.Types.RAISED} primary={true} label="Github" onClick={this._onContributeClick} />
+                    <PaperButton type={PaperButton.Types.RAISED} primary={true} label="Github" onClick={this._onGithubClick} />
                 </div>
             </div>
 
@@ -62,7 +62,7 @@ var HomePage = React.createClass({
     );
   },
 
-  _onContributeClick: function() {
+  _onGithubClick: function() {
     document.location.href='https://github.com/callemall/material-ui';
   },
 

@@ -7,6 +7,7 @@ var Backbone = require('backbone'),
   Dispatcher = require('../app-dispatcher.js'),
   mui = require('mui'),
   Menu = mui.Menu,
+  Icon = mui.Icon,
   AppStateStore = require('../stores/app-state-store.js'),
   Pages = require('./pages.jsx'),
 	AppLeftNav = require('./app-left-nav.jsx');
@@ -70,8 +71,16 @@ var Master = React.createClass({
             {currentMainComponent}
           </div>
         </div>
+        <div className="footer">
+            <Icon icon="github" onClick={this._onGithubClick} />
+            <p>Hand crafted with love by the engineers at <a href="http://call-em-all.com">Call-Em-All</a> and our awesome <a href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.</p>
+        </div>
       </mui.AppCanvas>
     );
+  },
+
+  _onGithubClick: function() {
+    document.location.href='https://github.com/callemall/material-ui';
   },
 
   _onMenuItemClick: function(e, key, item) {

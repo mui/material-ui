@@ -25,7 +25,6 @@ a {
 	.mui-app-content-canvas {
 
 		.clearfix();
-		height: 100%;
 
 		&.with-nav {
 			@subNavWidth: (@desktop-keyline-increment * 4 + 1);
@@ -171,6 +170,30 @@ a {
 			margin-top: 15px;
 		}
 	}
+}
+
+.footer {
+	background-color: @grey-900;
+	height: @desktop-keyline-increment;
+	padding: 0 @desktop-gutter;
+
+	p {
+		margin: 0;
+		padding: 0;
+		.mui-text-light-white;
+		line-height: @desktop-keyline-increment;
+	}
+
+	a {
+		.mui-text-dark-white;
+	}
+
+	.mui-icon {
+		float: right;
+		.mui-text-dark-white;
+		line-height: @desktop-keyline-increment;
+	}
+
 }
 
 .baseline-grid {
