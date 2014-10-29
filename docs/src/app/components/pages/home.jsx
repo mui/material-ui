@@ -5,6 +5,7 @@
 var React = require('react'),
     Dispatcher = require('../../app-dispatcher.js'),
     mui = require('mui'),
+    PaperButton = mui.PaperButton,
     Icon = mui.Icon;
 
 var HomePage = React.createClass({
@@ -46,25 +47,35 @@ var HomePage = React.createClass({
                     <h3>Components</h3>
                     <p>
                         We've started building out some material design components using react. 
-                        Here's a sneak peek at a few with more on the way.
+                        Here's a sneak peek at a few - with more on the way.
                     </p>
                 </div>
-                
             </div>
+            <div className="home-contribute">
+                <div className="content-container">
+                    <h3>Want to help make this project awesome? Check out our repo.</h3>
+                    <PaperButton type={PaperButton.Types.RAISED} primary={true} label="Github" onClick={this._onContributeClick} />
+                </div>
+            </div>
+
         </div>
     );
   },
 
+  _onContributeClick: function() {
+    document.location.href='https://github.com/callemall/material-ui';
+  },
+
   _getStartedClick: function() {
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'get-started' } ); 
+    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'get-started' } ); 
   },
 
   _cssFrameworkClick: function() {
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'css-framework/colors' } ); 
+    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'css-framework/colors' } ); 
   },
 
   _componentsClick: function() {
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'components/buttons' } ); 
+    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'components/buttons' } ); 
   }
 
 
