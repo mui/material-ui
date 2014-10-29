@@ -138,6 +138,7 @@ p {
 	height: 1.5em;
 }
 #testDrive {
+	display: block;
 	padding-top: 24px;
 	line-height: 1.5;
 }

@@ -6,13 +6,13 @@
 <g id="ground_shadow" style="opacity:0.3;">
 	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="28.75" y1="207.5" x2="665" y2="207.5">
 		<stop  offset="0" style="stop-color:#000000"/>
-		<stop  offset="1" style="stop-color:#000000;stop-opacity:0.3"/>
+		<stop  offset="0.6" style="stop-color:#000000;stop-opacity:0.2"/>
 	</linearGradient>
 	<path style="fill:url(#SVGID_1_);" d="M578.75,195L665,145l-17.5-11.25L456.25,140l-10-6.25L48.75,145l-20,23.75l126.25-5
 		l-46.25,50l118.75,67.5l71.25-1.25l97.5-56.25l210-6.25l20-12.5l-20-10H578.75z M347.5,202.5l-103.75,23.75l-26.25-15l81.25-45
 		l88.75-2.5l60,35L347.5,202.5z M512.5,171.25l-17.5-10l40-2.5L512.5,171.25z"/>
 	<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="657.5" y1="201.875" x2="765" y2="201.875">
-		<stop  offset="0" style="stop-color:#000000;stop-opacity:0.3"/>
+		<stop  offset="0" style="stop-color:#000000;stop-opacity:0.2"/>
 		<stop  offset="1" style="stop-color:#000000;stop-opacity:0"/>
 	</linearGradient>
 	<polygon style="fill:url(#SVGID_2_);" points="746.25,190 676.25,191.25 657.5,202.5 675,213.75 745,212.5 765,201.25 	"/>
