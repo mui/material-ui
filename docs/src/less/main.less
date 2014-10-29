@@ -8,6 +8,15 @@
 @import "color-palette.less";
 @import "icon-group.less";
 
+a {
+	color: @accent-1-color;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
 /* App Specific Styles */
 .mui-app-canvas {
 
@@ -15,28 +24,31 @@
 
 	.mui-app-content-canvas {
 
-		@subNavWidth: (@desktop-keyline-increment * 4 + 1);
 		.clearfix();
 		height: 100%;
-		
-		.subNav {
-			height: 100%;
-			width: @subNavWidth;
-			float: left;
-			border-right: solid 1px @grey-300;
-		}
 
-		.subContent {
-			.clearfix();
-			.lh-calc(width, ~'100% - @{subNavWidth}');
-			float: left;
-			padding: @desktop-gutter;
-			border-left: solid 1px @grey-300;
-			margin-left: -1px;
+		&.with-nav {
+			@subNavWidth: (@desktop-keyline-increment * 4 + 1);
+
+			.subNav {
+				height: 100%;
+				width: @subNavWidth;
+				float: left;
+				border-right: solid 1px @grey-300;
+			}
+
+			.subContent {
+				.clearfix();
+				.lh-calc(width, ~'100% - @{subNavWidth}');
+				float: left;
+				padding: @desktop-gutter;
+				border-left: solid 1px @grey-300;
+				margin-left: -1px;
+			}
 		}
+		
 	}
 }
-
 
 .logo {
 	cursor: pointer;
@@ -48,6 +60,51 @@
 	padding-left: @desktop-gutter;
 	padding-top: 0;
 	margin-bottom: @desktop-gutter-mini;
+}
+
+.full-width-section {
+	padding: @desktop-gutter;
+
+	&.call-out-statement {
+		text-align: center;
+	}
+}
+
+.home-page-hero {
+	background-color: @primary-1-color;
+	height: (@desktop-keyline-increment * 8);
+	color: @dark-white;
+
+	.home-page-hero-content {
+		max-width: 1300px;
+		margin: 0 auto;
+		position: relative;
+		.clearfix();
+	}
+
+	.tagline {
+		width: 50%;
+		float: right;
+		margin-top: 32px;
+		position: relative;
+	}
+
+	.svg-logo {
+		top: 32px;
+		left: 0px;
+		position: absolute;
+	}
+
+	.mui-font-style-headline,
+	.mui-font-style-subhead-1 {
+		color: @dark-white;
+	}
+
+	.brand-name {
+		.mui-font-style-display-3;
+		.mui-font-weight-light;
+		color: @dark-white;
+	}
 }
 
 .baseline-grid {

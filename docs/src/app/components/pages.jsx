@@ -18,7 +18,7 @@ var Home = require('./pages/home.jsx'),
 var Pages = {
 	home: { 
 		url: '', 
-		title: 'material ui', 
+		title: '', 
 		mainContentComponent: <Home /> 
 	},
 	getStarted: {

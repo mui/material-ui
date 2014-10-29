@@ -13,12 +13,14 @@ var AppBar = React.createClass({
 
   propTypes: {
     title : React.PropTypes.string,
-    onMenuIconClick: React.PropTypes.func
+    onMenuIconClick: React.PropTypes.func,
+    zDepth: React.PropTypes.number
   },
 
   getDefaultProps: function() {
   	return {
-      title: ''
+      title: '',
+      zDepth: 1
   	}
   },
 
@@ -30,7 +32,7 @@ var AppBar = React.createClass({
     if (this.props.onMenuIconClick) menuIcon = <Icon icon="menu" onClick={this.props.onMenuIconClick} />;
 
     return (
-    	<Paper rounded={false} className={classes}>
+    	<Paper rounded={false} className={classes} zDepth={this.props.zDepth}>
         {menuIcon}
         {title}
     		{this.props.children}

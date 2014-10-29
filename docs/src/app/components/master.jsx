@@ -33,6 +33,7 @@ var Master = React.createClass({
     var page = Pages.getPage(this.state.currentUrl),
       title = page.title,
       currentMainComponent = page.mainContentComponent,
+      contentCanvasClass = page.subPages ? 'mui-app-content-canvas with-nav' : 'mui-app-content-canvas',
       subNav;
 
     if (page.subPages) {
@@ -61,9 +62,9 @@ var Master = React.createClass({
 
     return (
       <mui.AppCanvas predefinedLayout={1}>
-        <mui.AppBar onMenuIconClick={this._onMenuIconClick} title={title} />
+        <mui.AppBar onMenuIconClick={this._onMenuIconClick} title={title} zDepth={0} />
     		<AppLeftNav ref="leftNav" url={this.state.currentUrl} />
-    		<div className="mui-app-content-canvas">
+    		<div className={contentCanvasClass}>
           {subNav}
           <div className="subContent">
             {currentMainComponent}
