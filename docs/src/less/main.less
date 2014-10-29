@@ -112,6 +112,47 @@ a {
 	}
 }
 
+.home-features {
+	padding: (@desktop-keyline-increment * 2) @desktop-gutter;
+	.clearfix();
+
+	.feature {
+		float: left;
+		text-align: center;
+		width: 33%;
+
+
+		.icon-circle {
+			height: 128px;
+			width: 128px;
+			margin: 0 auto;
+			background-color: @grey-200;
+			.lh-border-radius(50%);
+			margin-bottom: @desktop-gutter;
+			cursor: pointer;
+
+			.mui-icon {
+				color: @primary-1-color;
+				line-height: 128px;
+				font-size: 48px;
+			}
+		}
+		
+
+		h3 {
+			.mui-font-weight-light;
+		}
+
+		p {
+			.mui-font-style-subhead-1;
+			padding: 0 (@desktop-gutter * 2);
+			.mui-text-light-black;
+		}
+
+	}
+	
+}
+
 .baseline-grid {
 	background-image: url('images/baseline-20px-grid.gif');
 }

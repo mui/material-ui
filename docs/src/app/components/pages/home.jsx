@@ -2,7 +2,10 @@
  * @jsx React.DOM
  */
 
-var React = require('react');
+var React = require('react'),
+    Dispatcher = require('../../app-dispatcher.js'),
+    mui = require('mui'),
+    Icon = mui.Icon;
 
 var HomePage = React.createClass({
 
@@ -23,9 +26,48 @@ var HomePage = React.createClass({
                     </div>
                 </div>
         	</div>
+            <div className="home-features">
+                <div className="feature">
+                    <div className="icon-circle" onClick={this._getStartedClick}><Icon icon="check-all" /></div>
+                    <h3>Get Started</h3>
+                    <p>
+                        The best way to get started is check out our repo and download the code. This doc site, along with its live examples, are all built with react. :)
+                    </p>
+                </div>
+                <div className="feature">
+                    <div className="icon-circle" onClick={this._cssFrameworkClick}><Icon icon="web" /></div>
+                    <h3>Css Framework</h3>
+                    <p>
+                        The Css Framework is built with <a href="http://lesscss.org">Less</a>. We've included handy things like resets, colors, and typography to help get you going.
+                    </p>
+                </div>
+                <div className="feature">
+                    <div className="icon-circle" onClick={this._componentsClick}><Icon icon="select-all" /></div>
+                    <h3>Components</h3>
+                    <p>
+                        We've started building out some material design components using react. 
+                        Here's a sneak peek at a few with more on the way.
+                    </p>
+                </div>
+                
+            </div>
         </div>
     );
+  },
+
+  _getStartedClick: function() {
+      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'get-started' } ); 
+  },
+
+  _cssFrameworkClick: function() {
+      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'css-framework/colors' } ); 
+  },
+
+  _componentsClick: function() {
+      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'components/buttons' } ); 
   }
+
+
 
 });
 
