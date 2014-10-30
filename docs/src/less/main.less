@@ -66,10 +66,7 @@ a {
 
 .full-width-section {
 	padding: @desktop-gutter;
-
-	&.call-out-statement {
-		text-align: center;
-	}
+	.clearfix();
 }
 
 .home-page-hero {
@@ -176,7 +173,17 @@ a {
 }
 
 .get-started-page {
+	padding: @desktop-gutter;
 
+	.content {
+		width: 50%;
+		float: left;
+		padding-right: (@desktop-gutter * 2);
+	}
+
+	.code-example {
+
+	}
 }
 
 .footer {
