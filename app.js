@@ -17,7 +17,7 @@
 	window.React = React;
 
 	//Render the main app component
-	React.renderComponent(MasterComponent(null), document.body);
+	React.render(React.createElement(MasterComponent, null), document.body);
 
 	Backbone.history.start();
 
@@ -25,7 +25,7 @@
 
 
 
-},{"./app-router.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-router.js","./components/master.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/master.jsx","backbone":"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/index.js":[function(require,module,exports){
+},{"./app-router.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-router.js","./components/master.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\master.jsx","backbone":"D:\\GitHub\\material-ui\\docs\\node_modules\\backbone\\backbone.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\index.js":[function(require,module,exports){
 module.exports = {
 	AppBar: require('./js/app-bar.jsx'),
 	AppCanvas: require('./js/app-canvas.jsx'),
@@ -51,7 +51,7 @@ module.exports = {
 	ToolbarGroup: require('./js/toolbar-group.jsx')
 };
 
-},{"./js/app-bar.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/app-bar.jsx","./js/app-canvas.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/app-canvas.jsx","./js/checkbox.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/checkbox.jsx","./js/dialog.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/dialog.jsx","./js/drop-down-icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-icon.jsx","./js/drop-down-menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-menu.jsx","./js/icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./js/input.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/input.jsx","./js/left-nav.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/left-nav.jsx","./js/menu-item.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx","./js/menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./js/mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./js/mixins/click-awayable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./js/paper-button.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper-button.jsx","./js/paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./js/radio-button.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/radio-button.jsx","./js/toast.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toast.jsx","./js/toggle.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toggle.jsx","./js/toolbar-group.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar-group.jsx","./js/toolbar.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar.jsx"}],"/Users/hai/GitHub/material-ui/docs/dist/js/app-bar.jsx":[function(require,module,exports){
+},{"./js/app-bar.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\app-bar.jsx","./js/app-canvas.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\app-canvas.jsx","./js/checkbox.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\checkbox.jsx","./js/dialog.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\dialog.jsx","./js/drop-down-icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\drop-down-icon.jsx","./js/drop-down-menu.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\drop-down-menu.jsx","./js/icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./js/input.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\input.jsx","./js/left-nav.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\left-nav.jsx","./js/menu-item.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu-item.jsx","./js/menu.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu.jsx","./js/mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./js/mixins/click-awayable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js","./js/paper-button.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper-button.jsx","./js/paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./js/radio-button.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\radio-button.jsx","./js/toast.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toast.jsx","./js/toggle.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toggle.jsx","./js/toolbar-group.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toolbar-group.jsx","./js/toolbar.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toolbar.jsx"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\app-bar.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -82,11 +82,11 @@ var AppBar = React.createClass({displayName: 'AppBar',
     var classes = this.getClasses('mui-app-bar'),
       title, menuIcon;
 
-    if (this.props.title) title = React.DOM.h1({className: "mui-app-bar-title"}, this.props.title);
-    if (this.props.onMenuIconClick) menuIcon = Icon({icon: "menu", onClick: this.props.onMenuIconClick});
+    if (this.props.title) title = React.createElement("h1", {className: "mui-app-bar-title"}, this.props.title);
+    if (this.props.onMenuIconClick) menuIcon = React.createElement(Icon, {icon: "menu", onClick: this.props.onMenuIconClick});
 
     return (
-    	Paper({rounded: false, className: classes, zDepth: this.props.zDepth}, 
+    	React.createElement(Paper, {rounded: false, className: classes, zDepth: this.props.zDepth}, 
         menuIcon, 
         title, 
     		this.props.children
@@ -98,7 +98,7 @@ var AppBar = React.createClass({displayName: 'AppBar',
 
 module.exports = AppBar;
 
-},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/app-canvas.jsx":[function(require,module,exports){
+},{"./icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\app-canvas.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -121,7 +121,7 @@ var AppCanvas = React.createClass({displayName: 'AppCanvas',
     });
 
     return (
-      React.DOM.div({className: classes}, 
+      React.createElement("div", {className: classes}, 
         this.props.children
       )
     );
@@ -131,7 +131,7 @@ var AppCanvas = React.createClass({displayName: 'AppCanvas',
 
 module.exports = AppCanvas;
 
-},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/checkbox.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\checkbox.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -173,10 +173,10 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
     })
 
     return (
-      React.DOM.div({className: classes, onClick: this._onCheck}, 
-        React.DOM.input({ref: "checkbox", type: "checkbox", name: this.props.name, value: this.props.value}), 
-        React.DOM.span({className: "mui-checkbox-box"}), 
-        React.DOM.span({className: "mui-checkbox-check"})
+      React.createElement("div", {className: classes, onClick: this._onCheck}, 
+        React.createElement("input", {ref: "checkbox", type: "checkbox", name: this.props.name, value: this.props.value}), 
+        React.createElement("span", {className: "mui-checkbox-box"}), 
+        React.createElement("span", {className: "mui-checkbox-check"})
       )
     );
   },
@@ -192,7 +192,7 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
 });
 
 module.exports = Checkbox;
-},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/dialog.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\dialog.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var $ = require('jquery');
@@ -237,26 +237,26 @@ var Dialog = React.createClass({displayName: 'Dialog',
 	render: function() {
 		var mainClasses = this.getClasses('dialog', { 'show': this.state.open }),
 			actions = this.props.actions.map(function(a) {
-				if (a.onClick) return React.DOM.div({className: "action", onClick: a.onClick}, a.text);
-				return React.DOM.div({className: "action", onClick: this.dismiss}, a.text);
+				if (a.onClick) return React.createElement("div", {className: "action", onClick: a.onClick}, a.text);
+				return React.createElement("div", {className: "action", onClick: this.dismiss}, a.text);
 			}.bind(this));
 
 		return (
-			React.DOM.div({className: mainClasses}, 
-				Paper({zDepth: 4}, 
-					React.DOM.h3({className: "dialog-title"}, 
+			React.createElement("div", {className: mainClasses}, 
+				React.createElement(Paper, {zDepth: 4}, 
+					React.createElement("h3", {className: "dialog-title"}, 
 						this.props.title
 					), 
-					React.DOM.div({className: "dialog-content"}, 
+					React.createElement("div", {className: "dialog-content"}, 
 						this.props.children
 					), 
-					React.DOM.div({className: "dialog-actions"}, 
-						React.DOM.div({className: "actions-right"}, 
+					React.createElement("div", {className: "dialog-actions"}, 
+						React.createElement("div", {className: "actions-right"}, 
 							actions
 						)
 					)
 				), 
-				React.DOM.div({className: "dialog-overlay", onClick: this._handleClickAway})
+				React.createElement("div", {className: "dialog-overlay", onClick: this._handleClickAway})
 			)
 		);
 	},
@@ -273,7 +273,7 @@ var Dialog = React.createClass({displayName: 'Dialog',
 
 module.exports = Dialog;
 
-},{"./mixins/classable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-icon.jsx":[function(require,module,exports){
+},{"./mixins/classable":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\drop-down-icon.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -321,11 +321,11 @@ var DropDownIcon = React.createClass({displayName: 'DropDownIcon',
     });
 
     return (
-    	React.DOM.div({className: classes}, 
-        	React.DOM.div({className: "mui-menu-control", onClick: this._onControlClick}, 
-          		Icon({icon: this.props.icon})
+    	React.createElement("div", {className: classes}, 
+        	React.createElement("div", {className: "mui-menu-control", onClick: this._onControlClick}, 
+          		React.createElement(Icon, {icon: this.props.icon})
         	), 
-        	Menu({ref: "menuItems", selectedIndex: this.state.selectedIndex, menuItems: this.props.menuItems, hideable: true, visible: this.state.open, onItemClick: this._onMenuItemClick})
+        	React.createElement(Menu, {ref: "menuItems", selectedIndex: this.state.selectedIndex, menuItems: this.props.menuItems, hideable: true, visible: this.state.open, onItemClick: this._onMenuItemClick})
       	)
     );
   },
@@ -345,7 +345,7 @@ var DropDownIcon = React.createClass({displayName: 'DropDownIcon',
 });
 
 module.exports = DropDownIcon;
-},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./menu-item.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx","./menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/key-line.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-menu.jsx":[function(require,module,exports){
+},{"./icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./menu-item.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu-item.jsx","./menu.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./utils/key-line.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\key-line.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\drop-down-menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -396,15 +396,15 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
     });
 
     return (
-    	React.DOM.div({className: classes}, 
-        React.DOM.div({className: "mui-menu-control", onClick: this._onControlClick}, 
-          Paper({className: "mui-menu-control-bg", zDepth: "0"}), 
-          React.DOM.div({className: "mui-menu-label"}, 
+    	React.createElement("div", {className: classes}, 
+        React.createElement("div", {className: "mui-menu-control", onClick: this._onControlClick}, 
+          React.createElement(Paper, {className: "mui-menu-control-bg", zDepth: 0}), 
+          React.createElement("div", {className: "mui-menu-label"}, 
             this.props.menuItems[this.state.selectedIndex].text
           ), 
-          Icon({icon: "arrow-drop-down"})
+          React.createElement(Icon, {icon: "arrow-drop-down"})
         ), 
-        Menu({ref: "menuItems", selectedIndex: this.state.selectedIndex, menuItems: this.props.menuItems, hideable: true, visible: this.state.open, onItemClick: this._onMenuItemClick})
+        React.createElement(Menu, {ref: "menuItems", selectedIndex: this.state.selectedIndex, menuItems: this.props.menuItems, hideable: true, visible: this.state.open, onItemClick: this._onMenuItemClick})
       )
     );
   },
@@ -425,7 +425,7 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
 
 module.exports = DropDownMenu;
 
-},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/key-line.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx":[function(require,module,exports){
+},{"./icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./menu.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./utils/key-line.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\key-line.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -446,8 +446,8 @@ var Icon = React.createClass({displayName: 'Icon',
 		var classes = this.getClasses('mui-icon mui-icon-' + this.props.icon);
 
 		return (
-			React.DOM.span({className: classes, onClick: this._onClick}, 
-				React.DOM.span({className: "mui-icon-highlight"}, " ")
+			React.createElement("span", {className: classes, onClick: this._onClick}, 
+				React.createElement("span", {className: "mui-icon-highlight"}, " ")
 			)
 		);
 	},
@@ -460,7 +460,7 @@ var Icon = React.createClass({displayName: 'Icon',
 
 module.exports = Icon;
 
-},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/input.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\input.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -515,17 +515,17 @@ var Input = React.createClass({displayName: 'Input',
         'mui-error': this.state.error === true
       }),
       inputElement = this.props.multiline ? 
-        React.DOM.textarea({value: this.state.value, className: "mui-input-textarea", rows: this.state.rows, onChange: this._onTextAreaChange, required: true}) :
-        React.DOM.input({ref: "input", value: this.state.value, type: this.props.type, name: this.props.name, onChange: this._onInputChange, required: true});
+        React.createElement("textarea", {value: this.state.value, className: "mui-input-textarea", rows: this.state.rows, onChange: this._onTextAreaChange, required: true}) :
+        React.createElement("input", {ref: "input", value: this.state.value, type: this.props.type, name: this.props.name, onChange: this._onInputChange, required: true});
 
     return (
-      React.DOM.div({ref: this.props.ref, className: classes}, 
+      React.createElement("div", {ref: this.props.ref, className: classes}, 
         inputElement, 
-        React.DOM.span({className: "mui-input-placeholder", onClick: this._onPlaceholderClick}, this.props.placeholder), 
-        React.DOM.span({className: "mui-input-highlight"}), 
-        React.DOM.span({className: "mui-input-bar"}), 
-        React.DOM.span({className: "mui-input-description"}, this.props.description), 
-        React.DOM.span({className: "mui-input-error"}, this.props.error)
+        React.createElement("span", {className: "mui-input-placeholder", onClick: this._onPlaceholderClick}, this.props.placeholder), 
+        React.createElement("span", {className: "mui-input-highlight"}), 
+        React.createElement("span", {className: "mui-input-bar"}), 
+        React.createElement("span", {className: "mui-input-description"}, this.props.description), 
+        React.createElement("span", {className: "mui-input-error"}, this.props.error)
       )
     );
   },
@@ -571,7 +571,7 @@ var Input = React.createClass({displayName: 'Input',
 });
 
 module.exports = Input;
-},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/left-nav.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\left-nav.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -587,7 +587,7 @@ var LeftNav = React.createClass({displayName: 'LeftNav',
 
   propTypes: {
     onChange: React.PropTypes.func,
-    header: React.PropTypes.component,
+    header: React.PropTypes.element,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
     isInitiallyOpen: React.PropTypes.bool
@@ -620,11 +620,11 @@ var LeftNav = React.createClass({displayName: 'LeftNav',
       selectedIndex = this.props.selectedIndex;
 
     return (
-      React.DOM.div({className: classes}, 
-        React.DOM.div({className: "mui-overlay", onClick: this._onOverlayClick}), 
-        Paper({ref: "clickAwayableElement", className: "mui-left-nav-menu", zDepth: 2, rounded: false}, 
+      React.createElement("div", {className: classes}, 
+        React.createElement("div", {className: "mui-overlay", onClick: this._onOverlayClick}), 
+        React.createElement(Paper, {ref: "clickAwayableElement", className: "mui-left-nav-menu", zDepth: 2, rounded: false}, 
           this.props.header, 
-          Menu({ref: "menuItems", zDepth: 0, menuItems: this.props.menuItems, selectedIndex: selectedIndex, onItemClick: this._onMenuItemClick})
+          React.createElement(Menu, {ref: "menuItems", zDepth: 0, menuItems: this.props.menuItems, selectedIndex: selectedIndex, onItemClick: this._onMenuItemClick})
         )
       )
     );
@@ -643,7 +643,7 @@ var LeftNav = React.createClass({displayName: 'LeftNav',
 
 module.exports = LeftNav;
 
-},{"./menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx":[function(require,module,exports){
+},{"./menu.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu-item.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -664,7 +664,7 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
   mixins: [Classable],
 
   propTypes: {
-    key: React.PropTypes.number.isRequired,
+    index: React.PropTypes.number.isRequired,
     icon: React.PropTypes.string,
     iconRight: React.PropTypes.string,
     attribute: React.PropTypes.string,
@@ -697,15 +697,15 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
       number,
       toggle;
 
-    if (this.props.icon) icon = Icon({className: "mui-menu-item-icon", icon: this.props.icon});
-    if (this.props.data) data = React.DOM.span({className: "mui-menu-item-data"}, this.props.data);
-    if (this.props.iconRight) iconRight = Icon({className: "mui-menu-item-icon-right", icon: this.props.iconRight});
-    if (this.props.number !== undefined) number = React.DOM.span({className: "mui-menu-item-number"}, this.props.number);
-    if (this.props.attribute !== undefined) attribute = React.DOM.span({className: "mui-menu-item-attribute"}, this.props.attribute);
-    if (this.props.toggle) toggle = Toggle({onToggle: this._onToggleClick});
+    if (this.props.icon) icon = React.createElement(Icon, {className: "mui-menu-item-icon", icon: this.props.icon});
+    if (this.props.data) data = React.createElement("span", {className: "mui-menu-item-data"}, this.props.data);
+    if (this.props.iconRight) iconRight = React.createElement(Icon, {className: "mui-menu-item-icon-right", icon: this.props.iconRight});
+    if (this.props.number !== undefined) number = React.createElement("span", {className: "mui-menu-item-number"}, this.props.number);
+    if (this.props.attribute !== undefined) attribute = React.createElement("span", {className: "mui-menu-item-attribute"}, this.props.attribute);
+    if (this.props.toggle) toggle = React.createElement(Toggle, {onToggle: this._onToggleClick});
 
     return (
-      React.DOM.div({key: this.props.key, className: classes, onClick: this._onClick}, 
+      React.createElement("div", {key: this.props.index, className: classes, onClick: this._onClick}, 
         icon, 
         this.props.children, 
         data, 
@@ -718,18 +718,18 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
   },
 
   _onClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.key);
+    if (this.props.onClick) this.props.onClick(e, this.props.index);
   },
 
   _onToggleClick: function(e, toggled) {
-    if (this.props.onToggle) this.props.onToggle(e, this.props.key, toggled);
+    if (this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
   }
 
 });
 
 module.exports = MenuItem;
 
-},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./toggle.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toggle.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx":[function(require,module,exports){
+},{"./icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./toggle.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toggle.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -751,7 +751,7 @@ var NestedMenuItem = React.createClass({displayName: 'NestedMenuItem',
   mixins: [Classable, ClickAwayable],
 
   propTypes: {
-    key: React.PropTypes.number.isRequired,
+    index: React.PropTypes.number.isRequired,
     text: React.PropTypes.string,
     menuItems: React.PropTypes.array.isRequired,
     zDepth: React.PropTypes.number,
@@ -780,11 +780,11 @@ var NestedMenuItem = React.createClass({displayName: 'NestedMenuItem',
     });
 
     return (
-      React.DOM.div({className: classes}, 
-        MenuItem({key: this.props.key, iconRight: "arrow-drop-right", onClick: this._onParentItemClick}, 
+      React.createElement("div", {className: classes}, 
+        React.createElement(MenuItem, {index: this.props.index, iconRight: "arrow-drop-right", onClick: this._onParentItemClick}, 
           this.props.text
         ), 
-        Menu({
+        React.createElement(Menu, {
           ref: "nestedMenu", 
           menuItems: this.props.menuItems, 
           onItemClick: this._onMenuItemClick, 
@@ -805,9 +805,9 @@ var NestedMenuItem = React.createClass({displayName: 'NestedMenuItem',
     this.setState({ open: !this.state.open });
   },
 
-  _onMenuItemClick: function(e, key, menuItem) {
+  _onMenuItemClick: function(e, index, menuItem) {
     this.setState({ open: false });
-    if (this.props.onItemClick) this.props.onItemClick(e, key, menuItem);
+    if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
   }
 
 });
@@ -867,7 +867,7 @@ var Menu = React.createClass({displayName: 'Menu',
     });
 
     return (
-      Paper({zDepth: this.props.zDepth, className: classes}, 
+      React.createElement(Paper, {zDepth: this.props.zDepth, className: classes}, 
         this._getChildren()
       )
     );
@@ -890,21 +890,22 @@ var Menu = React.createClass({displayName: 'Menu',
 
         case MenuItem.Types.LINK:
           itemComponent = (
-            React.DOM.a({key: i, className: "mui-menu-item", href: menuItem.payload}, menuItem.text)
+            React.createElement("a", {key: i, index: i, className: "mui-menu-item", href: menuItem.payload}, menuItem.text)
           );
         break;
 
         case MenuItem.Types.SUBHEADER:
           itemComponent = (
-            React.DOM.div({key: i, className: "mui-subheader"}, menuItem.text)
+            React.createElement("div", {key: i, index: i, className: "mui-subheader"}, menuItem.text)
           );
           break;
 
         case MenuItem.Types.NESTED:
           itemComponent = (
-            NestedMenuItem({
+            React.createElement(NestedMenuItem, {
               ref: i, 
               key: i, 
+              index: i, 
               text: menuItem.text, 
               menuItems: menuItem.items, 
               zDepth: this.props.zDepth, 
@@ -915,9 +916,10 @@ var Menu = React.createClass({displayName: 'Menu',
 
         default:
           itemComponent = (
-            MenuItem({
+            React.createElement(MenuItem, {
               selected: isSelected, 
               key: i, 
+              index: i, 
               icon: menuItem.icon, 
               data: menuItem.data, 
               attribute: menuItem.attribute, 
@@ -965,23 +967,23 @@ var Menu = React.createClass({displayName: 'Menu',
     }
   },
 
-  _onNestedItemClick: function(e, key, menuItem) {
-    if (this.props.onItemClick) this.props.onItemClick(e, key, menuItem);
+  _onNestedItemClick: function(e, index, menuItem) {
+    if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
   },
 
-  _onItemClick: function(e, key) {
-    if (this.props.onItemClick) this.props.onItemClick(e, key, this.props.menuItems[key]);
+  _onItemClick: function(e, index) {
+    if (this.props.onItemClick) this.props.onItemClick(e, index, this.props.menuItems[index]);
   },
 
-  _onItemToggle: function(e, key, toggled) {
-    if (this.props.onItemToggle) this.props.onItemToggle(e, key, this.props.menuItems[key], toggled);
+  _onItemToggle: function(e, index, toggled) {
+    if (this.props.onItemToggle) this.props.onItemToggle(e, index, this.props.menuItems[index], toggled);
   }
 
 });
 
 module.exports = Menu;
 
-},{"./menu-item.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/css-event.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/css-event.js","./utils/key-line.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js":[function(require,module,exports){
+},{"./menu-item.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu-item.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./utils/css-event.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\css-event.js","./utils/key-line.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\key-line.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js":[function(require,module,exports){
 var React = require('react'),
   classSet = React.addons.classSet;
 
@@ -1025,7 +1027,7 @@ module.exports = {
 
 }
 
-},{"react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js":[function(require,module,exports){
+},{"react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js":[function(require,module,exports){
 var $ = require('jquery');
 
 module.exports = {
@@ -1049,7 +1051,7 @@ module.exports = {
   }
 
 }
-},{"jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/paper-button.jsx":[function(require,module,exports){
+},{"jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper-button.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1116,12 +1118,12 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
       circle = this.props.type === Types.FAB || this.props.type === Types.FAB_MINI,
       icon;
 
-    if (this.props.icon) icon = Icon({className: "mui-paper-button-icon", icon: this.props.icon});
+    if (this.props.icon) icon = React.createElement(Icon, {className: "mui-paper-button-icon", icon: this.props.icon});
 
     return (
-      Paper({className: classes, zDepth: this.state.zDepth, circle: circle, onClick: this._onClick}, 
-        React.DOM.div({ref: "ripple", className: "mui-ripple"}), 
-        React.DOM.div({className: "mui-paper-button-content"}, 
+      React.createElement(Paper, {className: classes, zDepth: this.state.zDepth, circle: circle, onClick: this._onClick}, 
+        React.createElement("div", {ref: "ripple", className: "mui-ripple"}), 
+        React.createElement("div", {className: "mui-paper-button-content"}, 
           this.props.label, 
           icon
         )
@@ -1166,7 +1168,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
 
 module.exports = PaperButton;
 
-},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/css-event.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/css-event.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx":[function(require,module,exports){
+},{"./icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./utils/css-event.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\css-event.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1203,8 +1205,8 @@ var Paper = React.createClass({displayName: 'Paper',
         insideClasses = 'mui-paper-container mui-z-depth-bottom';
 
     return (
-      React.DOM.div({className: classes, onClick: this._onClick, onMouseDown: this._onMouseDown, onMouseUp: this._onMouseUp}, 
-      	React.DOM.div({className: insideClasses}, 
+      React.createElement("div", {className: classes, onClick: this._onClick, onMouseDown: this._onMouseDown, onMouseUp: this._onMouseUp}, 
+      	React.createElement("div", {className: insideClasses}, 
           this.props.children
         )
       )
@@ -1227,7 +1229,7 @@ var Paper = React.createClass({displayName: 'Paper',
 
 module.exports = Paper;
 
-},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/radio-button.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\radio-button.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1263,10 +1265,10 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
     })
 
     return (
-      React.DOM.div({className: classes, onClick: this._onClick}, 
-        React.DOM.input({ref: "radioButton", type: "radio", name: this.props.name, value: this.props.value}), 
-        React.DOM.div({className: "mui-radio-button-fill"}), 
-        React.DOM.span({className: "mui-radio-button-label"}, this.props.label)
+      React.createElement("div", {className: classes, onClick: this._onClick}, 
+        React.createElement("input", {ref: "radioButton", type: "radio", name: this.props.name, value: this.props.value}), 
+        React.createElement("div", {className: "mui-radio-button-fill"}), 
+        React.createElement("span", {className: "mui-radio-button-label"}, this.props.label)
       )
     );
   },
@@ -1282,7 +1284,7 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
 });
 
 module.exports = RadioButton;
-},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toast.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\toast.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react');
@@ -1323,12 +1325,12 @@ var Toast = React.createClass({displayName: 'Toast',
 	  	action;
 
     if (this.props.message)
-    	message = React.DOM.span({className: "mui-toast-message"}, this.props.message);
+    	message = React.createElement("span", {className: "mui-toast-message"}, this.props.message);
     if (this.props.action)
-    	action = React.DOM.span({className: "mui-toast-action", onClick: this._onActionClick}, this.props.action);
+    	action = React.createElement("span", {className: "mui-toast-action", onClick: this._onActionClick}, this.props.action);
 
 		return (
-			React.DOM.span({className: classes}, 
+			React.createElement("span", {className: classes}, 
     		message, 
     		action
     	)
@@ -1344,7 +1346,7 @@ var Toast = React.createClass({displayName: 'Toast',
 
 module.exports = Toast;
 
-},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toggle.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./mixins/click-awayable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\toggle.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1374,10 +1376,10 @@ var Toggle = React.createClass({displayName: 'Toggle',
     })
 
     return (
-      React.DOM.div({className: classes, onClick: this._onClick}, 
-        React.DOM.div({className: "mui-toggle-bar"}
+      React.createElement("div", {className: classes, onClick: this._onClick}, 
+        React.createElement("div", {className: "mui-toggle-bar"}
         ), 
-        RadioButton({ref: "radioButton"})
+        React.createElement(RadioButton, {ref: "radioButton"})
       )
     );
   },
@@ -1394,7 +1396,7 @@ var Toggle = React.createClass({displayName: 'Toggle',
 });
 
 module.exports = Toggle;
-},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./radio-button.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/radio-button.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar-group.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./radio-button.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\radio-button.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\toolbar-group.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var Classable = require('./mixins/classable.js');
@@ -1404,8 +1406,7 @@ var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
 
   propTypes: {
     float: React.PropTypes.string,
-    groupItems: React.PropTypes.array,
-    key: React.PropTypes.number.isRequired
+    groupItems: React.PropTypes.array
   },
 
   mixins: [Classable],
@@ -1428,7 +1429,7 @@ var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
     })
 
     return (
-      React.DOM.div({className: classes}, 
+      React.createElement("div", {className: classes}, 
         this._getChildren()
       )
     );
@@ -1446,7 +1447,7 @@ var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
 
         case 'separator':
           itemComponent = (
-            React.DOM.span({className: "mui-toolbar-separator"}, 
+            React.createElement("span", {className: "mui-toolbar-separator"}, 
               " "
             )
           );
@@ -1454,7 +1455,7 @@ var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
 
         case 'title':
           itemComponent = (
-            React.DOM.span({className: "mui-toolbar-title"}, 
+            React.createElement("span", {className: "mui-toolbar-title"}, 
               item.title
             )
           );
@@ -1473,7 +1474,7 @@ var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
 });
 
 module.exports = ToolbarGroup;
-},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\toolbar.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var Classable = require('./mixins/classable.js');
@@ -1504,7 +1505,7 @@ var Toolbar = React.createClass({displayName: 'Toolbar',
     })
 
     return (
-      React.DOM.div({className: classes}, 
+      React.createElement("div", {className: classes}, 
         this._getChildren()
       )
     );
@@ -1526,7 +1527,7 @@ var Toolbar = React.createClass({displayName: 'Toolbar',
 });
 
 module.exports = Toolbar;
-},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./toolbar-group.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar-group.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/utils/css-event.js":[function(require,module,exports){
+},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./toolbar-group.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toolbar-group.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\css-event.js":[function(require,module,exports){
 
 
 module.exports = {
@@ -1541,7 +1542,7 @@ module.exports = {
 
 };
 
-},{}],"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\key-line.js":[function(require,module,exports){
 module.exports = {
 
 	Desktop: {
@@ -1556,7 +1557,7 @@ module.exports = {
 	}
 }
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\backbone\\backbone.js":[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -3166,7 +3167,7 @@ module.exports = {
 
 }));
 
-},{"underscore":"/Users/hai/GitHub/material-ui/docs/node_modules/underscore/underscore.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+},{"underscore":"D:\\GitHub\\material-ui\\docs\\node_modules\\underscore\\underscore.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -3174,6 +3175,8 @@ var process = module.exports = {};
 process.nextTick = (function () {
     var canSetImmediate = typeof window !== 'undefined'
     && window.setImmediate;
+    var canMutationObserver = typeof window !== 'undefined'
+    && window.MutationObserver;
     var canPost = typeof window !== 'undefined'
     && window.postMessage && window.addEventListener
     ;
@@ -3182,8 +3185,29 @@ process.nextTick = (function () {
         return function (f) { return window.setImmediate(f) };
     }
 
+    var queue = [];
+
+    if (canMutationObserver) {
+        var hiddenDiv = document.createElement("div");
+        var observer = new MutationObserver(function () {
+            var queueList = queue.slice();
+            queue.length = 0;
+            queueList.forEach(function (fn) {
+                fn();
+            });
+        });
+
+        observer.observe(hiddenDiv, { attributes: true });
+
+        return function nextTick(fn) {
+            if (!queue.length) {
+                hiddenDiv.setAttribute('yes', 'no');
+            }
+            queue.push(fn);
+        };
+    }
+
     if (canPost) {
-        var queue = [];
         window.addEventListener('message', function (ev) {
             var source = ev.source;
             if ((source === window || source === null) && ev.data === 'process-tick') {
@@ -3223,7 +3247,7 @@ process.emit = noop;
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
-}
+};
 
 // TODO(shtylman)
 process.cwd = function () { return '/' };
@@ -3231,7 +3255,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js":[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.1
  * http://jquery.com/
@@ -12423,24 +12447,17 @@ return jQuery;
 
 }));
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js":[function(require,module,exports){
 module.exports = require('./lib/ReactWithAddons');
 
-},{"./lib/ReactWithAddons":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactWithAddons.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js":[function(require,module,exports){
+},{"./lib/ReactWithAddons":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactWithAddons.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\AutoFocusMixin.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule AutoFocusMixin
  * @typechecks static-only
@@ -12460,21 +12477,14 @@ var AutoFocusMixin = {
 
 module.exports = AutoFocusMixin;
 
-},{"./focusNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/focusNode.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/BeforeInputEventPlugin.js":[function(require,module,exports){
+},{"./focusNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\focusNode.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\BeforeInputEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule BeforeInputEventPlugin
  * @typechecks static-only
@@ -12531,6 +12541,9 @@ var eventTypes = {
 
 // Track characters inserted via keypress and composition events.
 var fallbackChars = null;
+
+// Track whether we've ever handled a keypress on the space key.
+var hasSpaceKeypress = false;
 
 /**
  * Return whether a native keypress event is assumed to be a command.
@@ -12601,7 +12614,8 @@ var BeforeInputEventPlugin = {
             return;
           }
 
-          chars = String.fromCharCode(which);
+          hasSpaceKeypress = true;
+          chars = SPACEBAR_CHAR;
           break;
 
         case topLevelTypes.topTextInput:
@@ -12609,8 +12623,9 @@ var BeforeInputEventPlugin = {
           chars = nativeEvent.data;
 
           // If it's a spacebar character, assume that we have already handled
-          // it at the keypress level and bail immediately.
-          if (chars === SPACEBAR_CHAR) {
+          // it at the keypress level and bail immediately. Android Chrome
+          // doesn't give us keycodes, so we need to blacklist it.
+          if (chars === SPACEBAR_CHAR && hasSpaceKeypress) {
             return;
           }
 
@@ -12684,22 +12699,15 @@ var BeforeInputEventPlugin = {
 
 module.exports = BeforeInputEventPlugin;
 
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./SyntheticInputEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticInputEvent.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSCore.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./SyntheticInputEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticInputEvent.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSCore.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule CSSCore
  * @typechecks
@@ -12785,7 +12793,7 @@ var CSSCore = {
    *
    * @param {DOMNode|DOMWindow} element the element to set the class on
    * @param {string} className the CSS className
-   * @returns {boolean} true if the element has the class, false if not
+   * @return {boolean} true if the element has the class, false if not
    */
   hasClass: function(element, className) {
     ("production" !== process.env.NODE_ENV ? invariant(
@@ -12803,21 +12811,14 @@ var CSSCore = {
 module.exports = CSSCore;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSProperty.js":[function(require,module,exports){
+},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSProperty.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule CSSProperty
  */
@@ -12926,21 +12927,15 @@ var CSSProperty = {
 
 module.exports = CSSProperty;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSPropertyOperations.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSPropertyOperations.js":[function(require,module,exports){
+(function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule CSSPropertyOperations
  * @typechecks static-only
@@ -12949,14 +12944,42 @@ module.exports = CSSProperty;
 "use strict";
 
 var CSSProperty = require("./CSSProperty");
+var ExecutionEnvironment = require("./ExecutionEnvironment");
 
+var camelizeStyleName = require("./camelizeStyleName");
 var dangerousStyleValue = require("./dangerousStyleValue");
 var hyphenateStyleName = require("./hyphenateStyleName");
 var memoizeStringOnly = require("./memoizeStringOnly");
+var warning = require("./warning");
 
 var processStyleName = memoizeStringOnly(function(styleName) {
   return hyphenateStyleName(styleName);
 });
+
+var styleFloatAccessor = 'cssFloat';
+if (ExecutionEnvironment.canUseDOM) {
+  // IE8 only supports accessing cssFloat (standard) as styleFloat
+  if (document.documentElement.style.cssFloat === undefined) {
+    styleFloatAccessor = 'styleFloat';
+  }
+}
+
+if ("production" !== process.env.NODE_ENV) {
+  var warnedStyleNames = {};
+
+  var warnHyphenatedStyleName = function(name) {
+    if (warnedStyleNames.hasOwnProperty(name) && warnedStyleNames[name]) {
+      return;
+    }
+
+    warnedStyleNames[name] = true;
+    ("production" !== process.env.NODE_ENV ? warning(
+      false,
+      'Unsupported style property ' + name + '. Did you mean ' +
+      camelizeStyleName(name) + '?'
+    ) : null);
+  };
+}
 
 /**
  * Operations for dealing with CSS properties.
@@ -12981,6 +13004,11 @@ var CSSPropertyOperations = {
       if (!styles.hasOwnProperty(styleName)) {
         continue;
       }
+      if ("production" !== process.env.NODE_ENV) {
+        if (styleName.indexOf('-') > -1) {
+          warnHyphenatedStyleName(styleName);
+        }
+      }
       var styleValue = styles[styleName];
       if (styleValue != null) {
         serialized += processStyleName(styleName) + ':';
@@ -13003,7 +13031,15 @@ var CSSPropertyOperations = {
       if (!styles.hasOwnProperty(styleName)) {
         continue;
       }
+      if ("production" !== process.env.NODE_ENV) {
+        if (styleName.indexOf('-') > -1) {
+          warnHyphenatedStyleName(styleName);
+        }
+      }
       var styleValue = dangerousStyleValue(styleName, styles[styleName]);
+      if (styleName === 'float') {
+        styleName = styleFloatAccessor;
+      }
       if (styleValue) {
         style[styleName] = styleValue;
       } else {
@@ -13025,22 +13061,16 @@ var CSSPropertyOperations = {
 
 module.exports = CSSPropertyOperations;
 
-},{"./CSSProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSProperty.js","./dangerousStyleValue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/dangerousStyleValue.js","./hyphenateStyleName":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenateStyleName.js","./memoizeStringOnly":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/memoizeStringOnly.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js":[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./CSSProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSProperty.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./camelizeStyleName":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\camelizeStyleName.js","./dangerousStyleValue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\dangerousStyleValue.js","./hyphenateStyleName":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\hyphenateStyleName.js","./memoizeStringOnly":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\memoizeStringOnly.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CallbackQueue.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule CallbackQueue
  */
@@ -13049,8 +13079,8 @@ module.exports = CSSPropertyOperations;
 
 var PooledClass = require("./PooledClass");
 
+var assign = require("./Object.assign");
 var invariant = require("./invariant");
-var mixInto = require("./mixInto");
 
 /**
  * A specialized pseudo-event module to help keep track of components waiting to
@@ -13068,7 +13098,7 @@ function CallbackQueue() {
   this._contexts = null;
 }
 
-mixInto(CallbackQueue, {
+assign(CallbackQueue.prototype, {
 
   /**
    * Enqueues a callback to be invoked when `notifyAll` is invoked.
@@ -13132,21 +13162,14 @@ PooledClass.addPoolingTo(CallbackQueue);
 module.exports = CallbackQueue;
 
 }).call(this,require('_process'))
-},{"./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ChangeEventPlugin.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ChangeEventPlugin.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ChangeEventPlugin
  */
@@ -13521,21 +13544,14 @@ var ChangeEventPlugin = {
 
 module.exports = ChangeEventPlugin;
 
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./isEventSupported":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js","./isTextInputElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextInputElement.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ClientReactRootIndex.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js","./isEventSupported":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isEventSupported.js","./isTextInputElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isTextInputElement.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ClientReactRootIndex.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ClientReactRootIndex
  * @typechecks
@@ -13553,21 +13569,14 @@ var ClientReactRootIndex = {
 
 module.exports = ClientReactRootIndex;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CompositionEventPlugin.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CompositionEventPlugin.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule CompositionEventPlugin
  * @typechecks static-only
@@ -13819,22 +13828,15 @@ var CompositionEventPlugin = {
 
 module.exports = CompositionEventPlugin;
 
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./ReactInputSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js","./SyntheticCompositionEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticCompositionEvent.js","./getTextContentAccessor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMChildrenOperations.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./ReactInputSelection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInputSelection.js","./SyntheticCompositionEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticCompositionEvent.js","./getTextContentAccessor":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getTextContentAccessor.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMChildrenOperations.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule DOMChildrenOperations
  * @typechecks static-only
@@ -13942,9 +13944,9 @@ var DOMChildrenOperations = {
           'processUpdates(): Unable to find child %s of element. This ' +
           'probably means the DOM was unexpectedly mutated (e.g., by the ' +
           'browser), usually due to forgetting a <tbody> when using tables, ' +
-          'nesting <p> or <a> tags, or using non-SVG elements in an <svg> '+
-          'parent. Try inspecting the child nodes of the element with React ' +
-          'ID `%s`.',
+          'nesting tags like <form>, <p>, or <a>, or using non-SVG elements '+
+          'in an <svg> parent. Try inspecting the child nodes of the element ' +
+          'with React ID `%s`.',
           updatedIndex,
           parentID
         ) : invariant(updatedChild));
@@ -14001,22 +14003,15 @@ var DOMChildrenOperations = {
 module.exports = DOMChildrenOperations;
 
 }).call(this,require('_process'))
-},{"./Danger":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Danger.js","./ReactMultiChildUpdateTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChildUpdateTypes.js","./getTextContentAccessor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js":[function(require,module,exports){
+},{"./Danger":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Danger.js","./ReactMultiChildUpdateTypes":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChildUpdateTypes.js","./getTextContentAccessor":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getTextContentAccessor.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule DOMProperty
  * @typechecks static-only
@@ -14027,6 +14022,10 @@ module.exports = DOMChildrenOperations;
 "use strict";
 
 var invariant = require("./invariant");
+
+function checkMask(value, bitmask) {
+  return (value & bitmask) === bitmask;
+}
 
 var DOMPropertyInjection = {
   /**
@@ -14114,19 +14113,19 @@ var DOMPropertyInjection = {
 
       var propConfig = Properties[propName];
       DOMProperty.mustUseAttribute[propName] =
-        propConfig & DOMPropertyInjection.MUST_USE_ATTRIBUTE;
+        checkMask(propConfig, DOMPropertyInjection.MUST_USE_ATTRIBUTE);
       DOMProperty.mustUseProperty[propName] =
-        propConfig & DOMPropertyInjection.MUST_USE_PROPERTY;
+        checkMask(propConfig, DOMPropertyInjection.MUST_USE_PROPERTY);
       DOMProperty.hasSideEffects[propName] =
-        propConfig & DOMPropertyInjection.HAS_SIDE_EFFECTS;
+        checkMask(propConfig, DOMPropertyInjection.HAS_SIDE_EFFECTS);
       DOMProperty.hasBooleanValue[propName] =
-        propConfig & DOMPropertyInjection.HAS_BOOLEAN_VALUE;
+        checkMask(propConfig, DOMPropertyInjection.HAS_BOOLEAN_VALUE);
       DOMProperty.hasNumericValue[propName] =
-        propConfig & DOMPropertyInjection.HAS_NUMERIC_VALUE;
+        checkMask(propConfig, DOMPropertyInjection.HAS_NUMERIC_VALUE);
       DOMProperty.hasPositiveNumericValue[propName] =
-        propConfig & DOMPropertyInjection.HAS_POSITIVE_NUMERIC_VALUE;
+        checkMask(propConfig, DOMPropertyInjection.HAS_POSITIVE_NUMERIC_VALUE);
       DOMProperty.hasOverloadedBooleanValue[propName] =
-        propConfig & DOMPropertyInjection.HAS_OVERLOADED_BOOLEAN_VALUE;
+        checkMask(propConfig, DOMPropertyInjection.HAS_OVERLOADED_BOOLEAN_VALUE);
 
       ("production" !== process.env.NODE_ENV ? invariant(
         !DOMProperty.mustUseAttribute[propName] ||
@@ -14303,22 +14302,15 @@ var DOMProperty = {
 module.exports = DOMProperty;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js":[function(require,module,exports){
+},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule DOMPropertyOperations
  * @typechecks static-only
@@ -14445,10 +14437,17 @@ var DOMPropertyOperations = {
       } else if (shouldIgnoreValue(name, value)) {
         this.deleteValueForProperty(node, name);
       } else if (DOMProperty.mustUseAttribute[name]) {
+        // `setAttribute` with objects becomes only `[object]` in IE8/9,
+        // ('' + value) makes it output the correct toString()-value.
         node.setAttribute(DOMProperty.getAttributeName[name], '' + value);
       } else {
         var propName = DOMProperty.getPropertyName[name];
-        if (!DOMProperty.hasSideEffects[name] || node[propName] !== value) {
+        // Must explicitly cast values for HAS_SIDE_EFFECTS-properties to the
+        // property type before comparing; only `value` does and is string.
+        if (!DOMProperty.hasSideEffects[name] ||
+            ('' + node[propName]) !== ('' + value)) {
+          // Contrary to `setAttribute`, object properties are properly
+          // `toString`ed by IE8/9.
           node[propName] = value;
         }
       }
@@ -14484,7 +14483,7 @@ var DOMPropertyOperations = {
           propName
         );
         if (!DOMProperty.hasSideEffects[name] ||
-            node[propName] !== defaultValue) {
+            ('' + node[propName]) !== defaultValue) {
           node[propName] = defaultValue;
         }
       }
@@ -14500,22 +14499,15 @@ var DOMPropertyOperations = {
 module.exports = DOMPropertyOperations;
 
 }).call(this,require('_process'))
-},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./escapeTextForBrowser":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js","./memoizeStringOnly":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/memoizeStringOnly.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Danger.js":[function(require,module,exports){
+},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./escapeTextForBrowser":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\escapeTextForBrowser.js","./memoizeStringOnly":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\memoizeStringOnly.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Danger.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule Danger
  * @typechecks static-only
@@ -14564,9 +14556,10 @@ var Danger = {
   dangerouslyRenderMarkup: function(markupList) {
     ("production" !== process.env.NODE_ENV ? invariant(
       ExecutionEnvironment.canUseDOM,
-      'dangerouslyRenderMarkup(...): Cannot render markup in a Worker ' +
-      'thread. This is likely a bug in the framework. Please report ' +
-      'immediately.'
+      'dangerouslyRenderMarkup(...): Cannot render markup in a worker ' +
+      'thread. Make sure `window` and `document` are available globally ' +
+      'before requiring React when unit testing or use ' +
+      'React.renderToString for server rendering.'
     ) : invariant(ExecutionEnvironment.canUseDOM));
     var nodeName;
     var markupByNodeName = {};
@@ -14670,8 +14663,9 @@ var Danger = {
     ("production" !== process.env.NODE_ENV ? invariant(
       ExecutionEnvironment.canUseDOM,
       'dangerouslyReplaceNodeWithMarkup(...): Cannot render markup in a ' +
-      'worker thread. This is likely a bug in the framework. Please report ' +
-      'immediately.'
+      'worker thread. Make sure `window` and `document` are available ' +
+      'globally before requiring React when unit testing or use ' +
+      'React.renderToString for server rendering.'
     ) : invariant(ExecutionEnvironment.canUseDOM));
     ("production" !== process.env.NODE_ENV ? invariant(markup, 'dangerouslyReplaceNodeWithMarkup(...): Missing markup.') : invariant(markup));
     ("production" !== process.env.NODE_ENV ? invariant(
@@ -14691,21 +14685,14 @@ var Danger = {
 module.exports = Danger;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./createNodesFromMarkup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createNodesFromMarkup.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./getMarkupWrap":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getMarkupWrap.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DefaultEventPluginOrder.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./createNodesFromMarkup":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createNodesFromMarkup.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js","./getMarkupWrap":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getMarkupWrap.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DefaultEventPluginOrder.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule DefaultEventPluginOrder
  */
@@ -14738,21 +14725,14 @@ var DefaultEventPluginOrder = [
 
 module.exports = DefaultEventPluginOrder;
 
-},{"./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EnterLeaveEventPlugin.js":[function(require,module,exports){
+},{"./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EnterLeaveEventPlugin.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule EnterLeaveEventPlugin
  * @typechecks static-only
@@ -14885,21 +14865,14 @@ var EnterLeaveEventPlugin = {
 
 module.exports = EnterLeaveEventPlugin;
 
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./SyntheticMouseEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticMouseEvent.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule EventConstants
  */
@@ -14964,9 +14937,23 @@ var EventConstants = {
 
 module.exports = EventConstants;
 
-},{"./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventListener.js":[function(require,module,exports){
+},{"./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventListener.js":[function(require,module,exports){
 (function (process){
 /**
+ * Copyright 2013-2014 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  * @providesModule EventListener
  * @typechecks
  */
@@ -15040,22 +15027,15 @@ var EventListener = {
 module.exports = EventListener;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js":[function(require,module,exports){
+},{"./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule EventPluginHub
  */
@@ -15065,11 +15045,9 @@ module.exports = EventListener;
 var EventPluginRegistry = require("./EventPluginRegistry");
 var EventPluginUtils = require("./EventPluginUtils");
 
-var accumulate = require("./accumulate");
+var accumulateInto = require("./accumulateInto");
 var forEachAccumulated = require("./forEachAccumulated");
 var invariant = require("./invariant");
-var isEventSupported = require("./isEventSupported");
-var monitorCodeUse = require("./monitorCodeUse");
 
 /**
  * Internal store for event listeners
@@ -15203,15 +15181,6 @@ var EventPluginHub = {
       registrationName, typeof listener
     ) : invariant(!listener || typeof listener === 'function'));
 
-    if ("production" !== process.env.NODE_ENV) {
-      // IE8 has no API for event capturing and the `onScroll` event doesn't
-      // bubble.
-      if (registrationName === 'onScroll' &&
-          !isEventSupported('scroll', true)) {
-        monitorCodeUse('react_no_scroll_event');
-        console.warn('This browser doesn\'t support the `onScroll` event');
-      }
-    }
     var bankForRegistrationName =
       listenerBank[registrationName] || (listenerBank[registrationName] = {});
     bankForRegistrationName[id] = listener;
@@ -15280,7 +15249,7 @@ var EventPluginHub = {
           nativeEvent
         );
         if (extractedEvents) {
-          events = accumulate(events, extractedEvents);
+          events = accumulateInto(events, extractedEvents);
         }
       }
     }
@@ -15296,7 +15265,7 @@ var EventPluginHub = {
    */
   enqueueEvents: function(events) {
     if (events) {
-      eventQueue = accumulate(eventQueue, events);
+      eventQueue = accumulateInto(eventQueue, events);
     }
   },
 
@@ -15334,22 +15303,15 @@ var EventPluginHub = {
 module.exports = EventPluginHub;
 
 }).call(this,require('_process'))
-},{"./EventPluginRegistry":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginRegistry.js","./EventPluginUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js","./accumulate":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulate.js","./forEachAccumulated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./isEventSupported":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js","./monitorCodeUse":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginRegistry.js":[function(require,module,exports){
+},{"./EventPluginRegistry":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginRegistry.js","./EventPluginUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginUtils.js","./accumulateInto":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\accumulateInto.js","./forEachAccumulated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\forEachAccumulated.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginRegistry.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule EventPluginRegistry
  * @typechecks static-only
@@ -15621,22 +15583,15 @@ var EventPluginRegistry = {
 module.exports = EventPluginRegistry;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js":[function(require,module,exports){
+},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginUtils.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule EventPluginUtils
  */
@@ -15849,22 +15804,15 @@ var EventPluginUtils = {
 module.exports = EventPluginUtils;
 
 }).call(this,require('_process'))
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule EventPropagators
  */
@@ -15874,7 +15822,7 @@ module.exports = EventPluginUtils;
 var EventConstants = require("./EventConstants");
 var EventPluginHub = require("./EventPluginHub");
 
-var accumulate = require("./accumulate");
+var accumulateInto = require("./accumulateInto");
 var forEachAccumulated = require("./forEachAccumulated");
 
 var PropagationPhases = EventConstants.PropagationPhases;
@@ -15905,8 +15853,9 @@ function accumulateDirectionalDispatches(domID, upwards, event) {
   var phase = upwards ? PropagationPhases.bubbled : PropagationPhases.captured;
   var listener = listenerAtPhase(domID, event, phase);
   if (listener) {
-    event._dispatchListeners = accumulate(event._dispatchListeners, listener);
-    event._dispatchIDs = accumulate(event._dispatchIDs, domID);
+    event._dispatchListeners =
+      accumulateInto(event._dispatchListeners, listener);
+    event._dispatchIDs = accumulateInto(event._dispatchIDs, domID);
   }
 }
 
@@ -15938,8 +15887,9 @@ function accumulateDispatches(id, ignoredDirection, event) {
     var registrationName = event.dispatchConfig.registrationName;
     var listener = getListener(id, registrationName);
     if (listener) {
-      event._dispatchListeners = accumulate(event._dispatchListeners, listener);
-      event._dispatchIDs = accumulate(event._dispatchIDs, id);
+      event._dispatchListeners =
+        accumulateInto(event._dispatchListeners, listener);
+      event._dispatchIDs = accumulateInto(event._dispatchIDs, id);
     }
   }
 }
@@ -15996,21 +15946,14 @@ var EventPropagators = {
 module.exports = EventPropagators;
 
 }).call(this,require('_process'))
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./accumulate":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulate.js","./forEachAccumulated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js","./accumulateInto":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\accumulateInto.js","./forEachAccumulated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\forEachAccumulated.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ExecutionEnvironment
  */
@@ -16048,21 +15991,14 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/HTMLDOMPropertyConfig.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\HTMLDOMPropertyConfig.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule HTMLDOMPropertyConfig
  */
@@ -16107,6 +16043,7 @@ var HTMLDOMPropertyConfig = {
      * Standard Properties
      */
     accept: null,
+    acceptCharset: null,
     accessKey: null,
     action: null,
     allowFullScreen: MUST_USE_ATTRIBUTE | HAS_BOOLEAN_VALUE,
@@ -16121,6 +16058,7 @@ var HTMLDOMPropertyConfig = {
     cellSpacing: null,
     charSet: MUST_USE_ATTRIBUTE,
     checked: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
+    classID: MUST_USE_ATTRIBUTE,
     // To set className on SVG elements, it's necessary to use .setAttribute;
     // this works on HTML elements too in all browsers except IE8. Conveniently,
     // IE8 doesn't support SVG and so we can simply use the attribute in
@@ -16156,8 +16094,9 @@ var HTMLDOMPropertyConfig = {
     id: MUST_USE_PROPERTY,
     label: null,
     lang: null,
-    list: null,
+    list: MUST_USE_ATTRIBUTE,
     loop: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
+    manifest: MUST_USE_ATTRIBUTE,
     max: null,
     maxLength: MUST_USE_ATTRIBUTE,
     media: MUST_USE_ATTRIBUTE,
@@ -16182,9 +16121,7 @@ var HTMLDOMPropertyConfig = {
     rowSpan: null,
     sandbox: null,
     scope: null,
-    scrollLeft: MUST_USE_PROPERTY,
     scrolling: null,
-    scrollTop: MUST_USE_PROPERTY,
     seamless: MUST_USE_ATTRIBUTE | HAS_BOOLEAN_VALUE,
     selected: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     shape: null,
@@ -16218,6 +16155,7 @@ var HTMLDOMPropertyConfig = {
     property: null // Supports OG in meta tags
   },
   DOMAttributeNames: {
+    acceptCharset: 'accept-charset',
     className: 'class',
     htmlFor: 'for',
     httpEquiv: 'http-equiv'
@@ -16239,21 +16177,14 @@ var HTMLDOMPropertyConfig = {
 
 module.exports = HTMLDOMPropertyConfig;
 
-},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedStateMixin.js":[function(require,module,exports){
+},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedStateMixin.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule LinkedStateMixin
  * @typechecks static-only
@@ -16287,22 +16218,15 @@ var LinkedStateMixin = {
 
 module.exports = LinkedStateMixin;
 
-},{"./ReactLink":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLink.js","./ReactStateSetters":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactStateSetters.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js":[function(require,module,exports){
+},{"./ReactLink":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLink.js","./ReactStateSetters":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactStateSetters.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedValueUtils.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule LinkedValueUtils
  * @typechecks static-only
@@ -16450,22 +16374,15 @@ var LinkedValueUtils = {
 module.exports = LinkedValueUtils;
 
 }).call(this,require('_process'))
-},{"./ReactPropTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypes.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LocalEventTrapMixin.js":[function(require,module,exports){
+},{"./ReactPropTypes":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypes.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LocalEventTrapMixin.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule LocalEventTrapMixin
  */
@@ -16474,7 +16391,7 @@ module.exports = LinkedValueUtils;
 
 var ReactBrowserEventEmitter = require("./ReactBrowserEventEmitter");
 
-var accumulate = require("./accumulate");
+var accumulateInto = require("./accumulateInto");
 var forEachAccumulated = require("./forEachAccumulated");
 var invariant = require("./invariant");
 
@@ -16490,7 +16407,8 @@ var LocalEventTrapMixin = {
       handlerBaseName,
       this.getDOMNode()
     );
-    this._localEventListeners = accumulate(this._localEventListeners, listener);
+    this._localEventListeners =
+      accumulateInto(this._localEventListeners, listener);
   },
 
   // trapCapturedEvent would look nearly identical. We don't implement that
@@ -16506,21 +16424,14 @@ var LocalEventTrapMixin = {
 module.exports = LocalEventTrapMixin;
 
 }).call(this,require('_process'))
-},{"./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./accumulate":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulate.js","./forEachAccumulated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/MobileSafariClickEventPlugin.js":[function(require,module,exports){
+},{"./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./accumulateInto":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\accumulateInto.js","./forEachAccumulated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\forEachAccumulated.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\MobileSafariClickEventPlugin.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule MobileSafariClickEventPlugin
  * @typechecks static-only
@@ -16571,22 +16482,62 @@ var MobileSafariClickEventPlugin = {
 
 module.exports = MobileSafariClickEventPlugin;
 
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js":[function(require,module,exports){
+/**
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule Object.assign
+ */
+
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.assign
+
+function assign(target, sources) {
+  if (target == null) {
+    throw new TypeError('Object.assign target cannot be null or undefined');
+  }
+
+  var to = Object(target);
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+  for (var nextIndex = 1; nextIndex < arguments.length; nextIndex++) {
+    var nextSource = arguments[nextIndex];
+    if (nextSource == null) {
+      continue;
+    }
+
+    var from = Object(nextSource);
+
+    // We don't currently support accessors nor proxies. Therefore this
+    // copy cannot throw. If we ever supported this then we must handle
+    // exceptions and side-effects. We don't support symbols so they won't
+    // be transferred.
+
+    for (var key in from) {
+      if (hasOwnProperty.call(from, key)) {
+        to[key] = from[key];
+      }
+    }
+  }
+
+  return to;
+};
+
+module.exports = assign;
+
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule PooledClass
  */
@@ -16694,22 +16645,15 @@ var PooledClass = {
 module.exports = PooledClass;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js":[function(require,module,exports){
+},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule React
  */
@@ -16723,11 +16667,13 @@ var ReactComponent = require("./ReactComponent");
 var ReactCompositeComponent = require("./ReactCompositeComponent");
 var ReactContext = require("./ReactContext");
 var ReactCurrentOwner = require("./ReactCurrentOwner");
-var ReactDescriptor = require("./ReactDescriptor");
+var ReactElement = require("./ReactElement");
+var ReactElementValidator = require("./ReactElementValidator");
 var ReactDOM = require("./ReactDOM");
 var ReactDOMComponent = require("./ReactDOMComponent");
 var ReactDefaultInjection = require("./ReactDefaultInjection");
 var ReactInstanceHandles = require("./ReactInstanceHandles");
+var ReactLegacyElement = require("./ReactLegacyElement");
 var ReactMount = require("./ReactMount");
 var ReactMultiChild = require("./ReactMultiChild");
 var ReactPerf = require("./ReactPerf");
@@ -16735,21 +16681,29 @@ var ReactPropTypes = require("./ReactPropTypes");
 var ReactServerRendering = require("./ReactServerRendering");
 var ReactTextComponent = require("./ReactTextComponent");
 
+var assign = require("./Object.assign");
+var deprecated = require("./deprecated");
 var onlyChild = require("./onlyChild");
-var warning = require("./warning");
 
 ReactDefaultInjection.inject();
 
-// Specifying arguments isn't necessary since we just use apply anyway, but it
-// makes it clear for those actually consuming this API.
-function createDescriptor(type, props, children) {
-  var args = Array.prototype.slice.call(arguments, 1);
-  return type.apply(null, args);
-}
+var createElement = ReactElement.createElement;
+var createFactory = ReactElement.createFactory;
 
 if ("production" !== process.env.NODE_ENV) {
-  var _warnedForDeprecation = false;
+  createElement = ReactElementValidator.createElement;
+  createFactory = ReactElementValidator.createFactory;
 }
+
+// TODO: Drop legacy elements once classes no longer export these factories
+createElement = ReactLegacyElement.wrapCreateElement(
+  createElement
+);
+createFactory = ReactLegacyElement.wrapCreateFactory(
+  createFactory
+);
+
+var render = ReactPerf.measure('React', 'render', ReactMount.render);
 
 var React = {
   Children: {
@@ -16764,33 +16718,58 @@ var React = {
     EventPluginUtils.useTouchEvents = shouldUseTouch;
   },
   createClass: ReactCompositeComponent.createClass,
-  createDescriptor: function() {
-    if ("production" !== process.env.NODE_ENV) {
-      ("production" !== process.env.NODE_ENV ? warning(
-        _warnedForDeprecation,
-        'React.createDescriptor is deprecated and will be removed in the ' +
-        'next version of React. Use React.createElement instead.'
-      ) : null);
-      _warnedForDeprecation = true;
-    }
-    return createDescriptor.apply(this, arguments);
-  },
-  createElement: createDescriptor,
+  createElement: createElement,
+  createFactory: createFactory,
   constructAndRenderComponent: ReactMount.constructAndRenderComponent,
   constructAndRenderComponentByID: ReactMount.constructAndRenderComponentByID,
-  renderComponent: ReactPerf.measure(
+  render: render,
+  renderToString: ReactServerRendering.renderToString,
+  renderToStaticMarkup: ReactServerRendering.renderToStaticMarkup,
+  unmountComponentAtNode: ReactMount.unmountComponentAtNode,
+  isValidClass: ReactLegacyElement.isValidClass,
+  isValidElement: ReactElement.isValidElement,
+  withContext: ReactContext.withContext,
+
+  // Hook for JSX spread, don't use this for anything else.
+  __spread: assign,
+
+  // Deprecations (remove for 0.13)
+  renderComponent: deprecated(
     'React',
     'renderComponent',
-    ReactMount.renderComponent
+    'render',
+    this,
+    render
   ),
-  renderComponentToString: ReactServerRendering.renderComponentToString,
-  renderComponentToStaticMarkup:
-    ReactServerRendering.renderComponentToStaticMarkup,
-  unmountComponentAtNode: ReactMount.unmountComponentAtNode,
-  isValidClass: ReactDescriptor.isValidFactory,
-  isValidComponent: ReactDescriptor.isValidDescriptor,
-  withContext: ReactContext.withContext,
-  __internals: {
+  renderComponentToString: deprecated(
+    'React',
+    'renderComponentToString',
+    'renderToString',
+    this,
+    ReactServerRendering.renderToString
+  ),
+  renderComponentToStaticMarkup: deprecated(
+    'React',
+    'renderComponentToStaticMarkup',
+    'renderToStaticMarkup',
+    this,
+    ReactServerRendering.renderToStaticMarkup
+  ),
+  isValidComponent: deprecated(
+    'React',
+    'isValidComponent',
+    'isValidElement',
+    this,
+    ReactElement.isValidElement
+  )
+};
+
+// Inject the runtime into a devtools global hook regardless of browser.
+// Allows for debugging when the hook is injected on the page.
+if (
+  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&
+  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.inject === 'function') {
+  __REACT_DEVTOOLS_GLOBAL_HOOK__.inject({
     Component: ReactComponent,
     CurrentOwner: ReactCurrentOwner,
     DOMComponent: ReactDOMComponent,
@@ -16799,18 +16778,23 @@ var React = {
     Mount: ReactMount,
     MultiChild: ReactMultiChild,
     TextComponent: ReactTextComponent
-  }
-};
+  });
+}
 
 if ("production" !== process.env.NODE_ENV) {
   var ExecutionEnvironment = require("./ExecutionEnvironment");
-  if (ExecutionEnvironment.canUseDOM &&
-      window.top === window.self &&
-      navigator.userAgent.indexOf('Chrome') > -1) {
-    console.debug(
-      'Download the React DevTools for a better development experience: ' +
-      'http://fb.me/react-devtools'
-    );
+  if (ExecutionEnvironment.canUseDOM && window.top === window.self) {
+
+    // If we're in Chrome, look for the devtools marker and provide a download
+    // link if not installed.
+    if (navigator.userAgent.indexOf('Chrome') > -1) {
+      if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined') {
+        console.debug(
+          'Download the React DevTools for a better development experience: ' +
+          'http://fb.me/react-devtools'
+        );
+      }
+    }
 
     var expectedFeatures = [
       // shims
@@ -16830,7 +16814,7 @@ if ("production" !== process.env.NODE_ENV) {
       Object.freeze
     ];
 
-    for (var i in expectedFeatures) {
+    for (var i = 0; i < expectedFeatures.length; i++) {
       if (!expectedFeatures[i]) {
         console.error(
           'One or more ES5 shim/shams expected by React are not available: ' +
@@ -16844,27 +16828,20 @@ if ("production" !== process.env.NODE_ENV) {
 
 // Version exists only in the open-source version of React, not in Facebook's
 // internal version.
-React.version = '0.11.2';
+React.version = '0.12.0';
 
 module.exports = React;
 
 }).call(this,require('_process'))
-},{"./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./EventPluginUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./ReactChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactChildren.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactDOMComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMComponent.js","./ReactDefaultInjection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultInjection.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactMultiChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChild.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactPropTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypes.js","./ReactServerRendering":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRendering.js","./ReactTextComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js","./onlyChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/onlyChild.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js":[function(require,module,exports){
+},{"./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./EventPluginUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginUtils.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactChildren":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactChildren.js","./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactContext":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactContext.js","./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactDOMComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMComponent.js","./ReactDefaultInjection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultInjection.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactElementValidator":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElementValidator.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./ReactLegacyElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactMultiChild":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChild.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./ReactPropTypes":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypes.js","./ReactServerRendering":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactServerRendering.js","./ReactTextComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTextComponent.js","./deprecated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\deprecated.js","./onlyChild":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\onlyChild.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactBrowserComponentMixin
  */
@@ -16899,21 +16876,14 @@ var ReactBrowserComponentMixin = {
 module.exports = ReactBrowserComponentMixin;
 
 }).call(this,require('_process'))
-},{"./ReactEmptyComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js":[function(require,module,exports){
+},{"./ReactEmptyComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEmptyComponent.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactBrowserEventEmitter
  * @typechecks static-only
@@ -16927,8 +16897,8 @@ var EventPluginRegistry = require("./EventPluginRegistry");
 var ReactEventEmitterMixin = require("./ReactEventEmitterMixin");
 var ViewportMetrics = require("./ViewportMetrics");
 
+var assign = require("./Object.assign");
 var isEventSupported = require("./isEventSupported");
-var merge = require("./merge");
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -17057,7 +17027,7 @@ function getListeningForDocument(mountAt) {
  *
  * @internal
  */
-var ReactBrowserEventEmitter = merge(ReactEventEmitterMixin, {
+var ReactBrowserEventEmitter = assign({}, ReactEventEmitterMixin, {
 
   /**
    * Injectable event backend
@@ -17261,21 +17231,14 @@ var ReactBrowserEventEmitter = merge(ReactEventEmitterMixin, {
 
 module.exports = ReactBrowserEventEmitter;
 
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./EventPluginRegistry":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginRegistry.js","./ReactEventEmitterMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventEmitterMixin.js","./ViewportMetrics":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ViewportMetrics.js","./isEventSupported":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroup.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js","./EventPluginRegistry":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginRegistry.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactEventEmitterMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEventEmitterMixin.js","./ViewportMetrics":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ViewportMetrics.js","./isEventSupported":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isEventSupported.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCSSTransitionGroup.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @typechecks
  * @providesModule ReactCSSTransitionGroup
@@ -17285,8 +17248,14 @@ module.exports = ReactBrowserEventEmitter;
 
 var React = require("./React");
 
-var ReactTransitionGroup = require("./ReactTransitionGroup");
-var ReactCSSTransitionGroupChild = require("./ReactCSSTransitionGroupChild");
+var assign = require("./Object.assign");
+
+var ReactTransitionGroup = React.createFactory(
+  require("./ReactTransitionGroup")
+);
+var ReactCSSTransitionGroupChild = React.createFactory(
+  require("./ReactCSSTransitionGroupChild")
+);
 
 var ReactCSSTransitionGroup = React.createClass({
   displayName: 'ReactCSSTransitionGroup',
@@ -17319,10 +17288,9 @@ var ReactCSSTransitionGroup = React.createClass({
   },
 
   render: function() {
-    return this.transferPropsTo(
+    return (
       ReactTransitionGroup(
-        {childFactory: this._wrapChild},
-        this.props.children
+        assign({}, this.props, {childFactory: this._wrapChild})
       )
     );
   }
@@ -17330,22 +17298,15 @@ var ReactCSSTransitionGroup = React.createClass({
 
 module.exports = ReactCSSTransitionGroup;
 
-},{"./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactCSSTransitionGroupChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroupChild.js","./ReactTransitionGroup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionGroup.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroupChild.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js","./ReactCSSTransitionGroupChild":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCSSTransitionGroupChild.js","./ReactTransitionGroup":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionGroup.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCSSTransitionGroupChild.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @typechecks
  * @providesModule ReactCSSTransitionGroupChild
@@ -17390,7 +17351,10 @@ var ReactCSSTransitionGroupChild = React.createClass({
     var activeClassName = className + '-active';
     var noEventTimeout = null;
 
-    var endListener = function() {
+    var endListener = function(e) {
+      if (e && e.target !== node) {
+        return;
+      }
       if ("production" !== process.env.NODE_ENV) {
         clearTimeout(noEventTimeout);
       }
@@ -17469,22 +17433,15 @@ var ReactCSSTransitionGroupChild = React.createClass({
 module.exports = ReactCSSTransitionGroupChild;
 
 }).call(this,require('_process'))
-},{"./CSSCore":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSCore.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactTransitionEvents":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionEvents.js","./onlyChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/onlyChild.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactChildren.js":[function(require,module,exports){
+},{"./CSSCore":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSCore.js","./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js","./ReactTransitionEvents":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionEvents.js","./onlyChild":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\onlyChild.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactChildren.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactChildren
  */
@@ -17626,35 +17583,28 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 }).call(this,require('_process'))
-},{"./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./traverseAllChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/traverseAllChildren.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js":[function(require,module,exports){
+},{"./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./traverseAllChildren":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\traverseAllChildren.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactComponent
  */
 
 "use strict";
 
-var ReactDescriptor = require("./ReactDescriptor");
+var ReactElement = require("./ReactElement");
 var ReactOwner = require("./ReactOwner");
 var ReactUpdates = require("./ReactUpdates");
 
+var assign = require("./Object.assign");
 var invariant = require("./invariant");
 var keyMirror = require("./keyMirror");
-var merge = require("./merge");
 
 /**
  * Every React component is in one of these life cycles.
@@ -17777,11 +17727,11 @@ var ReactComponent = {
      * @public
      */
     setProps: function(partialProps, callback) {
-      // Merge with the pending descriptor if it exists, otherwise with existing
-      // descriptor props.
-      var descriptor = this._pendingDescriptor || this._descriptor;
+      // Merge with the pending element if it exists, otherwise with existing
+      // element props.
+      var element = this._pendingElement || this._currentElement;
       this.replaceProps(
-        merge(descriptor.props, partialProps),
+        assign({}, element.props, partialProps),
         callback
       );
     },
@@ -17807,10 +17757,10 @@ var ReactComponent = {
         '`render` method to pass the correct value as props to the component ' +
         'where it is created.'
       ) : invariant(this._mountDepth === 0));
-      // This is a deoptimized path. We optimize for always having a descriptor.
-      // This creates an extra internal descriptor.
-      this._pendingDescriptor = ReactDescriptor.cloneAndReplaceProps(
-        this._pendingDescriptor || this._descriptor,
+      // This is a deoptimized path. We optimize for always having a element.
+      // This creates an extra internal element.
+      this._pendingElement = ReactElement.cloneAndReplaceProps(
+        this._pendingElement || this._currentElement,
         props
       );
       ReactUpdates.enqueueUpdate(this, callback);
@@ -17825,12 +17775,12 @@ var ReactComponent = {
      * @internal
      */
     _setPropsInternal: function(partialProps, callback) {
-      // This is a deoptimized path. We optimize for always having a descriptor.
-      // This creates an extra internal descriptor.
-      var descriptor = this._pendingDescriptor || this._descriptor;
-      this._pendingDescriptor = ReactDescriptor.cloneAndReplaceProps(
-        descriptor,
-        merge(descriptor.props, partialProps)
+      // This is a deoptimized path. We optimize for always having a element.
+      // This creates an extra internal element.
+      var element = this._pendingElement || this._currentElement;
+      this._pendingElement = ReactElement.cloneAndReplaceProps(
+        element,
+        assign({}, element.props, partialProps)
       );
       ReactUpdates.enqueueUpdate(this, callback);
     },
@@ -17841,19 +17791,19 @@ var ReactComponent = {
      * Subclasses that override this method should make sure to invoke
      * `ReactComponent.Mixin.construct.call(this, ...)`.
      *
-     * @param {ReactDescriptor} descriptor
+     * @param {ReactElement} element
      * @internal
      */
-    construct: function(descriptor) {
+    construct: function(element) {
       // This is the public exposed props object after it has been processed
-      // with default props. The descriptor's props represents the true internal
+      // with default props. The element's props represents the true internal
       // state of the props.
-      this.props = descriptor.props;
+      this.props = element.props;
       // Record the component responsible for creating this component.
-      // This is accessible through the descriptor but we maintain an extra
+      // This is accessible through the element but we maintain an extra
       // field for compatibility with devtools and as a way to make an
       // incremental update. TODO: Consider deprecating this field.
-      this._owner = descriptor._owner;
+      this._owner = element._owner;
 
       // All components start unmounted.
       this._lifeCycleState = ComponentLifeCycle.UNMOUNTED;
@@ -17861,10 +17811,10 @@ var ReactComponent = {
       // See ReactUpdates.
       this._pendingCallbacks = null;
 
-      // We keep the old descriptor and a reference to the pending descriptor
+      // We keep the old element and a reference to the pending element
       // to track updates.
-      this._descriptor = descriptor;
-      this._pendingDescriptor = null;
+      this._currentElement = element;
+      this._pendingElement = null;
     },
 
     /**
@@ -17889,10 +17839,10 @@ var ReactComponent = {
         'single component instance in multiple places.',
         rootID
       ) : invariant(!this.isMounted()));
-      var props = this._descriptor.props;
-      if (props.ref != null) {
-        var owner = this._descriptor._owner;
-        ReactOwner.addComponentAsRefTo(this, props.ref, owner);
+      var ref = this._currentElement.ref;
+      if (ref != null) {
+        var owner = this._currentElement._owner;
+        ReactOwner.addComponentAsRefTo(this, ref, owner);
       }
       this._rootNodeID = rootID;
       this._lifeCycleState = ComponentLifeCycle.MOUNTED;
@@ -17915,9 +17865,9 @@ var ReactComponent = {
         this.isMounted(),
         'unmountComponent(): Can only unmount a mounted component.'
       ) : invariant(this.isMounted()));
-      var props = this.props;
-      if (props.ref != null) {
-        ReactOwner.removeComponentAsRefFrom(this, props.ref, this._owner);
+      var ref = this._currentElement.ref;
+      if (ref != null) {
+        ReactOwner.removeComponentAsRefFrom(this, ref, this._owner);
       }
       unmountIDFromEnvironment(this._rootNodeID);
       this._rootNodeID = null;
@@ -17935,49 +17885,49 @@ var ReactComponent = {
      * @param {ReactReconcileTransaction} transaction
      * @internal
      */
-    receiveComponent: function(nextDescriptor, transaction) {
+    receiveComponent: function(nextElement, transaction) {
       ("production" !== process.env.NODE_ENV ? invariant(
         this.isMounted(),
         'receiveComponent(...): Can only update a mounted component.'
       ) : invariant(this.isMounted()));
-      this._pendingDescriptor = nextDescriptor;
+      this._pendingElement = nextElement;
       this.performUpdateIfNecessary(transaction);
     },
 
     /**
-     * If `_pendingDescriptor` is set, update the component.
+     * If `_pendingElement` is set, update the component.
      *
      * @param {ReactReconcileTransaction} transaction
      * @internal
      */
     performUpdateIfNecessary: function(transaction) {
-      if (this._pendingDescriptor == null) {
+      if (this._pendingElement == null) {
         return;
       }
-      var prevDescriptor = this._descriptor;
-      var nextDescriptor = this._pendingDescriptor;
-      this._descriptor = nextDescriptor;
-      this.props = nextDescriptor.props;
-      this._owner = nextDescriptor._owner;
-      this._pendingDescriptor = null;
-      this.updateComponent(transaction, prevDescriptor);
+      var prevElement = this._currentElement;
+      var nextElement = this._pendingElement;
+      this._currentElement = nextElement;
+      this.props = nextElement.props;
+      this._owner = nextElement._owner;
+      this._pendingElement = null;
+      this.updateComponent(transaction, prevElement);
     },
 
     /**
      * Updates the component's currently mounted representation.
      *
      * @param {ReactReconcileTransaction} transaction
-     * @param {object} prevDescriptor
+     * @param {object} prevElement
      * @internal
      */
-    updateComponent: function(transaction, prevDescriptor) {
-      var nextDescriptor = this._descriptor;
+    updateComponent: function(transaction, prevElement) {
+      var nextElement = this._currentElement;
 
       // If either the owner or a `ref` has changed, make sure the newest owner
       // has stored a reference to `this`, and the previous owner (if different)
-      // has forgotten the reference to `this`. We use the descriptor instead
+      // has forgotten the reference to `this`. We use the element instead
       // of the public this.props because the post processing cannot determine
-      // a ref. The ref conceptually lives on the descriptor.
+      // a ref. The ref conceptually lives on the element.
 
       // TODO: Should this even be possible? The owner cannot change because
       // it's forbidden by shouldUpdateReactComponent. The ref can change
@@ -17985,19 +17935,19 @@ var ReactComponent = {
       // is made. It probably belongs where the key checking and
       // instantiateReactComponent is done.
 
-      if (nextDescriptor._owner !== prevDescriptor._owner ||
-          nextDescriptor.props.ref !== prevDescriptor.props.ref) {
-        if (prevDescriptor.props.ref != null) {
+      if (nextElement._owner !== prevElement._owner ||
+          nextElement.ref !== prevElement.ref) {
+        if (prevElement.ref != null) {
           ReactOwner.removeComponentAsRefFrom(
-            this, prevDescriptor.props.ref, prevDescriptor._owner
+            this, prevElement.ref, prevElement._owner
           );
         }
         // Correct, even if the owner is the same, and only the ref has changed.
-        if (nextDescriptor.props.ref != null) {
+        if (nextElement.ref != null) {
           ReactOwner.addComponentAsRefTo(
             this,
-            nextDescriptor.props.ref,
-            nextDescriptor._owner
+            nextElement.ref,
+            nextElement._owner
           );
         }
       }
@@ -18011,7 +17961,7 @@ var ReactComponent = {
      * @param {boolean} shouldReuseMarkup If true, do not insert markup
      * @final
      * @internal
-     * @see {ReactMount.renderComponent}
+     * @see {ReactMount.render}
      */
     mountComponentIntoNode: function(rootID, container, shouldReuseMarkup) {
       var transaction = ReactUpdates.ReactReconcileTransaction.getPooled();
@@ -18076,22 +18026,15 @@ var ReactComponent = {
 module.exports = ReactComponent;
 
 }).call(this,require('_process'))
-},{"./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactOwner.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentBrowserEnvironment.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactOwner.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponentBrowserEnvironment.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactComponentBrowserEnvironment
  */
@@ -18205,21 +18148,14 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 }).call(this,require('_process'))
-},{"./ReactDOMIDOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMIDOperations.js","./ReactMarkupChecksum":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMarkupChecksum.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactReconcileTransaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactReconcileTransaction.js","./getReactRootElementInContainer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getReactRootElementInContainer.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./setInnerHTML":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/setInnerHTML.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentWithPureRenderMixin.js":[function(require,module,exports){
+},{"./ReactDOMIDOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMIDOperations.js","./ReactMarkupChecksum":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMarkupChecksum.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./ReactReconcileTransaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactReconcileTransaction.js","./getReactRootElementInContainer":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getReactRootElementInContainer.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./setInnerHTML":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\setInnerHTML.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponentWithPureRenderMixin.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
 * @providesModule ReactComponentWithPureRenderMixin
 */
@@ -18261,22 +18197,15 @@ var ReactComponentWithPureRenderMixin = {
 
 module.exports = ReactComponentWithPureRenderMixin;
 
-},{"./shallowEqual":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shallowEqual.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js":[function(require,module,exports){
+},{"./shallowEqual":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shallowEqual.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactCompositeComponent
  */
@@ -18286,10 +18215,11 @@ module.exports = ReactComponentWithPureRenderMixin;
 var ReactComponent = require("./ReactComponent");
 var ReactContext = require("./ReactContext");
 var ReactCurrentOwner = require("./ReactCurrentOwner");
-var ReactDescriptor = require("./ReactDescriptor");
-var ReactDescriptorValidator = require("./ReactDescriptorValidator");
+var ReactElement = require("./ReactElement");
+var ReactElementValidator = require("./ReactElementValidator");
 var ReactEmptyComponent = require("./ReactEmptyComponent");
 var ReactErrorUtils = require("./ReactErrorUtils");
+var ReactLegacyElement = require("./ReactLegacyElement");
 var ReactOwner = require("./ReactOwner");
 var ReactPerf = require("./ReactPerf");
 var ReactPropTransferer = require("./ReactPropTransferer");
@@ -18297,15 +18227,17 @@ var ReactPropTypeLocations = require("./ReactPropTypeLocations");
 var ReactPropTypeLocationNames = require("./ReactPropTypeLocationNames");
 var ReactUpdates = require("./ReactUpdates");
 
+var assign = require("./Object.assign");
 var instantiateReactComponent = require("./instantiateReactComponent");
 var invariant = require("./invariant");
 var keyMirror = require("./keyMirror");
-var merge = require("./merge");
-var mixInto = require("./mixInto");
+var keyOf = require("./keyOf");
 var monitorCodeUse = require("./monitorCodeUse");
 var mapObject = require("./mapObject");
 var shouldUpdateReactComponent = require("./shouldUpdateReactComponent");
 var warning = require("./warning");
+
+var MIXINS_KEY = keyOf({mixins: null});
 
 /**
  * Policies that describe methods in `ReactCompositeComponentInterface`.
@@ -18610,7 +18542,8 @@ var RESERVED_SPEC_KEYS = {
       childContextTypes,
       ReactPropTypeLocations.childContext
     );
-    Constructor.childContextTypes = merge(
+    Constructor.childContextTypes = assign(
+      {},
       Constructor.childContextTypes,
       childContextTypes
     );
@@ -18621,7 +18554,11 @@ var RESERVED_SPEC_KEYS = {
       contextTypes,
       ReactPropTypeLocations.context
     );
-    Constructor.contextTypes = merge(Constructor.contextTypes, contextTypes);
+    Constructor.contextTypes = assign(
+      {},
+      Constructor.contextTypes,
+      contextTypes
+    );
   },
   /**
    * Special case getDefaultProps which should move into statics but requires
@@ -18643,7 +18580,11 @@ var RESERVED_SPEC_KEYS = {
       propTypes,
       ReactPropTypeLocations.prop
     );
-    Constructor.propTypes = merge(Constructor.propTypes, propTypes);
+    Constructor.propTypes = assign(
+      {},
+      Constructor.propTypes,
+      propTypes
+    );
   },
   statics: function(Constructor, statics) {
     mixStaticSpecIntoComponent(Constructor, statics);
@@ -18712,11 +18653,12 @@ function validateLifeCycleOnReplaceState(instance) {
     'replaceState(...): Can only update a mounted or mounting component.'
   ) : invariant(instance.isMounted() ||
     compositeLifeCycleState === CompositeLifeCycle.MOUNTING));
-  ("production" !== process.env.NODE_ENV ? invariant(compositeLifeCycleState !== CompositeLifeCycle.RECEIVING_STATE,
+  ("production" !== process.env.NODE_ENV ? invariant(
+    ReactCurrentOwner.current == null,
     'replaceState(...): Cannot update during an existing state transition ' +
-    '(such as within `render`). This could potentially cause an infinite ' +
-    'loop so it is forbidden.'
-  ) : invariant(compositeLifeCycleState !== CompositeLifeCycle.RECEIVING_STATE));
+    '(such as within `render`). Render methods should be a pure function ' +
+    'of props and state.'
+  ) : invariant(ReactCurrentOwner.current == null));
   ("production" !== process.env.NODE_ENV ? invariant(compositeLifeCycleState !== CompositeLifeCycle.UNMOUNTING,
     'replaceState(...): Cannot update while unmounting component. This ' +
     'usually means you called setState() on an unmounted component.'
@@ -18724,28 +18666,45 @@ function validateLifeCycleOnReplaceState(instance) {
 }
 
 /**
- * Custom version of `mixInto` which handles policy validation and reserved
+ * Mixin helper which handles policy validation and reserved
  * specification keys when building `ReactCompositeComponent` classses.
  */
 function mixSpecIntoComponent(Constructor, spec) {
+  if (!spec) {
+    return;
+  }
+
   ("production" !== process.env.NODE_ENV ? invariant(
-    !ReactDescriptor.isValidFactory(spec),
+    !ReactLegacyElement.isValidFactory(spec),
     'ReactCompositeComponent: You\'re attempting to ' +
     'use a component class as a mixin. Instead, just use a regular object.'
-  ) : invariant(!ReactDescriptor.isValidFactory(spec)));
+  ) : invariant(!ReactLegacyElement.isValidFactory(spec)));
   ("production" !== process.env.NODE_ENV ? invariant(
-    !ReactDescriptor.isValidDescriptor(spec),
+    !ReactElement.isValidElement(spec),
     'ReactCompositeComponent: You\'re attempting to ' +
     'use a component as a mixin. Instead, just use a regular object.'
-  ) : invariant(!ReactDescriptor.isValidDescriptor(spec)));
+  ) : invariant(!ReactElement.isValidElement(spec)));
 
   var proto = Constructor.prototype;
+
+  // By handling mixins before any other properties, we ensure the same
+  // chaining order is applied to methods with DEFINE_MANY policy, whether
+  // mixins are listed before or after these methods in the spec.
+  if (spec.hasOwnProperty(MIXINS_KEY)) {
+    RESERVED_SPEC_KEYS.mixins(Constructor, spec.mixins);
+  }
+
   for (var name in spec) {
-    var property = spec[name];
     if (!spec.hasOwnProperty(name)) {
       continue;
     }
 
+    if (name === MIXINS_KEY) {
+      // We have already handled mixins in a special case above
+      continue;
+    }
+
+    var property = spec[name];
     validateMethodOverride(proto, name);
 
     if (RESERVED_SPEC_KEYS.hasOwnProperty(name)) {
@@ -18823,23 +18782,25 @@ function mixStaticSpecIntoComponent(Constructor, statics) {
       continue;
     }
 
+    var isReserved = name in RESERVED_SPEC_KEYS;
+    ("production" !== process.env.NODE_ENV ? invariant(
+      !isReserved,
+      'ReactCompositeComponent: You are attempting to define a reserved ' +
+      'property, `%s`, that shouldn\'t be on the "statics" key. Define it ' +
+      'as an instance property instead; it will still be accessible on the ' +
+      'constructor.',
+      name
+    ) : invariant(!isReserved));
+
     var isInherited = name in Constructor;
-    var result = property;
-    if (isInherited) {
-      var existingProperty = Constructor[name];
-      var existingType = typeof existingProperty;
-      var propertyType = typeof property;
-      ("production" !== process.env.NODE_ENV ? invariant(
-        existingType === 'function' && propertyType === 'function',
-        'ReactCompositeComponent: You are attempting to define ' +
-        '`%s` on your component more than once, but that is only supported ' +
-        'for functions, which are chained together. This conflict may be ' +
-        'due to a mixin.',
-        name
-      ) : invariant(existingType === 'function' && propertyType === 'function'));
-      result = createChainedFunction(existingProperty, property);
-    }
-    Constructor[name] = result;
+    ("production" !== process.env.NODE_ENV ? invariant(
+      !isInherited,
+      'ReactCompositeComponent: You are attempting to define ' +
+      '`%s` on your component more than once. This conflict may be ' +
+      'due to a mixin.',
+      name
+    ) : invariant(!isInherited));
+    Constructor[name] = property;
   }
 }
 
@@ -18860,7 +18821,10 @@ function mergeObjectsWithNoDuplicateKeys(one, two) {
     ("production" !== process.env.NODE_ENV ? invariant(
       one[key] === undefined,
       'mergeObjectsWithNoDuplicateKeys(): ' +
-      'Tried to merge two objects with the same key: %s',
+      'Tried to merge two objects with the same key: `%s`. This conflict ' +
+      'may be due to a mixin; in particular, this may be caused by two ' +
+      'getInitialState() or getDefaultProps() methods returning objects ' +
+      'with clashing keys.',
       key
     ) : invariant(one[key] === undefined));
     one[key] = value;
@@ -18916,19 +18880,19 @@ function createChainedFunction(one, two) {
  * Top Row: ReactComponent.ComponentLifeCycle
  * Low Row: ReactComponent.CompositeLifeCycle
  *
- * +-------+------------------------------------------------------+--------+
- * |  UN   |                    MOUNTED                           |   UN   |
- * |MOUNTED|                                                      | MOUNTED|
- * +-------+------------------------------------------------------+--------+
- * |       ^--------+   +------+   +------+   +------+   +--------^        |
- * |       |        |   |      |   |      |   |      |   |        |        |
- * |    0--|MOUNTING|-0-|RECEIV|-0-|RECEIV|-0-|RECEIV|-0-|   UN   |--->0   |
- * |       |        |   |PROPS |   | PROPS|   | STATE|   |MOUNTING|        |
- * |       |        |   |      |   |      |   |      |   |        |        |
- * |       |        |   |      |   |      |   |      |   |        |        |
- * |       +--------+   +------+   +------+   +------+   +--------+        |
- * |       |                                                      |        |
- * +-------+------------------------------------------------------+--------+
+ * +-------+---------------------------------+--------+
+ * |  UN   |             MOUNTED             |   UN   |
+ * |MOUNTED|                                 | MOUNTED|
+ * +-------+---------------------------------+--------+
+ * |       ^--------+   +-------+   +--------^        |
+ * |       |        |   |       |   |        |        |
+ * |    0--|MOUNTING|-0-|RECEIVE|-0-|   UN   |--->0   |
+ * |       |        |   |PROPS  |   |MOUNTING|        |
+ * |       |        |   |       |   |        |        |
+ * |       |        |   |       |   |        |        |
+ * |       +--------+   +-------+   +--------+        |
+ * |       |                                 |        |
+ * +-------+---------------------------------+--------+
  */
 var CompositeLifeCycle = keyMirror({
   /**
@@ -18945,12 +18909,7 @@ var CompositeLifeCycle = keyMirror({
    * Components that are mounted and receiving new props respond to state
    * changes differently.
    */
-  RECEIVING_PROPS: null,
-  /**
-   * Components that are mounted and receiving new state are guarded against
-   * additional state changes.
-   */
-  RECEIVING_STATE: null
+  RECEIVING_PROPS: null
 });
 
 /**
@@ -18961,11 +18920,11 @@ var ReactCompositeComponentMixin = {
   /**
    * Base constructor for all composite component.
    *
-   * @param {ReactDescriptor} descriptor
+   * @param {ReactElement} element
    * @final
    * @internal
    */
-  construct: function(descriptor) {
+  construct: function(element) {
     // Children can be either an array or more than one argument
     ReactComponent.Mixin.construct.apply(this, arguments);
     ReactOwner.Mixin.construct.apply(this, arguments);
@@ -18974,7 +18933,7 @@ var ReactCompositeComponentMixin = {
     this._pendingState = null;
 
     // This is the public post-processed context. The real context and pending
-    // context lives on the descriptor.
+    // context lives on the element.
     this.context = null;
 
     this._compositeLifeCycleState = null;
@@ -19017,7 +18976,7 @@ var ReactCompositeComponentMixin = {
         this._bindAutoBindMethods();
       }
 
-      this.context = this._processContext(this._descriptor._context);
+      this.context = this._processContext(this._currentElement._context);
       this.props = this._processProps(this.props);
 
       this.state = this.getInitialState ? this.getInitialState() : null;
@@ -19041,7 +19000,8 @@ var ReactCompositeComponentMixin = {
       }
 
       this._renderedComponent = instantiateReactComponent(
-        this._renderValidatedComponent()
+        this._renderValidatedComponent(),
+        this._currentElement.type // The wrapping type
       );
 
       // Done with mounting, `setState` will now trigger UI changes.
@@ -19113,7 +19073,7 @@ var ReactCompositeComponentMixin = {
     }
     // Merge with `_pendingState` if it exists, otherwise with existing state.
     this.replaceState(
-      merge(this._pendingState || this.state, partialState),
+      assign({}, this._pendingState || this.state, partialState),
       callback
     );
   },
@@ -19201,7 +19161,7 @@ var ReactCompositeComponentMixin = {
           name
         ) : invariant(name in this.constructor.childContextTypes));
       }
-      return merge(currentContext, childContext);
+      return assign({}, currentContext, childContext);
     }
     return currentContext;
   },
@@ -19216,25 +19176,13 @@ var ReactCompositeComponentMixin = {
    * @private
    */
   _processProps: function(newProps) {
-    var defaultProps = this.constructor.defaultProps;
-    var props;
-    if (defaultProps) {
-      props = merge(newProps);
-      for (var propName in defaultProps) {
-        if (typeof props[propName] === 'undefined') {
-          props[propName] = defaultProps[propName];
-        }
-      }
-    } else {
-      props = newProps;
-    }
     if ("production" !== process.env.NODE_ENV) {
       var propTypes = this.constructor.propTypes;
       if (propTypes) {
-        this._checkPropTypes(propTypes, props, ReactPropTypeLocations.prop);
+        this._checkPropTypes(propTypes, newProps, ReactPropTypeLocations.prop);
       }
     }
-    return props;
+    return newProps;
   },
 
   /**
@@ -19246,7 +19194,7 @@ var ReactCompositeComponentMixin = {
    * @private
    */
   _checkPropTypes: function(propTypes, props, location) {
-    // TODO: Stop validating prop types here and only use the descriptor
+    // TODO: Stop validating prop types here and only use the element
     // validation.
     var componentName = this.constructor.displayName;
     for (var propName in propTypes) {
@@ -19265,7 +19213,7 @@ var ReactCompositeComponentMixin = {
   },
 
   /**
-   * If any of `_pendingDescriptor`, `_pendingState`, or `_pendingForceUpdate`
+   * If any of `_pendingElement`, `_pendingState`, or `_pendingForceUpdate`
    * is set, update the component.
    *
    * @param {ReactReconcileTransaction} transaction
@@ -19280,7 +19228,7 @@ var ReactCompositeComponentMixin = {
       return;
     }
 
-    if (this._pendingDescriptor == null &&
+    if (this._pendingElement == null &&
         this._pendingState == null &&
         !this._pendingForceUpdate) {
       return;
@@ -19288,12 +19236,12 @@ var ReactCompositeComponentMixin = {
 
     var nextContext = this.context;
     var nextProps = this.props;
-    var nextDescriptor = this._descriptor;
-    if (this._pendingDescriptor != null) {
-      nextDescriptor = this._pendingDescriptor;
-      nextContext = this._processContext(nextDescriptor._context);
-      nextProps = this._processProps(nextDescriptor.props);
-      this._pendingDescriptor = null;
+    var nextElement = this._currentElement;
+    if (this._pendingElement != null) {
+      nextElement = this._pendingElement;
+      nextContext = this._processContext(nextElement._context);
+      nextProps = this._processProps(nextElement.props);
+      this._pendingElement = null;
 
       this._compositeLifeCycleState = CompositeLifeCycle.RECEIVING_PROPS;
       if (this.componentWillReceiveProps) {
@@ -19301,51 +19249,47 @@ var ReactCompositeComponentMixin = {
       }
     }
 
-    this._compositeLifeCycleState = CompositeLifeCycle.RECEIVING_STATE;
+    this._compositeLifeCycleState = null;
 
     var nextState = this._pendingState || this.state;
     this._pendingState = null;
 
-    try {
-      var shouldUpdate =
-        this._pendingForceUpdate ||
-        !this.shouldComponentUpdate ||
-        this.shouldComponentUpdate(nextProps, nextState, nextContext);
+    var shouldUpdate =
+      this._pendingForceUpdate ||
+      !this.shouldComponentUpdate ||
+      this.shouldComponentUpdate(nextProps, nextState, nextContext);
 
-      if ("production" !== process.env.NODE_ENV) {
-        if (typeof shouldUpdate === "undefined") {
-          console.warn(
-            (this.constructor.displayName || 'ReactCompositeComponent') +
-            '.shouldComponentUpdate(): Returned undefined instead of a ' +
-            'boolean value. Make sure to return true or false.'
-          );
-        }
-      }
-
-      if (shouldUpdate) {
-        this._pendingForceUpdate = false;
-        // Will set `this.props`, `this.state` and `this.context`.
-        this._performComponentUpdate(
-          nextDescriptor,
-          nextProps,
-          nextState,
-          nextContext,
-          transaction
+    if ("production" !== process.env.NODE_ENV) {
+      if (typeof shouldUpdate === "undefined") {
+        console.warn(
+          (this.constructor.displayName || 'ReactCompositeComponent') +
+          '.shouldComponentUpdate(): Returned undefined instead of a ' +
+          'boolean value. Make sure to return true or false.'
         );
-      } else {
-        // If it's determined that a component should not update, we still want
-        // to set props and state.
-        this._descriptor = nextDescriptor;
-        this.props = nextProps;
-        this.state = nextState;
-        this.context = nextContext;
-
-        // Owner cannot change because shouldUpdateReactComponent doesn't allow
-        // it. TODO: Remove this._owner completely.
-        this._owner = nextDescriptor._owner;
       }
-    } finally {
-      this._compositeLifeCycleState = null;
+    }
+
+    if (shouldUpdate) {
+      this._pendingForceUpdate = false;
+      // Will set `this.props`, `this.state` and `this.context`.
+      this._performComponentUpdate(
+        nextElement,
+        nextProps,
+        nextState,
+        nextContext,
+        transaction
+      );
+    } else {
+      // If it's determined that a component should not update, we still want
+      // to set props and state.
+      this._currentElement = nextElement;
+      this.props = nextProps;
+      this.state = nextState;
+      this.context = nextContext;
+
+      // Owner cannot change because shouldUpdateReactComponent doesn't allow
+      // it. TODO: Remove this._owner completely.
+      this._owner = nextElement._owner;
     }
   },
 
@@ -19353,7 +19297,7 @@ var ReactCompositeComponentMixin = {
    * Merges new props and state, notifies delegate methods of update and
    * performs update.
    *
-   * @param {ReactDescriptor} nextDescriptor Next descriptor
+   * @param {ReactElement} nextElement Next element
    * @param {object} nextProps Next public object to set as properties.
    * @param {?object} nextState Next object to set as state.
    * @param {?object} nextContext Next public object to set as context.
@@ -19361,13 +19305,13 @@ var ReactCompositeComponentMixin = {
    * @private
    */
   _performComponentUpdate: function(
-    nextDescriptor,
+    nextElement,
     nextProps,
     nextState,
     nextContext,
     transaction
   ) {
-    var prevDescriptor = this._descriptor;
+    var prevElement = this._currentElement;
     var prevProps = this.props;
     var prevState = this.state;
     var prevContext = this.context;
@@ -19376,18 +19320,18 @@ var ReactCompositeComponentMixin = {
       this.componentWillUpdate(nextProps, nextState, nextContext);
     }
 
-    this._descriptor = nextDescriptor;
+    this._currentElement = nextElement;
     this.props = nextProps;
     this.state = nextState;
     this.context = nextContext;
 
     // Owner cannot change because shouldUpdateReactComponent doesn't allow
     // it. TODO: Remove this._owner completely.
-    this._owner = nextDescriptor._owner;
+    this._owner = nextElement._owner;
 
     this.updateComponent(
       transaction,
-      prevDescriptor
+      prevElement
     );
 
     if (this.componentDidUpdate) {
@@ -19398,22 +19342,22 @@ var ReactCompositeComponentMixin = {
     }
   },
 
-  receiveComponent: function(nextDescriptor, transaction) {
-    if (nextDescriptor === this._descriptor &&
-        nextDescriptor._owner != null) {
-      // Since descriptors are immutable after the owner is rendered,
+  receiveComponent: function(nextElement, transaction) {
+    if (nextElement === this._currentElement &&
+        nextElement._owner != null) {
+      // Since elements are immutable after the owner is rendered,
       // we can do a cheap identity compare here to determine if this is a
       // superfluous reconcile. It's possible for state to be mutable but such
       // change should trigger an update of the owner which would recreate
-      // the descriptor. We explicitly check for the existence of an owner since
-      // it's possible for a descriptor created outside a composite to be
+      // the element. We explicitly check for the existence of an owner since
+      // it's possible for a element created outside a composite to be
       // deeply mutated and reused.
       return;
     }
 
     ReactComponent.Mixin.receiveComponent.call(
       this,
-      nextDescriptor,
+      nextElement,
       transaction
     );
   },
@@ -19425,31 +19369,34 @@ var ReactCompositeComponentMixin = {
    * Sophisticated clients may wish to override this.
    *
    * @param {ReactReconcileTransaction} transaction
-   * @param {ReactDescriptor} prevDescriptor
+   * @param {ReactElement} prevElement
    * @internal
    * @overridable
    */
   updateComponent: ReactPerf.measure(
     'ReactCompositeComponent',
     'updateComponent',
-    function(transaction, prevParentDescriptor) {
+    function(transaction, prevParentElement) {
       ReactComponent.Mixin.updateComponent.call(
         this,
         transaction,
-        prevParentDescriptor
+        prevParentElement
       );
 
       var prevComponentInstance = this._renderedComponent;
-      var prevDescriptor = prevComponentInstance._descriptor;
-      var nextDescriptor = this._renderValidatedComponent();
-      if (shouldUpdateReactComponent(prevDescriptor, nextDescriptor)) {
-        prevComponentInstance.receiveComponent(nextDescriptor, transaction);
+      var prevElement = prevComponentInstance._currentElement;
+      var nextElement = this._renderValidatedComponent();
+      if (shouldUpdateReactComponent(prevElement, nextElement)) {
+        prevComponentInstance.receiveComponent(nextElement, transaction);
       } else {
         // These two IDs are actually the same! But nothing should rely on that.
         var thisID = this._rootNodeID;
         var prevComponentID = prevComponentInstance._rootNodeID;
         prevComponentInstance.unmountComponent();
-        this._renderedComponent = instantiateReactComponent(nextDescriptor);
+        this._renderedComponent = instantiateReactComponent(
+          nextElement,
+          this._currentElement.type
+        );
         var nextMarkup = this._renderedComponent.mountComponent(
           thisID,
           transaction,
@@ -19487,12 +19434,12 @@ var ReactCompositeComponentMixin = {
     ) : invariant(this.isMounted() ||
       compositeLifeCycleState === CompositeLifeCycle.MOUNTING));
     ("production" !== process.env.NODE_ENV ? invariant(
-      compositeLifeCycleState !== CompositeLifeCycle.RECEIVING_STATE &&
-      compositeLifeCycleState !== CompositeLifeCycle.UNMOUNTING,
+      compositeLifeCycleState !== CompositeLifeCycle.UNMOUNTING &&
+      ReactCurrentOwner.current == null,
       'forceUpdate(...): Cannot force an update while unmounting component ' +
-      'or during an existing state transition (such as within `render`).'
-    ) : invariant(compositeLifeCycleState !== CompositeLifeCycle.RECEIVING_STATE &&
-    compositeLifeCycleState !== CompositeLifeCycle.UNMOUNTING));
+      'or within a `render` function.'
+    ) : invariant(compositeLifeCycleState !== CompositeLifeCycle.UNMOUNTING &&
+    ReactCurrentOwner.current == null));
     this._pendingForceUpdate = true;
     ReactUpdates.enqueueUpdate(this, callback);
   },
@@ -19507,7 +19454,7 @@ var ReactCompositeComponentMixin = {
       var renderedComponent;
       var previousContext = ReactContext.current;
       ReactContext.current = this._processChildContext(
-        this._descriptor._context
+        this._currentElement._context
       );
       ReactCurrentOwner.current = this;
       try {
@@ -19523,11 +19470,11 @@ var ReactCompositeComponentMixin = {
         ReactCurrentOwner.current = null;
       }
       ("production" !== process.env.NODE_ENV ? invariant(
-        ReactDescriptor.isValidDescriptor(renderedComponent),
+        ReactElement.isValidElement(renderedComponent),
         '%s.render(): A valid ReactComponent must be returned. You may have ' +
           'returned undefined, an array or some other invalid object.',
         this.constructor.displayName || 'ReactCompositeComponent'
-      ) : invariant(ReactDescriptor.isValidDescriptor(renderedComponent)));
+      ) : invariant(ReactElement.isValidElement(renderedComponent)));
       return renderedComponent;
     }
   ),
@@ -19556,9 +19503,7 @@ var ReactCompositeComponentMixin = {
    */
   _bindAutoBindMethod: function(method) {
     var component = this;
-    var boundMethod = function() {
-      return method.apply(component, arguments);
-    };
+    var boundMethod = method.bind(component);
     if ("production" !== process.env.NODE_ENV) {
       boundMethod.__reactBoundContext = component;
       boundMethod.__reactBoundMethod = method;
@@ -19596,10 +19541,13 @@ var ReactCompositeComponentMixin = {
 };
 
 var ReactCompositeComponentBase = function() {};
-mixInto(ReactCompositeComponentBase, ReactComponent.Mixin);
-mixInto(ReactCompositeComponentBase, ReactOwner.Mixin);
-mixInto(ReactCompositeComponentBase, ReactPropTransferer.Mixin);
-mixInto(ReactCompositeComponentBase, ReactCompositeComponentMixin);
+assign(
+  ReactCompositeComponentBase.prototype,
+  ReactComponent.Mixin,
+  ReactOwner.Mixin,
+  ReactPropTransferer.Mixin,
+  ReactCompositeComponentMixin
+);
 
 /**
  * Module for creating composite components.
@@ -19623,8 +19571,10 @@ var ReactCompositeComponent = {
    * @public
    */
   createClass: function(spec) {
-    var Constructor = function(props, owner) {
-      this.construct(props, owner);
+    var Constructor = function(props) {
+      // This constructor is overridden by mocks. The argument is used
+      // by mocks to assert on what gets mounted. This will later be used
+      // by the stand-alone class implementation.
     };
     Constructor.prototype = new ReactCompositeComponentBase();
     Constructor.prototype.constructor = Constructor;
@@ -19667,17 +19617,14 @@ var ReactCompositeComponent = {
       }
     }
 
-    var descriptorFactory = ReactDescriptor.createFactory(Constructor);
-
     if ("production" !== process.env.NODE_ENV) {
-      return ReactDescriptorValidator.createFactory(
-        descriptorFactory,
-        Constructor.propTypes,
-        Constructor.contextTypes
+      return ReactLegacyElement.wrapFactory(
+        ReactElementValidator.createFactory(Constructor)
       );
     }
-
-    return descriptorFactory;
+    return ReactLegacyElement.wrapFactory(
+      ReactElement.createFactory(Constructor)
+    );
   },
 
   injection: {
@@ -19690,28 +19637,21 @@ var ReactCompositeComponent = {
 module.exports = ReactCompositeComponent;
 
 }).call(this,require('_process'))
-},{"./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactDescriptorValidator":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptorValidator.js","./ReactEmptyComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js","./ReactErrorUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactErrorUtils.js","./ReactOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactOwner.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactPropTransferer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTransferer.js","./ReactPropTypeLocationNames":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocationNames.js","./ReactPropTypeLocations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocations.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js","./mapObject":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mapObject.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js","./monitorCodeUse":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js","./shouldUpdateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactContext":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactContext.js","./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactElementValidator":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElementValidator.js","./ReactEmptyComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEmptyComponent.js","./ReactErrorUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactErrorUtils.js","./ReactLegacyElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js","./ReactOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactOwner.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./ReactPropTransferer":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTransferer.js","./ReactPropTypeLocationNames":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocationNames.js","./ReactPropTypeLocations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocations.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./instantiateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\instantiateReactComponent.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","./mapObject":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\mapObject.js","./monitorCodeUse":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\monitorCodeUse.js","./shouldUpdateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shouldUpdateReactComponent.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactContext.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactContext
  */
 
 "use strict";
 
-var merge = require("./merge");
+var assign = require("./Object.assign");
 
 /**
  * Keeps track of the current context.
@@ -19733,7 +19673,7 @@ var ReactContext = {
    * A typical use case might look like
    *
    *  render: function() {
-   *    var children = ReactContext.withContext({foo: 'foo'} () => (
+   *    var children = ReactContext.withContext({foo: 'foo'}, () => (
    *
    *    ));
    *    return <div>{children}</div>;
@@ -19746,7 +19686,7 @@ var ReactContext = {
   withContext: function(newContext, scopedCallback) {
     var result;
     var previousContext = ReactContext.current;
-    ReactContext.current = merge(previousContext, newContext);
+    ReactContext.current = assign({}, previousContext, newContext);
     try {
       result = scopedCallback();
     } finally {
@@ -19759,21 +19699,14 @@ var ReactContext = {
 
 module.exports = ReactContext;
 
-},{"./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactCurrentOwner
  */
@@ -19800,22 +19733,15 @@ var ReactCurrentOwner = {
 
 module.exports = ReactCurrentOwner;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOM
  * @typechecks static-only
@@ -19823,45 +19749,27 @@ module.exports = ReactCurrentOwner;
 
 "use strict";
 
-var ReactDescriptor = require("./ReactDescriptor");
-var ReactDescriptorValidator = require("./ReactDescriptorValidator");
-var ReactDOMComponent = require("./ReactDOMComponent");
+var ReactElement = require("./ReactElement");
+var ReactElementValidator = require("./ReactElementValidator");
+var ReactLegacyElement = require("./ReactLegacyElement");
 
-var mergeInto = require("./mergeInto");
 var mapObject = require("./mapObject");
 
 /**
- * Creates a new React class that is idempotent and capable of containing other
- * React components. It accepts event listeners and DOM properties that are
- * valid according to `DOMProperty`.
+ * Create a factory that creates HTML tag elements.
  *
- *  - Event listeners: `onClick`, `onMouseDown`, etc.
- *  - DOM properties: `className`, `name`, `title`, etc.
- *
- * The `style` property functions differently from the DOM API. It accepts an
- * object mapping of style properties to values.
- *
- * @param {boolean} omitClose True if the close tag should be omitted.
  * @param {string} tag Tag name (e.g. `div`).
  * @private
  */
-function createDOMComponentClass(omitClose, tag) {
-  var Constructor = function(descriptor) {
-    this.construct(descriptor);
-  };
-  Constructor.prototype = new ReactDOMComponent(tag, omitClose);
-  Constructor.prototype.constructor = Constructor;
-  Constructor.displayName = tag;
-
-  var ConvenienceConstructor = ReactDescriptor.createFactory(Constructor);
-
+function createDOMFactory(tag) {
   if ("production" !== process.env.NODE_ENV) {
-    return ReactDescriptorValidator.createFactory(
-      ConvenienceConstructor
+    return ReactLegacyElement.markNonLegacyFactory(
+      ReactElementValidator.createFactory(tag)
     );
   }
-
-  return ConvenienceConstructor;
+  return ReactLegacyElement.markNonLegacyFactory(
+    ReactElement.createFactory(tag)
+  );
 }
 
 /**
@@ -19871,165 +19779,151 @@ function createDOMComponentClass(omitClose, tag) {
  * @public
  */
 var ReactDOM = mapObject({
-  a: false,
-  abbr: false,
-  address: false,
-  area: true,
-  article: false,
-  aside: false,
-  audio: false,
-  b: false,
-  base: true,
-  bdi: false,
-  bdo: false,
-  big: false,
-  blockquote: false,
-  body: false,
-  br: true,
-  button: false,
-  canvas: false,
-  caption: false,
-  cite: false,
-  code: false,
-  col: true,
-  colgroup: false,
-  data: false,
-  datalist: false,
-  dd: false,
-  del: false,
-  details: false,
-  dfn: false,
-  dialog: false,
-  div: false,
-  dl: false,
-  dt: false,
-  em: false,
-  embed: true,
-  fieldset: false,
-  figcaption: false,
-  figure: false,
-  footer: false,
-  form: false, // NOTE: Injected, see `ReactDOMForm`.
-  h1: false,
-  h2: false,
-  h3: false,
-  h4: false,
-  h5: false,
-  h6: false,
-  head: false,
-  header: false,
-  hr: true,
-  html: false,
-  i: false,
-  iframe: false,
-  img: true,
-  input: true,
-  ins: false,
-  kbd: false,
-  keygen: true,
-  label: false,
-  legend: false,
-  li: false,
-  link: true,
-  main: false,
-  map: false,
-  mark: false,
-  menu: false,
-  menuitem: false, // NOTE: Close tag should be omitted, but causes problems.
-  meta: true,
-  meter: false,
-  nav: false,
-  noscript: false,
-  object: false,
-  ol: false,
-  optgroup: false,
-  option: false,
-  output: false,
-  p: false,
-  param: true,
-  picture: false,
-  pre: false,
-  progress: false,
-  q: false,
-  rp: false,
-  rt: false,
-  ruby: false,
-  s: false,
-  samp: false,
-  script: false,
-  section: false,
-  select: false,
-  small: false,
-  source: true,
-  span: false,
-  strong: false,
-  style: false,
-  sub: false,
-  summary: false,
-  sup: false,
-  table: false,
-  tbody: false,
-  td: false,
-  textarea: false, // NOTE: Injected, see `ReactDOMTextarea`.
-  tfoot: false,
-  th: false,
-  thead: false,
-  time: false,
-  title: false,
-  tr: false,
-  track: true,
-  u: false,
-  ul: false,
-  'var': false,
-  video: false,
-  wbr: true,
+  a: 'a',
+  abbr: 'abbr',
+  address: 'address',
+  area: 'area',
+  article: 'article',
+  aside: 'aside',
+  audio: 'audio',
+  b: 'b',
+  base: 'base',
+  bdi: 'bdi',
+  bdo: 'bdo',
+  big: 'big',
+  blockquote: 'blockquote',
+  body: 'body',
+  br: 'br',
+  button: 'button',
+  canvas: 'canvas',
+  caption: 'caption',
+  cite: 'cite',
+  code: 'code',
+  col: 'col',
+  colgroup: 'colgroup',
+  data: 'data',
+  datalist: 'datalist',
+  dd: 'dd',
+  del: 'del',
+  details: 'details',
+  dfn: 'dfn',
+  dialog: 'dialog',
+  div: 'div',
+  dl: 'dl',
+  dt: 'dt',
+  em: 'em',
+  embed: 'embed',
+  fieldset: 'fieldset',
+  figcaption: 'figcaption',
+  figure: 'figure',
+  footer: 'footer',
+  form: 'form',
+  h1: 'h1',
+  h2: 'h2',
+  h3: 'h3',
+  h4: 'h4',
+  h5: 'h5',
+  h6: 'h6',
+  head: 'head',
+  header: 'header',
+  hr: 'hr',
+  html: 'html',
+  i: 'i',
+  iframe: 'iframe',
+  img: 'img',
+  input: 'input',
+  ins: 'ins',
+  kbd: 'kbd',
+  keygen: 'keygen',
+  label: 'label',
+  legend: 'legend',
+  li: 'li',
+  link: 'link',
+  main: 'main',
+  map: 'map',
+  mark: 'mark',
+  menu: 'menu',
+  menuitem: 'menuitem',
+  meta: 'meta',
+  meter: 'meter',
+  nav: 'nav',
+  noscript: 'noscript',
+  object: 'object',
+  ol: 'ol',
+  optgroup: 'optgroup',
+  option: 'option',
+  output: 'output',
+  p: 'p',
+  param: 'param',
+  picture: 'picture',
+  pre: 'pre',
+  progress: 'progress',
+  q: 'q',
+  rp: 'rp',
+  rt: 'rt',
+  ruby: 'ruby',
+  s: 's',
+  samp: 'samp',
+  script: 'script',
+  section: 'section',
+  select: 'select',
+  small: 'small',
+  source: 'source',
+  span: 'span',
+  strong: 'strong',
+  style: 'style',
+  sub: 'sub',
+  summary: 'summary',
+  sup: 'sup',
+  table: 'table',
+  tbody: 'tbody',
+  td: 'td',
+  textarea: 'textarea',
+  tfoot: 'tfoot',
+  th: 'th',
+  thead: 'thead',
+  time: 'time',
+  title: 'title',
+  tr: 'tr',
+  track: 'track',
+  u: 'u',
+  ul: 'ul',
+  'var': 'var',
+  video: 'video',
+  wbr: 'wbr',
 
   // SVG
-  circle: false,
-  defs: false,
-  ellipse: false,
-  g: false,
-  line: false,
-  linearGradient: false,
-  mask: false,
-  path: false,
-  pattern: false,
-  polygon: false,
-  polyline: false,
-  radialGradient: false,
-  rect: false,
-  stop: false,
-  svg: false,
-  text: false,
-  tspan: false
-}, createDOMComponentClass);
+  circle: 'circle',
+  defs: 'defs',
+  ellipse: 'ellipse',
+  g: 'g',
+  line: 'line',
+  linearGradient: 'linearGradient',
+  mask: 'mask',
+  path: 'path',
+  pattern: 'pattern',
+  polygon: 'polygon',
+  polyline: 'polyline',
+  radialGradient: 'radialGradient',
+  rect: 'rect',
+  stop: 'stop',
+  svg: 'svg',
+  text: 'text',
+  tspan: 'tspan'
 
-var injection = {
-  injectComponentClasses: function(componentClasses) {
-    mergeInto(ReactDOM, componentClasses);
-  }
-};
-
-ReactDOM.injection = injection;
+}, createDOMFactory);
 
 module.exports = ReactDOM;
 
 }).call(this,require('_process'))
-},{"./ReactDOMComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMComponent.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactDescriptorValidator":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptorValidator.js","./mapObject":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mapObject.js","./mergeInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeInto.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMButton.js":[function(require,module,exports){
+},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactElementValidator":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElementValidator.js","./ReactLegacyElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js","./mapObject":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\mapObject.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMButton.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOMButton
  */
@@ -20039,12 +19933,13 @@ module.exports = ReactDOM;
 var AutoFocusMixin = require("./AutoFocusMixin");
 var ReactBrowserComponentMixin = require("./ReactBrowserComponentMixin");
 var ReactCompositeComponent = require("./ReactCompositeComponent");
+var ReactElement = require("./ReactElement");
 var ReactDOM = require("./ReactDOM");
 
 var keyMirror = require("./keyMirror");
 
-// Store a reference to the <button> `ReactDOMComponent`.
-var button = ReactDOM.button;
+// Store a reference to the <button> `ReactDOMComponent`. TODO: use string
+var button = ReactElement.createFactory(ReactDOM.button.type);
 
 var mouseListenerNames = keyMirror({
   onClick: true,
@@ -20086,22 +19981,15 @@ var ReactDOMButton = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMButton;
 
-},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMComponent.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\AutoFocusMixin.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMComponent.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOMComponent
  * @typechecks static-only
@@ -20119,11 +20007,12 @@ var ReactMount = require("./ReactMount");
 var ReactMultiChild = require("./ReactMultiChild");
 var ReactPerf = require("./ReactPerf");
 
+var assign = require("./Object.assign");
 var escapeTextForBrowser = require("./escapeTextForBrowser");
 var invariant = require("./invariant");
+var isEventSupported = require("./isEventSupported");
 var keyOf = require("./keyOf");
-var merge = require("./merge");
-var mixInto = require("./mixInto");
+var monitorCodeUse = require("./monitorCodeUse");
 
 var deleteListener = ReactBrowserEventEmitter.deleteListener;
 var listenTo = ReactBrowserEventEmitter.listenTo;
@@ -20148,6 +20037,16 @@ function assertValidProps(props) {
     props.children == null || props.dangerouslySetInnerHTML == null,
     'Can only set one of `children` or `props.dangerouslySetInnerHTML`.'
   ) : invariant(props.children == null || props.dangerouslySetInnerHTML == null));
+  if ("production" !== process.env.NODE_ENV) {
+    if (props.contentEditable && props.children != null) {
+      console.warn(
+        'A component is `contentEditable` and contains `children` managed by ' +
+        'React. It is now your responsibility to guarantee that none of those '+
+        'nodes are unexpectedly modified or duplicated. This is probably not ' +
+        'intentional.'
+      );
+    }
+  }
   ("production" !== process.env.NODE_ENV ? invariant(
     props.style == null || typeof props.style === 'object',
     'The `style` prop expects a mapping from style properties to values, ' +
@@ -20156,6 +20055,15 @@ function assertValidProps(props) {
 }
 
 function putListener(id, registrationName, listener, transaction) {
+  if ("production" !== process.env.NODE_ENV) {
+    // IE8 has no API for event capturing and the `onScroll` event doesn't
+    // bubble.
+    if (registrationName === 'onScroll' &&
+        !isEventSupported('scroll', true)) {
+      monitorCodeUse('react_no_scroll_event');
+      console.warn('This browser doesn\'t support the `onScroll` event');
+    }
+  }
   var container = ReactMount.findReactContainerForID(id);
   if (container) {
     var doc = container.nodeType === ELEMENT_NODE_TYPE ?
@@ -20170,17 +20078,65 @@ function putListener(id, registrationName, listener, transaction) {
   );
 }
 
+// For HTML, certain tags should omit their close tag. We keep a whitelist for
+// those special cased tags.
+
+var omittedCloseTags = {
+  'area': true,
+  'base': true,
+  'br': true,
+  'col': true,
+  'embed': true,
+  'hr': true,
+  'img': true,
+  'input': true,
+  'keygen': true,
+  'link': true,
+  'meta': true,
+  'param': true,
+  'source': true,
+  'track': true,
+  'wbr': true
+  // NOTE: menuitem's close tag should be omitted, but that causes problems.
+};
+
+// We accept any tag to be rendered but since this gets injected into abitrary
+// HTML, we want to make sure that it's a safe tag.
+// http://www.w3.org/TR/REC-xml/#NT-Name
+
+var VALID_TAG_REGEX = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/; // Simplified subset
+var validatedTagCache = {};
+var hasOwnProperty = {}.hasOwnProperty;
+
+function validateDangerousTag(tag) {
+  if (!hasOwnProperty.call(validatedTagCache, tag)) {
+    ("production" !== process.env.NODE_ENV ? invariant(VALID_TAG_REGEX.test(tag), 'Invalid tag: %s', tag) : invariant(VALID_TAG_REGEX.test(tag)));
+    validatedTagCache[tag] = true;
+  }
+}
 
 /**
+ * Creates a new React class that is idempotent and capable of containing other
+ * React components. It accepts event listeners and DOM properties that are
+ * valid according to `DOMProperty`.
+ *
+ *  - Event listeners: `onClick`, `onMouseDown`, etc.
+ *  - DOM properties: `className`, `name`, `title`, etc.
+ *
+ * The `style` property functions differently from the DOM API. It accepts an
+ * object mapping of style properties to values.
+ *
  * @constructor ReactDOMComponent
  * @extends ReactComponent
  * @extends ReactMultiChild
  */
-function ReactDOMComponent(tag, omitClose) {
-  this._tagOpen = '<' + tag;
-  this._tagClose = omitClose ? '' : '</' + tag + '>';
+function ReactDOMComponent(tag) {
+  validateDangerousTag(tag);
+  this._tag = tag;
   this.tagName = tag.toUpperCase();
 }
+
+ReactDOMComponent.displayName = 'ReactDOMComponent';
 
 ReactDOMComponent.Mixin = {
 
@@ -20205,10 +20161,11 @@ ReactDOMComponent.Mixin = {
         mountDepth
       );
       assertValidProps(this.props);
+      var closeTag = omittedCloseTags[this._tag] ? '' : '</' + this._tag + '>';
       return (
         this._createOpenTagMarkupAndPutListeners(transaction) +
         this._createContentMarkup(transaction) +
-        this._tagClose
+        closeTag
       );
     }
   ),
@@ -20227,7 +20184,7 @@ ReactDOMComponent.Mixin = {
    */
   _createOpenTagMarkupAndPutListeners: function(transaction) {
     var props = this.props;
-    var ret = this._tagOpen;
+    var ret = '<' + this._tag;
 
     for (var propKey in props) {
       if (!props.hasOwnProperty(propKey)) {
@@ -20242,7 +20199,7 @@ ReactDOMComponent.Mixin = {
       } else {
         if (propKey === STYLE) {
           if (propValue) {
-            propValue = props.style = merge(props.style);
+            propValue = props.style = assign({}, props.style);
           }
           propValue = CSSPropertyOperations.createMarkupForStyles(propValue);
         }
@@ -20295,22 +20252,22 @@ ReactDOMComponent.Mixin = {
     return '';
   },
 
-  receiveComponent: function(nextDescriptor, transaction) {
-    if (nextDescriptor === this._descriptor &&
-        nextDescriptor._owner != null) {
-      // Since descriptors are immutable after the owner is rendered,
+  receiveComponent: function(nextElement, transaction) {
+    if (nextElement === this._currentElement &&
+        nextElement._owner != null) {
+      // Since elements are immutable after the owner is rendered,
       // we can do a cheap identity compare here to determine if this is a
       // superfluous reconcile. It's possible for state to be mutable but such
       // change should trigger an update of the owner which would recreate
-      // the descriptor. We explicitly check for the existence of an owner since
-      // it's possible for a descriptor created outside a composite to be
+      // the element. We explicitly check for the existence of an owner since
+      // it's possible for a element created outside a composite to be
       // deeply mutated and reused.
       return;
     }
 
     ReactComponent.Mixin.receiveComponent.call(
       this,
-      nextDescriptor,
+      nextElement,
       transaction
     );
   },
@@ -20320,22 +20277,22 @@ ReactDOMComponent.Mixin = {
    * attached to the DOM. Reconciles the root DOM node, then recurses.
    *
    * @param {ReactReconcileTransaction} transaction
-   * @param {ReactDescriptor} prevDescriptor
+   * @param {ReactElement} prevElement
    * @internal
    * @overridable
    */
   updateComponent: ReactPerf.measure(
     'ReactDOMComponent',
     'updateComponent',
-    function(transaction, prevDescriptor) {
-      assertValidProps(this._descriptor.props);
+    function(transaction, prevElement) {
+      assertValidProps(this._currentElement.props);
       ReactComponent.Mixin.updateComponent.call(
         this,
         transaction,
-        prevDescriptor
+        prevElement
       );
-      this._updateDOMProperties(prevDescriptor.props, transaction);
-      this._updateDOMChildren(prevDescriptor.props, transaction);
+      this._updateDOMProperties(prevElement.props, transaction);
+      this._updateDOMChildren(prevElement.props, transaction);
     }
   ),
 
@@ -20391,7 +20348,7 @@ ReactDOMComponent.Mixin = {
       }
       if (propKey === STYLE) {
         if (nextProp) {
-          nextProp = nextProps.style = merge(nextProp);
+          nextProp = nextProps.style = assign({}, nextProp);
         }
         if (lastProp) {
           // Unset styles on `lastProp` but not on `nextProp`.
@@ -20500,29 +20457,25 @@ ReactDOMComponent.Mixin = {
 
 };
 
-mixInto(ReactDOMComponent, ReactComponent.Mixin);
-mixInto(ReactDOMComponent, ReactDOMComponent.Mixin);
-mixInto(ReactDOMComponent, ReactMultiChild.Mixin);
-mixInto(ReactDOMComponent, ReactBrowserComponentMixin);
+assign(
+  ReactDOMComponent.prototype,
+  ReactComponent.Mixin,
+  ReactDOMComponent.Mixin,
+  ReactMultiChild.Mixin,
+  ReactBrowserComponentMixin
+);
 
 module.exports = ReactDOMComponent;
 
 }).call(this,require('_process'))
-},{"./CSSPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSPropertyOperations.js","./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactMultiChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChild.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./escapeTextForBrowser":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMForm.js":[function(require,module,exports){
+},{"./CSSPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSPropertyOperations.js","./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactMultiChild":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChild.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./escapeTextForBrowser":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\escapeTextForBrowser.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./isEventSupported":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isEventSupported.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","./monitorCodeUse":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\monitorCodeUse.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMForm.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOMForm
  */
@@ -20533,10 +20486,11 @@ var EventConstants = require("./EventConstants");
 var LocalEventTrapMixin = require("./LocalEventTrapMixin");
 var ReactBrowserComponentMixin = require("./ReactBrowserComponentMixin");
 var ReactCompositeComponent = require("./ReactCompositeComponent");
+var ReactElement = require("./ReactElement");
 var ReactDOM = require("./ReactDOM");
 
-// Store a reference to the <form> `ReactDOMComponent`.
-var form = ReactDOM.form;
+// Store a reference to the <form> `ReactDOMComponent`. TODO: use string
+var form = ReactElement.createFactory(ReactDOM.form.type);
 
 /**
  * Since onSubmit doesn't bubble OR capture on the top level in IE8, we need
@@ -20553,7 +20507,7 @@ var ReactDOMForm = ReactCompositeComponent.createClass({
     // TODO: Instead of using `ReactDOM` directly, we should use JSX. However,
     // `jshint` fails to parse JSX so in order for linting to work in the open
     // source repo, we need to just use `ReactDOM.form`.
-    return this.transferPropsTo(form(null, this.props.children));
+    return form(this.props);
   },
 
   componentDidMount: function() {
@@ -20564,22 +20518,15 @@ var ReactDOMForm = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMForm;
 
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./LocalEventTrapMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMIDOperations.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./LocalEventTrapMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMIDOperations.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOMIDOperations
  * @typechecks static-only
@@ -20757,21 +20704,14 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 }).call(this,require('_process'))
-},{"./CSSPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSPropertyOperations.js","./DOMChildrenOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMChildrenOperations.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./setInnerHTML":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/setInnerHTML.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMImg.js":[function(require,module,exports){
+},{"./CSSPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSPropertyOperations.js","./DOMChildrenOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMChildrenOperations.js","./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./setInnerHTML":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\setInnerHTML.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMImg.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOMImg
  */
@@ -20782,10 +20722,11 @@ var EventConstants = require("./EventConstants");
 var LocalEventTrapMixin = require("./LocalEventTrapMixin");
 var ReactBrowserComponentMixin = require("./ReactBrowserComponentMixin");
 var ReactCompositeComponent = require("./ReactCompositeComponent");
+var ReactElement = require("./ReactElement");
 var ReactDOM = require("./ReactDOM");
 
-// Store a reference to the <img> `ReactDOMComponent`.
-var img = ReactDOM.img;
+// Store a reference to the <img> `ReactDOMComponent`. TODO: use string
+var img = ReactElement.createFactory(ReactDOM.img.type);
 
 /**
  * Since onLoad doesn't bubble OR capture on the top level in IE8, we need to
@@ -20811,22 +20752,15 @@ var ReactDOMImg = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMImg;
 
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./LocalEventTrapMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMInput.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./LocalEventTrapMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMInput.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOMInput
  */
@@ -20838,16 +20772,25 @@ var DOMPropertyOperations = require("./DOMPropertyOperations");
 var LinkedValueUtils = require("./LinkedValueUtils");
 var ReactBrowserComponentMixin = require("./ReactBrowserComponentMixin");
 var ReactCompositeComponent = require("./ReactCompositeComponent");
+var ReactElement = require("./ReactElement");
 var ReactDOM = require("./ReactDOM");
 var ReactMount = require("./ReactMount");
+var ReactUpdates = require("./ReactUpdates");
 
+var assign = require("./Object.assign");
 var invariant = require("./invariant");
-var merge = require("./merge");
 
-// Store a reference to the <input> `ReactDOMComponent`.
-var input = ReactDOM.input;
+// Store a reference to the <input> `ReactDOMComponent`. TODO: use string
+var input = ReactElement.createFactory(ReactDOM.input.type);
 
 var instancesByReactID = {};
+
+function forceUpdateIfMounted() {
+  /*jshint validthis:true */
+  if (this.isMounted()) {
+    this.forceUpdate();
+  }
+}
 
 /**
  * Implements an <input> native component that allows setting these optional
@@ -20873,28 +20816,23 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
   getInitialState: function() {
     var defaultValue = this.props.defaultValue;
     return {
-      checked: this.props.defaultChecked || false,
-      value: defaultValue != null ? defaultValue : null
+      initialChecked: this.props.defaultChecked || false,
+      initialValue: defaultValue != null ? defaultValue : null
     };
-  },
-
-  shouldComponentUpdate: function() {
-    // Defer any updates to this component during the `onChange` handler.
-    return !this._isChanging;
   },
 
   render: function() {
     // Clone `this.props` so we don't mutate the input.
-    var props = merge(this.props);
+    var props = assign({}, this.props);
 
     props.defaultChecked = null;
     props.defaultValue = null;
 
     var value = LinkedValueUtils.getValue(this);
-    props.value = value != null ? value : this.state.value;
+    props.value = value != null ? value : this.state.initialValue;
 
     var checked = LinkedValueUtils.getChecked(this);
-    props.checked = checked != null ? checked : this.state.checked;
+    props.checked = checked != null ? checked : this.state.initialChecked;
 
     props.onChange = this._handleChange;
 
@@ -20934,14 +20872,12 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
     var returnValue;
     var onChange = LinkedValueUtils.getOnChange(this);
     if (onChange) {
-      this._isChanging = true;
       returnValue = onChange.call(this, event);
-      this._isChanging = false;
     }
-    this.setState({
-      checked: event.target.checked,
-      value: event.target.value
-    });
+    // Here we use asap to wait until all updates have propagated, which
+    // is important when using controlled components within layers:
+    // https://github.com/facebook/react/issues/1698
+    ReactUpdates.asap(forceUpdateIfMounted, this);
 
     var name = this.props.name;
     if (this.props.type === 'radio' && name != null) {
@@ -20979,13 +20915,10 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
           'ReactDOMInput: Unknown radio button ID %s.',
           otherID
         ) : invariant(otherInstance));
-        // In some cases, this will actually change the `checked` state value.
-        // In other cases, there's no change but this forces a reconcile upon
-        // which componentDidUpdate will reset the DOM property to whatever it
-        // should be.
-        otherInstance.setState({
-          checked: false
-        });
+        // If this is a controlled radio button group, forcing the input that
+        // was previously checked to update will cause it to be come re-checked
+        // as appropriate.
+        ReactUpdates.asap(forceUpdateIfMounted, otherInstance);
       }
     }
 
@@ -20997,22 +20930,15 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
 module.exports = ReactDOMInput;
 
 }).call(this,require('_process'))
-},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./LinkedValueUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMOption.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\AutoFocusMixin.js","./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./LinkedValueUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedValueUtils.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMOption.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOMOption
  */
@@ -21021,12 +20947,13 @@ module.exports = ReactDOMInput;
 
 var ReactBrowserComponentMixin = require("./ReactBrowserComponentMixin");
 var ReactCompositeComponent = require("./ReactCompositeComponent");
+var ReactElement = require("./ReactElement");
 var ReactDOM = require("./ReactDOM");
 
 var warning = require("./warning");
 
-// Store a reference to the <option> `ReactDOMComponent`.
-var option = ReactDOM.option;
+// Store a reference to the <option> `ReactDOMComponent`. TODO: use string
+var option = ReactElement.createFactory(ReactDOM.option.type);
 
 /**
  * Implements an <option> native component that warns when `selected` is set.
@@ -21056,21 +20983,14 @@ var ReactDOMOption = ReactCompositeComponent.createClass({
 module.exports = ReactDOMOption;
 
 }).call(this,require('_process'))
-},{"./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelect.js":[function(require,module,exports){
+},{"./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMSelect.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOMSelect
  */
@@ -21081,12 +21001,22 @@ var AutoFocusMixin = require("./AutoFocusMixin");
 var LinkedValueUtils = require("./LinkedValueUtils");
 var ReactBrowserComponentMixin = require("./ReactBrowserComponentMixin");
 var ReactCompositeComponent = require("./ReactCompositeComponent");
+var ReactElement = require("./ReactElement");
 var ReactDOM = require("./ReactDOM");
+var ReactUpdates = require("./ReactUpdates");
 
-var merge = require("./merge");
+var assign = require("./Object.assign");
 
-// Store a reference to the <select> `ReactDOMComponent`.
-var select = ReactDOM.select;
+// Store a reference to the <select> `ReactDOMComponent`. TODO: use string
+var select = ReactElement.createFactory(ReactDOM.select.type);
+
+function updateWithPendingValueIfMounted() {
+  /*jshint validthis:true */
+  if (this.isMounted()) {
+    this.setState({value: this._pendingValue});
+    this._pendingValue = 0;
+  }
+}
 
 /**
  * Validation function for `value` and `defaultValue`.
@@ -21173,6 +21103,10 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
     return {value: this.props.defaultValue || (this.props.multiple ? [] : '')};
   },
 
+  componentWillMount: function() {
+    this._pendingValue = null;
+  },
+
   componentWillReceiveProps: function(nextProps) {
     if (!this.props.multiple && nextProps.multiple) {
       this.setState({value: [this.state.value]});
@@ -21181,14 +21115,9 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
     }
   },
 
-  shouldComponentUpdate: function() {
-    // Defer any updates to this component during the `onChange` handler.
-    return !this._isChanging;
-  },
-
   render: function() {
     // Clone `this.props` so we don't mutate the input.
-    var props = merge(this.props);
+    var props = assign({}, this.props);
 
     props.onChange = this._handleChange;
     props.value = null;
@@ -21213,9 +21142,7 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
     var returnValue;
     var onChange = LinkedValueUtils.getOnChange(this);
     if (onChange) {
-      this._isChanging = true;
       returnValue = onChange.call(this, event);
-      this._isChanging = false;
     }
 
     var selectedValue;
@@ -21231,7 +21158,8 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
       selectedValue = event.target.value;
     }
 
-    this.setState({value: selectedValue});
+    this._pendingValue = selectedValue;
+    ReactUpdates.asap(updateWithPendingValueIfMounted, this);
     return returnValue;
   }
 
@@ -21239,21 +21167,14 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMSelect;
 
-},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./LinkedValueUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelection.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\AutoFocusMixin.js","./LinkedValueUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedValueUtils.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMSelection.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOMSelection
  */
@@ -21312,9 +21233,9 @@ function getIEOffsets(node) {
  * @return {?object}
  */
 function getModernOffsets(node) {
-  var selection = window.getSelection();
+  var selection = window.getSelection && window.getSelection();
 
-  if (selection.rangeCount === 0) {
+  if (!selection || selection.rangeCount === 0) {
     return null;
   }
 
@@ -21356,7 +21277,6 @@ function getModernOffsets(node) {
   detectionRange.setStart(anchorNode, anchorOffset);
   detectionRange.setEnd(focusNode, focusOffset);
   var isBackward = detectionRange.collapsed;
-  detectionRange.detach();
 
   return {
     start: isBackward ? end : start,
@@ -21403,8 +21323,11 @@ function setIEOffsets(node, offsets) {
  * @param {object} offsets
  */
 function setModernOffsets(node, offsets) {
-  var selection = window.getSelection();
+  if (!window.getSelection) {
+    return;
+  }
 
+  var selection = window.getSelection();
   var length = node[getTextContentAccessor()].length;
   var start = Math.min(offsets.start, length);
   var end = typeof offsets.end === 'undefined' ?
@@ -21433,8 +21356,6 @@ function setModernOffsets(node, offsets) {
       range.setEnd(endMarker.node, endMarker.offset);
       selection.addRange(range);
     }
-
-    range.detach();
   }
 }
 
@@ -21455,22 +21376,15 @@ var ReactDOMSelection = {
 
 module.exports = ReactDOMSelection;
 
-},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./getNodeForCharacterOffset":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getNodeForCharacterOffset.js","./getTextContentAccessor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMTextarea.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./getNodeForCharacterOffset":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getNodeForCharacterOffset.js","./getTextContentAccessor":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getTextContentAccessor.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMTextarea.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDOMTextarea
  */
@@ -21482,15 +21396,24 @@ var DOMPropertyOperations = require("./DOMPropertyOperations");
 var LinkedValueUtils = require("./LinkedValueUtils");
 var ReactBrowserComponentMixin = require("./ReactBrowserComponentMixin");
 var ReactCompositeComponent = require("./ReactCompositeComponent");
+var ReactElement = require("./ReactElement");
 var ReactDOM = require("./ReactDOM");
+var ReactUpdates = require("./ReactUpdates");
 
+var assign = require("./Object.assign");
 var invariant = require("./invariant");
-var merge = require("./merge");
 
 var warning = require("./warning");
 
-// Store a reference to the <textarea> `ReactDOMComponent`.
-var textarea = ReactDOM.textarea;
+// Store a reference to the <textarea> `ReactDOMComponent`. TODO: use string
+var textarea = ReactElement.createFactory(ReactDOM.textarea.type);
+
+function forceUpdateIfMounted() {
+  /*jshint validthis:true */
+  if (this.isMounted()) {
+    this.forceUpdate();
+  }
+}
 
 /**
  * Implements a <textarea> native component that allows setting `value`, and
@@ -21551,14 +21474,9 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
     };
   },
 
-  shouldComponentUpdate: function() {
-    // Defer any updates to this component during the `onChange` handler.
-    return !this._isChanging;
-  },
-
   render: function() {
     // Clone `this.props` so we don't mutate the input.
-    var props = merge(this.props);
+    var props = assign({}, this.props);
 
     ("production" !== process.env.NODE_ENV ? invariant(
       props.dangerouslySetInnerHTML == null,
@@ -21588,11 +21506,9 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
     var returnValue;
     var onChange = LinkedValueUtils.getOnChange(this);
     if (onChange) {
-      this._isChanging = true;
       returnValue = onChange.call(this, event);
-      this._isChanging = false;
     }
-    this.setState({value: event.target.value});
+    ReactUpdates.asap(forceUpdateIfMounted, this);
     return returnValue;
   }
 
@@ -21601,21 +21517,14 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
 module.exports = ReactDOMTextarea;
 
 }).call(this,require('_process'))
-},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./LinkedValueUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultBatchingStrategy.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\AutoFocusMixin.js","./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./LinkedValueUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedValueUtils.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultBatchingStrategy.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDefaultBatchingStrategy
  */
@@ -21625,8 +21534,8 @@ module.exports = ReactDOMTextarea;
 var ReactUpdates = require("./ReactUpdates");
 var Transaction = require("./Transaction");
 
+var assign = require("./Object.assign");
 var emptyFunction = require("./emptyFunction");
-var mixInto = require("./mixInto");
 
 var RESET_BATCHED_UPDATES = {
   initialize: emptyFunction,
@@ -21646,12 +21555,15 @@ function ReactDefaultBatchingStrategyTransaction() {
   this.reinitializeTransaction();
 }
 
-mixInto(ReactDefaultBatchingStrategyTransaction, Transaction.Mixin);
-mixInto(ReactDefaultBatchingStrategyTransaction, {
-  getTransactionWrappers: function() {
-    return TRANSACTION_WRAPPERS;
+assign(
+  ReactDefaultBatchingStrategyTransaction.prototype,
+  Transaction.Mixin,
+  {
+    getTransactionWrappers: function() {
+      return TRANSACTION_WRAPPERS;
+    }
   }
-});
+);
 
 var transaction = new ReactDefaultBatchingStrategyTransaction();
 
@@ -21678,22 +21590,15 @@ var ReactDefaultBatchingStrategy = {
 
 module.exports = ReactDefaultBatchingStrategy;
 
-},{"./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultInjection.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./Transaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Transaction.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultInjection.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDefaultInjection
  */
@@ -21713,7 +21618,7 @@ var ReactBrowserComponentMixin = require("./ReactBrowserComponentMixin");
 var ReactComponentBrowserEnvironment =
   require("./ReactComponentBrowserEnvironment");
 var ReactDefaultBatchingStrategy = require("./ReactDefaultBatchingStrategy");
-var ReactDOM = require("./ReactDOM");
+var ReactDOMComponent = require("./ReactDOMComponent");
 var ReactDOMButton = require("./ReactDOMButton");
 var ReactDOMForm = require("./ReactDOMForm");
 var ReactDOMImg = require("./ReactDOMImg");
@@ -21758,18 +21663,22 @@ function inject() {
     BeforeInputEventPlugin: BeforeInputEventPlugin
   });
 
-  ReactInjection.DOM.injectComponentClasses({
-    button: ReactDOMButton,
-    form: ReactDOMForm,
-    img: ReactDOMImg,
-    input: ReactDOMInput,
-    option: ReactDOMOption,
-    select: ReactDOMSelect,
-    textarea: ReactDOMTextarea,
+  ReactInjection.NativeComponent.injectGenericComponentClass(
+    ReactDOMComponent
+  );
 
-    html: createFullPageComponent(ReactDOM.html),
-    head: createFullPageComponent(ReactDOM.head),
-    body: createFullPageComponent(ReactDOM.body)
+  ReactInjection.NativeComponent.injectComponentClasses({
+    'button': ReactDOMButton,
+    'form': ReactDOMForm,
+    'img': ReactDOMImg,
+    'input': ReactDOMInput,
+    'option': ReactDOMOption,
+    'select': ReactDOMSelect,
+    'textarea': ReactDOMTextarea,
+
+    'html': createFullPageComponent('html'),
+    'head': createFullPageComponent('head'),
+    'body': createFullPageComponent('body')
   });
 
   // This needs to happen after createFullPageComponent() otherwise the mixin
@@ -21779,7 +21688,7 @@ function inject() {
   ReactInjection.DOMProperty.injectDOMPropertyConfig(HTMLDOMPropertyConfig);
   ReactInjection.DOMProperty.injectDOMPropertyConfig(SVGDOMPropertyConfig);
 
-  ReactInjection.EmptyComponent.injectEmptyComponent(ReactDOM.noscript);
+  ReactInjection.EmptyComponent.injectEmptyComponent('noscript');
 
   ReactInjection.Updates.injectReconcileTransaction(
     ReactComponentBrowserEnvironment.ReactReconcileTransaction
@@ -21810,21 +21719,14 @@ module.exports = {
 };
 
 }).call(this,require('_process'))
-},{"./BeforeInputEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/BeforeInputEventPlugin.js","./ChangeEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ChangeEventPlugin.js","./ClientReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ClientReactRootIndex.js","./CompositionEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CompositionEventPlugin.js","./DefaultEventPluginOrder":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DefaultEventPluginOrder.js","./EnterLeaveEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EnterLeaveEventPlugin.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./HTMLDOMPropertyConfig":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/HTMLDOMPropertyConfig.js","./MobileSafariClickEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/MobileSafariClickEventPlugin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactComponentBrowserEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentBrowserEnvironment.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactDOMButton":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMButton.js","./ReactDOMForm":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMForm.js","./ReactDOMImg":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMImg.js","./ReactDOMInput":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMInput.js","./ReactDOMOption":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMOption.js","./ReactDOMSelect":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelect.js","./ReactDOMTextarea":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMTextarea.js","./ReactDefaultBatchingStrategy":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultBatchingStrategy.js","./ReactDefaultPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerf.js","./ReactEventListener":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventListener.js","./ReactInjection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInjection.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./SVGDOMPropertyConfig":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SVGDOMPropertyConfig.js","./SelectEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SelectEventPlugin.js","./ServerReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ServerReactRootIndex.js","./SimpleEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SimpleEventPlugin.js","./createFullPageComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createFullPageComponent.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerf.js":[function(require,module,exports){
+},{"./BeforeInputEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\BeforeInputEventPlugin.js","./ChangeEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ChangeEventPlugin.js","./ClientReactRootIndex":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ClientReactRootIndex.js","./CompositionEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CompositionEventPlugin.js","./DefaultEventPluginOrder":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DefaultEventPluginOrder.js","./EnterLeaveEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EnterLeaveEventPlugin.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./HTMLDOMPropertyConfig":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\HTMLDOMPropertyConfig.js","./MobileSafariClickEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\MobileSafariClickEventPlugin.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactComponentBrowserEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponentBrowserEnvironment.js","./ReactDOMButton":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMButton.js","./ReactDOMComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMComponent.js","./ReactDOMForm":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMForm.js","./ReactDOMImg":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMImg.js","./ReactDOMInput":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMInput.js","./ReactDOMOption":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMOption.js","./ReactDOMSelect":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMSelect.js","./ReactDOMTextarea":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMTextarea.js","./ReactDefaultBatchingStrategy":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultBatchingStrategy.js","./ReactDefaultPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultPerf.js","./ReactEventListener":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEventListener.js","./ReactInjection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInjection.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./SVGDOMPropertyConfig":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SVGDOMPropertyConfig.js","./SelectEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SelectEventPlugin.js","./ServerReactRootIndex":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ServerReactRootIndex.js","./SimpleEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SimpleEventPlugin.js","./createFullPageComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createFullPageComponent.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultPerf.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDefaultPerf
  * @typechecks static-only
@@ -21903,19 +21805,23 @@ var ReactDefaultPerf = {
     );
   },
 
-  printWasted: function(measurements) {
-    measurements = measurements || ReactDefaultPerf._allMeasurements;
+  getMeasurementsSummaryMap: function(measurements) {
     var summary = ReactDefaultPerfAnalysis.getInclusiveSummary(
       measurements,
       true
     );
-    console.table(summary.map(function(item) {
+    return summary.map(function(item) {
       return {
         'Owner > component': item.componentName,
         'Wasted time (ms)': item.time,
         'Instances': item.count
       };
-    }));
+    });
+  },
+
+  printWasted: function(measurements) {
+    measurements = measurements || ReactDefaultPerf._allMeasurements;
+    console.table(ReactDefaultPerf.getMeasurementsSummaryMap(measurements));
     console.log(
       'Total time:',
       ReactDefaultPerfAnalysis.getTotalTime(measurements).toFixed(2) + ' ms'
@@ -22073,26 +21979,19 @@ var ReactDefaultPerf = {
 
 module.exports = ReactDefaultPerf;
 
-},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./ReactDefaultPerfAnalysis":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerfAnalysis.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./performanceNow":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performanceNow.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerfAnalysis.js":[function(require,module,exports){
+},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./ReactDefaultPerfAnalysis":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultPerfAnalysis.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./performanceNow":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\performanceNow.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultPerfAnalysis.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactDefaultPerfAnalysis
  */
 
-var merge = require("./merge");
+var assign = require("./Object.assign");
 
 // Don't try to save users less than 1.2ms (a number I made up)
 var DONT_CARE_THRESHOLD = 1.2;
@@ -22147,7 +22046,11 @@ function getExclusiveSummary(measurements) {
 
   for (var i = 0; i < measurements.length; i++) {
     var measurement = measurements[i];
-    var allIDs = merge(measurement.exclusive, measurement.inclusive);
+    var allIDs = assign(
+      {},
+      measurement.exclusive,
+      measurement.inclusive
+    );
 
     for (var id in allIDs) {
       displayName = measurement.displayNames[id].current;
@@ -22195,7 +22098,11 @@ function getInclusiveSummary(measurements, onlyClean) {
 
   for (var i = 0; i < measurements.length; i++) {
     var measurement = measurements[i];
-    var allIDs = merge(measurement.exclusive, measurement.inclusive);
+    var allIDs = assign(
+      {},
+      measurement.exclusive,
+      measurement.inclusive
+    );
     var cleanComponents;
 
     if (onlyClean) {
@@ -22250,11 +22157,11 @@ function getUnchangedComponents(measurement) {
   // the amount of time it took to render the entire subtree.
   var cleanComponents = {};
   var dirtyLeafIDs = Object.keys(measurement.writes);
-  var allIDs = merge(measurement.exclusive, measurement.inclusive);
+  var allIDs = assign({}, measurement.exclusive, measurement.inclusive);
 
   for (var id in allIDs) {
     var isDirty = false;
-    // For each component that rendered, see if a component that triggerd
+    // For each component that rendered, see if a component that triggered
     // a DOM op is in its subtree.
     for (var i = 0; i < dirtyLeafIDs.length; i++) {
       if (dirtyLeafIDs[i].indexOf(id) === 0) {
@@ -22278,24 +22185,17 @@ var ReactDefaultPerfAnalysis = {
 
 module.exports = ReactDefaultPerfAnalysis;
 
-},{"./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @providesModule ReactDescriptor
+ * @providesModule ReactElement
  */
 
 "use strict";
@@ -22303,8 +22203,12 @@ module.exports = ReactDefaultPerfAnalysis;
 var ReactContext = require("./ReactContext");
 var ReactCurrentOwner = require("./ReactCurrentOwner");
 
-var merge = require("./merge");
 var warning = require("./warning");
+
+var RESERVED_PROPS = {
+  key: true,
+  ref: true
+};
 
 /**
  * Warn for mutations.
@@ -22347,7 +22251,7 @@ var useMutationMembrane = false;
  * Warn for mutations.
  *
  * @internal
- * @param {object} descriptor
+ * @param {object} element
  */
 function defineMutationMembrane(prototype) {
   try {
@@ -22364,161 +22268,145 @@ function defineMutationMembrane(prototype) {
 }
 
 /**
- * Transfer static properties from the source to the target. Functions are
- * rebound to have this reflect the original source.
- */
-function proxyStaticMethods(target, source) {
-  if (typeof source !== 'function') {
-    return;
-  }
-  for (var key in source) {
-    if (source.hasOwnProperty(key)) {
-      var value = source[key];
-      if (typeof value === 'function') {
-        var bound = value.bind(source);
-        // Copy any properties defined on the function, such as `isRequired` on
-        // a PropTypes validator. (mergeInto refuses to work on functions.)
-        for (var k in value) {
-          if (value.hasOwnProperty(k)) {
-            bound[k] = value[k];
-          }
-        }
-        target[key] = bound;
-      } else {
-        target[key] = value;
-      }
-    }
-  }
-}
-
-/**
- * Base constructor for all React descriptors. This is only used to make this
+ * Base constructor for all React elements. This is only used to make this
  * work with a dynamic instanceof check. Nothing should live on this prototype.
  *
  * @param {*} type
+ * @param {string|object} ref
+ * @param {*} key
+ * @param {*} props
  * @internal
  */
-var ReactDescriptor = function() {};
+var ReactElement = function(type, key, ref, owner, context, props) {
+  // Built-in properties that belong on the element
+  this.type = type;
+  this.key = key;
+  this.ref = ref;
 
-if ("production" !== process.env.NODE_ENV) {
-  defineMutationMembrane(ReactDescriptor.prototype);
-}
+  // Record the component responsible for creating this element.
+  this._owner = owner;
 
-ReactDescriptor.createFactory = function(type) {
-
-  var descriptorPrototype = Object.create(ReactDescriptor.prototype);
-
-  var factory = function(props, children) {
-    // For consistency we currently allocate a new object for every descriptor.
-    // This protects the descriptor from being mutated by the original props
-    // object being mutated. It also protects the original props object from
-    // being mutated by children arguments and default props. This behavior
-    // comes with a performance cost and could be deprecated in the future.
-    // It could also be optimized with a smarter JSX transform.
-    if (props == null) {
-      props = {};
-    } else if (typeof props === 'object') {
-      props = merge(props);
-    }
-
-    // Children can be more than one argument, and those are transferred onto
-    // the newly allocated props object.
-    var childrenLength = arguments.length - 1;
-    if (childrenLength === 1) {
-      props.children = children;
-    } else if (childrenLength > 1) {
-      var childArray = Array(childrenLength);
-      for (var i = 0; i < childrenLength; i++) {
-        childArray[i] = arguments[i + 1];
-      }
-      props.children = childArray;
-    }
-
-    // Initialize the descriptor object
-    var descriptor = Object.create(descriptorPrototype);
-
-    // Record the component responsible for creating this descriptor.
-    descriptor._owner = ReactCurrentOwner.current;
-
-    // TODO: Deprecate withContext, and then the context becomes accessible
-    // through the owner.
-    descriptor._context = ReactContext.current;
-
-    if ("production" !== process.env.NODE_ENV) {
-      // The validation flag and props are currently mutative. We put them on
-      // an external backing store so that we can freeze the whole object.
-      // This can be replaced with a WeakMap once they are implemented in
-      // commonly used development environments.
-      descriptor._store = { validated: false, props: props };
-
-      // We're not allowed to set props directly on the object so we early
-      // return and rely on the prototype membrane to forward to the backing
-      // store.
-      if (useMutationMembrane) {
-        Object.freeze(descriptor);
-        return descriptor;
-      }
-    }
-
-    descriptor.props = props;
-    return descriptor;
-  };
-
-  // Currently we expose the prototype of the descriptor so that
-  // <Foo /> instanceof Foo works. This is controversial pattern.
-  factory.prototype = descriptorPrototype;
-
-  // Expose the type on the factory and the prototype so that it can be
-  // easily accessed on descriptors. E.g. <Foo />.type === Foo.type and for
-  // static methods like <Foo />.type.staticMethod();
-  // This should not be named constructor since this may not be the function
-  // that created the descriptor, and it may not even be a constructor.
-  factory.type = type;
-  descriptorPrototype.type = type;
-
-  proxyStaticMethods(factory, type);
-
-  // Expose a unique constructor on the prototype is that this works with type
-  // systems that compare constructor properties: <Foo />.constructor === Foo
-  // This may be controversial since it requires a known factory function.
-  descriptorPrototype.constructor = factory;
-
-  return factory;
-
-};
-
-ReactDescriptor.cloneAndReplaceProps = function(oldDescriptor, newProps) {
-  var newDescriptor = Object.create(oldDescriptor.constructor.prototype);
-  // It's important that this property order matches the hidden class of the
-  // original descriptor to maintain perf.
-  newDescriptor._owner = oldDescriptor._owner;
-  newDescriptor._context = oldDescriptor._context;
+  // TODO: Deprecate withContext, and then the context becomes accessible
+  // through the owner.
+  this._context = context;
 
   if ("production" !== process.env.NODE_ENV) {
-    newDescriptor._store = {
-      validated: oldDescriptor._store.validated,
-      props: newProps
-    };
+    // The validation flag and props are currently mutative. We put them on
+    // an external backing store so that we can freeze the whole object.
+    // This can be replaced with a WeakMap once they are implemented in
+    // commonly used development environments.
+    this._store = { validated: false, props: props };
+
+    // We're not allowed to set props directly on the object so we early
+    // return and rely on the prototype membrane to forward to the backing
+    // store.
     if (useMutationMembrane) {
-      Object.freeze(newDescriptor);
-      return newDescriptor;
+      Object.freeze(this);
+      return;
     }
   }
 
-  newDescriptor.props = newProps;
-  return newDescriptor;
+  this.props = props;
 };
 
-/**
- * Checks if a value is a valid descriptor constructor.
- *
- * @param {*}
- * @return {boolean}
- * @public
- */
-ReactDescriptor.isValidFactory = function(factory) {
-  return typeof factory === 'function' &&
-         factory.prototype instanceof ReactDescriptor;
+// We intentionally don't expose the function on the constructor property.
+// ReactElement should be indistinguishable from a plain object.
+ReactElement.prototype = {
+  _isReactElement: true
+};
+
+if ("production" !== process.env.NODE_ENV) {
+  defineMutationMembrane(ReactElement.prototype);
+}
+
+ReactElement.createElement = function(type, config, children) {
+  var propName;
+
+  // Reserved names are extracted
+  var props = {};
+
+  var key = null;
+  var ref = null;
+
+  if (config != null) {
+    ref = config.ref === undefined ? null : config.ref;
+    if ("production" !== process.env.NODE_ENV) {
+      ("production" !== process.env.NODE_ENV ? warning(
+        config.key !== null,
+        'createElement(...): Encountered component with a `key` of null. In ' +
+        'a future version, this will be treated as equivalent to the string ' +
+        '\'null\'; instead, provide an explicit key or use undefined.'
+      ) : null);
+    }
+    // TODO: Change this back to `config.key === undefined`
+    key = config.key == null ? null : '' + config.key;
+    // Remaining properties are added to a new props object
+    for (propName in config) {
+      if (config.hasOwnProperty(propName) &&
+          !RESERVED_PROPS.hasOwnProperty(propName)) {
+        props[propName] = config[propName];
+      }
+    }
+  }
+
+  // Children can be more than one argument, and those are transferred onto
+  // the newly allocated props object.
+  var childrenLength = arguments.length - 2;
+  if (childrenLength === 1) {
+    props.children = children;
+  } else if (childrenLength > 1) {
+    var childArray = Array(childrenLength);
+    for (var i = 0; i < childrenLength; i++) {
+      childArray[i] = arguments[i + 2];
+    }
+    props.children = childArray;
+  }
+
+  // Resolve default props
+  if (type.defaultProps) {
+    var defaultProps = type.defaultProps;
+    for (propName in defaultProps) {
+      if (typeof props[propName] === 'undefined') {
+        props[propName] = defaultProps[propName];
+      }
+    }
+  }
+
+  return new ReactElement(
+    type,
+    key,
+    ref,
+    ReactCurrentOwner.current,
+    ReactContext.current,
+    props
+  );
+};
+
+ReactElement.createFactory = function(type) {
+  var factory = ReactElement.createElement.bind(null, type);
+  // Expose the type on the factory and the prototype so that it can be
+  // easily accessed on elements. E.g. <Foo />.type === Foo.type.
+  // This should not be named `constructor` since this may not be the function
+  // that created the element, and it may not even be a constructor.
+  factory.type = type;
+  return factory;
+};
+
+ReactElement.cloneAndReplaceProps = function(oldElement, newProps) {
+  var newElement = new ReactElement(
+    oldElement.type,
+    oldElement.key,
+    oldElement.ref,
+    oldElement._owner,
+    oldElement._context,
+    newProps
+  );
+
+  if ("production" !== process.env.NODE_ENV) {
+    // If the key on the original is valid, then the clone is valid
+    newElement._store.validated = oldElement._store.validated;
+  }
+  return newElement;
 };
 
 /**
@@ -22526,42 +22414,45 @@ ReactDescriptor.isValidFactory = function(factory) {
  * @return {boolean} True if `object` is a valid component.
  * @final
  */
-ReactDescriptor.isValidDescriptor = function(object) {
-  return object instanceof ReactDescriptor;
+ReactElement.isValidElement = function(object) {
+  // ReactTestUtils is often used outside of beforeEach where as React is
+  // within it. This leads to two different instances of React on the same
+  // page. To identify a element from a different React instance we use
+  // a flag instead of an instanceof check.
+  var isElement = !!(object && object._isReactElement);
+  // if (isElement && !(object instanceof ReactElement)) {
+  // This is an indicator that you're using multiple versions of React at the
+  // same time. This will screw with ownership and stuff. Fix it, please.
+  // TODO: We could possibly warn here.
+  // }
+  return isElement;
 };
 
-module.exports = ReactDescriptor;
+module.exports = ReactElement;
 
 }).call(this,require('_process'))
-},{"./ReactContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptorValidator.js":[function(require,module,exports){
+},{"./ReactContext":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactContext.js","./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElementValidator.js":[function(require,module,exports){
 /**
- * Copyright 2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @providesModule ReactDescriptorValidator
+ * @providesModule ReactElementValidator
  */
 
 /**
- * ReactDescriptorValidator provides a wrapper around a descriptor factory
- * which validates the props passed to the descriptor. This is intended to be
+ * ReactElementValidator provides a wrapper around a element factory
+ * which validates the props passed to the element. This is intended to be
  * used only in DEV and could be replaced by a static type checker for languages
  * that support it.
  */
 
 "use strict";
 
-var ReactDescriptor = require("./ReactDescriptor");
+var ReactElement = require("./ReactElement");
 var ReactPropTypeLocations = require("./ReactPropTypeLocations");
 var ReactCurrentOwner = require("./ReactCurrentOwner");
 
@@ -22604,7 +22495,7 @@ function getCurrentOwnerDisplayName() {
  * @param {*} parentType component's parent's type.
  */
 function validateExplicitKey(component, parentType) {
-  if (component._store.validated || component.props.key != null) {
+  if (component._store.validated || component.key != null) {
     return;
   }
   component._store.validated = true;
@@ -22710,11 +22601,11 @@ function validateChildKeys(component, parentType) {
   if (Array.isArray(component)) {
     for (var i = 0; i < component.length; i++) {
       var child = component[i];
-      if (ReactDescriptor.isValidDescriptor(child)) {
+      if (ReactElement.isValidElement(child)) {
         validateExplicitKey(child, parentType);
       }
     }
-  } else if (ReactDescriptor.isValidDescriptor(component)) {
+  } else if (ReactElement.isValidElement(component)) {
     // This component was passed in a valid location.
     component._store.validated = true;
   } else if (component && typeof component === 'object') {
@@ -22760,85 +22651,70 @@ function checkPropTypes(componentName, propTypes, props, location) {
   }
 }
 
-var ReactDescriptorValidator = {
+var ReactElementValidator = {
 
-  /**
-   * Wraps a descriptor factory function in another function which validates
-   * the props and context of the descriptor and warns about any failed type
-   * checks.
-   *
-   * @param {function} factory The original descriptor factory
-   * @param {object?} propTypes A prop type definition set
-   * @param {object?} contextTypes A context type definition set
-   * @return {object} The component descriptor, which may be invalid.
-   * @private
-   */
-  createFactory: function(factory, propTypes, contextTypes) {
-    var validatedFactory = function(props, children) {
-      var descriptor = factory.apply(this, arguments);
+  createElement: function(type, props, children) {
+    var element = ReactElement.createElement.apply(this, arguments);
 
-      for (var i = 1; i < arguments.length; i++) {
-        validateChildKeys(arguments[i], descriptor.type);
-      }
-
-      var name = descriptor.type.displayName;
-      if (propTypes) {
-        checkPropTypes(
-          name,
-          propTypes,
-          descriptor.props,
-          ReactPropTypeLocations.prop
-        );
-      }
-      if (contextTypes) {
-        checkPropTypes(
-          name,
-          contextTypes,
-          descriptor._context,
-          ReactPropTypeLocations.context
-        );
-      }
-      return descriptor;
-    };
-
-    validatedFactory.prototype = factory.prototype;
-    validatedFactory.type = factory.type;
-
-    // Copy static properties
-    for (var key in factory) {
-      if (factory.hasOwnProperty(key)) {
-        validatedFactory[key] = factory[key];
-      }
+    // The result can be nullish if a mock or a custom function is used.
+    // TODO: Drop this when these are no longer allowed as the type argument.
+    if (element == null) {
+      return element;
     }
 
+    for (var i = 2; i < arguments.length; i++) {
+      validateChildKeys(arguments[i], type);
+    }
+
+    var name = type.displayName;
+    if (type.propTypes) {
+      checkPropTypes(
+        name,
+        type.propTypes,
+        element.props,
+        ReactPropTypeLocations.prop
+      );
+    }
+    if (type.contextTypes) {
+      checkPropTypes(
+        name,
+        type.contextTypes,
+        element._context,
+        ReactPropTypeLocations.context
+      );
+    }
+    return element;
+  },
+
+  createFactory: function(type) {
+    var validatedFactory = ReactElementValidator.createElement.bind(
+      null,
+      type
+    );
+    validatedFactory.type = type;
     return validatedFactory;
   }
 
 };
 
-module.exports = ReactDescriptorValidator;
+module.exports = ReactElementValidator;
 
-},{"./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactPropTypeLocations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocations.js","./monitorCodeUse":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js":[function(require,module,exports){
+},{"./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactPropTypeLocations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocations.js","./monitorCodeUse":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\monitorCodeUse.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEmptyComponent.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactEmptyComponent
  */
 
 "use strict";
+
+var ReactElement = require("./ReactElement");
 
 var invariant = require("./invariant");
 
@@ -22849,7 +22725,7 @@ var nullComponentIdsRegistry = {};
 
 var ReactEmptyComponentInjection = {
   injectEmptyComponent: function(emptyComponent) {
-    component = emptyComponent;
+    component = ReactElement.createFactory(emptyComponent);
   }
 };
 
@@ -22900,21 +22776,14 @@ var ReactEmptyComponent = {
 module.exports = ReactEmptyComponent;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactErrorUtils.js":[function(require,module,exports){
+},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactErrorUtils.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactErrorUtils
  * @typechecks
@@ -22939,21 +22808,14 @@ var ReactErrorUtils = {
 
 module.exports = ReactErrorUtils;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventEmitterMixin.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEventEmitterMixin.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactEventEmitterMixin
  */
@@ -22996,21 +22858,14 @@ var ReactEventEmitterMixin = {
 
 module.exports = ReactEventEmitterMixin;
 
-},{"./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventListener.js":[function(require,module,exports){
+},{"./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEventListener.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactEventListener
  * @typechecks static-only
@@ -23025,9 +22880,9 @@ var ReactInstanceHandles = require("./ReactInstanceHandles");
 var ReactMount = require("./ReactMount");
 var ReactUpdates = require("./ReactUpdates");
 
+var assign = require("./Object.assign");
 var getEventTarget = require("./getEventTarget");
 var getUnboundedScrollPosition = require("./getUnboundedScrollPosition");
-var mixInto = require("./mixInto");
 
 /**
  * Finds the parent React component of `node`.
@@ -23053,7 +22908,7 @@ function TopLevelCallbackBookKeeping(topLevelType, nativeEvent) {
   this.nativeEvent = nativeEvent;
   this.ancestors = [];
 }
-mixInto(TopLevelCallbackBookKeeping, {
+assign(TopLevelCallbackBookKeeping.prototype, {
   destructor: function() {
     this.topLevelType = null;
     this.nativeEvent = null;
@@ -23187,21 +23042,14 @@ var ReactEventListener = {
 
 module.exports = ReactEventListener;
 
-},{"./EventListener":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventListener.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./getEventTarget":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js","./getUnboundedScrollPosition":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getUnboundedScrollPosition.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInjection.js":[function(require,module,exports){
+},{"./EventListener":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventListener.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./getEventTarget":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventTarget.js","./getUnboundedScrollPosition":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getUnboundedScrollPosition.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInjection.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactInjection
  */
@@ -23212,9 +23060,9 @@ var DOMProperty = require("./DOMProperty");
 var EventPluginHub = require("./EventPluginHub");
 var ReactComponent = require("./ReactComponent");
 var ReactCompositeComponent = require("./ReactCompositeComponent");
-var ReactDOM = require("./ReactDOM");
 var ReactEmptyComponent = require("./ReactEmptyComponent");
 var ReactBrowserEventEmitter = require("./ReactBrowserEventEmitter");
+var ReactNativeComponent = require("./ReactNativeComponent");
 var ReactPerf = require("./ReactPerf");
 var ReactRootIndex = require("./ReactRootIndex");
 var ReactUpdates = require("./ReactUpdates");
@@ -23225,8 +23073,8 @@ var ReactInjection = {
   DOMProperty: DOMProperty.injection,
   EmptyComponent: ReactEmptyComponent.injection,
   EventPluginHub: EventPluginHub.injection,
-  DOM: ReactDOM.injection,
   EventEmitter: ReactBrowserEventEmitter.injection,
+  NativeComponent: ReactNativeComponent.injection,
   Perf: ReactPerf.injection,
   RootIndex: ReactRootIndex.injection,
   Updates: ReactUpdates.injection
@@ -23234,21 +23082,14 @@ var ReactInjection = {
 
 module.exports = ReactInjection;
 
-},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactEmptyComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactRootIndex.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js":[function(require,module,exports){
+},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactEmptyComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEmptyComponent.js","./ReactNativeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactNativeComponent.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./ReactRootIndex":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactRootIndex.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInputSelection.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactInputSelection
  */
@@ -23377,22 +23218,15 @@ var ReactInputSelection = {
 
 module.exports = ReactInputSelection;
 
-},{"./ReactDOMSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelection.js","./containsNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/containsNode.js","./focusNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/focusNode.js","./getActiveElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getActiveElement.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js":[function(require,module,exports){
+},{"./ReactDOMSelection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMSelection.js","./containsNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\containsNode.js","./focusNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\focusNode.js","./getActiveElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getActiveElement.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactInstanceHandles
  * @typechecks static-only
@@ -23719,21 +23553,261 @@ var ReactInstanceHandles = {
 module.exports = ReactInstanceHandles;
 
 }).call(this,require('_process'))
-},{"./ReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactRootIndex.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLink.js":[function(require,module,exports){
+},{"./ReactRootIndex":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactRootIndex.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js":[function(require,module,exports){
+(function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * @providesModule ReactLegacyElement
+ */
+
+"use strict";
+
+var ReactCurrentOwner = require("./ReactCurrentOwner");
+
+var invariant = require("./invariant");
+var monitorCodeUse = require("./monitorCodeUse");
+var warning = require("./warning");
+
+var legacyFactoryLogs = {};
+function warnForLegacyFactoryCall() {
+  if (!ReactLegacyElementFactory._isLegacyCallWarningEnabled) {
+    return;
+  }
+  var owner = ReactCurrentOwner.current;
+  var name = owner && owner.constructor ? owner.constructor.displayName : '';
+  if (!name) {
+    name = 'Something';
+  }
+  if (legacyFactoryLogs.hasOwnProperty(name)) {
+    return;
+  }
+  legacyFactoryLogs[name] = true;
+  ("production" !== process.env.NODE_ENV ? warning(
+    false,
+    name + ' is calling a React component directly. ' +
+    'Use a factory or JSX instead. See: http://fb.me/react-legacyfactory'
+  ) : null);
+  monitorCodeUse('react_legacy_factory_call', { version: 3, name: name });
+}
+
+function warnForPlainFunctionType(type) {
+  var isReactClass =
+    type.prototype &&
+    typeof type.prototype.mountComponent === 'function' &&
+    typeof type.prototype.receiveComponent === 'function';
+  if (isReactClass) {
+    ("production" !== process.env.NODE_ENV ? warning(
+      false,
+      'Did not expect to get a React class here. Use `Component` instead ' +
+      'of `Component.type` or `this.constructor`.'
+    ) : null);
+  } else {
+    if (!type._reactWarnedForThisType) {
+      try {
+        type._reactWarnedForThisType = true;
+      } catch (x) {
+        // just incase this is a frozen object or some special object
+      }
+      monitorCodeUse(
+        'react_non_component_in_jsx',
+        { version: 3, name: type.name }
+      );
+    }
+    ("production" !== process.env.NODE_ENV ? warning(
+      false,
+      'This JSX uses a plain function. Only React components are ' +
+      'valid in React\'s JSX transform.'
+    ) : null);
+  }
+}
+
+function warnForNonLegacyFactory(type) {
+  ("production" !== process.env.NODE_ENV ? warning(
+    false,
+    'Do not pass React.DOM.' + type.type + ' to JSX or createFactory. ' +
+    'Use the string "' + type.type + '" instead.'
+  ) : null);
+}
+
+/**
+ * Transfer static properties from the source to the target. Functions are
+ * rebound to have this reflect the original source.
+ */
+function proxyStaticMethods(target, source) {
+  if (typeof source !== 'function') {
+    return;
+  }
+  for (var key in source) {
+    if (source.hasOwnProperty(key)) {
+      var value = source[key];
+      if (typeof value === 'function') {
+        var bound = value.bind(source);
+        // Copy any properties defined on the function, such as `isRequired` on
+        // a PropTypes validator.
+        for (var k in value) {
+          if (value.hasOwnProperty(k)) {
+            bound[k] = value[k];
+          }
+        }
+        target[key] = bound;
+      } else {
+        target[key] = value;
+      }
+    }
+  }
+}
+
+// We use an object instead of a boolean because booleans are ignored by our
+// mocking libraries when these factories gets mocked.
+var LEGACY_MARKER = {};
+var NON_LEGACY_MARKER = {};
+
+var ReactLegacyElementFactory = {};
+
+ReactLegacyElementFactory.wrapCreateFactory = function(createFactory) {
+  var legacyCreateFactory = function(type) {
+    if (typeof type !== 'function') {
+      // Non-function types cannot be legacy factories
+      return createFactory(type);
+    }
+
+    if (type.isReactNonLegacyFactory) {
+      // This is probably a factory created by ReactDOM we unwrap it to get to
+      // the underlying string type. It shouldn't have been passed here so we
+      // warn.
+      if ("production" !== process.env.NODE_ENV) {
+        warnForNonLegacyFactory(type);
+      }
+      return createFactory(type.type);
+    }
+
+    if (type.isReactLegacyFactory) {
+      // This is probably a legacy factory created by ReactCompositeComponent.
+      // We unwrap it to get to the underlying class.
+      return createFactory(type.type);
+    }
+
+    if ("production" !== process.env.NODE_ENV) {
+      warnForPlainFunctionType(type);
+    }
+
+    // Unless it's a legacy factory, then this is probably a plain function,
+    // that is expecting to be invoked by JSX. We can just return it as is.
+    return type;
+  };
+  return legacyCreateFactory;
+};
+
+ReactLegacyElementFactory.wrapCreateElement = function(createElement) {
+  var legacyCreateElement = function(type, props, children) {
+    if (typeof type !== 'function') {
+      // Non-function types cannot be legacy factories
+      return createElement.apply(this, arguments);
+    }
+
+    var args;
+
+    if (type.isReactNonLegacyFactory) {
+      // This is probably a factory created by ReactDOM we unwrap it to get to
+      // the underlying string type. It shouldn't have been passed here so we
+      // warn.
+      if ("production" !== process.env.NODE_ENV) {
+        warnForNonLegacyFactory(type);
+      }
+      args = Array.prototype.slice.call(arguments, 0);
+      args[0] = type.type;
+      return createElement.apply(this, args);
+    }
+
+    if (type.isReactLegacyFactory) {
+      // This is probably a legacy factory created by ReactCompositeComponent.
+      // We unwrap it to get to the underlying class.
+      if (type._isMockFunction) {
+        // If this is a mock function, people will expect it to be called. We
+        // will actually call the original mock factory function instead. This
+        // future proofs unit testing that assume that these are classes.
+        type.type._mockedReactClassConstructor = type;
+      }
+      args = Array.prototype.slice.call(arguments, 0);
+      args[0] = type.type;
+      return createElement.apply(this, args);
+    }
+
+    if ("production" !== process.env.NODE_ENV) {
+      warnForPlainFunctionType(type);
+    }
+
+    // This is being called with a plain function we should invoke it
+    // immediately as if this was used with legacy JSX.
+    return type.apply(null, Array.prototype.slice.call(arguments, 1));
+  };
+  return legacyCreateElement;
+};
+
+ReactLegacyElementFactory.wrapFactory = function(factory) {
+  ("production" !== process.env.NODE_ENV ? invariant(
+    typeof factory === 'function',
+    'This is suppose to accept a element factory'
+  ) : invariant(typeof factory === 'function'));
+  var legacyElementFactory = function(config, children) {
+    // This factory should not be called when JSX is used. Use JSX instead.
+    if ("production" !== process.env.NODE_ENV) {
+      warnForLegacyFactoryCall();
+    }
+    return factory.apply(this, arguments);
+  };
+  proxyStaticMethods(legacyElementFactory, factory.type);
+  legacyElementFactory.isReactLegacyFactory = LEGACY_MARKER;
+  legacyElementFactory.type = factory.type;
+  return legacyElementFactory;
+};
+
+// This is used to mark a factory that will remain. E.g. we're allowed to call
+// it as a function. However, you're not suppose to pass it to createElement
+// or createFactory, so it will warn you if you do.
+ReactLegacyElementFactory.markNonLegacyFactory = function(factory) {
+  factory.isReactNonLegacyFactory = NON_LEGACY_MARKER;
+  return factory;
+};
+
+// Checks if a factory function is actually a legacy factory pretending to
+// be a class.
+ReactLegacyElementFactory.isValidFactory = function(factory) {
+  // TODO: This will be removed and moved into a class validator or something.
+  return typeof factory === 'function' &&
+    factory.isReactLegacyFactory === LEGACY_MARKER;
+};
+
+ReactLegacyElementFactory.isValidClass = function(factory) {
+  if ("production" !== process.env.NODE_ENV) {
+    ("production" !== process.env.NODE_ENV ? warning(
+      false,
+      'isValidClass is deprecated and will be removed in a future release. ' +
+      'Use a more specific validator instead.'
+    ) : null);
+  }
+  return ReactLegacyElementFactory.isValidFactory(factory);
+};
+
+ReactLegacyElementFactory._isLegacyCallWarningEnabled = true;
+
+module.exports = ReactLegacyElementFactory;
+
+}).call(this,require('_process'))
+},{"./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./monitorCodeUse":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\monitorCodeUse.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLink.js":[function(require,module,exports){
+/**
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactLink
  * @typechecks static-only
@@ -23799,21 +23873,14 @@ ReactLink.PropTypes = {
 
 module.exports = ReactLink;
 
-},{"./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMarkupChecksum.js":[function(require,module,exports){
+},{"./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMarkupChecksum.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactMarkupChecksum
  */
@@ -23854,22 +23921,15 @@ var ReactMarkupChecksum = {
 
 module.exports = ReactMarkupChecksum;
 
-},{"./adler32":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/adler32.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js":[function(require,module,exports){
+},{"./adler32":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\adler32.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactMount
  */
@@ -23879,16 +23939,22 @@ module.exports = ReactMarkupChecksum;
 var DOMProperty = require("./DOMProperty");
 var ReactBrowserEventEmitter = require("./ReactBrowserEventEmitter");
 var ReactCurrentOwner = require("./ReactCurrentOwner");
-var ReactDescriptor = require("./ReactDescriptor");
+var ReactElement = require("./ReactElement");
+var ReactLegacyElement = require("./ReactLegacyElement");
 var ReactInstanceHandles = require("./ReactInstanceHandles");
 var ReactPerf = require("./ReactPerf");
 
 var containsNode = require("./containsNode");
+var deprecated = require("./deprecated");
 var getReactRootElementInContainer = require("./getReactRootElementInContainer");
 var instantiateReactComponent = require("./instantiateReactComponent");
 var invariant = require("./invariant");
 var shouldUpdateReactComponent = require("./shouldUpdateReactComponent");
 var warning = require("./warning");
+
+var createElement = ReactLegacyElement.wrapCreateElement(
+  ReactElement.createElement
+);
 
 var SEPARATOR = ReactInstanceHandles.SEPARATOR;
 
@@ -24057,7 +24123,7 @@ function findDeepestCachedAncestor(targetID) {
  * representative DOM elements and inserting them into a supplied `container`.
  * Any prior content inside `container` is destroyed in the process.
  *
- *   ReactMount.renderComponent(
+ *   ReactMount.render(
  *     component,
  *     document.getElementById('container')
  *   );
@@ -24163,7 +24229,7 @@ var ReactMount = {
         'componentDidUpdate.'
       ) : null);
 
-      var componentInstance = instantiateReactComponent(nextComponent);
+      var componentInstance = instantiateReactComponent(nextComponent, null);
       var reactRootID = ReactMount._registerComponent(
         componentInstance,
         container
@@ -24191,35 +24257,38 @@ var ReactMount = {
    * perform an update on it and only mutate the DOM as necessary to reflect the
    * latest React component.
    *
-   * @param {ReactDescriptor} nextDescriptor Component descriptor to render.
+   * @param {ReactElement} nextElement Component element to render.
    * @param {DOMElement} container DOM element to render into.
    * @param {?function} callback function triggered on completion
    * @return {ReactComponent} Component instance rendered in `container`.
    */
-  renderComponent: function(nextDescriptor, container, callback) {
+  render: function(nextElement, container, callback) {
     ("production" !== process.env.NODE_ENV ? invariant(
-      ReactDescriptor.isValidDescriptor(nextDescriptor),
-      'renderComponent(): Invalid component descriptor.%s',
+      ReactElement.isValidElement(nextElement),
+      'renderComponent(): Invalid component element.%s',
       (
-        ReactDescriptor.isValidFactory(nextDescriptor) ?
+        typeof nextElement === 'string' ?
+          ' Instead of passing an element string, make sure to instantiate ' +
+          'it by passing it to React.createElement.' :
+        ReactLegacyElement.isValidFactory(nextElement) ?
           ' Instead of passing a component class, make sure to instantiate ' +
-          'it first by calling it with props.' :
-        // Check if it quacks like a descriptor
-        typeof nextDescriptor.props !== "undefined" ?
+          'it by passing it to React.createElement.' :
+        // Check if it quacks like a element
+        typeof nextElement.props !== "undefined" ?
           ' This may be caused by unintentionally loading two independent ' +
           'copies of React.' :
           ''
       )
-    ) : invariant(ReactDescriptor.isValidDescriptor(nextDescriptor)));
+    ) : invariant(ReactElement.isValidElement(nextElement)));
 
     var prevComponent = instancesByReactRootID[getReactRootID(container)];
 
     if (prevComponent) {
-      var prevDescriptor = prevComponent._descriptor;
-      if (shouldUpdateReactComponent(prevDescriptor, nextDescriptor)) {
+      var prevElement = prevComponent._currentElement;
+      if (shouldUpdateReactComponent(prevElement, nextElement)) {
         return ReactMount._updateRootComponent(
           prevComponent,
-          nextDescriptor,
+          nextElement,
           container,
           callback
         );
@@ -24235,7 +24304,7 @@ var ReactMount = {
     var shouldReuseMarkup = containerHasReactMarkup && !prevComponent;
 
     var component = ReactMount._renderNewRootComponent(
-      nextDescriptor,
+      nextElement,
       container,
       shouldReuseMarkup
     );
@@ -24253,7 +24322,8 @@ var ReactMount = {
    * @return {ReactComponent} Component instance rendered in `container`.
    */
   constructAndRenderComponent: function(constructor, props, container) {
-    return ReactMount.renderComponent(constructor(props), container);
+    var element = createElement(constructor, props);
+    return ReactMount.render(element, container);
   },
 
   /**
@@ -24512,9 +24582,10 @@ var ReactMount = {
       false,
       'findComponentRoot(..., %s): Unable to find element. This probably ' +
       'means the DOM was unexpectedly mutated (e.g., by the browser), ' +
-      'usually due to forgetting a <tbody> when using tables, nesting <p> ' +
-      'or <a> tags, or using non-SVG elements in an <svg> parent. Try ' +
-      'inspecting the child nodes of the element with React ID `%s`.',
+      'usually due to forgetting a <tbody> when using tables, nesting tags ' +
+      'like <form>, <p>, or <a>, or using non-SVG elements in an <svg> ' +
+      'parent. ' +
+      'Try inspecting the child nodes of the element with React ID `%s`.',
       targetID,
       ReactMount.getID(ancestorNode)
     ) : invariant(false));
@@ -24536,24 +24607,26 @@ var ReactMount = {
   purgeID: purgeID
 };
 
+// Deprecations (remove for 0.13)
+ReactMount.renderComponent = deprecated(
+  'ReactMount',
+  'renderComponent',
+  'render',
+  this,
+  ReactMount.render
+);
+
 module.exports = ReactMount;
 
 }).call(this,require('_process'))
-},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./containsNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/containsNode.js","./getReactRootElementInContainer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getReactRootElementInContainer.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./shouldUpdateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChild.js":[function(require,module,exports){
+},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./ReactLegacyElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./containsNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\containsNode.js","./deprecated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\deprecated.js","./getReactRootElementInContainer":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getReactRootElementInContainer.js","./instantiateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\instantiateReactComponent.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./shouldUpdateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shouldUpdateReactComponent.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChild.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactMultiChild
  * @typechecks static-only
@@ -24737,7 +24810,7 @@ var ReactMultiChild = {
         if (children.hasOwnProperty(name)) {
           // The rendered children must be turned into instances as they're
           // mounted.
-          var childInstance = instantiateReactComponent(child);
+          var childInstance = instantiateReactComponent(child, null);
           children[name] = childInstance;
           // Inlined for performance, see `ReactInstanceHandles.createReactID`.
           var rootID = this._rootNodeID + name;
@@ -24828,12 +24901,12 @@ var ReactMultiChild = {
           continue;
         }
         var prevChild = prevChildren && prevChildren[name];
-        var prevDescriptor = prevChild && prevChild._descriptor;
-        var nextDescriptor = nextChildren[name];
-        if (shouldUpdateReactComponent(prevDescriptor, nextDescriptor)) {
+        var prevElement = prevChild && prevChild._currentElement;
+        var nextElement = nextChildren[name];
+        if (shouldUpdateReactComponent(prevElement, nextElement)) {
           this.moveChild(prevChild, nextIndex, lastIndex);
           lastIndex = Math.max(prevChild._mountIndex, lastIndex);
-          prevChild.receiveComponent(nextDescriptor, transaction);
+          prevChild.receiveComponent(nextElement, transaction);
           prevChild._mountIndex = nextIndex;
         } else {
           if (prevChild) {
@@ -24842,7 +24915,10 @@ var ReactMultiChild = {
             this._unmountChildByName(prevChild, name);
           }
           // The child must be instantiated before it's mounted.
-          var nextChildInstance = instantiateReactComponent(nextDescriptor);
+          var nextChildInstance = instantiateReactComponent(
+            nextElement,
+            null
+          );
           this._mountChildByNameAtIndex(
             nextChildInstance, name, nextIndex, transaction
           );
@@ -24971,21 +25047,14 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 
-},{"./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactMultiChildUpdateTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChildUpdateTypes.js","./flattenChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/flattenChildren.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./shouldUpdateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChildUpdateTypes.js":[function(require,module,exports){
+},{"./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactMultiChildUpdateTypes":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChildUpdateTypes.js","./flattenChildren":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\flattenChildren.js","./instantiateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\instantiateReactComponent.js","./shouldUpdateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shouldUpdateReactComponent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChildUpdateTypes.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactMultiChildUpdateTypes
  */
@@ -25011,22 +25080,88 @@ var ReactMultiChildUpdateTypes = keyMirror({
 
 module.exports = ReactMultiChildUpdateTypes;
 
-},{"./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactOwner.js":[function(require,module,exports){
+},{"./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactNativeComponent.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * @providesModule ReactNativeComponent
+ */
+
+"use strict";
+
+var assign = require("./Object.assign");
+var invariant = require("./invariant");
+
+var genericComponentClass = null;
+// This registry keeps track of wrapper classes around native tags
+var tagToComponentClass = {};
+
+var ReactNativeComponentInjection = {
+  // This accepts a class that receives the tag string. This is a catch all
+  // that can render any kind of tag.
+  injectGenericComponentClass: function(componentClass) {
+    genericComponentClass = componentClass;
+  },
+  // This accepts a keyed object with classes as values. Each key represents a
+  // tag. That particular tag will use this class instead of the generic one.
+  injectComponentClasses: function(componentClasses) {
+    assign(tagToComponentClass, componentClasses);
+  }
+};
+
+/**
+ * Create an internal class for a specific tag.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * @param {string} tag The tag for which to create an internal instance.
+ * @param {any} props The props passed to the instance constructor.
+ * @return {ReactComponent} component The injected empty component.
+ */
+function createInstanceForTag(tag, props, parentType) {
+  var componentClass = tagToComponentClass[tag];
+  if (componentClass == null) {
+    ("production" !== process.env.NODE_ENV ? invariant(
+      genericComponentClass,
+      'There is no registered component for the tag %s',
+      tag
+    ) : invariant(genericComponentClass));
+    return new genericComponentClass(tag, props);
+  }
+  if (parentType === tag) {
+    // Avoid recursion
+    ("production" !== process.env.NODE_ENV ? invariant(
+      genericComponentClass,
+      'There is no registered component for the tag %s',
+      tag
+    ) : invariant(genericComponentClass));
+    return new genericComponentClass(tag, props);
+  }
+  // Unwrap legacy factories
+  return new componentClass.type(props);
+}
+
+var ReactNativeComponent = {
+  createInstanceForTag: createInstanceForTag,
+  injection: ReactNativeComponentInjection,
+};
+
+module.exports = ReactNativeComponent;
+
+}).call(this,require('_process'))
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactOwner.js":[function(require,module,exports){
+(function (process){
+/**
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactOwner
  */
@@ -25174,22 +25309,15 @@ var ReactOwner = {
 module.exports = ReactOwner;
 
 }).call(this,require('_process'))
-},{"./emptyObject":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyObject.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js":[function(require,module,exports){
+},{"./emptyObject":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyObject.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactPerf
  * @typechecks static-only
@@ -25225,7 +25353,7 @@ var ReactPerf = {
   measure: function(objName, fnName, func) {
     if ("production" !== process.env.NODE_ENV) {
       var measuredFunc = null;
-      return function() {
+      var wrapper = function() {
         if (ReactPerf.enableMeasure) {
           if (!measuredFunc) {
             measuredFunc = ReactPerf.storedMeasure(objName, fnName, func);
@@ -25234,6 +25362,8 @@ var ReactPerf = {
         }
         return func.apply(this, arguments);
       };
+      wrapper.displayName = objName + '_' + fnName;
+      return wrapper;
     }
     return func;
   },
@@ -25263,32 +25393,28 @@ function _noMeasure(objName, fnName, func) {
 module.exports = ReactPerf;
 
 }).call(this,require('_process'))
-},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTransferer.js":[function(require,module,exports){
+},{"_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTransferer.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactPropTransferer
  */
 
 "use strict";
 
+var assign = require("./Object.assign");
 var emptyFunction = require("./emptyFunction");
 var invariant = require("./invariant");
 var joinClasses = require("./joinClasses");
-var merge = require("./merge");
+var warning = require("./warning");
+
+var didWarn = false;
 
 /**
  * Creates a transfer strategy that will merge prop values using the supplied
@@ -25311,7 +25437,7 @@ var transferStrategyMerge = createTransferStrategy(function(a, b) {
   // `merge` overrides the first object's (`props[key]` above) keys using the
   // second object's (`value`) keys. An object's style's existing `propA` would
   // get overridden. Flip the order here.
-  return merge(b, a);
+  return assign({}, b, a);
 });
 
 /**
@@ -25328,14 +25454,6 @@ var TransferStrategies = {
    * Transfer the `className` prop by merging them.
    */
   className: createTransferStrategy(joinClasses),
-  /**
-   * Never transfer the `key` prop.
-   */
-  key: emptyFunction,
-  /**
-   * Never transfer the `ref` prop.
-   */
-  ref: emptyFunction,
   /**
    * Transfer the `style` prop (which is an object) by merging them.
    */
@@ -25385,7 +25503,7 @@ var ReactPropTransferer = {
    * @return {object} a new object containing both sets of props merged.
    */
   mergeProps: function(oldProps, newProps) {
-    return transferInto(merge(oldProps), newProps);
+    return transferInto(assign({}, oldProps), newProps);
   },
 
   /**
@@ -25401,26 +25519,39 @@ var ReactPropTransferer = {
      *
      * This is usually used to pass down props to a returned root component.
      *
-     * @param {ReactDescriptor} descriptor Component receiving the properties.
-     * @return {ReactDescriptor} The supplied `component`.
+     * @param {ReactElement} element Component receiving the properties.
+     * @return {ReactElement} The supplied `component`.
      * @final
      * @protected
      */
-    transferPropsTo: function(descriptor) {
+    transferPropsTo: function(element) {
       ("production" !== process.env.NODE_ENV ? invariant(
-        descriptor._owner === this,
+        element._owner === this,
         '%s: You can\'t call transferPropsTo() on a component that you ' +
         'don\'t own, %s. This usually means you are calling ' +
         'transferPropsTo() on a component passed in as props or children.',
         this.constructor.displayName,
-        descriptor.type.displayName
-      ) : invariant(descriptor._owner === this));
+        typeof element.type === 'string' ?
+        element.type :
+        element.type.displayName
+      ) : invariant(element._owner === this));
 
-      // Because descriptors are immutable we have to merge into the existing
+      if ("production" !== process.env.NODE_ENV) {
+        if (!didWarn) {
+          didWarn = true;
+          ("production" !== process.env.NODE_ENV ? warning(
+            false,
+            'transferPropsTo is deprecated. ' +
+            'See http://fb.me/react-transferpropsto for more information.'
+          ) : null);
+        }
+      }
+
+      // Because elements are immutable we have to merge into the existing
       // props object rather than clone it.
-      transferInto(descriptor.props, this.props);
+      transferInto(element.props, this.props);
 
-      return descriptor;
+      return element;
     }
 
   }
@@ -25429,22 +25560,15 @@ var ReactPropTransferer = {
 module.exports = ReactPropTransferer;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./joinClasses":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/joinClasses.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocationNames.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./joinClasses":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\joinClasses.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocationNames.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactPropTypeLocationNames
  */
@@ -25464,21 +25588,14 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = ReactPropTypeLocationNames;
 
 }).call(this,require('_process'))
-},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocations.js":[function(require,module,exports){
+},{"_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocations.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactPropTypeLocations
  */
@@ -25495,30 +25612,24 @@ var ReactPropTypeLocations = keyMirror({
 
 module.exports = ReactPropTypeLocations;
 
-},{"./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypes.js":[function(require,module,exports){
+},{"./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypes.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactPropTypes
  */
 
 "use strict";
 
-var ReactDescriptor = require("./ReactDescriptor");
+var ReactElement = require("./ReactElement");
 var ReactPropTypeLocationNames = require("./ReactPropTypeLocationNames");
 
+var deprecated = require("./deprecated");
 var emptyFunction = require("./emptyFunction");
 
 /**
@@ -25570,6 +25681,9 @@ var emptyFunction = require("./emptyFunction");
 
 var ANONYMOUS = '<<anonymous>>';
 
+var elementTypeChecker = createElementTypeChecker();
+var nodeTypeChecker = createNodeChecker();
+
 var ReactPropTypes = {
   array: createPrimitiveTypeChecker('array'),
   bool: createPrimitiveTypeChecker('boolean'),
@@ -25580,13 +25694,28 @@ var ReactPropTypes = {
 
   any: createAnyTypeChecker(),
   arrayOf: createArrayOfTypeChecker,
-  component: createComponentTypeChecker(),
+  element: elementTypeChecker,
   instanceOf: createInstanceTypeChecker,
+  node: nodeTypeChecker,
   objectOf: createObjectOfTypeChecker,
   oneOf: createEnumTypeChecker,
   oneOfType: createUnionTypeChecker,
-  renderable: createRenderableTypeChecker(),
-  shape: createShapeTypeChecker
+  shape: createShapeTypeChecker,
+
+  component: deprecated(
+    'React.PropTypes',
+    'component',
+    'element',
+    this,
+    elementTypeChecker
+  ),
+  renderable: deprecated(
+    'React.PropTypes',
+    'renderable',
+    'node',
+    this,
+    nodeTypeChecker
+  )
 };
 
 function createChainableTypeChecker(validate) {
@@ -25656,13 +25785,13 @@ function createArrayOfTypeChecker(typeChecker) {
   return createChainableTypeChecker(validate);
 }
 
-function createComponentTypeChecker() {
+function createElementTypeChecker() {
   function validate(props, propName, componentName, location) {
-    if (!ReactDescriptor.isValidDescriptor(props[propName])) {
+    if (!ReactElement.isValidElement(props[propName])) {
       var locationName = ReactPropTypeLocationNames[location];
       return new Error(
         ("Invalid " + locationName + " `" + propName + "` supplied to ") +
-        ("`" + componentName + "`, expected a React component.")
+        ("`" + componentName + "`, expected a ReactElement.")
       );
     }
   }
@@ -25743,13 +25872,13 @@ function createUnionTypeChecker(arrayOfTypeCheckers) {
   return createChainableTypeChecker(validate);
 }
 
-function createRenderableTypeChecker() {
+function createNodeChecker() {
   function validate(props, propName, componentName, location) {
-    if (!isRenderable(props[propName])) {
+    if (!isNode(props[propName])) {
       var locationName = ReactPropTypeLocationNames[location];
       return new Error(
         ("Invalid " + locationName + " `" + propName + "` supplied to ") +
-        ("`" + componentName + "`, expected a renderable prop.")
+        ("`" + componentName + "`, expected a ReactNode.")
       );
     }
   }
@@ -25781,11 +25910,8 @@ function createShapeTypeChecker(shapeTypes) {
   return createChainableTypeChecker(validate, 'expected `object`');
 }
 
-function isRenderable(propValue) {
+function isNode(propValue) {
   switch(typeof propValue) {
-    // TODO: this was probably written with the assumption that we're not
-    // returning `this.props.component` directly from `render`. This is
-    // currently not supported but we should, to make it consistent.
     case 'number':
     case 'string':
       return true;
@@ -25793,13 +25919,13 @@ function isRenderable(propValue) {
       return !propValue;
     case 'object':
       if (Array.isArray(propValue)) {
-        return propValue.every(isRenderable);
+        return propValue.every(isNode);
       }
-      if (ReactDescriptor.isValidDescriptor(propValue)) {
+      if (ReactElement.isValidElement(propValue)) {
         return true;
       }
       for (var k in propValue) {
-        if (!isRenderable(propValue[k])) {
+        if (!isNode(propValue[k])) {
           return false;
         }
       }
@@ -25840,21 +25966,14 @@ function getPreciseType(propValue) {
 
 module.exports = ReactPropTypes;
 
-},{"./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactPropTypeLocationNames":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocationNames.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPutListenerQueue.js":[function(require,module,exports){
+},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactPropTypeLocationNames":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocationNames.js","./deprecated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\deprecated.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPutListenerQueue.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactPutListenerQueue
  */
@@ -25864,13 +25983,13 @@ module.exports = ReactPropTypes;
 var PooledClass = require("./PooledClass");
 var ReactBrowserEventEmitter = require("./ReactBrowserEventEmitter");
 
-var mixInto = require("./mixInto");
+var assign = require("./Object.assign");
 
 function ReactPutListenerQueue() {
   this.listenersToPut = [];
 }
 
-mixInto(ReactPutListenerQueue, {
+assign(ReactPutListenerQueue.prototype, {
   enqueuePutListener: function(rootNodeID, propKey, propValue) {
     this.listenersToPut.push({
       rootNodeID: rootNodeID,
@@ -25903,21 +26022,14 @@ PooledClass.addPoolingTo(ReactPutListenerQueue);
 
 module.exports = ReactPutListenerQueue;
 
-},{"./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactReconcileTransaction.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactReconcileTransaction.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactReconcileTransaction
  * @typechecks static-only
@@ -25932,7 +26044,7 @@ var ReactInputSelection = require("./ReactInputSelection");
 var ReactPutListenerQueue = require("./ReactPutListenerQueue");
 var Transaction = require("./Transaction");
 
-var mixInto = require("./mixInto");
+var assign = require("./Object.assign");
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -26080,28 +26192,20 @@ var Mixin = {
 };
 
 
-mixInto(ReactReconcileTransaction, Transaction.Mixin);
-mixInto(ReactReconcileTransaction, Mixin);
+assign(ReactReconcileTransaction.prototype, Transaction.Mixin, Mixin);
 
 PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 
-},{"./CallbackQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactInputSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js","./ReactPutListenerQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPutListenerQueue.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactRootIndex.js":[function(require,module,exports){
+},{"./CallbackQueue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CallbackQueue.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./ReactInputSelection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInputSelection.js","./ReactPutListenerQueue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPutListenerQueue.js","./Transaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Transaction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactRootIndex.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactRootIndex
  * @typechecks
@@ -26125,29 +26229,22 @@ var ReactRootIndex = {
 
 module.exports = ReactRootIndex;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRendering.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactServerRendering.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @typechecks static-only
  * @providesModule ReactServerRendering
  */
 "use strict";
 
-var ReactDescriptor = require("./ReactDescriptor");
+var ReactElement = require("./ReactElement");
 var ReactInstanceHandles = require("./ReactInstanceHandles");
 var ReactMarkupChecksum = require("./ReactMarkupChecksum");
 var ReactServerRenderingTransaction =
@@ -26157,20 +26254,14 @@ var instantiateReactComponent = require("./instantiateReactComponent");
 var invariant = require("./invariant");
 
 /**
- * @param {ReactComponent} component
+ * @param {ReactElement} element
  * @return {string} the HTML markup
  */
-function renderComponentToString(component) {
+function renderToString(element) {
   ("production" !== process.env.NODE_ENV ? invariant(
-    ReactDescriptor.isValidDescriptor(component),
-    'renderComponentToString(): You must pass a valid ReactComponent.'
-  ) : invariant(ReactDescriptor.isValidDescriptor(component)));
-
-  ("production" !== process.env.NODE_ENV ? invariant(
-    !(arguments.length === 2 && typeof arguments[1] === 'function'),
-    'renderComponentToString(): This function became synchronous and now ' +
-    'returns the generated markup. Please remove the second parameter.'
-  ) : invariant(!(arguments.length === 2 && typeof arguments[1] === 'function')));
+    ReactElement.isValidElement(element),
+    'renderToString(): You must pass a valid ReactElement.'
+  ) : invariant(ReactElement.isValidElement(element)));
 
   var transaction;
   try {
@@ -26178,7 +26269,7 @@ function renderComponentToString(component) {
     transaction = ReactServerRenderingTransaction.getPooled(false);
 
     return transaction.perform(function() {
-      var componentInstance = instantiateReactComponent(component);
+      var componentInstance = instantiateReactComponent(element, null);
       var markup = componentInstance.mountComponent(id, transaction, 0);
       return ReactMarkupChecksum.addChecksumToMarkup(markup);
     }, null);
@@ -26188,15 +26279,15 @@ function renderComponentToString(component) {
 }
 
 /**
- * @param {ReactComponent} component
+ * @param {ReactElement} element
  * @return {string} the HTML markup, without the extra React ID and checksum
-* (for generating static pages)
+ * (for generating static pages)
  */
-function renderComponentToStaticMarkup(component) {
+function renderToStaticMarkup(element) {
   ("production" !== process.env.NODE_ENV ? invariant(
-    ReactDescriptor.isValidDescriptor(component),
-    'renderComponentToStaticMarkup(): You must pass a valid ReactComponent.'
-  ) : invariant(ReactDescriptor.isValidDescriptor(component)));
+    ReactElement.isValidElement(element),
+    'renderToStaticMarkup(): You must pass a valid ReactElement.'
+  ) : invariant(ReactElement.isValidElement(element)));
 
   var transaction;
   try {
@@ -26204,7 +26295,7 @@ function renderComponentToStaticMarkup(component) {
     transaction = ReactServerRenderingTransaction.getPooled(true);
 
     return transaction.perform(function() {
-      var componentInstance = instantiateReactComponent(component);
+      var componentInstance = instantiateReactComponent(element, null);
       return componentInstance.mountComponent(id, transaction, 0);
     }, null);
   } finally {
@@ -26213,26 +26304,19 @@ function renderComponentToStaticMarkup(component) {
 }
 
 module.exports = {
-  renderComponentToString: renderComponentToString,
-  renderComponentToStaticMarkup: renderComponentToStaticMarkup
+  renderToString: renderToString,
+  renderToStaticMarkup: renderToStaticMarkup
 };
 
 }).call(this,require('_process'))
-},{"./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMarkupChecksum":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMarkupChecksum.js","./ReactServerRenderingTransaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRenderingTransaction.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRenderingTransaction.js":[function(require,module,exports){
+},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./ReactMarkupChecksum":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMarkupChecksum.js","./ReactServerRenderingTransaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactServerRenderingTransaction.js","./instantiateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\instantiateReactComponent.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactServerRenderingTransaction.js":[function(require,module,exports){
 /**
- * Copyright 2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactServerRenderingTransaction
  * @typechecks
@@ -26245,8 +26329,8 @@ var CallbackQueue = require("./CallbackQueue");
 var ReactPutListenerQueue = require("./ReactPutListenerQueue");
 var Transaction = require("./Transaction");
 
+var assign = require("./Object.assign");
 var emptyFunction = require("./emptyFunction");
-var mixInto = require("./mixInto");
 
 /**
  * Provides a `CallbackQueue` queue for collecting `onDOMReady` callbacks
@@ -26328,28 +26412,24 @@ var Mixin = {
 };
 
 
-mixInto(ReactServerRenderingTransaction, Transaction.Mixin);
-mixInto(ReactServerRenderingTransaction, Mixin);
+assign(
+  ReactServerRenderingTransaction.prototype,
+  Transaction.Mixin,
+  Mixin
+);
 
 PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
 
-},{"./CallbackQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactPutListenerQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPutListenerQueue.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactStateSetters.js":[function(require,module,exports){
+},{"./CallbackQueue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CallbackQueue.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./ReactPutListenerQueue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPutListenerQueue.js","./Transaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Transaction.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactStateSetters.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactStateSetters
  */
@@ -26448,21 +26528,14 @@ ReactStateSetters.Mixin = {
 
 module.exports = ReactStateSetters;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTestUtils.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTestUtils.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactTestUtils
  */
@@ -26473,16 +26546,14 @@ var EventConstants = require("./EventConstants");
 var EventPluginHub = require("./EventPluginHub");
 var EventPropagators = require("./EventPropagators");
 var React = require("./React");
-var ReactDescriptor = require("./ReactDescriptor");
-var ReactDOM = require("./ReactDOM");
+var ReactElement = require("./ReactElement");
 var ReactBrowserEventEmitter = require("./ReactBrowserEventEmitter");
 var ReactMount = require("./ReactMount");
 var ReactTextComponent = require("./ReactTextComponent");
 var ReactUpdates = require("./ReactUpdates");
 var SyntheticEvent = require("./SyntheticEvent");
 
-var mergeInto = require("./mergeInto");
-var copyProperties = require("./copyProperties");
+var assign = require("./Object.assign");
 
 var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -26505,16 +26576,16 @@ var ReactTestUtils = {
     // clean up, so we're going to stop honoring the name of this method
     // (and probably rename it eventually) if no problems arise.
     // document.documentElement.appendChild(div);
-    return React.renderComponent(instance, div);
+    return React.render(instance, div);
   },
 
-  isDescriptor: function(descriptor) {
-    return ReactDescriptor.isValidDescriptor(descriptor);
+  isElement: function(element) {
+    return ReactElement.isValidElement(element);
   },
 
-  isDescriptorOfType: function(inst, convenienceConstructor) {
+  isElementOfType: function(inst, convenienceConstructor) {
     return (
-      ReactDescriptor.isValidDescriptor(inst) &&
+      ReactElement.isValidElement(inst) &&
       inst.type === convenienceConstructor.type
     );
   },
@@ -26523,9 +26594,9 @@ var ReactTestUtils = {
     return !!(inst && inst.mountComponent && inst.tagName);
   },
 
-  isDOMComponentDescriptor: function(inst) {
+  isDOMComponentElement: function(inst) {
     return !!(inst &&
-              ReactDescriptor.isValidDescriptor(inst) &&
+              ReactElement.isValidElement(inst) &&
               !!inst.tagName);
   },
 
@@ -26539,8 +26610,8 @@ var ReactTestUtils = {
              (inst.constructor === type.type));
   },
 
-  isCompositeComponentDescriptor: function(inst) {
-    if (!ReactDescriptor.isValidDescriptor(inst)) {
+  isCompositeComponentElement: function(inst) {
+    if (!ReactElement.isValidElement(inst)) {
       return false;
     }
     // We check the prototype of the type that will get mounted, not the
@@ -26552,8 +26623,8 @@ var ReactTestUtils = {
     );
   },
 
-  isCompositeComponentDescriptorWithType: function(inst, type) {
-    return !!(ReactTestUtils.isCompositeComponentDescriptor(inst) &&
+  isCompositeComponentElementWithType: function(inst, type) {
+    return !!(ReactTestUtils.isCompositeComponentElement(inst) &&
              (inst.constructor === type));
   },
 
@@ -26689,15 +26760,22 @@ var ReactTestUtils = {
    * @return {object} the ReactTestUtils object (for chaining)
    */
   mockComponent: function(module, mockTagName) {
-    var ConvenienceConstructor = React.createClass({
+    mockTagName = mockTagName || module.mockTagName || "div";
+
+    var ConvenienceConstructor = React.createClass({displayName: 'ConvenienceConstructor',
       render: function() {
-        var mockTagName = mockTagName || module.mockTagName || "div";
-        return ReactDOM[mockTagName](null, this.props.children);
+        return React.createElement(
+          mockTagName,
+          null,
+          this.props.children
+        );
       }
     });
 
-    copyProperties(module, ConvenienceConstructor);
     module.mockImplementation(ConvenienceConstructor);
+
+    module.type = ConvenienceConstructor.type;
+    module.isReactLegacyFactory = true;
 
     return this;
   },
@@ -26773,7 +26851,7 @@ function makeSimulator(eventType) {
       ReactMount.getID(node),
       fakeNativeEvent
     );
-    mergeInto(event, eventData);
+    assign(event, eventData);
     EventPropagators.accumulateTwoPhaseDispatches(event);
 
     ReactUpdates.batchedUpdates(function() {
@@ -26829,7 +26907,7 @@ buildSimulators();
 function makeNativeSimulator(eventType) {
   return function(domComponentOrNode, nativeEventData) {
     var fakeNativeEvent = new Event(eventType);
-    mergeInto(fakeNativeEvent, nativeEventData);
+    assign(fakeNativeEvent, nativeEventData);
     if (ReactTestUtils.isDOMComponent(domComponentOrNode)) {
       ReactTestUtils.simulateNativeEventOnDOMComponent(
         eventType,
@@ -26862,21 +26940,14 @@ for (eventType in topLevelTypes) {
 
 module.exports = ReactTestUtils;
 
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactTextComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./copyProperties":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/copyProperties.js","./mergeInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactTextComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTextComponent.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTextComponent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactTextComponent
  * @typechecks static-only
@@ -26885,12 +26956,11 @@ module.exports = ReactTestUtils;
 "use strict";
 
 var DOMPropertyOperations = require("./DOMPropertyOperations");
-var ReactBrowserComponentMixin = require("./ReactBrowserComponentMixin");
 var ReactComponent = require("./ReactComponent");
-var ReactDescriptor = require("./ReactDescriptor");
+var ReactElement = require("./ReactElement");
 
+var assign = require("./Object.assign");
 var escapeTextForBrowser = require("./escapeTextForBrowser");
-var mixInto = require("./mixInto");
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -26907,13 +26977,11 @@ var mixInto = require("./mixInto");
  * @extends ReactComponent
  * @internal
  */
-var ReactTextComponent = function(descriptor) {
-  this.construct(descriptor);
+var ReactTextComponent = function(props) {
+  // This constructor and it's argument is currently used by mocks.
 };
 
-mixInto(ReactTextComponent, ReactComponent.Mixin);
-mixInto(ReactTextComponent, ReactBrowserComponentMixin);
-mixInto(ReactTextComponent, {
+assign(ReactTextComponent.prototype, ReactComponent.Mixin, {
 
   /**
    * Creates the markup for this text node. This node is not intended to have
@@ -26969,23 +27037,23 @@ mixInto(ReactTextComponent, {
 
 });
 
-module.exports = ReactDescriptor.createFactory(ReactTextComponent);
+var ReactTextComponentFactory = function(text) {
+  // Bypass validation and configuration
+  return new ReactElement(ReactTextComponent, null, null, null, null, text);
+};
 
-},{"./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./escapeTextForBrowser":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionChildMapping.js":[function(require,module,exports){
+ReactTextComponentFactory.type = ReactTextComponent;
+
+module.exports = ReactTextComponentFactory;
+
+},{"./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./escapeTextForBrowser":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\escapeTextForBrowser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionChildMapping.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @typechecks static-only
  * @providesModule ReactTransitionChildMapping
@@ -27011,7 +27079,7 @@ var ReactTransitionChildMapping = {
 
   /**
    * When you're adding or removing children some may be added or removed in the
-   * same render pass. We want ot show *both* since we want to simultaneously
+   * same render pass. We want to show *both* since we want to simultaneously
    * animate elements in and out. This function takes a previous set of keys
    * and a new set of keys and merges them with its best guess of the correct
    * ordering. In the future we may expose some of the utilities in
@@ -27079,21 +27147,14 @@ var ReactTransitionChildMapping = {
 
 module.exports = ReactTransitionChildMapping;
 
-},{"./ReactChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactChildren.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionEvents.js":[function(require,module,exports){
+},{"./ReactChildren":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactChildren.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionEvents.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactTransitionEvents
  */
@@ -27197,21 +27258,14 @@ var ReactTransitionEvents = {
 
 module.exports = ReactTransitionEvents;
 
-},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionGroup.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionGroup.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactTransitionGroup
  */
@@ -27221,21 +27275,21 @@ module.exports = ReactTransitionEvents;
 var React = require("./React");
 var ReactTransitionChildMapping = require("./ReactTransitionChildMapping");
 
+var assign = require("./Object.assign");
 var cloneWithProps = require("./cloneWithProps");
 var emptyFunction = require("./emptyFunction");
-var merge = require("./merge");
 
 var ReactTransitionGroup = React.createClass({
   displayName: 'ReactTransitionGroup',
 
   propTypes: {
-    component: React.PropTypes.func,
+    component: React.PropTypes.any,
     childFactory: React.PropTypes.func
   },
 
   getDefaultProps: function() {
     return {
-      component: React.DOM.span,
+      component: 'span',
       childFactory: emptyFunction.thatReturnsArgument
     };
   },
@@ -27359,7 +27413,7 @@ var ReactTransitionGroup = React.createClass({
       // This entered again before it fully left. Add it again.
       this.performEnter(key);
     } else {
-      var newChildren = merge(this.state.children);
+      var newChildren = assign({}, this.state.children);
       delete newChildren[key];
       this.setState({children: newChildren});
     }
@@ -27383,28 +27437,25 @@ var ReactTransitionGroup = React.createClass({
         );
       }
     }
-    return this.transferPropsTo(this.props.component(null, childrenToRender));
+    return React.createElement(
+      this.props.component,
+      this.props,
+      childrenToRender
+    );
   }
 });
 
 module.exports = ReactTransitionGroup;
 
-},{"./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactTransitionChildMapping":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionChildMapping.js","./cloneWithProps":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cloneWithProps.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js","./ReactTransitionChildMapping":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionChildMapping.js","./cloneWithProps":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\cloneWithProps.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactUpdates
  */
@@ -27417,11 +27468,13 @@ var ReactCurrentOwner = require("./ReactCurrentOwner");
 var ReactPerf = require("./ReactPerf");
 var Transaction = require("./Transaction");
 
+var assign = require("./Object.assign");
 var invariant = require("./invariant");
-var mixInto = require("./mixInto");
 var warning = require("./warning");
 
 var dirtyComponents = [];
+var asapCallbackQueue = CallbackQueue.getPooled();
+var asapEnqueued = false;
 
 var batchingStrategy = null;
 
@@ -27466,13 +27519,14 @@ var TRANSACTION_WRAPPERS = [NESTED_UPDATES, UPDATE_QUEUEING];
 function ReactUpdatesFlushTransaction() {
   this.reinitializeTransaction();
   this.dirtyComponentsLength = null;
-  this.callbackQueue = CallbackQueue.getPooled(null);
+  this.callbackQueue = CallbackQueue.getPooled();
   this.reconcileTransaction =
     ReactUpdates.ReactReconcileTransaction.getPooled();
 }
 
-mixInto(ReactUpdatesFlushTransaction, Transaction.Mixin);
-mixInto(ReactUpdatesFlushTransaction, {
+assign(
+  ReactUpdatesFlushTransaction.prototype,
+  Transaction.Mixin, {
   getTransactionWrappers: function() {
     return TRANSACTION_WRAPPERS;
   },
@@ -27563,11 +27617,21 @@ var flushBatchedUpdates = ReactPerf.measure(
     // ReactUpdatesFlushTransaction's wrappers will clear the dirtyComponents
     // array and perform any updates enqueued by mount-ready handlers (i.e.,
     // componentDidUpdate) but we need to check here too in order to catch
-    // updates enqueued by setState callbacks.
-    while (dirtyComponents.length) {
-      var transaction = ReactUpdatesFlushTransaction.getPooled();
-      transaction.perform(runBatchedUpdates, null, transaction);
-      ReactUpdatesFlushTransaction.release(transaction);
+    // updates enqueued by setState callbacks and asap calls.
+    while (dirtyComponents.length || asapEnqueued) {
+      if (dirtyComponents.length) {
+        var transaction = ReactUpdatesFlushTransaction.getPooled();
+        transaction.perform(runBatchedUpdates, null, transaction);
+        ReactUpdatesFlushTransaction.release(transaction);
+      }
+
+      if (asapEnqueued) {
+        asapEnqueued = false;
+        var queue = asapCallbackQueue;
+        asapCallbackQueue = CallbackQueue.getPooled();
+        queue.notifyAll();
+        CallbackQueue.release(queue);
+      }
     }
   }
 );
@@ -27614,6 +27678,20 @@ function enqueueUpdate(component, callback) {
   }
 }
 
+/**
+ * Enqueue a callback to be run at the end of the current batching cycle. Throws
+ * if no updates are currently being performed.
+ */
+function asap(callback, context) {
+  ("production" !== process.env.NODE_ENV ? invariant(
+    batchingStrategy.isBatchingUpdates,
+    'ReactUpdates.asap: Can\'t enqueue an asap callback in a context where' +
+    'updates are not being batched.'
+  ) : invariant(batchingStrategy.isBatchingUpdates));
+  asapCallbackQueue.enqueue(callback, context);
+  asapEnqueued = true;
+}
+
 var ReactUpdatesInjection = {
   injectReconcileTransaction: function(ReconcileTransaction) {
     ("production" !== process.env.NODE_ENV ? invariant(
@@ -27652,28 +27730,22 @@ var ReactUpdates = {
   batchedUpdates: batchedUpdates,
   enqueueUpdate: enqueueUpdate,
   flushBatchedUpdates: flushBatchedUpdates,
-  injection: ReactUpdatesInjection
+  injection: ReactUpdatesInjection,
+  asap: asap
 };
 
 module.exports = ReactUpdates;
 
 }).call(this,require('_process'))
-},{"./CallbackQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactWithAddons.js":[function(require,module,exports){
+},{"./CallbackQueue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CallbackQueue.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./Transaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Transaction.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactWithAddons.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ReactWithAddons
  */
@@ -27693,6 +27765,7 @@ var ReactComponentWithPureRenderMixin =
   require("./ReactComponentWithPureRenderMixin");
 var ReactCSSTransitionGroup = require("./ReactCSSTransitionGroup");
 var ReactTransitionGroup = require("./ReactTransitionGroup");
+var ReactUpdates = require("./ReactUpdates");
 
 var cx = require("./cx");
 var cloneWithProps = require("./cloneWithProps");
@@ -27704,6 +27777,7 @@ React.addons = {
   PureRenderMixin: ReactComponentWithPureRenderMixin,
   TransitionGroup: ReactTransitionGroup,
 
+  batchedUpdates: ReactUpdates.batchedUpdates,
   classSet: cx,
   cloneWithProps: cloneWithProps,
   update: update
@@ -27716,23 +27790,15 @@ if ("production" !== process.env.NODE_ENV) {
 
 module.exports = React;
 
-
 }).call(this,require('_process'))
-},{"./LinkedStateMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedStateMixin.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactCSSTransitionGroup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroup.js","./ReactComponentWithPureRenderMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentWithPureRenderMixin.js","./ReactDefaultPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerf.js","./ReactTestUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTestUtils.js","./ReactTransitionGroup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionGroup.js","./cloneWithProps":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cloneWithProps.js","./cx":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cx.js","./update":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/update.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SVGDOMPropertyConfig.js":[function(require,module,exports){
+},{"./LinkedStateMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedStateMixin.js","./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js","./ReactCSSTransitionGroup":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCSSTransitionGroup.js","./ReactComponentWithPureRenderMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponentWithPureRenderMixin.js","./ReactDefaultPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultPerf.js","./ReactTestUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTestUtils.js","./ReactTransitionGroup":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionGroup.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./cloneWithProps":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\cloneWithProps.js","./cx":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\cx.js","./update":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\update.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SVGDOMPropertyConfig.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SVGDOMPropertyConfig
  */
@@ -27817,21 +27883,14 @@ var SVGDOMPropertyConfig = {
 
 module.exports = SVGDOMPropertyConfig;
 
-},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SelectEventPlugin.js":[function(require,module,exports){
+},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SelectEventPlugin.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SelectEventPlugin
  */
@@ -27889,6 +27948,14 @@ function getSelection(node) {
       start: node.selectionStart,
       end: node.selectionEnd
     };
+  } else if (window.getSelection) {
+    var selection = window.getSelection();
+    return {
+      anchorNode: selection.anchorNode,
+      anchorOffset: selection.anchorOffset,
+      focusNode: selection.focusNode,
+      focusOffset: selection.focusOffset
+    };
   } else if (document.selection) {
     var range = document.selection.createRange();
     return {
@@ -27896,14 +27963,6 @@ function getSelection(node) {
       text: range.text,
       top: range.boundingTop,
       left: range.boundingLeft
-    };
-  } else {
-    var selection = window.getSelection();
-    return {
-      anchorNode: selection.anchorNode,
-      anchorOffset: selection.anchorOffset,
-      focusNode: selection.focusNode,
-      focusOffset: selection.focusOffset
     };
   }
 }
@@ -28019,21 +28078,14 @@ var SelectEventPlugin = {
 
 module.exports = SelectEventPlugin;
 
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ReactInputSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./getActiveElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getActiveElement.js","./isTextInputElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextInputElement.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./shallowEqual":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shallowEqual.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ServerReactRootIndex.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./ReactInputSelection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInputSelection.js","./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js","./getActiveElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getActiveElement.js","./isTextInputElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isTextInputElement.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","./shallowEqual":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shallowEqual.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ServerReactRootIndex.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ServerReactRootIndex
  * @typechecks
@@ -28057,22 +28109,15 @@ var ServerReactRootIndex = {
 
 module.exports = ServerReactRootIndex;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SimpleEventPlugin.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SimpleEventPlugin.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SimpleEventPlugin
  */
@@ -28092,8 +28137,11 @@ var SyntheticTouchEvent = require("./SyntheticTouchEvent");
 var SyntheticUIEvent = require("./SyntheticUIEvent");
 var SyntheticWheelEvent = require("./SyntheticWheelEvent");
 
+var getEventCharCode = require("./getEventCharCode");
+
 var invariant = require("./invariant");
 var keyOf = require("./keyOf");
+var warning = require("./warning");
 
 var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -28360,7 +28408,7 @@ var SimpleEventPlugin = {
 
   /**
    * Same as the default implementation, except cancels the event when return
-   * value is false.
+   * value is false. This behavior will be disabled in a future release.
    *
    * @param {object} Event to be dispatched.
    * @param {function} Application-level callback.
@@ -28368,6 +28416,14 @@ var SimpleEventPlugin = {
    */
   executeDispatch: function(event, listener, domID) {
     var returnValue = EventPluginUtils.executeDispatch(event, listener, domID);
+
+    ("production" !== process.env.NODE_ENV ? warning(
+      typeof returnValue !== 'boolean',
+      'Returning `false` from an event handler is deprecated and will be ' +
+      'ignored in a future release. Instead, manually call ' +
+      'e.stopPropagation() or e.preventDefault(), as appropriate.'
+    ) : null);
+
     if (returnValue === false) {
       event.stopPropagation();
       event.preventDefault();
@@ -28404,8 +28460,9 @@ var SimpleEventPlugin = {
         break;
       case topLevelTypes.topKeyPress:
         // FireFox creates a keypress event for function keys too. This removes
-        // the unwanted keypress events.
-        if (nativeEvent.charCode === 0) {
+        // the unwanted keypress events. Enter is however both printable and
+        // non-printable. One would expect Tab to be as well (but it isn't).
+        if (getEventCharCode(nativeEvent) === 0) {
           return null;
         }
         /* falls through */
@@ -28480,21 +28537,14 @@ var SimpleEventPlugin = {
 module.exports = SimpleEventPlugin;
 
 }).call(this,require('_process'))
-},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./SyntheticClipboardEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticClipboardEvent.js","./SyntheticDragEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticDragEvent.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./SyntheticFocusEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticFocusEvent.js","./SyntheticKeyboardEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticKeyboardEvent.js","./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js","./SyntheticTouchEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticTouchEvent.js","./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./SyntheticWheelEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticWheelEvent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticClipboardEvent.js":[function(require,module,exports){
+},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPluginUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginUtils.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./SyntheticClipboardEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticClipboardEvent.js","./SyntheticDragEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticDragEvent.js","./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js","./SyntheticFocusEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticFocusEvent.js","./SyntheticKeyboardEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticKeyboardEvent.js","./SyntheticMouseEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticMouseEvent.js","./SyntheticTouchEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticTouchEvent.js","./SyntheticUIEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js","./SyntheticWheelEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticWheelEvent.js","./getEventCharCode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventCharCode.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticClipboardEvent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticClipboardEvent
  * @typechecks static-only
@@ -28533,21 +28583,14 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 
-},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticCompositionEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticCompositionEvent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticCompositionEvent
  * @typechecks static-only
@@ -28586,21 +28629,14 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticCompositionEvent;
 
 
-},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticDragEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticDragEvent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticDragEvent
  * @typechecks static-only
@@ -28632,21 +28668,14 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
 
-},{"./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js":[function(require,module,exports){
+},{"./SyntheticMouseEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticMouseEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticEvent
  * @typechecks static-only
@@ -28656,10 +28685,9 @@ module.exports = SyntheticDragEvent;
 
 var PooledClass = require("./PooledClass");
 
+var assign = require("./Object.assign");
 var emptyFunction = require("./emptyFunction");
 var getEventTarget = require("./getEventTarget");
-var merge = require("./merge");
-var mergeInto = require("./mergeInto");
 
 /**
  * @interface Event
@@ -28726,7 +28754,7 @@ function SyntheticEvent(dispatchConfig, dispatchMarker, nativeEvent) {
   this.isPropagationStopped = emptyFunction.thatReturnsFalse;
 }
 
-mergeInto(SyntheticEvent.prototype, {
+assign(SyntheticEvent.prototype, {
 
   preventDefault: function() {
     this.defaultPrevented = true;
@@ -28784,11 +28812,11 @@ SyntheticEvent.augmentClass = function(Class, Interface) {
   var Super = this;
 
   var prototype = Object.create(Super.prototype);
-  mergeInto(prototype, Class.prototype);
+  assign(prototype, Class.prototype);
   Class.prototype = prototype;
   Class.prototype.constructor = Class;
 
-  Class.Interface = merge(Super.Interface, Interface);
+  Class.Interface = assign({}, Super.Interface, Interface);
   Class.augmentClass = Super.augmentClass;
 
   PooledClass.addPoolingTo(Class, PooledClass.threeArgumentPooler);
@@ -28798,21 +28826,14 @@ PooledClass.addPoolingTo(SyntheticEvent, PooledClass.threeArgumentPooler);
 
 module.exports = SyntheticEvent;
 
-},{"./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./getEventTarget":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","./mergeInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticFocusEvent.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js","./getEventTarget":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventTarget.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticFocusEvent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticFocusEvent
  * @typechecks static-only
@@ -28844,21 +28865,14 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
 
-},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticInputEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticInputEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticInputEvent
  * @typechecks static-only
@@ -28898,21 +28912,14 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticInputEvent;
 
 
-},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticKeyboardEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticKeyboardEvent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticKeyboardEvent
  * @typechecks static-only
@@ -28922,6 +28929,7 @@ module.exports = SyntheticInputEvent;
 
 var SyntheticUIEvent = require("./SyntheticUIEvent");
 
+var getEventCharCode = require("./getEventCharCode");
 var getEventKey = require("./getEventKey");
 var getEventModifierState = require("./getEventModifierState");
 
@@ -28944,11 +28952,10 @@ var KeyboardEventInterface = {
     // `charCode` is the result of a KeyPress event and represents the value of
     // the actual printable character.
 
-    // KeyPress is deprecated but its replacement is not yet final and not
-    // implemented in any major browser.
+    // KeyPress is deprecated, but its replacement is not yet final and not
+    // implemented in any major browser. Only KeyPress has charCode.
     if (event.type === 'keypress') {
-      // IE8 does not implement "charCode", but "keyCode" has the correct value.
-      return 'charCode' in event ? event.charCode : event.keyCode;
+      return getEventCharCode(event);
     }
     return 0;
   },
@@ -28967,9 +28974,14 @@ var KeyboardEventInterface = {
   },
   which: function(event) {
     // `which` is an alias for either `keyCode` or `charCode` depending on the
-    // type of the event. There is no need to determine the type of the event
-    // as `keyCode` and `charCode` are either aliased or default to zero.
-    return event.keyCode || event.charCode;
+    // type of the event.
+    if (event.type === 'keypress') {
+      return getEventCharCode(event);
+    }
+    if (event.type === 'keydown' || event.type === 'keyup') {
+      return event.keyCode;
+    }
+    return 0;
   }
 };
 
@@ -28987,21 +28999,14 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
 
-},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./getEventKey":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventKey.js","./getEventModifierState":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js","./getEventCharCode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventCharCode.js","./getEventKey":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventKey.js","./getEventModifierState":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventModifierState.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticMouseEvent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticMouseEvent
  * @typechecks static-only
@@ -29077,21 +29082,14 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
 
-},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./ViewportMetrics":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ViewportMetrics.js","./getEventModifierState":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticTouchEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js","./ViewportMetrics":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ViewportMetrics.js","./getEventModifierState":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventModifierState.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticTouchEvent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticTouchEvent
  * @typechecks static-only
@@ -29132,21 +29130,14 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
 
-},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./getEventModifierState":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js","./getEventModifierState":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventModifierState.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticUIEvent
  * @typechecks static-only
@@ -29201,21 +29192,14 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
 
-},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./getEventTarget":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticWheelEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js","./getEventTarget":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventTarget.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticWheelEvent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule SyntheticWheelEvent
  * @typechecks static-only
@@ -29269,22 +29253,15 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
 
-},{"./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js":[function(require,module,exports){
+},{"./SyntheticMouseEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticMouseEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Transaction.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule Transaction
  */
@@ -29517,21 +29494,14 @@ var Transaction = {
 module.exports = Transaction;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ViewportMetrics.js":[function(require,module,exports){
+},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ViewportMetrics.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule ViewportMetrics
  */
@@ -29556,24 +29526,17 @@ var ViewportMetrics = {
 
 module.exports = ViewportMetrics;
 
-},{"./getUnboundedScrollPosition":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getUnboundedScrollPosition.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulate.js":[function(require,module,exports){
+},{"./getUnboundedScrollPosition":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getUnboundedScrollPosition.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\accumulateInto.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @providesModule accumulate
+ * @providesModule accumulateInto
  */
 
 "use strict";
@@ -29581,54 +29544,62 @@ module.exports = ViewportMetrics;
 var invariant = require("./invariant");
 
 /**
- * Accumulates items that must not be null or undefined.
  *
- * This is used to conserve memory by avoiding array allocations.
+ * Accumulates items that must not be null or undefined into the first one. This
+ * is used to conserve memory by avoiding array allocations, and thus sacrifices
+ * API cleanness. Since `current` can be null before being passed in and not
+ * null after this function, make sure to assign it back to `current`:
+ *
+ * `a = accumulateInto(a, b);`
+ *
+ * This API should be sparingly used. Try `accumulate` for something cleaner.
  *
  * @return {*|array<*>} An accumulation of items.
  */
-function accumulate(current, next) {
+
+function accumulateInto(current, next) {
   ("production" !== process.env.NODE_ENV ? invariant(
     next != null,
-    'accumulate(...): Accumulated items must be not be null or undefined.'
+    'accumulateInto(...): Accumulated items must not be null or undefined.'
   ) : invariant(next != null));
   if (current == null) {
     return next;
-  } else {
-    // Both are not empty. Warning: Never call x.concat(y) when you are not
-    // certain that x is an Array (x could be a string with concat method).
-    var currentIsArray = Array.isArray(current);
-    var nextIsArray = Array.isArray(next);
-    if (currentIsArray) {
-      return current.concat(next);
-    } else {
-      if (nextIsArray) {
-        return [current].concat(next);
-      } else {
-        return [current, next];
-      }
-    }
   }
+
+  // Both are not empty. Warning: Never call x.concat(y) when you are not
+  // certain that x is an Array (x could be a string with concat method).
+  var currentIsArray = Array.isArray(current);
+  var nextIsArray = Array.isArray(next);
+
+  if (currentIsArray && nextIsArray) {
+    current.push.apply(current, next);
+    return current;
+  }
+
+  if (currentIsArray) {
+    current.push(next);
+    return current;
+  }
+
+  if (nextIsArray) {
+    // A bit too dangerous to mutate `next`.
+    return [current].concat(next);
+  }
+
+  return [current, next];
 }
 
-module.exports = accumulate;
+module.exports = accumulateInto;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/adler32.js":[function(require,module,exports){
+},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\adler32.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule adler32
  */
@@ -29641,7 +29612,7 @@ var MOD = 65521;
 
 // This is a clean-room implementation of adler32 designed for detecting
 // if markup is not what we expect it to be. It does not need to be
-// cryptographically strong, only reasonable good at detecting if markup
+// cryptographically strong, only reasonably good at detecting if markup
 // generated on the server is different than that on the client.
 function adler32(data) {
   var a = 1;
@@ -29655,22 +29626,89 @@ function adler32(data) {
 
 module.exports = adler32;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cloneWithProps.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\camelize.js":[function(require,module,exports){
+/**
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule camelize
+ * @typechecks
+ */
+
+var _hyphenPattern = /-(.)/g;
+
+/**
+ * Camelcases a hyphenated string, for example:
+ *
+ *   > camelize('background-color')
+ *   < "backgroundColor"
+ *
+ * @param {string} string
+ * @return {string}
+ */
+function camelize(string) {
+  return string.replace(_hyphenPattern, function(_, character) {
+    return character.toUpperCase();
+  });
+}
+
+module.exports = camelize;
+
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\camelizeStyleName.js":[function(require,module,exports){
+/**
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule camelizeStyleName
+ * @typechecks
+ */
+
+"use strict";
+
+var camelize = require("./camelize");
+
+var msPattern = /^-ms-/;
+
+/**
+ * Camelcases a hyphenated CSS property name, for example:
+ *
+ *   > camelizeStyleName('background-color')
+ *   < "backgroundColor"
+ *   > camelizeStyleName('-moz-transition')
+ *   < "MozTransition"
+ *   > camelizeStyleName('-ms-transition')
+ *   < "msTransition"
+ *
+ * As Andi Smith suggests
+ * (http://www.andismith.com/blog/2012/02/modernizr-prefixed/), an `-ms` prefix
+ * is converted to lowercase `ms`.
+ *
+ * @param {string} string
+ * @return {string}
+ */
+function camelizeStyleName(string) {
+  return camelize(string.replace(msPattern, 'ms-'));
+}
+
+module.exports = camelizeStyleName;
+
+},{"./camelize":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\camelize.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\cloneWithProps.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @typechecks
  * @providesModule cloneWithProps
@@ -29678,6 +29716,7 @@ module.exports = adler32;
 
 "use strict";
 
+var ReactElement = require("./ReactElement");
 var ReactPropTransferer = require("./ReactPropTransferer");
 
 var keyOf = require("./keyOf");
@@ -29697,7 +29736,7 @@ var CHILDREN_PROP = keyOf({children: null});
 function cloneWithProps(child, props) {
   if ("production" !== process.env.NODE_ENV) {
     ("production" !== process.env.NODE_ENV ? warning(
-      !child.props.ref,
+      !child.ref,
       'You are calling cloneWithProps() on a child with a ref. This is ' +
       'dangerous because you\'re creating a new child which will not be ' +
       'added as a ref to its parent.'
@@ -29713,28 +29752,21 @@ function cloneWithProps(child, props) {
   }
 
   // The current API doesn't retain _owner and _context, which is why this
-  // doesn't use ReactDescriptor.cloneAndReplaceProps.
-  return child.constructor(newProps);
+  // doesn't use ReactElement.cloneAndReplaceProps.
+  return ReactElement.createElement(child.type, newProps);
 }
 
 module.exports = cloneWithProps;
 
 }).call(this,require('_process'))
-},{"./ReactPropTransferer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTransferer.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/containsNode.js":[function(require,module,exports){
+},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactPropTransferer":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTransferer.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\containsNode.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule containsNode
  * @typechecks
@@ -29771,79 +29803,14 @@ function containsNode(outerNode, innerNode) {
 
 module.exports = containsNode;
 
-},{"./isTextNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextNode.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/copyProperties.js":[function(require,module,exports){
-(function (process){
+},{"./isTextNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isTextNode.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createArrayFrom.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @providesModule copyProperties
- */
-
-/**
- * Copy properties from one or more objects (up to 5) into the first object.
- * This is a shallow copy. It mutates the first object and also returns it.
- *
- * NOTE: `arguments` has a very significant performance penalty, which is why
- * we don't support unlimited arguments.
- */
-function copyProperties(obj, a, b, c, d, e, f) {
-  obj = obj || {};
-
-  if ("production" !== process.env.NODE_ENV) {
-    if (f) {
-      throw new Error('Too many arguments passed to copyProperties');
-    }
-  }
-
-  var args = [a, b, c, d, e];
-  var ii = 0, v;
-  while (args[ii]) {
-    v = args[ii++];
-    for (var k in v) {
-      obj[k] = v[k];
-    }
-
-    // IE ignores toString in object iteration.. See:
-    // webreflection.blogspot.com/2007/07/quick-fix-internet-explorer-and.html
-    if (v.hasOwnProperty && v.hasOwnProperty('toString') &&
-        (typeof v.toString != 'undefined') && (obj.toString !== v.toString)) {
-      obj.toString = v.toString;
-    }
-  }
-
-  return obj;
-}
-
-module.exports = copyProperties;
-
-}).call(this,require('_process'))
-},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createArrayFrom.js":[function(require,module,exports){
-/**
- * Copyright 2013-2014 Facebook, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule createArrayFrom
  * @typechecks
@@ -29922,22 +29889,15 @@ function createArrayFrom(obj) {
 
 module.exports = createArrayFrom;
 
-},{"./toArray":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/toArray.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createFullPageComponent.js":[function(require,module,exports){
+},{"./toArray":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\toArray.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createFullPageComponent.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule createFullPageComponent
  * @typechecks
@@ -29947,6 +29907,7 @@ module.exports = createArrayFrom;
 
 // Defeat circular references by requiring this directly.
 var ReactCompositeComponent = require("./ReactCompositeComponent");
+var ReactElement = require("./ReactElement");
 
 var invariant = require("./invariant");
 
@@ -29958,14 +29919,14 @@ var invariant = require("./invariant");
  * take advantage of React's reconciliation for styling and <title>
  * management. So we just document it and throw in dangerous cases.
  *
- * @param {function} componentClass convenience constructor to wrap
+ * @param {string} tag The tag to wrap
  * @return {function} convenience constructor of new component
  */
-function createFullPageComponent(componentClass) {
+function createFullPageComponent(tag) {
+  var elementFactory = ReactElement.createFactory(tag);
+
   var FullPageComponent = ReactCompositeComponent.createClass({
-    displayName: 'ReactFullPageComponent' + (
-      componentClass.type.displayName || ''
-    ),
+    displayName: 'ReactFullPageComponent' + tag,
 
     componentWillUnmount: function() {
       ("production" !== process.env.NODE_ENV ? invariant(
@@ -29979,7 +29940,7 @@ function createFullPageComponent(componentClass) {
     },
 
     render: function() {
-      return this.transferPropsTo(componentClass(null, this.props.children));
+      return elementFactory(this.props);
     }
   });
 
@@ -29989,22 +29950,15 @@ function createFullPageComponent(componentClass) {
 module.exports = createFullPageComponent;
 
 }).call(this,require('_process'))
-},{"./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createNodesFromMarkup.js":[function(require,module,exports){
+},{"./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createNodesFromMarkup.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule createNodesFromMarkup
  * @typechecks
@@ -30086,21 +30040,14 @@ function createNodesFromMarkup(markup, handleScript) {
 module.exports = createNodesFromMarkup;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./createArrayFrom":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createArrayFrom.js","./getMarkupWrap":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getMarkupWrap.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cx.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./createArrayFrom":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createArrayFrom.js","./getMarkupWrap":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getMarkupWrap.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\cx.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule cx
  */
@@ -30132,21 +30079,14 @@ function cx(classNames) {
 
 module.exports = cx;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/dangerousStyleValue.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\dangerousStyleValue.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule dangerousStyleValue
  * @typechecks static-only
@@ -30197,26 +30137,68 @@ function dangerousStyleValue(name, value) {
 
 module.exports = dangerousStyleValue;
 
-},{"./CSSProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSProperty.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js":[function(require,module,exports){
+},{"./CSSProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSProperty.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\deprecated.js":[function(require,module,exports){
+(function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * @providesModule deprecated
+ */
+
+var assign = require("./Object.assign");
+var warning = require("./warning");
+
+/**
+ * This will log a single deprecation notice per function and forward the call
+ * on to the new API.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * @param {string} namespace The namespace of the call, eg 'React'
+ * @param {string} oldName The old function name, eg 'renderComponent'
+ * @param {string} newName The new function name, eg 'render'
+ * @param {*} ctx The context this forwarded call should run in
+ * @param {function} fn The function to forward on to
+ * @return {*} Will be the value as returned from `fn`
+ */
+function deprecated(namespace, oldName, newName, ctx, fn) {
+  var warned = false;
+  if ("production" !== process.env.NODE_ENV) {
+    var newFn = function() {
+      ("production" !== process.env.NODE_ENV ? warning(
+        warned,
+        (namespace + "." + oldName + " will be deprecated in a future version. ") +
+        ("Use " + namespace + "." + newName + " instead.")
+      ) : null);
+      warned = true;
+      return fn.apply(ctx, arguments);
+    };
+    newFn.displayName = (namespace + "_" + oldName);
+    // We need to make sure all properties of the original fn are copied over.
+    // In particular, this is needed to support PropTypes
+    return assign(newFn, fn);
+  }
+
+  return fn;
+}
+
+module.exports = deprecated;
+
+}).call(this,require('_process'))
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js":[function(require,module,exports){
+/**
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule emptyFunction
  */
-
-var copyProperties = require("./copyProperties");
 
 function makeEmptyFunction(arg) {
   return function() {
@@ -30231,33 +30213,24 @@ function makeEmptyFunction(arg) {
  */
 function emptyFunction() {}
 
-copyProperties(emptyFunction, {
-  thatReturns: makeEmptyFunction,
-  thatReturnsFalse: makeEmptyFunction(false),
-  thatReturnsTrue: makeEmptyFunction(true),
-  thatReturnsNull: makeEmptyFunction(null),
-  thatReturnsThis: function() { return this; },
-  thatReturnsArgument: function(arg) { return arg; }
-});
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function() { return this; };
+emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{"./copyProperties":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/copyProperties.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyObject.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyObject.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule emptyObject
  */
@@ -30273,21 +30246,14 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = emptyObject;
 
 }).call(this,require('_process'))
-},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js":[function(require,module,exports){
+},{"_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\escapeTextForBrowser.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule escapeTextForBrowser
  * @typechecks static-only
@@ -30321,27 +30287,22 @@ function escapeTextForBrowser(text) {
 
 module.exports = escapeTextForBrowser;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/flattenChildren.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\flattenChildren.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule flattenChildren
  */
 
 "use strict";
+
+var ReactTextComponent = require("./ReactTextComponent");
 
 var traverseAllChildren = require("./traverseAllChildren");
 var warning = require("./warning");
@@ -30363,7 +30324,18 @@ function flattenSingleChildIntoContext(traverseContext, child, name) {
     name
   ) : null);
   if (keyUnique && child != null) {
-    result[name] = child;
+    var type = typeof child;
+    var normalizedValue;
+
+    if (type === 'string') {
+      normalizedValue = ReactTextComponent(child);
+    } else if (type === 'number') {
+      normalizedValue = ReactTextComponent('' + child);
+    } else {
+      normalizedValue = child;
+    }
+
+    result[name] = normalizedValue;
   }
 }
 
@@ -30384,21 +30356,14 @@ function flattenChildren(children) {
 module.exports = flattenChildren;
 
 }).call(this,require('_process'))
-},{"./traverseAllChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/traverseAllChildren.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/focusNode.js":[function(require,module,exports){
+},{"./ReactTextComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTextComponent.js","./traverseAllChildren":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\traverseAllChildren.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\focusNode.js":[function(require,module,exports){
 /**
- * Copyright 2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule focusNode
  */
@@ -30406,34 +30371,28 @@ module.exports = flattenChildren;
 "use strict";
 
 /**
- * IE8 throws if an input/textarea is disabled and we try to focus it.
- * Focus only when necessary.
- *
  * @param {DOMElement} node input/textarea to focus
  */
 function focusNode(node) {
-  if (!node.disabled) {
+  // IE8 can throw "Can't move focus to the control because it is invisible,
+  // not enabled, or of a type that does not accept the focus." for all kinds of
+  // reasons that are too expensive and fragile to test.
+  try {
     node.focus();
+  } catch(e) {
   }
 }
 
 module.exports = focusNode;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\forEachAccumulated.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule forEachAccumulated
  */
@@ -30457,21 +30416,14 @@ var forEachAccumulated = function(arr, cb, scope) {
 
 module.exports = forEachAccumulated;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getActiveElement.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getActiveElement.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule getActiveElement
  * @typechecks
@@ -30493,22 +30445,66 @@ function getActiveElement() /*?DOMElement*/ {
 
 module.exports = getActiveElement;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventKey.js":[function(require,module,exports){
-(function (process){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventCharCode.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * @providesModule getEventCharCode
+ * @typechecks static-only
+ */
+
+"use strict";
+
+/**
+ * `charCode` represents the actual "character code" and is safe to use with
+ * `String.fromCharCode`. As such, only keys that correspond to printable
+ * characters produce a valid `charCode`, the only exception to this is Enter.
+ * The Tab-key is considered non-printable and does not have a `charCode`,
+ * presumably because it does not produce a tab-character in browsers.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * @param {object} nativeEvent Native browser event.
+ * @return {string} Normalized `charCode` property.
+ */
+function getEventCharCode(nativeEvent) {
+  var charCode;
+  var keyCode = nativeEvent.keyCode;
+
+  if ('charCode' in nativeEvent) {
+    charCode = nativeEvent.charCode;
+
+    // FF does not set `charCode` for the Enter-key, check against `keyCode`.
+    if (charCode === 0 && keyCode === 13) {
+      charCode = 13;
+    }
+  } else {
+    // IE8 does not implement `charCode`, but `keyCode` has the correct value.
+    charCode = keyCode;
+  }
+
+  // Some non-printable keys are reported in `charCode`/`keyCode`, discard them.
+  // Must not discard the (non-)printable Enter-key.
+  if (charCode >= 32 || charCode === 13) {
+    return charCode;
+  }
+
+  return 0;
+}
+
+module.exports = getEventCharCode;
+
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventKey.js":[function(require,module,exports){
+/**
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule getEventKey
  * @typechecks static-only
@@ -30516,7 +30512,7 @@ module.exports = getActiveElement;
 
 "use strict";
 
-var invariant = require("./invariant");
+var getEventCharCode = require("./getEventCharCode");
 
 /**
  * Normalization of deprecated HTML5 `key` values
@@ -30538,7 +30534,7 @@ var normalizeKey = {
 };
 
 /**
- * Translation from legacy `which`/`keyCode` to HTML5 `key`
+ * Translation from legacy `keyCode` to HTML5 `key`
  * Only special keys supported, all others depend on keyboard layout or browser
  * @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent#Key_names
  */
@@ -30590,11 +30586,7 @@ function getEventKey(nativeEvent) {
 
   // Browser does not implement `key`, polyfill as much of it as we can.
   if (nativeEvent.type === 'keypress') {
-    // Create the character from the `charCode` ourselves and use as an almost
-    // perfect replacement.
-    var charCode = 'charCode' in nativeEvent ?
-      nativeEvent.charCode :
-      nativeEvent.keyCode;
+    var charCode = getEventCharCode(nativeEvent);
 
     // The enter-key is technically both printable and non-printable and can
     // thus be captured by `keypress`, no other non-printable key should.
@@ -30605,28 +30597,19 @@ function getEventKey(nativeEvent) {
     // `keyCode` value, almost all function keys have a universal value.
     return translateToKey[nativeEvent.keyCode] || 'Unidentified';
   }
-
-  ("production" !== process.env.NODE_ENV ? invariant(false, "Unexpected keyboard event type: %s", nativeEvent.type) : invariant(false));
+  return '';
 }
 
 module.exports = getEventKey;
 
-}).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js":[function(require,module,exports){
+},{"./getEventCharCode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventCharCode.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventModifierState.js":[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule getEventModifierState
  * @typechecks static-only
@@ -30666,21 +30649,14 @@ function getEventModifierState(nativeEvent) {
 
 module.exports = getEventModifierState;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventTarget.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule getEventTarget
  * @typechecks static-only
@@ -30704,22 +30680,15 @@ function getEventTarget(nativeEvent) {
 
 module.exports = getEventTarget;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getMarkupWrap.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getMarkupWrap.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule getMarkupWrap
  */
@@ -30828,21 +30797,14 @@ function getMarkupWrap(nodeName) {
 module.exports = getMarkupWrap;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getNodeForCharacterOffset.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getNodeForCharacterOffset.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule getNodeForCharacterOffset
  */
@@ -30910,21 +30872,14 @@ function getNodeForCharacterOffset(root, offset) {
 
 module.exports = getNodeForCharacterOffset;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getReactRootElementInContainer.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getReactRootElementInContainer.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule getReactRootElementInContainer
  */
@@ -30952,21 +30907,14 @@ function getReactRootElementInContainer(container) {
 
 module.exports = getReactRootElementInContainer;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getTextContentAccessor.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule getTextContentAccessor
  */
@@ -30996,21 +30944,14 @@ function getTextContentAccessor() {
 
 module.exports = getTextContentAccessor;
 
-},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getUnboundedScrollPosition.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getUnboundedScrollPosition.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule getUnboundedScrollPosition
  * @typechecks
@@ -31043,21 +30984,14 @@ function getUnboundedScrollPosition(scrollable) {
 
 module.exports = getUnboundedScrollPosition;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenate.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\hyphenate.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule hyphenate
  * @typechecks
@@ -31083,21 +31017,14 @@ function hyphenate(string) {
 
 module.exports = hyphenate;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenateStyleName.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\hyphenateStyleName.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule hyphenateStyleName
  * @typechecks
@@ -31112,11 +31039,11 @@ var msPattern = /^ms-/;
 /**
  * Hyphenates a camelcased CSS property name, for example:
  *
- *   > hyphenate('backgroundColor')
+ *   > hyphenateStyleName('backgroundColor')
  *   < "background-color"
- *   > hyphenate('MozTransition')
+ *   > hyphenateStyleName('MozTransition')
  *   < "-moz-transition"
- *   > hyphenate('msTransition')
+ *   > hyphenateStyleName('msTransition')
  *   < "-ms-transition"
  *
  * As Modernizr suggests (http://modernizr.com/docs/#prefixed), an `ms` prefix
@@ -31131,22 +31058,15 @@ function hyphenateStyleName(string) {
 
 module.exports = hyphenateStyleName;
 
-},{"./hyphenate":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenate.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js":[function(require,module,exports){
+},{"./hyphenate":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\hyphenate.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\instantiateReactComponent.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule instantiateReactComponent
  * @typechecks static-only
@@ -31154,65 +31074,113 @@ module.exports = hyphenateStyleName;
 
 "use strict";
 
-var invariant = require("./invariant");
+var warning = require("./warning");
+
+var ReactElement = require("./ReactElement");
+var ReactLegacyElement = require("./ReactLegacyElement");
+var ReactNativeComponent = require("./ReactNativeComponent");
+var ReactEmptyComponent = require("./ReactEmptyComponent");
 
 /**
- * Validate a `componentDescriptor`. This should be exposed publicly in a follow
- * up diff.
+ * Given an `element` create an instance that will actually be mounted.
  *
- * @param {object} descriptor
- * @return {boolean} Returns true if this is a valid descriptor of a Component.
- */
-function isValidComponentDescriptor(descriptor) {
-  return (
-    descriptor &&
-    typeof descriptor.type === 'function' &&
-    typeof descriptor.type.prototype.mountComponent === 'function' &&
-    typeof descriptor.type.prototype.receiveComponent === 'function'
-  );
-}
-
-/**
- * Given a `componentDescriptor` create an instance that will actually be
- * mounted. Currently it just extracts an existing clone from composite
- * components but this is an implementation detail which will change.
- *
- * @param {object} descriptor
- * @return {object} A new instance of componentDescriptor's constructor.
+ * @param {object} element
+ * @param {*} parentCompositeType The composite type that resolved this.
+ * @return {object} A new instance of the element's constructor.
  * @protected
  */
-function instantiateReactComponent(descriptor) {
+function instantiateReactComponent(element, parentCompositeType) {
+  var instance;
 
-  // TODO: Make warning
-  // if (__DEV__) {
-    ("production" !== process.env.NODE_ENV ? invariant(
-      isValidComponentDescriptor(descriptor),
-      'Only React Components are valid for mounting.'
-    ) : invariant(isValidComponentDescriptor(descriptor)));
-  // }
+  if ("production" !== process.env.NODE_ENV) {
+    ("production" !== process.env.NODE_ENV ? warning(
+      element && (typeof element.type === 'function' ||
+                     typeof element.type === 'string'),
+      'Only functions or strings can be mounted as React components.'
+    ) : null);
 
-  return new descriptor.type(descriptor);
+    // Resolve mock instances
+    if (element.type._mockedReactClassConstructor) {
+      // If this is a mocked class, we treat the legacy factory as if it was the
+      // class constructor for future proofing unit tests. Because this might
+      // be mocked as a legacy factory, we ignore any warnings triggerd by
+      // this temporary hack.
+      ReactLegacyElement._isLegacyCallWarningEnabled = false;
+      try {
+        instance = new element.type._mockedReactClassConstructor(
+          element.props
+        );
+      } finally {
+        ReactLegacyElement._isLegacyCallWarningEnabled = true;
+      }
+
+      // If the mock implementation was a legacy factory, then it returns a
+      // element. We need to turn this into a real component instance.
+      if (ReactElement.isValidElement(instance)) {
+        instance = new instance.type(instance.props);
+      }
+
+      var render = instance.render;
+      if (!render) {
+        // For auto-mocked factories, the prototype isn't shimmed and therefore
+        // there is no render function on the instance. We replace the whole
+        // component with an empty component instance instead.
+        element = ReactEmptyComponent.getEmptyComponent();
+      } else {
+        if (render._isMockFunction && !render._getMockImplementation()) {
+          // Auto-mocked components may have a prototype with a mocked render
+          // function. For those, we'll need to mock the result of the render
+          // since we consider undefined to be invalid results from render.
+          render.mockImplementation(
+            ReactEmptyComponent.getEmptyComponent
+          );
+        }
+        instance.construct(element);
+        return instance;
+      }
+    }
+  }
+
+  // Special case string values
+  if (typeof element.type === 'string') {
+    instance = ReactNativeComponent.createInstanceForTag(
+      element.type,
+      element.props,
+      parentCompositeType
+    );
+  } else {
+    // Normal case for non-mocks and non-strings
+    instance = new element.type(element.props);
+  }
+
+  if ("production" !== process.env.NODE_ENV) {
+    ("production" !== process.env.NODE_ENV ? warning(
+      typeof instance.construct === 'function' &&
+      typeof instance.mountComponent === 'function' &&
+      typeof instance.receiveComponent === 'function',
+      'Only React Components can be mounted.'
+    ) : null);
+  }
+
+  // This actually sets up the internal instance. This will become decoupled
+  // from the public instance in a future diff.
+  instance.construct(element);
+
+  return instance;
 }
 
 module.exports = instantiateReactComponent;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js":[function(require,module,exports){
+},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactEmptyComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEmptyComponent.js","./ReactLegacyElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js","./ReactNativeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactNativeComponent.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule invariant
  */
@@ -31261,21 +31229,14 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js":[function(require,module,exports){
+},{"_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isEventSupported.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule isEventSupported
  */
@@ -31333,21 +31294,14 @@ function isEventSupported(eventNameSuffix, capture) {
 
 module.exports = isEventSupported;
 
-},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isNode.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isNode.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule isNode
  * @typechecks
@@ -31368,21 +31322,14 @@ function isNode(object) {
 
 module.exports = isNode;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextInputElement.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isTextInputElement.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule isTextInputElement
  */
@@ -31419,21 +31366,14 @@ function isTextInputElement(elem) {
 
 module.exports = isTextInputElement;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextNode.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isTextNode.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule isTextNode
  * @typechecks
@@ -31451,21 +31391,14 @@ function isTextNode(object) {
 
 module.exports = isTextNode;
 
-},{"./isNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isNode.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/joinClasses.js":[function(require,module,exports){
+},{"./isNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isNode.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\joinClasses.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule joinClasses
  * @typechecks static-only
@@ -31489,7 +31422,9 @@ function joinClasses(className/*, ... */) {
   if (argLength > 1) {
     for (var ii = 1; ii < argLength; ii++) {
       nextClass = arguments[ii];
-      nextClass && (className += ' ' + nextClass);
+      if (nextClass) {
+        className = (className ? className + ' ' : '') + nextClass;
+      }
     }
   }
   return className;
@@ -31497,22 +31432,15 @@ function joinClasses(className/*, ... */) {
 
 module.exports = joinClasses;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule keyMirror
  * @typechecks static-only
@@ -31559,21 +31487,14 @@ var keyMirror = function(obj) {
 module.exports = keyMirror;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js":[function(require,module,exports){
+},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule keyOf
  */
@@ -31602,75 +31523,67 @@ var keyOf = function(oneKeyObj) {
 
 module.exports = keyOf;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mapObject.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\mapObject.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule mapObject
  */
 
-"use strict";
+'use strict';
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
- * For each key/value pair, invokes callback func and constructs a resulting
- * object which contains, for every key in obj, values that are the result of
- * of invoking the function:
+ * Executes the provided `callback` once for each enumerable own property in the
+ * object and constructs a new object from the results. The `callback` is
+ * invoked with three arguments:
  *
- *   func(value, key, iteration)
+ *  - the property value
+ *  - the property name
+ *  - the object being traversed
  *
- * Grepable names:
+ * Properties that are added after the call to `mapObject` will not be visited
+ * by `callback`. If the values of existing properties are changed, the value
+ * passed to `callback` will be the value at the time `mapObject` visits them.
+ * Properties that are deleted before being visited are not visited.
  *
- *   function objectMap()
- *   function objMap()
+ * @grep function objectMap()
+ * @grep function objMap()
  *
- * @param {?object} obj Object to map keys over
- * @param {function} func Invoked for each key/val pair.
- * @param {?*} context
- * @return {?object} Result of mapping or null if obj is falsey
+ * @param {?object} object
+ * @param {function} callback
+ * @param {*} context
+ * @return {?object}
  */
-function mapObject(obj, func, context) {
-  if (!obj) {
+function mapObject(object, callback, context) {
+  if (!object) {
     return null;
   }
-  var i = 0;
-  var ret = {};
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      ret[key] = func.call(context, obj[key], key, i++);
+  var result = {};
+  for (var name in object) {
+    if (hasOwnProperty.call(object, name)) {
+      result[name] = callback.call(context, object[name], name, object);
     }
   }
-  return ret;
+  return result;
 }
 
 module.exports = mapObject;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/memoizeStringOnly.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\memoizeStringOnly.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule memoizeStringOnly
  * @typechecks static-only
@@ -31697,296 +31610,15 @@ function memoizeStringOnly(callback) {
 
 module.exports = memoizeStringOnly;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js":[function(require,module,exports){
-/**
- * Copyright 2013-2014 Facebook, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @providesModule merge
- */
-
-"use strict";
-
-var mergeInto = require("./mergeInto");
-
-/**
- * Shallow merges two structures into a return value, without mutating either.
- *
- * @param {?object} one Optional object with properties to merge from.
- * @param {?object} two Optional object with properties to merge from.
- * @return {object} The shallow extension of one by two.
- */
-var merge = function(one, two) {
-  var result = {};
-  mergeInto(result, one);
-  mergeInto(result, two);
-  return result;
-};
-
-module.exports = merge;
-
-},{"./mergeInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeHelpers.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\monitorCodeUse.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @providesModule mergeHelpers
- *
- * requiresPolyfills: Array.isArray
- */
-
-"use strict";
-
-var invariant = require("./invariant");
-var keyMirror = require("./keyMirror");
-
-/**
- * Maximum number of levels to traverse. Will catch circular structures.
- * @const
- */
-var MAX_MERGE_DEPTH = 36;
-
-/**
- * We won't worry about edge cases like new String('x') or new Boolean(true).
- * Functions are considered terminals, and arrays are not.
- * @param {*} o The item/object/value to test.
- * @return {boolean} true iff the argument is a terminal.
- */
-var isTerminal = function(o) {
-  return typeof o !== 'object' || o === null;
-};
-
-var mergeHelpers = {
-
-  MAX_MERGE_DEPTH: MAX_MERGE_DEPTH,
-
-  isTerminal: isTerminal,
-
-  /**
-   * Converts null/undefined values into empty object.
-   *
-   * @param {?Object=} arg Argument to be normalized (nullable optional)
-   * @return {!Object}
-   */
-  normalizeMergeArg: function(arg) {
-    return arg === undefined || arg === null ? {} : arg;
-  },
-
-  /**
-   * If merging Arrays, a merge strategy *must* be supplied. If not, it is
-   * likely the caller's fault. If this function is ever called with anything
-   * but `one` and `two` being `Array`s, it is the fault of the merge utilities.
-   *
-   * @param {*} one Array to merge into.
-   * @param {*} two Array to merge from.
-   */
-  checkMergeArrayArgs: function(one, two) {
-    ("production" !== process.env.NODE_ENV ? invariant(
-      Array.isArray(one) && Array.isArray(two),
-      'Tried to merge arrays, instead got %s and %s.',
-      one,
-      two
-    ) : invariant(Array.isArray(one) && Array.isArray(two)));
-  },
-
-  /**
-   * @param {*} one Object to merge into.
-   * @param {*} two Object to merge from.
-   */
-  checkMergeObjectArgs: function(one, two) {
-    mergeHelpers.checkMergeObjectArg(one);
-    mergeHelpers.checkMergeObjectArg(two);
-  },
-
-  /**
-   * @param {*} arg
-   */
-  checkMergeObjectArg: function(arg) {
-    ("production" !== process.env.NODE_ENV ? invariant(
-      !isTerminal(arg) && !Array.isArray(arg),
-      'Tried to merge an object, instead got %s.',
-      arg
-    ) : invariant(!isTerminal(arg) && !Array.isArray(arg)));
-  },
-
-  /**
-   * @param {*} arg
-   */
-  checkMergeIntoObjectArg: function(arg) {
-    ("production" !== process.env.NODE_ENV ? invariant(
-      (!isTerminal(arg) || typeof arg === 'function') && !Array.isArray(arg),
-      'Tried to merge into an object, instead got %s.',
-      arg
-    ) : invariant((!isTerminal(arg) || typeof arg === 'function') && !Array.isArray(arg)));
-  },
-
-  /**
-   * Checks that a merge was not given a circular object or an object that had
-   * too great of depth.
-   *
-   * @param {number} Level of recursion to validate against maximum.
-   */
-  checkMergeLevel: function(level) {
-    ("production" !== process.env.NODE_ENV ? invariant(
-      level < MAX_MERGE_DEPTH,
-      'Maximum deep merge depth exceeded. You may be attempting to merge ' +
-      'circular structures in an unsupported way.'
-    ) : invariant(level < MAX_MERGE_DEPTH));
-  },
-
-  /**
-   * Checks that the supplied merge strategy is valid.
-   *
-   * @param {string} Array merge strategy.
-   */
-  checkArrayStrategy: function(strategy) {
-    ("production" !== process.env.NODE_ENV ? invariant(
-      strategy === undefined || strategy in mergeHelpers.ArrayStrategies,
-      'You must provide an array strategy to deep merge functions to ' +
-      'instruct the deep merge how to resolve merging two arrays.'
-    ) : invariant(strategy === undefined || strategy in mergeHelpers.ArrayStrategies));
-  },
-
-  /**
-   * Set of possible behaviors of merge algorithms when encountering two Arrays
-   * that must be merged together.
-   * - `clobber`: The left `Array` is ignored.
-   * - `indexByIndex`: The result is achieved by recursively deep merging at
-   *   each index. (not yet supported.)
-   */
-  ArrayStrategies: keyMirror({
-    Clobber: true,
-    IndexByIndex: true
-  })
-
-};
-
-module.exports = mergeHelpers;
-
-}).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeInto.js":[function(require,module,exports){
-/**
- * Copyright 2013-2014 Facebook, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @providesModule mergeInto
- * @typechecks static-only
- */
-
-"use strict";
-
-var mergeHelpers = require("./mergeHelpers");
-
-var checkMergeObjectArg = mergeHelpers.checkMergeObjectArg;
-var checkMergeIntoObjectArg = mergeHelpers.checkMergeIntoObjectArg;
-
-/**
- * Shallow merges two structures by mutating the first parameter.
- *
- * @param {object|function} one Object to be merged into.
- * @param {?object} two Optional object with properties to merge from.
- */
-function mergeInto(one, two) {
-  checkMergeIntoObjectArg(one);
-  if (two != null) {
-    checkMergeObjectArg(two);
-    for (var key in two) {
-      if (!two.hasOwnProperty(key)) {
-        continue;
-      }
-      one[key] = two[key];
-    }
-  }
-}
-
-module.exports = mergeInto;
-
-},{"./mergeHelpers":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeHelpers.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js":[function(require,module,exports){
-/**
- * Copyright 2013-2014 Facebook, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * @providesModule mixInto
- */
-
-"use strict";
-
-/**
- * Simply copies properties to the prototype.
- */
-var mixInto = function(constructor, methodBag) {
-  var methodName;
-  for (methodName in methodBag) {
-    if (!methodBag.hasOwnProperty(methodName)) {
-      continue;
-    }
-    constructor.prototype[methodName] = methodBag[methodName];
-  }
-};
-
-module.exports = mixInto;
-
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js":[function(require,module,exports){
-(function (process){
-/**
- * Copyright 2014 Facebook, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule monitorCodeUse
  */
@@ -32012,28 +31644,21 @@ function monitorCodeUse(eventName, data) {
 module.exports = monitorCodeUse;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/onlyChild.js":[function(require,module,exports){
+},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\onlyChild.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule onlyChild
  */
 "use strict";
 
-var ReactDescriptor = require("./ReactDescriptor");
+var ReactElement = require("./ReactElement");
 
 var invariant = require("./invariant");
 
@@ -32050,30 +31675,23 @@ var invariant = require("./invariant");
  */
 function onlyChild(children) {
   ("production" !== process.env.NODE_ENV ? invariant(
-    ReactDescriptor.isValidDescriptor(children),
+    ReactElement.isValidElement(children),
     'onlyChild must be passed a children with exactly one child.'
-  ) : invariant(ReactDescriptor.isValidDescriptor(children)));
+  ) : invariant(ReactElement.isValidElement(children)));
   return children;
 }
 
 module.exports = onlyChild;
 
 }).call(this,require('_process'))
-},{"./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performance.js":[function(require,module,exports){
+},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\performance.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule performance
  * @typechecks
@@ -32094,21 +31712,14 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = performance || {};
 
-},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performanceNow.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\performanceNow.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule performanceNow
  * @typechecks
@@ -32129,21 +31740,14 @@ var performanceNow = performance.now.bind(performance);
 
 module.exports = performanceNow;
 
-},{"./performance":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performance.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/setInnerHTML.js":[function(require,module,exports){
+},{"./performance":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\performance.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\setInnerHTML.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule setInnerHTML
  */
@@ -32151,6 +31755,9 @@ module.exports = performanceNow;
 "use strict";
 
 var ExecutionEnvironment = require("./ExecutionEnvironment");
+
+var WHITESPACE_TEST = /^[ \r\n\t\f]/;
+var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
 /**
  * Set the innerHTML property of a node, ensuring that whitespace is preserved
@@ -32188,13 +31795,8 @@ if (ExecutionEnvironment.canUseDOM) {
       // thin air on IE8, this only happens if there is no visible text
       // in-front of the non-visible tags. Piggyback on the whitespace fix
       // and simply check if any non-visible tags appear in the source.
-      if (html.match(/^[ \r\n\t\f]/) ||
-          html[0] === '<' && (
-            html.indexOf('<noscript') !== -1 ||
-            html.indexOf('<script') !== -1 ||
-            html.indexOf('<style') !== -1 ||
-            html.indexOf('<meta') !== -1 ||
-            html.indexOf('<link') !== -1)) {
+      if (WHITESPACE_TEST.test(html) ||
+          html[0] === '<' && NONVISIBLE_TEST.test(html)) {
         // Recover leading whitespace by temporarily prepending any character.
         // \uFEFF has the potential advantage of being zero-width/invisible.
         node.innerHTML = '\uFEFF' + html;
@@ -32216,21 +31818,14 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = setInnerHTML;
 
-},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shallowEqual.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shallowEqual.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule shallowEqual
  */
@@ -32256,7 +31851,7 @@ function shallowEqual(objA, objB) {
       return false;
     }
   }
-  // Test for B'a keys missing from A.
+  // Test for B's keys missing from A.
   for (key in objB) {
     if (objB.hasOwnProperty(key) && !objA.hasOwnProperty(key)) {
       return false;
@@ -32267,21 +31862,14 @@ function shallowEqual(objA, objB) {
 
 module.exports = shallowEqual;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shouldUpdateReactComponent.js":[function(require,module,exports){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule shouldUpdateReactComponent
  * @typechecks static-only
@@ -32290,22 +31878,21 @@ module.exports = shallowEqual;
 "use strict";
 
 /**
- * Given a `prevDescriptor` and `nextDescriptor`, determines if the existing
+ * Given a `prevElement` and `nextElement`, determines if the existing
  * instance should be updated as opposed to being destroyed or replaced by a new
- * instance. Both arguments are descriptors. This ensures that this logic can
+ * instance. Both arguments are elements. This ensures that this logic can
  * operate on stateless trees without any backing instance.
  *
- * @param {?object} prevDescriptor
- * @param {?object} nextDescriptor
+ * @param {?object} prevElement
+ * @param {?object} nextElement
  * @return {boolean} True if the existing instance should be updated.
  * @protected
  */
-function shouldUpdateReactComponent(prevDescriptor, nextDescriptor) {
-  if (prevDescriptor && nextDescriptor &&
-      prevDescriptor.type === nextDescriptor.type && (
-        (prevDescriptor.props && prevDescriptor.props.key) ===
-        (nextDescriptor.props && nextDescriptor.props.key)
-      ) && prevDescriptor._owner === nextDescriptor._owner) {
+function shouldUpdateReactComponent(prevElement, nextElement) {
+  if (prevElement && nextElement &&
+      prevElement.type === nextElement.type &&
+      prevElement.key === nextElement.key &&
+      prevElement._owner === nextElement._owner) {
     return true;
   }
   return false;
@@ -32313,22 +31900,15 @@ function shouldUpdateReactComponent(prevDescriptor, nextDescriptor) {
 
 module.exports = shouldUpdateReactComponent;
 
-},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/toArray.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\toArray.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule toArray
  * @typechecks
@@ -32392,30 +31972,23 @@ function toArray(obj) {
 module.exports = toArray;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/traverseAllChildren.js":[function(require,module,exports){
+},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\traverseAllChildren.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule traverseAllChildren
  */
 
 "use strict";
 
+var ReactElement = require("./ReactElement");
 var ReactInstanceHandles = require("./ReactInstanceHandles");
-var ReactTextComponent = require("./ReactTextComponent");
 
 var invariant = require("./invariant");
 
@@ -32450,9 +32023,9 @@ function userProvidedKeyEscaper(match) {
  * @return {string}
  */
 function getComponentKey(component, index) {
-  if (component && component.props && component.props.key != null) {
+  if (component && component.key != null) {
     // Explicit key
-    return wrapUserProvidedKey(component.props.key);
+    return wrapUserProvidedKey(component.key);
   }
   // Implicit key determined by the index in the set
   return index.toString(36);
@@ -32493,16 +32066,17 @@ function wrapUserProvidedKey(key) {
  */
 var traverseAllChildrenImpl =
   function(children, nameSoFar, indexSoFar, callback, traverseContext) {
+    var nextName, nextIndex;
     var subtreeCount = 0;  // Count of children found in the current subtree.
     if (Array.isArray(children)) {
       for (var i = 0; i < children.length; i++) {
         var child = children[i];
-        var nextName = (
+        nextName = (
           nameSoFar +
           (nameSoFar ? SUBSEPARATOR : SEPARATOR) +
           getComponentKey(child, i)
         );
-        var nextIndex = indexSoFar + subtreeCount;
+        nextIndex = indexSoFar + subtreeCount;
         subtreeCount += traverseAllChildrenImpl(
           child,
           nextName,
@@ -32522,40 +32096,32 @@ var traverseAllChildrenImpl =
         // All of the above are perceived as null.
         callback(traverseContext, null, storageName, indexSoFar);
         subtreeCount = 1;
-      } else if (children.type && children.type.prototype &&
-                 children.type.prototype.mountComponentIntoNode) {
+      } else if (type === 'string' || type === 'number' ||
+                 ReactElement.isValidElement(children)) {
         callback(traverseContext, children, storageName, indexSoFar);
         subtreeCount = 1;
-      } else {
-        if (type === 'object') {
-          ("production" !== process.env.NODE_ENV ? invariant(
-            !children || children.nodeType !== 1,
-            'traverseAllChildren(...): Encountered an invalid child; DOM ' +
-            'elements are not valid children of React components.'
-          ) : invariant(!children || children.nodeType !== 1));
-          for (var key in children) {
-            if (children.hasOwnProperty(key)) {
-              subtreeCount += traverseAllChildrenImpl(
-                children[key],
-                (
-                  nameSoFar + (nameSoFar ? SUBSEPARATOR : SEPARATOR) +
-                  wrapUserProvidedKey(key) + SUBSEPARATOR +
-                  getComponentKey(children[key], 0)
-                ),
-                indexSoFar + subtreeCount,
-                callback,
-                traverseContext
-              );
-            }
+      } else if (type === 'object') {
+        ("production" !== process.env.NODE_ENV ? invariant(
+          !children || children.nodeType !== 1,
+          'traverseAllChildren(...): Encountered an invalid child; DOM ' +
+          'elements are not valid children of React components.'
+        ) : invariant(!children || children.nodeType !== 1));
+        for (var key in children) {
+          if (children.hasOwnProperty(key)) {
+            nextName = (
+              nameSoFar + (nameSoFar ? SUBSEPARATOR : SEPARATOR) +
+              wrapUserProvidedKey(key) + SUBSEPARATOR +
+              getComponentKey(children[key], 0)
+            );
+            nextIndex = indexSoFar + subtreeCount;
+            subtreeCount += traverseAllChildrenImpl(
+              children[key],
+              nextName,
+              nextIndex,
+              callback,
+              traverseContext
+            );
           }
-        } else if (type === 'string') {
-          var normalizedText = ReactTextComponent(children);
-          callback(traverseContext, normalizedText, storageName, indexSoFar);
-          subtreeCount += 1;
-        } else if (type === 'number') {
-          var normalizedNumber = ReactTextComponent('' + children);
-          callback(traverseContext, normalizedNumber, storageName, indexSoFar);
-          subtreeCount += 1;
         }
       }
     }
@@ -32589,29 +32155,22 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 }).call(this,require('_process'))
-},{"./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactTextComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/update.js":[function(require,module,exports){
+},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\update.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2013-2014 Facebook, Inc.
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule update
  */
 
 "use strict";
 
-var copyProperties = require("./copyProperties");
+var assign = require("./Object.assign");
 var keyOf = require("./keyOf");
 var invariant = require("./invariant");
 
@@ -32619,7 +32178,7 @@ function shallowCopy(x) {
   if (Array.isArray(x)) {
     return x.concat();
   } else if (x && typeof x === 'object') {
-    return copyProperties(new x.constructor(), x);
+    return assign(new x.constructor(), x);
   } else {
     return x;
   }
@@ -32699,7 +32258,7 @@ function update(value, spec) {
       COMMAND_MERGE,
       nextValue
     ) : invariant(nextValue && typeof nextValue === 'object'));
-    copyProperties(nextValue, spec[COMMAND_MERGE]);
+    assign(nextValue, spec[COMMAND_MERGE]);
   }
 
   if (spec.hasOwnProperty(COMMAND_PUSH)) {
@@ -32764,22 +32323,15 @@ function update(value, spec) {
 module.exports = update;
 
 }).call(this,require('_process'))
-},{"./copyProperties":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/copyProperties.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js":[function(require,module,exports){
+},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js":[function(require,module,exports){
 (function (process){
 /**
- * Copyright 2014 Facebook, Inc.
+ * Copyright 2014, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule warning
  */
@@ -32816,7 +32368,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/underscore/underscore.js":[function(require,module,exports){
+},{"./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\underscore\\underscore.js":[function(require,module,exports){
 //     Underscore.js 1.7.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -34233,11 +33785,11 @@ module.exports = warning;
   }
 }.call(this));
 
-},{}],"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js":[function(require,module,exports){
-var Dispatcher = require('./vendor/flux/dispatcher.js');
-var copyProperties = require('react/lib/copyProperties');
+},{}],"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js":[function(require,module,exports){
+var _ = require('underscore'),
+  Dispatcher = require('./vendor/flux/dispatcher.js');
 
-var AppDispatcher = copyProperties(new Dispatcher(), {
+var AppDispatcher = _.extend(new Dispatcher(), {
 
 	ActionTypes: {
 		NAV_URL_CHANGE: 'nav-url-change',
@@ -34254,7 +33806,8 @@ var AppDispatcher = copyProperties(new Dispatcher(), {
 });
 
 module.exports = AppDispatcher;
-},{"./vendor/flux/dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/vendor/flux/dispatcher.js","react/lib/copyProperties":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/copyProperties.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/app-router.js":[function(require,module,exports){
+
+},{"./vendor/flux/dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\flux\\dispatcher.js","underscore":"D:\\GitHub\\material-ui\\docs\\node_modules\\underscore\\underscore.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\app-router.js":[function(require,module,exports){
 var _ = require('underscore'),
   Backbone = require('backbone'),
   Dispatcher = require('./app-dispatcher.js'),
@@ -34285,7 +33838,7 @@ var _ = require('underscore'),
 
 module.exports = new AppRouter();
 
-},{"./app-dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js","backbone":"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js","underscore":"/Users/hai/GitHub/material-ui/docs/node_modules/underscore/underscore.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/app-left-nav.jsx":[function(require,module,exports){
+},{"./app-dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js","backbone":"D:\\GitHub\\material-ui\\docs\\node_modules\\backbone\\backbone.js","underscore":"D:\\GitHub\\material-ui\\docs\\node_modules\\underscore\\underscore.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\app-left-nav.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34326,10 +33879,10 @@ var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
   },
 
   render: function() {
-    var header = React.DOM.div({className: "logo", onClick: this._onHeaderClick}, "material ui");
+    var header = React.createElement("div", {className: "logo", onClick: this._onHeaderClick}, "material ui");
 
     return (
-      mui.LeftNav({
+      React.createElement(mui.LeftNav, {
         ref: "leftNav", 
         isInitiallyOpen: false, 
         header: header, 
@@ -34374,7 +33927,7 @@ var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
 
 module.exports = AppLeftNav;
 
-},{"../app-dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js","./pages.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-block.jsx":[function(require,module,exports){
+},{"../app-dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js","./pages.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-block.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34395,8 +33948,8 @@ var CodeBlock = React.createClass({displayName: 'CodeBlock',
 
 	render: function() {
 		return (
-			React.DOM.pre({className: "code-block"}, 
-				React.DOM.code(null, this.props.children)
+			React.createElement("pre", {className: "code-block"}, 
+				React.createElement("code", null, this.props.children)
 			)
 		);
 	}
@@ -34404,7 +33957,7 @@ var CodeBlock = React.createClass({displayName: 'CodeBlock',
 });
 
 module.exports = CodeBlock;
-},{"hljs":"/Users/hai/GitHub/material-ui/docs/src/app/vendor/highlight-js/highlight.pack.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx":[function(require,module,exports){
+},{"hljs":"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\highlight-js\\highlight.pack.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34421,12 +33974,12 @@ var CodeExample = React.createClass({displayName: 'CodeExample',
 
 	render: function() {
 		return (
-			mui.Paper({className: "code-example"}, 
-    		React.DOM.div({className: "example-label"}, "example"), 
-	    	React.DOM.div({className: "example-block"}, 
+			React.createElement(mui.Paper, {className: "code-example"}, 
+    		React.createElement("div", {className: "example-label"}, "example"), 
+	    	React.createElement("div", {className: "example-block"}, 
 	    		this.props.children
 	    	), 
-	    	CodeBlock(null, this.props.code)
+	    	React.createElement(CodeBlock, null, this.props.code)
     	)
 		);
 	}
@@ -34434,7 +33987,7 @@ var CodeExample = React.createClass({displayName: 'CodeExample',
 });
 
 module.exports = CodeExample;
-},{"./code-block.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-block.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/master.jsx":[function(require,module,exports){
+},{"./code-block.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-block.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\master.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34492,25 +34045,25 @@ var Master = React.createClass({displayName: 'Master',
       }
 
       subNav = (
-        React.DOM.div({className: "subNav"}, 
-          Menu({ref: "menuItems", zDepth: 0, menuItems: menuItems, selectedIndex: selectedIndex, onItemClick: this._onMenuItemClick})
+        React.createElement("div", {className: "subNav"}, 
+          React.createElement(Menu, {ref: "menuItems", zDepth: 0, menuItems: menuItems, selectedIndex: selectedIndex, onItemClick: this._onMenuItemClick})
         )
       );
     }
 
     return (
-      mui.AppCanvas({predefinedLayout: 1}, 
-        mui.AppBar({onMenuIconClick: this._onMenuIconClick, title: title, zDepth: 0}, Icon({icon: "github", onClick: this._onGithubClick})), 
-    		AppLeftNav({ref: "leftNav", url: this.state.currentUrl}), 
-    		React.DOM.div({className: contentCanvasClass}, 
+      React.createElement(mui.AppCanvas, {predefinedLayout: 1}, 
+        React.createElement(mui.AppBar, {onMenuIconClick: this._onMenuIconClick, title: title, zDepth: 0}, React.createElement(Icon, {icon: "github", onClick: this._onGithubClick})), 
+    		React.createElement(AppLeftNav, {ref: "leftNav", url: this.state.currentUrl}), 
+    		React.createElement("div", {className: contentCanvasClass}, 
           subNav, 
-          React.DOM.div({className: "subContent"}, 
+          React.createElement("div", {className: "subContent"}, 
             currentMainComponent
           )
         ), 
-        React.DOM.div({className: "footer"}, 
-            Icon({icon: "github", onClick: this._onGithubClick}), 
-            React.DOM.p(null, "Hand crafted with love by the engineers at ", React.DOM.a({href: "http://call-em-all.com"}, "Call-Em-All"), " and our awesome ", React.DOM.a({href: "https://github.com/callemall/material-ui/graphs/contributors"}, "contributors"), ".")
+        React.createElement("div", {className: "footer"}, 
+            React.createElement(Icon, {icon: "github", onClick: this._onGithubClick}), 
+            React.createElement("p", null, "Hand crafted with love by the engineers at ", React.createElement("a", {href: "http://call-em-all.com"}, "Call-Em-All"), " and our awesome ", React.createElement("a", {href: "https://github.com/callemall/material-ui/graphs/contributors"}, "contributors"), ".")
         )
       )
     );
@@ -34538,12 +34091,13 @@ var Master = React.createClass({displayName: 'Master',
 
 module.exports = Master;
 
-},{"../app-dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js","../stores/app-state-store.js":"/Users/hai/GitHub/material-ui/docs/src/app/stores/app-state-store.js","./app-left-nav.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/app-left-nav.jsx","./pages.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages.jsx","backbone":"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages.jsx":[function(require,module,exports){
+},{"../app-dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js","../stores/app-state-store.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\stores\\app-state-store.js","./app-left-nav.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\app-left-nav.jsx","./pages.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages.jsx","backbone":"D:\\GitHub\\material-ui\\docs\\node_modules\\backbone\\backbone.js","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages.jsx":[function(require,module,exports){
 /**;
  * @jsx React.DOM
  */
 
-var Home = require('./pages/home.jsx'),
+var React = require('react'),
+	Home = require('./pages/home.jsx'),
 	GetStarted = require('./pages/get-started.jsx'),
 	Buttons = require('./pages/buttons.jsx'),
 	Colors = require('./pages/colors.jsx'),
@@ -34560,33 +34114,33 @@ var Pages = {
 	home: { 
 		url: '', 
 		title: '', 
-		mainContentComponent: Home(null) 
+		mainContentComponent: React.createElement(Home, null) 
 	},
 	getStarted: {
 		url: 'get-started',
 		title: 'Get Started',
-		mainContentComponent: GetStarted(null)
+		mainContentComponent: React.createElement(GetStarted, null)
 	},
 	cssFramework: { 
 		url: 'css-framework/colors', 
 		title: 'Css Framework', 
 		subPages: {
-			colors: { url: 'css-framework/colors', title: 'Colors', mainContentComponent: Colors(null) },
-			typography: { url: 'css-framework/typography', title: 'Typography', mainContentComponent: Typography(null) }
+			colors: { url: 'css-framework/colors', title: 'Colors', mainContentComponent: React.createElement(Colors, null) },
+			typography: { url: 'css-framework/typography', title: 'Typography', mainContentComponent: React.createElement(Typography, null) }
 		}
 	},
 	components: {
 		url: 'components/buttons',
 		title: 'Components',
 		subPages: {
-			buttons: { url: 'components/buttons', title: 'Buttons', mainContentComponent: Buttons(null) },
-			dialog: { url: 'components/dialog', title: 'Dialog', mainContentComponent: Dialog(null) },
-			icons: { url: 'components/icons', title: 'Icons', mainContentComponent: Icons(null) },
-			inputs: { url: 'components/inputs', title: 'Inputs', mainContentComponent: Inputs(null) },
-			menus: { url: 'components/menus', title: 'Menus', mainContentComponent: Menus(null) },
-			switches: { url: 'components/switches', title: 'Switches', mainContentComponent: Switches(null) },
+			buttons: { url: 'components/buttons', title: 'Buttons', mainContentComponent: React.createElement(Buttons, null) },
+			dialog: { url: 'components/dialog', title: 'Dialog', mainContentComponent: React.createElement(Dialog, null) },
+			icons: { url: 'components/icons', title: 'Icons', mainContentComponent: React.createElement(Icons, null) },
+			inputs: { url: 'components/inputs', title: 'Inputs', mainContentComponent: React.createElement(Inputs, null) },
+			menus: { url: 'components/menus', title: 'Menus', mainContentComponent: React.createElement(Menus, null) },
+			switches: { url: 'components/switches', title: 'Switches', mainContentComponent: React.createElement(Switches, null) },
 			//toasts: { url: 'components/toasts', title: 'Toasts', mainContentComponent: <Toasts /> },
-			toolbars: { url: 'components/toolbar', title: 'Toolbars', mainContentComponent: Toolbar(null) }
+			toolbars: { url: 'components/toolbar', title: 'Toolbars', mainContentComponent: React.createElement(Toolbar, null) }
 		}
 	},
 
@@ -34607,7 +34161,7 @@ var Pages = {
 module.exports = Pages;
 
 
-},{"./pages/buttons.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/buttons.jsx","./pages/colors.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/colors.jsx","./pages/dialog.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/dialog.jsx","./pages/get-started.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/get-started.jsx","./pages/home.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/home.jsx","./pages/icons.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/icons.jsx","./pages/inputs.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/inputs.jsx","./pages/menus.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/menus.jsx","./pages/switches.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/switches.jsx","./pages/toasts.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/toasts.jsx","./pages/toolbars.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/toolbars.jsx","./pages/typography.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/typography.jsx"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/buttons.jsx":[function(require,module,exports){
+},{"./pages/buttons.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\buttons.jsx","./pages/colors.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\colors.jsx","./pages/dialog.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\dialog.jsx","./pages/get-started.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\get-started.jsx","./pages/home.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\home.jsx","./pages/icons.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\icons.jsx","./pages/inputs.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\inputs.jsx","./pages/menus.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\menus.jsx","./pages/switches.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\switches.jsx","./pages/toasts.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\toasts.jsx","./pages/toolbars.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\toolbars.jsx","./pages/typography.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\typography.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\buttons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34621,15 +34175,15 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 
   render: function() {
     return (
-    	React.DOM.div(null, 
+    	React.createElement("div", null, 
 
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Flat Buttons"), 
+    		React.createElement("h2", {className: "mui-font-style-headline"}, "Flat Buttons"), 
         this._getFlatExamples(), 
 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Raised Buttons"), 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Raised Buttons"), 
         this._getRaisedExamples(), 
 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Floating Action Buttons"), 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Floating Action Buttons"), 
         this._getFabExamples()
 
     	)
@@ -34643,10 +34197,10 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
       '<PaperButton type={PaperButton.Types.FLAT} label="Disabled" disabled={true} />';
 
     return (
-      CodeExample({code: code}, 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Disabled", disabled: true})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement(PaperButton, {type: PaperButton.Types.FLAT, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
+        React.createElement(PaperButton, {type: PaperButton.Types.FLAT, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
+        React.createElement(PaperButton, {type: PaperButton.Types.FLAT, label: "Disabled", disabled: true})
       )
     );
   },
@@ -34658,10 +34212,10 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
       '<PaperButton type={PaperButton.Types.RAISED} label="Disabled" disabled={true} />';
 
     return (
-      CodeExample({code: code}, 
-        PaperButton({type: PaperButton.Types.RAISED, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.RAISED, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.RAISED, label: "Disabled", disabled: true})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement(PaperButton, {type: PaperButton.Types.RAISED, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
+        React.createElement(PaperButton, {type: PaperButton.Types.RAISED, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
+        React.createElement(PaperButton, {type: PaperButton.Types.RAISED, label: "Disabled", disabled: true})
       )
     );
   },
@@ -34672,9 +34226,9 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
       '<PaperButton type={PaperButton.Types.FAB} icon="phone" />';
 
     return (
-      CodeExample({code: code}, 
-        PaperButton({type: PaperButton.Types.FAB_MINI, icon: "phone", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FAB, icon: "phone", onClick: this._onPaperButtonClick})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement(PaperButton, {type: PaperButton.Types.FAB_MINI, icon: "phone", onClick: this._onPaperButtonClick}), "        ", 
+        React.createElement(PaperButton, {type: PaperButton.Types.FAB, icon: "phone", onClick: this._onPaperButtonClick})
       )
     );
   },
@@ -34687,7 +34241,7 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 
 module.exports = ButtonPage;
 
-},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/colors.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\colors.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34714,14 +34268,14 @@ var ColorsPage = React.createClass({displayName: 'ColorsPage',
   	}, this);
 
     return (
-    	React.DOM.div(null, 
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "UI Color Palette"), 
-	    	React.DOM.p(null, "We've created ", React.DOM.a({href: "http://lesscss.org/"}, "{less}"), " variables for every color used in the ", React.DOM.a({href: "https://www.google.com/design/spec/style/color.html#color-ui-color-palette"}, "UI Color Palette"), "."), 
+    	React.createElement("div", null, 
+	    	React.createElement("h2", {className: "mui-font-style-headline"}, "UI Color Palette"), 
+	    	React.createElement("p", null, "We've created ", React.createElement("a", {href: "http://lesscss.org/"}, "{less}"), " variables for every color used in the ", React.createElement("a", {href: "https://www.google.com/design/spec/style/color.html#color-ui-color-palette"}, "UI Color Palette"), "."), 
 
-	    	React.DOM.div({className: "color-palette"}, 
+	    	React.createElement("div", {className: "color-palette"}, 
 	    		colorGroups, 
 
-					React.DOM.div({className: "neutral"}, 
+					React.createElement("div", {className: "neutral"}, 
 						neutralGroups
 					)
 	    	)
@@ -34746,7 +34300,7 @@ var ColorsPage = React.createClass({displayName: 'ColorsPage',
 	  }
 
   	return (
-			React.DOM.ul({className: "color-group"}, 
+			React.createElement("ul", {className: "color-group"}, 
 				this._getColorBlock(cssColor, 500, color), 
 				colors
 			)
@@ -34759,10 +34313,10 @@ var ColorsPage = React.createClass({displayName: 'ColorsPage',
   		colorText = '@' + colorClass,
   		blockTitle;
 
-  	if (colorTitle) blockTitle = React.DOM.span({className: "name"}, colorTitle);
+  	if (colorTitle) blockTitle = React.createElement("span", {className: "name"}, colorTitle);
 
   	return (
-  		React.DOM.li({className: classes}, blockTitle, colorText)
+  		React.createElement("li", {className: classes}, blockTitle, colorText)
   	);
   }
 
@@ -34770,7 +34324,7 @@ var ColorsPage = React.createClass({displayName: 'ColorsPage',
 
 module.exports = ColorsPage;
 
-},{"react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/dialog.jsx":[function(require,module,exports){
+},{"react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\dialog.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34807,11 +34361,11 @@ var DialogExample = React.createClass({displayName: 'DialogExample',
 		];
 
 		return (
-			React.DOM.div(null, 
-    		CodeExample({code: code}, 
-    			mui.PaperButton({label: "DEMO", onClick: this._showDialog})
+			React.createElement("div", null, 
+    		React.createElement(CodeExample, {code: code}, 
+    			React.createElement(mui.PaperButton, {label: "DEMO", onClick: this._showDialog})
     		), 
-    		mui.Dialog({ref: "dialogExample", title: "Title", actions: dialogActions}, 
+    		React.createElement(mui.Dialog, {ref: "dialogExample", title: "Title", actions: dialogActions}, 
     			"This is an example of a dialog component built with Facebook's React and following" + ' ' + 
     			"Google's Material Design principles."
   			)
@@ -34826,7 +34380,7 @@ var DialogExample = React.createClass({displayName: 'DialogExample',
 });
 
 module.exports = DialogExample;
-},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/get-started.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\get-started.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34861,41 +34415,41 @@ var HomePage = React.createClass({displayName: 'HomePage',
       '@import "node_modules/material-ui/dist/less/components.less";';
 
     return (
-      React.DOM.div({className: "get-started-page"}, 
-        React.DOM.div({className: "full-width-section"}, 
-          React.DOM.h2({className: "mui-font-style-headline"}, "Installation"), 
-          React.DOM.p({className: "content"}, 
-            "Material-UI is available as an ", React.DOM.a({href: "https://www.npmjs.org/package/material-ui"}, "npm package"), "." + ' ' + 
-            "Use ", React.DOM.a({href: "http://browserify.org/"}, "browserify"), " and ", React.DOM.a({href: "https://github.com/andreypopp/reactify"}, "reactify"), " for" + ' ' +
-            "dependency management and JSX transformation. The CSS framework is written in ", React.DOM.a({href: "http://lesscss.org/"}, "Less"), "," + ' ' +
+      React.createElement("div", {className: "get-started-page"}, 
+        React.createElement("div", {className: "full-width-section"}, 
+          React.createElement("h2", {className: "mui-font-style-headline"}, "Installation"), 
+          React.createElement("p", {className: "content"}, 
+            "Material-UI is available as an ", React.createElement("a", {href: "https://www.npmjs.org/package/material-ui"}, "npm package"), "." + ' ' + 
+            "Use ", React.createElement("a", {href: "http://browserify.org/"}, "browserify"), " and ", React.createElement("a", {href: "https://github.com/andreypopp/reactify"}, "reactify"), " for" + ' ' +
+            "dependency management and JSX transformation. The CSS framework is written in ", React.createElement("a", {href: "http://lesscss.org/"}, "Less"), "," + ' ' +
             "so you'll need to compile that as well."
           )
         ), 
         
-        React.DOM.div({className: "full-width-section"}, 
-          React.DOM.div({className: "content"}, 
-            React.DOM.h2({className: "mui-font-style-headline"}, "Usage"), 
-            React.DOM.p(null, 
+        React.createElement("div", {className: "full-width-section"}, 
+          React.createElement("div", {className: "content"}, 
+            React.createElement("h2", {className: "mui-font-style-headline"}, "Usage"), 
+            React.createElement("p", null, 
               "Once material-ui is included in your project, you can use the components this way:"
             ), 
-            mui.Paper({className: "code-example"}, 
-              CodeBlock(null, usageCode)
+            React.createElement(mui.Paper, {className: "code-example"}, 
+              React.createElement(CodeBlock, null, usageCode)
             )
           ), 
 
-          React.DOM.div({className: "content"}, 
-            React.DOM.h2({className: "mui-font-style-headline"}, "Customization"), 
-            React.DOM.div(null, 
-              React.DOM.p(null, "The styles are separated into 2 less files:"), 
-              React.DOM.li(null, "dist/less/scaffolding.less"), 
-              React.DOM.li(null, "dist/less/components.less"), 
-              React.DOM.p(null, 
+          React.createElement("div", {className: "content"}, 
+            React.createElement("h2", {className: "mui-font-style-headline"}, "Customization"), 
+            React.createElement("div", null, 
+              React.createElement("p", null, "The styles are separated into 2 less files:"), 
+              React.createElement("li", null, "dist/less/scaffolding.less"), 
+              React.createElement("li", null, "dist/less/components.less"), 
+              React.createElement("p", null, 
                 "This allows you to override any variables defined in custom-variables.less without having to" + ' ' +
                 "modify material-ui source files directly. For example, your main.less file could look something like this:"
               )
             ), 
-            mui.Paper({className: "code-example"}, 
-              CodeBlock(null, customizationCode)
+            React.createElement(mui.Paper, {className: "code-example"}, 
+              React.createElement(CodeBlock, null, customizationCode)
             )
           )
         )
@@ -34907,7 +34461,7 @@ var HomePage = React.createClass({displayName: 'HomePage',
 
 module.exports = HomePage;
 
-},{"../code-example/code-block.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-block.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/home.jsx":[function(require,module,exports){
+},{"../code-example/code-block.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-block.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\home.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34922,49 +34476,49 @@ var HomePage = React.createClass({displayName: 'HomePage',
 
   render: function() {
     return (
-        React.DOM.div(null, 
-        	React.DOM.div({className: "home-page-hero full-width-section"}, 
-                React.DOM.div({className: "home-page-hero-content"}, 
-                    React.DOM.img({className: "svg-logo", src: "images/material-ui-logo.svg"}), 
-                    React.DOM.div({className: "tagline"}, 
-                        React.DOM.h1({className: "brand-name"}, "material ui"), 
-                        React.DOM.h2({className: "mui-font-style-headline"}, "A CSS Framework and a Set of React Components that Implement Google's Material Design"), 
-                        React.DOM.p({className: "mui-font-style-subhead-1"}, "Material-UI came about from our love" + ' ' +
-                        "of ", React.DOM.a({href: "http://facebook.github.io/react/"}, "React"), " and ", React.DOM.a({href: "https://www.google.com/design/spec/material-design/introduction.html"}, "Google's" + ' ' +
-                        "Material Design"), ". We're currently using it on a project at ", React.DOM.a({href: "https://www.call-em-all.com/"}, "Call-Em-All"), " and plan on" + ' ' +
+        React.createElement("div", null, 
+        	React.createElement("div", {className: "home-page-hero full-width-section"}, 
+                React.createElement("div", {className: "home-page-hero-content"}, 
+                    React.createElement("img", {className: "svg-logo", src: "images/material-ui-logo.svg"}), 
+                    React.createElement("div", {className: "tagline"}, 
+                        React.createElement("h1", {className: "brand-name"}, "material ui"), 
+                        React.createElement("h2", {className: "mui-font-style-headline"}, "A CSS Framework and a Set of React Components that Implement Google's Material Design"), 
+                        React.createElement("p", {className: "mui-font-style-subhead-1"}, "Material-UI came about from our love" + ' ' +
+                        "of ", React.createElement("a", {href: "http://facebook.github.io/react/"}, "React"), " and ", React.createElement("a", {href: "https://www.google.com/design/spec/material-design/introduction.html"}, "Google's" + ' ' +
+                        "Material Design"), ". We're currently using it on a project at ", React.createElement("a", {href: "https://www.call-em-all.com/"}, "Call-Em-All"), " and plan on" + ' ' +
                         "adding to it and making it better in the coming months."
                         )
                     )
                 )
         	), 
-            React.DOM.div({className: "home-features"}, 
-                React.DOM.div({className: "feature"}, 
-                    React.DOM.div({className: "icon-circle", onClick: this._getStartedClick}, Icon({icon: "check-all"})), 
-                    React.DOM.h3(null, "Get Started"), 
-                    React.DOM.p(null, 
+            React.createElement("div", {className: "home-features"}, 
+                React.createElement("div", {className: "feature"}, 
+                    React.createElement("div", {className: "icon-circle", onClick: this._getStartedClick}, React.createElement(Icon, {icon: "check-all"})), 
+                    React.createElement("h3", null, "Get Started"), 
+                    React.createElement("p", null, 
                         "The best way to get started is check out our repo and download the code. This doc site, along with its live examples, are all built with react. :)"
                     )
                 ), 
-                React.DOM.div({className: "feature"}, 
-                    React.DOM.div({className: "icon-circle", onClick: this._cssFrameworkClick}, Icon({icon: "web"})), 
-                    React.DOM.h3(null, "Css Framework"), 
-                    React.DOM.p(null, 
-                        "The Css Framework is built with ", React.DOM.a({href: "http://lesscss.org"}, "Less"), ". We've included handy things like resets, colors, and typography to help get you going."
+                React.createElement("div", {className: "feature"}, 
+                    React.createElement("div", {className: "icon-circle", onClick: this._cssFrameworkClick}, React.createElement(Icon, {icon: "web"})), 
+                    React.createElement("h3", null, "Css Framework"), 
+                    React.createElement("p", null, 
+                        "The Css Framework is built with ", React.createElement("a", {href: "http://lesscss.org"}, "Less"), ". We've included handy things like resets, colors, and typography to help get you going."
                     )
                 ), 
-                React.DOM.div({className: "feature"}, 
-                    React.DOM.div({className: "icon-circle", onClick: this._componentsClick}, Icon({icon: "select-all"})), 
-                    React.DOM.h3(null, "Components"), 
-                    React.DOM.p(null, 
+                React.createElement("div", {className: "feature"}, 
+                    React.createElement("div", {className: "icon-circle", onClick: this._componentsClick}, React.createElement(Icon, {icon: "select-all"})), 
+                    React.createElement("h3", null, "Components"), 
+                    React.createElement("p", null, 
                         "We've started building out some material design components using react." + ' ' + 
                         "Here's a sneak peek at a few - with more on the way."
                     )
                 )
             ), 
-            React.DOM.div({className: "home-contribute"}, 
-                React.DOM.div({className: "content-container"}, 
-                    React.DOM.h3(null, "Want to help make this project awesome? Check out our repo."), 
-                    PaperButton({type: PaperButton.Types.RAISED, primary: true, label: "Github", onClick: this._onGithubClick})
+            React.createElement("div", {className: "home-contribute"}, 
+                React.createElement("div", {className: "content-container"}, 
+                    React.createElement("h3", null, "Want to help make this project awesome? Check out our repo."), 
+                    React.createElement(PaperButton, {type: PaperButton.Types.RAISED, primary: true, label: "Github", onClick: this._onGithubClick})
                 )
             )
 
@@ -34994,7 +34548,7 @@ var HomePage = React.createClass({displayName: 'HomePage',
 
 module.exports = HomePage;
 
-},{"../../app-dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/icons.jsx":[function(require,module,exports){
+},{"../../app-dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\icons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -35055,21 +34609,21 @@ var IconsPage = React.createClass({displayName: 'IconsPage',
 
   render: function() {
     return (
-    	React.DOM.div(null, 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Icon Component"), 
+    	React.createElement("div", null, 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Icon Component"), 
         this._getComponentExample(), 
 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Core Icons"), 
-        React.DOM.hr(null), 
-        React.DOM.div({className: "icon-group"}, 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Core Icons"), 
+        React.createElement("hr", null), 
+        React.createElement("div", {className: "icon-group"}, 
           this._getIconGroup(coreIcons)
         ), 
 
-        React.DOM.br(null), 
+        React.createElement("br", null), 
 
-        React.DOM.h2({className: "mui-font-style-headline"}, "App Icons"), 
-        React.DOM.hr(null), 
-        React.DOM.div({className: "icon-group"}, 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "App Icons"), 
+        React.createElement("hr", null), 
+        React.createElement("div", {className: "icon-group"}, 
           this._getIconGroup(appIcons)
         )
         
@@ -35089,8 +34643,8 @@ var IconsPage = React.createClass({displayName: 'IconsPage',
 
   _getIconExample: function(icon) {
     return (
-      React.DOM.div({className: "icon-example"}, 
-        Icon({icon: icon}), React.DOM.span(null, icon)
+      React.createElement("div", {className: "icon-example"}, 
+        React.createElement(Icon, {icon: icon}), React.createElement("span", null, icon)
       )
     );
   },
@@ -35099,8 +34653,8 @@ var IconsPage = React.createClass({displayName: 'IconsPage',
     var code = '<Icon icon="home" />';
 
     return (
-      CodeExample({code: code}, 
-        Icon({icon: "home"})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement(Icon, {icon: "home"})
       )
     );
   }
@@ -35109,7 +34663,7 @@ var IconsPage = React.createClass({displayName: 'IconsPage',
 
 module.exports = IconsPage;
 
-},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/inputs.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\inputs.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -35126,22 +34680,22 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
 
   render: function() {
     return (
-    	React.DOM.div(null, 
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Inputs"), 
-        React.DOM.br(null), 
-        mui.Input({ref: "firstname", onChange: this._onChange, type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
-        mui.Input({ref: "lastname", type: "text", name: "lastname", placeholder: "Last Name", description: "Your last name as it appears on your credit card.."}), 
-        mui.Input({ref: "addressline1", type: "text", name: "addressline1", placeholder: "Address Line 1", description: "Your address as it appears on your credit card."}), 
-        mui.Input({ref: "addressline2", type: "text", name: "zipcode", placeholder: "Zip Code", description: "Your zip code as it appears on your credit card."}), 
-        mui.Input({ref: "city", type: "text", name: "city", placeholder: "City", description: "Your city as it appears on your credit card."}), 
-        mui.Input({ref: "state", type: "text", name: "state", placeholder: "State", description: "Your state as it appears on your credit card."}), 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Error Validation"), 
-        React.DOM.br(null), 
-        mui.Input({ref: "allegiance", type: "text", name: "allegiance", placeholder: "Allegiance", description: "The house of which you served under."}), 
-    	  React.DOM.br(null), 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Floating"), 
-        React.DOM.br(null), 
-        mui.Input({ref: "username", type: "text", inputStyle: "floating", name: "Username", description: "The username associated with your account."})
+    	React.createElement("div", null, 
+    		React.createElement("h2", {className: "mui-font-style-headline"}, "Inputs"), 
+        React.createElement("br", null), 
+        React.createElement(mui.Input, {ref: "firstname", onChange: this._onChange, type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
+        React.createElement(mui.Input, {ref: "lastname", type: "text", name: "lastname", placeholder: "Last Name", description: "Your last name as it appears on your credit card.."}), 
+        React.createElement(mui.Input, {ref: "addressline1", type: "text", name: "addressline1", placeholder: "Address Line 1", description: "Your address as it appears on your credit card."}), 
+        React.createElement(mui.Input, {ref: "addressline2", type: "text", name: "zipcode", placeholder: "Zip Code", description: "Your zip code as it appears on your credit card."}), 
+        React.createElement(mui.Input, {ref: "city", type: "text", name: "city", placeholder: "City", description: "Your city as it appears on your credit card."}), 
+        React.createElement(mui.Input, {ref: "state", type: "text", name: "state", placeholder: "State", description: "Your state as it appears on your credit card."}), 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Error Validation"), 
+        React.createElement("br", null), 
+        React.createElement(mui.Input, {ref: "allegiance", type: "text", name: "allegiance", placeholder: "Allegiance", description: "The house of which you served under."}), 
+    	  React.createElement("br", null), 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Floating"), 
+        React.createElement("br", null), 
+        React.createElement(mui.Input, {ref: "username", type: "text", inputStyle: "floating", name: "Username", description: "The username associated with your account."})
         
         /* TODO: Needs to be completed}
         <h2 className="mui-font-style-headline">Multi-Line</h2>
@@ -35159,7 +34713,7 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
 });
 
 module.exports = InputsPage;
-},{"mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/menus.jsx":[function(require,module,exports){
+},{"mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\menus.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -35233,23 +34787,23 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
 
   render: function() {
     return (
-    	React.DOM.div(null, 
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Drop Down Menu"), 
+    	React.createElement("div", null, 
+    		React.createElement("h2", {className: "mui-font-style-headline"}, "Drop Down Menu"), 
     		this._getDropDownMenuExample(), 
 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Label Menu"), 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Label Menu"), 
         this._getLabelMenuExample(), 
 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Number Menu"), 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Number Menu"), 
         this._getNumberMenuExample(), 
 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Icon Menu"), 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Icon Menu"), 
         this._getIconMenuExample(), 
 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Filter Menu"), 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Filter Menu"), 
         this._getFilterMenuExample(), 
 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Nested Menu"), 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Nested Menu"), 
         this._getNestedMenuExample()
     	)
     );
@@ -35267,8 +34821,8 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
       "<DropDownMenu menuItems={menuItems} />";
 
     return (
-      CodeExample({code: code}, 
-        mui.DropDownMenu({menuItems: menuItems, onChange: this._onDropDownMenuChange})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement(mui.DropDownMenu, {menuItems: menuItems, onChange: this._onDropDownMenuChange})
       )
     );
   },
@@ -35283,9 +34837,9 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
       "<Menu menuItems={labelMenuItems} />";
 
     return (
-      CodeExample({code: code}, 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: labelMenuItems, onItemClick: this._onItemClick})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement("div", {className: "example-menu"}, 
+          React.createElement(mui.Menu, {menuItems: labelMenuItems, onItemClick: this._onItemClick})
         )
       )
     );
@@ -35301,9 +34855,9 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
       "<Menu menuItems={numberMenuItems} />";
 
     return (
-      CodeExample({code: code}, 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: numberMenuItems, onItemClick: this._onItemClick})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement("div", {className: "example-menu"}, 
+          React.createElement(mui.Menu, {menuItems: numberMenuItems, onItemClick: this._onItemClick})
         )
       )
     );
@@ -35320,9 +34874,9 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
       "<Menu menuItems={iconMenuItems} />";
 
     return (
-      CodeExample({code: code}, 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: iconMenuItems, onItemClick: this._onItemClick})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement("div", {className: "example-menu"}, 
+          React.createElement(mui.Menu, {menuItems: iconMenuItems, onItemClick: this._onItemClick})
         )
       )
     );
@@ -35338,9 +34892,9 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
       "<Menu menuItems={filterMenuItems} />";
 
     return (
-      CodeExample({code: code}, 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement("div", {className: "example-menu"}, 
+          React.createElement(mui.Menu, {menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
         )
       )
     );
@@ -35377,9 +34931,9 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
       '<Menu menuItems={nestedMenuItems} />';
 
     return (
-      CodeExample({code: code}, 
-        React.DOM.div({className: "example-menu-nested"}, 
-          mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement("div", {className: "example-menu-nested"}, 
+          React.createElement(mui.Menu, {menuItems: nestedMenuItems, onItemClick: this._onItemClick})
         )
       )
     );
@@ -35400,7 +34954,7 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
 });
 
 module.exports = MenusPage;
-},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/switches.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\switches.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -35413,12 +34967,12 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
 
   render: function() {
     return (
-    	React.DOM.div(null, 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Checkbox"), 
+    	React.createElement("div", null, 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Checkbox"), 
         this._getCheckboxExample(), 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Radio Button"), 
+        React.createElement("h2", {className: "mui-font-style-headline"}, "Radio Button"), 
         this._getRadioButtonExample(), 
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Toggle"), 
+    		React.createElement("h2", {className: "mui-font-style-headline"}, "Toggle"), 
         this._getToggleExample()
     	)
     );
@@ -35433,13 +34987,13 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
       '</form>';
 
     return (
-      CodeExample({code: code}, 
-        React.DOM.form(null, 
-          mui.Checkbox({name: "checkboxName", value: "checkboxValue1", onClick: this._onCheck}), 
-          React.DOM.br(null), 
-          mui.Checkbox({name: "checkboxName", value: "checkboxValue2", onClick: this._onCheck}), 
-          React.DOM.br(null), 
-          mui.Checkbox({name: "checkboxName", value: "checkboxValue3", onClick: this._onCheck})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement("form", null, 
+          React.createElement(mui.Checkbox, {name: "checkboxName", value: "checkboxValue1", onClick: this._onCheck}), 
+          React.createElement("br", null), 
+          React.createElement(mui.Checkbox, {name: "checkboxName", value: "checkboxValue2", onClick: this._onCheck}), 
+          React.createElement("br", null), 
+          React.createElement(mui.Checkbox, {name: "checkboxName", value: "checkboxValue3", onClick: this._onCheck})
         )
       )
     );
@@ -35450,8 +35004,8 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
       '<Toggle />';
 
     return (
-      CodeExample({code: code}, 
-        mui.Toggle({onToggle: this._onToggle})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement(mui.Toggle, {onToggle: this._onToggle})
       )
     );
   },
@@ -35465,13 +35019,13 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
       '</form>';
 
     return (
-      CodeExample({code: code}, 
-        React.DOM.form(null, 
-          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue1", onClick: this._onRadioButtonClick}), 
-          React.DOM.br(null), 
-          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue2", onClick: this._onRadioButtonClick}), 
-          React.DOM.br(null), 
-          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue3", onClick: this._onRadioButtonClick})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement("form", null, 
+          React.createElement(mui.RadioButton, {name: "radioButtonName", value: "radioButtonValue1", onClick: this._onRadioButtonClick}), 
+          React.createElement("br", null), 
+          React.createElement(mui.RadioButton, {name: "radioButtonName", value: "radioButtonValue2", onClick: this._onRadioButtonClick}), 
+          React.createElement("br", null), 
+          React.createElement(mui.RadioButton, {name: "radioButtonName", value: "radioButtonValue3", onClick: this._onRadioButtonClick})
         )
       )
     );
@@ -35492,7 +35046,7 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
 });
 
 module.exports = SwitchesPage;
-},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/toasts.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\toasts.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -35512,8 +35066,8 @@ var ToastsPage = React.createClass({displayName: 'ToastsPage',
 
   render: function() {
     return (
-    	React.DOM.div(null, 
-  			React.DOM.h2({className: "mui-font-style-headline"}, "Toasts"), 
+    	React.createElement("div", null, 
+  			React.createElement("h2", {className: "mui-font-style-headline"}, "Toasts"), 
   			this._getToastExample()
   		)
     );
@@ -35524,9 +35078,9 @@ var ToastsPage = React.createClass({displayName: 'ToastsPage',
       "";
 
     return (
-      CodeExample({code: code}, 
-        React.DOM.button({onClick: this.triggerToast}, "Trigger Toast"), 
-      	mui.Toast({ref: "Toast", message: this.state.message, action: this.state.action})
+      React.createElement(CodeExample, {code: code}, 
+        React.createElement("button", {onClick: this.triggerToast}, "Trigger Toast"), 
+      	React.createElement(mui.Toast, {ref: "Toast", message: this.state.message, action: this.state.action})
       )
     );
   },
@@ -35538,7 +35092,7 @@ var ToastsPage = React.createClass({displayName: 'ToastsPage',
 });
 
 module.exports = ToastsPage;
-},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/toolbars.jsx":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\toolbars.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var mui = require('mui');
@@ -35565,28 +35119,28 @@ var ToolbarPage = React.createClass({displayName: 'ToolbarPage',
     ];
 
     rightItems = [
-      mui.Icon({icon: "sort"}),
-      mui.Icon({icon: "filter"}),
-      mui.Icon({icon: "search"}),
-      mui.DropDownIcon({icon: "chevron-down", menuItems: iconMenuItems, onChange: this._onDropDownMenuChange}),
+      React.createElement(mui.Icon, {icon: "sort"}),
+      React.createElement(mui.Icon, {icon: "filter"}),
+      React.createElement(mui.Icon, {icon: "search"}),
+      React.createElement(mui.DropDownIcon, {icon: "chevron-down", menuItems: iconMenuItems, onChange: this._onDropDownMenuChange}),
       { type: "separator"},
-      mui.PaperButton({type: PaperButton.Types.RAISED, label: "Create Broadcast", primary: true}),
+      React.createElement(mui.PaperButton, {type: PaperButton.Types.RAISED, label: "Create Broadcast", primary: true}),
     ],
         
     leftItems = [
-      mui.DropDownMenu({menuItems: filterOptions}),
+      React.createElement(mui.DropDownMenu, {menuItems: filterOptions}),
     ];
 
     groups = [ 
-      mui.ToolbarGroup({key: 0, float: "left", groupItems: leftItems}),
-      mui.ToolbarGroup({key: 1, float: "right", groupItems: rightItems})
+      React.createElement(mui.ToolbarGroup, {key: 0, float: "left", groupItems: leftItems}),
+      React.createElement(mui.ToolbarGroup, {key: 1, float: "right", groupItems: rightItems})
     ];
 
     return (
-    	React.DOM.div(null, 
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Toolbars"), 
-        React.DOM.div({className: "mui-toolbar-container"}, 
-          mui.Toolbar({groups: groups})
+    	React.createElement("div", null, 
+    		React.createElement("h2", {className: "mui-font-style-headline"}, "Toolbars"), 
+        React.createElement("div", {className: "mui-toolbar-container"}, 
+          React.createElement(mui.Toolbar, {groups: groups})
         )
     	)
     );
@@ -35599,7 +35153,7 @@ var ToolbarPage = React.createClass({displayName: 'ToolbarPage',
 });
 
 module.exports = ToolbarPage;
-},{"mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/typography.jsx":[function(require,module,exports){
+},{"mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\typography.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -35612,25 +35166,25 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
 
   render: function() {
     return (
-    	React.DOM.div(null, 
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "Roboto"), 
-	    	React.DOM.p(null, 
-	    		"The Roboto font and 3 font weights (light, regular, and medium) are automatically included from ", React.DOM.a({href: "http://www.google.com/fonts/specimen/Roboto"}, "Google Fonts"), "."
+    	React.createElement("div", null, 
+	    	React.createElement("h2", {className: "mui-font-style-headline"}, "Roboto"), 
+	    	React.createElement("p", null, 
+	    		"The Roboto font and 3 font weights (light, regular, and medium) are automatically included from ", React.createElement("a", {href: "http://www.google.com/fonts/specimen/Roboto"}, "Google Fonts"), "."
 	    	), 
 
-	    	React.DOM.br(null), 
+	    	React.createElement("br", null), 
 
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "Vertical Rhythm"), 
-	    	React.DOM.p(null, "Default styles for headings and paragraphs have consistent vertical rhythm. Click the text below to see. :)"), 
+	    	React.createElement("h2", {className: "mui-font-style-headline"}, "Vertical Rhythm"), 
+	    	React.createElement("p", null, "Default styles for headings and paragraphs have consistent vertical rhythm. Click the text below to see. :)"), 
 	    	this._getVerticalRhythmExample(), 
 
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "Typographic Scale"), 
+	    	React.createElement("h2", {className: "mui-font-style-headline"}, "Typographic Scale"), 
 	    	this._getScaleExample(), 
 
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "Color Contrast"), 
+	    	React.createElement("h2", {className: "mui-font-style-headline"}, "Color Contrast"), 
 	    	this._getColorExample(), 
 
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "Tracking and Kerning"), 
+	    	React.createElement("h2", {className: "mui-font-style-headline"}, "Tracking and Kerning"), 
 	    	this._getTrackingExample()
     	)
     );
@@ -35655,15 +35209,15 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
 			'</p>';
 
 		return (
-			CodeExample({code: code}, 
-				React.DOM.div({ref: "verticalRhythmContainer", onClick: this._onClick}, 
-		    	React.DOM.h1(null, "h1. Html Heading"), 
-		    	React.DOM.h2(null, "h2. Html Heading"), 
-		    	React.DOM.h3(null, "h3. Html Heading"), 
-		    	React.DOM.h4(null, "h4. Html Heading"), 
-		    	React.DOM.h5(null, "h5. Html Heading"), 
-		    	React.DOM.h6(null, "h6. Html Heading"), 
-		    	React.DOM.p(null, "p. Lorem ipsum dolor sit amet, sed docendi suscipit scripserit eu, persius invenire id sea. Ius dicant facilis propriae an, ut vim nonumy meliore lucilius, usu nonumes phaedrum ad. Ea nam error audiam, oratio nostrud pro id. Ut sea cetero labitur gubergren, munere maiorum nostrum vim ut, te feugiat vulputate cum. Choro volumus sapientem te sed, legimus splendide ad nec.")
+			React.createElement(CodeExample, {code: code}, 
+				React.createElement("div", {ref: "verticalRhythmContainer", onClick: this._onClick}, 
+		    	React.createElement("h1", null, "h1. Html Heading"), 
+		    	React.createElement("h2", null, "h2. Html Heading"), 
+		    	React.createElement("h3", null, "h3. Html Heading"), 
+		    	React.createElement("h4", null, "h4. Html Heading"), 
+		    	React.createElement("h5", null, "h5. Html Heading"), 
+		    	React.createElement("h6", null, "h6. Html Heading"), 
+		    	React.createElement("p", null, "p. Lorem ipsum dolor sit amet, sed docendi suscipit scripserit eu, persius invenire id sea. Ius dicant facilis propriae an, ut vim nonumy meliore lucilius, usu nonumes phaedrum ad. Ea nam error audiam, oratio nostrud pro id. Ut sea cetero labitur gubergren, munere maiorum nostrum vim ut, te feugiat vulputate cum. Choro volumus sapientem te sed, legimus splendide ad nec.")
     		)
 			)
 		);
@@ -35685,19 +35239,19 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
     	'<div className="mui-font-style-button">MEDIUM (ALL CAPS) 14px</div>';
 
 		return (
-			CodeExample({code: code}, 
-				React.DOM.div({className: "mui-font-style-display-4"}, "Light 112px"), 
-	    	React.DOM.div({className: "mui-font-style-display-3"}, "Regular 56px"), 
-	    	React.DOM.div({className: "mui-font-style-display-2"}, "Regular 45px"), 
-	    	React.DOM.div({className: "mui-font-style-display-1"}, "Regular 34px"), 
-	    	React.DOM.div({className: "mui-font-style-headline"}, "Regular 24px"), 
-	    	React.DOM.div({className: "mui-font-style-title"}, "Medium 20px"), 
-	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Regular 15px"), 
-	    	React.DOM.div({className: "mui-font-style-body-2"}, "Medium 13px"), 
-	    	React.DOM.div({className: "mui-font-style-body-1"}, "Regular 13px"), 
-	    	React.DOM.div({className: "mui-font-style-caption"}, "Regular 12px"), 
-	    	React.DOM.div({className: "mui-font-style-menu"}, "Medium 13px"), 
-	    	React.DOM.div({className: "mui-font-style-button"}, "MEDIUM (ALL CAPS) 14px")
+			React.createElement(CodeExample, {code: code}, 
+				React.createElement("div", {className: "mui-font-style-display-4"}, "Light 112px"), 
+	    	React.createElement("div", {className: "mui-font-style-display-3"}, "Regular 56px"), 
+	    	React.createElement("div", {className: "mui-font-style-display-2"}, "Regular 45px"), 
+	    	React.createElement("div", {className: "mui-font-style-display-1"}, "Regular 34px"), 
+	    	React.createElement("div", {className: "mui-font-style-headline"}, "Regular 24px"), 
+	    	React.createElement("div", {className: "mui-font-style-title"}, "Medium 20px"), 
+	    	React.createElement("div", {className: "mui-font-style-subhead-1"}, "Regular 15px"), 
+	    	React.createElement("div", {className: "mui-font-style-body-2"}, "Medium 13px"), 
+	    	React.createElement("div", {className: "mui-font-style-body-1"}, "Regular 13px"), 
+	    	React.createElement("div", {className: "mui-font-style-caption"}, "Regular 12px"), 
+	    	React.createElement("div", {className: "mui-font-style-menu"}, "Medium 13px"), 
+	    	React.createElement("div", {className: "mui-font-style-button"}, "MEDIUM (ALL CAPS) 14px")
 			)
 		);
   },
@@ -35718,19 +35272,19 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
     	'<div className="mui-font-style-button">Black 87%</div>';
 
 		return (
-			CodeExample({code: code}, 
-				React.DOM.div({className: "mui-font-style-display-4"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-display-3"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-display-2"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-display-1"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-headline"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-title"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-body-2"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-body-1"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-caption"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-menu"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-button"}, "Black 87%")
+			React.createElement(CodeExample, {code: code}, 
+				React.createElement("div", {className: "mui-font-style-display-4"}, "Black 54%"), 
+	    	React.createElement("div", {className: "mui-font-style-display-3"}, "Black 54%"), 
+	    	React.createElement("div", {className: "mui-font-style-display-2"}, "Black 54%"), 
+	    	React.createElement("div", {className: "mui-font-style-display-1"}, "Black 54%"), 
+	    	React.createElement("div", {className: "mui-font-style-headline"}, "Black 87%"), 
+	    	React.createElement("div", {className: "mui-font-style-title"}, "Black 87%"), 
+	    	React.createElement("div", {className: "mui-font-style-subhead-1"}, "Black 87%"), 
+	    	React.createElement("div", {className: "mui-font-style-body-2"}, "Black 87%"), 
+	    	React.createElement("div", {className: "mui-font-style-body-1"}, "Black 87%"), 
+	    	React.createElement("div", {className: "mui-font-style-caption"}, "Black 54%"), 
+	    	React.createElement("div", {className: "mui-font-style-menu"}, "Black 87%"), 
+	    	React.createElement("div", {className: "mui-font-style-button"}, "Black 87%")
 			)
 		);
   },
@@ -35751,19 +35305,19 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
     	'<div className="mui-font-style-button">Tracking 10px</div>';
 
 		return (
-			CodeExample({code: code}, 
-				React.DOM.div({className: "mui-font-style-display-4"}, "Tracking -10px"), 
-	    	React.DOM.div({className: "mui-font-style-display-3"}, "Tracking -5px"), 
-	    	React.DOM.div({className: "mui-font-style-display-2"}, "Tracking 0px"), 
-	    	React.DOM.div({className: "mui-font-style-display-1"}, "Tracking 0px"), 
-	    	React.DOM.div({className: "mui-font-style-headline"}, "Tracking 0px"), 
-	    	React.DOM.div({className: "mui-font-style-title"}, "Tracking 5px"), 
-	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-body-2"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-body-1"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-caption"}, "Tracking 20px"), 
-	    	React.DOM.div({className: "mui-font-style-menu"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-button"}, "Tracking 10px")
+			React.createElement(CodeExample, {code: code}, 
+				React.createElement("div", {className: "mui-font-style-display-4"}, "Tracking -10px"), 
+	    	React.createElement("div", {className: "mui-font-style-display-3"}, "Tracking -5px"), 
+	    	React.createElement("div", {className: "mui-font-style-display-2"}, "Tracking 0px"), 
+	    	React.createElement("div", {className: "mui-font-style-display-1"}, "Tracking 0px"), 
+	    	React.createElement("div", {className: "mui-font-style-headline"}, "Tracking 0px"), 
+	    	React.createElement("div", {className: "mui-font-style-title"}, "Tracking 5px"), 
+	    	React.createElement("div", {className: "mui-font-style-subhead-1"}, "Tracking 10px"), 
+	    	React.createElement("div", {className: "mui-font-style-body-2"}, "Tracking 10px"), 
+	    	React.createElement("div", {className: "mui-font-style-body-1"}, "Tracking 10px"), 
+	    	React.createElement("div", {className: "mui-font-style-caption"}, "Tracking 20px"), 
+	    	React.createElement("div", {className: "mui-font-style-menu"}, "Tracking 10px"), 
+	    	React.createElement("div", {className: "mui-font-style-button"}, "Tracking 10px")
 			)
 		);
   },
@@ -35776,7 +35330,7 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
 
 module.exports = TypographyPage;
 
-},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/stores/app-state-store.js":[function(require,module,exports){
+},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\stores\\app-state-store.js":[function(require,module,exports){
 var _ = require('underscore'),
   Backbone = require('backbone'),
   Dispatcher = require('../app-dispatcher.js'),
@@ -35804,7 +35358,7 @@ var _ = require('underscore'),
 
 module.exports = new AppStateStore();
 
-},{"../app-dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js","backbone":"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js","underscore":"/Users/hai/GitHub/material-ui/docs/node_modules/underscore/underscore.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/vendor/flux/dispatcher.js":[function(require,module,exports){
+},{"../app-dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js","backbone":"D:\\GitHub\\material-ui\\docs\\node_modules\\backbone\\backbone.js","underscore":"D:\\GitHub\\material-ui\\docs\\node_modules\\underscore\\underscore.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\flux\\dispatcher.js":[function(require,module,exports){
 /*
  * Copyright (c) 2014, Facebook, Inc.
  * All rights reserved.
@@ -36053,7 +35607,7 @@ var _prefix = 'ID_';
 
 
 module.exports = Dispatcher;
-},{"./invariant":"/Users/hai/GitHub/material-ui/docs/src/app/vendor/flux/invariant.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/vendor/flux/invariant.js":[function(require,module,exports){
+},{"./invariant":"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\flux\\invariant.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\flux\\invariant.js":[function(require,module,exports){
 /**
  * Copyright (c) 2014, Facebook, Inc.
  * All rights reserved.
@@ -36107,7 +35661,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 };
 
 module.exports = invariant;
-},{}],"/Users/hai/GitHub/material-ui/docs/src/app/vendor/highlight-js/highlight.pack.js":[function(require,module,exports){
+},{}],"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\highlight-js\\highlight.pack.js":[function(require,module,exports){
 (function (global){
 ;__browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 var hljs=new function(){function j(v){return v.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")}function t(v){return v.nodeName.toLowerCase()}function h(w,x){var v=w&&w.exec(x);return v&&v.index==0}function r(w){var v=(w.className+" "+(w.parentNode?w.parentNode.className:"")).split(/\s+/);v=v.map(function(x){return x.replace(/^lang(uage)?-/,"")});return v.filter(function(x){return i(x)||x=="no-highlight"})[0]}function o(x,y){var v={};for(var w in x){v[w]=x[w]}if(y){for(var w in y){v[w]=y[w]}}return v}function u(x){var v=[];(function w(y,z){for(var A=y.firstChild;A;A=A.nextSibling){if(A.nodeType==3){z+=A.nodeValue.length}else{if(t(A)=="br"){z+=1}else{if(A.nodeType==1){v.push({event:"start",offset:z,node:A});z=w(A,z);v.push({event:"stop",offset:z,node:A})}}}}return z})(x,0);return v}function q(w,y,C){var x=0;var F="";var z=[];function B(){if(!w.length||!y.length){return w.length?w:y}if(w[0].offset!=y[0].offset){return(w[0].offset<y[0].offset)?w:y}return y[0].event=="start"?w:y}function A(H){function G(I){return" "+I.nodeName+'="'+j(I.value)+'"'}F+="<"+t(H)+Array.prototype.map.call(H.attributes,G).join("")+">"}function E(G){F+="</"+t(G)+">"}function v(G){(G.event=="start"?A:E)(G.node)}while(w.length||y.length){var D=B();F+=j(C.substr(x,D[0].offset-x));x=D[0].offset;if(D==w){z.reverse().forEach(E);do{v(D.splice(0,1)[0]);D=B()}while(D==w&&D.length&&D[0].offset==x);z.reverse().forEach(A)}else{if(D[0].event=="start"){z.push(D[0].node)}else{z.pop()}v(D.splice(0,1)[0])}}return F+j(C.substr(x))}function m(y){function v(z){return(z&&z.source)||z}function w(A,z){return RegExp(v(A),"m"+(y.cI?"i":"")+(z?"g":""))}function x(D,C){if(D.compiled){return}D.compiled=true;D.k=D.k||D.bK;if(D.k){var z={};var E=function(G,F){if(y.cI){F=F.toLowerCase()}F.split(" ").forEach(function(H){var I=H.split("|");z[I[0]]=[G,I[1]?Number(I[1]):1]})};if(typeof D.k=="string"){E("keyword",D.k)}else{Object.keys(D.k).forEach(function(F){E(F,D.k[F])})}D.k=z}D.lR=w(D.l||/\b[A-Za-z0-9_]+\b/,true);if(C){if(D.bK){D.b="\\b("+D.bK.split(" ").join("|")+")\\b"}if(!D.b){D.b=/\B|\b/}D.bR=w(D.b);if(!D.e&&!D.eW){D.e=/\B|\b/}if(D.e){D.eR=w(D.e)}D.tE=v(D.e)||"";if(D.eW&&C.tE){D.tE+=(D.e?"|":"")+C.tE}}if(D.i){D.iR=w(D.i)}if(D.r===undefined){D.r=1}if(!D.c){D.c=[]}var B=[];D.c.forEach(function(F){if(F.v){F.v.forEach(function(G){B.push(o(F,G))})}else{B.push(F=="self"?D:F)}});D.c=B;D.c.forEach(function(F){x(F,D)});if(D.starts){x(D.starts,C)}var A=D.c.map(function(F){return F.bK?"\\.?("+F.b+")\\.?":F.b}).concat([D.tE,D.i]).map(v).filter(Boolean);D.t=A.length?w(A.join("|"),true):{exec:function(F){return null}};D.continuation={}}x(y)}function c(S,L,J,R){function v(U,V){for(var T=0;T<V.c.length;T++){if(h(V.c[T].bR,U)){return V.c[T]}}}function z(U,T){if(h(U.eR,T)){return U}if(U.eW){return z(U.parent,T)}}function A(T,U){return !J&&h(U.iR,T)}function E(V,T){var U=M.cI?T[0].toLowerCase():T[0];return V.k.hasOwnProperty(U)&&V.k[U]}function w(Z,X,W,V){var T=V?"":b.classPrefix,U='<span class="'+T,Y=W?"":"</span>";U+=Z+'">';return U+X+Y}function N(){if(!I.k){return j(C)}var T="";var W=0;I.lR.lastIndex=0;var U=I.lR.exec(C);while(U){T+=j(C.substr(W,U.index-W));var V=E(I,U);if(V){H+=V[1];T+=w(V[0],j(U[0]))}else{T+=j(U[0])}W=I.lR.lastIndex;U=I.lR.exec(C)}return T+j(C.substr(W))}function F(){if(I.sL&&!f[I.sL]){return j(C)}var T=I.sL?c(I.sL,C,true,I.continuation.top):e(C);if(I.r>0){H+=T.r}if(I.subLanguageMode=="continuous"){I.continuation.top=T.top}return w(T.language,T.value,false,true)}function Q(){return I.sL!==undefined?F():N()}function P(V,U){var T=V.cN?w(V.cN,"",true):"";if(V.rB){D+=T;C=""}else{if(V.eB){D+=j(U)+T;C=""}else{D+=T;C=U}}I=Object.create(V,{parent:{value:I}})}function G(T,X){C+=T;if(X===undefined){D+=Q();return 0}var V=v(X,I);if(V){D+=Q();P(V,X);return V.rB?0:X.length}var W=z(I,X);if(W){var U=I;if(!(U.rE||U.eE)){C+=X}D+=Q();do{if(I.cN){D+="</span>"}H+=I.r;I=I.parent}while(I!=W.parent);if(U.eE){D+=j(X)}C="";if(W.starts){P(W.starts,"")}return U.rE?0:X.length}if(A(X,I)){throw new Error('Illegal lexeme "'+X+'" for mode "'+(I.cN||"<unnamed>")+'"')}C+=X;return X.length||1}var M=i(S);if(!M){throw new Error('Unknown language: "'+S+'"')}m(M);var I=R||M;var D="";for(var K=I;K!=M;K=K.parent){if(K.cN){D+=w(K.cN,D,true)}}var C="";var H=0;try{var B,y,x=0;while(true){I.t.lastIndex=x;B=I.t.exec(L);if(!B){break}y=G(L.substr(x,B.index-x),B[0]);x=B.index+y}G(L.substr(x));for(var K=I;K.parent;K=K.parent){if(K.cN){D+="</span>"}}return{r:H,value:D,language:S,top:I}}catch(O){if(O.message.indexOf("Illegal")!=-1){return{r:0,value:j(L)}}else{throw O}}}function e(y,x){x=x||b.languages||Object.keys(f);var v={r:0,value:j(y)};var w=v;x.forEach(function(z){if(!i(z)){return}var A=c(z,y,false);A.language=z;if(A.r>w.r){w=A}if(A.r>v.r){w=v;v=A}});if(w.language){v.second_best=w}return v}function g(v){if(b.tabReplace){v=v.replace(/^((<[^>]+>|\t)+)/gm,function(w,z,y,x){return z.replace(/\t/g,b.tabReplace)})}if(b.useBR){v=v.replace(/\n/g,"<br>")}return v}function p(z){var y=b.useBR?z.innerHTML.replace(/\n/g,"").replace(/<br>|<br [^>]*>/g,"\n").replace(/<[^>]*>/g,""):z.textContent;var A=r(z);if(A=="no-highlight"){return}var v=A?c(A,y,true):e(y);var w=u(z);if(w.length){var x=document.createElementNS("http://www.w3.org/1999/xhtml","pre");x.innerHTML=v.value;v.value=q(w,u(x),y)}v.value=g(v.value);z.innerHTML=v.value;z.className+=" hljs "+(!A&&v.language||"");z.result={language:v.language,re:v.r};if(v.second_best){z.second_best={language:v.second_best.language,re:v.second_best.r}}}var b={classPrefix:"hljs-",tabReplace:null,useBR:false,languages:undefined};function s(v){b=o(b,v)}function l(){if(l.called){return}l.called=true;var v=document.querySelectorAll("pre code");Array.prototype.forEach.call(v,p)}function a(){addEventListener("DOMContentLoaded",l,false);addEventListener("load",l,false)}var f={};var n={};function d(v,x){var w=f[v]=x(this);if(w.aliases){w.aliases.forEach(function(y){n[y]=v})}}function k(){return Object.keys(f)}function i(v){return f[v]||f[n[v]]}this.highlight=c;this.highlightAuto=e;this.fixMarkup=g;this.highlightBlock=p;this.configure=s;this.initHighlighting=l;this.initHighlightingOnLoad=a;this.registerLanguage=d;this.listLanguages=k;this.getLanguage=i;this.inherit=o;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.BE={b:"\\\\[\\s\\S]",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE]};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE]};this.PWM={b:/\b(a|an|the|are|I|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such)\b/};this.CLCM={cN:"comment",b:"//",e:"$",c:[this.PWM]};this.CBCM={cN:"comment",b:"/\\*",e:"\\*/",c:[this.PWM]};this.HCM={cN:"comment",b:"#",e:"$",c:[this.PWM]};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.CSSNM={cN:"number",b:this.NR+"(%|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc|px|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?",r:0};this.RM={cN:"regexp",b:/\//,e:/\/[gim]*/,i:/\n/,c:[this.BE,{b:/\[/,e:/\]/,r:0,c:[this.BE]}]};this.TM={cN:"title",b:this.IR,r:0};this.UTM={cN:"title",b:this.UIR,r:0}}();hljs.registerLanguage("javascript",function(a){return{aliases:["js"],k:{keyword:"in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const class",literal:"true false null undefined NaN Infinity",built_in:"eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document"},c:[{cN:"pi",b:/^\s*('|")use strict('|")/,r:10},a.ASM,a.QSM,a.CLCM,a.CBCM,a.CNM,{b:"("+a.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[a.CLCM,a.CBCM,a.RM,{b:/</,e:/>;/,r:0,sL:"xml"}],r:0},{cN:"function",bK:"function",e:/\{/,eE:true,c:[a.inherit(a.TM,{b:/[A-Za-z$_][0-9A-Za-z$_]*/}),{cN:"params",b:/\(/,e:/\)/,c:[a.CLCM,a.CBCM],i:/["'\(]/}],i:/\[|%/},{b:/\$[(.]/},{b:"\\."+a.IR,r:0}]}});hljs.registerLanguage("css",function(a){var b="[a-zA-Z-][a-zA-Z0-9_-]*";var c={cN:"function",b:b+"\\(",rB:true,eE:true,e:"\\("};return{cI:true,i:"[=/|']",c:[a.CBCM,{cN:"id",b:"\\#[A-Za-z0-9_-]+"},{cN:"class",b:"\\.[A-Za-z0-9_-]+",r:0},{cN:"attr_selector",b:"\\[",e:"\\]",i:"$"},{cN:"pseudo",b:":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+"},{cN:"at_rule",b:"@(font-face|page)",l:"[a-z-]+",k:"font-face page"},{cN:"at_rule",b:"@",e:"[{;]",c:[{cN:"keyword",b:/\S+/},{b:/\s/,eW:true,eE:true,r:0,c:[c,a.ASM,a.QSM,a.CSSNM]}]},{cN:"tag",b:b,r:0},{cN:"rules",b:"{",e:"}",i:"[^\\s]",r:0,c:[a.CBCM,{cN:"rule",b:"[^\\s]",rB:true,e:";",eW:true,c:[{cN:"attribute",b:"[A-Z\\_\\.\\-]+",e:":",eE:true,i:"[^\\s]",starts:{cN:"value",eW:true,eE:true,c:[c,a.CSSNM,a.QSM,a.ASM,a.CBCM,{cN:"hexcolor",b:"#[0-9A-Fa-f]+"},{cN:"important",b:"!important"}]}}]}]}]}});hljs.registerLanguage("xml",function(a){var c="[A-Za-z0-9\\._:-]+";var d={b:/<\?(php)?(?!\w)/,e:/\?>/,sL:"php",subLanguageMode:"continuous"};var b={eW:true,i:/</,r:0,c:[d,{cN:"attribute",b:c,r:0},{b:"=",r:0,c:[{cN:"value",v:[{b:/"/,e:/"/},{b:/'/,e:/'/},{b:/[^\s\/>]+/}]}]}]};return{aliases:["html","xhtml","rss","atom","xsl","plist"],cI:true,c:[{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},{cN:"comment",b:"<!--",e:"-->",r:10},{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[b],starts:{e:"</style>",rE:true,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[b],starts:{e:"<\/script>",rE:true,sL:"javascript"}},{b:"<%",e:"%>",sL:"vbscript"},d,{cN:"pi",b:/<\?\w+/,e:/\?>/,r:10},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:"[^ /><]+",r:0},b]}]}});hljs.registerLanguage("http",function(a){return{i:"\\S",c:[{cN:"status",b:"^HTTP/[0-9\\.]+",e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{cN:"request",b:"^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",rB:true,e:"$",c:[{cN:"string",b:" ",e:" ",eB:true,eE:true}]},{cN:"attribute",b:"^\\w",e:": ",eE:true,i:"\\n|\\s|=",starts:{cN:"string",e:"$"}},{b:"\\n\\n",starts:{sL:"",eW:true}}]}});hljs.registerLanguage("json",function(a){var e={literal:"true false null"};var d=[a.QSM,a.CNM];var c={cN:"value",e:",",eW:true,eE:true,c:d,k:e};var b={b:"{",e:"}",c:[{cN:"attribute",b:'\\s*"',e:'"\\s*:\\s*',eB:true,eE:true,c:[a.BE],i:"\\n",starts:c}],i:"\\S"};var f={b:"\\[",e:"\\]",c:[a.inherit(c,{cN:null})],i:"\\S"};d.splice(d.length,0,b,f);return{c:d,k:e,i:"\\S"}});
