@@ -63,7 +63,7 @@ var Master = React.createClass({
 
     return (
       <mui.AppCanvas predefinedLayout={1}>
-        <mui.AppBar onMenuIconClick={this._onMenuIconClick} title={title} zDepth={0} />
+        <mui.AppBar onMenuIconClick={this._onMenuIconClick} title={title} zDepth={0}><Icon icon="github" onClick={this._onGithubClick} /></mui.AppBar>
     		<AppLeftNav ref="leftNav" url={this.state.currentUrl} />
     		<div className={contentCanvasClass}>
           {subNav}
