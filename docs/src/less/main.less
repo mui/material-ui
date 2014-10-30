@@ -3,7 +3,8 @@
 @import "../../dist/less/components.less";
 
 /* hightlight.js for syntax highlighting */
-@import (less) "monokai_sublime.css";
+//@import (less) "monokai_sublime.css";
+@import (less) "github.css";
 
 @import "color-palette.less";
 @import "icon-group.less";
@@ -25,6 +26,7 @@ a {
 	.mui-app-content-canvas {
 
 		.clearfix();
+		min-height: 100%;
 
 		&.with-nav {
 			@subNavWidth: (@desktop-keyline-increment * 4 + 1);
@@ -37,6 +39,7 @@ a {
 			}
 
 			.subContent {
+				height: 100%;
 				.clearfix();
 				.lh-calc(width, ~'100% - @{subNavWidth}');
 				float: left;
@@ -170,6 +173,10 @@ a {
 			margin-top: 15px;
 		}
 	}
+}
+
+.get-started-page {
+
 }
 
 .footer {

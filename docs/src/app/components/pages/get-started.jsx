@@ -31,7 +31,7 @@ var HomePage = React.createClass({
       '@import "node_modules/material-ui/dist/less/components.less";';
 
     return (
-      <div>
+      <div className="get-started-page">
         <h2 className="mui-font-style-headline">Installation</h2>
         <p>
           Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>. 
