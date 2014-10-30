@@ -25,7 +25,7 @@
 
 
 
-},{"./app-router.js":"/Users/Jay/Projects/material-ui/docs/src/app/app-router.js","./components/master.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/master.jsx","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/index.js":[function(require,module,exports){
+},{"./app-router.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-router.js","./components/master.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/master.jsx","backbone":"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/index.js":[function(require,module,exports){
 module.exports = {
 	AppBar: require('./js/app-bar.jsx'),
 	AppCanvas: require('./js/app-canvas.jsx'),
@@ -51,13 +51,14 @@ module.exports = {
 	ToolbarGroup: require('./js/toolbar-group.jsx')
 };
 
-},{"./js/app-bar.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/app-bar.jsx","./js/app-canvas.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/app-canvas.jsx","./js/checkbox.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/checkbox.jsx","./js/dialog.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/dialog.jsx","./js/drop-down-icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/drop-down-icon.jsx","./js/drop-down-menu.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/drop-down-menu.jsx","./js/icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx","./js/input.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/input.jsx","./js/left-nav.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/left-nav.jsx","./js/menu-item.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu-item.jsx","./js/menu.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu.jsx","./js/mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./js/mixins/click-awayable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js","./js/paper-button.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper-button.jsx","./js/paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./js/radio-button.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/radio-button.jsx","./js/toast.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toast.jsx","./js/toggle.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toggle.jsx","./js/toolbar-group.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toolbar-group.jsx","./js/toolbar.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toolbar.jsx"}],"/Users/Jay/Projects/material-ui/docs/dist/js/app-bar.jsx":[function(require,module,exports){
+},{"./js/app-bar.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/app-bar.jsx","./js/app-canvas.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/app-canvas.jsx","./js/checkbox.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/checkbox.jsx","./js/dialog.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/dialog.jsx","./js/drop-down-icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-icon.jsx","./js/drop-down-menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-menu.jsx","./js/icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./js/input.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/input.jsx","./js/left-nav.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/left-nav.jsx","./js/menu-item.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx","./js/menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./js/mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./js/mixins/click-awayable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./js/paper-button.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper-button.jsx","./js/paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./js/radio-button.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/radio-button.jsx","./js/toast.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toast.jsx","./js/toggle.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toggle.jsx","./js/toolbar-group.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar-group.jsx","./js/toolbar.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar.jsx"}],"/Users/hai/GitHub/material-ui/docs/dist/js/app-bar.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
 
 var React = require('react'),
   Classable = require('./mixins/classable.js'),
+  Icon = require('./icon.jsx'),
   Paper = require('./paper.jsx');
 
 var AppBar = React.createClass({displayName: 'AppBar',
@@ -65,23 +66,28 @@ var AppBar = React.createClass({displayName: 'AppBar',
   mixins: [Classable],
 
   propTypes: {
-    title : React.PropTypes.string
+    title : React.PropTypes.string,
+    onMenuIconClick: React.PropTypes.func,
+    zDepth: React.PropTypes.number
   },
 
   getDefaultProps: function() {
   	return {
-      title: ''
+      title: '',
+      zDepth: 1
   	}
   },
 
   render: function() {
     var classes = this.getClasses('mui-app-bar'),
-      title;
+      title, menuIcon;
 
     if (this.props.title) title = React.DOM.h1({className: "mui-app-bar-title"}, this.props.title);
+    if (this.props.onMenuIconClick) menuIcon = Icon({icon: "menu", onClick: this.props.onMenuIconClick});
 
     return (
-    	Paper({rounded: false, className: classes}, 
+    	Paper({rounded: false, className: classes, zDepth: this.props.zDepth}, 
+        menuIcon, 
         title, 
     		this.props.children
     	)
@@ -92,7 +98,7 @@ var AppBar = React.createClass({displayName: 'AppBar',
 
 module.exports = AppBar;
 
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/app-canvas.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/app-canvas.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -125,7 +131,7 @@ var AppCanvas = React.createClass({displayName: 'AppCanvas',
 
 module.exports = AppCanvas;
 
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/checkbox.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/checkbox.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -186,7 +192,7 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
 });
 
 module.exports = Checkbox;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/dialog.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/dialog.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var $ = require('jquery');
@@ -267,7 +273,7 @@ var Dialog = React.createClass({displayName: 'Dialog',
 
 module.exports = Dialog;
 
-},{"./mixins/classable":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/drop-down-icon.jsx":[function(require,module,exports){
+},{"./mixins/classable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-icon.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -339,7 +345,7 @@ var DropDownIcon = React.createClass({displayName: 'DropDownIcon',
 });
 
 module.exports = DropDownIcon;
-},{"./icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx","./menu-item.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu-item.jsx","./menu.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./utils/key-line.js":"/Users/Jay/Projects/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/drop-down-menu.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./menu-item.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx","./menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/key-line.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -419,7 +425,7 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
 
 module.exports = DropDownMenu;
 
-},{"./icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx","./menu.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./utils/key-line.js":"/Users/Jay/Projects/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/key-line.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -454,7 +460,7 @@ var Icon = React.createClass({displayName: 'Icon',
 
 module.exports = Icon;
 
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/input.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/input.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -565,7 +571,7 @@ var Input = React.createClass({displayName: 'Input',
 });
 
 module.exports = Input;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/left-nav.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/left-nav.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -573,32 +579,63 @@ module.exports = Input;
 var React = require('react'),
   Classable = require('./mixins/classable.js'),
   Paper = require('./paper.jsx'),
-	Menu = require('./menu.jsx');
+  Menu = require('./menu.jsx');
 
 var LeftNav = React.createClass({displayName: 'LeftNav',
 
-	mixins: [Classable],
+  mixins: [Classable],
 
   propTypes: {
     onChange: React.PropTypes.func,
     header: React.PropTypes.component,
     menuItems: React.PropTypes.array.isRequired,
-    selectedIndex: React.PropTypes.number
+    selectedIndex: React.PropTypes.number,
+    isInitiallyOpen: React.PropTypes.bool
+  },
+
+  getDefaultProps: function() {
+    return {
+      isInitiallyOpen: true
+    };
+  },
+
+  getInitialState: function() {
+    return {
+      open: this.props.isInitiallyOpen
+    };
+  },
+
+  toggle: function() {
+    this.setState({ open: !this.state.open });
+  },
+
+  close: function() {
+    this.setState({ open: false });
   },
 
   render: function() {
-    var classes = this.getClasses('mui-left-nav'),
+    var classes = this.getClasses('mui-left-nav', {
+        'mui-closed': !this.state.open
+      }),
       selectedIndex = this.props.selectedIndex;
 
     return (
-      Paper({zDepth: 2, rounded: false, className: classes}, 
-        this.props.header, 
-        Menu({ref: "menuItems", zDepth: 0, menuItems: this.props.menuItems, selectedIndex: selectedIndex, onItemClick: this._onMenuItemClick})
+      React.DOM.div({className: classes}, 
+        React.DOM.div({className: "mui-overlay", onClick: this._onOverlayClick}), 
+        Paper({ref: "clickAwayableElement", className: "mui-left-nav-menu", zDepth: 2, rounded: false}, 
+          this.props.header, 
+          Menu({ref: "menuItems", zDepth: 0, menuItems: this.props.menuItems, selectedIndex: selectedIndex, onItemClick: this._onMenuItemClick})
+        )
       )
     );
   },
 
+  _onOverlayClick: function() {
+    this.close();
+  },
+
   _onMenuItemClick: function(e, key, payload) {
+    this.close();
     if (this.props.onChange && this.props.selectedIndex !== key) this.props.onChange(e, key, payload);
   }
 
@@ -606,7 +643,7 @@ var LeftNav = React.createClass({displayName: 'LeftNav',
 
 module.exports = LeftNav;
 
-},{"./menu.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/menu-item.jsx":[function(require,module,exports){
+},{"./menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -692,7 +729,7 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
 
 module.exports = MenuItem;
 
-},{"./icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./toggle.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toggle.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/menu.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./toggle.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toggle.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -944,7 +981,7 @@ var Menu = React.createClass({displayName: 'Menu',
 
 module.exports = Menu;
 
-},{"./menu-item.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/menu-item.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./utils/css-event.js":"/Users/Jay/Projects/material-ui/docs/dist/js/utils/css-event.js","./utils/key-line.js":"/Users/Jay/Projects/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js":[function(require,module,exports){
+},{"./menu-item.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/css-event.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/css-event.js","./utils/key-line.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js":[function(require,module,exports){
 var React = require('react'),
   classSet = React.addons.classSet;
 
@@ -988,7 +1025,7 @@ module.exports = {
 
 }
 
-},{"react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js":[function(require,module,exports){
+},{"react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js":[function(require,module,exports){
 var $ = require('jquery');
 
 module.exports = {
@@ -1012,7 +1049,7 @@ module.exports = {
   }
 
 }
-},{"jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/paper-button.jsx":[function(require,module,exports){
+},{"jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/paper-button.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1129,7 +1166,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
 
 module.exports = PaperButton;
 
-},{"./icon.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./utils/css-event.js":"/Users/Jay/Projects/material-ui/docs/dist/js/utils/css-event.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/css-event.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/css-event.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1190,7 +1227,7 @@ var Paper = React.createClass({displayName: 'Paper',
 
 module.exports = Paper;
 
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/radio-button.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/radio-button.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1245,7 +1282,7 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
 });
 
 module.exports = RadioButton;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/toast.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toast.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react');
@@ -1307,7 +1344,7 @@ var Toast = React.createClass({displayName: 'Toast',
 
 module.exports = Toast;
 
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/click-awayable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/toggle.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toggle.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1357,7 +1394,7 @@ var Toggle = React.createClass({displayName: 'Toggle',
 });
 
 module.exports = Toggle;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./radio-button.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/radio-button.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/toolbar-group.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./radio-button.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/radio-button.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar-group.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var Classable = require('./mixins/classable.js');
@@ -1436,7 +1473,7 @@ var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
 });
 
 module.exports = ToolbarGroup;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/toolbar.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var Classable = require('./mixins/classable.js');
@@ -1489,7 +1526,7 @@ var Toolbar = React.createClass({displayName: 'Toolbar',
 });
 
 module.exports = Toolbar;
-},{"./mixins/classable.js":"/Users/Jay/Projects/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/paper.jsx","./toolbar-group.jsx":"/Users/Jay/Projects/material-ui/docs/dist/js/toolbar-group.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/dist/js/utils/css-event.js":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./toolbar-group.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar-group.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/utils/css-event.js":[function(require,module,exports){
 
 
 module.exports = {
@@ -1504,7 +1541,7 @@ module.exports = {
 
 };
 
-},{}],"/Users/Jay/Projects/material-ui/docs/dist/js/utils/key-line.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js":[function(require,module,exports){
 module.exports = {
 
 	Desktop: {
@@ -1519,1726 +1556,7 @@ module.exports = {
 	}
 }
 
-},{}],"/Users/Jay/Projects/material-ui/docs/src/app/app-dispatcher.js":[function(require,module,exports){
-var Dispatcher = require('./vendor/flux/dispatcher.js');
-var copyProperties = require('react/lib/copyProperties');
-
-var AppDispatcher = copyProperties(new Dispatcher(), {
-
-	ActionTypes: {
-		NAV_URL_CHANGE: 'nav-url-change',
-		NAV_USER_CLICK: 'nav-user-click'
-	},
-
-	dispatchAction: function(type, payload) {
-		this.dispatch({
-			type: type,
-			payload: payload
-		})
-	}
-
-});
-
-module.exports = AppDispatcher;
-},{"./vendor/flux/dispatcher.js":"/Users/Jay/Projects/material-ui/docs/src/app/vendor/flux/dispatcher.js","react/lib/copyProperties":"/Users/Jay/Projects/material-ui/node_modules/react/lib/copyProperties.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/app-router.js":[function(require,module,exports){
-var _ = require('underscore'),
-  Backbone = require('backbone'),
-  Dispatcher = require('./app-dispatcher.js'),
-
-  AppRouter = Backbone.Router.extend({
-
-    routes: {
-      '*path': 'handleDefaultRoute'
-    },
-
-    initialize: function() {
-      this.dispatchToken = Dispatcher.register(_.bind(this.onDispatched, this));
-    },
-
-    handleDefaultRoute: function(url) {
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_URL_CHANGE, { url: url });
-    },
-
-    onDispatched: function(action) {
-      switch (action.type) {
-        case Dispatcher.ActionTypes.NAV_USER_CLICK:
-          this.navigate(action.payload.url);
-          break;
-      }
-    }
-
-  });
-
-module.exports = new AppRouter();
-
-},{"./app-dispatcher.js":"/Users/Jay/Projects/material-ui/docs/src/app/app-dispatcher.js","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","underscore":"/Users/Jay/Projects/material-ui/node_modules/underscore/underscore.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/app-left-nav.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  mui = require('mui'),
-  Dispatcher = require('../app-dispatcher.js'),
-  Pages = require('./pages.jsx');
-
-var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
-
-  propTypes: {
-    url: React.PropTypes.string
-  },
-
-  getInitialState: function() {
-    return {
-      menuItems: [
-        { type: mui.MenuItem.Types.SUBHEADER, text: 'CSS Framework' },
-        { payload: Pages.colors, text: Pages.colors.title },
-        { payload: Pages.typography, text: Pages.typography.title },
-        { payload: Pages.icons, text: Pages.icons.title },
-        { type: mui.MenuItem.Types.SUBHEADER, text: 'Components' },
-        { payload: Pages.buttons, text: Pages.buttons.title },
-        { payload: Pages.dialog, text: Pages.dialog.title },
-        { payload: Pages.inputs, text: Pages.inputs.title },
-        { payload: Pages.menus, text: Pages.menus.title },
-        { payload: Pages.switches, text: Pages.switches.title },
-        //{ payload: Pages.toasts, text: Pages.toasts.title },
-        { payload: Pages.toolbars, text: Pages.toolbars.title },
-        { type: mui.MenuItem.Types.SUBHEADER, text: 'Resources' },
-        { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
-        { type: mui.MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
-        { type: mui.MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
-      ]
-    }
-  },
-
-  componentWillMount: function() {
-    this._setSelectedIndex(this.props.url);
-  },
-
-  componentWillReceiveProps: function(newProps) {
-    this._setSelectedIndex(newProps.url);
-  },
-
-  render: function() {
-    var header = React.DOM.div({className: "logo", onClick: this._onHeaderClick}, "material ui");
-
-    return (
-      mui.LeftNav({
-        header: header, 
-        menuItems: this.state.menuItems, 
-        selectedIndex: this.state.selectedIndex, 
-        onChange: this._onLeftNavChange})
-    );
-  },
-
-  _setSelectedIndex: function(url) {
-    var item;
-
-    for (var i = 0; i < this.state.menuItems.length; i++) {
-      item = this.state.menuItems[i];
-
-      if (item.payload && item.payload.url === url) {
-        if (i !== this.state.selectedIndex) this.setState({ selectedIndex: i});
-        return;
-      }
-    };
-
-    this.setState({ selectedIndex: null});
-  },
-
-  _onHeaderClick: function() {
-    if (this.props.url !== Pages.home.url) {
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: Pages.home.url } ); 
-    }
-  },
-
-  _onLeftNavChange: function(e, key, item) {
-    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: item.payload.url } ); 
-  }
-
-});
-
-module.exports = AppLeftNav;
-
-},{"../app-dispatcher.js":"/Users/Jay/Projects/material-ui/docs/src/app/app-dispatcher.js","./pages.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-block.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var $ = require('jquery'),
-	React = require('react'),
-	hljs = require('hljs');
-
-var CodeBlock = React.createClass({displayName: 'CodeBlock',
-
-	componentDidMount: function() {
-		hljs.highlightBlock(this.getDOMNode());
-	},
-
-	componentDidUpdate: function(prevProps, prevState) {
-		hljs.highlightBlock(this.getDOMNode());
-	},
-
-	render: function() {
-		return (
-			React.DOM.pre({className: "code-block"}, 
-				React.DOM.code(null, this.props.children)
-			)
-		);
-	}
-
-});
-
-module.exports = CodeBlock;
-},{"hljs":"/Users/Jay/Projects/material-ui/docs/src/app/vendor/highlight-js/highlight.pack.js","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-	mui = require('mui'),
-	CodeBlock = require('./code-block.jsx');
-
-var CodeExample = React.createClass({displayName: 'CodeExample',
-
-	propTypes: {
-		code: React.PropTypes.string.isRequired
-	},
-
-	render: function() {
-		return (
-			mui.Paper({className: "code-example"}, 
-    		React.DOM.div({className: "example-label"}, "example"), 
-	    	React.DOM.div({className: "example-block"}, 
-	    		this.props.children
-	    	), 
-	    	CodeBlock(null, this.props.code)
-    	)
-		);
-	}
-
-});
-
-module.exports = CodeExample;
-},{"./code-block.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-block.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/master.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var Backbone = require('backbone'),
-  React = require('react'),
-  mui = require('mui'),
-  AppStateStore = require('../stores/app-state-store.js'),
-  Pages = require('./pages.jsx'),
-	AppLeftNav = require('./app-left-nav.jsx');
-
-var Master = React.createClass({displayName: 'Master',
-
-  mixins: [Backbone.Events],
-
-  getInitialState: function() {
-    return {
-      currentUrl: AppStateStore.get('currentUrl')
-    }
-  },
-
-  componentDidMount: function() {
-    this.listenTo(AppStateStore, 'change', this._onStoreChange);
-  },
-
-  componentWillUnMount: function() {
-    this.stopListening();
-  },
-
-  render: function() {
-    var page = Pages.getPage(this.state.currentUrl);
-      title = page.title,
-      currentMainComponent = page.mainContentComponent;
-
-    return (
-      mui.AppCanvas({predefinedLayout: 1}, 
-        mui.AppBar({title: title}), 
-    		AppLeftNav({url: this.state.currentUrl}), 
-    		React.DOM.div({className: "mui-app-content-canvas"}, 
-            currentMainComponent
-        )
-      )
-    );
-  },
-
-  _onStoreChange: function() {
-    this.setState({
-      currentUrl: AppStateStore.get('currentUrl')
-    });
-  }
-  
-});
-
-module.exports = Master;
-
-},{"../stores/app-state-store.js":"/Users/Jay/Projects/material-ui/docs/src/app/stores/app-state-store.js","./app-left-nav.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/app-left-nav.jsx","./pages.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages.jsx","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var Home = require('./pages/home.jsx'),
-	Buttons = require('./pages/buttons.jsx'),
-	Colors = require('./pages/colors.jsx'),
-	Dialog = require('./pages/dialog.jsx'),
-	Icons = require('./pages/icons.jsx'),
-	Inputs = require('./pages/inputs.jsx'),
-	Menus = require('./pages/menus.jsx'),
-	Switches = require('./pages/switches.jsx'),
-	Toasts = require('./pages/toasts.jsx'),
-	Toolbar = require('./pages/toolbars.jsx'),
-	Typography = require('./pages/typography.jsx');
-
-var Pages = {
-	home: { url: '', title: 'Introduction', mainContentComponent: Home(null) },
-	colors: { url: 'colors', title: 'Colors', mainContentComponent: Colors(null) },
-	buttons: { url: 'buttons', title: 'Buttons', mainContentComponent: Buttons(null) },
-	dialog: { url: 'dialog', title: 'Dialog', mainContentComponent: Dialog(null) },
-	icons: { url: 'icons', title: 'Icons', mainContentComponent: Icons(null) },
-	inputs: { url: 'inputs', title: 'Inputs', mainContentComponent: Inputs(null) },
-	menus: { url: 'menus', title: 'Menus', mainContentComponent: Menus(null) },
-	switches: { url: 'switches', title: 'Switches', mainContentComponent: Switches(null) },
-	toasts: { url: 'toasts', title: 'Toasts', mainContentComponent: Toasts(null) },
-	toolbars: { url: 'toolbar', title: 'Toolbars', mainContentComponent: Toolbar(null) },
-	typography: { url: 'typography', title: 'Typography', mainContentComponent: Typography(null) },
-
-	getPage: function(url) {
-		if (!url) return this.home;
-
-		for (prop in this) {
-			if (this[prop].url === url) return this[prop];
-		}
-	}
-}
-
-module.exports = Pages;
-
-
-},{"./pages/buttons.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/buttons.jsx","./pages/colors.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/colors.jsx","./pages/dialog.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/dialog.jsx","./pages/home.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/home.jsx","./pages/icons.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/icons.jsx","./pages/inputs.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/inputs.jsx","./pages/menus.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/menus.jsx","./pages/switches.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/switches.jsx","./pages/toasts.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/toasts.jsx","./pages/toolbars.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/toolbars.jsx","./pages/typography.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/typography.jsx"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/buttons.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  mui = require('mui'),
-  PaperButton = mui.PaperButton,
-  CodeExample = require('../code-example/code-example.jsx');
-
-var ButtonPage = React.createClass({displayName: 'ButtonPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Flat Buttons"), 
-        this._getFlatExamples(), 
-
-        React.DOM.h2({className: "mui-font-style-headline"}, "Raised Buttons"), 
-        this._getRaisedExamples(), 
-
-        React.DOM.h2({className: "mui-font-style-headline"}, "Floating Action Buttons"), 
-        this._getFabExamples()
-
-    	)
-    );
-  },
-
-  _getFlatExamples: function() {
-    var code = 
-      '<PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
-      '<PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} />\n' +
-      '<PaperButton type={PaperButton.Types.FLAT} label="Disabled" disabled={true} />';
-
-    return (
-      CodeExample({code: code}, 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FLAT, label: "Disabled", disabled: true})
-      )
-    );
-  },
-
-  _getRaisedExamples: function() {
-    var code = 
-      '<PaperButton type={PaperButton.Types.RAISED} label="Default" />\n' +
-      '<PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} />\n' +
-      '<PaperButton type={PaperButton.Types.RAISED} label="Disabled" disabled={true} />';
-
-    return (
-      CodeExample({code: code}, 
-        PaperButton({type: PaperButton.Types.RAISED, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.RAISED, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.RAISED, label: "Disabled", disabled: true})
-      )
-    );
-  },
-
-  _getFabExamples: function() {
-    var code = 
-      '<PaperButton type={PaperButton.Types.FAB_MINI} icon="phone" />\n' +
-      '<PaperButton type={PaperButton.Types.FAB} icon="phone" />';
-
-    return (
-      CodeExample({code: code}, 
-        PaperButton({type: PaperButton.Types.FAB_MINI, icon: "phone", onClick: this._onPaperButtonClick}), "        ", 
-        PaperButton({type: PaperButton.Types.FAB, icon: "phone", onClick: this._onPaperButtonClick})
-      )
-    );
-  },
-
-  _onPaperButtonClick: function(e) {
-  	console.log(e);
-  }
-
-});
-
-module.exports = ButtonPage;
-
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/colors.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react');
-
-var ColorsPage = React.createClass({displayName: 'ColorsPage',
-
-  render: function() {
-  	var mainColors = [
-  			'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue', 
-  			'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange'
-  		],
-  		neutralColors = ['Brown', 'Blue Grey', 'Grey'],
-  		colorGroups = [],
-  		neutralGroups = [];
-
-  	mainColors.forEach(function(color) {
-  		colorGroups.push(this._getColorGroup(color, true));
-  	}, this);
-
-  	neutralColors.forEach(function(color) {
-  		neutralGroups.push(this._getColorGroup(color, false));
-  	}, this);
-
-    return (
-    	React.DOM.div(null, 
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "UI Color Palette"), 
-	    	React.DOM.p(null, "We've created ", React.DOM.a({href: "http://lesscss.org/"}, "{less}"), " variables for every color used in the ", React.DOM.a({href: "https://www.google.com/design/spec/style/color.html#color-ui-color-palette"}, "UI Color Palette"), "."), 
-
-	    	React.DOM.div({className: "color-palette"}, 
-	    		colorGroups, 
-
-					React.DOM.div({className: "neutral"}, 
-						neutralGroups
-					)
-	    	)
-	    )
-    );
-  },
-
-  _getColorGroup: function(color, showAltPalette) {
-  	var mainPalette = [50,100,200,300,400,500,600,700,800,900],
-  		altPalette = ['A100','A200','A400','A700'],
-  		cssColor = color.toLowerCase().replace(' ', '-'),
-  		colors = [];
-
-  	mainPalette.forEach(function(mainValue) {
-  		colors.push(this._getColorBlock(cssColor, mainValue));
-  	}, this);
-
-  	if (showAltPalette) {
-	  	altPalette.forEach(function(altValue) {
-	  		colors.push(this._getColorBlock(cssColor, altValue));
-	  	}, this);
-	  }
-
-  	return (
-			React.DOM.ul({className: "color-group"}, 
-				this._getColorBlock(cssColor, 500, color), 
-				colors
-			)
-  	);
-  },
-
-  _getColorBlock: function(colorName, colorValue, colorTitle) {
-  	var colorClass = colorName + '-' + colorValue,
-  		classes = 'color ' + colorClass,
-  		colorText = '@' + colorClass,
-  		blockTitle;
-
-  	if (colorTitle) blockTitle = React.DOM.span({className: "name"}, colorTitle);
-
-  	return (
-  		React.DOM.li({className: classes}, blockTitle, colorText)
-  	);
-  }
-
-});
-
-module.exports = ColorsPage;
-
-},{"react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/dialog.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var CodeExample = require('../code-example/code-example.jsx');
-var mui = require('mui');
-var React = require('react');
-
-
-var DialogExample = React.createClass({displayName: 'DialogExample',
-
-	render: function() {
-		var code = 
-      "_showDialog: function() {\n" +
-      "  this.refs.dialogExample.show();\n" +
-      "},\n\n" +
-      "render: function() {\n\n" +
-      "  var dialogActions = [\n" +
-      "    { text: 'CANCEL' },\n" +
-      "    { text: 'SUBMIT', onClick: this._onDialogSubmit }\n" +
-      "  ];\n\n" +
-      "  return (\n" +
-      "    <PaperButton label=\"DEMO\" onClick={this._showDialog} />\n" +
-      "    <Dialog ref=\"dialogExample\" title=\"Title\" actions={dialogActions}>\n" +
-      "      This is an example of a dialog component built with Facebook's React and following\n" +
-      "      Google's Material Design principles.\n" +
-      "    </Dialog>\n" +
-      "  );\n" +
-      "}\n";
-
-		var	dialogActions = [
-			{ text: 'CANCEL' },
-			{ text: 'SUBMIT', onClick: this._onDialogSubmit }
-		];
-
-		return (
-			React.DOM.div(null, 
-    		CodeExample({code: code}, 
-    			mui.PaperButton({label: "DEMO", onClick: this._showDialog})
-    		), 
-    		mui.Dialog({ref: "dialogExample", title: "Title", actions: dialogActions}, 
-    			"This is an example of a dialog component built with Facebook's React and following" + ' ' + 
-    			"Google's Material Design principles."
-  			)
-  		)
-		);
-	},
-
-	_showDialog: function() {
-		this.refs.dialogExample.show();
-	}
-
-});
-
-module.exports = DialogExample;
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/home.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-	CodeBlock = require('../code-example/code-block.jsx');;
-
-var HomePage = React.createClass({displayName: 'HomePage',
-
-  render: function() {
-  	var usageCode =
-  		'/**\n' +
- 			' * @jsx React.DOM\n' +
- 			'*/\n\n' +
- 			'var React = require(\'react\'),\n' +
- 			'  mui = require(\'material-ui\'),\n' +
- 			'  PaperButton = mui.PaperButton;\n\n' +
- 			'var SomeAwesomeComponent = React.createClass({\n\n' +
- 			'  render: function() {\n' +
- 			'    return (\n' +
- 			'        <PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
- 			'    );\n' +
- 			'  }\n\n' +
- 			'});\n\n' +
- 			'module.exports = SomeAwesomeComponent;';
-
- 		var customizationCode = 
- 			'@import "node_modules/material-ui/dist/less/scaffolding.less";\n\n' +
- 			'//Define a custom less file to override any variables defined in scaffolding.less\n' +
- 			'@import "my-custom-overrides.less";\n\n' +
- 			'@import "node_modules/material-ui/dist/less/components.less";';
-
-    return (
-    	React.DOM.div(null, 
-    		React.DOM.h2({className: "mui-font-style-headline"}, 
-    			React.DOM.span({className: "mui-font-style-display-1"}, "Material-UI"), React.DOM.br(null), 
-    			"A CSS framework and a set of React components that implement Google's Material Design"
-  			), 
-    		React.DOM.p(null, 
-    			"Material-UI came about from our love" + ' ' +
-    			"of ", React.DOM.a({href: "http://facebook.github.io/react/"}, "React"), " and ", React.DOM.a({href: "https://www.google.com/design/spec/material-design/introduction.html"}, "Google's" + ' ' +
-    			"Material Design"), ". We're currently using it on a project at ", React.DOM.a({href: "https://www.call-em-all.com/"}, "Call-Em-All"), " and plan on" + ' ' +
-    			"adding to it and making it better in the coming months."
-    		), 
-    	
-    		React.DOM.br(null), 
-
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Installation"), 
-    		React.DOM.p(null, 
-    			"Material-UI is available as an ", React.DOM.a({href: "https://www.npmjs.org/package/material-ui"}, "npm package"), "." + ' ' + 
-    			"Use ", React.DOM.a({href: "http://browserify.org/"}, "browserify"), " and ", React.DOM.a({href: "https://github.com/andreypopp/reactify"}, "reactify"), " for" + ' ' +
-    			"dependency management and JSX transformation. The CSS framework is written in ", React.DOM.a({href: "http://lesscss.org/"}, "Less"), "," + ' ' +
-    			"so you'll need to compile that as well."
-    		), 
-
-    		React.DOM.br(null), 
-
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Usage"), 
-    		React.DOM.p(null, 
-    			"Once material-ui is included in your project, you can use the components this way:"
-    		), 
-    		CodeBlock(null, usageCode), 
-
-    		React.DOM.br(null), React.DOM.br(null), 
-
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Customization"), 
-    		React.DOM.p(null, "The styles are separated into 2 less files:"), 
-    		React.DOM.li(null, "dist/less/scaffolding.less"), 
-    		React.DOM.li(null, "dist/less/components.less"), 
-    		React.DOM.p(null, 
-    			"This allows you to override any variables defined in custom-variables.less without having to" + ' ' +
-    			"modify material-ui source files directly. For example, your main.less file could look something like this:"
-    		), 
-    		CodeBlock(null, customizationCode)
-    		
-    	)
-    );
-  }
-
-});
-
-module.exports = HomePage;
-
-},{"../code-example/code-block.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-block.jsx","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/icons.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  	mui = require('mui'),
-    Icon = mui.Icon,
-    CodeExample = require('../code-example/code-example.jsx'),
-
-    coreIcons = [
-      'arrow-drop-down', 
-      'arrow-drop-right',
-      'cancel',
-      'check',
-      'chevron-down',
-      'chevron-right',
-      'close',
-      'delete',
-      'help',
-      'home',
-      'menu',
-      'more-horiz',
-      'more-vert',
-      'search',
-      'settings'
-    ],
-
-    appIcons = [
-      'broadcast',
-      'cloud-download',
-      'cloud-upload',
-      'contacts',
-      'edit',
-      'favorite',
-      'favorite-outline',
-      'filter',
-      'group',
-      'group-add',
-      'mic',
-      'pause',
-      'person',
-      'person-add',
-      'phone',
-      'pie',
-      'play',
-      'sort',
-      'star',
-      'star-outline',
-      'stop',
-      'textsms'
-    ];
-
-var IconsPage = React.createClass({displayName: 'IconsPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Icon Component"), 
-        this._getComponentExample(), 
-
-        React.DOM.h2({className: "mui-font-style-headline"}, "Core Icons"), 
-        React.DOM.hr(null), 
-        React.DOM.div({className: "icon-group"}, 
-          this._getIconGroup(coreIcons)
-        ), 
-
-        React.DOM.br(null), 
-
-        React.DOM.h2({className: "mui-font-style-headline"}, "App Icons"), 
-        React.DOM.hr(null), 
-        React.DOM.div({className: "icon-group"}, 
-          this._getIconGroup(appIcons)
-        )
-        
-		)
-    );
-  },
-
-  _getIconGroup: function(icons) {
-    var iconExamples = [];
-
-    icons.forEach(function(icon) {
-      iconExamples.push(this._getIconExample(icon));
-    }, this);
-
-    return iconExamples;
-  },
-
-  _getIconExample: function(icon) {
-    return (
-      React.DOM.div({className: "icon-example"}, 
-        Icon({icon: icon}), React.DOM.span(null, icon)
-      )
-    );
-  },
-
-  _getComponentExample: function() {
-    var code = '<Icon icon="home" />';
-
-    return (
-      CodeExample({code: code}, 
-        Icon({icon: "home"})
-      )
-    );
-  }
-
-});
-
-module.exports = IconsPage;
-
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/inputs.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  mui = require('mui');
-
-var InputsPage = React.createClass({displayName: 'InputsPage',
-
-
-  componentDidMount: function() {
-    //console.log(this.refs.firstname.getValue());
-  },
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Inputs"), 
-        React.DOM.br(null), 
-        mui.Input({ref: "firstname", onChange: this._onChange, type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
-        mui.Input({ref: "lastname", type: "text", name: "lastname", placeholder: "Last Name", description: "Your last name as it appears on your credit card.."}), 
-        mui.Input({ref: "addressline1", type: "text", name: "addressline1", placeholder: "Address Line 1", description: "Your address as it appears on your credit card."}), 
-        mui.Input({ref: "addressline2", type: "text", name: "zipcode", placeholder: "Zip Code", description: "Your zip code as it appears on your credit card."}), 
-        mui.Input({ref: "city", type: "text", name: "city", placeholder: "City", description: "Your city as it appears on your credit card."}), 
-        mui.Input({ref: "state", type: "text", name: "state", placeholder: "State", description: "Your state as it appears on your credit card."}), 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Error Validation"), 
-        React.DOM.br(null), 
-        mui.Input({ref: "allegiance", type: "text", name: "allegiance", placeholder: "Allegiance", description: "The house of which you served under."}), 
-    	  React.DOM.br(null), 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Floating"), 
-        React.DOM.br(null), 
-        mui.Input({ref: "username", type: "text", inputStyle: "floating", name: "Username", description: "The username associated with your account."})
-        
-        /* TODO: Needs to be completed}
-        <h2 className="mui-font-style-headline">Multi-Line</h2>
-        <br />
-        <mui.Input multiline={true} ref="textmessage" type="text" name="textmessage" placeholder="Text Message" description="Your text message." />
-        {*/
-      )
-    );
-  },
-
-  _onChange: function(e, value) {
-    //console.log(value);
-  }
-
-});
-
-module.exports = InputsPage;
-},{"mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/menus.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
- 
-var React = require('react'),
-  mui = require('mui'),
-  CodeExample = require('../code-example/code-example.jsx'),
-
-  menuItems = [
-    { payload: '1', text: 'Never' },
-    { payload: '2', text: 'Every Night' },
-    { payload: '3', text: 'Weeknights' },
-    { payload: '4', text: 'Weekends' },
-    { payload: '5', text: 'Weekly' },
-  ],
-
-  labelMenuItems = [
-    { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
-    { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
-    { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }
-  ],
-
-  numberMenuItems = [
-    { payload: '1', text: 'All', number: '22'},
-    { payload: '3', text: 'Uncategorized', number: '6'},
-    { payload: '4', text: 'Trash', number: '11' }
-  ],
-
-  iconMenuItems = [
-    { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },
-    { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },
-    { payload: '3', text: 'Starred', icon: 'mic', number: '3' },
-    { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }
-  ],
-
-  filterMenuItems = [
-    { payload: '1', text: 'Text Opt-In', toggle: true},
-    { payload: '2', text: 'Text Opt-Out', toggle: true},
-    { payload: '3', text: 'Voice Opt-Out', toggle: true}
-  ],
-
-  nestedMenuItems = [
-    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [
-      { payload: '1', text: 'Nested Item 1' },
-      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
-        { payload: '1', text: 'Nested Item 3' },
-        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
-          { payload: '1', text: 'Nested Item 5' },
-          { payload: '3', text: 'Nested Item 6' }
-        ] },
-        { payload: '3', text: 'Nested Item 7' }
-      ] },
-      { payload: '3', text: 'Nested Item 9' },
-      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
-        { payload: '1', text: 'Nested Item 3' },
-        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
-          { payload: '1', text: 'Nested Item 5' },
-          { payload: '3', text: 'Nested Item 6' }
-        ] },
-        { payload: '3', text: 'Nested Item 7' }
-      ] },
-      { payload: '4', text: 'Nested Item 10' }
-    ] },
-    { payload: '1', text: 'Audio Library'},
-    { payload: '2', text: 'Settings'},
-    { payload: '3', text: 'Logout'}
-  ];
-
-
-var MenusPage = React.createClass({displayName: 'MenusPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Drop Down Menu"), 
-    		this._getDropDownMenuExample(), 
-
-        React.DOM.h2({className: "mui-font-style-headline"}, "Label Menu"), 
-        this._getLabelMenuExample(), 
-
-        React.DOM.h2({className: "mui-font-style-headline"}, "Number Menu"), 
-        this._getNumberMenuExample(), 
-
-        React.DOM.h2({className: "mui-font-style-headline"}, "Icon Menu"), 
-        this._getIconMenuExample(), 
-
-        React.DOM.h2({className: "mui-font-style-headline"}, "Filter Menu"), 
-        this._getFilterMenuExample(), 
-
-        React.DOM.h2({className: "mui-font-style-headline"}, "Nested Menu"), 
-        this._getNestedMenuExample()
-    	)
-    );
-  },
-
-  _getDropDownMenuExample: function() {
-    var code = 
-      "var menuItems = [\n" +
-      "   { payload: '1', text: 'Never' },\n" +
-      "   { payload: '2', text: 'Every Night' },\n" +
-      "   { payload: '3', text: 'Weeknights' },\n" +
-      "   { payload: '4', text: 'Weekends' },\n" +
-      "   { payload: '5', text: 'Weekly' },\n" +
-      "];\n\n" +
-      "<DropDownMenu menuItems={menuItems} />";
-
-    return (
-      CodeExample({code: code}, 
-        mui.DropDownMenu({menuItems: menuItems, onChange: this._onDropDownMenuChange})
-      )
-    );
-  },
-
-  _getLabelMenuExample: function() {
-    var code = 
-      "var labelMenuItems = [\n" +
-      "   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },\n" +
-      "   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
-      "   { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
-      "];\n\n"  +
-      "<Menu menuItems={labelMenuItems} />";
-
-    return (
-      CodeExample({code: code}, 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: labelMenuItems, onItemClick: this._onItemClick})
-        )
-      )
-    );
-  },
-
-  _getNumberMenuExample: function() {
-    var code = 
-      "var numberMenuItems = [\n" +
-      "   { payload: '1', text: 'All', number: '22' },\n" +
-      "   { payload: '3', text: 'Uncategorized', number: '6'},\n" +
-      "   { payload: '4', text: 'Trash', number: '11' }\n" +
-      "];\n\n"  +
-      "<Menu menuItems={numberMenuItems} />";
-
-    return (
-      CodeExample({code: code}, 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: numberMenuItems, onItemClick: this._onItemClick})
-        )
-      )
-    );
-  },
-
-  _getIconMenuExample: function() {
-    var code = 
-      "iconMenuItems = [\n" +
-      "   { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },\n" +
-      "   { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },\n" +
-      "   { payload: '3', text: 'Starred', icon: 'mic', number: '3'},\n" +
-      "   { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }\n" +
-      "];\n\n" +
-      "<Menu menuItems={iconMenuItems} />";
-
-    return (
-      CodeExample({code: code}, 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: iconMenuItems, onItemClick: this._onItemClick})
-        )
-      )
-    );
-  },
-
-  _getFilterMenuExample: function() {
-    var code = 
-      "filterMenuItems = [\n" +
-      "   { payload: '1', text: 'Text Opt-In', toggle: true},\n" +
-      "   { payload: '2', text: 'Text Opt-Out', toggle: true},\n" +
-      "   { payload: '3', text: 'Voice Opt-Out', toggle: true}\n" +
-      "];\n\n" +
-      "<Menu menuItems={filterMenuItems} />";
-
-    return (
-      CodeExample({code: code}, 
-        React.DOM.div({className: "example-menu"}, 
-          mui.Menu({menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
-        )
-      )
-    );
-  },
-
-  _getNestedMenuExample: function() {
-    var code = 
-      "nestedMenuItems = [\n" +
-      "    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [\n" +
-      "      { payload: '1', text: 'Nested Item 1' },\n" +
-      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
-      "        { payload: '1', text: 'Nested Item 3' },\n" +
-      "        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
-      "          { payload: '1', text: 'Nested Item 5' },\n" +
-      "          { payload: '3', text: 'Nested Item 6' }\n" +
-      "        ] },\n" +
-      "        { payload: '3', text: 'Nested Item 7' }\n" +
-      "      ] },\n" +
-      "      { payload: '3', text: 'Nested Item 9' },\n" +
-      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
-      "        { payload: '1', text: 'Nested Item 3' },\n" +
-      "       { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
-      "          { payload: '1', text: 'Nested Item 5' },\n" +
-      "          { payload: '3', text: 'Nested Item 6' }\n" +
-      "        ] },\n" +
-      "        { payload: '3', text: 'Nested Item 7' }\n" +
-      "      ] },\n" +
-      "      { payload: '4', text: 'Nested Item 10' }\n" +
-      "    ] },\n" +
-      "    { payload: '1', text: 'Audio Library'},\n" +
-      "    { payload: '2', text: 'Settings'},\n" +
-      "    { payload: '3', text: 'Logout'}\n" +
-      "  ];\n\n" +
-      '<Menu menuItems={nestedMenuItems} />';
-
-    return (
-      CodeExample({code: code}, 
-        React.DOM.div({className: "example-menu-nested"}, 
-          mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
-        )
-      )
-    );
-  },
-
-  _onDropDownMenuChange: function(e, key, menuItem) {
-  	console.log('Menu Clicked: ', menuItem);
-  },
-
-  _onFilterMenuToggle: function(e, key, menuItem, toggled) {
-    console.log('Filter Menu Toggled: ', key, menuItem, toggled)
-  },
-
-  _onItemClick: function(e, key, menuItem) {
-    console.log("Menu Item Click: ", menuItem);
-  }
-
-});
-
-module.exports = MenusPage;
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/switches.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-    mui = require('mui'),
-    CodeExample = require('../code-example/code-example.jsx');
-
-var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Checkbox"), 
-        this._getCheckboxExample(), 
-        React.DOM.h2({className: "mui-font-style-headline"}, "Radio Button"), 
-        this._getRadioButtonExample(), 
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Toggle"), 
-        this._getToggleExample()
-    	)
-    );
-  },
-
-  _getCheckboxExample: function() {
-    var code = 
-      '<form>\n' +
-      ' <Checkbox name="checkboxName" value="checkboxValue1" />\n' +
-      ' <Checkbox name="checkboxName" value="checkboxValue2" />\n' +
-      ' <Checkbox name="checkboxName" value="checkboxValue3" />\n' +
-      '</form>';
-
-    return (
-      CodeExample({code: code}, 
-        React.DOM.form(null, 
-          mui.Checkbox({name: "checkboxName", value: "checkboxValue1", onClick: this._onCheck}), 
-          React.DOM.br(null), 
-          mui.Checkbox({name: "checkboxName", value: "checkboxValue2", onClick: this._onCheck}), 
-          React.DOM.br(null), 
-          mui.Checkbox({name: "checkboxName", value: "checkboxValue3", onClick: this._onCheck})
-        )
-      )
-    );
-  },
-
-  _getToggleExample: function() {
-    var code = 
-      '<Toggle />';
-
-    return (
-      CodeExample({code: code}, 
-        mui.Toggle({onToggle: this._onToggle})
-      )
-    );
-  },
-
-  _getRadioButtonExample: function() {
-    var code = 
-      '<form>\n' +
-      ' <RadioButton name="radioButtonName" value="radioButtonValue1"/>\n' +
-      ' <RadioButton name="radioButtonName" value="radioButtonValue2"/>\n' +
-      ' <RadioButton name="radioButtonName" value="radioButtonValue3"/>\n' +
-      '</form>';
-
-    return (
-      CodeExample({code: code}, 
-        React.DOM.form(null, 
-          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue1", onClick: this._onRadioButtonClick}), 
-          React.DOM.br(null), 
-          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue2", onClick: this._onRadioButtonClick}), 
-          React.DOM.br(null), 
-          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue3", onClick: this._onRadioButtonClick})
-        )
-      )
-    );
-  },
-
-  _onCheck: function(e, checked) {
-    console.log('Checked: ', checked);
-  },
-
-  _onToggle: function(e, toggled) {
-    console.log('Toggled: ', toggled);
-  },
-
-  _onRadioButtonClick: function(e, checked) {
-    console.log('Clicked:', checked);
-  }
-
-});
-
-module.exports = SwitchesPage;
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/toasts.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react');
-var mui = require('mui');
-var CodeExample = require('../code-example/code-example.jsx');
-
-var ToastsPage = React.createClass({displayName: 'ToastsPage',
-
-  getInitialState: function() {
-    return {
-      message: 'You have deleted your broadcast.',
-      action: 'undo'
-    }
-  },
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-  			React.DOM.h2({className: "mui-font-style-headline"}, "Toasts"), 
-  			this._getToastExample()
-  		)
-    );
-  },
-
-  _getToastExample: function() {
-    var code = 
-      "";
-
-    return (
-      CodeExample({code: code}, 
-        React.DOM.button({onClick: this.triggerToast}, "Trigger Toast"), 
-      	mui.Toast({ref: "Toast", message: this.state.message, action: this.state.action})
-      )
-    );
-  },
-
-  triggerToast: function() {
-    this.refs.Toast.toggle();
-  },
-
-});
-
-module.exports = ToastsPage;
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/toolbars.jsx":[function(require,module,exports){
-/** @jsx React.DOM */
-
-var mui = require('mui');
-var PaperButton = mui.PaperButton;
-var React = require('react');
-
-var ToolbarPage = React.createClass({displayName: 'ToolbarPage',
-
-  render: function() {
-
-    var filterOptions = [
-      { payload: '1', text: 'All Broadcasts' },
-      { payload: '2', text: 'All Voice' },
-      { payload: '3', text: 'All Text' },
-      { payload: '4', text: 'Complete Voice' },
-      { payload: '5', text: 'Complete Text' },
-      { payload: '6', text: 'Active Voice' },
-      { payload: '7', text: 'Active Text' },
-    ],
-
-    iconMenuItems = [
-      { payload: '1', text: 'Download' },
-      { payload: '2', text: 'More Info' }
-    ];
-
-    rightItems = [
-      mui.Icon({icon: "sort"}),
-      mui.Icon({icon: "filter"}),
-      mui.Icon({icon: "search"}),
-      mui.DropDownIcon({icon: "chevron-down", menuItems: iconMenuItems, onChange: this._onDropDownMenuChange}),
-      { type: "separator"},
-      mui.PaperButton({type: PaperButton.Types.RAISED, label: "Create Broadcast", primary: true}),
-    ],
-        
-    leftItems = [
-      mui.DropDownMenu({menuItems: filterOptions}),
-    ];
-
-    groups = [ 
-      mui.ToolbarGroup({key: 0, float: "left", groupItems: leftItems}),
-      mui.ToolbarGroup({key: 1, float: "right", groupItems: rightItems})
-    ];
-
-    return (
-    	React.DOM.div(null, 
-    		React.DOM.h2({className: "mui-font-style-headline"}, "Toolbars"), 
-        React.DOM.div({className: "mui-toolbar-container"}, 
-          mui.Toolbar({groups: groups})
-        )
-    	)
-    );
-  },
-
-  _onDropDownMenuChange: function(e, key, menuItem) {
-    console.log('Menu Clicked: ', menuItem);
-  },
-
-});
-
-module.exports = ToolbarPage;
-},{"mui":"/Users/Jay/Projects/material-ui/docs/dist/index.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/components/pages/typography.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var $ = require('jquery'),
-	React = require('react'),
-	CodeExample = require('../code-example/code-example.jsx');
-
-var TypographyPage = React.createClass({displayName: 'TypographyPage',
-
-  render: function() {
-    return (
-    	React.DOM.div(null, 
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "Roboto"), 
-	    	React.DOM.p(null, 
-	    		"The Roboto font and 3 font weights (light, regular, and medium) are automatically included from ", React.DOM.a({href: "http://www.google.com/fonts/specimen/Roboto"}, "Google Fonts"), "."
-	    	), 
-
-	    	React.DOM.br(null), 
-
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "Vertical Rhythm"), 
-	    	React.DOM.p(null, "Default styles for headings and paragraphs have consistent vertical rhythm. Click the text below to see. :)"), 
-	    	this._getVerticalRhythmExample(), 
-
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "Typographic Scale"), 
-	    	this._getScaleExample(), 
-
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "Color Contrast"), 
-	    	this._getColorExample(), 
-
-	    	React.DOM.h2({className: "mui-font-style-headline"}, "Tracking and Kerning"), 
-	    	this._getTrackingExample()
-    	)
-    );
-  },
-
-  _getVerticalRhythmExample: function() {
-  	var code = 
-  		'<h1>h1. Html Heading</h1>\n' +
-			'<h2>h2. Html Heading</h2>\n' +
-			'<h1>h1. Html Heading</h1>\n' +
-			'<h2>h2. Html Heading</h2>\n' +
-			'<h3>h3. Html Heading</h3>\n' +
-			'<h4>h4. Html Heading</h4>\n' +
-			'<h5>h5. Html Heading</h5>\n' +
-			'<h6>h6. Html Heading</h6>\n' +
-			'<p>\n'+
-			'	p. Lorem ipsum dolor sit amet, sed docendi suscipit scripserit eu, persius invenire\n' +
-			'	id sea. Ius dicant facilis propriae an, ut vim nonumy meliore lucilius, usu nonumes \n' +
-			'	phaedrum ad. Ea nam error audiam, oratio nostrud pro id. Ut sea cetero labitur \n' +
-			'	gubergren, munere maiorum nostrum vim ut, te feugiat vulputate cum. Choro volumus \n' +
-			'	sapientem te sed, legimus splendide ad nec.\n' +
-			'</p>';
-
-		return (
-			CodeExample({code: code}, 
-				React.DOM.div({ref: "verticalRhythmContainer", onClick: this._onClick}, 
-		    	React.DOM.h1(null, "h1. Html Heading"), 
-		    	React.DOM.h2(null, "h2. Html Heading"), 
-		    	React.DOM.h3(null, "h3. Html Heading"), 
-		    	React.DOM.h4(null, "h4. Html Heading"), 
-		    	React.DOM.h5(null, "h5. Html Heading"), 
-		    	React.DOM.h6(null, "h6. Html Heading"), 
-		    	React.DOM.p(null, "p. Lorem ipsum dolor sit amet, sed docendi suscipit scripserit eu, persius invenire id sea. Ius dicant facilis propriae an, ut vim nonumy meliore lucilius, usu nonumes phaedrum ad. Ea nam error audiam, oratio nostrud pro id. Ut sea cetero labitur gubergren, munere maiorum nostrum vim ut, te feugiat vulputate cum. Choro volumus sapientem te sed, legimus splendide ad nec.")
-    		)
-			)
-		);
-  },
-
-  _getScaleExample: function() {
-  	var code = 
-  		'<div className="mui-font-style-display-4">Light 112px</div>\n' +
-    	'<div className="mui-font-style-display-3">Regular 56px</div>\n' +
-    	'<div className="mui-font-style-display-2">Regular 45px</div>\n' +
-    	'<div className="mui-font-style-display-1">Regular 34px</div>\n' +
-    	'<div className="mui-font-style-headline">Regular 24px</div>\n' +
-    	'<div className="mui-font-style-title">Medium 20px</div>\n' +
-    	'<div className="mui-font-style-subhead-1">Regular 15px</div>\n' +
-    	'<div className="mui-font-style-body-2">Medium 13px</div>\n' +
-    	'<div className="mui-font-style-body-1">Regular 13px</div>\n' +
-    	'<div className="mui-font-style-caption">Regular 12px</div>\n' +
-    	'<div className="mui-font-style-menu">Medium 13px</div>\n' +
-    	'<div className="mui-font-style-button">MEDIUM (ALL CAPS) 14px</div>';
-
-		return (
-			CodeExample({code: code}, 
-				React.DOM.div({className: "mui-font-style-display-4"}, "Light 112px"), 
-	    	React.DOM.div({className: "mui-font-style-display-3"}, "Regular 56px"), 
-	    	React.DOM.div({className: "mui-font-style-display-2"}, "Regular 45px"), 
-	    	React.DOM.div({className: "mui-font-style-display-1"}, "Regular 34px"), 
-	    	React.DOM.div({className: "mui-font-style-headline"}, "Regular 24px"), 
-	    	React.DOM.div({className: "mui-font-style-title"}, "Medium 20px"), 
-	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Regular 15px"), 
-	    	React.DOM.div({className: "mui-font-style-body-2"}, "Medium 13px"), 
-	    	React.DOM.div({className: "mui-font-style-body-1"}, "Regular 13px"), 
-	    	React.DOM.div({className: "mui-font-style-caption"}, "Regular 12px"), 
-	    	React.DOM.div({className: "mui-font-style-menu"}, "Medium 13px"), 
-	    	React.DOM.div({className: "mui-font-style-button"}, "MEDIUM (ALL CAPS) 14px")
-			)
-		);
-  },
-
-  _getColorExample: function() {
-  	var code = 
-  		'<div className="mui-font-style-display-4">Black 54%</div>\n' +
-    	'<div className="mui-font-style-display-3">Black 54%</div>\n' +
-    	'<div className="mui-font-style-display-2">Black 54%</div>\n' +
-    	'<div className="mui-font-style-display-1">Black 54%</div>\n' +
-    	'<div className="mui-font-style-headline">Black 87%</div>\n' +
-    	'<div className="mui-font-style-title">Black 87%</div>\n' +
-    	'<div className="mui-font-style-subhead-1">Black 87%</div>\n' +
-    	'<div className="mui-font-style-body-2">Black 87%</div>\n' +
-    	'<div className="mui-font-style-body-1">Black 87%</div>\n' +
-    	'<div className="mui-font-style-caption">Black 54%</div>\n' +
-    	'<div className="mui-font-style-menu">Black 87%</div>\n' +
-    	'<div className="mui-font-style-button">Black 87%</div>';
-
-		return (
-			CodeExample({code: code}, 
-				React.DOM.div({className: "mui-font-style-display-4"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-display-3"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-display-2"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-display-1"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-headline"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-title"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-body-2"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-body-1"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-caption"}, "Black 54%"), 
-	    	React.DOM.div({className: "mui-font-style-menu"}, "Black 87%"), 
-	    	React.DOM.div({className: "mui-font-style-button"}, "Black 87%")
-			)
-		);
-  },
-
-  _getTrackingExample: function() {
-  	var code = 
-  		'<div className="mui-font-style-display-4">Tracking -10px</div>\n' +
-    	'<div className="mui-font-style-display-3">Tracking -5px</div>\n' +
-    	'<div className="mui-font-style-display-2">Tracking 0px</div>\n' +
-    	'<div className="mui-font-style-display-1">Tracking 0px</div>\n' +
-    	'<div className="mui-font-style-headline">Tracking 0px</div>\n' +
-    	'<div className="mui-font-style-title">Tracking 5px</div>\n' +
-    	'<div className="mui-font-style-subhead-1">Tracking 10px</div>\n' +
-    	'<div className="mui-font-style-body-2">Tracking 10px</div>\n' +
-    	'<div className="mui-font-style-body-1">Tracking 10px</div>\n' +
-    	'<div className="mui-font-style-caption">Tracking 20px</div>\n' +
-    	'<div className="mui-font-style-menu">Tracking 10px</div>\n' +
-    	'<div className="mui-font-style-button">Tracking 10px</div>';
-
-		return (
-			CodeExample({code: code}, 
-				React.DOM.div({className: "mui-font-style-display-4"}, "Tracking -10px"), 
-	    	React.DOM.div({className: "mui-font-style-display-3"}, "Tracking -5px"), 
-	    	React.DOM.div({className: "mui-font-style-display-2"}, "Tracking 0px"), 
-	    	React.DOM.div({className: "mui-font-style-display-1"}, "Tracking 0px"), 
-	    	React.DOM.div({className: "mui-font-style-headline"}, "Tracking 0px"), 
-	    	React.DOM.div({className: "mui-font-style-title"}, "Tracking 5px"), 
-	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-body-2"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-body-1"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-caption"}, "Tracking 20px"), 
-	    	React.DOM.div({className: "mui-font-style-menu"}, "Tracking 10px"), 
-	    	React.DOM.div({className: "mui-font-style-button"}, "Tracking 10px")
-			)
-		);
-  },
-
-  _onClick: function(e) {
-  	$(this.refs.verticalRhythmContainer.getDOMNode()).toggleClass('baseline-grid');
-  }
-
-});
-
-module.exports = TypographyPage;
-
-},{"../code-example/code-example.jsx":"/Users/Jay/Projects/material-ui/docs/src/app/components/code-example/code-example.jsx","jquery":"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js","react":"/Users/Jay/Projects/material-ui/node_modules/react/addons.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/stores/app-state-store.js":[function(require,module,exports){
-var _ = require('underscore'),
-  Backbone = require('backbone'),
-  Dispatcher = require('../app-dispatcher.js'),
-
-  AppStateStore = Backbone.Model.extend({
-
-    defaults: {
-      currentUrl: null
-    },
-
-    initialize: function() {
-      this.dispatchToken = Dispatcher.register(_.bind(this.onDispatched, this));
-    },
-
-    onDispatched: function(action) {
-      switch (action.type) {
-        case Dispatcher.ActionTypes.NAV_URL_CHANGE:
-        case Dispatcher.ActionTypes.NAV_USER_CLICK:
-          this.set('currentUrl', action.payload.url);
-          break;
-      }
-    }
-
-  });
-
-module.exports = new AppStateStore();
-
-},{"../app-dispatcher.js":"/Users/Jay/Projects/material-ui/docs/src/app/app-dispatcher.js","backbone":"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js","underscore":"/Users/Jay/Projects/material-ui/node_modules/underscore/underscore.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/vendor/flux/dispatcher.js":[function(require,module,exports){
-/*
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule Dispatcher
- * @typechecks
- */
-
-var invariant = require('./invariant');
-
-var _lastID = 1;
-var _prefix = 'ID_';
-
-/**
- * Dispatcher is used to broadcast payloads to registered callbacks. This is
- * different from generic pub-sub systems in two ways:
- *
- *   1) Callbacks are not subscribed to particular events. Every payload is
- *      dispatched to every registered callback.
- *   2) Callbacks can be deferred in whole or part until other callbacks have
- *      been executed.
- *
- * For example, consider this hypothetical flight destination form, which
- * selects a default city when a country is selected:
- *
- *   var flightDispatcher = new Dispatcher();
- *
- *   // Keeps track of which country is selected
- *   var CountryStore = {country: null};
- *
- *   // Keeps track of which city is selected
- *   var CityStore = {city: null};
- *
- *   // Keeps track of the base flight price of the selected city
- *   var FlightPriceStore = {price: null}
- *
- * When a user changes the selected city, we dispatch the payload:
- *
- *   flightDispatcher.dispatch({
- *     actionType: 'city-update',
- *     selectedCity: 'paris'
- *   });
- *
- * This payload is digested by `CityStore`:
- *
- *   flightDispatcher.register(function(payload)) {
- *     if (payload.actionType === 'city-update') {
- *       CityStore.city = payload.selectedCity;
- *     }
- *   });
- *
- * When the user selects a country, we dispatch the payload:
- *
- *   flightDispatcher.dispatch({
- *     actionType: 'country-update',
- *     selectedCountry: 'australia'
- *   });
- *
- * This payload is digested by both stores:
- *
- *    CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
- *     if (payload.actionType === 'country-update') {
- *       CountryStore.country = payload.selectedCountry;
- *     }
- *   });
- *
- * When the callback to update `CountryStore` is registered, we save a reference
- * to the returned token. Using this token with `waitFor()`, we can guarantee
- * that `CountryStore` is updated before the callback that updates `CityStore`
- * needs to query its data.
- *
- *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
- *     if (payload.actionType === 'country-update') {
- *       // `CountryStore.country` may not be updated.
- *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
- *       // `CountryStore.country` is now guaranteed to be updated.
- *
- *       // Select the default city for the new country
- *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
- *     }
- *   });
- *
- * The usage of `waitFor()` can be chained, for example:
- *
- *   FlightPriceStore.dispatchToken =
- *     flightDispatcher.register(function(payload)) {
- *       switch (payload.actionType) {
- *         case 'country-update':
- *           flightDispatcher.waitFor([CityStore.dispatchToken]);
- *           FlightPriceStore.price =
- *             getFlightPriceStore(CountryStore.country, CityStore.city);
- *           break;
- *
- *         case 'city-update':
- *           FlightPriceStore.price =
- *             FlightPriceStore(CountryStore.country, CityStore.city);
- *           break;
- *     }
- *   });
- *
- * The `country-update` payload will be guaranteed to invoke the stores'
- * registered callbacks in order: `CountryStore`, `CityStore`, then
- * `FlightPriceStore`.
- */
-
-  function Dispatcher() {"use strict";
-    this.$Dispatcher_callbacks = {};
-    this.$Dispatcher_isPending = {};
-    this.$Dispatcher_isHandled = {};
-    this.$Dispatcher_isDispatching = false;
-    this.$Dispatcher_pendingPayload = null;
-  }
-
-  /**
-   * Registers a callback to be invoked with every dispatched payload. Returns
-   * a token that can be used with `waitFor()`.
-   *
-   * @param {function} callback
-   * @return {string}
-   */
-  Dispatcher.prototype.register=function(callback) {"use strict";
-    var id = _prefix + _lastID++;
-    this.$Dispatcher_callbacks[id] = callback;
-    return id;
-  };
-
-  /**
-   * Removes a callback based on its token.
-   *
-   * @param {string} id
-   */
-  Dispatcher.prototype.unregister=function(id) {"use strict";
-    invariant(
-      this.$Dispatcher_callbacks[id],
-      'Dispatcher.unregister(...): `%s` does not map to a registered callback.',
-      id
-    );
-    delete this.$Dispatcher_callbacks[id];
-  };
-
-  /**
-   * Waits for the callbacks specified to be invoked before continuing execution
-   * of the current callback. This method should only be used by a callback in
-   * response to a dispatched payload.
-   *
-   * @param {array<string>} ids
-   */
-  Dispatcher.prototype.waitFor=function(ids) {"use strict";
-    invariant(
-      this.$Dispatcher_isDispatching,
-      'Dispatcher.waitFor(...): Must be invoked while dispatching.'
-    );
-    for (var ii = 0; ii < ids.length; ii++) {
-      var id = ids[ii];
-      if (this.$Dispatcher_isPending[id]) {
-        invariant(
-          this.$Dispatcher_isHandled[id],
-          'Dispatcher.waitFor(...): Circular dependency detected while ' +
-          'waiting for `%s`.',
-          id
-        );
-        continue;
-      }
-      invariant(
-        this.$Dispatcher_callbacks[id],
-        'Dispatcher.waitFor(...): `%s` does not map to a registered callback.',
-        id
-      );
-      this.$Dispatcher_invokeCallback(id);
-    }
-  };
-
-  /**
-   * Dispatches a payload to all registered callbacks.
-   *
-   * @param {object} payload
-   */
-  Dispatcher.prototype.dispatch=function(payload) {"use strict";
-    invariant(
-      !this.$Dispatcher_isDispatching,
-      'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.'
-    );
-    this.$Dispatcher_startDispatching(payload);
-    try {
-      for (var id in this.$Dispatcher_callbacks) {
-        if (this.$Dispatcher_isPending[id]) {
-          continue;
-        }
-        this.$Dispatcher_invokeCallback(id);
-      }
-    } finally {
-      this.$Dispatcher_stopDispatching();
-    }
-  };
-
-  /**
-   * Is this Dispatcher currently dispatching.
-   *
-   * @return {boolean}
-   */
-  Dispatcher.prototype.isDispatching=function() {"use strict";
-    return this.$Dispatcher_isDispatching;
-  };
-
-  /**
-   * Call the calback stored with the given id. Also do some internal
-   * bookkeeping.
-   *
-   * @param {string} id
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_invokeCallback=function(id) {"use strict";
-    this.$Dispatcher_isPending[id] = true;
-    this.$Dispatcher_callbacks[id](this.$Dispatcher_pendingPayload);
-    this.$Dispatcher_isHandled[id] = true;
-  };
-
-  /**
-   * Set up bookkeeping needed when dispatching.
-   *
-   * @param {object} payload
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_startDispatching=function(payload) {"use strict";
-    for (var id in this.$Dispatcher_callbacks) {
-      this.$Dispatcher_isPending[id] = false;
-      this.$Dispatcher_isHandled[id] = false;
-    }
-    this.$Dispatcher_pendingPayload = payload;
-    this.$Dispatcher_isDispatching = true;
-  };
-
-  /**
-   * Clear bookkeeping used for dispatching.
-   *
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_stopDispatching=function() {"use strict";
-    this.$Dispatcher_pendingPayload = null;
-    this.$Dispatcher_isDispatching = false;
-  };
-
-
-module.exports = Dispatcher;
-},{"./invariant":"/Users/Jay/Projects/material-ui/docs/src/app/vendor/flux/invariant.js"}],"/Users/Jay/Projects/material-ui/docs/src/app/vendor/flux/invariant.js":[function(require,module,exports){
-/**
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule invariant
- */
-
-"use strict";
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var invariant = function(condition, format, a, b, c, d, e, f) {
-  if (false) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  }
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error(
-        'Minified exception occurred; use the non-minified dev environment ' +
-        'for the full error message and additional helpful warnings.'
-      );
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(
-        'Invariant Violation: ' +
-        format.replace(/%s/g, function() { return args[argIndex++]; })
-      );
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-};
-
-module.exports = invariant;
-},{}],"/Users/Jay/Projects/material-ui/docs/src/app/vendor/highlight-js/highlight.pack.js":[function(require,module,exports){
-(function (global){
-;__browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
-var hljs=new function(){function j(v){return v.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")}function t(v){return v.nodeName.toLowerCase()}function h(w,x){var v=w&&w.exec(x);return v&&v.index==0}function r(w){var v=(w.className+" "+(w.parentNode?w.parentNode.className:"")).split(/\s+/);v=v.map(function(x){return x.replace(/^lang(uage)?-/,"")});return v.filter(function(x){return i(x)||x=="no-highlight"})[0]}function o(x,y){var v={};for(var w in x){v[w]=x[w]}if(y){for(var w in y){v[w]=y[w]}}return v}function u(x){var v=[];(function w(y,z){for(var A=y.firstChild;A;A=A.nextSibling){if(A.nodeType==3){z+=A.nodeValue.length}else{if(t(A)=="br"){z+=1}else{if(A.nodeType==1){v.push({event:"start",offset:z,node:A});z=w(A,z);v.push({event:"stop",offset:z,node:A})}}}}return z})(x,0);return v}function q(w,y,C){var x=0;var F="";var z=[];function B(){if(!w.length||!y.length){return w.length?w:y}if(w[0].offset!=y[0].offset){return(w[0].offset<y[0].offset)?w:y}return y[0].event=="start"?w:y}function A(H){function G(I){return" "+I.nodeName+'="'+j(I.value)+'"'}F+="<"+t(H)+Array.prototype.map.call(H.attributes,G).join("")+">"}function E(G){F+="</"+t(G)+">"}function v(G){(G.event=="start"?A:E)(G.node)}while(w.length||y.length){var D=B();F+=j(C.substr(x,D[0].offset-x));x=D[0].offset;if(D==w){z.reverse().forEach(E);do{v(D.splice(0,1)[0]);D=B()}while(D==w&&D.length&&D[0].offset==x);z.reverse().forEach(A)}else{if(D[0].event=="start"){z.push(D[0].node)}else{z.pop()}v(D.splice(0,1)[0])}}return F+j(C.substr(x))}function m(y){function v(z){return(z&&z.source)||z}function w(A,z){return RegExp(v(A),"m"+(y.cI?"i":"")+(z?"g":""))}function x(D,C){if(D.compiled){return}D.compiled=true;D.k=D.k||D.bK;if(D.k){var z={};var E=function(G,F){if(y.cI){F=F.toLowerCase()}F.split(" ").forEach(function(H){var I=H.split("|");z[I[0]]=[G,I[1]?Number(I[1]):1]})};if(typeof D.k=="string"){E("keyword",D.k)}else{Object.keys(D.k).forEach(function(F){E(F,D.k[F])})}D.k=z}D.lR=w(D.l||/\b[A-Za-z0-9_]+\b/,true);if(C){if(D.bK){D.b="\\b("+D.bK.split(" ").join("|")+")\\b"}if(!D.b){D.b=/\B|\b/}D.bR=w(D.b);if(!D.e&&!D.eW){D.e=/\B|\b/}if(D.e){D.eR=w(D.e)}D.tE=v(D.e)||"";if(D.eW&&C.tE){D.tE+=(D.e?"|":"")+C.tE}}if(D.i){D.iR=w(D.i)}if(D.r===undefined){D.r=1}if(!D.c){D.c=[]}var B=[];D.c.forEach(function(F){if(F.v){F.v.forEach(function(G){B.push(o(F,G))})}else{B.push(F=="self"?D:F)}});D.c=B;D.c.forEach(function(F){x(F,D)});if(D.starts){x(D.starts,C)}var A=D.c.map(function(F){return F.bK?"\\.?("+F.b+")\\.?":F.b}).concat([D.tE,D.i]).map(v).filter(Boolean);D.t=A.length?w(A.join("|"),true):{exec:function(F){return null}};D.continuation={}}x(y)}function c(S,L,J,R){function v(U,V){for(var T=0;T<V.c.length;T++){if(h(V.c[T].bR,U)){return V.c[T]}}}function z(U,T){if(h(U.eR,T)){return U}if(U.eW){return z(U.parent,T)}}function A(T,U){return !J&&h(U.iR,T)}function E(V,T){var U=M.cI?T[0].toLowerCase():T[0];return V.k.hasOwnProperty(U)&&V.k[U]}function w(Z,X,W,V){var T=V?"":b.classPrefix,U='<span class="'+T,Y=W?"":"</span>";U+=Z+'">';return U+X+Y}function N(){if(!I.k){return j(C)}var T="";var W=0;I.lR.lastIndex=0;var U=I.lR.exec(C);while(U){T+=j(C.substr(W,U.index-W));var V=E(I,U);if(V){H+=V[1];T+=w(V[0],j(U[0]))}else{T+=j(U[0])}W=I.lR.lastIndex;U=I.lR.exec(C)}return T+j(C.substr(W))}function F(){if(I.sL&&!f[I.sL]){return j(C)}var T=I.sL?c(I.sL,C,true,I.continuation.top):e(C);if(I.r>0){H+=T.r}if(I.subLanguageMode=="continuous"){I.continuation.top=T.top}return w(T.language,T.value,false,true)}function Q(){return I.sL!==undefined?F():N()}function P(V,U){var T=V.cN?w(V.cN,"",true):"";if(V.rB){D+=T;C=""}else{if(V.eB){D+=j(U)+T;C=""}else{D+=T;C=U}}I=Object.create(V,{parent:{value:I}})}function G(T,X){C+=T;if(X===undefined){D+=Q();return 0}var V=v(X,I);if(V){D+=Q();P(V,X);return V.rB?0:X.length}var W=z(I,X);if(W){var U=I;if(!(U.rE||U.eE)){C+=X}D+=Q();do{if(I.cN){D+="</span>"}H+=I.r;I=I.parent}while(I!=W.parent);if(U.eE){D+=j(X)}C="";if(W.starts){P(W.starts,"")}return U.rE?0:X.length}if(A(X,I)){throw new Error('Illegal lexeme "'+X+'" for mode "'+(I.cN||"<unnamed>")+'"')}C+=X;return X.length||1}var M=i(S);if(!M){throw new Error('Unknown language: "'+S+'"')}m(M);var I=R||M;var D="";for(var K=I;K!=M;K=K.parent){if(K.cN){D+=w(K.cN,D,true)}}var C="";var H=0;try{var B,y,x=0;while(true){I.t.lastIndex=x;B=I.t.exec(L);if(!B){break}y=G(L.substr(x,B.index-x),B[0]);x=B.index+y}G(L.substr(x));for(var K=I;K.parent;K=K.parent){if(K.cN){D+="</span>"}}return{r:H,value:D,language:S,top:I}}catch(O){if(O.message.indexOf("Illegal")!=-1){return{r:0,value:j(L)}}else{throw O}}}function e(y,x){x=x||b.languages||Object.keys(f);var v={r:0,value:j(y)};var w=v;x.forEach(function(z){if(!i(z)){return}var A=c(z,y,false);A.language=z;if(A.r>w.r){w=A}if(A.r>v.r){w=v;v=A}});if(w.language){v.second_best=w}return v}function g(v){if(b.tabReplace){v=v.replace(/^((<[^>]+>|\t)+)/gm,function(w,z,y,x){return z.replace(/\t/g,b.tabReplace)})}if(b.useBR){v=v.replace(/\n/g,"<br>")}return v}function p(z){var y=b.useBR?z.innerHTML.replace(/\n/g,"").replace(/<br>|<br [^>]*>/g,"\n").replace(/<[^>]*>/g,""):z.textContent;var A=r(z);if(A=="no-highlight"){return}var v=A?c(A,y,true):e(y);var w=u(z);if(w.length){var x=document.createElementNS("http://www.w3.org/1999/xhtml","pre");x.innerHTML=v.value;v.value=q(w,u(x),y)}v.value=g(v.value);z.innerHTML=v.value;z.className+=" hljs "+(!A&&v.language||"");z.result={language:v.language,re:v.r};if(v.second_best){z.second_best={language:v.second_best.language,re:v.second_best.r}}}var b={classPrefix:"hljs-",tabReplace:null,useBR:false,languages:undefined};function s(v){b=o(b,v)}function l(){if(l.called){return}l.called=true;var v=document.querySelectorAll("pre code");Array.prototype.forEach.call(v,p)}function a(){addEventListener("DOMContentLoaded",l,false);addEventListener("load",l,false)}var f={};var n={};function d(v,x){var w=f[v]=x(this);if(w.aliases){w.aliases.forEach(function(y){n[y]=v})}}function k(){return Object.keys(f)}function i(v){return f[v]||f[n[v]]}this.highlight=c;this.highlightAuto=e;this.fixMarkup=g;this.highlightBlock=p;this.configure=s;this.initHighlighting=l;this.initHighlightingOnLoad=a;this.registerLanguage=d;this.listLanguages=k;this.getLanguage=i;this.inherit=o;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.BE={b:"\\\\[\\s\\S]",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE]};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE]};this.PWM={b:/\b(a|an|the|are|I|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such)\b/};this.CLCM={cN:"comment",b:"//",e:"$",c:[this.PWM]};this.CBCM={cN:"comment",b:"/\\*",e:"\\*/",c:[this.PWM]};this.HCM={cN:"comment",b:"#",e:"$",c:[this.PWM]};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.CSSNM={cN:"number",b:this.NR+"(%|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc|px|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?",r:0};this.RM={cN:"regexp",b:/\//,e:/\/[gim]*/,i:/\n/,c:[this.BE,{b:/\[/,e:/\]/,r:0,c:[this.BE]}]};this.TM={cN:"title",b:this.IR,r:0};this.UTM={cN:"title",b:this.UIR,r:0}}();hljs.registerLanguage("javascript",function(a){return{aliases:["js"],k:{keyword:"in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const class",literal:"true false null undefined NaN Infinity",built_in:"eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document"},c:[{cN:"pi",b:/^\s*('|")use strict('|")/,r:10},a.ASM,a.QSM,a.CLCM,a.CBCM,a.CNM,{b:"("+a.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[a.CLCM,a.CBCM,a.RM,{b:/</,e:/>;/,r:0,sL:"xml"}],r:0},{cN:"function",bK:"function",e:/\{/,eE:true,c:[a.inherit(a.TM,{b:/[A-Za-z$_][0-9A-Za-z$_]*/}),{cN:"params",b:/\(/,e:/\)/,c:[a.CLCM,a.CBCM],i:/["'\(]/}],i:/\[|%/},{b:/\$[(.]/},{b:"\\."+a.IR,r:0}]}});hljs.registerLanguage("css",function(a){var b="[a-zA-Z-][a-zA-Z0-9_-]*";var c={cN:"function",b:b+"\\(",rB:true,eE:true,e:"\\("};return{cI:true,i:"[=/|']",c:[a.CBCM,{cN:"id",b:"\\#[A-Za-z0-9_-]+"},{cN:"class",b:"\\.[A-Za-z0-9_-]+",r:0},{cN:"attr_selector",b:"\\[",e:"\\]",i:"$"},{cN:"pseudo",b:":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+"},{cN:"at_rule",b:"@(font-face|page)",l:"[a-z-]+",k:"font-face page"},{cN:"at_rule",b:"@",e:"[{;]",c:[{cN:"keyword",b:/\S+/},{b:/\s/,eW:true,eE:true,r:0,c:[c,a.ASM,a.QSM,a.CSSNM]}]},{cN:"tag",b:b,r:0},{cN:"rules",b:"{",e:"}",i:"[^\\s]",r:0,c:[a.CBCM,{cN:"rule",b:"[^\\s]",rB:true,e:";",eW:true,c:[{cN:"attribute",b:"[A-Z\\_\\.\\-]+",e:":",eE:true,i:"[^\\s]",starts:{cN:"value",eW:true,eE:true,c:[c,a.CSSNM,a.QSM,a.ASM,a.CBCM,{cN:"hexcolor",b:"#[0-9A-Fa-f]+"},{cN:"important",b:"!important"}]}}]}]}]}});hljs.registerLanguage("xml",function(a){var c="[A-Za-z0-9\\._:-]+";var d={b:/<\?(php)?(?!\w)/,e:/\?>/,sL:"php",subLanguageMode:"continuous"};var b={eW:true,i:/</,r:0,c:[d,{cN:"attribute",b:c,r:0},{b:"=",r:0,c:[{cN:"value",v:[{b:/"/,e:/"/},{b:/'/,e:/'/},{b:/[^\s\/>]+/}]}]}]};return{aliases:["html","xhtml","rss","atom","xsl","plist"],cI:true,c:[{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},{cN:"comment",b:"<!--",e:"-->",r:10},{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[b],starts:{e:"</style>",rE:true,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[b],starts:{e:"<\/script>",rE:true,sL:"javascript"}},{b:"<%",e:"%>",sL:"vbscript"},d,{cN:"pi",b:/<\?\w+/,e:/\?>/,r:10},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:"[^ /><]+",r:0},b]}]}});hljs.registerLanguage("http",function(a){return{i:"\\S",c:[{cN:"status",b:"^HTTP/[0-9\\.]+",e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{cN:"request",b:"^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",rB:true,e:"$",c:[{cN:"string",b:" ",e:" ",eB:true,eE:true}]},{cN:"attribute",b:"^\\w",e:": ",eE:true,i:"\\n|\\s|=",starts:{cN:"string",e:"$"}},{b:"\\n\\n",starts:{sL:"",eW:true}}]}});hljs.registerLanguage("json",function(a){var e={literal:"true false null"};var d=[a.QSM,a.CNM];var c={cN:"value",e:",",eW:true,eE:true,c:d,k:e};var b={b:"{",e:"}",c:[{cN:"attribute",b:'\\s*"',e:'"\\s*:\\s*',eB:true,eE:true,c:[a.BE],i:"\\n",starts:c}],i:"\\S"};var f={b:"\\[",e:"\\]",c:[a.inherit(c,{cN:null})],i:"\\S"};d.splice(d.length,0,b,f);return{c:d,k:e,i:"\\S"}});
-; browserify_shim__define__module__export__(typeof hljs != "undefined" ? hljs : window.hljs);
-
-}).call(global, undefined, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"/Users/Jay/Projects/material-ui/node_modules/backbone/backbone.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js":[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -4848,7 +3166,7 @@ var hljs=new function(){function j(v){return v.replace(/&/gm,"&amp;").replace(/<
 
 }));
 
-},{"underscore":"/Users/Jay/Projects/material-ui/node_modules/underscore/underscore.js"}],"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+},{"underscore":"/Users/hai/GitHub/material-ui/docs/node_modules/underscore/underscore.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -4913,7 +3231,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.1
  * http://jquery.com/
@@ -14105,10 +12423,10 @@ return jQuery;
 
 }));
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/addons.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js":[function(require,module,exports){
 module.exports = require('./lib/ReactWithAddons');
 
-},{"./lib/ReactWithAddons":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactWithAddons.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/AutoFocusMixin.js":[function(require,module,exports){
+},{"./lib/ReactWithAddons":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactWithAddons.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -14142,7 +12460,7 @@ var AutoFocusMixin = {
 
 module.exports = AutoFocusMixin;
 
-},{"./focusNode":"/Users/Jay/Projects/material-ui/node_modules/react/lib/focusNode.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/BeforeInputEventPlugin.js":[function(require,module,exports){
+},{"./focusNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/focusNode.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/BeforeInputEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -14366,7 +12684,7 @@ var BeforeInputEventPlugin = {
 
 module.exports = BeforeInputEventPlugin;
 
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js","./SyntheticInputEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticInputEvent.js","./keyOf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/CSSCore.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./SyntheticInputEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticInputEvent.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSCore.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -14485,7 +12803,7 @@ var CSSCore = {
 module.exports = CSSCore;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/CSSProperty.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSProperty.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -14608,7 +12926,7 @@ var CSSProperty = {
 
 module.exports = CSSProperty;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/CSSPropertyOperations.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSPropertyOperations.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -14707,7 +13025,7 @@ var CSSPropertyOperations = {
 
 module.exports = CSSPropertyOperations;
 
-},{"./CSSProperty":"/Users/Jay/Projects/material-ui/node_modules/react/lib/CSSProperty.js","./dangerousStyleValue":"/Users/Jay/Projects/material-ui/node_modules/react/lib/dangerousStyleValue.js","./hyphenateStyleName":"/Users/Jay/Projects/material-ui/node_modules/react/lib/hyphenateStyleName.js","./memoizeStringOnly":"/Users/Jay/Projects/material-ui/node_modules/react/lib/memoizeStringOnly.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/CallbackQueue.js":[function(require,module,exports){
+},{"./CSSProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSProperty.js","./dangerousStyleValue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/dangerousStyleValue.js","./hyphenateStyleName":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenateStyleName.js","./memoizeStringOnly":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/memoizeStringOnly.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -14814,7 +13132,7 @@ PooledClass.addPoolingTo(CallbackQueue);
 module.exports = CallbackQueue;
 
 }).call(this,require('_process'))
-},{"./PooledClass":"/Users/Jay/Projects/material-ui/node_modules/react/lib/PooledClass.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./mixInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ChangeEventPlugin.js":[function(require,module,exports){
+},{"./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ChangeEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -15203,7 +13521,7 @@ var ChangeEventPlugin = {
 
 module.exports = ChangeEventPlugin;
 
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginHub.js","./EventPropagators":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js","./ReactUpdates":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactUpdates.js","./SyntheticEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticEvent.js","./isEventSupported":"/Users/Jay/Projects/material-ui/node_modules/react/lib/isEventSupported.js","./isTextInputElement":"/Users/Jay/Projects/material-ui/node_modules/react/lib/isTextInputElement.js","./keyOf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ClientReactRootIndex.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./isEventSupported":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js","./isTextInputElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextInputElement.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ClientReactRootIndex.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -15235,7 +13553,7 @@ var ClientReactRootIndex = {
 
 module.exports = ClientReactRootIndex;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/CompositionEventPlugin.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CompositionEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -15501,7 +13819,7 @@ var CompositionEventPlugin = {
 
 module.exports = CompositionEventPlugin;
 
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js","./ReactInputSelection":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInputSelection.js","./SyntheticCompositionEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticCompositionEvent.js","./getTextContentAccessor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getTextContentAccessor.js","./keyOf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMChildrenOperations.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./ReactInputSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js","./SyntheticCompositionEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticCompositionEvent.js","./getTextContentAccessor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMChildrenOperations.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -15683,7 +14001,7 @@ var DOMChildrenOperations = {
 module.exports = DOMChildrenOperations;
 
 }).call(this,require('_process'))
-},{"./Danger":"/Users/Jay/Projects/material-ui/node_modules/react/lib/Danger.js","./ReactMultiChildUpdateTypes":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMultiChildUpdateTypes.js","./getTextContentAccessor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getTextContentAccessor.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMProperty.js":[function(require,module,exports){
+},{"./Danger":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Danger.js","./ReactMultiChildUpdateTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChildUpdateTypes.js","./getTextContentAccessor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -15985,7 +14303,7 @@ var DOMProperty = {
 module.exports = DOMProperty;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMPropertyOperations.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -16182,7 +14500,7 @@ var DOMPropertyOperations = {
 module.exports = DOMPropertyOperations;
 
 }).call(this,require('_process'))
-},{"./DOMProperty":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMProperty.js","./escapeTextForBrowser":"/Users/Jay/Projects/material-ui/node_modules/react/lib/escapeTextForBrowser.js","./memoizeStringOnly":"/Users/Jay/Projects/material-ui/node_modules/react/lib/memoizeStringOnly.js","./warning":"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/Danger.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./escapeTextForBrowser":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js","./memoizeStringOnly":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/memoizeStringOnly.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Danger.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -16373,7 +14691,7 @@ var Danger = {
 module.exports = Danger;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js","./createNodesFromMarkup":"/Users/Jay/Projects/material-ui/node_modules/react/lib/createNodesFromMarkup.js","./emptyFunction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js","./getMarkupWrap":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getMarkupWrap.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/DefaultEventPluginOrder.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./createNodesFromMarkup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createNodesFromMarkup.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./getMarkupWrap":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getMarkupWrap.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DefaultEventPluginOrder.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -16420,7 +14738,7 @@ var DefaultEventPluginOrder = [
 
 module.exports = DefaultEventPluginOrder;
 
-},{"./keyOf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/EnterLeaveEventPlugin.js":[function(require,module,exports){
+},{"./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EnterLeaveEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -16567,7 +14885,7 @@ var EnterLeaveEventPlugin = {
 
 module.exports = EnterLeaveEventPlugin;
 
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPropagators.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./SyntheticMouseEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticMouseEvent.js","./keyOf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -16646,7 +14964,7 @@ var EventConstants = {
 
 module.exports = EventConstants;
 
-},{"./keyMirror":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyMirror.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventListener.js":[function(require,module,exports){
+},{"./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventListener.js":[function(require,module,exports){
 (function (process){
 /**
  * @providesModule EventListener
@@ -16722,7 +15040,7 @@ var EventListener = {
 module.exports = EventListener;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginHub.js":[function(require,module,exports){
+},{"./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -17016,7 +15334,7 @@ var EventPluginHub = {
 module.exports = EventPluginHub;
 
 }).call(this,require('_process'))
-},{"./EventPluginRegistry":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginRegistry.js","./EventPluginUtils":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginUtils.js","./accumulate":"/Users/Jay/Projects/material-ui/node_modules/react/lib/accumulate.js","./forEachAccumulated":"/Users/Jay/Projects/material-ui/node_modules/react/lib/forEachAccumulated.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./isEventSupported":"/Users/Jay/Projects/material-ui/node_modules/react/lib/isEventSupported.js","./monitorCodeUse":"/Users/Jay/Projects/material-ui/node_modules/react/lib/monitorCodeUse.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginRegistry.js":[function(require,module,exports){
+},{"./EventPluginRegistry":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginRegistry.js","./EventPluginUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js","./accumulate":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulate.js","./forEachAccumulated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./isEventSupported":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js","./monitorCodeUse":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginRegistry.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -17303,7 +15621,7 @@ var EventPluginRegistry = {
 module.exports = EventPluginRegistry;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginUtils.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -17531,7 +15849,7 @@ var EventPluginUtils = {
 module.exports = EventPluginUtils;
 
 }).call(this,require('_process'))
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPropagators.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -17678,7 +15996,7 @@ var EventPropagators = {
 module.exports = EventPropagators;
 
 }).call(this,require('_process'))
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginHub.js","./accumulate":"/Users/Jay/Projects/material-ui/node_modules/react/lib/accumulate.js","./forEachAccumulated":"/Users/Jay/Projects/material-ui/node_modules/react/lib/forEachAccumulated.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./accumulate":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulate.js","./forEachAccumulated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -17730,7 +16048,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/HTMLDOMPropertyConfig.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/HTMLDOMPropertyConfig.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -17842,6 +16160,7 @@ var HTMLDOMPropertyConfig = {
     loop: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     max: null,
     maxLength: MUST_USE_ATTRIBUTE,
+    media: MUST_USE_ATTRIBUTE,
     mediaGroup: null,
     method: null,
     min: null,
@@ -17849,6 +16168,7 @@ var HTMLDOMPropertyConfig = {
     muted: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     name: null,
     noValidate: HAS_BOOLEAN_VALUE,
+    open: null,
     pattern: null,
     placeholder: null,
     poster: null,
@@ -17869,11 +16189,12 @@ var HTMLDOMPropertyConfig = {
     selected: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     shape: null,
     size: MUST_USE_ATTRIBUTE | HAS_POSITIVE_NUMERIC_VALUE,
+    sizes: MUST_USE_ATTRIBUTE,
     span: HAS_POSITIVE_NUMERIC_VALUE,
     spellCheck: null,
     src: null,
     srcDoc: MUST_USE_PROPERTY,
-    srcSet: null,
+    srcSet: MUST_USE_ATTRIBUTE,
     start: HAS_NUMERIC_VALUE,
     step: null,
     style: null,
@@ -17918,7 +16239,7 @@ var HTMLDOMPropertyConfig = {
 
 module.exports = HTMLDOMPropertyConfig;
 
-},{"./DOMProperty":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMProperty.js","./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/LinkedStateMixin.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedStateMixin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -17966,7 +16287,7 @@ var LinkedStateMixin = {
 
 module.exports = LinkedStateMixin;
 
-},{"./ReactLink":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactLink.js","./ReactStateSetters":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactStateSetters.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/LinkedValueUtils.js":[function(require,module,exports){
+},{"./ReactLink":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLink.js","./ReactStateSetters":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactStateSetters.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -18129,7 +16450,7 @@ var LinkedValueUtils = {
 module.exports = LinkedValueUtils;
 
 }).call(this,require('_process'))
-},{"./ReactPropTypes":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTypes.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/LocalEventTrapMixin.js":[function(require,module,exports){
+},{"./ReactPropTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypes.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LocalEventTrapMixin.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -18185,7 +16506,7 @@ var LocalEventTrapMixin = {
 module.exports = LocalEventTrapMixin;
 
 }).call(this,require('_process'))
-},{"./ReactBrowserEventEmitter":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserEventEmitter.js","./accumulate":"/Users/Jay/Projects/material-ui/node_modules/react/lib/accumulate.js","./forEachAccumulated":"/Users/Jay/Projects/material-ui/node_modules/react/lib/forEachAccumulated.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/MobileSafariClickEventPlugin.js":[function(require,module,exports){
+},{"./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./accumulate":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulate.js","./forEachAccumulated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/MobileSafariClickEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -18250,7 +16571,7 @@ var MobileSafariClickEventPlugin = {
 
 module.exports = MobileSafariClickEventPlugin;
 
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./emptyFunction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/PooledClass.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -18373,7 +16694,7 @@ var PooledClass = {
 module.exports = PooledClass;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/React.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -18415,8 +16736,20 @@ var ReactServerRendering = require("./ReactServerRendering");
 var ReactTextComponent = require("./ReactTextComponent");
 
 var onlyChild = require("./onlyChild");
+var warning = require("./warning");
 
 ReactDefaultInjection.inject();
+
+// Specifying arguments isn't necessary since we just use apply anyway, but it
+// makes it clear for those actually consuming this API.
+function createDescriptor(type, props, children) {
+  var args = Array.prototype.slice.call(arguments, 1);
+  return type.apply(null, args);
+}
+
+if ("production" !== process.env.NODE_ENV) {
+  var _warnedForDeprecation = false;
+}
 
 var React = {
   Children: {
@@ -18431,10 +16764,18 @@ var React = {
     EventPluginUtils.useTouchEvents = shouldUseTouch;
   },
   createClass: ReactCompositeComponent.createClass,
-  createDescriptor: function(type, props, children) {
-    var args = Array.prototype.slice.call(arguments, 1);
-    return type.apply(null, args);
+  createDescriptor: function() {
+    if ("production" !== process.env.NODE_ENV) {
+      ("production" !== process.env.NODE_ENV ? warning(
+        _warnedForDeprecation,
+        'React.createDescriptor is deprecated and will be removed in the ' +
+        'next version of React. Use React.createElement instead.'
+      ) : null);
+      _warnedForDeprecation = true;
+    }
+    return createDescriptor.apply(this, arguments);
   },
+  createElement: createDescriptor,
   constructAndRenderComponent: ReactMount.constructAndRenderComponent,
   constructAndRenderComponentByID: ReactMount.constructAndRenderComponentByID,
   renderComponent: ReactPerf.measure(
@@ -18503,12 +16844,12 @@ if ("production" !== process.env.NODE_ENV) {
 
 // Version exists only in the open-source version of React, not in Facebook's
 // internal version.
-React.version = '0.11.1';
+React.version = '0.11.2';
 
 module.exports = React;
 
 }).call(this,require('_process'))
-},{"./DOMPropertyOperations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMPropertyOperations.js","./EventPluginUtils":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginUtils.js","./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js","./ReactChildren":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactChildren.js","./ReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponent.js","./ReactCompositeComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js","./ReactContext":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCurrentOwner.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js","./ReactDOMComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMComponent.js","./ReactDefaultInjection":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDefaultInjection.js","./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./ReactInstanceHandles":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./ReactMultiChild":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMultiChild.js","./ReactPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPerf.js","./ReactPropTypes":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTypes.js","./ReactServerRendering":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactServerRendering.js","./ReactTextComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTextComponent.js","./onlyChild":"/Users/Jay/Projects/material-ui/node_modules/react/lib/onlyChild.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js":[function(require,module,exports){
+},{"./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./EventPluginUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./ReactChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactChildren.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactDOMComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMComponent.js","./ReactDefaultInjection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultInjection.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactMultiChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChild.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactPropTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypes.js","./ReactServerRendering":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRendering.js","./ReactTextComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js","./onlyChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/onlyChild.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -18558,7 +16899,7 @@ var ReactBrowserComponentMixin = {
 module.exports = ReactBrowserComponentMixin;
 
 }).call(this,require('_process'))
-},{"./ReactEmptyComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactEmptyComponent.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserEventEmitter.js":[function(require,module,exports){
+},{"./ReactEmptyComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -18920,7 +17261,7 @@ var ReactBrowserEventEmitter = merge(ReactEventEmitterMixin, {
 
 module.exports = ReactBrowserEventEmitter;
 
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginHub.js","./EventPluginRegistry":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginRegistry.js","./ReactEventEmitterMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactEventEmitterMixin.js","./ViewportMetrics":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ViewportMetrics.js","./isEventSupported":"/Users/Jay/Projects/material-ui/node_modules/react/lib/isEventSupported.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCSSTransitionGroup.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./EventPluginRegistry":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginRegistry.js","./ReactEventEmitterMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventEmitterMixin.js","./ViewportMetrics":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ViewportMetrics.js","./isEventSupported":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroup.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -18989,7 +17330,7 @@ var ReactCSSTransitionGroup = React.createClass({
 
 module.exports = ReactCSSTransitionGroup;
 
-},{"./React":"/Users/Jay/Projects/material-ui/node_modules/react/lib/React.js","./ReactCSSTransitionGroupChild":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCSSTransitionGroupChild.js","./ReactTransitionGroup":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTransitionGroup.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCSSTransitionGroupChild.js":[function(require,module,exports){
+},{"./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactCSSTransitionGroupChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroupChild.js","./ReactTransitionGroup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionGroup.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroupChild.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -19128,7 +17469,7 @@ var ReactCSSTransitionGroupChild = React.createClass({
 module.exports = ReactCSSTransitionGroupChild;
 
 }).call(this,require('_process'))
-},{"./CSSCore":"/Users/Jay/Projects/material-ui/node_modules/react/lib/CSSCore.js","./React":"/Users/Jay/Projects/material-ui/node_modules/react/lib/React.js","./ReactTransitionEvents":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTransitionEvents.js","./onlyChild":"/Users/Jay/Projects/material-ui/node_modules/react/lib/onlyChild.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactChildren.js":[function(require,module,exports){
+},{"./CSSCore":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSCore.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactTransitionEvents":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionEvents.js","./onlyChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/onlyChild.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactChildren.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -19285,7 +17626,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 }).call(this,require('_process'))
-},{"./PooledClass":"/Users/Jay/Projects/material-ui/node_modules/react/lib/PooledClass.js","./traverseAllChildren":"/Users/Jay/Projects/material-ui/node_modules/react/lib/traverseAllChildren.js","./warning":"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponent.js":[function(require,module,exports){
+},{"./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./traverseAllChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/traverseAllChildren.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -19735,7 +18076,7 @@ var ReactComponent = {
 module.exports = ReactComponent;
 
 }).call(this,require('_process'))
-},{"./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./ReactOwner":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactOwner.js","./ReactUpdates":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactUpdates.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./keyMirror":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyMirror.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponentBrowserEnvironment.js":[function(require,module,exports){
+},{"./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactOwner.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentBrowserEnvironment.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -19864,7 +18205,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 }).call(this,require('_process'))
-},{"./ReactDOMIDOperations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMIDOperations.js","./ReactMarkupChecksum":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMarkupChecksum.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPerf.js","./ReactReconcileTransaction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactReconcileTransaction.js","./getReactRootElementInContainer":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getReactRootElementInContainer.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./setInnerHTML":"/Users/Jay/Projects/material-ui/node_modules/react/lib/setInnerHTML.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponentWithPureRenderMixin.js":[function(require,module,exports){
+},{"./ReactDOMIDOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMIDOperations.js","./ReactMarkupChecksum":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMarkupChecksum.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactReconcileTransaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactReconcileTransaction.js","./getReactRootElementInContainer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getReactRootElementInContainer.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./setInnerHTML":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/setInnerHTML.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentWithPureRenderMixin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -19920,7 +18261,7 @@ var ReactComponentWithPureRenderMixin = {
 
 module.exports = ReactComponentWithPureRenderMixin;
 
-},{"./shallowEqual":"/Users/Jay/Projects/material-ui/node_modules/react/lib/shallowEqual.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js":[function(require,module,exports){
+},{"./shallowEqual":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shallowEqual.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -21349,7 +19690,7 @@ var ReactCompositeComponent = {
 module.exports = ReactCompositeComponent;
 
 }).call(this,require('_process'))
-},{"./ReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponent.js","./ReactContext":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCurrentOwner.js","./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./ReactDescriptorValidator":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptorValidator.js","./ReactEmptyComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactEmptyComponent.js","./ReactErrorUtils":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactErrorUtils.js","./ReactOwner":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactOwner.js","./ReactPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPerf.js","./ReactPropTransferer":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTransferer.js","./ReactPropTypeLocationNames":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTypeLocationNames.js","./ReactPropTypeLocations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTypeLocations.js","./ReactUpdates":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactUpdates.js","./instantiateReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./keyMirror":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyMirror.js","./mapObject":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mapObject.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js","./mixInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js","./monitorCodeUse":"/Users/Jay/Projects/material-ui/node_modules/react/lib/monitorCodeUse.js","./shouldUpdateReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/shouldUpdateReactComponent.js","./warning":"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactContext.js":[function(require,module,exports){
+},{"./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactDescriptorValidator":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptorValidator.js","./ReactEmptyComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js","./ReactErrorUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactErrorUtils.js","./ReactOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactOwner.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactPropTransferer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTransferer.js","./ReactPropTypeLocationNames":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocationNames.js","./ReactPropTypeLocations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocations.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js","./mapObject":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mapObject.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js","./monitorCodeUse":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js","./shouldUpdateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -21418,7 +19759,7 @@ var ReactContext = {
 
 module.exports = ReactContext;
 
-},{"./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCurrentOwner.js":[function(require,module,exports){
+},{"./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -21459,7 +19800,7 @@ var ReactCurrentOwner = {
 
 module.exports = ReactCurrentOwner;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -21558,6 +19899,7 @@ var ReactDOM = mapObject({
   del: false,
   details: false,
   dfn: false,
+  dialog: false,
   div: false,
   dl: false,
   dt: false,
@@ -21605,6 +19947,7 @@ var ReactDOM = mapObject({
   output: false,
   p: false,
   param: true,
+  picture: false,
   pre: false,
   progress: false,
   q: false,
@@ -21672,7 +20015,7 @@ ReactDOM.injection = injection;
 module.exports = ReactDOM;
 
 }).call(this,require('_process'))
-},{"./ReactDOMComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMComponent.js","./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./ReactDescriptorValidator":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptorValidator.js","./mapObject":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mapObject.js","./mergeInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mergeInto.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMButton.js":[function(require,module,exports){
+},{"./ReactDOMComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMComponent.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactDescriptorValidator":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptorValidator.js","./mapObject":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mapObject.js","./mergeInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeInto.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMButton.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -21743,7 +20086,7 @@ var ReactDOMButton = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMButton;
 
-},{"./AutoFocusMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/AutoFocusMixin.js","./ReactBrowserComponentMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js","./keyMirror":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyMirror.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMComponent.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -22165,7 +20508,7 @@ mixInto(ReactDOMComponent, ReactBrowserComponentMixin);
 module.exports = ReactDOMComponent;
 
 }).call(this,require('_process'))
-},{"./CSSPropertyOperations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/CSSPropertyOperations.js","./DOMProperty":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMProperty.js","./DOMPropertyOperations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMPropertyOperations.js","./ReactBrowserComponentMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactBrowserEventEmitter":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponent.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./ReactMultiChild":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMultiChild.js","./ReactPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPerf.js","./escapeTextForBrowser":"/Users/Jay/Projects/material-ui/node_modules/react/lib/escapeTextForBrowser.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./keyOf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js","./mixInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMForm.js":[function(require,module,exports){
+},{"./CSSPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSPropertyOperations.js","./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactMultiChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChild.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./escapeTextForBrowser":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMForm.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -22221,7 +20564,7 @@ var ReactDOMForm = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMForm;
 
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./LocalEventTrapMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMIDOperations.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./LocalEventTrapMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMIDOperations.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -22414,7 +20757,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 }).call(this,require('_process'))
-},{"./CSSPropertyOperations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/CSSPropertyOperations.js","./DOMChildrenOperations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMChildrenOperations.js","./DOMPropertyOperations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMPropertyOperations.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPerf.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./setInnerHTML":"/Users/Jay/Projects/material-ui/node_modules/react/lib/setInnerHTML.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMImg.js":[function(require,module,exports){
+},{"./CSSPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSPropertyOperations.js","./DOMChildrenOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMChildrenOperations.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./setInnerHTML":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/setInnerHTML.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMImg.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -22468,7 +20811,7 @@ var ReactDOMImg = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMImg;
 
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./LocalEventTrapMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMInput.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./LocalEventTrapMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMInput.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -22654,7 +20997,7 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
 module.exports = ReactDOMInput;
 
 }).call(this,require('_process'))
-},{"./AutoFocusMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/AutoFocusMixin.js","./DOMPropertyOperations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMPropertyOperations.js","./LinkedValueUtils":"/Users/Jay/Projects/material-ui/node_modules/react/lib/LinkedValueUtils.js","./ReactBrowserComponentMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMOption.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./LinkedValueUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMOption.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -22713,7 +21056,7 @@ var ReactDOMOption = ReactCompositeComponent.createClass({
 module.exports = ReactDOMOption;
 
 }).call(this,require('_process'))
-},{"./ReactBrowserComponentMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js","./warning":"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMSelect.js":[function(require,module,exports){
+},{"./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelect.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -22896,7 +21239,7 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMSelect;
 
-},{"./AutoFocusMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/AutoFocusMixin.js","./LinkedValueUtils":"/Users/Jay/Projects/material-ui/node_modules/react/lib/LinkedValueUtils.js","./ReactBrowserComponentMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMSelection.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./LinkedValueUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelection.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23112,7 +21455,7 @@ var ReactDOMSelection = {
 
 module.exports = ReactDOMSelection;
 
-},{"./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js","./getNodeForCharacterOffset":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getNodeForCharacterOffset.js","./getTextContentAccessor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getTextContentAccessor.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMTextarea.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./getNodeForCharacterOffset":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getNodeForCharacterOffset.js","./getTextContentAccessor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMTextarea.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -23258,7 +21601,7 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
 module.exports = ReactDOMTextarea;
 
 }).call(this,require('_process'))
-},{"./AutoFocusMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/AutoFocusMixin.js","./DOMPropertyOperations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMPropertyOperations.js","./LinkedValueUtils":"/Users/Jay/Projects/material-ui/node_modules/react/lib/LinkedValueUtils.js","./ReactBrowserComponentMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js","./warning":"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDefaultBatchingStrategy.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./LinkedValueUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultBatchingStrategy.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23335,7 +21678,7 @@ var ReactDefaultBatchingStrategy = {
 
 module.exports = ReactDefaultBatchingStrategy;
 
-},{"./ReactUpdates":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactUpdates.js","./Transaction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/Transaction.js","./emptyFunction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js","./mixInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDefaultInjection.js":[function(require,module,exports){
+},{"./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultInjection.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -23467,7 +21810,7 @@ module.exports = {
 };
 
 }).call(this,require('_process'))
-},{"./BeforeInputEventPlugin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/BeforeInputEventPlugin.js","./ChangeEventPlugin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ChangeEventPlugin.js","./ClientReactRootIndex":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ClientReactRootIndex.js","./CompositionEventPlugin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/CompositionEventPlugin.js","./DefaultEventPluginOrder":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DefaultEventPluginOrder.js","./EnterLeaveEventPlugin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EnterLeaveEventPlugin.js","./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js","./HTMLDOMPropertyConfig":"/Users/Jay/Projects/material-ui/node_modules/react/lib/HTMLDOMPropertyConfig.js","./MobileSafariClickEventPlugin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/MobileSafariClickEventPlugin.js","./ReactBrowserComponentMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactComponentBrowserEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponentBrowserEnvironment.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js","./ReactDOMButton":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMButton.js","./ReactDOMForm":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMForm.js","./ReactDOMImg":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMImg.js","./ReactDOMInput":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMInput.js","./ReactDOMOption":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMOption.js","./ReactDOMSelect":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMSelect.js","./ReactDOMTextarea":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMTextarea.js","./ReactDefaultBatchingStrategy":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDefaultBatchingStrategy.js","./ReactDefaultPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDefaultPerf.js","./ReactEventListener":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactEventListener.js","./ReactInjection":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInjection.js","./ReactInstanceHandles":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./SVGDOMPropertyConfig":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SVGDOMPropertyConfig.js","./SelectEventPlugin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SelectEventPlugin.js","./ServerReactRootIndex":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ServerReactRootIndex.js","./SimpleEventPlugin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SimpleEventPlugin.js","./createFullPageComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/createFullPageComponent.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDefaultPerf.js":[function(require,module,exports){
+},{"./BeforeInputEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/BeforeInputEventPlugin.js","./ChangeEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ChangeEventPlugin.js","./ClientReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ClientReactRootIndex.js","./CompositionEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CompositionEventPlugin.js","./DefaultEventPluginOrder":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DefaultEventPluginOrder.js","./EnterLeaveEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EnterLeaveEventPlugin.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./HTMLDOMPropertyConfig":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/HTMLDOMPropertyConfig.js","./MobileSafariClickEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/MobileSafariClickEventPlugin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactComponentBrowserEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentBrowserEnvironment.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactDOMButton":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMButton.js","./ReactDOMForm":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMForm.js","./ReactDOMImg":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMImg.js","./ReactDOMInput":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMInput.js","./ReactDOMOption":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMOption.js","./ReactDOMSelect":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelect.js","./ReactDOMTextarea":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMTextarea.js","./ReactDefaultBatchingStrategy":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultBatchingStrategy.js","./ReactDefaultPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerf.js","./ReactEventListener":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventListener.js","./ReactInjection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInjection.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./SVGDOMPropertyConfig":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SVGDOMPropertyConfig.js","./SelectEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SelectEventPlugin.js","./ServerReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ServerReactRootIndex.js","./SimpleEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SimpleEventPlugin.js","./createFullPageComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createFullPageComponent.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerf.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23730,7 +22073,7 @@ var ReactDefaultPerf = {
 
 module.exports = ReactDefaultPerf;
 
-},{"./DOMProperty":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMProperty.js","./ReactDefaultPerfAnalysis":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDefaultPerfAnalysis.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPerf.js","./performanceNow":"/Users/Jay/Projects/material-ui/node_modules/react/lib/performanceNow.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDefaultPerfAnalysis.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./ReactDefaultPerfAnalysis":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerfAnalysis.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./performanceNow":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performanceNow.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerfAnalysis.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23935,7 +22278,7 @@ var ReactDefaultPerfAnalysis = {
 
 module.exports = ReactDefaultPerfAnalysis;
 
-},{"./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js":[function(require,module,exports){
+},{"./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -24190,7 +22533,7 @@ ReactDescriptor.isValidDescriptor = function(object) {
 module.exports = ReactDescriptor;
 
 }).call(this,require('_process'))
-},{"./ReactContext":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCurrentOwner.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js","./warning":"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptorValidator.js":[function(require,module,exports){
+},{"./ReactContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptorValidator.js":[function(require,module,exports){
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -24475,7 +22818,7 @@ var ReactDescriptorValidator = {
 
 module.exports = ReactDescriptorValidator;
 
-},{"./ReactCurrentOwner":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCurrentOwner.js","./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./ReactPropTypeLocations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTypeLocations.js","./monitorCodeUse":"/Users/Jay/Projects/material-ui/node_modules/react/lib/monitorCodeUse.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactEmptyComponent.js":[function(require,module,exports){
+},{"./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactPropTypeLocations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocations.js","./monitorCodeUse":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -24557,7 +22900,7 @@ var ReactEmptyComponent = {
 module.exports = ReactEmptyComponent;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactErrorUtils.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactErrorUtils.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -24596,7 +22939,7 @@ var ReactErrorUtils = {
 
 module.exports = ReactErrorUtils;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactEventEmitterMixin.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventEmitterMixin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -24653,7 +22996,7 @@ var ReactEventEmitterMixin = {
 
 module.exports = ReactEventEmitterMixin;
 
-},{"./EventPluginHub":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginHub.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactEventListener.js":[function(require,module,exports){
+},{"./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventListener.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -24844,7 +23187,7 @@ var ReactEventListener = {
 
 module.exports = ReactEventListener;
 
-},{"./EventListener":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventListener.js","./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js","./PooledClass":"/Users/Jay/Projects/material-ui/node_modules/react/lib/PooledClass.js","./ReactInstanceHandles":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./ReactUpdates":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactUpdates.js","./getEventTarget":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getEventTarget.js","./getUnboundedScrollPosition":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getUnboundedScrollPosition.js","./mixInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInjection.js":[function(require,module,exports){
+},{"./EventListener":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventListener.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./getEventTarget":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js","./getUnboundedScrollPosition":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getUnboundedScrollPosition.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInjection.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -24891,7 +23234,7 @@ var ReactInjection = {
 
 module.exports = ReactInjection;
 
-},{"./DOMProperty":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMProperty.js","./EventPluginHub":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginHub.js","./ReactBrowserEventEmitter":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponent.js","./ReactCompositeComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js","./ReactEmptyComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactEmptyComponent.js","./ReactPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPerf.js","./ReactRootIndex":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactRootIndex.js","./ReactUpdates":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactUpdates.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInputSelection.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactEmptyComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactRootIndex.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -25034,7 +23377,7 @@ var ReactInputSelection = {
 
 module.exports = ReactInputSelection;
 
-},{"./ReactDOMSelection":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOMSelection.js","./containsNode":"/Users/Jay/Projects/material-ui/node_modules/react/lib/containsNode.js","./focusNode":"/Users/Jay/Projects/material-ui/node_modules/react/lib/focusNode.js","./getActiveElement":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getActiveElement.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInstanceHandles.js":[function(require,module,exports){
+},{"./ReactDOMSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelection.js","./containsNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/containsNode.js","./focusNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/focusNode.js","./getActiveElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getActiveElement.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -25376,7 +23719,7 @@ var ReactInstanceHandles = {
 module.exports = ReactInstanceHandles;
 
 }).call(this,require('_process'))
-},{"./ReactRootIndex":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactRootIndex.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactLink.js":[function(require,module,exports){
+},{"./ReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactRootIndex.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLink.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -25456,7 +23799,7 @@ ReactLink.PropTypes = {
 
 module.exports = ReactLink;
 
-},{"./React":"/Users/Jay/Projects/material-ui/node_modules/react/lib/React.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMarkupChecksum.js":[function(require,module,exports){
+},{"./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMarkupChecksum.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -25511,7 +23854,7 @@ var ReactMarkupChecksum = {
 
 module.exports = ReactMarkupChecksum;
 
-},{"./adler32":"/Users/Jay/Projects/material-ui/node_modules/react/lib/adler32.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js":[function(require,module,exports){
+},{"./adler32":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/adler32.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -26196,7 +24539,7 @@ var ReactMount = {
 module.exports = ReactMount;
 
 }).call(this,require('_process'))
-},{"./DOMProperty":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMProperty.js","./ReactBrowserEventEmitter":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactCurrentOwner":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCurrentOwner.js","./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./ReactInstanceHandles":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInstanceHandles.js","./ReactPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPerf.js","./containsNode":"/Users/Jay/Projects/material-ui/node_modules/react/lib/containsNode.js","./getReactRootElementInContainer":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getReactRootElementInContainer.js","./instantiateReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./shouldUpdateReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/shouldUpdateReactComponent.js","./warning":"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMultiChild.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./containsNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/containsNode.js","./getReactRootElementInContainer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getReactRootElementInContainer.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./shouldUpdateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChild.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -26628,7 +24971,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 
-},{"./ReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponent.js","./ReactMultiChildUpdateTypes":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMultiChildUpdateTypes.js","./flattenChildren":"/Users/Jay/Projects/material-ui/node_modules/react/lib/flattenChildren.js","./instantiateReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/instantiateReactComponent.js","./shouldUpdateReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/shouldUpdateReactComponent.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMultiChildUpdateTypes.js":[function(require,module,exports){
+},{"./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactMultiChildUpdateTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChildUpdateTypes.js","./flattenChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/flattenChildren.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./shouldUpdateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChildUpdateTypes.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -26668,7 +25011,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 
 module.exports = ReactMultiChildUpdateTypes;
 
-},{"./keyMirror":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyMirror.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactOwner.js":[function(require,module,exports){
+},{"./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactOwner.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -26831,7 +25174,7 @@ var ReactOwner = {
 module.exports = ReactOwner;
 
 }).call(this,require('_process'))
-},{"./emptyObject":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyObject.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPerf.js":[function(require,module,exports){
+},{"./emptyObject":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyObject.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -26920,7 +25263,7 @@ function _noMeasure(objName, fnName, func) {
 module.exports = ReactPerf;
 
 }).call(this,require('_process'))
-},{"_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTransferer.js":[function(require,module,exports){
+},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTransferer.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -27086,7 +25429,7 @@ var ReactPropTransferer = {
 module.exports = ReactPropTransferer;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./joinClasses":"/Users/Jay/Projects/material-ui/node_modules/react/lib/joinClasses.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTypeLocationNames.js":[function(require,module,exports){
+},{"./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./joinClasses":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/joinClasses.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocationNames.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -27121,7 +25464,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = ReactPropTypeLocationNames;
 
 }).call(this,require('_process'))
-},{"_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTypeLocations.js":[function(require,module,exports){
+},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocations.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -27152,7 +25495,7 @@ var ReactPropTypeLocations = keyMirror({
 
 module.exports = ReactPropTypeLocations;
 
-},{"./keyMirror":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyMirror.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTypes.js":[function(require,module,exports){
+},{"./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypes.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -27497,7 +25840,7 @@ function getPreciseType(propValue) {
 
 module.exports = ReactPropTypes;
 
-},{"./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./ReactPropTypeLocationNames":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTypeLocationNames.js","./emptyFunction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPutListenerQueue.js":[function(require,module,exports){
+},{"./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactPropTypeLocationNames":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocationNames.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPutListenerQueue.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -27560,7 +25903,7 @@ PooledClass.addPoolingTo(ReactPutListenerQueue);
 
 module.exports = ReactPutListenerQueue;
 
-},{"./PooledClass":"/Users/Jay/Projects/material-ui/node_modules/react/lib/PooledClass.js","./ReactBrowserEventEmitter":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserEventEmitter.js","./mixInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactReconcileTransaction.js":[function(require,module,exports){
+},{"./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactReconcileTransaction.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -27744,7 +26087,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 
-},{"./CallbackQueue":"/Users/Jay/Projects/material-ui/node_modules/react/lib/CallbackQueue.js","./PooledClass":"/Users/Jay/Projects/material-ui/node_modules/react/lib/PooledClass.js","./ReactBrowserEventEmitter":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactInputSelection":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInputSelection.js","./ReactPutListenerQueue":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPutListenerQueue.js","./Transaction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/Transaction.js","./mixInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactRootIndex.js":[function(require,module,exports){
+},{"./CallbackQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactInputSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js","./ReactPutListenerQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPutListenerQueue.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactRootIndex.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -27782,7 +26125,7 @@ var ReactRootIndex = {
 
 module.exports = ReactRootIndex;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactServerRendering.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRendering.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -27875,7 +26218,7 @@ module.exports = {
 };
 
 }).call(this,require('_process'))
-},{"./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./ReactInstanceHandles":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInstanceHandles.js","./ReactMarkupChecksum":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMarkupChecksum.js","./ReactServerRenderingTransaction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactServerRenderingTransaction.js","./instantiateReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactServerRenderingTransaction.js":[function(require,module,exports){
+},{"./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMarkupChecksum":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMarkupChecksum.js","./ReactServerRenderingTransaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRenderingTransaction.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRenderingTransaction.js":[function(require,module,exports){
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -27992,7 +26335,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
 
-},{"./CallbackQueue":"/Users/Jay/Projects/material-ui/node_modules/react/lib/CallbackQueue.js","./PooledClass":"/Users/Jay/Projects/material-ui/node_modules/react/lib/PooledClass.js","./ReactPutListenerQueue":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPutListenerQueue.js","./Transaction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/Transaction.js","./emptyFunction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js","./mixInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactStateSetters.js":[function(require,module,exports){
+},{"./CallbackQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactPutListenerQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPutListenerQueue.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactStateSetters.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28105,7 +26448,7 @@ ReactStateSetters.Mixin = {
 
 module.exports = ReactStateSetters;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTestUtils.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTestUtils.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28519,7 +26862,7 @@ for (eventType in topLevelTypes) {
 
 module.exports = ReactTestUtils;
 
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginHub.js","./EventPropagators":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPropagators.js","./React":"/Users/Jay/Projects/material-ui/node_modules/react/lib/React.js","./ReactBrowserEventEmitter":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactDOM":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDOM.js","./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./ReactMount":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactMount.js","./ReactTextComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTextComponent.js","./ReactUpdates":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactUpdates.js","./SyntheticEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticEvent.js","./copyProperties":"/Users/Jay/Projects/material-ui/node_modules/react/lib/copyProperties.js","./mergeInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mergeInto.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTextComponent.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactTextComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./copyProperties":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/copyProperties.js","./mergeInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28628,7 +26971,7 @@ mixInto(ReactTextComponent, {
 
 module.exports = ReactDescriptor.createFactory(ReactTextComponent);
 
-},{"./DOMPropertyOperations":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMPropertyOperations.js","./ReactBrowserComponentMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponent.js","./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./escapeTextForBrowser":"/Users/Jay/Projects/material-ui/node_modules/react/lib/escapeTextForBrowser.js","./mixInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTransitionChildMapping.js":[function(require,module,exports){
+},{"./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./escapeTextForBrowser":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionChildMapping.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28736,7 +27079,7 @@ var ReactTransitionChildMapping = {
 
 module.exports = ReactTransitionChildMapping;
 
-},{"./ReactChildren":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactChildren.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTransitionEvents.js":[function(require,module,exports){
+},{"./ReactChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactChildren.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionEvents.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28854,7 +27197,7 @@ var ReactTransitionEvents = {
 
 module.exports = ReactTransitionEvents;
 
-},{"./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTransitionGroup.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionGroup.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29046,7 +27389,7 @@ var ReactTransitionGroup = React.createClass({
 
 module.exports = ReactTransitionGroup;
 
-},{"./React":"/Users/Jay/Projects/material-ui/node_modules/react/lib/React.js","./ReactTransitionChildMapping":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTransitionChildMapping.js","./cloneWithProps":"/Users/Jay/Projects/material-ui/node_modules/react/lib/cloneWithProps.js","./emptyFunction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactUpdates.js":[function(require,module,exports){
+},{"./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactTransitionChildMapping":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionChildMapping.js","./cloneWithProps":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cloneWithProps.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -29315,7 +27658,7 @@ var ReactUpdates = {
 module.exports = ReactUpdates;
 
 }).call(this,require('_process'))
-},{"./CallbackQueue":"/Users/Jay/Projects/material-ui/node_modules/react/lib/CallbackQueue.js","./PooledClass":"/Users/Jay/Projects/material-ui/node_modules/react/lib/PooledClass.js","./ReactCurrentOwner":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCurrentOwner.js","./ReactPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPerf.js","./Transaction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/Transaction.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./mixInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js","./warning":"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactWithAddons.js":[function(require,module,exports){
+},{"./CallbackQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./mixInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactWithAddons.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -29375,7 +27718,7 @@ module.exports = React;
 
 
 }).call(this,require('_process'))
-},{"./LinkedStateMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/LinkedStateMixin.js","./React":"/Users/Jay/Projects/material-ui/node_modules/react/lib/React.js","./ReactCSSTransitionGroup":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCSSTransitionGroup.js","./ReactComponentWithPureRenderMixin":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactComponentWithPureRenderMixin.js","./ReactDefaultPerf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDefaultPerf.js","./ReactTestUtils":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTestUtils.js","./ReactTransitionGroup":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTransitionGroup.js","./cloneWithProps":"/Users/Jay/Projects/material-ui/node_modules/react/lib/cloneWithProps.js","./cx":"/Users/Jay/Projects/material-ui/node_modules/react/lib/cx.js","./update":"/Users/Jay/Projects/material-ui/node_modules/react/lib/update.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SVGDOMPropertyConfig.js":[function(require,module,exports){
+},{"./LinkedStateMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedStateMixin.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactCSSTransitionGroup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroup.js","./ReactComponentWithPureRenderMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentWithPureRenderMixin.js","./ReactDefaultPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerf.js","./ReactTestUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTestUtils.js","./ReactTransitionGroup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionGroup.js","./cloneWithProps":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cloneWithProps.js","./cx":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cx.js","./update":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/update.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SVGDOMPropertyConfig.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29474,7 +27817,7 @@ var SVGDOMPropertyConfig = {
 
 module.exports = SVGDOMPropertyConfig;
 
-},{"./DOMProperty":"/Users/Jay/Projects/material-ui/node_modules/react/lib/DOMProperty.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SelectEventPlugin.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SelectEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29676,7 +28019,7 @@ var SelectEventPlugin = {
 
 module.exports = SelectEventPlugin;
 
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPropagators.js","./ReactInputSelection":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInputSelection.js","./SyntheticEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticEvent.js","./getActiveElement":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getActiveElement.js","./isTextInputElement":"/Users/Jay/Projects/material-ui/node_modules/react/lib/isTextInputElement.js","./keyOf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js","./shallowEqual":"/Users/Jay/Projects/material-ui/node_modules/react/lib/shallowEqual.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ServerReactRootIndex.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ReactInputSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./getActiveElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getActiveElement.js","./isTextInputElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextInputElement.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./shallowEqual":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shallowEqual.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ServerReactRootIndex.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29714,7 +28057,7 @@ var ServerReactRootIndex = {
 
 module.exports = ServerReactRootIndex;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SimpleEventPlugin.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SimpleEventPlugin.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -30137,7 +28480,7 @@ var SimpleEventPlugin = {
 module.exports = SimpleEventPlugin;
 
 }).call(this,require('_process'))
-},{"./EventConstants":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventConstants.js","./EventPluginUtils":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPluginUtils.js","./EventPropagators":"/Users/Jay/Projects/material-ui/node_modules/react/lib/EventPropagators.js","./SyntheticClipboardEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticClipboardEvent.js","./SyntheticDragEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticDragEvent.js","./SyntheticEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticEvent.js","./SyntheticFocusEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticFocusEvent.js","./SyntheticKeyboardEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticKeyboardEvent.js","./SyntheticMouseEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticMouseEvent.js","./SyntheticTouchEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticTouchEvent.js","./SyntheticUIEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticUIEvent.js","./SyntheticWheelEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticWheelEvent.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./keyOf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticClipboardEvent.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./SyntheticClipboardEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticClipboardEvent.js","./SyntheticDragEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticDragEvent.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./SyntheticFocusEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticFocusEvent.js","./SyntheticKeyboardEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticKeyboardEvent.js","./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js","./SyntheticTouchEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticTouchEvent.js","./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./SyntheticWheelEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticWheelEvent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticClipboardEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30190,7 +28533,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 
-},{"./SyntheticEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticEvent.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticCompositionEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticCompositionEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30243,7 +28586,7 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticCompositionEvent;
 
 
-},{"./SyntheticEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticEvent.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticDragEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticDragEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30289,7 +28632,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
 
-},{"./SyntheticMouseEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticMouseEvent.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticEvent.js":[function(require,module,exports){
+},{"./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30455,7 +28798,7 @@ PooledClass.addPoolingTo(SyntheticEvent, PooledClass.threeArgumentPooler);
 
 module.exports = SyntheticEvent;
 
-},{"./PooledClass":"/Users/Jay/Projects/material-ui/node_modules/react/lib/PooledClass.js","./emptyFunction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js","./getEventTarget":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getEventTarget.js","./merge":"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js","./mergeInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mergeInto.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticFocusEvent.js":[function(require,module,exports){
+},{"./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./getEventTarget":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js","./merge":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js","./mergeInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticFocusEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30501,7 +28844,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
 
-},{"./SyntheticUIEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticUIEvent.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticInputEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticInputEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -30555,7 +28898,7 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticInputEvent;
 
 
-},{"./SyntheticEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticEvent.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticKeyboardEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticKeyboardEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30644,7 +28987,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
 
-},{"./SyntheticUIEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticUIEvent.js","./getEventKey":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getEventKey.js","./getEventModifierState":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getEventModifierState.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticMouseEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./getEventKey":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventKey.js","./getEventModifierState":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30734,7 +29077,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
 
-},{"./SyntheticUIEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticUIEvent.js","./ViewportMetrics":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ViewportMetrics.js","./getEventModifierState":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getEventModifierState.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticTouchEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./ViewportMetrics":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ViewportMetrics.js","./getEventModifierState":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticTouchEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30789,7 +29132,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
 
-},{"./SyntheticUIEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticUIEvent.js","./getEventModifierState":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getEventModifierState.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticUIEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./getEventModifierState":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30858,7 +29201,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
 
-},{"./SyntheticEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticEvent.js","./getEventTarget":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getEventTarget.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticWheelEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./getEventTarget":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticWheelEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30926,7 +29269,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
 
-},{"./SyntheticMouseEvent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/SyntheticMouseEvent.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/Transaction.js":[function(require,module,exports){
+},{"./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -31174,7 +29517,7 @@ var Transaction = {
 module.exports = Transaction;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/ViewportMetrics.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ViewportMetrics.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31213,7 +29556,7 @@ var ViewportMetrics = {
 
 module.exports = ViewportMetrics;
 
-},{"./getUnboundedScrollPosition":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getUnboundedScrollPosition.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/accumulate.js":[function(require,module,exports){
+},{"./getUnboundedScrollPosition":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getUnboundedScrollPosition.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulate.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -31271,7 +29614,7 @@ function accumulate(current, next) {
 module.exports = accumulate;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/adler32.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/adler32.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31312,7 +29655,7 @@ function adler32(data) {
 
 module.exports = adler32;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/cloneWithProps.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cloneWithProps.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -31377,7 +29720,7 @@ function cloneWithProps(child, props) {
 module.exports = cloneWithProps;
 
 }).call(this,require('_process'))
-},{"./ReactPropTransferer":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactPropTransferer.js","./keyOf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js","./warning":"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/containsNode.js":[function(require,module,exports){
+},{"./ReactPropTransferer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTransferer.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/containsNode.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31428,7 +29771,7 @@ function containsNode(outerNode, innerNode) {
 
 module.exports = containsNode;
 
-},{"./isTextNode":"/Users/Jay/Projects/material-ui/node_modules/react/lib/isTextNode.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/copyProperties.js":[function(require,module,exports){
+},{"./isTextNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextNode.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/copyProperties.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -31486,7 +29829,7 @@ function copyProperties(obj, a, b, c, d, e, f) {
 module.exports = copyProperties;
 
 }).call(this,require('_process'))
-},{"_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/createArrayFrom.js":[function(require,module,exports){
+},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createArrayFrom.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31579,7 +29922,7 @@ function createArrayFrom(obj) {
 
 module.exports = createArrayFrom;
 
-},{"./toArray":"/Users/Jay/Projects/material-ui/node_modules/react/lib/toArray.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/createFullPageComponent.js":[function(require,module,exports){
+},{"./toArray":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/toArray.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createFullPageComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -31646,7 +29989,7 @@ function createFullPageComponent(componentClass) {
 module.exports = createFullPageComponent;
 
 }).call(this,require('_process'))
-},{"./ReactCompositeComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactCompositeComponent.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/createNodesFromMarkup.js":[function(require,module,exports){
+},{"./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createNodesFromMarkup.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -31743,7 +30086,7 @@ function createNodesFromMarkup(markup, handleScript) {
 module.exports = createNodesFromMarkup;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js","./createArrayFrom":"/Users/Jay/Projects/material-ui/node_modules/react/lib/createArrayFrom.js","./getMarkupWrap":"/Users/Jay/Projects/material-ui/node_modules/react/lib/getMarkupWrap.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/cx.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./createArrayFrom":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createArrayFrom.js","./getMarkupWrap":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getMarkupWrap.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cx.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31789,7 +30132,7 @@ function cx(classNames) {
 
 module.exports = cx;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/dangerousStyleValue.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/dangerousStyleValue.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31854,7 +30197,7 @@ function dangerousStyleValue(name, value) {
 
 module.exports = dangerousStyleValue;
 
-},{"./CSSProperty":"/Users/Jay/Projects/material-ui/node_modules/react/lib/CSSProperty.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js":[function(require,module,exports){
+},{"./CSSProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSProperty.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31899,7 +30242,7 @@ copyProperties(emptyFunction, {
 
 module.exports = emptyFunction;
 
-},{"./copyProperties":"/Users/Jay/Projects/material-ui/node_modules/react/lib/copyProperties.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyObject.js":[function(require,module,exports){
+},{"./copyProperties":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/copyProperties.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyObject.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -31930,7 +30273,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = emptyObject;
 
 }).call(this,require('_process'))
-},{"_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/escapeTextForBrowser.js":[function(require,module,exports){
+},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31978,7 +30321,7 @@ function escapeTextForBrowser(text) {
 
 module.exports = escapeTextForBrowser;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/flattenChildren.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/flattenChildren.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -32041,7 +30384,7 @@ function flattenChildren(children) {
 module.exports = flattenChildren;
 
 }).call(this,require('_process'))
-},{"./traverseAllChildren":"/Users/Jay/Projects/material-ui/node_modules/react/lib/traverseAllChildren.js","./warning":"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/focusNode.js":[function(require,module,exports){
+},{"./traverseAllChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/traverseAllChildren.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/focusNode.js":[function(require,module,exports){
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -32076,7 +30419,7 @@ function focusNode(node) {
 
 module.exports = focusNode;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/forEachAccumulated.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32114,7 +30457,7 @@ var forEachAccumulated = function(arr, cb, scope) {
 
 module.exports = forEachAccumulated;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/getActiveElement.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getActiveElement.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32150,7 +30493,7 @@ function getActiveElement() /*?DOMElement*/ {
 
 module.exports = getActiveElement;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/getEventKey.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventKey.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -32269,7 +30612,7 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/getEventModifierState.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js":[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -32323,7 +30666,7 @@ function getEventModifierState(nativeEvent) {
 
 module.exports = getEventModifierState;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/getEventTarget.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32361,7 +30704,7 @@ function getEventTarget(nativeEvent) {
 
 module.exports = getEventTarget;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/getMarkupWrap.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getMarkupWrap.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -32485,7 +30828,7 @@ function getMarkupWrap(nodeName) {
 module.exports = getMarkupWrap;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/getNodeForCharacterOffset.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getNodeForCharacterOffset.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32567,7 +30910,7 @@ function getNodeForCharacterOffset(root, offset) {
 
 module.exports = getNodeForCharacterOffset;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/getReactRootElementInContainer.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getReactRootElementInContainer.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32609,7 +30952,7 @@ function getReactRootElementInContainer(container) {
 
 module.exports = getReactRootElementInContainer;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/getTextContentAccessor.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32653,7 +30996,7 @@ function getTextContentAccessor() {
 
 module.exports = getTextContentAccessor;
 
-},{"./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/getUnboundedScrollPosition.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getUnboundedScrollPosition.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32700,7 +31043,7 @@ function getUnboundedScrollPosition(scrollable) {
 
 module.exports = getUnboundedScrollPosition;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/hyphenate.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenate.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32740,7 +31083,7 @@ function hyphenate(string) {
 
 module.exports = hyphenate;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/hyphenateStyleName.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenateStyleName.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32788,7 +31131,7 @@ function hyphenateStyleName(string) {
 
 module.exports = hyphenateStyleName;
 
-},{"./hyphenate":"/Users/Jay/Projects/material-ui/node_modules/react/lib/hyphenate.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/instantiateReactComponent.js":[function(require,module,exports){
+},{"./hyphenate":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenate.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -32854,7 +31197,7 @@ function instantiateReactComponent(descriptor) {
 module.exports = instantiateReactComponent;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -32918,7 +31261,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/isEventSupported.js":[function(require,module,exports){
+},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32990,7 +31333,7 @@ function isEventSupported(eventNameSuffix, capture) {
 
 module.exports = isEventSupported;
 
-},{"./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/isNode.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isNode.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33025,7 +31368,7 @@ function isNode(object) {
 
 module.exports = isNode;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/isTextInputElement.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextInputElement.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33076,7 +31419,7 @@ function isTextInputElement(elem) {
 
 module.exports = isTextInputElement;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/isTextNode.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextNode.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33108,7 +31451,7 @@ function isTextNode(object) {
 
 module.exports = isTextNode;
 
-},{"./isNode":"/Users/Jay/Projects/material-ui/node_modules/react/lib/isNode.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/joinClasses.js":[function(require,module,exports){
+},{"./isNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isNode.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/joinClasses.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33154,7 +31497,7 @@ function joinClasses(className/*, ... */) {
 
 module.exports = joinClasses;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyMirror.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -33216,7 +31559,7 @@ var keyMirror = function(obj) {
 module.exports = keyMirror;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33259,7 +31602,7 @@ var keyOf = function(oneKeyObj) {
 
 module.exports = keyOf;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/mapObject.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mapObject.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33313,7 +31656,7 @@ function mapObject(obj, func, context) {
 
 module.exports = mapObject;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/memoizeStringOnly.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/memoizeStringOnly.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33354,7 +31697,7 @@ function memoizeStringOnly(callback) {
 
 module.exports = memoizeStringOnly;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/merge.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/merge.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33393,7 +31736,7 @@ var merge = function(one, two) {
 
 module.exports = merge;
 
-},{"./mergeInto":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mergeInto.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/mergeHelpers.js":[function(require,module,exports){
+},{"./mergeInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeInto.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeHelpers.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -33544,7 +31887,7 @@ var mergeHelpers = {
 module.exports = mergeHelpers;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./keyMirror":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyMirror.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/mergeInto.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeInto.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33592,7 +31935,7 @@ function mergeInto(one, two) {
 
 module.exports = mergeInto;
 
-},{"./mergeHelpers":"/Users/Jay/Projects/material-ui/node_modules/react/lib/mergeHelpers.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/mixInto.js":[function(require,module,exports){
+},{"./mergeHelpers":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mergeHelpers.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mixInto.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33628,7 +31971,7 @@ var mixInto = function(constructor, methodBag) {
 
 module.exports = mixInto;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/monitorCodeUse.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -33669,7 +32012,7 @@ function monitorCodeUse(eventName, data) {
 module.exports = monitorCodeUse;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/onlyChild.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/onlyChild.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -33716,7 +32059,7 @@ function onlyChild(children) {
 module.exports = onlyChild;
 
 }).call(this,require('_process'))
-},{"./ReactDescriptor":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactDescriptor.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/performance.js":[function(require,module,exports){
+},{"./ReactDescriptor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDescriptor.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performance.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33751,7 +32094,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = performance || {};
 
-},{"./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/performanceNow.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performanceNow.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33786,7 +32129,7 @@ var performanceNow = performance.now.bind(performance);
 
 module.exports = performanceNow;
 
-},{"./performance":"/Users/Jay/Projects/material-ui/node_modules/react/lib/performance.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/setInnerHTML.js":[function(require,module,exports){
+},{"./performance":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performance.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/setInnerHTML.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33873,7 +32216,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = setInnerHTML;
 
-},{"./ExecutionEnvironment":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/shallowEqual.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shallowEqual.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33924,7 +32267,7 @@ function shallowEqual(objA, objB) {
 
 module.exports = shallowEqual;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/shouldUpdateReactComponent.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33970,7 +32313,7 @@ function shouldUpdateReactComponent(prevDescriptor, nextDescriptor) {
 
 module.exports = shouldUpdateReactComponent;
 
-},{}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/toArray.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/toArray.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -34049,7 +32392,7 @@ function toArray(obj) {
 module.exports = toArray;
 
 }).call(this,require('_process'))
-},{"./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/traverseAllChildren.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/traverseAllChildren.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -34246,7 +32589,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 }).call(this,require('_process'))
-},{"./ReactInstanceHandles":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactInstanceHandles.js","./ReactTextComponent":"/Users/Jay/Projects/material-ui/node_modules/react/lib/ReactTextComponent.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/update.js":[function(require,module,exports){
+},{"./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactTextComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/update.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -34421,7 +32764,7 @@ function update(value, spec) {
 module.exports = update;
 
 }).call(this,require('_process'))
-},{"./copyProperties":"/Users/Jay/Projects/material-ui/node_modules/react/lib/copyProperties.js","./invariant":"/Users/Jay/Projects/material-ui/node_modules/react/lib/invariant.js","./keyOf":"/Users/Jay/Projects/material-ui/node_modules/react/lib/keyOf.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/react/lib/warning.js":[function(require,module,exports){
+},{"./copyProperties":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/copyProperties.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -34473,7 +32816,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":"/Users/Jay/Projects/material-ui/node_modules/react/lib/emptyFunction.js","_process":"/Users/Jay/Projects/material-ui/node_modules/browserify/node_modules/process/browser.js"}],"/Users/Jay/Projects/material-ui/node_modules/underscore/underscore.js":[function(require,module,exports){
+},{"./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/underscore/underscore.js":[function(require,module,exports){
 //     Underscore.js 1.7.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -35890,4 +34233,1887 @@ module.exports = warning;
   }
 }.call(this));
 
+},{}],"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js":[function(require,module,exports){
+var Dispatcher = require('./vendor/flux/dispatcher.js');
+var copyProperties = require('react/lib/copyProperties');
+
+var AppDispatcher = copyProperties(new Dispatcher(), {
+
+	ActionTypes: {
+		NAV_URL_CHANGE: 'nav-url-change',
+		NAV_USER_CLICK: 'nav-user-click'
+	},
+
+	dispatchAction: function(type, payload) {
+		this.dispatch({
+			type: type,
+			payload: payload
+		})
+	}
+
+});
+
+module.exports = AppDispatcher;
+},{"./vendor/flux/dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/vendor/flux/dispatcher.js","react/lib/copyProperties":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/copyProperties.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/app-router.js":[function(require,module,exports){
+var _ = require('underscore'),
+  Backbone = require('backbone'),
+  Dispatcher = require('./app-dispatcher.js'),
+
+  AppRouter = Backbone.Router.extend({
+
+    routes: {
+      '*path': 'handleDefaultRoute'
+    },
+
+    initialize: function() {
+      this.dispatchToken = Dispatcher.register(_.bind(this.onDispatched, this));
+    },
+
+    handleDefaultRoute: function(url) {
+      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_URL_CHANGE, { url: url });
+    },
+
+    onDispatched: function(action) {
+      switch (action.type) {
+        case Dispatcher.ActionTypes.NAV_USER_CLICK:
+          this.navigate(action.payload.url);
+          break;
+      }
+    }
+
+  });
+
+module.exports = new AppRouter();
+
+},{"./app-dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js","backbone":"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js","underscore":"/Users/hai/GitHub/material-ui/docs/node_modules/underscore/underscore.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/app-left-nav.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+  mui = require('mui'),
+  Dispatcher = require('../app-dispatcher.js'),
+  Pages = require('./pages.jsx');
+
+var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
+
+  propTypes: {
+    url: React.PropTypes.string,
+    toggle: React.PropTypes.func
+  },
+
+  getInitialState: function() {
+    return {
+      menuItems: [
+
+        { payload: Pages.getStarted, text: Pages.getStarted.title },
+        { payload: Pages.cssFramework, text: Pages.cssFramework.title },
+        { payload: Pages.components, text: Pages.components.title },
+        { type: mui.MenuItem.Types.SUBHEADER, text: 'Resources' },
+        { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
+        { type: mui.MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
+        { type: mui.MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
+      ]
+    }
+  },
+
+  componentWillMount: function() {
+    this._setSelectedIndex(this.props.url);
+  },
+
+  componentWillReceiveProps: function(newProps) {
+    this._setSelectedIndex(newProps.url);
+  },
+
+  render: function() {
+    var header = React.DOM.div({className: "logo", onClick: this._onHeaderClick}, "material ui");
+
+    return (
+      mui.LeftNav({
+        ref: "leftNav", 
+        isInitiallyOpen: false, 
+        header: header, 
+        menuItems: this.state.menuItems, 
+        selectedIndex: this.state.selectedIndex, 
+        onChange: this._onLeftNavChange})
+    );
+  },
+
+  toggle: function() {
+    this.refs.leftNav.toggle();
+  },
+
+  _setSelectedIndex: function(url) {
+    var item;
+
+    for (var i = 0; i < this.state.menuItems.length; i++) {
+      item = this.state.menuItems[i];
+
+      //only match the root part of the url
+      if (url && item.payload && item.payload.url.split('/')[0] === url.split('/')[0]) {
+        if (i !== this.state.selectedIndex) this.setState({ selectedIndex: i});
+        return;
+      }
+    };
+
+    this.setState({ selectedIndex: null});
+  },
+
+  _onHeaderClick: function() {
+    if (this.props.url !== Pages.home.url) {
+      this.refs.leftNav.close();
+      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: Pages.home.url } ); 
+    }
+  },
+
+  _onLeftNavChange: function(e, key, item) {
+    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: item.payload.url } ); 
+  }
+
+});
+
+module.exports = AppLeftNav;
+
+},{"../app-dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js","./pages.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-block.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var $ = require('jquery'),
+	React = require('react'),
+	hljs = require('hljs');
+
+var CodeBlock = React.createClass({displayName: 'CodeBlock',
+
+	componentDidMount: function() {
+		hljs.highlightBlock(this.getDOMNode());
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
+		hljs.highlightBlock(this.getDOMNode());
+	},
+
+	render: function() {
+		return (
+			React.DOM.pre({className: "code-block"}, 
+				React.DOM.code(null, this.props.children)
+			)
+		);
+	}
+
+});
+
+module.exports = CodeBlock;
+},{"hljs":"/Users/hai/GitHub/material-ui/docs/src/app/vendor/highlight-js/highlight.pack.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+	mui = require('mui'),
+	CodeBlock = require('./code-block.jsx');
+
+var CodeExample = React.createClass({displayName: 'CodeExample',
+
+	propTypes: {
+		code: React.PropTypes.string.isRequired
+	},
+
+	render: function() {
+		return (
+			mui.Paper({className: "code-example"}, 
+    		React.DOM.div({className: "example-label"}, "example"), 
+	    	React.DOM.div({className: "example-block"}, 
+	    		this.props.children
+	    	), 
+	    	CodeBlock(null, this.props.code)
+    	)
+		);
+	}
+
+});
+
+module.exports = CodeExample;
+},{"./code-block.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-block.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/master.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var Backbone = require('backbone'),
+  React = require('react'),
+  Dispatcher = require('../app-dispatcher.js'),
+  mui = require('mui'),
+  Menu = mui.Menu,
+  Icon = mui.Icon,
+  AppStateStore = require('../stores/app-state-store.js'),
+  Pages = require('./pages.jsx'),
+	AppLeftNav = require('./app-left-nav.jsx');
+
+var Master = React.createClass({displayName: 'Master',
+
+  mixins: [Backbone.Events],
+
+  getInitialState: function() {
+    return {
+      currentUrl: AppStateStore.get('currentUrl')
+    }
+  },
+
+  componentDidMount: function() {
+    this.listenTo(AppStateStore, 'change:currentUrl', this._onStoreChange);
+  },
+
+  componentWillUnMount: function() {
+    this.stopListening();
+  },
+
+  render: function() {
+    var page = Pages.getPage(this.state.currentUrl),
+      title = page.title,
+      currentMainComponent = page.mainContentComponent,
+      contentCanvasClass = page.subPages ? 'mui-app-content-canvas with-nav' : 'mui-app-content-canvas',
+      subNav;
+
+    if (page.subPages) {
+      var menuItems = [],
+        i = 0,
+        selectedIndex,
+        currentSubPage;
+
+      for (prop in page.subPages) {
+        currentSubPage = page.subPages[prop];
+
+        if (this.state.currentUrl === currentSubPage.url) {
+          selectedIndex = i;
+          currentMainComponent = currentSubPage.mainContentComponent;
+        }
+        menuItems.push({ payload: currentSubPage.url, text: currentSubPage.title });
+        i++;
+      }
+
+      subNav = (
+        React.DOM.div({className: "subNav"}, 
+          Menu({ref: "menuItems", zDepth: 0, menuItems: menuItems, selectedIndex: selectedIndex, onItemClick: this._onMenuItemClick})
+        )
+      );
+    }
+
+    return (
+      mui.AppCanvas({predefinedLayout: 1}, 
+        mui.AppBar({onMenuIconClick: this._onMenuIconClick, title: title, zDepth: 0}, Icon({icon: "github", onClick: this._onGithubClick})), 
+    		AppLeftNav({ref: "leftNav", url: this.state.currentUrl}), 
+    		React.DOM.div({className: contentCanvasClass}, 
+          subNav, 
+          React.DOM.div({className: "subContent"}, 
+            currentMainComponent
+          )
+        ), 
+        React.DOM.div({className: "footer"}, 
+            Icon({icon: "github", onClick: this._onGithubClick}), 
+            React.DOM.p(null, "Hand crafted with love by the engineers at ", React.DOM.a({href: "http://call-em-all.com"}, "Call-Em-All"), " and our awesome ", React.DOM.a({href: "https://github.com/callemall/material-ui/graphs/contributors"}, "contributors"), ".")
+        )
+      )
+    );
+  },
+
+  _onGithubClick: function() {
+    document.location.href='https://github.com/callemall/material-ui';
+  },
+
+  _onMenuItemClick: function(e, key, item) {
+    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: item.payload } ); 
+  },
+
+  _onMenuIconClick: function() {
+    this.refs.leftNav.toggle();
+  },
+
+  _onStoreChange: function() {
+    this.setState({
+      currentUrl: AppStateStore.get('currentUrl')
+    });
+  }
+  
+});
+
+module.exports = Master;
+
+},{"../app-dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js","../stores/app-state-store.js":"/Users/hai/GitHub/material-ui/docs/src/app/stores/app-state-store.js","./app-left-nav.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/app-left-nav.jsx","./pages.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages.jsx","backbone":"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages.jsx":[function(require,module,exports){
+/**;
+ * @jsx React.DOM
+ */
+
+var Home = require('./pages/home.jsx'),
+	GetStarted = require('./pages/get-started.jsx'),
+	Buttons = require('./pages/buttons.jsx'),
+	Colors = require('./pages/colors.jsx'),
+	Dialog = require('./pages/dialog.jsx'),
+	Icons = require('./pages/icons.jsx'),
+	Inputs = require('./pages/inputs.jsx'),
+	Menus = require('./pages/menus.jsx'),
+	Switches = require('./pages/switches.jsx'),
+	Toasts = require('./pages/toasts.jsx'),
+	Toolbar = require('./pages/toolbars.jsx'),
+	Typography = require('./pages/typography.jsx');
+
+var Pages = {
+	home: { 
+		url: '', 
+		title: '', 
+		mainContentComponent: Home(null) 
+	},
+	getStarted: {
+		url: 'get-started',
+		title: 'Get Started',
+		mainContentComponent: GetStarted(null)
+	},
+	cssFramework: { 
+		url: 'css-framework/colors', 
+		title: 'Css Framework', 
+		subPages: {
+			colors: { url: 'css-framework/colors', title: 'Colors', mainContentComponent: Colors(null) },
+			typography: { url: 'css-framework/typography', title: 'Typography', mainContentComponent: Typography(null) }
+		}
+	},
+	components: {
+		url: 'components/buttons',
+		title: 'Components',
+		subPages: {
+			buttons: { url: 'components/buttons', title: 'Buttons', mainContentComponent: Buttons(null) },
+			dialog: { url: 'components/dialog', title: 'Dialog', mainContentComponent: Dialog(null) },
+			icons: { url: 'components/icons', title: 'Icons', mainContentComponent: Icons(null) },
+			inputs: { url: 'components/inputs', title: 'Inputs', mainContentComponent: Inputs(null) },
+			menus: { url: 'components/menus', title: 'Menus', mainContentComponent: Menus(null) },
+			switches: { url: 'components/switches', title: 'Switches', mainContentComponent: Switches(null) },
+			//toasts: { url: 'components/toasts', title: 'Toasts', mainContentComponent: <Toasts /> },
+			toolbars: { url: 'components/toolbar', title: 'Toolbars', mainContentComponent: Toolbar(null) }
+		}
+	},
+
+	getPage: function(url) {
+		if (!url) return this.home;
+
+		//Only match the first part of the url
+		var rootUrl = url.split('/')[0],
+			currentPage;
+
+		for (prop in this) {
+			currentPage = this[prop];
+			if (currentPage.url.split('/')[0] === rootUrl) return currentPage;
+		}
+	}
+}
+
+module.exports = Pages;
+
+
+},{"./pages/buttons.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/buttons.jsx","./pages/colors.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/colors.jsx","./pages/dialog.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/dialog.jsx","./pages/get-started.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/get-started.jsx","./pages/home.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/home.jsx","./pages/icons.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/icons.jsx","./pages/inputs.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/inputs.jsx","./pages/menus.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/menus.jsx","./pages/switches.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/switches.jsx","./pages/toasts.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/toasts.jsx","./pages/toolbars.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/toolbars.jsx","./pages/typography.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/typography.jsx"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/buttons.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+  mui = require('mui'),
+  PaperButton = mui.PaperButton,
+  CodeExample = require('../code-example/code-example.jsx');
+
+var ButtonPage = React.createClass({displayName: 'ButtonPage',
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Flat Buttons"), 
+        this._getFlatExamples(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Raised Buttons"), 
+        this._getRaisedExamples(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Floating Action Buttons"), 
+        this._getFabExamples()
+
+    	)
+    );
+  },
+
+  _getFlatExamples: function() {
+    var code = 
+      '<PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
+      '<PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} />\n' +
+      '<PaperButton type={PaperButton.Types.FLAT} label="Disabled" disabled={true} />';
+
+    return (
+      CodeExample({code: code}, 
+        PaperButton({type: PaperButton.Types.FLAT, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.FLAT, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.FLAT, label: "Disabled", disabled: true})
+      )
+    );
+  },
+
+  _getRaisedExamples: function() {
+    var code = 
+      '<PaperButton type={PaperButton.Types.RAISED} label="Default" />\n' +
+      '<PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} />\n' +
+      '<PaperButton type={PaperButton.Types.RAISED} label="Disabled" disabled={true} />';
+
+    return (
+      CodeExample({code: code}, 
+        PaperButton({type: PaperButton.Types.RAISED, label: "Default", onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.RAISED, label: "Primary", primary: true, onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.RAISED, label: "Disabled", disabled: true})
+      )
+    );
+  },
+
+  _getFabExamples: function() {
+    var code = 
+      '<PaperButton type={PaperButton.Types.FAB_MINI} icon="phone" />\n' +
+      '<PaperButton type={PaperButton.Types.FAB} icon="phone" />';
+
+    return (
+      CodeExample({code: code}, 
+        PaperButton({type: PaperButton.Types.FAB_MINI, icon: "phone", onClick: this._onPaperButtonClick}), "        ", 
+        PaperButton({type: PaperButton.Types.FAB, icon: "phone", onClick: this._onPaperButtonClick})
+      )
+    );
+  },
+
+  _onPaperButtonClick: function(e) {
+  	console.log(e);
+  }
+
+});
+
+module.exports = ButtonPage;
+
+},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/colors.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react');
+
+var ColorsPage = React.createClass({displayName: 'ColorsPage',
+
+  render: function() {
+  	var mainColors = [
+  			'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue', 
+  			'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange'
+  		],
+  		neutralColors = ['Brown', 'Blue Grey', 'Grey'],
+  		colorGroups = [],
+  		neutralGroups = [];
+
+  	mainColors.forEach(function(color) {
+  		colorGroups.push(this._getColorGroup(color, true));
+  	}, this);
+
+  	neutralColors.forEach(function(color) {
+  		neutralGroups.push(this._getColorGroup(color, false));
+  	}, this);
+
+    return (
+    	React.DOM.div(null, 
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "UI Color Palette"), 
+	    	React.DOM.p(null, "We've created ", React.DOM.a({href: "http://lesscss.org/"}, "{less}"), " variables for every color used in the ", React.DOM.a({href: "https://www.google.com/design/spec/style/color.html#color-ui-color-palette"}, "UI Color Palette"), "."), 
+
+	    	React.DOM.div({className: "color-palette"}, 
+	    		colorGroups, 
+
+					React.DOM.div({className: "neutral"}, 
+						neutralGroups
+					)
+	    	)
+	    )
+    );
+  },
+
+  _getColorGroup: function(color, showAltPalette) {
+  	var mainPalette = [50,100,200,300,400,500,600,700,800,900],
+  		altPalette = ['A100','A200','A400','A700'],
+  		cssColor = color.toLowerCase().replace(' ', '-'),
+  		colors = [];
+
+  	mainPalette.forEach(function(mainValue) {
+  		colors.push(this._getColorBlock(cssColor, mainValue));
+  	}, this);
+
+  	if (showAltPalette) {
+	  	altPalette.forEach(function(altValue) {
+	  		colors.push(this._getColorBlock(cssColor, altValue));
+	  	}, this);
+	  }
+
+  	return (
+			React.DOM.ul({className: "color-group"}, 
+				this._getColorBlock(cssColor, 500, color), 
+				colors
+			)
+  	);
+  },
+
+  _getColorBlock: function(colorName, colorValue, colorTitle) {
+  	var colorClass = colorName + '-' + colorValue,
+  		classes = 'color ' + colorClass,
+  		colorText = '@' + colorClass,
+  		blockTitle;
+
+  	if (colorTitle) blockTitle = React.DOM.span({className: "name"}, colorTitle);
+
+  	return (
+  		React.DOM.li({className: classes}, blockTitle, colorText)
+  	);
+  }
+
+});
+
+module.exports = ColorsPage;
+
+},{"react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/dialog.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var CodeExample = require('../code-example/code-example.jsx');
+var mui = require('mui');
+var React = require('react');
+
+
+var DialogExample = React.createClass({displayName: 'DialogExample',
+
+	render: function() {
+		var code = 
+      "_showDialog: function() {\n" +
+      "  this.refs.dialogExample.show();\n" +
+      "},\n\n" +
+      "render: function() {\n\n" +
+      "  var dialogActions = [\n" +
+      "    { text: 'CANCEL' },\n" +
+      "    { text: 'SUBMIT', onClick: this._onDialogSubmit }\n" +
+      "  ];\n\n" +
+      "  return (\n" +
+      "    <PaperButton label=\"DEMO\" onClick={this._showDialog} />\n" +
+      "    <Dialog ref=\"dialogExample\" title=\"Title\" actions={dialogActions}>\n" +
+      "      This is an example of a dialog component built with Facebook's React and following\n" +
+      "      Google's Material Design principles.\n" +
+      "    </Dialog>\n" +
+      "  );\n" +
+      "}\n";
+
+		var	dialogActions = [
+			{ text: 'CANCEL' },
+			{ text: 'SUBMIT', onClick: this._onDialogSubmit }
+		];
+
+		return (
+			React.DOM.div(null, 
+    		CodeExample({code: code}, 
+    			mui.PaperButton({label: "DEMO", onClick: this._showDialog})
+    		), 
+    		mui.Dialog({ref: "dialogExample", title: "Title", actions: dialogActions}, 
+    			"This is an example of a dialog component built with Facebook's React and following" + ' ' + 
+    			"Google's Material Design principles."
+  			)
+  		)
+		);
+	},
+
+	_showDialog: function() {
+		this.refs.dialogExample.show();
+	}
+
+});
+
+module.exports = DialogExample;
+},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/get-started.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+  mui = require('mui'),
+  CodeBlock = require('../code-example/code-block.jsx');;
+
+var HomePage = React.createClass({displayName: 'HomePage',
+
+  render: function() {
+    var usageCode =
+      '/**\n' +
+      ' * @jsx React.DOM\n' +
+      '*/\n\n' +
+      'var React = require(\'react\'),\n' +
+      '  mui = require(\'material-ui\'),\n' +
+      '  PaperButton = mui.PaperButton;\n\n' +
+      'var SomeAwesomeComponent = React.createClass({\n\n' +
+      '  render: function() {\n' +
+      '    return (\n' +
+      '        <PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
+      '    );\n' +
+      '  }\n\n' +
+      '});\n\n' +
+      'module.exports = SomeAwesomeComponent;';
+
+    var customizationCode = 
+      '@import "node_modules/material-ui/dist/less/scaffolding.less";\n\n' +
+      '//Define a custom less file to override\n//any variables defined in scaffolding.less\n' +
+      '@import "my-custom-overrides.less";\n\n' +
+      '@import "node_modules/material-ui/dist/less/components.less";';
+
+    return (
+      React.DOM.div({className: "get-started-page"}, 
+        React.DOM.div({className: "full-width-section"}, 
+          React.DOM.h2({className: "mui-font-style-headline"}, "Installation"), 
+          React.DOM.p({className: "content"}, 
+            "Material-UI is available as an ", React.DOM.a({href: "https://www.npmjs.org/package/material-ui"}, "npm package"), "." + ' ' + 
+            "Use ", React.DOM.a({href: "http://browserify.org/"}, "browserify"), " and ", React.DOM.a({href: "https://github.com/andreypopp/reactify"}, "reactify"), " for" + ' ' +
+            "dependency management and JSX transformation. The CSS framework is written in ", React.DOM.a({href: "http://lesscss.org/"}, "Less"), "," + ' ' +
+            "so you'll need to compile that as well."
+          )
+        ), 
+        
+        React.DOM.div({className: "full-width-section"}, 
+          React.DOM.div({className: "content"}, 
+            React.DOM.h2({className: "mui-font-style-headline"}, "Usage"), 
+            React.DOM.p(null, 
+              "Once material-ui is included in your project, you can use the components this way:"
+            ), 
+            mui.Paper({className: "code-example"}, 
+              CodeBlock(null, usageCode)
+            )
+          ), 
+
+          React.DOM.div({className: "content"}, 
+            React.DOM.h2({className: "mui-font-style-headline"}, "Customization"), 
+            React.DOM.div(null, 
+              React.DOM.p(null, "The styles are separated into 2 less files:"), 
+              React.DOM.li(null, "dist/less/scaffolding.less"), 
+              React.DOM.li(null, "dist/less/components.less"), 
+              React.DOM.p(null, 
+                "This allows you to override any variables defined in custom-variables.less without having to" + ' ' +
+                "modify material-ui source files directly. For example, your main.less file could look something like this:"
+              )
+            ), 
+            mui.Paper({className: "code-example"}, 
+              CodeBlock(null, customizationCode)
+            )
+          )
+        )
+      )
+    );
+  }
+
+});
+
+module.exports = HomePage;
+
+},{"../code-example/code-block.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-block.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/home.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+    Dispatcher = require('../../app-dispatcher.js'),
+    mui = require('mui'),
+    PaperButton = mui.PaperButton,
+    Icon = mui.Icon;
+
+var HomePage = React.createClass({displayName: 'HomePage',
+
+  render: function() {
+    return (
+        React.DOM.div(null, 
+        	React.DOM.div({className: "home-page-hero full-width-section"}, 
+                React.DOM.div({className: "home-page-hero-content"}, 
+                    React.DOM.img({className: "svg-logo", src: "images/material-ui-logo.svg"}), 
+                    React.DOM.div({className: "tagline"}, 
+                        React.DOM.h1({className: "brand-name"}, "material ui"), 
+                        React.DOM.h2({className: "mui-font-style-headline"}, "A CSS Framework and a Set of React Components that Implement Google's Material Design"), 
+                        React.DOM.p({className: "mui-font-style-subhead-1"}, "Material-UI came about from our love" + ' ' +
+                        "of ", React.DOM.a({href: "http://facebook.github.io/react/"}, "React"), " and ", React.DOM.a({href: "https://www.google.com/design/spec/material-design/introduction.html"}, "Google's" + ' ' +
+                        "Material Design"), ". We're currently using it on a project at ", React.DOM.a({href: "https://www.call-em-all.com/"}, "Call-Em-All"), " and plan on" + ' ' +
+                        "adding to it and making it better in the coming months."
+                        )
+                    )
+                )
+        	), 
+            React.DOM.div({className: "home-features"}, 
+                React.DOM.div({className: "feature"}, 
+                    React.DOM.div({className: "icon-circle", onClick: this._getStartedClick}, Icon({icon: "check-all"})), 
+                    React.DOM.h3(null, "Get Started"), 
+                    React.DOM.p(null, 
+                        "The best way to get started is check out our repo and download the code. This doc site, along with its live examples, are all built with react. :)"
+                    )
+                ), 
+                React.DOM.div({className: "feature"}, 
+                    React.DOM.div({className: "icon-circle", onClick: this._cssFrameworkClick}, Icon({icon: "web"})), 
+                    React.DOM.h3(null, "Css Framework"), 
+                    React.DOM.p(null, 
+                        "The Css Framework is built with ", React.DOM.a({href: "http://lesscss.org"}, "Less"), ". We've included handy things like resets, colors, and typography to help get you going."
+                    )
+                ), 
+                React.DOM.div({className: "feature"}, 
+                    React.DOM.div({className: "icon-circle", onClick: this._componentsClick}, Icon({icon: "select-all"})), 
+                    React.DOM.h3(null, "Components"), 
+                    React.DOM.p(null, 
+                        "We've started building out some material design components using react." + ' ' + 
+                        "Here's a sneak peek at a few - with more on the way."
+                    )
+                )
+            ), 
+            React.DOM.div({className: "home-contribute"}, 
+                React.DOM.div({className: "content-container"}, 
+                    React.DOM.h3(null, "Want to help make this project awesome? Check out our repo."), 
+                    PaperButton({type: PaperButton.Types.RAISED, primary: true, label: "Github", onClick: this._onGithubClick})
+                )
+            )
+
+        )
+    );
+  },
+
+  _onGithubClick: function() {
+    document.location.href='https://github.com/callemall/material-ui';
+  },
+
+  _getStartedClick: function() {
+    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'get-started' } ); 
+  },
+
+  _cssFrameworkClick: function() {
+    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'css-framework/colors' } ); 
+  },
+
+  _componentsClick: function() {
+    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'components/buttons' } ); 
+  }
+
+
+
+});
+
+module.exports = HomePage;
+
+},{"../../app-dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/icons.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+  	mui = require('mui'),
+    Icon = mui.Icon,
+    CodeExample = require('../code-example/code-example.jsx'),
+
+    coreIcons = [
+      'arrow-drop-down', 
+      'arrow-drop-right',
+      'cancel',
+      'check',
+      'check-all',
+      'chevron-down',
+      'chevron-right',
+      'close',
+      'delete',
+      'help',
+      'home',
+      'menu',
+      'more-horiz',
+      'more-vert',
+      'search',
+      'settings'
+    ],
+
+    appIcons = [
+      'broadcast',
+      'cloud-download',
+      'cloud-upload',
+      'contacts',
+      'edit',
+      'favorite',
+      'favorite-outline',
+      'filter',
+      'github',
+      'group',
+      'group-add',
+      'mic',
+      'pause',
+      'person',
+      'person-add',
+      'phone',
+      'pie',
+      'play',
+      'select-all',
+      'sort',
+      'star',
+      'star-outline',
+      'stop',
+      'textsms',
+      'web'
+    ];
+
+var IconsPage = React.createClass({displayName: 'IconsPage',
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Icon Component"), 
+        this._getComponentExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Core Icons"), 
+        React.DOM.hr(null), 
+        React.DOM.div({className: "icon-group"}, 
+          this._getIconGroup(coreIcons)
+        ), 
+
+        React.DOM.br(null), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "App Icons"), 
+        React.DOM.hr(null), 
+        React.DOM.div({className: "icon-group"}, 
+          this._getIconGroup(appIcons)
+        )
+        
+		)
+    );
+  },
+
+  _getIconGroup: function(icons) {
+    var iconExamples = [];
+
+    icons.forEach(function(icon) {
+      iconExamples.push(this._getIconExample(icon));
+    }, this);
+
+    return iconExamples;
+  },
+
+  _getIconExample: function(icon) {
+    return (
+      React.DOM.div({className: "icon-example"}, 
+        Icon({icon: icon}), React.DOM.span(null, icon)
+      )
+    );
+  },
+
+  _getComponentExample: function() {
+    var code = '<Icon icon="home" />';
+
+    return (
+      CodeExample({code: code}, 
+        Icon({icon: "home"})
+      )
+    );
+  }
+
+});
+
+module.exports = IconsPage;
+
+},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/inputs.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+  mui = require('mui');
+
+var InputsPage = React.createClass({displayName: 'InputsPage',
+
+
+  componentDidMount: function() {
+    //console.log(this.refs.firstname.getValue());
+  },
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Inputs"), 
+        React.DOM.br(null), 
+        mui.Input({ref: "firstname", onChange: this._onChange, type: "text", name: "firstname", placeholder: "First Name", description: "Your first name as it appears on your credit card."}), 
+        mui.Input({ref: "lastname", type: "text", name: "lastname", placeholder: "Last Name", description: "Your last name as it appears on your credit card.."}), 
+        mui.Input({ref: "addressline1", type: "text", name: "addressline1", placeholder: "Address Line 1", description: "Your address as it appears on your credit card."}), 
+        mui.Input({ref: "addressline2", type: "text", name: "zipcode", placeholder: "Zip Code", description: "Your zip code as it appears on your credit card."}), 
+        mui.Input({ref: "city", type: "text", name: "city", placeholder: "City", description: "Your city as it appears on your credit card."}), 
+        mui.Input({ref: "state", type: "text", name: "state", placeholder: "State", description: "Your state as it appears on your credit card."}), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Error Validation"), 
+        React.DOM.br(null), 
+        mui.Input({ref: "allegiance", type: "text", name: "allegiance", placeholder: "Allegiance", description: "The house of which you served under."}), 
+    	  React.DOM.br(null), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Floating"), 
+        React.DOM.br(null), 
+        mui.Input({ref: "username", type: "text", inputStyle: "floating", name: "Username", description: "The username associated with your account."})
+        
+        /* TODO: Needs to be completed}
+        <h2 className="mui-font-style-headline">Multi-Line</h2>
+        <br />
+        <mui.Input multiline={true} ref="textmessage" type="text" name="textmessage" placeholder="Text Message" description="Your text message." />
+        {*/
+      )
+    );
+  },
+
+  _onChange: function(e, value) {
+    //console.log(value);
+  }
+
+});
+
+module.exports = InputsPage;
+},{"mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/menus.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+ 
+var React = require('react'),
+  mui = require('mui'),
+  CodeExample = require('../code-example/code-example.jsx'),
+
+  menuItems = [
+    { payload: '1', text: 'Never' },
+    { payload: '2', text: 'Every Night' },
+    { payload: '3', text: 'Weeknights' },
+    { payload: '4', text: 'Weekends' },
+    { payload: '5', text: 'Weekly' },
+  ],
+
+  labelMenuItems = [
+    { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
+    { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
+    { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }
+  ],
+
+  numberMenuItems = [
+    { payload: '1', text: 'All', number: '22'},
+    { payload: '3', text: 'Uncategorized', number: '6'},
+    { payload: '4', text: 'Trash', number: '11' }
+  ],
+
+  iconMenuItems = [
+    { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },
+    { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },
+    { payload: '3', text: 'Starred', icon: 'mic', number: '3' },
+    { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }
+  ],
+
+  filterMenuItems = [
+    { payload: '1', text: 'Text Opt-In', toggle: true},
+    { payload: '2', text: 'Text Opt-Out', toggle: true},
+    { payload: '3', text: 'Voice Opt-Out', toggle: true}
+  ],
+
+  nestedMenuItems = [
+    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [
+      { payload: '1', text: 'Nested Item 1' },
+      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
+        { payload: '1', text: 'Nested Item 3' },
+        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
+          { payload: '1', text: 'Nested Item 5' },
+          { payload: '3', text: 'Nested Item 6' }
+        ] },
+        { payload: '3', text: 'Nested Item 7' }
+      ] },
+      { payload: '3', text: 'Nested Item 9' },
+      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
+        { payload: '1', text: 'Nested Item 3' },
+        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
+          { payload: '1', text: 'Nested Item 5' },
+          { payload: '3', text: 'Nested Item 6' }
+        ] },
+        { payload: '3', text: 'Nested Item 7' }
+      ] },
+      { payload: '4', text: 'Nested Item 10' }
+    ] },
+    { payload: '1', text: 'Audio Library'},
+    { payload: '2', text: 'Settings'},
+    { payload: '3', text: 'Logout'}
+  ];
+
+
+var MenusPage = React.createClass({displayName: 'MenusPage',
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Drop Down Menu"), 
+    		this._getDropDownMenuExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Label Menu"), 
+        this._getLabelMenuExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Number Menu"), 
+        this._getNumberMenuExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Icon Menu"), 
+        this._getIconMenuExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Filter Menu"), 
+        this._getFilterMenuExample(), 
+
+        React.DOM.h2({className: "mui-font-style-headline"}, "Nested Menu"), 
+        this._getNestedMenuExample()
+    	)
+    );
+  },
+
+  _getDropDownMenuExample: function() {
+    var code = 
+      "var menuItems = [\n" +
+      "   { payload: '1', text: 'Never' },\n" +
+      "   { payload: '2', text: 'Every Night' },\n" +
+      "   { payload: '3', text: 'Weeknights' },\n" +
+      "   { payload: '4', text: 'Weekends' },\n" +
+      "   { payload: '5', text: 'Weekly' },\n" +
+      "];\n\n" +
+      "<DropDownMenu menuItems={menuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        mui.DropDownMenu({menuItems: menuItems, onChange: this._onDropDownMenuChange})
+      )
+    );
+  },
+
+  _getLabelMenuExample: function() {
+    var code = 
+      "var labelMenuItems = [\n" +
+      "   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },\n" +
+      "   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
+      "   { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
+      "];\n\n"  +
+      "<Menu menuItems={labelMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: labelMenuItems, onItemClick: this._onItemClick})
+        )
+      )
+    );
+  },
+
+  _getNumberMenuExample: function() {
+    var code = 
+      "var numberMenuItems = [\n" +
+      "   { payload: '1', text: 'All', number: '22' },\n" +
+      "   { payload: '3', text: 'Uncategorized', number: '6'},\n" +
+      "   { payload: '4', text: 'Trash', number: '11' }\n" +
+      "];\n\n"  +
+      "<Menu menuItems={numberMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: numberMenuItems, onItemClick: this._onItemClick})
+        )
+      )
+    );
+  },
+
+  _getIconMenuExample: function() {
+    var code = 
+      "iconMenuItems = [\n" +
+      "   { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },\n" +
+      "   { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },\n" +
+      "   { payload: '3', text: 'Starred', icon: 'mic', number: '3'},\n" +
+      "   { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }\n" +
+      "];\n\n" +
+      "<Menu menuItems={iconMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: iconMenuItems, onItemClick: this._onItemClick})
+        )
+      )
+    );
+  },
+
+  _getFilterMenuExample: function() {
+    var code = 
+      "filterMenuItems = [\n" +
+      "   { payload: '1', text: 'Text Opt-In', toggle: true},\n" +
+      "   { payload: '2', text: 'Text Opt-Out', toggle: true},\n" +
+      "   { payload: '3', text: 'Voice Opt-Out', toggle: true}\n" +
+      "];\n\n" +
+      "<Menu menuItems={filterMenuItems} />";
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.div({className: "example-menu"}, 
+          mui.Menu({menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemClick: this._onItemClick})
+        )
+      )
+    );
+  },
+
+  _getNestedMenuExample: function() {
+    var code = 
+      "nestedMenuItems = [\n" +
+      "    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [\n" +
+      "      { payload: '1', text: 'Nested Item 1' },\n" +
+      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
+      "        { payload: '1', text: 'Nested Item 3' },\n" +
+      "        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
+      "          { payload: '1', text: 'Nested Item 5' },\n" +
+      "          { payload: '3', text: 'Nested Item 6' }\n" +
+      "        ] },\n" +
+      "        { payload: '3', text: 'Nested Item 7' }\n" +
+      "      ] },\n" +
+      "      { payload: '3', text: 'Nested Item 9' },\n" +
+      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
+      "        { payload: '1', text: 'Nested Item 3' },\n" +
+      "       { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
+      "          { payload: '1', text: 'Nested Item 5' },\n" +
+      "          { payload: '3', text: 'Nested Item 6' }\n" +
+      "        ] },\n" +
+      "        { payload: '3', text: 'Nested Item 7' }\n" +
+      "      ] },\n" +
+      "      { payload: '4', text: 'Nested Item 10' }\n" +
+      "    ] },\n" +
+      "    { payload: '1', text: 'Audio Library'},\n" +
+      "    { payload: '2', text: 'Settings'},\n" +
+      "    { payload: '3', text: 'Logout'}\n" +
+      "  ];\n\n" +
+      '<Menu menuItems={nestedMenuItems} />';
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.div({className: "example-menu-nested"}, 
+          mui.Menu({menuItems: nestedMenuItems, onItemClick: this._onItemClick})
+        )
+      )
+    );
+  },
+
+  _onDropDownMenuChange: function(e, key, menuItem) {
+  	console.log('Menu Clicked: ', menuItem);
+  },
+
+  _onFilterMenuToggle: function(e, key, menuItem, toggled) {
+    console.log('Filter Menu Toggled: ', key, menuItem, toggled)
+  },
+
+  _onItemClick: function(e, key, menuItem) {
+    console.log("Menu Item Click: ", menuItem);
+  }
+
+});
+
+module.exports = MenusPage;
+},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/switches.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react'),
+    mui = require('mui'),
+    CodeExample = require('../code-example/code-example.jsx');
+
+var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Checkbox"), 
+        this._getCheckboxExample(), 
+        React.DOM.h2({className: "mui-font-style-headline"}, "Radio Button"), 
+        this._getRadioButtonExample(), 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Toggle"), 
+        this._getToggleExample()
+    	)
+    );
+  },
+
+  _getCheckboxExample: function() {
+    var code = 
+      '<form>\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue1" />\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue2" />\n' +
+      ' <Checkbox name="checkboxName" value="checkboxValue3" />\n' +
+      '</form>';
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.form(null, 
+          mui.Checkbox({name: "checkboxName", value: "checkboxValue1", onClick: this._onCheck}), 
+          React.DOM.br(null), 
+          mui.Checkbox({name: "checkboxName", value: "checkboxValue2", onClick: this._onCheck}), 
+          React.DOM.br(null), 
+          mui.Checkbox({name: "checkboxName", value: "checkboxValue3", onClick: this._onCheck})
+        )
+      )
+    );
+  },
+
+  _getToggleExample: function() {
+    var code = 
+      '<Toggle />';
+
+    return (
+      CodeExample({code: code}, 
+        mui.Toggle({onToggle: this._onToggle})
+      )
+    );
+  },
+
+  _getRadioButtonExample: function() {
+    var code = 
+      '<form>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue1"/>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue2"/>\n' +
+      ' <RadioButton name="radioButtonName" value="radioButtonValue3"/>\n' +
+      '</form>';
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.form(null, 
+          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue1", onClick: this._onRadioButtonClick}), 
+          React.DOM.br(null), 
+          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue2", onClick: this._onRadioButtonClick}), 
+          React.DOM.br(null), 
+          mui.RadioButton({name: "radioButtonName", value: "radioButtonValue3", onClick: this._onRadioButtonClick})
+        )
+      )
+    );
+  },
+
+  _onCheck: function(e, checked) {
+    console.log('Checked: ', checked);
+  },
+
+  _onToggle: function(e, toggled) {
+    console.log('Toggled: ', toggled);
+  },
+
+  _onRadioButtonClick: function(e, checked) {
+    console.log('Clicked:', checked);
+  }
+
+});
+
+module.exports = SwitchesPage;
+},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/toasts.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react');
+var mui = require('mui');
+var CodeExample = require('../code-example/code-example.jsx');
+
+var ToastsPage = React.createClass({displayName: 'ToastsPage',
+
+  getInitialState: function() {
+    return {
+      message: 'You have deleted your broadcast.',
+      action: 'undo'
+    }
+  },
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+  			React.DOM.h2({className: "mui-font-style-headline"}, "Toasts"), 
+  			this._getToastExample()
+  		)
+    );
+  },
+
+  _getToastExample: function() {
+    var code = 
+      "";
+
+    return (
+      CodeExample({code: code}, 
+        React.DOM.button({onClick: this.triggerToast}, "Trigger Toast"), 
+      	mui.Toast({ref: "Toast", message: this.state.message, action: this.state.action})
+      )
+    );
+  },
+
+  triggerToast: function() {
+    this.refs.Toast.toggle();
+  },
+
+});
+
+module.exports = ToastsPage;
+},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/toolbars.jsx":[function(require,module,exports){
+/** @jsx React.DOM */
+
+var mui = require('mui');
+var PaperButton = mui.PaperButton;
+var React = require('react');
+
+var ToolbarPage = React.createClass({displayName: 'ToolbarPage',
+
+  render: function() {
+
+    var filterOptions = [
+      { payload: '1', text: 'All Broadcasts' },
+      { payload: '2', text: 'All Voice' },
+      { payload: '3', text: 'All Text' },
+      { payload: '4', text: 'Complete Voice' },
+      { payload: '5', text: 'Complete Text' },
+      { payload: '6', text: 'Active Voice' },
+      { payload: '7', text: 'Active Text' },
+    ],
+
+    iconMenuItems = [
+      { payload: '1', text: 'Download' },
+      { payload: '2', text: 'More Info' }
+    ];
+
+    rightItems = [
+      mui.Icon({icon: "sort"}),
+      mui.Icon({icon: "filter"}),
+      mui.Icon({icon: "search"}),
+      mui.DropDownIcon({icon: "chevron-down", menuItems: iconMenuItems, onChange: this._onDropDownMenuChange}),
+      { type: "separator"},
+      mui.PaperButton({type: PaperButton.Types.RAISED, label: "Create Broadcast", primary: true}),
+    ],
+        
+    leftItems = [
+      mui.DropDownMenu({menuItems: filterOptions}),
+    ];
+
+    groups = [ 
+      mui.ToolbarGroup({key: 0, float: "left", groupItems: leftItems}),
+      mui.ToolbarGroup({key: 1, float: "right", groupItems: rightItems})
+    ];
+
+    return (
+    	React.DOM.div(null, 
+    		React.DOM.h2({className: "mui-font-style-headline"}, "Toolbars"), 
+        React.DOM.div({className: "mui-toolbar-container"}, 
+          mui.Toolbar({groups: groups})
+        )
+    	)
+    );
+  },
+
+  _onDropDownMenuChange: function(e, key, menuItem) {
+    console.log('Menu Clicked: ', menuItem);
+  },
+
+});
+
+module.exports = ToolbarPage;
+},{"mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/typography.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var $ = require('jquery'),
+	React = require('react'),
+	CodeExample = require('../code-example/code-example.jsx');
+
+var TypographyPage = React.createClass({displayName: 'TypographyPage',
+
+  render: function() {
+    return (
+    	React.DOM.div(null, 
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Roboto"), 
+	    	React.DOM.p(null, 
+	    		"The Roboto font and 3 font weights (light, regular, and medium) are automatically included from ", React.DOM.a({href: "http://www.google.com/fonts/specimen/Roboto"}, "Google Fonts"), "."
+	    	), 
+
+	    	React.DOM.br(null), 
+
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Vertical Rhythm"), 
+	    	React.DOM.p(null, "Default styles for headings and paragraphs have consistent vertical rhythm. Click the text below to see. :)"), 
+	    	this._getVerticalRhythmExample(), 
+
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Typographic Scale"), 
+	    	this._getScaleExample(), 
+
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Color Contrast"), 
+	    	this._getColorExample(), 
+
+	    	React.DOM.h2({className: "mui-font-style-headline"}, "Tracking and Kerning"), 
+	    	this._getTrackingExample()
+    	)
+    );
+  },
+
+  _getVerticalRhythmExample: function() {
+  	var code = 
+  		'<h1>h1. Html Heading</h1>\n' +
+			'<h2>h2. Html Heading</h2>\n' +
+			'<h1>h1. Html Heading</h1>\n' +
+			'<h2>h2. Html Heading</h2>\n' +
+			'<h3>h3. Html Heading</h3>\n' +
+			'<h4>h4. Html Heading</h4>\n' +
+			'<h5>h5. Html Heading</h5>\n' +
+			'<h6>h6. Html Heading</h6>\n' +
+			'<p>\n'+
+			'	p. Lorem ipsum dolor sit amet, sed docendi suscipit scripserit eu, persius invenire\n' +
+			'	id sea. Ius dicant facilis propriae an, ut vim nonumy meliore lucilius, usu nonumes \n' +
+			'	phaedrum ad. Ea nam error audiam, oratio nostrud pro id. Ut sea cetero labitur \n' +
+			'	gubergren, munere maiorum nostrum vim ut, te feugiat vulputate cum. Choro volumus \n' +
+			'	sapientem te sed, legimus splendide ad nec.\n' +
+			'</p>';
+
+		return (
+			CodeExample({code: code}, 
+				React.DOM.div({ref: "verticalRhythmContainer", onClick: this._onClick}, 
+		    	React.DOM.h1(null, "h1. Html Heading"), 
+		    	React.DOM.h2(null, "h2. Html Heading"), 
+		    	React.DOM.h3(null, "h3. Html Heading"), 
+		    	React.DOM.h4(null, "h4. Html Heading"), 
+		    	React.DOM.h5(null, "h5. Html Heading"), 
+		    	React.DOM.h6(null, "h6. Html Heading"), 
+		    	React.DOM.p(null, "p. Lorem ipsum dolor sit amet, sed docendi suscipit scripserit eu, persius invenire id sea. Ius dicant facilis propriae an, ut vim nonumy meliore lucilius, usu nonumes phaedrum ad. Ea nam error audiam, oratio nostrud pro id. Ut sea cetero labitur gubergren, munere maiorum nostrum vim ut, te feugiat vulputate cum. Choro volumus sapientem te sed, legimus splendide ad nec.")
+    		)
+			)
+		);
+  },
+
+  _getScaleExample: function() {
+  	var code = 
+  		'<div className="mui-font-style-display-4">Light 112px</div>\n' +
+    	'<div className="mui-font-style-display-3">Regular 56px</div>\n' +
+    	'<div className="mui-font-style-display-2">Regular 45px</div>\n' +
+    	'<div className="mui-font-style-display-1">Regular 34px</div>\n' +
+    	'<div className="mui-font-style-headline">Regular 24px</div>\n' +
+    	'<div className="mui-font-style-title">Medium 20px</div>\n' +
+    	'<div className="mui-font-style-subhead-1">Regular 15px</div>\n' +
+    	'<div className="mui-font-style-body-2">Medium 13px</div>\n' +
+    	'<div className="mui-font-style-body-1">Regular 13px</div>\n' +
+    	'<div className="mui-font-style-caption">Regular 12px</div>\n' +
+    	'<div className="mui-font-style-menu">Medium 13px</div>\n' +
+    	'<div className="mui-font-style-button">MEDIUM (ALL CAPS) 14px</div>';
+
+		return (
+			CodeExample({code: code}, 
+				React.DOM.div({className: "mui-font-style-display-4"}, "Light 112px"), 
+	    	React.DOM.div({className: "mui-font-style-display-3"}, "Regular 56px"), 
+	    	React.DOM.div({className: "mui-font-style-display-2"}, "Regular 45px"), 
+	    	React.DOM.div({className: "mui-font-style-display-1"}, "Regular 34px"), 
+	    	React.DOM.div({className: "mui-font-style-headline"}, "Regular 24px"), 
+	    	React.DOM.div({className: "mui-font-style-title"}, "Medium 20px"), 
+	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Regular 15px"), 
+	    	React.DOM.div({className: "mui-font-style-body-2"}, "Medium 13px"), 
+	    	React.DOM.div({className: "mui-font-style-body-1"}, "Regular 13px"), 
+	    	React.DOM.div({className: "mui-font-style-caption"}, "Regular 12px"), 
+	    	React.DOM.div({className: "mui-font-style-menu"}, "Medium 13px"), 
+	    	React.DOM.div({className: "mui-font-style-button"}, "MEDIUM (ALL CAPS) 14px")
+			)
+		);
+  },
+
+  _getColorExample: function() {
+  	var code = 
+  		'<div className="mui-font-style-display-4">Black 54%</div>\n' +
+    	'<div className="mui-font-style-display-3">Black 54%</div>\n' +
+    	'<div className="mui-font-style-display-2">Black 54%</div>\n' +
+    	'<div className="mui-font-style-display-1">Black 54%</div>\n' +
+    	'<div className="mui-font-style-headline">Black 87%</div>\n' +
+    	'<div className="mui-font-style-title">Black 87%</div>\n' +
+    	'<div className="mui-font-style-subhead-1">Black 87%</div>\n' +
+    	'<div className="mui-font-style-body-2">Black 87%</div>\n' +
+    	'<div className="mui-font-style-body-1">Black 87%</div>\n' +
+    	'<div className="mui-font-style-caption">Black 54%</div>\n' +
+    	'<div className="mui-font-style-menu">Black 87%</div>\n' +
+    	'<div className="mui-font-style-button">Black 87%</div>';
+
+		return (
+			CodeExample({code: code}, 
+				React.DOM.div({className: "mui-font-style-display-4"}, "Black 54%"), 
+	    	React.DOM.div({className: "mui-font-style-display-3"}, "Black 54%"), 
+	    	React.DOM.div({className: "mui-font-style-display-2"}, "Black 54%"), 
+	    	React.DOM.div({className: "mui-font-style-display-1"}, "Black 54%"), 
+	    	React.DOM.div({className: "mui-font-style-headline"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-title"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-body-2"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-body-1"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-caption"}, "Black 54%"), 
+	    	React.DOM.div({className: "mui-font-style-menu"}, "Black 87%"), 
+	    	React.DOM.div({className: "mui-font-style-button"}, "Black 87%")
+			)
+		);
+  },
+
+  _getTrackingExample: function() {
+  	var code = 
+  		'<div className="mui-font-style-display-4">Tracking -10px</div>\n' +
+    	'<div className="mui-font-style-display-3">Tracking -5px</div>\n' +
+    	'<div className="mui-font-style-display-2">Tracking 0px</div>\n' +
+    	'<div className="mui-font-style-display-1">Tracking 0px</div>\n' +
+    	'<div className="mui-font-style-headline">Tracking 0px</div>\n' +
+    	'<div className="mui-font-style-title">Tracking 5px</div>\n' +
+    	'<div className="mui-font-style-subhead-1">Tracking 10px</div>\n' +
+    	'<div className="mui-font-style-body-2">Tracking 10px</div>\n' +
+    	'<div className="mui-font-style-body-1">Tracking 10px</div>\n' +
+    	'<div className="mui-font-style-caption">Tracking 20px</div>\n' +
+    	'<div className="mui-font-style-menu">Tracking 10px</div>\n' +
+    	'<div className="mui-font-style-button">Tracking 10px</div>';
+
+		return (
+			CodeExample({code: code}, 
+				React.DOM.div({className: "mui-font-style-display-4"}, "Tracking -10px"), 
+	    	React.DOM.div({className: "mui-font-style-display-3"}, "Tracking -5px"), 
+	    	React.DOM.div({className: "mui-font-style-display-2"}, "Tracking 0px"), 
+	    	React.DOM.div({className: "mui-font-style-display-1"}, "Tracking 0px"), 
+	    	React.DOM.div({className: "mui-font-style-headline"}, "Tracking 0px"), 
+	    	React.DOM.div({className: "mui-font-style-title"}, "Tracking 5px"), 
+	    	React.DOM.div({className: "mui-font-style-subhead-1"}, "Tracking 10px"), 
+	    	React.DOM.div({className: "mui-font-style-body-2"}, "Tracking 10px"), 
+	    	React.DOM.div({className: "mui-font-style-body-1"}, "Tracking 10px"), 
+	    	React.DOM.div({className: "mui-font-style-caption"}, "Tracking 20px"), 
+	    	React.DOM.div({className: "mui-font-style-menu"}, "Tracking 10px"), 
+	    	React.DOM.div({className: "mui-font-style-button"}, "Tracking 10px")
+			)
+		);
+  },
+
+  _onClick: function(e) {
+  	$(this.refs.verticalRhythmContainer.getDOMNode()).toggleClass('baseline-grid');
+  }
+
+});
+
+module.exports = TypographyPage;
+
+},{"../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/stores/app-state-store.js":[function(require,module,exports){
+var _ = require('underscore'),
+  Backbone = require('backbone'),
+  Dispatcher = require('../app-dispatcher.js'),
+
+  AppStateStore = Backbone.Model.extend({
+
+    defaults: {
+      currentUrl: null
+    },
+
+    initialize: function() {
+      this.dispatchToken = Dispatcher.register(_.bind(this.onDispatched, this));
+    },
+
+    onDispatched: function(action) {
+      switch (action.type) {
+        case Dispatcher.ActionTypes.NAV_URL_CHANGE:
+        case Dispatcher.ActionTypes.NAV_USER_CLICK:
+          this.set('currentUrl', action.payload.url);
+          break;
+      }
+    }
+
+  });
+
+module.exports = new AppStateStore();
+
+},{"../app-dispatcher.js":"/Users/hai/GitHub/material-ui/docs/src/app/app-dispatcher.js","backbone":"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js","underscore":"/Users/hai/GitHub/material-ui/docs/node_modules/underscore/underscore.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/vendor/flux/dispatcher.js":[function(require,module,exports){
+/*
+ * Copyright (c) 2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule Dispatcher
+ * @typechecks
+ */
+
+var invariant = require('./invariant');
+
+var _lastID = 1;
+var _prefix = 'ID_';
+
+/**
+ * Dispatcher is used to broadcast payloads to registered callbacks. This is
+ * different from generic pub-sub systems in two ways:
+ *
+ *   1) Callbacks are not subscribed to particular events. Every payload is
+ *      dispatched to every registered callback.
+ *   2) Callbacks can be deferred in whole or part until other callbacks have
+ *      been executed.
+ *
+ * For example, consider this hypothetical flight destination form, which
+ * selects a default city when a country is selected:
+ *
+ *   var flightDispatcher = new Dispatcher();
+ *
+ *   // Keeps track of which country is selected
+ *   var CountryStore = {country: null};
+ *
+ *   // Keeps track of which city is selected
+ *   var CityStore = {city: null};
+ *
+ *   // Keeps track of the base flight price of the selected city
+ *   var FlightPriceStore = {price: null}
+ *
+ * When a user changes the selected city, we dispatch the payload:
+ *
+ *   flightDispatcher.dispatch({
+ *     actionType: 'city-update',
+ *     selectedCity: 'paris'
+ *   });
+ *
+ * This payload is digested by `CityStore`:
+ *
+ *   flightDispatcher.register(function(payload)) {
+ *     if (payload.actionType === 'city-update') {
+ *       CityStore.city = payload.selectedCity;
+ *     }
+ *   });
+ *
+ * When the user selects a country, we dispatch the payload:
+ *
+ *   flightDispatcher.dispatch({
+ *     actionType: 'country-update',
+ *     selectedCountry: 'australia'
+ *   });
+ *
+ * This payload is digested by both stores:
+ *
+ *    CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
+ *     if (payload.actionType === 'country-update') {
+ *       CountryStore.country = payload.selectedCountry;
+ *     }
+ *   });
+ *
+ * When the callback to update `CountryStore` is registered, we save a reference
+ * to the returned token. Using this token with `waitFor()`, we can guarantee
+ * that `CountryStore` is updated before the callback that updates `CityStore`
+ * needs to query its data.
+ *
+ *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
+ *     if (payload.actionType === 'country-update') {
+ *       // `CountryStore.country` may not be updated.
+ *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
+ *       // `CountryStore.country` is now guaranteed to be updated.
+ *
+ *       // Select the default city for the new country
+ *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
+ *     }
+ *   });
+ *
+ * The usage of `waitFor()` can be chained, for example:
+ *
+ *   FlightPriceStore.dispatchToken =
+ *     flightDispatcher.register(function(payload)) {
+ *       switch (payload.actionType) {
+ *         case 'country-update':
+ *           flightDispatcher.waitFor([CityStore.dispatchToken]);
+ *           FlightPriceStore.price =
+ *             getFlightPriceStore(CountryStore.country, CityStore.city);
+ *           break;
+ *
+ *         case 'city-update':
+ *           FlightPriceStore.price =
+ *             FlightPriceStore(CountryStore.country, CityStore.city);
+ *           break;
+ *     }
+ *   });
+ *
+ * The `country-update` payload will be guaranteed to invoke the stores'
+ * registered callbacks in order: `CountryStore`, `CityStore`, then
+ * `FlightPriceStore`.
+ */
+
+  function Dispatcher() {"use strict";
+    this.$Dispatcher_callbacks = {};
+    this.$Dispatcher_isPending = {};
+    this.$Dispatcher_isHandled = {};
+    this.$Dispatcher_isDispatching = false;
+    this.$Dispatcher_pendingPayload = null;
+  }
+
+  /**
+   * Registers a callback to be invoked with every dispatched payload. Returns
+   * a token that can be used with `waitFor()`.
+   *
+   * @param {function} callback
+   * @return {string}
+   */
+  Dispatcher.prototype.register=function(callback) {"use strict";
+    var id = _prefix + _lastID++;
+    this.$Dispatcher_callbacks[id] = callback;
+    return id;
+  };
+
+  /**
+   * Removes a callback based on its token.
+   *
+   * @param {string} id
+   */
+  Dispatcher.prototype.unregister=function(id) {"use strict";
+    invariant(
+      this.$Dispatcher_callbacks[id],
+      'Dispatcher.unregister(...): `%s` does not map to a registered callback.',
+      id
+    );
+    delete this.$Dispatcher_callbacks[id];
+  };
+
+  /**
+   * Waits for the callbacks specified to be invoked before continuing execution
+   * of the current callback. This method should only be used by a callback in
+   * response to a dispatched payload.
+   *
+   * @param {array<string>} ids
+   */
+  Dispatcher.prototype.waitFor=function(ids) {"use strict";
+    invariant(
+      this.$Dispatcher_isDispatching,
+      'Dispatcher.waitFor(...): Must be invoked while dispatching.'
+    );
+    for (var ii = 0; ii < ids.length; ii++) {
+      var id = ids[ii];
+      if (this.$Dispatcher_isPending[id]) {
+        invariant(
+          this.$Dispatcher_isHandled[id],
+          'Dispatcher.waitFor(...): Circular dependency detected while ' +
+          'waiting for `%s`.',
+          id
+        );
+        continue;
+      }
+      invariant(
+        this.$Dispatcher_callbacks[id],
+        'Dispatcher.waitFor(...): `%s` does not map to a registered callback.',
+        id
+      );
+      this.$Dispatcher_invokeCallback(id);
+    }
+  };
+
+  /**
+   * Dispatches a payload to all registered callbacks.
+   *
+   * @param {object} payload
+   */
+  Dispatcher.prototype.dispatch=function(payload) {"use strict";
+    invariant(
+      !this.$Dispatcher_isDispatching,
+      'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.'
+    );
+    this.$Dispatcher_startDispatching(payload);
+    try {
+      for (var id in this.$Dispatcher_callbacks) {
+        if (this.$Dispatcher_isPending[id]) {
+          continue;
+        }
+        this.$Dispatcher_invokeCallback(id);
+      }
+    } finally {
+      this.$Dispatcher_stopDispatching();
+    }
+  };
+
+  /**
+   * Is this Dispatcher currently dispatching.
+   *
+   * @return {boolean}
+   */
+  Dispatcher.prototype.isDispatching=function() {"use strict";
+    return this.$Dispatcher_isDispatching;
+  };
+
+  /**
+   * Call the calback stored with the given id. Also do some internal
+   * bookkeeping.
+   *
+   * @param {string} id
+   * @internal
+   */
+  Dispatcher.prototype.$Dispatcher_invokeCallback=function(id) {"use strict";
+    this.$Dispatcher_isPending[id] = true;
+    this.$Dispatcher_callbacks[id](this.$Dispatcher_pendingPayload);
+    this.$Dispatcher_isHandled[id] = true;
+  };
+
+  /**
+   * Set up bookkeeping needed when dispatching.
+   *
+   * @param {object} payload
+   * @internal
+   */
+  Dispatcher.prototype.$Dispatcher_startDispatching=function(payload) {"use strict";
+    for (var id in this.$Dispatcher_callbacks) {
+      this.$Dispatcher_isPending[id] = false;
+      this.$Dispatcher_isHandled[id] = false;
+    }
+    this.$Dispatcher_pendingPayload = payload;
+    this.$Dispatcher_isDispatching = true;
+  };
+
+  /**
+   * Clear bookkeeping used for dispatching.
+   *
+   * @internal
+   */
+  Dispatcher.prototype.$Dispatcher_stopDispatching=function() {"use strict";
+    this.$Dispatcher_pendingPayload = null;
+    this.$Dispatcher_isDispatching = false;
+  };
+
+
+module.exports = Dispatcher;
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/src/app/vendor/flux/invariant.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/vendor/flux/invariant.js":[function(require,module,exports){
+/**
+ * Copyright (c) 2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule invariant
+ */
+
+"use strict";
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var invariant = function(condition, format, a, b, c, d, e, f) {
+  if (false) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error(
+        'Minified exception occurred; use the non-minified dev environment ' +
+        'for the full error message and additional helpful warnings.'
+      );
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(
+        'Invariant Violation: ' +
+        format.replace(/%s/g, function() { return args[argIndex++]; })
+      );
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+};
+
+module.exports = invariant;
+},{}],"/Users/hai/GitHub/material-ui/docs/src/app/vendor/highlight-js/highlight.pack.js":[function(require,module,exports){
+(function (global){
+;__browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
+var hljs=new function(){function j(v){return v.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")}function t(v){return v.nodeName.toLowerCase()}function h(w,x){var v=w&&w.exec(x);return v&&v.index==0}function r(w){var v=(w.className+" "+(w.parentNode?w.parentNode.className:"")).split(/\s+/);v=v.map(function(x){return x.replace(/^lang(uage)?-/,"")});return v.filter(function(x){return i(x)||x=="no-highlight"})[0]}function o(x,y){var v={};for(var w in x){v[w]=x[w]}if(y){for(var w in y){v[w]=y[w]}}return v}function u(x){var v=[];(function w(y,z){for(var A=y.firstChild;A;A=A.nextSibling){if(A.nodeType==3){z+=A.nodeValue.length}else{if(t(A)=="br"){z+=1}else{if(A.nodeType==1){v.push({event:"start",offset:z,node:A});z=w(A,z);v.push({event:"stop",offset:z,node:A})}}}}return z})(x,0);return v}function q(w,y,C){var x=0;var F="";var z=[];function B(){if(!w.length||!y.length){return w.length?w:y}if(w[0].offset!=y[0].offset){return(w[0].offset<y[0].offset)?w:y}return y[0].event=="start"?w:y}function A(H){function G(I){return" "+I.nodeName+'="'+j(I.value)+'"'}F+="<"+t(H)+Array.prototype.map.call(H.attributes,G).join("")+">"}function E(G){F+="</"+t(G)+">"}function v(G){(G.event=="start"?A:E)(G.node)}while(w.length||y.length){var D=B();F+=j(C.substr(x,D[0].offset-x));x=D[0].offset;if(D==w){z.reverse().forEach(E);do{v(D.splice(0,1)[0]);D=B()}while(D==w&&D.length&&D[0].offset==x);z.reverse().forEach(A)}else{if(D[0].event=="start"){z.push(D[0].node)}else{z.pop()}v(D.splice(0,1)[0])}}return F+j(C.substr(x))}function m(y){function v(z){return(z&&z.source)||z}function w(A,z){return RegExp(v(A),"m"+(y.cI?"i":"")+(z?"g":""))}function x(D,C){if(D.compiled){return}D.compiled=true;D.k=D.k||D.bK;if(D.k){var z={};var E=function(G,F){if(y.cI){F=F.toLowerCase()}F.split(" ").forEach(function(H){var I=H.split("|");z[I[0]]=[G,I[1]?Number(I[1]):1]})};if(typeof D.k=="string"){E("keyword",D.k)}else{Object.keys(D.k).forEach(function(F){E(F,D.k[F])})}D.k=z}D.lR=w(D.l||/\b[A-Za-z0-9_]+\b/,true);if(C){if(D.bK){D.b="\\b("+D.bK.split(" ").join("|")+")\\b"}if(!D.b){D.b=/\B|\b/}D.bR=w(D.b);if(!D.e&&!D.eW){D.e=/\B|\b/}if(D.e){D.eR=w(D.e)}D.tE=v(D.e)||"";if(D.eW&&C.tE){D.tE+=(D.e?"|":"")+C.tE}}if(D.i){D.iR=w(D.i)}if(D.r===undefined){D.r=1}if(!D.c){D.c=[]}var B=[];D.c.forEach(function(F){if(F.v){F.v.forEach(function(G){B.push(o(F,G))})}else{B.push(F=="self"?D:F)}});D.c=B;D.c.forEach(function(F){x(F,D)});if(D.starts){x(D.starts,C)}var A=D.c.map(function(F){return F.bK?"\\.?("+F.b+")\\.?":F.b}).concat([D.tE,D.i]).map(v).filter(Boolean);D.t=A.length?w(A.join("|"),true):{exec:function(F){return null}};D.continuation={}}x(y)}function c(S,L,J,R){function v(U,V){for(var T=0;T<V.c.length;T++){if(h(V.c[T].bR,U)){return V.c[T]}}}function z(U,T){if(h(U.eR,T)){return U}if(U.eW){return z(U.parent,T)}}function A(T,U){return !J&&h(U.iR,T)}function E(V,T){var U=M.cI?T[0].toLowerCase():T[0];return V.k.hasOwnProperty(U)&&V.k[U]}function w(Z,X,W,V){var T=V?"":b.classPrefix,U='<span class="'+T,Y=W?"":"</span>";U+=Z+'">';return U+X+Y}function N(){if(!I.k){return j(C)}var T="";var W=0;I.lR.lastIndex=0;var U=I.lR.exec(C);while(U){T+=j(C.substr(W,U.index-W));var V=E(I,U);if(V){H+=V[1];T+=w(V[0],j(U[0]))}else{T+=j(U[0])}W=I.lR.lastIndex;U=I.lR.exec(C)}return T+j(C.substr(W))}function F(){if(I.sL&&!f[I.sL]){return j(C)}var T=I.sL?c(I.sL,C,true,I.continuation.top):e(C);if(I.r>0){H+=T.r}if(I.subLanguageMode=="continuous"){I.continuation.top=T.top}return w(T.language,T.value,false,true)}function Q(){return I.sL!==undefined?F():N()}function P(V,U){var T=V.cN?w(V.cN,"",true):"";if(V.rB){D+=T;C=""}else{if(V.eB){D+=j(U)+T;C=""}else{D+=T;C=U}}I=Object.create(V,{parent:{value:I}})}function G(T,X){C+=T;if(X===undefined){D+=Q();return 0}var V=v(X,I);if(V){D+=Q();P(V,X);return V.rB?0:X.length}var W=z(I,X);if(W){var U=I;if(!(U.rE||U.eE)){C+=X}D+=Q();do{if(I.cN){D+="</span>"}H+=I.r;I=I.parent}while(I!=W.parent);if(U.eE){D+=j(X)}C="";if(W.starts){P(W.starts,"")}return U.rE?0:X.length}if(A(X,I)){throw new Error('Illegal lexeme "'+X+'" for mode "'+(I.cN||"<unnamed>")+'"')}C+=X;return X.length||1}var M=i(S);if(!M){throw new Error('Unknown language: "'+S+'"')}m(M);var I=R||M;var D="";for(var K=I;K!=M;K=K.parent){if(K.cN){D+=w(K.cN,D,true)}}var C="";var H=0;try{var B,y,x=0;while(true){I.t.lastIndex=x;B=I.t.exec(L);if(!B){break}y=G(L.substr(x,B.index-x),B[0]);x=B.index+y}G(L.substr(x));for(var K=I;K.parent;K=K.parent){if(K.cN){D+="</span>"}}return{r:H,value:D,language:S,top:I}}catch(O){if(O.message.indexOf("Illegal")!=-1){return{r:0,value:j(L)}}else{throw O}}}function e(y,x){x=x||b.languages||Object.keys(f);var v={r:0,value:j(y)};var w=v;x.forEach(function(z){if(!i(z)){return}var A=c(z,y,false);A.language=z;if(A.r>w.r){w=A}if(A.r>v.r){w=v;v=A}});if(w.language){v.second_best=w}return v}function g(v){if(b.tabReplace){v=v.replace(/^((<[^>]+>|\t)+)/gm,function(w,z,y,x){return z.replace(/\t/g,b.tabReplace)})}if(b.useBR){v=v.replace(/\n/g,"<br>")}return v}function p(z){var y=b.useBR?z.innerHTML.replace(/\n/g,"").replace(/<br>|<br [^>]*>/g,"\n").replace(/<[^>]*>/g,""):z.textContent;var A=r(z);if(A=="no-highlight"){return}var v=A?c(A,y,true):e(y);var w=u(z);if(w.length){var x=document.createElementNS("http://www.w3.org/1999/xhtml","pre");x.innerHTML=v.value;v.value=q(w,u(x),y)}v.value=g(v.value);z.innerHTML=v.value;z.className+=" hljs "+(!A&&v.language||"");z.result={language:v.language,re:v.r};if(v.second_best){z.second_best={language:v.second_best.language,re:v.second_best.r}}}var b={classPrefix:"hljs-",tabReplace:null,useBR:false,languages:undefined};function s(v){b=o(b,v)}function l(){if(l.called){return}l.called=true;var v=document.querySelectorAll("pre code");Array.prototype.forEach.call(v,p)}function a(){addEventListener("DOMContentLoaded",l,false);addEventListener("load",l,false)}var f={};var n={};function d(v,x){var w=f[v]=x(this);if(w.aliases){w.aliases.forEach(function(y){n[y]=v})}}function k(){return Object.keys(f)}function i(v){return f[v]||f[n[v]]}this.highlight=c;this.highlightAuto=e;this.fixMarkup=g;this.highlightBlock=p;this.configure=s;this.initHighlighting=l;this.initHighlightingOnLoad=a;this.registerLanguage=d;this.listLanguages=k;this.getLanguage=i;this.inherit=o;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.BE={b:"\\\\[\\s\\S]",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE]};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE]};this.PWM={b:/\b(a|an|the|are|I|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such)\b/};this.CLCM={cN:"comment",b:"//",e:"$",c:[this.PWM]};this.CBCM={cN:"comment",b:"/\\*",e:"\\*/",c:[this.PWM]};this.HCM={cN:"comment",b:"#",e:"$",c:[this.PWM]};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.CSSNM={cN:"number",b:this.NR+"(%|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc|px|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?",r:0};this.RM={cN:"regexp",b:/\//,e:/\/[gim]*/,i:/\n/,c:[this.BE,{b:/\[/,e:/\]/,r:0,c:[this.BE]}]};this.TM={cN:"title",b:this.IR,r:0};this.UTM={cN:"title",b:this.UIR,r:0}}();hljs.registerLanguage("javascript",function(a){return{aliases:["js"],k:{keyword:"in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const class",literal:"true false null undefined NaN Infinity",built_in:"eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document"},c:[{cN:"pi",b:/^\s*('|")use strict('|")/,r:10},a.ASM,a.QSM,a.CLCM,a.CBCM,a.CNM,{b:"("+a.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[a.CLCM,a.CBCM,a.RM,{b:/</,e:/>;/,r:0,sL:"xml"}],r:0},{cN:"function",bK:"function",e:/\{/,eE:true,c:[a.inherit(a.TM,{b:/[A-Za-z$_][0-9A-Za-z$_]*/}),{cN:"params",b:/\(/,e:/\)/,c:[a.CLCM,a.CBCM],i:/["'\(]/}],i:/\[|%/},{b:/\$[(.]/},{b:"\\."+a.IR,r:0}]}});hljs.registerLanguage("css",function(a){var b="[a-zA-Z-][a-zA-Z0-9_-]*";var c={cN:"function",b:b+"\\(",rB:true,eE:true,e:"\\("};return{cI:true,i:"[=/|']",c:[a.CBCM,{cN:"id",b:"\\#[A-Za-z0-9_-]+"},{cN:"class",b:"\\.[A-Za-z0-9_-]+",r:0},{cN:"attr_selector",b:"\\[",e:"\\]",i:"$"},{cN:"pseudo",b:":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+"},{cN:"at_rule",b:"@(font-face|page)",l:"[a-z-]+",k:"font-face page"},{cN:"at_rule",b:"@",e:"[{;]",c:[{cN:"keyword",b:/\S+/},{b:/\s/,eW:true,eE:true,r:0,c:[c,a.ASM,a.QSM,a.CSSNM]}]},{cN:"tag",b:b,r:0},{cN:"rules",b:"{",e:"}",i:"[^\\s]",r:0,c:[a.CBCM,{cN:"rule",b:"[^\\s]",rB:true,e:";",eW:true,c:[{cN:"attribute",b:"[A-Z\\_\\.\\-]+",e:":",eE:true,i:"[^\\s]",starts:{cN:"value",eW:true,eE:true,c:[c,a.CSSNM,a.QSM,a.ASM,a.CBCM,{cN:"hexcolor",b:"#[0-9A-Fa-f]+"},{cN:"important",b:"!important"}]}}]}]}]}});hljs.registerLanguage("xml",function(a){var c="[A-Za-z0-9\\._:-]+";var d={b:/<\?(php)?(?!\w)/,e:/\?>/,sL:"php",subLanguageMode:"continuous"};var b={eW:true,i:/</,r:0,c:[d,{cN:"attribute",b:c,r:0},{b:"=",r:0,c:[{cN:"value",v:[{b:/"/,e:/"/},{b:/'/,e:/'/},{b:/[^\s\/>]+/}]}]}]};return{aliases:["html","xhtml","rss","atom","xsl","plist"],cI:true,c:[{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},{cN:"comment",b:"<!--",e:"-->",r:10},{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[b],starts:{e:"</style>",rE:true,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[b],starts:{e:"<\/script>",rE:true,sL:"javascript"}},{b:"<%",e:"%>",sL:"vbscript"},d,{cN:"pi",b:/<\?\w+/,e:/\?>/,r:10},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:"[^ /><]+",r:0},b]}]}});hljs.registerLanguage("http",function(a){return{i:"\\S",c:[{cN:"status",b:"^HTTP/[0-9\\.]+",e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{cN:"request",b:"^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",rB:true,e:"$",c:[{cN:"string",b:" ",e:" ",eB:true,eE:true}]},{cN:"attribute",b:"^\\w",e:": ",eE:true,i:"\\n|\\s|=",starts:{cN:"string",e:"$"}},{b:"\\n\\n",starts:{sL:"",eW:true}}]}});hljs.registerLanguage("json",function(a){var e={literal:"true false null"};var d=[a.QSM,a.CNM];var c={cN:"value",e:",",eW:true,eE:true,c:d,k:e};var b={b:"{",e:"}",c:[{cN:"attribute",b:'\\s*"',e:'"\\s*:\\s*',eB:true,eE:true,c:[a.BE],i:"\\n",starts:c}],i:"\\S"};var f={b:"\\[",e:"\\]",c:[a.inherit(c,{cN:null})],i:"\\S"};d.splice(d.length,0,b,f);return{c:d,k:e,i:"\\S"}});
+; browserify_shim__define__module__export__(typeof hljs != "undefined" ? hljs : window.hljs);
+
+}).call(global, undefined, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}]},{},["./src/app/app.jsx"]);
