@@ -7,8 +7,7 @@ var ToolbarGroup = React.createClass({
 
   propTypes: {
     float: React.PropTypes.string,
-    groupItems: React.PropTypes.array,
-    key: React.PropTypes.number.isRequired
+    groupItems: React.PropTypes.array
   },
 
   mixins: [Classable],

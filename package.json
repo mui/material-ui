@@ -33,10 +33,10 @@
   },
   "dependencies": {
     "jquery": "^2.1.1",
-    "react": "^0.11.1"
+    "react": "^0.12"
   },
   "devDependencies": {
-    "browserify": "^5.11.0",
-    "reactify": "^0.14.0"
+    "browserify": "^6.2.0",
+    "reactify": "^0.15.2"
   }
 }

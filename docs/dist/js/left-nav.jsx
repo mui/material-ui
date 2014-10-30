@@ -13,7 +13,7 @@ var LeftNav = React.createClass({
 
   propTypes: {
     onChange: React.PropTypes.func,
-    header: React.PropTypes.component,
+    header: React.PropTypes.element,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
     isInitiallyOpen: React.PropTypes.bool

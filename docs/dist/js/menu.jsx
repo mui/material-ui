@@ -19,7 +19,7 @@ var NestedMenuItem = React.createClass({
   mixins: [Classable, ClickAwayable],
 
   propTypes: {
-    key: React.PropTypes.number.isRequired,
+    index: React.PropTypes.number.isRequired,
     text: React.PropTypes.string,
     menuItems: React.PropTypes.array.isRequired,
     zDepth: React.PropTypes.number,
@@ -49,7 +49,7 @@ var NestedMenuItem = React.createClass({
 
     return (
       <div className={classes}>
-        <MenuItem key={this.props.key} iconRight="arrow-drop-right" onClick={this._onParentItemClick}>
+        <MenuItem index={this.props.index} iconRight="arrow-drop-right" onClick={this._onParentItemClick}>
           {this.props.text}
         </MenuItem>
         <Menu
@@ -73,9 +73,9 @@ var NestedMenuItem = React.createClass({
     this.setState({ open: !this.state.open });
   },
 
-  _onMenuItemClick: function(e, key, menuItem) {
+  _onMenuItemClick: function(e, index, menuItem) {
     this.setState({ open: false });
-    if (this.props.onItemClick) this.props.onItemClick(e, key, menuItem);
+    if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
   }
 
 });
@@ -158,13 +158,13 @@ var Menu = React.createClass({
 
         case MenuItem.Types.LINK:
           itemComponent = (
-            <a key={i} className="mui-menu-item" href={menuItem.payload}>{menuItem.text}</a>
+            <a key={i} index={i} className="mui-menu-item" href={menuItem.payload}>{menuItem.text}</a>
           );
         break;
 
         case MenuItem.Types.SUBHEADER:
           itemComponent = (
-            <div key={i} className="mui-subheader">{menuItem.text}</div>
+            <div key={i} index={i} className="mui-subheader">{menuItem.text}</div>
           );
           break;
 
@@ -172,7 +172,8 @@ var Menu = React.createClass({
           itemComponent = (
             <NestedMenuItem 
               ref={i} 
-              key={i} 
+              key={i}
+              index={i} 
               text={menuItem.text} 
               menuItems={menuItem.items} 
               zDepth={this.props.zDepth} 
@@ -185,7 +186,8 @@ var Menu = React.createClass({
           itemComponent = (
             <MenuItem 
               selected={isSelected} 
-              key={i} 
+              key={i}
+              index={i} 
               icon={menuItem.icon} 
               data={menuItem.data} 
               attribute={menuItem.attribute}
@@ -233,16 +235,16 @@ var Menu = React.createClass({
     }
   },
 
-  _onNestedItemClick: function(e, key, menuItem) {
-    if (this.props.onItemClick) this.props.onItemClick(e, key, menuItem);
+  _onNestedItemClick: function(e, index, menuItem) {
+    if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
   },
 
-  _onItemClick: function(e, key) {
-    if (this.props.onItemClick) this.props.onItemClick(e, key, this.props.menuItems[key]);
+  _onItemClick: function(e, index) {
+    if (this.props.onItemClick) this.props.onItemClick(e, index, this.props.menuItems[index]);
   },
 
-  _onItemToggle: function(e, key, toggled) {
-    if (this.props.onItemToggle) this.props.onItemToggle(e, key, this.props.menuItems[key], toggled);
+  _onItemToggle: function(e, index, toggled) {
+    if (this.props.onItemToggle) this.props.onItemToggle(e, index, this.props.menuItems[index], toggled);
   }
 
 });

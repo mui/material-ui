@@ -18,7 +18,7 @@ var MenuItem = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    key: React.PropTypes.number.isRequired,
+    index: React.PropTypes.number.isRequired,
     icon: React.PropTypes.string,
     iconRight: React.PropTypes.string,
     attribute: React.PropTypes.string,
@@ -59,7 +59,7 @@ var MenuItem = React.createClass({
     if (this.props.toggle) toggle = <Toggle onToggle={this._onToggleClick} />;
 
     return (
-      <div key={this.props.key} className={classes} onClick={this._onClick}>
+      <div key={this.props.index} className={classes} onClick={this._onClick}>
         {icon}
         {this.props.children}
         {data}
@@ -72,11 +72,11 @@ var MenuItem = React.createClass({
   },
 
   _onClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.key);
+    if (this.props.onClick) this.props.onClick(e, this.props.index);
   },
 
   _onToggleClick: function(e, toggled) {
-    if (this.props.onToggle) this.props.onToggle(e, this.props.key, toggled);
+    if (this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
   }
 
 });

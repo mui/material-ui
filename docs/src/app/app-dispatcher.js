@@ -1,7 +1,7 @@
-var Dispatcher = require('./vendor/flux/dispatcher.js');
-var copyProperties = require('react/lib/copyProperties');
+var _ = require('underscore'),
+  Dispatcher = require('./vendor/flux/dispatcher.js');
 
-var AppDispatcher = copyProperties(new Dispatcher(), {
+var AppDispatcher = _.extend(new Dispatcher(), {
 
 	ActionTypes: {
 		NAV_URL_CHANGE: 'nav-url-change',

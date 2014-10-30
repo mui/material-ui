@@ -2,7 +2,8 @@
  * @jsx React.DOM
  */
 
-var Home = require('./pages/home.jsx'),
+var React = require('react'),
+	Home = require('./pages/home.jsx'),
 	GetStarted = require('./pages/get-started.jsx'),
 	Buttons = require('./pages/buttons.jsx'),
 	Colors = require('./pages/colors.jsx'),

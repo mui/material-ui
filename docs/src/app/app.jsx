@@ -16,7 +16,7 @@
 	window.React = React;
 
 	//Render the main app component
-	React.renderComponent(<MasterComponent />, document.body);
+	React.render(<MasterComponent />, document.body);
 
 	Backbone.history.start();
 
