@@ -32,7 +32,7 @@ var HomePage = React.createClass({
       '@import "node_modules/material-ui/dist/less/components.less";';
 
     return (
-      <div className="get-started-page">
+      <div className="get-started-page mui-app-content-canvas">
         <div className="full-width-section">
           <h2 className="mui-font-style-headline">Installation</h2>
           <p className="content">

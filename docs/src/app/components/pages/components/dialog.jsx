@@ -2,7 +2,7 @@
  * @jsx React.DOM
  */
 
-var CodeExample = require('../code-example/code-example.jsx');
+var CodeExample = require('../../code-example/code-example.jsx');
 var mui = require('mui');
 var React = require('react');
 

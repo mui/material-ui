@@ -5,7 +5,7 @@
 var React = require('react'),
   mui = require('mui'),
   PaperButton = mui.PaperButton,
-  CodeExample = require('../code-example/code-example.jsx');
+  CodeExample = require('../../code-example/code-example.jsx');
 
 var ButtonPage = React.createClass({
 

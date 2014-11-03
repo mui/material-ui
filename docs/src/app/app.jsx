@@ -7,8 +7,7 @@
 	var $ = require('jquery'),
 	  Backbone = require('backbone'),
 	  React = require('react'),
-	  AppRouter = require('./app-router.js'),
-	  MasterComponent = require('./components/master.jsx');
+	  AppRoutes = require('./app-routes.jsx');
 
 	Backbone.$ = $;
 
@@ -16,10 +15,6 @@
 	window.React = React;
 
 	//Render the main app component
-	React.render(<MasterComponent />, document.body);
-
-	Backbone.history.start();
+	React.render(AppRoutes, document.body);
 
 })();
-
-
