@@ -9,6 +9,8 @@
 @import "color-palette.less";
 @import "icon-group.less";
 
+@import "pages/home.less";
+
 a {
 	color: @accent-1-color;
 	text-decoration: none;
@@ -73,109 +75,6 @@ a {
 .full-width-section {
 	padding: @desktop-gutter;
 	.clearfix();
-}
-
-.home-page-hero {
-	background-color: @primary-1-color;
-	height: (@desktop-keyline-increment * 8);
-	color: @dark-white;
-
-	.home-page-hero-content {
-		max-width: 1300px;
-		margin: 0 auto;
-		position: relative;
-		.clearfix();
-	}
-
-	.tagline {
-		width: 50%;
-		float: right;
-		margin-top: 32px;
-		position: relative;
-	}
-
-	.svg-logo {
-		top: 15px;
-		left: 48px;
-		position: absolute;
-		width: 1050px;
-	}
-
-	.mui-font-style-headline,
-	.mui-font-style-subhead-1 {
-		color: @dark-white;
-	}
-
-	.mui-font-style-headline {
-		.mui-font-weight-light;
-	}
-
-	.brand-name {
-		.mui-font-style-display-3;
-		.mui-font-weight-light;
-		color: @dark-white;
-	}
-}
-
-.home-features {
-	padding: (@desktop-keyline-increment * 2) @desktop-gutter;
-	.clearfix();
-
-	.feature {
-		float: left;
-		text-align: center;
-		width: 33%;
-
-
-		.icon-circle {
-			height: 128px;
-			width: 128px;
-			margin: 0 auto;
-			background-color: @grey-200;
-			.lh-border-radius(50%);
-			margin-bottom: @desktop-gutter;
-			cursor: pointer;
-
-			.mui-icon {
-				color: @primary-1-color;
-				line-height: 128px;
-				font-size: 48px;
-			}
-		}
-		
-
-		h3 {
-			.mui-font-weight-light;
-		}
-
-		p {
-			.mui-font-style-subhead-1;
-			padding: 0 (@desktop-gutter * 2);
-			.mui-text-light-black;
-		}
-
-	}
-}
-
-.home-contribute {
-	background-color: @grey-200;
-	padding: (@desktop-gutter * 1.5);
-	.clearfix();
-
-	.content-container {
-		width: 750px;
-		margin: 0 auto;
-
-		h3 {
-			.mui-font-weight-light;
-			float: left;
-		}
-
-		.mui-paper-button {
-			float: right;
-			margin-top: 15px;
-		}
-	}
 }
 
 .get-started-page {
