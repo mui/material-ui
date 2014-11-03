@@ -34,8 +34,10 @@
     "watchify": "^1.0.1"
   },
   "dependencies": {
-    "jquery": "^2.1.1",
     "backbone": "^1.1.2",
-    "react": "^0.12"
+    "flux": "^2.0.1",
+    "jquery": "^2.1.1",
+    "react": "^0.12",
+    "react-router": "^0.10.2"
   }
 }

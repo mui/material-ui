@@ -1,5 +1,5 @@
 var _ = require('underscore'),
-  Dispatcher = require('./vendor/flux/dispatcher.js');
+  Dispatcher = require('flux').Dispatcher;
 
 var AppDispatcher = _.extend(new Dispatcher(), {
 
