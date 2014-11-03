@@ -31,7 +31,7 @@
     "require-dir": "^0.1.0",
     "underscore": "^1.6.0",
     "vinyl-source-stream": "^0.1.1",
-    "watchify": "^1.0.1"
+    "watchify": "^2.1.1"
   },
   "dependencies": {
     "backbone": "^1.1.2",
