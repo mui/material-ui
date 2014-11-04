@@ -1,6 +1,7 @@
 var gulp = require('gulp');
+var config = require('../config').fonts
 
 gulp.task('fonts', function() {
-  return gulp.src('./dist/less/material-ui-icons/fonts/**')
-    .pipe(gulp.dest('build/fonts'));
+  return gulp.src(config.src)
+    .pipe(gulp.dest(config.dest));
 });
