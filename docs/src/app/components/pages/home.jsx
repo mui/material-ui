@@ -11,6 +11,8 @@ var React = require('react'),
 
 var HomePage = React.createClass({
 
+  mixins: [Router.Navigation],
+
   render: function() {
 
     return (
@@ -33,6 +35,9 @@ var HomePage = React.createClass({
                 <a href="https://www.call-em-all.com/">Call-Em-All</a> and plan on adding to it 
                 and making it better in the coming months.
               </p>
+
+              <PaperButton className="demo-button" label="Demo" onClick={this._onDemoClick} />
+              <PaperButton className="github-button" label="GitHub" onClick={this._onGithubClick} />
             </div>
           </div>
         </div>
@@ -80,6 +85,10 @@ var HomePage = React.createClass({
 
       </div>
     );
+  },
+
+  _onDemoClick: function() {
+    this.transitionTo('components');
   },
 
   _onGithubClick: function() {
