@@ -34,31 +34,23 @@ a {
 	}
 
 	.mui-app-content-canvas {
-
-		.clearfix();
-		min-height: 100%;
-
 		&.with-nav {
-			@subNavWidth: (@desktop-keyline-increment * 4 + 1);
+			@subNavWidth: (@desktop-keyline-increment * 4);
+      .lh-calc(min-height, ~'100% - @{app-bar-height}');
 
 			.subNav {
-				height: 100%;
+        position: absolute;
 				width: @subNavWidth;
-				float: left;
-				border-right: solid 1px @grey-300;
 			}
 
 			.subContent {
-				height: 100%;
-				.clearfix();
+        height: 100%;
+        margin-left: @subNavWidth;
 				.lh-calc(width, ~'100% - @{subNavWidth}');
-				float: left;
 				padding: @desktop-gutter;
 				border-left: solid 1px @grey-300;
-				margin-left: -1px;
 			}
 		}
-		
 	}
 }
 
