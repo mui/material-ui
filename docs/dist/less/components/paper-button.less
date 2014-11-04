@@ -1,5 +1,7 @@
 .mui-paper-button {
 
+  * { .ease-out(); }
+
 	@default-hover-color: darken(@paper-button-default-color, 10%);
 	@default-ripple-color: darken(@paper-button-default-color, 20%);
 	@primary-hover-color: darken(@paper-button-primary-color, 10%);
@@ -8,7 +10,6 @@
 	@primary-flat-ripple-color: lighten(@paper-button-primary-color, 20%);
 
 	.mui-font-style-button;
-	.ease-out(300ms);
 
 	//To fix text selection on double click
 	.lh-user-select(none);
