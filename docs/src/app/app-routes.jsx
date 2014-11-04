@@ -45,15 +45,14 @@ var AppRoutes = (
   <Routes scrollBehavior="scrollToTop">
     <Route name="root" path="/" handler={Master}>
     	<Route name="home" handler={Home} />
-    	<Route name="get-started" handler={GetStarted} />
-
-      <Route name="css-framework" handler={PageWithNav} menuItems={cssFrameworkMenuItems}>
+    	<Route name="get-started" handler={GetStarted} pageTitle="Get Started" />
+      <Route name="css-framework" handler={PageWithNav} menuItems={cssFrameworkMenuItems} pageTitle="Css Framework">
         <Route name="colors" handler={Colors} />
         <Route name="typography" handler={Typography} />
         <Redirect from="/css-framework" to="colors" />
       </Route>
 
-      <Route name="components" handler={PageWithNav} menuItems={componentsMenuItems}>
+      <Route name="components" handler={PageWithNav} menuItems={componentsMenuItems} pageTitle="Components">
         <Route name="buttons" handler={Buttons} />
         <Route name="dialog" handler={Dialog} />
         <Route name="icons" handler={Icons} />
