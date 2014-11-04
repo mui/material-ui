@@ -2,8 +2,7 @@
  * @jsx React.DOM
  */
 
-var $ = require('jquery'),
-	React = require('react'),
+var React = require('react'),
 	hljs = require('hljs');
 
 var CodeBlock = React.createClass({
