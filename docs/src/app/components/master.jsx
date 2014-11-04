@@ -7,7 +7,7 @@ var React = require('react'),
   mui = require('mui'),
   Menu = mui.Menu,
   Icon = mui.Icon,
-  Pages = require('./pages.jsx'),
+  //Pages = require('./pages.jsx'),
   AppLeftNav = require('./app-left-nav.jsx');
 
 var Master = React.createClass({
@@ -43,13 +43,12 @@ var Master = React.createClass({
     //   );
     // }
 
-    var title = '',
-      leftNavUrl = '';
+    var title = '';
 
     return (
       <mui.AppCanvas predefinedLayout={1}>
         <mui.AppBar onMenuIconClick={this._onMenuIconClick} title={title} zDepth={0}><Icon icon="github" onClick={this._onGithubClick} /></mui.AppBar>
-        <AppLeftNav ref="leftNav" url={leftNavUrl} />
+        <AppLeftNav ref="leftNav" />
         <this.props.activeRouteHandler />
         <div className="footer">
             <Icon icon="github" onClick={this._onGithubClick} />

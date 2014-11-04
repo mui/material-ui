@@ -3,24 +3,20 @@
  */
 
 var React = require('react'),
-  mui = require('mui'),
-  Dispatcher = require('../app-dispatcher.js'),
-  Pages = require('./pages.jsx');
+  Router = require('react-router'),
+  Navigation = Router.Navigation,
+  mui = require('mui');
 
 var AppLeftNav = React.createClass({
 
-  propTypes: {
-    url: React.PropTypes.string,
-    toggle: React.PropTypes.func
-  },
+  mixins: [Navigation],
 
   getInitialState: function() {
     return {
       menuItems: [
-
-        { payload: Pages.getStarted, text: Pages.getStarted.title },
-        { payload: Pages.cssFramework, text: Pages.cssFramework.title },
-        { payload: Pages.components, text: Pages.components.title },
+        { payload: 'get-started', text: 'Get Started' },
+        { payload: 'css-framework', text: 'CSS Framework' },
+        { payload: 'components', text: 'Components' },
         { type: mui.MenuItem.Types.SUBHEADER, text: 'Resources' },
         { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
         { type: mui.MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
@@ -72,14 +68,8 @@ var AppLeftNav = React.createClass({
   },
 
   _onHeaderClick: function() {
-    if (this.props.url !== Pages.home.url) {
-      this.refs.leftNav.close();
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: Pages.home.url } ); 
-    }
-  },
-
-  _onLeftNavChange: function(e, key, item) {
-    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: item.payload.url } ); 
+    this.transitionTo('root');
+    this.refs.leftNav.close();
   }
 
 });
