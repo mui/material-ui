@@ -8,8 +8,7 @@
 	var $ = require('jquery'),
 	  Backbone = require('backbone'),
 	  React = require('react'),
-	  AppRouter = require('./app-router.js'),
-	  MasterComponent = require('./components/master.jsx');
+	  AppRoutes = require('./app-routes.jsx');
 
 	Backbone.$ = $;
 
@@ -17,15 +16,11 @@
 	window.React = React;
 
 	//Render the main app component
-	React.render(React.createElement(MasterComponent, null), document.body);
-
-	Backbone.history.start();
+	React.render(AppRoutes, document.body);
 
 })();
 
-
-
-},{"./app-router.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-router.js","./components/master.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\master.jsx","backbone":"D:\\GitHub\\material-ui\\docs\\node_modules\\backbone\\backbone.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\index.js":[function(require,module,exports){
+},{"./app-routes.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/app-routes.jsx","backbone":"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/index.js":[function(require,module,exports){
 module.exports = {
 	AppBar: require('./js/app-bar.jsx'),
 	AppCanvas: require('./js/app-canvas.jsx'),
@@ -51,7 +46,7 @@ module.exports = {
 	ToolbarGroup: require('./js/toolbar-group.jsx')
 };
 
-},{"./js/app-bar.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\app-bar.jsx","./js/app-canvas.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\app-canvas.jsx","./js/checkbox.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\checkbox.jsx","./js/dialog.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\dialog.jsx","./js/drop-down-icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\drop-down-icon.jsx","./js/drop-down-menu.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\drop-down-menu.jsx","./js/icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./js/input.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\input.jsx","./js/left-nav.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\left-nav.jsx","./js/menu-item.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu-item.jsx","./js/menu.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu.jsx","./js/mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./js/mixins/click-awayable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js","./js/paper-button.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper-button.jsx","./js/paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./js/radio-button.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\radio-button.jsx","./js/toast.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toast.jsx","./js/toggle.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toggle.jsx","./js/toolbar-group.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toolbar-group.jsx","./js/toolbar.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toolbar.jsx"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\app-bar.jsx":[function(require,module,exports){
+},{"./js/app-bar.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/app-bar.jsx","./js/app-canvas.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/app-canvas.jsx","./js/checkbox.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/checkbox.jsx","./js/dialog.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/dialog.jsx","./js/drop-down-icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-icon.jsx","./js/drop-down-menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-menu.jsx","./js/icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./js/input.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/input.jsx","./js/left-nav.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/left-nav.jsx","./js/menu-item.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx","./js/menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./js/mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./js/mixins/click-awayable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./js/paper-button.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper-button.jsx","./js/paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./js/radio-button.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/radio-button.jsx","./js/toast.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toast.jsx","./js/toggle.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toggle.jsx","./js/toolbar-group.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar-group.jsx","./js/toolbar.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar.jsx"}],"/Users/hai/GitHub/material-ui/docs/dist/js/app-bar.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -98,7 +93,7 @@ var AppBar = React.createClass({displayName: 'AppBar',
 
 module.exports = AppBar;
 
-},{"./icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\app-canvas.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/app-canvas.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -131,7 +126,7 @@ var AppCanvas = React.createClass({displayName: 'AppCanvas',
 
 module.exports = AppCanvas;
 
-},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\checkbox.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/checkbox.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -192,7 +187,7 @@ var Checkbox = React.createClass({displayName: 'Checkbox',
 });
 
 module.exports = Checkbox;
-},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\dialog.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/dialog.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var $ = require('jquery');
@@ -273,7 +268,7 @@ var Dialog = React.createClass({displayName: 'Dialog',
 
 module.exports = Dialog;
 
-},{"./mixins/classable":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\drop-down-icon.jsx":[function(require,module,exports){
+},{"./mixins/classable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-icon.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -345,7 +340,7 @@ var DropDownIcon = React.createClass({displayName: 'DropDownIcon',
 });
 
 module.exports = DropDownIcon;
-},{"./icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./menu-item.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu-item.jsx","./menu.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./utils/key-line.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\key-line.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\drop-down-menu.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./menu-item.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx","./menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/key-line.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/drop-down-menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -425,7 +420,7 @@ var DropDownMenu = React.createClass({displayName: 'DropDownMenu',
 
 module.exports = DropDownMenu;
 
-},{"./icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./menu.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./utils/key-line.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\key-line.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/key-line.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -460,7 +455,7 @@ var Icon = React.createClass({displayName: 'Icon',
 
 module.exports = Icon;
 
-},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\input.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/input.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -571,7 +566,7 @@ var Input = React.createClass({displayName: 'Input',
 });
 
 module.exports = Input;
-},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\left-nav.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/left-nav.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -643,7 +638,7 @@ var LeftNav = React.createClass({displayName: 'LeftNav',
 
 module.exports = LeftNav;
 
-},{"./menu.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu-item.jsx":[function(require,module,exports){
+},{"./menu.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -729,7 +724,7 @@ var MenuItem = React.createClass({displayName: 'MenuItem',
 
 module.exports = MenuItem;
 
-},{"./icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./toggle.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toggle.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./toggle.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toggle.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/menu.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -983,7 +978,7 @@ var Menu = React.createClass({displayName: 'Menu',
 
 module.exports = Menu;
 
-},{"./menu-item.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\menu-item.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./mixins/click-awayable":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./utils/css-event.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\css-event.js","./utils/key-line.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\key-line.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js":[function(require,module,exports){
+},{"./menu-item.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/menu-item.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/css-event.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/css-event.js","./utils/key-line.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js":[function(require,module,exports){
 var React = require('react'),
   classSet = React.addons.classSet;
 
@@ -1027,7 +1022,7 @@ module.exports = {
 
 }
 
-},{"react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js":[function(require,module,exports){
+},{"react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js":[function(require,module,exports){
 var $ = require('jquery');
 
 module.exports = {
@@ -1051,7 +1046,7 @@ module.exports = {
   }
 
 }
-},{"jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper-button.jsx":[function(require,module,exports){
+},{"jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/paper-button.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1168,7 +1163,7 @@ var PaperButton = React.createClass({displayName: 'PaperButton',
 
 module.exports = PaperButton;
 
-},{"./icon.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\icon.jsx","./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./utils/css-event.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\css-event.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx":[function(require,module,exports){
+},{"./icon.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/icon.jsx","./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./utils/css-event.js":"/Users/hai/GitHub/material-ui/docs/dist/js/utils/css-event.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1229,7 +1224,7 @@ var Paper = React.createClass({displayName: 'Paper',
 
 module.exports = Paper;
 
-},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\radio-button.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/radio-button.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1284,7 +1279,7 @@ var RadioButton = React.createClass({displayName: 'RadioButton',
 });
 
 module.exports = RadioButton;
-},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\toast.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toast.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react');
@@ -1346,7 +1341,7 @@ var Toast = React.createClass({displayName: 'Toast',
 
 module.exports = Toast;
 
-},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./mixins/click-awayable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\click-awayable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\toggle.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./mixins/click-awayable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/click-awayable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toggle.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -1396,7 +1391,7 @@ var Toggle = React.createClass({displayName: 'Toggle',
 });
 
 module.exports = Toggle;
-},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./radio-button.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\radio-button.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\toolbar-group.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./radio-button.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/radio-button.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar-group.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var Classable = require('./mixins/classable.js');
@@ -1474,7 +1469,7 @@ var ToolbarGroup = React.createClass({displayName: 'ToolbarGroup',
 });
 
 module.exports = ToolbarGroup;
-},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\toolbar.jsx":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var Classable = require('./mixins/classable.js');
@@ -1527,7 +1522,7 @@ var Toolbar = React.createClass({displayName: 'Toolbar',
 });
 
 module.exports = Toolbar;
-},{"./mixins/classable.js":"D:\\GitHub\\material-ui\\docs\\dist\\js\\mixins\\classable.js","./paper.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\paper.jsx","./toolbar-group.jsx":"D:\\GitHub\\material-ui\\docs\\dist\\js\\toolbar-group.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\css-event.js":[function(require,module,exports){
+},{"./mixins/classable.js":"/Users/hai/GitHub/material-ui/docs/dist/js/mixins/classable.js","./paper.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/paper.jsx","./toolbar-group.jsx":"/Users/hai/GitHub/material-ui/docs/dist/js/toolbar-group.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/dist/js/utils/css-event.js":[function(require,module,exports){
 
 
 module.exports = {
@@ -1542,7 +1537,7 @@ module.exports = {
 
 };
 
-},{}],"D:\\GitHub\\material-ui\\docs\\dist\\js\\utils\\key-line.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/dist/js/utils/key-line.js":[function(require,module,exports){
 module.exports = {
 
 	Desktop: {
@@ -1557,7 +1552,7 @@ module.exports = {
 	}
 }
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\backbone\\backbone.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/backbone/backbone.js":[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -3167,7 +3162,1606 @@ module.exports = {
 
 }));
 
-},{"underscore":"D:\\GitHub\\material-ui\\docs\\node_modules\\underscore\\underscore.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js":[function(require,module,exports){
+},{"underscore":"/Users/hai/GitHub/material-ui/docs/node_modules/underscore/underscore.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/buffer/index.js":[function(require,module,exports){
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @license  MIT
+ */
+
+var base64 = require('base64-js')
+var ieee754 = require('ieee754')
+var isArray = require('is-array')
+
+exports.Buffer = Buffer
+exports.SlowBuffer = Buffer
+exports.INSPECT_MAX_BYTES = 50
+Buffer.poolSize = 8192 // not used by this implementation
+
+var kMaxLength = 0x3fffffff
+
+/**
+ * If `Buffer.TYPED_ARRAY_SUPPORT`:
+ *   === true    Use Uint8Array implementation (fastest)
+ *   === false   Use Object implementation (most compatible, even IE6)
+ *
+ * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+ * Opera 11.6+, iOS 4.2+.
+ *
+ * Note:
+ *
+ * - Implementation must support adding new properties to `Uint8Array` instances.
+ *   Firefox 4-29 lacked support, fixed in Firefox 30+.
+ *   See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+ *
+ *  - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+ *
+ *  - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+ *    incorrect length in some situations.
+ *
+ * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they will
+ * get the Object implementation, which is slower but will work correctly.
+ */
+Buffer.TYPED_ARRAY_SUPPORT = (function () {
+  try {
+    var buf = new ArrayBuffer(0)
+    var arr = new Uint8Array(buf)
+    arr.foo = function () { return 42 }
+    return 42 === arr.foo() && // typed array instances can be augmented
+        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
+        new Uint8Array(1).subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
+  } catch (e) {
+    return false
+  }
+})()
+
+/**
+ * Class: Buffer
+ * =============
+ *
+ * The Buffer constructor returns instances of `Uint8Array` that are augmented
+ * with function properties for all the node `Buffer` API functions. We use
+ * `Uint8Array` so that square bracket notation works as expected -- it returns
+ * a single octet.
+ *
+ * By augmenting the instances, we can avoid modifying the `Uint8Array`
+ * prototype.
+ */
+function Buffer (subject, encoding, noZero) {
+  if (!(this instanceof Buffer))
+    return new Buffer(subject, encoding, noZero)
+
+  var type = typeof subject
+
+  // Find the length
+  var length
+  if (type === 'number')
+    length = subject > 0 ? subject >>> 0 : 0
+  else if (type === 'string') {
+    if (encoding === 'base64')
+      subject = base64clean(subject)
+    length = Buffer.byteLength(subject, encoding)
+  } else if (type === 'object' && subject !== null) { // assume object is array-like
+    if (subject.type === 'Buffer' && isArray(subject.data))
+      subject = subject.data
+    length = +subject.length > 0 ? Math.floor(+subject.length) : 0
+  } else
+    throw new TypeError('must start with number, buffer, array or string')
+
+  if (this.length > kMaxLength)
+    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
+      'size: 0x' + kMaxLength.toString(16) + ' bytes')
+
+  var buf
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    // Preferred: Return an augmented `Uint8Array` instance for best performance
+    buf = Buffer._augment(new Uint8Array(length))
+  } else {
+    // Fallback: Return THIS instance of Buffer (created by `new`)
+    buf = this
+    buf.length = length
+    buf._isBuffer = true
+  }
+
+  var i
+  if (Buffer.TYPED_ARRAY_SUPPORT && typeof subject.byteLength === 'number') {
+    // Speed optimization -- use set if we're copying from a typed array
+    buf._set(subject)
+  } else if (isArrayish(subject)) {
+    // Treat array-ish objects as a byte array
+    if (Buffer.isBuffer(subject)) {
+      for (i = 0; i < length; i++)
+        buf[i] = subject.readUInt8(i)
+    } else {
+      for (i = 0; i < length; i++)
+        buf[i] = ((subject[i] % 256) + 256) % 256
+    }
+  } else if (type === 'string') {
+    buf.write(subject, 0, encoding)
+  } else if (type === 'number' && !Buffer.TYPED_ARRAY_SUPPORT && !noZero) {
+    for (i = 0; i < length; i++) {
+      buf[i] = 0
+    }
+  }
+
+  return buf
+}
+
+Buffer.isBuffer = function (b) {
+  return !!(b != null && b._isBuffer)
+}
+
+Buffer.compare = function (a, b) {
+  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b))
+    throw new TypeError('Arguments must be Buffers')
+
+  var x = a.length
+  var y = b.length
+  for (var i = 0, len = Math.min(x, y); i < len && a[i] === b[i]; i++) {}
+  if (i !== len) {
+    x = a[i]
+    y = b[i]
+  }
+  if (x < y) return -1
+  if (y < x) return 1
+  return 0
+}
+
+Buffer.isEncoding = function (encoding) {
+  switch (String(encoding).toLowerCase()) {
+    case 'hex':
+    case 'utf8':
+    case 'utf-8':
+    case 'ascii':
+    case 'binary':
+    case 'base64':
+    case 'raw':
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      return true
+    default:
+      return false
+  }
+}
+
+Buffer.concat = function (list, totalLength) {
+  if (!isArray(list)) throw new TypeError('Usage: Buffer.concat(list[, length])')
+
+  if (list.length === 0) {
+    return new Buffer(0)
+  } else if (list.length === 1) {
+    return list[0]
+  }
+
+  var i
+  if (totalLength === undefined) {
+    totalLength = 0
+    for (i = 0; i < list.length; i++) {
+      totalLength += list[i].length
+    }
+  }
+
+  var buf = new Buffer(totalLength)
+  var pos = 0
+  for (i = 0; i < list.length; i++) {
+    var item = list[i]
+    item.copy(buf, pos)
+    pos += item.length
+  }
+  return buf
+}
+
+Buffer.byteLength = function (str, encoding) {
+  var ret
+  str = str + ''
+  switch (encoding || 'utf8') {
+    case 'ascii':
+    case 'binary':
+    case 'raw':
+      ret = str.length
+      break
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      ret = str.length * 2
+      break
+    case 'hex':
+      ret = str.length >>> 1
+      break
+    case 'utf8':
+    case 'utf-8':
+      ret = utf8ToBytes(str).length
+      break
+    case 'base64':
+      ret = base64ToBytes(str).length
+      break
+    default:
+      ret = str.length
+  }
+  return ret
+}
+
+// pre-set for values that may exist in the future
+Buffer.prototype.length = undefined
+Buffer.prototype.parent = undefined
+
+// toString(encoding, start=0, end=buffer.length)
+Buffer.prototype.toString = function (encoding, start, end) {
+  var loweredCase = false
+
+  start = start >>> 0
+  end = end === undefined || end === Infinity ? this.length : end >>> 0
+
+  if (!encoding) encoding = 'utf8'
+  if (start < 0) start = 0
+  if (end > this.length) end = this.length
+  if (end <= start) return ''
+
+  while (true) {
+    switch (encoding) {
+      case 'hex':
+        return hexSlice(this, start, end)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Slice(this, start, end)
+
+      case 'ascii':
+        return asciiSlice(this, start, end)
+
+      case 'binary':
+        return binarySlice(this, start, end)
+
+      case 'base64':
+        return base64Slice(this, start, end)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return utf16leSlice(this, start, end)
+
+      default:
+        if (loweredCase)
+          throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = (encoding + '').toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+
+Buffer.prototype.equals = function (b) {
+  if(!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+  return Buffer.compare(this, b) === 0
+}
+
+Buffer.prototype.inspect = function () {
+  var str = ''
+  var max = exports.INSPECT_MAX_BYTES
+  if (this.length > 0) {
+    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
+    if (this.length > max)
+      str += ' ... '
+  }
+  return '<Buffer ' + str + '>'
+}
+
+Buffer.prototype.compare = function (b) {
+  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+  return Buffer.compare(this, b)
+}
+
+// `get` will be removed in Node 0.13+
+Buffer.prototype.get = function (offset) {
+  console.log('.get() is deprecated. Access using array indexes instead.')
+  return this.readUInt8(offset)
+}
+
+// `set` will be removed in Node 0.13+
+Buffer.prototype.set = function (v, offset) {
+  console.log('.set() is deprecated. Access using array indexes instead.')
+  return this.writeUInt8(v, offset)
+}
+
+function hexWrite (buf, string, offset, length) {
+  offset = Number(offset) || 0
+  var remaining = buf.length - offset
+  if (!length) {
+    length = remaining
+  } else {
+    length = Number(length)
+    if (length > remaining) {
+      length = remaining
+    }
+  }
+
+  // must be an even number of digits
+  var strLen = string.length
+  if (strLen % 2 !== 0) throw new Error('Invalid hex string')
+
+  if (length > strLen / 2) {
+    length = strLen / 2
+  }
+  for (var i = 0; i < length; i++) {
+    var byte = parseInt(string.substr(i * 2, 2), 16)
+    if (isNaN(byte)) throw new Error('Invalid hex string')
+    buf[offset + i] = byte
+  }
+  return i
+}
+
+function utf8Write (buf, string, offset, length) {
+  var charsWritten = blitBuffer(utf8ToBytes(string), buf, offset, length)
+  return charsWritten
+}
+
+function asciiWrite (buf, string, offset, length) {
+  var charsWritten = blitBuffer(asciiToBytes(string), buf, offset, length)
+  return charsWritten
+}
+
+function binaryWrite (buf, string, offset, length) {
+  return asciiWrite(buf, string, offset, length)
+}
+
+function base64Write (buf, string, offset, length) {
+  var charsWritten = blitBuffer(base64ToBytes(string), buf, offset, length)
+  return charsWritten
+}
+
+function utf16leWrite (buf, string, offset, length) {
+  var charsWritten = blitBuffer(utf16leToBytes(string), buf, offset, length)
+  return charsWritten
+}
+
+Buffer.prototype.write = function (string, offset, length, encoding) {
+  // Support both (string, offset, length, encoding)
+  // and the legacy (string, encoding, offset, length)
+  if (isFinite(offset)) {
+    if (!isFinite(length)) {
+      encoding = length
+      length = undefined
+    }
+  } else {  // legacy
+    var swap = encoding
+    encoding = offset
+    offset = length
+    length = swap
+  }
+
+  offset = Number(offset) || 0
+  var remaining = this.length - offset
+  if (!length) {
+    length = remaining
+  } else {
+    length = Number(length)
+    if (length > remaining) {
+      length = remaining
+    }
+  }
+  encoding = String(encoding || 'utf8').toLowerCase()
+
+  var ret
+  switch (encoding) {
+    case 'hex':
+      ret = hexWrite(this, string, offset, length)
+      break
+    case 'utf8':
+    case 'utf-8':
+      ret = utf8Write(this, string, offset, length)
+      break
+    case 'ascii':
+      ret = asciiWrite(this, string, offset, length)
+      break
+    case 'binary':
+      ret = binaryWrite(this, string, offset, length)
+      break
+    case 'base64':
+      ret = base64Write(this, string, offset, length)
+      break
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      ret = utf16leWrite(this, string, offset, length)
+      break
+    default:
+      throw new TypeError('Unknown encoding: ' + encoding)
+  }
+  return ret
+}
+
+Buffer.prototype.toJSON = function () {
+  return {
+    type: 'Buffer',
+    data: Array.prototype.slice.call(this._arr || this, 0)
+  }
+}
+
+function base64Slice (buf, start, end) {
+  if (start === 0 && end === buf.length) {
+    return base64.fromByteArray(buf)
+  } else {
+    return base64.fromByteArray(buf.slice(start, end))
+  }
+}
+
+function utf8Slice (buf, start, end) {
+  var res = ''
+  var tmp = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; i++) {
+    if (buf[i] <= 0x7F) {
+      res += decodeUtf8Char(tmp) + String.fromCharCode(buf[i])
+      tmp = ''
+    } else {
+      tmp += '%' + buf[i].toString(16)
+    }
+  }
+
+  return res + decodeUtf8Char(tmp)
+}
+
+function asciiSlice (buf, start, end) {
+  var ret = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; i++) {
+    ret += String.fromCharCode(buf[i])
+  }
+  return ret
+}
+
+function binarySlice (buf, start, end) {
+  return asciiSlice(buf, start, end)
+}
+
+function hexSlice (buf, start, end) {
+  var len = buf.length
+
+  if (!start || start < 0) start = 0
+  if (!end || end < 0 || end > len) end = len
+
+  var out = ''
+  for (var i = start; i < end; i++) {
+    out += toHex(buf[i])
+  }
+  return out
+}
+
+function utf16leSlice (buf, start, end) {
+  var bytes = buf.slice(start, end)
+  var res = ''
+  for (var i = 0; i < bytes.length; i += 2) {
+    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256)
+  }
+  return res
+}
+
+Buffer.prototype.slice = function (start, end) {
+  var len = this.length
+  start = ~~start
+  end = end === undefined ? len : ~~end
+
+  if (start < 0) {
+    start += len;
+    if (start < 0)
+      start = 0
+  } else if (start > len) {
+    start = len
+  }
+
+  if (end < 0) {
+    end += len
+    if (end < 0)
+      end = 0
+  } else if (end > len) {
+    end = len
+  }
+
+  if (end < start)
+    end = start
+
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    return Buffer._augment(this.subarray(start, end))
+  } else {
+    var sliceLen = end - start
+    var newBuf = new Buffer(sliceLen, undefined, true)
+    for (var i = 0; i < sliceLen; i++) {
+      newBuf[i] = this[i + start]
+    }
+    return newBuf
+  }
+}
+
+/*
+ * Need to make sure that buffer isn't trying to write out of bounds.
+ */
+function checkOffset (offset, ext, length) {
+  if ((offset % 1) !== 0 || offset < 0)
+    throw new RangeError('offset is not uint')
+  if (offset + ext > length)
+    throw new RangeError('Trying to access beyond buffer length')
+}
+
+Buffer.prototype.readUInt8 = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 1, this.length)
+  return this[offset]
+}
+
+Buffer.prototype.readUInt16LE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 2, this.length)
+  return this[offset] | (this[offset + 1] << 8)
+}
+
+Buffer.prototype.readUInt16BE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 2, this.length)
+  return (this[offset] << 8) | this[offset + 1]
+}
+
+Buffer.prototype.readUInt32LE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+
+  return ((this[offset]) |
+      (this[offset + 1] << 8) |
+      (this[offset + 2] << 16)) +
+      (this[offset + 3] * 0x1000000)
+}
+
+Buffer.prototype.readUInt32BE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+
+  return (this[offset] * 0x1000000) +
+      ((this[offset + 1] << 16) |
+      (this[offset + 2] << 8) |
+      this[offset + 3])
+}
+
+Buffer.prototype.readInt8 = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 1, this.length)
+  if (!(this[offset] & 0x80))
+    return (this[offset])
+  return ((0xff - this[offset] + 1) * -1)
+}
+
+Buffer.prototype.readInt16LE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 2, this.length)
+  var val = this[offset] | (this[offset + 1] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
+}
+
+Buffer.prototype.readInt16BE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 2, this.length)
+  var val = this[offset + 1] | (this[offset] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
+}
+
+Buffer.prototype.readInt32LE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+
+  return (this[offset]) |
+      (this[offset + 1] << 8) |
+      (this[offset + 2] << 16) |
+      (this[offset + 3] << 24)
+}
+
+Buffer.prototype.readInt32BE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+
+  return (this[offset] << 24) |
+      (this[offset + 1] << 16) |
+      (this[offset + 2] << 8) |
+      (this[offset + 3])
+}
+
+Buffer.prototype.readFloatLE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, true, 23, 4)
+}
+
+Buffer.prototype.readFloatBE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, false, 23, 4)
+}
+
+Buffer.prototype.readDoubleLE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, true, 52, 8)
+}
+
+Buffer.prototype.readDoubleBE = function (offset, noAssert) {
+  if (!noAssert)
+    checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, false, 52, 8)
+}
+
+function checkInt (buf, value, offset, ext, max, min) {
+  if (!Buffer.isBuffer(buf)) throw new TypeError('buffer must be a Buffer instance')
+  if (value > max || value < min) throw new TypeError('value is out of bounds')
+  if (offset + ext > buf.length) throw new TypeError('index out of range')
+}
+
+Buffer.prototype.writeUInt8 = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 1, 0xff, 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  this[offset] = value
+  return offset + 1
+}
+
+function objectWriteUInt16 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; i++) {
+    buf[offset + i] = (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
+      (littleEndian ? i : 1 - i) * 8
+  }
+}
+
+Buffer.prototype.writeUInt16LE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = value
+    this[offset + 1] = (value >>> 8)
+  } else objectWriteUInt16(this, value, offset, true)
+  return offset + 2
+}
+
+Buffer.prototype.writeUInt16BE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = value
+  } else objectWriteUInt16(this, value, offset, false)
+  return offset + 2
+}
+
+function objectWriteUInt32 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffffffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; i++) {
+    buf[offset + i] = (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
+  }
+}
+
+Buffer.prototype.writeUInt32LE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset + 3] = (value >>> 24)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 1] = (value >>> 8)
+    this[offset] = value
+  } else objectWriteUInt32(this, value, offset, true)
+  return offset + 4
+}
+
+Buffer.prototype.writeUInt32BE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = value
+  } else objectWriteUInt32(this, value, offset, false)
+  return offset + 4
+}
+
+Buffer.prototype.writeInt8 = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 1, 0x7f, -0x80)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  if (value < 0) value = 0xff + value + 1
+  this[offset] = value
+  return offset + 1
+}
+
+Buffer.prototype.writeInt16LE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = value
+    this[offset + 1] = (value >>> 8)
+  } else objectWriteUInt16(this, value, offset, true)
+  return offset + 2
+}
+
+Buffer.prototype.writeInt16BE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = value
+  } else objectWriteUInt16(this, value, offset, false)
+  return offset + 2
+}
+
+Buffer.prototype.writeInt32LE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = value
+    this[offset + 1] = (value >>> 8)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 3] = (value >>> 24)
+  } else objectWriteUInt32(this, value, offset, true)
+  return offset + 4
+}
+
+Buffer.prototype.writeInt32BE = function (value, offset, noAssert) {
+  value = +value
+  offset = offset >>> 0
+  if (!noAssert)
+    checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (value < 0) value = 0xffffffff + value + 1
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = value
+  } else objectWriteUInt32(this, value, offset, false)
+  return offset + 4
+}
+
+function checkIEEE754 (buf, value, offset, ext, max, min) {
+  if (value > max || value < min) throw new TypeError('value is out of bounds')
+  if (offset + ext > buf.length) throw new TypeError('index out of range')
+}
+
+function writeFloat (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert)
+    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
+  ieee754.write(buf, value, offset, littleEndian, 23, 4)
+  return offset + 4
+}
+
+Buffer.prototype.writeFloatLE = function (value, offset, noAssert) {
+  return writeFloat(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeFloatBE = function (value, offset, noAssert) {
+  return writeFloat(this, value, offset, false, noAssert)
+}
+
+function writeDouble (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert)
+    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
+  ieee754.write(buf, value, offset, littleEndian, 52, 8)
+  return offset + 8
+}
+
+Buffer.prototype.writeDoubleLE = function (value, offset, noAssert) {
+  return writeDouble(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeDoubleBE = function (value, offset, noAssert) {
+  return writeDouble(this, value, offset, false, noAssert)
+}
+
+// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+Buffer.prototype.copy = function (target, target_start, start, end) {
+  var source = this
+
+  if (!start) start = 0
+  if (!end && end !== 0) end = this.length
+  if (!target_start) target_start = 0
+
+  // Copy 0 bytes; we're done
+  if (end === start) return
+  if (target.length === 0 || source.length === 0) return
+
+  // Fatal error conditions
+  if (end < start) throw new TypeError('sourceEnd < sourceStart')
+  if (target_start < 0 || target_start >= target.length)
+    throw new TypeError('targetStart out of bounds')
+  if (start < 0 || start >= source.length) throw new TypeError('sourceStart out of bounds')
+  if (end < 0 || end > source.length) throw new TypeError('sourceEnd out of bounds')
+
+  // Are we oob?
+  if (end > this.length)
+    end = this.length
+  if (target.length - target_start < end - start)
+    end = target.length - target_start + start
+
+  var len = end - start
+
+  if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
+    for (var i = 0; i < len; i++) {
+      target[i + target_start] = this[i + start]
+    }
+  } else {
+    target._set(this.subarray(start, start + len), target_start)
+  }
+}
+
+// fill(value, start=0, end=buffer.length)
+Buffer.prototype.fill = function (value, start, end) {
+  if (!value) value = 0
+  if (!start) start = 0
+  if (!end) end = this.length
+
+  if (end < start) throw new TypeError('end < start')
+
+  // Fill 0 bytes; we're done
+  if (end === start) return
+  if (this.length === 0) return
+
+  if (start < 0 || start >= this.length) throw new TypeError('start out of bounds')
+  if (end < 0 || end > this.length) throw new TypeError('end out of bounds')
+
+  var i
+  if (typeof value === 'number') {
+    for (i = start; i < end; i++) {
+      this[i] = value
+    }
+  } else {
+    var bytes = utf8ToBytes(value.toString())
+    var len = bytes.length
+    for (i = start; i < end; i++) {
+      this[i] = bytes[i % len]
+    }
+  }
+
+  return this
+}
+
+/**
+ * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
+ * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
+ */
+Buffer.prototype.toArrayBuffer = function () {
+  if (typeof Uint8Array !== 'undefined') {
+    if (Buffer.TYPED_ARRAY_SUPPORT) {
+      return (new Buffer(this)).buffer
+    } else {
+      var buf = new Uint8Array(this.length)
+      for (var i = 0, len = buf.length; i < len; i += 1) {
+        buf[i] = this[i]
+      }
+      return buf.buffer
+    }
+  } else {
+    throw new TypeError('Buffer.toArrayBuffer not supported in this browser')
+  }
+}
+
+// HELPER FUNCTIONS
+// ================
+
+var BP = Buffer.prototype
+
+/**
+ * Augment a Uint8Array *instance* (not the Uint8Array class!) with Buffer methods
+ */
+Buffer._augment = function (arr) {
+  arr.constructor = Buffer
+  arr._isBuffer = true
+
+  // save reference to original Uint8Array get/set methods before overwriting
+  arr._get = arr.get
+  arr._set = arr.set
+
+  // deprecated, will be removed in node 0.13+
+  arr.get = BP.get
+  arr.set = BP.set
+
+  arr.write = BP.write
+  arr.toString = BP.toString
+  arr.toLocaleString = BP.toString
+  arr.toJSON = BP.toJSON
+  arr.equals = BP.equals
+  arr.compare = BP.compare
+  arr.copy = BP.copy
+  arr.slice = BP.slice
+  arr.readUInt8 = BP.readUInt8
+  arr.readUInt16LE = BP.readUInt16LE
+  arr.readUInt16BE = BP.readUInt16BE
+  arr.readUInt32LE = BP.readUInt32LE
+  arr.readUInt32BE = BP.readUInt32BE
+  arr.readInt8 = BP.readInt8
+  arr.readInt16LE = BP.readInt16LE
+  arr.readInt16BE = BP.readInt16BE
+  arr.readInt32LE = BP.readInt32LE
+  arr.readInt32BE = BP.readInt32BE
+  arr.readFloatLE = BP.readFloatLE
+  arr.readFloatBE = BP.readFloatBE
+  arr.readDoubleLE = BP.readDoubleLE
+  arr.readDoubleBE = BP.readDoubleBE
+  arr.writeUInt8 = BP.writeUInt8
+  arr.writeUInt16LE = BP.writeUInt16LE
+  arr.writeUInt16BE = BP.writeUInt16BE
+  arr.writeUInt32LE = BP.writeUInt32LE
+  arr.writeUInt32BE = BP.writeUInt32BE
+  arr.writeInt8 = BP.writeInt8
+  arr.writeInt16LE = BP.writeInt16LE
+  arr.writeInt16BE = BP.writeInt16BE
+  arr.writeInt32LE = BP.writeInt32LE
+  arr.writeInt32BE = BP.writeInt32BE
+  arr.writeFloatLE = BP.writeFloatLE
+  arr.writeFloatBE = BP.writeFloatBE
+  arr.writeDoubleLE = BP.writeDoubleLE
+  arr.writeDoubleBE = BP.writeDoubleBE
+  arr.fill = BP.fill
+  arr.inspect = BP.inspect
+  arr.toArrayBuffer = BP.toArrayBuffer
+
+  return arr
+}
+
+var INVALID_BASE64_RE = /[^+\/0-9A-z]/g
+
+function base64clean (str) {
+  // Node strips out invalid characters like \n and \t from the string, base64-js does not
+  str = stringtrim(str).replace(INVALID_BASE64_RE, '')
+  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
+  while (str.length % 4 !== 0) {
+    str = str + '='
+  }
+  return str
+}
+
+function stringtrim (str) {
+  if (str.trim) return str.trim()
+  return str.replace(/^\s+|\s+$/g, '')
+}
+
+function isArrayish (subject) {
+  return isArray(subject) || Buffer.isBuffer(subject) ||
+      subject && typeof subject === 'object' &&
+      typeof subject.length === 'number'
+}
+
+function toHex (n) {
+  if (n < 16) return '0' + n.toString(16)
+  return n.toString(16)
+}
+
+function utf8ToBytes (str) {
+  var byteArray = []
+  for (var i = 0; i < str.length; i++) {
+    var b = str.charCodeAt(i)
+    if (b <= 0x7F) {
+      byteArray.push(b)
+    } else {
+      var start = i
+      if (b >= 0xD800 && b <= 0xDFFF) i++
+      var h = encodeURIComponent(str.slice(start, i+1)).substr(1).split('%')
+      for (var j = 0; j < h.length; j++) {
+        byteArray.push(parseInt(h[j], 16))
+      }
+    }
+  }
+  return byteArray
+}
+
+function asciiToBytes (str) {
+  var byteArray = []
+  for (var i = 0; i < str.length; i++) {
+    // Node's code seems to be doing this and not & 0x7F..
+    byteArray.push(str.charCodeAt(i) & 0xFF)
+  }
+  return byteArray
+}
+
+function utf16leToBytes (str) {
+  var c, hi, lo
+  var byteArray = []
+  for (var i = 0; i < str.length; i++) {
+    c = str.charCodeAt(i)
+    hi = c >> 8
+    lo = c % 256
+    byteArray.push(lo)
+    byteArray.push(hi)
+  }
+
+  return byteArray
+}
+
+function base64ToBytes (str) {
+  return base64.toByteArray(str)
+}
+
+function blitBuffer (src, dst, offset, length) {
+  for (var i = 0; i < length; i++) {
+    if ((i + offset >= dst.length) || (i >= src.length))
+      break
+    dst[i + offset] = src[i]
+  }
+  return i
+}
+
+function decodeUtf8Char (str) {
+  try {
+    return decodeURIComponent(str)
+  } catch (err) {
+    return String.fromCharCode(0xFFFD) // UTF 8 invalid char
+  }
+}
+
+},{"base64-js":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/buffer/node_modules/base64-js/lib/b64.js","ieee754":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/buffer/node_modules/ieee754/index.js","is-array":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/buffer/node_modules/is-array/index.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/buffer/node_modules/base64-js/lib/b64.js":[function(require,module,exports){
+var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
+;(function (exports) {
+	'use strict';
+
+  var Arr = (typeof Uint8Array !== 'undefined')
+    ? Uint8Array
+    : Array
+
+	var PLUS   = '+'.charCodeAt(0)
+	var SLASH  = '/'.charCodeAt(0)
+	var NUMBER = '0'.charCodeAt(0)
+	var LOWER  = 'a'.charCodeAt(0)
+	var UPPER  = 'A'.charCodeAt(0)
+
+	function decode (elt) {
+		var code = elt.charCodeAt(0)
+		if (code === PLUS)
+			return 62 // '+'
+		if (code === SLASH)
+			return 63 // '/'
+		if (code < NUMBER)
+			return -1 //no match
+		if (code < NUMBER + 10)
+			return code - NUMBER + 26 + 26
+		if (code < UPPER + 26)
+			return code - UPPER
+		if (code < LOWER + 26)
+			return code - LOWER + 26
+	}
+
+	function b64ToByteArray (b64) {
+		var i, j, l, tmp, placeHolders, arr
+
+		if (b64.length % 4 > 0) {
+			throw new Error('Invalid string. Length must be a multiple of 4')
+		}
+
+		// the number of equal signs (place holders)
+		// if there are two placeholders, than the two characters before it
+		// represent one byte
+		// if there is only one, then the three characters before it represent 2 bytes
+		// this is just a cheap hack to not do indexOf twice
+		var len = b64.length
+		placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0
+
+		// base64 is 4/3 + up to two characters of the original data
+		arr = new Arr(b64.length * 3 / 4 - placeHolders)
+
+		// if there are placeholders, only get up to the last complete 4 chars
+		l = placeHolders > 0 ? b64.length - 4 : b64.length
+
+		var L = 0
+
+		function push (v) {
+			arr[L++] = v
+		}
+
+		for (i = 0, j = 0; i < l; i += 4, j += 3) {
+			tmp = (decode(b64.charAt(i)) << 18) | (decode(b64.charAt(i + 1)) << 12) | (decode(b64.charAt(i + 2)) << 6) | decode(b64.charAt(i + 3))
+			push((tmp & 0xFF0000) >> 16)
+			push((tmp & 0xFF00) >> 8)
+			push(tmp & 0xFF)
+		}
+
+		if (placeHolders === 2) {
+			tmp = (decode(b64.charAt(i)) << 2) | (decode(b64.charAt(i + 1)) >> 4)
+			push(tmp & 0xFF)
+		} else if (placeHolders === 1) {
+			tmp = (decode(b64.charAt(i)) << 10) | (decode(b64.charAt(i + 1)) << 4) | (decode(b64.charAt(i + 2)) >> 2)
+			push((tmp >> 8) & 0xFF)
+			push(tmp & 0xFF)
+		}
+
+		return arr
+	}
+
+	function uint8ToBase64 (uint8) {
+		var i,
+			extraBytes = uint8.length % 3, // if we have 1 byte left, pad 2 bytes
+			output = "",
+			temp, length
+
+		function encode (num) {
+			return lookup.charAt(num)
+		}
+
+		function tripletToBase64 (num) {
+			return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F)
+		}
+
+		// go through the array every three bytes, we'll deal with trailing stuff later
+		for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
+			temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
+			output += tripletToBase64(temp)
+		}
+
+		// pad the end with zeros, but make sure to not forget the extra bytes
+		switch (extraBytes) {
+			case 1:
+				temp = uint8[uint8.length - 1]
+				output += encode(temp >> 2)
+				output += encode((temp << 4) & 0x3F)
+				output += '=='
+				break
+			case 2:
+				temp = (uint8[uint8.length - 2] << 8) + (uint8[uint8.length - 1])
+				output += encode(temp >> 10)
+				output += encode((temp >> 4) & 0x3F)
+				output += encode((temp << 2) & 0x3F)
+				output += '='
+				break
+		}
+
+		return output
+	}
+
+	exports.toByteArray = b64ToByteArray
+	exports.fromByteArray = uint8ToBase64
+}(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/buffer/node_modules/ieee754/index.js":[function(require,module,exports){
+exports.read = function(buffer, offset, isLE, mLen, nBytes) {
+  var e, m,
+      eLen = nBytes * 8 - mLen - 1,
+      eMax = (1 << eLen) - 1,
+      eBias = eMax >> 1,
+      nBits = -7,
+      i = isLE ? (nBytes - 1) : 0,
+      d = isLE ? -1 : 1,
+      s = buffer[offset + i];
+
+  i += d;
+
+  e = s & ((1 << (-nBits)) - 1);
+  s >>= (-nBits);
+  nBits += eLen;
+  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8);
+
+  m = e & ((1 << (-nBits)) - 1);
+  e >>= (-nBits);
+  nBits += mLen;
+  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8);
+
+  if (e === 0) {
+    e = 1 - eBias;
+  } else if (e === eMax) {
+    return m ? NaN : ((s ? -1 : 1) * Infinity);
+  } else {
+    m = m + Math.pow(2, mLen);
+    e = e - eBias;
+  }
+  return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
+};
+
+exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
+  var e, m, c,
+      eLen = nBytes * 8 - mLen - 1,
+      eMax = (1 << eLen) - 1,
+      eBias = eMax >> 1,
+      rt = (mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0),
+      i = isLE ? 0 : (nBytes - 1),
+      d = isLE ? 1 : -1,
+      s = value < 0 || (value === 0 && 1 / value < 0) ? 1 : 0;
+
+  value = Math.abs(value);
+
+  if (isNaN(value) || value === Infinity) {
+    m = isNaN(value) ? 1 : 0;
+    e = eMax;
+  } else {
+    e = Math.floor(Math.log(value) / Math.LN2);
+    if (value * (c = Math.pow(2, -e)) < 1) {
+      e--;
+      c *= 2;
+    }
+    if (e + eBias >= 1) {
+      value += rt / c;
+    } else {
+      value += rt * Math.pow(2, 1 - eBias);
+    }
+    if (value * c >= 2) {
+      e++;
+      c /= 2;
+    }
+
+    if (e + eBias >= eMax) {
+      m = 0;
+      e = eMax;
+    } else if (e + eBias >= 1) {
+      m = (value * c - 1) * Math.pow(2, mLen);
+      e = e + eBias;
+    } else {
+      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
+      e = 0;
+    }
+  }
+
+  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8);
+
+  e = (e << mLen) | m;
+  eLen += mLen;
+  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8);
+
+  buffer[offset + i - d] |= s * 128;
+};
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/buffer/node_modules/is-array/index.js":[function(require,module,exports){
+
+/**
+ * isArray
+ */
+
+var isArray = Array.isArray;
+
+/**
+ * toString
+ */
+
+var str = Object.prototype.toString;
+
+/**
+ * Whether or not the given `val`
+ * is an array.
+ *
+ * example:
+ *
+ *        isArray([]);
+ *        // > true
+ *        isArray(arguments);
+ *        // > false
+ *        isArray('');
+ *        // > false
+ *
+ * @param {mixed} val
+ * @return {bool}
+ */
+
+module.exports = isArray || function (val) {
+  return !! val && '[object Array]' == str.call(val);
+};
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/events/events.js":[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+function EventEmitter() {
+  this._events = this._events || {};
+  this._maxListeners = this._maxListeners || undefined;
+}
+module.exports = EventEmitter;
+
+// Backwards-compat with node 0.10.x
+EventEmitter.EventEmitter = EventEmitter;
+
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._maxListeners = undefined;
+
+// By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+EventEmitter.defaultMaxListeners = 10;
+
+// Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
+EventEmitter.prototype.setMaxListeners = function(n) {
+  if (!isNumber(n) || n < 0 || isNaN(n))
+    throw TypeError('n must be a positive number');
+  this._maxListeners = n;
+  return this;
+};
+
+EventEmitter.prototype.emit = function(type) {
+  var er, handler, len, args, i, listeners;
+
+  if (!this._events)
+    this._events = {};
+
+  // If there is no 'error' event listener then throw.
+  if (type === 'error') {
+    if (!this._events.error ||
+        (isObject(this._events.error) && !this._events.error.length)) {
+      er = arguments[1];
+      if (er instanceof Error) {
+        throw er; // Unhandled 'error' event
+      }
+      throw TypeError('Uncaught, unspecified "error" event.');
+    }
+  }
+
+  handler = this._events[type];
+
+  if (isUndefined(handler))
+    return false;
+
+  if (isFunction(handler)) {
+    switch (arguments.length) {
+      // fast cases
+      case 1:
+        handler.call(this);
+        break;
+      case 2:
+        handler.call(this, arguments[1]);
+        break;
+      case 3:
+        handler.call(this, arguments[1], arguments[2]);
+        break;
+      // slower
+      default:
+        len = arguments.length;
+        args = new Array(len - 1);
+        for (i = 1; i < len; i++)
+          args[i - 1] = arguments[i];
+        handler.apply(this, args);
+    }
+  } else if (isObject(handler)) {
+    len = arguments.length;
+    args = new Array(len - 1);
+    for (i = 1; i < len; i++)
+      args[i - 1] = arguments[i];
+
+    listeners = handler.slice();
+    len = listeners.length;
+    for (i = 0; i < len; i++)
+      listeners[i].apply(this, args);
+  }
+
+  return true;
+};
+
+EventEmitter.prototype.addListener = function(type, listener) {
+  var m;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events)
+    this._events = {};
+
+  // To avoid recursion in the case that type === "newListener"! Before
+  // adding it to the listeners, first emit "newListener".
+  if (this._events.newListener)
+    this.emit('newListener', type,
+              isFunction(listener.listener) ?
+              listener.listener : listener);
+
+  if (!this._events[type])
+    // Optimize the case of one listener. Don't need the extra array object.
+    this._events[type] = listener;
+  else if (isObject(this._events[type]))
+    // If we've already got an array, just append.
+    this._events[type].push(listener);
+  else
+    // Adding the second element, need to change to array.
+    this._events[type] = [this._events[type], listener];
+
+  // Check for listener leak
+  if (isObject(this._events[type]) && !this._events[type].warned) {
+    var m;
+    if (!isUndefined(this._maxListeners)) {
+      m = this._maxListeners;
+    } else {
+      m = EventEmitter.defaultMaxListeners;
+    }
+
+    if (m && m > 0 && this._events[type].length > m) {
+      this._events[type].warned = true;
+      console.error('(node) warning: possible EventEmitter memory ' +
+                    'leak detected. %d listeners added. ' +
+                    'Use emitter.setMaxListeners() to increase limit.',
+                    this._events[type].length);
+      if (typeof console.trace === 'function') {
+        // not supported in IE 10
+        console.trace();
+      }
+    }
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.once = function(type, listener) {
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  var fired = false;
+
+  function g() {
+    this.removeListener(type, g);
+
+    if (!fired) {
+      fired = true;
+      listener.apply(this, arguments);
+    }
+  }
+
+  g.listener = listener;
+  this.on(type, g);
+
+  return this;
+};
+
+// emits a 'removeListener' event iff the listener was removed
+EventEmitter.prototype.removeListener = function(type, listener) {
+  var list, position, length, i;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events || !this._events[type])
+    return this;
+
+  list = this._events[type];
+  length = list.length;
+  position = -1;
+
+  if (list === listener ||
+      (isFunction(list.listener) && list.listener === listener)) {
+    delete this._events[type];
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+
+  } else if (isObject(list)) {
+    for (i = length; i-- > 0;) {
+      if (list[i] === listener ||
+          (list[i].listener && list[i].listener === listener)) {
+        position = i;
+        break;
+      }
+    }
+
+    if (position < 0)
+      return this;
+
+    if (list.length === 1) {
+      list.length = 0;
+      delete this._events[type];
+    } else {
+      list.splice(position, 1);
+    }
+
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.removeAllListeners = function(type) {
+  var key, listeners;
+
+  if (!this._events)
+    return this;
+
+  // not listening for removeListener, no need to emit
+  if (!this._events.removeListener) {
+    if (arguments.length === 0)
+      this._events = {};
+    else if (this._events[type])
+      delete this._events[type];
+    return this;
+  }
+
+  // emit removeListener for all listeners on all events
+  if (arguments.length === 0) {
+    for (key in this._events) {
+      if (key === 'removeListener') continue;
+      this.removeAllListeners(key);
+    }
+    this.removeAllListeners('removeListener');
+    this._events = {};
+    return this;
+  }
+
+  listeners = this._events[type];
+
+  if (isFunction(listeners)) {
+    this.removeListener(type, listeners);
+  } else {
+    // LIFO order
+    while (listeners.length)
+      this.removeListener(type, listeners[listeners.length - 1]);
+  }
+  delete this._events[type];
+
+  return this;
+};
+
+EventEmitter.prototype.listeners = function(type) {
+  var ret;
+  if (!this._events || !this._events[type])
+    ret = [];
+  else if (isFunction(this._events[type]))
+    ret = [this._events[type]];
+  else
+    ret = this._events[type].slice();
+  return ret;
+};
+
+EventEmitter.listenerCount = function(emitter, type) {
+  var ret;
+  if (!emitter._events || !emitter._events[type])
+    ret = 0;
+  else if (isFunction(emitter._events[type]))
+    ret = 1;
+  else
+    ret = emitter._events[type].length;
+  return ret;
+};
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -3255,7 +4849,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.1
  * http://jquery.com/
@@ -12447,10 +14041,3662 @@ return jQuery;
 
 }));
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/actions/LocationActions.js":[function(require,module,exports){
+/**
+ * Actions that modify the URL.
+ */
+var LocationActions = {
+
+  /**
+   * Indicates a new location is being pushed to the history stack.
+   */
+  PUSH: 'push',
+
+  /**
+   * Indicates the current location should be replaced.
+   */
+  REPLACE: 'replace',
+
+  /**
+   * Indicates the most recent entry should be removed from the history stack.
+   */
+  POP: 'pop'
+
+};
+
+module.exports = LocationActions;
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/behaviors/ImitateBrowserBehavior.js":[function(require,module,exports){
+var LocationActions = require('../actions/LocationActions');
+
+/**
+ * A scroll behavior that attempts to imitate the default behavior
+ * of modern browsers.
+ */
+var ImitateBrowserBehavior = {
+
+  updateScrollPosition: function (position, actionType) {
+    switch (actionType) {
+      case LocationActions.PUSH:
+      case LocationActions.REPLACE:
+        window.scrollTo(0, 0);
+        break;
+      case LocationActions.POP:
+        if (position) {
+          window.scrollTo(position.x, position.y);
+        } else {
+          window.scrollTo(0, 0);
+        }
+        break;
+    }
+  }
+
+};
+
+module.exports = ImitateBrowserBehavior;
+
+},{"../actions/LocationActions":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/actions/LocationActions.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/behaviors/ScrollToTopBehavior.js":[function(require,module,exports){
+/**
+ * A scroll behavior that always scrolls to the top of the page
+ * after a transition.
+ */
+var ScrollToTopBehavior = {
+
+  updateScrollPosition: function () {
+    window.scrollTo(0, 0);
+  }
+
+};
+
+module.exports = ScrollToTopBehavior;
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/DefaultRoute.js":[function(require,module,exports){
+var objectAssign = require('react/lib/Object.assign');
+var Route = require('./Route');
+
+/**
+ * A <DefaultRoute> component is a special kind of <Route> that
+ * renders when its parent matches but none of its siblings do.
+ * Only one such route may be used at any given level in the
+ * route hierarchy.
+ */
+function DefaultRoute(props) {
+  return Route(
+    objectAssign({}, props, {
+      path: null,
+      isDefault: true
+    })
+  );
+}
+
+module.exports = DefaultRoute;
+
+},{"./Route":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Route.js","react/lib/Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Link.js":[function(require,module,exports){
+var React = require('react');
+var classSet = require('react/lib/cx');
+var objectAssign = require('react/lib/Object.assign');
+var ActiveState = require('../mixins/ActiveState');
+var Navigation = require('../mixins/Navigation');
+
+function isLeftClickEvent(event) {
+  return event.button === 0;
+}
+
+function isModifiedEvent(event) {
+  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+}
+
+/**
+ * <Link> components are used to create an <a> element that links to a route.
+ * When that route is active, the link gets an "active" class name (or the
+ * value of its `activeClassName` prop).
+ *
+ * For example, assuming you have the following route:
+ *
+ *   <Route name="showPost" path="/posts/:postID" handler={Post}/>
+ *
+ * You could use the following component to link to that route:
+ *
+ *   <Link to="showPost" params={{ postID: "123" }} />
+ *
+ * In addition to params, links may pass along query string parameters
+ * using the `query` prop.
+ *
+ *   <Link to="showPost" params={{ postID: "123" }} query={{ show:true }}/>
+ */
+var Link = React.createClass({
+
+  displayName: 'Link',
+
+  mixins: [ ActiveState, Navigation ],
+
+  propTypes: {
+    activeClassName: React.PropTypes.string.isRequired,
+    to: React.PropTypes.string.isRequired,
+    params: React.PropTypes.object,
+    query: React.PropTypes.object,
+    onClick: React.PropTypes.func
+  },
+
+  getDefaultProps: function () {
+    return {
+      activeClassName: 'active'
+    };
+  },
+
+  handleClick: function (event) {
+    var allowTransition = true;
+    var clickResult;
+
+    if (this.props.onClick)
+      clickResult = this.props.onClick(event);
+
+    if (isModifiedEvent(event) || !isLeftClickEvent(event))
+      return;
+
+    if (clickResult === false || event.defaultPrevented === true)
+      allowTransition = false;
+
+    event.preventDefault();
+
+    if (allowTransition)
+      this.transitionTo(this.props.to, this.props.params, this.props.query);
+  },
+
+  /**
+   * Returns the value of the "href" attribute to use on the DOM element.
+   */
+  getHref: function () {
+    return this.makeHref(this.props.to, this.props.params, this.props.query);
+  },
+
+  /**
+   * Returns the value of the "class" attribute to use on the DOM element, which contains
+   * the value of the activeClassName property when this <Link> is active.
+   */
+  getClassName: function () {
+    var classNames = {};
+
+    if (this.props.className)
+      classNames[this.props.className] = true;
+
+    if (this.isActive(this.props.to, this.props.params, this.props.query))
+      classNames[this.props.activeClassName] = true;
+
+    return classSet(classNames);
+  },
+
+  render: function () {
+    var props = objectAssign({}, this.props, {
+      href: this.getHref(),
+      className: this.getClassName(),
+      onClick: this.handleClick
+    });
+
+    return React.DOM.a(props, this.props.children);
+  }
+
+});
+
+module.exports = Link;
+
+},{"../mixins/ActiveState":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/ActiveState.js","../mixins/Navigation":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/Navigation.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js","react/lib/Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","react/lib/cx":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cx.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/NotFoundRoute.js":[function(require,module,exports){
+var objectAssign = require('react/lib/Object.assign');
+var Route = require('./Route');
+
+/**
+ * A <NotFoundRoute> is a special kind of <Route> that
+ * renders when the beginning of its parent's path matches
+ * but none of its siblings do, including any <DefaultRoute>.
+ * Only one such route may be used at any given level in the
+ * route hierarchy.
+ */
+function NotFoundRoute(props) {
+  return Route(
+    objectAssign({}, props, {
+      path: null,
+      catchAll: true
+    })
+  );
+}
+
+module.exports = NotFoundRoute;
+
+},{"./Route":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Route.js","react/lib/Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Redirect.js":[function(require,module,exports){
+var React = require('react');
+var Route = require('./Route');
+
+function createRedirectHandler(to, _params, _query) {
+  return React.createClass({
+    statics: {
+      willTransitionTo: function (transition, params, query) {
+        transition.redirect(to, _params || params, _query || query);
+      }
+    },
+
+    render: function () {
+      return null;
+    }
+  });
+}
+
+/**
+ * A <Redirect> component is a special kind of <Route> that always
+ * redirects to another route when it matches.
+ */
+function Redirect(props) {
+  return Route({
+    name: props.name,
+    path: props.from || props.path || '*',
+    handler: createRedirectHandler(props.to, props.params, props.query)
+  });
+}
+
+module.exports = Redirect;
+
+},{"./Route":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Route.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Route.js":[function(require,module,exports){
+var React = require('react');
+var withoutProperties = require('../utils/withoutProperties');
+
+/**
+ * A map of <Route> component props that are reserved for use by the
+ * router and/or React. All other props are considered "static" and
+ * are passed through to the route handler.
+ */
+var RESERVED_PROPS = {
+  handler: true,
+  path: true,
+  defaultRoute: true,
+  notFoundRoute: true,
+  paramNames: true,
+  children: true // ReactChildren
+};
+
+/**
+ * <Route> components specify components that are rendered to the page when the
+ * URL matches a given pattern.
+ *
+ * Routes are arranged in a nested tree structure. When a new URL is requested,
+ * the tree is searched depth-first to find a route whose path matches the URL.
+ * When one is found, all routes in the tree that lead to it are considered
+ * "active" and their components are rendered into the DOM, nested in the same
+ * order as they are in the tree.
+ *
+ * The preferred way to configure a router is using JSX. The XML-like syntax is
+ * a great way to visualize how routes are laid out in an application.
+ *
+ *   React.renderComponent((
+ *     <Routes handler={App}>
+ *       <Route name="login" handler={Login}/>
+ *       <Route name="logout" handler={Logout}/>
+ *       <Route name="about" handler={About}/>
+ *     </Routes>
+ *   ), document.body);
+ *
+ * If you don't use JSX, you can also assemble a Router programmatically using
+ * the standard React component JavaScript API.
+ *
+ *   React.renderComponent((
+ *     Routes({ handler: App },
+ *       Route({ name: 'login', handler: Login }),
+ *       Route({ name: 'logout', handler: Logout }),
+ *       Route({ name: 'about', handler: About })
+ *     )
+ *   ), document.body);
+ *
+ * Handlers for Route components that contain children can render their active
+ * child route using the activeRouteHandler prop.
+ *
+ *   var App = React.createClass({
+ *     render: function () {
+ *       return (
+ *         <div class="application">
+ *           {this.props.activeRouteHandler()}
+ *         </div>
+ *       );
+ *     }
+ *   });
+ */
+var Route = React.createClass({
+
+  displayName: 'Route',
+
+  statics: {
+
+    getUnreservedProps: function (props) {
+      return withoutProperties(props, RESERVED_PROPS);
+    }
+
+  },
+
+  propTypes: {
+    handler: React.PropTypes.any.isRequired,
+    path: React.PropTypes.string,
+    name: React.PropTypes.string,
+    ignoreScrollBehavior: React.PropTypes.bool
+  },
+
+  render: function () {
+    throw new Error(
+      'The <Route> component should not be rendered directly. You may be ' +
+      'missing a <Routes> wrapper around your list of routes.'
+    );
+  }
+
+});
+
+module.exports = Route;
+
+},{"../utils/withoutProperties":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/withoutProperties.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Routes.js":[function(require,module,exports){
+var React = require('react');
+var warning = require('react/lib/warning');
+var invariant = require('react/lib/invariant');
+var objectAssign = require('react/lib/Object.assign');
+var HashLocation = require('../locations/HashLocation');
+var ActiveContext = require('../mixins/ActiveContext');
+var LocationContext = require('../mixins/LocationContext');
+var RouteContext = require('../mixins/RouteContext');
+var ScrollContext = require('../mixins/ScrollContext');
+var reversedArray = require('../utils/reversedArray');
+var Transition = require('../utils/Transition');
+var Redirect = require('../utils/Redirect');
+var Path = require('../utils/Path');
+var Route = require('./Route');
+
+function makeMatch(route, params) {
+  return { route: route, params: params };
+}
+
+function getRootMatch(matches) {
+  return matches[matches.length - 1];
+}
+
+function findMatches(path, routes, defaultRoute, notFoundRoute) {
+  var matches = null, route, params;
+
+  for (var i = 0, len = routes.length; i < len; ++i) {
+    route = routes[i];
+
+    // Check the subtree first to find the most deeply-nested match.
+    matches = findMatches(path, route.props.children, route.props.defaultRoute, route.props.notFoundRoute);
+
+    if (matches != null) {
+      var rootParams = getRootMatch(matches).params;
+
+      params = route.props.paramNames.reduce(function (params, paramName) {
+        params[paramName] = rootParams[paramName];
+        return params;
+      }, {});
+
+      matches.unshift(makeMatch(route, params));
+
+      return matches;
+    }
+
+    // No routes in the subtree matched, so check this route.
+    params = Path.extractParams(route.props.path, path);
+
+    if (params)
+      return [ makeMatch(route, params) ];
+  }
+
+  // No routes matched, so try the default route if there is one.
+  if (defaultRoute && (params = Path.extractParams(defaultRoute.props.path, path)))
+    return [ makeMatch(defaultRoute, params) ];
+
+  // Last attempt: does the "not found" route match?
+  if (notFoundRoute && (params = Path.extractParams(notFoundRoute.props.path, path)))
+    return [ makeMatch(notFoundRoute, params) ];
+
+  return matches;
+}
+
+function hasMatch(matches, match) {
+  return matches.some(function (m) {
+    if (m.route !== match.route)
+      return false;
+
+    for (var property in m.params)
+      if (m.params[property] !== match.params[property])
+        return false;
+
+    return true;
+  });
+}
+
+/**
+ * Calls the willTransitionFrom hook of all handlers in the given matches
+ * serially in reverse with the transition object and the current instance of
+ * the route's handler, so that the deepest nested handlers are called first.
+ * Calls callback(error) when finished.
+ */
+function runTransitionFromHooks(matches, transition, callback) {
+  var hooks = reversedArray(matches).map(function (match) {
+    return function () {
+      var handler = match.route.props.handler;
+
+      if (!transition.isAborted && handler.willTransitionFrom)
+        return handler.willTransitionFrom(transition, match.component);
+
+      var promise = transition.promise;
+      delete transition.promise;
+
+      return promise;
+    };
+  });
+
+  runHooks(hooks, callback);
+}
+
+/**
+ * Calls the willTransitionTo hook of all handlers in the given matches
+ * serially with the transition object and any params that apply to that
+ * handler. Calls callback(error) when finished.
+ */
+function runTransitionToHooks(matches, transition, query, callback) {
+  var hooks = matches.map(function (match) {
+    return function () {
+      var handler = match.route.props.handler;
+
+      if (!transition.isAborted && handler.willTransitionTo)
+        handler.willTransitionTo(transition, match.params, query);
+
+      var promise = transition.promise;
+      delete transition.promise;
+
+      return promise;
+    };
+  });
+
+  runHooks(hooks, callback);
+}
+
+/**
+ * Runs all hook functions serially and calls callback(error) when finished.
+ * A hook may return a promise if it needs to execute asynchronously.
+ */
+function runHooks(hooks, callback) {
+  try {
+    var promise = hooks.reduce(function (promise, hook) {
+      // The first hook to use transition.wait makes the rest
+      // of the transition async from that point forward.
+      return promise ? promise.then(hook) : hook();
+    }, null);
+  } catch (error) {
+    return callback(error); // Sync error.
+  }
+
+  if (promise) {
+    // Use setTimeout to break the promise chain.
+    promise.then(function () {
+      setTimeout(callback);
+    }, function (error) {
+      setTimeout(function () {
+        callback(error);
+      });
+    });
+  } else {
+    callback();
+  }
+}
+
+function updateMatchComponents(matches, refs) {
+  var match;
+  for (var i = 0, len = matches.length; i < len; ++i) {
+    match = matches[i];
+    match.component = refs.__activeRoute__;
+
+    if (match.component == null)
+      break; // End of the tree.
+
+    refs = match.component.refs;
+  }
+}
+
+function shouldUpdateScroll(currentMatches, previousMatches) {
+  var commonMatches = currentMatches.filter(function (match) {
+    return previousMatches.indexOf(match) !== -1;
+  });
+
+  return !commonMatches.some(function (match) {
+    return match.route.props.ignoreScrollBehavior;
+  });
+}
+
+function returnNull() {
+  return null;
+}
+
+function routeIsActive(activeRoutes, routeName) {
+  return activeRoutes.some(function (route) {
+    return route.props.name === routeName;
+  });
+}
+
+function paramsAreActive(activeParams, params) {
+  for (var property in params)
+    if (String(activeParams[property]) !== String(params[property]))
+      return false;
+
+  return true;
+}
+
+function queryIsActive(activeQuery, query) {
+  for (var property in query)
+    if (String(activeQuery[property]) !== String(query[property]))
+      return false;
+
+  return true;
+}
+
+function defaultTransitionErrorHandler(error) {
+  // Throw so we don't silently swallow async errors.
+  throw error; // This error probably originated in a transition hook.
+}
+
+/**
+ * The <Routes> component configures the route hierarchy and renders the
+ * route matching the current location when rendered into a document.
+ *
+ * See the <Route> component for more details.
+ */
+var Routes = React.createClass({
+
+  displayName: 'Routes',
+
+  mixins: [ RouteContext, ActiveContext, LocationContext, ScrollContext ],
+
+  propTypes: {
+    initialPath: React.PropTypes.string,
+    initialMatches: React.PropTypes.array,
+    onChange: React.PropTypes.func,
+    onError: React.PropTypes.func.isRequired
+  },
+
+  getDefaultProps: function () {
+    return {
+      initialPath: null,
+      initialMatches: [],
+      onError: defaultTransitionErrorHandler
+    };
+  },
+
+  getInitialState: function () {
+    return {
+      path: this.props.initialPath,
+      matches: this.props.initialMatches
+    };
+  },
+
+  componentDidMount: function () {
+    warning(
+      this._owner == null,
+      '<Routes> should be rendered directly using React.renderComponent, not ' +
+      'inside some other component\'s render method'
+    );
+
+    this._handleStateChange();
+  },
+
+  componentDidUpdate: function () {
+    this._handleStateChange();
+  },
+
+  /**
+   * Performs a depth-first search for the first route in the tree that matches on
+   * the given path. Returns an array of all routes in the tree leading to the one
+   * that matched in the format { route, params } where params is an object that
+   * contains the URL parameters relevant to that route. Returns null if no route
+   * in the tree matches the path.
+   *
+   *   React.renderComponent(
+   *     <Routes>
+   *       <Route handler={App}>
+   *         <Route name="posts" handler={Posts}/>
+   *         <Route name="post" path="/posts/:id" handler={Post}/>
+   *       </Route>
+   *     </Routes>
+   *   ).match('/posts/123'); => [ { route: <AppRoute>, params: {} },
+   *                               { route: <PostRoute>, params: { id: '123' } } ]
+   */
+  match: function (path) {
+    var routes = this.getRoutes();
+    return findMatches(Path.withoutQuery(path), routes, this.props.defaultRoute, this.props.notFoundRoute);
+  },
+
+  updateLocation: function (path, actionType) {
+    if (this.state.path === path)
+      return; // Nothing to do!
+
+    if (this.state.path)
+      this.recordScroll(this.state.path);
+
+    this.dispatch(path, function (error, abortReason, nextState) {
+      if (error) {
+        this.props.onError.call(this, error);
+      } else if (abortReason instanceof Redirect) {
+        this.replaceWith(abortReason.to, abortReason.params, abortReason.query);
+      } else if (abortReason) {
+        this.goBack();
+      } else {
+        this._nextStateChangeHandler = this._finishTransitionTo.bind(this, path, actionType, this.state.matches);
+        this.setState(nextState);
+      }
+    });
+  },
+
+  _handleStateChange: function () {
+    if (this._nextStateChangeHandler) {
+      this._nextStateChangeHandler();
+      delete this._nextStateChangeHandler;
+    }
+  },
+
+  _finishTransitionTo: function (path, actionType, previousMatches) {
+    var currentMatches = this.state.matches;
+    updateMatchComponents(currentMatches, this.refs);
+
+    if (shouldUpdateScroll(currentMatches, previousMatches))
+      this.updateScroll(path, actionType);
+
+    if (this.props.onChange)
+      this.props.onChange.call(this);
+  },
+
+  /**
+   * Performs a transition to the given path and calls callback(error, abortReason, nextState)
+   * when the transition is finished. If there was an error, the first argument will not be null.
+   * Otherwise, if the transition was aborted for some reason, it will be given in the second arg.
+   *
+   * In a transition, the router first determines which routes are involved by beginning with the
+   * current route, up the route tree to the first parent route that is shared with the destination
+   * route, and back down the tree to the destination route. The willTransitionFrom hook is invoked
+   * on all route handlers we're transitioning away from, in reverse nesting order. Likewise, the
+   * willTransitionTo hook is invoked on all route handlers we're transitioning to.
+   *
+   * Both willTransitionFrom and willTransitionTo hooks may either abort or redirect the transition.
+   * To resolve asynchronously, they may use transition.wait(promise). If no hooks wait, the
+   * transition will be synchronous.
+   */
+  dispatch: function (path, callback) {
+    var transition = new Transition(this, path);
+    var currentMatches = this.state ? this.state.matches : []; // No state server-side.
+    var nextMatches = this.match(path) || [];
+
+    warning(
+      nextMatches.length,
+      'No route matches path "%s". Make sure you have <Route path="%s"> somewhere in your <Routes>',
+      path, path
+    );
+
+    var fromMatches, toMatches;
+    if (currentMatches.length) {
+      fromMatches = currentMatches.filter(function (match) {
+        return !hasMatch(nextMatches, match);
+      });
+
+      toMatches = nextMatches.filter(function (match) {
+        return !hasMatch(currentMatches, match);
+      });
+    } else {
+      fromMatches = [];
+      toMatches = nextMatches;
+    }
+
+    var callbackScope = this;
+    var query = Path.extractQuery(path) || {};
+
+    runTransitionFromHooks(fromMatches, transition, function (error) {
+      if (error || transition.isAborted)
+        return callback.call(callbackScope, error, transition.abortReason);
+
+      runTransitionToHooks(toMatches, transition, query, function (error) {
+        if (error || transition.isAborted)
+          return callback.call(callbackScope, error, transition.abortReason);
+
+        var matches = currentMatches.slice(0, currentMatches.length - fromMatches.length).concat(toMatches);
+        var rootMatch = getRootMatch(matches);
+        var params = (rootMatch && rootMatch.params) || {};
+        var routes = matches.map(function (match) {
+          return match.route;
+        });
+
+        callback.call(callbackScope, null, null, {
+          path: path,
+          matches: matches,
+          activeRoutes: routes,
+          activeParams: params,
+          activeQuery: query
+        });
+      });
+    });
+  },
+
+  /**
+   * Returns the props that should be used for the top-level route handler.
+   */
+  getHandlerProps: function () {
+    var matches = this.state.matches;
+    var query = this.state.activeQuery;
+    var handler = returnNull;
+    var props = {
+      ref: null,
+      params: null,
+      query: null,
+      activeRouteHandler: handler,
+      key: null
+    };
+
+    reversedArray(matches).forEach(function (match) {
+      var route = match.route;
+
+      props = Route.getUnreservedProps(route.props);
+
+      props.ref = '__activeRoute__';
+      props.params = match.params;
+      props.query = query;
+      props.activeRouteHandler = handler;
+
+      // TODO: Can we remove addHandlerKey?
+      if (route.props.addHandlerKey)
+        props.key = Path.injectParams(route.props.path, match.params);
+
+      handler = function (props, addedProps) {
+        if (arguments.length > 2 && typeof arguments[2] !== 'undefined')
+          throw new Error('Passing children to a route handler is not supported');
+
+        return route.props.handler(
+          objectAssign(props, addedProps)
+        );
+      }.bind(this, props);
+    });
+
+    return props;
+  },
+
+  /**
+   * Returns a reference to the active route handler's component instance.
+   */
+  getActiveComponent: function () {
+    return this.refs.__activeRoute__;
+  },
+
+  /**
+   * Returns the current URL path.
+   */
+  getCurrentPath: function () {
+    return this.state.path;
+  },
+
+  /**
+   * Returns an absolute URL path created from the given route
+   * name, URL parameters, and query values.
+   */
+  makePath: function (to, params, query) {
+    var path;
+    if (Path.isAbsolute(to)) {
+      path = Path.normalize(to);
+    } else {
+      var namedRoutes = this.getNamedRoutes();
+      var route = namedRoutes[to];
+
+      invariant(
+        route,
+        'Unable to find a route named "%s". Make sure you have <Route name="%s"> somewhere in your <Routes>',
+        to, to
+      );
+
+      path = route.props.path;
+    }
+
+    return Path.withQuery(Path.injectParams(path, params), query);
+  },
+
+  /**
+   * Returns a string that may safely be used as the href of a
+   * link to the route with the given name.
+   */
+  makeHref: function (to, params, query) {
+    var path = this.makePath(to, params, query);
+
+    if (this.getLocation() === HashLocation)
+      return '#' + path;
+
+    return path;
+  },
+
+    /**
+   * Transitions to the URL specified in the arguments by pushing
+   * a new URL onto the history stack.
+   */
+  transitionTo: function (to, params, query) {
+    var location = this.getLocation();
+
+    invariant(
+      location,
+      'You cannot use transitionTo without a location'
+    );
+
+    location.push(this.makePath(to, params, query));
+  },
+
+  /**
+   * Transitions to the URL specified in the arguments by replacing
+   * the current URL in the history stack.
+   */
+  replaceWith: function (to, params, query) {
+    var location = this.getLocation();
+
+    invariant(
+      location,
+      'You cannot use replaceWith without a location'
+    );
+
+    location.replace(this.makePath(to, params, query));
+  },
+
+  /**
+   * Transitions to the previous URL.
+   */
+  goBack: function () {
+    var location = this.getLocation();
+
+    invariant(
+      location,
+      'You cannot use goBack without a location'
+    );
+
+    location.pop();
+  },
+
+  /**
+   * Returns true if the given route, params, and query are active.
+   */
+  isActive: function (to, params, query) {
+    if (Path.isAbsolute(to))
+      return to === this.getCurrentPath();
+
+    return routeIsActive(this.getActiveRoutes(), to) &&
+      paramsAreActive(this.getActiveParams(), params) &&
+      (query == null || queryIsActive(this.getActiveQuery(), query));
+  },
+
+  render: function () {
+    var match = this.state.matches[0];
+
+    if (match == null)
+      return null;
+
+    return match.route.props.handler(
+      this.getHandlerProps()
+    );
+  },
+
+  childContextTypes: {
+    currentPath: React.PropTypes.string,
+    makePath: React.PropTypes.func.isRequired,
+    makeHref: React.PropTypes.func.isRequired,
+    transitionTo: React.PropTypes.func.isRequired,
+    replaceWith: React.PropTypes.func.isRequired,
+    goBack: React.PropTypes.func.isRequired,
+    isActive: React.PropTypes.func.isRequired
+  },
+
+  getChildContext: function () {
+    return {
+      currentPath: this.getCurrentPath(),
+      makePath: this.makePath,
+      makeHref: this.makeHref,
+      transitionTo: this.transitionTo,
+      replaceWith: this.replaceWith,
+      goBack: this.goBack,
+      isActive: this.isActive
+    };
+  }
+
+});
+
+module.exports = Routes;
+
+},{"../locations/HashLocation":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/locations/HashLocation.js","../mixins/ActiveContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/ActiveContext.js","../mixins/LocationContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/LocationContext.js","../mixins/RouteContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/RouteContext.js","../mixins/ScrollContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/ScrollContext.js","../utils/Path":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/Path.js","../utils/Redirect":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/Redirect.js","../utils/Transition":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/Transition.js","../utils/reversedArray":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/reversedArray.js","./Route":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Route.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js","react/lib/Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","react/lib/invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","react/lib/warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/index.js":[function(require,module,exports){
+exports.DefaultRoute = require('./components/DefaultRoute');
+exports.Link = require('./components/Link');
+exports.NotFoundRoute = require('./components/NotFoundRoute');
+exports.Redirect = require('./components/Redirect');
+exports.Route = require('./components/Route');
+exports.Routes = require('./components/Routes');
+
+exports.ActiveState = require('./mixins/ActiveState');
+exports.CurrentPath = require('./mixins/CurrentPath');
+exports.Navigation = require('./mixins/Navigation');
+
+exports.renderRoutesToString = require('./utils/ServerRendering').renderRoutesToString;
+exports.renderRoutesToStaticMarkup = require('./utils/ServerRendering').renderRoutesToStaticMarkup;
+
+},{"./components/DefaultRoute":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/DefaultRoute.js","./components/Link":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Link.js","./components/NotFoundRoute":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/NotFoundRoute.js","./components/Redirect":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Redirect.js","./components/Route":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Route.js","./components/Routes":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/components/Routes.js","./mixins/ActiveState":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/ActiveState.js","./mixins/CurrentPath":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/CurrentPath.js","./mixins/Navigation":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/Navigation.js","./utils/ServerRendering":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/ServerRendering.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/locations/HashLocation.js":[function(require,module,exports){
+var LocationActions = require('../actions/LocationActions');
+var getWindowPath = require('../utils/getWindowPath');
+
+function getHashPath() {
+  return window.location.hash.substr(1);
+}
+
+var _actionType;
+
+function ensureSlash() {
+  var path = getHashPath();
+
+  if (path.charAt(0) === '/')
+    return true;
+
+  HashLocation.replace('/' + path);
+
+  return false;
+}
+
+var _onChange;
+
+function onHashChange() {
+  if (ensureSlash()) {
+    var path = getHashPath();
+
+    _onChange({
+      // If we don't have an _actionType then all we know is the hash
+      // changed. It was probably caused by the user clicking the Back
+      // button, but may have also been the Forward button or manual
+      // manipulation. So just guess 'pop'.
+      type: _actionType || LocationActions.POP,
+      path: getHashPath()
+    });
+
+    _actionType = null;
+  }
+}
+
+/**
+ * A Location that uses `window.location.hash`.
+ */
+var HashLocation = {
+
+  setup: function (onChange) {
+    _onChange = onChange;
+
+    // Do this BEFORE listening for hashchange.
+    ensureSlash();
+
+    if (window.addEventListener) {
+      window.addEventListener('hashchange', onHashChange, false);
+    } else {
+      window.attachEvent('onhashchange', onHashChange);
+    }
+  },
+
+  teardown: function () {
+    if (window.removeEventListener) {
+      window.removeEventListener('hashchange', onHashChange, false);
+    } else {
+      window.detachEvent('onhashchange', onHashChange);
+    }
+  },
+
+  push: function (path) {
+    _actionType = LocationActions.PUSH;
+    window.location.hash = path;
+  },
+
+  replace: function (path) {
+    _actionType = LocationActions.REPLACE;
+    window.location.replace(getWindowPath() + '#' + path);
+  },
+
+  pop: function () {
+    _actionType = LocationActions.POP;
+    window.history.back();
+  },
+
+  getCurrentPath: getHashPath,
+
+  toString: function () {
+    return '<HashLocation>';
+  }
+
+};
+
+module.exports = HashLocation;
+
+},{"../actions/LocationActions":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/actions/LocationActions.js","../utils/getWindowPath":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/getWindowPath.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/locations/HistoryLocation.js":[function(require,module,exports){
+var LocationActions = require('../actions/LocationActions');
+var getWindowPath = require('../utils/getWindowPath');
+
+var _onChange;
+
+function onPopState() {
+  _onChange({
+    type: LocationActions.POP,
+    path: getWindowPath()
+  });
+}
+
+/**
+ * A Location that uses HTML5 history.
+ */
+var HistoryLocation = {
+
+  setup: function (onChange) {
+    _onChange = onChange;
+
+    if (window.addEventListener) {
+      window.addEventListener('popstate', onPopState, false);
+    } else {
+      window.attachEvent('popstate', onPopState);
+    }
+  },
+
+  teardown: function () {
+    if (window.removeEventListener) {
+      window.removeEventListener('popstate', onPopState, false);
+    } else {
+      window.detachEvent('popstate', onPopState);
+    }
+  },
+
+  push: function (path) {
+    window.history.pushState({ path: path }, '', path);
+
+    _onChange({
+      type: LocationActions.PUSH,
+      path: getWindowPath()
+    });
+  },
+
+  replace: function (path) {
+    window.history.replaceState({ path: path }, '', path);
+
+    _onChange({
+      type: LocationActions.REPLACE,
+      path: getWindowPath()
+    });
+  },
+
+  pop: function () {
+    window.history.back();
+  },
+
+  getCurrentPath: getWindowPath,
+
+  toString: function () {
+    return '<HistoryLocation>';
+  }
+
+};
+
+module.exports = HistoryLocation;
+
+},{"../actions/LocationActions":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/actions/LocationActions.js","../utils/getWindowPath":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/getWindowPath.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/locations/RefreshLocation.js":[function(require,module,exports){
+var getWindowPath = require('../utils/getWindowPath');
+
+/**
+ * A Location that uses full page refreshes. This is used as
+ * the fallback for HistoryLocation in browsers that do not
+ * support the HTML5 history API.
+ */
+var RefreshLocation = {
+
+  push: function (path) {
+    window.location = path;
+  },
+
+  replace: function (path) {
+    window.location.replace(path);
+  },
+
+  pop: function () {
+    window.history.back();
+  },
+
+  getCurrentPath: getWindowPath,
+
+  toString: function () {
+    return '<RefreshLocation>';
+  }
+
+};
+
+module.exports = RefreshLocation;
+
+},{"../utils/getWindowPath":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/getWindowPath.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/ActiveContext.js":[function(require,module,exports){
+var React = require('react');
+var objectAssign = require('react/lib/Object.assign');
+
+/**
+ * A mixin for components that store the active state of routes,
+ * URL parameters, and query.
+ */
+var ActiveContext = {
+
+  propTypes: {
+    initialActiveRoutes: React.PropTypes.array.isRequired,
+    initialActiveParams: React.PropTypes.object.isRequired,
+    initialActiveQuery: React.PropTypes.object.isRequired
+  },
+
+  getDefaultProps: function () {
+    return {
+      initialActiveRoutes: [],
+      initialActiveParams: {},
+      initialActiveQuery: {}
+    };
+  },
+
+  getInitialState: function () {
+    return {
+      activeRoutes: this.props.initialActiveRoutes,
+      activeParams: this.props.initialActiveParams,
+      activeQuery: this.props.initialActiveQuery
+    };
+  },
+
+  /**
+   * Returns a read-only array of the currently active routes.
+   */
+  getActiveRoutes: function () {
+    return this.state.activeRoutes.slice(0);
+  },
+
+  /**
+   * Returns a read-only object of the currently active URL parameters.
+   */
+  getActiveParams: function () {
+    return objectAssign({}, this.state.activeParams);
+  },
+
+  /**
+   * Returns a read-only object of the currently active query parameters.
+   */
+  getActiveQuery: function () {
+    return objectAssign({}, this.state.activeQuery);
+  },
+
+  childContextTypes: {
+    activeRoutes: React.PropTypes.array.isRequired,
+    activeParams: React.PropTypes.object.isRequired,
+    activeQuery: React.PropTypes.object.isRequired
+  },
+
+  getChildContext: function () {
+    return {
+      activeRoutes: this.getActiveRoutes(),
+      activeParams: this.getActiveParams(),
+      activeQuery: this.getActiveQuery()
+    };
+  }
+
+};
+
+module.exports = ActiveContext;
+
+},{"react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js","react/lib/Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/ActiveState.js":[function(require,module,exports){
+var React = require('react');
+
+/**
+ * A mixin for components that need to know the routes, URL
+ * params and query that are currently active.
+ *
+ * Example:
+ *
+ *   var AboutLink = React.createClass({
+ *     mixins: [ Router.ActiveState ],
+ *     render: function () {
+ *       var className = this.props.className;
+ *   
+ *       if (this.isActive('about'))
+ *         className += ' is-active';
+ *   
+ *       return React.DOM.a({ className: className }, this.props.children);
+ *     }
+ *   });
+ */
+var ActiveState = {
+
+  contextTypes: {
+    activeRoutes: React.PropTypes.array.isRequired,
+    activeParams: React.PropTypes.object.isRequired,
+    activeQuery: React.PropTypes.object.isRequired,
+    isActive: React.PropTypes.func.isRequired
+  },
+
+  /**
+   * Returns an array of the routes that are currently active.
+   */
+  getActiveRoutes: function () {
+    return this.context.activeRoutes;
+  },
+
+  /**
+   * Returns an object of the URL params that are currently active.
+   */
+  getActiveParams: function () {
+    return this.context.activeParams;
+  },
+
+  /**
+   * Returns an object of the query params that are currently active.
+   */
+  getActiveQuery: function () {
+    return this.context.activeQuery;
+  },
+
+  /**
+   * A helper method to determine if a given route, params, and query
+   * are active.
+   */
+  isActive: function (to, params, query) {
+    return this.context.isActive(to, params, query);
+  }
+
+};
+
+module.exports = ActiveState;
+
+},{"react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/CurrentPath.js":[function(require,module,exports){
+var React = require('react');
+
+/**
+ * A mixin for components that need to know the current URL path.
+ *
+ * Example:
+ *
+ *   var ShowThePath = React.createClass({
+ *     mixins: [ Router.CurrentPath ],
+ *     render: function () {
+ *       return (
+ *         <div>The current path is: {this.getCurrentPath()}</div>
+ *       );
+ *     }
+ *   });
+ */
+var CurrentPath = {
+
+  contextTypes: {
+    currentPath: React.PropTypes.string.isRequired
+  },
+
+  /**
+   * Returns the current URL path.
+   */
+  getCurrentPath: function () {
+    return this.context.currentPath;
+  }
+
+};
+
+module.exports = CurrentPath;
+
+},{"react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/LocationContext.js":[function(require,module,exports){
+var React = require('react');
+var invariant = require('react/lib/invariant');
+var canUseDOM = require('react/lib/ExecutionEnvironment').canUseDOM;
+var HashLocation = require('../locations/HashLocation');
+var HistoryLocation = require('../locations/HistoryLocation');
+var RefreshLocation = require('../locations/RefreshLocation');
+var PathStore = require('../stores/PathStore');
+var supportsHistory = require('../utils/supportsHistory');
+
+/**
+ * A hash of { name: location } pairs.
+ */
+var NAMED_LOCATIONS = {
+  none: null,
+  hash: HashLocation,
+  history: HistoryLocation,
+  refresh: RefreshLocation
+};
+
+/**
+ * A mixin for components that manage location.
+ */
+var LocationContext = {
+
+  propTypes: {
+    location: function (props, propName, componentName) {
+      var location = props[propName];
+
+      if (typeof location === 'string' && !(location in NAMED_LOCATIONS))
+        return new Error('Unknown location "' + location + '", see ' + componentName);
+    }
+  },
+
+  getDefaultProps: function () {
+    return {
+      location: canUseDOM ? HashLocation : null
+    };
+  },
+
+  componentWillMount: function () {
+    var location = this.getLocation();
+
+    invariant(
+      location == null || canUseDOM,
+      'Cannot use location without a DOM'
+    );
+
+    if (location) {
+      PathStore.setup(location);
+      PathStore.addChangeListener(this.handlePathChange);
+
+      if (this.updateLocation)
+        this.updateLocation(PathStore.getCurrentPath(), PathStore.getCurrentActionType());
+    }
+  },
+
+  componentWillUnmount: function () {
+    if (this.getLocation())
+      PathStore.removeChangeListener(this.handlePathChange);
+  },
+
+  handlePathChange: function () {
+    if (this.updateLocation)
+      this.updateLocation(PathStore.getCurrentPath(), PathStore.getCurrentActionType());
+  },
+
+  /**
+   * Returns the location object this component uses.
+   */
+  getLocation: function () {
+    if (this._location == null) {
+      var location = this.props.location;
+
+      if (typeof location === 'string')
+        location = NAMED_LOCATIONS[location];
+
+      // Automatically fall back to full page refreshes in
+      // browsers that do not support HTML5 history.
+      if (location === HistoryLocation && !supportsHistory())
+        location = RefreshLocation;
+
+      this._location = location;
+    }
+
+    return this._location;
+  },
+
+  childContextTypes: {
+    location: React.PropTypes.object // Not required on the server.
+  },
+
+  getChildContext: function () {
+    return {
+      location: this.getLocation()
+    };
+  }
+
+};
+
+module.exports = LocationContext;
+
+},{"../locations/HashLocation":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/locations/HashLocation.js","../locations/HistoryLocation":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/locations/HistoryLocation.js","../locations/RefreshLocation":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/locations/RefreshLocation.js","../stores/PathStore":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/stores/PathStore.js","../utils/supportsHistory":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/supportsHistory.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js","react/lib/ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","react/lib/invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/Navigation.js":[function(require,module,exports){
+var React = require('react');
+
+/**
+ * A mixin for components that modify the URL.
+ */
+var Navigation = {
+
+  contextTypes: {
+    makePath: React.PropTypes.func.isRequired,
+    makeHref: React.PropTypes.func.isRequired,
+    transitionTo: React.PropTypes.func.isRequired,
+    replaceWith: React.PropTypes.func.isRequired,
+    goBack: React.PropTypes.func.isRequired
+  },
+
+  /**
+   * Returns an absolute URL path created from the given route
+   * name, URL parameters, and query values.
+   */
+  makePath: function (to, params, query) {
+    return this.context.makePath(to, params, query);
+  },
+
+  /**
+   * Returns a string that may safely be used as the href of a
+   * link to the route with the given name.
+   */
+  makeHref: function (to, params, query) {
+    return this.context.makeHref(to, params, query);
+  },
+
+  /**
+   * Transitions to the URL specified in the arguments by pushing
+   * a new URL onto the history stack.
+   */
+  transitionTo: function (to, params, query) {
+    this.context.transitionTo(to, params, query);
+  },
+
+  /**
+   * Transitions to the URL specified in the arguments by replacing
+   * the current URL in the history stack.
+   */
+  replaceWith: function (to, params, query) {
+    this.context.replaceWith(to, params, query);
+  },
+
+  /**
+   * Transitions to the previous URL.
+   */
+  goBack: function () {
+    this.context.goBack();
+  }
+
+};
+
+module.exports = Navigation;
+
+},{"react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/RouteContext.js":[function(require,module,exports){
+var React = require('react');
+var invariant = require('react/lib/invariant');
+var Path = require('../utils/Path');
+
+/**
+ * Performs some normalization and validation on a <Route> component and
+ * all of its children.
+ */
+function processRoute(route, container, namedRoutes) {
+  // Note: parentRoute may be a <Route> _or_ a <Routes>.
+  var props = route.props;
+
+  // TODO: use isValidElement when we update everything for React 0.12
+  //invariant(
+    //React.isValidClass(props.handler),
+    //'The handler for the "%s" route must be a valid React class',
+    //props.name || props.path
+  //);
+
+  var parentPath = (container && container.props.path) || '/';
+
+  if ((props.path || props.name) && !props.isDefault && !props.catchAll) {
+    var path = props.path || props.name;
+
+    // Relative paths extend their parent.
+    if (!Path.isAbsolute(path))
+      path = Path.join(parentPath, path);
+
+    props.path = Path.normalize(path);
+  } else {
+    props.path = parentPath;
+
+    if (props.catchAll)
+      props.path += '*';
+  }
+
+  props.paramNames = Path.extractParamNames(props.path);
+
+  // Make sure the route's path has all params its parent needs.
+  if (container && Array.isArray(container.props.paramNames)) {
+    container.props.paramNames.forEach(function (paramName) {
+      invariant(
+        props.paramNames.indexOf(paramName) !== -1,
+        'The nested route path "%s" is missing the "%s" parameter of its parent path "%s"',
+        props.path, paramName, container.props.path
+      );
+    });
+  }
+
+  // Make sure the route can be looked up by <Link>s.
+  if (props.name) {
+    var existingRoute = namedRoutes[props.name];
+
+    invariant(
+      !existingRoute || route === existingRoute,
+      'You cannot use the name "%s" for more than one route',
+      props.name
+    );
+
+    namedRoutes[props.name] = route;
+  }
+
+  // Handle <NotFoundRoute>.
+  if (props.catchAll) {
+    invariant(
+      container,
+      '<NotFoundRoute> must have a parent <Route>'
+    );
+
+    invariant(
+      container.props.notFoundRoute == null,
+      'You may not have more than one <NotFoundRoute> per <Route>'
+    );
+
+    container.props.notFoundRoute = route;
+
+    return null;
+  }
+
+  // Handle <DefaultRoute>.
+  if (props.isDefault) {
+    invariant(
+      container,
+      '<DefaultRoute> must have a parent <Route>'
+    );
+
+    invariant(
+      container.props.defaultRoute == null,
+      'You may not have more than one <DefaultRoute> per <Route>'
+    );
+
+    container.props.defaultRoute = route;
+
+    return null;
+  }
+
+  // Make sure children is an array.
+  props.children = processRoutes(props.children, route, namedRoutes);
+
+  return route;
+}
+
+/**
+ * Processes many children <Route>s at once, always returning an array.
+ */
+function processRoutes(children, container, namedRoutes) {
+  var routes = [];
+
+  React.Children.forEach(children, function (child) {
+    // Exclude <DefaultRoute>s and <NotFoundRoute>s.
+    if (child = processRoute(child, container, namedRoutes))
+      routes.push(child);
+  });
+
+  return routes;
+}
+
+/**
+ * A mixin for components that have <Route> children.
+ */
+var RouteContext = {
+
+  _processRoutes: function () {
+    this._namedRoutes = {};
+    this._routes = processRoutes(this.props.children, this, this._namedRoutes);
+  },
+
+  /**
+   * Returns an array of <Route>s in this container.
+   */
+  getRoutes: function () {
+    if (this._routes == null)
+      this._processRoutes();
+
+    return this._routes;
+  },
+
+  /**
+   * Returns a hash { name: route } of all named <Route>s in this container.
+   */
+  getNamedRoutes: function () {
+    if (this._namedRoutes == null)
+      this._processRoutes();
+
+    return this._namedRoutes;
+  },
+
+  /**
+   * Returns the route with the given name.
+   */
+  getRouteByName: function (routeName) {
+    var namedRoutes = this.getNamedRoutes();
+    return namedRoutes[routeName] || null;
+  },
+
+  childContextTypes: {
+    routes: React.PropTypes.array.isRequired,
+    namedRoutes: React.PropTypes.object.isRequired
+  },
+
+  getChildContext: function () {
+    return {
+      routes: this.getRoutes(),
+      namedRoutes: this.getNamedRoutes(),
+    };
+  }
+
+};
+
+module.exports = RouteContext;
+
+},{"../utils/Path":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/Path.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js","react/lib/invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/mixins/ScrollContext.js":[function(require,module,exports){
+var React = require('react');
+var invariant = require('react/lib/invariant');
+var canUseDOM = require('react/lib/ExecutionEnvironment').canUseDOM;
+var ImitateBrowserBehavior = require('../behaviors/ImitateBrowserBehavior');
+var ScrollToTopBehavior = require('../behaviors/ScrollToTopBehavior');
+
+function getWindowScrollPosition() {
+  invariant(
+    canUseDOM,
+    'Cannot get current scroll position without a DOM'
+  );
+
+  return {
+    x: window.scrollX,
+    y: window.scrollY
+  };
+}
+
+/**
+ * A hash of { name: scrollBehavior } pairs.
+ */
+var NAMED_SCROLL_BEHAVIORS = {
+  none: null,
+  browser: ImitateBrowserBehavior,
+  imitateBrowser: ImitateBrowserBehavior,
+  scrollToTop: ScrollToTopBehavior
+};
+
+/**
+ * A mixin for components that manage scroll position.
+ */
+var ScrollContext = {
+
+  propTypes: {
+    scrollBehavior: function (props, propName, componentName) {
+      var behavior = props[propName];
+
+      if (typeof behavior === 'string' && !(behavior in NAMED_SCROLL_BEHAVIORS))
+        return new Error('Unknown scroll behavior "' + behavior + '", see ' + componentName);
+    }
+  },
+
+  getDefaultProps: function () {
+    return {
+      scrollBehavior: canUseDOM ? ImitateBrowserBehavior : null
+    };
+  },
+
+  componentWillMount: function () {
+    invariant(
+      this.getScrollBehavior() == null || canUseDOM,
+      'Cannot use scroll behavior without a DOM'
+    );
+  },
+
+  recordScroll: function (path) {
+    var positions = this.getScrollPositions();
+    positions[path] = getWindowScrollPosition();
+  },
+
+  updateScroll: function (path, actionType) {
+    var behavior = this.getScrollBehavior();
+    var position = this.getScrollPosition(path) || null;
+
+    if (behavior)
+      behavior.updateScrollPosition(position, actionType);
+  },
+
+  /**
+   * Returns the scroll behavior object this component uses.
+   */
+  getScrollBehavior: function () {
+    if (this._scrollBehavior == null) {
+      var behavior = this.props.scrollBehavior;
+
+      if (typeof behavior === 'string')
+        behavior = NAMED_SCROLL_BEHAVIORS[behavior];
+
+      this._scrollBehavior = behavior;
+    }
+
+    return this._scrollBehavior;
+  },
+
+  /**
+   * Returns a hash of URL paths to their last known scroll positions.
+   */
+  getScrollPositions: function () {
+    if (this._scrollPositions == null)
+      this._scrollPositions = {};
+
+    return this._scrollPositions;
+  },
+
+  /**
+   * Returns the last known scroll position for the given URL path.
+   */
+  getScrollPosition: function (path) {
+    var positions = this.getScrollPositions();
+    return positions[path];
+  },
+
+  childContextTypes: {
+    scrollBehavior: React.PropTypes.object // Not required on the server.
+  },
+
+  getChildContext: function () {
+    return {
+      scrollBehavior: this.getScrollBehavior()
+    };
+  }
+
+};
+
+module.exports = ScrollContext;
+
+},{"../behaviors/ImitateBrowserBehavior":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/behaviors/ImitateBrowserBehavior.js","../behaviors/ScrollToTopBehavior":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/behaviors/ScrollToTopBehavior.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js","react/lib/ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","react/lib/invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/stores/PathStore.js":[function(require,module,exports){
+var invariant = require('react/lib/invariant');
+var EventEmitter = require('events').EventEmitter;
+var LocationActions = require('../actions/LocationActions');
+
+var CHANGE_EVENT = 'change';
+var _events = new EventEmitter;
+
+function notifyChange() {
+  _events.emit(CHANGE_EVENT);
+}
+
+var _currentLocation, _currentActionType;
+var _currentPath = '/';
+
+function handleLocationChangeAction(action) {
+  if (_currentPath !== action.path) {
+    _currentPath = action.path;
+    _currentActionType = action.type;
+    notifyChange();
+  }
+}
+
+/**
+ * The PathStore keeps track of the current URL path.
+ */
+var PathStore = {
+
+  addChangeListener: function (listener) {
+    _events.addListener(CHANGE_EVENT, listener);
+  },
+
+  removeChangeListener: function (listener) {
+    _events.removeListener(CHANGE_EVENT, listener);
+  },
+
+  removeAllChangeListeners: function () {
+    _events.removeAllListeners(CHANGE_EVENT);
+  },
+
+  /**
+   * Setup the PathStore to use the given location.
+   */
+  setup: function (location) {
+    invariant(
+      _currentLocation == null || _currentLocation === location,
+      'You cannot use %s and %s on the same page',
+      _currentLocation, location
+    );
+
+    if (_currentLocation !== location) {
+      if (location.setup)
+        location.setup(handleLocationChangeAction);
+
+      _currentPath = location.getCurrentPath();
+    }
+
+    _currentLocation = location;
+  },
+
+  /**
+   * Tear down the PathStore. Really only used for testing.
+   */
+  teardown: function () {
+    if (_currentLocation && _currentLocation.teardown)
+      _currentLocation.teardown();
+
+    _currentLocation = _currentActionType = null;
+    _currentPath = '/';
+
+    PathStore.removeAllChangeListeners();
+  },
+
+  /**
+   * Returns the current URL path.
+   */
+  getCurrentPath: function () {
+    return _currentPath;
+  },
+
+  /**
+   * Returns the type of the action that changed the URL.
+   */
+  getCurrentActionType: function () {
+    return _currentActionType;
+  }
+
+};
+
+module.exports = PathStore;
+
+},{"../actions/LocationActions":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/actions/LocationActions.js","events":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/events/events.js","react/lib/invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/Path.js":[function(require,module,exports){
+var invariant = require('react/lib/invariant');
+var merge = require('qs/lib/utils').merge;
+var qs = require('qs');
+
+function encodeURL(url) {
+  return encodeURIComponent(url).replace(/%20/g, '+');
+}
+
+function decodeURL(url) {
+  return decodeURIComponent(url.replace(/\+/g, ' '));
+}
+
+function encodeURLPath(path) {
+  return String(path).split('/').map(encodeURL).join('/');
+}
+
+var paramCompileMatcher = /:([a-zA-Z_$][a-zA-Z0-9_$]*)|[*.()\[\]\\+|{}^$]/g;
+var paramInjectMatcher = /:([a-zA-Z_$][a-zA-Z0-9_$?]*[?]?)|[*]/g;
+var paramInjectTrailingSlashMatcher = /\/\/\?|\/\?/g;
+var queryMatcher = /\?(.+)/;
+
+var _compiledPatterns = {};
+
+function compilePattern(pattern) {
+  if (!(pattern in _compiledPatterns)) {
+    var paramNames = [];
+    var source = pattern.replace(paramCompileMatcher, function (match, paramName) {
+      if (paramName) {
+        paramNames.push(paramName);
+        return '([^/?#]+)';
+      } else if (match === '*') {
+        paramNames.push('splat');
+        return '(.*?)';
+      } else {
+        return '\\' + match;
+      }
+    });
+
+    _compiledPatterns[pattern] = {
+      matcher: new RegExp('^' + source + '$', 'i'),
+      paramNames: paramNames
+    };
+  }
+
+  return _compiledPatterns[pattern];
+}
+
+var Path = {
+
+  /**
+   * Returns an array of the names of all parameters in the given pattern.
+   */
+  extractParamNames: function (pattern) {
+    return compilePattern(pattern).paramNames;
+  },
+
+  /**
+   * Extracts the portions of the given URL path that match the given pattern
+   * and returns an object of param name => value pairs. Returns null if the
+   * pattern does not match the given path.
+   */
+  extractParams: function (pattern, path) {
+    var object = compilePattern(pattern);
+    var match = decodeURL(path).match(object.matcher);
+
+    if (!match)
+      return null;
+
+    var params = {};
+
+    object.paramNames.forEach(function (paramName, index) {
+      params[paramName] = match[index + 1];
+    });
+
+    return params;
+  },
+
+  /**
+   * Returns a version of the given route path with params interpolated. Throws
+   * if there is a dynamic segment of the route path for which there is no param.
+   */
+  injectParams: function (pattern, params) {
+    params = params || {};
+
+    var splatIndex = 0;
+
+    return pattern.replace(paramInjectMatcher, function (match, paramName) {
+      paramName = paramName || 'splat';
+
+      // If param is optional don't check for existence
+      if (paramName.slice(-1) !== '?') {
+        invariant(
+          params[paramName] != null,
+          'Missing "' + paramName + '" parameter for path "' + pattern + '"'
+        );
+      } else {
+        paramName = paramName.slice(0, -1)
+        if (params[paramName] == null) {
+            return '';
+        }
+      }
+
+      var segment;
+      if (paramName === 'splat' && Array.isArray(params[paramName])) {
+        segment = params[paramName][splatIndex++];
+
+        invariant(
+          segment != null,
+          'Missing splat # ' + splatIndex + ' for path "' + pattern + '"'
+        );
+      } else {
+        segment = params[paramName];
+      }
+
+      return encodeURLPath(segment);
+    }).replace(paramInjectTrailingSlashMatcher, '/');
+  },
+
+  /**
+   * Returns an object that is the result of parsing any query string contained
+   * in the given path, null if the path contains no query string.
+   */
+  extractQuery: function (path) {
+    var match = path.match(queryMatcher);
+    return match && qs.parse(match[1]);
+  },
+
+  /**
+   * Returns a version of the given path without the query string.
+   */
+  withoutQuery: function (path) {
+    return path.replace(queryMatcher, '');
+  },
+
+  /**
+   * Returns a version of the given path with the parameters in the given
+   * query merged into the query string.
+   */
+  withQuery: function (path, query) {
+    var existingQuery = Path.extractQuery(path);
+
+    if (existingQuery)
+      query = query ? merge(existingQuery, query) : existingQuery;
+
+    var queryString = query && qs.stringify(query);
+
+    if (queryString)
+      return Path.withoutQuery(path) + '?' + queryString;
+
+    return path;
+  },
+
+  /**
+   * Returns true if the given path is absolute.
+   */
+  isAbsolute: function (path) {
+    return path.charAt(0) === '/';
+  },
+
+  /**
+   * Returns a normalized version of the given path.
+   */
+  normalize: function (path, parentRoute) {
+    return path.replace(/^\/*/, '/');
+  },
+
+  /**
+   * Joins two URL paths together.
+   */
+  join: function (a, b) {
+    return a.replace(/\/*$/, '/') + b;
+  }
+
+};
+
+module.exports = Path;
+
+},{"qs":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/index.js","qs/lib/utils":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/lib/utils.js","react/lib/invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/Promise.js":[function(require,module,exports){
+var Promise = require('when/lib/Promise');
+
+// TODO: Use process.env.NODE_ENV check + envify to enable
+// when's promise monitor here when in dev.
+
+module.exports = Promise;
+
+},{"when/lib/Promise":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/when/lib/Promise.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/Redirect.js":[function(require,module,exports){
+/**
+ * Encapsulates a redirect to the given route.
+ */
+function Redirect(to, params, query) {
+  this.to = to;
+  this.params = params;
+  this.query = query;
+}
+
+module.exports = Redirect;
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/ServerRendering.js":[function(require,module,exports){
+var ReactElement = require('react/lib/ReactElement');
+var ReactInstanceHandles = require('react/lib/ReactInstanceHandles');
+var ReactMarkupChecksum = require('react/lib/ReactMarkupChecksum');
+var ReactServerRenderingTransaction = require('react/lib/ReactServerRenderingTransaction');
+
+var cloneWithProps = require('react/lib/cloneWithProps');
+var objectAssign = require('react/lib/Object.assign');
+var instantiateReactComponent = require('react/lib/instantiateReactComponent');
+var invariant = require('react/lib/invariant');
+
+function cloneRoutesForServerRendering(routes) {
+  return cloneWithProps(routes, {
+    location: 'none',
+    scrollBehavior: 'none'
+  });
+}
+
+function mergeStateIntoInitialProps(state, props) {
+  objectAssign(props, {
+    initialPath: state.path,
+    initialMatches: state.matches,
+    initialActiveRoutes: state.activeRoutes,
+    initialActiveParams: state.activeParams,
+    initialActiveQuery: state.activeQuery
+  });
+}
+
+/**
+ * Renders a <Routes> component to a string of HTML at the given URL
+ * path and calls callback(error, abortReason, html) when finished.
+ *
+ * If there was an error during the transition, it is passed to the
+ * callback. Otherwise, if the transition was aborted for some reason,
+ * it is given in the abortReason argument (with the exception of
+ * internal redirects which are transparently handled for you).
+ *
+ * TODO: <NotFoundRoute> should be handled specially so servers know
+ * to use a 404 status code.
+ */
+function renderRoutesToString(routes, path, callback) {
+  invariant(
+    ReactElement.isValidElement(routes),
+    'You must pass a valid ReactComponent to renderRoutesToString'
+  );
+
+  var component = instantiateReactComponent(
+    cloneRoutesForServerRendering(routes)
+  );
+
+  component.dispatch(path, function (error, abortReason, nextState) {
+    if (error || abortReason)
+      return callback(error, abortReason);
+
+    mergeStateIntoInitialProps(nextState, component.props);
+
+    var transaction;
+    try {
+      var id = ReactInstanceHandles.createReactRootID();
+      transaction = ReactServerRenderingTransaction.getPooled(false);
+
+      transaction.perform(function () {
+        var markup = component.mountComponent(id, transaction, 0);
+        callback(null, null, ReactMarkupChecksum.addChecksumToMarkup(markup));
+      }, null);
+    } finally {
+      ReactServerRenderingTransaction.release(transaction);
+    }
+  });
+}
+
+/**
+ * Renders a <Routes> component to static markup at the given URL
+ * path and calls callback(error, abortReason, markup) when finished.
+ */
+function renderRoutesToStaticMarkup(routes, path, callback) {
+  invariant(
+    ReactElement.isValidElement(routes),
+    'You must pass a valid ReactComponent to renderRoutesToStaticMarkup'
+  );
+
+  var component = instantiateReactComponent(
+    cloneRoutesForServerRendering(routes)
+  );
+
+  component.dispatch(path, function (error, abortReason, nextState) {
+    if (error || abortReason)
+      return callback(error, abortReason);
+
+    mergeStateIntoInitialProps(nextState, component.props);
+
+    var transaction;
+    try {
+      var id = ReactInstanceHandles.createReactRootID();
+      transaction = ReactServerRenderingTransaction.getPooled(false);
+
+      transaction.perform(function () {
+        callback(null, null, component.mountComponent(id, transaction, 0));
+      }, null);
+    } finally {
+      ReactServerRenderingTransaction.release(transaction);
+    }
+  });
+}
+
+module.exports = {
+  renderRoutesToString: renderRoutesToString,
+  renderRoutesToStaticMarkup: renderRoutesToStaticMarkup
+};
+
+},{"react/lib/Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","react/lib/ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","react/lib/ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","react/lib/ReactMarkupChecksum":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMarkupChecksum.js","react/lib/ReactServerRenderingTransaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRenderingTransaction.js","react/lib/cloneWithProps":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cloneWithProps.js","react/lib/instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","react/lib/invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/Transition.js":[function(require,module,exports){
+var Promise = require('./Promise');
+var Redirect = require('./Redirect');
+
+/**
+ * Encapsulates a transition to a given path.
+ *
+ * The willTransitionTo and willTransitionFrom handlers receive
+ * an instance of this class as their first argument.
+ */
+function Transition(routesComponent, path) {
+  this.routesComponent = routesComponent;
+  this.path = path;
+  this.abortReason = null;
+  this.isAborted = false;
+}
+
+Transition.prototype.abort = function (reason) {
+  this.abortReason = reason;
+  this.isAborted = true;
+};
+
+Transition.prototype.redirect = function (to, params, query) {
+  this.abort(new Redirect(to, params, query));
+};
+
+Transition.prototype.wait = function (value) {
+  this.promise = Promise.resolve(value);
+};
+
+Transition.prototype.retry = function () {
+  this.routesComponent.replaceWith(this.path);
+};
+
+module.exports = Transition;
+
+},{"./Promise":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/Promise.js","./Redirect":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/Redirect.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/getWindowPath.js":[function(require,module,exports){
+/**
+ * Returns the current URL path from `window.location`, including query string
+ */
+function getWindowPath() {
+  return window.location.pathname + window.location.search;
+}
+
+module.exports = getWindowPath;
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/reversedArray.js":[function(require,module,exports){
+function reversedArray(array) {
+  return array.slice(0).reverse();
+}
+
+module.exports = reversedArray;
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/supportsHistory.js":[function(require,module,exports){
+function supportsHistory() {
+  /*! taken from modernizr
+   * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
+   * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
+   */
+  var ua = navigator.userAgent;
+  if ((ua.indexOf('Android 2.') !== -1 ||
+      (ua.indexOf('Android 4.0') !== -1)) &&
+      ua.indexOf('Mobile Safari') !== -1 &&
+      ua.indexOf('Chrome') === -1) {
+    return false;
+  }
+  return (window.history && 'pushState' in window.history);
+}
+
+module.exports = supportsHistory;
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/utils/withoutProperties.js":[function(require,module,exports){
+function withoutProperties(object, properties) {
+  var result = {};
+
+  for (var property in object) {
+    if (object.hasOwnProperty(property) && !properties[property])
+      result[property] = object[property];
+  }
+
+  return result;
+}
+
+module.exports = withoutProperties;
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/index.js":[function(require,module,exports){
+module.exports = require('./lib');
+
+},{"./lib":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/lib/index.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/lib/index.js":[function(require,module,exports){
+// Load modules
+
+var Stringify = require('./stringify');
+var Parse = require('./parse');
+
+
+// Declare internals
+
+var internals = {};
+
+
+module.exports = {
+    stringify: Stringify,
+    parse: Parse
+};
+
+},{"./parse":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/lib/parse.js","./stringify":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/lib/stringify.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/lib/parse.js":[function(require,module,exports){
+// Load modules
+
+var Utils = require('./utils');
+
+
+// Declare internals
+
+var internals = {
+    delimiter: '&',
+    depth: 5,
+    arrayLimit: 20,
+    parameterLimit: 1000
+};
+
+
+internals.parseValues = function (str, options) {
+
+    var obj = {};
+    var parts = str.split(options.delimiter, options.parameterLimit === Infinity ? undefined : options.parameterLimit);
+
+    for (var i = 0, il = parts.length; i < il; ++i) {
+        var part = parts[i];
+        var pos = part.indexOf(']=') === -1 ? part.indexOf('=') : part.indexOf(']=') + 1;
+
+        if (pos === -1) {
+            obj[Utils.decode(part)] = '';
+        }
+        else {
+            var key = Utils.decode(part.slice(0, pos));
+            var val = Utils.decode(part.slice(pos + 1));
+
+            if (!obj[key]) {
+                obj[key] = val;
+            }
+            else {
+                obj[key] = [].concat(obj[key]).concat(val);
+            }
+        }
+    }
+
+    return obj;
+};
+
+
+internals.parseObject = function (chain, val, options) {
+
+    if (!chain.length) {
+        return val;
+    }
+
+    var root = chain.shift();
+
+    var obj = {};
+    if (root === '[]') {
+        obj = [];
+        obj = obj.concat(internals.parseObject(chain, val, options));
+    }
+    else {
+        var cleanRoot = root[0] === '[' && root[root.length - 1] === ']' ? root.slice(1, root.length - 1) : root;
+        var index = parseInt(cleanRoot, 10);
+        if (!isNaN(index) &&
+            root !== cleanRoot &&
+            index <= options.arrayLimit) {
+
+            obj = [];
+            obj[index] = internals.parseObject(chain, val, options);
+        }
+        else {
+            obj[cleanRoot] = internals.parseObject(chain, val, options);
+        }
+    }
+
+    return obj;
+};
+
+
+internals.parseKeys = function (key, val, options) {
+
+    if (!key) {
+        return;
+    }
+
+    // The regex chunks
+
+    var parent = /^([^\[\]]*)/;
+    var child = /(\[[^\[\]]*\])/g;
+
+    // Get the parent
+
+    var segment = parent.exec(key);
+
+    // Don't allow them to overwrite object prototype properties
+
+    if (Object.prototype.hasOwnProperty(segment[1])) {
+        return;
+    }
+
+    // Stash the parent if it exists
+
+    var keys = [];
+    if (segment[1]) {
+        keys.push(segment[1]);
+    }
+
+    // Loop through children appending to the array until we hit depth
+
+    var i = 0;
+    while ((segment = child.exec(key)) !== null && i < options.depth) {
+
+        ++i;
+        if (!Object.prototype.hasOwnProperty(segment[1].replace(/\[|\]/g, ''))) {
+            keys.push(segment[1]);
+        }
+    }
+
+    // If there's a remainder, just add whatever is left
+
+    if (segment) {
+        keys.push('[' + key.slice(segment.index) + ']');
+    }
+
+    return internals.parseObject(keys, val, options);
+};
+
+
+module.exports = function (str, options) {
+
+    if (str === '' ||
+        str === null ||
+        typeof str === 'undefined') {
+
+        return {};
+    }
+
+    options = options || {};
+    options.delimiter = typeof options.delimiter === 'string' || Utils.isRegExp(options.delimiter) ? options.delimiter : internals.delimiter;
+    options.depth = typeof options.depth === 'number' ? options.depth : internals.depth;
+    options.arrayLimit = typeof options.arrayLimit === 'number' ? options.arrayLimit : internals.arrayLimit;
+    options.parameterLimit = typeof options.parameterLimit === 'number' ? options.parameterLimit : internals.parameterLimit;
+
+    var tempObj = typeof str === 'string' ? internals.parseValues(str, options) : str;
+    var obj = {};
+
+    // Iterate over the keys and setup the new object
+
+    var keys = Object.keys(tempObj);
+    for (var i = 0, il = keys.length; i < il; ++i) {
+        var key = keys[i];
+        var newObj = internals.parseKeys(key, tempObj[key], options);
+        obj = Utils.merge(obj, newObj);
+    }
+
+    return Utils.compact(obj);
+};
+
+},{"./utils":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/lib/utils.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/lib/stringify.js":[function(require,module,exports){
+// Load modules
+
+var Utils = require('./utils');
+
+
+// Declare internals
+
+var internals = {
+    delimiter: '&'
+};
+
+
+internals.stringify = function (obj, prefix) {
+
+    if (Utils.isBuffer(obj)) {
+        obj = obj.toString();
+    }
+    else if (obj instanceof Date) {
+        obj = obj.toISOString();
+    }
+    else if (obj === null) {
+        obj = '';
+    }
+
+    if (typeof obj === 'string' ||
+        typeof obj === 'number' ||
+        typeof obj === 'boolean') {
+
+        return [encodeURIComponent(prefix) + '=' + encodeURIComponent(obj)];
+    }
+
+    var values = [];
+
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            values = values.concat(internals.stringify(obj[key], prefix + '[' + key + ']'));
+        }
+    }
+
+    return values;
+};
+
+
+module.exports = function (obj, options) {
+
+    options = options || {};
+    var delimiter = typeof options.delimiter === 'undefined' ? internals.delimiter : options.delimiter;
+
+    var keys = [];
+
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            keys = keys.concat(internals.stringify(obj[key], key));
+        }
+    }
+
+    return keys.join(delimiter);
+};
+
+},{"./utils":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/lib/utils.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/qs/lib/utils.js":[function(require,module,exports){
+(function (Buffer){
+// Load modules
+
+
+// Declare internals
+
+var internals = {};
+
+
+exports.arrayToObject = function (source) {
+
+    var obj = {};
+    for (var i = 0, il = source.length; i < il; ++i) {
+        if (typeof source[i] !== 'undefined') {
+
+            obj[i] = source[i];
+        }
+    }
+
+    return obj;
+};
+
+
+exports.merge = function (target, source) {
+
+    if (!source) {
+        return target;
+    }
+
+    if (Array.isArray(source)) {
+        for (var i = 0, il = source.length; i < il; ++i) {
+            if (typeof source[i] !== 'undefined') {
+                if (typeof target[i] === 'object') {
+                    target[i] = exports.merge(target[i], source[i]);
+                }
+                else {
+                    target[i] = source[i];
+                }
+            }
+        }
+
+        return target;
+    }
+
+    if (Array.isArray(target)) {
+        if (typeof source !== 'object') {
+            target.push(source);
+            return target;
+        }
+        else {
+            target = exports.arrayToObject(target);
+        }
+    }
+
+    var keys = Object.keys(source);
+    for (var k = 0, kl = keys.length; k < kl; ++k) {
+        var key = keys[k];
+        var value = source[key];
+
+        if (value &&
+            typeof value === 'object') {
+
+            if (!target[key]) {
+                target[key] = value;
+            }
+            else {
+                target[key] = exports.merge(target[key], value);
+            }
+        }
+        else {
+            target[key] = value;
+        }
+    }
+
+    return target;
+};
+
+
+exports.decode = function (str) {
+
+    try {
+        return decodeURIComponent(str.replace(/\+/g, ' '));
+    } catch (e) {
+        return str;
+    }
+};
+
+
+exports.compact = function (obj, refs) {
+
+    if (typeof obj !== 'object' ||
+        obj === null) {
+
+        return obj;
+    }
+
+    refs = refs || [];
+    var lookup = refs.indexOf(obj);
+    if (lookup !== -1) {
+        return refs[lookup];
+    }
+
+    refs.push(obj);
+
+    if (Array.isArray(obj)) {
+        var compacted = [];
+
+        for (var i = 0, l = obj.length; i < l; ++i) {
+            if (typeof obj[i] !== 'undefined') {
+                compacted.push(obj[i]);
+            }
+        }
+
+        return compacted;
+    }
+
+    var keys = Object.keys(obj);
+    for (var i = 0, il = keys.length; i < il; ++i) {
+        var key = keys[i];
+        obj[key] = exports.compact(obj[key], refs);
+    }
+
+    return obj;
+};
+
+
+exports.isRegExp = function (obj) {
+    return Object.prototype.toString.call(obj) === '[object RegExp]';
+};
+
+
+exports.isBuffer = function (obj) {
+
+    if (typeof Buffer !== 'undefined') {
+        return Buffer.isBuffer(obj);
+    }
+    else {
+        return false;
+    }
+};
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/buffer/index.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/when/lib/Promise.js":[function(require,module,exports){
+/** @license MIT License (c) copyright 2010-2014 original author or authors */
+/** @author Brian Cavalier */
+/** @author John Hann */
+
+(function(define) { 'use strict';
+define(function (require) {
+
+	var makePromise = require('./makePromise');
+	var Scheduler = require('./Scheduler');
+	var async = require('./async');
+
+	return makePromise({
+		scheduler: new Scheduler(async)
+	});
+
+});
+})(typeof define === 'function' && define.amd ? define : function (factory) { module.exports = factory(require); });
+
+},{"./Scheduler":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/when/lib/Scheduler.js","./async":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/when/lib/async.js","./makePromise":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/when/lib/makePromise.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/when/lib/Queue.js":[function(require,module,exports){
+/** @license MIT License (c) copyright 2010-2014 original author or authors */
+/** @author Brian Cavalier */
+/** @author John Hann */
+
+(function(define) { 'use strict';
+define(function() {
+	/**
+	 * Circular queue
+	 * @param {number} capacityPow2 power of 2 to which this queue's capacity
+	 *  will be set initially. eg when capacityPow2 == 3, queue capacity
+	 *  will be 8.
+	 * @constructor
+	 */
+	function Queue(capacityPow2) {
+		this.head = this.tail = this.length = 0;
+		this.buffer = new Array(1 << capacityPow2);
+	}
+
+	Queue.prototype.push = function(x) {
+		if(this.length === this.buffer.length) {
+			this._ensureCapacity(this.length * 2);
+		}
+
+		this.buffer[this.tail] = x;
+		this.tail = (this.tail + 1) & (this.buffer.length - 1);
+		++this.length;
+		return this.length;
+	};
+
+	Queue.prototype.shift = function() {
+		var x = this.buffer[this.head];
+		this.buffer[this.head] = void 0;
+		this.head = (this.head + 1) & (this.buffer.length - 1);
+		--this.length;
+		return x;
+	};
+
+	Queue.prototype._ensureCapacity = function(capacity) {
+		var head = this.head;
+		var buffer = this.buffer;
+		var newBuffer = new Array(capacity);
+		var i = 0;
+		var len;
+
+		if(head === 0) {
+			len = this.length;
+			for(; i<len; ++i) {
+				newBuffer[i] = buffer[i];
+			}
+		} else {
+			capacity = buffer.length;
+			len = this.tail;
+			for(; head<capacity; ++i, ++head) {
+				newBuffer[i] = buffer[head];
+			}
+
+			for(head=0; head<len; ++i, ++head) {
+				newBuffer[i] = buffer[head];
+			}
+		}
+
+		this.buffer = newBuffer;
+		this.head = 0;
+		this.tail = this.length;
+	};
+
+	return Queue;
+
+});
+}(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(); }));
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/when/lib/Scheduler.js":[function(require,module,exports){
+/** @license MIT License (c) copyright 2010-2014 original author or authors */
+/** @author Brian Cavalier */
+/** @author John Hann */
+
+(function(define) { 'use strict';
+define(function(require) {
+
+	var Queue = require('./Queue');
+
+	// Credit to Twisol (https://github.com/Twisol) for suggesting
+	// this type of extensible queue + trampoline approach for next-tick conflation.
+
+	/**
+	 * Async task scheduler
+	 * @param {function} async function to schedule a single async function
+	 * @constructor
+	 */
+	function Scheduler(async) {
+		this._async = async;
+		this._queue = new Queue(15);
+		this._afterQueue = new Queue(5);
+		this._running = false;
+
+		var self = this;
+		this.drain = function() {
+			self._drain();
+		};
+	}
+
+	/**
+	 * Enqueue a task
+	 * @param {{ run:function }} task
+	 */
+	Scheduler.prototype.enqueue = function(task) {
+		this._add(this._queue, task);
+	};
+
+	/**
+	 * Enqueue a task to run after the main task queue
+	 * @param {{ run:function }} task
+	 */
+	Scheduler.prototype.afterQueue = function(task) {
+		this._add(this._afterQueue, task);
+	};
+
+	/**
+	 * Drain the handler queue entirely, and then the after queue
+	 */
+	Scheduler.prototype._drain = function() {
+		runQueue(this._queue);
+		this._running = false;
+		runQueue(this._afterQueue);
+	};
+
+	/**
+	 * Add a task to the q, and schedule drain if not already scheduled
+	 * @param {Queue} queue
+	 * @param {{run:function}} task
+	 * @private
+	 */
+	Scheduler.prototype._add = function(queue, task) {
+		queue.push(task);
+		if(!this._running) {
+			this._running = true;
+			this._async(this.drain);
+		}
+	};
+
+	/**
+	 * Run all the tasks in the q
+	 * @param queue
+	 */
+	function runQueue(queue) {
+		while(queue.length > 0) {
+			queue.shift().run();
+		}
+	}
+
+	return Scheduler;
+
+});
+}(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(require); }));
+
+},{"./Queue":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/when/lib/Queue.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/when/lib/async.js":[function(require,module,exports){
+(function (process){
+/** @license MIT License (c) copyright 2010-2014 original author or authors */
+/** @author Brian Cavalier */
+/** @author John Hann */
+
+(function(define) { 'use strict';
+define(function(require) {
+
+	// Sniff "best" async scheduling option
+	// Prefer process.nextTick or MutationObserver, then check for
+	// vertx and finally fall back to setTimeout
+
+	/*jshint maxcomplexity:6*/
+	/*global process,document,setTimeout,MutationObserver,WebKitMutationObserver*/
+	var nextTick, MutationObs;
+
+	if (typeof process !== 'undefined' && process !== null &&
+		typeof process.nextTick === 'function') {
+		nextTick = function(f) {
+			process.nextTick(f);
+		};
+
+	} else if (MutationObs =
+		(typeof MutationObserver === 'function' && MutationObserver) ||
+		(typeof WebKitMutationObserver === 'function' && WebKitMutationObserver)) {
+		nextTick = (function (document, MutationObserver) {
+			var scheduled;
+			var el = document.createElement('div');
+			var o = new MutationObserver(run);
+			o.observe(el, { attributes: true });
+
+			function run() {
+				var f = scheduled;
+				scheduled = void 0;
+				f();
+			}
+
+			return function (f) {
+				scheduled = f;
+				el.setAttribute('class', 'x');
+			};
+		}(document, MutationObs));
+
+	} else {
+		nextTick = (function(cjsRequire) {
+			var vertx;
+			try {
+				// vert.x 1.x || 2.x
+				vertx = cjsRequire('vertx');
+			} catch (ignore) {}
+
+			if (vertx) {
+				if (typeof vertx.runOnLoop === 'function') {
+					return vertx.runOnLoop;
+				}
+				if (typeof vertx.runOnContext === 'function') {
+					return vertx.runOnContext;
+				}
+			}
+
+			// capture setTimeout to avoid being caught by fake timers
+			// used in time based tests
+			var capturedSetTimeout = setTimeout;
+			return function (t) {
+				capturedSetTimeout(t, 0);
+			};
+		}(require));
+	}
+
+	return nextTick;
+});
+}(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(require); }));
+
+}).call(this,require('_process'))
+},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/node_modules/when/lib/makePromise.js":[function(require,module,exports){
+/** @license MIT License (c) copyright 2010-2014 original author or authors */
+/** @author Brian Cavalier */
+/** @author John Hann */
+
+(function(define) { 'use strict';
+define(function() {
+
+	return function makePromise(environment) {
+
+		var tasks = environment.scheduler;
+
+		var objectCreate = Object.create ||
+			function(proto) {
+				function Child() {}
+				Child.prototype = proto;
+				return new Child();
+			};
+
+		/**
+		 * Create a promise whose fate is determined by resolver
+		 * @constructor
+		 * @returns {Promise} promise
+		 * @name Promise
+		 */
+		function Promise(resolver, handler) {
+			this._handler = resolver === Handler ? handler : init(resolver);
+		}
+
+		/**
+		 * Run the supplied resolver
+		 * @param resolver
+		 * @returns {Pending}
+		 */
+		function init(resolver) {
+			var handler = new Pending();
+
+			try {
+				resolver(promiseResolve, promiseReject, promiseNotify);
+			} catch (e) {
+				promiseReject(e);
+			}
+
+			return handler;
+
+			/**
+			 * Transition from pre-resolution state to post-resolution state, notifying
+			 * all listeners of the ultimate fulfillment or rejection
+			 * @param {*} x resolution value
+			 */
+			function promiseResolve (x) {
+				handler.resolve(x);
+			}
+			/**
+			 * Reject this promise with reason, which will be used verbatim
+			 * @param {Error|*} reason rejection reason, strongly suggested
+			 *   to be an Error type
+			 */
+			function promiseReject (reason) {
+				handler.reject(reason);
+			}
+
+			/**
+			 * Issue a progress event, notifying all progress listeners
+			 * @param {*} x progress event payload to pass to all listeners
+			 */
+			function promiseNotify (x) {
+				handler.notify(x);
+			}
+		}
+
+		// Creation
+
+		Promise.resolve = resolve;
+		Promise.reject = reject;
+		Promise.never = never;
+
+		Promise._defer = defer;
+		Promise._handler = getHandler;
+
+		/**
+		 * Returns a trusted promise. If x is already a trusted promise, it is
+		 * returned, otherwise returns a new trusted Promise which follows x.
+		 * @param  {*} x
+		 * @return {Promise} promise
+		 */
+		function resolve(x) {
+			return isPromise(x) ? x
+				: new Promise(Handler, new Async(getHandler(x)));
+		}
+
+		/**
+		 * Return a reject promise with x as its reason (x is used verbatim)
+		 * @param {*} x
+		 * @returns {Promise} rejected promise
+		 */
+		function reject(x) {
+			return new Promise(Handler, new Async(new Rejected(x)));
+		}
+
+		/**
+		 * Return a promise that remains pending forever
+		 * @returns {Promise} forever-pending promise.
+		 */
+		function never() {
+			return foreverPendingPromise; // Should be frozen
+		}
+
+		/**
+		 * Creates an internal {promise, resolver} pair
+		 * @private
+		 * @returns {Promise}
+		 */
+		function defer() {
+			return new Promise(Handler, new Pending());
+		}
+
+		// Transformation and flow control
+
+		/**
+		 * Transform this promise's fulfillment value, returning a new Promise
+		 * for the transformed result.  If the promise cannot be fulfilled, onRejected
+		 * is called with the reason.  onProgress *may* be called with updates toward
+		 * this promise's fulfillment.
+		 * @param {function=} onFulfilled fulfillment handler
+		 * @param {function=} onRejected rejection handler
+		 * @deprecated @param {function=} onProgress progress handler
+		 * @return {Promise} new promise
+		 */
+		Promise.prototype.then = function(onFulfilled, onRejected) {
+			var parent = this._handler;
+			var state = parent.join().state();
+
+			if ((typeof onFulfilled !== 'function' && state > 0) ||
+				(typeof onRejected !== 'function' && state < 0)) {
+				// Short circuit: value will not change, simply share handler
+				return new this.constructor(Handler, parent);
+			}
+
+			var p = this._beget();
+			var child = p._handler;
+
+			parent.chain(child, parent.receiver, onFulfilled, onRejected,
+					arguments.length > 2 ? arguments[2] : void 0);
+
+			return p;
+		};
+
+		/**
+		 * If this promise cannot be fulfilled due to an error, call onRejected to
+		 * handle the error. Shortcut for .then(undefined, onRejected)
+		 * @param {function?} onRejected
+		 * @return {Promise}
+		 */
+		Promise.prototype['catch'] = function(onRejected) {
+			return this.then(void 0, onRejected);
+		};
+
+		/**
+		 * Creates a new, pending promise of the same type as this promise
+		 * @private
+		 * @returns {Promise}
+		 */
+		Promise.prototype._beget = function() {
+			var parent = this._handler;
+			var child = new Pending(parent.receiver, parent.join().context);
+			return new this.constructor(Handler, child);
+		};
+
+		// Array combinators
+
+		Promise.all = all;
+		Promise.race = race;
+
+		/**
+		 * Return a promise that will fulfill when all promises in the
+		 * input array have fulfilled, or will reject when one of the
+		 * promises rejects.
+		 * @param {array} promises array of promises
+		 * @returns {Promise} promise for array of fulfillment values
+		 */
+		function all(promises) {
+			/*jshint maxcomplexity:8*/
+			var resolver = new Pending();
+			var pending = promises.length >>> 0;
+			var results = new Array(pending);
+
+			var i, h, x, s;
+			for (i = 0; i < promises.length; ++i) {
+				x = promises[i];
+
+				if (x === void 0 && !(i in promises)) {
+					--pending;
+					continue;
+				}
+
+				if (maybeThenable(x)) {
+					h = getHandlerMaybeThenable(x);
+
+					s = h.state();
+					if (s === 0) {
+						h.fold(settleAt, i, results, resolver);
+					} else if (s > 0) {
+						results[i] = h.value;
+						--pending;
+					} else {
+						unreportRemaining(promises, i+1, h);
+						resolver.become(h);
+						break;
+					}
+
+				} else {
+					results[i] = x;
+					--pending;
+				}
+			}
+
+			if(pending === 0) {
+				resolver.become(new Fulfilled(results));
+			}
+
+			return new Promise(Handler, resolver);
+
+			function settleAt(i, x, resolver) {
+				/*jshint validthis:true*/
+				this[i] = x;
+				if(--pending === 0) {
+					resolver.become(new Fulfilled(this));
+				}
+			}
+		}
+
+		function unreportRemaining(promises, start, rejectedHandler) {
+			var i, h, x;
+			for(i=start; i<promises.length; ++i) {
+				x = promises[i];
+				if(maybeThenable(x)) {
+					h = getHandlerMaybeThenable(x);
+
+					if(h !== rejectedHandler) {
+						h.visit(h, void 0, h._unreport);
+					}
+				}
+			}
+		}
+
+		/**
+		 * Fulfill-reject competitive race. Return a promise that will settle
+		 * to the same state as the earliest input promise to settle.
+		 *
+		 * WARNING: The ES6 Promise spec requires that race()ing an empty array
+		 * must return a promise that is pending forever.  This implementation
+		 * returns a singleton forever-pending promise, the same singleton that is
+		 * returned by Promise.never(), thus can be checked with ===
+		 *
+		 * @param {array} promises array of promises to race
+		 * @returns {Promise} if input is non-empty, a promise that will settle
+		 * to the same outcome as the earliest input promise to settle. if empty
+		 * is empty, returns a promise that will never settle.
+		 */
+		function race(promises) {
+			// Sigh, race([]) is untestable unless we return *something*
+			// that is recognizable without calling .then() on it.
+			if(Object(promises) === promises && promises.length === 0) {
+				return never();
+			}
+
+			var h = new Pending();
+			var i, x;
+			for(i=0; i<promises.length; ++i) {
+				x = promises[i];
+				if (x !== void 0 && i in promises) {
+					getHandler(x).visit(h, h.resolve, h.reject);
+				}
+			}
+			return new Promise(Handler, h);
+		}
+
+		// Promise internals
+		// Below this, everything is @private
+
+		/**
+		 * Get an appropriate handler for x, without checking for cycles
+		 * @param {*} x
+		 * @returns {object} handler
+		 */
+		function getHandler(x) {
+			if(isPromise(x)) {
+				return x._handler.join();
+			}
+			return maybeThenable(x) ? getHandlerUntrusted(x) : new Fulfilled(x);
+		}
+
+		/**
+		 * Get a handler for thenable x.
+		 * NOTE: You must only call this if maybeThenable(x) == true
+		 * @param {object|function|Promise} x
+		 * @returns {object} handler
+		 */
+		function getHandlerMaybeThenable(x) {
+			return isPromise(x) ? x._handler.join() : getHandlerUntrusted(x);
+		}
+
+		/**
+		 * Get a handler for potentially untrusted thenable x
+		 * @param {*} x
+		 * @returns {object} handler
+		 */
+		function getHandlerUntrusted(x) {
+			try {
+				var untrustedThen = x.then;
+				return typeof untrustedThen === 'function'
+					? new Thenable(untrustedThen, x)
+					: new Fulfilled(x);
+			} catch(e) {
+				return new Rejected(e);
+			}
+		}
+
+		/**
+		 * Handler for a promise that is pending forever
+		 * @constructor
+		 */
+		function Handler() {}
+
+		Handler.prototype.when
+			= Handler.prototype.become
+			= Handler.prototype.notify
+			= Handler.prototype.fail
+			= Handler.prototype._unreport
+			= Handler.prototype._report
+			= noop;
+
+		Handler.prototype._state = 0;
+
+		Handler.prototype.state = function() {
+			return this._state;
+		};
+
+		/**
+		 * Recursively collapse handler chain to find the handler
+		 * nearest to the fully resolved value.
+		 * @returns {object} handler nearest the fully resolved value
+		 */
+		Handler.prototype.join = function() {
+			var h = this;
+			while(h.handler !== void 0) {
+				h = h.handler;
+			}
+			return h;
+		};
+
+		Handler.prototype.chain = function(to, receiver, fulfilled, rejected, progress) {
+			this.when({
+				resolver: to,
+				receiver: receiver,
+				fulfilled: fulfilled,
+				rejected: rejected,
+				progress: progress
+			});
+		};
+
+		Handler.prototype.visit = function(receiver, fulfilled, rejected, progress) {
+			this.chain(failIfRejected, receiver, fulfilled, rejected, progress);
+		};
+
+		Handler.prototype.fold = function(f, z, c, to) {
+			this.visit(to, function(x) {
+				f.call(c, z, x, this);
+			}, to.reject, to.notify);
+		};
+
+		/**
+		 * Handler that invokes fail() on any handler it becomes
+		 * @constructor
+		 */
+		function FailIfRejected() {}
+
+		inherit(Handler, FailIfRejected);
+
+		FailIfRejected.prototype.become = function(h) {
+			h.fail();
+		};
+
+		var failIfRejected = new FailIfRejected();
+
+		/**
+		 * Handler that manages a queue of consumers waiting on a pending promise
+		 * @constructor
+		 */
+		function Pending(receiver, inheritedContext) {
+			Promise.createContext(this, inheritedContext);
+
+			this.consumers = void 0;
+			this.receiver = receiver;
+			this.handler = void 0;
+			this.resolved = false;
+		}
+
+		inherit(Handler, Pending);
+
+		Pending.prototype._state = 0;
+
+		Pending.prototype.resolve = function(x) {
+			this.become(getHandler(x));
+		};
+
+		Pending.prototype.reject = function(x) {
+			if(this.resolved) {
+				return;
+			}
+
+			this.become(new Rejected(x));
+		};
+
+		Pending.prototype.join = function() {
+			if (!this.resolved) {
+				return this;
+			}
+
+			var h = this;
+
+			while (h.handler !== void 0) {
+				h = h.handler;
+				if (h === this) {
+					return this.handler = cycle();
+				}
+			}
+
+			return h;
+		};
+
+		Pending.prototype.run = function() {
+			var q = this.consumers;
+			var handler = this.join();
+			this.consumers = void 0;
+
+			for (var i = 0; i < q.length; ++i) {
+				handler.when(q[i]);
+			}
+		};
+
+		Pending.prototype.become = function(handler) {
+			if(this.resolved) {
+				return;
+			}
+
+			this.resolved = true;
+			this.handler = handler;
+			if(this.consumers !== void 0) {
+				tasks.enqueue(this);
+			}
+
+			if(this.context !== void 0) {
+				handler._report(this.context);
+			}
+		};
+
+		Pending.prototype.when = function(continuation) {
+			if(this.resolved) {
+				tasks.enqueue(new ContinuationTask(continuation, this.handler));
+			} else {
+				if(this.consumers === void 0) {
+					this.consumers = [continuation];
+				} else {
+					this.consumers.push(continuation);
+				}
+			}
+		};
+
+		Pending.prototype.notify = function(x) {
+			if(!this.resolved) {
+				tasks.enqueue(new ProgressTask(x, this));
+			}
+		};
+
+		Pending.prototype.fail = function(context) {
+			var c = typeof context === 'undefined' ? this.context : context;
+			this.resolved && this.handler.join().fail(c);
+		};
+
+		Pending.prototype._report = function(context) {
+			this.resolved && this.handler.join()._report(context);
+		};
+
+		Pending.prototype._unreport = function() {
+			this.resolved && this.handler.join()._unreport();
+		};
+
+		/**
+		 * Wrap another handler and force it into a future stack
+		 * @param {object} handler
+		 * @constructor
+		 */
+		function Async(handler) {
+			this.handler = handler;
+		}
+
+		inherit(Handler, Async);
+
+		Async.prototype.when = function(continuation) {
+			tasks.enqueue(new ContinuationTask(continuation, this));
+		};
+
+		Async.prototype._report = function(context) {
+			this.join()._report(context);
+		};
+
+		Async.prototype._unreport = function() {
+			this.join()._unreport();
+		};
+
+		/**
+		 * Handler that wraps an untrusted thenable and assimilates it in a future stack
+		 * @param {function} then
+		 * @param {{then: function}} thenable
+		 * @constructor
+		 */
+		function Thenable(then, thenable) {
+			Pending.call(this);
+			tasks.enqueue(new AssimilateTask(then, thenable, this));
+		}
+
+		inherit(Pending, Thenable);
+
+		/**
+		 * Handler for a fulfilled promise
+		 * @param {*} x fulfillment value
+		 * @constructor
+		 */
+		function Fulfilled(x) {
+			Promise.createContext(this);
+			this.value = x;
+		}
+
+		inherit(Handler, Fulfilled);
+
+		Fulfilled.prototype._state = 1;
+
+		Fulfilled.prototype.fold = function(f, z, c, to) {
+			runContinuation3(f, z, this, c, to);
+		};
+
+		Fulfilled.prototype.when = function(cont) {
+			runContinuation1(cont.fulfilled, this, cont.receiver, cont.resolver);
+		};
+
+		var errorId = 0;
+
+		/**
+		 * Handler for a rejected promise
+		 * @param {*} x rejection reason
+		 * @constructor
+		 */
+		function Rejected(x) {
+			Promise.createContext(this);
+
+			this.id = ++errorId;
+			this.value = x;
+			this.handled = false;
+			this.reported = false;
+
+			this._report();
+		}
+
+		inherit(Handler, Rejected);
+
+		Rejected.prototype._state = -1;
+
+		Rejected.prototype.fold = function(f, z, c, to) {
+			to.become(this);
+		};
+
+		Rejected.prototype.when = function(cont) {
+			if(typeof cont.rejected === 'function') {
+				this._unreport();
+			}
+			runContinuation1(cont.rejected, this, cont.receiver, cont.resolver);
+		};
+
+		Rejected.prototype._report = function(context) {
+			tasks.afterQueue(new ReportTask(this, context));
+		};
+
+		Rejected.prototype._unreport = function() {
+			this.handled = true;
+			tasks.afterQueue(new UnreportTask(this));
+		};
+
+		Rejected.prototype.fail = function(context) {
+			Promise.onFatalRejection(this, context === void 0 ? this.context : context);
+		};
+
+		function ReportTask(rejection, context) {
+			this.rejection = rejection;
+			this.context = context;
+		}
+
+		ReportTask.prototype.run = function() {
+			if(!this.rejection.handled) {
+				this.rejection.reported = true;
+				Promise.onPotentiallyUnhandledRejection(this.rejection, this.context);
+			}
+		};
+
+		function UnreportTask(rejection) {
+			this.rejection = rejection;
+		}
+
+		UnreportTask.prototype.run = function() {
+			if(this.rejection.reported) {
+				Promise.onPotentiallyUnhandledRejectionHandled(this.rejection);
+			}
+		};
+
+		// Unhandled rejection hooks
+		// By default, everything is a noop
+
+		// TODO: Better names: "annotate"?
+		Promise.createContext
+			= Promise.enterContext
+			= Promise.exitContext
+			= Promise.onPotentiallyUnhandledRejection
+			= Promise.onPotentiallyUnhandledRejectionHandled
+			= Promise.onFatalRejection
+			= noop;
+
+		// Errors and singletons
+
+		var foreverPendingHandler = new Handler();
+		var foreverPendingPromise = new Promise(Handler, foreverPendingHandler);
+
+		function cycle() {
+			return new Rejected(new TypeError('Promise cycle'));
+		}
+
+		// Task runners
+
+		/**
+		 * Run a single consumer
+		 * @constructor
+		 */
+		function ContinuationTask(continuation, handler) {
+			this.continuation = continuation;
+			this.handler = handler;
+		}
+
+		ContinuationTask.prototype.run = function() {
+			this.handler.join().when(this.continuation);
+		};
+
+		/**
+		 * Run a queue of progress handlers
+		 * @constructor
+		 */
+		function ProgressTask(value, handler) {
+			this.handler = handler;
+			this.value = value;
+		}
+
+		ProgressTask.prototype.run = function() {
+			var q = this.handler.consumers;
+			if(q === void 0) {
+				return;
+			}
+
+			for (var c, i = 0; i < q.length; ++i) {
+				c = q[i];
+				runNotify(c.progress, this.value, this.handler, c.receiver, c.resolver);
+			}
+		};
+
+		/**
+		 * Assimilate a thenable, sending it's value to resolver
+		 * @param {function} then
+		 * @param {object|function} thenable
+		 * @param {object} resolver
+		 * @constructor
+		 */
+		function AssimilateTask(then, thenable, resolver) {
+			this._then = then;
+			this.thenable = thenable;
+			this.resolver = resolver;
+		}
+
+		AssimilateTask.prototype.run = function() {
+			var h = this.resolver;
+			tryAssimilate(this._then, this.thenable, _resolve, _reject, _notify);
+
+			function _resolve(x) { h.resolve(x); }
+			function _reject(x)  { h.reject(x); }
+			function _notify(x)  { h.notify(x); }
+		};
+
+		function tryAssimilate(then, thenable, resolve, reject, notify) {
+			try {
+				then.call(thenable, resolve, reject, notify);
+			} catch (e) {
+				reject(e);
+			}
+		}
+
+		// Other helpers
+
+		/**
+		 * @param {*} x
+		 * @returns {boolean} true iff x is a trusted Promise
+		 */
+		function isPromise(x) {
+			return x instanceof Promise;
+		}
+
+		/**
+		 * Test just enough to rule out primitives, in order to take faster
+		 * paths in some code
+		 * @param {*} x
+		 * @returns {boolean} false iff x is guaranteed *not* to be a thenable
+		 */
+		function maybeThenable(x) {
+			return (typeof x === 'object' || typeof x === 'function') && x !== null;
+		}
+
+		function runContinuation1(f, h, receiver, next) {
+			if(typeof f !== 'function') {
+				return next.become(h);
+			}
+
+			Promise.enterContext(h);
+			tryCatchReject(f, h.value, receiver, next);
+			Promise.exitContext();
+		}
+
+		function runContinuation3(f, x, h, receiver, next) {
+			if(typeof f !== 'function') {
+				return next.become(h);
+			}
+
+			Promise.enterContext(h);
+			tryCatchReject3(f, x, h.value, receiver, next);
+			Promise.exitContext();
+		}
+
+		function runNotify(f, x, h, receiver, next) {
+			if(typeof f !== 'function') {
+				return next.notify(x);
+			}
+
+			Promise.enterContext(h);
+			tryCatchReturn(f, x, receiver, next);
+			Promise.exitContext();
+		}
+
+		/**
+		 * Return f.call(thisArg, x), or if it throws return a rejected promise for
+		 * the thrown exception
+		 */
+		function tryCatchReject(f, x, thisArg, next) {
+			try {
+				next.become(getHandler(f.call(thisArg, x)));
+			} catch(e) {
+				next.become(new Rejected(e));
+			}
+		}
+
+		/**
+		 * Same as above, but includes the extra argument parameter.
+		 */
+		function tryCatchReject3(f, x, y, thisArg, next) {
+			try {
+				f.call(thisArg, x, y, next);
+			} catch(e) {
+				next.become(new Rejected(e));
+			}
+		}
+
+		/**
+		 * Return f.call(thisArg, x), or if it throws, *return* the exception
+		 */
+		function tryCatchReturn(f, x, thisArg, next) {
+			try {
+				next.notify(f.call(thisArg, x));
+			} catch(e) {
+				next.notify(e);
+			}
+		}
+
+		function inherit(Parent, Child) {
+			Child.prototype = objectCreate(Parent.prototype);
+			Child.prototype.constructor = Child;
+		}
+
+		function noop() {}
+
+		return Promise;
+	};
+});
+}(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(); }));
+
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js":[function(require,module,exports){
 module.exports = require('./lib/ReactWithAddons');
 
-},{"./lib/ReactWithAddons":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactWithAddons.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\AutoFocusMixin.js":[function(require,module,exports){
+},{"./lib/ReactWithAddons":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactWithAddons.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -12477,7 +17723,7 @@ var AutoFocusMixin = {
 
 module.exports = AutoFocusMixin;
 
-},{"./focusNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\focusNode.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\BeforeInputEventPlugin.js":[function(require,module,exports){
+},{"./focusNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/focusNode.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/BeforeInputEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  * All rights reserved.
@@ -12699,7 +17945,7 @@ var BeforeInputEventPlugin = {
 
 module.exports = BeforeInputEventPlugin;
 
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./SyntheticInputEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticInputEvent.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSCore.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./SyntheticInputEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticInputEvent.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSCore.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -12811,7 +18057,7 @@ var CSSCore = {
 module.exports = CSSCore;
 
 }).call(this,require('_process'))
-},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSProperty.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSProperty.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -12927,7 +18173,7 @@ var CSSProperty = {
 
 module.exports = CSSProperty;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSPropertyOperations.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSPropertyOperations.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -13062,7 +18308,7 @@ var CSSPropertyOperations = {
 module.exports = CSSPropertyOperations;
 
 }).call(this,require('_process'))
-},{"./CSSProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSProperty.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./camelizeStyleName":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\camelizeStyleName.js","./dangerousStyleValue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\dangerousStyleValue.js","./hyphenateStyleName":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\hyphenateStyleName.js","./memoizeStringOnly":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\memoizeStringOnly.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CallbackQueue.js":[function(require,module,exports){
+},{"./CSSProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSProperty.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./camelizeStyleName":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/camelizeStyleName.js","./dangerousStyleValue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/dangerousStyleValue.js","./hyphenateStyleName":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenateStyleName.js","./memoizeStringOnly":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/memoizeStringOnly.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -13162,7 +18408,7 @@ PooledClass.addPoolingTo(CallbackQueue);
 module.exports = CallbackQueue;
 
 }).call(this,require('_process'))
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ChangeEventPlugin.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ChangeEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -13544,7 +18790,7 @@ var ChangeEventPlugin = {
 
 module.exports = ChangeEventPlugin;
 
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js","./isEventSupported":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isEventSupported.js","./isTextInputElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isTextInputElement.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ClientReactRootIndex.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./isEventSupported":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js","./isTextInputElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextInputElement.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ClientReactRootIndex.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -13569,7 +18815,7 @@ var ClientReactRootIndex = {
 
 module.exports = ClientReactRootIndex;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CompositionEventPlugin.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CompositionEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -13828,7 +19074,7 @@ var CompositionEventPlugin = {
 
 module.exports = CompositionEventPlugin;
 
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./ReactInputSelection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInputSelection.js","./SyntheticCompositionEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticCompositionEvent.js","./getTextContentAccessor":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getTextContentAccessor.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMChildrenOperations.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./ReactInputSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js","./SyntheticCompositionEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticCompositionEvent.js","./getTextContentAccessor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMChildrenOperations.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -14003,7 +19249,7 @@ var DOMChildrenOperations = {
 module.exports = DOMChildrenOperations;
 
 }).call(this,require('_process'))
-},{"./Danger":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Danger.js","./ReactMultiChildUpdateTypes":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChildUpdateTypes.js","./getTextContentAccessor":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getTextContentAccessor.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js":[function(require,module,exports){
+},{"./Danger":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Danger.js","./ReactMultiChildUpdateTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChildUpdateTypes.js","./getTextContentAccessor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -14302,7 +19548,7 @@ var DOMProperty = {
 module.exports = DOMProperty;
 
 }).call(this,require('_process'))
-},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -14499,7 +19745,7 @@ var DOMPropertyOperations = {
 module.exports = DOMPropertyOperations;
 
 }).call(this,require('_process'))
-},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./escapeTextForBrowser":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\escapeTextForBrowser.js","./memoizeStringOnly":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\memoizeStringOnly.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Danger.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./escapeTextForBrowser":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js","./memoizeStringOnly":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/memoizeStringOnly.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Danger.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -14685,7 +19931,7 @@ var Danger = {
 module.exports = Danger;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./createNodesFromMarkup":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createNodesFromMarkup.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js","./getMarkupWrap":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getMarkupWrap.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DefaultEventPluginOrder.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./createNodesFromMarkup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createNodesFromMarkup.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./getMarkupWrap":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getMarkupWrap.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DefaultEventPluginOrder.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -14725,7 +19971,7 @@ var DefaultEventPluginOrder = [
 
 module.exports = DefaultEventPluginOrder;
 
-},{"./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EnterLeaveEventPlugin.js":[function(require,module,exports){
+},{"./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EnterLeaveEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -14865,7 +20111,7 @@ var EnterLeaveEventPlugin = {
 
 module.exports = EnterLeaveEventPlugin;
 
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./SyntheticMouseEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticMouseEvent.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -14937,7 +20183,7 @@ var EventConstants = {
 
 module.exports = EventConstants;
 
-},{"./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventListener.js":[function(require,module,exports){
+},{"./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventListener.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -15027,7 +20273,7 @@ var EventListener = {
 module.exports = EventListener;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js":[function(require,module,exports){
+},{"./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -15303,7 +20549,7 @@ var EventPluginHub = {
 module.exports = EventPluginHub;
 
 }).call(this,require('_process'))
-},{"./EventPluginRegistry":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginRegistry.js","./EventPluginUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginUtils.js","./accumulateInto":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\accumulateInto.js","./forEachAccumulated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\forEachAccumulated.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginRegistry.js":[function(require,module,exports){
+},{"./EventPluginRegistry":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginRegistry.js","./EventPluginUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js","./accumulateInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulateInto.js","./forEachAccumulated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginRegistry.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -15583,7 +20829,7 @@ var EventPluginRegistry = {
 module.exports = EventPluginRegistry;
 
 }).call(this,require('_process'))
-},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginUtils.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -15804,7 +21050,7 @@ var EventPluginUtils = {
 module.exports = EventPluginUtils;
 
 }).call(this,require('_process'))
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -15946,7 +21192,7 @@ var EventPropagators = {
 module.exports = EventPropagators;
 
 }).call(this,require('_process'))
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js","./accumulateInto":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\accumulateInto.js","./forEachAccumulated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\forEachAccumulated.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./accumulateInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulateInto.js","./forEachAccumulated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -15991,7 +21237,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\HTMLDOMPropertyConfig.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/HTMLDOMPropertyConfig.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -16177,7 +21423,7 @@ var HTMLDOMPropertyConfig = {
 
 module.exports = HTMLDOMPropertyConfig;
 
-},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedStateMixin.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedStateMixin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -16218,7 +21464,7 @@ var LinkedStateMixin = {
 
 module.exports = LinkedStateMixin;
 
-},{"./ReactLink":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLink.js","./ReactStateSetters":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactStateSetters.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedValueUtils.js":[function(require,module,exports){
+},{"./ReactLink":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLink.js","./ReactStateSetters":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactStateSetters.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -16374,7 +21620,7 @@ var LinkedValueUtils = {
 module.exports = LinkedValueUtils;
 
 }).call(this,require('_process'))
-},{"./ReactPropTypes":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypes.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LocalEventTrapMixin.js":[function(require,module,exports){
+},{"./ReactPropTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypes.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LocalEventTrapMixin.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -16424,7 +21670,7 @@ var LocalEventTrapMixin = {
 module.exports = LocalEventTrapMixin;
 
 }).call(this,require('_process'))
-},{"./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./accumulateInto":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\accumulateInto.js","./forEachAccumulated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\forEachAccumulated.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\MobileSafariClickEventPlugin.js":[function(require,module,exports){
+},{"./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./accumulateInto":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulateInto.js","./forEachAccumulated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/MobileSafariClickEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -16482,7 +21728,7 @@ var MobileSafariClickEventPlugin = {
 
 module.exports = MobileSafariClickEventPlugin;
 
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js":[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -16529,7 +21775,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -16645,7 +21891,7 @@ var PooledClass = {
 module.exports = PooledClass;
 
 }).call(this,require('_process'))
-},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -16833,7 +22079,7 @@ React.version = '0.12.0';
 module.exports = React;
 
 }).call(this,require('_process'))
-},{"./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./EventPluginUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginUtils.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactChildren":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactChildren.js","./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactContext":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactContext.js","./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactDOMComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMComponent.js","./ReactDefaultInjection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultInjection.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactElementValidator":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElementValidator.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./ReactLegacyElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactMultiChild":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChild.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./ReactPropTypes":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypes.js","./ReactServerRendering":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactServerRendering.js","./ReactTextComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTextComponent.js","./deprecated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\deprecated.js","./onlyChild":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\onlyChild.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js":[function(require,module,exports){
+},{"./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./EventPluginUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./ReactChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactChildren.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactDOMComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMComponent.js","./ReactDefaultInjection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultInjection.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactElementValidator":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElementValidator.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactLegacyElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLegacyElement.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactMultiChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChild.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactPropTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypes.js","./ReactServerRendering":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRendering.js","./ReactTextComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js","./deprecated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/deprecated.js","./onlyChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/onlyChild.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -16876,7 +22122,7 @@ var ReactBrowserComponentMixin = {
 module.exports = ReactBrowserComponentMixin;
 
 }).call(this,require('_process'))
-},{"./ReactEmptyComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEmptyComponent.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js":[function(require,module,exports){
+},{"./ReactEmptyComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -17231,7 +22477,7 @@ var ReactBrowserEventEmitter = assign({}, ReactEventEmitterMixin, {
 
 module.exports = ReactBrowserEventEmitter;
 
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js","./EventPluginRegistry":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginRegistry.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactEventEmitterMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEventEmitterMixin.js","./ViewportMetrics":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ViewportMetrics.js","./isEventSupported":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isEventSupported.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCSSTransitionGroup.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./EventPluginRegistry":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginRegistry.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./ReactEventEmitterMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventEmitterMixin.js","./ViewportMetrics":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ViewportMetrics.js","./isEventSupported":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroup.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -17298,7 +22544,7 @@ var ReactCSSTransitionGroup = React.createClass({
 
 module.exports = ReactCSSTransitionGroup;
 
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js","./ReactCSSTransitionGroupChild":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCSSTransitionGroupChild.js","./ReactTransitionGroup":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionGroup.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCSSTransitionGroupChild.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactCSSTransitionGroupChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroupChild.js","./ReactTransitionGroup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionGroup.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroupChild.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -17433,7 +22679,7 @@ var ReactCSSTransitionGroupChild = React.createClass({
 module.exports = ReactCSSTransitionGroupChild;
 
 }).call(this,require('_process'))
-},{"./CSSCore":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSCore.js","./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js","./ReactTransitionEvents":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionEvents.js","./onlyChild":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\onlyChild.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactChildren.js":[function(require,module,exports){
+},{"./CSSCore":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSCore.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactTransitionEvents":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionEvents.js","./onlyChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/onlyChild.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactChildren.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -17583,7 +22829,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 }).call(this,require('_process'))
-},{"./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./traverseAllChildren":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\traverseAllChildren.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js":[function(require,module,exports){
+},{"./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./traverseAllChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/traverseAllChildren.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -18026,7 +23272,7 @@ var ReactComponent = {
 module.exports = ReactComponent;
 
 }).call(this,require('_process'))
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactOwner.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponentBrowserEnvironment.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactOwner.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentBrowserEnvironment.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -18148,7 +23394,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 }).call(this,require('_process'))
-},{"./ReactDOMIDOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMIDOperations.js","./ReactMarkupChecksum":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMarkupChecksum.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./ReactReconcileTransaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactReconcileTransaction.js","./getReactRootElementInContainer":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getReactRootElementInContainer.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./setInnerHTML":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\setInnerHTML.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponentWithPureRenderMixin.js":[function(require,module,exports){
+},{"./ReactDOMIDOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMIDOperations.js","./ReactMarkupChecksum":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMarkupChecksum.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactReconcileTransaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactReconcileTransaction.js","./getReactRootElementInContainer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getReactRootElementInContainer.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./setInnerHTML":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/setInnerHTML.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentWithPureRenderMixin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -18197,7 +23443,7 @@ var ReactComponentWithPureRenderMixin = {
 
 module.exports = ReactComponentWithPureRenderMixin;
 
-},{"./shallowEqual":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shallowEqual.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js":[function(require,module,exports){
+},{"./shallowEqual":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shallowEqual.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -19637,7 +24883,7 @@ var ReactCompositeComponent = {
 module.exports = ReactCompositeComponent;
 
 }).call(this,require('_process'))
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactContext":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactContext.js","./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactElementValidator":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElementValidator.js","./ReactEmptyComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEmptyComponent.js","./ReactErrorUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactErrorUtils.js","./ReactLegacyElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js","./ReactOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactOwner.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./ReactPropTransferer":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTransferer.js","./ReactPropTypeLocationNames":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocationNames.js","./ReactPropTypeLocations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocations.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./instantiateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\instantiateReactComponent.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","./mapObject":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\mapObject.js","./monitorCodeUse":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\monitorCodeUse.js","./shouldUpdateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shouldUpdateReactComponent.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactContext.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactElementValidator":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElementValidator.js","./ReactEmptyComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js","./ReactErrorUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactErrorUtils.js","./ReactLegacyElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLegacyElement.js","./ReactOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactOwner.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactPropTransferer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTransferer.js","./ReactPropTypeLocationNames":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocationNames.js","./ReactPropTypeLocations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocations.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./mapObject":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mapObject.js","./monitorCodeUse":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js","./shouldUpdateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -19699,7 +24945,7 @@ var ReactContext = {
 
 module.exports = ReactContext;
 
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -19733,7 +24979,7 @@ var ReactCurrentOwner = {
 
 module.exports = ReactCurrentOwner;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -19916,7 +25162,7 @@ var ReactDOM = mapObject({
 module.exports = ReactDOM;
 
 }).call(this,require('_process'))
-},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactElementValidator":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElementValidator.js","./ReactLegacyElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js","./mapObject":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\mapObject.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMButton.js":[function(require,module,exports){
+},{"./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactElementValidator":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElementValidator.js","./ReactLegacyElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLegacyElement.js","./mapObject":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mapObject.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMButton.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -19981,7 +25227,7 @@ var ReactDOMButton = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMButton;
 
-},{"./AutoFocusMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\AutoFocusMixin.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMComponent.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -20468,7 +25714,7 @@ assign(
 module.exports = ReactDOMComponent;
 
 }).call(this,require('_process'))
-},{"./CSSPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSPropertyOperations.js","./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactMultiChild":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChild.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./escapeTextForBrowser":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\escapeTextForBrowser.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./isEventSupported":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isEventSupported.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","./monitorCodeUse":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\monitorCodeUse.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMForm.js":[function(require,module,exports){
+},{"./CSSPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSPropertyOperations.js","./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactMultiChild":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChild.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./escapeTextForBrowser":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./isEventSupported":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./monitorCodeUse":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMForm.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -20518,7 +25764,7 @@ var ReactDOMForm = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMForm;
 
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./LocalEventTrapMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMIDOperations.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./LocalEventTrapMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMIDOperations.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -20704,7 +25950,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 }).call(this,require('_process'))
-},{"./CSSPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSPropertyOperations.js","./DOMChildrenOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMChildrenOperations.js","./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./setInnerHTML":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\setInnerHTML.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMImg.js":[function(require,module,exports){
+},{"./CSSPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSPropertyOperations.js","./DOMChildrenOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMChildrenOperations.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./setInnerHTML":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/setInnerHTML.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMImg.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -20752,7 +25998,7 @@ var ReactDOMImg = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMImg;
 
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./LocalEventTrapMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMInput.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./LocalEventTrapMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LocalEventTrapMixin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMInput.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -20930,7 +26176,7 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
 module.exports = ReactDOMInput;
 
 }).call(this,require('_process'))
-},{"./AutoFocusMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\AutoFocusMixin.js","./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./LinkedValueUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedValueUtils.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMOption.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./LinkedValueUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMOption.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -20983,7 +26229,7 @@ var ReactDOMOption = ReactCompositeComponent.createClass({
 module.exports = ReactDOMOption;
 
 }).call(this,require('_process'))
-},{"./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMSelect.js":[function(require,module,exports){
+},{"./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelect.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21167,7 +26413,7 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMSelect;
 
-},{"./AutoFocusMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\AutoFocusMixin.js","./LinkedValueUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedValueUtils.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMSelection.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./LinkedValueUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelection.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21376,7 +26622,7 @@ var ReactDOMSelection = {
 
 module.exports = ReactDOMSelection;
 
-},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./getNodeForCharacterOffset":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getNodeForCharacterOffset.js","./getTextContentAccessor":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getTextContentAccessor.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMTextarea.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./getNodeForCharacterOffset":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getNodeForCharacterOffset.js","./getTextContentAccessor":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMTextarea.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -21517,7 +26763,7 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
 module.exports = ReactDOMTextarea;
 
 }).call(this,require('_process'))
-},{"./AutoFocusMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\AutoFocusMixin.js","./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./LinkedValueUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedValueUtils.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactDOM":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOM.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultBatchingStrategy.js":[function(require,module,exports){
+},{"./AutoFocusMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/AutoFocusMixin.js","./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./LinkedValueUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedValueUtils.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactDOM":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOM.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultBatchingStrategy.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21590,7 +26836,7 @@ var ReactDefaultBatchingStrategy = {
 
 module.exports = ReactDefaultBatchingStrategy;
 
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./Transaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Transaction.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultInjection.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultInjection.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -21719,7 +26965,7 @@ module.exports = {
 };
 
 }).call(this,require('_process'))
-},{"./BeforeInputEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\BeforeInputEventPlugin.js","./ChangeEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ChangeEventPlugin.js","./ClientReactRootIndex":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ClientReactRootIndex.js","./CompositionEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CompositionEventPlugin.js","./DefaultEventPluginOrder":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DefaultEventPluginOrder.js","./EnterLeaveEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EnterLeaveEventPlugin.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./HTMLDOMPropertyConfig":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\HTMLDOMPropertyConfig.js","./MobileSafariClickEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\MobileSafariClickEventPlugin.js","./ReactBrowserComponentMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserComponentMixin.js","./ReactComponentBrowserEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponentBrowserEnvironment.js","./ReactDOMButton":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMButton.js","./ReactDOMComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMComponent.js","./ReactDOMForm":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMForm.js","./ReactDOMImg":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMImg.js","./ReactDOMInput":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMInput.js","./ReactDOMOption":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMOption.js","./ReactDOMSelect":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMSelect.js","./ReactDOMTextarea":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMTextarea.js","./ReactDefaultBatchingStrategy":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultBatchingStrategy.js","./ReactDefaultPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultPerf.js","./ReactEventListener":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEventListener.js","./ReactInjection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInjection.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./SVGDOMPropertyConfig":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SVGDOMPropertyConfig.js","./SelectEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SelectEventPlugin.js","./ServerReactRootIndex":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ServerReactRootIndex.js","./SimpleEventPlugin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SimpleEventPlugin.js","./createFullPageComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createFullPageComponent.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultPerf.js":[function(require,module,exports){
+},{"./BeforeInputEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/BeforeInputEventPlugin.js","./ChangeEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ChangeEventPlugin.js","./ClientReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ClientReactRootIndex.js","./CompositionEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CompositionEventPlugin.js","./DefaultEventPluginOrder":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DefaultEventPluginOrder.js","./EnterLeaveEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EnterLeaveEventPlugin.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./HTMLDOMPropertyConfig":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/HTMLDOMPropertyConfig.js","./MobileSafariClickEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/MobileSafariClickEventPlugin.js","./ReactBrowserComponentMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserComponentMixin.js","./ReactComponentBrowserEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentBrowserEnvironment.js","./ReactDOMButton":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMButton.js","./ReactDOMComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMComponent.js","./ReactDOMForm":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMForm.js","./ReactDOMImg":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMImg.js","./ReactDOMInput":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMInput.js","./ReactDOMOption":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMOption.js","./ReactDOMSelect":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelect.js","./ReactDOMTextarea":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMTextarea.js","./ReactDefaultBatchingStrategy":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultBatchingStrategy.js","./ReactDefaultPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerf.js","./ReactEventListener":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventListener.js","./ReactInjection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInjection.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./SVGDOMPropertyConfig":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SVGDOMPropertyConfig.js","./SelectEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SelectEventPlugin.js","./ServerReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ServerReactRootIndex.js","./SimpleEventPlugin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SimpleEventPlugin.js","./createFullPageComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createFullPageComponent.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerf.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21979,7 +27225,7 @@ var ReactDefaultPerf = {
 
 module.exports = ReactDefaultPerf;
 
-},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./ReactDefaultPerfAnalysis":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultPerfAnalysis.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./performanceNow":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\performanceNow.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultPerfAnalysis.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./ReactDefaultPerfAnalysis":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerfAnalysis.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./performanceNow":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performanceNow.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerfAnalysis.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22185,7 +27431,7 @@ var ReactDefaultPerfAnalysis = {
 
 module.exports = ReactDefaultPerfAnalysis;
 
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -22431,7 +27677,7 @@ ReactElement.isValidElement = function(object) {
 module.exports = ReactElement;
 
 }).call(this,require('_process'))
-},{"./ReactContext":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactContext.js","./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElementValidator.js":[function(require,module,exports){
+},{"./ReactContext":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactContext.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElementValidator.js":[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -22699,7 +27945,7 @@ var ReactElementValidator = {
 
 module.exports = ReactElementValidator;
 
-},{"./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactPropTypeLocations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocations.js","./monitorCodeUse":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\monitorCodeUse.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEmptyComponent.js":[function(require,module,exports){
+},{"./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactPropTypeLocations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocations.js","./monitorCodeUse":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -22776,7 +28022,7 @@ var ReactEmptyComponent = {
 module.exports = ReactEmptyComponent;
 
 }).call(this,require('_process'))
-},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactErrorUtils.js":[function(require,module,exports){
+},{"./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactErrorUtils.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22808,7 +28054,7 @@ var ReactErrorUtils = {
 
 module.exports = ReactErrorUtils;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEventEmitterMixin.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventEmitterMixin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22858,7 +28104,7 @@ var ReactEventEmitterMixin = {
 
 module.exports = ReactEventEmitterMixin;
 
-},{"./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEventListener.js":[function(require,module,exports){
+},{"./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEventListener.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23042,7 +28288,7 @@ var ReactEventListener = {
 
 module.exports = ReactEventListener;
 
-},{"./EventListener":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventListener.js","./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./getEventTarget":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventTarget.js","./getUnboundedScrollPosition":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getUnboundedScrollPosition.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInjection.js":[function(require,module,exports){
+},{"./EventListener":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventListener.js","./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./getEventTarget":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js","./getUnboundedScrollPosition":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getUnboundedScrollPosition.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInjection.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23082,7 +28328,7 @@ var ReactInjection = {
 
 module.exports = ReactInjection;
 
-},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactEmptyComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEmptyComponent.js","./ReactNativeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactNativeComponent.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./ReactRootIndex":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactRootIndex.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInputSelection.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactEmptyComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js","./ReactNativeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactNativeComponent.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./ReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactRootIndex.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23218,7 +28464,7 @@ var ReactInputSelection = {
 
 module.exports = ReactInputSelection;
 
-},{"./ReactDOMSelection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDOMSelection.js","./containsNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\containsNode.js","./focusNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\focusNode.js","./getActiveElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getActiveElement.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js":[function(require,module,exports){
+},{"./ReactDOMSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDOMSelection.js","./containsNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/containsNode.js","./focusNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/focusNode.js","./getActiveElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getActiveElement.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -23553,7 +28799,7 @@ var ReactInstanceHandles = {
 module.exports = ReactInstanceHandles;
 
 }).call(this,require('_process'))
-},{"./ReactRootIndex":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactRootIndex.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js":[function(require,module,exports){
+},{"./ReactRootIndex":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactRootIndex.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLegacyElement.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -23800,7 +29046,7 @@ ReactLegacyElementFactory._isLegacyCallWarningEnabled = true;
 module.exports = ReactLegacyElementFactory;
 
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./monitorCodeUse":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\monitorCodeUse.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLink.js":[function(require,module,exports){
+},{"./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./monitorCodeUse":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLink.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23873,7 +29119,7 @@ ReactLink.PropTypes = {
 
 module.exports = ReactLink;
 
-},{"./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMarkupChecksum.js":[function(require,module,exports){
+},{"./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMarkupChecksum.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23921,7 +29167,7 @@ var ReactMarkupChecksum = {
 
 module.exports = ReactMarkupChecksum;
 
-},{"./adler32":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\adler32.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js":[function(require,module,exports){
+},{"./adler32":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/adler32.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -24619,7 +29865,7 @@ ReactMount.renderComponent = deprecated(
 module.exports = ReactMount;
 
 }).call(this,require('_process'))
-},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./ReactLegacyElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./containsNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\containsNode.js","./deprecated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\deprecated.js","./getReactRootElementInContainer":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getReactRootElementInContainer.js","./instantiateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\instantiateReactComponent.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./shouldUpdateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shouldUpdateReactComponent.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChild.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactLegacyElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLegacyElement.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./containsNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/containsNode.js","./deprecated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/deprecated.js","./getReactRootElementInContainer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getReactRootElementInContainer.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./shouldUpdateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChild.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -25047,7 +30293,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 
-},{"./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactMultiChildUpdateTypes":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChildUpdateTypes.js","./flattenChildren":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\flattenChildren.js","./instantiateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\instantiateReactComponent.js","./shouldUpdateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shouldUpdateReactComponent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMultiChildUpdateTypes.js":[function(require,module,exports){
+},{"./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactMultiChildUpdateTypes":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChildUpdateTypes.js","./flattenChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/flattenChildren.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./shouldUpdateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMultiChildUpdateTypes.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -25080,7 +30326,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 
 module.exports = ReactMultiChildUpdateTypes;
 
-},{"./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactNativeComponent.js":[function(require,module,exports){
+},{"./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactNativeComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -25153,7 +30399,7 @@ var ReactNativeComponent = {
 module.exports = ReactNativeComponent;
 
 }).call(this,require('_process'))
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactOwner.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactOwner.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -25309,7 +30555,7 @@ var ReactOwner = {
 module.exports = ReactOwner;
 
 }).call(this,require('_process'))
-},{"./emptyObject":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyObject.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js":[function(require,module,exports){
+},{"./emptyObject":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyObject.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -25393,7 +30639,7 @@ function _noMeasure(objName, fnName, func) {
 module.exports = ReactPerf;
 
 }).call(this,require('_process'))
-},{"_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTransferer.js":[function(require,module,exports){
+},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTransferer.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -25560,7 +30806,7 @@ var ReactPropTransferer = {
 module.exports = ReactPropTransferer;
 
 }).call(this,require('_process'))
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./joinClasses":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\joinClasses.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocationNames.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./joinClasses":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/joinClasses.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocationNames.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -25588,7 +30834,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = ReactPropTypeLocationNames;
 
 }).call(this,require('_process'))
-},{"_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocations.js":[function(require,module,exports){
+},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocations.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -25612,7 +30858,7 @@ var ReactPropTypeLocations = keyMirror({
 
 module.exports = ReactPropTypeLocations;
 
-},{"./keyMirror":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypes.js":[function(require,module,exports){
+},{"./keyMirror":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypes.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -25966,7 +31212,7 @@ function getPreciseType(propValue) {
 
 module.exports = ReactPropTypes;
 
-},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactPropTypeLocationNames":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTypeLocationNames.js","./deprecated":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\deprecated.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPutListenerQueue.js":[function(require,module,exports){
+},{"./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactPropTypeLocationNames":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTypeLocationNames.js","./deprecated":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/deprecated.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPutListenerQueue.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -26022,7 +31268,7 @@ PooledClass.addPoolingTo(ReactPutListenerQueue);
 
 module.exports = ReactPutListenerQueue;
 
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactReconcileTransaction.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactReconcileTransaction.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -26198,7 +31444,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 
-},{"./CallbackQueue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CallbackQueue.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./ReactInputSelection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInputSelection.js","./ReactPutListenerQueue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPutListenerQueue.js","./Transaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Transaction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactRootIndex.js":[function(require,module,exports){
+},{"./CallbackQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactInputSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js","./ReactPutListenerQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPutListenerQueue.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactRootIndex.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -26229,7 +31475,7 @@ var ReactRootIndex = {
 
 module.exports = ReactRootIndex;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactServerRendering.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRendering.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -26309,7 +31555,7 @@ module.exports = {
 };
 
 }).call(this,require('_process'))
-},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./ReactMarkupChecksum":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMarkupChecksum.js","./ReactServerRenderingTransaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactServerRenderingTransaction.js","./instantiateReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\instantiateReactComponent.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactServerRenderingTransaction.js":[function(require,module,exports){
+},{"./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./ReactMarkupChecksum":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMarkupChecksum.js","./ReactServerRenderingTransaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRenderingTransaction.js","./instantiateReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactServerRenderingTransaction.js":[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -26422,7 +31668,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
 
-},{"./CallbackQueue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CallbackQueue.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./ReactPutListenerQueue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPutListenerQueue.js","./Transaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Transaction.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactStateSetters.js":[function(require,module,exports){
+},{"./CallbackQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactPutListenerQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPutListenerQueue.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactStateSetters.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -26528,7 +31774,7 @@ ReactStateSetters.Mixin = {
 
 module.exports = ReactStateSetters;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTestUtils.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTestUtils.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -26940,7 +32186,7 @@ for (eventType in topLevelTypes) {
 
 module.exports = ReactTestUtils;
 
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPluginHub":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginHub.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js","./ReactBrowserEventEmitter":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactBrowserEventEmitter.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactMount":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactMount.js","./ReactTextComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTextComponent.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTextComponent.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginHub":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginHub.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactBrowserEventEmitter":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactBrowserEventEmitter.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactMount":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactMount.js","./ReactTextComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -27046,7 +32292,7 @@ ReactTextComponentFactory.type = ReactTextComponent;
 
 module.exports = ReactTextComponentFactory;
 
-},{"./DOMPropertyOperations":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMPropertyOperations.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./ReactComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponent.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./escapeTextForBrowser":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\escapeTextForBrowser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionChildMapping.js":[function(require,module,exports){
+},{"./DOMPropertyOperations":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMPropertyOperations.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./ReactComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponent.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./escapeTextForBrowser":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionChildMapping.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -27147,7 +32393,7 @@ var ReactTransitionChildMapping = {
 
 module.exports = ReactTransitionChildMapping;
 
-},{"./ReactChildren":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactChildren.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionEvents.js":[function(require,module,exports){
+},{"./ReactChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactChildren.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionEvents.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -27258,7 +32504,7 @@ var ReactTransitionEvents = {
 
 module.exports = ReactTransitionEvents;
 
-},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionGroup.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionGroup.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -27447,7 +32693,7 @@ var ReactTransitionGroup = React.createClass({
 
 module.exports = ReactTransitionGroup;
 
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js","./ReactTransitionChildMapping":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionChildMapping.js","./cloneWithProps":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\cloneWithProps.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactTransitionChildMapping":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionChildMapping.js","./cloneWithProps":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cloneWithProps.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -27737,7 +32983,7 @@ var ReactUpdates = {
 module.exports = ReactUpdates;
 
 }).call(this,require('_process'))
-},{"./CallbackQueue":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CallbackQueue.js","./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./ReactCurrentOwner":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCurrentOwner.js","./ReactPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPerf.js","./Transaction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Transaction.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactWithAddons.js":[function(require,module,exports){
+},{"./CallbackQueue":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CallbackQueue.js","./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./ReactCurrentOwner":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCurrentOwner.js","./ReactPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPerf.js","./Transaction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactWithAddons.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -27791,7 +33037,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = React;
 
 }).call(this,require('_process'))
-},{"./LinkedStateMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\LinkedStateMixin.js","./React":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\React.js","./ReactCSSTransitionGroup":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCSSTransitionGroup.js","./ReactComponentWithPureRenderMixin":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactComponentWithPureRenderMixin.js","./ReactDefaultPerf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactDefaultPerf.js","./ReactTestUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTestUtils.js","./ReactTransitionGroup":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTransitionGroup.js","./ReactUpdates":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactUpdates.js","./cloneWithProps":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\cloneWithProps.js","./cx":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\cx.js","./update":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\update.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SVGDOMPropertyConfig.js":[function(require,module,exports){
+},{"./LinkedStateMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/LinkedStateMixin.js","./React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js","./ReactCSSTransitionGroup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCSSTransitionGroup.js","./ReactComponentWithPureRenderMixin":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactComponentWithPureRenderMixin.js","./ReactDefaultPerf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactDefaultPerf.js","./ReactTestUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTestUtils.js","./ReactTransitionGroup":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTransitionGroup.js","./ReactUpdates":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactUpdates.js","./cloneWithProps":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cloneWithProps.js","./cx":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cx.js","./update":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/update.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SVGDOMPropertyConfig.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -27883,7 +33129,7 @@ var SVGDOMPropertyConfig = {
 
 module.exports = SVGDOMPropertyConfig;
 
-},{"./DOMProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\DOMProperty.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SelectEventPlugin.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/DOMProperty.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SelectEventPlugin.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -28078,7 +33324,7 @@ var SelectEventPlugin = {
 
 module.exports = SelectEventPlugin;
 
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./ReactInputSelection":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInputSelection.js","./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js","./getActiveElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getActiveElement.js","./isTextInputElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isTextInputElement.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","./shallowEqual":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shallowEqual.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ServerReactRootIndex.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./ReactInputSelection":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInputSelection.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./getActiveElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getActiveElement.js","./isTextInputElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextInputElement.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./shallowEqual":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shallowEqual.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ServerReactRootIndex.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -28109,7 +33355,7 @@ var ServerReactRootIndex = {
 
 module.exports = ServerReactRootIndex;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SimpleEventPlugin.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SimpleEventPlugin.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -28537,7 +33783,7 @@ var SimpleEventPlugin = {
 module.exports = SimpleEventPlugin;
 
 }).call(this,require('_process'))
-},{"./EventConstants":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventConstants.js","./EventPluginUtils":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPluginUtils.js","./EventPropagators":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\EventPropagators.js","./SyntheticClipboardEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticClipboardEvent.js","./SyntheticDragEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticDragEvent.js","./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js","./SyntheticFocusEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticFocusEvent.js","./SyntheticKeyboardEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticKeyboardEvent.js","./SyntheticMouseEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticMouseEvent.js","./SyntheticTouchEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticTouchEvent.js","./SyntheticUIEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js","./SyntheticWheelEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticWheelEvent.js","./getEventCharCode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventCharCode.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticClipboardEvent.js":[function(require,module,exports){
+},{"./EventConstants":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventConstants.js","./EventPluginUtils":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPluginUtils.js","./EventPropagators":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/EventPropagators.js","./SyntheticClipboardEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticClipboardEvent.js","./SyntheticDragEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticDragEvent.js","./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./SyntheticFocusEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticFocusEvent.js","./SyntheticKeyboardEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticKeyboardEvent.js","./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js","./SyntheticTouchEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticTouchEvent.js","./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./SyntheticWheelEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticWheelEvent.js","./getEventCharCode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventCharCode.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticClipboardEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -28583,7 +33829,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 
-},{"./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticCompositionEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticCompositionEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -28629,7 +33875,7 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticCompositionEvent;
 
 
-},{"./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticDragEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticDragEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -28668,7 +33914,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
 
-},{"./SyntheticMouseEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticMouseEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js":[function(require,module,exports){
+},{"./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -28826,7 +34072,7 @@ PooledClass.addPoolingTo(SyntheticEvent, PooledClass.threeArgumentPooler);
 
 module.exports = SyntheticEvent;
 
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./PooledClass":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\PooledClass.js","./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js","./getEventTarget":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventTarget.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticFocusEvent.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./PooledClass":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/PooledClass.js","./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","./getEventTarget":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticFocusEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -28865,7 +34111,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
 
-},{"./SyntheticUIEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticInputEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticInputEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  * All rights reserved.
@@ -28912,7 +34158,7 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticInputEvent;
 
 
-},{"./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticKeyboardEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticKeyboardEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -28999,7 +34245,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
 
-},{"./SyntheticUIEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js","./getEventCharCode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventCharCode.js","./getEventKey":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventKey.js","./getEventModifierState":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventModifierState.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticMouseEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./getEventCharCode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventCharCode.js","./getEventKey":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventKey.js","./getEventModifierState":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -29082,7 +34328,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
 
-},{"./SyntheticUIEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js","./ViewportMetrics":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ViewportMetrics.js","./getEventModifierState":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventModifierState.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticTouchEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./ViewportMetrics":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ViewportMetrics.js","./getEventModifierState":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticTouchEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -29130,7 +34376,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
 
-},{"./SyntheticUIEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js","./getEventModifierState":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventModifierState.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticUIEvent.js":[function(require,module,exports){
+},{"./SyntheticUIEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js","./getEventModifierState":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticUIEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -29192,7 +34438,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
 
-},{"./SyntheticEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticEvent.js","./getEventTarget":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventTarget.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticWheelEvent.js":[function(require,module,exports){
+},{"./SyntheticEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticEvent.js","./getEventTarget":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticWheelEvent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -29253,7 +34499,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
 
-},{"./SyntheticMouseEvent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\SyntheticMouseEvent.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Transaction.js":[function(require,module,exports){
+},{"./SyntheticMouseEvent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/SyntheticMouseEvent.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Transaction.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -29494,7 +34740,7 @@ var Transaction = {
 module.exports = Transaction;
 
 }).call(this,require('_process'))
-},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ViewportMetrics.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ViewportMetrics.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -29526,7 +34772,7 @@ var ViewportMetrics = {
 
 module.exports = ViewportMetrics;
 
-},{"./getUnboundedScrollPosition":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getUnboundedScrollPosition.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\accumulateInto.js":[function(require,module,exports){
+},{"./getUnboundedScrollPosition":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getUnboundedScrollPosition.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/accumulateInto.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -29592,7 +34838,7 @@ function accumulateInto(current, next) {
 module.exports = accumulateInto;
 
 }).call(this,require('_process'))
-},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\adler32.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/adler32.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -29626,7 +34872,7 @@ function adler32(data) {
 
 module.exports = adler32;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\camelize.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/camelize.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -29658,7 +34904,7 @@ function camelize(string) {
 
 module.exports = camelize;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\camelizeStyleName.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/camelizeStyleName.js":[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -29700,7 +34946,7 @@ function camelizeStyleName(string) {
 
 module.exports = camelizeStyleName;
 
-},{"./camelize":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\camelize.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\cloneWithProps.js":[function(require,module,exports){
+},{"./camelize":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/camelize.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cloneWithProps.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -29759,7 +35005,7 @@ function cloneWithProps(child, props) {
 module.exports = cloneWithProps;
 
 }).call(this,require('_process'))
-},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactPropTransferer":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactPropTransferer.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\containsNode.js":[function(require,module,exports){
+},{"./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactPropTransferer":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactPropTransferer.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/containsNode.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -29803,7 +35049,7 @@ function containsNode(outerNode, innerNode) {
 
 module.exports = containsNode;
 
-},{"./isTextNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isTextNode.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createArrayFrom.js":[function(require,module,exports){
+},{"./isTextNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextNode.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createArrayFrom.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -29889,7 +35135,7 @@ function createArrayFrom(obj) {
 
 module.exports = createArrayFrom;
 
-},{"./toArray":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\toArray.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createFullPageComponent.js":[function(require,module,exports){
+},{"./toArray":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/toArray.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createFullPageComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -29950,7 +35196,7 @@ function createFullPageComponent(tag) {
 module.exports = createFullPageComponent;
 
 }).call(this,require('_process'))
-},{"./ReactCompositeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactCompositeComponent.js","./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createNodesFromMarkup.js":[function(require,module,exports){
+},{"./ReactCompositeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactCompositeComponent.js","./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createNodesFromMarkup.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -30040,7 +35286,7 @@ function createNodesFromMarkup(markup, handleScript) {
 module.exports = createNodesFromMarkup;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./createArrayFrom":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\createArrayFrom.js","./getMarkupWrap":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getMarkupWrap.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\cx.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./createArrayFrom":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/createArrayFrom.js","./getMarkupWrap":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getMarkupWrap.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/cx.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30079,7 +35325,7 @@ function cx(classNames) {
 
 module.exports = cx;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\dangerousStyleValue.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/dangerousStyleValue.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30137,7 +35383,7 @@ function dangerousStyleValue(name, value) {
 
 module.exports = dangerousStyleValue;
 
-},{"./CSSProperty":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\CSSProperty.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\deprecated.js":[function(require,module,exports){
+},{"./CSSProperty":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/CSSProperty.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/deprecated.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -30188,7 +35434,7 @@ function deprecated(namespace, oldName, newName, ctx, fn) {
 module.exports = deprecated;
 
 }).call(this,require('_process'))
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30222,7 +35468,7 @@ emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyObject.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyObject.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -30246,7 +35492,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = emptyObject;
 
 }).call(this,require('_process'))
-},{"_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\escapeTextForBrowser.js":[function(require,module,exports){
+},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/escapeTextForBrowser.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30287,7 +35533,7 @@ function escapeTextForBrowser(text) {
 
 module.exports = escapeTextForBrowser;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\flattenChildren.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/flattenChildren.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -30356,7 +35602,7 @@ function flattenChildren(children) {
 module.exports = flattenChildren;
 
 }).call(this,require('_process'))
-},{"./ReactTextComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactTextComponent.js","./traverseAllChildren":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\traverseAllChildren.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\focusNode.js":[function(require,module,exports){
+},{"./ReactTextComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactTextComponent.js","./traverseAllChildren":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/traverseAllChildren.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/focusNode.js":[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -30385,7 +35631,7 @@ function focusNode(node) {
 
 module.exports = focusNode;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\forEachAccumulated.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/forEachAccumulated.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30416,7 +35662,7 @@ var forEachAccumulated = function(arr, cb, scope) {
 
 module.exports = forEachAccumulated;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getActiveElement.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getActiveElement.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30445,7 +35691,7 @@ function getActiveElement() /*?DOMElement*/ {
 
 module.exports = getActiveElement;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventCharCode.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventCharCode.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30497,7 +35743,7 @@ function getEventCharCode(nativeEvent) {
 
 module.exports = getEventCharCode;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventKey.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventKey.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30602,7 +35848,7 @@ function getEventKey(nativeEvent) {
 
 module.exports = getEventKey;
 
-},{"./getEventCharCode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventCharCode.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventModifierState.js":[function(require,module,exports){
+},{"./getEventCharCode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventCharCode.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventModifierState.js":[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  * All rights reserved.
@@ -30649,7 +35895,7 @@ function getEventModifierState(nativeEvent) {
 
 module.exports = getEventModifierState;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getEventTarget.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getEventTarget.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30680,7 +35926,7 @@ function getEventTarget(nativeEvent) {
 
 module.exports = getEventTarget;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getMarkupWrap.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getMarkupWrap.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -30797,7 +36043,7 @@ function getMarkupWrap(nodeName) {
 module.exports = getMarkupWrap;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getNodeForCharacterOffset.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getNodeForCharacterOffset.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30872,7 +36118,7 @@ function getNodeForCharacterOffset(root, offset) {
 
 module.exports = getNodeForCharacterOffset;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getReactRootElementInContainer.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getReactRootElementInContainer.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30907,7 +36153,7 @@ function getReactRootElementInContainer(container) {
 
 module.exports = getReactRootElementInContainer;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getTextContentAccessor.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getTextContentAccessor.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30944,7 +36190,7 @@ function getTextContentAccessor() {
 
 module.exports = getTextContentAccessor;
 
-},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\getUnboundedScrollPosition.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/getUnboundedScrollPosition.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -30984,7 +36230,7 @@ function getUnboundedScrollPosition(scrollable) {
 
 module.exports = getUnboundedScrollPosition;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\hyphenate.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenate.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31017,7 +36263,7 @@ function hyphenate(string) {
 
 module.exports = hyphenate;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\hyphenateStyleName.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenateStyleName.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31058,7 +36304,7 @@ function hyphenateStyleName(string) {
 
 module.exports = hyphenateStyleName;
 
-},{"./hyphenate":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\hyphenate.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\instantiateReactComponent.js":[function(require,module,exports){
+},{"./hyphenate":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/hyphenate.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/instantiateReactComponent.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -31172,7 +36418,7 @@ function instantiateReactComponent(element, parentCompositeType) {
 module.exports = instantiateReactComponent;
 
 }).call(this,require('_process'))
-},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactEmptyComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactEmptyComponent.js","./ReactLegacyElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactLegacyElement.js","./ReactNativeComponent":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactNativeComponent.js","./warning":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js":[function(require,module,exports){
+},{"./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactEmptyComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactEmptyComponent.js","./ReactLegacyElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactLegacyElement.js","./ReactNativeComponent":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactNativeComponent.js","./warning":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -31229,7 +36475,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isEventSupported.js":[function(require,module,exports){
+},{"_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isEventSupported.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31294,7 +36540,7 @@ function isEventSupported(eventNameSuffix, capture) {
 
 module.exports = isEventSupported;
 
-},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isNode.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isNode.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31322,7 +36568,7 @@ function isNode(object) {
 
 module.exports = isNode;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isTextInputElement.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextInputElement.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31366,7 +36612,7 @@ function isTextInputElement(elem) {
 
 module.exports = isTextInputElement;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isTextNode.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isTextNode.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31391,7 +36637,7 @@ function isTextNode(object) {
 
 module.exports = isTextNode;
 
-},{"./isNode":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\isNode.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\joinClasses.js":[function(require,module,exports){
+},{"./isNode":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/isNode.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/joinClasses.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31432,7 +36678,7 @@ function joinClasses(className/*, ... */) {
 
 module.exports = joinClasses;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyMirror.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyMirror.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -31487,7 +36733,7 @@ var keyMirror = function(obj) {
 module.exports = keyMirror;
 
 }).call(this,require('_process'))
-},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31523,7 +36769,7 @@ var keyOf = function(oneKeyObj) {
 
 module.exports = keyOf;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\mapObject.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/mapObject.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31576,7 +36822,7 @@ function mapObject(object, callback, context) {
 
 module.exports = mapObject;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\memoizeStringOnly.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/memoizeStringOnly.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31610,7 +36856,7 @@ function memoizeStringOnly(callback) {
 
 module.exports = memoizeStringOnly;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\monitorCodeUse.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/monitorCodeUse.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -31644,7 +36890,7 @@ function monitorCodeUse(eventName, data) {
 module.exports = monitorCodeUse;
 
 }).call(this,require('_process'))
-},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\onlyChild.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/onlyChild.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -31684,7 +36930,7 @@ function onlyChild(children) {
 module.exports = onlyChild;
 
 }).call(this,require('_process'))
-},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\performance.js":[function(require,module,exports){
+},{"./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performance.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31712,7 +36958,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = performance || {};
 
-},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\performanceNow.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performanceNow.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31740,7 +36986,7 @@ var performanceNow = performance.now.bind(performance);
 
 module.exports = performanceNow;
 
-},{"./performance":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\performance.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\setInnerHTML.js":[function(require,module,exports){
+},{"./performance":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/performance.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/setInnerHTML.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31818,7 +37064,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = setInnerHTML;
 
-},{"./ExecutionEnvironment":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ExecutionEnvironment.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shallowEqual.js":[function(require,module,exports){
+},{"./ExecutionEnvironment":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ExecutionEnvironment.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shallowEqual.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31862,7 +37108,7 @@ function shallowEqual(objA, objB) {
 
 module.exports = shallowEqual;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\shouldUpdateReactComponent.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/shouldUpdateReactComponent.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -31900,7 +37146,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 
 module.exports = shouldUpdateReactComponent;
 
-},{}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\toArray.js":[function(require,module,exports){
+},{}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/toArray.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -31972,7 +37218,7 @@ function toArray(obj) {
 module.exports = toArray;
 
 }).call(this,require('_process'))
-},{"./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\traverseAllChildren.js":[function(require,module,exports){
+},{"./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/traverseAllChildren.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -32155,7 +37401,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 }).call(this,require('_process'))
-},{"./ReactElement":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactElement.js","./ReactInstanceHandles":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\ReactInstanceHandles.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\update.js":[function(require,module,exports){
+},{"./ReactElement":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactElement.js","./ReactInstanceHandles":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/ReactInstanceHandles.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/update.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -32323,7 +37569,7 @@ function update(value, spec) {
 module.exports = update;
 
 }).call(this,require('_process'))
-},{"./Object.assign":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\Object.assign.js","./invariant":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\invariant.js","./keyOf":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\keyOf.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\warning.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/Object.assign.js","./invariant":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/invariant.js","./keyOf":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/keyOf.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/warning.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -32368,7 +37614,10 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\lib\\emptyFunction.js","_process":"D:\\GitHub\\material-ui\\docs\\node_modules\\browserify\\node_modules\\process\\browser.js"}],"D:\\GitHub\\material-ui\\docs\\node_modules\\underscore\\underscore.js":[function(require,module,exports){
+},{"./emptyFunction":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/emptyFunction.js","_process":"/Users/hai/GitHub/material-ui/docs/node_modules/browserify/node_modules/process/browser.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/react/react.js":[function(require,module,exports){
+module.exports = require('./lib/React');
+
+},{"./lib/React":"/Users/hai/GitHub/material-ui/docs/node_modules/react/lib/React.js"}],"/Users/hai/GitHub/material-ui/docs/node_modules/underscore/underscore.js":[function(require,module,exports){
 //     Underscore.js 1.7.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -33785,97 +39034,106 @@ module.exports = warning;
   }
 }.call(this));
 
-},{}],"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js":[function(require,module,exports){
-var _ = require('underscore'),
-  Dispatcher = require('./vendor/flux/dispatcher.js');
+},{}],"/Users/hai/GitHub/material-ui/docs/src/app/app-routes.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+ 
+var React = require('react'), 
+  Router = require('react-router'),
+  Route = Router.Route,
+  Routes = Router.Routes,
+  Redirect = Router.Redirect,
+  DefaultRoute = Router.DefaultRoute,
 
-var AppDispatcher = _.extend(new Dispatcher(), {
+  Master = require('./components/master.jsx'),
+	Home = require('./components/pages/home.jsx'),
+	GetStarted = require('./components/pages/get-started.jsx'),
+  PageWithNav = require('./components/pages/page-with-nav.jsx'),
 
-	ActionTypes: {
-		NAV_URL_CHANGE: 'nav-url-change',
-		NAV_USER_CLICK: 'nav-user-click'
-	},
+  Colors = require('./components/pages/css-framework/colors.jsx'),
+  Typography = require('./components/pages/css-framework/typography.jsx'),
 
-	dispatchAction: function(type, payload) {
-		this.dispatch({
-			type: type,
-			payload: payload
-		})
-	}
+  Buttons = require('./components/pages/components/buttons.jsx'),
+  Dialog = require('./components/pages/components/dialog.jsx'),
+  Icons = require('./components/pages/components/icons.jsx'),
+  Inputs = require('./components/pages/components/inputs.jsx'),
+  Menus = require('./components/pages/components/menus.jsx'),
+  Switches = require('./components/pages/components/switches.jsx'),
+  Toolbars = require('./components/pages/components/toolbars.jsx'),
 
-});
+  cssFrameworkMenuItems = [
+    { route: 'colors', text: 'Colors'},
+    { route: 'typography', text: 'Typography'}
+  ],
 
-module.exports = AppDispatcher;
+  componentsMenuItems = [
+    { route: 'buttons', text: 'Buttons'},
+    { route: 'dialog', text: 'Dialog'},
+    { route: 'icons', text: 'Icons'},
+    { route: 'inputs', text: 'Inputs'},
+    { route: 'menus', text: 'Menus'},
+    { route: 'switches', text: 'Switches'},
+    //{ route: 'toasts', text: 'Toasts'},
+    { route: 'toolbars', text: 'Toolbars'},
+  ];
 
-},{"./vendor/flux/dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\flux\\dispatcher.js","underscore":"D:\\GitHub\\material-ui\\docs\\node_modules\\underscore\\underscore.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\app-router.js":[function(require,module,exports){
-var _ = require('underscore'),
-  Backbone = require('backbone'),
-  Dispatcher = require('./app-dispatcher.js'),
+var AppRoutes = (
+  React.createElement(Routes, {scrollBehavior: "scrollToTop"}, 
+    React.createElement(Route, {name: "root", path: "/", handler: Master}, 
+    	React.createElement(Route, {name: "home", handler: Home}), 
+    	React.createElement(Route, {name: "get-started", handler: GetStarted, pageTitle: "Get Started"}), 
+      React.createElement(Route, {name: "css-framework", handler: PageWithNav, menuItems: cssFrameworkMenuItems, pageTitle: "Css Framework"}, 
+        React.createElement(Route, {name: "colors", handler: Colors}), 
+        React.createElement(Route, {name: "typography", handler: Typography}), 
+        React.createElement(Redirect, {from: "/css-framework", to: "colors"})
+      ), 
 
-  AppRouter = Backbone.Router.extend({
+      React.createElement(Route, {name: "components", handler: PageWithNav, menuItems: componentsMenuItems, pageTitle: "Components"}, 
+        React.createElement(Route, {name: "buttons", handler: Buttons}), 
+        React.createElement(Route, {name: "dialog", handler: Dialog}), 
+        React.createElement(Route, {name: "icons", handler: Icons}), 
+        React.createElement(Route, {name: "inputs", handler: Inputs}), 
+        React.createElement(Route, {name: "menus", handler: Menus}), 
+        React.createElement(Route, {name: "switches", handler: Switches}), 
+        React.createElement(Route, {name: "toolbars", handler: Toolbars}), 
+        React.createElement(Redirect, {from: "/components", to: "buttons"})
+      ), 
 
-    routes: {
-      '*path': 'handleDefaultRoute'
-    },
+      React.createElement(DefaultRoute, {handler: Home})
+    )
+  )
+);
 
-    initialize: function() {
-      this.dispatchToken = Dispatcher.register(_.bind(this.onDispatched, this));
-    },
+module.exports = AppRoutes;
 
-    handleDefaultRoute: function(url) {
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_URL_CHANGE, { url: url });
-    },
-
-    onDispatched: function(action) {
-      switch (action.type) {
-        case Dispatcher.ActionTypes.NAV_USER_CLICK:
-          this.navigate(action.payload.url);
-          break;
-      }
-    }
-
-  });
-
-module.exports = new AppRouter();
-
-},{"./app-dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js","backbone":"D:\\GitHub\\material-ui\\docs\\node_modules\\backbone\\backbone.js","underscore":"D:\\GitHub\\material-ui\\docs\\node_modules\\underscore\\underscore.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\app-left-nav.jsx":[function(require,module,exports){
+},{"./components/master.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/master.jsx","./components/pages/components/buttons.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/buttons.jsx","./components/pages/components/dialog.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/dialog.jsx","./components/pages/components/icons.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/icons.jsx","./components/pages/components/inputs.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/inputs.jsx","./components/pages/components/menus.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/menus.jsx","./components/pages/components/switches.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/switches.jsx","./components/pages/components/toolbars.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/toolbars.jsx","./components/pages/css-framework/colors.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/css-framework/colors.jsx","./components/pages/css-framework/typography.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/css-framework/typography.jsx","./components/pages/get-started.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/get-started.jsx","./components/pages/home.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/home.jsx","./components/pages/page-with-nav.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/page-with-nav.jsx","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js","react-router":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/index.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/app-left-nav.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
 
 var React = require('react'),
+  Router = require('react-router'),
   mui = require('mui'),
-  Dispatcher = require('../app-dispatcher.js'),
-  Pages = require('./pages.jsx');
+
+  menuItems = [
+    { route: 'get-started', text: 'Get Started' },
+    { route: 'css-framework', text: 'CSS Framework' },
+    { route: 'components', text: 'Components' },
+    { type: mui.MenuItem.Types.SUBHEADER, text: 'Resources' },
+    { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
+    { type: mui.MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
+    { type: mui.MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
+  ];
 
 var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
 
-  propTypes: {
-    url: React.PropTypes.string,
-    toggle: React.PropTypes.func
-  },
+  mixins: [Router.Navigation, Router.ActiveState],
 
   getInitialState: function() {
     return {
-      menuItems: [
-
-        { payload: Pages.getStarted, text: Pages.getStarted.title },
-        { payload: Pages.cssFramework, text: Pages.cssFramework.title },
-        { payload: Pages.components, text: Pages.components.title },
-        { type: mui.MenuItem.Types.SUBHEADER, text: 'Resources' },
-        { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
-        { type: mui.MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
-        { type: mui.MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
-      ]
-    }
-  },
-
-  componentWillMount: function() {
-    this._setSelectedIndex(this.props.url);
-  },
-
-  componentWillReceiveProps: function(newProps) {
-    this._setSelectedIndex(newProps.url);
+      selectedIndex: null
+    };
   },
 
   render: function() {
@@ -33886,8 +39144,8 @@ var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
         ref: "leftNav", 
         isInitiallyOpen: false, 
         header: header, 
-        menuItems: this.state.menuItems, 
-        selectedIndex: this.state.selectedIndex, 
+        menuItems: menuItems, 
+        selectedIndex: this._getSelectedIndex(), 
         onChange: this._onLeftNavChange})
     );
   },
@@ -33896,38 +39154,29 @@ var AppLeftNav = React.createClass({displayName: 'AppLeftNav',
     this.refs.leftNav.toggle();
   },
 
-  _setSelectedIndex: function(url) {
-    var item;
+  _getSelectedIndex: function() {
+    var currentItem;
 
-    for (var i = 0; i < this.state.menuItems.length; i++) {
-      item = this.state.menuItems[i];
-
-      //only match the root part of the url
-      if (url && item.payload && item.payload.url.split('/')[0] === url.split('/')[0]) {
-        if (i !== this.state.selectedIndex) this.setState({ selectedIndex: i});
-        return;
-      }
+    for (var i = menuItems.length - 1; i >= 0; i--) {
+      currentItem = menuItems[i];
+      if (currentItem.route && this.isActive(currentItem.route)) return i;
     };
+  },
 
-    this.setState({ selectedIndex: null});
+  _onLeftNavChange: function(e, key, payload) {
+    this.transitionTo(payload.route);
   },
 
   _onHeaderClick: function() {
-    if (this.props.url !== Pages.home.url) {
-      this.refs.leftNav.close();
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: Pages.home.url } ); 
-    }
-  },
-
-  _onLeftNavChange: function(e, key, item) {
-    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: item.payload.url } ); 
+    this.transitionTo('root');
+    this.refs.leftNav.close();
   }
 
 });
 
 module.exports = AppLeftNav;
 
-},{"../app-dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js","./pages.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-block.jsx":[function(require,module,exports){
+},{"mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js","react-router":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/index.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-block.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -33957,7 +39206,7 @@ var CodeBlock = React.createClass({displayName: 'CodeBlock',
 });
 
 module.exports = CodeBlock;
-},{"hljs":"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\highlight-js\\highlight.pack.js","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx":[function(require,module,exports){
+},{"hljs":"/Users/hai/GitHub/material-ui/docs/src/app/vendor/highlight-js/highlight.pack.js","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -33987,83 +39236,33 @@ var CodeExample = React.createClass({displayName: 'CodeExample',
 });
 
 module.exports = CodeExample;
-},{"./code-block.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-block.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\master.jsx":[function(require,module,exports){
+},{"./code-block.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-block.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/master.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
 
-var Backbone = require('backbone'),
-  React = require('react'),
-  Dispatcher = require('../app-dispatcher.js'),
+var React = require('react'),
   mui = require('mui'),
   Menu = mui.Menu,
   Icon = mui.Icon,
-  AppStateStore = require('../stores/app-state-store.js'),
-  Pages = require('./pages.jsx'),
-	AppLeftNav = require('./app-left-nav.jsx');
+  AppLeftNav = require('./app-left-nav.jsx');
 
 var Master = React.createClass({displayName: 'Master',
 
-  mixins: [Backbone.Events],
-
-  getInitialState: function() {
-    return {
-      currentUrl: AppStateStore.get('currentUrl')
-    }
-  },
-
-  componentDidMount: function() {
-    this.listenTo(AppStateStore, 'change:currentUrl', this._onStoreChange);
-  },
-
-  componentWillUnMount: function() {
-    this.stopListening();
-  },
-
   render: function() {
-    var page = Pages.getPage(this.state.currentUrl),
-      title = page.title,
-      currentMainComponent = page.mainContentComponent,
-      contentCanvasClass = page.subPages ? 'mui-app-content-canvas with-nav' : 'mui-app-content-canvas',
-      subNav;
-
-    if (page.subPages) {
-      var menuItems = [],
-        i = 0,
-        selectedIndex,
-        currentSubPage;
-
-      for (prop in page.subPages) {
-        currentSubPage = page.subPages[prop];
-
-        if (this.state.currentUrl === currentSubPage.url) {
-          selectedIndex = i;
-          currentMainComponent = currentSubPage.mainContentComponent;
-        }
-        menuItems.push({ payload: currentSubPage.url, text: currentSubPage.title });
-        i++;
-      }
-
-      subNav = (
-        React.createElement("div", {className: "subNav"}, 
-          React.createElement(Menu, {ref: "menuItems", zDepth: 0, menuItems: menuItems, selectedIndex: selectedIndex, onItemClick: this._onMenuItemClick})
-        )
-      );
-    }
-
     return (
       React.createElement(mui.AppCanvas, {predefinedLayout: 1}, 
-        React.createElement(mui.AppBar, {onMenuIconClick: this._onMenuIconClick, title: title, zDepth: 0}, React.createElement(Icon, {icon: "github", onClick: this._onGithubClick})), 
-    		React.createElement(AppLeftNav, {ref: "leftNav", url: this.state.currentUrl}), 
-    		React.createElement("div", {className: contentCanvasClass}, 
-          subNav, 
-          React.createElement("div", {className: "subContent"}, 
-            currentMainComponent
-          )
+        React.createElement(mui.AppBar, {onMenuIconClick: this._onMenuIconClick, title: this.props.activeRouteHandler().props.pageTitle, zDepth: 0}, 
+          React.createElement(Icon, {icon: "github", onClick: this._onGithubClick})
         ), 
+        React.createElement(AppLeftNav, {ref: "leftNav"}), 
+        React.createElement(this.props.activeRouteHandler, null), 
         React.createElement("div", {className: "footer"}, 
             React.createElement(Icon, {icon: "github", onClick: this._onGithubClick}), 
-            React.createElement("p", null, "Hand crafted with love by the engineers at ", React.createElement("a", {href: "http://call-em-all.com"}, "Call-Em-All"), " and our awesome ", React.createElement("a", {href: "https://github.com/callemall/material-ui/graphs/contributors"}, "contributors"), ".")
+            React.createElement("p", null, 
+              "Hand crafted with love by the engineers at ", React.createElement("a", {href: "http://call-em-all.com"}, "Call-Em-All"), " and our" + ' ' + 
+              "awesome ", React.createElement("a", {href: "https://github.com/callemall/material-ui/graphs/contributors"}, "contributors"), "."
+            )
         )
       )
     );
@@ -34073,95 +39272,15 @@ var Master = React.createClass({displayName: 'Master',
     document.location.href='https://github.com/callemall/material-ui';
   },
 
-  _onMenuItemClick: function(e, key, item) {
-    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: item.payload } ); 
-  },
-
   _onMenuIconClick: function() {
     this.refs.leftNav.toggle();
-  },
-
-  _onStoreChange: function() {
-    this.setState({
-      currentUrl: AppStateStore.get('currentUrl')
-    });
   }
   
 });
 
 module.exports = Master;
 
-},{"../app-dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js","../stores/app-state-store.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\stores\\app-state-store.js","./app-left-nav.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\app-left-nav.jsx","./pages.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages.jsx","backbone":"D:\\GitHub\\material-ui\\docs\\node_modules\\backbone\\backbone.js","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages.jsx":[function(require,module,exports){
-/**;
- * @jsx React.DOM
- */
-
-var React = require('react'),
-	Home = require('./pages/home.jsx'),
-	GetStarted = require('./pages/get-started.jsx'),
-	Buttons = require('./pages/buttons.jsx'),
-	Colors = require('./pages/colors.jsx'),
-	Dialog = require('./pages/dialog.jsx'),
-	Icons = require('./pages/icons.jsx'),
-	Inputs = require('./pages/inputs.jsx'),
-	Menus = require('./pages/menus.jsx'),
-	Switches = require('./pages/switches.jsx'),
-	Toasts = require('./pages/toasts.jsx'),
-	Toolbar = require('./pages/toolbars.jsx'),
-	Typography = require('./pages/typography.jsx');
-
-var Pages = {
-	home: { 
-		url: '', 
-		title: '', 
-		mainContentComponent: React.createElement(Home, null) 
-	},
-	getStarted: {
-		url: 'get-started',
-		title: 'Get Started',
-		mainContentComponent: React.createElement(GetStarted, null)
-	},
-	cssFramework: { 
-		url: 'css-framework/colors', 
-		title: 'Css Framework', 
-		subPages: {
-			colors: { url: 'css-framework/colors', title: 'Colors', mainContentComponent: React.createElement(Colors, null) },
-			typography: { url: 'css-framework/typography', title: 'Typography', mainContentComponent: React.createElement(Typography, null) }
-		}
-	},
-	components: {
-		url: 'components/buttons',
-		title: 'Components',
-		subPages: {
-			buttons: { url: 'components/buttons', title: 'Buttons', mainContentComponent: React.createElement(Buttons, null) },
-			dialog: { url: 'components/dialog', title: 'Dialog', mainContentComponent: React.createElement(Dialog, null) },
-			icons: { url: 'components/icons', title: 'Icons', mainContentComponent: React.createElement(Icons, null) },
-			inputs: { url: 'components/inputs', title: 'Inputs', mainContentComponent: React.createElement(Inputs, null) },
-			menus: { url: 'components/menus', title: 'Menus', mainContentComponent: React.createElement(Menus, null) },
-			switches: { url: 'components/switches', title: 'Switches', mainContentComponent: React.createElement(Switches, null) },
-			//toasts: { url: 'components/toasts', title: 'Toasts', mainContentComponent: <Toasts /> },
-			toolbars: { url: 'components/toolbar', title: 'Toolbars', mainContentComponent: React.createElement(Toolbar, null) }
-		}
-	},
-
-	getPage: function(url) {
-		if (!url) return this.home;
-
-		//Only match the first part of the url
-		var rootUrl = url.split('/')[0],
-			currentPage;
-
-		for (prop in this) {
-			currentPage = this[prop];
-			if (currentPage.url.split('/')[0] === rootUrl) return currentPage;
-		}
-	}
-}
-
-module.exports = Pages;
-
-
-},{"./pages/buttons.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\buttons.jsx","./pages/colors.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\colors.jsx","./pages/dialog.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\dialog.jsx","./pages/get-started.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\get-started.jsx","./pages/home.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\home.jsx","./pages/icons.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\icons.jsx","./pages/inputs.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\inputs.jsx","./pages/menus.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\menus.jsx","./pages/switches.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\switches.jsx","./pages/toasts.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\toasts.jsx","./pages/toolbars.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\toolbars.jsx","./pages/typography.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\typography.jsx","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\buttons.jsx":[function(require,module,exports){
+},{"./app-left-nav.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/app-left-nav.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/buttons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34169,7 +39288,7 @@ module.exports = Pages;
 var React = require('react'),
   mui = require('mui'),
   PaperButton = mui.PaperButton,
-  CodeExample = require('../code-example/code-example.jsx');
+  CodeExample = require('../../code-example/code-example.jsx');
 
 var ButtonPage = React.createClass({displayName: 'ButtonPage',
 
@@ -34241,95 +39360,12 @@ var ButtonPage = React.createClass({displayName: 'ButtonPage',
 
 module.exports = ButtonPage;
 
-},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\colors.jsx":[function(require,module,exports){
+},{"../../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/dialog.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
 
-var React = require('react');
-
-var ColorsPage = React.createClass({displayName: 'ColorsPage',
-
-  render: function() {
-  	var mainColors = [
-  			'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue', 
-  			'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange'
-  		],
-  		neutralColors = ['Brown', 'Blue Grey', 'Grey'],
-  		colorGroups = [],
-  		neutralGroups = [];
-
-  	mainColors.forEach(function(color) {
-  		colorGroups.push(this._getColorGroup(color, true));
-  	}, this);
-
-  	neutralColors.forEach(function(color) {
-  		neutralGroups.push(this._getColorGroup(color, false));
-  	}, this);
-
-    return (
-    	React.createElement("div", null, 
-	    	React.createElement("h2", {className: "mui-font-style-headline"}, "UI Color Palette"), 
-	    	React.createElement("p", null, "We've created ", React.createElement("a", {href: "http://lesscss.org/"}, "{less}"), " variables for every color used in the ", React.createElement("a", {href: "https://www.google.com/design/spec/style/color.html#color-ui-color-palette"}, "UI Color Palette"), "."), 
-
-	    	React.createElement("div", {className: "color-palette"}, 
-	    		colorGroups, 
-
-					React.createElement("div", {className: "neutral"}, 
-						neutralGroups
-					)
-	    	)
-	    )
-    );
-  },
-
-  _getColorGroup: function(color, showAltPalette) {
-  	var mainPalette = [50,100,200,300,400,500,600,700,800,900],
-  		altPalette = ['A100','A200','A400','A700'],
-  		cssColor = color.toLowerCase().replace(' ', '-'),
-  		colors = [];
-
-  	mainPalette.forEach(function(mainValue) {
-  		colors.push(this._getColorBlock(cssColor, mainValue));
-  	}, this);
-
-  	if (showAltPalette) {
-	  	altPalette.forEach(function(altValue) {
-	  		colors.push(this._getColorBlock(cssColor, altValue));
-	  	}, this);
-	  }
-
-  	return (
-			React.createElement("ul", {className: "color-group"}, 
-				this._getColorBlock(cssColor, 500, color), 
-				colors
-			)
-  	);
-  },
-
-  _getColorBlock: function(colorName, colorValue, colorTitle) {
-  	var colorClass = colorName + '-' + colorValue,
-  		classes = 'color ' + colorClass,
-  		colorText = '@' + colorClass,
-  		blockTitle;
-
-  	if (colorTitle) blockTitle = React.createElement("span", {className: "name"}, colorTitle);
-
-  	return (
-  		React.createElement("li", {className: classes}, blockTitle, colorText)
-  	);
-  }
-
-});
-
-module.exports = ColorsPage;
-
-},{"react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\dialog.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var CodeExample = require('../code-example/code-example.jsx');
+var CodeExample = require('../../code-example/code-example.jsx');
 var mui = require('mui');
 var React = require('react');
 
@@ -34380,175 +39416,7 @@ var DialogExample = React.createClass({displayName: 'DialogExample',
 });
 
 module.exports = DialogExample;
-},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\get-started.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  mui = require('mui'),
-  CodeBlock = require('../code-example/code-block.jsx');;
-
-var HomePage = React.createClass({displayName: 'HomePage',
-
-  render: function() {
-    var usageCode =
-      '/**\n' +
-      ' * @jsx React.DOM\n' +
-      '*/\n\n' +
-      'var React = require(\'react\'),\n' +
-      '  mui = require(\'material-ui\'),\n' +
-      '  PaperButton = mui.PaperButton;\n\n' +
-      'var SomeAwesomeComponent = React.createClass({\n\n' +
-      '  render: function() {\n' +
-      '    return (\n' +
-      '        <PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
-      '    );\n' +
-      '  }\n\n' +
-      '});\n\n' +
-      'module.exports = SomeAwesomeComponent;';
-
-    var customizationCode = 
-      '@import "node_modules/material-ui/dist/less/scaffolding.less";\n\n' +
-      '//Define a custom less file to override\n//any variables defined in scaffolding.less\n' +
-      '@import "my-custom-overrides.less";\n\n' +
-      '@import "node_modules/material-ui/dist/less/components.less";';
-
-    return (
-      React.createElement("div", {className: "get-started-page"}, 
-        React.createElement("div", {className: "full-width-section"}, 
-          React.createElement("h2", {className: "mui-font-style-headline"}, "Installation"), 
-          React.createElement("p", {className: "content"}, 
-            "Material-UI is available as an ", React.createElement("a", {href: "https://www.npmjs.org/package/material-ui"}, "npm package"), "." + ' ' + 
-            "Use ", React.createElement("a", {href: "http://browserify.org/"}, "browserify"), " and ", React.createElement("a", {href: "https://github.com/andreypopp/reactify"}, "reactify"), " for" + ' ' +
-            "dependency management and JSX transformation. The CSS framework is written in ", React.createElement("a", {href: "http://lesscss.org/"}, "Less"), "," + ' ' +
-            "so you'll need to compile that as well."
-          )
-        ), 
-        
-        React.createElement("div", {className: "full-width-section"}, 
-          React.createElement("div", {className: "content"}, 
-            React.createElement("h2", {className: "mui-font-style-headline"}, "Usage"), 
-            React.createElement("p", null, 
-              "Once material-ui is included in your project, you can use the components this way:"
-            ), 
-            React.createElement(mui.Paper, {className: "code-example"}, 
-              React.createElement(CodeBlock, null, usageCode)
-            )
-          ), 
-
-          React.createElement("div", {className: "content"}, 
-            React.createElement("h2", {className: "mui-font-style-headline"}, "Customization"), 
-            React.createElement("div", null, 
-              React.createElement("p", null, "The styles are separated into 2 less files:"), 
-              React.createElement("li", null, "dist/less/scaffolding.less"), 
-              React.createElement("li", null, "dist/less/components.less"), 
-              React.createElement("p", null, 
-                "This allows you to override any variables defined in custom-variables.less without having to" + ' ' +
-                "modify material-ui source files directly. For example, your main.less file could look something like this:"
-              )
-            ), 
-            React.createElement(mui.Paper, {className: "code-example"}, 
-              React.createElement(CodeBlock, null, customizationCode)
-            )
-          )
-        )
-      )
-    );
-  }
-
-});
-
-module.exports = HomePage;
-
-},{"../code-example/code-block.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-block.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\home.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-    Dispatcher = require('../../app-dispatcher.js'),
-    mui = require('mui'),
-    PaperButton = mui.PaperButton,
-    Icon = mui.Icon;
-
-var HomePage = React.createClass({displayName: 'HomePage',
-
-  render: function() {
-    return (
-        React.createElement("div", null, 
-        	React.createElement("div", {className: "home-page-hero full-width-section"}, 
-                React.createElement("div", {className: "home-page-hero-content"}, 
-                    React.createElement("img", {className: "svg-logo", src: "images/material-ui-logo.svg"}), 
-                    React.createElement("div", {className: "tagline"}, 
-                        React.createElement("h1", {className: "brand-name"}, "material ui"), 
-                        React.createElement("h2", {className: "mui-font-style-headline"}, "A CSS Framework and a Set of React Components that Implement Google's Material Design"), 
-                        React.createElement("p", {className: "mui-font-style-subhead-1"}, "Material-UI came about from our love" + ' ' +
-                        "of ", React.createElement("a", {href: "http://facebook.github.io/react/"}, "React"), " and ", React.createElement("a", {href: "https://www.google.com/design/spec/material-design/introduction.html"}, "Google's" + ' ' +
-                        "Material Design"), ". We're currently using it on a project at ", React.createElement("a", {href: "https://www.call-em-all.com/"}, "Call-Em-All"), " and plan on" + ' ' +
-                        "adding to it and making it better in the coming months."
-                        )
-                    )
-                )
-        	), 
-            React.createElement("div", {className: "home-features"}, 
-                React.createElement("div", {className: "feature"}, 
-                    React.createElement("div", {className: "icon-circle", onClick: this._getStartedClick}, React.createElement(Icon, {icon: "check-all"})), 
-                    React.createElement("h3", null, "Get Started"), 
-                    React.createElement("p", null, 
-                        "The best way to get started is check out our repo and download the code. This doc site, along with its live examples, are all built with react. :)"
-                    )
-                ), 
-                React.createElement("div", {className: "feature"}, 
-                    React.createElement("div", {className: "icon-circle", onClick: this._cssFrameworkClick}, React.createElement(Icon, {icon: "web"})), 
-                    React.createElement("h3", null, "Css Framework"), 
-                    React.createElement("p", null, 
-                        "The Css Framework is built with ", React.createElement("a", {href: "http://lesscss.org"}, "Less"), ". We've included handy things like resets, colors, and typography to help get you going."
-                    )
-                ), 
-                React.createElement("div", {className: "feature"}, 
-                    React.createElement("div", {className: "icon-circle", onClick: this._componentsClick}, React.createElement(Icon, {icon: "select-all"})), 
-                    React.createElement("h3", null, "Components"), 
-                    React.createElement("p", null, 
-                        "We've started building out some material design components using react." + ' ' + 
-                        "Here's a sneak peek at a few - with more on the way."
-                    )
-                )
-            ), 
-            React.createElement("div", {className: "home-contribute"}, 
-                React.createElement("div", {className: "content-container"}, 
-                    React.createElement("h3", null, "Want to help make this project awesome? Check out our repo."), 
-                    React.createElement(PaperButton, {type: PaperButton.Types.RAISED, primary: true, label: "Github", onClick: this._onGithubClick})
-                )
-            )
-
-        )
-    );
-  },
-
-  _onGithubClick: function() {
-    document.location.href='https://github.com/callemall/material-ui';
-  },
-
-  _getStartedClick: function() {
-    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'get-started' } ); 
-  },
-
-  _cssFrameworkClick: function() {
-    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'css-framework/colors' } ); 
-  },
-
-  _componentsClick: function() {
-    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: 'components/buttons' } ); 
-  }
-
-
-
-});
-
-module.exports = HomePage;
-
-},{"../../app-dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\icons.jsx":[function(require,module,exports){
+},{"../../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/icons.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34556,7 +39424,7 @@ module.exports = HomePage;
 var React = require('react'),
   	mui = require('mui'),
     Icon = mui.Icon,
-    CodeExample = require('../code-example/code-example.jsx'),
+    CodeExample = require('../../code-example/code-example.jsx'),
 
     coreIcons = [
       'arrow-drop-down', 
@@ -34663,7 +39531,7 @@ var IconsPage = React.createClass({displayName: 'IconsPage',
 
 module.exports = IconsPage;
 
-},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\inputs.jsx":[function(require,module,exports){
+},{"../../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/inputs.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
@@ -34713,14 +39581,14 @@ var InputsPage = React.createClass({displayName: 'InputsPage',
 });
 
 module.exports = InputsPage;
-},{"mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\menus.jsx":[function(require,module,exports){
+},{"mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/menus.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
  
 var React = require('react'),
   mui = require('mui'),
-  CodeExample = require('../code-example/code-example.jsx'),
+  CodeExample = require('../../code-example/code-example.jsx'),
 
   menuItems = [
     { payload: '1', text: 'Never' },
@@ -34954,14 +39822,14 @@ var MenusPage = React.createClass({displayName: 'MenusPage',
 });
 
 module.exports = MenusPage;
-},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\switches.jsx":[function(require,module,exports){
+},{"../../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/switches.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
 
 var React = require('react'),
     mui = require('mui'),
-    CodeExample = require('../code-example/code-example.jsx');
+    CodeExample = require('../../code-example/code-example.jsx');
 
 var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
 
@@ -35046,53 +39914,7 @@ var SwitchesPage = React.createClass({displayName: 'SwitchesPage',
 });
 
 module.exports = SwitchesPage;
-},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\toasts.jsx":[function(require,module,exports){
-/**
- * @jsx React.DOM
- */
-
-var React = require('react');
-var mui = require('mui');
-var CodeExample = require('../code-example/code-example.jsx');
-
-var ToastsPage = React.createClass({displayName: 'ToastsPage',
-
-  getInitialState: function() {
-    return {
-      message: 'You have deleted your broadcast.',
-      action: 'undo'
-    }
-  },
-
-  render: function() {
-    return (
-    	React.createElement("div", null, 
-  			React.createElement("h2", {className: "mui-font-style-headline"}, "Toasts"), 
-  			this._getToastExample()
-  		)
-    );
-  },
-
-  _getToastExample: function() {
-    var code = 
-      "";
-
-    return (
-      React.createElement(CodeExample, {code: code}, 
-        React.createElement("button", {onClick: this.triggerToast}, "Trigger Toast"), 
-      	React.createElement(mui.Toast, {ref: "Toast", message: this.state.message, action: this.state.action})
-      )
-    );
-  },
-
-  triggerToast: function() {
-    this.refs.Toast.toggle();
-  },
-
-});
-
-module.exports = ToastsPage;
-},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\toolbars.jsx":[function(require,module,exports){
+},{"../../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/components/toolbars.jsx":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var mui = require('mui');
@@ -35153,14 +39975,97 @@ var ToolbarPage = React.createClass({displayName: 'ToolbarPage',
 });
 
 module.exports = ToolbarPage;
-},{"mui":"D:\\GitHub\\material-ui\\docs\\dist\\index.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\pages\\typography.jsx":[function(require,module,exports){
+},{"mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/css-framework/colors.jsx":[function(require,module,exports){
+/**
+ * @jsx React.DOM
+ */
+
+var React = require('react');
+
+var ColorsPage = React.createClass({displayName: 'ColorsPage',
+
+  render: function() {
+  	var mainColors = [
+  			'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue', 
+  			'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange'
+  		],
+  		neutralColors = ['Brown', 'Blue Grey', 'Grey'],
+  		colorGroups = [],
+  		neutralGroups = [];
+
+  	mainColors.forEach(function(color) {
+  		colorGroups.push(this._getColorGroup(color, true));
+  	}, this);
+
+  	neutralColors.forEach(function(color) {
+  		neutralGroups.push(this._getColorGroup(color, false));
+  	}, this);
+
+    return (
+    	React.createElement("div", null, 
+	    	React.createElement("h2", {className: "mui-font-style-headline"}, "UI Color Palette"), 
+	    	React.createElement("p", null, "We've created ", React.createElement("a", {href: "http://lesscss.org/"}, "{less}"), " variables for every color used in the ", React.createElement("a", {href: "https://www.google.com/design/spec/style/color.html#color-ui-color-palette"}, "UI Color Palette"), "."), 
+
+	    	React.createElement("div", {className: "color-palette"}, 
+	    		colorGroups, 
+
+					React.createElement("div", {className: "neutral"}, 
+						neutralGroups
+					)
+	    	)
+	    )
+    );
+  },
+
+  _getColorGroup: function(color, showAltPalette) {
+  	var mainPalette = [50,100,200,300,400,500,600,700,800,900],
+  		altPalette = ['A100','A200','A400','A700'],
+  		cssColor = color.toLowerCase().replace(' ', '-'),
+  		colors = [];
+
+  	mainPalette.forEach(function(mainValue) {
+  		colors.push(this._getColorBlock(cssColor, mainValue));
+  	}, this);
+
+  	if (showAltPalette) {
+	  	altPalette.forEach(function(altValue) {
+	  		colors.push(this._getColorBlock(cssColor, altValue));
+	  	}, this);
+	  }
+
+  	return (
+			React.createElement("ul", {className: "color-group"}, 
+				this._getColorBlock(cssColor, 500, color), 
+				colors
+			)
+  	);
+  },
+
+  _getColorBlock: function(colorName, colorValue, colorTitle) {
+  	var colorClass = colorName + '-' + colorValue,
+  		classes = 'color ' + colorClass,
+  		colorText = '@' + colorClass,
+  		blockTitle;
+
+  	if (colorTitle) blockTitle = React.createElement("span", {className: "name"}, colorTitle);
+
+  	return (
+  		React.createElement("li", {className: classes}, blockTitle, colorText)
+  	);
+  }
+
+});
+
+module.exports = ColorsPage;
+
+},{"react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/css-framework/typography.jsx":[function(require,module,exports){
 /**
  * @jsx React.DOM
  */
 
 var $ = require('jquery'),
 	React = require('react'),
-	CodeExample = require('../code-example/code-example.jsx');
+	CodeExample = require('../../code-example/code-example.jsx');
 
 var TypographyPage = React.createClass({displayName: 'TypographyPage',
 
@@ -35330,338 +40235,235 @@ var TypographyPage = React.createClass({displayName: 'TypographyPage',
 
 module.exports = TypographyPage;
 
-},{"../code-example/code-example.jsx":"D:\\GitHub\\material-ui\\docs\\src\\app\\components\\code-example\\code-example.jsx","jquery":"D:\\GitHub\\material-ui\\docs\\node_modules\\jquery\\dist\\jquery.js","react":"D:\\GitHub\\material-ui\\docs\\node_modules\\react\\addons.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\stores\\app-state-store.js":[function(require,module,exports){
-var _ = require('underscore'),
-  Backbone = require('backbone'),
-  Dispatcher = require('../app-dispatcher.js'),
-
-  AppStateStore = Backbone.Model.extend({
-
-    defaults: {
-      currentUrl: null
-    },
-
-    initialize: function() {
-      this.dispatchToken = Dispatcher.register(_.bind(this.onDispatched, this));
-    },
-
-    onDispatched: function(action) {
-      switch (action.type) {
-        case Dispatcher.ActionTypes.NAV_URL_CHANGE:
-        case Dispatcher.ActionTypes.NAV_USER_CLICK:
-          this.set('currentUrl', action.payload.url);
-          break;
-      }
-    }
-
-  });
-
-module.exports = new AppStateStore();
-
-},{"../app-dispatcher.js":"D:\\GitHub\\material-ui\\docs\\src\\app\\app-dispatcher.js","backbone":"D:\\GitHub\\material-ui\\docs\\node_modules\\backbone\\backbone.js","underscore":"D:\\GitHub\\material-ui\\docs\\node_modules\\underscore\\underscore.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\flux\\dispatcher.js":[function(require,module,exports){
-/*
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule Dispatcher
- * @typechecks
- */
-
-var invariant = require('./invariant');
-
-var _lastID = 1;
-var _prefix = 'ID_';
-
+},{"../../code-example/code-example.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-example.jsx","jquery":"/Users/hai/GitHub/material-ui/docs/node_modules/jquery/dist/jquery.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/get-started.jsx":[function(require,module,exports){
 /**
- * Dispatcher is used to broadcast payloads to registered callbacks. This is
- * different from generic pub-sub systems in two ways:
- *
- *   1) Callbacks are not subscribed to particular events. Every payload is
- *      dispatched to every registered callback.
- *   2) Callbacks can be deferred in whole or part until other callbacks have
- *      been executed.
- *
- * For example, consider this hypothetical flight destination form, which
- * selects a default city when a country is selected:
- *
- *   var flightDispatcher = new Dispatcher();
- *
- *   // Keeps track of which country is selected
- *   var CountryStore = {country: null};
- *
- *   // Keeps track of which city is selected
- *   var CityStore = {city: null};
- *
- *   // Keeps track of the base flight price of the selected city
- *   var FlightPriceStore = {price: null}
- *
- * When a user changes the selected city, we dispatch the payload:
- *
- *   flightDispatcher.dispatch({
- *     actionType: 'city-update',
- *     selectedCity: 'paris'
- *   });
- *
- * This payload is digested by `CityStore`:
- *
- *   flightDispatcher.register(function(payload)) {
- *     if (payload.actionType === 'city-update') {
- *       CityStore.city = payload.selectedCity;
- *     }
- *   });
- *
- * When the user selects a country, we dispatch the payload:
- *
- *   flightDispatcher.dispatch({
- *     actionType: 'country-update',
- *     selectedCountry: 'australia'
- *   });
- *
- * This payload is digested by both stores:
- *
- *    CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
- *     if (payload.actionType === 'country-update') {
- *       CountryStore.country = payload.selectedCountry;
- *     }
- *   });
- *
- * When the callback to update `CountryStore` is registered, we save a reference
- * to the returned token. Using this token with `waitFor()`, we can guarantee
- * that `CountryStore` is updated before the callback that updates `CityStore`
- * needs to query its data.
- *
- *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
- *     if (payload.actionType === 'country-update') {
- *       // `CountryStore.country` may not be updated.
- *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
- *       // `CountryStore.country` is now guaranteed to be updated.
- *
- *       // Select the default city for the new country
- *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
- *     }
- *   });
- *
- * The usage of `waitFor()` can be chained, for example:
- *
- *   FlightPriceStore.dispatchToken =
- *     flightDispatcher.register(function(payload)) {
- *       switch (payload.actionType) {
- *         case 'country-update':
- *           flightDispatcher.waitFor([CityStore.dispatchToken]);
- *           FlightPriceStore.price =
- *             getFlightPriceStore(CountryStore.country, CityStore.city);
- *           break;
- *
- *         case 'city-update':
- *           FlightPriceStore.price =
- *             FlightPriceStore(CountryStore.country, CityStore.city);
- *           break;
- *     }
- *   });
- *
- * The `country-update` payload will be guaranteed to invoke the stores'
- * registered callbacks in order: `CountryStore`, `CityStore`, then
- * `FlightPriceStore`.
+ * @jsx React.DOM
  */
 
-  function Dispatcher() {"use strict";
-    this.$Dispatcher_callbacks = {};
-    this.$Dispatcher_isPending = {};
-    this.$Dispatcher_isHandled = {};
-    this.$Dispatcher_isDispatching = false;
-    this.$Dispatcher_pendingPayload = null;
+var React = require('react'),
+  mui = require('mui'),
+  CodeBlock = require('../code-example/code-block.jsx');;
+
+var HomePage = React.createClass({displayName: 'HomePage',
+
+  render: function() {
+    var usageCode =
+      '/**\n' +
+      ' * @jsx React.DOM\n' +
+      '*/\n\n' +
+      'var React = require(\'react\'),\n' +
+      '  mui = require(\'material-ui\'),\n' +
+      '  PaperButton = mui.PaperButton;\n\n' +
+      'var SomeAwesomeComponent = React.createClass({\n\n' +
+      '  render: function() {\n' +
+      '    return (\n' +
+      '        <PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
+      '    );\n' +
+      '  }\n\n' +
+      '});\n\n' +
+      'module.exports = SomeAwesomeComponent;';
+
+    var customizationCode = 
+      '@import "node_modules/material-ui/dist/less/scaffolding.less";\n\n' +
+      '//Define a custom less file to override\n//any variables defined in scaffolding.less\n' +
+      '@import "my-custom-overrides.less";\n\n' +
+      '@import "node_modules/material-ui/dist/less/components.less";';
+
+    return (
+      React.createElement("div", {className: "get-started-page mui-app-content-canvas"}, 
+        React.createElement("div", {className: "full-width-section"}, 
+          React.createElement("h2", {className: "mui-font-style-headline"}, "Installation"), 
+          React.createElement("p", {className: "content"}, 
+            "Material-UI is available as an ", React.createElement("a", {href: "https://www.npmjs.org/package/material-ui"}, "npm package"), "." + ' ' + 
+            "Use ", React.createElement("a", {href: "http://browserify.org/"}, "browserify"), " and ", React.createElement("a", {href: "https://github.com/andreypopp/reactify"}, "reactify"), " for" + ' ' +
+            "dependency management and JSX transformation. The CSS framework is written in ", React.createElement("a", {href: "http://lesscss.org/"}, "Less"), "," + ' ' +
+            "so you'll need to compile that as well."
+          )
+        ), 
+        
+        React.createElement("div", {className: "full-width-section"}, 
+          React.createElement("div", {className: "content"}, 
+            React.createElement("h2", {className: "mui-font-style-headline"}, "Usage"), 
+            React.createElement("p", null, 
+              "Once material-ui is included in your project, you can use the components this way:"
+            ), 
+            React.createElement(mui.Paper, {className: "code-example"}, 
+              React.createElement(CodeBlock, null, usageCode)
+            )
+          ), 
+
+          React.createElement("div", {className: "content"}, 
+            React.createElement("h2", {className: "mui-font-style-headline"}, "Customization"), 
+            React.createElement("div", null, 
+              React.createElement("p", null, "The styles are separated into 2 less files:"), 
+              React.createElement("li", null, "dist/less/scaffolding.less"), 
+              React.createElement("li", null, "dist/less/components.less"), 
+              React.createElement("p", null, 
+                "This allows you to override any variables defined in custom-variables.less without having to" + ' ' +
+                "modify material-ui source files directly. For example, your main.less file could look something like this:"
+              )
+            ), 
+            React.createElement(mui.Paper, {className: "code-example"}, 
+              React.createElement(CodeBlock, null, customizationCode)
+            )
+          )
+        )
+      )
+    );
   }
 
-  /**
-   * Registers a callback to be invoked with every dispatched payload. Returns
-   * a token that can be used with `waitFor()`.
-   *
-   * @param {function} callback
-   * @return {string}
-   */
-  Dispatcher.prototype.register=function(callback) {"use strict";
-    var id = _prefix + _lastID++;
-    this.$Dispatcher_callbacks[id] = callback;
-    return id;
-  };
+});
 
-  /**
-   * Removes a callback based on its token.
-   *
-   * @param {string} id
-   */
-  Dispatcher.prototype.unregister=function(id) {"use strict";
-    invariant(
-      this.$Dispatcher_callbacks[id],
-      'Dispatcher.unregister(...): `%s` does not map to a registered callback.',
-      id
-    );
-    delete this.$Dispatcher_callbacks[id];
-  };
+module.exports = HomePage;
 
-  /**
-   * Waits for the callbacks specified to be invoked before continuing execution
-   * of the current callback. This method should only be used by a callback in
-   * response to a dispatched payload.
-   *
-   * @param {array<string>} ids
-   */
-  Dispatcher.prototype.waitFor=function(ids) {"use strict";
-    invariant(
-      this.$Dispatcher_isDispatching,
-      'Dispatcher.waitFor(...): Must be invoked while dispatching.'
-    );
-    for (var ii = 0; ii < ids.length; ii++) {
-      var id = ids[ii];
-      if (this.$Dispatcher_isPending[id]) {
-        invariant(
-          this.$Dispatcher_isHandled[id],
-          'Dispatcher.waitFor(...): Circular dependency detected while ' +
-          'waiting for `%s`.',
-          id
-        );
-        continue;
-      }
-      invariant(
-        this.$Dispatcher_callbacks[id],
-        'Dispatcher.waitFor(...): `%s` does not map to a registered callback.',
-        id
-      );
-      this.$Dispatcher_invokeCallback(id);
-    }
-  };
-
-  /**
-   * Dispatches a payload to all registered callbacks.
-   *
-   * @param {object} payload
-   */
-  Dispatcher.prototype.dispatch=function(payload) {"use strict";
-    invariant(
-      !this.$Dispatcher_isDispatching,
-      'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.'
-    );
-    this.$Dispatcher_startDispatching(payload);
-    try {
-      for (var id in this.$Dispatcher_callbacks) {
-        if (this.$Dispatcher_isPending[id]) {
-          continue;
-        }
-        this.$Dispatcher_invokeCallback(id);
-      }
-    } finally {
-      this.$Dispatcher_stopDispatching();
-    }
-  };
-
-  /**
-   * Is this Dispatcher currently dispatching.
-   *
-   * @return {boolean}
-   */
-  Dispatcher.prototype.isDispatching=function() {"use strict";
-    return this.$Dispatcher_isDispatching;
-  };
-
-  /**
-   * Call the calback stored with the given id. Also do some internal
-   * bookkeeping.
-   *
-   * @param {string} id
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_invokeCallback=function(id) {"use strict";
-    this.$Dispatcher_isPending[id] = true;
-    this.$Dispatcher_callbacks[id](this.$Dispatcher_pendingPayload);
-    this.$Dispatcher_isHandled[id] = true;
-  };
-
-  /**
-   * Set up bookkeeping needed when dispatching.
-   *
-   * @param {object} payload
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_startDispatching=function(payload) {"use strict";
-    for (var id in this.$Dispatcher_callbacks) {
-      this.$Dispatcher_isPending[id] = false;
-      this.$Dispatcher_isHandled[id] = false;
-    }
-    this.$Dispatcher_pendingPayload = payload;
-    this.$Dispatcher_isDispatching = true;
-  };
-
-  /**
-   * Clear bookkeeping used for dispatching.
-   *
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_stopDispatching=function() {"use strict";
-    this.$Dispatcher_pendingPayload = null;
-    this.$Dispatcher_isDispatching = false;
-  };
-
-
-module.exports = Dispatcher;
-},{"./invariant":"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\flux\\invariant.js"}],"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\flux\\invariant.js":[function(require,module,exports){
+},{"../code-example/code-block.jsx":"/Users/hai/GitHub/material-ui/docs/src/app/components/code-example/code-block.jsx","mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/home.jsx":[function(require,module,exports){
 /**
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule invariant
+ * @jsx React.DOM
  */
 
-"use strict";
+var React = require('react'),
+  Router = require('react-router'),
+  Link = Router.Link,
+  mui = require('mui'),
+  PaperButton = mui.PaperButton,
+  Icon = mui.Icon;
 
+var HomePage = React.createClass({displayName: 'HomePage',
+
+  render: function() {
+
+    return (
+      React.createElement("div", {className: "mui-app-content-canvas"}, 
+        React.createElement("div", {className: "home-page-hero full-width-section"}, 
+          React.createElement("div", {className: "home-page-hero-content"}, 
+            React.createElement("img", {className: "svg-logo", src: "images/material-ui-logo.svg"}), 
+            React.createElement("div", {className: "tagline"}, 
+              React.createElement("h1", {className: "brand-name"}, "material ui"), 
+              React.createElement("h2", {className: "mui-font-style-headline"}, 
+                "A CSS Framework and a Set of React Components that Implement Google's" + ' ' +
+                "Material Design"
+              ), 
+              React.createElement("p", {className: "mui-font-style-subhead-1"}, 
+                "Material-UI came about from our love of ", 
+                React.createElement("a", {href: "http://facebook.github.io/react/"}, "React"), " and ", 
+                React.createElement("a", {href: "https://www.google.com/design/spec/material-design/introduction.html"}, 
+                  "Google's Material Design"
+                ), ". We're currently using it on a project at ", 
+                React.createElement("a", {href: "https://www.call-em-all.com/"}, "Call-Em-All"), " and plan on adding to it" + ' ' + 
+                "and making it better in the coming months."
+              )
+            )
+          )
+        ), 
+
+        React.createElement("div", {className: "home-features"}, 
+
+          React.createElement("div", {className: "feature"}, 
+            React.createElement(Link, {className: "icon-circle", to: "get-started"}, React.createElement(Icon, {icon: "check-all"})), 
+            React.createElement("h3", null, "Get Started"), 
+            React.createElement("p", null, 
+              "The best way to get started is check out our repo and download the code." + ' ' + 
+              "This doc site, along with its live examples, are all built with react. :)"
+            )
+          ), 
+
+          React.createElement("div", {className: "feature"}, 
+            React.createElement(Link, {className: "icon-circle", to: "css-framework"}, React.createElement(Icon, {icon: "web"})), 
+            React.createElement("h3", null, "Css Framework"), 
+            React.createElement("p", null, 
+              "The Css Framework is built with ", React.createElement("a", {href: "http://lesscss.org"}, "Less"), ". We've" + ' ' + 
+              "included handy things like resets, colors, and typography to help get you going."
+            )
+          ), 
+
+          React.createElement("div", {className: "feature"}, 
+            React.createElement(Link, {className: "icon-circle", to: "components"}, React.createElement(Icon, {icon: "select-all"})), 
+            React.createElement("h3", null, "Components"), 
+            React.createElement("p", null, 
+              "We've started building out some material design components using react." + ' ' + 
+              "Here's a sneak peek at a few - with more on the way."
+            )
+          )
+        ), 
+
+        React.createElement("div", {className: "home-contribute"}, 
+          React.createElement("div", {className: "content-container"}, 
+            React.createElement("h3", null, "Want to help make this project awesome? Check out our repo."), 
+            React.createElement(PaperButton, {
+              type: PaperButton.Types.RAISED, 
+              primary: true, 
+              label: "Github", 
+              onClick: this._onGithubClick})
+          )
+        )
+
+      )
+    );
+  },
+
+  _onGithubClick: function() {
+    document.location.href='https://github.com/callemall/material-ui';
+  }
+
+});
+
+module.exports = HomePage;
+
+},{"mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js","react-router":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/index.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/components/pages/page-with-nav.jsx":[function(require,module,exports){
 /**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
+ * @jsx React.DOM
  */
 
-var invariant = function(condition, format, a, b, c, d, e, f) {
-  if (false) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
+var React = require('react'),
+  Router = require('react-router'),
+  mui = require('mui'),
+  Menu = mui.Menu;
+
+var PageWithNav = React.createClass({displayName: 'PageWithNav',
+
+  mixins: [Router.Navigation, Router.ActiveState],
+
+  propTypes: {
+    menuItems: React.PropTypes.array
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", {className: "mui-app-content-canvas with-nav"}, 
+        React.createElement("div", {className: "subNav"}, 
+          React.createElement(Menu, {
+            ref: "menuItems", 
+            zDepth: 0, 
+            menuItems: this.props.menuItems, 
+            selectedIndex: this._getSelectedIndex(), 
+            onItemClick: this._onMenuItemClick})
+        ), 
+        React.createElement("div", {className: "subContent"}, 
+          React.createElement(this.props.activeRouteHandler, null)
+        )
+      )
+    );
+  },
+
+  _getSelectedIndex: function() {
+    var menuItems = this.props.menuItems,
+      currentItem;
+
+    for (var i = menuItems.length - 1; i >= 0; i--) {
+      currentItem = menuItems[i];
+      if (currentItem.route && this.isActive(currentItem.route)) return i;
+    };
+  },
+
+  _onMenuItemClick: function(e, index, item) {
+    this.transitionTo(item.route);
   }
+  
+});
 
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error(
-        'Minified exception occurred; use the non-minified dev environment ' +
-        'for the full error message and additional helpful warnings.'
-      );
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(
-        'Invariant Violation: ' +
-        format.replace(/%s/g, function() { return args[argIndex++]; })
-      );
-    }
+module.exports = PageWithNav;
 
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-};
-
-module.exports = invariant;
-},{}],"D:\\GitHub\\material-ui\\docs\\src\\app\\vendor\\highlight-js\\highlight.pack.js":[function(require,module,exports){
+},{"mui":"/Users/hai/GitHub/material-ui/docs/dist/index.js","react":"/Users/hai/GitHub/material-ui/docs/node_modules/react/addons.js","react-router":"/Users/hai/GitHub/material-ui/docs/node_modules/react-router/modules/index.js"}],"/Users/hai/GitHub/material-ui/docs/src/app/vendor/highlight-js/highlight.pack.js":[function(require,module,exports){
 (function (global){
 ;__browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 var hljs=new function(){function j(v){return v.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")}function t(v){return v.nodeName.toLowerCase()}function h(w,x){var v=w&&w.exec(x);return v&&v.index==0}function r(w){var v=(w.className+" "+(w.parentNode?w.parentNode.className:"")).split(/\s+/);v=v.map(function(x){return x.replace(/^lang(uage)?-/,"")});return v.filter(function(x){return i(x)||x=="no-highlight"})[0]}function o(x,y){var v={};for(var w in x){v[w]=x[w]}if(y){for(var w in y){v[w]=y[w]}}return v}function u(x){var v=[];(function w(y,z){for(var A=y.firstChild;A;A=A.nextSibling){if(A.nodeType==3){z+=A.nodeValue.length}else{if(t(A)=="br"){z+=1}else{if(A.nodeType==1){v.push({event:"start",offset:z,node:A});z=w(A,z);v.push({event:"stop",offset:z,node:A})}}}}return z})(x,0);return v}function q(w,y,C){var x=0;var F="";var z=[];function B(){if(!w.length||!y.length){return w.length?w:y}if(w[0].offset!=y[0].offset){return(w[0].offset<y[0].offset)?w:y}return y[0].event=="start"?w:y}function A(H){function G(I){return" "+I.nodeName+'="'+j(I.value)+'"'}F+="<"+t(H)+Array.prototype.map.call(H.attributes,G).join("")+">"}function E(G){F+="</"+t(G)+">"}function v(G){(G.event=="start"?A:E)(G.node)}while(w.length||y.length){var D=B();F+=j(C.substr(x,D[0].offset-x));x=D[0].offset;if(D==w){z.reverse().forEach(E);do{v(D.splice(0,1)[0]);D=B()}while(D==w&&D.length&&D[0].offset==x);z.reverse().forEach(A)}else{if(D[0].event=="start"){z.push(D[0].node)}else{z.pop()}v(D.splice(0,1)[0])}}return F+j(C.substr(x))}function m(y){function v(z){return(z&&z.source)||z}function w(A,z){return RegExp(v(A),"m"+(y.cI?"i":"")+(z?"g":""))}function x(D,C){if(D.compiled){return}D.compiled=true;D.k=D.k||D.bK;if(D.k){var z={};var E=function(G,F){if(y.cI){F=F.toLowerCase()}F.split(" ").forEach(function(H){var I=H.split("|");z[I[0]]=[G,I[1]?Number(I[1]):1]})};if(typeof D.k=="string"){E("keyword",D.k)}else{Object.keys(D.k).forEach(function(F){E(F,D.k[F])})}D.k=z}D.lR=w(D.l||/\b[A-Za-z0-9_]+\b/,true);if(C){if(D.bK){D.b="\\b("+D.bK.split(" ").join("|")+")\\b"}if(!D.b){D.b=/\B|\b/}D.bR=w(D.b);if(!D.e&&!D.eW){D.e=/\B|\b/}if(D.e){D.eR=w(D.e)}D.tE=v(D.e)||"";if(D.eW&&C.tE){D.tE+=(D.e?"|":"")+C.tE}}if(D.i){D.iR=w(D.i)}if(D.r===undefined){D.r=1}if(!D.c){D.c=[]}var B=[];D.c.forEach(function(F){if(F.v){F.v.forEach(function(G){B.push(o(F,G))})}else{B.push(F=="self"?D:F)}});D.c=B;D.c.forEach(function(F){x(F,D)});if(D.starts){x(D.starts,C)}var A=D.c.map(function(F){return F.bK?"\\.?("+F.b+")\\.?":F.b}).concat([D.tE,D.i]).map(v).filter(Boolean);D.t=A.length?w(A.join("|"),true):{exec:function(F){return null}};D.continuation={}}x(y)}function c(S,L,J,R){function v(U,V){for(var T=0;T<V.c.length;T++){if(h(V.c[T].bR,U)){return V.c[T]}}}function z(U,T){if(h(U.eR,T)){return U}if(U.eW){return z(U.parent,T)}}function A(T,U){return !J&&h(U.iR,T)}function E(V,T){var U=M.cI?T[0].toLowerCase():T[0];return V.k.hasOwnProperty(U)&&V.k[U]}function w(Z,X,W,V){var T=V?"":b.classPrefix,U='<span class="'+T,Y=W?"":"</span>";U+=Z+'">';return U+X+Y}function N(){if(!I.k){return j(C)}var T="";var W=0;I.lR.lastIndex=0;var U=I.lR.exec(C);while(U){T+=j(C.substr(W,U.index-W));var V=E(I,U);if(V){H+=V[1];T+=w(V[0],j(U[0]))}else{T+=j(U[0])}W=I.lR.lastIndex;U=I.lR.exec(C)}return T+j(C.substr(W))}function F(){if(I.sL&&!f[I.sL]){return j(C)}var T=I.sL?c(I.sL,C,true,I.continuation.top):e(C);if(I.r>0){H+=T.r}if(I.subLanguageMode=="continuous"){I.continuation.top=T.top}return w(T.language,T.value,false,true)}function Q(){return I.sL!==undefined?F():N()}function P(V,U){var T=V.cN?w(V.cN,"",true):"";if(V.rB){D+=T;C=""}else{if(V.eB){D+=j(U)+T;C=""}else{D+=T;C=U}}I=Object.create(V,{parent:{value:I}})}function G(T,X){C+=T;if(X===undefined){D+=Q();return 0}var V=v(X,I);if(V){D+=Q();P(V,X);return V.rB?0:X.length}var W=z(I,X);if(W){var U=I;if(!(U.rE||U.eE)){C+=X}D+=Q();do{if(I.cN){D+="</span>"}H+=I.r;I=I.parent}while(I!=W.parent);if(U.eE){D+=j(X)}C="";if(W.starts){P(W.starts,"")}return U.rE?0:X.length}if(A(X,I)){throw new Error('Illegal lexeme "'+X+'" for mode "'+(I.cN||"<unnamed>")+'"')}C+=X;return X.length||1}var M=i(S);if(!M){throw new Error('Unknown language: "'+S+'"')}m(M);var I=R||M;var D="";for(var K=I;K!=M;K=K.parent){if(K.cN){D+=w(K.cN,D,true)}}var C="";var H=0;try{var B,y,x=0;while(true){I.t.lastIndex=x;B=I.t.exec(L);if(!B){break}y=G(L.substr(x,B.index-x),B[0]);x=B.index+y}G(L.substr(x));for(var K=I;K.parent;K=K.parent){if(K.cN){D+="</span>"}}return{r:H,value:D,language:S,top:I}}catch(O){if(O.message.indexOf("Illegal")!=-1){return{r:0,value:j(L)}}else{throw O}}}function e(y,x){x=x||b.languages||Object.keys(f);var v={r:0,value:j(y)};var w=v;x.forEach(function(z){if(!i(z)){return}var A=c(z,y,false);A.language=z;if(A.r>w.r){w=A}if(A.r>v.r){w=v;v=A}});if(w.language){v.second_best=w}return v}function g(v){if(b.tabReplace){v=v.replace(/^((<[^>]+>|\t)+)/gm,function(w,z,y,x){return z.replace(/\t/g,b.tabReplace)})}if(b.useBR){v=v.replace(/\n/g,"<br>")}return v}function p(z){var y=b.useBR?z.innerHTML.replace(/\n/g,"").replace(/<br>|<br [^>]*>/g,"\n").replace(/<[^>]*>/g,""):z.textContent;var A=r(z);if(A=="no-highlight"){return}var v=A?c(A,y,true):e(y);var w=u(z);if(w.length){var x=document.createElementNS("http://www.w3.org/1999/xhtml","pre");x.innerHTML=v.value;v.value=q(w,u(x),y)}v.value=g(v.value);z.innerHTML=v.value;z.className+=" hljs "+(!A&&v.language||"");z.result={language:v.language,re:v.r};if(v.second_best){z.second_best={language:v.second_best.language,re:v.second_best.r}}}var b={classPrefix:"hljs-",tabReplace:null,useBR:false,languages:undefined};function s(v){b=o(b,v)}function l(){if(l.called){return}l.called=true;var v=document.querySelectorAll("pre code");Array.prototype.forEach.call(v,p)}function a(){addEventListener("DOMContentLoaded",l,false);addEventListener("load",l,false)}var f={};var n={};function d(v,x){var w=f[v]=x(this);if(w.aliases){w.aliases.forEach(function(y){n[y]=v})}}function k(){return Object.keys(f)}function i(v){return f[v]||f[n[v]]}this.highlight=c;this.highlightAuto=e;this.fixMarkup=g;this.highlightBlock=p;this.configure=s;this.initHighlighting=l;this.initHighlightingOnLoad=a;this.registerLanguage=d;this.listLanguages=k;this.getLanguage=i;this.inherit=o;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.BE={b:"\\\\[\\s\\S]",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE]};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE]};this.PWM={b:/\b(a|an|the|are|I|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such)\b/};this.CLCM={cN:"comment",b:"//",e:"$",c:[this.PWM]};this.CBCM={cN:"comment",b:"/\\*",e:"\\*/",c:[this.PWM]};this.HCM={cN:"comment",b:"#",e:"$",c:[this.PWM]};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.CSSNM={cN:"number",b:this.NR+"(%|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc|px|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?",r:0};this.RM={cN:"regexp",b:/\//,e:/\/[gim]*/,i:/\n/,c:[this.BE,{b:/\[/,e:/\]/,r:0,c:[this.BE]}]};this.TM={cN:"title",b:this.IR,r:0};this.UTM={cN:"title",b:this.UIR,r:0}}();hljs.registerLanguage("javascript",function(a){return{aliases:["js"],k:{keyword:"in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const class",literal:"true false null undefined NaN Infinity",built_in:"eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document"},c:[{cN:"pi",b:/^\s*('|")use strict('|")/,r:10},a.ASM,a.QSM,a.CLCM,a.CBCM,a.CNM,{b:"("+a.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[a.CLCM,a.CBCM,a.RM,{b:/</,e:/>;/,r:0,sL:"xml"}],r:0},{cN:"function",bK:"function",e:/\{/,eE:true,c:[a.inherit(a.TM,{b:/[A-Za-z$_][0-9A-Za-z$_]*/}),{cN:"params",b:/\(/,e:/\)/,c:[a.CLCM,a.CBCM],i:/["'\(]/}],i:/\[|%/},{b:/\$[(.]/},{b:"\\."+a.IR,r:0}]}});hljs.registerLanguage("css",function(a){var b="[a-zA-Z-][a-zA-Z0-9_-]*";var c={cN:"function",b:b+"\\(",rB:true,eE:true,e:"\\("};return{cI:true,i:"[=/|']",c:[a.CBCM,{cN:"id",b:"\\#[A-Za-z0-9_-]+"},{cN:"class",b:"\\.[A-Za-z0-9_-]+",r:0},{cN:"attr_selector",b:"\\[",e:"\\]",i:"$"},{cN:"pseudo",b:":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+"},{cN:"at_rule",b:"@(font-face|page)",l:"[a-z-]+",k:"font-face page"},{cN:"at_rule",b:"@",e:"[{;]",c:[{cN:"keyword",b:/\S+/},{b:/\s/,eW:true,eE:true,r:0,c:[c,a.ASM,a.QSM,a.CSSNM]}]},{cN:"tag",b:b,r:0},{cN:"rules",b:"{",e:"}",i:"[^\\s]",r:0,c:[a.CBCM,{cN:"rule",b:"[^\\s]",rB:true,e:";",eW:true,c:[{cN:"attribute",b:"[A-Z\\_\\.\\-]+",e:":",eE:true,i:"[^\\s]",starts:{cN:"value",eW:true,eE:true,c:[c,a.CSSNM,a.QSM,a.ASM,a.CBCM,{cN:"hexcolor",b:"#[0-9A-Fa-f]+"},{cN:"important",b:"!important"}]}}]}]}]}});hljs.registerLanguage("xml",function(a){var c="[A-Za-z0-9\\._:-]+";var d={b:/<\?(php)?(?!\w)/,e:/\?>/,sL:"php",subLanguageMode:"continuous"};var b={eW:true,i:/</,r:0,c:[d,{cN:"attribute",b:c,r:0},{b:"=",r:0,c:[{cN:"value",v:[{b:/"/,e:/"/},{b:/'/,e:/'/},{b:/[^\s\/>]+/}]}]}]};return{aliases:["html","xhtml","rss","atom","xsl","plist"],cI:true,c:[{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},{cN:"comment",b:"<!--",e:"-->",r:10},{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[b],starts:{e:"</style>",rE:true,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[b],starts:{e:"<\/script>",rE:true,sL:"javascript"}},{b:"<%",e:"%>",sL:"vbscript"},d,{cN:"pi",b:/<\?\w+/,e:/\?>/,r:10},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:"[^ /><]+",r:0},b]}]}});hljs.registerLanguage("http",function(a){return{i:"\\S",c:[{cN:"status",b:"^HTTP/[0-9\\.]+",e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{cN:"request",b:"^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",rB:true,e:"$",c:[{cN:"string",b:" ",e:" ",eB:true,eE:true}]},{cN:"attribute",b:"^\\w",e:": ",eE:true,i:"\\n|\\s|=",starts:{cN:"string",e:"$"}},{b:"\\n\\n",starts:{sL:"",eW:true}}]}});hljs.registerLanguage("json",function(a){var e={literal:"true false null"};var d=[a.QSM,a.CNM];var c={cN:"value",e:",",eW:true,eE:true,c:d,k:e};var b={b:"{",e:"}",c:[{cN:"attribute",b:'\\s*"',e:'"\\s*:\\s*',eB:true,eE:true,c:[a.BE],i:"\\n",starts:c}],i:"\\S"};var f={b:"\\[",e:"\\]",c:[a.inherit(c,{cN:null})],i:"\\S"};d.splice(d.length,0,b,f);return{c:d,k:e,i:"\\S"}});
