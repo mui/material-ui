@@ -14,7 +14,7 @@ var $ = require('jquery'),
 
 var DropDownIcon = React.createClass({
 
-	mixins: [Classable, ClickAwayable],
+  mixins: [Classable, ClickAwayable],
 
   propTypes: {
     onChange: React.PropTypes.func,
@@ -22,10 +22,9 @@ var DropDownIcon = React.createClass({
   },
 
   getInitialState: function() {
-  	return {
-      open: false,
-      selectedIndex: 0
-  	}
+    return {
+      open: false
+    }
   },
 
   componentClickAway: function() {
@@ -45,12 +44,12 @@ var DropDownIcon = React.createClass({
     });
 
     return (
-    	<div className={classes}>
-        	<div className="mui-menu-control" onClick={this._onControlClick}>
-          		<Icon icon={this.props.icon} />
-        	</div>
-        	<Menu ref="menuItems" selectedIndex={this.state.selectedIndex} menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
-      	</div>
+      <div className={classes}>
+          <div className="mui-menu-control" onClick={this._onControlClick}>
+              <Icon icon={this.props.icon} />
+          </div>
+          <Menu ref="menuItems" menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
+        </div>
     );
   },
 
@@ -59,11 +58,8 @@ var DropDownIcon = React.createClass({
   },
 
   _onMenuItemClick: function(e, key, payload) {
-    if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
-    this.setState({ 
-      selectedIndex: key,
-      open: false
-    });
+    if (this.props.onChange) this.props.onChange(e, key, payload);
+    this.setState({ open: false });
   }
 
 });
