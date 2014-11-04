@@ -22,6 +22,7 @@ var React = require('react'),
   Icons = require('./components/pages/components/icons.jsx'),
   Inputs = require('./components/pages/components/inputs.jsx'),
   Menus = require('./components/pages/components/menus.jsx'),
+  Paper = require('./components/pages/components/paper.jsx'),
   Switches = require('./components/pages/components/switches.jsx'),
   Toolbars = require('./components/pages/components/toolbars.jsx'),
 
@@ -36,6 +37,7 @@ var React = require('react'),
     { route: 'icons', text: 'Icons'},
     { route: 'inputs', text: 'Inputs'},
     { route: 'menus', text: 'Menus'},
+    { route: 'paper', text: 'Paper'},
     { route: 'switches', text: 'Switches'},
     //{ route: 'toasts', text: 'Toasts'},
     { route: 'toolbars', text: 'Toolbars'},
@@ -58,6 +60,7 @@ var AppRoutes = (
         <Route name="icons" handler={Icons} />
         <Route name="inputs" handler={Inputs} />
         <Route name="menus" handler={Menus} />
+        <Route name="paper" handler={Paper} />
         <Route name="switches" handler={Switches} />
         <Route name="toolbars" handler={Toolbars} />
         <Redirect from="/components" to="buttons" />
