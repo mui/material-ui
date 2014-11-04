@@ -5,14 +5,11 @@
 var React = require('react'),
   Router = require('react-router'),
   Link = Router.Link,
-  Navigation = Router.Navigation,
   mui = require('mui'),
   PaperButton = mui.PaperButton,
   Icon = mui.Icon;
 
 var HomePage = React.createClass({
-
-  mixins: [Navigation],
 
   render: function() {
 

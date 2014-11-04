@@ -9,22 +9,10 @@ var React = require('react'),
 
 var PageWithNav = React.createClass({
 
-  mixins: [Router.Navigation],
+  mixins: [Router.Navigation, Router.ActiveState],
 
   propTypes: {
     menuItems: React.PropTypes.array
-  },
-
-  getInitialState: function() {
-    return {
-      selectedIndex: 0
-    };
-  },
-
-  componentWillReceiveProps: function(nextProps) {
-    if (nextProps.menuItems !== this.props.menuItems) {
-      this.setState({ selectedIndex: 0 });
-    }
   },
 
   render: function() {
@@ -35,7 +23,7 @@ var PageWithNav = React.createClass({
             ref="menuItems" 
             zDepth={0} 
             menuItems={this.props.menuItems} 
-            selectedIndex={this.state.selectedIndex} 
+            selectedIndex={this._getSelectedIndex()} 
             onItemClick={this._onMenuItemClick} />
         </div>
         <div className="subContent">
@@ -45,9 +33,18 @@ var PageWithNav = React.createClass({
     );
   },
 
+  _getSelectedIndex: function() {
+    var menuItems = this.props.menuItems,
+      currentItem;
+
+    for (var i = menuItems.length - 1; i >= 0; i--) {
+      currentItem = menuItems[i];
+      if (currentItem.route && this.isActive(currentItem.route)) return i;
+    };
+  },
+
   _onMenuItemClick: function(e, index, item) {
     this.transitionTo(item.route);
-    this.setState({ selectedIndex: index });
   }
   
 });
