@@ -7,24 +7,39 @@ var React = require('react'),
   Route = Router.Route,
   Routes = Router.Routes,
   Redirect = Router.Redirect,
-  DefaultRoute = Router.DefaultRoute;
+  DefaultRoute = Router.DefaultRoute,
 
-var Master = require('./components/master.jsx'),
+  Master = require('./components/master.jsx'),
 	Home = require('./components/pages/home.jsx'),
 	GetStarted = require('./components/pages/get-started.jsx'),
+  PageWithNav = require('./components/pages/page-with-nav.jsx'),
 
-  CssFramework = require('./components/pages/css-framework.jsx'),
   Colors = require('./components/pages/css-framework/colors.jsx'),
   Typography = require('./components/pages/css-framework/typography.jsx'),
 
-  Components = require('./components/pages/components.jsx'),
   Buttons = require('./components/pages/components/buttons.jsx'),
   Dialog = require('./components/pages/components/dialog.jsx'),
-  Icons = require('./components/pages/components/buttons.jsx'),
-  Inputs = require('./components/pages/components/buttons.jsx'),
-  Menus = require('./components/pages/components/buttons.jsx'),
+  Icons = require('./components/pages/components/icons.jsx'),
+  Inputs = require('./components/pages/components/inputs.jsx'),
+  Menus = require('./components/pages/components/menus.jsx'),
   Switches = require('./components/pages/components/switches.jsx'),
-  Toolbars = require('./components/pages/components/toolbars.jsx');
+  Toolbars = require('./components/pages/components/toolbars.jsx'),
+
+  cssFrameworkMenuItems = [
+    { route: 'colors', text: 'Colors'},
+    { route: 'typography', text: 'Typography'}
+  ],
+
+  componentsMenuItems = [
+    { route: 'buttons', text: 'Buttons'},
+    { route: 'dialog', text: 'Dialog'},
+    { route: 'icons', text: 'Icons'},
+    { route: 'inputs', text: 'Inputs'},
+    { route: 'menus', text: 'Menus'},
+    { route: 'switches', text: 'Switches'},
+    //{ route: 'toasts', text: 'Toasts'},
+    { route: 'toolbars', text: 'Toolbars'},
+  ];
 
 var AppRoutes = (
   <Routes scrollBehavior="scrollToTop">
@@ -32,13 +47,13 @@ var AppRoutes = (
     	<Route name="home" handler={Home} />
     	<Route name="get-started" handler={GetStarted} />
 
-      <Route name="css-framework" handler={CssFramework}>
+      <Route name="css-framework" handler={PageWithNav} menuItems={cssFrameworkMenuItems}>
         <Route name="colors" handler={Colors} />
         <Route name="typography" handler={Typography} />
-        <DefaultRoute handler={Colors}/>
+        <Redirect from="/css-framework" to="colors" />
       </Route>
 
-      <Route name="components" handler={Components}>
+      <Route name="components" handler={PageWithNav} menuItems={componentsMenuItems}>
         <Route name="buttons" handler={Buttons} />
         <Route name="dialog" handler={Dialog} />
         <Route name="icons" handler={Icons} />
@@ -46,7 +61,7 @@ var AppRoutes = (
         <Route name="menus" handler={Menus} />
         <Route name="switches" handler={Switches} />
         <Route name="toolbars" handler={Toolbars} />
-        <DefaultRoute handler={Buttons}/>
+        <Redirect from="/components" to="buttons" />
       </Route>
 
       <DefaultRoute handler={Home}/>

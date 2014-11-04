@@ -3,45 +3,14 @@
  */
 
 var React = require('react'),
-  //Dispatcher = require('../app-dispatcher.js'),
   mui = require('mui'),
   Menu = mui.Menu,
   Icon = mui.Icon,
-  //Pages = require('./pages.jsx'),
   AppLeftNav = require('./app-left-nav.jsx');
 
 var Master = React.createClass({
 
   render: function() {
-    // var page = Pages.getPage(this.state.currentUrl),
-    //   title = page.title,
-    //   currentMainComponent = page.mainContentComponent,
-    //   contentCanvasClass = page.subPages ? 'mui-app-content-canvas with-nav' : 'mui-app-content-canvas',
-    //   subNav;
-
-    // if (page.subPages) {
-    //   var menuItems = [],
-    //     i = 0,
-    //     selectedIndex,
-    //     currentSubPage;
-
-    //   for (prop in page.subPages) {
-    //     currentSubPage = page.subPages[prop];
-
-    //     if (this.state.currentUrl === currentSubPage.url) {
-    //       selectedIndex = i;
-    //       currentMainComponent = currentSubPage.mainContentComponent;
-    //     }
-    //     menuItems.push({ payload: currentSubPage.url, text: currentSubPage.title });
-    //     i++;
-    //   }
-
-    //   subNav = (
-    //     <div className="subNav">
-    //       <Menu ref="menuItems" zDepth={0} menuItems={menuItems} selectedIndex={selectedIndex} onItemClick={this._onMenuItemClick} />
-    //     </div>
-    //   );
-    // }
 
     var title = '';
 
@@ -62,19 +31,9 @@ var Master = React.createClass({
     document.location.href='https://github.com/callemall/material-ui';
   },
 
-  // _onMenuItemClick: function(e, key, item) {
-  //   Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: item.payload } ); 
-  // },
-
   _onMenuIconClick: function() {
     this.refs.leftNav.toggle();
   }
-
-  // _onStoreChange: function() {
-  //   this.setState({
-  //     currentUrl: AppStateStore.get('currentUrl')
-  //   });
-  // }
   
 });
 
