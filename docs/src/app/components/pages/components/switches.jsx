@@ -4,7 +4,7 @@
 
 var React = require('react'),
     mui = require('mui'),
-    CodeExample = require('../code-example/code-example.jsx');
+    CodeExample = require('../../code-example/code-example.jsx');
 
 var SwitchesPage = React.createClass({
 

@@ -3,38 +3,27 @@
  */
 
 var React = require('react'),
+  Router = require('react-router'),
   mui = require('mui'),
-  Dispatcher = require('../app-dispatcher.js'),
-  Pages = require('./pages.jsx');
+
+  menuItems = [
+    { route: 'get-started', text: 'Get Started' },
+    { route: 'css-framework', text: 'CSS Framework' },
+    { route: 'components', text: 'Components' },
+    { type: mui.MenuItem.Types.SUBHEADER, text: 'Resources' },
+    { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
+    { type: mui.MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
+    { type: mui.MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
+  ];
 
 var AppLeftNav = React.createClass({
 
-  propTypes: {
-    url: React.PropTypes.string,
-    toggle: React.PropTypes.func
-  },
+  mixins: [Router.Navigation, Router.ActiveState],
 
   getInitialState: function() {
     return {
-      menuItems: [
-
-        { payload: Pages.getStarted, text: Pages.getStarted.title },
-        { payload: Pages.cssFramework, text: Pages.cssFramework.title },
-        { payload: Pages.components, text: Pages.components.title },
-        { type: mui.MenuItem.Types.SUBHEADER, text: 'Resources' },
-        { type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
-        { type: mui.MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
-        { type: mui.MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
-      ]
-    }
-  },
-
-  componentWillMount: function() {
-    this._setSelectedIndex(this.props.url);
-  },
-
-  componentWillReceiveProps: function(newProps) {
-    this._setSelectedIndex(newProps.url);
+      selectedIndex: null
+    };
   },
 
   render: function() {
@@ -45,8 +34,8 @@ var AppLeftNav = React.createClass({
         ref="leftNav"
         isInitiallyOpen={false}
         header={header}
-        menuItems={this.state.menuItems}
-        selectedIndex={this.state.selectedIndex}
+        menuItems={menuItems}
+        selectedIndex={this._getSelectedIndex()}
         onChange={this._onLeftNavChange} />
     );
   },
@@ -55,31 +44,22 @@ var AppLeftNav = React.createClass({
     this.refs.leftNav.toggle();
   },
 
-  _setSelectedIndex: function(url) {
-    var item;
+  _getSelectedIndex: function() {
+    var currentItem;
 
-    for (var i = 0; i < this.state.menuItems.length; i++) {
-      item = this.state.menuItems[i];
-
-      //only match the root part of the url
-      if (url && item.payload && item.payload.url.split('/')[0] === url.split('/')[0]) {
-        if (i !== this.state.selectedIndex) this.setState({ selectedIndex: i});
-        return;
-      }
+    for (var i = menuItems.length - 1; i >= 0; i--) {
+      currentItem = menuItems[i];
+      if (currentItem.route && this.isActive(currentItem.route)) return i;
     };
+  },
 
-    this.setState({ selectedIndex: null});
+  _onLeftNavChange: function(e, key, payload) {
+    this.transitionTo(payload.route);
   },
 
   _onHeaderClick: function() {
-    if (this.props.url !== Pages.home.url) {
-      this.refs.leftNav.close();
-      Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: Pages.home.url } ); 
-    }
-  },
-
-  _onLeftNavChange: function(e, key, item) {
-    Dispatcher.dispatchAction(Dispatcher.ActionTypes.NAV_USER_CLICK, { url: item.payload.url } ); 
+    this.transitionTo('root');
+    this.refs.leftNav.close();
   }
 
 });

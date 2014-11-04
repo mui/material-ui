@@ -4,7 +4,7 @@
 
 var React = require('react');
 var mui = require('mui');
-var CodeExample = require('../code-example/code-example.jsx');
+var CodeExample = require('../../code-example/code-example.jsx');
 
 var ToastsPage = React.createClass({
 

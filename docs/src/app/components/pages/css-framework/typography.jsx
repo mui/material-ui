@@ -4,7 +4,7 @@
 
 var $ = require('jquery'),
 	React = require('react'),
-	CodeExample = require('../code-example/code-example.jsx');
+	CodeExample = require('../../code-example/code-example.jsx');
 
 var TypographyPage = React.createClass({
 

@@ -5,7 +5,7 @@
 var React = require('react'),
   	mui = require('mui'),
     Icon = mui.Icon,
-    CodeExample = require('../code-example/code-example.jsx'),
+    CodeExample = require('../../code-example/code-example.jsx'),
 
     coreIcons = [
       'arrow-drop-down', 
