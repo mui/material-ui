@@ -42,7 +42,6 @@ var LeftNav = React.createClass({
   },
 
   render: function() {
-    console.log('docked', this.props.docked);
     var classes = this.getClasses('mui-left-nav', {
         'mui-closed': !this.state.open
       }),
@@ -69,7 +68,7 @@ var LeftNav = React.createClass({
   },
 
   _onMenuItemClick: function(e, key, payload) {
-    this.close();
+    if (!this.props.docked) this.close();
     if (this.props.onChange && this.props.selectedIndex !== key) this.props.onChange(e, key, payload);
   }
 
