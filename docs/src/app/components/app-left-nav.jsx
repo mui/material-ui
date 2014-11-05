@@ -32,6 +32,7 @@ var AppLeftNav = React.createClass({
     return (
       <mui.LeftNav 
         ref="leftNav"
+        docked={false}
         isInitiallyOpen={false}
         header={header}
         menuItems={menuItems}

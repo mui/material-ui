@@ -21,6 +21,7 @@ var React = require('react'),
   Dialog = require('./components/pages/components/dialog.jsx'),
   Icons = require('./components/pages/components/icons.jsx'),
   Inputs = require('./components/pages/components/inputs.jsx'),
+  LeftNav = require('./components/pages/components/left-nav.jsx'),
   Menus = require('./components/pages/components/menus.jsx'),
   Paper = require('./components/pages/components/paper.jsx'),
   Switches = require('./components/pages/components/switches.jsx'),
@@ -37,6 +38,7 @@ var React = require('react'),
     { route: 'icons', text: 'Icons'},
     { route: 'inputs', text: 'Inputs'},
     { route: 'menus', text: 'Menus'},
+    { route: 'left-nav', text: 'Left Nav'},
     { route: 'paper', text: 'Paper'},
     { route: 'switches', text: 'Switches'},
     //{ route: 'toasts', text: 'Toasts'},
@@ -59,6 +61,7 @@ var AppRoutes = (
         <Route name="dialog" handler={Dialog} />
         <Route name="icons" handler={Icons} />
         <Route name="inputs" handler={Inputs} />
+        <Route name="left-nav" handler={LeftNav} />
         <Route name="menus" handler={Menus} />
         <Route name="paper" handler={Paper} />
         <Route name="switches" handler={Switches} />
