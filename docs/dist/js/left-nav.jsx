@@ -12,6 +12,7 @@ var LeftNav = React.createClass({
   mixins: [Classable],
 
   propTypes: {
+    docked: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     header: React.PropTypes.element,
     menuItems: React.PropTypes.array.isRequired,
@@ -21,6 +22,7 @@ var LeftNav = React.createClass({
 
   getDefaultProps: function() {
     return {
+      docked: true,
       isInitiallyOpen: true
     };
   },
@@ -40,14 +42,20 @@ var LeftNav = React.createClass({
   },
 
   render: function() {
+    console.log('docked', this.props.docked);
     var classes = this.getClasses('mui-left-nav', {
         'mui-closed': !this.state.open
       }),
-      selectedIndex = this.props.selectedIndex;
+      selectedIndex = this.props.selectedIndex,
+      overlay;
+
+    if (!this.props.docked) {
+      overlay = <div className="mui-overlay" onClick={this._onOverlayClick}></div>;
+    }
 
     return (
       <div className={classes}>
-        <div className="mui-overlay" onClick={this._onOverlayClick}></div>
+        {overlay}
         <Paper ref="clickAwayableElement" className="mui-left-nav-menu" zDepth={2} rounded={false}>
           {this.props.header}
           <Menu ref="menuItems" zDepth={0} menuItems={this.props.menuItems} selectedIndex={selectedIndex} onItemClick={this._onMenuItemClick} />
