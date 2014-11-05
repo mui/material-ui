@@ -1,5 +1,6 @@
-var dest = "./build";
-var src = './src';
+var dest = './build',
+  src = './src'
+  dist = './dist';
 
 module.exports = {
   browserSync: {
@@ -9,26 +10,24 @@ module.exports = {
       baseDir: [dest, src]
     },
     files: [
-      dest + "/**",
-      // Exclude Map files
-      "!" + dest + "/**.map"
+      dest + '/**'
     ]
   },
   less: {
-    src: src + "/less/main.less",
+    src: src + '/less/main.less',
+    watch: [
+      src + '/less/**',
+      dist + '/less/**'
+    ],
     dest: dest
-  },
-  images: {
-    src: src + "/images/**",
-    dest: dest + "/images"
   },
   markup: {
     src: src + "/www/**",
     dest: dest
   },
   fonts: {
-    src: "./dist/less/material-ui-icons/fonts/**",
-    dest: dest + "/fonts"
+    src: dist + '/less/material-ui-icons/fonts/**',
+    dest: dest + '/fonts'
   },
   browserify: {
     // Enable source maps
