@@ -91,7 +91,7 @@ var Input = React.createClass({
 
   _onTextAreaChange: function(e) {
     this._onInputChange(e);
-    this._onLineBreak();
+    this._onLineBreak(e);
   },
 
   _onLineBreak: function(e) {
