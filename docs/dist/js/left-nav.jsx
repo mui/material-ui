@@ -14,7 +14,6 @@ var LeftNav = React.createClass({
   propTypes: {
     docked: React.PropTypes.bool,
     header: React.PropTypes.element,
-    isInitiallyOpen: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number
@@ -22,14 +21,13 @@ var LeftNav = React.createClass({
 
   getDefaultProps: function() {
     return {
-      docked: true,
-      isInitiallyOpen: true
+      docked: true
     };
   },
 
   getInitialState: function() {
     return {
-      open: this.props.isInitiallyOpen
+      open: this.props.docked
     };
   },
 
