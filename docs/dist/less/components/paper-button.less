@@ -18,7 +18,7 @@
 	display: inline-block;
 	height: @paper-button-height;
 	min-width: @paper-button-min-width;
-	line-height: @paper-button-height;
+	
 	padding: 0;
 	cursor: pointer;
 
@@ -28,11 +28,19 @@
 	}
 
 	.mui-paper-container {
-		padding: 0 @desktop-gutter-less;
-		color: @paper-button-default-text-color;
+		
 		background-color: @paper-button-default-color;
 		position: relative;
 		overflow: hidden;
+
+    a {
+      padding: 0 @desktop-gutter-less;
+      color: @paper-button-default-text-color;
+      text-decoration: none;
+      line-height: @paper-button-height;
+      height: @paper-button-height;
+      display: inline-block;
+    }
 	}
 
 	&:hover {
@@ -49,8 +57,15 @@
 		.mui-paper-container {
 			padding: 0;
 			text-align: center;
-			color: @paper-button-primary-text-color;
 			background-color: @paper-button-primary-color;
+
+      a {
+        width: @fab-size;
+        min-width: @fab-size;
+        height: @fab-size;
+        padding: 0;
+        color: @paper-button-primary-text-color;
+      }
 		}
 
 		.mui-paper-button-icon {
@@ -72,8 +87,16 @@
 		.mui-paper-container {
 			padding: 0;
 			text-align: center;
-			color: @paper-button-primary-text-color;
 			background-color: @paper-button-primary-color;
+
+      a {
+        height: @fab-mini-size;
+        width: @fab-mini-size;
+        min-width: @fab-mini-size;
+        height: @fab-mini-size;
+        padding: 0;
+        color: @paper-button-primary-text-color;
+      }
 		}
 
 		.mui-paper-button-icon {
@@ -89,8 +112,11 @@
 
 	&.mui-primary {
 		.mui-paper-container {
-			color: @paper-button-primary-text-color;
 			background-color: @paper-button-primary-color;
+
+      a {
+        color: @paper-button-primary-text-color;
+      }
 		}
 
 		&:hover {
@@ -102,7 +128,7 @@
 	
 	&.mui-flat {
 		&.mui-primary {
-			.mui-paper-container {
+			.mui-paper-container a {
 				color: @paper-button-primary-color;
 			}
 
@@ -128,8 +154,11 @@
 		cursor: default;
 
 		.mui-paper-container {
-			color: @paper-button-disabled-text-color;
 			background-color: @paper-button-disabled-color;
+
+      a {
+        color: @paper-button-disabled-text-color;
+      }
 		}
 
 		&.mui-flat {

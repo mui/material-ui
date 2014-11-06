@@ -12,16 +12,16 @@ var ButtonPage = React.createClass({
   render: function() {
     var code = 
       '//Flat Buttons\n' +
-      '<PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
-      '<PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} />\n' +
-      '<PaperButton type={PaperButton.Types.FLAT} label="Disabled" disabled={true} />\n\n' +
+      '<PaperButton type="FLAT" label="Default" />\n' +
+      '<PaperButton type="FLAT" label="Primary" primary={true} />\n' +
+      '<PaperButton type="FLAT" label="Disabled" disabled={true} />\n\n' +
       '//Raised Buttons\n' + 
-      '<PaperButton type={PaperButton.Types.RAISED} label="Default" />\n' +
-      '<PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} />\n' +
-      '<PaperButton type={PaperButton.Types.RAISED} label="Disabled" disabled={true} />\n\n' +
+      '<PaperButton type="RAISED" label="Default" />\n' +
+      '<PaperButton type="RAISED" label="Primary" primary={true} />\n' +
+      '<PaperButton type="RAISED" label="Disabled" disabled={true} />\n\n' +
       '//Floating Action Buttons\n' +
-      '<PaperButton type={PaperButton.Types.FAB_MINI} icon="star" />\n' +
-      '<PaperButton type={PaperButton.Types.FAB} icon="star" />';
+      '<PaperButton type="FAB_MINI" icon="star" />\n' +
+      '<PaperButton type="FAB" icon="star" />';
 
     return (
     	<div>
@@ -32,20 +32,20 @@ var ButtonPage = React.createClass({
           <div className="button-examples">
 
             <div className="button-examples-row">
-              <PaperButton type={PaperButton.Types.FLAT} label="Default" onClick={this._onPaperButtonClick} />
-              <PaperButton type={PaperButton.Types.FLAT} label="Primary" primary={true} onClick={this._onPaperButtonClick} />
-              <PaperButton type={PaperButton.Types.FLAT} label="Disabled" disabled={true} />
+              <PaperButton type="FLAT" label="Default" onClick={this._onPaperButtonClick} />
+              <PaperButton type="FLAT" label="Primary" primary={true} onClick={this._onPaperButtonClick} />
+              <PaperButton type="FLAT" label="Disabled" disabled={true} />
             </div>
 
             <div className="button-examples-row">
-              <PaperButton type={PaperButton.Types.RAISED} label="Default" onClick={this._onPaperButtonClick} />
-              <PaperButton type={PaperButton.Types.RAISED} label="Primary" primary={true} onClick={this._onPaperButtonClick} />
-              <PaperButton type={PaperButton.Types.RAISED} label="Disabled" disabled={true} />
+              <PaperButton type="RAISED" label="Default" onClick={this._onPaperButtonClick} />
+              <PaperButton type="RAISED" label="Primary" primary={true} onClick={this._onPaperButtonClick} />
+              <PaperButton type="RAISED" label="Disabled" disabled={true} />
             </div>
 
             <div className="button-examples-row">
-              <PaperButton type={PaperButton.Types.FAB_MINI} icon="star" onClick={this._onPaperButtonClick} />
-              <PaperButton type={PaperButton.Types.FAB} icon="star" onClick={this._onPaperButtonClick} />
+              <PaperButton type="FAB_MINI"icon="star" onClick={this._onPaperButtonClick} />
+              <PaperButton type="FAB" icon="star" onClick={this._onPaperButtonClick} />
             </div>
 
           </div>

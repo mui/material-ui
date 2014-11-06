@@ -28,6 +28,7 @@ var PaperButton = React.createClass({
   propTypes: {
     primary: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
+    href: React.PropTypes.string,
     label: React.PropTypes.string,
     type: React.PropTypes.oneOf(Object.keys(Types)),
     icon: React.PropTypes.string,
@@ -69,10 +70,10 @@ var PaperButton = React.createClass({
     return (
       <Paper className={classes} zDepth={this.state.zDepth} circle={circle} onClick={this._onClick}>
         <div ref="ripple" className="mui-ripple" />
-        <div className="mui-paper-button-content">
+        <a href={this.props.href} className="mui-paper-button-content">
           {this.props.label}
           {icon}
-        </div>
+        </a>
       </Paper>
     );
   },
