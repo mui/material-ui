@@ -7,6 +7,7 @@
 @import (less) "github.css";
 
 @import "color-palette.less";
+@import "component-info.less";
 @import "icon-group.less";
 
 @import "pages/home.less";
@@ -34,6 +35,7 @@ a {
 	}
 
 	.mui-app-content-canvas {
+    
 		&.with-nav {
 			@subNavWidth: (@desktop-keyline-increment * 4);
       .lh-calc(min-height, ~'100% - @{app-bar-height}');
@@ -44,6 +46,7 @@ a {
 			}
 
 			.subContent {
+        max-width: (@desktop-keyline-increment * 14);
         height: 100%;
         margin-left: @subNavWidth;
 				.lh-calc(width, ~'100% - @{subNavWidth}');
@@ -111,7 +114,6 @@ a {
 }
 
 .code-example {
-	max-width: (@desktop-keyline-increment * 14);
 	background-color: @white;
 	margin-bottom: 32px;
 

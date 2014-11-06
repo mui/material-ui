@@ -33,10 +33,12 @@ var LeftNav = React.createClass({
 
   toggle: function() {
     this.setState({ open: !this.state.open });
+    return this;
   },
 
   close: function() {
     this.setState({ open: false });
+    return this;
   },
 
   render: function() {

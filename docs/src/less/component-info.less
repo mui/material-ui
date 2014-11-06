@@ -1,0 +1,40 @@
+.component-info {
+  .mui-font-style-subhead-1;
+  width: 100%;
+
+  td {
+    padding: 32px 0;
+    vertical-align: top;
+  }
+  
+  .component-info-name {
+    min-width: 128px;
+    .mui-font-weight-medium;
+    padding-right: @desktop-gutter;
+  }
+
+  .component-info-type {
+    .mui-text-light-black;
+    padding-right: @desktop-gutter;
+  }
+
+  .component-info-header {
+    .mui-font-style-subhead-1;
+    padding-top: 0;
+  }
+
+  .component-info-desc {
+    width: 100%;
+    border-bottom: solid 1px @border-color;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  tr:last-child {
+    .component-info-desc {
+      border-bottom: none;
+    }
+  }
+}
