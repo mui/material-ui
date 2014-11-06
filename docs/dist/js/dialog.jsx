@@ -12,7 +12,8 @@ var Dialog = React.createClass({
 	propTypes: {
     openImmediately: React.PropTypes.bool,
     title: React.PropTypes.string,
-    actions: React.PropTypes.array
+    actions: React.PropTypes.array,
+    onShow: React.PropTypes.func
 	},
 
 	getDefaultProps: function() {
@@ -53,7 +54,7 @@ var Dialog = React.createClass({
 						{this.props.title}
 					</h3>
 					<div className="dialog-content">
-						{this.props.children}
+						{this.state.open ? this.props.children : ''}
 					</div>
 					<div className="dialog-actions">
 						<div className="actions-right">
@@ -72,6 +73,7 @@ var Dialog = React.createClass({
 
 	show: function() {
 		this.setState({ open: true });
+		if (this.props.onShow) this.props.onShow();
 	}
 
 });
