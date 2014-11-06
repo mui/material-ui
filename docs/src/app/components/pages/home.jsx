@@ -37,7 +37,7 @@ var HomePage = React.createClass({
               </p>
 
               <PaperButton className="demo-button" label="Demo" onClick={this._onDemoClick} />
-              <PaperButton className="github-button" label="GitHub" onClick={this._onGithubClick} />
+              <PaperButton className="github-button" label="GitHub" href="https://github.com/callemall/material-ui" />
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@ var HomePage = React.createClass({
               type={PaperButton.Types.RAISED} 
               primary={true} 
               label="Github" 
-              onClick={this._onGithubClick} />
+              href="https://github.com/callemall/material-ui" />
           </div>
         </div>
 
@@ -89,10 +89,6 @@ var HomePage = React.createClass({
 
   _onDemoClick: function() {
     this.transitionTo('components');
-  },
-
-  _onGithubClick: function() {
-    document.location.href='https://github.com/callemall/material-ui';
   }
 
 });
