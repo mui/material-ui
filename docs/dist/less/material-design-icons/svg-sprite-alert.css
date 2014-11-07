@@ -1,0 +1,12 @@
+.svg-ic_error_24px {
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-image: url(svg-sprite/svg-sprite-alert.svg);
+}
+
+.svg-ic_warning_24px {
+	background-position: 0 -24px;
+	background-repeat: no-repeat;
+	background-image: url(svg-sprite/svg-sprite-alert.svg);
+}
+
