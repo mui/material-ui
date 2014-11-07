@@ -1,7 +1,7 @@
 {
   "name": "material-ui",
   "author": "Call-em-all Engineering Team",
-  "version": "0.1.29",
+  "version": "0.1.30",
   "description": "Material Design UI components built with React",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/callemall/material-ui/issues"
   },
-  "homepage": "http://callemall.github.io/material-ui/",
+  "homepage": "http://www.material-ui.com/",
   "browser": {
     "react": "react/addons"
   },
