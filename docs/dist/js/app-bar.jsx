@@ -29,7 +29,7 @@ var AppBar = React.createClass({
       title, menuIcon;
 
     if (this.props.title) title = <h1 className="mui-app-bar-title">{this.props.title}</h1>;
-    if (this.props.onMenuIconClick) menuIcon = <Icon icon="menu" onClick={this.props.onMenuIconClick} />;
+    if (this.props.onMenuIconClick) menuIcon = <Icon className="mui-app-bar-navigation-icon" icon="navigation-menu" onClick={this.props.onMenuIconClick} />;
 
     return (
     	<Paper rounded={false} className={classes} zDepth={this.props.zDepth}>

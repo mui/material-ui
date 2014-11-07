@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "jquery": "^2.1.1",
+    "material-design-fonticons": "^1.0.0",
     "react": "^0.12"
   },
   "devDependencies": {

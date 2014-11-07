@@ -45,7 +45,7 @@ var HomePage = React.createClass({
         <div className="home-features">
 
           <div className="feature">
-            <Link className="icon-circle" to="get-started"><Icon icon="check-all" /></Link>
+            <Link className="icon-circle" to="get-started"><Icon icon="action-done-all" /></Link>
             <h3>Get Started</h3>
             <p>
               The best way to get started is check out our repo and download the code. 
@@ -54,7 +54,7 @@ var HomePage = React.createClass({
           </div>
 
           <div className="feature">
-            <Link className="icon-circle" to="css-framework"><Icon icon="web" /></Link>
+            <Link className="icon-circle" to="css-framework"><Icon icon="av-web" /></Link>
             <h3>Css Framework</h3>
             <p>
               The Css Framework is built with <a href="http://lesscss.org">Less</a>. We've 
@@ -63,7 +63,7 @@ var HomePage = React.createClass({
           </div>
 
           <div className="feature">
-            <Link className="icon-circle" to="components"><Icon icon="select-all" /></Link>
+            <Link className="icon-circle" to="components"><Icon icon="content-select-all" /></Link>
             <h3>Components</h3>
             <p>
               We've started building out some material design components using react. 

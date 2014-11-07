@@ -54,7 +54,7 @@ var DropDownMenu = React.createClass({
           <div className="mui-menu-label">
             {this.props.menuItems[this.state.selectedIndex].text}
           </div>
-          <Icon icon="arrow-drop-down" />
+          <Icon className="mui-menu-drop-down-icon" icon="navigation-arrow-drop-down" />
         </div>
         <Menu ref="menuItems" selectedIndex={this.state.selectedIndex} menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
       </div>
