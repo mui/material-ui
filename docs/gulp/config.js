@@ -29,6 +29,10 @@ module.exports = {
     src: './node_modules/material-design-fonticons/fonts/mdfonticon/**',
     dest: dest + '/fonts/mdfonticon'
   },
+  muiFonts: {
+    src: dist + '/less/material-ui-icons/fonts/**',
+    dest: dest + '/fonts'
+  },
   browserify: {
     // Enable source maps
     debug: true,

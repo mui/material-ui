@@ -844,8 +844,10 @@ var React = require('react'),
       {
         name: 'MUI Custom Icons',
         icons: [
-          'github',
-          'pie'
+          'mui-icon-sort',
+          'mui-icon-github',
+          'mui-icon-arrow-drop-right',
+          'mui-icon-pie'
         ]
       }
     ];
