@@ -21,8 +21,8 @@ var ButtonPage = React.createClass({
       '<PaperButton type="RAISED" label="Primary" primary={true} />\n' +
       '<PaperButton type="RAISED" label="Disabled" disabled={true} />\n\n' +
       '//Floating Action Buttons\n' +
-      '<PaperButton type="FAB_MINI" icon="star" />\n' +
-      '<PaperButton type="FAB" icon="star" />';
+      '<PaperButton type="FAB_MINI" icon="action-grade" />\n' +
+      '<PaperButton type="FAB" icon="action-grade" />';
 
     return (
     	<div>
@@ -45,8 +45,8 @@ var ButtonPage = React.createClass({
             </div>
 
             <div className="button-examples-row">
-              <PaperButton type="FAB_MINI"icon="star" onClick={this._onPaperButtonClick} />
-              <PaperButton type="FAB" icon="star" onClick={this._onPaperButtonClick} />
+              <PaperButton type="FAB_MINI"icon="action-grade" onClick={this._onPaperButtonClick} />
+              <PaperButton type="FAB" icon="action-grade" onClick={this._onPaperButtonClick} />
             </div>
 
           </div>
