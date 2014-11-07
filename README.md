@@ -2,7 +2,7 @@
 
 Material-UI is a CSS framework and a set of [React](http://facebook.github.io/react/) components that implement [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html) specification.
 
-Check out our [documentation site](http://callemall.github.io/material-ui/) for live examples. It's still a work in progress, but hopefully you can see where we're headed.
+Check out our [documentation site](http://www.material-ui.com/) for live examples. It's still a work in progress, but hopefully you can see where we're headed.
 
 ## Installation
 
