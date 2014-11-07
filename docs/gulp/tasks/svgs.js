@@ -1,7 +1,7 @@
 var gulp = require('gulp');
-var config = require('../config').fonts
+var config = require('../config').svgs
 
-gulp.task('fonts', function() {
+gulp.task('svgs', function() {
   return gulp.src(config.src)
     .pipe(gulp.dest(config.dest));
 });

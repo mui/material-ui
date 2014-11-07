@@ -25,9 +25,9 @@ module.exports = {
     src: src + "/www/**",
     dest: dest
   },
-  fonts: {
-    src: dist + '/less/material-ui-icons/fonts/**',
-    dest: dest + '/fonts'
+  svgs: {
+    src: dist + '/less/material-design-icons/svg-sprite/**',
+    dest: dest + '/svg-sprite'
   },
   browserify: {
     // Enable source maps
