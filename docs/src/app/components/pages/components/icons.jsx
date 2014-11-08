@@ -900,11 +900,11 @@ var IconsPage = React.createClass({
   },
 
   _getComponentExample: function() {
-    var code = '<Icon icon="home" />';
+    var code = '<Icon icon="action-home" />';
 
     return (
       <CodeExample code={code}>
-        <Icon icon='home' />
+        <Icon icon='action-home' />
       </CodeExample>
     );
   }
