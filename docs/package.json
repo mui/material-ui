@@ -18,7 +18,7 @@
     "hljs": "hljs"
   },
   "devDependencies": {
-    "browser-sync": "^1.6.3",
+    "browser-sync": "^1.6.5",
     "browserify": "^6.2.0",
     "browserify-shim": "^3.8.0",
     "gulp": "^3.8.10",
