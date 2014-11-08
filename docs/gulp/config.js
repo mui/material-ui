@@ -26,7 +26,7 @@ module.exports = {
     dest: dest
   },
   fonts: {
-    src: './node_modules/material-design-fonticons/fonts/mdfonticon/**',
+    src: dist + 'less/material-design-fonticons/fonts/**',
     dest: dest + '/fonts/mdfonticon'
   },
   muiFonts: {
