@@ -1,3 +1,7 @@
+## 0.2.1
+###### Nov. 8, 2014
+- Fixed icon font reference. We're now including it as part of the project
+  instead of an npm dependency.
 
 ## 0.2.0
 ###### Nov. 7, 2014
