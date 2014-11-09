@@ -111,13 +111,13 @@ var Menu = React.createClass({
   
   componentDidMount: function() {
     var $el = $(this.getDOMNode()),
-      menuWidth = $el.width(),
-      currentTransition = $el.css('transition');
+      menuWidth = $el.width()
     
     menuWidth = KeyLine.getIncrementalDim(menuWidth);
 
     //Update the menu width
-    //We need to remove the transition because of safari
+    //We need to remove the transition in order to set the
+    //width because of safari
     $el.css({
       transition: 'none',
       width: menuWidth
@@ -128,7 +128,7 @@ var Menu = React.createClass({
 
     //put the transition back
     $el.css({
-      transition: currentTransition
+      transition: ''
     });
 
     //Save the initial menu height for later
