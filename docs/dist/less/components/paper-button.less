@@ -47,67 +47,6 @@
 		}
 	}
 
-	&.mui-fab {
-		height: @fab-size;
-		width: @fab-size;
-		min-width: @fab-size;
-
-		.mui-paper-container {
-			padding: 0;
-			text-align: center;
-			background-color: @paper-button-primary-color;
-
-      a {
-        width: @fab-size;
-        min-width: @fab-size;
-        height: @fab-size;
-        padding: 0;
-        color: @paper-button-primary-text-color;
-      }
-		}
-
-		.mui-paper-button-icon {
-			line-height: @fab-size;
-		}
-
-		&:hover {
-			.mui-paper-container {
-				background-color: @primary-hover-color;
-			}
-		}
-	}
-
-	&.mui-fab-mini {
-		height: @fab-mini-size;
-		width: @fab-mini-size;
-		min-width: @fab-mini-size;
-
-		.mui-paper-container {
-			padding: 0;
-			text-align: center;
-			background-color: @paper-button-primary-color;
-
-      a {
-        height: @fab-mini-size;
-        width: @fab-mini-size;
-        min-width: @fab-mini-size;
-        height: @fab-mini-size;
-        padding: 0;
-        color: @paper-button-primary-text-color;
-      }
-		}
-
-		.mui-paper-button-icon {
-			line-height: @fab-mini-size;
-		}
-
-		&:hover {
-			.mui-paper-container {
-				background-color: @primary-hover-color;
-			}
-		}
-	}
-
 	&.mui-primary {
 		.mui-paper-container {
 			background-color: @paper-button-primary-color;
@@ -165,6 +104,44 @@
 			}
 		}
 	}
+
+  .fab(@size) {
+    height: @size;
+    width: @size;
+    min-width: @size;
+
+    .mui-paper-container {
+      padding: 0;
+      text-align: center;
+      background-color: @paper-button-primary-color;
+
+      a {
+        width: @size;
+        min-width: @size;
+        height: @size;
+        padding: 0;
+        color: @paper-button-primary-text-color;
+      }
+    }
+
+    .mui-paper-button-icon {
+      line-height: @size;
+    }
+
+    &:hover {
+      .mui-paper-container {
+        background-color: @primary-hover-color;
+      }
+    }
+  }
+
+  &.mui-fab {
+    .fab(@fab-size);
+  }
+
+  &.mui-fab-mini {
+    .fab(@fab-mini-size);
+  }
 
 	.mui-ripple {
 		&.mui-show {
