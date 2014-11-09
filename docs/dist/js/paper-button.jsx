@@ -8,6 +8,7 @@ var $ = require('jquery'),
   Classable = require('./mixins/classable.js'),
   Paper = require('./paper.jsx'),
   Icon = require('./icon.jsx'),
+  Ripple = require('./ripple.jsx'),
   
   Types = {
     RAISED: 'RAISED',
@@ -69,7 +70,7 @@ var PaperButton = React.createClass({
 
     return (
       <Paper className={classes} zDepth={this.state.zDepth} circle={circle} onClick={this._onClick}>
-        <div ref="ripple" className="mui-ripple" />
+        <Ripple ref="ripple" />
         <a href={this.props.href} className="mui-paper-button-content">
           {this.props.label}
           {icon}
@@ -86,21 +87,10 @@ var PaperButton = React.createClass({
   },
 
   _animateButtonClick: function(e) {
-    var $el = $(this.getDOMNode()),
-      $ripple = $(this.refs.ripple.getDOMNode()),
-      $offset = $el.offset(),
-      x = e.pageX - $offset.left,
-      y = e.pageY - $offset.top;
+    var $el = $(this.getDOMNode());
 
     //animate the ripple
-    $ripple.css({
-      top: y,
-      left: x
-    });
-    $ripple.addClass('mui-show');
-    CssEvent.onAnimationEnd($ripple, function() {
-      $ripple.removeClass('mui-show');
-    });
+    this.refs.ripple.animate(e);
 
     //animate the zdepth change
     if (this.props.type !== Types.FLAT) {
