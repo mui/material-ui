@@ -6,6 +6,7 @@ var React = require('react'),
   Classable = require('./mixins/classable.js'),
   Icon = require('./icon.jsx'),
   Toggle = require('./toggle.jsx'),
+  Ripple = require('./ripple.jsx'),
 
   Types = {
     LINK: 'LINK',
@@ -60,6 +61,7 @@ var MenuItem = React.createClass({
 
     return (
       <div key={this.props.index} className={classes} onClick={this._onClick}>
+        <Ripple ref="ripple" />
         {icon}
         {this.props.children}
         {data}
@@ -72,7 +74,12 @@ var MenuItem = React.createClass({
   },
 
   _onClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.index);
+    var _this = this;
+
+    //animate the ripple
+    this.refs.ripple.animate(e, function() {
+      if (_this.props.onClick) _this.props.onClick(e, _this.props.index);
+    });
   },
 
   _onToggleClick: function(e, toggled) {

@@ -42,9 +42,19 @@
 		padding-right: @menu-item-padding;
     background-color: fade(@menu-item-hover-color, 0%);
 
+    //needed for ripple
+    position: relative;
+    overflow: hidden;
+
 		&:hover {
 			background-color: @menu-item-hover-color;
 		}
+
+    .mui-ripple {
+      &.mui-show {
+        .ripple-animation('menu-item-ripple-animation', darken(@white, 20%), 250px);
+      }
+    }
 
 		.mui-menu-item-number {
 			float: right;
