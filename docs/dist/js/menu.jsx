@@ -111,9 +111,7 @@ var Menu = React.createClass({
   
   componentDidMount: function() {
     var $el = $(this.getDOMNode()),
-      menuWidth = $el.width()
-    
-    menuWidth = KeyLine.getIncrementalDim(menuWidth);
+      menuWidth = KeyLine.getIncrementalDim($el.width());
 
     //Update the menu width
     //We need to remove the transition in order to set the
