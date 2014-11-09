@@ -5,6 +5,7 @@
 var React = require('react'),
   mui = require('mui'),
   CodeExample = require('../../code-example/code-example.jsx'),
+  ComponentInfo = require('../../component-info.jsx'),
 
   menuItems = [
     { payload: '1', text: 'Never' },
@@ -14,6 +15,8 @@ var React = require('react'),
     { payload: '5', text: 'Weekly' },
   ];
 
+
+
 var MenusPage = React.createClass({
 
   render: function() {
@@ -21,6 +24,18 @@ var MenusPage = React.createClass({
       <div>
         <h2 className="mui-font-style-headline">Drop Down Menu</h2>
         {this._getDropDownMenuExample()}
+
+        <h3 className="mui-font-style-title">Props</h3>
+        {this._getPropInfo()}
+
+        <br/>
+        <hr />
+        <br/>
+
+
+        <h3 className="mui-font-style-title">Events</h3>
+        {this._getEventInfo()}
+        
       </div>
     );
   },
@@ -38,9 +53,35 @@ var MenusPage = React.createClass({
 
     return (
       <CodeExample code={code}>
-        <mui.DropDownMenu menuItems={menuItems} onChange={this._onDropDownMenuChange} />
+        <mui.DropDownMenu menuItems={menuItems} />
       </CodeExample>
     );
+  },
+
+  _getPropInfo: function() {
+    var info = [
+          {
+            name: 'menuItems',
+            type: 'array',
+            header: 'required',
+            desc: 'JSON data representing all menu items in the dropdown.'
+          },
+        ];
+
+    return <ComponentInfo infoArray={info} />;
+  },
+
+  _getEventInfo: function() {
+    var info = [
+          {
+            name: 'onChange',
+            header: 'function(e, selectedIndex, menuItem)',
+            desc: 'Fired when a menu item is clicked that is not the one currently ' +
+              'selected.'
+          }
+        ];
+
+    return <ComponentInfo infoArray={info} />;
   }
 
 });
