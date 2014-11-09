@@ -35,11 +35,12 @@
 	}
 
 	.mui-menu-item {
-		transition: none;
+    .ease-out(@duration: 200ms, @property: background-color);
 		cursor: pointer;
 		line-height: @menu-item-height;
 		padding-left: @menu-item-padding;
 		padding-right: @menu-item-padding;
+    background-color: fade(@menu-item-hover-color, 0%);
 
 		&:hover {
 			background-color: @menu-item-hover-color;
