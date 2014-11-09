@@ -49,7 +49,7 @@ var NestedMenuItem = React.createClass({
 
     return (
       <div className={classes}>
-        <MenuItem index={this.props.index} iconRight="arrow-drop-right" onClick={this._onParentItemClick}>
+        <MenuItem index={this.props.index} iconRight="mui-icon-arrow-drop-right" onClick={this._onParentItemClick}>
           {this.props.text}
         </MenuItem>
         <Menu
