@@ -111,14 +111,28 @@ var Menu = React.createClass({
   
   componentDidMount: function() {
     var $el = $(this.getDOMNode()),
-      menuWidth = $el.width();
-
-    //Make sure the width is an increment of the keylines
+      menuWidth = $el.width(),
+      currentTransition = $el.css('transition');
+    
     menuWidth = KeyLine.getIncrementalDim(menuWidth);
-    $el.css('width', menuWidth);
+
+    //Update the menu width
+    //We need to remove the transition because of safari
+    $el.css({
+      transition: 'none',
+      width: menuWidth
+    });
+
+    //force a redraw
+    $el.height();
+
+    //put the transition back
+    $el.css({
+      transition: currentTransition
+    });
 
     //Save the initial menu height for later
-    this._initialMenuHeight = $(this.getDOMNode()).height() + KeyLine.Desktop.GUTTER_LESS;
+    this._initialMenuHeight = $el.height() + KeyLine.Desktop.GUTTER_LESS;
 
     //Show or Hide the menu according to visibility
     this._renderVisibility();
