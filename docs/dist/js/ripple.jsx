@@ -26,9 +26,11 @@ var Ripple = React.createClass({
       y = e.pageY - $offset.top;
 
     $ripple.css({
+      transition: 'none',
       top: y,
       left: x
     });
+    
     $ripple.addClass('mui-show');
     CssEvent.onAnimationEnd($ripple, function() {
       $ripple.removeClass('mui-show');
