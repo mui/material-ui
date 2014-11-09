@@ -24,11 +24,11 @@ var PaperPage = React.createClass({
       '<Paper zDepth="4" rounded={false} />\n' +
       '<Paper zDepth="5" rounded={false} />\n\n' +
       '//Circular\n' +
-      '<Paper zDepth="1" circle={false} />\n' +
-      '<Paper zDepth="2" circle={false} />\n' +
-      '<Paper zDepth="3" circle={false} />\n' +
-      '<Paper zDepth="4" circle={false} />\n' +
-      '<Paper zDepth="5" circle={false} />';
+      '<Paper zDepth="1" circle={true} />\n' +
+      '<Paper zDepth="2" circle={true} />\n' +
+      '<Paper zDepth="3" circle={true} />\n' +
+      '<Paper zDepth="4" circle={true} />\n' +
+      '<Paper zDepth="5" circle={true} />';
 
     return (
       <div>
