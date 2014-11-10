@@ -7,7 +7,7 @@ var React = require('react'),
 
 var AppCanvas = React.createClass({
 
-	mixins: [Classable],
+  mixins: [Classable],
 
   propTypes: {
     predefinedLayout: React.PropTypes.number
