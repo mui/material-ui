@@ -19,10 +19,10 @@ var React = require('react'),
   ],
 
   iconMenuItems = [
-    { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },
-    { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },
-    { payload: '3', text: 'Starred', icon: 'mic', number: '3' },
-    { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }
+    { payload: '1', text: 'Live Answer', icon: 'communication_phone', number: '10' },
+    { payload: '2', text: 'Voicemail', icon: 'communication_voicemail',  number: '5' },
+    { payload: '3', text: 'Starred', icon: 'action_stars', number: '3' },
+    { payload: '4', text: 'Shared', icon: 'action_thumb_up',  number: '12' }
   ],
 
   filterMenuItems = [
@@ -121,10 +121,10 @@ var MenusPage = React.createClass({
   _getIconMenuExample: function() {
     var code = 
       "iconMenuItems = [\n" +
-      "   { payload: '1', text: 'Live Answer', icon: 'home', number: '10' },\n" +
-      "   { payload: '2', text: 'Voicemail', icon: 'contacts',  number: '5' },\n" +
-      "   { payload: '3', text: 'Starred', icon: 'mic', number: '3'},\n" +
-      "   { payload: '4', text: 'Shared', icon: 'pie',  number: '12' }\n" +
+      "   { payload: '1', text: 'Live Answer', icon: 'communication_phone', number: '10' },\n" +
+      "   { payload: '2', text: 'Voicemail', icon: 'communication_voicemail',  number: '5' },\n" +
+      "   { payload: '3', text: 'Starred', icon: 'action_stars', number: '3' },\n" +
+      "   { payload: '4', text: 'Shared', icon: 'action_thumb_up',  number: '12' }\n" +
       "];\n\n" +
       "<Menu menuItems={iconMenuItems} />";
 
