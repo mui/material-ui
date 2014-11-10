@@ -1,7 +1,7 @@
 /**
  * @jsx React.DOM
  */
- 
+
 var $ = require('jquery'),
   React = require('react'),
   Classable = require('./mixins/classable.js'),
@@ -67,7 +67,7 @@ var DropDownMenu = React.createClass({
 
   _onMenuItemClick: function(e, key, payload) {
     if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
-    this.setState({ 
+    this.setState({
       selectedIndex: key,
       open: false
     });

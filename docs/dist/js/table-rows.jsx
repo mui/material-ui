@@ -16,7 +16,7 @@ var TableRow = React.createClass({
   },
 
   getDefaultProps: function() {
-    return { 
+    return {
     };
   },
 

@@ -257,16 +257,16 @@
 
 .lh-border-bottom-left-radius(...) {
   @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
-  -webkit-border-bottom-left-radius: @process; -webkit-background-clip: padding-box; 
-  -moz-border-radius-bottomleft: @process; -moz-background-clip: padding; 
-  border-bottom-left-radius: @process; background-clip: padding-box; 
+  -webkit-border-bottom-left-radius: @process; -webkit-background-clip: padding-box;
+  -moz-border-radius-bottomleft: @process; -moz-background-clip: padding;
+  border-bottom-left-radius: @process; background-clip: padding-box;
 }
 
 .lh-border-bottom-right-radius(...) {
   @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
-  -webkit-border-bottom-right-radius: @process; -webkit-background-clip: padding-box; 
-  -moz-border-radius-bottomright: @process; -moz-background-clip: padding; 
-  border-bottom-right-radius: @process; background-clip: padding-box; 
+  -webkit-border-bottom-right-radius: @process; -webkit-background-clip: padding-box;
+  -moz-border-radius-bottomright: @process; -moz-background-clip: padding;
+  border-bottom-right-radius: @process; background-clip: padding-box;
 }
 
 .lh-border-image(...) {
@@ -279,23 +279,23 @@
 
 .lh-border-radius(...) {
   @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
-  -webkit-border-radius: @process; -webkit-background-clip: padding-box; 
-  -moz-border-radius: @process; -moz-background-clip: padding; 
-  border-radius: @process; background-clip: padding-box; 
+  -webkit-border-radius: @process; -webkit-background-clip: padding-box;
+  -moz-border-radius: @process; -moz-background-clip: padding;
+  border-radius: @process; background-clip: padding-box;
 }
 
 .lh-border-top-left-radius(...) {
   @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
-  -webkit-border-top-left-radius: @process; -webkit-background-clip: padding-box; 
-  -moz-border-radius-topleft: @process; -moz-background-clip: padding; 
-  border-top-left-radius: @process; background-clip: padding-box; 
+  -webkit-border-top-left-radius: @process; -webkit-background-clip: padding-box;
+  -moz-border-radius-topleft: @process; -moz-background-clip: padding;
+  border-top-left-radius: @process; background-clip: padding-box;
 }
 
 .lh-border-top-right-radius(...) {
   @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
-  -webkit-border-top-right-radius: @process; -webkit-background-clip: padding-box; 
-  -moz-border-radius-topright: @process; -moz-background-clip: padding; 
-  border-top-right-radius: @process; background-clip: padding-box; 
+  -webkit-border-top-right-radius: @process; -webkit-background-clip: padding-box;
+  -moz-border-radius-topright: @process; -moz-background-clip: padding;
+  border-top-right-radius: @process; background-clip: padding-box;
 }
 
 .lh-box-shadow(...) {
@@ -888,4 +888,3 @@
   -ms-user-select: @process;
   user-select: @process;
 }
-

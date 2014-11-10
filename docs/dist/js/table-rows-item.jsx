@@ -14,7 +14,7 @@ var TableRowItem = React.createClass({
   },
 
   getDefaultProps: function() {
-    return { 
+    return {
     };
   },
 

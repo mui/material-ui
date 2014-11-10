@@ -15,7 +15,7 @@ var TableHeader = React.createClass({
   },
 
   getDefaultProps: function() {
-    return { 
+    return {
     };
   },
 

@@ -102,13 +102,13 @@ var Menu = React.createClass({
   },
 
   getDefaultProps: function() {
-    return { 
+    return {
       hideable: false,
       visible: true,
       zDepth: 1
     };
   },
-  
+
   componentDidMount: function() {
     var $el = $(this.getDOMNode()),
       menuWidth = KeyLine.getIncrementalDim($el.width());
@@ -182,13 +182,13 @@ var Menu = React.createClass({
 
         case MenuItem.Types.NESTED:
           itemComponent = (
-            <NestedMenuItem 
-              ref={i} 
+            <NestedMenuItem
+              ref={i}
               key={i}
-              index={i} 
-              text={menuItem.text} 
-              menuItems={menuItem.items} 
-              zDepth={this.props.zDepth} 
+              index={i}
+              text={menuItem.text}
+              menuItems={menuItem.items}
+              zDepth={this.props.zDepth}
               onItemClick={this._onNestedItemClick} />
           );
           this._nestedChildren.push(i);
@@ -196,16 +196,16 @@ var Menu = React.createClass({
 
         default:
           itemComponent = (
-            <MenuItem 
-              selected={isSelected} 
+            <MenuItem
+              selected={isSelected}
               key={i}
-              index={i} 
-              icon={menuItem.icon} 
-              data={menuItem.data} 
+              index={i}
+              icon={menuItem.icon}
+              data={menuItem.data}
               attribute={menuItem.attribute}
-              number={menuItem.number} 
-              toggle={menuItem.toggle} 
-              onClick={this._onItemClick} 
+              number={menuItem.number}
+              toggle={menuItem.toggle}
+              onClick={this._onItemClick}
               onToggle={this._onItemToggle}>
               {menuItem.text}
             </MenuItem>

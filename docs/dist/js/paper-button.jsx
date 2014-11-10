@@ -9,7 +9,7 @@ var $ = require('jquery'),
   Paper = require('./paper.jsx'),
   Icon = require('./icon.jsx'),
   Ripple = require('./ripple.jsx'),
-  
+
   Types = {
     RAISED: 'RAISED',
     FLAT: 'FLAT',

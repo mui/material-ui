@@ -22,7 +22,7 @@ var Checkbox = React.createClass({
       checked: this.props.checked || false
     }
   },
-  
+
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.hasOwnProperty('checked')) this.setState({checked: nextProps.checked});
   },
@@ -40,7 +40,7 @@ var Checkbox = React.createClass({
 
     return (
       <div className={classes} onClick={this._onCheck}>
-        <input ref="checkbox" type="checkbox" name={this.props.name} value={this.props.value} />  
+        <input ref="checkbox" type="checkbox" name={this.props.name} value={this.props.value} />
         <span className="mui-checkbox-box" />
         <span className="mui-checkbox-check" />
       </div>

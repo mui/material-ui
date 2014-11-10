@@ -40,7 +40,7 @@ var Toggle = React.createClass({
 
     this.setState({ toggled: toggledState });
     this.refs.radioButton.toggle();
-    
+
     if (this.props.onToggle) this.props.onToggle(e, toggledState);
   }
 

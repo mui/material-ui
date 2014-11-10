@@ -8,6 +8,6 @@ module.exports = {
 	},
 
 	getIncrementalDim: function(dim) {
-		return Math.ceil(dim / this.Desktop.INCREMENT) * this.Desktop.INCREMENT;	
+		return Math.ceil(dim / this.Desktop.INCREMENT) * this.Desktop.INCREMENT;
 	}
 }
