@@ -18,10 +18,10 @@ var AppBar = React.createClass({
   },
 
   getDefaultProps: function() {
-  	return {
+    return {
       title: '',
       zDepth: 1
-  	}
+    }
   },
 
   render: function() {
@@ -32,11 +32,11 @@ var AppBar = React.createClass({
     if (this.props.onMenuIconClick) menuIcon = <Icon className="mui-app-bar-navigation-icon" icon="navigation-menu" onClick={this.props.onMenuIconClick} />;
 
     return (
-    	<Paper rounded={false} className={classes} zDepth={this.props.zDepth}>
+      <Paper rounded={false} className={classes} zDepth={this.props.zDepth}>
         {menuIcon}
         {title}
-    		{this.props.children}
-    	</Paper>
+        {this.props.children}
+      </Paper>
     );
   }
 

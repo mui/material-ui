@@ -4,33 +4,33 @@
 
 var $ = require('jquery'),
   React = require('react'),
-	Classable = require('./mixins/classable.js');
+  Classable = require('./mixins/classable.js');
 
 var TableHeader = React.createClass({
 
-	mixins: [Classable],
+  mixins: [Classable],
 
-	propTypes: {
+  propTypes: {
     headerItems: React.PropTypes.array.isRequired
   },
 
   getDefaultProps: function() {
-    return { 
+    return {
     };
   },
 
-	render: function() {
+  render: function() {
     var classes = this.getClasses('mui-table-header');
 
     return (
-			<div className={classes}>
+      <div className={classes}>
         {this._getChildren()}
         <div className="mui-table-header-pagify">
           (Pagify)
         </div>
       </div>
-		);
-	},
+    );
+  },
 
   _getChildren: function() {
     var children = [],

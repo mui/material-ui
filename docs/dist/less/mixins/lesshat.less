@@ -9,93 +9,93 @@
 // version: v3.0.2 (2014-06-26)
 
 // TABLE OF MIXINS:
-	// align-content
-	// align-items
-	// align-self
-	// animation
-	// animation-delay
-	// animation-direction
-	// animation-duration
-	// animation-fill-mode
-	// animation-iteration-count
-	// animation-name
-	// animation-play-state
-	// animation-timing-function
-	// appearance
-	// backface-visibility
-	// background-clip
-	// background-image
-	// background-origin
-	// background-size
-	// blur
-	// border-bottom-left-radius
-	// border-bottom-right-radius
-	// border-image
-	// border-radius
-	// border-top-left-radius
-	// border-top-right-radius
-	// box-shadow
-	// box-sizing
-	// brightness
-	// calc
-	// column-count
-	// column-gap
-	// column-rule
-	// column-width
-	// columns
-	// contrast
-	// display
-	// drop-shadow
-	// filter
-	// flex
-	// flex-basis
-	// flex-direction
-	// flex-grow
-	// flex-shrink
-	// flex-wrap
-	// font-face
-	// grayscale
-	// hue-rotate
-	// hyphens
-	// invert
-	// justify-content
-	// keyframes
-	// opacity
-	// order
-	// perspective
-	// perspective-origin
-	// placeholder
-	// rotate
-	// rotate3d
-	// rotateX
-	// rotateY
-	// rotateZ
-	// saturate
-	// scale
-	// scale3d
-	// scaleX
-	// scaleY
-	// scaleZ
-	// selection
-	// sepia
-	// size
-	// skew
-	// skewX
-	// skewY
-	// transform
-	// transform-origin
-	// transform-style
-	// transition
-	// transition-delay
-	// transition-duration
-	// transition-property
-	// transition-timing-function
-	// translate
-	// translate3d
-	// translateX
-	// translateY
-	// translateZ
-	// user-select
+  // align-content
+  // align-items
+  // align-self
+  // animation
+  // animation-delay
+  // animation-direction
+  // animation-duration
+  // animation-fill-mode
+  // animation-iteration-count
+  // animation-name
+  // animation-play-state
+  // animation-timing-function
+  // appearance
+  // backface-visibility
+  // background-clip
+  // background-image
+  // background-origin
+  // background-size
+  // blur
+  // border-bottom-left-radius
+  // border-bottom-right-radius
+  // border-image
+  // border-radius
+  // border-top-left-radius
+  // border-top-right-radius
+  // box-shadow
+  // box-sizing
+  // brightness
+  // calc
+  // column-count
+  // column-gap
+  // column-rule
+  // column-width
+  // columns
+  // contrast
+  // display
+  // drop-shadow
+  // filter
+  // flex
+  // flex-basis
+  // flex-direction
+  // flex-grow
+  // flex-shrink
+  // flex-wrap
+  // font-face
+  // grayscale
+  // hue-rotate
+  // hyphens
+  // invert
+  // justify-content
+  // keyframes
+  // opacity
+  // order
+  // perspective
+  // perspective-origin
+  // placeholder
+  // rotate
+  // rotate3d
+  // rotateX
+  // rotateY
+  // rotateZ
+  // saturate
+  // scale
+  // scale3d
+  // scaleX
+  // scaleY
+  // scaleZ
+  // selection
+  // sepia
+  // size
+  // skew
+  // skewX
+  // skewY
+  // transform
+  // transform-origin
+  // transform-style
+  // transition
+  // transition-delay
+  // transition-duration
+  // transition-property
+  // transition-timing-function
+  // translate
+  // translate3d
+  // translateX
+  // translateY
+  // translateZ
+  // user-select
 
 .lh-align-content(...) {
   @process: ~`(function(r){return r=r||"stretch"})((function(){var r="@{arguments}";return r=r.replace(/^\[|\]$/g,"")})())`;
@@ -257,16 +257,16 @@
 
 .lh-border-bottom-left-radius(...) {
   @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
-  -webkit-border-bottom-left-radius: @process; -webkit-background-clip: padding-box; 
-  -moz-border-radius-bottomleft: @process; -moz-background-clip: padding; 
-  border-bottom-left-radius: @process; background-clip: padding-box; 
+  -webkit-border-bottom-left-radius: @process; -webkit-background-clip: padding-box;
+  -moz-border-radius-bottomleft: @process; -moz-background-clip: padding;
+  border-bottom-left-radius: @process; background-clip: padding-box;
 }
 
 .lh-border-bottom-right-radius(...) {
   @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
-  -webkit-border-bottom-right-radius: @process; -webkit-background-clip: padding-box; 
-  -moz-border-radius-bottomright: @process; -moz-background-clip: padding; 
-  border-bottom-right-radius: @process; background-clip: padding-box; 
+  -webkit-border-bottom-right-radius: @process; -webkit-background-clip: padding-box;
+  -moz-border-radius-bottomright: @process; -moz-background-clip: padding;
+  border-bottom-right-radius: @process; background-clip: padding-box;
 }
 
 .lh-border-image(...) {
@@ -279,23 +279,23 @@
 
 .lh-border-radius(...) {
   @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
-  -webkit-border-radius: @process; -webkit-background-clip: padding-box; 
-  -moz-border-radius: @process; -moz-background-clip: padding; 
-  border-radius: @process; background-clip: padding-box; 
+  -webkit-border-radius: @process; -webkit-background-clip: padding-box;
+  -moz-border-radius: @process; -moz-background-clip: padding;
+  border-radius: @process; background-clip: padding-box;
 }
 
 .lh-border-top-left-radius(...) {
   @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
-  -webkit-border-top-left-radius: @process; -webkit-background-clip: padding-box; 
-  -moz-border-radius-topleft: @process; -moz-background-clip: padding; 
-  border-top-left-radius: @process; background-clip: padding-box; 
+  -webkit-border-top-left-radius: @process; -webkit-background-clip: padding-box;
+  -moz-border-radius-topleft: @process; -moz-background-clip: padding;
+  border-top-left-radius: @process; background-clip: padding-box;
 }
 
 .lh-border-top-right-radius(...) {
   @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
-  -webkit-border-top-right-radius: @process; -webkit-background-clip: padding-box; 
-  -moz-border-radius-topright: @process; -moz-background-clip: padding; 
-  border-top-right-radius: @process; background-clip: padding-box; 
+  -webkit-border-top-right-radius: @process; -webkit-background-clip: padding-box;
+  -moz-border-radius-topright: @process; -moz-background-clip: padding;
+  border-top-right-radius: @process; background-clip: padding-box;
 }
 
 .lh-box-shadow(...) {
@@ -888,4 +888,3 @@
   -ms-user-select: @process;
   user-select: @process;
 }
-

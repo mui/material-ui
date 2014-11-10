@@ -1,7 +1,7 @@
 /**
  * @jsx React.DOM
  */
- 
+
 var $ = require('jquery'),
   React = require('react'),
   Classable = require('./mixins/classable.js'),
@@ -13,7 +13,7 @@ var $ = require('jquery'),
 
 var DropDownMenu = React.createClass({
 
-	mixins: [Classable, ClickAwayable],
+  mixins: [Classable, ClickAwayable],
 
   propTypes: {
     onChange: React.PropTypes.func,
@@ -21,10 +21,10 @@ var DropDownMenu = React.createClass({
   },
 
   getInitialState: function() {
-  	return {
+    return {
       open: false,
       selectedIndex: this.props.selectedIndex || 0
-  	}
+    }
   },
 
   componentClickAway: function() {
@@ -48,7 +48,7 @@ var DropDownMenu = React.createClass({
     });
 
     return (
-    	<div className={classes}>
+      <div className={classes}>
         <div className="mui-menu-control" onClick={this._onControlClick}>
           <Paper className="mui-menu-control-bg"zDepth={0} />
           <div className="mui-menu-label">
@@ -67,7 +67,7 @@ var DropDownMenu = React.createClass({
 
   _onMenuItemClick: function(e, key, payload) {
     if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
-    this.setState({ 
+    this.setState({
       selectedIndex: key,
       open: false
     });

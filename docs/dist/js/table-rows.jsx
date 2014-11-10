@@ -4,31 +4,31 @@
 
 var $ = require('jquery'),
   React = require('react'),
-	Classable = require('./mixins/classable.js'),
+  Classable = require('./mixins/classable.js'),
   TableRowsItem = require('./table-rows-item.jsx');
 
 var TableRow = React.createClass({
 
-	mixins: [Classable],
+  mixins: [Classable],
 
-	propTypes: {
+  propTypes: {
     rowItems: React.PropTypes.array.isRequired
   },
 
   getDefaultProps: function() {
-    return { 
+    return {
     };
   },
 
-	render: function() {
+  render: function() {
     var classes = this.getClasses('mui-table-rows');
 
     return (
-			<div className={classes}>
+      <div className={classes}>
         {this._getChildren()}
       </div>
-		);
-	},
+    );
+  },
 
   _getChildren: function() {
     var children = [],

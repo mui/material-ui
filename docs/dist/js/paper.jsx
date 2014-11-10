@@ -1,13 +1,13 @@
 /**
  * @jsx React.DOM
  */
- 
+
 var React = require('react'),
   Classable = require('./mixins/classable.js');
 
 var Paper = React.createClass({
 
-	mixins: [Classable],
+  mixins: [Classable],
 
   propTypes: {
     zDepth: React.PropTypes.number,
@@ -35,7 +35,7 @@ var Paper = React.createClass({
 
     return (
       <div className={classes} onClick={this._onClick} onMouseDown={this._onMouseDown} onMouseUp={this._onMouseUp}>
-      	<div className={insideClasses}>
+        <div className={insideClasses}>
           {this.props.children}
         </div>
       </div>

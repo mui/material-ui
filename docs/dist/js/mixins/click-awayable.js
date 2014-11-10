@@ -2,7 +2,7 @@ var $ = require('jquery');
 
 module.exports = {
 
-  //When the component mounts, listen to click events and check if we need to 
+  //When the component mounts, listen to click events and check if we need to
   //Call the componentClickAway function.
   componentDidMount: function() {
     var clickEvent = 'click' + this._rootNodeID;

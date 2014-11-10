@@ -1,7 +1,7 @@
 /**
  * @jsx React.DOM
  */
- 
+
 var React = require('react'),
   Classable = require('./mixins/classable.js'),
   Icon = require('./icon.jsx'),
@@ -36,7 +36,7 @@ var MenuItem = React.createClass({
   },
 
   getDefaultProps: function() {
-    return { 
+    return {
       toggle: false
     };
   },

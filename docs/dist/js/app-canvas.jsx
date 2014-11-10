@@ -1,13 +1,13 @@
 /**
  * @jsx React.DOM
  */
- 
+
 var React = require('react'),
   Classable = require('./mixins/classable.js');
 
 var AppCanvas = React.createClass({
 
-	mixins: [Classable],
+  mixins: [Classable],
 
   propTypes: {
     predefinedLayout: React.PropTypes.number

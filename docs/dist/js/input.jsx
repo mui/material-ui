@@ -51,7 +51,7 @@ var Input = React.createClass({
         'mui-text': this.props.type === 'text',
         'mui-error': this.state.error === true
       }),
-      inputElement = this.props.multiline ? 
+      inputElement = this.props.multiline ?
         <textarea value={this.state.value} className="mui-input-textarea" rows={this.state.rows} onChange={this._onTextAreaChange} required /> :
         <input ref="input" value={this.state.value} type={this.props.type} name={this.props.name} onChange={this._onInputChange} required />;
 

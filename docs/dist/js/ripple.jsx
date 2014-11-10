@@ -30,9 +30,9 @@ var Ripple = React.createClass({
       top: y,
       left: x
     });
-    
+
     $ripple.addClass('mui-show');
-    
+
     CssEvent.onAnimationEnd($ripple, function() {
       $ripple.removeClass('mui-show');
       if (callback) callback();

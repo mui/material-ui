@@ -4,21 +4,21 @@
 
 var $ = require('jquery'),
   React = require('react'),
-	Classable = require('./mixins/classable.js');
+  Classable = require('./mixins/classable.js');
 
 var TableRowItem = React.createClass({
 
-	mixins: [Classable],
+  mixins: [Classable],
 
-	propTypes: {
+  propTypes: {
   },
 
   getDefaultProps: function() {
-    return { 
+    return {
     };
   },
 
-	render: function() {
+  render: function() {
     var classes = this.getClasses('mui-table-rows-item');
 
     return (
@@ -28,8 +28,8 @@ var TableRowItem = React.createClass({
           (Actions)
         </div>
       </div>
-		);
-	}
+    );
+  }
 
 });
 
