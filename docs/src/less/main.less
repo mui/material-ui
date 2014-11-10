@@ -15,135 +15,135 @@
 @import "pages/components/paper.less";
 
 a {
-	color: @accent-1-color;
-	text-decoration: none;
+  color: @accent-1-color;
+  text-decoration: none;
 
-	&:hover {
-		text-decoration: underline;
-	}
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 /* App Specific Styles */
 .mui-app-canvas {
 
-	height: 100%;
+  height: 100%;
 
-	.mui-app-bar {
-		.mui-icon-github {
-			float: right;
-		}
-	}
+  .mui-app-bar {
+    .mui-icon-github {
+      float: right;
+    }
+  }
 
-	.mui-app-content-canvas {
+  .mui-app-content-canvas {
 
-		&.with-nav {
-			@subNavWidth: (@desktop-keyline-increment * 4);
+    &.with-nav {
+      @subNavWidth: (@desktop-keyline-increment * 4);
       .lh-calc(min-height, ~'100% - @{app-bar-height}');
 
-			.subNav {
+      .subNav {
         position: absolute;
-				width: @subNavWidth;
-			}
+        width: @subNavWidth;
+      }
 
-			.subContent {
+      .subContent {
         max-width: (@desktop-keyline-increment * 14);
         height: 100%;
         margin-left: @subNavWidth;
-				.lh-calc(width, ~'100% - @{subNavWidth}');
-				padding: @desktop-gutter;
-				border-left: solid 1px @grey-300;
-			}
-		}
-	}
+        .lh-calc(width, ~'100% - @{subNavWidth}');
+        padding: @desktop-gutter;
+        border-left: solid 1px @grey-300;
+      }
+    }
+  }
 }
 
 .logo {
-	cursor: pointer;
-	.mui-font-style-headline;
-	.mui-text-full-white;
-	line-height: @app-bar-height;
-	.mui-font-weight-light;
-	background-color: @primary-1-color;
-	padding-left: @desktop-gutter;
-	padding-top: 0;
-	margin-bottom: @desktop-gutter-mini;
+  cursor: pointer;
+  .mui-font-style-headline;
+  .mui-text-full-white;
+  line-height: @app-bar-height;
+  .mui-font-weight-light;
+  background-color: @primary-1-color;
+  padding-left: @desktop-gutter;
+  padding-top: 0;
+  margin-bottom: @desktop-gutter-mini;
 }
 
 .full-width-section {
-	padding: @desktop-gutter;
-	.clearfix();
+  padding: @desktop-gutter;
+  .clearfix();
 }
 
 .get-started-page {
-	padding: @desktop-gutter;
+  padding: @desktop-gutter;
 
-	.content {
-		width: 50%;
-		float: left;
-		padding-right: (@desktop-gutter * 2);
-	}
+  .content {
+    width: 50%;
+    float: left;
+    padding-right: (@desktop-gutter * 2);
+  }
 }
 
 .footer {
-	background-color: @grey-900;
-	height: @desktop-keyline-increment;
-	padding: 0 @desktop-gutter;
+  background-color: @grey-900;
+  height: @desktop-keyline-increment;
+  padding: 0 @desktop-gutter;
   overflow: hidden;
 
-	p {
-		margin: 0;
-		padding: 0;
-		.mui-text-light-white;
-		line-height: @desktop-keyline-increment;
-	}
+  p {
+    margin: 0;
+    padding: 0;
+    .mui-text-light-white;
+    line-height: @desktop-keyline-increment;
+  }
 
-	a {
-		.mui-text-dark-white;
-	}
+  a {
+    .mui-text-dark-white;
+  }
 
-	.mui-icon {
-		float: right;
-		.mui-text-dark-white;
-		line-height: @desktop-keyline-increment;
-	}
+  .mui-icon {
+    float: right;
+    .mui-text-dark-white;
+    line-height: @desktop-keyline-increment;
+  }
 
 }
 
 .baseline-grid {
-	background-image: url('images/baseline-20px-grid.gif');
+  background-image: url('images/baseline-20px-grid.gif');
 }
 
 .code-example {
-	background-color: @white;
-	margin-bottom: 32px;
+  background-color: @white;
+  margin-bottom: 32px;
 
-	.example-label {
-		.mui-font-style-menu;
-		display: inline-block;
-		text-transform: uppercase;
-		color: @min-black;
-		padding: @desktop-gutter-mini;
-		border-right: solid 1px @border-color;
-		border-bottom: solid 1px @border-color;
-		margin-bottom: 0;
-		.lh-border-radius(0 0 2px 0);
-	}
+  .example-label {
+    .mui-font-style-menu;
+    display: inline-block;
+    text-transform: uppercase;
+    color: @min-black;
+    padding: @desktop-gutter-mini;
+    border-right: solid 1px @border-color;
+    border-bottom: solid 1px @border-color;
+    margin-bottom: 0;
+    .lh-border-radius(0 0 2px 0);
+  }
 
-	.example-block,
-	.code-block {
-		padding: @desktop-gutter;
-	}
+  .example-block,
+  .code-block {
+    padding: @desktop-gutter;
+  }
 
-	.code-block {
-		border-top: solid 1px @border-color;
-		.lh-border-radius(0 0 2px 2px);
-	}
+  .code-block {
+    border-top: solid 1px @border-color;
+    .lh-border-radius(0 0 2px 2px);
+  }
 }
 
 .example-menu {
-	width: (64px * 4);
+  width: (64px * 4);
 }
 
 .example-menu-nested {
-	width: (64px * 3);
+  width: (64px * 3);
 }
