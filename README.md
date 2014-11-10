@@ -1,3 +1,3 @@
-# [Material-UI](http://callemall.github.io/material-ui/)
+# [material-ui](http://callemall.github.io/material-ui/)
 
-This is the documentation site for [Material-UI](http://callemall.github.io/material-ui/). 
+This is the documentation site for [material-ui](http://callemall.github.io/material-ui/). 
