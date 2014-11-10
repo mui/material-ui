@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/callemall/material-ui/issues"
   },
-  "homepage": "http://www.material-ui.com/",
+  "homepage": "http://material-ui.com/",
   "browser": {
     "react": "react/addons"
   },
