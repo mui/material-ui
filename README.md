@@ -55,6 +55,12 @@ This allows you to override any variables defined in [custom-variables.less](htt
 @import "node_modules/material-ui/dist/less/components.less";
 ```
 
+Note that if you're using the version of material-ui from NPM, your imports will look like this:
+```css
+@import "node_modules/material-ui/docs/dist/less/scaffolding.less";
+@import "node_modules/material-ui/docs/dist/less/components.less";
+```
+
 ## Contribute
 
 [Material-UI](http://www.material-ui.com/) came about from our love of [React](http://facebook.github.io/react/) and [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html). We're currently using it on a project at [Call-Em-All](https://www.call-em-all.com/) and plan on adding to it and making it better. If you'd like to help, check out the [docs folder](https://github.com/callemall/material-ui/tree/master/docs). We'd greatly appreciate any contribution you make. :)
