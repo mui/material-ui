@@ -60,7 +60,7 @@ var MenuItem = React.createClass({
     if (this.props.toggle) toggle = <Toggle onToggle={this._onToggleClick} />;
 
     return (
-      <div key={this.props.index} className={classes} onClick={this._onClick}>
+      <div key={this.props.index} className={classes} onMouseDown={this._onClick}>
         <Ripple ref="ripple" />
         {icon}
         {this.props.children}
@@ -77,9 +77,9 @@ var MenuItem = React.createClass({
     var _this = this;
 
     //animate the ripple
-    this.refs.ripple.animate(e, function() {
+    // this.refs.ripple.animate(e, function() {
       if (_this.props.onClick) _this.props.onClick(e, _this.props.index);
-    });
+    // });
   },
 
   _onToggleClick: function(e, toggled) {

@@ -69,7 +69,8 @@ var PaperButton = React.createClass({
     if (this.props.icon) icon = <Icon className="mui-paper-button-icon" icon={this.props.icon} />;
 
     return (
-      <Paper className={classes} zDepth={this.state.zDepth} circle={circle} onClick={this._onClick}>
+      <Paper className={classes} zDepth={this.state.zDepth} circle={circle} 
+      onClick={this._onClick} onMouseDown={this._onMouseDown}>
         <Ripple ref="ripple" />
         <a href={this.props.href} className="mui-paper-button-content">
           {this.props.label}
@@ -79,9 +80,12 @@ var PaperButton = React.createClass({
     );
   },
 
+  _onMouseDown: function(e) {
+    if (!this.props.disabled) this._animateButtonClick(e);
+  },
+
   _onClick: function(e) {
     if (!this.props.disabled) {
-      this._animateButtonClick(e);
       if (this.props.onClick) this.props.onClick(e);
     }
   },
