@@ -1,6 +1,6 @@
 var dest = './build',
   src = './src'
-  dist = './dist';
+  mui = '../src';
 
 module.exports = {
   browserSync: {
@@ -17,7 +17,7 @@ module.exports = {
     src: src + '/less/main.less',
     watch: [
       src + '/less/**',
-      dist + '/less/**'
+      mui + '/less/**'
     ],
     dest: dest
   },
@@ -26,11 +26,11 @@ module.exports = {
     dest: dest
   },
   fonts: {
-    src: dist + 'less/material-design-fonticons/fonts/**',
+    src: mui + 'less/material-design-fonticons/fonts/**',
     dest: dest + '/fonts/mdfonticon'
   },
   muiFonts: {
-    src: dist + '/less/material-ui-icons/fonts/**',
+    src: mui + '/less/material-ui-icons/fonts/**',
     dest: dest + '/fonts'
   },
   browserify: {
