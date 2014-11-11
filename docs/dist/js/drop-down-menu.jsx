@@ -46,9 +46,8 @@ var DropDownMenu = React.createClass({
     var classes = this.getClasses('mui-drop-down-menu', {
       'mui-open': this.state.open
     });
-
     return (
-      <div className={classes}>
+      <div className={classes} onFocus={this._onFocus} onBlur={this._onBlur} onKeyDown={this._onKeydown} tabIndex="0">
         <div className="mui-menu-control" onClick={this._onControlClick}>
           <Paper className="mui-menu-control-bg"zDepth={0} />
           <div className="mui-menu-label">
@@ -65,13 +64,51 @@ var DropDownMenu = React.createClass({
     this.setState({ open: !this.state.open });
   },
 
+  _onFocus: function() {
+    console.log('test');
+    this.setState({ open: true });
+  },
+
+  _onBlur: function() {
+    this.setState({ open: false });
+  },
+
+  _onKeydown: function(e) {
+
+    if (e.keyCode === 40) {
+      this.setState({
+        selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1)
+      });
+      e.preventDefault();
+    }
+    if (e.keyCode === 38) {
+      this.setState({
+        selectedIndex: Math.max(this.state.selectedIndex - 1, 0)
+      });
+      e.preventDefault();
+    }
+
+    if (e.keyCode === 13) {
+      this._triggerChange(e, this.state.selectedIndex, null);
+      this.setState({
+        open: false
+      });
+      e.preventDefault();
+    }
+  },
+
   _onMenuItemClick: function(e, key, payload) {
-    if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
+    this._triggerChange(e, key, payload);
     this.setState({
       selectedIndex: key,
       open: false
     });
+  },
+
+  _triggerChange: function(e, key, payload) {
+    if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
   }
+
 
 });
 
