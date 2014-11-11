@@ -42,23 +42,17 @@ module.exports = SomeAwesomeComponent;
 ## Customization
 
 The styles are separated into 2 less files:
-* dist/less/scaffolding.less
-* dist/less/components.less
+* src/less/scaffolding.less
+* src/less/components.less
 
-This allows you to override any variables defined in [custom-variables.less](https://github.com/callemall/material-ui/blob/master/dist/less/variables/custom-variables.less) without having to modify material-ui source files directly. For example, your main.less file could look something like this:
+This allows you to override any variables defined in [custom-variables.less](https://github.com/callemall/material-ui/blob/master/src/less/variables/custom-variables.less) without having to modify material-ui source files directly. For example, your main.less file could look something like this:
 ```css
-@import "node_modules/material-ui/dist/less/scaffolding.less";
+@import "node_modules/material-ui/src/less/scaffolding.less";
 
 //Define a custom less file to override any variables defined in scaffolding.less
 @import "my-custom-overrides.less";
 
-@import "node_modules/material-ui/dist/less/components.less";
-```
-
-Note that if you're using the version of material-ui from NPM, your imports will look like this:
-```css
-@import "node_modules/material-ui/docs/dist/less/scaffolding.less";
-@import "node_modules/material-ui/docs/dist/less/components.less";
+@import "node_modules/material-ui/src/less/components.less";
 ```
 
 ## Contribute
