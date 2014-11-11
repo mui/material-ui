@@ -1,3 +1,14 @@
+## 0.2.2
+###### Nov. 11, 2014
+- Changed project structure to be less confusing. Material-UI components/styles live in the src directory.
+	Docs site code lives in the docs directory. This still allows us to easily test components in the docs site
+	as we are working on them
+- Added .editorconfig to help keep code formatting consistent among contributors. See http://editorconfig.org/
+- Fixed drop down display issue in safari
+-	Fixed nested menu arrow icon
+-	Added hover transitions to menus
+- Improved ripple animation on buttons
+
 ## 0.2.1
 ###### Nov. 8, 2014
 - Fixed icon font reference. We're now including it as part of the project
