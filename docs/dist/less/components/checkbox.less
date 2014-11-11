@@ -52,10 +52,7 @@
 		box-sizing: @checkbox-box-box-sizing;
 		height: @checkbox-box-size;
 		position: @checkbox-box-position;
-		-webkit-transform: @checkbox-box-transform;
-		-moz-transform: @checkbox-box-transform;
-		-ms-transform: @checkbox-box-transform;
-		transform: @checkbox-box-transform;
+		.lh-transform(@checkbox-box-transform);
 		transform-origin: @checkbox-box-transform-origin;
 		width: @checkbox-box-size;
 	}
@@ -68,10 +65,7 @@
 		height: @checkbox-check-height;
 		left: @checkbox-check-fix-left;
 		position: @checkbox-check-position;
-		-webkit-transform: @checkbox-check-transform;
-		-moz-transform: @checkbox-check-transform;
-		-ms-transform: @checkbox-check-transform;
-		transform: @checkbox-check-transform;
+		.lh-transform(@checkbox-check-transform);
 		transform-origin: @checkbox-check-transform-origin;
 		width: @checkbox-check-height;
 	}
@@ -79,19 +73,13 @@
 	&.mui-checked {
 		.mui-checkbox-box {
 			.ease-out;
-			-webkit-transform: rotate(45deg) scale(0);
-			-moz-transform: rotate(45deg) scale(0);
-			-ms-transform: rotate(45deg) scale(0);
-			transform: rotate(45deg) scale(0);
+			.lh-transform(rotate(45deg) scale(0));
 		}
 
 		.mui-checkbox-check {
 			.ease-out;
 			height: @checkbox-checked-check-height;
-			-webkit-transform: @checkbox-checked-check-transform;
-			-moz-transform: @checkbox-checked-check-transform;
-			-ms-transform: @checkbox-checked-check-transform;
-			transform: @checkbox-checked-check-transform;
+			.lh-transform(@checkbox-checked-check-transform);
 			transition-delay: @checkbox-checked-check-transition-delay;
 			width: @checkbox-checked-check-width;
 		}
