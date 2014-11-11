@@ -1,6 +1,6 @@
 var dest = './build',
   src = './src'
-  dist = './dist';
+  dist = '../dist';
 
 module.exports = {
   browserSync: {
@@ -26,7 +26,7 @@ module.exports = {
     dest: dest
   },
   fonts: {
-    src: dist + 'less/material-design-fonticons/fonts/**',
+    src: dist + '/less/material-design-fonticons/fonts/**',
     dest: dest + '/fonts/mdfonticon'
   },
   muiFonts: {
