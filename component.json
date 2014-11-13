@@ -1,0 +1,19 @@
+{
+  "name": "material-ui",
+  "author": "Call-em-all Engineering Team",
+  "version": "0.2.2",
+  "description": "Material Design UI components built with React",
+  "main": "./src/index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material-ui",
+    "material ui"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "components/jquery: ": "^2.1.1",
+    "Bodhi5/react": "^0.12"
+  }
+}
