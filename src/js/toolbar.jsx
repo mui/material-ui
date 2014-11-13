@@ -1,9 +1,7 @@
 /** @jsx React.DOM */
 
 var Classable = require('./mixins/classable.js');
-var Paper = require('./paper.jsx');
 var React = require('react');
-var ToolbarGroup = require('./toolbar-group.jsx');
 
 var Toolbar = React.createClass({
 
@@ -13,23 +11,13 @@ var Toolbar = React.createClass({
 
   mixins: [Classable],
 
-  getInitialState: function() {
-    return {
-    }
-  },
-
-  getDefaultProps: function() {
-    return {
-    };
-  },
-
   render: function() {
     var classes = this.getClasses('mui-toolbar', {
-    })
+    });
 
     return (
       <div className={classes}>
-        {this._getChildren()}
+        {this.props.children}
       </div>
     );
   },
