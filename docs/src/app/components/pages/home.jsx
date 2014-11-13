@@ -55,9 +55,9 @@ var HomePage = React.createClass({
 
           <div className="feature">
             <Link className="icon-circle" to="css-framework"><Icon icon="av-web" /></Link>
-            <h3>Css Framework</h3>
+            <h3>CSS Framework</h3>
             <p>
-              The Css Framework is built with <a href="http://lesscss.org">Less</a>. We've 
+              The CSS Framework is built with <a href="http://lesscss.org">Less</a>. We've 
               included handy things like resets, colors, and typography to help get you going.
             </p>
           </div>
