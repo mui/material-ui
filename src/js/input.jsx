@@ -10,6 +10,10 @@ var Input = React.createClass({
 
   propTypes: {
     multiline: React.PropTypes.bool,
+    required: React.PropTypes.bool,
+    min: React.PropTypes.number,
+    max: React.PropTypes.number,
+    step: React.PropTypes.number,
     inputStyle: React.PropTypes.string,
     error: React.PropTypes.string,
     description: React.PropTypes.string,
@@ -52,8 +56,10 @@ var Input = React.createClass({
         'mui-error': this.state.error === true
       }),
       inputElement = this.props.multiline ?
-        <textarea value={this.state.value} className="mui-input-textarea" rows={this.state.rows} onChange={this._onTextAreaChange} required /> :
-        <input ref="input" value={this.state.value} type={this.props.type} name={this.props.name} onChange={this._onInputChange} required />;
+        <textarea value={this.state.value} className="mui-input-textarea" rows={this.state.rows} onChange={this._onTextAreaChange}
+          required={this.props.required} /> :
+        <input ref="input" value={this.state.value} type={this.props.type} name={this.props.name} onChange={this._onInputChange}
+          required={this.props.required} min={this.props.min} max={this.props.max} step={this.props.step} />;
 
     return (
       <div ref={this.props.ref} className={classes}>
