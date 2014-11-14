@@ -32,23 +32,38 @@ var ButtonPage = React.createClass({
 
           <div className="button-examples">
 
-            <div className="button-examples-row">
-              <PaperButton type="FLAT" label="Default" onClick={this._onPaperButtonClick} />
-              <PaperButton type="FLAT" label="Primary" primary={true} onClick={this._onPaperButtonClick} />
-              <PaperButton type="FLAT" label="Disabled" disabled={true} />
+            <div className="button-example-group">
+              <div className="button-example-container">
+                <PaperButton type="FLAT" label="Default" onClick={this._onPaperButtonClick} />
+              </div>
+              <div className="button-example-container">
+                <PaperButton type="FLAT" label="Primary" primary={true} onClick={this._onPaperButtonClick} />
+              </div>
+              <div className="button-example-container">
+                <PaperButton type="FLAT" label="Disabled" disabled={true} />
+              </div>
             </div>
 
-            <div className="button-examples-row">
-              <PaperButton type="RAISED" label="Default" onClick={this._onPaperButtonClick} />
-              <PaperButton type="RAISED" label="Primary" primary={true} onClick={this._onPaperButtonClick} />
-              <PaperButton type="RAISED" label="Disabled" disabled={true} />
+            <div className="button-example-group">
+              <div className="button-example-container">
+                <PaperButton type="RAISED" label="Default" onClick={this._onPaperButtonClick} />
+              </div>
+              <div className="button-example-container">
+                <PaperButton type="RAISED" label="Primary" primary={true} onClick={this._onPaperButtonClick} />
+              </div>
+              <div className="button-example-container">
+                <PaperButton type="RAISED" label="Disabled" disabled={true} />
+              </div>
             </div>
 
-            <div className="button-examples-row">
-              <PaperButton type="FAB_MINI"icon="action-grade" onClick={this._onPaperButtonClick} />
-              <PaperButton type="FAB" icon="action-grade" onClick={this._onPaperButtonClick} />
+            <div className="button-example-group">
+              <div className="button-example-container">
+                <PaperButton type="FAB_MINI"icon="action-grade" onClick={this._onPaperButtonClick} />
+              </div>
+              <div className="button-example-container">
+                <PaperButton type="FAB" icon="action-grade" onClick={this._onPaperButtonClick} />
+              </div>
             </div>
-
           </div>
 
         </CodeExample>
