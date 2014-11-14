@@ -36,7 +36,7 @@
     "react": "^0.12"
   },
   "devDependencies": {
-    "browserify": "^6.2.0",
-    "reactify": "^0.15.2"
+    "browserify": "^6.3.2",
+    "reactify": "^0.16.0"
   }
 }
