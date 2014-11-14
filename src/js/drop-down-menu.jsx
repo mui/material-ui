@@ -50,11 +50,12 @@ var DropDownMenu = React.createClass({
     return (
       <div className={classes}>
         <div className="mui-menu-control" onClick={this._onControlClick}>
-          <Paper className="mui-menu-control-bg"zDepth={0} />
+          <Paper className="mui-menu-control-bg" zDepth={0} />
           <div className="mui-menu-label">
             {this.props.menuItems[this.state.selectedIndex].text}
           </div>
           <Icon className="mui-menu-drop-down-icon" icon="navigation-arrow-drop-down" />
+          <div className="mui-menu-control-underline" />
         </div>
         <Menu ref="menuItems" selectedIndex={this.state.selectedIndex} menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
       </div>
