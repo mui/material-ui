@@ -230,11 +230,9 @@ var Menu = React.createClass({
         //Open the menu
         $el.css('height', this._initialMenuHeight);
 
-        //Set the overflow to visible after the animation is done so
-        //that other nested menus can be shown
-        CssEvent.onTransitionEnd($el, function() {
-          $innerContainer.css('overflow', 'visible');
-        });
+        //Set the overflow to visible so that other nested menus 
+        //can be shown
+        $innerContainer.css('overflow', 'visible');
 
       } else {
 
