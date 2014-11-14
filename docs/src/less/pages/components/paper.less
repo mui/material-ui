@@ -1,22 +1,18 @@
 .paper-examples {
 
-  .paper-examples-row {
-    .clearfix();
-    margin-bottom: 64px;
-
-    &:last-child {
-      margin-bottom: 32px;
-    }
-  }
-
   .mui-paper {
     height: 100px;
     width: 100px;
-    float: left;
-    margin-left: 56px;
+    margin: 0 auto;
+    margin-bottom: 64px;
+  }
 
-    &:first-child {
-      margin-left: 0px;
+  @media @device-medium {
+    .clearfix();
+
+    .paper-examples-group {
+      float: left;
+      width: 33%;
     }
   }
 }
