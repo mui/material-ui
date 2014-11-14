@@ -218,11 +218,13 @@ var Menu = React.createClass({
   },
 
   _renderVisibility: function() {
-    var $el,
+    var el,
+      $el,
       $innerContainer;
 
     if (this.props.hideable) {
-      $el = $(this.getDOMNode());
+      el = this.getDOMNode();
+      $el = $(el);
       $innerContainer = $el.children('.mui-paper-container').first();
 
       if (this.props.visible) {
@@ -232,7 +234,7 @@ var Menu = React.createClass({
 
         //Set the overflow to visible after the animation is done so
         //that other nested menus can be shown
-        CssEvent.onTransitionEnd($el, function() {
+        CssEvent.onTransitionEnd(el, function() {
           $innerContainer.css('overflow', 'visible');
         });
 

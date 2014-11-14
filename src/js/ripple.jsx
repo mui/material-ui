@@ -20,7 +20,8 @@ var Ripple = React.createClass({
   },
 
   animate: function(e, callback) {
-    var $ripple = $(this.getDOMNode()),
+    var el = this.getDOMNode(),
+      $ripple = $(el),
       $offset = $ripple.parent().offset(),
       x = e.pageX - $offset.left,
       y = e.pageY - $offset.top;
@@ -33,7 +34,7 @@ var Ripple = React.createClass({
 
     $ripple.addClass('mui-show');
 
-    CssEvent.onAnimationEnd($ripple, function() {
+    CssEvent.onAnimationEnd(el, function() {
       $ripple.removeClass('mui-show');
       if (callback) callback();
     });

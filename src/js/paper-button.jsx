@@ -2,8 +2,7 @@
  * @jsx React.DOM
  */
 
-var $ = require('jquery'),
-  React = require('react'),
+var React = require('react'),
   CssEvent = require('./utils/css-event.js'),
   Classable = require('./mixins/classable.js'),
   Paper = require('./paper.jsx'),
@@ -91,7 +90,7 @@ var PaperButton = React.createClass({
   },
 
   _animateButtonClick: function(e) {
-    var $el = $(this.getDOMNode());
+    var el = this.getDOMNode();
 
     //animate the ripple
     this.refs.ripple.animate(e);
@@ -99,7 +98,7 @@ var PaperButton = React.createClass({
     //animate the zdepth change
     if (this.props.type !== Types.FLAT) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
-      CssEvent.onTransitionEnd($el, function() {
+      CssEvent.onTransitionEnd(el, function() {
         this.setState({ zDepth: this.state.initialZDepth });
       }.bind(this));
     }
