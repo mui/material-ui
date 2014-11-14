@@ -2,8 +2,7 @@
  * @jsx React.DOM
  */
 
-var $ = require('jquery'),
-  React = require('react'),
+var React = require('react'),
   Classable = require('./mixins/classable.js'),
   TableRowsItem = require('./table-rows-item.jsx');
 
