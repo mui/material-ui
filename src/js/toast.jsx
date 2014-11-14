@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var React = require('react');
+var React = require('Bodhi5/react');
 var Classable = require('./mixins/classable.js');
 var ClickAwayable = require('./mixins/click-awayable.js');
 

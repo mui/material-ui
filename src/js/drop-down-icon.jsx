@@ -3,7 +3,7 @@
  */
 
 var $ = require('jquery'),
-  React = require('react'),
+  React = require('Bodhi5/react'),
   Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
   KeyLine = require('./utils/key-line.js'),

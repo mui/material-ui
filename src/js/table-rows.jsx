@@ -3,7 +3,7 @@
  */
 
 var $ = require('jquery'),
-  React = require('react'),
+  React = require('Bodhi5/react'),
   Classable = require('./mixins/classable.js'),
   TableRowsItem = require('./table-rows-item.jsx');
 

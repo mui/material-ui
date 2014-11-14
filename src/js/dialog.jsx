@@ -3,7 +3,7 @@
 var $ = require('jquery');
 var Classable = require('./mixins/classable');
 var Paper = require('./paper.jsx');
-var React = require('react');
+var React = require('Bodhi5/react');
 
 var Dialog = React.createClass({
 

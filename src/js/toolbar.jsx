@@ -2,7 +2,7 @@
 
 var Classable = require('./mixins/classable.js');
 var Paper = require('./paper.jsx');
-var React = require('react');
+var React = require('Bodhi5/react');
 var ToolbarGroup = require('./toolbar-group.jsx');
 
 var Toolbar = React.createClass({

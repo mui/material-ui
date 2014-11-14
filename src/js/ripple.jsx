@@ -3,7 +3,7 @@
  */
 
 var $ = require('jquery'),
-  React = require('react'),
+  React = require('Bodhi5/react'),
   CssEvent = require('./utils/css-event.js'),
   Classable = require('./mixins/classable.js');
 

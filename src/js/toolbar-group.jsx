@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var Classable = require('./mixins/classable.js');
-var React = require('react');
+var React = require('Bodhi5/react');
 
 var ToolbarGroup = React.createClass({
 

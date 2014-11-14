@@ -2,7 +2,7 @@
  * @jsx React.DOM
  */
 
-var React = require('react'),
+var React = require('Bodhi5/react'),
   Classable = require('./mixins/classable.js'),
   Paper = require('./paper.jsx'),
   Menu = require('./menu.jsx');
