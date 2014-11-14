@@ -19,16 +19,45 @@
   }
 
   .color-group {
-    float: left;
     padding-top: 16px;
     padding-bottom: 16px;
-    width: 180px;
     display: block;
   }
 
-  .neutral {
-    width: (180px * 3);
-    float: left;
+
+  @media @device-small {
+    .color-group {
+      float: left;
+      width: 50%;
+    }
+  }
+
+  @media @device-medium {
+    .color-group {
+      width: 33%;
+    }
+
+    .neutral {
+      .color-group {
+        padding-bottom: 216px;
+
+        &:last-child {
+          padding-bottom: 16px;
+        }
+      }
+    }
+  }
+
+  @media @device-large {
+    .color-group {
+      width: 25%;
+    }
+
+    .neutral {
+      .color-group {
+        padding-bottom: 16px;
+      }
+    }
   }
 
   .red-50 { background-color: @red-50; }
