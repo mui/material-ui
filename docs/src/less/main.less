@@ -16,6 +16,7 @@
 @import "pages/home-features.less";
 @import "pages/home-page-hero.less";
 @import "pages/home-purpose.less";
+@import "pages/page-with-nav.less";
 @import "pages/components/buttons.less";
 @import "pages/components/icon.less";
 @import "pages/components/paper.less";
@@ -37,28 +38,6 @@ a {
   .mui-app-bar {
     .mui-icon-github {
       float: right;
-    }
-  }
-
-  .mui-app-content-canvas {
-
-    &.with-nav {
-      @subNavWidth: (@desktop-keyline-increment * 4);
-      .lh-calc(min-height, ~'100% - @{app-bar-height}');
-
-      .subNav {
-        position: absolute;
-        width: @subNavWidth;
-      }
-
-      .subContent {
-        max-width: (@desktop-keyline-increment * 14);
-        height: 100%;
-        margin-left: @subNavWidth;
-        .lh-calc(width, ~'100% - @{subNavWidth}');
-        padding: @desktop-gutter;
-        border-left: solid 1px @grey-300;
-      }
     }
   }
 }
