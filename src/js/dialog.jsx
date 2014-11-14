@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 
-var $ = require('jquery');
 var Classable = require('./mixins/classable');
 var Paper = require('./paper.jsx');
 var React = require('react');
@@ -30,10 +29,10 @@ var Dialog = React.createClass({
 
   componentDidUpdate: function (prevProps, prevState) {
     //calculate height and use that to center the dialog vertically
-    var $el = $(this.getDOMNode()),
-      height = $el.innerHeight();
+    var dom = this.getDOMNode(),
+      height = dom.offsetHeight;
 
-    $el.css('margin-top', -height / 2);
+    dom.style.marginTop = -1 * height / 2 + 'px';
   },
 
   _handleClickAway: function() {
