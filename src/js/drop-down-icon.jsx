@@ -30,13 +30,6 @@ var DropDownIcon = React.createClass({
     this.setState({ open: false });
   },
 
-  componentDidMount: function() {
-    var dom = this.getDOMNode(),
-      menuItemsDom = this.refs.menuItems.getDOMNode();
-
-    dom.style.width = menuItemsDom.offsetWidth;
-  },
-
   render: function() {
     var classes = this.getClasses('mui-drop-down-icon', {
       'mui-open': this.state.open
