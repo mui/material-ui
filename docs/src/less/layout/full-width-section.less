@@ -1,0 +1,19 @@
+.full-width-section {
+  padding: @desktop-gutter;
+  .clearfix();
+
+  .full-width-section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media @device-small {
+    padding-top: (@desktop-gutter * 2);
+    padding-bottom: (@desktop-gutter * 2);
+  }
+
+  @media @device-large {
+    padding-top: (@desktop-gutter * 3);
+    padding-bottom: (@desktop-gutter * 3);
+  }
+}

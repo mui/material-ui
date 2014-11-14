@@ -18,12 +18,12 @@ var Master = React.createClass({
         </mui.AppBar>
         <AppLeftNav ref="leftNav" />
         <this.props.activeRouteHandler />
-        <div className="footer">
-            <Icon icon="mui-icon-github" onClick={this._onGithubClick} />
-            <p>
-              Hand crafted with love by the engineers at <a href="http://call-em-all.com">Call-Em-All</a> and our 
-              awesome <a href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
-            </p>
+        <div className="footer full-width-section">
+          <p>
+            Hand crafted with love by the engineers at <a href="http://call-em-all.com">Call-Em-All</a> and our 
+            awesome <a href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
+          </p>
+          <Icon icon="mui-icon-github" onClick={this._onGithubClick} />
         </div>
       </mui.AppCanvas>
     );

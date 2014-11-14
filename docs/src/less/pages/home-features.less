@@ -1,0 +1,46 @@
+.home-features {
+
+  * { .ease-out(); }
+
+  h3 {
+    .mui-font-style-title;
+    background-color: @grey-200;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    line-height: @desktop-keyline-increment;
+  }
+
+  .home-feature {
+    max-width: 300px;
+    margin: 0 auto @desktop-gutter auto;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media @device-medium {
+
+    .feature-container {
+      .clearfix();
+      max-width: 906px;
+    }
+
+    .home-feature {
+      float: left;
+      width: 33%;
+      margin-right: 4px;
+      margin-bottom: 0;
+
+      &:first-child {
+        margin-left: -2px;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    
+  }
+}

@@ -8,8 +8,13 @@
 
 @import "color-palette.less";
 @import "component-info.less";
+@import "footer.less";
 
-@import "pages/home.less";
+@import "layout/full-width-section.less";
+@import "pages/home-contribute.less";
+@import "pages/home-features.less";
+@import "pages/home-page-hero.less";
+@import "pages/home-purpose.less";
 @import "pages/components/buttons.less";
 @import "pages/components/icon.less";
 @import "pages/components/paper.less";
@@ -69,10 +74,6 @@ a {
   margin-bottom: @desktop-gutter-mini;
 }
 
-.full-width-section {
-  padding: @desktop-gutter;
-  .clearfix();
-}
 
 .get-started-page {
   padding: @desktop-gutter;
@@ -82,31 +83,6 @@ a {
     float: left;
     padding-right: (@desktop-gutter * 2);
   }
-}
-
-.footer {
-  background-color: @grey-900;
-  height: @desktop-keyline-increment;
-  padding: 0 @desktop-gutter;
-  overflow: hidden;
-
-  p {
-    margin: 0;
-    padding: 0;
-    .mui-text-light-white;
-    line-height: @desktop-keyline-increment;
-  }
-
-  a {
-    .mui-text-dark-white;
-  }
-
-  .mui-icon {
-    float: right;
-    .mui-text-dark-white;
-    line-height: @desktop-keyline-increment;
-  }
-
 }
 
 .baseline-grid {
