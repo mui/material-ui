@@ -2,8 +2,7 @@
  * @jsx React.DOM
  */
 
-var $ = require('jquery'),
-  React = require('react'),
+var React = require('react'),
   Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
   KeyLine = require('./utils/key-line.js'),
@@ -32,10 +31,10 @@ var DropDownIcon = React.createClass({
   },
 
   componentDidMount: function() {
-    var $el = $(this.getDOMNode()),
-      $menuItems = $(this.refs.menuItems.getDOMNode());
+    var dom = this.getDOMNode(),
+      menuItemsDom = this.refs.menuItems.getDOMNode();
 
-    $el.css('width', $menuItems.width());
+    dom.style.width = menuItemsDom.offsetWidth;
   },
 
   render: function() {
