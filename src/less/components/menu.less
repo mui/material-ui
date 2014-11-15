@@ -42,6 +42,11 @@
     padding-right: @menu-item-padding;
     background-color: fade(@menu-item-hover-color, 0%);
 
+     * {
+      .lh-user-select(none);
+     }
+    
+
     //needed for ripple
     position: relative;
     overflow: hidden;
