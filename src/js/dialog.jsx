@@ -1,8 +1,11 @@
-/** @jsx React.DOM */
+/**
+ * @jsx React.DOM
+ */
 
-var Classable = require('./mixins/classable');
-var Paper = require('./paper.jsx');
-var React = require('react');
+var React = require('react'),
+  Events = require('./utils/events.js'),
+  Classable = require('./mixins/classable'),
+  Paper = require('./paper.jsx');
 
 var Dialog = React.createClass({
 
@@ -27,16 +30,20 @@ var Dialog = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    Events.on(document, 'keyup', this._checkEscapeKeyUp);
+  },
+
+  componentWillUnmount: function() {
+    Events.off(document, 'keyup', this._checkEscapeKeyUp);
+  },
+
   componentDidUpdate: function (prevProps, prevState) {
     //calculate height and use that to center the dialog vertically
     var dom = this.getDOMNode(),
       height = dom.offsetHeight;
 
     dom.style.marginTop = -1 * height / 2 + 'px';
-  },
-
-  _handleClickAway: function() {
-    this.dismiss();
   },
 
   render: function() {
@@ -73,6 +80,16 @@ var Dialog = React.createClass({
   show: function() {
     this.setState({ open: true });
     if (this.props.onShow) this.props.onShow();
+  },
+
+  _handleClickAway: function() {
+    this.dismiss();
+  }, 
+
+  _checkEscapeKeyUp: function(e) {
+    if (e.keyCode == 27) {
+      this.dismiss();
+    }
   }
 
 });
