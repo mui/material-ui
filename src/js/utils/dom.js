@@ -31,6 +31,14 @@ module.exports = {
       el.classList.remove(className);
     else
       el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+  },
+
+  forceRedraw: function(el) {
+    var originalDisplay = el.style.display;
+    
+    el.style.display = 'none';
+    el.offsetHeight;
+    el.style.display = originalDisplay;
   }
   
 }

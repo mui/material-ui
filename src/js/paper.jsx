@@ -38,13 +38,16 @@ var Paper = React.createClass({
     return (
       <div className={classes} onClick={this._onClick} onMouseDown={this._onMouseDown} 
       	onMouseUp={this._onMouseUp} onMouseOver={this._onMouseOver} onMouseOut={this._onMouseOut}>
-        <div className={insideClasses}>
+        <div ref="innerContainer" className={insideClasses}>
           {this.props.children}
         </div>
       </div>
     );
   },
 
+  getInnerContainer: function() {
+    return this.refs.innerContainer;
+  },
 
   _onClick: function(e) {
     if (this.props.onClick) this.props.onClick(e);

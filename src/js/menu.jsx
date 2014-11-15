@@ -2,9 +2,9 @@
  * @jsx React.DOM
  */
 
-var $ = require('jquery'),
-  React = require('react'),
+var React = require('react'),
   CssEvent = require('./utils/css-event.js'),
+  Dom = require('./utils/dom.js'),
   KeyLine = require('./utils/key-line.js'),
   Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
@@ -64,9 +64,10 @@ var NestedMenuItem = React.createClass({
   },
 
   _positionNestedMenu: function() {
-    var $el = $(this.getDOMNode()),
-      $nestedMenu = $(this.refs.nestedMenu.getDOMNode());
-    $nestedMenu.css('left', $el.outerWidth());
+    var el = this.getDOMNode(),
+      nestedMenu = this.refs.nestedMenu.getDOMNode();
+
+    nestedMenu.style.left = el.offsetWidth + 'px';
   },
 
   _onParentItemClick: function() {
@@ -110,27 +111,21 @@ var Menu = React.createClass({
   },
 
   componentDidMount: function() {
-    var $el = $(this.getDOMNode()),
-      menuWidth = KeyLine.getIncrementalDim($el.width());
+    var el = this.getDOMNode(),
+      menuWidth = KeyLine.getIncrementalDim(el.offsetWidth);
 
     //Update the menu width
-    //We need to remove the transition in order to set the
-    //width because of safari
-    $el.css({
-      transition: 'none',
-      width: menuWidth
-    });
+    el.style.transition = 'none';
+    el.style.width = menuWidth + 'px';
 
     //force a redraw
-    $el.height();
+    Dom.forceRedraw(el);
 
     //put the transition back
-    $el.css({
-      transition: ''
-    });
+    el.style.transition = '';
 
     //Save the initial menu height for later
-    this._initialMenuHeight = $el.height() + KeyLine.Desktop.GUTTER_LESS;
+    this._initialMenuHeight = el.offsetHeight + KeyLine.Desktop.GUTTER_LESS;
 
     //Show or Hide the menu according to visibility
     this._renderVisibility();
@@ -147,7 +142,7 @@ var Menu = React.createClass({
     });
 
     return (
-      <Paper zDepth={this.props.zDepth} className={classes}>
+      <Paper ref="paperContainer" zDepth={this.props.zDepth} className={classes}>
         {this._getChildren()}
       </Paper>
     );
@@ -218,33 +213,30 @@ var Menu = React.createClass({
   },
 
   _renderVisibility: function() {
-    var el,
-      $el,
-      $innerContainer;
+    var el;
 
     if (this.props.hideable) {
       el = this.getDOMNode();
-      $el = $(el);
-      $innerContainer = $el.children('.mui-paper-container').first();
-
+      innerContainer = this.refs.paperContainer.getInnerContainer().getDOMNode();
+      
       if (this.props.visible) {
 
         //Open the menu
-        $el.css('height', this._initialMenuHeight);
+        el.style.height = this._initialMenuHeight + 'px';
 
         //Set the overflow to visible after the animation is done so
         //that other nested menus can be shown
         CssEvent.onTransitionEnd(el, function() {
-          $innerContainer.css('overflow', 'visible');
+          innerContainer.style.overflow = 'visible';
         });
 
       } else {
 
         //Close the menu
-        $el.css('height', 0);
+        el.style.height = '0px';
 
         //Set the overflow to hidden so that animation works properly
-        $innerContainer.css('overflow', 'hidden');
+        innerContainer.style.overflow = 'hidden';
       }
     }
   },
