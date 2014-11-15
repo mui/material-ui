@@ -20,7 +20,7 @@
     z-index: 10;
     left: 0px;
     top: 0px;
-    .ease-out(@property: left);
+    .ease-out();
 
     .mui-menu {
       .mui-menu-item {
@@ -45,7 +45,7 @@
     }
 
     .mui-left-nav-menu {
-      left: ((-1 * @left-nav-width) - 10px);
+      .lh-translate3d((-1 * @left-nav-width) - 10px, 0, 0);
     }
 
   }
