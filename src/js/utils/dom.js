@@ -33,9 +33,23 @@ module.exports = {
       el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
   },
 
+  hasClass: function(el, className) {
+    if (el.classList)
+      return el.classList.contains(className);
+    else
+      return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+  },
+
+  toggleClass: function(el, className) {
+    if (this.hasClass(el, className))
+      this.removeClass(el, className);
+    else
+      this.addClass(el, className);
+  },
+
   forceRedraw: function(el) {
     var originalDisplay = el.style.display;
-    
+
     el.style.display = 'none';
     el.offsetHeight;
     el.style.display = originalDisplay;
