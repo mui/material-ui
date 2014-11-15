@@ -21,5 +21,11 @@ module.exports = {
   Toggle: require('./js/toggle.jsx'),
   Toast: require('./js/toast.jsx'),
   Toolbar: require('./js/toolbar.jsx'),
-  ToolbarGroup: require('./js/toolbar-group.jsx')
+  ToolbarGroup: require('./js/toolbar-group.jsx'),
+  Utils: {
+    CssEvent: require('./js/utils/css-event.js'),
+    Dom: require('./js/utils/dom.js'),
+    Events: require('./js/utils/events.js'),
+    KeyLine: require('./js/utils/key-line.js')
+  }
 };
