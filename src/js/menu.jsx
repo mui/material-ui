@@ -227,8 +227,10 @@ var Menu = React.createClass({
         //Set the overflow to visible after the animation is done so
         //that other nested menus can be shown
         CssEvent.onTransitionEnd(el, function() {
-          innerContainer.style.overflow = 'visible';
-        });
+          //Make sure the menu is open before setting the overflow.
+          //This is to accout for fast clicks
+          if (this.props.visible) innerContainer.style.overflow = 'visible';
+        }.bind(this));
 
       } else {
 
