@@ -1,8 +1,7 @@
 module.exports = {
 
   once: function (el, type, callback) {
-    var _this = this,
-      typeArray = type.split(' ');
+    var typeArray = type.split(' ');
 
     for (var i = typeArray.length - 1; i >= 0; i--) {
       el.addEventListener(typeArray[i], function(e) {
