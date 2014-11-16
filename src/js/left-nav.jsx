@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
   Classable = require('./mixins/classable.js'),
   Paper = require('./paper.jsx'),
@@ -49,27 +45,43 @@ var LeftNav = React.createClass({
       overlay;
 
     if (!this.props.docked) {
-      overlay = <div className="mui-overlay" onClick={this._onOverlayClick}></div>;
+      overlay = (
+        <div className="mui-overlay" onTouchTap={this._onOverlayTouchTap} />
+      );
     }
 
     return (
       <div className={classes}>
+
         {overlay}
-        <Paper ref="clickAwayableElement" className="mui-left-nav-menu" zDepth={2} rounded={false}>
+        <Paper
+          ref="clickAwayableElement"
+          className="mui-left-nav-menu"
+          zDepth={2}
+          rounded={false}>
+          
           {this.props.header}
-          <Menu ref="menuItems" zDepth={0} menuItems={this.props.menuItems} selectedIndex={selectedIndex} onItemClick={this._onMenuItemClick} />
+          <Menu 
+            ref="menuItems"
+            zDepth={0}
+            menuItems={this.props.menuItems}
+            selectedIndex={selectedIndex}
+            onItemClick={this._onMenuItemClick} />
+
         </Paper>
       </div>
     );
   },
 
-  _onOverlayClick: function() {
+  _onOverlayTouchTap: function() {
     this.close();
   },
 
   _onMenuItemClick: function(e, key, payload) {
     if (!this.props.docked) this.close();
-    if (this.props.onChange && this.props.selectedIndex !== key) this.props.onChange(e, key, payload);
+    if (this.props.onChange && this.props.selectedIndex !== key) {
+      this.props.onChange(e, key, payload);
+    }
   }
 
 });
