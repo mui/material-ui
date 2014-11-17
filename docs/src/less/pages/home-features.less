@@ -2,7 +2,7 @@
 
   * { .ease-out(); }
 
-  h3 {
+  .home-feature-heading {
     .mui-font-style-title;
     background-color: @grey-200;
     text-align: center;
@@ -18,6 +18,12 @@
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  .home-feature-image {
+    //Not sure why this is needed but it fixes a display
+    //issue in chrome
+    margin-bottom: -6px;
   }
 
   @media @device-medium {

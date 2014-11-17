@@ -22,8 +22,8 @@ var HomeFeature = React.createClass({
 		return (
 			<Paper className="home-feature" zDepth={this.state.zDepth} 
 				onMouseOver={this._onMouseOver} onMouseOut={this._onMouseOut}>
-      	<h3>{this.props.heading}</h3>
-        <Link to={this.props.route}><img src={this.props.img} /></Link>
+      	<h3 className="home-feature-heading">{this.props.heading}</h3>
+        <Link to={this.props.route}><img className="home-feature-image" src={this.props.img} /></Link>
       </Paper>
 		);
 	},
