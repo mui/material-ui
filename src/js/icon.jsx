@@ -10,7 +10,7 @@ var Icon = React.createClass({
   },
 
   render: function() {
-    var { icon, ...other } = this.props,
+    var { className, icon, ...other } = this.props,
       isMuiCustomIcon = icon.indexOf('mui-icon') > -1,
       mdfiClassName = 'mdfi_' + icon.replace(/-/g, '_'),
       iconClassName = isMuiCustomIcon ? icon : mdfiClassName,
