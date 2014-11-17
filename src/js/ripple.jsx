@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
   CssEvent = require('./utils/css-event.js'),
   Dom = require('./utils/dom.js'),
@@ -25,14 +21,26 @@ var Ripple = React.createClass({
       x = e.pageX - offset.left,
       y = e.pageY - offset.top;
 
+    this._animateRipple(el, x, y, callback);
+  },
+
+  animateFromCenter: function(callback) {
+    var el = this.getDOMNode(),
+      x = el.parentNode.offsetWidth / 2,
+      y = el.parentNode.offsetHeight / 2;
+
+    this._animateRipple(el, x, y, callback);
+  },
+
+  _animateRipple: function(el, x, y, callback) {
     el.style.transition = 'none';
     el.style.top = y + 'px';
     el.style.left = x + 'px';
 
-    Dom.addClass(el, 'mui-show');
+    Dom.addClass(el, 'mui-is-visible');
 
     CssEvent.onAnimationEnd(el, function() {
-      Dom.removeClass(el, 'mui-show');
+      Dom.removeClass(el, 'mui-is-visible');
       if (callback) callback();
     });
   }

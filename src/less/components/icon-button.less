@@ -1,0 +1,51 @@
+.mui-icon-button {
+
+  @ripple-color: darken(@white, 10%);
+  @icon-button-size: (@icon-size * 2);
+
+  * { .ease-out(450ms); }
+  
+  border: 0;
+  background: none;
+  padding: (@icon-size / 2);
+  position: relative;
+
+
+  .mui-ripple.mui-is-visible {
+    .ripple-animation(
+      'icon-button-ripple-animation', 
+      @ripple-color,
+      @icon-button-size
+    );
+  }
+
+  .mui-icon-button-focus-ripple {
+    .ripple-base;
+
+    opacity: 0;
+    box-shadow: 0px 0px 0px 0.5px @ripple-color;
+    border: solid 6px rgba(0,0,0,0);
+    background-color: @ripple-color;
+
+    @initial-size: (@icon-button-size - 16px);
+    @start: ~'0%, 100% { width: @{initial-size}; height: @{initial-size}; }';
+    @end: ~'50% { width: @{icon-button-size}; height: @{icon-button-size}; }';
+    .lh-keyframes(~'focus-ripple-outer, @{start} @{end}');
+    .lh-animation('focus-ripple-outer' 1.5s infinite);
+  }
+
+  &.mui-is-disabled {
+    color: lighten(@body-text-color, 75%);
+  }
+
+  &.mui-is-keyboard-focused {
+    .mui-icon-button-focus-ripple {
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+}

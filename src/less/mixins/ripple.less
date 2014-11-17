@@ -1,13 +1,25 @@
 //Animating opacity causes ripple to ignore border radius overflow hidden
 //so animate using colors instead
-.ripple-animation(@animation-name; @ripple-color; @size: 150px) {
+.ripple-animation(@animation-name; @ripple-color; @size: 150px; @duration: 0.7s) {
   @color-in: fade(@ripple-color, 100%);
   @color-out: fade(@ripple-color, 0%);
 
   @percent-0: ~'0% { background-color: @{color-out}; }';
-  @percent-25: ~'50% { background-color: @{color-in}; } ';
+  @percent-50: ~'50% { background-color: @{color-in}; } ';
   @percent-100: ~'100% { width: @{size}; height: @{size}; background-color: @{color-out}; }';
 
-  .lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-25} @{percent-100}');
-  .lh-animation(@animation-name .325s);
+  .lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-50} @{percent-100}');
+  .lh-animation(@animation-name @duration);
+}
+
+.ripple-base {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+
+  .lh-translate(-50%, -50%);
+  .lh-border-radius(50%);
 }
