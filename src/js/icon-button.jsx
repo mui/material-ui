@@ -59,6 +59,9 @@ var IconButton = React.createClass({
 
   _onWindowKeyUp: function(e) {
     if (e.keyCode == 9) this._tabPressed = true;
+    if (e.keyCode == 13 && this.state.isKeyboardFocused) {
+      this._onTouchTap(e);
+    }
   },
 
   _onBlur: function(e) {
