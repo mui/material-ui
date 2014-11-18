@@ -1,10 +1,7 @@
-/**
- * @jsx React.DOM
- */
+/** @jsx React.DOM */
 
-var React = require('react'),
-    Paper = require('./paper.jsx'),
-    Classable = require('./mixins/classable.js');
+var React = require('react');
+var Classable = require('./mixins/classable.js');
 
 var Input = React.createClass({
 
@@ -30,13 +27,12 @@ var Input = React.createClass({
       value: this.props.defaultValue,
       error: false,
       rows: 1
-    }
+    };
   },
 
   getDefaultProps: function() {
     return {
-      multiline: false,
-      required: true
+      multiline: false
     };
   },
 
@@ -52,20 +48,26 @@ var Input = React.createClass({
 
   render: function() {
     var classes = this.getClasses('mui-input', {
-        'mui-floating': this.props.inputStyle === 'floating',
-        'mui-text': this.props.type === 'text',
-        'mui-error': this.state.error === true
-      }),
-      inputElement = this.props.multiline ?
-        <textarea value={this.state.value} className="mui-input-textarea" rows={this.state.rows} onChange={this._onTextAreaChange}
-          required={this.props.required} /> :
-        <input ref="input" value={this.state.value} type={this.props.type} name={this.props.name} onChange={this._onInputChange}
-          required={this.props.required} min={this.props.min} max={this.props.max} step={this.props.step} />;
+      'mui-floating': this.props.inputStyle === 'floating',
+      'mui-text': this.props.type === 'text',
+      'mui-error': this.state.error === true
+    }),
+		inputElement = this.props.multiline ?
+	    this.props.valueLink ? 
+	    	<textarea {...this.props} className="mui-input-textarea" placeholder=""
+	    		rows={this.state.rows} /> : 
+	    	<textarea {...this.props} value={this.state.value} className="mui-input-textarea" 
+	    		placeholder="" rows={this.state.rows} onChange={this._onTextAreaChange} /> :
+	      this.props.valueLink ? 
+	    		<input {...this.props} ref="input" placeholder="" /> :
+	    		<input {...this.props} ref="input" value={this.state.value} placeholder=""
+	    			onChange={this._onInputChange} />;
 
     return (
       <div ref={this.props.ref} className={classes}>
         {inputElement}
-        <span className="mui-input-placeholder" onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>
+        <span className="mui-input-placeholder" 
+        	onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
@@ -102,12 +104,11 @@ var Input = React.createClass({
   },
 
   _onLineBreak: function(e) {
-    var input = (e.target.value.slice(-1)),
-        prevInput = (e.target.value.slice(-2));
+    var input = (e.target.value.slice(-1));
 
     if(input.match(/\n/gm)) {
       if(this.state.rows != 20) {
-        this.setState({ rows: ((this.state.rows) + 1)})
+        this.setState({ rows: ((this.state.rows) + 1)});
       }
     }
   }
