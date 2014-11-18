@@ -1,6 +1,7 @@
 .mui-icon-button {
 
   @ripple-color: darken(@white, 10%);
+  @focus-ripple-color: rgba(0,0,0,0.1);
   @icon-button-size: (@icon-size * 2);
 
   * { .ease-out(450ms); }
@@ -23,9 +24,9 @@
     .ripple-base;
 
     opacity: 0;
-    box-shadow: 0px 0px 0px 0.5px @ripple-color;
+    box-shadow: 0px 0px 0px 1px @focus-ripple-color;
     border: solid 6px rgba(0,0,0,0);
-    background-color: @ripple-color;
+    background-color: @focus-ripple-color;
 
     @initial-size: (@icon-button-size - 16px);
     @start: ~'0%, 100% { width: @{initial-size}; height: @{initial-size}; }';
