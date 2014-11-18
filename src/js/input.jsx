@@ -32,7 +32,8 @@ var Input = React.createClass({
 
   getDefaultProps: function() {
     return {
-      multiline: false
+      multiline: false,
+      required: true
     };
   },
 
