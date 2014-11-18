@@ -1,11 +1,13 @@
 var React = require('react'),
+  KeyCode = require('./utils/key-code.js'),
   Classable = require('./mixins/classable.js'),
+  WindowListenable = require('./mixins/window-listenable.js'),
   Paper = require('./paper.jsx'),
   Menu = require('./menu.jsx');
 
 var LeftNav = React.createClass({
 
-  mixins: [Classable],
+  mixins: [Classable, WindowListenable],
 
   propTypes: {
     docked: React.PropTypes.bool,
@@ -13,6 +15,10 @@ var LeftNav = React.createClass({
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number
+  },
+
+  windowListeners: {
+    'keyup': '_onWindowKeyUp'
   },
 
   getDefaultProps: function() {
@@ -73,14 +79,22 @@ var LeftNav = React.createClass({
     );
   },
 
-  _onOverlayTouchTap: function() {
-    this.close();
-  },
-
   _onMenuItemClick: function(e, key, payload) {
     if (!this.props.docked) this.close();
     if (this.props.onChange && this.props.selectedIndex !== key) {
       this.props.onChange(e, key, payload);
+    }
+  },
+
+  _onOverlayTouchTap: function() {
+    this.close();
+  },
+
+  _onWindowKeyUp: function(e) {
+    if (e.keyCode == KeyCode.ESC &&
+        !this.props.docked &&
+        this.state.open) {
+      this.close();
     }
   }
 
