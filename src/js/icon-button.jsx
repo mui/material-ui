@@ -34,7 +34,6 @@ var IconButton = React.createClass({
       className,
       disabled,
       icon,
-      onMouseDown,
       onTouchTap,
       ...other } = this.props,
       classes = this.getClasses('mui-icon-button', {
