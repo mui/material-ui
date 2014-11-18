@@ -1,9 +1,6 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
   Events = require('./utils/events.js'),
+  KeyCode = require('./utils/key-code.js'),
   Classable = require('./mixins/classable'),
   Paper = require('./paper.jsx');
 
@@ -87,7 +84,7 @@ var Dialog = React.createClass({
   }, 
 
   _checkEscapeKeyUp: function(e) {
-    if (e.keyCode == 27) {
+    if (e.keyCode == KeyCode.ESC) {
       this.dismiss();
     }
   }

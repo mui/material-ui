@@ -1,5 +1,6 @@
 var React = require('react'),
   Events = require('./utils/events.js'),
+  KeyCode = require('./utils/key-code.js'),
   Classable = require('./mixins/classable.js'),
   WindowListenable = require('./mixins/window-listenable'),
   Icon = require('./icon.jsx'),
@@ -58,8 +59,8 @@ var IconButton = React.createClass({
   },
 
   _onWindowKeyUp: function(e) {
-    if (e.keyCode == 9) this._tabPressed = true;
-    if (e.keyCode == 13 && this.state.isKeyboardFocused) {
+    if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
+    if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {
       this._onTouchTap(e);
     }
   },

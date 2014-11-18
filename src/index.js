@@ -28,6 +28,7 @@ module.exports = {
     CssEvent: require('./js/utils/css-event.js'),
     Dom: require('./js/utils/dom.js'),
     Events: require('./js/utils/events.js'),
+    KeyCode: require('./js/utils/key-code.js'),
     KeyLine: require('./js/utils/key-line.js')
   }
 };
