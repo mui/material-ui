@@ -13,7 +13,8 @@ module.exports = {
   Menu: require('./js/menu.jsx'),
   Mixins: {
     Classable: require('./js/mixins/classable.js'),
-    ClickAwayable: require('./js/mixins/click-awayable.js')
+    ClickAwayable: require('./js/mixins/click-awayable.js'),
+    WindowListenable: require('./js/mixins/window-listenable.js'),
   },
   PaperButton: require('./js/paper-button.jsx'),
   Paper: require('./js/paper.jsx'),
