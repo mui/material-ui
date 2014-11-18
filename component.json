@@ -1,0 +1,16 @@
+{
+  "name": "material-ui",
+  "author": "Call-em-all Engineering Team",
+  "version": "0.3.0",
+  "description": "Material Design UI components built with React",
+  "main": "./src/index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material-ui",
+    "material ui"
+  ],
+  "license": "MIT",
+  "homepage": "http://material-ui.com/"
+}
