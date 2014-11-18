@@ -1,8 +1,8 @@
+@icon-button-size: (@icon-size * 2);
+
 .mui-icon-button {
 
-  @ripple-color: darken(@white, 10%);
-  @focus-ripple-color: rgba(0,0,0,0.1);
-  @icon-button-size: (@icon-size * 2);
+  @ripple-color: rgba(0,0,0,0.1);
 
   * { .ease-out(450ms); }
   
@@ -13,10 +13,11 @@
 
 
   .mui-ripple.mui-is-visible {
-    .ripple-animation(
-      'icon-button-ripple-animation', 
-      @ripple-color,
-      @icon-button-size
+    .ripple-animation-alpha(
+      @animation-name: 'icon-button-ripple-animation';
+      @color-in: @ripple-color;
+      @color-out: rgba(0,0,0,0);
+      @size: @icon-button-size;
     );
   }
 
@@ -24,9 +25,9 @@
     .ripple-base;
 
     opacity: 0;
-    box-shadow: 0px 0px 0px 1px @focus-ripple-color;
+    box-shadow: 0px 0px 0px 1px @ripple-color;
     border: solid 6px rgba(0,0,0,0);
-    background-color: @focus-ripple-color;
+    background-color: @ripple-color;
 
     @initial-size: (@icon-button-size - 16px);
     @start: ~'0%, 100% { width: @{initial-size}; height: @{initial-size}; }';
@@ -49,4 +50,22 @@
     outline: none;
   }
 
+}
+
+.mui-dark-theme {
+  @ripple-color: rgba(255,255,255,0.3);
+
+  .mui-ripple.mui-is-visible {
+    .ripple-animation-alpha(
+      @animation-name: 'icon-button-ripple-animation-dark';
+      @color-in: @ripple-color;
+      @color-out: rgba(0,0,0,0);
+      @size: @icon-button-size;
+    );
+  }
+
+  .mui-icon-button-focus-ripple {
+    box-shadow: 0px 0px 0px 1px @ripple-color;
+    background-color: @ripple-color;
+  }
 }
