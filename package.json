@@ -23,9 +23,6 @@
     "url": "https://github.com/callemall/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
-  "browser": {
-    "react": "react/addons"
-  },
   "browserify": {
     "transform": [
       [

@@ -4,8 +4,7 @@
   "description": "Documentation site for material-ui",
   "private": true,
   "browser": {
-    "mui": "../src/index.js",
-    "react": "react/addons"
+    "mui": "../src/index.js"
   },
   "browserify": {
     "transform": [
