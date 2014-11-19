@@ -29,6 +29,7 @@ var FlatButton = React.createClass({
         onTouchTap={this._onTouchTap}>
 
         <Ripple ref="ripple" className="mui-flat-button-ripple" />
+        <Ripple className="mui-flat-button-focus-ripple" />
         <div className="mui-icon-button-focus-ripple" />
         {this.props.label}
 

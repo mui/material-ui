@@ -4,7 +4,7 @@
 
   @ripple-color: rgba(0,0,0,0.1);
 
-  * { .ease-out(450ms); }
+  * { .ease-out(); }
   
   padding: (@icon-size / 2);
   position: relative;
@@ -26,8 +26,8 @@
     @initial-size: (@icon-button-size - 16px);
     @start: ~'0%, 100% { width: @{initial-size}; height: @{initial-size}; }';
     @end: ~'50% { width: @{icon-button-size}; height: @{icon-button-size}; }';
-    .lh-keyframes(~'focus-ripple-outer, @{start} @{end}');
-    .lh-animation('focus-ripple-outer' 1.5s infinite);
+    .lh-keyframes(~'icon-button-focus-ripple, @{start} @{end}');
+    .lh-animation('icon-button-focus-ripple' 1.5s infinite);
   }
 
   &.mui-is-disabled {
