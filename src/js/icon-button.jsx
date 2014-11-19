@@ -1,46 +1,45 @@
 var React = require('react'),
   Classable = require('./mixins/classable.js'),
   EnhancedButton = require('./enhanced-button.jsx'),
+  Icon = require('./icon.jsx'),
   Ripple = require('./ripple.jsx');
 
-var FlatButton = React.createClass({
+var IconButton = React.createClass({
 
   mixins: [Classable],
 
   propTypes: {
     className: React.PropTypes.string,
-    label: React.PropTypes.string.isRequired,
-    onTouchTap: React.PropTypes.func,
-    primary: React.PropTypes.bool
+    disabled: React.PropTypes.bool,
+    icon: React.PropTypes.string.isRequired,
+    onTouchTap: React.PropTypes.func
   },
 
   render: function() {
     var {
       className,
+      icon,
       onTouchTap,
       ...other } = this.props,
-      classes = this.getClasses('mui-flat-button', {
-        'mui-is-primary': this.props.primary
-      });
+      classes = this.getClasses('mui-icon-button');
 
     return (
       <EnhancedButton {...other}
         className={classes}
         onTouchTap={this._onTouchTap}>
 
-        <Ripple ref="ripple" className="mui-flat-button-ripple" />
-        <div className="mui-icon-button-focus-ripple" />
-        {this.props.label}
-
+        <Ripple className="mui-icon-button-ripple" ref="ripple" />
+        <div className="mui-ripple mui-icon-button-focus-ripple" />
+        <Icon icon={icon} />
       </EnhancedButton>
     );
   },
 
   _onTouchTap: function(e) {
-    if (!this.props.disabled) this.refs.ripple.animate(e);
+    if (!this.props.disabled) this.refs.ripple.animateFromCenter();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   }
 
 });
 
-module.exports = FlatButton;
+module.exports = IconButton;
