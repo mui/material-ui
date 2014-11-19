@@ -29,7 +29,7 @@ var IconButton = React.createClass({
         onTouchTap={this._onTouchTap}>
 
         <Ripple className="mui-icon-button-ripple" ref="ripple" />
-        <div className="mui-ripple mui-icon-button-focus-ripple" />
+        <Ripple className="mui-icon-button-focus-ripple" />
         <Icon icon={icon} />
       </EnhancedButton>
     );
