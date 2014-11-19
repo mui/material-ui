@@ -39,7 +39,22 @@
 @menu-container-background-color: white;
 @menu-subheader-padding: @desktop-gutter;
 
-// paper button
+// buttons
+@button-height: 36px;
+@button-min-width: 88px;
+
+@flat-button-color: @white;
+@flat-button-hover-color: darken(@flat-button-color, 10%);
+@flat-button-text-color: @body-text-color;
+@flat-button-ripple-color: rgba(0,0,0,0.1);
+@flat-button-primary-hover-color: lighten(@paper-button-primary-color, 30%);
+@flat-button-primary-text-color: @accent-1-color;
+@flat-button-primary-ripple-color: fade(darken(@flat-button-primary-text-color, 20%), 10%);
+@flat-button-disabled-text-color: fade(@flat-button-text-color, 30%);
+
+//To be deprecidated
+@paper-button-height: 36px;
+@paper-button-min-width: 88px;
 @paper-button-default-color: @white;
 @paper-button-default-text-color: @dark-black;
 @paper-button-primary-color: @accent-1-color;

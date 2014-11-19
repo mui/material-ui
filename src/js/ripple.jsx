@@ -18,8 +18,10 @@ var Ripple = React.createClass({
   animate: function(e, callback) {
     var el = this.getDOMNode(),
       offset = Dom.offset(el.parentNode),
-      x = e.pageX - offset.left,
-      y = e.pageY - offset.top;
+      pageX = e.pageX == undefined ? e.nativeEvent.x : e.pageX,
+      pageY = e.pageY == undefined ? e.nativeEvent.y : e.pageY,
+      x = pageX - offset.left,
+      y = pageY - offset.top;
 
     this._animateRipple(el, x, y, callback);
   },

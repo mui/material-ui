@@ -6,24 +6,18 @@
 
   * { .ease-out(450ms); }
   
-  border: 0;
-  background: none;
   padding: (@icon-size / 2);
   position: relative;
 
-
-  .mui-ripple.mui-is-visible {
+  .mui-icon-button-ripple.mui-is-visible {
     .ripple-animation-alpha(
       @animation-name: 'icon-button-ripple-animation';
-      @color-in: @ripple-color;
-      @color-out: rgba(0,0,0,0);
+      @color: @ripple-color;
       @size: @icon-button-size;
     );
   }
 
   .mui-icon-button-focus-ripple {
-    .ripple-base;
-
     opacity: 0;
     box-shadow: 0px 0px 0px 1px @ripple-color;
     border: solid 6px rgba(0,0,0,0);
@@ -45,23 +39,17 @@
       opacity: 1;
     }
   }
-
-  &:focus {
-    outline: none;
-  }
-
 }
 
 .mui-dark-theme {
   @ripple-color: rgba(255,255,255,0.3);
 
-  .mui-ripple.mui-is-visible {
+  .mui-icon-button-ripple.mui-is-visible {
     .ripple-animation-alpha(
       @animation-name: 'icon-button-ripple-animation-dark';
-      @color-in: @ripple-color;
-      @color-out: rgba(0,0,0,0);
+      @color: @ripple-color;
       @size: @icon-button-size;
-    );
+    )
   }
 
   .mui-icon-button-focus-ripple {

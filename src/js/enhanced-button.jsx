@@ -1,19 +1,15 @@
 var React = require('react'),
-  Events = require('./utils/events.js'),
   KeyCode = require('./utils/key-code.js'),
   Classable = require('./mixins/classable.js'),
-  WindowListenable = require('./mixins/window-listenable'),
-  Icon = require('./icon.jsx'),
-  Ripple = require('./ripple.jsx');
+  WindowListenable = require('./mixins/window-listenable');
 
-var IconButton = React.createClass({
+var EnhancedButton = React.createClass({
 
   mixins: [Classable, WindowListenable],
 
   propTypes: {
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
-    icon: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func
@@ -36,7 +32,7 @@ var IconButton = React.createClass({
       icon,
       onTouchTap,
       ...other } = this.props,
-      classes = this.getClasses('mui-icon-button', {
+      classes = this.getClasses('mui-enhanced-button', {
         'mui-is-disabled': disabled,
         'mui-is-keyboard-focused': this.state.isKeyboardFocused
       });
@@ -45,14 +41,10 @@ var IconButton = React.createClass({
       <button {...other} 
         className={classes} 
         disabled={disabled} 
-        onFocus={this._onFocus}
         onBlur={this._onBlur}
+        onFocus={this._onFocus}
         onTouchTap={this._onTouchTap}>
-
-        <Ripple ref="ripple" />
-        <div className="mui-icon-button-focus-ripple" />
-        <Icon icon={icon} />
-
+        {this.props.children}
       </button>
     );
   },
@@ -92,10 +84,10 @@ var IconButton = React.createClass({
     this.setState({
       isKeyboardFocused: false
     });
-    if (!this.props.disabled) this.refs.ripple.animateFromCenter();
+    //if (!this.props.disabled) this.refs.ripple.animateFromCenter();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   }
 
 });
 
-module.exports = IconButton;
+module.exports = EnhancedButton;

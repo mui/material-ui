@@ -4,6 +4,7 @@
 
 var React = require('react'),
   mui = require('mui'),
+  FlatButton = mui.FlatButton,
   PaperButton = mui.PaperButton,
   CodeExample = require('../../code-example/code-example.jsx'),
   ComponentInfo = require('../../component-info.jsx');
@@ -13,9 +14,9 @@ var ButtonPage = React.createClass({
   render: function() {
     var code = 
       '//Flat Buttons\n' +
-      '<PaperButton type="FLAT" label="Default" />\n' +
-      '<PaperButton type="FLAT" label="Primary" primary={true} />\n' +
-      '<PaperButton type="FLAT" label="Disabled" disabled={true} />\n\n' +
+      '<FlatButton label="Default" />\n' +
+      '<FlatButton label="Primary" primary={true} />\n' +
+      '<FlatButton label="Disabled" disabled={true} />\n\n' +
       '//Raised Buttons\n' + 
       '<PaperButton type="RAISED" label="Default" />\n' +
       '<PaperButton type="RAISED" label="Primary" primary={true} />\n' +
@@ -34,13 +35,13 @@ var ButtonPage = React.createClass({
 
             <div className="button-example-group">
               <div className="button-example-container">
-                <PaperButton type="FLAT" label="Default" onClick={this._onPaperButtonClick} />
+                <FlatButton label="Default" />
               </div>
               <div className="button-example-container">
-                <PaperButton type="FLAT" label="Primary" primary={true} onClick={this._onPaperButtonClick} />
+                <FlatButton label="Primary" primary={true} />
               </div>
               <div className="button-example-container">
-                <PaperButton type="FLAT" label="Disabled" disabled={true} />
+                <FlatButton label="Disabled" disabled={true} />
               </div>
             </div>
 

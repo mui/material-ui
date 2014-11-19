@@ -1,42 +1,21 @@
 //Animating opacity causes ripple to ignore border radius overflow hidden
 //so animate using colors instead
-.ripple-animation-alpha(@animation-name; @color-in; @color-out; @size: 150px; @duration: 0.7s) {
-  @percent-0: ~'0% { background-color: @{color-out}; }';
-  @percent-50: ~'50% { background-color: @{color-in}; } ';
-  @percent-100: ~'100% { width: @{size}; height: @{size}; background-color: @{color-out}; }';
+.ripple-animation-alpha(@animation-name; @color; @size: 150px; @duration: 0.7s) {
+  @percent-0: ~'0% { background-color: rgba(0,0,0,0); }';
+  @percent-50: ~'50% { background-color: @{color}; } ';
+  @percent-100: ~'100% { width: @{size}; height: @{size}; background-color: rgba(0,0,0,0); }';
 
   .lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-50} @{percent-100}');
   .lh-animation(@animation-name @duration);
 }
 
 .ripple-animation(@animation-name; @ripple-color; @size: 150px; @duration: 0.7s) {
-  @color-in: fade(@ripple-color, 100%);
-  @color-out: fade(@ripple-color, 0%);
+  @color: fade(@ripple-color, 100%);
 
   .ripple-animation-alpha(
     @animation-name;
-    @color-in;
-    @color-out;
+    @color;
     @size;
     @duration;
   );
-
-  // @percent-0: ~'0% { background-color: @{color-out}; }';
-  // @percent-50: ~'50% { background-color: @{color-in}; } ';
-  // @percent-100: ~'100% { width: @{size}; height: @{size}; background-color: @{color-out}; }';
-
-  // .lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-50} @{percent-100}');
-  // .lh-animation(@animation-name @duration);
-}
-
-.ripple-base {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-
-  .lh-translate(-50%, -50%);
-  .lh-border-radius(50%);
 }
