@@ -10,16 +10,16 @@
     .mui-menu-control,
     .mui-menu-control:hover {
       .mui-menu-control-bg {
-        opacity: 0;
+        .lh-opacity(0);
       }
       .mui-menu-label {
         top: (@desktop-toolbar-height / 2);
-        opacity: 0;
+        .lh-opacity(0);
       }
     }
 
     .mui-menu {
-      opacity: 1;
+      .lh-opacity(1);
     }
   }
 
@@ -32,12 +32,12 @@
       background-color: @menu-background-color;
       height: 100%;
       width: 100%;
-      opacity: 0;
+      .lh-opacity(0);
     }
 
     &:hover {
       .mui-menu-control-bg {
-        opacity: 1;
+        .lh-opacity(1);
       }
     }
 
@@ -46,7 +46,7 @@
       position: absolute;
       padding-left: @desktop-gutter;
       top: 0;
-      opacity: 1;
+      .lh-opacity(1);
     }
 
     .mui-menu-drop-down-icon {

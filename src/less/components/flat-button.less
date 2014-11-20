@@ -24,7 +24,7 @@
   }
 
   .mui-flat-button-focus-ripple {
-    opacity: 0;
+    .lh-opacity(0);
     background-color: fade(@flat-button-ripple-color, 7%);
     padding-top: (@desktop-gutter-less * 2);
     @start-size: 75%;
@@ -37,7 +37,7 @@
 
   &.mui-is-keyboard-focused {
     .mui-flat-button-focus-ripple {
-      opacity: 1;
+      .lh-opacity(1);
     }
   }
 
