@@ -30,7 +30,6 @@ var FlatButton = React.createClass({
 
         <Ripple ref="ripple" className="mui-flat-button-ripple" />
         <Ripple className="mui-flat-button-focus-ripple" />
-        <div className="mui-icon-button-focus-ripple" />
         {this.props.label}
 
       </EnhancedButton>
