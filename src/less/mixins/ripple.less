@@ -1,25 +1,3 @@
-//Animating using scale transforms causes ripple to ignore border radius 
-//overflow hidden so animate using width instead
-.ripple-animation-alpha(@animation-name; @color; @size: 150px; @duration: 0.7s) {
-  @percent-0: ~'0% { background-color: rgba(0,0,0,0); }';
-  @percent-50: ~'50% { background-color: @{color}; } ';
-  @percent-100: ~'100% { width: @{size}; height: @{size}; background-color: rgba(0,0,0,0); }';
-
-  .lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-50} @{percent-100}');
-  .lh-animation(@animation-name @duration);
-}
-
-.ripple-animation(@animation-name; @ripple-color; @size: 150px; @duration: 0.7s) {
-  @color: fade(@ripple-color, 100%);
-
-  .ripple-animation-alpha(
-    @animation-name;
-    @color;
-    @size;
-    @duration;
-  );
-}
-
 .ripple-click(@animation-name; @color; @size: 150px; @duration: 0.7s) {
   height: @size;
   width: @size;
@@ -29,6 +7,17 @@
   @percent-0: ~'0% { transform: scale(0); background-color: rgba(0,0,0,0); }';
   @percent-50: ~'50% { background-color: @{color}; } ';
   @percent-100: ~'100% { transform: scale(1); background-color: rgba(0,0,0,0); }';
+
+  .lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-50} @{percent-100}');
+  .lh-animation(@animation-name @duration);
+}
+
+//Animating using scale transforms causes ripple to ignore border radius 
+//overflow hidden so animate using width instead
+.ripple-click-alt(@animation-name; @color; @size: 150px; @duration: 0.7s) {
+  @percent-0: ~'0% { background-color: rgba(0,0,0,0); }';
+  @percent-50: ~'50% { background-color: @{color}; } ';
+  @percent-100: ~'100% { width: @{size}; height: @{size}; background-color: rgba(0,0,0,0); }';
 
   .lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-50} @{percent-100}');
   .lh-animation(@animation-name @duration);

@@ -145,25 +145,10 @@
 
   .mui-ripple {
     &.mui-is-visible {
-      .ripple-animation('ripple-default-animation', darken(@paper-button-default-color, 20%));
-    }
-  }
-
-  &.mui-fab,
-  &.mui-fab-mini,
-  &.mui-primary {
-    .mui-ripple {
-      &.mui-is-visible {
-        .ripple-animation('ripple-primary-animation', darken(@paper-button-primary-color, 20%));
-      }
-    }
-  }
-
-  &.mui-flat.mui-primary {
-    .mui-ripple {
-      &.mui-is-visible {
-        .ripple-animation('ripple-flat-primary-animation', lighten(@paper-button-primary-color, 20%));
-      }
+      .ripple-click-alt(
+        @animation-name: 'ripple-default-animation';
+        @color: @raised-button-ripple-color;
+      );
     }
   }
 }
