@@ -24,20 +24,13 @@
   }
 
   .mui-flat-button-focus-ripple {
-    .lh-opacity(0);
-    background-color: fade(@flat-button-ripple-color, 7%);
-    padding-top: (@desktop-gutter-less * 2);
-    @start-size: 75%;
-    @end-size: 85%;
-    @start: ~'0%, 100% { width: @{start-size}; padding-bottom: @{start-size} }';
-    @end: ~'50% { width: @{end-size}; padding-bottom: @{end-size} }';
-    .lh-keyframes(~'flat-button-focus-ripple, @{start} @{end}');
-    .lh-animation('flat-button-focus-ripple' 1.5s infinite);
+    background-color: @transparent;
   }
 
   &.mui-is-keyboard-focused {
     .mui-flat-button-focus-ripple {
-      .lh-opacity(1);
+      background-color: fade(@flat-button-ripple-color, 7%);
+      .ripple-button-focus();
     }
   }
 
@@ -71,9 +64,11 @@
       }
     }
 
+    &.mui-is-keyboard-focused {
     .mui-flat-button-focus-ripple {
       background-color: fade(@flat-button-primary-ripple-color, 7%);
     }
+  }
   }
 
 }
