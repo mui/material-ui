@@ -17,7 +17,7 @@
   .mui-flat-button-ripple {
     &.mui-is-visible {
       .ripple-click-alt(
-        @animation-name: 'flat-button-ripple-animation';
+        @animation-name: 'flat-button-ripple-click';
         @color: @flat-button-ripple-color;
       )
     }
@@ -29,7 +29,7 @@
 
   &.mui-is-keyboard-focused {
     .mui-flat-button-focus-ripple {
-      background-color: fade(@flat-button-ripple-color, 7%);
+      background-color: @flat-button-focus-ripple-color;
       .ripple-button-focus();
     }
   }
@@ -58,7 +58,7 @@
     .mui-flat-button-ripple {
       &.mui-is-visible {
         .ripple-click-alt(
-          @animation-name: 'flat-primary-button-ripple-animation';
+          @animation-name: 'flat-primary-button-ripple-click';
           @color: @flat-button-primary-ripple-color;
         )
       }
@@ -66,7 +66,7 @@
 
     &.mui-is-keyboard-focused {
     .mui-flat-button-focus-ripple {
-      background-color: fade(@flat-button-primary-ripple-color, 7%);
+      background-color: @flat-button-primary-focus-ripple-color;
     }
   }
   }

@@ -10,21 +10,23 @@ var Paper = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    zDepth: React.PropTypes.number,
-    rounded: React.PropTypes.bool,
     circle: React.PropTypes.bool,
+    innerClassName: React.PropTypes.string,
     onClick: React.PropTypes.func,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
-    onMouseOut: React.PropTypes.func
+    onMouseOut: React.PropTypes.func,
+    rounded: React.PropTypes.bool,
+    zDepth: React.PropTypes.number
   },
 
   getDefaultProps: function() {
     return {
-      zDepth: 1,
+      circle: false,
+      innerClassName: '',
       rounded: true,
-      circle: false
+      zDepth: 1
     };
   },
 
@@ -33,7 +35,7 @@ var Paper = React.createClass({
           'mui-rounded': this.props.rounded,
           'mui-circle': this.props.circle
         }),
-        insideClasses = 'mui-paper-container mui-z-depth-bottom';
+        insideClasses = this.props.innerClassName + ' mui-paper-container mui-z-depth-bottom';
 
     return (
       <div className={classes} onClick={this._onClick} onMouseDown={this._onMouseDown} 

@@ -20,6 +20,7 @@ module.exports = {
   PaperButton: require('./js/paper-button.jsx'),
   Paper: require('./js/paper.jsx'),
   RadioButton: require('./js/radio-button.jsx'),
+  RaisedButton: require('./js/raised-button.jsx'),
   Ripple: require('./js/ripple.jsx'),
   Toggle: require('./js/toggle.jsx'),
   Toast: require('./js/toast.jsx'),

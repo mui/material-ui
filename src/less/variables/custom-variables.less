@@ -47,12 +47,26 @@
 @flat-button-hover-color: darken(@flat-button-color, 10%);
 @flat-button-text-color: @body-text-color;
 @flat-button-ripple-color: rgba(0,0,0,0.1);
-@flat-button-primary-hover-color: lighten(@paper-button-primary-color, 32%);
+@flat-button-focus-ripple-color: fade(@flat-button-ripple-color, 7%);
+@flat-button-primary-hover-color: lighten(@accent-1-color, 32%);
 @flat-button-primary-text-color: @accent-1-color;
 @flat-button-primary-ripple-color: fade(darken(@flat-button-primary-text-color, 20%), 10%);
+@flat-button-primary-focus-ripple-color: fade(@flat-button-primary-ripple-color, 7%);
 @flat-button-disabled-text-color: fade(@flat-button-text-color, 30%);
 
+@raised-button-color: @white;
+@raised-button-hover-color: darken(@raised-button-color, 10%);
+@raised-button-text-color: @body-text-color;
 @raised-button-ripple-color: rgba(0,0,0,0.1);
+@raised-button-focus-ripple-color: fade(@raised-button-ripple-color, 7%);
+@raised-button-primary-color: @accent-1-color;
+@raised-button-primary-hover-color: darken(@accent-1-color, 15%);
+@raised-button-primary-text-color: @white;
+@raised-button-primary-ripple-color: fade(@black, 15%);
+@raised-button-primary-focus-ripple-color: @raised-button-primary-ripple-color;
+@raised-button-disabled-color: @raised-button-hover-color;
+@raised-button-disabled-text-color: fade(@raised-button-text-color, 30%);
+
 
 //To be deprecidated
 @paper-button-height: 36px;

@@ -84,7 +84,6 @@ var EnhancedButton = React.createClass({
     this.setState({
       isKeyboardFocused: false
     });
-    //if (!this.props.disabled) this.refs.ripple.animateFromCenter();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   }
 
