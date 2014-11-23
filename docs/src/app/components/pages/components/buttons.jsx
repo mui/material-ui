@@ -79,11 +79,81 @@ var ButtonPage = React.createClass({
 
         </CodeExample>
 
-        <h3 className="mui-font-style-title">Props</h3>
-        {this._getPropInfo()}
+        <h3 className="mui-font-style-title">Flat Button</h3>
+        {this._getFlatButtonInfo()}
+
+        <br/><hr/><br/>
+
+        <h3 className="mui-font-style-title">Raised Button</h3>
+        {this._getRaisedButtonInfo()}
+
+        <br/><hr/><br/>
+
+        <h3 className="mui-font-style-title">Floating Action Button</h3>
+        {this._getFloatingActionButtonInfo()}
 
     	</div>
     );
+  },
+
+  _getFlatButtonInfo: function() {
+    var info = [
+          {
+            name: 'label',
+            type: 'string',
+            header: 'required',
+            desc: 'This is the text to display inside the button. This only applies to flat and ' +
+              'raised buttons.'
+          },
+          {
+            name: 'primary',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the button will use the primary app color as the button color.'
+          }
+        ];
+
+    return <ComponentInfo infoArray={info} />;
+  },
+
+  _getRaisedButtonInfo: function() {
+    var info = [
+          {
+            name: 'label',
+            type: 'string',
+            header: 'required',
+            desc: 'This is the text to display inside the button. This only applies to flat and ' +
+              'raised buttons.'
+          },
+          {
+            name: 'primary',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the button will use the primary app color as the button color.'
+          }
+        ];
+
+    return <ComponentInfo infoArray={info} />;
+  },
+
+  _getFloatingActionButtonInfo: function() {
+    var info = [
+          {
+            name: 'icon',
+            type: 'string',
+            header: 'required',
+            desc: 'This is the name of the icon to display inside the button. This only applies to ' +
+              'floating action buttons.'
+          },
+          {
+            name: 'primary',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the button will use the primary app color as the button color.'
+          }
+        ];
+
+    return <ComponentInfo infoArray={info} />;
   },
 
   _getPropInfo: function() {
@@ -129,7 +199,7 @@ var ButtonPage = React.createClass({
         ];
 
     return <ComponentInfo infoArray={info} />;
-  },
+  }
 
 });
 
