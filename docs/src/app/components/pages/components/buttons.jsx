@@ -5,6 +5,7 @@
 var React = require('react'),
   mui = require('mui'),
   FlatButton = mui.FlatButton,
+  FloatingActionButton = mui.FloatingActionButton,
   PaperButton = mui.PaperButton,
   RaisedButton = mui.RaisedButton,
   CodeExample = require('../../code-example/code-example.jsx'),
@@ -23,8 +24,10 @@ var ButtonPage = React.createClass({
       '<RaisedButton label="Primary" primary={true} />\n' +
       '<RaisedButton label="Disabled" disabled={true} />\n\n' +
       '//Floating Action Buttons\n' +
-      '<PaperButton type="FAB_MINI" icon="action-grade" />\n' +
-      '<PaperButton type="FAB" icon="action-grade" />';
+      '<FloatingActionButton icon="action-grade" />\n' +
+      '<FloatingActionButton icon="action-grade" mini={true} />\n' +
+      '<FloatingActionButton icon="action-grade" disabled={true} />\n' +
+      '<FloatingActionButton icon="action-grade" mini={true} disabled={true} />';
 
     return (
     	<div>
@@ -60,10 +63,16 @@ var ButtonPage = React.createClass({
 
             <div className="button-example-group">
               <div className="button-example-container">
-                <PaperButton type="FAB_MINI"icon="action-grade" onClick={this._onPaperButtonClick} />
+                <FloatingActionButton icon="action-grade" />
               </div>
               <div className="button-example-container">
-                <PaperButton type="FAB" icon="action-grade" onClick={this._onPaperButtonClick} />
+                <FloatingActionButton icon="action-grade" mini={true} />
+              </div>
+              <div className="button-example-container">
+                <FloatingActionButton icon="action-grade" disabled={true} />
+              </div>
+              <div className="button-example-container">
+                <FloatingActionButton icon="action-grade" mini={true} disabled={true} />
               </div>
             </div>
           </div>

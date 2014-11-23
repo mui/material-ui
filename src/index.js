@@ -6,6 +6,7 @@ module.exports = {
   DropDownIcon: require('./js/drop-down-icon.jsx'),
   DropDownMenu: require('./js/drop-down-menu.jsx'),
   FlatButton: require('./js/flat-button.jsx'),
+  FloatingActionButton: require('./js/floating-action-button.jsx'),
   IconButton: require('./js/icon-button.jsx'),
   Icon: require('./js/icon.jsx'),
   Input: require('./js/input.jsx'),
