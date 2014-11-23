@@ -41,6 +41,13 @@ var PaperButton = React.createClass({
     Types: Types
   },
 
+  componentDidMount: function() {
+    console.warn(
+      'PaperButton will be depreciated in the next release. Use FlatButton, ' +
+      'RaisedButton, or FloatingActionButton instead.'
+    );
+  },
+
   getDefaultProps: function() {
     return {
       primary: false,
