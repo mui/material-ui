@@ -1,8 +1,8 @@
 /**
  * @jsx React.DOM
  */
- 
-var React = require('react'), 
+
+var React = require('react'),
   Router = require('react-router'),
   Route = Router.Route,
   Routes = Router.Routes,
@@ -26,6 +26,7 @@ var React = require('react'),
   LeftNav = require('./components/pages/components/left-nav.jsx'),
   Menus = require('./components/pages/components/menus.jsx'),
   Paper = require('./components/pages/components/paper.jsx'),
+  Sliders = require('./components/pages/components/sliders.jsx'),
   Switches = require('./components/pages/components/switches.jsx'),
   Toolbars = require('./components/pages/components/toolbars.jsx'),
 
@@ -44,6 +45,7 @@ var React = require('react'),
     { route: 'menus', text: 'Menus'},
     { route: 'left-nav', text: 'Left Nav'},
     { route: 'paper', text: 'Paper'},
+    { route: 'sliders', text: 'Sliders'},
     { route: 'switches', text: 'Switches'},
     //{ route: 'toasts', text: 'Toasts'},
     { route: 'toolbars', text: 'Toolbars'},
@@ -70,6 +72,7 @@ var AppRoutes = (
         <Route name="left-nav" handler={LeftNav} />
         <Route name="menus" handler={Menus} />
         <Route name="paper" handler={Paper} />
+        <Route name="sliders" handler={Sliders} />
         <Route name="switches" handler={Switches} />
         <Route name="toolbars" handler={Toolbars} />
         <Redirect from="/components" to="buttons" />
