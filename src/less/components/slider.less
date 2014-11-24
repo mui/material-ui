@@ -1,9 +1,12 @@
 @import (inline) "../../../node_modules/react-draggable/lib/styles.css";
 
 .mui-slider {
+  @fill-gutter: @slider-handle-size-disabled - @slider-track-size;
+
   -webkit-touch-callout: none;
   cursor: default;
-  min-height: @slider-handle-size-active;
+  height: @slider-handle-size-active;
+  position: relative;
   .lh-user-select(none);
 
   .handle-size(@size) {
@@ -12,7 +15,10 @@
   }
 
   .mui-slider-track {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
     height: @slider-track-size;
   }
 
@@ -32,7 +38,7 @@
 
     .mui-slider-selection-fill {
       background-color: @slider-selection-color;
-      margin-right: 6px;
+      margin-right: @fill-gutter;
     }
   }
 
@@ -41,7 +47,7 @@
 
     .mui-slider-selection-fill {
       background-color: @slider-track-color;
-      margin-left: 6px;
+      margin-left: @fill-gutter;
     }
   }
 
@@ -126,6 +132,7 @@
     }
 
     .mui-slider-handle {
+      cursor: not-allowed;
       background-color: @slider-track-color;
       .handle-size(@slider-handle-size-disabled);
     }

@@ -73,9 +73,9 @@ var Slider = React.createClass({
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
         <span className="mui-input-error">{this.state.error}</span>
-        <div className={sliderClasses}>
+        <div className={sliderClasses} onClick={this._onClick}>
           <div ref="track" className="mui-slider-track">
-            <Draggable axis="x" onDrag={this._onDragUpdate} bound={true}
+            <Draggable axis="x" onDrag={this._onDragUpdate} bound="point"
               cancel={this.state.disabled ? '*' : null}
               start={{x: (percent * 100) + '%'}}>
               <div className="mui-slider-handle" tabIndex={0}></div>
@@ -122,6 +122,16 @@ var Slider = React.createClass({
 
   clearValue: function() {
     this.setValue(0);
+  },
+
+  _onClick: function (e) {
+    // let draggable handle the slider
+    if (/\bmui-slider-handle\b/.test(e.target.className)) return;
+    var node = this.refs.track.getDOMNode();
+    var boundingClientRect = node.getBoundingClientRect();
+    var offset = e.clientX - boundingClientRect.left;
+    var percent = offset / node.clientWidth;
+    this.setPercent(percent);
   },
 
   _onDragUpdate: function(e, ui) {
