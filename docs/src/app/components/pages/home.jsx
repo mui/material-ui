@@ -5,7 +5,7 @@
 var React = require('react'),
   Router = require('react-router'),
   mui = require('mui'),
-  PaperButton = mui.PaperButton,
+  RaisedButton = mui.RaisedButton,
   HomeFeature = require('./home-feature.jsx');
 
 var HomePage = React.createClass({
@@ -24,9 +24,8 @@ var HomePage = React.createClass({
               <h2 className="mui-font-style-headline">
                 A CSS Framework and a Set of React Components <span className="no-wrap">that Implement</span> <span className="no-wrap">Google's Material Design</span>
               </h2>
-
-              <PaperButton className="demo-button" label="Demo" onClick={this._onDemoClick} />
-              <PaperButton className="github-button" label="GitHub" href="https://github.com/callemall/material-ui" />
+              <RaisedButton className="demo-button" label="Demo" onTouchTap={this._onDemoClick} />
+              <RaisedButton className="github-button" label="GitHub" onTouchTap={this._onGithubClick} />
             </div>
           </div>
         </div>
@@ -58,16 +57,16 @@ var HomePage = React.createClass({
             <h3>
               Want to help make this <span className="no-wrap">project awesome?</span> <span className="no-wrap">Check out our repo.</span>
             </h3>
-            <PaperButton 
-              type={PaperButton.Types.RAISED} 
-              primary={true} 
-              label="Github" 
-              href="https://github.com/callemall/material-ui" />
+            <RaisedButton label="GitHub" primary={true} onTouchTap={this._onGithubClick} />
           </div>
         </div>
 
       </div>
     );
+  },
+
+  _onGithubClick: function() {
+    window.document.location.href = 'https://github.com/callemall/material-ui';
   },
 
   _onDemoClick: function() {
