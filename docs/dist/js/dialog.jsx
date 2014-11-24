@@ -42,9 +42,9 @@ var Dialog = React.createClass({
 
 	render: function() {
 		var mainClasses = this.getClasses('dialog', { 'show': this.state.open }),
-			actions = this.props.actions.map(function(a) {
-				if (a.onClick) return <div className="action" onClick={a.onClick}>{a.text}</div>;
-				return <div className="action" onClick={this.dismiss}>{a.text}</div>;
+			actions = this.props.actions.map(function(a, key) {
+				if (a.onClick) return <div className="action" key={key} onClick={a.onClick}>{a.text}</div>;
+				return <div className="action" key={key} onClick={this.dismiss}>{a.text}</div>;
 			}.bind(this));
 
 		return (
