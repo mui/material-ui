@@ -79,6 +79,14 @@ var ButtonPage = React.createClass({
 
         </CodeExample>
 
+        <p className="mui-font-style-subhead-1">
+          This component generates a button element and all props except for 
+          the custom props below will be passed down to the button element. Also, 
+          focus styles will happen on tab but not on click.
+        </p>
+
+        <br/><hr/><br/>
+
         <h3 className="mui-font-style-title">Flat Button</h3>
         {this._getFlatButtonInfo()}
 
