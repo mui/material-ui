@@ -130,7 +130,7 @@ var Slider = React.createClass({
 
   _onClick: function (e) {
     // let draggable handle the slider
-    if (this.state.dragging) return;
+    if (this.state.dragging || this.state.disabled) return;
     var node = this.refs.track.getDOMNode();
     var boundingClientRect = node.getBoundingClientRect();
     var offset = e.clientX - boundingClientRect.left;
