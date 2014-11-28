@@ -15,7 +15,7 @@ var Input = React.createClass({
     error: React.PropTypes.string,
     description: React.PropTypes.string,
     placeholder: React.PropTypes.string,
-    type: React.PropTypes.string.isRequired,
+    type: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func
   },
@@ -25,7 +25,6 @@ var Input = React.createClass({
   getInitialState: function() {
     return {
       value: this.props.defaultValue,
-      error: false,
       rows: 1
     };
   },
@@ -33,42 +32,41 @@ var Input = React.createClass({
   getDefaultProps: function() {
     return {
       multiline: false,
-      required: true
+      required: true,
+      type: "text"
     };
   },
 
   setError: function(error) {
-    this.props.error = error;
-    this.setState({ error: true });
+    this.setProps({ error: error });
   },
 
   removeError: function() {
-    this.props.error = null;
-    this.setState({ error: false });
+    this.setProps({error: undefined});
   },
 
   render: function() {
     var classes = this.getClasses('mui-input', {
       'mui-floating': this.props.inputStyle === 'floating',
       'mui-text': this.props.type === 'text',
-      'mui-error': this.state.error === true
+      'mui-error': this.props.error !== undefined && this.props.error !== null
     }),
-		inputElement = this.props.multiline ?
-	    this.props.valueLink ? 
-	    	<textarea {...this.props} className="mui-input-textarea" placeholder=""
-	    		rows={this.state.rows} /> : 
-	    	<textarea {...this.props} value={this.state.value} className="mui-input-textarea" 
-	    		placeholder="" rows={this.state.rows} onChange={this._onTextAreaChange} /> :
-	      this.props.valueLink ? 
-	    		<input {...this.props} ref="input" placeholder="" /> :
-	    		<input {...this.props} ref="input" value={this.state.value} placeholder=""
-	    			onChange={this._onInputChange} />;
+    inputElement = this.props.multiline ?
+      this.props.valueLink ? 
+        <textarea {...this.props} className="mui-input-textarea" placeholder=""
+          rows={this.state.rows} /> : 
+        <textarea {...this.props} value={this.state.value} className="mui-input-textarea" 
+          placeholder="" rows={this.state.rows} onChange={this._onTextAreaChange} /> :
+        this.props.valueLink ? 
+          <input {...this.props} ref="input" placeholder="" /> :
+          <input {...this.props} ref="input" value={this.state.value} placeholder=""
+            onChange={this._onInputChange} />;
 
     return (
       <div ref={this.props.ref} className={classes}>
         {inputElement}
         <span className="mui-input-placeholder" 
-        	onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>
+          onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
