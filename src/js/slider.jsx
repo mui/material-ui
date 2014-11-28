@@ -47,17 +47,17 @@ var Slider = React.createClass({
     }
   },
 
-  setError: function(error) {
-    this.setState({ error: error });
-  },
-
-  removeError: function() {
-    this.setState({ error: false });
+  componentWillReceiveProps: function (nextProps) {
+    if (nextProps.error) {
+      this.setState({
+        error: nextProps.error
+      });
+    }
   },
 
   render: function() {
     var classes = this.getClasses('mui-input', {
-      'mui-error': this.state.error === true
+      'mui-error': this.state.error != null
     });
 
     var sliderClasses = this.getClasses('mui-slider', {
