@@ -15,11 +15,11 @@ var HomePage = React.createClass({
       '*/\n\n' +
       'var React = require(\'react\'),\n' +
       '  mui = require(\'material-ui\'),\n' +
-      '  PaperButton = mui.PaperButton;\n\n' +
+      '  RaisedButton = mui.RaisedButton;\n\n' +
       'var SomeAwesomeComponent = React.createClass({\n\n' +
       '  render: function() {\n' +
       '    return (\n' +
-      '        <PaperButton type={PaperButton.Types.FLAT} label="Default" />\n' +
+      '        <RaisedButton label="Default" />\n' +
       '    );\n' +
       '  }\n\n' +
       '});\n\n' +

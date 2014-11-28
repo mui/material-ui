@@ -6,7 +6,6 @@ var React = require('react'),
   mui = require('mui'),
   FlatButton = mui.FlatButton,
   FloatingActionButton = mui.FloatingActionButton,
-  PaperButton = mui.PaperButton,
   RaisedButton = mui.RaisedButton,
   CodeExample = require('../../code-example/code-example.jsx'),
   ComponentInfo = require('../../component-info.jsx');
