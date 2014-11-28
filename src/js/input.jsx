@@ -15,7 +15,7 @@ var Input = React.createClass({
     error: React.PropTypes.string,
     description: React.PropTypes.string,
     placeholder: React.PropTypes.string,
-    type: React.PropTypes.string.isRequired,
+    type: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func
   },
@@ -33,7 +33,8 @@ var Input = React.createClass({
   getDefaultProps: function() {
     return {
       multiline: false,
-      required: true
+      required: true,
+      type: "text"
     };
   },
 
