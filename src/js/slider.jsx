@@ -41,23 +41,14 @@ var Slider = React.createClass({
     if (isNaN(percent)) percent = 0;
     return {
       value: value,
-      error: this.props.error,
       percent: percent,
       disabled: this.props.disabled
     }
   },
 
-  componentWillReceiveProps: function (nextProps) {
-    if (nextProps.error) {
-      this.setState({
-        error: nextProps.error
-      });
-    }
-  },
-
   render: function() {
     var classes = this.getClasses('mui-input', {
-      'mui-error': this.state.error != null
+      'mui-error': this.props.error != null
     });
 
     var sliderClasses = this.getClasses('mui-slider', {
@@ -73,7 +64,7 @@ var Slider = React.createClass({
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
-        <span className="mui-input-error">{this.state.error}</span>
+        <span className="mui-input-error">{this.props.error}</span>
         <div className={sliderClasses} onClick={this._onClick}>
           <div ref="track" className="mui-slider-track">
             <Draggable axis="x" bound="point"
