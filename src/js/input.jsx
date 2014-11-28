@@ -49,7 +49,7 @@ var Input = React.createClass({
     var classes = this.getClasses('mui-input', {
       'mui-floating': this.props.inputStyle === 'floating',
       'mui-text': this.props.type === 'text',
-      'mui-error': this.props.error !== undefined
+      'mui-error': this.props.error !== undefined && this.props.error !== null
     }),
     inputElement = this.props.multiline ?
       this.props.valueLink ? 
