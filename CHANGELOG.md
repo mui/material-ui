@@ -1,3 +1,35 @@
+## 0.3.1
+###### _Nov. 28, 2014_
+
+##### General
+- Removed browserify react addons alias. (#68)
+
+##### Components
+- FlatButton, RaisedButton, and FloatingActionButton (NEW)
+  - These buttons will replace the current PaperButton which will be
+    depreciated in v.0.4.0.
+  - They generate actual button tags, are keyboard focusable and listen
+    to onTouchTap. (#50, #61)
+- Icon Button
+  - Pressing enter when the button is in focus now fires onTouchTap
+  - Added dark theme ripple colors
+  - Focus and click animations now use Scale Transforms to improve performance.
+- Input
+  - Added support for ReactLink and use JSX spread attributes
+  - Error messages are now props instead of internal states (#95)
+- LeftNav
+  - Pressing ESC now closes the left nav
+- PaperButton
+  - Will be depreciated in v.0.4.0.
+- Radio Button
+  - Fixed toggle bug. (#70)
+
+##### Mixins
+- WindowListenable is now available from Mixins.WindowListenable
+
+##### Utils
+- Added KeyCodes constants
+
 ## 0.3.0
 ###### _Nov. 17, 2014_
 
