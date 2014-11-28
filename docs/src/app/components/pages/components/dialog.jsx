@@ -1,10 +1,10 @@
-/**
- * @jsx React.DOM
- */
+var React = require('react'),
+  mui = require('mui'),
+  RaisedButton = mui.RaisedButton,
+  Dialog = mui.Dialog,
+  CodeExample = require('../../code-example/code-example.jsx');
 
-var CodeExample = require('../../code-example/code-example.jsx');
-var mui = require('mui');
-var React = require('react');
+
 
 
 var DialogExample = React.createClass({
@@ -20,7 +20,7 @@ var DialogExample = React.createClass({
       "    { text: 'SUBMIT', onClick: this._onDialogSubmit }\n" +
       "  ];\n\n" +
       "  return (\n" +
-      "    <PaperButton label=\"DEMO\" onClick={this._showDialog} />\n" +
+      "    <RaisedButton label=\"DEMO\" onClick={this._showDialog} />\n" +
       "    <Dialog ref=\"dialogExample\" title=\"Title\" actions={dialogActions}>\n" +
       "      This is an example of a dialog component built with Facebook's React and following\n" +
       "      Google's Material Design principles.\n" +
@@ -36,12 +36,12 @@ var DialogExample = React.createClass({
 		return (
 			<div>
     		<CodeExample code={code}>
-    			<mui.PaperButton label="DEMO" onClick={this._showDialog} />
+    			<RaisedButton label="DEMO" onClick={this._showDialog} />
     		</CodeExample>
-    		<mui.Dialog ref="dialogExample" title="Title" actions={dialogActions}>
+    		<Dialog ref="dialogExample" title="Title" actions={dialogActions}>
     			This is an example of a dialog component built with Facebook's React and following 
     			Google's Material Design principles.
-  			</mui.Dialog>
+  			</Dialog>
   		</div>
 		);
 	},
