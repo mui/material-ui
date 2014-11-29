@@ -45,9 +45,9 @@ var Dialog = React.createClass({
 
   render: function() {
     var mainClasses = this.getClasses('dialog', { 'show': this.state.open }),
-      actions = this.props.actions.map(function(a) {
-        if (a.onClick) return <div className="action" onClick={a.onClick}>{a.text}</div>;
-        return <div className="action" onClick={this.dismiss}>{a.text}</div>;
+      actions = this.props.actions.map(function(a, index) {
+        if (a.onClick) return <div className="action" key={index} onClick={a.onClick}>{a.text}</div>;
+        return <div className="action"  key={index} onClick={this.dismiss}>{a.text}</div>;
       }.bind(this));
 
     return (
@@ -81,7 +81,7 @@ var Dialog = React.createClass({
 
   _handleClickAway: function() {
     this.dismiss();
-  }, 
+  },
 
   _checkEscapeKeyUp: function(e) {
     if (e.keyCode == KeyCode.ESC) {
