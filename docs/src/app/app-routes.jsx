@@ -19,6 +19,8 @@ var React = require('react'),
 
   Buttons = require('./components/pages/components/buttons.jsx'),
   Dialog = require('./components/pages/components/dialog.jsx'),
+  DropDownMenu = require('./components/pages/components/drop-down-menu.jsx'),
+  IconButtons = require('./components/pages/components/icon-buttons.jsx'),
   Icons = require('./components/pages/components/icons.jsx'),
   Inputs = require('./components/pages/components/inputs.jsx'),
   LeftNav = require('./components/pages/components/left-nav.jsx'),
@@ -35,6 +37,8 @@ var React = require('react'),
   componentsMenuItems = [
     { route: 'buttons', text: 'Buttons'},
     { route: 'dialog', text: 'Dialog'},
+    { route: 'dropdown-menu', text: 'Dropdown Menu'},
+    { route: 'icon-buttons', text: 'Icon Buttons'},
     { route: 'icons', text: 'Icons'},
     { route: 'inputs', text: 'Inputs'},
     { route: 'menus', text: 'Menus'},
@@ -59,6 +63,8 @@ var AppRoutes = (
       <Route name="components" handler={PageWithNav} menuItems={componentsMenuItems} pageTitle="Components">
         <Route name="buttons" handler={Buttons} />
         <Route name="dialog" handler={Dialog} />
+        <Route name="dropdown-menu" handler={DropDownMenu} />
+        <Route name="icon-buttons" handler={IconButtons} />
         <Route name="icons" handler={Icons} />
         <Route name="inputs" handler={Inputs} />
         <Route name="left-nav" handler={LeftNav} />

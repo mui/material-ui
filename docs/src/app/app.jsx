@@ -4,13 +4,20 @@
  
 (function () {
 
-	var React = require('react'),
-	  AppRoutes = require('./app-routes.jsx');
+  var React = require('react'),
+    AppRoutes = require('./app-routes.jsx'),
+    injectTapEventPlugin = require("react-tap-event-plugin");
 
-	//Needed for React Developer Tools
-	window.React = React;
+  //Needed for React Developer Tools
+  window.React = React;
 
-	//Render the main app component
-	React.render(AppRoutes, document.body);
+  //Needed for onTouchTap
+  //Can go away when react 1.0 release
+  //Check this repo:
+  //https://github.com/zilverline/react-tap-event-plugin
+  injectTapEventPlugin();
+
+  //Render the main app component
+  React.render(AppRoutes, document.body);
 
 })();

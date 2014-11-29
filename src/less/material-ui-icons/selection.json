@@ -1,0 +1,208 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M341.333 298.667h128l-170.667-170.667-170.667 170.667h128v426.667h-128l170.667 170.667 170.667-170.667h-128z",
+          "M426.667 554.667h469.333v85.333h-469.333v-85.333z",
+          "M426.667 384h469.333v85.333h-469.333v-85.333z",
+          "M503.467 213.333l85.333 85.333h307.2v-85.333z",
+          "M503.467 810.667l85.333-85.333h307.2v85.333z"
+        ],
+        "attrs": [
+          {
+            "opacity": 1,
+            "visibility": false
+          },
+          {
+            "opacity": 1,
+            "visibility": false
+          },
+          {
+            "opacity": 1,
+            "visibility": false
+          },
+          {
+            "opacity": 1,
+            "visibility": false
+          },
+          {
+            "opacity": 1,
+            "visibility": false
+          }
+        ],
+        "grid": 24,
+        "tags": [
+          "sort"
+        ]
+      },
+      "attrs": [
+        {
+          "opacity": 1,
+          "visibility": false
+        },
+        {
+          "opacity": 1,
+          "visibility": false
+        },
+        {
+          "opacity": 1,
+          "visibility": false
+        },
+        {
+          "opacity": 1,
+          "visibility": false
+        },
+        {
+          "opacity": 1,
+          "visibility": false
+        }
+      ],
+      "properties": {
+        "order": 42,
+        "id": 47,
+        "prevSize": 32,
+        "code": 58880,
+        "name": "sort"
+      },
+      "setIdx": 0,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M512 97.877c-234.453 0-424.576 190.123-424.576 424.576 0 187.605 121.643 346.709 290.347 402.859 21.205 3.883 28.971-9.216 28.971-20.437 0-10.112-0.384-43.605-0.597-79.019-118.059 25.643-143.019-50.048-143.019-50.048-19.328-49.024-47.147-62.080-47.147-62.080-38.571-26.325 2.944-25.813 2.944-25.813 42.624 2.944 65.067 43.733 65.067 43.733 37.888 64.896 99.413 46.123 123.563 35.243 3.84-27.349 14.848-46.123 26.965-56.704-94.251-10.709-193.408-47.147-193.408-209.835 0-46.379 16.555-84.224 43.648-113.963-4.309-10.795-18.901-53.973 4.224-112.427 0 0 35.627-11.392 116.779 43.52 33.835-9.429 70.144-14.080 106.24-14.251 36.053 0.171 72.405 4.864 106.283 14.336 81.024-54.997 116.651-43.52 116.651-43.52 23.211 58.496 8.619 101.632 4.267 112.341 27.221 29.739 43.648 67.541 43.648 113.963 0 163.115-99.285 198.997-193.877 209.536 15.275 13.184 28.8 38.955 28.8 78.549 0 56.747-0.555 102.528-0.555 116.523 0 11.307 7.723 24.533 29.227 20.352 168.576-56.235 290.133-215.339 290.133-402.859-0-234.453-190.123-424.576-424.576-424.576z"
+        ],
+        "attrs": [
+          {
+            "opacity": 1,
+            "visibility": false
+          }
+        ],
+        "grid": 24,
+        "tags": [
+          "github"
+        ]
+      },
+      "attrs": [
+        {
+          "opacity": 1,
+          "visibility": false
+        }
+      ],
+      "properties": {
+        "order": 41,
+        "id": 46,
+        "prevSize": 32,
+        "name": "github",
+        "code": 58917
+      },
+      "setIdx": 0,
+      "iconIdx": 1
+    },
+    {
+      "icon": {
+        "paths": [
+          "M405.333 725.333l213.333-213.333-213.333-213.333z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "grid": 24,
+        "tags": [
+          "arrow-drop-right"
+        ]
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 7,
+        "id": 9,
+        "prevSize": 32,
+        "code": 58891,
+        "name": "arrow-drop-right",
+        "ligatures": ""
+      },
+      "setIdx": 0,
+      "iconIdx": 2
+    },
+    {
+      "icon": {
+        "paths": [
+          "M512 87.467v424.533h424.491c-22.272-213.333-211.157-402.261-424.491-424.533z",
+          "M426.667 183.211c-213.333 23.381-336.64 182.656-336.64 376.107 0 209.536 167.509 374.656 377.003 374.656 193.408 0 350.379-123.307 373.76-336.64h-414.123v-414.123z"
+        ],
+        "attrs": [
+          {},
+          {}
+        ],
+        "grid": 24,
+        "tags": [
+          "pie"
+        ]
+      },
+      "attrs": [
+        {},
+        {}
+      ],
+      "properties": {
+        "order": 11,
+        "id": 3,
+        "prevSize": 32,
+        "code": 58896,
+        "name": "pie",
+        "ligatures": ""
+      },
+      "setIdx": 0,
+      "iconIdx": 3
+    }
+  ],
+  "height": 1024,
+  "metadata": {
+    "name": "material-ui-icons"
+  },
+  "preferences": {
+    "fontPref": {
+      "prefix": "mui-icon-",
+      "metadata": {
+        "fontFamily": "material-ui-icons",
+        "majorVersion": 1,
+        "minorVersion": 0
+      },
+      "showGlyphs": true,
+      "metrics": {
+        "emSize": 512,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "resetPoint": 58880,
+      "showQuickUse": true,
+      "quickUsageToken": false,
+      "showMetrics": true,
+      "showMetadata": false,
+      "showVersion": false,
+      "embed": true
+    },
+    "imagePref": {
+      "color": 0,
+      "height": 32,
+      "columns": 16,
+      "margin": 16,
+      "png": false,
+      "sprites": true,
+      "prefix": "icon-"
+    },
+    "historySize": 100,
+    "showCodes": true,
+    "gridSize": 16,
+    "showLiga": false,
+    "showGrid": true,
+    "showGlyphs": true,
+    "showQuickUse": true,
+    "search": "",
+    "showSVGs": true,
+    "showQuickUse2": true
+  }
+}

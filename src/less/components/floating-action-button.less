@@ -1,0 +1,101 @@
+.mui-floating-action-button {
+
+  * { .ease-out(); }
+
+  display: inline-block;
+  position: relative;
+
+  .mui-floating-action-button-container {
+    height: @floating-action-button-size;
+    width: @floating-action-button-size;
+    padding: 0;
+    position: relative;
+    background-color: @floating-action-button-color;
+    .lh-border-radius(50%);
+
+    &.mui-is-keyboard-focused {
+      background-color: @floating-action-button-hover-color;
+      .mui-floating-action-button-focus-ripple {
+        .pulsate('floating-action-button-focus-ripple');
+        .lh-opacity(1);
+      }
+    }
+
+    &.mui-is-disabled {
+      background-color: @floating-action-button-disabled-color;
+
+      .mui-floating-action-button-icon {
+        color: @floating-action-button-disabled-text-color;
+      }
+
+      &:hover {
+        background-color: @floating-action-button-disabled-color;
+      }
+      
+    }
+
+    &:hover {
+      background-color: @floating-action-button-hover-color;
+    }
+  }
+
+  .mui-floating-action-button-icon {
+    position: relative;
+    z-index: 3;
+    line-height: @floating-action-button-size;
+    color: @floating-action-button-icon-color;
+  }
+
+  .mui-floating-action-button-ripple {
+    z-index: 2;
+    &.mui-is-visible {
+      .ripple-click(
+        @animation-name: 'floating-action-button-ripple-click';
+        @color: @floating-action-button-ripple-color;
+        @size: @floating-action-button-size;
+        @duration: 0.5s;
+      )
+    }
+  }
+
+  .mui-floating-action-button-focus-ripple {
+    top: 1px;
+    left: 0;
+    .lh-translate(0, 0);
+
+    width: @floating-action-button-size;
+    height: @floating-action-button-size;
+    border: solid 6px @transparent;
+    background-color: @floating-action-button-focus-ripple-color;
+
+    .lh-opacity(0);
+  }
+
+  &.mui-is-mini {
+
+    .mui-floating-action-button-container {
+      height: @floating-action-button-mini-size;
+      width: @floating-action-button-mini-size;
+    }
+
+    .mui-floating-action-button-icon {
+      line-height: @floating-action-button-mini-size;
+    }
+
+    .mui-floating-action-button-ripple {
+      &.mui-is-visible {
+        .ripple-click(
+          @animation-name: 'floating-action-button-mini-ripple-click';
+          @color: @floating-action-button-ripple-color;
+          @size: @floating-action-button-mini-size;
+          @duration: 0.5s;
+        )
+      }
+    }
+
+    .mui-floating-action-button-focus-ripple {
+      width: @floating-action-button-mini-size;
+      height: @floating-action-button-mini-size;
+    }
+  }
+}

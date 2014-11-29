@@ -3,7 +3,7 @@
  */
 
 var React = require('react'),
-	hljs = require('hljs');
+	hljs = require('highlight.js');
 
 var CodeBlock = React.createClass({
 

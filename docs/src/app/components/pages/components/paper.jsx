@@ -24,11 +24,11 @@ var PaperPage = React.createClass({
       '<Paper zDepth="4" rounded={false} />\n' +
       '<Paper zDepth="5" rounded={false} />\n\n' +
       '//Circular\n' +
-      '<Paper zDepth="1" circle={false} />\n' +
-      '<Paper zDepth="2" circle={false} />\n' +
-      '<Paper zDepth="3" circle={false} />\n' +
-      '<Paper zDepth="4" circle={false} />\n' +
-      '<Paper zDepth="5" circle={false} />';
+      '<Paper zDepth="1" circle={true} />\n' +
+      '<Paper zDepth="2" circle={true} />\n' +
+      '<Paper zDepth="3" circle={true} />\n' +
+      '<Paper zDepth="4" circle={true} />\n' +
+      '<Paper zDepth="5" circle={true} />';
 
     return (
       <div>
@@ -37,7 +37,7 @@ var PaperPage = React.createClass({
         <CodeExample code={code}>
           <div className="paper-examples">
 
-            <div className="paper-examples-row">
+            <div className="paper-examples-group">
               <Paper zDepth="1" />
               <Paper zDepth="2" />
               <Paper zDepth="3" />
@@ -45,7 +45,7 @@ var PaperPage = React.createClass({
               <Paper zDepth="5" />
             </div>
 
-            <div className="paper-examples-row">
+            <div className="paper-examples-group">
               <Paper zDepth="1" rounded={false} />
               <Paper zDepth="2" rounded={false} />
               <Paper zDepth="3" rounded={false} />
@@ -53,7 +53,7 @@ var PaperPage = React.createClass({
               <Paper zDepth="5" rounded={false} />
             </div>
 
-            <div className="paper-examples-row">
+            <div className="paper-examples-group">
               <Paper zDepth="1" circle={true} />
               <Paper zDepth="2" circle={true} />
               <Paper zDepth="3" circle={true} />
