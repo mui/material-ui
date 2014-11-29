@@ -71,7 +71,6 @@ var NestedMenuItem = React.createClass({
   },
 
   _onParentItemClick: function() {
-		console.log(this.state.open);
     this.setState({ open: !this.state.open });
   },
 
