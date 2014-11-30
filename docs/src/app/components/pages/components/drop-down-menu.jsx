@@ -1,9 +1,6 @@
-/**
- * @jsx React.DOM
- */
- 
 var React = require('react'),
   mui = require('mui'),
+  DropDownMenu = mui.DropDownMenu,
   CodeExample = require('../../code-example/code-example.jsx'),
   ComponentInfo = require('../../component-info.jsx'),
 
@@ -14,8 +11,6 @@ var React = require('react'),
     { payload: '4', text: 'Weekends' },
     { payload: '5', text: 'Weekly' },
   ];
-
-
 
 var MenusPage = React.createClass({
 
@@ -53,7 +48,7 @@ var MenusPage = React.createClass({
 
     return (
       <CodeExample code={code}>
-        <mui.DropDownMenu menuItems={menuItems} />
+        <DropDownMenu menuItems={menuItems} />
       </CodeExample>
     );
   },
@@ -61,11 +56,19 @@ var MenusPage = React.createClass({
   _getPropInfo: function() {
     var info = [
           {
+            name: 'autoWidth',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'The width will automatically be set according to the items ' +
+              'inside the menu. To control this width in Css instead, set this ' +
+              'prop to false.'
+          },
+          {
             name: 'menuItems',
             type: 'array',
             header: 'required',
             desc: 'JSON data representing all menu items in the dropdown.'
-          },
+          }
         ];
 
     return <ComponentInfo infoArray={info} />;
