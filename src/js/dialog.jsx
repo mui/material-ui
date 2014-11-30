@@ -13,6 +13,7 @@ var Dialog = React.createClass({
     openImmediately: React.PropTypes.bool,
     title: React.PropTypes.string,
     actions: React.PropTypes.array,
+    onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func
   },
 
@@ -69,6 +70,7 @@ var Dialog = React.createClass({
 
   dismiss: function() {
     this.setState({ open: false });
+    if (this.props.onDismiss) this.props.onDismiss();
   },
 
   show: function() {

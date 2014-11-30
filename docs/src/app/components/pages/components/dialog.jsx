@@ -39,6 +39,11 @@ var DialogPage = React.createClass({
         <h3 className="mui-font-style-title">Methods</h3>
         {this._getMethodInfo()}
 
+        <br/><hr/><br/>
+
+        <h3 className="mui-font-style-title">Events</h3>
+        {this._getEventInfo()}
+
         <Dialog ref="dialogExample" title="Title" actions={dialogActions}>
           This is an example of a dialog component built with Facebook's React and following 
           Google's Material Design principles.
@@ -87,6 +92,23 @@ var DialogPage = React.createClass({
             name: 'show',
             header: 'Dialog.show()',
             desc: 'Shows the dialog.'
+          }
+        ];
+
+    return <ComponentInfo infoArray={info} />;
+  },
+
+  _getEventInfo: function() {
+    var info = [
+          {
+            name: 'onDismiss',
+            header: 'function()',
+            desc: 'Fired when the dialog is dismissed.'
+          },
+          {
+            name: 'onShow',
+            header: 'function()',
+            desc: 'Fired when the dialog is shown.'
           }
         ];
 
