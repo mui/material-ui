@@ -1,3 +1,28 @@
+## 0.3.2
+###### _Nov. 30, 2014_
+
+##### General
+- Upgraded dependencies: react 0.12.1, browserify 6.3.3, reactify: 0.17.1
+
+##### Components
+- Dialog
+  - Added key prop to dialog actions. (#99)
+  - Added onDismiss event callback. (#86)
+  - Dialog is now positioned onMound and onUpdate (#85)
+  - Fixed a bug that cuased dialog to not be vertically centered on long pages
+- Dropdown Menu
+  - Added autoWidth prop (#89)
+- Menu
+  - Added autoWidth prop
+- Nested Menu
+  - Fixed bug that caused some nesteed menus to not show. (#88)
+- Paper
+  - Updated to use spread operator
+- Radio Button
+  - Fixed radio button label styles. (#94)
+- Ripple
+  - Account for page scrolling on ripple animation. (#93)
+
 ## 0.3.1
 ###### _Nov. 28, 2014_
 
