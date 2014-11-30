@@ -66,7 +66,7 @@ var DialogPage = React.createClass({
           },
           {
             name: 'openImmediately',
-            type: 'bool',
+            type: 'default: false',
             header: 'optional',
             desc: 'Set to true to have the dialog automatically open on mount.'
           },
