@@ -17,7 +17,8 @@ var Input = React.createClass({
     placeholder: React.PropTypes.string,
     type: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func
   },
 
   mixins: [Classable],
@@ -56,11 +57,11 @@ var Input = React.createClass({
         <textarea {...this.props} className="mui-input-textarea" placeholder=""
           rows={this.state.rows} /> : 
         <textarea {...this.props} value={this.state.value} className="mui-input-textarea" 
-          placeholder="" rows={this.state.rows} onChange={this._onTextAreaChange} /> :
+          placeholder="" rows={this.state.rows} onChange={this._onTextAreaChange} onKeyDown={this._onKeyDown} /> :
         this.props.valueLink ? 
           <input {...this.props} ref="input" placeholder="" /> :
           <input {...this.props} ref="input" value={this.state.value} placeholder=""
-            onChange={this._onInputChange} />;
+            onChange={this._onInputChange} onKeyDown={this._onKeyDown} />;
 
     return (
       <div ref={this.props.ref} className={classes}>
@@ -91,6 +92,10 @@ var Input = React.createClass({
     var value = e.target.value;
     this.setState({value: value});
     if (this.props.onChange) this.props.onChange(e, value);
+  },
+
+  _onKeyDown: function(e) {
+    if (this.props.onKeyDown) this.props.onKeyDown(e);
   },
 
   _onPlaceholderClick: function(e) {
