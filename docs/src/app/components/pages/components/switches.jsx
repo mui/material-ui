@@ -66,9 +66,9 @@ var SwitchesPage = React.createClass({
   _getRadioButtonExample: function() {
     var code = 
       '<form>\n' +
-      ' <RadioButton name="shipSpeed" value="light"/>\n' +
-      ' <RadioButton name="shipSpeed" value="not_light"/>\n' +
-      ' <RadioButton name="shipSpeed" value="ludicrous"/>\n' +
+      ' <RadioButton name="shipSpeed" value="light" label="prepare for light speed"/>\n' +
+      ' <RadioButton name="shipSpeed" value="not_light" label="light speed too slow"/>\n' +
+      ' <RadioButton name="shipSpeed" value="ludicrous" label="go to ludicous speed"/>\n' +
       '</form>';
 
     return (
