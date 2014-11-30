@@ -1,4 +1,5 @@
 var React = require('react'),
+  WindowListenable = require('./mixins/window-listenable.js'),
   Events = require('./utils/events.js'),
   KeyCode = require('./utils/key-code.js'),
   Classable = require('./mixins/classable'),
@@ -6,13 +7,17 @@ var React = require('react'),
 
 var Dialog = React.createClass({
 
-  mixins: [Classable],
+  mixins: [Classable, WindowListenable],
 
   propTypes: {
     openImmediately: React.PropTypes.bool,
     title: React.PropTypes.string,
     actions: React.PropTypes.array,
     onShow: React.PropTypes.func
+  },
+
+  windowListeners: {
+    'keyup': '_onWindowKeyUp'
   },
 
   getDefaultProps: function() {
@@ -25,14 +30,6 @@ var Dialog = React.createClass({
     return {
       open: this.props.openImmediately || false
     };
-  },
-
-  componentDidMount: function() {
-    Events.on(document, 'keyup', this._checkEscapeKeyUp);
-  },
-
-  componentWillUnmount: function() {
-    Events.off(document, 'keyup', this._checkEscapeKeyUp);
   },
 
   componentDidUpdate: function (prevProps, prevState) {
@@ -83,7 +80,7 @@ var Dialog = React.createClass({
     this.dismiss();
   },
 
-  _checkEscapeKeyUp: function(e) {
+  _onWindowKeyUp: function(e) {
     if (e.keyCode == KeyCode.ESC) {
       this.dismiss();
     }
