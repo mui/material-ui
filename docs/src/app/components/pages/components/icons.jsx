@@ -870,8 +870,6 @@ var IconsPage = React.createClass({
           project for you to use. You can find them at the bottom of this page.
         </p>
 
-        <br/><hr/><br/>
-
         {this._getAllIconGroups()}
 
 		</div>
