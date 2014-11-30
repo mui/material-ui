@@ -33,12 +33,12 @@ var Dialog = React.createClass({
     };
   },
 
-  componentDidUpdate: function (prevProps, prevState) {
-    //calculate height and use that to center the dialog vertically
-    var dom = this.getDOMNode(),
-      height = dom.offsetHeight;
+  componentDidMount: function() {
+    this._positionDialog();
+  },
 
-    dom.style.marginTop = -1 * height / 2 + 'px';
+  componentDidUpdate: function (prevProps, prevState) {
+    this._positionDialog();
   },
 
   render: function() {
@@ -76,6 +76,14 @@ var Dialog = React.createClass({
   show: function() {
     this.setState({ open: true });
     if (this.props.onShow) this.props.onShow();
+  },
+
+  _positionDialog: function() {
+    //calculate height and use that to center the dialog vertically
+    var el = this.getDOMNode(),
+      height = el.offsetHeight;
+
+    el.style.marginTop = -1 * height / 2 + 'px';
   },
 
   _handleClickAway: function() {
