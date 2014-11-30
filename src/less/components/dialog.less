@@ -1,9 +1,11 @@
 .dialog {
-  position: absolute;
+  position: fixed;
+  z-index: 100;
   top: 50%;
   left: 50%;
   font-size: medium;
   visibility: hidden;
+
   .mui-paper {
     position: relative;
     left: -50%;
@@ -48,7 +50,6 @@
   visibility: hidden;
   top: 0;
   left: 0;
-  z-index: 1000;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
