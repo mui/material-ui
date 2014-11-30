@@ -6,7 +6,7 @@ var React = require('react'),
   mui = require('mui'),
   CodeBlock = require('../code-example/code-block.jsx');;
 
-var HomePage = React.createClass({
+var GetStarted = React.createClass({
 
   render: function() {
     var usageCode =
@@ -72,4 +72,4 @@ var HomePage = React.createClass({
 
 });
 
-module.exports = HomePage;
+module.exports = GetStarted;
