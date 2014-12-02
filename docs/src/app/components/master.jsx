@@ -17,10 +17,11 @@ var Master = React.createClass({
   mixins: [Router.State],
 
   render: function() {
-    var title;
-    if (this.isActive('get-started')) title = 'Get Started';
-    if (this.isActive('css-framework')) title = 'Css Framework';
-    if (this.isActive('components')) title = 'Components';
+
+    var title = 
+      (this.isActive('get-started')) ? 'Get Started' :
+      (this.isActive('css-framework')) ? 'Css Framework' :
+      (this.isActive('components')) ? 'Components' : '';
 
     return (
       <AppCanvas predefinedLayout={1}>
