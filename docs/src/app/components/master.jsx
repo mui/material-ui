@@ -19,9 +19,9 @@ var Master = React.createClass({
   render: function() {
 
     var title = 
-      (this.isActive('get-started')) ? 'Get Started' :
-      (this.isActive('css-framework')) ? 'Css Framework' :
-      (this.isActive('components')) ? 'Components' : '';
+      this.isActive('get-started') ? 'Get Started' :
+      this.isActive('css-framework') ? 'Css Framework' :
+      this.isActive('components') ? 'Components' : '';
 
     return (
       <AppCanvas predefinedLayout={1}>
