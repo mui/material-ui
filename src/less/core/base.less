@@ -1,0 +1,31 @@
+// Reset the box-sizing
+//
+// Heads up! This reset may cause conflicts with some third-party widgets.
+// For recommendations on resolving such conflicts, see
+// http://getbootstrap.com/getting-started/#third-box-sizing
+* {
+  .lh-box-sizing(border-box);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+*:before,
+*:after {
+  .lh-box-sizing(border-box);
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  color: @body-text-color;
+  font-family: @contentFontFamily;
+  background-color: @canvas-color;
+}
+
+hr {
+  border: none;
+  border-bottom: solid 1px @border-color;
+}

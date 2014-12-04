@@ -1,10 +1,8 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
   mui = require('mui'),
-  PaperButton = mui.PaperButton,
+  FlatButton = mui.FlatButton,
+  FloatingActionButton = mui.FloatingActionButton,
+  RaisedButton = mui.RaisedButton,
   CodeExample = require('../../code-example/code-example.jsx'),
   ComponentInfo = require('../../component-info.jsx');
 
@@ -13,16 +11,18 @@ var ButtonPage = React.createClass({
   render: function() {
     var code = 
       '//Flat Buttons\n' +
-      '<PaperButton type="FLAT" label="Default" />\n' +
-      '<PaperButton type="FLAT" label="Primary" primary={true} />\n' +
-      '<PaperButton type="FLAT" label="Disabled" disabled={true} />\n\n' +
+      '<FlatButton label="Default" />\n' +
+      '<FlatButton label="Primary" primary={true} />\n' +
+      '<FlatButton label="Disabled" disabled={true} />\n\n' +
       '//Raised Buttons\n' + 
-      '<PaperButton type="RAISED" label="Default" />\n' +
-      '<PaperButton type="RAISED" label="Primary" primary={true} />\n' +
-      '<PaperButton type="RAISED" label="Disabled" disabled={true} />\n\n' +
+      '<RaisedButton label="Default" />\n' +
+      '<RaisedButton label="Primary" primary={true} />\n' +
+      '<RaisedButton label="Disabled" disabled={true} />\n\n' +
       '//Floating Action Buttons\n' +
-      '<PaperButton type="FAB_MINI" icon="action-grade" />\n' +
-      '<PaperButton type="FAB" icon="action-grade" />';
+      '<FloatingActionButton icon="action-grade" />\n' +
+      '<FloatingActionButton icon="action-grade" mini={true} />\n' +
+      '<FloatingActionButton icon="action-grade" disabled={true} />\n' +
+      '<FloatingActionButton icon="action-grade" mini={true} disabled={true} />';
 
     return (
     	<div>
@@ -32,59 +32,79 @@ var ButtonPage = React.createClass({
 
           <div className="button-examples">
 
-            <div className="button-examples-row">
-              <PaperButton type="FLAT" label="Default" onClick={this._onPaperButtonClick} />
-              <PaperButton type="FLAT" label="Primary" primary={true} onClick={this._onPaperButtonClick} />
-              <PaperButton type="FLAT" label="Disabled" disabled={true} />
+            <div className="button-example-group">
+              <div className="button-example-container">
+                <FlatButton label="Default" />
+              </div>
+              <div className="button-example-container">
+                <FlatButton label="Primary" primary={true} />
+              </div>
+              <div className="button-example-container">
+                <FlatButton label="Disabled" disabled={true} />
+              </div>
             </div>
 
-            <div className="button-examples-row">
-              <PaperButton type="RAISED" label="Default" onClick={this._onPaperButtonClick} />
-              <PaperButton type="RAISED" label="Primary" primary={true} onClick={this._onPaperButtonClick} />
-              <PaperButton type="RAISED" label="Disabled" disabled={true} />
+            <div className="button-example-group">
+              <div className="button-example-container">
+                <RaisedButton label="Default" />
+              </div>
+              <div className="button-example-container">
+                <RaisedButton label="Primary" primary={true} />
+              </div>
+              <div className="button-example-container">
+                <RaisedButton label="Disabled" disabled={true} />
+              </div>
             </div>
 
-            <div className="button-examples-row">
-              <PaperButton type="FAB_MINI"icon="action-grade" onClick={this._onPaperButtonClick} />
-              <PaperButton type="FAB" icon="action-grade" onClick={this._onPaperButtonClick} />
+            <div className="button-example-group">
+              <div className="button-example-container">
+                <FloatingActionButton icon="action-grade" />
+              </div>
+              <div className="button-example-container">
+                <FloatingActionButton icon="action-grade" mini={true} />
+              </div>
+              <div className="button-example-container">
+                <FloatingActionButton icon="action-grade" disabled={true} />
+              </div>
+              <div className="button-example-container">
+                <FloatingActionButton icon="action-grade" mini={true} disabled={true} />
+              </div>
             </div>
-
           </div>
 
         </CodeExample>
 
-        <h3 className="mui-font-style-title">Props</h3>
-        {this._getPropInfo()}
+        <p className="mui-font-style-subhead-1">
+          This component generates a button element and all props except for 
+          the custom props below will be passed down to the button element. Also, 
+          focus styles will happen on tab but not on click.
+        </p>
+
+        <br/><hr/><br/>
+
+        <h3 className="mui-font-style-title">Flat Button</h3>
+        {this._getFlatButtonInfo()}
+
+        <br/><hr/><br/>
+
+        <h3 className="mui-font-style-title">Raised Button</h3>
+        {this._getRaisedButtonInfo()}
+
+        <br/><hr/><br/>
+
+        <h3 className="mui-font-style-title">Floating Action Button</h3>
+        {this._getFloatingActionButtonInfo()}
 
     	</div>
     );
   },
 
-  _getPropInfo: function() {
+  _getFlatButtonInfo: function() {
     var info = [
-          {
-            name: 'disabled',
-            type: 'bool',
-            header: 'default: false',
-            desc: 'Indicates that the button is disabled or not.'
-          },
-          {
-            name: 'href',
-            type: 'string',
-            header: 'optional',
-            desc: 'This is the href on the anchor tag generated by this component.'
-          },
-          {
-            name: 'icon',
-            type: 'string',
-            header: 'optional',
-            desc: 'This is the name of the icon to display inside the button. This only applies to ' +
-              'floating action buttons.'
-          },
           {
             name: 'label',
             type: 'string',
-            header: 'optional',
+            header: 'required',
             desc: 'This is the text to display inside the button. This only applies to flat and ' +
               'raised buttons.'
           },
@@ -93,17 +113,51 @@ var ButtonPage = React.createClass({
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the button will use the primary app color as the button color.'
-          },
-          {
-            name: 'type',
-            type: 'oneOf [RAISED, FLAT, FAB, FAB_MINI]',
-            header: 'default: RAISED',
-            desc: 'This indicates what type of button to render.'
           }
         ];
 
     return <ComponentInfo infoArray={info} />;
   },
+
+  _getRaisedButtonInfo: function() {
+    var info = [
+          {
+            name: 'label',
+            type: 'string',
+            header: 'required',
+            desc: 'This is the text to display inside the button. This only applies to flat and ' +
+              'raised buttons.'
+          },
+          {
+            name: 'primary',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the button will use the primary app color as the button color.'
+          }
+        ];
+
+    return <ComponentInfo infoArray={info} />;
+  },
+
+  _getFloatingActionButtonInfo: function() {
+    var info = [
+          {
+            name: 'icon',
+            type: 'string',
+            header: 'required',
+            desc: 'This is the name of the icon to display inside the button. This only applies to ' +
+              'floating action buttons.'
+          },
+          {
+            name: 'mini',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the button will be a small floating action button.'
+          }
+        ];
+
+    return <ComponentInfo infoArray={info} />;
+  }
 
 });
 

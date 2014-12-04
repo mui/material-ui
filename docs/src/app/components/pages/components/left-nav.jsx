@@ -6,7 +6,7 @@ var React = require('react'),
   mui = require('mui'),
   MenuItem = mui.MenuItem,
   LeftNav = mui.LeftNav,
-  PaperButton = mui.PaperButton,
+  RaisedButton = mui.RaisedButton,
   CodeExample = require('../../code-example/code-example.jsx'),
   ComponentInfo = require('../../component-info.jsx'),
 
@@ -46,7 +46,6 @@ var ButtonPage = React.createClass({
         <hr />
         <br/>
 
-
         <h3 className="mui-font-style-title">Events</h3>
         {this._getEventInfo()}
       </div>
@@ -74,8 +73,8 @@ var ButtonPage = React.createClass({
     return (
       <CodeExample code={code}>
         <div className="left-nav-example">
-          <PaperButton label="Toggle Docked Left Nav" onClick={this._toggleDockedLeftNavClick} /><br/>
-          <PaperButton label="Show Hideable Left Nav" onClick={this._showLeftNavClick} />
+          <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
+          <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
           <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />
           <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
         </div>

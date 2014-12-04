@@ -18,7 +18,7 @@ var React = require('react'),
 
 var AppLeftNav = React.createClass({
 
-  mixins: [Router.Navigation, Router.ActiveState],
+  mixins: [Router.Navigation, Router.State],
 
   getInitialState: function() {
     return {

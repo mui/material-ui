@@ -1,9 +1,9 @@
 {
   "name": "material-ui",
   "author": "Call-em-all Engineering Team",
-  "version": "0.2.1",
+  "version": "0.3.2",
   "description": "Material Design UI components built with React",
-  "main": "index.js",
+  "main": "./src/index",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,20 +23,22 @@
     "url": "https://github.com/callemall/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
-  "browser": {
-    "react": "react/addons"
-  },
   "browserify": {
     "transform": [
-      "reactify"
+      [
+        "reactify",
+        {
+          "es6": true
+        }
+      ]
     ]
   },
   "dependencies": {
-    "jquery": "^2.1.1",
-    "react": "^0.12"
+    "react": "^0.12.1",
+    "react-tap-event-plugin": "^0.1.3"
   },
   "devDependencies": {
-    "browserify": "^6.2.0",
-    "reactify": "^0.15.2"
+    "browserify": "^6.3.3",
+    "reactify": "^0.17.1"
   }
 }

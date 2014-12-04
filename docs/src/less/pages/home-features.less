@@ -1,0 +1,52 @@
+.home-features {
+
+  * { .ease-out(); }
+
+  .home-feature-heading {
+    .mui-font-style-title;
+    background-color: @grey-200;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    line-height: @desktop-keyline-increment;
+  }
+
+  .home-feature {
+    max-width: 300px;
+    margin: 0 auto @desktop-gutter auto;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .home-feature-image {
+    //Not sure why this is needed but it fixes a display
+    //issue in chrome
+    margin-bottom: -6px;
+  }
+
+  @media @device-medium {
+
+    .feature-container {
+      .clearfix();
+      max-width: 906px;
+    }
+
+    .home-feature {
+      float: left;
+      width: 33%;
+      margin-right: 4px;
+      margin-bottom: 0;
+
+      &:first-child {
+        margin-left: -2px;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    
+  }
+}

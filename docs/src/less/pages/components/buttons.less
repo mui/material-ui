@@ -1,14 +1,19 @@
 .button-examples {
+  .clearfix();
 
-  .button-examples-row {
-    margin-bottom: 32px;
+  .button-example-container {
+    text-align: center;
+    margin-bottom: 16px;
+  }
 
-    .mui-paper-button {
-      margin-right: 32px;
-    }
+  .button-example-group {
+    float: left;
+    width: 50%;
+  }
 
-    &:last-child {
-      margin-bottom: 0;
+  @media @device-medium {
+    .button-example-group {
+      width: 33%;
     }
   }
 }

@@ -859,7 +859,19 @@ var IconsPage = React.createClass({
     	<div>
         <h2 className="mui-font-style-headline">Icon Component</h2>
         {this._getComponentExample()}
+
+        <p className="mui-font-style-subhead-1">
+          This component currently uses icon fonts
+          from <a href="https://github.com/designjockey/material-design-fonticons">material-design-fonticons</a>.
+          Thanks so much to <a href="https://github.com/designjockey">@designjockey</a> for
+          creating these font files while we wait for the offical version to be 
+          release from <a href="https://github.com/google/material-design-icons">google/material-design-icons</a>.
+          In addition to these icons, we've also created a few new icons that are custom to this
+          project for you to use. You can find them at the bottom of this page.
+        </p>
+
         {this._getAllIconGroups()}
+
 		</div>
     );
   },

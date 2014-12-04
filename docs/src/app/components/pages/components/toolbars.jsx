@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var mui = require('mui');
 var PaperButton = mui.PaperButton;
 var React = require('react');
@@ -17,35 +15,29 @@ var ToolbarPage = React.createClass({
       { payload: '6', text: 'Active Voice' },
       { payload: '7', text: 'Active Text' },
     ],
-
     iconMenuItems = [
       { payload: '1', text: 'Download' },
       { payload: '2', text: 'More Info' }
     ];
-
-    rightItems = [
-      <mui.Icon icon='sort' />,
-      <mui.Icon icon='filter' />,
-      <mui.Icon icon='search' />,
-      <mui.DropDownIcon icon="chevron-down" menuItems={iconMenuItems} onChange={this._onDropDownMenuChange} />,
-      { type: "separator"},
-      <mui.PaperButton type={PaperButton.Types.RAISED} label="Create Broadcast" primary={true} />,
-    ],
         
-    leftItems = [
-      <mui.DropDownMenu menuItems={filterOptions} />,
-    ];
-
-    groups = [ 
-      <mui.ToolbarGroup key={0} float="left" groupItems={leftItems} />,
-      <mui.ToolbarGroup key={1} float="right" groupItems={rightItems} />
-    ];
-
     return (
     	<div>
     		<h2 className="mui-font-style-headline">Toolbars</h2>
         <div className="mui-toolbar-container">
-          <mui.Toolbar groups={groups} />
+          <mui.Toolbar>
+			      <mui.ToolbarGroup key={0} float="left">
+				      <mui.DropDownMenu menuItems={filterOptions} />
+			      </mui.ToolbarGroup>
+			      <mui.ToolbarGroup key={1} float="right">
+				      <mui.Icon icon='mui-icon-pie' />
+				      <mui.Icon icon='mui-icon-sort' />
+				      <mui.DropDownIcon icon="navigation-expand-more" menuItems={iconMenuItems} 
+				      	onChange={this._onDropDownMenuChange} />
+              <span className="mui-toolbar-separator">&nbsp;</span>
+				      <mui.PaperButton type={PaperButton.Types.RAISED} label="Create Broadcast" 
+				      	primary={true} />
+			      </mui.ToolbarGroup>
+		      </mui.Toolbar>
         </div>
     	</div>
     );

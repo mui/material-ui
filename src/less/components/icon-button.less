@@ -1,0 +1,61 @@
+@icon-button-size: (@icon-size * 2);
+
+.mui-icon-button {
+
+  @ripple-color: rgba(0,0,0,0.1);
+
+  * { .ease-out(); }
+  
+  padding: (@icon-size / 2);
+  position: relative;
+
+  .mui-icon-button-ripple.mui-is-visible {
+    .ripple-click(
+      @animation-name: 'icon-button-ripple-animation';
+      @color: @ripple-color;
+      @size: @icon-button-size;
+    );
+  }
+
+  .mui-icon-button-focus-ripple {
+    top: 0;
+    left: 0;
+    .lh-translate(0, 0);
+
+    width: @icon-button-size;
+    height: @icon-button-size;
+    box-shadow: 0px 0px 0px 1px @ripple-color;
+    border: solid 6px @transparent;
+    background-color: @ripple-color;
+
+    .lh-opacity(0);
+  }
+
+  &.mui-is-disabled {
+    color: lighten(@body-text-color, 75%);
+  }
+
+  &.mui-is-keyboard-focused {
+    .mui-icon-button-focus-ripple {
+      .pulsate('ripple-icon-button-focus');
+      .lh-opacity(1);
+    }
+  }
+}
+
+.mui-dark-theme {
+  @ripple-color: rgba(255,255,255,0.3);
+
+  .mui-icon-button-ripple.mui-is-visible {
+    .ripple-click(
+      @animation-name: 'icon-button-ripple-animation-dark';
+      @color: @ripple-color;
+      @size: @icon-button-size;
+    )
+  }
+
+  .mui-icon-button-focus-ripple {
+    box-shadow: 0px 0px 0px 1px @ripple-color;
+    background-color: @ripple-color;
+  }
+}

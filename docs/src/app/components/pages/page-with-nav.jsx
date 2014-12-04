@@ -4,12 +4,13 @@
 
 var React = require('react'),
   Router = require('react-router'),
+  RouteHandler = Router.RouteHandler,
   mui = require('mui'),
   Menu = mui.Menu;
 
 var PageWithNav = React.createClass({
 
-  mixins: [Router.Navigation, Router.ActiveState],
+  mixins: [Router.Navigation, Router.State],
 
   propTypes: {
     menuItems: React.PropTypes.array
@@ -17,17 +18,17 @@ var PageWithNav = React.createClass({
 
   render: function() {
     return (
-      <div className="mui-app-content-canvas with-nav">
-        <div className="subNav">
+      <div className="mui-app-content-canvas page-with-nav">
+        <div className="page-with-nav-content">
+          <RouteHandler />
+        </div>
+        <div className="page-with-nav-secondary-nav">
           <Menu 
             ref="menuItems" 
             zDepth={0} 
             menuItems={this.props.menuItems} 
             selectedIndex={this._getSelectedIndex()} 
             onItemClick={this._onMenuItemClick} />
-        </div>
-        <div className="subContent">
-          <this.props.activeRouteHandler />
         </div>
       </div>
     );

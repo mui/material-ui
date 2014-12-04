@@ -1,0 +1,101 @@
+.mui-raised-button {
+
+  display: inline-block;
+  min-width: @button-min-width;
+
+  * { .ease-out(); }
+
+  .mui-raised-button-container {
+    .lh-border-radius(2px);
+    background-color: @raised-button-color;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    .mui-raised-button-focus-ripple {
+      background-color: @transparent;
+    }
+
+    &.mui-is-keyboard-focused {
+      background-color: @raised-button-hover-color;
+
+      .mui-raised-button-focus-ripple {
+        background-color: @raised-button-focus-ripple-color;
+        .ripple-button-focus();
+        padding-top: 0;
+      }
+    }
+
+    .mui-raised-button-ripple {
+      &.mui-is-visible {
+        .ripple-click-alt(
+          @animation-name: 'raised-button-ripple-click';
+          @color: @raised-button-ripple-color;
+        )
+      }
+    }
+
+    &.mui-is-disabled {
+      background-color: @raised-button-disabled-color;
+
+      .mui-raised-button-label {
+        color: @raised-button-disabled-text-color;
+      }
+
+      &:hover {
+        background-color: @raised-button-disabled-color;
+      }
+    }
+  }
+
+  .mui-raised-button-label {
+    position: relative;
+    .mui-font-style-button;
+    margin: 0;
+    padding: 0 @desktop-gutter-less;
+    .lh-user-select(none);
+    line-height: @button-height;
+    color: @raised-button-text-color;
+  }
+
+  &:hover {
+    .mui-raised-button-container {
+      background-color: @raised-button-hover-color;
+    }
+  }
+
+  &.mui-is-primary {
+
+    .mui-raised-button-container {
+      background-color: @raised-button-primary-color;
+
+      .mui-raised-button-ripple {
+        &.mui-is-visible {
+          .ripple-click-alt(
+            @animation-name: 'raised-button-primary-ripple-click';
+            @color: @raised-button-primary-ripple-color;
+          )
+        }
+      }
+
+      &.mui-is-keyboard-focused {
+        background-color: @raised-button-primary-hover-color;
+
+        .mui-raised-button-focus-ripple {
+          background-color: @raised-button-primary-focus-ripple-color;
+        }
+      }
+    }
+
+    &:hover {
+      .mui-raised-button-container {
+        background-color: @raised-button-primary-hover-color;
+      }
+    }
+
+    .mui-raised-button-label {
+      color: @raised-button-primary-text-color;
+    }
+  }
+}

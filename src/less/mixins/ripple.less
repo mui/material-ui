@@ -1,0 +1,41 @@
+.ripple-click(@animation-name; @color; @size: 150px; @duration: 0.7s) {
+  height: @size;
+  width: @size;
+  margin-top: (-1 * @size / 2);
+  margin-left: (-1 * @size / 2);
+
+  @percent-0: ~'0% { transform: scale(0); background-color: @{transparent}; }';
+  @percent-50: ~'50% { background-color: @{color}; } ';
+  @percent-100: ~'100% { transform: scale(1); background-color: @{transparent}; }';
+
+  .lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-50} @{percent-100}');
+  .lh-animation(@animation-name @duration);
+}
+
+//Animating using scale transforms causes ripple to ignore border radius 
+//overflow hidden so animate using width instead
+.ripple-click-alt(@animation-name; @color; @size: 150px; @duration: 0.7s) {
+  @percent-0: ~'0% { background-color: @{transparent}; }';
+  @percent-50: ~'50% { background-color: @{color}; } ';
+  @percent-100: ~'100% { width: @{size}; height: @{size}; background-color: @{transparent}; }';
+
+  .lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-50} @{percent-100}');
+  .lh-animation(@animation-name @duration);
+}
+
+.ripple-button-focus() {
+  @top-offset: (@button-height / 2);
+  .lh-calc(margin-top, ~'-50% + @{top-offset}');
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  padding-bottom: 100%;
+  padding-top: (@desktop-gutter-less * 2);
+
+  .pulsate(
+    @animation-name: 'ripple-button-focus';
+    @start-size: 0.75;
+    @end-size: 0.85;
+  );
+}

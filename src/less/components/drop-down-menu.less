@@ -1,0 +1,76 @@
+.mui-drop-down-menu {
+
+  * { .ease-out(); }
+
+  position: relative;
+  display: inline-block;
+  height: @desktop-toolbar-height;
+  font-size: @desktop-drop-down-menu-font-size;
+
+  &.mui-open {
+    .mui-menu-control,
+    .mui-menu-control:hover {
+      .mui-menu-control-bg {
+        .lh-opacity(0);
+      }
+      .mui-menu-label {
+        top: (@desktop-toolbar-height / 2);
+        .lh-opacity(0);
+      }
+    }
+
+    .mui-menu {
+      .lh-opacity(1);
+    }
+  }
+
+  .mui-menu-control {
+    cursor: pointer;
+    .clearfix();
+    height: 100%;
+
+    .mui-menu-control-bg {
+      background-color: @menu-background-color;
+      height: 100%;
+      width: 100%;
+      .lh-opacity(0);
+    }
+
+    &:hover {
+      .mui-menu-control-bg {
+        .lh-opacity(1);
+      }
+    }
+
+    .mui-menu-label {
+      line-height: @desktop-toolbar-height;
+      position: absolute;
+      padding-left: @desktop-gutter;
+      top: 0;
+      .lh-opacity(1);
+    }
+
+    .mui-menu-drop-down-icon {
+      line-height: @desktop-toolbar-height;
+      position: absolute;
+      top: 0;
+      right: @desktop-gutter-less;
+      color: @drop-down-menu-icon-color;
+    }
+
+    .mui-menu-control-underline {
+      border-top: solid 1px @border-color;
+      margin: 0 @desktop-gutter;
+    }
+  }
+
+  .mui-menu {
+    .mui-menu-item {
+      padding-right: (@icon-size + @desktop-gutter-less + @desktop-gutter-mini);
+      height: @desktop-drop-down-menu-item-height;
+      line-height: @desktop-drop-down-menu-item-height;
+      white-space: nowrap;
+    }
+  }
+
+}
