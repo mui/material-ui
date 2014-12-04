@@ -5,6 +5,7 @@ module.exports = {
   Dialog: require('./js/dialog.jsx'),
   DropDownIcon: require('./js/drop-down-icon.jsx'),
   DropDownMenu: require('./js/drop-down-menu.jsx'),
+  EnhancedButton: require('./js/enhanced-button.jsx'),
   FlatButton: require('./js/flat-button.jsx'),
   FloatingActionButton: require('./js/floating-action-button.jsx'),
   IconButton: require('./js/icon-button.jsx'),
