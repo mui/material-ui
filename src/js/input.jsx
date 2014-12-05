@@ -8,12 +8,10 @@ var Input = React.createClass({
   propTypes: {
     multiline: React.PropTypes.bool,
     required: React.PropTypes.bool,
-    autocomplete: React.PropTypes.bool,
     inlinePlaceholder: React.PropTypes.bool,
     min: React.PropTypes.number,
     max: React.PropTypes.number,
     step: React.PropTypes.number,
-    rows: React.PropTypes.number,
     inputStyle: React.PropTypes.string,
     error: React.PropTypes.string,
     description: React.PropTypes.string,
@@ -29,7 +27,7 @@ var Input = React.createClass({
   getInitialState: function() {
     return {
       value: this.props.defaultValue,
-      rows: this.props.rows
+      rows: 1
     };
   },
 
@@ -55,19 +53,17 @@ var Input = React.createClass({
       'mui-text': this.props.type === 'text',
       'mui-error': this.props.error !== undefined && this.props.error !== null
     }),
-    autocomplete = this.props.autocomplete ? "on" : "off",
     placeholder = this.props.inlinePlaceholder ? this.props.placeholder : "",
     inputElement = this.props.multiline ?
       this.props.valueLink ?
         <textarea {...this.props} className="mui-input-textarea" placeholder={placeholder}
-          rows={this.state.rows} autoComplete={autocomplete} /> :
+          rows={this.state.rows} /> :
         <textarea {...this.props} value={this.state.value} className="mui-input-textarea"
-          placeholder={placeholder} rows={this.state.rows} onChange={this._onTextAreaChange}
-          onBlur={this._onInputBlur} autoComplete={autocomplete} /> :
+          placeholder={placeholder} rows={this.state.rows} onChange={this._onTextAreaChange} onBlur={this._onInputBlur} /> :
         this.props.valueLink ?
-          <input {...this.props} ref="input" placeholder={placeholder} autoComplete={autocomplete} /> :
+          <input {...this.props} ref="input" placeholder={placeholder} /> :
           <input {...this.props} ref="input" value={this.state.value} placeholder={placeholder}
-            onChange={this._onInputChange} onBlur={this._onInputBlur} autoComplete={autocomplete} />
+            onChange={this._onInputChange} onBlur={this._onInputBlur} />
     placeholderSpan = this.props.inlinePlaceholder ? null : <span className="mui-input-placeholder"
       onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>;
 
