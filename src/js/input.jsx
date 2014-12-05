@@ -8,6 +8,8 @@ var Input = React.createClass({
   propTypes: {
     multiline: React.PropTypes.bool,
     required: React.PropTypes.bool,
+    inlinePlaceholder: React.PropTypes.bool,
+    rows: React.PropTypes.number,
     min: React.PropTypes.number,
     max: React.PropTypes.number,
     step: React.PropTypes.number,
@@ -25,7 +27,7 @@ var Input = React.createClass({
   getInitialState: function() {
     return {
       value: this.props.defaultValue,
-      rows: 1
+      rows: this.props.rows
     };
   },
 
@@ -51,22 +53,24 @@ var Input = React.createClass({
       'mui-text': this.props.type === 'text',
       'mui-error': this.props.error !== undefined && this.props.error !== null
     }),
+    placeholder = this.props.inlinePlaceholder ? this.props.placeholder : "",
     inputElement = this.props.multiline ?
-      this.props.valueLink ? 
-        <textarea {...this.props} className="mui-input-textarea" placeholder=""
-          rows={this.state.rows} /> : 
-        <textarea {...this.props} value={this.state.value} className="mui-input-textarea" 
-          placeholder="" rows={this.state.rows} onChange={this._onTextAreaChange} /> :
-        this.props.valueLink ? 
-          <input {...this.props} ref="input" placeholder="" /> :
-          <input {...this.props} ref="input" value={this.state.value} placeholder=""
-            onChange={this._onInputChange} />;
+      this.props.valueLink ?
+        <textarea {...this.props} className="mui-input-textarea" placeholder={placeholder}
+          rows={this.state.rows} /> :
+        <textarea {...this.props} value={this.state.value} className="mui-input-textarea"
+          placeholder={placeholder} rows={this.state.rows} onChange={this._onTextAreaChange} /> :
+        this.props.valueLink ?
+          <input {...this.props} ref="input" placeholder={placeholder} /> :
+          <input {...this.props} ref="input" value={this.state.value} placeholder={placeholder}
+            onChange={this._onInputChange} />
+    placeholderSpan = this.props.inlinePlaceholder ? null : <span className="mui-input-placeholder"
+      onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>;
 
     return (
       <div ref={this.props.ref} className={classes}>
         {inputElement}
-        <span className="mui-input-placeholder" 
-          onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>
+        {placeholderSpan}
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
