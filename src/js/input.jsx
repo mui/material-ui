@@ -17,8 +17,7 @@ var Input = React.createClass({
     placeholder: React.PropTypes.string,
     type: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func,
-    onBlur: React.PropTypes.func
+    onChange: React.PropTypes.func
   },
 
   mixins: [Classable],
@@ -53,20 +52,20 @@ var Input = React.createClass({
       'mui-error': this.props.error !== undefined && this.props.error !== null
     }),
     inputElement = this.props.multiline ?
-      this.props.valueLink ?
+      this.props.valueLink ? 
         <textarea {...this.props} className="mui-input-textarea" placeholder=""
-          rows={this.state.rows} /> :
-        <textarea {...this.props} value={this.state.value} className="mui-input-textarea"
-          placeholder="" rows={this.state.rows} onChange={this._onTextAreaChange} onBlur={this._onInputBlur} /> :
-        this.props.valueLink ?
+          rows={this.state.rows} /> : 
+        <textarea {...this.props} value={this.state.value} className="mui-input-textarea" 
+          placeholder="" rows={this.state.rows} onChange={this._onTextAreaChange} /> :
+        this.props.valueLink ? 
           <input {...this.props} ref="input" placeholder="" /> :
           <input {...this.props} ref="input" value={this.state.value} placeholder=""
-            onChange={this._onInputChange} onBlur={this._onInputBlur} />;
+            onChange={this._onInputChange} />;
 
     return (
       <div ref={this.props.ref} className={classes}>
         {inputElement}
-        <span className="mui-input-placeholder"
+        <span className="mui-input-placeholder" 
           onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
@@ -92,10 +91,6 @@ var Input = React.createClass({
     var value = e.target.value;
     this.setState({value: value});
     if (this.props.onChange) this.props.onChange(e, value);
-  },
-
-  _onInputBlur: function(e) {
-    if (this.props.onBlur) this.props.onBlur(e);
   },
 
   _onPlaceholderClick: function(e) {
