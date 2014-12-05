@@ -51,6 +51,10 @@ This allows you to override any variables defined in [custom-variables.less](htt
 @import "node_modules/material-ui/src/less/components.less";
 ```
 
+### Use with Sass
+
+For [Sass](http://www.sass-lang.com) users, [material-ui-sass](https://github.com/gpbl/material-ui-sass) contains the .scss version of the Less framework.
+
 ## Building the Documentation Site
 After cloning the repository, install dependencies:
 ```
