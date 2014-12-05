@@ -8,7 +8,6 @@ var Input = React.createClass({
   propTypes: {
     multiline: React.PropTypes.bool,
     required: React.PropTypes.bool,
-    inlinePlaceholder: React.PropTypes.bool,
     min: React.PropTypes.number,
     max: React.PropTypes.number,
     step: React.PropTypes.number,
@@ -53,24 +52,22 @@ var Input = React.createClass({
       'mui-text': this.props.type === 'text',
       'mui-error': this.props.error !== undefined && this.props.error !== null
     }),
-    placeholder = this.props.inlinePlaceholder ? this.props.placeholder : "",
     inputElement = this.props.multiline ?
       this.props.valueLink ?
-        <textarea {...this.props} className="mui-input-textarea" placeholder={placeholder}
+        <textarea {...this.props} className="mui-input-textarea" placeholder=""
           rows={this.state.rows} /> :
         <textarea {...this.props} value={this.state.value} className="mui-input-textarea"
-          placeholder={placeholder} rows={this.state.rows} onChange={this._onTextAreaChange} onBlur={this._onInputBlur} /> :
+          placeholder="" rows={this.state.rows} onChange={this._onTextAreaChange} onBlur={this._onInputBlur} /> :
         this.props.valueLink ?
-          <input {...this.props} ref="input" placeholder={placeholder} /> :
-          <input {...this.props} ref="input" value={this.state.value} placeholder={placeholder}
-            onChange={this._onInputChange} onBlur={this._onInputBlur} />
-    placeholderSpan = this.props.inlinePlaceholder ? null : <span className="mui-input-placeholder"
-      onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>;
+          <input {...this.props} ref="input" placeholder="" /> :
+          <input {...this.props} ref="input" value={this.state.value} placeholder=""
+            onChange={this._onInputChange} onBlur={this._onInputBlur} />;
 
     return (
       <div ref={this.props.ref} className={classes}>
         {inputElement}
-        {placeholderSpan}
+        <span className="mui-input-placeholder"
+          onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
