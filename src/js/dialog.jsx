@@ -3,6 +3,7 @@ var React = require('react'),
   Events = require('./utils/events.js'),
   KeyCode = require('./utils/key-code.js'),
   Classable = require('./mixins/classable'),
+  Overlay = require('./overlay.jsx'),
   Paper = require('./paper.jsx');
 
 var Dialog = React.createClass({
@@ -50,7 +51,7 @@ var Dialog = React.createClass({
 
     return (
       <div className={mainClasses}>
-        <Paper zDepth={4}>
+        <Paper className="dialog-window" zDepth={4}>
           <h3 className="dialog-title">
             {this.props.title}
           </h3>
@@ -63,7 +64,7 @@ var Dialog = React.createClass({
             </div>
           </div>
         </Paper>
-        <div className="dialog-overlay" onClick={this._handleClickAway}></div>
+        <Overlay show={this.state.open} onTouchTap={this._handleOverlayTouchTap} />
       </div>
     );
   },
@@ -86,7 +87,7 @@ var Dialog = React.createClass({
     el.style.marginTop = -1 * height / 2 + 'px';
   },
 
-  _handleClickAway: function() {
+  _handleOverlayTouchTap: function() {
     this.dismiss();
   },
 
