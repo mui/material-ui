@@ -35,6 +35,20 @@ var SomeAwesomeComponent = React.createClass({
 module.exports = SomeAwesomeComponent;
 ```
 
+### Usage Notes
+Some components uses [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
+listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
+sure to inject this plugin at the start of your app.
+```js
+var injectTapEventPlugin = require("react-tap-event-plugin");
+
+//Needed for onTouchTap
+//Can go away when react 1.0 release
+//Check this repo:
+//https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
+```
+
 ## Customization
 
 The styles are separated into 2 less files:
