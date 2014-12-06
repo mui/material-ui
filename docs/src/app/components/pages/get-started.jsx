@@ -65,6 +65,13 @@ var GetStarted = React.createClass({
             <CodeBlock>{customizationCode}</CodeBlock>
           </mui.Paper>
 
+          
+          <h2 className="mui-font-style-headline">Sass</h2>
+          <p>
+            For <a href="http://www.sass-lang.com/">Sass</a> users, 
+            <a href="https://github.com/gpbl/material-ui-sass">material-ui-sass</a> contains the .scss version of the Less framework.
+          </p>
+
         </div>
       </div>
     );
