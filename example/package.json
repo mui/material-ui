@@ -1,10 +1,7 @@
 {
-  "name": "material-ui-docs",
+  "name": "material-ui-example",
   "version": "0.0.1",
-  "description": "Documentation site for material-ui",
-  "browser": {
-    "mui": "../src/index.js"
-  },
+  "description": "Sample project that uses material-ui",
   "browserify": {
     "transform": [
       [
@@ -31,9 +28,8 @@
     "watchify": "^2.1.1"
   },
   "dependencies": {
-    "highlight.js": "^8.4.0",
+    "material-ui": "^0.3.2",
     "react": "^0.12.1",
-    "react-router": "^0.11.4",
     "react-tap-event-plugin": "^0.1.3"
   }
 }

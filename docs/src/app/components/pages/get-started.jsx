@@ -76,18 +76,28 @@ var GetStarted = React.createClass({
           </mui.Paper>
 
           <h2 className="mui-font-style-headline">Customization</h2>
-          <div>
-            <p>The styles are separated into 2 less files:</p>
-            <li>dist/less/scaffolding.less</li>
-            <li>dist/less/components.less</li>
-            <p>
-              This allows you to override any variables defined in custom-variables.less without having to
-              modify material-ui source files directly. For example, your main.less file could look something like this:
-            </p>
-          </div>
+          <p>The styles are separated into 2 less files:</p>
+          <li>dist/less/scaffolding.less</li>
+          <li>dist/less/components.less</li>
+          <p>
+            This allows you to override any variables defined in custom-variables.less without having to
+            modify material-ui source files directly. For example, your main.less file could look something like this:
+          </p>
           <mui.Paper className="code-example">
             <CodeBlock>{customizationCode}</CodeBlock>
           </mui.Paper>
+
+          <h2 className="mui-font-style-headline">Examples</h2>
+          <p>
+            There are 2 projects that you can look at to help you get started. The first project can be found
+            in the <a href="https://github.com/callemall/material-ui/tree/master/example">example folder</a>. This
+            is a basic project that shows how you can consume material-ui components in your own project.
+          </p>
+          <p>
+            The second project is the actual documentation site. This is a more complex project but will give
+            examples of every component. Check out the <a href="https://github.com/callemall/material-ui/tree/master/docs">docs folder</a> for
+            build instructions.
+          </p>
 
         </div>
       </div>
