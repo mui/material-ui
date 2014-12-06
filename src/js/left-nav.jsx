@@ -2,6 +2,7 @@ var React = require('react'),
   KeyCode = require('./utils/key-code.js'),
   Classable = require('./mixins/classable.js'),
   WindowListenable = require('./mixins/window-listenable.js'),
+  Overlay = require('./overlay.jsx'),
   Paper = require('./paper.jsx'),
   Menu = require('./menu.jsx');
 
@@ -50,11 +51,7 @@ var LeftNav = React.createClass({
       selectedIndex = this.props.selectedIndex,
       overlay;
 
-    if (!this.props.docked) {
-      overlay = (
-        <div className="mui-overlay" onTouchTap={this._onOverlayTouchTap} />
-      );
-    }
+    if (!this.props.docked) overlay = <Overlay show={this.state.open} onTouchTap={this._onOverlayTouchTap} />;
 
     return (
       <div className={classes}>
