@@ -10,14 +10,21 @@ var React = require('react'),
 var Toggle = React.createClass({
 
   propTypes: {
-    onToggle: React.PropTypes.func
+    onToggle: React.PropTypes.func,
+    toggled: React.PropTypes.bool
   },
 
   mixins: [Classable],
 
-  getInitialState: function() {
+  getDefaultProps: function() {
     return {
       toggled: false
+    };
+  },
+
+  getInitialState: function() {
+    return {
+      toggled: this.props.toggled
     }
   },
 
