@@ -1,3 +1,23 @@
+## 0.3.3
+###### _Dec. 7, 2014_
+
+##### General
+- Added a basic example project in /example
+
+##### Components
+- Dialog
+  - Actions are now real buttons
+  - Added transitions
+  - Prefixed classNames with mui
+  - Cleaned up styles
+- Input
+  - Fixed a bug that caused placeholder to not show on focus (#112)
+  - Placeholders can now be displayed in-line by setting inlinePlaceholder to true.
+  - The initial number of rows can now be set with the rows prop. 
+- Toggle
+  - Fixed alignment issue (#118)
+  - The inital state of the toggle can now be set with the toggled prop.
+
 ## 0.3.2
 ###### _Nov. 30, 2014_
 
