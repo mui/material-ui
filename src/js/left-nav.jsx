@@ -44,6 +44,11 @@ var LeftNav = React.createClass({
     return this;
   },
 
+  open: function() {
+    this.setState({ open: true });
+    return this;
+  },
+
   render: function() {
     var classes = this.getClasses('mui-left-nav', {
         'mui-closed': !this.state.open
