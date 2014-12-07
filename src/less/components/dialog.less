@@ -1,51 +1,58 @@
-.dialog {
+.mui-dialog {
   position: fixed;
-  z-index: 100;
-  top: 50%;
-  left: 50%;
-  font-size: medium;
-  
+  z-index: 10;
+  top: 0px;
+  left: -100%;
+  width: 100%;
+  height: 100%;
 
-  .dialog-window {
+  .lh-transition(left 0ms @ease-out-function 450ms);
+
+  .mui-dialog-window {
+    .ease-out();
     position: relative;
-    left: -50%;
-    z-index: 2000;
-    background: white;
-    visibility: hidden;
+    width: 75%;
+    max-width: (@desktop-keyline-increment * 12);
+    margin: 0 auto;
+    z-index: 10;
+    background: @canvas-color;
+    opacity: 0;
   }
 
-  &.show {
-    .dialog-window {
-      visibility: visible;
+  &.mui-is-shown {
+    left: 0px;
+    .lh-transition(left 0ms @ease-out-function 0ms);
+
+    .mui-dialog-window {
+      opacity: 1;
+      top: 0px;
+      .lh-translate3d(0, @desktop-keyline-increment, 0);
     }
   }
 
-  .dialog-title {
-    padding: 24px 24px 0 24px;
+  .mui-dialog-title {
+    padding: @desktop-gutter @desktop-gutter 0 @desktop-gutter;
     margin-bottom: 0;
   }
 
-  .dialog-content {
-    padding: 24px;
+  .mui-dialog-content {
+    padding: @desktop-gutter;
   }
 
-  .dialog-actions {
+  .mui-dialog-actions {
+
+    padding: 8px;
+    margin-bottom: 8px;
     width: 100%;
-    padding: 8px 24px 16px 24px;
     .clearfix;
-    .actions-right {
+
+    .mui-dialog-actions-right {
       float: right;
-      :last-child {
-        color: @light-blue-500;
-      }
     }
-    .actions-left {
+
+    .mui-dialog-action {
+      margin-right: 8px;
       float: left;
-    }
-    .action {
-      float: left;
-      padding: 8px;
-      cursor: pointer;
     }
   }
 }
