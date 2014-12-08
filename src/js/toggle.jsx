@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
     Paper = require('./paper.jsx'),
     Classable = require('./mixins/classable.js'),
