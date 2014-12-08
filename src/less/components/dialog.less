@@ -1,35 +1,4 @@
 .mui-dialog {
-  position: fixed;
-  z-index: 10;
-  top: 0px;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-
-  .lh-transition(left 0ms @ease-out-function 450ms);
-
-  .mui-dialog-window {
-    .ease-out();
-    position: relative;
-    width: 75%;
-    max-width: (@desktop-keyline-increment * 12);
-    margin: 0 auto;
-    z-index: 10;
-    background: @canvas-color;
-    opacity: 0;
-  }
-
-  &.mui-is-shown {
-    left: 0px;
-    .lh-transition(left 0ms @ease-out-function 0ms);
-
-    .mui-dialog-window {
-      opacity: 1;
-      top: 0px;
-      .lh-translate3d(0, @desktop-keyline-increment, 0);
-    }
-  }
-
   .mui-dialog-title {
     padding: @desktop-gutter @desktop-gutter 0 @desktop-gutter;
     margin-bottom: 0;
