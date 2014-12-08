@@ -13,10 +13,10 @@ var SlidersPage = React.createClass({
     var code =
       '// Default\n' +
       '<Slider name="slider1" />\n\n' +
-      '// With value\n' +
-      '<Slider name="slider2" value={0.5} />\n' +
-      '<Slider name="slider3" value={1} />\n\n' +
-      '// Disabled\n' +
+      '// With starting value\n' +
+      '<Slider name="slider2" defaultValue={0.5} />\n' +
+      '<Slider name="slider3" defaultValue={1} />\n\n' +
+      '// Disabled with fixed value\n' +
       '<Slider name="slider1" disabled={true} />\n' +
       '<Slider name="slider2" disabled={true} value={0.5} />\n' +
       '<Slider name="slider3" disabled={true} value={1} />';

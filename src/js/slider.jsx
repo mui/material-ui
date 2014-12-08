@@ -41,8 +41,13 @@ var Slider = React.createClass({
     if (isNaN(percent)) percent = 0;
     return {
       value: value,
-      percent: percent,
-      disabled: this.props.disabled
+      percent: percent
+    }
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.value != null) {
+      this.setValue(nextProps.value);
     }
   },
 
@@ -53,7 +58,7 @@ var Slider = React.createClass({
 
     var sliderClasses = this.getClasses('mui-slider', {
       'mui-slider-zero': this.state.percent == 0,
-      'mui-disabled': this.state.disabled
+      'mui-disabled': this.props.disabled
     });
 
     var percent = this.state.percent;
@@ -68,7 +73,7 @@ var Slider = React.createClass({
         <div className={sliderClasses} onClick={this._onClick}>
           <div ref="track" className="mui-slider-track">
             <Draggable axis="x" bound="point"
-              cancel={this.state.disabled ? '*' : null}
+              cancel={this.props.disabled ? '*' : null}
               start={{x: (percent * 100) + '%'}}
               onStart={this._onDragStart}
               onStop={this._onDragStop}
@@ -101,9 +106,14 @@ var Slider = React.createClass({
   },
 
   setValue: function(i) {
+    // calculate percentage
     var percent = (i - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
-    this.setState({value: i, percent: percent});
+    // update state
+    this.setState({
+      value: i,
+      percent: percent
+    });
   },
 
   getPercent: function() {
@@ -121,7 +131,7 @@ var Slider = React.createClass({
 
   _onClick: function (e) {
     // let draggable handle the slider
-    if (this.state.dragging || this.state.disabled) return;
+    if (this.state.dragging || this.props.disabled) return;
     var node = this.refs.track.getDOMNode();
     var boundingClientRect = node.getBoundingClientRect();
     var offset = e.clientX - boundingClientRect.left;
