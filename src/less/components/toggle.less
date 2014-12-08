@@ -1,54 +1,44 @@
 .mui-toggle {
-  cursor: pointer;
-  display: inline-block;
   position: relative;
-  width: (@toggle-width + @radio-button-size);
-  line-height: @radio-button-size;
+  line-height: 24px;
+  width: 36px;
+  cursor: pointer;
 
-  .mui-toggle-bar {
-    background-color: @toggle-bar-color;
-    height: 1px;
+  * {
+    .ease-out();
+  }
+
+  .mui-toggle-track {
+    width: 100%;
+    height: 14px;
+    border-radius: 30px;
+    background-color: @toggle-track-off-color;
+  }
+
+  .mui-toggle-thumb {
     position: absolute;
-    top: 8px;
-    width: (@toggle-width + @radio-button-size);
-  }
+    top: -3px;
+    width: @toggle-size;
+    height: @toggle-size;
+    line-height: 24px;
+    left: 0;
+    border-radius: 50%;
+    background-color: @toggle-thumb-off-color;
 
-  .mui-radio-button {
-    .mui-radio-button-fill {
-      background-color: transparent;
+    .mui-paper-container {
       border-radius: 50%;
-      height: @radio-button-size;
-      transform: scale(0);
-      width: @radio-button-size;
     }
   }
 
-  &.mui-toggled {
-    .mui-toggle-bar {
-      background-color: @toggle-checked-color;
+  &.mui-is-toggled {
+    
+    .mui-toggle-track {
+      background-color: @toggle-track-on-color;
     }
 
-    .mui-radio-button {
-      .lh-translate3d(@toggle-width, 0, 0);
-      border-color: @toggle-checked-color;
-
-      .mui-radio-button-fill {
-        background-color: @toggle-checked-color;
-        border-color: @toggle-checked-color;
-        transform: scale(1.1);
-      }
-
-      input[type=radio] {
-        display: none;
-
-        &:checked {
-          &+.mui-radio-button-fill {
-            background-color: @toggle-checked-color;
-            border-color: @toggle-checked-color;
-            transform: scale(1.1);
-          }
-        }
-      }
+    .mui-toggle-thumb {
+      left: 16px;
+      background-color: @toggle-thumb-on-color;
     }
   }
 }
