@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "react": "^0.12",
-    "react-draggable": "git://github.com/mikepb/react-draggable#aeb73dc",
+    "react-draggable2": "^0.4.1",
     "react-tap-event-plugin": "^0.1.3"
   },
   "devDependencies": {
