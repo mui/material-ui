@@ -106,30 +106,26 @@
     &:focus, &:valid {
       outline: none;
       box-shadow: none;
-      &+.mui-input-placeholder {
+      &~.mui-input-placeholder {
         color: blue;
         font-size: @input-placeholder-size !important;
         font-weight: 300;
         top: -32px;
         .ease-out;
-
-        &+.mui-input-highlight {
+      }
+      &~.mui-input-highlight {
           width: 0;
           background-color: blue;
           .ease-out;
-
-          &+.mui-input-bar {
-
-            &::before, &::after {
-              background-color: blue;
-              width: 50%;
-            }
-
-            &+.mui-input-description {
-              display: block;
-            }
-          }
+      }
+      &~.mui-input-bar {
+        &::before, &::after {
+          background-color: blue;
+          width: 50%;
         }
+      }
+      &~.mui-input-description {
+        display: block;
       }
     }
 
@@ -306,7 +302,7 @@
 }
 
 ::-webkit-input-placeholder {
-   color: red !important;
+   //color: red !important;
    position: absolute !important;
    top: -20px !important;
 }

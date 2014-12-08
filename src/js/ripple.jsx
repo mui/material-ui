@@ -18,8 +18,8 @@ var Ripple = React.createClass({
   animate: function(e, callback) {
     var el = this.getDOMNode(),
       offset = Dom.offset(el.parentNode),
-      pageX = e.pageX == undefined ? e.nativeEvent.x : e.pageX,
-      pageY = e.pageY == undefined ? e.nativeEvent.y : e.pageY,
+      pageX = e.pageX == undefined ? e.nativeEvent.pageX : e.pageX,
+      pageY = e.pageY == undefined ? e.nativeEvent.pageY : e.pageY,
       x = pageX - offset.left,
       y = pageY - offset.top;
 

@@ -15,10 +15,12 @@ var FlatButton = React.createClass({
   },
 
   render: function() {
-    var {
-      className,
-      onTouchTap,
-      ...other } = this.props,
+    var 
+      {
+        className,
+        onTouchTap,
+        ...other
+      } = this.props,
       classes = this.getClasses('mui-flat-button', {
         'mui-is-primary': this.props.primary
       });

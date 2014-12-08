@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
   	mui = require('mui'),
     Icon = mui.Icon,
@@ -869,8 +865,6 @@ var IconsPage = React.createClass({
           In addition to these icons, we've also created a few new icons that are custom to this
           project for you to use. You can find them at the bottom of this page.
         </p>
-
-        <br/><hr/><br/>
 
         {this._getAllIconGroups()}
 

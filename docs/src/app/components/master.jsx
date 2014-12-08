@@ -1,8 +1,6 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
+  Router = require('react-router'),
+  RouteHandler = Router.RouteHandler,
   mui = require('mui'),
   AppBar = mui.AppBar,
   AppCanvas = mui.AppCanvas,
@@ -12,21 +10,29 @@ var React = require('react'),
 
 var Master = React.createClass({
 
+  mixins: [Router.State],
+
   render: function() {
+
+    var title = 
+      this.isActive('get-started') ? 'Get Started' :
+      this.isActive('css-framework') ? 'Css Framework' :
+      this.isActive('components') ? 'Components' : '';
+
     return (
       <AppCanvas predefinedLayout={1}>
 
         <AppBar
           className="mui-dark-theme"
           onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}
-          title={this.props.activeRouteHandler().props.pageTitle}
+          title={title}
           zDepth={0}>
           <IconButton className="github-icon-button" icon="mui-icon-github" onTouchTap={this._onGithubTouchTap} />
         </AppBar>
 
         <AppLeftNav ref="leftNav" />
 
-        <this.props.activeRouteHandler />
+        <RouteHandler />
 
         <div className="footer full-width-section mui-dark-theme">
           <p>

@@ -5,6 +5,7 @@
 (function () {
 
   var React = require('react'),
+    Router = require('react-router'),
     AppRoutes = require('./app-routes.jsx'),
     injectTapEventPlugin = require("react-tap-event-plugin");
 
@@ -18,6 +19,14 @@
   injectTapEventPlugin();
 
   //Render the main app component
-  React.render(AppRoutes, document.body);
+  Router
+    .create({
+      routes: AppRoutes,
+      scrollBehavior: Router.ScrollToTopBehavior
+    })
+    .run(function (Handler) {
+      // whenever the url changes, this callback is called again
+      React.render(<Handler/>, document.body);
+    });
 
 })();

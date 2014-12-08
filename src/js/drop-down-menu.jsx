@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
   Classable = require('./mixins/classable.js'),
   ClickAwayable = require('./mixins/click-awayable'),
@@ -15,8 +11,15 @@ var DropDownMenu = React.createClass({
   mixins: [Classable, ClickAwayable],
 
   propTypes: {
+    autoWidth: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired
+  },
+
+  getDefaultProps: function() {
+    return {
+      autoWidth: true
+    };
   },
 
   getInitialState: function() {
@@ -31,14 +34,13 @@ var DropDownMenu = React.createClass({
   },
 
   componentDidMount: function() {
-    var dom = this.getDOMNode(),
-      menuItemsDom = this.refs.menuItems.getDOMNode();
-
-    dom.style.width = menuItemsDom.offsetWidth + 'px';
+    if (this.props.autoWidth) this._setWidth();
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (nextProps.hasOwnProperty('selectedIndex')) this.setState({selectedIndex: nextProps.selectedIndex});
+    if (nextProps.hasOwnProperty('selectedIndex')) {
+      this.setState({selectedIndex: nextProps.selectedIndex});
+    }
   },
 
   render: function() {
@@ -56,9 +58,23 @@ var DropDownMenu = React.createClass({
           <Icon className="mui-menu-drop-down-icon" icon="navigation-arrow-drop-down" />
           <div className="mui-menu-control-underline" />
         </div>
-        <Menu ref="menuItems" selectedIndex={this.state.selectedIndex} menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
+        <Menu
+          ref="menuItems"
+          autoWidth={this.props.autoWidth}
+          selectedIndex={this.state.selectedIndex}
+          menuItems={this.props.menuItems}
+          hideable={true}
+          visible={this.state.open}
+          onItemClick={this._onMenuItemClick} />
       </div>
     );
+  },
+
+  _setWidth: function() {
+    var el = this.getDOMNode(),
+      menuItemsDom = this.refs.menuItems.getDOMNode();
+
+    el.style.width = menuItemsDom.offsetWidth + 'px';
   },
 
   _onControlClick: function(e) {

@@ -1,3 +1,80 @@
+## 0.3.3
+###### _Dec. 7, 2014_
+
+##### General
+- Added a basic example project in /example
+
+##### Components
+- Dialog
+  - Actions are now real buttons
+  - Added transitions
+  - Prefixed classNames with mui
+  - Cleaned up styles
+- Input
+  - Fixed a bug that caused placeholder to not show on focus (#112)
+  - Placeholders can now be displayed in-line by setting inlinePlaceholder to true.
+  - The initial number of rows can now be set with the rows prop. 
+- Toggle
+  - Fixed alignment issue (#118)
+  - The inital state of the toggle can now be set with the toggled prop.
+
+## 0.3.2
+###### _Nov. 30, 2014_
+
+##### General
+- Upgraded dependencies: react 0.12.1, browserify 6.3.3, reactify: 0.17.1
+
+##### Components
+- Dialog
+  - Added key prop to dialog actions. (#99)
+  - Added onDismiss event callback. (#86)
+  - Dialog is now positioned onMound and onUpdate (#85)
+  - Fixed a bug that cuased dialog to not be vertically centered on long pages
+- Dropdown Menu
+  - Added autoWidth prop (#89)
+- Menu
+  - Added autoWidth prop
+- Nested Menu
+  - Fixed bug that caused some nesteed menus to not show. (#88)
+- Paper
+  - Updated to use spread operator
+- Radio Button
+  - Fixed radio button label styles. (#94)
+- Ripple
+  - Account for page scrolling on ripple animation. (#93)
+
+## 0.3.1
+###### _Nov. 28, 2014_
+
+##### General
+- Removed browserify react addons alias. (#68)
+
+##### Components
+- FlatButton, RaisedButton, and FloatingActionButton (NEW)
+  - These buttons will replace the current PaperButton which will be
+    depreciated in v.0.4.0.
+  - They generate actual button tags, are keyboard focusable and listen
+    to onTouchTap. (#50, #61)
+- Icon Button
+  - Pressing enter when the button is in focus now fires onTouchTap
+  - Added dark theme ripple colors
+  - Focus and click animations now use Scale Transforms to improve performance.
+- Input
+  - Added support for ReactLink and use JSX spread attributes
+  - Error messages are now props instead of internal states (#95)
+- LeftNav
+  - Pressing ESC now closes the left nav
+- PaperButton
+  - Will be depreciated in v.0.4.0.
+- Radio Button
+  - Fixed toggle bug. (#70)
+
+##### Mixins
+- WindowListenable is now available from Mixins.WindowListenable
+
+##### Utils
+- Added KeyCodes constants
+
 ## 0.3.0
 ###### _Nov. 17, 2014_
 

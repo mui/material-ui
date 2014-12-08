@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
   CssEvent = require('./utils/css-event.js'),
   Classable = require('./mixins/classable.js'),

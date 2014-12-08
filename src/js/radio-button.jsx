@@ -1,21 +1,17 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
     Paper = require('./paper.jsx'),
     Classable = require('./mixins/classable.js');
 
 var RadioButton = React.createClass({
 
+  mixins: [Classable],
+
   propTypes: {
+    label: React.PropTypes.string,
     name: React.PropTypes.string,
     onClick: React.PropTypes.func,
-    value: React.PropTypes.string,
-    label: React.PropTypes.string
+    value: React.PropTypes.string
   },
-
-  mixins: [Classable],
 
   getInitialState: function() {
     return {
@@ -24,18 +20,25 @@ var RadioButton = React.createClass({
   },
 
   toggle: function() {
+    var radioButton = this.refs.radioButton.getDOMNode();
+
     this.setState({ checked: !this.state.checked });
-    this.refs.radioButton.getDOMNode().checked = !this.refs.radioButton.getDOMNode().checked;
+    radioButton.checked = !radioButton.checked;
   },
 
   render: function() {
-    var classes = this.getClasses('mui-radio-button', {
-    })
+    var classes = this.getClasses('mui-radio-button');
 
     return (
       <div className={classes} onClick={this._onClick}>
-        <input ref="radioButton" type="radio" name={this.props.name} value={this.props.value} />
-        <div className="mui-radio-button-fill" />
+        <div className="mui-radio-button-target">
+          <input
+            ref="radioButton"
+            type="radio"
+            name={this.props.name}
+            value={this.props.value} />
+          <div className="mui-radio-button-fill" />
+          </div>
         <span className="mui-radio-button-label">{this.props.label}</span>
       </div>
     );
@@ -45,7 +48,6 @@ var RadioButton = React.createClass({
     var checkedState = this.state.checked;
 
     this.toggle();
-
     if (this.props.onClick) this.props.onClick(e, !checkedState);
   }
 

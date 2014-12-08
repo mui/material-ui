@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
   CssEvent = require('./utils/css-event.js'),
   Dom = require('./utils/dom.js'),
@@ -89,6 +85,7 @@ var Menu = React.createClass({
   mixins: [Classable],
 
   propTypes: {
+    autoWidth: React.PropTypes.bool,
     onItemClick: React.PropTypes.func,
     onToggleClick: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
@@ -104,6 +101,7 @@ var Menu = React.createClass({
 
   getDefaultProps: function() {
     return {
+      autoWidth: true,
       hideable: false,
       visible: true,
       zDepth: 1
@@ -111,18 +109,10 @@ var Menu = React.createClass({
   },
 
   componentDidMount: function() {
-    var el = this.getDOMNode(),
-      menuWidth = KeyLine.getIncrementalDim(el.offsetWidth);
+    var el = this.getDOMNode();
 
-    //Update the menu width
-    el.style.transition = 'none';
-    el.style.width = menuWidth + 'px';
-
-    //force a redraw
-    Dom.forceRedraw(el);
-
-    //put the transition back
-    el.style.transition = '';
+    //Set the menu with
+    this._setKeyWidth(el);
 
     //Save the initial menu height for later
     this._initialMenuHeight = el.offsetHeight + KeyLine.Desktop.GUTTER_LESS;
@@ -212,12 +202,23 @@ var Menu = React.createClass({
     return children;
   },
 
+  _setKeyWidth: function(el) {
+    var menuWidth = this.props.autoWidth ?
+      KeyLine.getIncrementalDim(el.offsetWidth) + 'px' :
+      '100%';
+
+    //Update the menu width
+    Dom.withoutTransition(el, function() {
+      el.style.width = menuWidth;
+    });
+  },
+
   _renderVisibility: function() {
     var el;
 
     if (this.props.hideable) {
       el = this.getDOMNode();
-      innerContainer = this.refs.paperContainer.getInnerContainer().getDOMNode();
+      var innerContainer = this.refs.paperContainer.getInnerContainer().getDOMNode();
       
       if (this.props.visible) {
 
