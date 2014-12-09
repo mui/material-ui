@@ -1,8 +1,8 @@
 /**
  * @jsx React.DOM
  */
- 
-var React = require('react'), 
+
+var React = require('react'),
   Router = require('react-router'),
   Route = Router.Route,
   Redirect = Router.Redirect,
@@ -26,36 +26,38 @@ var React = require('react'),
   LeftNav = require('./components/pages/components/left-nav.jsx'),
   Menus = require('./components/pages/components/menus.jsx'),
   Paper = require('./components/pages/components/paper.jsx'),
+  Sliders = require('./components/pages/components/sliders.jsx'),
   Switches = require('./components/pages/components/switches.jsx'),
   Toolbars = require('./components/pages/components/toolbars.jsx');
 
 var AppRoutes = (
-      <Route name="root" path="/" handler={Master}>
-        <Route name="home" handler={Home} />
-        <Route name="get-started" handler={GetStarted} />
-        <Route name="css-framework" handler={CssFramework}>
-          <Route name="colors" handler={Colors} />
-          <Route name="typography" handler={Typography} />
-          <Redirect from="/css-framework" to="colors" />
-        </Route>
+  <Route name="root" path="/" handler={Master}>
+    <Route name="home" handler={Home} />
+    <Route name="get-started" handler={GetStarted} />
+    <Route name="css-framework" handler={CssFramework}>
+      <Route name="colors" handler={Colors} />
+      <Route name="typography" handler={Typography} />
+      <Redirect from="/css-framework" to="colors" />
+    </Route>
 
-        <Route name="components" handler={Components}>
-          <Route name="buttons" handler={Buttons} />
-          <Route name="dialog" handler={Dialog} />
-          <Route name="dropdown-menu" handler={DropDownMenu} />
-          <Route name="icon-buttons" handler={IconButtons} />
-          <Route name="icons" handler={Icons} />
-          <Route name="inputs" handler={Inputs} />
-          <Route name="left-nav" handler={LeftNav} />
-          <Route name="menus" handler={Menus} />
-          <Route name="paper" handler={Paper} />
-          <Route name="switches" handler={Switches} />
-          <Route name="toolbars" handler={Toolbars} />
-          <Redirect from="/components" to="buttons" />
-        </Route>
+    <Route name="components" handler={Components}>
+      <Route name="buttons" handler={Buttons} />
+      <Route name="dialog" handler={Dialog} />
+      <Route name="dropdown-menu" handler={DropDownMenu} />
+      <Route name="icon-buttons" handler={IconButtons} />
+      <Route name="icons" handler={Icons} />
+      <Route name="inputs" handler={Inputs} />
+      <Route name="left-nav" handler={LeftNav} />
+      <Route name="menus" handler={Menus} />
+      <Route name="paper" handler={Paper} />
+      <Route name="sliders" handler={Sliders} />
+      <Route name="switches" handler={Switches} />
+      <Route name="toolbars" handler={Toolbars} />
+      <Redirect from="/components" to="buttons" />
+    </Route>
 
-        <DefaultRoute handler={Home}/>
-      </Route>
-    );
+    <DefaultRoute handler={Home}/>
+  </Route>
+);
 
 module.exports = AppRoutes;

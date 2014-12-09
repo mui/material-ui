@@ -24,6 +24,7 @@ module.exports = {
   RadioButton: require('./js/radio-button.jsx'),
   RaisedButton: require('./js/raised-button.jsx'),
   Ripple: require('./js/ripple.jsx'),
+  Slider: require('./js/slider.jsx'),
   Toggle: require('./js/toggle.jsx'),
   Toast: require('./js/toast.jsx'),
   Toolbar: require('./js/toolbar.jsx'),
