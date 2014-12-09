@@ -27,6 +27,7 @@ var DropDownIcon = React.createClass({
   },
 
   render: function() {
+    var { className, menuItems, ...other } = this.props;
     var classes = this.getClasses('mui-drop-down-icon', {
       'mui-open': this.state.open
     });
@@ -36,7 +37,7 @@ var DropDownIcon = React.createClass({
           <div className="mui-menu-control" onClick={this._onControlClick}>
               <Icon icon={this.props.icon} />
           </div>
-          <Menu ref="menuItems" menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
+          <Menu {...other} ref="menuItems" menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
         </div>
     );
   },
