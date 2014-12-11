@@ -90,6 +90,10 @@ var Input = React.createClass({
   clearValue: function() {
     this.setValue("");
   },
+  
+  focus: function () {
+    if(this.isMounted()) this.refs.input.getDOMNode().focus();
+  },
 
   _onInputChange: function(e) {
     var value = e.target.value;
@@ -98,7 +102,7 @@ var Input = React.createClass({
   },
 
   _onPlaceholderClick: function(e) {
-    this.refs.input.getDOMNode().focus();
+    this.focus();
   },
 
   _onTextAreaChange: function(e) {
