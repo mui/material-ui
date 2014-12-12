@@ -2,7 +2,7 @@ var gulp = require('gulp'),
   less = require('gulp-less'),
   sourcemaps = require('gulp-sourcemaps'),
   handleErrors = require('../util/handleErrors'),
-  config=require('../config').less;
+  config = require('../config').less;
 
 gulp.task('less', function() {
   return gulp.src(config.src)

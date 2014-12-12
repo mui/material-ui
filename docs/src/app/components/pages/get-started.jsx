@@ -1,6 +1,6 @@
 var React = require('react'),
   mui = require('mui'),
-  CodeBlock = require('../code-example/code-block.jsx');;
+  CodeBlock = require('../code-example/code-block.jsx');
 
 var GetStarted = React.createClass({
 

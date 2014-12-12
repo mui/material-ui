@@ -8,7 +8,7 @@ var ToastsPage = React.createClass({
     return {
       message: 'You have deleted your broadcast.',
       action: 'undo'
-    }
+    };
   },
 
   render: function() {

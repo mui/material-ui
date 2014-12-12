@@ -1,5 +1,5 @@
 var dest = './build',
-  src = './src'
+  src = './src',
   mui = '../src';
 
 module.exports = {
