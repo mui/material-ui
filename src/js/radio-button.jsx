@@ -10,12 +10,17 @@ var RadioButton = React.createClass({
     label: React.PropTypes.string,
     name: React.PropTypes.string,
     onClick: React.PropTypes.func,
-    value: React.PropTypes.string
+    value: React.PropTypes.string,
+    defaultChecked: React.PropTypes.bool
   },
-
+  getDefaultProps: function(){
+    return {
+       defaultChecked: false
+    }
+  },
   getInitialState: function() {
     return {
-      checked: false
+      checked: this.props.defaultChecked
     }
   },
 
@@ -36,7 +41,9 @@ var RadioButton = React.createClass({
             ref="radioButton"
             type="radio"
             name={this.props.name}
-            value={this.props.value} />
+            value={this.props.value}
+            defaultChecked={this.props.defaultChecked}
+          />
           <div className="mui-radio-button-fill" />
           </div>
         <span className="mui-radio-button-label">{this.props.label}</span>
