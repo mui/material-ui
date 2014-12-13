@@ -67,7 +67,9 @@ var RaisedButton = React.createClass({
     //animate the zdepth change
     this.setState({ zDepth: this.state.initialZDepth + 1 });
     setTimeout(function() {
-      this.setState({ zDepth: this.state.initialZDepth });
+			if (this.isMounted()) {
+				this.setState({zDepth: this.state.initialZDepth});
+			}
     }.bind(this), 450);
   }
 
