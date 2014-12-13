@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var config = require('../config').svgs
+var config = require('../config').svgs;
 
 gulp.task('svgs', function() {
   return gulp.src(config.src)
