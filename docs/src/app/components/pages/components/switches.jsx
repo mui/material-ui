@@ -67,7 +67,7 @@ var SwitchesPage = React.createClass({
     var code = 
       '<form>\n' +
       ' <RadioButton name="shipSpeed" value="light" label="prepare for light speed"/>\n' +
-      ' <RadioButton name="shipSpeed" value="not_light" label="light speed too slow"/>\n' +
+      ' <RadioButton name="shipSpeed" value="not_light" label="light speed too slow" defaultChecked={true}/>\n' +
       ' <RadioButton name="shipSpeed" value="ludicrous" label="go to ludicous speed"/>\n' +
       '</form>';
 
@@ -85,6 +85,7 @@ var SwitchesPage = React.createClass({
             name="shipSpeed"
             value="not_light"
             label="light speed too slow"
+            defaultChecked={true}
             onClick={this._onRadioButtonClick} />
           <br />
 
