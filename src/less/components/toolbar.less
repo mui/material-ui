@@ -1,29 +1,15 @@
-@toolbar-background-color: darken(#eeeeee, 5%);
-@toolbar-height: 56px;
-@toolbar-icon-color: rgba(0, 0, 0, .40);
-@toolbar-separator-color: rgba(0, 0, 0, .175);
-@toolbar-menu-hover-color: rgba(0, 0, 0, .10);
-@toolbar-menu-hover-color: @white;
-
-.mui-toolbar-container {
-  background-color: @white;
-  height: 320px;
-  width: 960px;
-}
-
 .mui-toolbar {
   background-color: @toolbar-background-color;
   height: @toolbar-height;
-  line-height: @toolbar-height;
-  padding: 0 @desktop-gutter;
   width: 100%;
-  //.lh-box-shadow(0 1px 4px rgba(0, 0, 0, 0.24));
-
+  padding: 0 @desktop-gutter;
+  
   .mui-toolbar-group {
     position: relative;
 
     .mui-toolbar-title {
       padding-right: @desktop-gutter-less;
+      line-height: @toolbar-height;
     }
 
     .mui-toolbar-separator {
@@ -36,21 +22,20 @@
       width: 1px;
     }
 
-    .mui-paper-button {
+    .mui-raised-button {
       margin: 0 @desktop-gutter;
+      margin-top: ((@toolbar-height - @button-height) / 2);
       position: relative;
-      top: -2px;
-      vertical-align: middle;
     }
 
     .mui-drop-down-menu {
       color: @light-black;
       display: inline-block;
-      margin-right: -@desktop-gutter;
+      margin-right: @desktop-gutter;
 
       .mui-menu-control-bg {
-        background-color: @toolbar-menu-hover-color !important;
-        border-radius: 0 !important;
+        background-color: @toolbar-menu-hover-color;
+        border-radius: 0;
       }
 
       .mui-menu-control {
@@ -82,14 +67,14 @@
       float: left;
 
       .mui-drop-down-menu, .mui-icon, .mui-toolbar-separator, .mui-drop-down-icon  {
-        float: left !important;
+        float: left;
       }
 
       &:first-child {
-        margin-left: -24px !important;
+        margin-left: -24px;
 
         .mui-toolbar-title {
-          margin-left: 24px !important;
+          margin-left: 24px;
         }
       }
     }
@@ -101,12 +86,8 @@
         vertical-align: top;
       }
 
-      .mui-paper-button {
-        vertical-align: middle !important;
-      }
-
       &:last-child {
-        margin-right: -24px !important;
+        margin-right: -24px;
       }
     }
   }
