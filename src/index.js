@@ -19,7 +19,6 @@ module.exports = {
     ClickAwayable: require('./js/mixins/click-awayable.js'),
     WindowListenable: require('./js/mixins/window-listenable.js'),
   },
-  PaperButton: require('./js/paper-button.jsx'),
   Paper: require('./js/paper.jsx'),
   RadioButton: require('./js/radio-button.jsx'),
   RaisedButton: require('./js/raised-button.jsx'),
