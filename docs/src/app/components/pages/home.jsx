@@ -1,8 +1,8 @@
-var React = require('react'),
-  Router = require('react-router'),
-  mui = require('mui'),
-  RaisedButton = mui.RaisedButton,
-  HomeFeature = require('./home-feature.jsx');
+var React = require('react');
+var Router = require('react-router');
+var mui = require('mui');
+var RaisedButton = mui.RaisedButton;
+var HomeFeature = require('./home-feature.jsx');
 
 var HomePage = React.createClass({
 
@@ -18,10 +18,12 @@ var HomePage = React.createClass({
             <div className="tagline">
               <h1 className="brand-name">material ui</h1>
               <h2 className="mui-font-style-headline">
-                A CSS Framework and a Set of React Components <span className="no-wrap">that Implement</span> <span className="no-wrap">Google's Material Design</span>
+                A CSS Framework and a Set of React
+                Components <span className="no-wrap">that
+                Implement</span> <span className="no-wrap">Google's Material Design</span>
               </h2>
-              <RaisedButton className="demo-button" label="Demo" onTouchTap={this._onDemoClick} />
-              <RaisedButton className="github-button" label="GitHub" onTouchTap={this._onGithubClick} />
+              <RaisedButton className="demo-button" label="Demo" onTouchTap={this._onDemoClick} linkButton={true} />
+              <RaisedButton className="github-button" label="GitHub" linkButton={true} href="https://github.com/callemall/material-ui" />
             </div>
           </div>
         </div>
@@ -53,16 +55,12 @@ var HomePage = React.createClass({
             <h3>
               Want to help make this <span className="no-wrap">project awesome?</span> <span className="no-wrap">Check out our repo.</span>
             </h3>
-            <RaisedButton label="GitHub" primary={true} onTouchTap={this._onGithubClick} />
+            <RaisedButton label="GitHub" primary={true} linkButton={true} href="https://github.com/callemall/material-ui" />
           </div>
         </div>
 
       </div>
     );
-  },
-
-  _onGithubClick: function() {
-    window.document.location.href = 'https://github.com/callemall/material-ui';
   },
 
   _onDemoClick: function() {
