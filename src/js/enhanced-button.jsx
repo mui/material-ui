@@ -49,6 +49,10 @@ var EnhancedButton = React.createClass({
     );
   },
 
+  isKeyboardFocused: function() {
+    return this.state.isKeyboardFocused;
+  },
+
   _onWindowKeyUp: function(e) {
     if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
     if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {

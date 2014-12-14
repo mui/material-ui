@@ -28,6 +28,7 @@ module.exports = {
   Toast: require('./js/toast.jsx'),
   Toolbar: require('./js/toolbar.jsx'),
   ToolbarGroup: require('./js/toolbar-group.jsx'),
+  Tooltip: require('./js/tooltip.jsx'),
   Utils: {
     CssEvent: require('./js/utils/css-event.js'),
     Dom: require('./js/utils/dom.js'),
