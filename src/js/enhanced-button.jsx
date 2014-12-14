@@ -1,7 +1,7 @@
-var React = require('react'),
-  KeyCode = require('./utils/key-code.js'),
-  Classable = require('./mixins/classable.js'),
-  WindowListenable = require('./mixins/window-listenable');
+var React = require('react');
+var KeyCode = require('./utils/key-code.js');
+var Classable = require('./mixins/classable.js');
+var WindowListenable = require('./mixins/window-listenable');
 
 var EnhancedButton = React.createClass({
 
@@ -10,6 +10,7 @@ var EnhancedButton = React.createClass({
   propTypes: {
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
+    linkButton: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func
@@ -30,14 +31,33 @@ var EnhancedButton = React.createClass({
       className,
       disabled,
       icon,
+      linkButton,
       onTouchTap,
-      ...other } = this.props,
-      classes = this.getClasses('mui-enhanced-button', {
-        'mui-is-disabled': disabled,
-        'mui-is-keyboard-focused': this.state.isKeyboardFocused
-      });
+      ...other } = this.props;
+    var classes = this.getClasses('mui-enhanced-button', {
+      'mui-is-disabled': disabled,
+      'mui-is-keyboard-focused': this.state.isKeyboardFocused,
+      'mui-is-link-button': linkButton
+    });
 
-    return (
+    return this.props.linkButton ? (
+      this.props.disabled ? (
+        <span {...other} 
+          className={classes} 
+          disabled={disabled}>
+          {this.props.children}
+        </span>
+      ) : (
+        <a {...other} 
+          className={classes} 
+          disabled={disabled} 
+          onBlur={this._onBlur}
+          onFocus={this._onFocus}
+          onTouchTap={this._onTouchTap}>
+          {this.props.children}
+        </a>
+      )
+    ) : (
       <button {...other} 
         className={classes} 
         disabled={disabled} 

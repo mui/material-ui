@@ -109,6 +109,12 @@ var ButtonPage = React.createClass({
               'raised buttons.'
           },
           {
+            name: 'linkButton',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, an anchor element will be generated instead of a button element.'
+          },
+          {
             name: 'primary',
             type: 'bool',
             header: 'default: false',
@@ -129,6 +135,12 @@ var ButtonPage = React.createClass({
               'raised buttons.'
           },
           {
+            name: 'linkButton',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, an anchor element will be generated instead of a button element.'
+          },
+          {
             name: 'primary',
             type: 'bool',
             header: 'default: false',
@@ -147,6 +159,12 @@ var ButtonPage = React.createClass({
             header: 'required',
             desc: 'This is the name of the icon to display inside the button. This only applies to ' +
               'floating action buttons.'
+          },
+          {
+            name: 'linkButton',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, an anchor element will be generated instead of a button element.'
           },
           {
             name: 'mini',
