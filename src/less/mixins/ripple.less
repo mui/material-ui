@@ -9,7 +9,7 @@
 	@percent-100: ~'100% { transform: scale(1); background-color: @{transparent}; }';
 
 	.lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-50} @{percent-100}');
-	.lh-animation(@duration ease 0s normal none 1 running @animation-name);
+	.lh-animation(@animation-name @duration ease 0s);
 }
 
 //Animating using scale transforms causes ripple to ignore border radius 
@@ -20,7 +20,7 @@
 	@percent-100: ~'100% { width: @{size}; height: @{size}; background-color: @{transparent}; }';
 
 	.lh-keyframes(~'@{animation-name}, @{percent-0} @{percent-50} @{percent-100}');
-	.lh-animation(@duration ease 0s normal none 1 running @animation-name);
+	.lh-animation(@animation-name @duration ease 0s);
 }
 
 .ripple-button-focus() {
