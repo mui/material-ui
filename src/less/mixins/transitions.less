@@ -8,5 +8,5 @@
   @start: ~'0%, 100% { transform: scale(@{start-size}); }';
   @end: ~'50% { transform: scale(@{end-size}); }';
   .lh-keyframes(~'@{animation-name}, @{start} @{end}');
-  .lh-animation(@animation-name @duration infinite);
+  .lh-animation(@duration ease 0s normal none infinite running @animation-name);
 }
