@@ -1,6 +1,11 @@
-var mui = require('mui');
-var PaperButton = mui.PaperButton;
 var React = require('react');
+var mui = require('mui');
+var DropDownIcon = mui.DropDownIcon;
+var DropDownMenu = mui.DropDownMenu;
+var Icon = mui.Icon;
+var RaisedButton = mui.RaisedButton;
+var Toolbar = mui.Toolbar;
+var ToolbarGroup = mui.ToolbarGroup;
 
 var ToolbarPage = React.createClass({
 
@@ -23,29 +28,24 @@ var ToolbarPage = React.createClass({
     return (
     	<div>
     		<h2 className="mui-font-style-headline">Toolbars</h2>
-        <div className="mui-toolbar-container">
-          <mui.Toolbar>
-			      <mui.ToolbarGroup key={0} float="left">
-				      <mui.DropDownMenu menuItems={filterOptions} />
-			      </mui.ToolbarGroup>
-			      <mui.ToolbarGroup key={1} float="right">
-				      <mui.Icon icon='mui-icon-pie' />
-				      <mui.Icon icon='mui-icon-sort' />
-				      <mui.DropDownIcon icon="navigation-expand-more" menuItems={iconMenuItems} 
+        <div className="toolbar-example">
+          <Toolbar>
+			      <ToolbarGroup key={0} float="left">
+				      <DropDownMenu menuItems={filterOptions} />
+			      </ToolbarGroup>
+			      <ToolbarGroup key={1} float="right">
+				      <Icon icon='mui-icon-pie' />
+				      <Icon icon='mui-icon-sort' />
+				      <DropDownIcon icon="navigation-expand-more" menuItems={iconMenuItems} 
 				      	onChange={this._onDropDownMenuChange} />
               <span className="mui-toolbar-separator">&nbsp;</span>
-				      <mui.PaperButton type={PaperButton.Types.RAISED} label="Create Broadcast" 
-				      	primary={true} />
-			      </mui.ToolbarGroup>
-		      </mui.Toolbar>
+				      <RaisedButton label="Create Broadcast" primary={true} />
+			      </ToolbarGroup>
+		      </Toolbar>
         </div>
     	</div>
     );
-  },
-
-  _onDropDownMenuChange: function(e, key, menuItem) {
-    console.log('Menu Clicked: ', menuItem);
-  },
+  }
 
 });
 

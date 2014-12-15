@@ -53,6 +53,19 @@ module.exports = {
     el.style.display = 'none';
     el.offsetHeight;
     el.style.display = originalDisplay;
+  },
+
+  withoutTransition: function(el, callback) {
+    //turn off transition
+    el.style.transition = 'none';
+    
+    callback();
+
+    //force a redraw
+    this.forceRedraw(el);
+
+    //put the transition back
+    el.style.transition = '';
   }
   
 }

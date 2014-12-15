@@ -1,0 +1,75 @@
+.mui-tooltip {
+  position: absolute;
+
+  font-size: 10px;
+  line-height: 22px;
+  padding: 0 8px;
+  color: @white;
+  overflow: hidden;
+  top: -10000px;
+
+  .lh-border-radius(2px);
+  .lh-user-select(none);
+  .lh-opacity(0);
+  .lh-transition(
+    top 0ms @ease-out-function 450ms,
+    transform 450ms @ease-out-function 0ms,
+    opacity 450ms @ease-out-function 0ms
+  );
+
+  .mui-tooltip-label {
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .mui-tooltip-ripple {
+    position: absolute;
+    left: 50%;
+    top: 0px;
+
+    .lh-translate(-50%, -50%);
+    .lh-border-radius(50%);
+    background-color: transparent;
+
+    .lh-transition(
+      width 0ms @ease-out-function 450ms,
+      height 0ms @ease-out-function 450ms,
+      background-color 450ms @ease-out-function 0ms
+    );
+  }
+
+  &.mui-is-shown {
+    top: -16px;
+
+    .lh-opacity(1);
+    .lh-translate3d(0, 16px, 0);
+    .lh-transition(
+      top 0ms @ease-out-function 0ms, 
+      transform 450ms @ease-out-function 0ms,
+      opacity 450ms @ease-out-function 0ms
+    );
+
+    .mui-tooltip-ripple {
+      background-color: @grey-600;
+      .lh-transition(
+        width 450ms @ease-out-function 0ms,
+        height 450ms @ease-out-function 0ms,
+        background-color 450ms @ease-out-function 0ms
+      );
+    }
+
+  }
+
+  &.mui-is-touch {
+    font-size: 14px;
+    line-height: 44px;
+    padding: 0 16px;
+
+    &.mui-is-shown {
+      .mui-tooltip-ripple {
+        height: 105px;
+        width: 105px;
+      }
+    }
+  }
+}

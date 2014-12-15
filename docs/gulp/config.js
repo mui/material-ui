@@ -1,5 +1,5 @@
 var dest = './build',
-  src = './src'
+  src = './src',
   mui = '../src';
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
     dest: dest
   },
   fonts: {
-    src: mui + 'less/material-design-fonticons/fonts/**',
+    src: mui + '/less/material-design-fonticons/fonts/**',
     dest: dest + '/fonts/mdfonticon'
   },
   muiFonts: {

@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react'),
   mui = require('mui'),
   MenuItem = mui.MenuItem,

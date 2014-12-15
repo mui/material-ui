@@ -2,7 +2,6 @@
   "name": "material-ui-docs",
   "version": "0.0.1",
   "description": "Documentation site for material-ui",
-  "private": true,
   "browser": {
     "mui": "../src/index.js"
   },
@@ -35,6 +34,7 @@
     "highlight.js": "^8.4.0",
     "react": "^0.12.1",
     "react-router": "^0.11.4",
+    "react-draggable2": "^0.4.1",
     "react-tap-event-plugin": "^0.1.3"
   }
 }

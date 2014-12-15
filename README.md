@@ -1,5 +1,7 @@
 # [Material-UI](http://callemall.github.io/material-ui/)
 
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Material-UI is a CSS framework and a set of [React](http://facebook.github.io/react/) components that implement [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html) specification.
 
 Check out our [documentation site](http://www.material-ui.com/) for live examples. It's still a work in progress, but hopefully you can see where we're headed.
@@ -35,6 +37,20 @@ var SomeAwesomeComponent = React.createClass({
 module.exports = SomeAwesomeComponent;
 ```
 
+### Usage Notes
+Some components uses [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
+listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
+sure to inject this plugin at the start of your app.
+```js
+var injectTapEventPlugin = require("react-tap-event-plugin");
+
+//Needed for onTouchTap
+//Can go away when react 1.0 release
+//Check this repo:
+//https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
+```
+
 ## Customization
 
 The styles are separated into 2 less files:
@@ -51,20 +67,14 @@ This allows you to override any variables defined in [custom-variables.less](htt
 @import "node_modules/material-ui/src/less/components.less";
 ```
 
-## Building the Documentation Site
-After cloning the repository, install dependencies:
-```
-cd <project folder>/material-ui
-npm install
-cd <project folder>/material-ui/docs
-npm install
-npm install -g gulp
-```
+### Use with Sass
 
-Now you can run your local server:
-```
-gulp
-```
+For [Sass](http://www.sass-lang.com) users, [material-ui-sass](https://github.com/gpbl/material-ui-sass) contains the .scss version of the Less framework.
+
+## Examples
+There are 2 projects that you can look at to help you get started. The first project can be found in the [example folder](https://github.com/callemall/material-ui/tree/master/example). This is a basic project that shows how you can consume material-ui components in your own project.
+
+The second project is the actual documentation site. This is a more complex project but will give examples of every component. Check out the [docs folder](https://github.com/callemall/material-ui/tree/master/docs) for build instructions.
 
 ## Contribute
 

@@ -1,12 +1,8 @@
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  mui = require('mui'),
-  IconButton = mui.IconButton,
-  CodeExample = require('../../code-example/code-example.jsx'),
-  ComponentInfo = require('../../component-info.jsx');
+var React = require('react');
+var mui = require('mui');
+var IconButton = mui.IconButton;
+var CodeExample = require('../../code-example/code-example.jsx');
+var ComponentInfo = require('../../component-info.jsx');
 
 var IconButtonsPage = React.createClass({
 
@@ -33,13 +29,15 @@ var IconButtonsPage = React.createClass({
 
   _getExample: function() {
     var code =
-      '<IconButton icon="action-grade" />\n' +
-      '<IconButton icon="action-grade" disabled={true} />';
+      '<IconButton icon="action-grade" tooltip="star" />\n' +
+      '<IconButton icon="action-grade" tooltip="star" touch={true} />\n' +
+      '<IconButton icon="action-grade" tooltip="star" disabled={true} />';
 
     return (
       <CodeExample code={code}>
-        <IconButton icon="action-grade" />
-        <IconButton icon="action-grade" disabled={true} />
+        <IconButton icon="action-grade" tooltip="Star" />
+        <IconButton icon="action-grade" tooltip="Star" touch={true} />
+        <IconButton icon="action-grade" tooltip="Star" disabled={true} />
       </CodeExample>
     );
   },
@@ -52,6 +50,18 @@ var IconButtonsPage = React.createClass({
             header: 'required',
             desc: 'The name of the icon to use.'
           },
+          {
+            name: 'tooltip',
+            type: 'string',
+            header: 'optional',
+            desc: 'The tooltip text to show.'
+          },
+          {
+            name: 'touch',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, this component will render the touch sized tooltip.'
+          }
         ];
 
     return <ComponentInfo infoArray={info} />;

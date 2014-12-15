@@ -208,14 +208,9 @@ var Menu = React.createClass({
       '100%';
 
     //Update the menu width
-    el.style.transition = 'none';
-    el.style.width = menuWidth;
-
-    //force a redraw
-    Dom.forceRedraw(el);
-
-    //put the transition back
-    el.style.transition = '';
+    Dom.withoutTransition(el, function() {
+      el.style.width = menuWidth;
+    });
   },
 
   _renderVisibility: function() {

@@ -2,7 +2,6 @@
 // This is place to put any variable overrides as well.
 
 //Typography
-@import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500');
 @headingFontFamily: 'Roboto', sans-serif;
 @contentFontFamily: 'Roboto', sans-serif;
 
@@ -77,18 +76,6 @@
 @floating-action-button-disabled-color: @raised-button-disabled-color;
 @floating-action-button-disabled-text-color: @raised-button-disabled-text-color;
 
-//To be deprecidated
-@fab-size: 56px;
-@fab-mini-size: 40px;
-@paper-button-height: 36px;
-@paper-button-min-width: 88px;
-@paper-button-default-color: @white;
-@paper-button-default-text-color: @dark-black;
-@paper-button-primary-color: @accent-1-color;
-@paper-button-primary-text-color: @white;
-@paper-button-disabled-color: @grey-200;
-@paper-button-disabled-text-color: @min-black;
-
 // input
 @input-width: 320px;
 @input-font-size: 16px;
@@ -107,15 +94,37 @@
 @checkbox-box-border-color: black;
 @checkbox-check-color: green;
 
-// toggle
-@toggle-width: 32px;
-@toggle-checked-color: green;
-@toggle-bar-color: black;
-
 // toast
 @mui-toast-color: white;
 @mui-toast-background-color: #323232;
 @mui-toast-action-color: yellow;
+
+// toggle
+@toggle-size: 20px;
+@toggle-track-on-color: @cyan-200;
+@toggle-track-off-color: @min-black;
+@toggle-track-disabled-color: @faint-black;
+@toggle-thumb-on-color: @primary-1-color;
+@toggle-thumb-off-color: @grey-50;
+@toggle-thumb-disabled-color: @grey-800;
+
+// toolbar
+@toolbar-background-color: darken(#eeeeee, 5%);
+@toolbar-height: 56px;
+@toolbar-icon-color: rgba(0, 0, 0, .40);
+@toolbar-separator-color: rgba(0, 0, 0, .175);
+@toolbar-menu-hover-color: rgba(0, 0, 0, .10);
+@toolbar-menu-hover-color: @white;
+
+// slider
+@slider-track-size: 2px;
+@slider-track-color: @min-black;
+@slider-track-color-selected: @grey-500;
+@slider-handle-size: 12px;
+@slider-handle-size-active: @slider-handle-size * 2;
+@slider-handle-size-disabled: 8px;
+@slider-handle-color-zero: @grey-400;
+@slider-selection-color: @primary-3-color;
 
 // layout
 @app-bar-height: @desktop-keyline-increment;

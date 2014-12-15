@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react');
 var mui = require('mui');
 var CodeExample = require('../../code-example/code-example.jsx');
@@ -12,7 +8,7 @@ var ToastsPage = React.createClass({
     return {
       message: 'You have deleted your broadcast.',
       action: 'undo'
-    }
+    };
   },
 
   render: function() {
