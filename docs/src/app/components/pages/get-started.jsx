@@ -44,13 +44,24 @@ var GetStarted = React.createClass({
             Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>. 
             Use <a href="http://browserify.org/">browserify</a> and <a href="https://github.com/andreypopp/reactify">reactify</a> for
             dependency management and JSX transformation. The CSS framework is written in <a href="http://lesscss.org/">Less</a>,
-            so you'll need to compile that as well.
+            so you'll need to compile that as well. For <a href="http://www.sass-lang.com/">Sass</a> users, <a href="https://github.com/gpbl/material-ui-sass">material-ui-sass</a> contains
+            the .scss version of the Less framework.
           </p>
 
-          <h2 className="mui-font-style-headline">Sass</h2>
+          <h3 className="mui-font-style-title">React-Tap-Event-Plugin</h3>
           <p>
-            For <a href="http://www.sass-lang.com/">Sass</a> users, 
-            <a href="https://github.com/gpbl/material-ui-sass">material-ui-sass</a> contains the .scss version of the Less framework.
+            Some components uses <a href="https://github.com/zilverline/react-tap-event-plugin">react-tap-event-plugin</a> to
+            listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
+            sure to inject this plugin at the start of your app.
+          </p>
+          <mui.Paper className="code-example">
+            <CodeBlock>{usageNotesCode}</CodeBlock>
+          </mui.Paper>
+
+          <h3 className="mui-font-style-title">Roboto Font</h3>
+          <p>
+            Be sure to include the <a href="http://www.google.com/fonts/specimen/Roboto">Roboto</a> font
+            in your project. Here are <a href="http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500">some instructions</a> on how to include it in your project.
           </p>
 
           <h2 className="mui-font-style-headline">Usage</h2>
@@ -59,16 +70,6 @@ var GetStarted = React.createClass({
           </p>
           <mui.Paper className="code-example">
             <CodeBlock>{usageCode}</CodeBlock>
-          </mui.Paper>
-
-          <h2 className="mui-font-style-headline">Usage Notes</h2>
-          <p>
-            Some components uses <a href="https://github.com/zilverline/react-tap-event-plugin">react-tap-event-plugin</a> to
-            listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
-            sure to inject this plugin at the start of your app.
-          </p>
-          <mui.Paper className="code-example">
-            <CodeBlock>{usageNotesCode}</CodeBlock>
           </mui.Paper>
 
           <h2 className="mui-font-style-headline">Customization</h2>

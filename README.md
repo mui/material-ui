@@ -13,8 +13,25 @@ Material-UI is available as an [npm package](https://www.npmjs.org/package/mater
 npm install material-ui
 ```
 
-Use [browserify](http://browserify.org/) and [reactify](https://github.com/andreypopp/reactify) for dependency management and JSX transformation. The CSS framework is written in [Less](http://lesscss.org/), so you'll need to compile that as well.
+Use [browserify](http://browserify.org/) and [reactify](https://github.com/andreypopp/reactify) for dependency management and JSX transformation. The CSS framework is written in [Less](http://lesscss.org/), so you'll need to compile that as well. For [Sass](http://www.sass-lang.com) users, [material-ui-sass](https://github.com/gpbl/material-ui-sass) contains the .scss version of the Less framework.
 
+### React-Tap-Event-Plugin
+Some components uses [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
+listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
+sure to inject this plugin at the start of your app.
+```js
+var injectTapEventPlugin = require("react-tap-event-plugin");
+
+//Needed for onTouchTap
+//Can go away when react 1.0 release
+//Check this repo:
+//https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
+```
+
+### Roboto Font
+Be sure to include the [Roboto](http://www.google.com/fonts/specimen/Roboto) font in your project.
+Here are [some instructions](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500) on how to include it in your project.
 
 ## Usage
 
@@ -37,20 +54,6 @@ var SomeAwesomeComponent = React.createClass({
 module.exports = SomeAwesomeComponent;
 ```
 
-### Usage Notes
-Some components uses [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
-listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
-sure to inject this plugin at the start of your app.
-```js
-var injectTapEventPlugin = require("react-tap-event-plugin");
-
-//Needed for onTouchTap
-//Can go away when react 1.0 release
-//Check this repo:
-//https://github.com/zilverline/react-tap-event-plugin
-injectTapEventPlugin();
-```
-
 ## Customization
 
 The styles are separated into 2 less files:
@@ -66,10 +69,6 @@ This allows you to override any variables defined in [custom-variables.less](htt
 
 @import "node_modules/material-ui/src/less/components.less";
 ```
-
-### Use with Sass
-
-For [Sass](http://www.sass-lang.com) users, [material-ui-sass](https://github.com/gpbl/material-ui-sass) contains the .scss version of the Less framework.
 
 ## Examples
 There are 2 projects that you can look at to help you get started. The first project can be found in the [example folder](https://github.com/callemall/material-ui/tree/master/example). This is a basic project that shows how you can consume material-ui components in your own project.
