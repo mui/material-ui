@@ -1,3 +1,29 @@
+## 0.4.0
+###### _Dec. 15, 2014_
+
+##### Breaking Changes
+- Removed PaperButton - Use FlatButton, RaisedButton, or FloatingActionButton
+- Removed Roboto font import (#104) - Be sure to [include the Roboto](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500) font in your project.
+
+##### General
+- Added react-draggable2 dependency
+
+##### Components
+- Buttons
+  - Added linkButton functionality (#130)
+- Icon Buttons
+  - Added tooltip functionality
+- Input
+  - Added method to set focus
+- Left Nav
+  - Added method to open left nav panel
+- Radio Button
+  - Added defaultChecked prop
+- Slider (New)
+  - Added slider component
+- Toggle
+  - Updated styles to match material design specs
+
 ## 0.3.3
 ###### _Dec. 7, 2014_
 
