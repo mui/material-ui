@@ -118,7 +118,7 @@ var Slider = React.createClass({
   },
 
   setPercent: function (percent) {
-    var value = percent * (this.props.max - this.props.min) + this.props.min;
+    var value = this._percentToValue(percent);
     this.setState({value: value, percent: percent});
   },
 
@@ -162,7 +162,12 @@ var Slider = React.createClass({
   _updateWithChangeEvent: function(e, percent) {
     if (this.state.percent === percent) return;
     this.setPercent(percent);
-    if (this.props.onChange) this.props.onChange(e, this.state.value);
+    var value = this._percentToValue(percent);
+    if (this.props.onChange) this.props.onChange(e, value);
+  },
+
+  _percentToValue: function(percent) {
+    return percent * (this.props.max - this.props.min) + this.props.min;
   }
 
 });
