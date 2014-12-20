@@ -59,9 +59,9 @@ var Input = React.createClass({
     textareaClassName = 'mui-input-textarea ' + notEmptyClass,
     inputElement = this.props.multiline ?
       this.props.valueLink ?
-        <textarea {...this.props} className={textareaClassName} placeholder={placeholder}
+        <textarea {...this.props} ref="input" className={textareaClassName} placeholder={placeholder}
           rows={this.state.rows} /> :
-        <textarea {...this.props} value={this.state.value} className={textareaClassName}
+        <textarea {...this.props} ref="input" value={this.state.value} className={textareaClassName}
           placeholder={placeholder} rows={this.state.rows} onChange={this._onTextAreaChange} /> :
         this.props.valueLink ?
           <input {...this.props} ref="input" className={inputClassName} placeholder={placeholder} /> :
@@ -94,8 +94,8 @@ var Input = React.createClass({
     this.setValue("");
   },
   
-  focus: function () {
-    if(this.isMounted()) this.refs.input.getDOMNode().focus();
+  focus: function() {
+    if (this.isMounted()) this.refs.input.getDOMNode().focus();
   },
 
   _onInputChange: function(e) {
