@@ -54,15 +54,18 @@ var Input = React.createClass({
       'mui-error': this.props.error !== undefined && this.props.error !== null
     }),
     placeholder = this.props.inlinePlaceholder ? this.props.placeholder : "",
+    notEmptyClass = this.state.value ? 'mui-input-not-empty' : '',
+    inputClassName = notEmptyClass,
+    textareaClassName = 'mui-input-textarea ' + notEmptyClass,
     inputElement = this.props.multiline ?
       this.props.valueLink ?
-        <textarea {...this.props} className="mui-input-textarea" placeholder={placeholder}
+        <textarea {...this.props} className={textareaClassName} placeholder={placeholder}
           rows={this.state.rows} /> :
-        <textarea {...this.props} value={this.state.value} className="mui-input-textarea"
+        <textarea {...this.props} value={this.state.value} className={textareaClassName}
           placeholder={placeholder} rows={this.state.rows} onChange={this._onTextAreaChange} /> :
         this.props.valueLink ?
-          <input {...this.props} ref="input" placeholder={placeholder} /> :
-          <input {...this.props} ref="input" value={this.state.value} placeholder={placeholder}
+          <input {...this.props} ref="input" className={inputClassName} placeholder={placeholder} /> :
+          <input {...this.props} className={inputClassName} ref="input" value={this.state.value} placeholder={placeholder}
             onChange={this._onInputChange} />
     placeholderSpan = this.props.inlinePlaceholder ? null : <span className="mui-input-placeholder"
       onClick={this._onPlaceholderClick}>{this.props.placeholder}</span>;
