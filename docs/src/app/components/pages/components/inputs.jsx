@@ -15,6 +15,8 @@ var InputsPage = React.createClass({
         <br />
         <mui.Input ref="firstname" onChange={this._onChange} type="text" name="firstname" placeholder="First Name" description="Your first name as it appears on your credit card." />
         <mui.Input ref="lastname" type="text" name="lastname" placeholder="Last Name" description="Your last name as it appears on your credit card.." />
+        <mui.Input ref="disabled" type="text" name="disabled" disabled={true} placeholder="Disabled input" />
+        <mui.Input ref="disabled_v" type="text" name="disabled_v" disabled={true} defaultValue="with value" placeholder="Disabled input" />
         <mui.Input ref="addressline1" type="text" name="addressline1" placeholder="Address Line 1" description="Your address as it appears on your credit card." />
         <mui.Input ref="addressline2" type="text" name="zipcode" placeholder="Zip Code" description="Your zip code as it appears on your credit card." />
         <mui.Input ref="city" type="text" name="city" placeholder="City" description="Your city as it appears on your credit card." />

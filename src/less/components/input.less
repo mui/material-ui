@@ -14,7 +14,7 @@
     padding-bottom: 14px;
     width: @input-width;
 
-    &:focus, &:valid, &:disabled:not([value=""]), &:disabled:not([value]) {
+    &:focus, &:valid, &:disabled[value]:not([value=""]) {
       outline: none;
       box-shadow: none;
       padding: 0;
@@ -53,7 +53,7 @@
       }
     }
 
-    &:not(:focus):valid, &:disabled:not([value=""]), &:disabled:not([value]) {
+    &:not(:focus):valid, &:disabled[value]:not([value=""]) {
       &+.mui-input-placeholder {
         font-size: 13px;
         color: gray;
@@ -103,7 +103,7 @@
       width: @input-width;
     }
 
-    &:focus, &:valid, &:disabled:not([value=""]), &:disabled:not([value]) {
+    &:focus, &:valid, &:disabled[value]:not([value=""]) {
       outline: none;
       box-shadow: none;
       &~.mui-input-placeholder {
@@ -129,7 +129,7 @@
       }
     }
 
-    &:not(:focus):valid, &:disabled:not([value=""]), &:disabled:not([value]) {
+    &:not(:focus):valid, &:disabled[value]:not([value=""]) {
       &+.mui-input-placeholder {
         color: gray;
 
