@@ -54,7 +54,7 @@ var Input = React.createClass({
       'mui-error': this.props.error !== undefined && this.props.error !== null
     }),
     placeholder = this.props.inlinePlaceholder ? this.props.placeholder : "",
-    notEmptyClass = this.state.value ? 'mui-input-not-empty' : '',
+    notEmptyClass = this.state.value ? 'mui-is-not-empty' : '',
     inputClassName = notEmptyClass,
     textareaClassName = 'mui-input-textarea ' + notEmptyClass,
     inputElement = this.props.multiline ?

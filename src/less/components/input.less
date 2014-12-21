@@ -14,7 +14,7 @@
     padding-bottom: 14px;
     width: @input-width;
 
-    &:focus, &.mui-input-not-empty {
+    &:focus, &.mui-is-not-empty {
       outline: none;
       box-shadow: none;
       padding: 0;
@@ -53,7 +53,7 @@
       }
     }
 
-    &:not(:focus).mui-input-not-empty {
+    &:not(:focus).mui-is-not-empty {
       &+.mui-input-placeholder {
         font-size: 13px;
         color: gray;
@@ -103,7 +103,7 @@
       width: @input-width;
     }
 
-    &:focus, &.mui-input-not-empty {
+    &:focus, &.mui-is-not-empty {
       outline: none;
       box-shadow: none;
       &~.mui-input-placeholder {
@@ -129,7 +129,7 @@
       }
     }
 
-    &:not(:focus).mui-input-not-empty {
+    &:not(:focus).mui-is-not-empty {
       &+.mui-input-placeholder {
         color: gray;
 
@@ -207,7 +207,7 @@
 
   &.mui-error {
     textarea {
-      &:focus, &.mui-input-not-empty {
+      &:focus, &.mui-is-not-empty {
         &+.mui-input-placeholder {
           color: @input-error-color;
 
@@ -244,7 +244,7 @@
     }
 
     input {
-      &:focus, &.mui-input-not-empty {
+      &:focus, &.mui-is-not-empty {
         &+.mui-input-placeholder {
           color: @input-error-color;
 
@@ -285,14 +285,14 @@
           top: -4px;
         }
 
-        &.mui-input-not-empty {
+        &.mui-is-not-empty {
           &+.mui-input-placeholder {
             display: none;
           }
         }
       }
 
-      &.mui-input-not-empty {
+      &.mui-is-not-empty {
         &+.mui-input-placeholder {
           display: none;
         }
