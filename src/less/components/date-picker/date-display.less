@@ -1,0 +1,33 @@
+.mui-date-picker-date-display {
+
+  text-align: center;
+
+  .mui-date-picker-date-display-dow {
+    background-color: @date-picker-select-color;
+    color: @date-picker-select-text-color;
+    line-height: 32px;
+    .lh-border-radius(2px 2px 0 0);
+  }
+
+  .mui-date-picker-date-display-date {
+    padding: 16px 0;
+    background-color: @date-picker-color;
+    color: @date-picker-text-color;
+  }
+
+  .mui-date-picker-date-display-month,
+  .mui-date-picker-date-display-year {
+    font-size: 22px;
+    line-height: 22px;
+    text-transform: uppercase;
+  }
+
+  .mui-date-picker-date-display-day {
+    line-height: 68px;
+    font-size: 58px;
+  }
+
+  .mui-date-picker-date-display-year {
+    color: fade(@date-picker-text-color, 70%);
+  }
+}
