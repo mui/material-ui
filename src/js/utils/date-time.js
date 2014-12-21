@@ -51,6 +51,13 @@ module.exports = {
       case 5: return 'Friday';
       case 6: return 'Saturday';
     }
+  },
+
+  isEqualDate: function(d1, d2) {
+    return d1 && d2 &&
+      (d1.getFullYear() === d2.getFullYear()) &&
+      (d1.getMonth() === d2.getMonth()) &&
+      (d1.getDate() === d2.getDate());
   }
 
 }
