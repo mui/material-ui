@@ -55,8 +55,8 @@ var DialogWindow = React.createClass({
     return (
       <div className={classes}>
         <Paper ref="dialogWindow" className={contentClasses} zDepth={4}>
-          {this.state.open ? this.props.children : ''}
-          {this.state.open ? actions : ''}
+          {this.props.children}
+          {actions}
         </Paper>
         <Overlay show={this.state.open} onTouchTap={this._handleOverlayTouchTap} />
       </div>
@@ -115,10 +115,6 @@ var DialogWindow = React.createClass({
       //Vertically center the dialog window, but make sure it doesn't
       //transition to that position.
       container.style.paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64 + 'px';
-
-      //This is needed to keep the height from changing when the dialog
-      //gets closed
-      dialogWindow.style.height = dialogWindowHeight + 'px';
 
     }
   },
