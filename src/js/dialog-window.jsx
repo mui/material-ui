@@ -1,15 +1,16 @@
-var React = require('react'),
-  WindowListenable = require('./mixins/window-listenable.js'),
-  KeyCode = require('./utils/key-code.js'),
-  Classable = require('./mixins/classable'),
-  Overlay = require('./overlay.jsx'),
-  Paper = require('./paper.jsx');
+var React = require('react');
+var WindowListenable = require('./mixins/window-listenable.js');
+var KeyCode = require('./utils/key-code.js');
+var Classable = require('./mixins/classable');
+var Overlay = require('./overlay.jsx');
+var Paper = require('./paper.jsx');
 
 var DialogWindow = React.createClass({
 
   mixins: [Classable, WindowListenable],
 
   propTypes: {
+    actions: React.PropTypes.array,
     openImmediately: React.PropTypes.bool,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func
@@ -17,6 +18,12 @@ var DialogWindow = React.createClass({
 
   windowListeners: {
     'keyup': '_handleWindowKeyUp'
+  },
+
+  getDefaultProps: function() {
+    return {
+      actions: []
+    };
   },
 
   getInitialState: function() {
@@ -37,11 +44,21 @@ var DialogWindow = React.createClass({
     var classes = this.getClasses('mui-dialog-window', { 
       'mui-is-shown': this.state.open
     });
+    var actions;
+
+    if (this.props.actions.length) {
+      actions = (
+        <div className="mui-dialog-window-actions">
+          {this.props.actions}
+        </div>
+      );
+    }
 
     return (
       <div className={classes}>
         <Paper ref="dialogWindow" className="mui-dialog-window-contents" zDepth={4}>
           {this.state.open ? this.props.children : ''}
+          {this.state.open ? actions : ''}
         </Paper>
         <Overlay show={this.state.open} onTouchTap={this._handleOverlayTouchTap} />
       </div>
