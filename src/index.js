@@ -2,6 +2,7 @@ module.exports = {
   AppBar: require('./js/app-bar.jsx'),
   AppCanvas: require('./js/app-canvas.jsx'),
   Checkbox: require('./js/checkbox.jsx'),
+  DatePicker: require('./js/date-picker/date-picker.jsx'),
   Dialog: require('./js/dialog.jsx'),
   DropDownIcon: require('./js/drop-down-icon.jsx'),
   DropDownMenu: require('./js/drop-down-menu.jsx'),
