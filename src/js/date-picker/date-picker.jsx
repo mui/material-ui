@@ -10,12 +10,19 @@ var DatePicker = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    date: React.PropTypes.object
+    selectedDate: React.PropTypes.object
   },
 
   getDefaultProps: function() {
     return {
-      date: new Date()
+      selectedDate: new Date()
+    };
+  },
+
+  getInitialState: function() {
+    return {
+      focusDate: this.props.selectedDate,
+      keyboardFocusDate: null 
     };
   },
 
@@ -28,10 +35,12 @@ var DatePicker = React.createClass({
     });
     var actions = [
       <FlatButton
+        key={0}
         label="Cancel"
         secondary={true}
         onTouchTap={this._handleCancelTouchTap} />,
       <FlatButton
+        key={1}
         label="OK"
         secondary={true} />
     ];
@@ -42,8 +51,11 @@ var DatePicker = React.createClass({
         className={classes}
         actions={actions}
         contentClassName="mui-date-picker-dialog">
-        <DateDisplay date={this.props.date} />
-        <Calendar date={this.props.date} />
+        <DateDisplay selectedDate={this.props.selectedDate} />
+        <Calendar
+          focusDate={this.state.focusDate}
+          keyboardFocusDate={this.state.keyboardFocusDate}
+          selectedDate={this.props.selectedDate} />
       </DialogWindow>
     );
   },

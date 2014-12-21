@@ -1,5 +1,9 @@
 module.exports = {
 
+  getDaysInMonth: function(d) {
+    return new Date(d.getFullYear(), d.getMonth(), 0).getDate() + 1;
+  },
+
   getFullMonth: function(d) {
     var month = d.getMonth();
     switch (month) {

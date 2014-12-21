@@ -1,18 +1,19 @@
 var React = require('react');
+var CalendarMonth = require('./calendar-month.jsx');
 var CalendarToolbar = require('./calendar-toolbar.jsx');
 
 var Calendar = React.createClass({
 
   propTypes: {
-    date: React.PropTypes.object.isRequired
+    focusDate: React.PropTypes.object.isRequired,
+    keyboardFocusDate: React.PropTypes.object,
+    selectedDate: React.PropTypes.object.isRequired
   },
 
   render: function() {
-    //var month = DateTime.getShortMonth(this.props.date);
-
     return (
       <div className="mui-date-picker-calendar">
-        <CalendarToolbar date={this.props.date} />
+        <CalendarToolbar focusDate={this.props.focusDate} />
         <ul className="mui-date-picker-calendar-week-title">
           <li className="mui-date-picker-calendar-week-title-day">S</li>
           <li className="mui-date-picker-calendar-week-title-day">M</li>
@@ -22,6 +23,7 @@ var Calendar = React.createClass({
           <li className="mui-date-picker-calendar-week-title-day">F</li>
           <li className="mui-date-picker-calendar-week-title-day">S</li>
         </ul>
+        <CalendarMonth focusDate={this.props.focusDate} />
       </div>
     );
   }

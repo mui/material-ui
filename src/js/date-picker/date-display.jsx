@@ -4,14 +4,14 @@ var DateTime = require('../utils/date-time.js');
 var DateDisplay = React.createClass({
 
   propTypes: {
-    date: React.PropTypes.object.isRequired
+    selectedDate: React.PropTypes.object.isRequired
   },
 
   render: function() {
-    var dayOfWeek = DateTime.getDayOfWeek(this.props.date);
-    var month = DateTime.getShortMonth(this.props.date);
-    var day = this.props.date.getDate();
-    var year = this.props.date.getFullYear();
+    var dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
+    var month = DateTime.getShortMonth(this.props.selectedDate);
+    var day = this.props.selectedDate.getDate();
+    var year = this.props.selectedDate.getFullYear();
 
     return (
       <div className="mui-date-picker-date-display">

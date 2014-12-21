@@ -4,12 +4,12 @@ var DateTime = require('../utils/date-time.js');
 var CalendarToolbar = React.createClass({
 
   propTypes: {
-    date: React.PropTypes.object.isRequired
+    focusDate: React.PropTypes.object.isRequired
   },
 
   render: function() {
-    var month = DateTime.getFullMonth(this.props.date);
-    var year = this.props.date.getFullYear();
+    var month = DateTime.getFullMonth(this.props.focusDate);
+    var year = this.props.focusDate.getFullYear();
 
     return (
       <div className="mui-date-picker-calendar-toolbar">
