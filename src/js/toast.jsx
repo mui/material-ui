@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var React = require('react');
 var Classable = require('./mixins/classable.js');
 var ClickAwayable = require('./mixins/click-awayable.js');
@@ -54,7 +52,7 @@ var Toast = React.createClass({
     if (this.props.onClick) this.props.onClick(e, this.props.action);
     this.setState({ open: false });
   }
-
+  
 });
 
 module.exports = Toast;
