@@ -1,5 +1,6 @@
 var React = require('react');
 var DateTime = require('../utils/date-time.js');
+var DayButton = require('./day-button.jsx');
 
 var CalendarMonth = React.createClass({
 
@@ -29,7 +30,7 @@ var CalendarMonth = React.createClass({
 
   _getDayElements: function(week) {
     return week.map(function(day) {
-      return <span className="mui-date-picker-calendar-month-day">{day ? day : ''}</span>;
+      return <DayButton date={day} />;
     });
   },
 
@@ -44,17 +45,17 @@ var CalendarMonth = React.createClass({
     var weekArray = [];
 
     for (var i = 1; i <= daysInMonth; i++) {
-      dayArray.push(i);
+      dayArray.push(new Date(d.getFullYear(), d.getMonth(), i));
     };
 
     while (dayArray.length) {
-      firstDayOfWeek = new Date(d.getFullYear(), d.getMonth(), dayArray[0]).getDay();
+      firstDayOfWeek = dayArray[0].getDay();
       daysInWeek = 7 - firstDayOfWeek;
       emptyDays = 7 - daysInWeek;
       week = dayArray.splice(0, daysInWeek);
 
       for (var i = 0; i < emptyDays; i++) {
-        week.unshift(0);
+        week.unshift(null);
       };
 
       weekArray.push(week);
