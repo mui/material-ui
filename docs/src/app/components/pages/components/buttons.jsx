@@ -13,7 +13,7 @@ var ButtonPage = React.createClass({
       '//Flat Buttons\n' +
       '<FlatButton label="Default" />\n' +
       '<FlatButton label="Primary" primary={true} />\n' +
-      '<FlatButton label="Seconary" secondary={true} />\n' +
+      '<FlatButton label="Secondary" secondary={true} />\n' +
       '<FlatButton label="Disabled" disabled={true} />\n\n' +
       '//Raised Buttons\n' + 
       '<RaisedButton label="Default" />\n' +
