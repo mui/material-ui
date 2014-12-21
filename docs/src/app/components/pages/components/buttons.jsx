@@ -1,10 +1,10 @@
-var React = require('react'),
-  mui = require('mui'),
-  FlatButton = mui.FlatButton,
-  FloatingActionButton = mui.FloatingActionButton,
-  RaisedButton = mui.RaisedButton,
-  CodeExample = require('../../code-example/code-example.jsx'),
-  ComponentInfo = require('../../component-info.jsx');
+var React = require('react');
+var mui = require('mui');
+var FlatButton = mui.FlatButton;
+var FloatingActionButton = mui.FloatingActionButton;
+var RaisedButton = mui.RaisedButton;
+var CodeExample = require('../../code-example/code-example.jsx');
+var ComponentInfo = require('../../component-info.jsx');
 
 var ButtonPage = React.createClass({
 
@@ -13,17 +13,20 @@ var ButtonPage = React.createClass({
       '//Flat Buttons\n' +
       '<FlatButton label="Default" />\n' +
       '<FlatButton label="Primary" primary={true} />\n' +
+      '<FlatButton label="Seconary" secondary={true} />\n' +
       '<FlatButton label="Disabled" disabled={true} />\n\n' +
       '//Raised Buttons\n' + 
       '<RaisedButton label="Default" />\n' +
       '<RaisedButton label="Primary" primary={true} />\n' +
+      '<RaisedButton label="Secondary" secondary={true} />\n' +
       '<RaisedButton label="Disabled" disabled={true} />\n\n' +
       '//Floating Action Buttons\n' +
       '<FloatingActionButton icon="action-grade" />\n' +
       '<FloatingActionButton icon="action-grade" mini={true} />\n' +
       '<FloatingActionButton icon="action-grade" disabled={true} />\n' +
-      '<FloatingActionButton icon="action-grade" mini={true} disabled={true} />';
-
+      '<FloatingActionButton icon="action-grade" mini={true} disabled={true} />\n' +
+      '<FloatingActionButton icon="action-grade" secondary={true} />\n' +
+      '<FloatingActionButton icon="action-grade" mini={true} secondary={true} />';
     return (
     	<div>
 
@@ -40,6 +43,9 @@ var ButtonPage = React.createClass({
                 <FlatButton label="Primary" primary={true} />
               </div>
               <div className="button-example-container">
+                <FlatButton label="Secondary" secondary={true} />
+              </div>
+              <div className="button-example-container">
                 <FlatButton label="Disabled" disabled={true} />
               </div>
             </div>
@@ -50,6 +56,9 @@ var ButtonPage = React.createClass({
               </div>
               <div className="button-example-container">
                 <RaisedButton label="Primary" primary={true} />
+              </div>
+              <div className="button-example-container">
+                <RaisedButton label="Secondary" secondary={true} />
               </div>
               <div className="button-example-container">
                 <RaisedButton label="Disabled" disabled={true} />
@@ -68,6 +77,15 @@ var ButtonPage = React.createClass({
               </div>
               <div className="button-example-container">
                 <FloatingActionButton icon="action-grade" mini={true} disabled={true} />
+              </div>
+            </div>
+
+            <div className="button-example-group">
+              <div className="button-example-container">
+                <FloatingActionButton icon="action-grade" secondary={true} />
+              </div>
+              <div className="button-example-container">
+                <FloatingActionButton icon="action-grade" mini={true} secondary={true} />
               </div>
             </div>
           </div>
@@ -118,7 +136,13 @@ var ButtonPage = React.createClass({
             name: 'primary',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the button will use the primary app color as the button color.'
+            desc: 'If true, the button will use the primary button colors.'
+          },
+          {
+            name: 'secondary',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the button will use the secondary button colors.'
           }
         ];
 
@@ -144,7 +168,13 @@ var ButtonPage = React.createClass({
             name: 'primary',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the button will use the primary app color as the button color.'
+            desc: 'If true, the button will use the primary button colors.'
+          },
+          {
+            name: 'secondary',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the button will use the secondary button colors.'
           }
         ];
 
@@ -171,6 +201,12 @@ var ButtonPage = React.createClass({
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the button will be a small floating action button.'
+          },
+          {
+            name: 'secondary',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the button will use the secondary button colors.'
           }
         ];
 

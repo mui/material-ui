@@ -1,9 +1,9 @@
-var React = require('react'),
-  CssEvent = require('./utils/css-event.js'),
-  Classable = require('./mixins/classable.js'),
-  EnhancedButton = require('./enhanced-button.jsx'),
-  Paper = require('./paper.jsx'),
-  Ripple = require('./ripple.jsx');
+var React = require('react');
+var CssEvent = require('./utils/css-event.js');
+var Classable = require('./mixins/classable.js');
+var EnhancedButton = require('./enhanced-button.jsx');
+var Paper = require('./paper.jsx');
+var Ripple = require('./ripple.jsx');
 
 var RaisedButton = React.createClass({
 
@@ -13,7 +13,8 @@ var RaisedButton = React.createClass({
     className: React.PropTypes.string,
     label: React.PropTypes.string.isRequired,
     onTouchTap: React.PropTypes.func,
-    primary: React.PropTypes.bool
+    primary: React.PropTypes.bool,
+    secondary: React.PropTypes.bool
   },
 
   getInitialState: function() {
@@ -30,7 +31,8 @@ var RaisedButton = React.createClass({
       onTouchTap,
       ...other } = this.props,
       classes = this.getClasses('mui-raised-button', {
-        'mui-is-primary': this.props.primary
+        'mui-is-primary': this.props.primary,
+        'mui-is-secondary': !this.props.primary && this.props.secondary
       });
 
     return (

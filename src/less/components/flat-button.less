@@ -70,4 +70,28 @@
       }
     }
   }
+
+  &.mui-is-secondary {
+    color: @flat-button-secondary-text-color;
+
+    &:hover,
+    &.mui-is-keyboard-focused {
+      background-color: @flat-button-secondary-hover-color;
+    }
+
+    .mui-flat-button-ripple {
+      &.mui-is-visible {
+        .ripple-click-alt(
+          @animation-name: flat-secondary-button-ripple-click;
+          @color: @flat-button-secondary-ripple-color;
+        )
+      }
+    }
+
+    &.mui-is-keyboard-focused {
+      .mui-flat-button-focus-ripple {
+        background-color: @flat-button-secondary-focus-ripple-color;
+      }
+    }
+  }
 }
