@@ -57,7 +57,6 @@ var Dialog = React.createClass({
       var onClickHandler = a.onClick ? a.onClick : this.dismiss;
       return (
         <FlatButton
-          className="mui-dialog-action"
           key={index}
           secondary={true}
           onClick={onClickHandler}

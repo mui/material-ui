@@ -46,18 +46,10 @@ var DialogWindow = React.createClass({
       'mui-is-shown': this.state.open
     });
     var contentClasses = 'mui-dialog-window-contents';
-    var actions;
+    var actions = this._getActions();
 
     if (this.props.contentClassName) {
       contentClasses += ' ' + this.props.contentClassName;
-    }
-
-    if (this.props.actions.length) {
-      actions = (
-        <div className="mui-dialog-window-actions">
-          {this.props.actions}
-        </div>
-      );
     }
 
     return (
@@ -79,6 +71,32 @@ var DialogWindow = React.createClass({
   show: function() {
     this.setState({ open: true });
     if (this.props.onShow) this.props.onShow();
+  },
+
+  _getActions: function() {
+    var actionContainer;
+    var actions = this.props.actions;
+    var actionClassName;
+
+    if (actions.length) {
+
+      for (var i = 0; i < actions.length; i++) {
+        actionClassName = actions[i].props.className;
+
+        actions[i].props.className = actionClassName ?
+          actionClassName + ' mui-dialog-window-action' :
+          'mui-dialog-window-action';
+      };
+
+      actionContainer = (
+        <div className="mui-dialog-window-actions">
+          {actions}
+        </div>
+      );
+
+    }
+
+    return actionContainer;
   },
 
   _positionDialog: function() {
