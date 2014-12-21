@@ -11,6 +11,7 @@ var DialogWindow = React.createClass({
 
   propTypes: {
     actions: React.PropTypes.array,
+    contentClassName: React.PropTypes.string,
     openImmediately: React.PropTypes.bool,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func
@@ -44,7 +45,12 @@ var DialogWindow = React.createClass({
     var classes = this.getClasses('mui-dialog-window', { 
       'mui-is-shown': this.state.open
     });
+    var contentClasses = 'mui-dialog-window-contents';
     var actions;
+
+    if (this.props.contentClassName) {
+      contentClasses += ' ' + this.props.contentClassName;
+    }
 
     if (this.props.actions.length) {
       actions = (
@@ -56,7 +62,7 @@ var DialogWindow = React.createClass({
 
     return (
       <div className={classes}>
-        <Paper ref="dialogWindow" className="mui-dialog-window-contents" zDepth={4}>
+        <Paper ref="dialogWindow" className={contentClasses} zDepth={4}>
           {this.state.open ? this.props.children : ''}
           {this.state.open ? actions : ''}
         </Paper>
