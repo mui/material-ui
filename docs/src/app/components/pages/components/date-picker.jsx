@@ -1,6 +1,7 @@
 var React = require('react');
 var mui = require('mui');
 var DatePicker = mui.DatePicker;
+var RaisedButton = mui.RaisedButton;
 var CodeExample = require('../../code-example/code-example.jsx');
 var ComponentInfo = require('../../component-info.jsx');
 
@@ -28,7 +29,8 @@ var DatePickerPage = React.createClass({
 
     return (
       <CodeExample code={code}>
-        <DatePicker />
+        <RaisedButton label="Show Date Picker" onTouchTap={this._handleTouchTap} />
+        <DatePicker ref="datePicker" />
       </CodeExample>
     );
   },
@@ -44,6 +46,10 @@ var DatePickerPage = React.createClass({
         ];
 
     return <ComponentInfo infoArray={info} />;
+  },
+
+  _handleTouchTap: function() {
+    this.refs.datePicker.show();
   }
 
 });
