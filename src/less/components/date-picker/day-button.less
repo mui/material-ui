@@ -1,9 +1,33 @@
 .mui-date-picker-day-button {
+  position: relative;
   float: left;
   width: 36px;
   padding: 4px 2px;
 
+  .mui-date-picker-day-button-select {
+    position: absolute;
+    background-color: @date-picker-select-color;
+    height: 32px;
+    width: 32px;
+    .ease-out();
+    .lh-opacity(0);
+    .lh-border-radius(50%);
+  }
+
+  .mui-date-picker-day-button-label {
+    position: relative;
+  }
+
+  &.mui-is-selected {
+    .mui-date-picker-day-button-label {
+      color: @date-picker-select-text-color;
+    }
+    .mui-date-picker-day-button-select {
+      .lh-opacity(1);
+    }
+  }
+
   &.mui-is-current-date {
-    color: @date-picker-select-color;
+    color: @date-picker-color;
   }
 }

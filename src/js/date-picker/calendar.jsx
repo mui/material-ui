@@ -1,4 +1,5 @@
 var React = require('react');
+var DateTime = require('../utils/date-time.js');
 var CalendarMonth = require('./calendar-month.jsx');
 var CalendarToolbar = require('./calendar-toolbar.jsx');
 
@@ -7,6 +8,7 @@ var Calendar = React.createClass({
   propTypes: {
     focusDate: React.PropTypes.object.isRequired,
     keyboardFocusDate: React.PropTypes.object,
+    onSelectedDateChange: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired
   },
 
@@ -23,9 +25,19 @@ var Calendar = React.createClass({
           <li className="mui-date-picker-calendar-week-title-day">F</li>
           <li className="mui-date-picker-calendar-week-title-day">S</li>
         </ul>
-        <CalendarMonth focusDate={this.props.focusDate} />
+        <CalendarMonth
+          focusDate={this.props.focusDate}
+          onDayTouchTap={this._handleDayTouchTap}
+          selectedDate={this.props.selectedDate} />
       </div>
     );
+  },
+
+  _handleDayTouchTap: function(e, date) {
+    if (this.props.onSelectedDateChange &&
+      (!DateTime.isEqualDate(this.props.selectedDate, date))) {
+      this.props.onSelectedDateChange(e, date);
+    }
   }
 
 });

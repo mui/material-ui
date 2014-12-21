@@ -10,19 +10,20 @@ var DatePicker = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    selectedDate: React.PropTypes.object
+    initialDate: React.PropTypes.object
   },
 
   getDefaultProps: function() {
     return {
-      selectedDate: new Date()
+      initialDate: new Date()
     };
   },
 
   getInitialState: function() {
     return {
-      focusDate: this.props.selectedDate,
-      keyboardFocusDate: null 
+      focusDate: this.props.initialDate,
+      keyboardFocusDate: null,
+      selectedDate: this.props.initialDate
     };
   },
 
@@ -50,12 +51,14 @@ var DatePicker = React.createClass({
         ref="dialogWindow"
         className={classes}
         actions={actions}
-        contentClassName="mui-date-picker-dialog">
-        <DateDisplay selectedDate={this.props.selectedDate} />
+        contentClassName="mui-date-picker-dialog"
+        onDismiss={this._handleDialogDismiss}>
+        <DateDisplay selectedDate={this.state.selectedDate} />
         <Calendar
           focusDate={this.state.focusDate}
           keyboardFocusDate={this.state.keyboardFocusDate}
-          selectedDate={this.props.selectedDate} />
+          onSelectedDateChange={this._handleDateChange}
+          selectedDate={this.state.selectedDate} />
       </DialogWindow>
     );
   },
@@ -70,6 +73,18 @@ var DatePicker = React.createClass({
 
   _handleCancelTouchTap: function() {
     this.refs.dialogWindow.dismiss();
+  },
+
+  _handleDateChange: function(e, date) {
+    this.setState({
+      selectedDate: date
+    });
+  },
+
+  _handleDialogDismiss: function() {
+    this.setState({
+      selectedDate: this.props.initialDate
+    });
   }
 
 });

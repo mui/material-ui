@@ -5,7 +5,9 @@ var DayButton = require('./day-button.jsx');
 var CalendarMonth = React.createClass({
 
   propTypes: {
-    focusDate: React.PropTypes.object
+    focusDate: React.PropTypes.object.isRequired,
+    onDayTouchTap: React.PropTypes.func,
+    selectedDate: React.PropTypes.object.isRequired
   },
 
   render: function() {
@@ -30,8 +32,14 @@ var CalendarMonth = React.createClass({
 
   _getDayElements: function(week) {
     return week.map(function(day) {
-      return <DayButton date={day} />;
-    });
+      var selected = DateTime.isEqualDate(this.props.selectedDate, day);
+      return (
+        <DayButton
+          date={day}
+          onTouchTap={this._handleDayTouchTap}
+          selected={selected} />
+      );
+    }, this);
   },
 
   _getWeekArray: function() {
@@ -62,6 +70,10 @@ var CalendarMonth = React.createClass({
     }
 
     return weekArray;
+  },
+
+  _handleDayTouchTap: function(e, date) {
+    if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
   }
 
 });
