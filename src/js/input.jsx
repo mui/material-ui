@@ -51,7 +51,8 @@ var Input = React.createClass({
     var classes = this.getClasses('mui-input', {
       'mui-floating': this.props.inputStyle === 'floating',
       'mui-text': this.props.type === 'text',
-      'mui-error': this.props.error !== undefined && this.props.error !== null
+      'mui-error': this.props.error !== undefined && this.props.error !== null,
+      'mui-disabled': !!this.props.disabled,
     }),
     placeholder = this.props.inlinePlaceholder ? this.props.placeholder : "",
     inputElement = this.props.multiline ?
