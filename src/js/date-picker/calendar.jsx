@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var DateTime = require('../utils/date-time.js');
 var CalendarMonth = require('./calendar-month.jsx');
 var CalendarToolbar = require('./calendar-toolbar.jsx');
@@ -14,7 +15,30 @@ var Calendar = React.createClass({
     selectedDate: React.PropTypes.object.isRequired
   },
 
+  getInitialState: function() {
+    return {
+      transitionDirection: 'left'
+    };
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    var dir;
+
+    if (nextProps.focusDate !== this.props.focusDate) {
+
+      dir = nextProps.focusDate > this.props.focusDate ? 'left' : 'right';
+      this.setState({
+        transitionDirection: dir
+      });
+    }
+  },
+
   render: function() {
+    var weekCount = DateTime.getWeekArray(this.props.focusDate).length;
+    var calendarStyle = {
+      height: weekCount * 40 + 8
+    };
+
     return (
       <div className="mui-date-picker-calendar">
         <CalendarToolbar
@@ -30,10 +54,22 @@ var Calendar = React.createClass({
           <li className="mui-date-picker-calendar-week-title-day">F</li>
           <li className="mui-date-picker-calendar-week-title-day">S</li>
         </ul>
-        <CalendarMonth
-          focusDate={this.props.focusDate}
-          onDayTouchTap={this._handleDayTouchTap}
-          selectedDate={this.props.selectedDate} />
+
+        <div
+          className="mui-date-picker-calendar-container"
+          style={calendarStyle}>
+          <ReactCSSTransitionGroup
+            transitionName="mui-transition"
+            className={'mui-transition-' + this.state.transitionDirection}>
+            <CalendarMonth
+              key={this.props.focusDate.toDateString()}
+              focusDate={this.props.focusDate}
+              onDayTouchTap={this._handleDayTouchTap}
+              selectedDate={this.props.selectedDate}
+              style={calendarStyle} />
+          </ReactCSSTransitionGroup>
+        </div>
+
       </div>
     );
   },

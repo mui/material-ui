@@ -1,9 +1,56 @@
 .mui-date-picker-calendar-month {
+
   line-height: 32px;
   text-align: center;
   padding: 8px 14px 0 14px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  background-color: @white;
+
+  .ease-out();
 
   .mui-date-picker-calendar-month-week {
     .clearfix();
+  }
+
+  &.mui-transition-enter {
+    z-index: 10;
+    .lh-opacity(0);
+    .lh-translate3d(280px,0,0);
+  }
+
+  &.mui-transition-enter-active {
+    .lh-translate3d(0,0,0);
+    .lh-opacity(1);
+  }
+
+  &.mui-transition-leave {
+    z-index: 1;
+    position: absolute;
+    .lh-translate3d(0,0,0);
+    .lh-opacity(1);
+  }
+
+  &.mui-transition-leave-active {
+    .lh-translate3d(-280px,0,0);
+    .lh-opacity(0);
+  }
+}
+
+.mui-transition-right {
+  .mui-date-picker-calendar-month {
+    &.mui-transition-enter {
+      .lh-translate3d(-280px,0,0);
+    }
+    &.mui-transition-enter-active {
+      .lh-translate3d(0,0,0);
+    }
+    &.mui-transition-leave {
+      .lh-translate3d(0,0,0);
+    }
+    &.mui-transition-leave-active {
+      .lh-translate3d(280px,0,0);
+    }
   }
 }

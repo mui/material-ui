@@ -62,6 +62,35 @@ module.exports = {
     }
   },
 
+  getWeekArray: function(d) {
+    var dayArray = [];
+    var daysInMonth = this.getDaysInMonth(d);
+    var daysInWeek;
+    var emptyDays;
+    var firstDayOfWeek;
+    var week;
+    var weekArray = [];
+
+    for (var i = 1; i <= daysInMonth; i++) {
+      dayArray.push(new Date(d.getFullYear(), d.getMonth(), i));
+    };
+
+    while (dayArray.length) {
+      firstDayOfWeek = dayArray[0].getDay();
+      daysInWeek = 7 - firstDayOfWeek;
+      emptyDays = 7 - daysInWeek;
+      week = dayArray.splice(0, daysInWeek);
+
+      for (var i = 0; i < emptyDays; i++) {
+        week.unshift(null);
+      };
+
+      weekArray.push(week);
+    }
+
+    return weekArray;
+  },
+
   isEqualDate: function(d1, d2) {
     return d1 && d2 &&
       (d1.getFullYear() === d2.getFullYear()) &&

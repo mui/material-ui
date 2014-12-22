@@ -78,7 +78,7 @@ var DatePicker = React.createClass({
   },
 
   _addFocusDate: function(m) {
-    var focusDate = this.state.focusDate;
+    var focusDate = new Date(this.state.focusDate.getTime());
     focusDate.setMonth(focusDate.getMonth() + m);
 
     this.setState({

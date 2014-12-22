@@ -1,8 +1,11 @@
 var React = require('react');
+var Classable = require('../mixins/classable');
 var DateTime = require('../utils/date-time.js');
 var DayButton = require('./day-button.jsx');
 
 var CalendarMonth = React.createClass({
+
+  mixins: [Classable],
 
   propTypes: {
     focusDate: React.PropTypes.object.isRequired,
@@ -11,15 +14,17 @@ var CalendarMonth = React.createClass({
   },
 
   render: function() {
+    var classes = this.getClasses('mui-date-picker-calendar-month');
+
     return (
-      <div className="mui-date-picker-calendar-month">
+      <div className={classes}>
         {this._getWeekElements()}
       </div>
     );
   },
 
   _getWeekElements: function() {
-    var weekArray = this._getWeekArray();
+    var weekArray = DateTime.getWeekArray(this.props.focusDate);
 
     return weekArray.map(function(week) {
       return (
@@ -40,36 +45,6 @@ var CalendarMonth = React.createClass({
           selected={selected} />
       );
     }, this);
-  },
-
-  _getWeekArray: function() {
-    var d = this.props.focusDate;
-    var dayArray = [];
-    var daysInMonth = DateTime.getDaysInMonth(d);
-    var daysInWeek;
-    var emptyDays;
-    var firstDayOfWeek;
-    var week;
-    var weekArray = [];
-
-    for (var i = 1; i <= daysInMonth; i++) {
-      dayArray.push(new Date(d.getFullYear(), d.getMonth(), i));
-    };
-
-    while (dayArray.length) {
-      firstDayOfWeek = dayArray[0].getDay();
-      daysInWeek = 7 - firstDayOfWeek;
-      emptyDays = 7 - daysInWeek;
-      week = dayArray.splice(0, daysInWeek);
-
-      for (var i = 0; i < emptyDays; i++) {
-        week.unshift(null);
-      };
-
-      weekArray.push(week);
-    }
-
-    return weekArray;
   },
 
   _handleDayTouchTap: function(e, date) {
