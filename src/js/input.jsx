@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Classable = require('./mixins/classable.js');
+var classSet = React.addons.classSet;
 
 var Input = React.createClass({
 
@@ -54,9 +55,14 @@ var Input = React.createClass({
       'mui-error': this.props.error !== undefined && this.props.error !== null
     }),
     placeholder = this.props.inlinePlaceholder ? this.props.placeholder : "",
-    notEmptyClass = this.state.value ? 'mui-is-not-empty' : '',
-    inputClassName = notEmptyClass,
-    textareaClassName = 'mui-input-textarea ' + notEmptyClass,
+    inputIsNotEmpty = Boolean(this.state.value),
+    inputClassName = classSet({
+      'mui-is-not-empty': inputIsNotEmpty
+    }),
+    textareaClassName = classSet({
+      'mui-input-textarea': true,
+      'mui-is-not-empty': inputIsNotEmpty
+    }),
     inputElement = this.props.multiline ?
       this.props.valueLink ?
         <textarea {...this.props} ref="input" className={textareaClassName} placeholder={placeholder}
