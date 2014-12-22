@@ -14,7 +14,8 @@ var DialogWindow = React.createClass({
     contentClassName: React.PropTypes.string,
     openImmediately: React.PropTypes.bool,
     onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func
+    onShow: React.PropTypes.func,
+    repositionOnUpdate: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -23,7 +24,8 @@ var DialogWindow = React.createClass({
 
   getDefaultProps: function() {
     return {
-      actions: []
+      actions: [],
+      repositionOnUpdate: true
     };
   },
 
@@ -114,7 +116,11 @@ var DialogWindow = React.createClass({
 
       //Vertically center the dialog window, but make sure it doesn't
       //transition to that position.
-      container.style.paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64 + 'px';
+      if (this.props.repositionOnUpdate || !container.style.paddingTop) {
+        container.style.paddingTop = 
+          ((containerHeight - dialogWindowHeight) / 2) - 64 + 'px';
+      }
+      
 
     }
   },

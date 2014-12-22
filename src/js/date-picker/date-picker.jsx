@@ -56,7 +56,8 @@ var DatePicker = React.createClass({
         className={classes}
         actions={actions}
         contentClassName="mui-date-picker-dialog"
-        onDismiss={this._handleDialogDismiss}>
+        onDismiss={this._handleDialogDismiss}
+        repositionOnUpdate={false}>
         <DateDisplay selectedDate={this.state.selectedDate} />
         <Calendar
           focusDate={this.state.focusDate}
