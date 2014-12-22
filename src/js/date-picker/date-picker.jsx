@@ -97,9 +97,7 @@ var DatePicker = React.createClass({
   },
 
   _handleDialogDismiss: function() {
-    this.setState({
-      selectedDate: this.props.initialDate
-    });
+    this.setState(this.getInitialState());
   },
 
   _handleLeftTouchTap: function() {
