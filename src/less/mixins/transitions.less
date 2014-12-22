@@ -4,6 +4,36 @@
   .lh-transition(@property @duration @ease-out-function @delay);
 }
 
+.enter-and-leave-left {
+  &.mui-transition-enter {
+    .lh-translate3d(100%,0,0);
+  }
+  &.mui-transition-enter-active {
+    .lh-translate3d(0,0,0);
+  }
+  &.mui-transition-leave {
+    .lh-translate3d(0,0,0);
+  }
+  &.mui-transition-leave-active {
+    .lh-translate3d(-100%,0,0);
+  }
+}
+
+.enter-and-leave-right {
+  &.mui-transition-enter {
+    .lh-translate3d(-100%,0,0);
+  }
+  &.mui-transition-enter-active {
+    .lh-translate3d(0,0,0);
+  }
+  &.mui-transition-leave {
+    .lh-translate3d(0,0,0);
+  }
+  &.mui-transition-leave-active {
+    .lh-translate3d(100%,0,0);
+  }
+}
+
 .pulsate(@animation-name; @start-size: 0.75; @end-size: 1; @duration: 1.5s) {
   @start: ~'0%, 100% { transform: scale(@{start-size}); }';
   @end: ~'50% { transform: scale(@{end-size}); }';
