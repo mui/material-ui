@@ -1,5 +1,6 @@
 var React = require('react');
 var Classable = require('../mixins/classable');
+var DateTime = require('../utils/date-time.js');
 var Calendar = require('./calendar.jsx');
 var DateDisplay = require('./date-display.jsx');
 var DialogWindow = require('../dialog-window.jsx');
@@ -20,10 +21,13 @@ var DatePicker = React.createClass({
   },
 
   getInitialState: function() {
+    var initialDate = this.props.initialDate;
+    var focusDate = DateTime.getFirstDayOfMonth(initialDate);
+
     return {
-      focusDate: this.props.initialDate,
+      focusDate: focusDate,
       keyboardFocusDate: null,
-      selectedDate: this.props.initialDate
+      selectedDate: initialDate
     };
   },
 
@@ -57,6 +61,8 @@ var DatePicker = React.createClass({
         <Calendar
           focusDate={this.state.focusDate}
           keyboardFocusDate={this.state.keyboardFocusDate}
+          onLeftTouchTap={this._handleLeftTouchTap}
+          onRightTouchTap={this._handleRightTouchTap}
           onSelectedDateChange={this._handleDateChange}
           selectedDate={this.state.selectedDate} />
       </DialogWindow>
@@ -69,6 +75,15 @@ var DatePicker = React.createClass({
 
   dismiss: function() {
     this.refs.dialogWindow.dismiss();
+  },
+
+  _addFocusDate: function(m) {
+    var focusDate = this.state.focusDate;
+    focusDate.setMonth(focusDate.getMonth() + m);
+
+    this.setState({
+      focusDate: focusDate
+    });
   },
 
   _handleCancelTouchTap: function() {
@@ -85,6 +100,14 @@ var DatePicker = React.createClass({
     this.setState({
       selectedDate: this.props.initialDate
     });
+  },
+
+  _handleLeftTouchTap: function() {
+    this._addFocusDate(-1);
+  },
+
+  _handleRightTouchTap: function() {
+    this._addFocusDate(1);
   }
 
 });

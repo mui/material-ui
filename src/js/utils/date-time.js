@@ -1,7 +1,16 @@
 module.exports = {
 
   getDaysInMonth: function(d) {
-    return new Date(d.getFullYear(), d.getMonth(), 0).getDate() + 1;
+    var resultDate = this.getFirstDayOfMonth(d);
+
+    resultDate.setMonth(resultDate.getMonth() + 1);
+    resultDate.setDate(resultDate.getDate() - 1);
+
+    return resultDate.getDate();
+  },
+
+  getFirstDayOfMonth: function(d) {
+    return new Date(d.getFullYear(), d.getMonth(), 1);
   },
 
   getFullMonth: function(d) {

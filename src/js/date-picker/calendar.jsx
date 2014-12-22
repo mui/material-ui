@@ -8,6 +8,8 @@ var Calendar = React.createClass({
   propTypes: {
     focusDate: React.PropTypes.object.isRequired,
     keyboardFocusDate: React.PropTypes.object,
+    onLeftTouchTap: React.PropTypes.func,
+    onRightTouchTap: React.PropTypes.func,
     onSelectedDateChange: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired
   },
@@ -15,7 +17,10 @@ var Calendar = React.createClass({
   render: function() {
     return (
       <div className="mui-date-picker-calendar">
-        <CalendarToolbar focusDate={this.props.focusDate} />
+        <CalendarToolbar
+          focusDate={this.props.focusDate}
+          onLeftTouchTap={this.props.onLeftTouchTap}
+          onRightTouchTap={this.props.onRightTouchTap} />
         <ul className="mui-date-picker-calendar-week-title">
           <li className="mui-date-picker-calendar-week-title-day">S</li>
           <li className="mui-date-picker-calendar-week-title-day">M</li>
