@@ -30,7 +30,6 @@
   "dependencies": {
     "material-ui": "^0.4.0",
     "react": "^0.12.2",
-    "react-draggable2": "^0.4.1",
     "react-tap-event-plugin": "^0.1.3"
   }
 }
