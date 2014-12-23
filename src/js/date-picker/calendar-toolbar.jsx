@@ -6,7 +6,7 @@ var SlideInTransitionGroup = require('../transitions/slide-in.jsx');
 var CalendarToolbar = React.createClass({
 
   propTypes: {
-    focusDate: React.PropTypes.object.isRequired,
+    displayDate: React.PropTypes.object.isRequired,
     onLeftTouchTap: React.PropTypes.func,
     onRightTouchTap: React.PropTypes.func
   },
@@ -20,8 +20,8 @@ var CalendarToolbar = React.createClass({
   componentWillReceiveProps: function(nextProps) {
     var direction;
 
-    if (nextProps.focusDate !== this.props.focusDate) {
-      direction = nextProps.focusDate > this.props.focusDate ? 'up' : 'down';
+    if (nextProps.displayDate !== this.props.displayDate) {
+      direction = nextProps.displayDate > this.props.displayDate ? 'up' : 'down';
       this.setState({
         transitionDirection: direction
       });
@@ -29,8 +29,8 @@ var CalendarToolbar = React.createClass({
   },
 
   render: function() {
-    var month = DateTime.getFullMonth(this.props.focusDate);
-    var year = this.props.focusDate.getFullYear();
+    var month = DateTime.getFullMonth(this.props.displayDate);
+    var year = this.props.displayDate.getFullYear();
 
     return (
       <div className="mui-date-picker-calendar-toolbar">

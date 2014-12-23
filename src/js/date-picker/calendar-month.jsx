@@ -8,7 +8,7 @@ var CalendarMonth = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    focusDate: React.PropTypes.object.isRequired,
+    displayDate: React.PropTypes.object.isRequired,
     onDayTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired
   },
@@ -24,7 +24,7 @@ var CalendarMonth = React.createClass({
   },
 
   _getWeekElements: function() {
-    var weekArray = DateTime.getWeekArray(this.props.focusDate);
+    var weekArray = DateTime.getWeekArray(this.props.displayDate);
 
     return weekArray.map(function(week) {
       return (

@@ -53,6 +53,7 @@ var DatePicker = React.createClass({
         repositionOnUpdate={false}>
         <DateDisplay selectedDate={this.state.selectedDate} />
         <Calendar
+          ref="calendar"
           onSelectedDateChange={this._handleDateChange}
           selectedDate={this.state.selectedDate} />
       </DialogWindow>
@@ -78,7 +79,9 @@ var DatePicker = React.createClass({
   },
 
   _handleDialogDismiss: function() {
-    this.setState(this.getInitialState());
+    this.setState(this.getInitialState(), function() {
+      this.refs.calendar.reset();
+    });
   }
 
 });

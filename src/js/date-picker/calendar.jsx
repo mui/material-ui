@@ -13,13 +13,13 @@ var Calendar = React.createClass({
 
   getInitialState: function() {
     return {
-      focusDate: DateTime.getFirstDayOfMonth(this.props.selectedDate),
+      displayDate: DateTime.getFirstDayOfMonth(this.props.selectedDate),
       transitionDirection: 'left'
     };
   },
 
   render: function() {
-    var weekCount = DateTime.getWeekArray(this.state.focusDate).length;
+    var weekCount = DateTime.getWeekArray(this.state.displayDate).length;
     var calendarStyle = {
       height: weekCount * 40 + 8
     };
@@ -28,7 +28,7 @@ var Calendar = React.createClass({
       <div className="mui-date-picker-calendar">
 
         <CalendarToolbar
-          focusDate={this.state.focusDate}
+          displayDate={this.state.displayDate}
           onLeftTouchTap={this._handleLeftTouchTap}
           onRightTouchTap={this._handleRightTouchTap} />
 
@@ -47,8 +47,8 @@ var Calendar = React.createClass({
           direction={this.state.transitionDirection}
           style={calendarStyle}>
           <CalendarMonth
-            key={this.state.focusDate.toDateString()}
-            focusDate={this.state.focusDate}
+            key={this.state.displayDate.toDateString()}
+            displayDate={this.state.displayDate}
             onDayTouchTap={this._handleDayTouchTap}
             selectedDate={this.props.selectedDate}
             style={calendarStyle} />
@@ -58,6 +58,10 @@ var Calendar = React.createClass({
     );
   },
 
+  reset: function() {
+    this.setState(this.getInitialState());
+  },
+
   _handleDayTouchTap: function(e, date) {
     if (this.props.onSelectedDateChange &&
       (!DateTime.isEqualDate(this.props.selectedDate, date))) {
@@ -65,27 +69,27 @@ var Calendar = React.createClass({
     }
   },
 
-  _addFocusDate: function(m) {
-    var focusDate;
+  _addDisplayDate: function(m) {
+    var displayDate;
     var direction;
 
-    focusDate = DateTime.clone(this.state.focusDate);
-    focusDate.setMonth(focusDate.getMonth() + m);
+    displayDate = DateTime.clone(this.state.displayDate);
+    displayDate.setMonth(displayDate.getMonth() + m);
 
-    direction = focusDate > this.state.focusDate ? 'left' : 'right';
+    direction = displayDate > this.state.displayDate ? 'left' : 'right';
 
     this.setState({
-      focusDate: focusDate,
+      displayDate: displayDate,
       transitionDirection: direction
     });
   },
 
   _handleLeftTouchTap: function() {
-    this._addFocusDate(-1);
+    this._addDisplayDate(-1);
   },
 
   _handleRightTouchTap: function() {
-    this._addFocusDate(1);
+    this._addDisplayDate(1);
   }
 
 });
