@@ -1,5 +1,9 @@
 module.exports = {
 
+  clone: function(d) {
+    return new Date(d.getTime());
+  },
+
   getDaysInMonth: function(d) {
     var resultDate = this.getFirstDayOfMonth(d);
 

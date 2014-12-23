@@ -36,12 +36,9 @@ var CalendarToolbar = React.createClass({
       <div className="mui-date-picker-calendar-toolbar">
 
         <SlideInTransitionGroup
+          className="mui-date-picker-calendar-toolbar-title"
           direction={this.state.transitionDirection}>
-          <div
-            className="mui-date-picker-calendar-toolbar-title"
-            key={month + '_' + year}>
-            {month} {year}
-          </div>
+          <div key={month + '_' + year}>{month} {year}</div>
         </SlideInTransitionGroup>
 
         <IconButton
