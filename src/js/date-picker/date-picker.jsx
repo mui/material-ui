@@ -1,5 +1,6 @@
 var React = require('react');
 var Classable = require('../mixins/classable.js');
+var DateTime = require('../utils/date-time.js');
 var DatePickerDialog = require('./date-picker-dialog.jsx');
 var Input = require('../input.jsx');
 
@@ -11,6 +12,12 @@ var DatePicker = React.createClass({
     defaultValue: React.PropTypes.string,
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func
+  },
+
+  getDefaultProps: function() {
+    return {
+      dateFormat: ''
+    };
   },
 
   render: function() {
@@ -36,10 +43,16 @@ var DatePicker = React.createClass({
           onTouchTap={this._handleInputTouchTap} />
         <DatePickerDialog
           ref="dialogWindow"
-          initialDate={initialDate} />
+          initialDate={initialDate}
+          onAccept={this._handleDialogAccept} />
       </div>
       
     );
+  },
+
+  _handleDialogAccept: function(d) {
+    //TO DO: need to allow users to specify a date format
+    this.refs.input.setValue(DateTime.format(d));
   },
 
   _handleInputFocus: function(e) {

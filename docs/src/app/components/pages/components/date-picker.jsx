@@ -32,7 +32,6 @@ var DatePickerPage = React.createClass({
           ref="datePicker"
           name="TallDialogDate"
           placeholder="Tall Dialog"
-          defaultValue="12/1/2014"
           inlinePlaceholder={true} />
       </CodeExample>
     );

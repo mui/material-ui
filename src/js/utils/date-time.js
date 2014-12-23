@@ -95,6 +95,13 @@ module.exports = {
     return weekArray;
   },
 
+  format: function(date) {
+    var m = date.getMonth() + 1;
+    var d = date.getDate();
+    var y = date.getFullYear();
+    return m + '/' + d + '/' + y;
+  },
+
   isEqualDate: function(d1, d2) {
     return d1 && d2 &&
       (d1.getFullYear() === d2.getFullYear()) &&

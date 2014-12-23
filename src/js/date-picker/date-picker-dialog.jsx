@@ -12,6 +12,7 @@ var DatePickerDialog = React.createClass({
 
   propTypes: {
     initialDate: React.PropTypes.object,
+    onAccept: React.PropTypes.func,
     onClickAway: React.PropTypes.func
   },
 
@@ -30,6 +31,7 @@ var DatePickerDialog = React.createClass({
   render: function() {
     var {
       initialDate,
+      onAccept,
       ...other
     } = this.props;
     var classes = this.getClasses('mui-date-picker-dialog');
@@ -42,7 +44,8 @@ var DatePickerDialog = React.createClass({
       <FlatButton
         key={1}
         label="OK"
-        secondary={true} />
+        secondary={true}
+        onTouchTap={this._handleOKTouchTap} />
     ];
 
     return (
@@ -84,6 +87,11 @@ var DatePickerDialog = React.createClass({
     this.setState({
       selectedDate: date
     });
+  },
+
+  _handleOKTouchTap: function() {
+    this.dismiss();
+    if (this.props.onAccept) this.props.onAccept(this.state.selectedDate);
   },
 
   _resetState: function() {
