@@ -1,10 +1,13 @@
 var React = require('react');
+var StateResetable = require('../mixins/state-resetable.js');
 var DateTime = require('../utils/date-time.js');
 var CalendarMonth = require('./calendar-month.jsx');
 var CalendarToolbar = require('./calendar-toolbar.jsx');
 var SlideInTransitionGroup = require('../transitions/slide-in.jsx');
 
 var Calendar = React.createClass({
+
+  mixins: [StateResetable],
 
   propTypes: {
     onSelectedDateChange: React.PropTypes.func,
@@ -56,10 +59,6 @@ var Calendar = React.createClass({
 
       </div>
     );
-  },
-
-  reset: function() {
-    this.setState(this.getInitialState());
   },
 
   _handleDayTouchTap: function(e, date) {

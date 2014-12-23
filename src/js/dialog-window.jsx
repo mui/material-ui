@@ -13,6 +13,7 @@ var DialogWindow = React.createClass({
     actions: React.PropTypes.array,
     contentClassName: React.PropTypes.string,
     openImmediately: React.PropTypes.bool,
+    onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool
@@ -127,6 +128,7 @@ var DialogWindow = React.createClass({
 
   _handleOverlayTouchTap: function() {
     this.dismiss();
+    if (this.props.onClickAway) this.props.onClickAway();
   },
 
   _handleWindowKeyUp: function(e) {
