@@ -57,6 +57,7 @@ var Calendar = React.createClass({
         </ul>
 
         <SlideInTransitionGroup
+          className="mui-date-picker-calendar-container"
           direction={this.state.transitionDirection}
           style={calendarStyle}>
           <CalendarMonth
