@@ -1,9 +1,7 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
-var Calendar = require('./calendar.jsx');
-var DateDisplay = require('./date-display.jsx');
-var DialogWindow = require('../dialog-window.jsx');
-var FlatButton = require('../flat-button.jsx');
+var Classable = require('../mixins/classable.js');
+var DatePickerDialog = require('./date-picker-dialog.jsx');
+var Input = require('../input.jsx');
 
 var DatePicker = React.createClass({
 
@@ -27,61 +25,28 @@ var DatePicker = React.createClass({
 
   render: function() {
     var {
-      className,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-date-picker');
-    var actions = [
-      <FlatButton
-        key={0}
-        label="Cancel"
-        secondary={true}
-        onTouchTap={this._handleCancelTouchTap} />,
-      <FlatButton
-        key={1}
-        label="OK"
-        secondary={true} />
-    ];
+    var classes = this.getClasses('mui-date-picker-input');
 
     return (
-      <DialogWindow {...other}
-        ref="dialogWindow"
-        className={classes}
-        actions={actions}
-        contentClassName="mui-date-picker-dialog"
-        onDismiss={this._handleDialogDismiss}
-        repositionOnUpdate={false}>
-        <DateDisplay selectedDate={this.state.selectedDate} />
-        <Calendar
-          ref="calendar"
-          onSelectedDateChange={this._handleDateChange}
-          selectedDate={this.state.selectedDate} />
-      </DialogWindow>
+      <div className="mui-date-picker">
+        <Input
+          {...other}
+          ref="input"
+          className={classes}
+          inlinePlaceholder={true}
+          placeholder="Dialog Date Picker - Tall"
+          onTouchTap={this._handleInputTouchTap} />
+        <DatePickerDialog ref="dialogWindow" />
+      </div>
+      
     );
   },
 
-  show: function() {
+  _handleInputTouchTap: function() {
+    this.refs.input.blur();
     this.refs.dialogWindow.show();
-  },
-
-  dismiss: function() {
-    this.refs.dialogWindow.dismiss();
-  },
-
-  _handleCancelTouchTap: function() {
-    this.refs.dialogWindow.dismiss();
-  },
-
-  _handleDateChange: function(e, date) {
-    this.setState({
-      selectedDate: date
-    });
-  },
-
-  _handleDialogDismiss: function() {
-    this.setState(this.getInitialState(), function() {
-      this.refs.calendar.reset();
-    });
   }
 
 });
