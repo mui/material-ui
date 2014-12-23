@@ -36,8 +36,7 @@ var DatePicker = React.createClass({
       className,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-date-picker', {
-    });
+    var classes = this.getClasses('mui-date-picker');
     var actions = [
       <FlatButton
         key={0}

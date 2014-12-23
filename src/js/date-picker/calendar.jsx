@@ -1,8 +1,8 @@
 var React = require('react');
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var DateTime = require('../utils/date-time.js');
 var CalendarMonth = require('./calendar-month.jsx');
 var CalendarToolbar = require('./calendar-toolbar.jsx');
+var SlideInTransitionGroup = require('../transitions/slide-in.jsx');
 
 var Calendar = React.createClass({
 
@@ -41,10 +41,12 @@ var Calendar = React.createClass({
 
     return (
       <div className="mui-date-picker-calendar">
+      
         <CalendarToolbar
           focusDate={this.props.focusDate}
           onLeftTouchTap={this.props.onLeftTouchTap}
           onRightTouchTap={this.props.onRightTouchTap} />
+
         <ul className="mui-date-picker-calendar-week-title">
           <li className="mui-date-picker-calendar-week-title-day">S</li>
           <li className="mui-date-picker-calendar-week-title-day">M</li>
@@ -55,20 +57,16 @@ var Calendar = React.createClass({
           <li className="mui-date-picker-calendar-week-title-day">S</li>
         </ul>
 
-        <div
-          className="mui-date-picker-calendar-container"
+        <SlideInTransitionGroup
+          direction={this.state.transitionDirection}
           style={calendarStyle}>
-          <ReactCSSTransitionGroup
-            transitionName="mui-transition"
-            className={'mui-transition-' + this.state.transitionDirection}>
-            <CalendarMonth
-              key={this.props.focusDate.toDateString()}
-              focusDate={this.props.focusDate}
-              onDayTouchTap={this._handleDayTouchTap}
-              selectedDate={this.props.selectedDate}
-              style={calendarStyle} />
-          </ReactCSSTransitionGroup>
-        </div>
+          <CalendarMonth
+            key={this.props.focusDate.toDateString()}
+            focusDate={this.props.focusDate}
+            onDayTouchTap={this._handleDayTouchTap}
+            selectedDate={this.props.selectedDate}
+            style={calendarStyle} />
+        </SlideInTransitionGroup>
 
       </div>
     );
