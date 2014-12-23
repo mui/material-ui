@@ -66,6 +66,10 @@ var DialogWindow = React.createClass({
     );
   },
 
+  isOpen: function() {
+    return this.state.open;
+  },
+
   dismiss: function() {
     this.setState({ open: false });
     if (this.props.onDismiss) this.props.onDismiss();

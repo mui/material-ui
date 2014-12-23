@@ -1,18 +1,24 @@
 var React = require('react');
 var Classable = require('../mixins/classable.js');
+var WindowListenable = require('../mixins/window-listenable.js');
 var DateTime = require('../utils/date-time.js');
+var KeyCode = require('../utils/key-code.js');
 var DatePickerDialog = require('./date-picker-dialog.jsx');
 var Input = require('../input.jsx');
 
 var DatePicker = React.createClass({
 
-  mixins: [Classable],
+  mixins: [Classable, WindowListenable],
 
   propTypes: {
     defaultDate: React.PropTypes.object,
     formatDate: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func
+  },
+
+  windowListeners: {
+    'keyup': '_handleWindowKeyUp'
   },
 
   getDefaultProps: function() {
@@ -88,6 +94,10 @@ var DatePicker = React.createClass({
 
     this.refs.dialogWindow.show();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
+  },
+
+  _handleWindowKeyUp: function(e) {
+    //TO DO: open the dialog if input has focus
   }
 
 });
