@@ -90,6 +90,10 @@ var Input = React.createClass({
   clearValue: function() {
     this.setValue("");
   },
+
+  blur: function() {
+    if(this.isMounted()) this.refs.input.getDOMNode().blur();
+  },
   
   focus: function () {
     if(this.isMounted()) this.refs.input.getDOMNode().focus();
