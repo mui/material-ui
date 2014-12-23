@@ -1,6 +1,5 @@
 var React = require('react');
 var Classable = require('../mixins/classable.js');
-var StateResetable = require('../mixins/state-resetable.js');
 var Calendar = require('./calendar.jsx');
 var DateDisplay = require('./date-display.jsx');
 var DialogWindow = require('../dialog-window.jsx');
@@ -8,7 +7,7 @@ var FlatButton = require('../flat-button.jsx');
 
 var DatePickerDialog = React.createClass({
 
-  mixins: [Classable, StateResetable],
+  mixins: [Classable],
 
   propTypes: {
     initialDate: React.PropTypes.object,
@@ -26,6 +25,14 @@ var DatePickerDialog = React.createClass({
     return {
       selectedDate: this.props.initialDate
     };
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.initialDate !== this.props.initialDate) {
+      this.setState({
+        selectedDate: nextProps.initialDate || new Date()
+      });
+    }
   },
 
   render: function() {
@@ -54,7 +61,6 @@ var DatePickerDialog = React.createClass({
         className={classes}
         actions={actions}
         contentClassName="mui-date-picker-dialog-window"
-        onClickAway={this._handleClickAway}
         repositionOnUpdate={false}>
         <DateDisplay selectedDate={this.state.selectedDate} />
         <Calendar
@@ -74,13 +80,7 @@ var DatePickerDialog = React.createClass({
   },
 
   _handleCancelTouchTap: function() {
-    this._resetState();
     this.dismiss();
-  },
-
-  _handleClickAway: function() {
-    this._resetState();
-    if (this.props.onClickAway) this.props.onClickAway();
   },
 
   _handleDateChange: function(e, date) {
@@ -92,12 +92,6 @@ var DatePickerDialog = React.createClass({
   _handleOKTouchTap: function() {
     this.dismiss();
     if (this.props.onAccept) this.props.onAccept(this.state.selectedDate);
-  },
-
-  _resetState: function() {
-    this.resetState(function() {
-      this.refs.calendar.resetState();
-    });
   }
 
 });

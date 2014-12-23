@@ -9,7 +9,6 @@ var DatePicker = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    defaultValue: React.PropTypes.string,
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func
   },
@@ -20,30 +19,30 @@ var DatePicker = React.createClass({
     };
   },
 
+  getInitialState: function() {
+    return {
+      dialogDate: new Date()
+    };
+  },
+
   render: function() {
     var {
-      defaultValue,
       onFocus,
       onTouchTap,
       ...other
     } = this.props;
     var initialDate;
 
-    if (this.props.defaultValue) {
-      initialDate = new Date(this.props.defaultValue);
-    }
-
     return (
       <div className="mui-date-picker">
         <Input
           {...other}
           ref="input"
-          defaultValue={defaultValue}
           onFocus={this._handleInputFocus}
           onTouchTap={this._handleInputTouchTap} />
         <DatePickerDialog
           ref="dialogWindow"
-          initialDate={initialDate}
+          initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept} />
       </div>
       
@@ -61,6 +60,13 @@ var DatePicker = React.createClass({
   },
 
   _handleInputTouchTap: function(e) {
+    var dateString = this.refs.input.getValue();
+    var inputDate = dateString ? new Date(dateString) : new Date();
+
+    this.setState({
+      dialogDate: inputDate
+    });
+
     this.refs.dialogWindow.show();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   }
