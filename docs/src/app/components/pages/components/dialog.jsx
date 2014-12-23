@@ -1,9 +1,9 @@
-var React = require('react'),
-  mui = require('mui'),
-  Dialog = mui.Dialog,
-  RaisedButton = mui.RaisedButton,
-  CodeExample = require('../../code-example/code-example.jsx'),
-  ComponentInfo = require('../../component-info.jsx');
+var React = require('react');
+var mui = require('mui');
+var Dialog = mui.Dialog;
+var RaisedButton = mui.RaisedButton;
+var CodeExample = require('../../code-example/code-example.jsx');
+var ComponentInfo = require('../../component-info.jsx');
 
 var DialogPage = React.createClass({
 
@@ -44,9 +44,14 @@ var DialogPage = React.createClass({
         <h3 className="mui-font-style-title">Events</h3>
         {this._getEventInfo()}
 
-        <Dialog ref="dialogExample" title="Title" actions={dialogActions}>
+        <Dialog
+          ref="dialogExample"
+          title="Title"
+          actions={dialogActions}>
+
           This is an example of a dialog component built with Facebook's React and following 
           Google's Material Design principles.
+
         </Dialog>
       </div>
     );
@@ -58,59 +63,65 @@ var DialogPage = React.createClass({
 
   _getPropInfo: function() {
     var info = [
-          {
-            name: 'actions',
-            type: 'array',
-            header: 'optional',
-            desc: 'JSON data representing the button actions to render.'
-          },
-          {
-            name: 'openImmediately',
-            type: 'default: false',
-            header: 'optional',
-            desc: 'Set to true to have the dialog automatically open on mount.'
-          },
-          {
-            name: 'title',
-            type: 'string',
-            header: 'optional',
-            desc: 'The title string to display on the dialog.'
-          }
-        ];
+      {
+        name: 'actions',
+        type: 'array',
+        header: 'optional',
+        desc: 'JSON data representing the button actions to render.'
+      },
+      {
+        name: 'contentClassName',
+        type: 'string',
+        header: 'optional',
+        desc: 'The className to add to the dialog window content container.'
+      },
+      {
+        name: 'openImmediately',
+        type: 'bool',
+        header: 'default: false',
+        desc: 'Set to true to have the dialog automatically open on mount.'
+      },
+      {
+        name: 'title',
+        type: 'string',
+        header: 'optional',
+        desc: 'The title string to display on the dialog.'
+      }
+    ];
 
     return <ComponentInfo infoArray={info} />;
   },
 
   _getMethodInfo: function() {
     var info = [
-          {
-            name: 'dismiss',
-            header: 'Dialog.dismiss()',
-            desc: 'Hides the dialog.'
-          },
-          {
-            name: 'show',
-            header: 'Dialog.show()',
-            desc: 'Shows the dialog.'
-          }
-        ];
+      {
+        name: 'dismiss',
+        header: 'Dialog.dismiss()',
+        desc: 'Hides the dialog.'
+      },
+      {
+        name: 'show',
+        header: 'Dialog.show()',
+        desc: 'Shows the dialog.'
+      }
+    ];
 
     return <ComponentInfo infoArray={info} />;
   },
 
   _getEventInfo: function() {
     var info = [
-          {
-            name: 'onDismiss',
-            header: 'function()',
-            desc: 'Fired when the dialog is dismissed.'
-          },
-          {
-            name: 'onShow',
-            header: 'function()',
-            desc: 'Fired when the dialog is shown.'
-          }
-        ];
+      {
+        name: 'onDismiss',
+        header: 'function()',
+        desc: 'Fired when the dialog is dismissed.'
+      },
+      {
+        name: 'onShow',
+        header: 'function()',
+        desc: 'Fired when the dialog is shown.'
+      }
+    ];
 
     return <ComponentInfo infoArray={info} />;
   }

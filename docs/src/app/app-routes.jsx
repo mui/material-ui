@@ -1,34 +1,31 @@
-/**
- * @jsx React.DOM
- */
+var React = require('react');
+var Router = require('react-router');
+var Route = Router.Route;
+var Redirect = Router.Redirect;
+var DefaultRoute = Router.DefaultRoute;
 
-var React = require('react'),
-  Router = require('react-router'),
-  Route = Router.Route,
-  Redirect = Router.Redirect,
-  DefaultRoute = Router.DefaultRoute,
+var Master = require('./components/master.jsx');
+var Home = require('./components/pages/home.jsx');
+var GetStarted = require('./components/pages/get-started.jsx');
 
-  Master = require('./components/master.jsx'),
-  Home = require('./components/pages/home.jsx'),
-  GetStarted = require('./components/pages/get-started.jsx'),
+var CssFramework = require('./components/pages/css-framework.jsx');
+var Colors = require('./components/pages/css-framework/colors.jsx');
+var Typography = require('./components/pages/css-framework/typography.jsx');
 
-  CssFramework = require('./components/pages/css-framework.jsx'),
-  Colors = require('./components/pages/css-framework/colors.jsx'),
-  Typography = require('./components/pages/css-framework/typography.jsx'),
-
-  Components = require('./components/pages/components.jsx'),
-  Buttons = require('./components/pages/components/buttons.jsx'),
-  Dialog = require('./components/pages/components/dialog.jsx'),
-  DropDownMenu = require('./components/pages/components/drop-down-menu.jsx'),
-  IconButtons = require('./components/pages/components/icon-buttons.jsx'),
-  Icons = require('./components/pages/components/icons.jsx'),
-  Inputs = require('./components/pages/components/inputs.jsx'),
-  LeftNav = require('./components/pages/components/left-nav.jsx'),
-  Menus = require('./components/pages/components/menus.jsx'),
-  Paper = require('./components/pages/components/paper.jsx'),
-  Sliders = require('./components/pages/components/sliders.jsx'),
-  Switches = require('./components/pages/components/switches.jsx'),
-  Toolbars = require('./components/pages/components/toolbars.jsx');
+var Components = require('./components/pages/components.jsx');
+var Buttons = require('./components/pages/components/buttons.jsx');
+var Dialog = require('./components/pages/components/dialog.jsx');
+var DropDownMenu = require('./components/pages/components/drop-down-menu.jsx');
+var IconButtons = require('./components/pages/components/icon-buttons.jsx');
+var Icons = require('./components/pages/components/icons.jsx');
+var Inputs = require('./components/pages/components/inputs.jsx');
+var LeftNav = require('./components/pages/components/left-nav.jsx');
+var Menus = require('./components/pages/components/menus.jsx');
+var Paper = require('./components/pages/components/paper.jsx');
+var Sliders = require('./components/pages/components/sliders.jsx');
+var Switches = require('./components/pages/components/switches.jsx');
+var Toasts = require('./components/pages/components/toasts.jsx');
+var Toolbars = require('./components/pages/components/toolbars.jsx');
 
 var AppRoutes = (
   <Route name="root" path="/" handler={Master}>
@@ -52,6 +49,7 @@ var AppRoutes = (
       <Route name="paper" handler={Paper} />
       <Route name="sliders" handler={Sliders} />
       <Route name="switches" handler={Switches} />
+      <Route name="toasts" handler={Toasts} />
       <Route name="toolbars" handler={Toolbars} />
       <Redirect from="/components" to="buttons" />
     </Route>

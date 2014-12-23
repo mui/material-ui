@@ -1,10 +1,10 @@
-var React = require('react'),
-  CssEvent = require('./utils/css-event.js'),
-  Classable = require('./mixins/classable.js'),
-  EnhancedButton = require('./enhanced-button.jsx'),
-  Icon = require('./icon.jsx'),
-  Paper = require('./paper.jsx'),
-  Ripple = require('./ripple.jsx');
+var React = require('react');
+var CssEvent = require('./utils/css-event.js');
+var Classable = require('./mixins/classable.js');
+var EnhancedButton = require('./enhanced-button.jsx');
+var Icon = require('./icon.jsx');
+var Paper = require('./paper.jsx');
+var Ripple = require('./ripple.jsx');
 
 var RaisedButton = React.createClass({
 
@@ -14,7 +14,8 @@ var RaisedButton = React.createClass({
     className: React.PropTypes.string,
     icon: React.PropTypes.string.isRequired,
     mini: React.PropTypes.bool,
-    onTouchTap: React.PropTypes.func
+    onTouchTap: React.PropTypes.func,
+    secondary: React.PropTypes.bool
   },
 
   getInitialState: function() {
@@ -33,7 +34,8 @@ var RaisedButton = React.createClass({
       onTouchTap,
       ...other } = this.props,
       classes = this.getClasses('mui-floating-action-button', {
-        'mui-is-mini': this.props.mini
+        'mui-is-mini': this.props.mini,
+        'mui-is-secondary': this.props.secondary
       });
 
     return (
@@ -67,9 +69,9 @@ var RaisedButton = React.createClass({
     //animate the zdepth change
     this.setState({ zDepth: this.state.initialZDepth + 1 });
     setTimeout(function() {
-			if (this.isMounted()) {
-				this.setState({zDepth: this.state.initialZDepth});
-			}
+      if (this.isMounted()) {
+        this.setState({zDepth: this.state.initialZDepth});
+      }
     }.bind(this), 450);
   }
 

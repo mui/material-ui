@@ -13,10 +13,10 @@ var ToastsPage = React.createClass({
 
   render: function() {
     return (
-    	<div>
-  			<h2 className="mui-font-style-headline">Toasts</h2>
-  			{this._getToastExample()}
-  		</div>
+      <div>
+        <h2 className="mui-font-style-headline">Toasts</h2>
+        {this._getToastExample()}
+      </div>
     );
   },
 
@@ -27,7 +27,7 @@ var ToastsPage = React.createClass({
     return (
       <CodeExample code={code}>
         <button onClick={this.triggerToast}>Trigger Toast</button>
-      	<mui.Toast ref="Toast" message={this.state.message} action={this.state.action} />
+        <mui.Toast ref="Toast" message={this.state.message} action={this.state.action} />
       </CodeExample>
     );
   },
