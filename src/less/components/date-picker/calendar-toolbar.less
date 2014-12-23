@@ -1,18 +1,23 @@
 .mui-date-picker-calendar-toolbar {
-  text-align: center;
-  line-height: 48px;
-  font-size: 14px;
-  .clearfix();
+  height: 48px;
+  position: relative;
 
   .mui-date-picker-calendar-toolbar-title {
+    line-height: 48px;
+    font-size: 14px;
+    text-align: center;
     .mui-font-weight-medium;
   }
 
   .mui-date-picker-calendar-toolbar-button-left {
-    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 
   .mui-date-picker-calendar-toolbar-button-right {
-    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }

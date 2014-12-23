@@ -7,7 +7,7 @@ var SlideIn = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    direction: React.PropTypes.oneOf(['left', 'right'])
+    direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down'])
   },
 
   getDefaultProps: function() {
@@ -22,10 +22,9 @@ var SlideIn = React.createClass({
       direction,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-transition-slide-in', {
-      'mui-is-left': this.props.direction === 'left',
-      'mui-is-right': this.props.direction === 'right'
-    });
+    var classes = this.getClasses('mui-transition-slide-in');
+
+    classes += ' mui-is-' + this.props.direction;
 
     //Add a custom className to every child
     React.Children.forEach(this.props.children, function(child) {

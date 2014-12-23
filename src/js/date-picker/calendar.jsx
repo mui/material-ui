@@ -22,13 +22,12 @@ var Calendar = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    var dir;
+    var direction;
 
     if (nextProps.focusDate !== this.props.focusDate) {
-
-      dir = nextProps.focusDate > this.props.focusDate ? 'left' : 'right';
+      direction = nextProps.focusDate > this.props.focusDate ? 'left' : 'right';
       this.setState({
-        transitionDirection: dir
+        transitionDirection: direction
       });
     }
   },
@@ -41,7 +40,7 @@ var Calendar = React.createClass({
 
     return (
       <div className="mui-date-picker-calendar">
-      
+
         <CalendarToolbar
           focusDate={this.props.focusDate}
           onLeftTouchTap={this.props.onLeftTouchTap}
