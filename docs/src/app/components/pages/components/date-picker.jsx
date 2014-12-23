@@ -28,7 +28,12 @@ var DatePickerPage = React.createClass({
 
     return (
       <CodeExample code={code}>
-        <DatePicker ref="datePicker" />
+        <DatePicker
+          ref="datePicker"
+          name="TallDialogDate"
+          placeholder="Tall Dialog"
+          defaultValue="12/1/2014"
+          inlinePlaceholder={true} />
       </CodeExample>
     );
   },
