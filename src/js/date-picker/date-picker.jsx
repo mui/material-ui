@@ -9,29 +9,31 @@ var DatePicker = React.createClass({
   mixins: [Classable],
 
   propTypes: {
+    formatDate: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func
   },
 
   getDefaultProps: function() {
     return {
-      dateFormat: ''
+      formatDate: DateTime.format
     };
   },
 
   getInitialState: function() {
     return {
+      date: null,
       dialogDate: new Date()
     };
   },
 
   render: function() {
     var {
+      formatDate,
       onFocus,
       onTouchTap,
       ...other
     } = this.props;
-    var initialDate;
 
     return (
       <div className="mui-date-picker">
@@ -49,9 +51,19 @@ var DatePicker = React.createClass({
     );
   },
 
+  getDate: function() {
+    return this.state.value;
+  },
+
+  setDate: function(d) {
+    this.setState({
+      date: d
+    });
+    this.refs.input.setValue(this.props.formatDate(d));
+  },
+
   _handleDialogAccept: function(d) {
-    //TO DO: need to allow users to specify a date format
-    this.refs.input.setValue(DateTime.format(d));
+    this.setDate(d);
   },
 
   _handleInputFocus: function(e) {
