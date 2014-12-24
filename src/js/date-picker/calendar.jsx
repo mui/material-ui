@@ -1,4 +1,5 @@
 var React = require('react');
+var Classable = require('../mixins/classable.js');
 var WindowListenable = require('../mixins/window-listenable.js');
 var DateTime = require('../utils/date-time.js');
 var KeyCode = require('../utils/key-code.js');
@@ -9,11 +10,12 @@ var SlideInTransitionGroup = require('../transitions/slide-in.jsx');
 
 var Calendar = React.createClass({
 
-  mixins: [WindowListenable],
+  mixins: [Classable, WindowListenable],
 
   propTypes: {
     initialDate: React.PropTypes.object,
-    isActive: React.PropTypes.bool
+    isActive: React.PropTypes.bool,
+    mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline'])
   },
 
   windowListeners: {
@@ -22,7 +24,8 @@ var Calendar = React.createClass({
 
   getDefaultProps: function() {
     return {
-      initialDate: new Date()
+      initialDate: new Date(),
+      mode: 'portrait'
     };
   },
 
@@ -46,42 +49,45 @@ var Calendar = React.createClass({
 
   render: function() {
     var weekCount = DateTime.getWeekArray(this.state.displayDate).length;
-    var calendarStyle = {
-      height: weekCount * 40 + 8
-    };
+    var classes = this.getClasses('mui-date-picker-calendar', {
+      'mui-is-4week': weekCount === 4,
+      'mui-is-5week': weekCount === 5,
+      'mui-is-6week': weekCount === 6
+    });
 
     return (
-      <div className="mui-date-picker-calendar">
+      <div className={classes}>
 
-        <DateDisplay selectedDate={this.state.selectedDate} />
+        <DateDisplay
+          className="mui-date-picker-calendar-date-display"
+          selectedDate={this.state.selectedDate} />
 
-        <CalendarToolbar
-          displayDate={this.state.displayDate}
-          onLeftTouchTap={this._handleLeftTouchTap}
-          onRightTouchTap={this._handleRightTouchTap} />
-
-        <ul className="mui-date-picker-calendar-week-title">
-          <li className="mui-date-picker-calendar-week-title-day">S</li>
-          <li className="mui-date-picker-calendar-week-title-day">M</li>
-          <li className="mui-date-picker-calendar-week-title-day">T</li>
-          <li className="mui-date-picker-calendar-week-title-day">W</li>
-          <li className="mui-date-picker-calendar-week-title-day">T</li>
-          <li className="mui-date-picker-calendar-week-title-day">F</li>
-          <li className="mui-date-picker-calendar-week-title-day">S</li>
-        </ul>
-
-        <SlideInTransitionGroup
-          className="mui-date-picker-calendar-container"
-          direction={this.state.transitionDirection}
-          style={calendarStyle}>
-          <CalendarMonth
-            key={this.state.displayDate.toDateString()}
+        <div
+          className="mui-date-picker-calendar-container">
+          <CalendarToolbar
             displayDate={this.state.displayDate}
-            onDayTouchTap={this._handleDayTouchTap}
-            selectedDate={this.state.selectedDate}
-            style={calendarStyle} />
-        </SlideInTransitionGroup>
+            onLeftTouchTap={this._handleLeftTouchTap}
+            onRightTouchTap={this._handleRightTouchTap} />
 
+          <ul className="mui-date-picker-calendar-week-title">
+            <li className="mui-date-picker-calendar-week-title-day">S</li>
+            <li className="mui-date-picker-calendar-week-title-day">M</li>
+            <li className="mui-date-picker-calendar-week-title-day">T</li>
+            <li className="mui-date-picker-calendar-week-title-day">W</li>
+            <li className="mui-date-picker-calendar-week-title-day">T</li>
+            <li className="mui-date-picker-calendar-week-title-day">F</li>
+            <li className="mui-date-picker-calendar-week-title-day">S</li>
+          </ul>
+
+          <SlideInTransitionGroup
+            direction={this.state.transitionDirection}>
+            <CalendarMonth
+              key={this.state.displayDate.toDateString()}
+              displayDate={this.state.displayDate}
+              onDayTouchTap={this._handleDayTouchTap}
+              selectedDate={this.state.selectedDate} />
+          </SlideInTransitionGroup>
+        </div>
       </div>
     );
   },

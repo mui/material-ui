@@ -1,8 +1,11 @@
 var React = require('react');
+var Classable = require('../mixins/classable.js');
 var DateTime = require('../utils/date-time.js');
 var SlideInTransitionGroup = require('../transitions/slide-in.jsx');
 
 var DateDisplay = React.createClass({
+
+  mixins: [Classable],
 
   propTypes: {
     selectedDate: React.PropTypes.object.isRequired
@@ -26,13 +29,18 @@ var DateDisplay = React.createClass({
   },
 
   render: function() {
+    var {
+      selectedDate,
+      ...other
+    } = this.props;
+    var classes = this.getClasses('mui-date-picker-date-display');
     var dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
     var month = DateTime.getShortMonth(this.props.selectedDate);
     var day = this.props.selectedDate.getDate();
     var year = this.props.selectedDate.getFullYear();
 
     return (
-      <div className="mui-date-picker-date-display">
+      <div {...other} className={classes}>
 
         <SlideInTransitionGroup
           className="mui-date-picker-date-display-dow"

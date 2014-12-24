@@ -27,17 +27,32 @@ var DatePickerPage = React.createClass({
 
   _getExample: function() {
     var code =
+      '//Portrait Dialog\n' +
       '<DatePicker\n' +
-      '  name="TallDialogDate"\n' +
-      '  placeholder="Tall Dialog"\n' +
-      '  inlinePlaceholder={true} />';
+      '  name="PortraitDialogDate"\n' +
+      '  placeholder="Portrait Dialog"\n' +
+      '  inlinePlaceholder={true} />\n\n' +
+      '//Landscape Dialog\n' +
+      '<DatePicker\n' +
+      '  name="PortraitDialogDate"\n' +
+      '  placeholder="Portrait Dialog"\n' +
+      '  inlinePlaceholder={true}\n' +
+      '  mode="landscape"/>';
 
     return (
       <CodeExample code={code}>
+
         <DatePicker
-          name="TallDialogDate"
-          placeholder="Tall Dialog"
+          name="PortraitDialogDate"
+          placeholder="Portrait Dialog"
           inlinePlaceholder={true} />
+
+        <DatePicker
+          name="LandscapeDialogDate"
+          placeholder="Landscape Dialog"
+          inlinePlaceholder={true}
+          mode="landscape"/>
+
       </CodeExample>
     );
   },
@@ -56,6 +71,12 @@ var DatePickerPage = React.createClass({
         header: 'default: formats to M/D/YYYY',
         desc: 'This function is called to format the date to display in ' +
           'the input box. By default, date objects are formatted to M/D/YYYY.'
+      },
+      {
+        name: 'mode',
+        type: 'one of: portrait, landscape',
+        header: 'default: portrait',
+        desc: 'Tells the component to display the picker in portrait or landscape mode.'
       }
     ];
 
