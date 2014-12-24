@@ -14,6 +14,7 @@ var Typography = require('./components/pages/css-framework/typography.jsx');
 
 var Components = require('./components/pages/components.jsx');
 var Buttons = require('./components/pages/components/buttons.jsx');
+var DatePicker = require('./components/pages/components/date-picker.jsx');
 var Dialog = require('./components/pages/components/dialog.jsx');
 var DropDownMenu = require('./components/pages/components/drop-down-menu.jsx');
 var IconButtons = require('./components/pages/components/icon-buttons.jsx');
@@ -39,6 +40,7 @@ var AppRoutes = (
 
     <Route name="components" handler={Components}>
       <Route name="buttons" handler={Buttons} />
+      <Route name="date-picker" handler={DatePicker} />
       <Route name="dialog" handler={Dialog} />
       <Route name="dropdown-menu" handler={DropDownMenu} />
       <Route name="icon-buttons" handler={IconButtons} />

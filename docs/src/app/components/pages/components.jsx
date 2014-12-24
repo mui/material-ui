@@ -6,6 +6,7 @@ var CssFramework = React.createClass({
   render: function() {
     var menuItems = [
       { route: 'buttons', text: 'Buttons'},
+      { route: 'date-picker', text: 'Date Picker'},
       { route: 'dialog', text: 'Dialog'},
       { route: 'dropdown-menu', text: 'Dropdown Menu'},
       { route: 'icon-buttons', text: 'Icon Buttons'},

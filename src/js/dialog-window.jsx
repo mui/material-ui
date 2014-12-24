@@ -1,5 +1,6 @@
 var React = require('react');
 var WindowListenable = require('./mixins/window-listenable.js');
+var CssEvent = require('./utils/css-event.js');
 var KeyCode = require('./utils/key-code.js');
 var Classable = require('./mixins/classable');
 var Overlay = require('./overlay.jsx');
@@ -13,8 +14,10 @@ var DialogWindow = React.createClass({
     actions: React.PropTypes.array,
     contentClassName: React.PropTypes.string,
     openImmediately: React.PropTypes.bool,
+    onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func
+    onShow: React.PropTypes.func,
+    repositionOnUpdate: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -23,7 +26,8 @@ var DialogWindow = React.createClass({
 
   getDefaultProps: function() {
     return {
-      actions: []
+      actions: [],
+      repositionOnUpdate: true
     };
   },
 
@@ -63,12 +67,29 @@ var DialogWindow = React.createClass({
     );
   },
 
+  isOpen: function() {
+    return this.state.open;
+  },
+
   dismiss: function() {
+
+    CssEvent.onTransitionEnd(this.getDOMNode(), function() {
+      //allow scrolling
+      var body = document.getElementsByTagName('body')[0];
+      body.style.overflow = '';
+      body.style.position = '';
+    });
+
     this.setState({ open: false });
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
   show: function() {
+    //prevent scrolling
+    var body = document.getElementsByTagName('body')[0];
+    body.style.overflow = 'hidden';
+    body.style.position = 'fixed';
+
     this.setState({ open: true });
     if (this.props.onShow) this.props.onShow();
   },
@@ -114,13 +135,18 @@ var DialogWindow = React.createClass({
 
       //Vertically center the dialog window, but make sure it doesn't
       //transition to that position.
-      container.style.paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64 + 'px';
+      if (this.props.repositionOnUpdate || !container.style.paddingTop) {
+        container.style.paddingTop = 
+          ((containerHeight - dialogWindowHeight) / 2) - 64 + 'px';
+      }
+      
 
     }
   },
 
   _handleOverlayTouchTap: function() {
     this.dismiss();
+    if (this.props.onClickAway) this.props.onClickAway();
   },
 
   _handleWindowKeyUp: function(e) {
