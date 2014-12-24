@@ -55,7 +55,7 @@ var DatePickerPage = React.createClass({
         type: 'function',
         header: 'default: formats to M/D/YYYY',
         desc: 'This function is called to format the date to display in ' +
-          'the input box. By default, date objects for formatted to M/D/YYYY.'
+          'the input box. By default, date objects are formatted to M/D/YYYY.'
       }
     ];
 
