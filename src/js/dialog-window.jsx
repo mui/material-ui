@@ -71,11 +71,21 @@ var DialogWindow = React.createClass({
   },
 
   dismiss: function() {
+    //allow scrolling
+    var body = document.getElementsByTagName('body')[0];
+    body.style.overflow = '';
+    body.style.position = '';
+
     this.setState({ open: false });
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
   show: function() {
+    //prevent scrolling
+    var body = document.getElementsByTagName('body')[0];
+    body.style.overflow = 'hidden';
+    body.style.position = 'fixed';
+
     this.setState({ open: true });
     if (this.props.onShow) this.props.onShow();
   },
