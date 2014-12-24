@@ -90,24 +90,10 @@ var Calendar = React.createClass({
     return this.state.selectedDate;
   },
 
-  _handleDayTouchTap: function(e, date) {
-    this._setSelectedDate(date);
-  },
-
-  _addDisplayDate: function(m, newSelectedDate) {
-    var displayDate;
-    var direction;
-
-    displayDate = DateTime.clone(this.state.displayDate);
-    displayDate.setMonth(displayDate.getMonth() + m);
-
-    direction = displayDate > this.state.displayDate ? 'left' : 'right';
-
-    this.setState({
-      displayDate: displayDate,
-      transitionDirection: direction,
-      selectedDate: newSelectedDate || this.state.selectedDate
-    });
+  _addDisplayDate: function(m) {
+    var newDisplayDate = DateTime.clone(this.state.displayDate);
+    newDisplayDate.setMonth(newDisplayDate.getMonth() + m);
+    this._setDisplayDate(newDisplayDate);
   },
 
   _addSelectedDays: function(days) {
@@ -118,18 +104,33 @@ var Calendar = React.createClass({
     this._setSelectedDate(DateTime.addMonths(this.state.selectedDate, months));
   },
 
-  _setSelectedDate: function(d) {
-    var d1 = DateTime.getFirstDayOfMonth(d);
-    var d2 = DateTime.getFirstDayOfMonth(this.state.selectedDate);
-    var monthDiff = DateTime.monthDiff(d1, d2);
+  _setDisplayDate: function(d, newSelectedDate) {
+    var newDisplayDate = DateTime.getFirstDayOfMonth(d);
+    var direction = newDisplayDate > this.state.displayDate ? 'left' : 'right';
 
-    if (monthDiff !== 0) {
-      this._addDisplayDate(monthDiff, d);
+    if (newDisplayDate !== this.state.displayDate) {
+      this.setState({
+        displayDate: newDisplayDate,
+        transitionDirection: direction,
+        selectedDate: newSelectedDate || this.state.selectedDate
+      });
+    }
+  },
+
+  _setSelectedDate: function(d) {
+    var newDisplayDate = DateTime.getFirstDayOfMonth(d);
+
+    if (newDisplayDate !== this.state.displayDate) {
+      this._setDisplayDate(newDisplayDate, d);
     } else {
       this.setState({
         selectedDate: d
       });
     }
+  },
+
+  _handleDayTouchTap: function(e, date) {
+    this._setSelectedDate(date);
   },
 
   _handleLeftTouchTap: function() {
