@@ -34,8 +34,8 @@ var DatePickerPage = React.createClass({
       '  inlinePlaceholder={true} />\n\n' +
       '//Landscape Dialog\n' +
       '<DatePicker\n' +
-      '  name="PortraitDialogDate"\n' +
-      '  placeholder="Portrait Dialog"\n' +
+      '  name="LandscapeDialogDate"\n' +
+      '  placeholder="Landscape Dialog"\n' +
       '  inlinePlaceholder={true}\n' +
       '  mode="landscape"/>';
 
