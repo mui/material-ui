@@ -108,10 +108,12 @@ var Calendar = React.createClass({
     });
   },
 
-  _addSelectedDate: function(days) {
-    var d = DateTime.clone(this.state.selectedDate);
-    d.setDate(d.getDate() + days);
-    this._setSelectedDate(d);
+  _addSelectedDays: function(days) {
+    this._setSelectedDate(DateTime.addDays(this.state.selectedDate, days));
+  },
+
+  _addSelectedMonths: function(months) {
+    this._setSelectedDate(DateTime.addMonths(this.state.selectedDate, months));
   },
 
   _setSelectedDate: function(d) {
@@ -137,24 +139,42 @@ var Calendar = React.createClass({
   },
 
   _handleWindowKeyDown: function(e) {
+    var newSelectedDate;
+
     if (this.props.isActive) {
 
       switch (e.keyCode) {
 
         case KeyCode.UP:
-          this._addSelectedDate(-7);
+          if (e.shiftKey) {
+            this._addSelectedMonths(-1);
+          } else {
+            this._addSelectedDays(-7);
+          }
           break;
 
         case KeyCode.DOWN:
-          this._addSelectedDate(7);
+          if (e.shiftKey) {
+            this._addSelectedMonths(1);
+          } else {
+            this._addSelectedDays(7);
+          }
           break;
 
         case KeyCode.RIGHT:
-          this._addSelectedDate(1);
+          if (e.shiftKey) {
+            this._addSelectedMonths(1);
+          } else {
+            this._addSelectedDays(1);
+          }
           break;
 
         case KeyCode.LEFT:
-          this._addSelectedDate(-1);
+          if (e.shiftKey) {
+            this._addSelectedMonths(-1);
+          } else {
+            this._addSelectedDays(-1);
+          }
           break;
 
       }

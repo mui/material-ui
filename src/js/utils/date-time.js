@@ -1,5 +1,17 @@
 module.exports = {
 
+  addDays: function(d, days) {
+    var newDate = this.clone(d);
+    newDate.setDate(d.getDate() + days);
+    return newDate;
+  },
+
+  addMonths: function(d, months) {
+    var newDate = this.clone(d);
+    newDate.setMonth(d.getMonth() + months);
+    return newDate;
+  },
+
   clone: function(d) {
     return new Date(d.getTime());
   },
