@@ -36,8 +36,10 @@ var Calendar = React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.initialDate !== this.props.initialDate) {
+      var d = nextProps.initialDate || new Date();
       this.setState({
-        selectedDate: nextProps.initialDate || new Date()
+        displayDate: DateTime.getFirstDayOfMonth(d),
+        selectedDate: d
       });
     }
   },
