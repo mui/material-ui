@@ -12,7 +12,6 @@ var DatePickerDialog = React.createClass({
 
   propTypes: {
     initialDate: React.PropTypes.object,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline']),
     onAccept: React.PropTypes.func
   },
 
@@ -29,7 +28,6 @@ var DatePickerDialog = React.createClass({
   render: function() {
     var {
       initialDate,
-      mode,
       onAccept,
       ...other
     } = this.props;
@@ -59,8 +57,7 @@ var DatePickerDialog = React.createClass({
         <Calendar
           ref="calendar"
           initialDate={this.props.initialDate}
-          isActive={this.state.isCalendarActive}
-          mode={mode} />
+          isActive={this.state.isCalendarActive} />
       </DialogWindow>
     );
   },

@@ -64,7 +64,6 @@ var DatePicker = React.createClass({
         <DatePickerDialog
           ref="dialogWindow"
           initialDate={this.state.dialogDate}
-          mode={mode}
           onAccept={this._handleDialogAccept} />
       </div>
       

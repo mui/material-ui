@@ -14,8 +14,7 @@ var Calendar = React.createClass({
 
   propTypes: {
     initialDate: React.PropTypes.object,
-    isActive: React.PropTypes.bool,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline'])
+    isActive: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -24,8 +23,7 @@ var Calendar = React.createClass({
 
   getDefaultProps: function() {
     return {
-      initialDate: new Date(),
-      mode: 'portrait'
+      initialDate: new Date()
     };
   },
 
