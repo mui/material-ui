@@ -1,5 +1,6 @@
 var React = require('react');
 var WindowListenable = require('./mixins/window-listenable.js');
+var CssEvent = require('./utils/css-event.js');
 var KeyCode = require('./utils/key-code.js');
 var Classable = require('./mixins/classable');
 var Overlay = require('./overlay.jsx');
@@ -71,10 +72,13 @@ var DialogWindow = React.createClass({
   },
 
   dismiss: function() {
-    //allow scrolling
-    var body = document.getElementsByTagName('body')[0];
-    body.style.overflow = '';
-    body.style.position = '';
+
+    CssEvent.onTransitionEnd(this.getDOMNode(), function() {
+      //allow scrolling
+      var body = document.getElementsByTagName('body')[0];
+      body.style.overflow = '';
+      body.style.position = '';
+    });
 
     this.setState({ open: false });
     if (this.props.onDismiss) this.props.onDismiss();
