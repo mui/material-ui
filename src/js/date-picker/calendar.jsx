@@ -17,7 +17,7 @@ var Calendar = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    'keydown': '_handleWindowKeyDown'
   },
 
   getDefaultProps: function() {
@@ -136,7 +136,7 @@ var Calendar = React.createClass({
     this._addDisplayDate(1);
   },
 
-  _handleWindowKeyUp: function(e) {
+  _handleWindowKeyDown: function(e) {
     if (this.props.isActive) {
 
       switch (e.keyCode) {
