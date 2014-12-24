@@ -18,18 +18,23 @@ var DatePickerPage = React.createClass({
         <h3 className="mui-font-style-title">Props</h3>
         {this._getPropInfo()}
 
+        <h3 className="mui-font-style-title">Methods</h3>
+        {this._getMethodInfo()}
+
       </div>
     );
   },
 
   _getExample: function() {
     var code =
-      '<DatePicker />\n';
+      '<DatePicker\n' +
+      '  name="TallDialogDate"\n' +
+      '  placeholder="Tall Dialog"\n' +
+      '  inlinePlaceholder={true} />';
 
     return (
       <CodeExample code={code}>
         <DatePicker
-          ref="datePicker"
           name="TallDialogDate"
           placeholder="Tall Dialog"
           inlinePlaceholder={true} />
@@ -39,13 +44,37 @@ var DatePickerPage = React.createClass({
 
   _getPropInfo: function() {
     var info = [
-          {
-            name: 'icon',
-            type: 'string',
-            header: 'required',
-            desc: 'The name of the icon to use.'
-          }
-        ];
+      {
+        name: 'defaultDate',
+        type: 'date object',
+        header: 'optional',
+        desc: 'This is the initial date value of the component.'
+      },
+      {
+        name: 'formatDate',
+        type: 'function',
+        header: 'default: formats to M/D/YYYY',
+        desc: 'This function is called to format the date to display in ' +
+          'the input box. By default, date objects for formatted to M/D/YYYY.'
+      }
+    ];
+
+    return <ComponentInfo infoArray={info} />;
+  },
+
+  _getMethodInfo: function() {
+    var info = [
+      {
+        name: 'getDate',
+        header: 'DatePicker.getDate()',
+        desc: 'Returns the current date value.'
+      },
+      {
+        name: 'setDate',
+        header: 'DatePicker.setDate(d)',
+        desc: 'Sets the date value to d, where d is a date object.'
+      }
+    ];
 
     return <ComponentInfo infoArray={info} />;
   }
