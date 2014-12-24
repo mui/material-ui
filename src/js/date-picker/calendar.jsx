@@ -1,21 +1,45 @@
 var React = require('react');
+var WindowListenable = require('../mixins/window-listenable.js');
 var DateTime = require('../utils/date-time.js');
+var KeyCode = require('../utils/key-code.js');
 var CalendarMonth = require('./calendar-month.jsx');
 var CalendarToolbar = require('./calendar-toolbar.jsx');
+var DateDisplay = require('./date-display.jsx');
 var SlideInTransitionGroup = require('../transitions/slide-in.jsx');
 
 var Calendar = React.createClass({
 
+  mixins: [WindowListenable],
+
   propTypes: {
-    onSelectedDateChange: React.PropTypes.func,
-    selectedDate: React.PropTypes.object.isRequired
+    initialDate: React.PropTypes.object,
+    isActive: React.PropTypes.bool
+  },
+
+  windowListeners: {
+    'keyup': '_handleWindowKeyUp'
+  },
+
+  getDefaultProps: function() {
+    return {
+      initialDate: new Date()
+    };
   },
 
   getInitialState: function() {
     return {
-      displayDate: DateTime.getFirstDayOfMonth(this.props.selectedDate),
+      displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
+      selectedDate: this.props.initialDate,
       transitionDirection: 'left'
     };
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.initialDate !== this.props.initialDate) {
+      this.setState({
+        selectedDate: nextProps.initialDate || new Date()
+      });
+    }
   },
 
   render: function() {
@@ -26,6 +50,8 @@ var Calendar = React.createClass({
 
     return (
       <div className="mui-date-picker-calendar">
+
+        <DateDisplay selectedDate={this.state.selectedDate} />
 
         <CalendarToolbar
           displayDate={this.state.displayDate}
@@ -50,7 +76,7 @@ var Calendar = React.createClass({
             key={this.state.displayDate.toDateString()}
             displayDate={this.state.displayDate}
             onDayTouchTap={this._handleDayTouchTap}
-            selectedDate={this.props.selectedDate}
+            selectedDate={this.state.selectedDate}
             style={calendarStyle} />
         </SlideInTransitionGroup>
 
@@ -58,14 +84,15 @@ var Calendar = React.createClass({
     );
   },
 
-  _handleDayTouchTap: function(e, date) {
-    if (this.props.onSelectedDateChange &&
-      (!DateTime.isEqualDate(this.props.selectedDate, date))) {
-      this.props.onSelectedDateChange(e, date);
-    }
+  getSelectedDate: function() {
+    return this.state.selectedDate;
   },
 
-  _addDisplayDate: function(m) {
+  _handleDayTouchTap: function(e, date) {
+    this._setSelectedDate(date);
+  },
+
+  _addDisplayDate: function(m, newSelectedDate) {
     var displayDate;
     var direction;
 
@@ -76,8 +103,29 @@ var Calendar = React.createClass({
 
     this.setState({
       displayDate: displayDate,
-      transitionDirection: direction
+      transitionDirection: direction,
+      selectedDate: newSelectedDate || this.state.selectedDate
     });
+  },
+
+  _addSelectedDate: function(days) {
+    var d = DateTime.clone(this.state.selectedDate);
+    d.setDate(d.getDate() + days);
+    this._setSelectedDate(d);
+  },
+
+  _setSelectedDate: function(d) {
+    var d1 = DateTime.getFirstDayOfMonth(d);
+    var d2 = DateTime.getFirstDayOfMonth(this.state.selectedDate);
+    var monthDiff = DateTime.monthDiff(d1, d2);
+
+    if (monthDiff !== 0) {
+      this._addDisplayDate(monthDiff, d);
+    } else {
+      this.setState({
+        selectedDate: d
+      });
+    }
   },
 
   _handleLeftTouchTap: function() {
@@ -86,6 +134,32 @@ var Calendar = React.createClass({
 
   _handleRightTouchTap: function() {
     this._addDisplayDate(1);
+  },
+
+  _handleWindowKeyUp: function(e) {
+    if (this.props.isActive) {
+
+      switch (e.keyCode) {
+
+        case KeyCode.UP:
+          this._addSelectedDate(-7);
+          break;
+
+        case KeyCode.DOWN:
+          this._addSelectedDate(7);
+          break;
+
+        case KeyCode.RIGHT:
+          this._addSelectedDate(1);
+          break;
+
+        case KeyCode.LEFT:
+          this._addSelectedDate(-1);
+          break;
+
+      }
+
+    } 
   }
 
 });

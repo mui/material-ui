@@ -107,6 +107,14 @@ module.exports = {
       (d1.getFullYear() === d2.getFullYear()) &&
       (d1.getMonth() === d2.getMonth()) &&
       (d1.getDate() === d2.getDate());
+  },
+
+  monthDiff: function(d1, d2) {
+    var m;
+    m = (d1.getFullYear() - d2.getFullYear()) * 12;
+    m += d1.getMonth();
+    m -= d2.getMonth();
+    return m;
   }
 
 }
