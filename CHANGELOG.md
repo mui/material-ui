@@ -1,3 +1,35 @@
+## 0.4.1
+###### _Dec. 25, 2104_
+
+##### General
+- Updated to react 0.12.2; browserify 7.0.3
+- Fixed ripple animation on Firefox (#129)
+- Updated red, green, and blue color variables to match specs (#177)
+
+##### Components
+- Buttons
+  - Added secondary button colors
+  - Removed underline styles on link buttons (#172)
+- Date Picker (New)
+  - Added new date picker component.
+  - Dialog version is implemented, inline version to follow in upcoming release.
+  - Has both portrait and landscape modes.
+  - Keyboard support: arrow keys advance dates, shift+arrow advances month.
+- Dialog
+  - Dialog actions now generate buttons with secondary colors.
+  - Added contentClassName prop. This is used to style the actual dialog window.
+    For example, setting its width.
+  - Dialog contents no longer are removed from the DOM when the dialog is dismissed.
+  - Disabled scrolling when the dialog window is open.
+- Input
+  - Added disabled input styles (#140)
+  - Added blur() method
+  - Added support for email input type (#170)
+  - Fix textarea placeholder focus exception (#170)
+  - Added mui-is-not-empty class when the input isn't empty (#170)
+- Slider
+  - Trigger onChange when clicking on slider (#153)
+
 ## 0.4.0
 ###### _Dec. 15, 2014_
 
