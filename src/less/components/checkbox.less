@@ -52,7 +52,7 @@
     box-sizing: @checkbox-box-box-sizing;
     height: @checkbox-box-size;
     position: @checkbox-box-position;
-    .lh-transform(@checkbox-box-transform);
+    transform: @checkbox-box-transform;
     transform-origin: @checkbox-box-transform-origin;
     width: @checkbox-box-size;
   }
@@ -65,7 +65,7 @@
     height: @checkbox-check-height;
     left: @checkbox-check-fix-left;
     position: @checkbox-check-position;
-    .lh-transform(@checkbox-check-transform);
+    transform: @checkbox-check-transform;
     transform-origin: @checkbox-check-transform-origin;
     width: @checkbox-check-height;
   }
@@ -73,13 +73,13 @@
   &.mui-checked {
     .mui-checkbox-box {
       .ease-out;
-      .lh-transform(rotate(45deg) scale(0));
+      transform: rotate(45deg) scale(0);
     }
 
     .mui-checkbox-check {
       .ease-out;
       height: @checkbox-checked-check-height;
-      .lh-transform(@checkbox-checked-check-transform);
+      transform: @checkbox-checked-check-transform;
       transition-delay: @checkbox-checked-check-transition-delay;
       width: @checkbox-checked-check-width;
     }

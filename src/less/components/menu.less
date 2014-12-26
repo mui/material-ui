@@ -5,7 +5,7 @@
   background-color: @menu-background-color;
 
   &.mui-menu-hideable {
-    .lh-opacity(0);
+    opacity: 0;
     position: absolute;
     top: 0;
     z-index: 1;
@@ -42,9 +42,7 @@
     padding-right: @menu-item-padding;
     background-color: fade(@menu-item-hover-color, 0%);
 
-     * {
-      .lh-user-select(none);
-     }
+     * { user-select: none }
     
     //needed for ripple
     position: relative;
@@ -112,7 +110,7 @@
 
     &.mui-open {
       & > .mui-menu {
-        .lh-opacity(1);
+        opacity: 1;
       }
     }
   }
