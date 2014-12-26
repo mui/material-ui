@@ -9,10 +9,10 @@
     background-color: @date-picker-select-color;
     height: 32px;
     width: 32px;
+    opacity: 0;
+    border-radius: 50%;
+    transform: scale(0);
     .ease-out();
-    .lh-opacity(0);
-    .lh-border-radius(50%);
-    .lh-scale(0);
   }
 
   .mui-date-picker-day-button-label {
@@ -24,8 +24,8 @@
       color: @date-picker-select-text-color;
     }
     .mui-date-picker-day-button-select {
-      .lh-opacity(1);
-      .lh-scale(1);
+      opacity: 1;
+      transform: scale(1);
     }
   }
 

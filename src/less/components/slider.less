@@ -57,9 +57,14 @@
     left: 0%;
     z-index: 1;
     margin: (@slider-track-size / 2) 0 0 0;
-    .lh-border-radius(50%);
-    .lh-translate(-50%, -50%);
-    .lh-transition(border 450ms @ease-out-function, width 450ms @ease-out-function, height 450ms @ease-out-function);
+
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition:
+      border 450ms @ease-out-function,
+      width 450ms @ease-out-function,
+      height 450ms @ease-out-function;
+
     .handle-size(@slider-handle-size);
 
     &:focus {
@@ -95,13 +100,16 @@
       .mui-slider-handle {
         border: @slider-track-size solid @slider-track-color;
         background-color: transparent;
-        .lh-box-shadow(none);
+        box-shadow: none;
 
         &:active {
           border-color: @slider-track-color-selected;
           width: @slider-handle-size-active !important;
           height: @slider-handle-size-active !important;
-          .lh-transition(background-color 450ms @ease-out-function, width 450ms @ease-out-function, height 450ms @ease-out-function);
+          transition:
+            background-color 450ms @ease-out-function,
+            width 450ms @ease-out-function,
+            height 450ms @ease-out-function;
 
           & ~ .mui-slider-selection-high .mui-slider-selection-fill {
             margin-left: @slider-handle-size !important;

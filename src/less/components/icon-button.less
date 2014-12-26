@@ -23,15 +23,14 @@
 	.mui-icon-button-focus-ripple {
 		top: 0;
 		left: 0;
-		.lh-translate(0, 0);
+    transform: translate(0, 0);
 
 		width: @icon-button-size;
 		height: @icon-button-size;
 		box-shadow: 0px 0px 0px 1px @ripple-color;
 		border: solid 6px @transparent;
 		background-color: @ripple-color;
-
-		.lh-opacity(0);
+    opacity: 0;
 	}
 
 	.mui-icon-button-tooltip {  
@@ -45,7 +44,7 @@
 	&.mui-is-keyboard-focused {
 		.mui-icon-button-focus-ripple {
 			.pulsate(ripple-icon-button-focus);
-			.lh-opacity(1);
+      opacity: 1;
 		}
 	}
 }

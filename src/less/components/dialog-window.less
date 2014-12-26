@@ -5,8 +5,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-
-  .lh-transition(left 0ms @ease-out-function 450ms);
+  transition: left 0ms @ease-out-function 450ms;
 
   .mui-dialog-window-contents {
     .ease-out();
@@ -32,12 +31,12 @@
 
   &.mui-is-shown {
     left: 0px;
-    .lh-transition(left 0ms @ease-out-function 0ms);
+    transition: left 0ms @ease-out-function 0ms;
 
     .mui-dialog-window-contents {
       opacity: 1;
       top: 0px;
-      .lh-translate3d(0, @desktop-keyline-increment, 0);
+      transform: translate3d(0, @desktop-keyline-increment, 0);
     }
   }
 }
