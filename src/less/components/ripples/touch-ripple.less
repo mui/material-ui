@@ -1,0 +1,87 @@
+@import "circle.less";
+
+.mui-touch-ripple {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  .mui-touch-ripple-child {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    .ease-out();
+
+      //.mui-touch-ripple-leave {
+    //background-color: red;
+    opacity: 1;
+    //transform: scale(0.75);
+    .mui-touch-ripple-child-circle {
+      transform: scale(0.5);
+    }
+  //}
+
+  }
+
+  .mui-touch-ripple-child-circle {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: @min-black;
+    .ease-out();
+  }
+
+  .mui-touch-ripple-enter {
+  // @keyframes mui-touch-ripple {
+  //   0% {
+  //     transform: scale(0);
+  //     background-color: @transparent;
+  //   }
+  //   50% {
+  //     background-color: red;
+  //   }
+  //   100% {
+  //     transform: scale(1);
+  //     background-color: @transparent;
+  //   }
+  // }  
+
+  // animation: mui-touch-ripple 0.7s ease 0s;
+
+    opacity: 0;
+
+    .mui-touch-ripple-child-circle {
+    //background-color: @transparent;
+      transform: scale(0);
+    }
+
+  }
+
+  .mui-touch-ripple-enter-active {
+    opacity: 1;
+    //background-color: red;
+    .mui-touch-ripple-child-circle {
+      transform: scale(1);
+    }
+  }
+
+  .mui-touch-ripple-leave {
+    //background-color: red;
+    opacity: 1;
+    //transform: scale(0.75);
+    .mui-touch-ripple-child-circle {
+      transform: scale(0.5);
+    }
+  }
+
+  .mui-touch-ripple-leave-active {
+    //background-color: @transparent;
+    opacity: 0;
+    //transform: scale(1);
+    .mui-touch-ripple-child-circle {
+      transform: scale(1);
+    }
+  }
+}
