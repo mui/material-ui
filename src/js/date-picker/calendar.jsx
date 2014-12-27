@@ -6,7 +6,7 @@ var KeyCode = require('../utils/key-code.js');
 var CalendarMonth = require('./calendar-month.jsx');
 var CalendarToolbar = require('./calendar-toolbar.jsx');
 var DateDisplay = require('./date-display.jsx');
-var SlideInTransitionGroup = require('../transitions/slide-in.jsx');
+var SlideInTransitionGroup = require('../transition-groups/slide-in.jsx');
 
 var Calendar = React.createClass({
 
