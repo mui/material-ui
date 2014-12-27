@@ -3,92 +3,7 @@
   margin-top: 24px;
   margin-bottom: 48px;
 
-  textarea {
-    background-color: transparent;
-    font-size: @input-font-size;
-    border: 0;
-    outline: none;
-    border-bottom: 1px solid lightgray;
-    padding: 0;
-    box-sizing: border-box;
-    padding-bottom: 14px;
-    width: @input-width;
-
-    &:focus, &.mui-is-not-empty, &:disabled[value]:not([value=""]) {
-      outline: none;
-      box-shadow: none;
-      padding: 0;
-      margin: 0;
-
-      &+.mui-input-placeholder {
-        font-size: 13px;
-        color: blue;
-        top: -27px;
-
-        &+.mui-input-highlight {
-          width: 0;
-          background-color: blue;
-          left: 0;
-          top: 1px;
-
-          &+.mui-input-bar {
-
-            &::before, &::after {
-              background-color: blue;
-              width: 50%;
-            }
-
-            &+.mui-input-description {
-              display: block;
-            }
-          }
-        }
-      }
-    }
-
-    &:not(:focus) {
-      &+.mui-input-placeholder {
-        font-size: 16px;
-        color: gray;
-      }
-    }
-
-    &:not(:focus).mui-is-not-empty, &:disabled[value]:not([value=""]) {
-      &+.mui-input-placeholder {
-        font-size: 13px;
-        color: gray;
-
-        &+.mui-input-highlight {
-          &+.mui-input-bar {
-            &::before, &::after {
-              width: 0;
-            }
-
-            &+.mui-input-description {
-              display: none;
-            }
-          }
-        }
-      }
-    }
-
-    &+.mui-input-placeholder {
-      position: absolute;
-      left: 0;
-      top: 8px;
-
-      &+.mui-input-highlight {
-        &+.mui-input-bar {
-          &+.mui-input-description {
-            position: relative;
-            top: 8px;
-          }
-        }
-      }
-    }
-  }
-
-  input {
+  input, textarea {
     background-color: transparent;
     font-size: @input-font-size;
     border: 0;
@@ -114,9 +29,9 @@
         .ease-out;
       }
       &~.mui-input-highlight {
-          width: 0;
-          background-color: blue;
-          .ease-out;
+        width: 0;
+        background-color: blue;
+        .ease-out;
       }
       &~.mui-input-bar {
         &::before, &::after {
@@ -195,55 +110,16 @@
     display: none;
     color: blue;
     position: absolute;
-    top: 36px;
   }
 
   .mui-input-error {
     display: none;
     color: @input-error-color;
     position: absolute;
-    top: 36px;
   }
 
   &.mui-error {
-    textarea {
-      &:focus, &.mui-is-not-empty {
-        &+.mui-input-placeholder {
-          color: @input-error-color;
-
-          &+.mui-input-highlight {
-            width: 0;
-            background-color: red;
-
-            &+.mui-input-bar {
-
-              &::before, &::after {
-                background-color: @input-error-color;
-              }
-
-              &+.mui-input-description {
-                display: none;
-              }
-            }
-          }
-        }
-      }
-
-      &+.mui-input-placeholder {
-        &+.mui-input-highlight {
-          &+.mui-input-bar {
-            &+.mui-input-description {
-              &+.mui-input-error {
-                position: relative;
-                top: 8px;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    input {
+    input, textarea {
       &:focus, &.mui-is-not-empty {
         &+.mui-input-placeholder {
           color: @input-error-color;
@@ -275,7 +151,7 @@
 
   &.mui-floating {
     margin-top: @desktop-gutter;
-    input {
+    input, textarea {
       &:focus {
         &+.mui-input-placeholder {
           display: block;
