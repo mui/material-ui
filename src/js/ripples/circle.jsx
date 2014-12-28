@@ -7,25 +7,25 @@ var RippleCircle = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
-    innerClassName: React.PropTypes.string,
     started: React.PropTypes.bool,
     ending: React.PropTypes.bool
   },
 
   render: function() {
+    var {
+      innerClassName,
+      started,
+      ending,
+      ...other
+    } = this.props;
     var classes = this.getClasses('mui-ripple-circle', {
       'mui-is-started': this.props.started,
       'mui-is-ending': this.props.ending
     });
-    var innerClasses = 'mui-ripple-circle-inner';
-
-    if (this.props.innerClassName) {
-      innerClasses += ' ' + this.props.innerClassName;
-    }
 
     return (
-      <div className={classes}>
-        <div className={innerClasses} />
+      <div {...other} className={classes}>
+        <div className="mui-ripple-circle-inner" />
       </div>
     );
   }

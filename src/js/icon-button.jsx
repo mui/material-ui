@@ -62,10 +62,10 @@ var IconButton = React.createClass({
         className={classes}
         onBlur={this._handleBlur}
         onFocus={this._handleFocus}
-        onTouchStart={this._handleTouchStart}
-        onTouchEnd={this._handleTouchEnd}
         onMouseDown={this._handleMouseDown}
-        onMouseUp={this._handleMouseUp}>
+        onMouseUp={this._handleMouseUp}
+        onTouchStart={this._handleTouchStart}
+        onTouchEnd={this._handleTouchEnd}>
 
         {tooltip}
 
@@ -75,7 +75,7 @@ var IconButton = React.createClass({
           onMouseOver={this._handleMouseOver}>
 
           <TouchRipple
-            rippleClassName="mui-icon-button-ripple"
+            className="mui-icon-button-ripple"
             ref="touchRipple" />
           <Ripple className="mui-icon-button-focus-ripple" />
           <Icon icon={icon} />
@@ -124,9 +124,7 @@ var IconButton = React.createClass({
 
   _handleMouseDown: function(e) {
     //only listen to left clicks
-    if (e.button === 0) {
-      this.refs.touchRipple.start();
-    }
+    if (e.button === 0) this.refs.touchRipple.start();
     if (this.props.onMouseDown) this.props.onMouseDown(e);
   },
 

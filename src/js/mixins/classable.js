@@ -1,5 +1,5 @@
-var React = require('react/addons'),
-  classSet = React.addons.classSet;
+var React = require('react/addons');
+var classSet = React.addons.classSet;
 
 module.exports = {
 
