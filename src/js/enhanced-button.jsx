@@ -28,10 +28,10 @@ var EnhancedButton = React.createClass({
 
   render: function() {
     var {
-      className,
       disabled,
-      icon,
       linkButton,
+      onBlur,
+      onFocus,
       onTouchTap,
       ...other } = this.props;
     var classes = this.getClasses('mui-enhanced-button', {
@@ -39,31 +39,30 @@ var EnhancedButton = React.createClass({
       'mui-is-keyboard-focused': this.state.isKeyboardFocused,
       'mui-is-link-button': linkButton
     });
+    var buttonProps = {
+      className: classes,
+      disabled: disabled,
+      onBlur: this._handleBlur,
+      onFocus: this._handleFocus,
+      onTouchTap: this._handleTouchTap
+    };
 
-    return this.props.linkButton ? (
-      this.props.disabled ? (
+    if (disabled && linkButton) {
+      return (
         <span {...other} 
           className={classes} 
           disabled={disabled}>
           {this.props.children}
         </span>
-      ) : (
-        <a {...other} 
-          className={classes} 
-          disabled={disabled} 
-          onBlur={this._onBlur}
-          onFocus={this._onFocus}
-          onTouchTap={this._onTouchTap}>
-          {this.props.children}
-        </a>
-      )
+      );
+    }
+
+    return linkButton ? (
+      <a {...other} {...buttonProps}>
+        {this.props.children}
+      </a>
     ) : (
-      <button {...other} 
-        className={classes} 
-        disabled={disabled} 
-        onBlur={this._onBlur}
-        onFocus={this._onFocus}
-        onTouchTap={this._onTouchTap}>
+      <button {...other} {...buttonProps}>
         {this.props.children}
       </button>
     );
@@ -76,11 +75,11 @@ var EnhancedButton = React.createClass({
   _onWindowKeyUp: function(e) {
     if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
     if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {
-      this._onTouchTap(e);
+      this._handleTouchTap(e);
     }
   },
 
-  _onBlur: function(e) {
+  _handleBlur: function(e) {
     this.setState({
       isKeyboardFocused: false
     });
@@ -88,7 +87,7 @@ var EnhancedButton = React.createClass({
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
-  _onFocus: function(e) {
+  _handleFocus: function(e) {
     //setTimeout is needed becuase the focus event fires first
     //Wait so that we can capture if this was a keyboard focus
     //or touch focus
@@ -103,7 +102,7 @@ var EnhancedButton = React.createClass({
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
-  _onTouchTap: function(e) {
+  _handleTouchTap: function(e) {
     this._tabPressed = false;
     this.setState({
       isKeyboardFocused: false
