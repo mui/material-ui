@@ -11,9 +11,6 @@ var Input = React.createClass({
     required: React.PropTypes.bool,
     inlinePlaceholder: React.PropTypes.bool,
     rows: React.PropTypes.number,
-    min: React.PropTypes.number,
-    max: React.PropTypes.number,
-    step: React.PropTypes.number,
     inputStyle: React.PropTypes.string,
     error: React.PropTypes.string,
     description: React.PropTypes.string,
@@ -56,7 +53,7 @@ var Input = React.createClass({
       'mui-disabled': !!this.props.disabled,
     }),
     placeholder = this.props.inlinePlaceholder ? this.props.placeholder : "",
-    inputIsNotEmpty = Boolean(this.state.value),
+    inputIsNotEmpty = !!this.state.value,
     inputClassName = classSet({
       'mui-is-not-empty': inputIsNotEmpty
     }),
@@ -125,10 +122,12 @@ var Input = React.createClass({
   },
 
   _onLineBreak: function(e) {
-    var input = (e.target.value.slice(-1));
+    var value = e.target.value,
+        input = (value.slice(-1)),
+        lines = value.split('\n').length;
 
-    if(input.match(/\n/gm)) {
-      if(this.state.rows != 20) {
+    if (lines > this.state.rows) {
+      if (this.state.rows != 20) {
         this.setState({ rows: ((this.state.rows) + 1)});
       }
     }
