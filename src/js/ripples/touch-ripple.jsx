@@ -8,6 +8,7 @@ var TouchRipple = React.createClass({
   mixins: [Classable],
 
   propTypes: {
+    centerRipple: React.PropTypes.bool,
     className: React.PropTypes.string
   },
 
@@ -34,7 +35,7 @@ var TouchRipple = React.createClass({
   start: function(e) {
     var ripples = this.state.ripples;
     var nextKey = ripples[ripples.length-1].key + 1;
-    var style = e ? this._getRippleStyle(e) : {};
+    var style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
 
     //Start the next unstarted ripple
     for (var i = 0; i < ripples.length; i++) {

@@ -3,7 +3,6 @@ var Classable = require('./mixins/classable.js');
 var EnhancedButton = require('./enhanced-button.jsx');
 var Paper = require('./paper.jsx');
 var Ripple = require('./ripple.jsx');
-var TouchRipple = require('./ripples/touch-ripple.jsx');
 
 var RaisedButton = React.createClass({
 
@@ -35,8 +34,8 @@ var RaisedButton = React.createClass({
       secondary,
       ...other } = this.props;
     var classes = this.getClasses('mui-raised-button', {
-      'mui-is-primary': this.props.primary,
-      'mui-is-secondary': !this.props.primary && this.props.secondary
+      'mui-is-primary': primary,
+      'mui-is-secondary': !primary && secondary
     });
 
     return (
@@ -48,12 +47,8 @@ var RaisedButton = React.createClass({
           onTouchStart={this._handleTouchStart}
           onTouchEnd={this._handleTouchEnd}>
 
-          <TouchRipple
-          className="mui-raised-button-ripple"
-          ref="touchRipple" />
-
           <Ripple className="mui-raised-button-focus-ripple" />
-          <span className="mui-raised-button-label">{this.props.label}</span>
+          <span className="mui-raised-button-label">{label}</span>
 
         </EnhancedButton>
       </Paper>
@@ -63,26 +58,22 @@ var RaisedButton = React.createClass({
   _handleMouseDown: function(e) {
     //only listen to left clicks
     if (e.button === 0) {
-      this.refs.touchRipple.start(e);
       this.setState({ zDepth: this.state.initialZDepth + 1 });
     }
     if (this.props.onMouseDown) this.props.onMouseDown(e);
   },
 
   _handleMouseUp: function(e) {
-    this.refs.touchRipple.end();
     this.setState({ zDepth: this.state.initialZDepth });
     if (this.props.onMouseUp) this.props.onMouseUp(e);
   },
 
   _handleTouchStart: function(e) {
-    this.refs.touchRipple.start(e);
     this.setState({ zDepth: this.state.initialZDepth + 1 });
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
 
   _handleTouchEnd: function(e) {
-    this.refs.touchRipple.end();
     this.setState({ zDepth: this.state.initialZDepth });
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   }

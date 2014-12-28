@@ -1,17 +1,22 @@
 .mui-floating-action-button {
 
+  display: inline-block;
+
   &, * { .ease-out(); }
 
-  display: inline-block;
-  position: relative;
-
   .mui-floating-action-button-container {
+    position: relative;
     height: @floating-action-button-size;
     width: @floating-action-button-size;
     padding: 0;
-    position: relative;
+    overflow: hidden; 
     background-color: @floating-action-button-color;
     border-radius: 50%;
+
+    //This is need so that ripples do not bleed
+    //past border radius.
+    //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+    transform: translate3d(0, 0, 0);
 
     &.mui-is-keyboard-focused {
       background-color: @floating-action-button-hover-color;
@@ -43,7 +48,7 @@
     color: @floating-action-button-icon-color;
   }
 
-  .mui-raised-button-ripple {
+  .mui-touch-ripple {
     .mui-ripple-circle-inner {
       background-color: @floating-action-button-ripple-color;
     }
@@ -94,7 +99,7 @@
       color: @floating-action-button-secondary-icon-color;
     }
 
-    .mui-raised-button-ripple {
+    .mui-touch-ripple {
       .mui-ripple-circle-inner {
         background-color: @floating-action-button-secondary-ripple-color;
       }

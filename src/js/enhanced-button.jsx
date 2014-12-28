@@ -2,22 +2,28 @@ var React = require('react');
 var KeyCode = require('./utils/key-code.js');
 var Classable = require('./mixins/classable.js');
 var WindowListenable = require('./mixins/window-listenable');
+var TouchRipple = require('./ripples/touch-ripple.jsx');
 
 var EnhancedButton = React.createClass({
 
   mixins: [Classable, WindowListenable],
 
   propTypes: {
+    centerRipple: React.PropTypes.bool,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     linkButton: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
+    onMouseDown: React.PropTypes.func,
+    onMouseUp: React.PropTypes.func,
+    onTouchEnd: React.PropTypes.func,
+    onTouchStart: React.PropTypes.func,
     onTouchTap: React.PropTypes.func
   },
 
   windowListeners: {
-    'keyup': '_onWindowKeyUp'
+    'keyup': '_handleWindowKeyup'
   },
 
   getInitialState: function() {
@@ -28,10 +34,15 @@ var EnhancedButton = React.createClass({
 
   render: function() {
     var {
+      centerRipple,
       disabled,
       linkButton,
       onBlur,
       onFocus,
+      onMouseDown,
+      onMouseUp,
+      onTouchEnd,
+      onTouchStart,
       onTouchTap,
       ...other } = this.props;
     var classes = this.getClasses('mui-enhanced-button', {
@@ -44,6 +55,10 @@ var EnhancedButton = React.createClass({
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
+      onMouseDown: this._handleMouseDown,
+      onMouseUp: this._handleMouseUp,
+      onTouchEnd: this._handleTouchEnd,
+      onTouchStart: this._handleTouchStart,
       onTouchTap: this._handleTouchTap
     };
 
@@ -59,10 +74,16 @@ var EnhancedButton = React.createClass({
 
     return linkButton ? (
       <a {...other} {...buttonProps}>
+        <TouchRipple
+          ref="touchRipple"
+          centerRipple={centerRipple} />
         {this.props.children}
       </a>
     ) : (
       <button {...other} {...buttonProps}>
+        <TouchRipple
+          ref="touchRipple"
+          centerRipple={centerRipple} />
         {this.props.children}
       </button>
     );
@@ -72,7 +93,7 @@ var EnhancedButton = React.createClass({
     return this.state.isKeyboardFocused;
   },
 
-  _onWindowKeyUp: function(e) {
+  _handleWindowKeyup: function(e) {
     if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
     if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {
       this._handleTouchTap(e);
@@ -100,6 +121,27 @@ var EnhancedButton = React.createClass({
     }.bind(this), 150);
     
     if (this.props.onFocus) this.props.onFocus(e);
+  },
+
+  _handleMouseDown: function(e) {
+    //only listen to left clicks
+    if (e.button === 0) this.refs.touchRipple.start(e);
+    if (this.props.onMouseDown) this.props.onMouseDown(e);
+  },
+
+  _handleMouseUp: function(e) {
+    this.refs.touchRipple.end();
+    if (this.props.onMouseUp) this.props.onMouseUp(e);
+  },
+
+  _handleTouchStart: function(e) {
+    this.refs.touchRipple.start(e);
+    if (this.props.onTouchStart) this.props.onTouchStart(e);
+  },
+
+  _handleTouchEnd: function(e) {
+    this.refs.touchRipple.end();
+    if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   },
 
   _handleTouchTap: function(e) {

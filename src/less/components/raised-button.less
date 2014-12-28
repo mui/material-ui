@@ -7,13 +7,13 @@
   &, * { .ease-out(); }
 
   .mui-raised-button-container {
-    border-radius: 2px;
-    background-color: @raised-button-color;
-    padding: 0;
-    overflow: hidden;
     position: relative;
     width: 100%;
-
+    padding: 0;
+    overflow: hidden;
+    border-radius: 2px;
+    background-color: @raised-button-color;
+    
     //This is need so that ripples do not bleed
     //past border radius.
     //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
@@ -33,7 +33,7 @@
       }
     }
 
-    .mui-raised-button-ripple {
+    .mui-touch-ripple {
       .mui-ripple-circle-inner {
         background-color: @raised-button-ripple-color;
       }
@@ -73,7 +73,7 @@
     .mui-raised-button-container {
       background-color: @raised-button-primary-color;
 
-      .mui-raised-button-ripple {
+      .mui-touch-ripple {
         .mui-ripple-circle-inner {
           background-color: @raised-button-primary-ripple-color;
         }
@@ -104,7 +104,7 @@
     .mui-raised-button-container {
       background-color: @raised-button-secondary-color;
 
-      .mui-raised-button-ripple {
+      .mui-touch-ripple {
         .mui-ripple-circle-inner {
           background-color: @raised-button-secondary-ripple-color;
         }

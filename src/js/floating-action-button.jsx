@@ -1,11 +1,9 @@
 var React = require('react');
-var CssEvent = require('./utils/css-event.js');
 var Classable = require('./mixins/classable.js');
 var EnhancedButton = require('./enhanced-button.jsx');
 var Icon = require('./icon.jsx');
 var Paper = require('./paper.jsx');
 var Ripple = require('./ripple.jsx');
-var TouchRipple = require('./ripples/touch-ripple.jsx');
 
 var RaisedButton = React.createClass({
 
@@ -37,8 +35,8 @@ var RaisedButton = React.createClass({
       secondary,
       ...other } = this.props;
     var classes = this.getClasses('mui-floating-action-button', {
-      'mui-is-mini': this.props.mini,
-      'mui-is-secondary': this.props.secondary
+      'mui-is-mini': mini,
+      'mui-is-secondary': secondary
     });
 
     return (
@@ -55,9 +53,6 @@ var RaisedButton = React.createClass({
           onTouchStart={this._handleTouchStart}
           onTouchEnd={this._handleTouchEnd}>
 
-          <TouchRipple
-            className="mui-floating-action-button-ripple"
-            ref="touchRipple" />
           <Ripple className="mui-floating-action-button-focus-ripple" />
           <Icon
             className="mui-floating-action-button-icon"
@@ -72,26 +67,22 @@ var RaisedButton = React.createClass({
   _handleMouseDown: function(e) {
     //only listen to left clicks
     if (e.button === 0) {
-      this.refs.touchRipple.start();
       this.setState({ zDepth: this.state.initialZDepth + 1 });
     }
     if (this.props.onMouseDown) this.props.onMouseDown(e);
   },
 
   _handleMouseUp: function(e) {
-    this.refs.touchRipple.end();
     this.setState({ zDepth: this.state.initialZDepth });
     if (this.props.onMouseUp) this.props.onMouseUp(e);
   },
 
   _handleTouchStart: function(e) {
-    this.refs.touchRipple.start();
     this.setState({ zDepth: this.state.initialZDepth + 1 });
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
 
   _handleTouchEnd: function(e) {
-    this.refs.touchRipple.end();
     this.setState({ zDepth: this.state.initialZDepth });
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   }

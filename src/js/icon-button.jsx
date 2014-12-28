@@ -3,7 +3,6 @@ var Classable = require('./mixins/classable.js');
 var EnhancedButton = require('./enhanced-button.jsx');
 var Icon = require('./icon.jsx');
 var Ripple = require('./ripple.jsx');
-var TouchRipple = require('./ripples/touch-ripple.jsx');
 var Tooltip = require('./tooltip.jsx');
 
 var IconButton = React.createClass({
@@ -16,10 +15,6 @@ var IconButton = React.createClass({
     icon: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onMouseDown: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
-    onTouchEnd: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
     tooltip: React.PropTypes.string,
     touch: React.PropTypes.bool
   },
@@ -50,22 +45,19 @@ var IconButton = React.createClass({
         <Tooltip
           ref="tooltip"
           className="mui-icon-button-tooltip"
-          label={this.props.tooltip}
+          label={tooltip}
           show={this.state.tooltipShown}
-          touch={this.props.touch} />
+          touch={touch} />
       );
     }
 
     return (
       <EnhancedButton {...other}
         ref="button"
+        centerRipple={true}
         className={classes}
         onBlur={this._handleBlur}
-        onFocus={this._handleFocus}
-        onMouseDown={this._handleMouseDown}
-        onMouseUp={this._handleMouseUp}
-        onTouchStart={this._handleTouchStart}
-        onTouchEnd={this._handleTouchEnd}>
+        onFocus={this._handleFocus}>
 
         {tooltip}
 
@@ -74,9 +66,6 @@ var IconButton = React.createClass({
           onMouseOut={this._handleMouseOut}
           onMouseOver={this._handleMouseOver}>
 
-          <TouchRipple
-            className="mui-icon-button-ripple"
-            ref="touchRipple" />
           <Ripple className="mui-icon-button-focus-ripple" />
           <Icon icon={icon} />
 
@@ -120,27 +109,6 @@ var IconButton = React.createClass({
   _handleMouseOver: function(e) {
     this._showTooltip();
     if (this.props.onMouseOver) this.props.onMouseOver(e);
-  },
-
-  _handleMouseDown: function(e) {
-    //only listen to left clicks
-    if (e.button === 0) this.refs.touchRipple.start();
-    if (this.props.onMouseDown) this.props.onMouseDown(e);
-  },
-
-  _handleMouseUp: function(e) {
-    this.refs.touchRipple.end();
-    if (this.props.onMouseUp) this.props.onMouseUp(e);
-  },
-
-  _handleTouchStart: function(e) {
-    this.refs.touchRipple.start();
-    if (this.props.onTouchStart) this.props.onTouchStart(e);
-  },
-
-  _handleTouchEnd: function(e) {
-    this.refs.touchRipple.end();
-    if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   }
 
 });
