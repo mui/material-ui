@@ -4,7 +4,7 @@
   min-width: @button-min-width;
   height: @button-height;
 
-  * { .ease-out(); }
+  &, * { .ease-out(); }
 
   .mui-raised-button-container {
     border-radius: 2px;
@@ -13,6 +13,11 @@
     overflow: hidden;
     position: relative;
     width: 100%;
+
+    //This is need so that ripples do not bleed
+    //past border radius.
+    //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+    transform: translate3d(0, 0, 0);
 
     .mui-raised-button-focus-ripple {
       background-color: @transparent;
@@ -29,11 +34,8 @@
     }
 
     .mui-raised-button-ripple {
-      &.mui-is-visible {
-        .ripple-click-alt(
-          @animation-name: raised-button-ripple-click;
-          @color: @raised-button-ripple-color;
-        )
+      .mui-ripple-circle-inner {
+        background-color: @raised-button-ripple-color;
       }
     }
 
@@ -72,11 +74,8 @@
       background-color: @raised-button-primary-color;
 
       .mui-raised-button-ripple {
-        &.mui-is-visible {
-          .ripple-click-alt(
-            @animation-name: raised-button-primary-ripple-click;
-            @color: @raised-button-primary-ripple-color;
-          )
+        .mui-ripple-circle-inner {
+          background-color: @raised-button-primary-ripple-color;
         }
       }
 
@@ -106,11 +105,8 @@
       background-color: @raised-button-secondary-color;
 
       .mui-raised-button-ripple {
-        &.mui-is-visible {
-          .ripple-click-alt(
-            @animation-name: raised-button-secondary-ripple-click;
-            @color: @raised-button-secondary-ripple-color;
-          )
+        .mui-ripple-circle-inner {
+          background-color: @raised-button-secondary-ripple-color;
         }
       }
 
