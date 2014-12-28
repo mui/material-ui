@@ -1,6 +1,6 @@
 .mui-floating-action-button {
 
-  * { .ease-out(); }
+  &, * { .ease-out(); }
 
   display: inline-block;
   position: relative;
@@ -31,7 +31,6 @@
       &:hover {
         background-color: @floating-action-button-disabled-color;
       }
-      
     }
 
     &:hover {
@@ -40,21 +39,13 @@
   }
 
   .mui-floating-action-button-icon {
-    position: relative;
-    z-index: 3;
     line-height: @floating-action-button-size;
     color: @floating-action-button-icon-color;
   }
 
-  .mui-floating-action-button-ripple {
-    z-index: 2;
-    &.mui-is-visible {
-      .ripple-click(
-        @animation-name: floating-action-button-ripple-click;
-        @color: @floating-action-button-ripple-color;
-        @size: @floating-action-button-size;
-        @duration: 0.5s;
-      )
+  .mui-raised-button-ripple {
+    .mui-ripple-circle-inner {
+      background-color: @floating-action-button-ripple-color;
     }
   }
 
@@ -77,17 +68,6 @@
 
     .mui-floating-action-button-icon {
       line-height: @floating-action-button-mini-size;
-    }
-
-    .mui-floating-action-button-ripple {
-      &.mui-is-visible {
-        .ripple-click(
-          @animation-name: floating-action-button-mini-ripple-click;
-          @color: @floating-action-button-ripple-color;
-          @size: @floating-action-button-mini-size;
-          @duration: 0.5s;
-        )
-      }
     }
 
     .mui-floating-action-button-focus-ripple {
@@ -114,27 +94,9 @@
       color: @floating-action-button-secondary-icon-color;
     }
 
-    .mui-floating-action-button-ripple {
-      &.mui-is-visible {
-        .ripple-click(
-          @animation-name: floating-action-button-secondary-ripple-click;
-          @color: @floating-action-button-secondary-ripple-color;
-          @size: @floating-action-button-size;
-          @duration: 0.5s;
-        )
-      }
-    }
-
-    &.mui-is-mini {
-      .mui-floating-action-button-ripple {
-        &.mui-is-visible {
-          .ripple-click(
-            @animation-name: floating-action-button-mini-secondary-ripple-click;
-            @color: @floating-action-button-secondary-ripple-color;
-            @size: @floating-action-button-mini-size;
-            @duration: 0.5s;
-          )
-        }
+    .mui-raised-button-ripple {
+      .mui-ripple-circle-inner {
+        background-color: @floating-action-button-secondary-ripple-color;
       }
     }
 
