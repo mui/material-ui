@@ -58,10 +58,40 @@ var InputsPage = React.createClass({
   _getPropInfo: function() {
     var info = [
       {
+        name: 'description',
+        type: 'string',
+        header: 'optional',
+        desc: 'Input description.'
+      },
+      {
+        name: 'error',
+        type: 'string',
+        header: 'optional',
+        desc: 'Error message.'
+      },
+      {
+        name: 'inlinePlaceholder',
+        type: 'bool',
+        header: 'default: false',
+        desc: 'Placeholder will be inline.'
+      },
+      {
         name: 'multiline',
         type: 'bool',
         header: 'default: false',
         desc: 'Input becames multiline (textarea).'
+      },
+      {
+        name: 'name',
+        type: 'string',
+        header: 'required',
+        desc: 'Input name.'
+      },
+      {
+        name: 'placeholder',
+        type: 'string',
+        header: 'optional',
+        desc: 'Input placeholder.'
       },
       {
         name: 'required',
@@ -76,41 +106,11 @@ var InputsPage = React.createClass({
         desc: 'Count of rows in textarea related to multiline: true.'
       },
       {
-        name: 'inlinePlaceholder',
-        type: 'bool',
-        header: 'default: false',
-        desc: 'Placeholder will be inline.'
-      },
-      {
-        name: 'error',
-        type: 'string',
-        header: 'optional',
-        desc: 'Error message.'
-      },
-      {
-        name: 'description',
-        type: 'string',
-        header: 'optional',
-        desc: 'Input description.'
-      },
-      {
-        name: 'placeholder',
-        type: 'string',
-        header: 'optional',
-        desc: 'Input placeholder.'
-      },
-      {
         name: 'type',
         type: 'string',
         header: 'default: "text"',
         desc: 'Input type, current supports only text and email.'
-      },
-      {
-        name: 'name',
-        type: 'string',
-        header: 'required',
-        desc: 'Input name.'
-      },
+      }
     ];
 
     return <ComponentInfo infoArray={info} />;
@@ -118,6 +118,21 @@ var InputsPage = React.createClass({
 
   _getMethodInfo: function() {
     var info = [
+      {
+        name: 'blur',
+        header: 'Input.blur()',
+        desc: 'Blur input.'
+      },
+      {
+        name: 'clearValue',
+        header: 'Input.clearValue()',
+        desc: 'Clearing value.'
+      },
+      {
+        name: 'focus',
+        header: 'Input.focus()',
+        desc: 'Focus input.'
+      },
       {
         name: 'getValue',
         header: 'Input.getValue()',
@@ -127,21 +142,6 @@ var InputsPage = React.createClass({
         name: 'setValue',
         header: 'Input.setValue("txt")',
         desc: 'Setting value.'
-      },
-      {
-        name: 'clearValue',
-        header: 'Input.clearValue()',
-        desc: 'Clearing value.'
-      },
-      {
-        name: 'blur',
-        header: 'Input.blur()',
-        desc: 'Blur input.'
-      },
-      {
-        name: 'focus',
-        header: 'Input.focus()',
-        desc: 'Focus input.'
       }
     ];
 
