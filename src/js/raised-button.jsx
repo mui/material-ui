@@ -2,7 +2,6 @@ var React = require('react');
 var Classable = require('./mixins/classable.js');
 var EnhancedButton = require('./enhanced-button.jsx');
 var Paper = require('./paper.jsx');
-var Ripple = require('./ripple.jsx');
 
 var RaisedButton = React.createClass({
 
@@ -46,10 +45,7 @@ var RaisedButton = React.createClass({
           onMouseDown={this._handleMouseDown}
           onTouchStart={this._handleTouchStart}
           onTouchEnd={this._handleTouchEnd}>
-
-          <Ripple className="mui-raised-button-focus-ripple" />
           <span className="mui-raised-button-label">{label}</span>
-
         </EnhancedButton>
       </Paper>
     );

@@ -2,7 +2,6 @@ var React = require('react');
 var Classable = require('./mixins/classable.js');
 var EnhancedButton = require('./enhanced-button.jsx');
 var Icon = require('./icon.jsx');
-var Ripple = require('./ripple.jsx');
 var Tooltip = require('./tooltip.jsx');
 
 var IconButton = React.createClass({
@@ -66,7 +65,6 @@ var IconButton = React.createClass({
           onMouseOut={this._handleMouseOut}
           onMouseOver={this._handleMouseOver}>
 
-          <Ripple className="mui-icon-button-focus-ripple" />
           <Icon icon={icon} />
 
         </div>

@@ -18,14 +18,6 @@
     //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
     transform: translate3d(0, 0, 0);
 
-    &.mui-is-keyboard-focused {
-      background-color: @floating-action-button-hover-color;
-      .mui-floating-action-button-focus-ripple {
-        .pulsate(floating-action-button-focus-ripple);
-        opacity: 1;
-      }
-    }
-
     &.mui-is-disabled {
       background-color: @floating-action-button-disabled-color;
 
@@ -38,7 +30,8 @@
       }
     }
 
-    &:hover {
+    &:hover,
+    &.mui-is-keyboard-focused {
       background-color: @floating-action-button-hover-color;
     }
   }
@@ -54,18 +47,13 @@
     }
   }
 
-  .mui-floating-action-button-focus-ripple {
-    top: 7px;
-    left: 6px;
-    transform: translate(0, 0);
-    opacity: 0;
-    width: (@floating-action-button-size - 12px);
-    height: (@floating-action-button-size - 12px);
-    background-color: @floating-action-button-focus-ripple-color;
+  .mui-focus-ripple {
+    .mui-focus-ripple-inner {
+      background-color: @floating-action-button-focus-ripple-color
+    }
   }
 
   &.mui-is-mini {
-
     .mui-floating-action-button-container {
       height: @floating-action-button-mini-size;
       width: @floating-action-button-mini-size;
@@ -74,11 +62,6 @@
     .mui-floating-action-button-icon {
       line-height: @floating-action-button-mini-size;
     }
-
-    .mui-floating-action-button-focus-ripple {
-      width: (@floating-action-button-mini-size - 12px);
-      height: (@floating-action-button-mini-size - 12px);
-    }
   }
 
   &.mui-is-secondary {
@@ -86,13 +69,10 @@
     .mui-floating-action-button-container {
       background-color: @floating-action-button-secondary-color;
 
-      &:hover {
+      &:hover,
+      &.mui-is-keyboard-focused {
         background-color: @floating-action-button-secondary-hover-color;
       }
-    }
-
-    &.mui-is-keyboard-focused {
-      background-color: @floating-action-button-secondary-hover-color;
     }
 
     .mui-floating-action-button-icon {
@@ -105,9 +85,10 @@
       }
     }
 
-    .mui-floating-action-button-focus-ripple {
-      background-color: @floating-action-button-secondary-focus-ripple-color;
+    .mui-focus-ripple {
+      .mui-focus-ripple-inner {
+        background-color: @floating-action-button-secondary-focus-ripple-color;
+      }
     }
-
   }
 }

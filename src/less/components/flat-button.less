@@ -25,15 +25,14 @@
     }
   }
 
-  .mui-flat-button-focus-ripple {
-    background-color: @transparent;
+  .mui-focus-ripple {
+    .mui-focus-ripple-inner {
+      background-color: @flat-button-focus-ripple-color;
+    }
   }
 
-  &.mui-is-keyboard-focused {
-    .mui-flat-button-focus-ripple {
-      background-color: @flat-button-focus-ripple-color;
-      .ripple-button-focus();
-    }
+  .mui-flat-button-label {
+    position: relative;
   }
 
   &:hover,
@@ -63,8 +62,8 @@
       }
     }
 
-    &.mui-is-keyboard-focused {
-      .mui-flat-button-focus-ripple {
+    .mui-focus-ripple {
+      .mui-focus-ripple-inner {
         background-color: @flat-button-primary-focus-ripple-color;
       }
     }
@@ -84,8 +83,8 @@
       }
     }
 
-    &.mui-is-keyboard-focused {
-      .mui-flat-button-focus-ripple {
+    .mui-focus-ripple {
+      .mui-focus-ripple-inner {
         background-color: @flat-button-secondary-focus-ripple-color;
       }
     }

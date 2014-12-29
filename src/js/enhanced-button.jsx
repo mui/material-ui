@@ -2,6 +2,7 @@ var React = require('react');
 var KeyCode = require('./utils/key-code.js');
 var Classable = require('./mixins/classable.js');
 var WindowListenable = require('./mixins/window-listenable');
+var FocusRipple = require('./ripples/focus-ripple.jsx');
 var TouchRipple = require('./ripples/touch-ripple.jsx');
 
 var EnhancedButton = React.createClass({
@@ -61,6 +62,14 @@ var EnhancedButton = React.createClass({
       onTouchStart: this._handleTouchStart,
       onTouchTap: this._handleTouchTap
     };
+    var buttonChildren = [
+      <TouchRipple
+        ref="touchRipple"
+        centerRipple={centerRipple} />,
+      <FocusRipple
+        show={this.state.isKeyboardFocused} />,
+      this.props.children
+    ];
 
     if (disabled && linkButton) {
       return (
@@ -74,17 +83,11 @@ var EnhancedButton = React.createClass({
 
     return linkButton ? (
       <a {...other} {...buttonProps}>
-        <TouchRipple
-          ref="touchRipple"
-          centerRipple={centerRipple} />
-        {this.props.children}
+        {buttonChildren}
       </a>
     ) : (
       <button {...other} {...buttonProps}>
-        <TouchRipple
-          ref="touchRipple"
-          centerRipple={centerRipple} />
-        {this.props.children}
+        {buttonChildren}
       </button>
     );
   },

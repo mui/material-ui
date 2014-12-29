@@ -10,17 +10,14 @@
     padding: (@icon-size / 2);
   }
 
-  .mui-icon-button-focus-ripple {
-    top: 0;
-    left: 0;
-    transform: translate(0, 0);
-
-    width: @icon-button-size;
-    height: @icon-button-size;
-    box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.1);
-    border: solid 6px @transparent;
-    background-color: rgba(0,0,0,0.1);
-    opacity: 0;
+  .mui-focus-ripple {
+    .mui-focus-ripple-inner {
+      background-color: rgba(0,0,0,0.1);
+      box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.1);
+      border: solid 6px @transparent;
+      background-clip: padding-box;
+      .pulsate(icon-button-focus-ripple-pulsate);
+    }
   }
 
   .mui-icon-button-tooltip {  
@@ -29,13 +26,6 @@
 
   &.mui-is-disabled {
     color: lighten(@body-text-color, 75%);
-  }
-
-  &.mui-is-keyboard-focused {
-    .mui-icon-button-focus-ripple {
-      .pulsate(ripple-icon-button-focus);
-      opacity: 1;
-    }
   }
 }
 
@@ -47,8 +37,13 @@
     }
   }
 
-  .mui-icon-button-focus-ripple {
-    box-shadow: 0px 0px 0px 1px rgba(255,255,255,0.3);
-    background-color: rgba(255,255,255,0.3);
+  .mui-focus-ripple {
+    .mui-focus-ripple-inner {
+      background-color: rgba(255,255,255,0.3);
+      box-shadow: 0px 0px 0px 1px rgba(255,255,255,0.3);
+      border: solid 6px @transparent;
+      background-clip: padding-box;
+      .pulsate(icon-button-focus-ripple-pulsate);
+    }
   }
 }

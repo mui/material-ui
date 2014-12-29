@@ -1,0 +1,30 @@
+.mui-focus-ripple {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  
+  .ease-out();
+  transform: scale(0);
+  opacity: 0;
+
+  .mui-focus-ripple-inner {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.1);
+
+    .pulsate(
+      @animation-name: focus-ripple-pulsate;
+      @start-size: 0.75;
+      @end-size: 0.85;
+    );
+  }
+
+  &.mui-is-shown {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

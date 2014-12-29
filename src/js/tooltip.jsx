@@ -1,6 +1,5 @@
 var React = require('react');
 var Classable = require('./mixins/classable.js');
-var Ripple = require('./ripple.jsx');
 
 var Tooltip = React.createClass({
 

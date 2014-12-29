@@ -1,7 +1,6 @@
 var React = require('react');
 var Classable = require('./mixins/classable.js');
 var EnhancedButton = require('./enhanced-button.jsx');
-var Ripple = require('./ripple.jsx');
 
 var FlatButton = React.createClass({
 
@@ -29,10 +28,7 @@ var FlatButton = React.createClass({
     return (
       <EnhancedButton {...other}
         className={classes}>
-
-        <Ripple className="mui-flat-button-focus-ripple" />
-        {label}
-
+        <span className="mui-flat-button-label">{label}</span>
       </EnhancedButton>
     );
   }
