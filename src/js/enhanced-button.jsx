@@ -24,6 +24,7 @@ var EnhancedButton = React.createClass({
   },
 
   windowListeners: {
+    'keydown': '_handleWindowKeydown',
     'keyup': '_handleWindowKeyup'
   },
 
@@ -96,9 +97,15 @@ var EnhancedButton = React.createClass({
     return this.state.isKeyboardFocused;
   },
 
-  _handleWindowKeyup: function(e) {
+  _handleWindowKeydown: function(e) {
     if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
     if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {
+      this._handleTouchTap(e);
+    }
+  },
+
+  _handleWindowKeyup: function(e) {
+    if (e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
       this._handleTouchTap(e);
     }
   },
