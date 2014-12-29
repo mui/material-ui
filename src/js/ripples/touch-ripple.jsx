@@ -36,12 +36,16 @@ var TouchRipple = React.createClass({
     var ripples = this.state.ripples;
     var nextKey = ripples[ripples.length-1].key + 1;
     var style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
+    var ripple;
+    var startedRipple;
 
     //Start the next unstarted ripple
     for (var i = 0; i < ripples.length; i++) {
-      if (!ripples[i].started) {
-        ripples[i].started = true;
-        ripples[i].style = style;
+      ripple = ripples[i];
+      if (!ripple.started) {
+        ripple.started = true;
+        ripple.style = style;
+        startedRipple = ripple;
         break;
       }
     };
@@ -57,31 +61,48 @@ var TouchRipple = React.createClass({
     this.setState({
       ripples: ripples
     });
+
+    //Make sure we end this ripple after 3 seconds
+    setTimeout(function() {
+      for (var i = 0; i < ripples.length; i++) {
+        if (ripples[i].key === startedRipple.key && !ripples[i].ending) {
+          this.end();
+          break;
+        }
+      };
+    }.bind(this), 3000);
   },
 
   end: function() {
     var ripples = this.state.ripples;
+    var ripple;
+    var endingRipple;
 
     //End the the next un-ended ripple
     for (var i = 0; i < ripples.length; i++) {
-      if (!ripples[i].ending) {
-        ripples[i].ending = true;
+      ripple = ripples[i];
+      if (ripple.started && !ripple.ending) {
+        ripple.ending = true;
+        endingRipple = ripple;
         break;
       }
     };
 
-    //Re-render
-    this.setState({
-      ripples: ripples
-    });
-
-    //Wait 2 seconds and remove the ripple from DOM
-    setTimeout(function() {
-      ripples.shift();
+    //Only update if a ripple was found
+    if (endingRipple) {
+      //Re-render
       this.setState({
         ripples: ripples
       });
-    }.bind(this), 2000);
+
+      //Wait 2 seconds and remove the ripple from DOM
+      setTimeout(function() {
+        ripples.shift();
+        this.setState({
+          ripples: ripples
+        });
+      }.bind(this), 2000);
+    }
   },
 
   _getRippleStyle: function(e) {
