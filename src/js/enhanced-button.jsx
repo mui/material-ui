@@ -62,11 +62,6 @@ var EnhancedButton = React.createClass({
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
-      onMouseDown: this._handleMouseDown,
-      onMouseUp: this._handleMouseUp,
-      onMouseOut: this._handleMouseOut,
-      onTouchEnd: this._handleTouchEnd,
-      onTouchStart: this._handleTouchStart,
       onTouchTap: this._handleTouchTap
     };
     var buttonChildren = [

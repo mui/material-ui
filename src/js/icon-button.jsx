@@ -56,18 +56,12 @@ var IconButton = React.createClass({
         centerRipple={true}
         className={classes}
         onBlur={this._handleBlur}
-        onFocus={this._handleFocus}>
+        onFocus={this._handleFocus}
+        onMouseOut={this._handleMouseOut}
+        onMouseOver={this._handleMouseOver}>
 
         {tooltip}
-
-        <div
-          className="mui-icon-button-target"
-          onMouseOut={this._handleMouseOut}
-          onMouseOver={this._handleMouseOver}>
-
-          <Icon icon={icon} />
-
-        </div>
+        <Icon icon={icon} />
 
       </EnhancedButton>
     );
