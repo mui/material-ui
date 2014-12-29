@@ -14,6 +14,7 @@ var RaisedButton = React.createClass({
     mini: React.PropTypes.bool,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func,
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     secondary: React.PropTypes.bool
@@ -49,6 +50,7 @@ var RaisedButton = React.createClass({
           className="mui-floating-action-button-container" 
           onMouseDown={this._handleMouseDown}
           onMouseUp={this._handleMouseUp}
+          onMouseOut={this._handleMouseOut}
           onTouchStart={this._handleTouchStart}
           onTouchEnd={this._handleTouchEnd}>
 
@@ -73,6 +75,11 @@ var RaisedButton = React.createClass({
   _handleMouseUp: function(e) {
     this.setState({ zDepth: this.state.initialZDepth });
     if (this.props.onMouseUp) this.props.onMouseUp(e);
+  },
+
+  _handleMouseOut: function(e) {
+    this.setState({ zDepth: this.state.initialZDepth });
+    if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleTouchStart: function(e) {

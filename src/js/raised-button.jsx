@@ -12,6 +12,7 @@ var RaisedButton = React.createClass({
     label: React.PropTypes.string.isRequired,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func,
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     primary: React.PropTypes.bool,
@@ -43,6 +44,7 @@ var RaisedButton = React.createClass({
           className="mui-raised-button-container" 
           onMouseUp={this._handleMouseUp}
           onMouseDown={this._handleMouseDown}
+          onMouseOut={this._handleMouseOut}
           onTouchStart={this._handleTouchStart}
           onTouchEnd={this._handleTouchEnd}>
           <span className="mui-raised-button-label">{label}</span>
@@ -62,6 +64,11 @@ var RaisedButton = React.createClass({
   _handleMouseUp: function(e) {
     this.setState({ zDepth: this.state.initialZDepth });
     if (this.props.onMouseUp) this.props.onMouseUp(e);
+  },
+
+  _handleMouseOut: function(e) {
+    this.setState({ zDepth: this.state.initialZDepth });
+    if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleTouchStart: function(e) {
