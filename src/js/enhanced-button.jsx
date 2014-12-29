@@ -18,11 +18,6 @@ var EnhancedButton = React.createClass({
     linkButton: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onMouseDown: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
-    onMouseOut: React.PropTypes.func,
-    onTouchEnd: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
     onTouchTap: React.PropTypes.func
   },
 
@@ -46,11 +41,6 @@ var EnhancedButton = React.createClass({
       linkButton,
       onBlur,
       onFocus,
-      onMouseDown,
-      onMouseUp,
-      onMouseOut,
-      onTouchEnd,
-      onTouchStart,
       onTouchTap,
       ...other } = this.props;
     var classes = this.getClasses('mui-enhanced-button', {
@@ -80,9 +70,9 @@ var EnhancedButton = React.createClass({
       onTouchTap: this._handleTouchTap
     };
     var buttonChildren = [
+      this.props.children,
       disableTouchRipple ? null : touchRipple,
-      disableFocusRipple ? null : focusRipple,
-      this.props.children
+      disableFocusRipple ? null : focusRipple
     ];
 
     if (disabled && linkButton) {
@@ -144,32 +134,6 @@ var EnhancedButton = React.createClass({
     }.bind(this), 150);
     
     if (this.props.onFocus) this.props.onFocus(e);
-  },
-
-  _handleMouseDown: function(e) {
-    //only listen to left clicks
-    if (e.button === 0 && this.refs.touchRipple) this.refs.touchRipple.start(e);
-    if (this.props.onMouseDown) this.props.onMouseDown(e);
-  },
-
-  _handleMouseUp: function(e) {
-    if (this.refs.touchRipple) this.refs.touchRipple.end();
-    if (this.props.onMouseUp) this.props.onMouseUp(e);
-  },
-
-  _handleMouseOut: function(e) {
-    if (this.refs.touchRipple) this.refs.touchRipple.end();
-    if (this.props.onMouseOut) this.props.onMouseOut(e);
-  },
-
-  _handleTouchStart: function(e) {
-    if (this.refs.touchRipple) this.refs.touchRipple.start(e);
-    if (this.props.onTouchStart) this.props.onTouchStart(e);
-  },
-
-  _handleTouchEnd: function(e) {
-    if (this.refs.touchRipple) this.refs.touchRipple.end();
-    if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   },
 
   _handleTouchTap: function(e) {

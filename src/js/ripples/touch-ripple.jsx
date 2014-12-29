@@ -26,7 +26,13 @@ var TouchRipple = React.createClass({
     var classes = this.getClasses('mui-touch-ripple');
 
     return (
-      <div className={classes}>
+      <div
+        className={classes}
+        onMouseUp={this._handleMouseUp}
+        onMouseDown={this._handleMouseDown}
+        onMouseOut={this._handleMouseOut}
+        onTouchStart={this._handleTouchStart}
+        onTouchEnd={this._handleTouchEnd}>
         {this._getRippleElements()}
       </div>
     );
@@ -91,6 +97,27 @@ var TouchRipple = React.createClass({
         });
       }.bind(this), 2000);
     }
+  },
+
+  _handleMouseDown: function(e) {
+    //only listen to left clicks
+    if (e.button === 0) this.start(e);
+  },
+
+  _handleMouseUp: function(e) {
+    this.end();
+  },
+
+  _handleMouseOut: function(e) {
+    this.end();
+  },
+
+  _handleTouchStart: function(e) {
+    this.start(e);
+  },
+
+  _handleTouchEnd: function(e) {
+    this.end();
   },
 
   _getRippleStyle: function(e) {
