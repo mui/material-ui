@@ -27,7 +27,11 @@ var DayButton = React.createClass({
     });
 
     return this.props.date ? (
-      <EnhancedButton {...other} className={classes} onTouchTap={this._handleTouchTap}>
+      <EnhancedButton {...other}
+        className={classes}
+        disableFocusRipple={true}
+        disableTouchRipple={true}
+        onTouchTap={this._handleTouchTap}>
         <div className="mui-date-picker-day-button-select" />
         <span className="mui-date-picker-day-button-label">{this.props.date.getDate()}</span>
       </EnhancedButton>

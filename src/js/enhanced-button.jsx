@@ -13,6 +13,8 @@ var EnhancedButton = React.createClass({
     centerRipple: React.PropTypes.bool,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
+    disableFocusRipple: React.PropTypes.bool,
+    disableTouchRipple: React.PropTypes.bool,
     linkButton: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
@@ -38,6 +40,8 @@ var EnhancedButton = React.createClass({
     var {
       centerRipple,
       disabled,
+      disableFocusRipple,
+      disableTouchRipple,
       linkButton,
       onBlur,
       onFocus,
@@ -52,6 +56,15 @@ var EnhancedButton = React.createClass({
       'mui-is-keyboard-focused': this.state.isKeyboardFocused,
       'mui-is-link-button': linkButton
     });
+    var touchRipple = (
+      <TouchRipple
+        ref="touchRipple"
+        centerRipple={centerRipple} />
+    );
+    var focusRipple = (
+      <FocusRipple
+        show={this.state.isKeyboardFocused} />
+    );
     var buttonProps = {
       className: classes,
       disabled: disabled,
@@ -64,11 +77,8 @@ var EnhancedButton = React.createClass({
       onTouchTap: this._handleTouchTap
     };
     var buttonChildren = [
-      <TouchRipple
-        ref="touchRipple"
-        centerRipple={centerRipple} />,
-      <FocusRipple
-        show={this.state.isKeyboardFocused} />,
+      disableTouchRipple ? null : touchRipple,
+      disableFocusRipple ? null : focusRipple,
       this.props.children
     ];
 
@@ -135,22 +145,22 @@ var EnhancedButton = React.createClass({
 
   _handleMouseDown: function(e) {
     //only listen to left clicks
-    if (e.button === 0) this.refs.touchRipple.start(e);
+    if (e.button === 0 && this.refs.touchRipple) this.refs.touchRipple.start(e);
     if (this.props.onMouseDown) this.props.onMouseDown(e);
   },
 
   _handleMouseUp: function(e) {
-    this.refs.touchRipple.end();
+    if (this.refs.touchRipple) this.refs.touchRipple.end();
     if (this.props.onMouseUp) this.props.onMouseUp(e);
   },
 
   _handleTouchStart: function(e) {
-    this.refs.touchRipple.start(e);
+    if (this.refs.touchRipple) this.refs.touchRipple.start(e);
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
 
   _handleTouchEnd: function(e) {
-    this.refs.touchRipple.end();
+    if (this.refs.touchRipple) this.refs.touchRipple.end();
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   },
 
