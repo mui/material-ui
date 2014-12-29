@@ -37,7 +37,6 @@ var TouchRipple = React.createClass({
     var nextKey = ripples[ripples.length-1].key + 1;
     var style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
     var ripple;
-    var startedRipple;
 
     //Start the next unstarted ripple
     for (var i = 0; i < ripples.length; i++) {
@@ -45,7 +44,6 @@ var TouchRipple = React.createClass({
       if (!ripple.started) {
         ripple.started = true;
         ripple.style = style;
-        startedRipple = ripple;
         break;
       }
     };
@@ -61,16 +59,6 @@ var TouchRipple = React.createClass({
     this.setState({
       ripples: ripples
     });
-
-    //Make sure we end this ripple after 3 seconds
-    setTimeout(function() {
-      for (var i = 0; i < ripples.length; i++) {
-        if (ripples[i].key === startedRipple.key && !ripples[i].ending) {
-          this.end();
-          break;
-        }
-      };
-    }.bind(this), 3000);
   },
 
   end: function() {
@@ -123,8 +111,8 @@ var TouchRipple = React.createClass({
       topLeftDiag, topRightDiag, botRightDiag, botLeftDiag
     );
     var rippleSize = rippleRadius * 2;
-    var left = pointerX - (rippleRadius);
-    var top = pointerY - (rippleRadius);
+    var left = pointerX - rippleRadius;
+    var top = pointerY - rippleRadius;
     
     style.height = rippleSize + 'px';
     style.width = rippleSize + 'px';
