@@ -16,6 +16,8 @@ var DatePickerPage = React.createClass({
         <h3 className="mui-font-style-title">Props</h3>
         {this._getPropInfo()}
 
+        <br/><hr/><br/>
+
         <h3 className="mui-font-style-title">Methods</h3>
         {this._getMethodInfo()}
 
