@@ -66,8 +66,8 @@ var EnhancedButton = React.createClass({
     };
     var buttonChildren = [
       this.props.children,
-      disableTouchRipple ? null : touchRipple,
-      disableFocusRipple ? null : focusRipple
+      disabled || disableTouchRipple ? null : touchRipple,
+      disabled || disableFocusRipple ? null : focusRipple
     ];
 
     if (disabled && linkButton) {
