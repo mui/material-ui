@@ -20,6 +20,7 @@ var EnhancedButton = React.createClass({
     onFocus: React.PropTypes.func,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func,
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     onTouchTap: React.PropTypes.func
@@ -47,6 +48,7 @@ var EnhancedButton = React.createClass({
       onFocus,
       onMouseDown,
       onMouseUp,
+      onMouseOut,
       onTouchEnd,
       onTouchStart,
       onTouchTap,
@@ -72,6 +74,7 @@ var EnhancedButton = React.createClass({
       onFocus: this._handleFocus,
       onMouseDown: this._handleMouseDown,
       onMouseUp: this._handleMouseUp,
+      onMouseOut: this._handleMouseOut,
       onTouchEnd: this._handleTouchEnd,
       onTouchStart: this._handleTouchStart,
       onTouchTap: this._handleTouchTap
@@ -152,6 +155,11 @@ var EnhancedButton = React.createClass({
   _handleMouseUp: function(e) {
     if (this.refs.touchRipple) this.refs.touchRipple.end();
     if (this.props.onMouseUp) this.props.onMouseUp(e);
+  },
+
+  _handleMouseOut: function(e) {
+    if (this.refs.touchRipple) this.refs.touchRipple.end();
+    if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleTouchStart: function(e) {
