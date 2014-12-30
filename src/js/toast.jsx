@@ -11,21 +11,17 @@ var Toast = React.createClass({
     icon: React.PropTypes.string,
     message: React.PropTypes.string,
     onClick: React.PropTypes.func,
-    open: React.PropTypes.bool
+    openOnMount: React.PropTypes.bool
   },
 
   getInitialState: function() {
     return {
-      open: false
-    }
-  },
-
-  componentWillReceiveProps: function(nextProps) {
-    this.setState({ open: nextProps.open });
+      open: openOnMount || false
+    };
   },
 
   componentClickAway: function() {
-    this.setState({ open: false });
+    this.dismiss();
   },
 
   render: function() {
@@ -50,6 +46,14 @@ var Toast = React.createClass({
 
   _onActionClick: function(e) {
     if (this.props.onClick) this.props.onClick(e, this.props.action);
+    this.setState({ open: false });
+  },
+
+  show: function() {
+    this.setState({ open: true });
+  },
+  
+  dismiss: function() {
     this.setState({ open: false });
   }
   
