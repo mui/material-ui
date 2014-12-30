@@ -1,8 +1,6 @@
 var React = require('react');
 var Classable = require('./mixins/classable');
 var ClickAwayable = require('./mixins/click-awayable');
-var Events = require('./utils/events');
-var Dom = require('./utils/dom');
 
 var Toast = React.createClass({
 
