@@ -2,7 +2,7 @@ var React = require('react');
 var Classable = require('./mixins/classable');
 var ClickAwayable = require('./mixins/click-awayable');
 
-var Toast = React.createClass({
+var Snackbar = React.createClass({
 
   mixins: [Classable, ClickAwayable],
 
@@ -63,4 +63,4 @@ var Toast = React.createClass({
   
 });
 
-module.exports = Toast;
+module.exports = Snackbar;
