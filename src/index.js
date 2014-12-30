@@ -25,7 +25,7 @@ module.exports = {
   RaisedButton: require('./js/raised-button.jsx'),
   Slider: require('./js/slider.jsx'),
   Toggle: require('./js/toggle.jsx'),
-  Toast: require('./js/toast.jsx'),
+  Snackbar: require('./js/snackbar.jsx'),
   Toolbar: require('./js/toolbar.jsx'),
   ToolbarGroup: require('./js/toolbar-group.jsx'),
   Tooltip: require('./js/tooltip.jsx'),

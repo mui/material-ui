@@ -17,7 +17,7 @@ var CssFramework = React.createClass({
       { route: 'paper', text: 'Paper'},
       { route: 'sliders', text: 'Sliders'},
       { route: 'switches', text: 'Switches'},
-      //{ route: 'toasts', text: 'Toasts'},
+      { route: 'snackbar', text: 'Snackbar'},
       { route: 'toolbars', text: 'Toolbars'},
     ];
 

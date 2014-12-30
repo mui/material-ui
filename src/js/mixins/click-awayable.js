@@ -1,16 +1,16 @@
-var Events = require('../utils/events.js'),
-  Dom = require('../utils/dom.js');
+var Events = require('../utils/events.js');
+var Dom = require('../utils/dom.js');
 
 module.exports = {
 
   //When the component mounts, listen to click events and check if we need to
   //Call the componentClickAway function.
   componentDidMount: function() {
-    Events.on(document, 'click', this._checkClickAway);
+    if (!this.manualBind) this._bindClickAway();
   },
 
   componentWillUnmount: function() {
-    Events.off(document, 'click', this._checkClickAway);
+    if (!this.manualBind) this._unbindClickAway();
   },
 
   _checkClickAway: function(e) {
@@ -22,6 +22,14 @@ module.exports = {
       !Dom.isDescendant(el, e.target)) {
       if (this.componentClickAway) this.componentClickAway();
     }
+  },
+
+  _bindClickAway: function() {
+    Events.on(document, 'click', this._checkClickAway);
+  },
+
+  _unbindClickAway: function() {
+    Events.off(document, 'click', this._checkClickAway);
   }
 
-}
+};

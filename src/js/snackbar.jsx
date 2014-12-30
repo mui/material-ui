@@ -1,6 +1,8 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
-var ClickAwayable = require('./mixins/click-awayable.js');
+var Classable = require('./mixins/classable');
+var ClickAwayable = require('./mixins/click-awayable');
+var Events = require('./utils/events');
+var Dom = require('./utils/dom');
 
 var Toast = React.createClass({
 
@@ -14,9 +16,11 @@ var Toast = React.createClass({
     openOnMount: React.PropTypes.bool
   },
 
+  manualBind: true,
+
   getInitialState: function() {
     return {
-      open: openOnMount || false
+      open: this.props.openOnMount || false
     };
   },
 
@@ -26,10 +30,10 @@ var Toast = React.createClass({
 
   render: function() {
     var classes = this.getClasses('mui-toast', {
-        'mui-open': this.state.open
-      }),
-      message,
-      action;
+      'mui-open': this.state.open
+    }); 
+    var message;
+    var action;
 
     if (this.props.message)
       message = <span className="mui-toast-message">{this.props.message}</span>;
@@ -46,14 +50,16 @@ var Toast = React.createClass({
 
   _onActionClick: function(e) {
     if (this.props.onClick) this.props.onClick(e, this.props.action);
-    this.setState({ open: false });
+    this.dismiss();
   },
 
   show: function() {
+    this._bindClickAway();
     this.setState({ open: true });
   },
   
   dismiss: function() {
+    this._unbindClickAway();
     this.setState({ open: false });
   }
   

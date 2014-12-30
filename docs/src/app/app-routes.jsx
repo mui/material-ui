@@ -25,7 +25,7 @@ var Menus = require('./components/pages/components/menus.jsx');
 var Paper = require('./components/pages/components/paper.jsx');
 var Sliders = require('./components/pages/components/sliders.jsx');
 var Switches = require('./components/pages/components/switches.jsx');
-var Toasts = require('./components/pages/components/toasts.jsx');
+var Snackbar = require('./components/pages/components/snackbar-example.jsx');
 var Toolbars = require('./components/pages/components/toolbars.jsx');
 
 var AppRoutes = (
@@ -51,7 +51,7 @@ var AppRoutes = (
       <Route name="paper" handler={Paper} />
       <Route name="sliders" handler={Sliders} />
       <Route name="switches" handler={Switches} />
-      <Route name="toasts" handler={Toasts} />
+      <Route name="snackbar" handler={Snackbar} />
       <Route name="toolbars" handler={Toolbars} />
       <Redirect from="/components" to="buttons" />
     </Route>
