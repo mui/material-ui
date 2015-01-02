@@ -4,6 +4,7 @@ module.exports = {
   Checkbox: require('./js/checkbox.jsx'),
   DatePicker: require('./js/date-picker/date-picker.jsx'),
   Dialog: require('./js/dialog.jsx'),
+  DialogWindow: require('./js/dialog-window.jsx'),
   DropDownIcon: require('./js/drop-down-icon.jsx'),
   DropDownMenu: require('./js/drop-down-menu.jsx'),
   EnhancedButton: require('./js/enhanced-button.jsx'),
