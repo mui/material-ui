@@ -1,6 +1,7 @@
 var React = require('react');
 var Classable = require('./mixins/classable');
 var ClickAwayable = require('./mixins/click-awayable');
+var FlatButton = require('./flat-button.jsx');
 
 var Snackbar = React.createClass({
 
@@ -9,7 +10,6 @@ var Snackbar = React.createClass({
   propTypes: {
     action: React.PropTypes.string,
     message: React.PropTypes.string.isRequired,
-    onClick: React.PropTypes.func,
     openOnMount: React.PropTypes.bool
   },
 
@@ -41,8 +41,14 @@ var Snackbar = React.createClass({
     }); 
     var action;
 
-    if (this.props.action)
-      action = <span className="mui-snackbar-action" onClick={this._onActionClick}>{this.props.action}</span>;
+    if (this.props.action) {
+      action = (
+        <FlatButton
+          className="mui-snackbar-action"
+          label={this.props.action}
+          onTouchTap={this._handleActionTouchTap} />
+      );
+    }
 
     return (
       <span className={classes}>
@@ -60,8 +66,7 @@ var Snackbar = React.createClass({
     this.setState({ open: false });
   },
 
-  _onActionClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.action);
+  _handleActionTouchTap: function(e) {
     this.dismiss();
   }
   
