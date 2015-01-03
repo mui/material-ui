@@ -9,7 +9,7 @@ var Snackbar = React.createClass({
   propTypes: {
     action: React.PropTypes.string,
     icon: React.PropTypes.string,
-    message: React.PropTypes.string,
+    message: React.PropTypes.string.isRequired,
     onClick: React.PropTypes.func,
     openOnMount: React.PropTypes.bool
   },
@@ -40,17 +40,14 @@ var Snackbar = React.createClass({
     var classes = this.getClasses('mui-toast', {
       'mui-open': this.state.open
     }); 
-    var message;
     var action;
-
-    if (this.props.message)
-      message = <span className="mui-toast-message">{this.props.message}</span>;
+    
     if (this.props.action)
       action = <span className="mui-toast-action" onClick={this._onActionClick}>{this.props.action}</span>;
 
     return (
       <span className={classes}>
-        {message}
+        <span className="mui-toast-message">{this.props.message}</span>
         {action}
       </span>
     );
