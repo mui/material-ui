@@ -1,3 +1,20 @@
+## 0.5.0
+###### _Jan. 3, 2105_
+
+##### Breaking Changes
+- Removed lesshat dependency. Be sure to change your build process to include an 
+  [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer).
+
+##### Components
+- Buttons
+  - Ripple animations are much faster now. The animation starts onMouseDown or onTouchStart
+    and completes onMouseUp or onTouchEnd. Now we can spam buttons all day long. :)
+  - Spacebar key up triggers button clicks. (#155)
+- Slider
+  - Changed slider cursor (#187)
+- Snackbar (New)
+  - Added a snackbar component.
+
 ## 0.4.1
 ###### _Dec. 25, 2104_
 
