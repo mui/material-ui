@@ -1,0 +1,36 @@
+.mui-snackbar {
+  color: @mui-snackbar-color;
+  background-color: @mui-snackbar-background-color;
+  border-radius: 2px;
+  padding: 0 24px;
+  margin: 24px;
+  height: 48px;
+  line-height: 48px;
+  min-width: 288px;
+  max-width: 568px;
+
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  opacity: 0;
+
+  .mui-snackbar-message {
+    padding-right: 85px;
+  }
+
+  .mui-snackbar-action {
+    line-height: 48px;
+    color: @mui-snackbar-action-color;
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: uppercase;
+    float: right;
+    margin-left: 85px;
+  }
+
+  &.mui-is-open {
+    bottom: 0;
+    opacity: 1;
+  }
+
+}
