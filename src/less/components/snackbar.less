@@ -2,35 +2,34 @@
   color: @mui-snackbar-color;
   background-color: @mui-snackbar-background-color;
   border-radius: 2px;
-  padding: 0 24px;
-  margin: 24px;
-  height: 48px;
-  line-height: 48px;
+  padding: 0 @desktop-gutter;
+  height: @desktop-subheader-height;
+  line-height: @desktop-subheader-height;
   min-width: 288px;
   max-width: 568px;
 
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  opacity: 0;
+  position: fixed;
+  z-index: 10;
+  bottom: @desktop-gutter;
+  left: @desktop-gutter;
 
-  .mui-snackbar-message {
-    padding-right: 85px;
-  }
+  .ease-out();
+  opacity: 0;
+  transform: translate3d(0, 8px, 0);
 
   .mui-snackbar-action {
-    line-height: 48px;
+    line-height: @desktop-subheader-height;
     color: @mui-snackbar-action-color;
     cursor: pointer;
-    font-weight: 500;
     text-transform: uppercase;
     float: right;
-    margin-left: 85px;
+    margin-left: @desktop-gutter;
+    .mui-font-weight-medium;
   }
 
   &.mui-is-open {
-    bottom: 0;
     opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 
 }
