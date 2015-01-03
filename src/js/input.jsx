@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var React = require('react');
+var React = require('react/addons');
 var Classable = require('./mixins/classable.js');
 var classSet = React.addons.classSet;
 
