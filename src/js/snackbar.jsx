@@ -26,6 +26,16 @@ var Snackbar = React.createClass({
     this.dismiss();
   },
 
+  componentDidUpdate: function(prevProps, prevState) {
+    if (prevState.open != this.state.open) {
+      if (this.state.open) {
+        this._bindClickAway();
+      } else {
+        this._unbindClickAway();
+      }
+    }
+  },
+
   render: function() {
     var classes = this.getClasses('mui-toast', {
       'mui-open': this.state.open
@@ -46,19 +56,17 @@ var Snackbar = React.createClass({
     );
   },
 
-  _onActionClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.action);
-    this.dismiss();
-  },
-
   show: function() {
-    this._bindClickAway();
     this.setState({ open: true });
   },
   
   dismiss: function() {
-    this._unbindClickAway();
     this.setState({ open: false });
+  },
+
+  _onActionClick: function(e) {
+    if (this.props.onClick) this.props.onClick(e, this.props.action);
+    this.dismiss();
   }
   
 });
