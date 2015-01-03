@@ -1,15 +1,10 @@
 var React = require('react');
 var mui = require('mui');
+var RaisedButton = mui.RaisedButton;
+var Snackbar = mui.Snackbar;
 var CodeExample = require('../../code-example/code-example.jsx');
 
 var ToastsPage = React.createClass({
-
-  getInitialState: function() {
-    return {
-      message: 'Time for a snack',
-      action: 'dismiss'
-    };
-  },
 
   render: function() {
     var code = '';
@@ -18,17 +13,15 @@ var ToastsPage = React.createClass({
       <div>
         <h2 className="mui-font-style-headline">Snackbar</h2>
         <CodeExample code={code}>
-          <button onClick={this._triggerToast}>Show Snackbar</button>
-          <mui.Snackbar ref="Toast" message={this.state.message} action={this.state.action} />
+          <RaisedButton onClick={this._handleClick} label="Show Snackbar" />
+          <Snackbar ref="snackbar" message="Time for a snack"action="dismiss" />
         </CodeExample>
       </div>
     );
   },
 
-  _triggerToast: function(e) {
-    e.stopPropagation();
-    console.log('show');
-    this.refs.Toast.show();
+  _handleClick: function(e) {
+    this.refs.snackbar.show();
   }
 
 });
