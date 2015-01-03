@@ -3,6 +3,7 @@ var React = require('react');
 var ComponentInfo = React.createClass({
 
   propTypes: {
+    name: React.PropTypes.string.isRequired,
     infoArray: React.PropTypes.array.isRequired
   },
 
@@ -26,11 +27,14 @@ var ComponentInfo = React.createClass({
     });
 
     return (
-      <table className="component-info">
-        <tbody>
-          {propElements}
-        </tbody>
-      </table>
+      <div className="component-info">
+        <h3 className="mui-font-style-title">{this.props.name}</h3>
+        <table>
+          <tbody>
+            {propElements}
+          </tbody>
+        </table>
+      </div>
     );
   }
 

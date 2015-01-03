@@ -10,7 +10,8 @@ var Snackbar = React.createClass({
   propTypes: {
     action: React.PropTypes.string,
     message: React.PropTypes.string.isRequired,
-    openOnMount: React.PropTypes.bool
+    openOnMount: React.PropTypes.bool,
+    onActionTouchTap: React.PropTypes.func
   },
 
   manualBind: true,
@@ -46,7 +47,7 @@ var Snackbar = React.createClass({
         <FlatButton
           className="mui-snackbar-action"
           label={this.props.action}
-          onTouchTap={this._handleActionTouchTap} />
+          onTouchTap={this.props.onActionTouchTap} />
       );
     }
 
@@ -64,12 +65,8 @@ var Snackbar = React.createClass({
   
   dismiss: function() {
     this.setState({ open: false });
-  },
-
-  _handleActionTouchTap: function(e) {
-    this.dismiss();
   }
-  
+
 });
 
 module.exports = Snackbar;

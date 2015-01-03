@@ -1,20 +1,11 @@
-var React = require('react'),
-  mui = require('mui'),
-  MenuItem = mui.MenuItem,
-  LeftNav = mui.LeftNav,
-  RaisedButton = mui.RaisedButton,
-  CodeExample = require('../../code-example/code-example.jsx'),
-  ComponentInfo = require('../../component-info.jsx'),
+var React = require('react');
+var mui = require('mui');
+var MenuItem = mui.MenuItem;
+var LeftNav = mui.LeftNav;
+var RaisedButton = mui.RaisedButton;
+var ComponentDoc = require('../../component-doc.jsx');
 
-  menuItems = [
-    { route: 'get-started', text: 'Get Started' },
-    { route: 'css-framework', text: 'CSS Framework' },
-    { route: 'components', text: 'Components' },
-    { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
-    { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' }
-  ];
-
-var ButtonPage = React.createClass({
+var LeftNavPage = React.createClass({
 
   getInitialState: function() {
     return {
@@ -23,32 +14,15 @@ var ButtonPage = React.createClass({
   },
 
   render: function() { 
-    return (
-      <div>
-        <h2 className="mui-font-style-headline">Left Nav</h2>
-        {this._getCodeExample()}
 
-        <h3 className="mui-font-style-title">Props</h3>
-        {this._getPropInfo()}
+    var menuItems = [
+      { route: 'get-started', text: 'Get Started' },
+      { route: 'css-framework', text: 'CSS Framework' },
+      { route: 'components', text: 'Components' },
+      { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
+      { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' }
+    ];
 
-        <br/>
-        <hr />
-        <br/>
-
-        <h3 className="mui-font-style-title">Methods</h3>
-        {this._getMethodInfo()}
-
-        <br/>
-        <hr />
-        <br/>
-
-        <h3 className="mui-font-style-title">Events</h3>
-        {this._getEventInfo()}
-      </div>
-    );
-  },
-
-  _getCodeExample: function() {
     var code = 
       'menuItems = [\n' +
       '  { route: \'get-started\', text: \'Get Started\' },\n' +
@@ -66,20 +40,10 @@ var ButtonPage = React.createClass({
       '//Hideable Left Nav\n' +
       '<LeftNav docked={false} menuItems={menuItems} />\n\n';
 
-    return (
-      <CodeExample code={code}>
-        <div className="left-nav-example">
-          <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
-          <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
-          <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />
-          <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
-        </div>
-      </CodeExample>
-    );
-  },
-
-  _getPropInfo: function() {
-    var info = [
+    var componentInfo = [
+      {
+        name: 'Props',
+        infoArray: [
           {
             name: 'menuItems',
             type: 'array',
@@ -107,13 +71,11 @@ var ButtonPage = React.createClass({
             desc: 'Indicates the particular item in the menuItems array that is ' +
               'currently selected.'
           }
-        ];
-
-    return <ComponentInfo infoArray={info} />;
-  },
-
-  _getMethodInfo: function() {
-    var info = [
+        ]
+      },
+      {
+        name: 'Methods',
+        infoArray: [
           {
             name: 'close',
             header: 'LeftNav.close()',
@@ -124,22 +86,37 @@ var ButtonPage = React.createClass({
             header: 'LeftNav.toggle()',
             desc: 'Toggles between the open and closed states.'
           }
-        ];
-
-    return <ComponentInfo infoArray={info} />;
-  },
-
-  _getEventInfo: function() {
-    var info = [
+        ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
           {
             name: 'onChange',
             header: 'function(e, selectedIndex, menuItem)',
             desc: 'Fired when a menu item is clicked that is not the one currently ' +
               'selected.'
           }
-        ];
+        ]
+      }
+    ];
 
-    return <ComponentInfo infoArray={info} />;
+    return (
+      <ComponentDoc
+        name="Left Nav"
+        code={code}
+        componentInfo={componentInfo}>
+
+        <div className="left-nav-example">
+          <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
+          <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
+          <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />
+          <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+        </div>
+
+      </ComponentDoc>
+    );
+    
   },
 
   _showLeftNavClick: function() {
@@ -155,4 +132,4 @@ var ButtonPage = React.createClass({
 
 });
 
-module.exports = ButtonPage;
+module.exports = LeftNavPage;

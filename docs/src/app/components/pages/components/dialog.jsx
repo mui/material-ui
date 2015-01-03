@@ -2,12 +2,12 @@ var React = require('react');
 var mui = require('mui');
 var Dialog = mui.Dialog;
 var RaisedButton = mui.RaisedButton;
-var CodeExample = require('../../code-example/code-example.jsx');
-var ComponentInfo = require('../../component-info.jsx');
+var ComponentDoc = require('../../component-doc.jsx');
 
 var DialogPage = React.createClass({
 
   render: function() {
+
     var code = 
       'var dialogActions = [\n' +
       '  { text: \'CANCEL\' },\n' +
@@ -23,27 +23,75 @@ var DialogPage = React.createClass({
       { text: 'SUBMIT', onClick: this._onDialogSubmit }
     ];
 
+    var componentInfo = [
+      {
+        name: 'Props',
+        infoArray: [
+          {
+            name: 'actions',
+            type: 'array',
+            header: 'optional',
+            desc: 'JSON data representing the button actions to render.'
+          },
+          {
+            name: 'contentClassName',
+            type: 'string',
+            header: 'optional',
+            desc: 'The className to add to the dialog window content container.'
+          },
+          {
+            name: 'openImmediately',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'Set to true to have the dialog automatically open on mount.'
+          },
+          {
+            name: 'title',
+            type: 'string',
+            header: 'optional',
+            desc: 'The title string to display on the dialog.'
+          }
+        ]
+      },
+      {
+        name: 'Methods',
+        infoArray: [
+          {
+            name: 'dismiss',
+            header: 'Dialog.dismiss()',
+            desc: 'Hides the dialog.'
+          },
+          {
+            name: 'show',
+            header: 'Dialog.show()',
+            desc: 'Shows the dialog.'
+          }
+        ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
+          {
+            name: 'onDismiss',
+            header: 'function()',
+            desc: 'Fired when the dialog is dismissed.'
+          },
+          {
+            name: 'onShow',
+            header: 'function()',
+            desc: 'Fired when the dialog is shown.'
+          }
+        ]
+      }
+    ];
+
     return (
-      <div>
-        <h2 className="mui-font-style-headline">Dialog</h2>
+      <ComponentDoc
+        name="Dialog"
+        code={code}
+        componentInfo={componentInfo}>
 
-        <CodeExample code={code}>
-          <RaisedButton label="DEMO" onTouchTap={this._showDialog} />
-        </CodeExample>
-
-        <h3 className="mui-font-style-title">Props</h3>
-        {this._getPropInfo()}
-
-        <br/><hr/><br/>
-
-        <h3 className="mui-font-style-title">Methods</h3>
-        {this._getMethodInfo()}
-
-        <br/><hr/><br/>
-
-        <h3 className="mui-font-style-title">Events</h3>
-        {this._getEventInfo()}
-
+        <RaisedButton label="DEMO" onTouchTap={this._showDialog} />
         <Dialog
           ref="dialogExample"
           title="Title"
@@ -51,79 +99,15 @@ var DialogPage = React.createClass({
 
           This is an example of a dialog component built with Facebook's React and following 
           Google's Material Design principles.
-
         </Dialog>
-      </div>
+
+      </ComponentDoc>
     );
+
   },
 
   _showDialog: function() {
     this.refs.dialogExample.show();
-  },
-
-  _getPropInfo: function() {
-    var info = [
-      {
-        name: 'actions',
-        type: 'array',
-        header: 'optional',
-        desc: 'JSON data representing the button actions to render.'
-      },
-      {
-        name: 'contentClassName',
-        type: 'string',
-        header: 'optional',
-        desc: 'The className to add to the dialog window content container.'
-      },
-      {
-        name: 'openImmediately',
-        type: 'bool',
-        header: 'default: false',
-        desc: 'Set to true to have the dialog automatically open on mount.'
-      },
-      {
-        name: 'title',
-        type: 'string',
-        header: 'optional',
-        desc: 'The title string to display on the dialog.'
-      }
-    ];
-
-    return <ComponentInfo infoArray={info} />;
-  },
-
-  _getMethodInfo: function() {
-    var info = [
-      {
-        name: 'dismiss',
-        header: 'Dialog.dismiss()',
-        desc: 'Hides the dialog.'
-      },
-      {
-        name: 'show',
-        header: 'Dialog.show()',
-        desc: 'Shows the dialog.'
-      }
-    ];
-
-    return <ComponentInfo infoArray={info} />;
-  },
-
-  _getEventInfo: function() {
-    var info = [
-      {
-        name: 'onDismiss',
-        header: 'function()',
-        desc: 'Fired when the dialog is dismissed.'
-      },
-      {
-        name: 'onShow',
-        header: 'function()',
-        desc: 'Fired when the dialog is shown.'
-      }
-    ];
-
-    return <ComponentInfo infoArray={info} />;
   }
 
 });

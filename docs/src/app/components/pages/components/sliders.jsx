@@ -1,15 +1,12 @@
-/**
- * @jsx React.DOM
- */
-
-var React = require('react'),
-  mui = require('mui'),
-  Slider = mui.Slider,
-  CodeExample = require('../../code-example/code-example.jsx');
+var React = require('react');
+var mui = require('mui');
+var Slider = mui.Slider;
+var ComponentDoc = require('../../component-doc.jsx');
 
 var SlidersPage = React.createClass({
 
   render: function() {
+
     var code =
       '// Default\n' +
       '<Slider name="slider1" />\n\n' +
@@ -21,18 +18,23 @@ var SlidersPage = React.createClass({
       '<Slider name="slider2" disabled={true} value={0.5} />\n' +
       '<Slider name="slider3" disabled={true} value={1} />';
 
+    var componentInfo = [
+    ];
+
     return (
-      <div>
-        <h2 className="mui-font-style-headline">Sliders</h2>
-        <CodeExample code={code}>
-          <Slider name="slider1" />
+      <ComponentDoc
+        name="Sliders"
+        code={code}
+        componentInfo={componentInfo}>
+
+        <Slider name="slider1" />
           <Slider name="slider2" value={0.5} />
           <Slider name="slider3" value={1} />
           <Slider name="slider1" disabled={true} />
           <Slider name="slider2" disabled={true} value={0.5} />
           <Slider name="slider3" disabled={true} value={1} />
-        </CodeExample>
-      </div>
+
+      </ComponentDoc>
     );
   }
 

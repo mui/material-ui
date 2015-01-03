@@ -1,41 +1,20 @@
-var React = require('react'),
-  mui = require('mui'),
-  DropDownMenu = mui.DropDownMenu,
-  CodeExample = require('../../code-example/code-example.jsx'),
-  ComponentInfo = require('../../component-info.jsx'),
+var React = require('react');
+var mui = require('mui');
+var DropDownMenu = mui.DropDownMenu;
+var ComponentDoc = require('../../component-doc.jsx');
 
-  menuItems = [
-    { payload: '1', text: 'Never' },
-    { payload: '2', text: 'Every Night' },
-    { payload: '3', text: 'Weeknights' },
-    { payload: '4', text: 'Weekends' },
-    { payload: '5', text: 'Weekly' },
-  ];
-
-var MenusPage = React.createClass({
+var DropDownMenuPage = React.createClass({
 
   render: function() {
-    return (
-      <div>
-        <h2 className="mui-font-style-headline">Drop Down Menu</h2>
-        {this._getDropDownMenuExample()}
 
-        <h3 className="mui-font-style-title">Props</h3>
-        {this._getPropInfo()}
+    var menuItems = [
+      { payload: '1', text: 'Never' },
+      { payload: '2', text: 'Every Night' },
+      { payload: '3', text: 'Weeknights' },
+      { payload: '4', text: 'Weekends' },
+      { payload: '5', text: 'Weekly' },
+    ];
 
-        <br/>
-        <hr />
-        <br/>
-
-
-        <h3 className="mui-font-style-title">Events</h3>
-        {this._getEventInfo()}
-        
-      </div>
-    );
-  },
-
-  _getDropDownMenuExample: function() {
     var code = 
       "var menuItems = [\n" +
       "   { payload: '1', text: 'Never' },\n" +
@@ -46,15 +25,10 @@ var MenusPage = React.createClass({
       "];\n\n" +
       "<DropDownMenu menuItems={menuItems} />";
 
-    return (
-      <CodeExample code={code}>
-        <DropDownMenu menuItems={menuItems} />
-      </CodeExample>
-    );
-  },
-
-  _getPropInfo: function() {
-    var info = [
+    var componentInfo = [
+      {
+        name: 'Props',
+        infoArray: [
           {
             name: 'autoWidth',
             type: 'bool',
@@ -69,24 +43,33 @@ var MenusPage = React.createClass({
             header: 'required',
             desc: 'JSON data representing all menu items in the dropdown.'
           }
-        ];
-
-    return <ComponentInfo infoArray={info} />;
-  },
-
-  _getEventInfo: function() {
-    var info = [
+        ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
           {
             name: 'onChange',
             header: 'function(e, selectedIndex, menuItem)',
             desc: 'Fired when a menu item is clicked that is not the one currently ' +
               'selected.'
           }
-        ];
+        ]
+      }
+    ];
 
-    return <ComponentInfo infoArray={info} />;
+    return (
+      <ComponentDoc
+        name="Drop Down Menu"
+        code={code}
+        componentInfo={componentInfo}>
+
+        <DropDownMenu menuItems={menuItems} />
+
+      </ComponentDoc>
+    );
   }
 
 });
 
-module.exports = MenusPage;
+module.exports = DropDownMenuPage;

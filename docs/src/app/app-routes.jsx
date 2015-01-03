@@ -24,8 +24,8 @@ var LeftNav = require('./components/pages/components/left-nav.jsx');
 var Menus = require('./components/pages/components/menus.jsx');
 var Paper = require('./components/pages/components/paper.jsx');
 var Sliders = require('./components/pages/components/sliders.jsx');
+var Snackbar = require('./components/pages/components/snackbar.jsx');
 var Switches = require('./components/pages/components/switches.jsx');
-var Snackbar = require('./components/pages/components/snackbar-example.jsx');
 var Toolbars = require('./components/pages/components/toolbars.jsx');
 
 var AppRoutes = (
