@@ -13,7 +13,8 @@ Material-UI is available as an [npm package](https://www.npmjs.org/package/mater
 npm install material-ui
 ```
 
-Use [browserify](http://browserify.org/) and [reactify](https://github.com/andreypopp/reactify) for dependency management and JSX transformation. The CSS framework is written in [Less](http://lesscss.org/), so you'll need to compile that as well. For [Sass](http://www.sass-lang.com) users, [material-ui-sass](https://github.com/gpbl/material-ui-sass) contains the .scss version of the Less framework.
+Use [browserify](http://browserify.org/) and [reactify](https://github.com/andreypopp/reactify) for dependency management and JSX transformation. The CSS framework is written in [Less](http://lesscss.org/), so you'll need to compile that as well. For [Sass](http://www.sass-lang.com) users, [material-ui-sass](https://github.com/gpbl/material-ui-sass) contains the .scss version of the Less framework. People working with [Stylus](http://learnboost.github.io/stylus/) can use [material-ui-stylus](https://github.com/Autarc/material-ui-stylus) to import
+the proper .styl version of the files.
 
 ### React-Tap-Event-Plugin
 Some components uses [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
