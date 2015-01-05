@@ -84,7 +84,7 @@ var DatePicker = React.createClass({
 
   _handleDialogAccept: function(d) {
     this.setDate(d);
-    if (this.props.onChange) this.props.onChange(null, value);
+    if (this.props.onChange) this.props.onChange(null, d);
   },
 
   _handleInputFocus: function(e) {
