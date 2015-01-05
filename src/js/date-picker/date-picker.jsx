@@ -15,7 +15,8 @@ var DatePicker = React.createClass({
     formatDate: React.PropTypes.func,
     mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline']),
     onFocus: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func
+    onTouchTap: React.PropTypes.func,
+    onChange: React.PropTypes.func
   },
 
   windowListeners: {
@@ -66,7 +67,7 @@ var DatePicker = React.createClass({
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept} />
       </div>
-      
+
     );
   },
 
@@ -83,6 +84,7 @@ var DatePicker = React.createClass({
 
   _handleDialogAccept: function(d) {
     this.setDate(d);
+    if (this.props.onChange) this.props.onChange(null, value);
   },
 
   _handleInputFocus: function(e) {
