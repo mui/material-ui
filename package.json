@@ -36,7 +36,8 @@
   "dependencies": {
     "react": "^0.12.2",
     "react-draggable2": "^0.4.1",
-    "react-tap-event-plugin": "^0.1.3"
+    "react-tap-event-plugin": "^0.1.3",
+    "react-router": "^0.11.6"
   },
   "devDependencies": {
     "browserify": "^7.0.3",
