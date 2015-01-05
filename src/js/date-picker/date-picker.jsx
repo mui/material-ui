@@ -71,7 +71,7 @@ var DatePicker = React.createClass({
   },
 
   getDate: function() {
-    return this.state.value;
+    return this.state.date;
   },
 
   setDate: function(d) {
