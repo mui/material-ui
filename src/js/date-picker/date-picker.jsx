@@ -72,7 +72,7 @@ var DatePicker = React.createClass({
   },
 
   getDate: function() {
-    return this.state.value;
+    return this.state.date;
   },
 
   setDate: function(d) {
@@ -93,11 +93,8 @@ var DatePicker = React.createClass({
   },
 
   _handleInputTouchTap: function(e) {
-    var dateString = this.refs.input.getValue();
-    var inputDate = dateString ? new Date(dateString) : new Date();
-
     this.setState({
-      dialogDate: inputDate
+      dialogDate: this.getDate()
     });
 
     this.refs.dialogWindow.show();
