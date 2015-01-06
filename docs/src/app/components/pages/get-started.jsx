@@ -6,9 +6,7 @@ var GetStarted = React.createClass({
 
   render: function() {
     var usageCode =
-          '/**\n' +
-          ' * @jsx React.DOM\n' +
-          '*/\n\n' +
+          '/** MyAwesomeReactComponent.jsx */\n\n' +
           'var React = require(\'react\'),\n' +
           '  mui = require(\'material-ui\'),\n' +
           '  RaisedButton = mui.RaisedButton;\n\n' +
@@ -19,7 +17,7 @@ var GetStarted = React.createClass({
           '    );\n' +
           '  }\n\n' +
           '});\n\n' +
-          'module.exports = SomeAwesomeComponent;',
+          'module.exports = MyAwesomeReactComponent;\n\n\n',
 
       customizationCode = 
         '@import "node_modules/material-ui/dist/less/scaffolding.less";\n\n' +
@@ -39,12 +37,20 @@ var GetStarted = React.createClass({
       <div className="get-started-page mui-app-content-canvas">
         <div className="full-width-section">
 
+          <h2 className="mui-font-style-headline">Prerequisites</h2>
+          <p>
+            We recommend that you get started with the <a href="http://facebook.github.io/react/">React Library</a> before diving into 
+            material-ui for a better understanding. Should you choose to skip this, don&apos;t worry, we&apos;ll explain relevant React concepts as 
+            they come along.
+          </p>
+
+
           <h2 className="mui-font-style-headline">Installation</h2>
           <p>
             Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>. 
             Use <a href="http://browserify.org/">browserify</a> and <a href="https://github.com/andreypopp/reactify">reactify</a> for
             dependency management and JSX transformation. The CSS framework is written in <a href="http://lesscss.org/">Less</a>,
-            so you'll need to compile that as well. For <a href="http://www.sass-lang.com/">Sass</a> users, <a href="https://github.com/gpbl/material-ui-sass">material-ui-sass</a> contains
+            so you&apos;ll need to compile that as well. For <a href="http://www.sass-lang.com/">Sass</a> users, <a href="https://github.com/gpbl/material-ui-sass">material-ui-sass</a> contains
             the .scss version of the Less framework.
           </p>
 
@@ -91,7 +97,7 @@ var GetStarted = React.createClass({
             is a basic project that shows how you can consume material-ui components in your own project.
           </p>
           <p>
-            The second project is the actual documentation site. This is a more complex project but will give
+            The second project is this documentation site. This is a more complex project but will give
             examples of every component. Check out the <a href="https://github.com/callemall/material-ui/tree/master/docs">docs folder</a> for
             build instructions.
           </p>
