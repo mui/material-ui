@@ -9,21 +9,66 @@ var InputsPage = React.createClass({
 
     var code = 
       '// Default\n' +
-      '<Input ref="firstname" type="text" name="firstname" placeholder="First Name" />\n' +
+      '<Input\n' +
+      '  ref="firstname"\n' + 
+      '  type="text"\n' +
+      '  name="firstname"\n' +
+      '  placeholder="First Name" />\n\n' +
       '// With description\n' +
-      '<Input ref="lastname" type="text" name="lastname" placeholder="Last Name" description="Your last name as it appears on your credit card." />\n' +
+      '<Input\n' +
+      '  ref="lastname"\n' +
+      '  type="text"\n' +
+      '  name="lastname"\n' +
+      '  placeholder="Last Name"\n' +
+      '  description="Your last name as it appears on your credit card." />\n\n' +
       '// Disabled\n' +
-      '<Input ref="addressline1" type="text" name="addressline1" disabled={true} placeholder="Address Line 1" />\n' +
+      '<Input\n' +
+      '  ref="addressline1"\n' +
+      '  type="text"\n' +
+      '  name="addressline1"\n' +
+      '  disabled={true}\n' +
+      '  placeholder="Address Line 1" />\n\n' +
       '// Disabled with value\n' +
-      '<Input ref="addressline2" type="text" name="addressline2" disabled={true} defaultValue="with value" placeholder="Address Line 2" />\n' +
+      '<Input\n' +
+      '  ref="addressline2"\n' +
+      '  type="text"\n' +
+      '  name="addressline2"\n' +
+      '  disabled={true}\n' +
+      '  defaultValue="with value"\n' +
+      '  placeholder="Address Line 2" />\n\n' +
       '// With error\n' +
-      '<Input ref="city" type="text" name="city" defaultValue="Detroit" placeholder="City" description="Your city as it appears on your credit card." error="Can\'t process city name" />\n' +
+      '<Input\n' +
+      '  ref="city"\n' +
+      '  type="text"\n' +
+      '  name="city"\n' +
+      '  defaultValue="Detroit"\n' +
+      '  placeholder="City"\n' +
+      '  description="Your city as it appears on your credit card."\n' +
+      '  error="Can\'t process city name" />\n\n' +
       '// Inline placeholder\n' +
-      '<Input ref="state" type="text" name="state" inlinePlaceholder={true} placeholder="State" description="Your state as it appears on your credit card." />\n' +
+      '<Input\n' +
+      '  ref="state"\n' +
+      '  type="text"\n' +
+      '  name="state"\n' +
+      '  inlinePlaceholder={true}\n' +
+      '  placeholder="State"\n' +
+      '  description="Your state as it appears on your credit card." />\n\n' +
       '// Input style "float"\n' +
-      '<Input ref="allegiance" inputStyle="floating" type="text" name="allegiance" placeholder="Allegiance" description="The house of which you served under." />\n' +
+      '<Input\n' +
+      '  ref="allegiance"\n' +
+      '  inputStyle="floating"\n' +
+      '  type="text" name="allegiance"\n' +
+      '  placeholder="Allegiance"\n' +
+      '  description="The house of which you served under." />\n\n' +
       '// Textarea\n' +
-      '<Input ref="phones" multiline={true} rows={5} type="text" name="phones" placeholder="Phone numbers" description="Your phone numbers." />';
+      '<Input\n' +
+      '  ref="phones"\n' +
+      '  multiline={true}\n' +
+      '  rows={5}\n' +
+      '  type="text"\n' +
+      '  name="phones"\n' +
+      '  placeholder="Phone numbers"\n' +
+      '  description="Your phone numbers." />';
 
     var componentInfo = [
       {
@@ -133,14 +178,67 @@ var InputsPage = React.createClass({
         code={code}
         componentInfo={componentInfo}>
 
-        <Input ref="firstname" type="text" name="firstname" placeholder="First Name" />
-        <Input ref="lastname" type="text" name="lastname" placeholder="Last Name" description="Your last name as it appears on your credit card." />
-        <Input ref="addressline1" type="text" name="addressline1" disabled={true} placeholder="Address Line 1" />
-        <Input ref="addressline2" type="text" name="addressline2" disabled={true} defaultValue="with value" placeholder="Address Line 2" />
-        <Input ref="city" type="text" name="city" defaultValue="Detroit" placeholder="City" description="Your city as it appears on your credit card." error="Can't process city name" />
-        <Input ref="state" type="text" name="state" inlinePlaceholder={true} placeholder="State" description="Your state as it appears on your credit card." />
-        <Input ref="allegiance" inputStyle="floating" type="text" name="allegiance" placeholder="Allegiance" description="The house of which you served under." />
-        <Input ref="phones" multiline={true} rows={5} type="text" name="phones" placeholder="Phone numbers" description="Your phone numbers." />
+        <Input
+          ref="firstname"
+          type="text"
+          name="firstname"
+          placeholder="First Name" />
+
+        <Input
+          ref="lastname"
+          type="text"
+          name="lastname"
+          placeholder="Last Name"
+          description="Your last name as it appears on your credit card." />
+        
+        <Input
+          ref="addressline1"
+          type="text"
+          name="addressline1"
+          disabled={true}
+          placeholder="Address Line 1" />
+        
+        <Input
+          ref="addressline2"
+          type="text"
+          name="addressline2"
+          disabled={true}
+          defaultValue="with value"
+          placeholder="Address Line 2" />
+        
+        <Input
+          ref="city"
+          type="text"
+          name="city"
+          defaultValue="Detroit"
+          placeholder="City"
+          description="Your city as it appears on your credit card."
+          error="Can't process city name" />
+        
+        <Input
+          ref="state"
+          type="text"
+          name="state"
+          inlinePlaceholder={true}
+          placeholder="State"
+          description="Your state as it appears on your credit card." />
+        
+        <Input
+          ref="allegiance"
+          inputStyle="floating"
+          type="text"
+          name="allegiance"
+          placeholder="Allegiance"
+          description="The house of which you served under." />
+
+        <Input
+          ref="phones"
+          multiline={true}
+          rows={5}
+          type="text"
+          name="phones"
+          placeholder="Phone numbers"
+          description="Your phone numbers." />
 
       </ComponentDoc>
     );
