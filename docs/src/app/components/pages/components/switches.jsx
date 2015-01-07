@@ -1,10 +1,10 @@
-var React = require('react'),
-    mui = require('mui'),
-    Checkbox = mui.Checkbox,
-    RadioButton = mui.RadioButton,
-    Toggle = mui.Toggle,
-    CodeExample = require('../../code-example/code-example.jsx'),
-    ComponentDoc = require('../../component-doc.jsx');;
+var React = require('react');
+var mui = require('mui');
+var Checkbox = mui.Checkbox;
+var RadioButton = mui.RadioButton;
+var Toggle = mui.Toggle;
+var CodeExample = require('../../code-example/code-example.jsx');
+var ComponentDoc = require('../../component-doc.jsx');
 
 var SwitchesPage = React.createClass({
 
