@@ -34,9 +34,10 @@ var Checkbox = React.createClass({
 
     var classes = this.getClasses('mui-checkbox');
 
-    var componentclasses = this.getClasses('mui-checkbox-component', {
+    var componentclasses = React.addons.classSet({
+      'mui-checkbox-component': true,
       'mui-checked': this.state.checked === true
-    })
+    });
 
     return (
       <div className={classes}>
