@@ -22,6 +22,7 @@ var SwitchesPage = React.createClass({
       '<Checkbox\n' +
       '  name="checkboxName3"\n' +
       '  value="checkboxValue3"\n' + 
+      '  label="fed the dog"\n' +
       '  checked={true} />\n\n' +
       '//Radio Buttons\n' +
       '<RadioButton\n' +
@@ -159,14 +160,15 @@ var SwitchesPage = React.createClass({
         <div className="switches-example-container">
           <Checkbox
             name="checkboxName2"
-            value="checkboxValue2" 
+            value="checkboxValue2"
             label="went for a run today"
             onClick={this._onCheck} />
         </div>
-       <div className="switches-example-container">
+        <div className="switches-example-container">
           <Checkbox
             name="checkboxName3"
             value="checkboxValue3"
+            label="fed the dog"
             checked={true}
             onClick={this._onCheck} />
         </div>

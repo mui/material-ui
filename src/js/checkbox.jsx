@@ -31,21 +31,30 @@ var Checkbox = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-checkbox', {
+
+    var classes = this.getClasses('mui-checkbox');
+
+    var componentclasses = this.getClasses('mui-checkbox-component', {
       'mui-checked': this.state.checked === true
     })
 
     return (
-      <div className={classes} onClick={this._onCheck}>
-        <input ref="checkbox" type="checkbox" name={this.props.name} value={this.props.value} />
-        <span className="mui-checkbox-box" />
-        <span className="mui-checkbox-check" />
+      <div className={classes}>
+        <div className={componentclasses} onClick={this._onClick}> 
+          <input 
+            ref="checkbox" 
+            type="checkbox"
+            name={this.props.name} 
+            value={this.props.value} />
+          <span className="mui-checkbox-box" />
+          <span className="mui-checkbox-check" />
+        </div>
         <span className="mui-checkbox-label">{this.props.label}</span>
       </div>
     );
   },
 
-  _onCheck: function(e) {
+  _onClick: function(e) {
     var checkedState = this.state.checked;
 
     this.check();
