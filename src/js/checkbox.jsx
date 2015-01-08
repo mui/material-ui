@@ -4,11 +4,12 @@ var React = require('react'),
 var Checkbox = React.createClass({
 
   propTypes: {
-    checked: React.PropTypes.bool,
+    label: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
+    onClick: React.PropTypes.func,
     onCheck: React.PropTypes.func,
     value: React.PropTypes.string.isRequired,
-    onClick: React.PropTypes.func
+    checked: React.PropTypes.bool
   },
 
   mixins: [Classable],
@@ -39,6 +40,7 @@ var Checkbox = React.createClass({
         <input ref="checkbox" type="checkbox" name={this.props.name} value={this.props.value} />
         <span className="mui-checkbox-box" />
         <span className="mui-checkbox-check" />
+        <span className="mui-checkbox-label">{this.props.label}</span>
       </div>
     );
   },

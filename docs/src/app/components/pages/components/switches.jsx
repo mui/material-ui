@@ -17,7 +17,8 @@ var SwitchesPage = React.createClass({
       '  value="checkboxValue1" />\n' +
       '<Checkbox\n' +
       '  name="checkboxName2"\n' +
-      '  value="checkboxValue2" />\n' +
+      '  value="checkboxValue2"\n' +
+      '  label="went for a run today" />\n' +
       '<Checkbox\n' +
       '  name="checkboxName3"\n' +
       '  value="checkboxValue3"\n' + 
@@ -59,6 +60,12 @@ var SwitchesPage = React.createClass({
             desc: 'The value of our checkbox component.'
           },
           {
+            name: 'label',
+            type: 'string',
+            header: 'optional',
+            desc: 'The text that is displayed to the right of the checkbox.'
+          },
+          {
             name: 'checked',
             type: 'boolean',
             header: 'default:false',
@@ -85,7 +92,7 @@ var SwitchesPage = React.createClass({
             name: 'label',
             type: 'string',
             header: 'optional',
-            desc: 'The text that is displayed next to the right of the radio button.'
+            desc: 'The text that is displayed to the right of the radio button.'
           },
           {
             name: 'defaultChecked',
@@ -153,6 +160,7 @@ var SwitchesPage = React.createClass({
           <Checkbox
             name="checkboxName2"
             value="checkboxValue2" 
+            label="went for a run today"
             onClick={this._onCheck} />
         </div>
        <div className="switches-example-container">
