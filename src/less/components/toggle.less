@@ -1,44 +1,53 @@
-.mui-toggle {
-  position: relative;
-  line-height: 24px;
-  width: 36px;
-  cursor: pointer;
+.mui-toggle-wrap {
 
-  * {
-    .ease-out();
+  .mui-toggle-label {
+    display: inline-block;
+    font-style: italic;
+    padding-right: 10px;
   }
-
-  .mui-toggle-track {
-    width: 100%;
-    height: 14px;
-    border-radius: 30px;
-    background-color: @toggle-track-off-color;
-  }
-
-  .mui-toggle-thumb {
-    position: absolute;
-    top: -3px;
-    width: @toggle-size;
-    height: @toggle-size;
+  .mui-toggle { 
+    position: relative;
+    display: inline-block;
     line-height: 24px;
-    left: 0;
-    border-radius: 50%;
-    background-color: @toggle-thumb-off-color;
+    width: 36px;
+    cursor: pointer;
 
-    .mui-paper-container {
-      border-radius: 50%;
+    * {
+      .ease-out();
     }
-  }
 
-  &.mui-is-toggled {
-    
     .mui-toggle-track {
-      background-color: @toggle-track-on-color;
+      width: 100%;
+      height: 14px;
+      border-radius: 30px;
+      background-color: @toggle-track-off-color;
     }
 
     .mui-toggle-thumb {
-      left: 16px;
-      background-color: @toggle-thumb-on-color;
+      position: absolute;
+      top: -3px;
+      width: @toggle-size;
+      height: @toggle-size;
+      line-height: 24px;
+      left: 0;
+      border-radius: 50%;
+      background-color: @toggle-thumb-off-color;
+
+      .mui-paper-container {
+        border-radius: 50%;
+      }
+    }
+
+    &.mui-is-toggled {
+      
+      .mui-toggle-track {
+        background-color: @toggle-track-on-color;
+      }
+
+      .mui-toggle-thumb {
+        left: 16px;
+        background-color: @toggle-thumb-on-color;
+      }
     }
   }
 }

@@ -23,9 +23,12 @@ var Toggle = React.createClass({
     })
 
     return (
-      <div className={classes} onTouchTap={this._handleTouchTap}>
-        <div className="mui-toggle-track" />
-        <Paper className="mui-toggle-thumb" zDepth={1} />
+      <div className="mui-toggle-wrap">
+        <div className="mui-toggle-label">{this.props.label}</div>
+        <div className={classes} onTouchTap={this._handleTouchTap}>
+          <div className="mui-toggle-track" />
+          <Paper className="mui-toggle-thumb" zDepth={1} />
+        </div>
       </div>
     );
   },
