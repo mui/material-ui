@@ -28,7 +28,7 @@ var Snackbar = React.createClass({
 
   componentDidUpdate: function(prevProps, prevState) {
     if (prevState.open != this.state.open) {
-      if (this.state.open) { 
+      if (this.state.open) {
         this._bindClickAway();
       } else {
         this._unbindClickAway();
@@ -70,4 +70,3 @@ var Snackbar = React.createClass({
 });
 
 module.exports = Snackbar;
-
