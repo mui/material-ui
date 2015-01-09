@@ -64,7 +64,7 @@ var Slider = React.createClass({
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
     return (
-      <div className={classes}>
+      <div className={classes} style={this.props.style}>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
