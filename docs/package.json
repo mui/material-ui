@@ -2,6 +2,9 @@
   "name": "material-ui-docs",
   "version": "0.0.1",
   "description": "Documentation site for material-ui",
+  "scripts": {
+    "start": "gulp"
+  },
   "browser": {
     "mui": "../src/index.js"
   },
