@@ -15,7 +15,9 @@ var Slider = React.createClass({
     error: React.PropTypes.string,
     description: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    onDragStart: React.PropTypes.func,
+    onDragStop: React.PropTypes.func
   },
 
   mixins: [Classable],
@@ -140,12 +142,14 @@ var Slider = React.createClass({
     this.setState({
       dragging: true
     });
+    if (this.props.onDragStart) this.props.onDragStart();
   },
 
   _onDragStop: function(e, ui) {
     this.setState({
       dragging: false
     });
+    if (this.props.onDragStop) this.props.onDragStop();
   },
 
   _onDragUpdate: function(e, ui) {
