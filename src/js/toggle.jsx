@@ -25,7 +25,7 @@ var Toggle = React.createClass({
 
     return (
       <div className="mui-toggle-wrap">
-        {this.props.label ? <div className="mui-toggle-label">{this.props.label}</div> : ''}
+        {this.props.label ? <div className="mui-toggle-label" onTouchTap={this._handleTouchTap}>{this.props.label}</div> : ''}
         <div className={classes} onTouchTap={this._handleTouchTap}>
           <div className="mui-toggle-track" />
           <Paper className="mui-toggle-thumb" zDepth={1} />
