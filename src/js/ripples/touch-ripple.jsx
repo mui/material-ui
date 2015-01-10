@@ -18,7 +18,7 @@ var TouchRipple = React.createClass({
         key: 0,
         started: false,
         ending: false
-      }] 
+      }]
     };
   },
 
@@ -92,9 +92,11 @@ var TouchRipple = React.createClass({
       //Wait 2 seconds and remove the ripple from DOM
       setTimeout(function() {
         ripples.shift();
-        this.setState({
-          ripples: ripples
-        });
+        if (this.isMounted()) {
+          this.setState({
+            ripples: ripples
+          });
+        }
       }.bind(this), 2000);
     }
   },
@@ -140,7 +142,7 @@ var TouchRipple = React.createClass({
     var rippleSize = rippleRadius * 2;
     var left = pointerX - rippleRadius;
     var top = pointerY - rippleRadius;
-    
+
     style.height = rippleSize + 'px';
     style.width = rippleSize + 'px';
     style.top = top + 'px';
