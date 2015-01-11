@@ -63,7 +63,7 @@ var MenusPage = React.createClass({
 
   render: function() {
     return (
-    	<div>
+      <div>
         <h2 className="mui-font-style-headline">Label Menu</h2>
         {this._getLabelMenuExample()}
 
@@ -78,7 +78,7 @@ var MenusPage = React.createClass({
 
         <h2 className="mui-font-style-headline">Nested Menu</h2>
         {this._getNestedMenuExample()}
-    	</div>
+      </div>
     );
   },
 

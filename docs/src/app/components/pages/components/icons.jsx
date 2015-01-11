@@ -1,5 +1,5 @@
 var React = require('react'),
-  	mui = require('mui'),
+    mui = require('mui'),
     Icon = mui.Icon,
     CodeExample = require('../../code-example/code-example.jsx'),
 
@@ -852,7 +852,7 @@ var IconsPage = React.createClass({
 
   render: function() {
     return (
-    	<div>
+      <div>
         <h2 className="mui-font-style-headline">Icon Component</h2>
         {this._getComponentExample()}
 
@@ -868,7 +868,7 @@ var IconsPage = React.createClass({
 
         {this._getAllIconGroups()}
 
-		</div>
+    </div>
     );
   },
 
