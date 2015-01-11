@@ -20,7 +20,7 @@ var HomePage = React.createClass({
               <h2 className="mui-font-style-headline">
                 A CSS Framework and a Set of React
                 Components <span className="no-wrap">that
-                Implement</span> <span className="no-wrap">Google&apos:s Material Design</span>
+                Implement</span> <span className="no-wrap">Google&apos;s Material Design</span>
               </h2>
               <RaisedButton className="demo-button" label="Demo" onTouchTap={this._onDemoClick} linkButton={true} />
               <RaisedButton className="github-button" label="GitHub" linkButton={true} href="https://github.com/callemall/material-ui" />
