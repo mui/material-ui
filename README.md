@@ -52,7 +52,7 @@ var MyAwesomeReactComponent = React.createClass({
 
   render: function() {
     return (
-    	<RaisedButton label="Default" />
+      <RaisedButton label="Default" />
     );
   }
 
