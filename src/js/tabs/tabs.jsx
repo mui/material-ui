@@ -39,7 +39,7 @@ var Tabs = React.createClass({
     });
   },
 
-  handleClick: function(tabIndex, tab){
+  handleTouchTap: function(tabIndex, tab){
     this.setState({selectedIndex: tabIndex});
     //default CB is _onTabsChange. Can be updated in tab.jsx
     if(tab.props.onTabsChange) tab.props.onTabsChange(tab);
@@ -51,8 +51,9 @@ var Tabs = React.createClass({
       this.state.width/this.props.children.length :
       this.props.tabWidth;
     var left = width * this.state.selectedIndex || 0;
-    var currentTemplate = this.props.children[this.state.selectedIndex].props.template;
+    var currentTemplate;
     var tabs = React.Children.map(this.props.children, function(tab, index){
+      if(_this.state.selectedIndex === index) currentTemplate = tab.props.children;
       return (
         <Tab
           key={index}
@@ -61,9 +62,8 @@ var Tabs = React.createClass({
           value={tab.props.label}
           width={width}
           route={tab.props.route}
-          template={tab.props.template}
           onTabsChange={tab.props.onTabsChange}
-          handleClick={_this.handleClick} />
+          handleTouchTap={_this.handleTouchTap} />
       );
     });
 
@@ -73,8 +73,8 @@ var Tabs = React.createClass({
           {tabs}
         </div>
         <InkBar left={left} width={width}/>
-        <TabTemplate
-          template={currentTemplate}>
+        <TabTemplate>
+          {currentTemplate}
         </TabTemplate>
       </div>
     )

@@ -6,7 +6,7 @@ var TabTemplate = React.createClass({
 
     return (
       <div className='mui-tab-template'>
-        {this.props.template}
+        {this.props.children}
       </div>
     );
   },

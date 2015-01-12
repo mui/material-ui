@@ -12,16 +12,34 @@ var TabsPage = React.createClass({
   mixins: [Router.Navigation, Router.State],
 
   render: function(){
-    var code = "<Tabs> \n" +
-                 "  <Tab label={'Item One'} template={tabOneTemplate} \n" +
-                 "  <Tab label={'Item Two'} template={tabTwoTemplate} \n" +
-                 "  <Tab label={'Item Three'} route={'home'} onTabsChange={this._onTabsChange  } \n" +
-               "</Tabs> \n" +
-               "<Tabs tabWidth={130}> \n" +
-                 "  <Tab label={'Item One'} template={tabOneTemplate} \n" +
-                 "  <Tab label={'Item Two'} template={tabTwoTemplate} \n" +
-                 "  <Tab label={'Item Three'} route={'home'} onTabsChange={this._onTabsChange  } \n" +
-               "</Tabs>"
+    var code =  "<Tabs> \n" +
+                "  <Tab label={'Item One'} > \n" +
+                "    <div className='tab-template-container'> \n" +
+                "      <h2 className='mui-font-style-headline'>Tab One Template Example</h2> \n" +
+                "      <p> \n" +
+                "        This is an example of a tab template! \n" +
+                "      </p> \n" +
+                "      <p> \n" +
+                "        You can put any sort of HTML or react component in here. \n" +
+                "      </p> \n" +
+                "    </div> \n" +
+                "  </Tab> \n" +
+                "  <Tab label={'Item Two'} > \n" +
+                "    <div className='tab-template-container'> \n" +
+                "      <h2 className='mui-font-style-headline'>Tab Two Template Example</h2> \n" +
+                "      <p> \n" +
+                "        This is another example of a tab template! \n" +
+                "      </p> \n" +
+                "      <p> \n" +
+                "        Fair warning - the next tab routes to home! \n" +
+                "      </p> \n" +
+                "    </div> \n" +
+                "  </Tab> \n" +
+                "  <Tab \n" +
+                "    label={'Item Three'} \n" +
+                "    route={'home'} \n" +
+                "    onTabsChange={this._onTabsChange} /> \n" +
+                "</Tabs> \n"
 
     var componentInfo = [
       {
@@ -38,12 +56,6 @@ var TabsPage = React.createClass({
             type: 'string',
             header: 'optional',
             desc: 'Sets the text value of the tab item to the string specified.'
-          },
-          {
-            name: 'template',
-            type: 'xml',
-            header: 'optional',
-            desc: 'If specified, the active tab will display it\'s associated template.'
           },
           {
             name: 'route',
@@ -72,30 +84,6 @@ var TabsPage = React.createClass({
       }
     ];
 
-    var tabOneTemplate = (
-      <div className='tab-template-container'>
-        <h2 className='mui-font-style-headline'>Tab One Template Example</h2>
-        <p>
-          This is an example of a tab template!
-        </p>
-        <p>
-          You can put any sort of HTML or react component in here.
-        </p>
-      </div>
-    );
-
-    var tabTwoTemplate = (
-      <div className='tab-template-container'>
-        <h2 className='mui-font-style-headline'>Tab Two Template Example</h2>
-        <p>
-          This is another example of a tab template!
-        </p>
-        <p>
-          Fair warning - the next tab routes to home!
-        </p>
-      </div>
-    );
-
     return (
       <ComponentDoc
         name="Tabs"
@@ -104,12 +92,28 @@ var TabsPage = React.createClass({
 
         <div className='tabs-examples'>
           <Tabs>
-            <Tab
-              label={'Item One'}
-              template={tabOneTemplate} />
-            <Tab
-              label={'Item Two'}
-              template={tabTwoTemplate} />
+            <Tab label={'Item One'} >
+              <div className='tab-template-container'>
+                <h2 className='mui-font-style-headline'>Tab One Template Example</h2>
+                <p>
+                  This is an example of a tab template!
+                </p>
+                <p>
+                  You can put any sort of HTML or react component in here.
+                </p>
+              </div>
+            </Tab>
+            <Tab label={'Item Two'} >
+              <div className='tab-template-container'>
+                <h2 className='mui-font-style-headline'>Tab Two Template Example</h2>
+                <p>
+                  This is another example of a tab template!
+                </p>
+                <p>
+                  Fair warning - the next tab routes to home!
+                </p>
+              </div>
+            </Tab>
             <Tab
               label={'Item Three'}
               route={'home'}
