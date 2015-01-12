@@ -196,7 +196,7 @@ var SwitchesPage = React.createClass({
         </div>
         <div className="switches-example-container">
           <Checkbox 
-            name="required-button" 
+            name="required-button"
             value="Value"
             label="This button is required"
             required={true}/>
@@ -205,7 +205,8 @@ var SwitchesPage = React.createClass({
           <Checkbox 
             name="required-button" 
             value="Value"
-            label="This is a button with a really long label. I made it for testing purposes. Please ignore me."/>
+            label="This is a button with a really long label. I made it for testing purposes. Please ignore me."
+            onCheck={this._onCheck} />
         </div>
 
 
