@@ -43,22 +43,16 @@
     position: relative;
     width: calc(100% - @checkbox-box-size);
     height: 100%;
-
-    background-color: #00ff00;
   }
 
   // The second nexted div containing the checkbox
   .mui-checkbox-component {
-
-      .ease-out;
+    .ease-out;
     width: @checkbox-box-size;
+    height: @checkbox-box-size;
     float: left;
     overflow: hidden;
-    background-color: #ff0000;
 
-
-      // transform: scale(0);
-      //   transform-origin: 50% 50%;
 
     input {
       opacity: 0;
@@ -69,36 +63,21 @@
     .mui-checkbox-box {
       .ease-out;
       background-color: @checkbox-box-background-color;
-      box-sizing: @checkbox-box-box-sizing;
-      height: @checkbox-box-size;
       position: @checkbox-box-position;
-      width: @checkbox-box-size;
     }
 
     .mui-checkbox-check {
       .ease-out;
-      height: @checkbox-check-height;
       position: @checkbox-check-position;
-      width: @checkbox-check-height;
-
       transform: scale(0);
       transform-origin: 50% 50%;
     }
 
     &.mui-checked {
-
-        // transform: scale(1);
-        // transform-origin: 50% 50%;
-
-      .mui-checkbox-box {
-        .ease-out;
-      }
-
       .mui-checkbox-check {
         .ease-out;
-        height: @checkbox-checked-check-height;
-        width: @checkbox-checked-check-width;
         transform: scale(1);
+        transform-origin: 50% 50%;
       }
     }
 
@@ -114,83 +93,3 @@
     }
   }
 }
-
-
-
-
-
-
-/*
-.mui-mo-checkbox {
-  width: 100%;
-  height: auto;
-
-  .ease-out;
-  cursor: @checkbox-cursor;
-  position: @checkbox-position;
-
-  .mui-mo-checkbox-component {
-    width: @checkbox-box-size;
-    float: left;
-    overflow: hidden;
-
-    input {
-      opacity: 0;
-      width: inherit;
-      height: inherit;
-    }
-
-    .mui-mo-checkbox-box {
-      .ease-out;
-      background-color: @checkbox-box-background-color;
-      box-sizing: @checkbox-box-box-sizing;
-      height: @checkbox-box-size;
-      position: @checkbox-box-position;
-      width: @checkbox-box-size;
-    }
-
-    .mui-mo-checkbox-check {
-      .ease-out;
-      height: @checkbox-check-height;
-      position: @checkbox-check-position;
-      transform: scale(0);
-      width: @checkbox-check-height;
-    }
-
-    &.mui-checked {
-
-      .mui-mo-checkbox-box {
-        .ease-out;
-      }
-
-      .mui-mo-checkbox-check {
-        .ease-out;
-        height: @checkbox-checked-check-height;
-        transform: scale(1);
-        border-radius: 50%;
-        width: @checkbox-checked-check-width;
-      }
-    }
-
-    &.mui-disabled {
-      .mui-mo-checkbox-check {
-        background-color: #999999;
-      }
-      .mui-mo-checkbox-box {
-        & {
-          background-color: #999999;
-        }
-      }
-    }
-  }
-
-  .mui-mo-checkbox-label {
-    float: right;
-    overflow: hidden;
-
-    position: relative;
-    width: calc(100% - @checkbox-box-size);
-    height: 100%;
-  }
-}
-*/

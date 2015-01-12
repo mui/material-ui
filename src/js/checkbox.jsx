@@ -41,12 +41,14 @@ var Checkbox = React.createClass({
     return (
       <div className={classes} onClick={this._onClick}>
         <div className={componentclasses}>
-          <div className="mui-checkbox-box">
-            <Icon icon="toggle-check-box-outline-blank" />
-          </div>
-          <div className="mui-checkbox-check">
-            <Icon icon="toggle-check-box" />
-          </div>
+
+            <div className="mui-checkbox-box">
+              <Icon icon="toggle-check-box-outline-blank" />
+            </div>
+            <div className="mui-checkbox-check">
+              <Icon icon="toggle-check-box" />
+            </div>
+
           <input 
               ref="checkbox"
               type="checkbox"
@@ -64,6 +66,15 @@ var Checkbox = React.createClass({
     if (!this.state.disabled) this.setState({checked: !this.state.checked});
     if (this.props.onCheck) this.props.onCheck(e, !checkedState);
   },
+
+  onChange: function() {
+    /**
+     * Created to address warning: 
+     * You provided a `checked` prop to a form field without an `onChange` handler. This will 
+     * render a read-only field. If the field should be mutable use `defaultChecked`. Otherwise,
+     * set either `onChange` or `readOnly`. Check the render method of `Checkbox`
+     */
+  }
 });
 
 module.exports = Checkbox;
