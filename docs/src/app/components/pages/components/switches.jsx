@@ -142,36 +142,74 @@ var SwitchesPage = React.createClass({
     );
   },
 
+  /**
+   * TODO: Here is a Checkbox uses one of every input checkbox attribute.
+   *       Compare there behaviors with the input checkbox and try to match 
+   *       them. i.e. indeterminate doesn't do anything to input checkbox, 
+   *       so do we need to handle it?
+   *
+   *       You'll probably need to add more style for certain cases.
+   * 
+   * IMPORTANT: You have some stashed changes, get rid of them. 
+   */
   _getCheckboxExample: function() {
 
     return (
       <div className="switches-example-group">
 
         <div className="switches-example-container">
-          <h2 className="mui-font-style-headline">Checkbox</h2>
+          <h2 className="mui-font-style-headline">Checkbox (Testing)</h2>
         </div>
 
         <div className="switches-example-container">
-          <Checkbox
-            name="checkboxName1"
-            value="checkboxValue1"
-            onClick={this._onCheck} />
+          <Checkbox 
+            name="standard-button" 
+            value="Value"
+            label="Standard button"/>
         </div>
         <div className="switches-example-container">
-          <Checkbox
-            name="checkboxName2"
-            value="checkboxValue2"
-            label="went for a run today"
-            onClick={this._onCheck} />
+          <Checkbox 
+            name="autofocus-button" 
+            value="Value" 
+            label="This button should be autofocused"
+            autofocus={true} />
+        </div>  
+        <div className="switches-example-container">
+          <Checkbox 
+            name="checked-button" 
+            value="Value" 
+            label="Checked button"
+            checked={true}/>
+        </div>    
+        <div className="switches-example-container">
+          <Checkbox 
+            name="defaultValue-button"
+            label="Button with a default value"
+            defaultValue="defaultValue"/>
+        </div>        
+        <div className="switches-example-container">
+          <Checkbox 
+            name="disabled-button" 
+            value="Value"
+            label="Disabled button"
+            disabled={true}/>
         </div>
         <div className="switches-example-container">
-          <Checkbox
-            name="checkboxName3"
-            value="checkboxValue3"
-            label="fed the dog"
-            checked={true}
-            onClick={this._onCheck} />
+          <Checkbox 
+            name="required-button" 
+            value="Value"
+            label="This button is required"
+            required={true}/>
         </div>
+        <div className="switches-example-container">
+          <Checkbox 
+            name="required-button" 
+            value="Value"
+            label="This is a button with a really long label. I made it for testing purposes. Please ignore me."/>
+        </div>
+
+
+        <input type="submit" value="Submit"/>
 
       </div>
     );
