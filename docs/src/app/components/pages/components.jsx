@@ -1,7 +1,7 @@
-var React = require('react');
-var PageWithNav = require('./page-with-nav.jsx');
+var React = require('react'),
+  PageWithNav = require('./page-with-nav.jsx');
 
-var CssFramework = React.createClass({
+var Components = React.createClass({
 
   render: function() {
     var menuItems = [
@@ -28,4 +28,4 @@ var CssFramework = React.createClass({
 
 });
 
-module.exports = CssFramework;
+module.exports = Components;
