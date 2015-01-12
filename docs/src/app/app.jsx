@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
- 
 (function () {
 
   var React = require('react'),
@@ -18,14 +14,19 @@
   //https://github.com/zilverline/react-tap-event-plugin
   injectTapEventPlugin();
 
-  //Render the main app component
+  /** Render the main app component. You can read more about the react-router here: 
+    *  https://github.com/rackt/react-router/blob/master/docs/guides/overview.md
+    */ 
   Router
+    // Runs the router, similiar to the Router.run method. You can think of it as an 
+    // initializer/constructor method.
     .create({
       routes: AppRoutes,
       scrollBehavior: Router.ScrollToTopBehavior
     })
+    // This is our callback function, whenever the url changes it will be called again. 
+    // Handler: The ReactComponent class that will be rendered  
     .run(function (Handler) {
-      // whenever the url changes, this callback is called again
       React.render(<Handler/>, document.body);
     });
 

@@ -7,7 +7,17 @@ var ComponentDoc = require('../../component-doc.jsx');
 var SnackbarPage = React.createClass({
 
   render: function() {
-    var code = '<Snackbar message="Time for a snack" action="dismiss" />';
+    var code = 
+      '<Snackbar\n' + 
+      '  message="Event added to your calendar"\n' + 
+      '  action="undo"\n' + 
+      '  onActionTouchTap={this._handleAction}/>\n\n' +
+      '//Somewhere in our code\n' +
+      '_handleAction: function() {\n' +
+      '  //We can add more code to this function, but for now we\'ll just include an alert.\n' +
+      '  alert("We removed the event from your calendar.");\n' +
+      '}';
+      ;
 
     var componentInfo = [
       {
@@ -66,8 +76,15 @@ var SnackbarPage = React.createClass({
         code={code}
         componentInfo={componentInfo}>
 
-        <RaisedButton onClick={this._handleClick} label="Show Snackbar" />
-        <Snackbar ref="snackbar" message="Time for a snack" action="dismiss" />
+        <RaisedButton 
+          onClick={this._handleClick} 
+          label="Add to my calendar" />
+
+        <Snackbar 
+          ref="snackbar" 
+          message="Event added to your calendar"
+          action="undo" 
+          onActionTouchTap={this._handleAction} />
 
       </ComponentDoc>
     );
@@ -75,6 +92,11 @@ var SnackbarPage = React.createClass({
 
   _handleClick: function(e) {
     this.refs.snackbar.show();
+  },
+
+  _handleAction: function() {
+    //We can add more code here! In this example, we'll just include an alert.
+    alert("We removed the event from your calendar.");
   }
 
 });

@@ -9,10 +9,9 @@ cd <project folder>/material-ui
 npm install
 cd <project folder>/material-ui/docs
 npm install
-npm install -g gulp
 ```
 
 Now you can run your local server:
 ```
-gulp
+npm start
 ```

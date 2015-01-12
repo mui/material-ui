@@ -3,7 +3,7 @@
   height: @toolbar-height;
   width: 100%;
   padding: 0 @desktop-gutter;
-  
+
   .mui-toolbar-group {
     position: relative;
 
@@ -18,11 +18,12 @@
       height: @desktop-gutter-more;
       margin-left: @desktop-gutter;
       position: relative;
-      top: 12px;
+      top: ((@toolbar-height - @desktop-gutter-more) / 2);
       width: 1px;
     }
 
-    .mui-raised-button {
+    .mui-raised-button,
+    .mui-flat-button {
       margin: 0 @desktop-gutter;
       margin-top: ((@toolbar-height - @button-height) / 2);
       position: relative;
@@ -39,9 +40,9 @@
       }
 
       .mui-menu-control {
-      	.mui-menu-control-underline {
-      		display: none;
-      	}
+        .mui-menu-control-underline {
+          display: none;
+        }
       }
 
       .mui-icon {

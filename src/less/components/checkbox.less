@@ -8,7 +8,7 @@
 @checkbox-box-box-sizing: border-box;
 @checkbox-box-position: absolute;
 @checkbox-box-size: 18px;
-@checkbox-label-spacing: @checkbox-box-size;
+@checkbox-label-spacing: calc(@checkbox-box-size + @desktop-gutter-mini);
 @checkbox-box-transform-origin: 40% 90%;
 @checkbox-box-transform: rotate(0deg) scale(1);
 
@@ -30,58 +30,64 @@
 .mui-checkbox {
   .ease-out;
   cursor: @checkbox-cursor;
-  height: @checkbox-size;
   position: @checkbox-position;
-  width: @checkbox-size;
 
-  input {
-    display: @checkbox-input-display;
-  }
 
+  // The first nested div which is for the label area
   .mui-checkbox-label {
     position: relative;
     left: @checkbox-label-spacing;
-    padding: 0 5px;
+    padding-right: 25px;
+    width: calc(100% - @checkbox-box-size);
+    height: 100%;
   }
 
-  .mui-checkbox-box {
-    .ease-out;
-    background-color: @checkbox-box-background-color;
-    border: 2px solid @checkbox-box-border-color;
-    border-radius: @checkbox-box-border-radius;
-    box-sizing: @checkbox-box-box-sizing;
-    height: @checkbox-box-size;
-    position: @checkbox-box-position;
-    transform: @checkbox-box-transform;
-    transform-origin: @checkbox-box-transform-origin;
-    width: @checkbox-box-size;
-  }
+  // The second nested div which is 
+  .mui-checkbox-component {
 
-  .mui-checkbox-check {
-    .ease-out;
-    border-bottom: 2px solid @checkbox-check-color;
-    border-left: 2px solid @checkbox-check-color;
-    bottom: @checkbox-check-fix-left;
-    height: @checkbox-check-height;
-    left: @checkbox-check-fix-left;
-    position: @checkbox-check-position;
-    transform: @checkbox-check-transform;
-    transform-origin: @checkbox-check-transform-origin;
-    width: @checkbox-check-height;
-  }
+    input {
+      display: @checkbox-input-display;
+    }
 
-  &.mui-checked {
     .mui-checkbox-box {
       .ease-out;
-      transform: rotate(45deg) scale(0);
+      background-color: @checkbox-box-background-color;
+      border: 2px solid @checkbox-box-border-color;
+      border-radius: @checkbox-box-border-radius;
+      box-sizing: @checkbox-box-box-sizing;
+      height: @checkbox-box-size;
+      position: @checkbox-box-position;
+      transform: @checkbox-box-transform;
+      transform-origin: @checkbox-box-transform-origin;
+      width: @checkbox-box-size;
     }
 
     .mui-checkbox-check {
       .ease-out;
-      height: @checkbox-checked-check-height;
-      transform: @checkbox-checked-check-transform;
-      transition-delay: @checkbox-checked-check-transition-delay;
-      width: @checkbox-checked-check-width;
+      border-bottom: 2px solid @checkbox-check-color;
+      border-left: 2px solid @checkbox-check-color;
+      bottom: calc(100% - @checkbox-box-size);
+      height: @checkbox-check-height;
+      left: @checkbox-check-fix-left;
+      position: @checkbox-check-position;
+      transform: @checkbox-check-transform;
+      transform-origin: @checkbox-check-transform-origin;
+      width: @checkbox-check-height;
+    }
+
+    &.mui-checked {
+      .mui-checkbox-box {
+        .ease-out;
+        transform: rotate(45deg) scale(0);
+      }
+
+      .mui-checkbox-check {
+        .ease-out;
+        height: @checkbox-checked-check-height;
+        transform: @checkbox-checked-check-transform;
+        transition-delay: @checkbox-checked-check-transition-delay;
+        width: @checkbox-checked-check-width;
+      }
     }
   }
 }
