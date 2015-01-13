@@ -4,28 +4,9 @@
 
 @checkbox-input-display: none;
 
-@checkbox-box-border-radius: 3px;
-@checkbox-box-box-sizing: border-box;
 @checkbox-box-position: absolute;
-@checkbox-box-size: 18px;
-@checkbox-label-spacing: calc(@checkbox-box-size + @desktop-gutter-mini);
-@checkbox-box-transform-origin: 40% 90%;
-@checkbox-box-transform: rotate(0deg) scale(1);
 
-@checkbox-check-fix-left: 4px;
-@checkbox-check-fix-bottom: 6px;
-@checkbox-check-height: 10px;
 @checkbox-check-position: absolute;
-@checkbox-check-transform-origin: 40% 100%;
-@checkbox-check-transform: rotate(-45deg) scale(0);
-@checkbox-check-width: 15px;
-
-@checkbox-checked-box-transform: rotate(45deg) scale(0);
-
-@checkbox-checked-check-height: 10px;
-@checkbox-checked-check-transform: rotate(-45deg) scale(1);
-@checkbox-checked-check-transition-delay: .1s;
-@checkbox-checked-check-width: 18px;
 
 .mui-checkbox {
   .ease-out;
@@ -41,15 +22,15 @@
     overflow: hidden;
 
     position: relative;
-    width: calc(100% - @checkbox-box-size);
+    width: calc(100% - @checkbox-size);
     height: 100%;
   }
 
   // The second nexted div containing the checkbox
   .mui-checkbox-component {
     .ease-out;
-    width: @checkbox-box-size;
-    height: @checkbox-box-size;
+    width: @checkbox-size;
+    height: @checkbox-size;
     float: left;
     overflow: hidden;
 
@@ -83,11 +64,22 @@
 
     &.mui-disabled {
       .mui-checkbox-check {
-        background-color: #999999;
+        color: @grey-500;
       }
       .mui-checkbox-box {
         & {
-          background-color: #999999;
+          color: @grey-500;
+        }
+      }
+    }
+
+    &.mui-required {
+      .mui-checkbox-check {
+        color: @red-500;
+      }
+      .mui-checkbox-box {
+        & {
+          color: @red-500;
         }
       }
     }

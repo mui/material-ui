@@ -8,7 +8,8 @@ var Checkbox = React.createClass({
     name: React.PropTypes.string.isRequired,
     value: React.PropTypes.string.isRequired,
     label: React.PropTypes.string,
-    onCheck: React.PropTypes.func
+    onCheck: React.PropTypes.func,
+    required: React.PropTypes.bool
   },
 
   mixins: [Classable],
@@ -17,6 +18,7 @@ var Checkbox = React.createClass({
     return {
       checked: this.props.checked || false,
       disabled: this.props.disabled || false,
+      required: this.props.required || false
     }
   },
 
@@ -26,7 +28,8 @@ var Checkbox = React.createClass({
     var componentclasses = React.addons.classSet({
       'mui-checkbox-component': true,
       'mui-checked': this.state.checked,
-      'mui-disabled': this.state.disabled
+      'mui-disabled': this.state.disabled,
+      'mui-required': this.props.required
     });
 
     var {
