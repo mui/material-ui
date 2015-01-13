@@ -17,6 +17,10 @@ var Toggle = React.createClass({
     }
   },
 
+  componentWillReceiveProps: function (nextProps) {
+    if (nextProps.hasOwnProperty('toggled')) this.setState({toggled: nextProps.toggled});
+  },
+
   render: function() {
     var classes = this.getClasses('mui-toggle', {
       'mui-is-toggled': this.state.toggled
