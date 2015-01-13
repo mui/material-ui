@@ -6,7 +6,7 @@ var InkBar = require('../ink-bar.jsx');
 var Tabs = React.createClass({
 
   propTypes: {
-    onTabsChange: React.PropTypes.func
+    onTabIsActive: React.PropTypes.func
   },
 
   getInitialState: function(){
@@ -40,9 +40,10 @@ var Tabs = React.createClass({
   },
 
   handleTouchTap: function(tabIndex, tab){
+    if (this.props.onTabsChange && this.state.selectedIndex !== tabIndex) this.props.onTabsChange();
     this.setState({selectedIndex: tabIndex});
-    //default CB is _onTabsChange. Can be updated in tab.jsx
-    if(tab.props.onTabsChange) tab.props.onTabsChange(tab);
+    //default CB is _onTabIsActive. Can be updated in tab.jsx
+    if(tab.props.onTabIsActive) tab.props.onTabIsActive(tab);
   },
 
   render: function(){
@@ -53,18 +54,19 @@ var Tabs = React.createClass({
     var left = width * this.state.selectedIndex || 0;
     var currentTemplate;
     var tabs = React.Children.map(this.props.children, function(tab, index){
-      if(_this.state.selectedIndex === index) currentTemplate = tab.props.children;
-      return (
-        <Tab
-          key={index}
-          selected={_this.state.selectedIndex === index}
-          tabIndex={index}
-          value={tab.props.label}
-          width={width}
-          route={tab.props.route}
-          onTabsChange={tab.props.onTabsChange}
-          handleTouchTap={_this.handleTouchTap} />
-      );
+      if(tab.type.displayName === "Tab"){
+        if(_this.state.selectedIndex === index) currentTemplate = tab.props.children;
+         return React.addons.cloneWithProps(tab, {
+            key: index,
+            selected: _this.state.selectedIndex === index,
+            tabIndex: index,
+            width: width,
+            handleTouchTap: _this.handleTouchTap
+          })
+      } else {
+        var type = tab.type.displayName || tab.type;
+        throw "Tabs only accepts Tab Components as children. Found " + type + " as child number " + (index + 1) + " of Tabs";
+      }
     });
 
     return (
