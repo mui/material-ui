@@ -6,7 +6,7 @@ var InkBar = require('../ink-bar.jsx');
 var Tabs = React.createClass({
 
   propTypes: {
-    onTabIsActive: React.PropTypes.func
+    onActive: React.PropTypes.func
   },
 
   getInitialState: function(){
@@ -40,10 +40,10 @@ var Tabs = React.createClass({
   },
 
   handleTouchTap: function(tabIndex, tab){
-    if (this.props.onTabsChange && this.state.selectedIndex !== tabIndex) this.props.onTabsChange();
+    if (this.props.onChange && this.state.selectedIndex !== tabIndex) this.props.onChange();
     this.setState({selectedIndex: tabIndex});
-    //default CB is _onTabIsActive. Can be updated in tab.jsx
-    if(tab.props.onTabIsActive) tab.props.onTabIsActive(tab);
+    //default CB is _onActive. Can be updated in tab.jsx
+    if(tab.props.onActive) tab.props.onActive(tab);
   },
 
   render: function(){

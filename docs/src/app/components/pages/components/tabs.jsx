@@ -12,43 +12,43 @@ var TabsPage = React.createClass({
   mixins: [Router.Navigation, Router.State],
 
   render: function(){
-    var code =  "<Tabs> \n" +
-                "  <Tab label='Item One' > \n" +
-                "    <div className='tab-template-container'> \n" +
-                "      <h2 className='mui-font-style-headline'>Tab One Template Example</h2> \n" +
-                "      <p> \n" +
-                "        This is an example of a tab template! \n" +
-                "      </p> \n" +
-                "      <p> \n" +
-                "        You can put any sort of HTML or react component in here. \n" +
-                "      </p> \n" +
-                "    </div> \n" +
-                "  </Tab> \n" +
-                "  <Tab label='Item Two' > \n" +
-                "    <div className='tab-template-container'> \n" +
-                "      <h2 className='mui-font-style-headline'>Tab Two Template Example</h2> \n" +
-                "      <p> \n" +
-                "        This is another example of a tab template! \n" +
-                "      </p> \n" +
-                "      <p> \n" +
-                "        Fair warning - the next tab routes to home! \n" +
-                "      </p> \n" +
-                "    </div> \n" +
-                "  </Tab> \n" +
-                "  <Tab \n" +
-                "    label='Item Three' \n" +
-                "    route='home' \n" +
-                "    onTabIsActive={this._onTabIsActive} /> \n" +
-                "</Tabs> \n" +
-                "\n" +
-                "_onTabIsActive: function(tab){ \n" +
-                "  this.transitionTo(tab.props.route); \n" +
-                "}";
+    var code =  '<Tabs> \n' +
+                '  <Tab label="Item One" > \n' +
+                '    <div className="tab-template-container"> \n' +
+                '      <h2 className="mui-font-style-headline">Tab One Template Example</h2> \n' +
+                '      <p> \n' +
+                '        This is an example of a tab template! \n' +
+                '      </p> \n' +
+                '      <p> \n' +
+                '        You can put any sort of HTML or react component in here. \n' +
+                '      </p> \n' +
+                '    </div> \n' +
+                '  </Tab> \n' +
+                '  <Tab label="Item Two" > \n' +
+                '    <div className="tab-template-container"> \n' +
+                '      <h2 className="mui-font-style-headline">Tab Two Template Example</h2> \n' +
+                '      <p> \n' +
+                '        This is another example of a tab template! \n' +
+                '      </p> \n' +
+                '      <p> \n' +
+                '        Fair warning - the next tab routes to home! \n' +
+                '      </p> \n' +
+                '    </div> \n' +
+                '  </Tab> \n' +
+                '  <Tab \n' +
+                '    label="Item Three" \n' +
+                '    route="home" \n' +
+                '    onActive={this._onActive} /> \n' +
+                '</Tabs> \n' +
+                '\n' +
+                '_onActive: function(tab){ \n' +
+                '  this.transitionTo(tab.props.route); \n' +
+                '}';
 
     var desc = 'Refs cannont be set on individual Tab components as cloneWithProps is being ' +
       'used to extend the individual tab components under the hood. However, ' +
       'refs can be passed to the Tabs container and to any element or component within the template. ' +
-      'If you need to access a tab directly - you can do so with the first argument of onTabIsActive or ' +
+      'If you need to access a tab directly - you can do so with the first argument of onActive or ' +
       'by accessing the props.children array by passing refs to the Tabs container.';
 
          
@@ -69,7 +69,7 @@ var TabsPage = React.createClass({
         name: 'Tabs Events',
         infoArray: [
           {
-            name: 'onTabsChange',
+            name: 'onChange',
             type: 'function',
             header: 'optional',
             desc: 'Fired on touch or tap of a tab.'
@@ -97,7 +97,7 @@ var TabsPage = React.createClass({
         name: 'Tab Events',
         infoArray: [
           {
-            name: 'onTabIsActive',
+            name: 'onActive',
             type: 'function(tab)',
             header: 'optional',
             desc: 'Fired when the active tab changes by touch or tap. Use this event to specify any functionality when an active tab changes. For example - we are using this to route to home when the third tab becomes active. This function will always recieve the active tab as it\'s first argument.'
@@ -114,7 +114,7 @@ var TabsPage = React.createClass({
         componentInfo={componentInfo}>
 
         <div className='tabs-examples'>
-          <Tabs>
+          <Tabs onChange={this._onChange}>
             <Tab label='Item One' >
               <div className='tab-template-container'>
                 <h2 className='mui-font-style-headline'>Tab One Template Example</h2>
@@ -140,7 +140,7 @@ var TabsPage = React.createClass({
             <Tab
               label='Item Three'
               route='home'
-              onTabIsActive={this._onTabIsActive} />
+              onActive={this._onActive} />
           </Tabs>
         </div>
 
@@ -148,7 +148,7 @@ var TabsPage = React.createClass({
     );
   },
 
-  _onTabIsActive: function(tab){
+  _onActive: function(tab){
     this.transitionTo(tab.props.route);
   }
 });
