@@ -23,7 +23,7 @@ var SwitchesPage = React.createClass({
       '<Checkbox\n' +
       '  name="checkboxName3"\n' +
       '  value="checkboxValue3"\n' + 
-      '  label="can\'t touch this"\n' +
+      '  label="built a house on the moon"\n' +
       '  disabled={true} />\n\n' +
       '//Radio Buttons\n' +
       '<RadioButton\n' +
@@ -169,7 +169,7 @@ var SwitchesPage = React.createClass({
           <Checkbox 
             name="checkboxName3" 
             value="checkboxValue3"
-            label="can't touch this"
+            label="built a house on the moon"
             disabled={true}/>
         </div>
 
