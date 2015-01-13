@@ -1,5 +1,5 @@
-var React = require('react'),
-  PageWithNav = require('./page-with-nav.jsx');
+var React = require('react');
+var PageWithNav = require('./page-with-nav.jsx');
 
 var Components = React.createClass({
 
