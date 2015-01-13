@@ -25,8 +25,11 @@ module.exports = {
   RadioButton: require('./js/radio-button.jsx'),
   RaisedButton: require('./js/raised-button.jsx'),
   Slider: require('./js/slider.jsx'),
+  Tab: require('./js/tabs/tab.jsx'),
+  Tabs: require('./js/tabs/tabs.jsx'),
   Toggle: require('./js/toggle.jsx'),
   Snackbar: require('./js/snackbar.jsx'),
+
   Toolbar: require('./js/toolbar.jsx'),
   ToolbarGroup: require('./js/toolbar-group.jsx'),
   Tooltip: require('./js/tooltip.jsx'),
