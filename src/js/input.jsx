@@ -88,6 +88,18 @@ var Input = React.createClass({
     );
   },
 
+  getValue: function() {
+    return this.state.value;
+  },
+
+  setValue: function(txt) {
+    this.setState({value: txt});
+  },
+
+  clearValue: function() {
+    this.setValue('');
+  },
+
   blur: function() {
     if(this.isMounted()) this.refs.input.getDOMNode().blur();
   },
