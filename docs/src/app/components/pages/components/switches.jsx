@@ -156,14 +156,16 @@ var SwitchesPage = React.createClass({
           <Checkbox 
             name="checkboxName1" 
             value="checkboxValue1"
-            label="went for a run today"/>
+            label="went for a run today"
+            onCheck={this._onCheck}
+            checked={true}/>
         </div>
         <div className="switches-example-container">
           <Checkbox 
             name="checkboxName2" 
             value="checkboxValue2"
             label="fed the dog"
-            checked={true} />
+            defaultChecked={true} />
         </div>
         <div className="switches-example-container">
           <Checkbox 

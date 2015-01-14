@@ -9,14 +9,16 @@ var Checkbox = React.createClass({
     value: React.PropTypes.string.isRequired,
     label: React.PropTypes.string,
     onCheck: React.PropTypes.func,
-    required: React.PropTypes.bool
+    required: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
+    defaultChecked: React.PropTypes.bool
   },
 
-  mixins: [Classable],
+  mixins: [Classable, React.addons.LinkedStateMixin],
 
   getInitialState: function() {
     return {
-      checked: this.props.checked || false,
+      checked: this.props.defaultChecked || false,
       disabled: this.props.disabled || false
     }
   },
@@ -36,6 +38,7 @@ var Checkbox = React.createClass({
       name,
       value,
       checked,
+      defaultChecked,
       onCheck,
       ...other
     } = this.props;
@@ -57,7 +60,7 @@ var Checkbox = React.createClass({
               type="checkbox"
               name={this.props.name}
               value={this.props.value}
-              checked={this.state.checked}/>
+              checkedLink={this.linkState('checked')}/>
         </div>
         <div className="mui-checkbox-label"> {this.props.label} </div>
       </div>
@@ -66,10 +69,19 @@ var Checkbox = React.createClass({
 
   _onTouchTap: function(e) {
     var checkedState = this.state.checked;
-    
+
     if (!this.state.disabled) this.setState({checked: !this.state.checked});
     if (this.props.onCheck) this.props.onCheck(e, !checkedState);
   },
+
+  isChecked: function() {
+    return this.state.checked;
+  },
+
+  setChecked: function(newCheckedState) {
+    this.setState({checked: newCheckedState});
+  }
+
 });
 
 module.exports = Checkbox;
