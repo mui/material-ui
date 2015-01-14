@@ -20,7 +20,6 @@
   .mui-checkbox-label {
     float: right;
     overflow: hidden;
-
     position: relative;
     width: calc(100% - @checkbox-size);
     height: 100%;
@@ -36,6 +35,7 @@
 
 
     input {
+      cursor: @checkbox-cursor;
       opacity: 0;
       width: inherit;
       height: inherit;
@@ -43,43 +43,41 @@
 
     .mui-checkbox-box {
       .ease-out;
-      background-color: @checkbox-box-background-color;
+      color: @checkbox-box-color;
       position: @checkbox-box-position;
     }
 
     .mui-checkbox-check {
       .ease-out;
+      color: @checkbox-checked-color;
       position: @checkbox-check-position;
+      opacity: 0;
       transform: scale(0);
       transform-origin: 50% 50%;
     }
 
-    &.mui-checked {
+    &.mui-is-checked {
       .mui-checkbox-check {
-        .ease-out;
+        opacity: 1;
         transform: scale(1);
-        transform-origin: 50% 50%;
       }
     }
 
-    &.mui-disabled {
+    &.mui-is-disabled {
       .mui-checkbox-check {
-        color: @grey-500;
+        color: @checkbox-disabled-color;
       }
       .mui-checkbox-box {
         & {
-          color: @grey-500;
+          color: @checkbox-disabled-color;
         }
       }
     }
 
-    &.mui-required {
-      .mui-checkbox-check {
-        color: @red-500;
-      }
+    &.mui-is-required {
       .mui-checkbox-box {
         & {
-          color: @red-500;
+          color: @checkbox-required-color;
         }
       }
     }

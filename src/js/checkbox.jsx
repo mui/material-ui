@@ -17,8 +17,7 @@ var Checkbox = React.createClass({
   getInitialState: function() {
     return {
       checked: this.props.checked || false,
-      disabled: this.props.disabled || false,
-      required: this.props.required || false
+      disabled: this.props.disabled || false
     }
   },
 
@@ -27,9 +26,9 @@ var Checkbox = React.createClass({
 
     var componentclasses = React.addons.classSet({
       'mui-checkbox-component': true,
-      'mui-checked': this.state.checked,
-      'mui-disabled': this.state.disabled,
-      'mui-required': this.props.required
+      'mui-is-checked': this.state.checked,
+      'mui-is-disabled': this.state.disabled,
+      'mui-is-required': this.props.required
     });
 
     var {
@@ -42,7 +41,7 @@ var Checkbox = React.createClass({
     } = this.props;
 
     return (
-      <div className={classes} onClick={this._onClick}>
+      <div className={classes} onTouchTap={this._onTouchTap}>
         <div className={componentclasses}>
 
             <div className="mui-checkbox-box">
@@ -53,31 +52,24 @@ var Checkbox = React.createClass({
             </div>
 
           <input 
+              {...other} 
               ref="checkbox"
               type="checkbox"
               name={this.props.name}
               value={this.props.value}
-              checked={this.state.checked}
-              {...other} />
+              checked={this.state.checked}/>
         </div>
         <div className="mui-checkbox-label"> {this.props.label} </div>
       </div>
     );
   },
 
-  _onClick: function(e) {
+  _onTouchTap: function(e) {
+    var checkedState = this.state.checked;
+    
     if (!this.state.disabled) this.setState({checked: !this.state.checked});
     if (this.props.onCheck) this.props.onCheck(e, !checkedState);
   },
-
-  onChange: function() {
-    /**
-     * Created to address warning: 
-     * You provided a `checked` prop to a form field without an `onChange` handler. This will 
-     * render a read-only field. If the field should be mutable use `defaultChecked`. Otherwise,
-     * set either `onChange` or `readOnly`. Check the render method of `Checkbox`
-     */
-  }
 });
 
 module.exports = Checkbox;
