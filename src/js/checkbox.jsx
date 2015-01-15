@@ -18,10 +18,27 @@ var Checkbox = React.createClass({
 
   getInitialState: function() {
     return {
-      checked: this.props.defaultChecked || false,
-      disabled: this.props.disabled || false
+      checked: this.props.defaultChecked || false
     }
   },
+
+  componentDidMount: function() {
+    var inputNode = this.refs.checkbox.getDOMNode();
+    this.setState({checked: inputNode.checked});
+  },
+
+  componentWillReceiveProps: function() {
+    var inputNode = this.refs.checkbox.getDOMNode();
+    this.setState({checked: inputNode.checked});
+  },
+
+  handleChange: function(e) {
+    var isInputChecked = this.refs.checkbox.getDOMNode().checked;
+
+    if (!this.props.checked) this.setState({checked: isInputChecked});
+    if (this.props.onCheck) this.props.onCheck(e, isInputChecked);
+  },
+
 
   render: function() {
     var classes = this.getClasses('mui-checkbox');
@@ -29,7 +46,7 @@ var Checkbox = React.createClass({
     var componentclasses = React.addons.classSet({
       'mui-checkbox-component': true,
       'mui-is-checked': this.state.checked,
-      'mui-is-disabled': this.state.disabled,
+      'mui-is-disabled': this.props.disabled,
       'mui-is-required': this.props.required
     });
 
@@ -37,49 +54,55 @@ var Checkbox = React.createClass({
       type,
       name,
       value,
-      checked,
-      defaultChecked,
       onCheck,
       ...other
     } = this.props;
 
     return (
-      <div className={classes} onTouchTap={this._onTouchTap}>
-        <div className={componentclasses}>
-
-            <div className="mui-checkbox-box">
-              <Icon icon="toggle-check-box-outline-blank" />
-            </div>
-            <div className="mui-checkbox-check">
-              <Icon icon="toggle-check-box" />
-            </div>
+      <div className={classes}>
 
           <input 
-              {...other} 
-              ref="checkbox"
-              type="checkbox"
-              name={this.props.name}
-              value={this.props.value}
-              checkedLink={this.linkState('checked')}/>
+            {...other} 
+            ref="checkbox"
+            type="checkbox"
+            name={this.props.name}
+            value={this.props.value}
+            onChange={this.handleChange}/>
+
+        <div className={componentclasses}>
+          <div className="mui-checkbox-box">
+            <Icon icon="toggle-check-box-outline-blank" />
+          </div>
+          <div className="mui-checkbox-check">
+            <Icon icon="toggle-check-box" />
+          </div>
         </div>
-        <div className="mui-checkbox-label"> {this.props.label} </div>
+
+        <div className="mui-checkbox-label"> 
+          {this.props.label}
+        </div>
       </div>
     );
   },
 
-  _onTouchTap: function(e) {
-    var checkedState = this.state.checked;
-
-    if (!this.state.disabled) this.setState({checked: !this.state.checked});
-    if (this.props.onCheck) this.props.onCheck(e, !checkedState);
-  },
-
   isChecked: function() {
-    return this.state.checked;
+    return this.refs.checkbox.getDOMNode().checked;
   },
 
-  setChecked: function(newCheckedState) {
-    this.setState({checked: newCheckedState});
+  // no callback here because there is no event
+  setChecked: function(newCheckedValue) {
+    if (!this.props.hasOwnProperty('checked')) {
+      this.setState({checked: newCheckedValue});  
+      this.refs.checkbox.getDOMNode().checked = newCheckedValue;
+    } else {
+      var message = 'Attempt to modify checked value for checkbox while ' +
+                    'checked is defined as a property.';
+      console.warn(message);
+    }
+ },
+
+  getInputNode: function() {
+    return this.refs.checkbox.getDOMNode();
   }
 
 });

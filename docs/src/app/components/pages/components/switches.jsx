@@ -153,15 +153,16 @@ var SwitchesPage = React.createClass({
         </div>
 
         <div className="switches-example-container">
-          <Checkbox 
+          <Checkbox
+            ref="checkbox1"
             name="checkboxName1" 
             value="checkboxValue1"
             label="went for a run today"
-            onCheck={this._onCheck}
-            checked={true}/>
+            checked={false}/>
         </div>
         <div className="switches-example-container">
           <Checkbox 
+            ref="checkbox2"
             name="checkboxName2" 
             value="checkboxValue2"
             label="fed the dog"
@@ -169,10 +170,26 @@ var SwitchesPage = React.createClass({
         </div>
         <div className="switches-example-container">
           <Checkbox 
+            ref="checkbox3"
             name="checkboxName3" 
             value="checkboxValue3"
             label="built a house on the moon"
             disabled={true}/>
+        </div>
+        <div className="switches-example-container">
+          <Checkbox 
+            ref="checkbox4"
+            name="checkboxName4" 
+            value="checkboxValue4"
+            label="built a house on the moon"/>
+        </div>
+        <div className="switches-example-container">
+          <Checkbox
+            ref="checkbox5" 
+            name="checkboxName5" 
+            value="checkboxValue5"
+            label="uncheck all"
+            onCheck={this._onCheck}/>
         </div>
 
       </div>
@@ -233,7 +250,14 @@ var SwitchesPage = React.createClass({
   },
 
   _onCheck: function(e, checked) {
-    console.log('Checked: ', checked);
+    var bool = !this.refs.checkbox5.isChecked();
+    this.refs.checkbox1.setChecked(bool);
+    this.refs.checkbox2.setChecked(bool);
+    this.refs.checkbox3.setChecked(bool);
+    this.refs.checkbox4.setChecked(bool);
+
+    // this.refs.checkbox4.setChecked(false);
+
   },
 
   _handleToggle: function(e, toggled) {

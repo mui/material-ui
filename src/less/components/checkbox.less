@@ -25,6 +25,16 @@
     height: 100%;
   }
 
+    // input {
+    //   cursor: @checkbox-cursor;
+    //   opacity: 100;//0;
+    //   width: inherit;
+    //   height: inherit;
+    //   pointer-events: none;
+    //   z-index: 2;
+    //   // position: @checkbox-box-position;
+    // }
+
   // The second nexted div containing the checkbox
   .mui-checkbox-component {
     .ease-out;
@@ -32,14 +42,16 @@
     height: @checkbox-size;
     float: left;
     overflow: hidden;
-
+    z-index: 1;
 
     input {
       cursor: @checkbox-cursor;
-      opacity: 0;
+      opacity: 100;//0;
       width: inherit;
       height: inherit;
       pointer-events: none;
+      z-index: 2;
+      // position: @checkbox-box-position;
     }
 
     .mui-checkbox-box {
