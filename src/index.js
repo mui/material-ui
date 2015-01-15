@@ -19,7 +19,7 @@ module.exports = {
   Mixins: {
     Classable: require('./js/mixins/classable.js'),
     ClickAwayable: require('./js/mixins/click-awayable.js'),
-    WindowListenable: require('./js/mixins/window-listenable.js'),
+    WindowListenable: require('./js/mixins/window-listenable.js')
   },
   Paper: require('./js/paper.jsx'),
   RadioButton: require('./js/radio-button.jsx'),
