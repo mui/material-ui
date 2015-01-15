@@ -142,14 +142,14 @@ var Slider = React.createClass({
     this.setState({
       dragging: true
     });
-    if (this.props.onDragStart) this.props.onDragStart();
+    if (this.props.onDragStart) this.props.onDragStart(e, ui);
   },
 
   _onDragStop: function(e, ui) {
     this.setState({
       dragging: false
     });
-    if (this.props.onDragStop) this.props.onDragStop();
+    if (this.props.onDragStop) this.props.onDragStop(e, ui);
   },
 
   _onDragUpdate: function(e, ui) {
