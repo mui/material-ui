@@ -15,7 +15,9 @@ var Slider = React.createClass({
     error: React.PropTypes.string,
     description: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    onDragStart: React.PropTypes.func,
+    onDragStop: React.PropTypes.func
   },
 
   mixins: [Classable],
@@ -62,7 +64,7 @@ var Slider = React.createClass({
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
     return (
-      <div className={classes}>
+      <div className={classes} style={this.props.style}>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
@@ -140,12 +142,14 @@ var Slider = React.createClass({
     this.setState({
       dragging: true
     });
+    if (this.props.onDragStart) this.props.onDragStart(e, ui);
   },
 
   _onDragStop: function(e, ui) {
     this.setState({
       dragging: false
     });
+    if (this.props.onDragStop) this.props.onDragStop(e, ui);
   },
 
   _onDragUpdate: function(e, ui) {
