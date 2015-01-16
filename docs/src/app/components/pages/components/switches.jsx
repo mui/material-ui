@@ -19,7 +19,7 @@ var SwitchesPage = React.createClass({
       '  name="checkboxName2"\n' +
       '  value="checkboxValue2"\n' + 
       '  label="fed the dog"\n' +
-      '  checked={true} />\n\n' +
+      '  defaultChecked={true} />\n\n' +
       '<Checkbox\n' +
       '  name="checkboxName3"\n' +
       '  value="checkboxValue3"\n' + 
@@ -68,10 +68,20 @@ var SwitchesPage = React.createClass({
             desc: 'The text that is displayed to the right of the checkbox.'
           },
           {
-            name: 'checked',
+            name: 'defaultChecked',
             type: 'boolean',
             header: 'default:false',
-            desc: 'The current state of our checkbox component.'
+            desc: 'The default state of our checkbox component.'
+          },
+          {
+            name: 'isChecked',
+            header: 'Checkbox.isChecked()',
+            desc: 'Returns true if the checkbox is currently checked. Returns false otherwise'
+          },
+          {
+            name: 'setChecked',
+            header: 'Checkbox.setChecked(newCheckedValue)',
+            desc: 'Sets the checkbox to the value of newCheckedValue. '
           }
         ]
       },
@@ -132,11 +142,9 @@ var SwitchesPage = React.createClass({
         componentInfo={componentInfo}>
 
         <div className="switches-examples">
-          <form>
-            {this._getCheckboxExample()}
-            {this._getRadioButtonExample()}
-            {this._getToggleExample()}
-          </form>
+          {this._getCheckboxExample()}
+          {this._getRadioButtonExample()}
+          {this._getToggleExample()}
         </div>
 
       </ComponentDoc>
@@ -158,40 +166,23 @@ var SwitchesPage = React.createClass({
             name="checkboxName1" 
             value="checkboxValue1"
             label="went for a run today"
-            checked={false}/>
+            checked={true}/>
         </div>
         <div className="switches-example-container">
           <Checkbox 
-            ref="checkbox2"
             name="checkboxName2" 
             value="checkboxValue2"
             label="fed the dog"
-            defaultChecked={true} />
+            defaultChecked={false} 
+            onCheck={this._onCheck}/>
         </div>
         <div className="switches-example-container">
           <Checkbox 
-            ref="checkbox3"
             name="checkboxName3" 
             value="checkboxValue3"
             label="built a house on the moon"
             disabled={true}/>
         </div>
-        <div className="switches-example-container">
-          <Checkbox 
-            ref="checkbox4"
-            name="checkboxName4" 
-            value="checkboxValue4"
-            label="built a house on the moon"/>
-        </div>
-        <div className="switches-example-container">
-          <Checkbox
-            ref="checkbox5" 
-            name="checkboxName5" 
-            value="checkboxValue5"
-            label="uncheck all"
-            onCheck={this._onCheck}/>
-        </div>
-
       </div>
     );
   },
@@ -250,14 +241,8 @@ var SwitchesPage = React.createClass({
   },
 
   _onCheck: function(e, checked) {
-    var bool = !this.refs.checkbox5.isChecked();
-    this.refs.checkbox1.setChecked(bool);
-    this.refs.checkbox2.setChecked(bool);
-    this.refs.checkbox3.setChecked(bool);
-    this.refs.checkbox4.setChecked(bool);
-
-    // this.refs.checkbox4.setChecked(false);
-
+    console.log('Checked: ', checked);
+    this.refs.checkbox1.setChecked(false);
   },
 
   _handleToggle: function(e, toggled) {

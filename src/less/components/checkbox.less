@@ -2,7 +2,7 @@
 @checkbox-position: relative;
 @checkbox-size: 18px;
 
-@checkbox-input-display: none;
+@checkbox-input-position: absolute;
 
 @checkbox-box-position: absolute;
 
@@ -14,7 +14,8 @@
   position: @checkbox-position;
 
   width: 100%;
-  padding: 24px 0px;
+  height: auto;
+  overflow: hidden;
 
   // The first nested div which is for the label area
   .mui-checkbox-label {
@@ -25,15 +26,16 @@
     height: 100%;
   }
 
-    // input {
-    //   cursor: @checkbox-cursor;
-    //   opacity: 100;//0;
-    //   width: inherit;
-    //   height: inherit;
-    //   pointer-events: none;
-    //   z-index: 2;
-    //   // position: @checkbox-box-position;
-    // }
+  input {
+    position: @checkbox-input-position;
+    cursor: @checkbox-cursor;
+    pointer-events: all;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 2;
+    top: 0;
+  }
 
   // The second nexted div containing the checkbox
   .mui-checkbox-component {
@@ -43,16 +45,6 @@
     float: left;
     overflow: hidden;
     z-index: 1;
-
-    input {
-      cursor: @checkbox-cursor;
-      opacity: 100;//0;
-      width: inherit;
-      height: inherit;
-      pointer-events: none;
-      z-index: 2;
-      // position: @checkbox-box-position;
-    }
 
     .mui-checkbox-box {
       .ease-out;

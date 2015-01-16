@@ -61,13 +61,13 @@ var Checkbox = React.createClass({
     return (
       <div className={classes}>
 
-          <input 
-            {...other} 
-            ref="checkbox"
-            type="checkbox"
-            name={this.props.name}
-            value={this.props.value}
-            onChange={this.handleChange}/>
+        <input 
+          {...other} 
+          ref="checkbox"
+          type="checkbox"
+          name={this.props.name}
+          value={this.props.value}
+          onChange={this.handleChange}/>
 
         <div className={componentclasses}>
           <div className="mui-checkbox-box">
@@ -97,14 +97,9 @@ var Checkbox = React.createClass({
     } else {
       var message = 'Attempt to modify checked value for checkbox while ' +
                     'checked is defined as a property.';
-      console.warn(message);
+      console.error(message);
     }
- },
-
-  getInputNode: function() {
-    return this.refs.checkbox.getDOMNode();
   }
-
 });
 
 module.exports = Checkbox;
