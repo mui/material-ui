@@ -1,3 +1,5 @@
+@toggle-width: 36px;
+
 .mui-toggle-wrap {
 
   .mui-toggle-label {
@@ -5,13 +7,14 @@
     padding-right: 10px;
     cursor: pointer;
     margin-left: @desktop-gutter-mini;
+    width: calc(100% - @toggle-width);
   }
   .mui-toggle { 
     position: relative;
-    display: inline-block;
     line-height: 24px;
-    width: 36px;
+    width: @toggle-width;
     cursor: pointer;
+    float: left;
 
     * {
       .ease-out();
@@ -53,7 +56,7 @@
 
     &.mui-is-disabled {
       cursor: pointer;
-      
+
       .mui-toggle-track {
         background-color: @toggle-track-disabled-color;
       }
