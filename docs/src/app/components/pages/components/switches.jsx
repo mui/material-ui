@@ -14,16 +14,18 @@ var SwitchesPage = React.createClass({
       '//Checkboxes\n' +
       '<Checkbox\n' +
       '  name="checkboxName1"\n' +
-      '  value="checkboxValue1" />\n' +
+      '  value="checkboxValue1"\n' +
+      '  label="went for a run today" />\n' +
       '<Checkbox\n' +
       '  name="checkboxName2"\n' +
-      '  value="checkboxValue2"\n' +
-      '  label="went for a run today" />\n' +
+      '  value="checkboxValue2"\n' + 
+      '  label="fed the dog"\n' +
+      '  defaultChecked={true} />\n' +
       '<Checkbox\n' +
       '  name="checkboxName3"\n' +
       '  value="checkboxValue3"\n' + 
-      '  label="fed the dog"\n' +
-      '  checked={true} />\n\n' +
+      '  label="built a house on the moon"\n' +
+      '  disabled={true} />\n\n' +
       '//Radio Buttons\n' +
       '<RadioButton\n' +
       '  name="shipSpeed1"\n' +
@@ -42,11 +44,12 @@ var SwitchesPage = React.createClass({
       '<Toggle />\n';
 
     var desc = 'This component generates a switches element and all props except for the custom ' +
-        'props below will be passed down to the switch element.';
+        'props below will be passed down to the switch element. Checkboxes can now accept input ' +
+        'attributes of type "checkbox" as properties. See checkbox 3 for an example of this.';
 
     var componentInfo = [
       {
-        name: 'Checkbox',
+        name: 'Checkbox Props',
         infoArray: [
           {
             name: 'name',
@@ -67,10 +70,32 @@ var SwitchesPage = React.createClass({
             desc: 'The text that is displayed to the right of the checkbox.'
           },
           {
-            name: 'checked',
+            name: 'defaultChecked',
             type: 'boolean',
             header: 'default:false',
-            desc: 'The current state of our checkbox component.'
+            desc: 'The default state of our checkbox component.'
+          },
+          {
+            name: 'onCheck',
+            type: 'function',
+            header: 'optional',
+            desc: 'Callback function that is called when the checkbox is checked.'
+          }
+        ]
+      },
+      {
+        name: 'Checkbox Methods',
+        infoArray: [
+          {
+            name: 'isChecked',
+            header: 'Checkbox.isChecked()',
+            desc: 'Returns true if the checkbox is currently checked. Returns false otherwise'
+          },
+          {
+            name: 'setChecked',
+            header: 'Checkbox.setChecked(newCheckedValue)',
+            desc: 'Sets the checkbox to the value of newCheckedValue. This method cannot be used ' + 
+                  'while "checked" is defined as a property.'
           }
         ]
       },
@@ -131,11 +156,9 @@ var SwitchesPage = React.createClass({
         componentInfo={componentInfo}>
 
         <div className="switches-examples">
-          <form>
-            {this._getCheckboxExample()}
-            {this._getRadioButtonExample()}
-            {this._getToggleExample()}
-          </form>
+          {this._getCheckboxExample()}
+          {this._getRadioButtonExample()}
+          {this._getToggleExample()}
         </div>
 
       </ComponentDoc>
@@ -153,26 +176,24 @@ var SwitchesPage = React.createClass({
 
         <div className="switches-example-container">
           <Checkbox
-            name="checkboxName1"
+            name="checkboxName1" 
             value="checkboxValue1"
-            onClick={this._onCheck} />
+            label="went for a run today"/>
         </div>
         <div className="switches-example-container">
-          <Checkbox
-            name="checkboxName2"
+          <Checkbox 
+            name="checkboxName2" 
             value="checkboxValue2"
-            label="went for a run today"
-            onClick={this._onCheck} />
+            label="fed the dog"
+            defaultChecked={true}/>
         </div>
         <div className="switches-example-container">
-          <Checkbox
-            name="checkboxName3"
+          <Checkbox 
+            name="checkboxName3" 
             value="checkboxValue3"
-            label="fed the dog"
-            checked={true}
-            onClick={this._onCheck} />
+            label="built a house on the moon"
+            disabled={true}/>
         </div>
-
       </div>
     );
   },
