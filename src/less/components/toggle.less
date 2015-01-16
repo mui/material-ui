@@ -4,6 +4,7 @@
     display: inline-block;
     padding-right: 10px;
     cursor: pointer;
+    margin-left: @desktop-gutter-mini;
   }
   .mui-toggle { 
     position: relative;
@@ -47,6 +48,29 @@
       .mui-toggle-thumb {
         left: 16px;
         background-color: @toggle-thumb-on-color;
+      }
+    }
+
+    &.mui-is-disabled {
+      cursor: pointer;
+      
+      .mui-toggle-track {
+        background-color: @toggle-track-disabled-color;
+      }
+
+      .mui-toggle-thumb {
+        background-color: @toggle-thumb-disabled-color;
+      }
+    }
+
+    &.mui-is-required {
+
+      .mui-toggle-track {
+        background-color: @toggle-track-required-color;
+      }
+
+      .mui-toggle-thumb {
+        background-color: @toggle-thumb-required-color;
       }
     }
   }

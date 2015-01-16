@@ -208,7 +208,76 @@ var SwitchesPage = React.createClass({
         </div>
 
         <div className="switches-example-container">
-          <Toggle onToggle={this._handleToggle} />
+          <Toggle 
+            label="basic" />
+        </div>
+        <div className="switches-example-container">
+          <Toggle 
+            label="default is true"
+            defaultToggled={true} />
+        </div>
+        <div className="switches-example-container">
+          <Toggle 
+            label="default is false"
+            defaultToggled={false} />
+        </div>
+
+        <div className="switches-example-container">
+          <Toggle 
+            label="basic disabled"
+            disabled={true} />
+        </div>
+        <div className="switches-example-container">
+          <Toggle 
+            label="default is true and is disabled"
+            defaultToggled={true}
+            disabled={true}/>
+        </div>
+        <div className="switches-example-container">
+          <Toggle 
+            label="default is false and is disabled"
+            disabled={true}
+            defaultToggled={false} />
+        </div>
+
+        <div className="switches-example-container">
+          <Toggle 
+            label="basic and disabled is false"
+            disabled={false} />
+        </div>
+        <div className="switches-example-container">
+          <Toggle 
+            label="default is true and disabled is false"
+            disabled={false}
+            defaultToggled={true}/>
+        </div>
+        <div className="switches-example-container">
+          <Toggle 
+            label="default is false and disabled is false"
+            disabled={false}
+            defaultToggled={false} />
+        </div>
+
+
+        <div className="switches-example-container">
+          <Toggle 
+            ref="toggleA"
+            label="I can't be toggled with onTouchTap."
+            disabled={true}
+            onToggle={this._handleToggle} />
+        </div>
+        <div className="switches-example-container">
+          <Toggle
+            ref="toggleB"
+            label="But I can toggle you programmatically!"
+            onToggle={this._handleToggle} />
+        </div>
+
+
+        <div className="switches-example-container">
+          <Toggle
+            label="required"
+            required={true} />
         </div>
 
       </div>
@@ -257,6 +326,7 @@ var SwitchesPage = React.createClass({
 
   _handleToggle: function(e, toggled) {
     console.log('Toggled: ', toggled);
+    this.refs.toggleA.setToggled(!this.refs.toggleB.isToggled());
   },
 
   _onRadioButtonClick: function(e, checked) {

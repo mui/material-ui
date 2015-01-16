@@ -28,6 +28,9 @@
 @subheader-border-color: @border-color;
 @subheader-text-color: @primary-1-color;
 
+//Disabled Colors
+@disabled-color: fade(@body-text-color, 26%);
+
 //Date Picker
 @date-picker-color: @primary-1-color;
 @date-picker-text-color: @white;
@@ -114,7 +117,7 @@
 @checkbox-box-color: @body-text-color;
 @checkbox-checked-color: @primary-1-color;
 @checkbox-required-color: @primary-1-color;
-@checkbox-disabled-color: @raised-button-disabled-color;
+@checkbox-disabled-color: @disabled-color;
 
 // snackbar
 @mui-snackbar-text-color: white;
@@ -123,12 +126,14 @@
 
 // toggle
 @toggle-size: 20px;
-@toggle-track-on-color: @cyan-200;
-@toggle-track-off-color: @min-black;
-@toggle-track-disabled-color: @faint-black;
 @toggle-thumb-on-color: @primary-1-color;
 @toggle-thumb-off-color: @grey-50;
-@toggle-thumb-disabled-color: @grey-800;
+@toggle-thumb-disabled-color: @grey-400;
+@toggle-thumb-required-color: @primary-1-color;
+@toggle-track-on-color: fadeout(@toggle-thumb-on-color, 50%);
+@toggle-track-off-color: @min-black;
+@toggle-track-disabled-color: @faint-black;
+@toggle-track-required-color: fadeout(@toggle-thumb-required-color, 50%);
 
 // toolbar
 @toolbar-background-color: darken(#eeeeee, 5%);
