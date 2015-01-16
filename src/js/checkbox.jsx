@@ -95,8 +95,7 @@ var Checkbox = React.createClass({
       this.setState({checked: newCheckedValue});  
       this.refs.checkbox.getDOMNode().checked = newCheckedValue;
     } else {
-      var message = 'Attempt to modify checked value for checkbox while ' +
-                    'checked is defined as a property.';
+      var message = 'Cannot call setChecked() while checked is defined as a property.';
       console.error(message);
     }
   }

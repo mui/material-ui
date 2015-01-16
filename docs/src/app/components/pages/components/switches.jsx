@@ -12,6 +12,7 @@ var SwitchesPage = React.createClass({
 
     var code = 
       '//Checkboxes\n' +
+      '<Checkbox\n' +
       '  name="checkboxName1"\n' +
       '  value="checkboxValue1"\n' +
       '  label="went for a run today" />\n' +
@@ -19,7 +20,7 @@ var SwitchesPage = React.createClass({
       '  name="checkboxName2"\n' +
       '  value="checkboxValue2"\n' + 
       '  label="fed the dog"\n' +
-      '  defaultChecked={true} />\n\n' +
+      '  defaultChecked={true} />\n' +
       '<Checkbox\n' +
       '  name="checkboxName3"\n' +
       '  value="checkboxValue3"\n' + 
@@ -43,11 +44,12 @@ var SwitchesPage = React.createClass({
       '<Toggle />\n';
 
     var desc = 'This component generates a switches element and all props except for the custom ' +
-        'props below will be passed down to the switch element.';
+        'props below will be passed down to the switch element. Checkboxes can now accept input ' +
+        'attributes of type "checkbox" as properties. See checkbox 3 for an example of this.';
 
     var componentInfo = [
       {
-        name: 'Checkbox',
+        name: 'Checkbox Props',
         infoArray: [
           {
             name: 'name',
@@ -74,6 +76,17 @@ var SwitchesPage = React.createClass({
             desc: 'The default state of our checkbox component.'
           },
           {
+            name: 'onCheck',
+            type: 'function',
+            header: 'optional',
+            desc: 'Callback function that is called when the checkbox is checked.'
+          }
+        ]
+      },
+      {
+        name: 'Checkbox Methods',
+        infoArray: [
+          {
             name: 'isChecked',
             header: 'Checkbox.isChecked()',
             desc: 'Returns true if the checkbox is currently checked. Returns false otherwise'
@@ -81,7 +94,8 @@ var SwitchesPage = React.createClass({
           {
             name: 'setChecked',
             header: 'Checkbox.setChecked(newCheckedValue)',
-            desc: 'Sets the checkbox to the value of newCheckedValue. '
+            desc: 'Sets the checkbox to the value of newCheckedValue. This method cannot be used ' + 
+                  'while "checked" is defined as a property.'
           }
         ]
       },
@@ -162,19 +176,16 @@ var SwitchesPage = React.createClass({
 
         <div className="switches-example-container">
           <Checkbox
-            ref="checkbox1"
             name="checkboxName1" 
             value="checkboxValue1"
-            label="went for a run today"
-            checked={true}/>
+            label="went for a run today"/>
         </div>
         <div className="switches-example-container">
           <Checkbox 
             name="checkboxName2" 
             value="checkboxValue2"
             label="fed the dog"
-            defaultChecked={false} 
-            onCheck={this._onCheck}/>
+            defaultChecked={true}/>
         </div>
         <div className="switches-example-container">
           <Checkbox 
@@ -242,7 +253,6 @@ var SwitchesPage = React.createClass({
 
   _onCheck: function(e, checked) {
     console.log('Checked: ', checked);
-    this.refs.checkbox1.setChecked(false);
   },
 
   _handleToggle: function(e, toggled) {
