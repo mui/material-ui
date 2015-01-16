@@ -1,0 +1,41 @@
+.mui-tabs-container {
+  position: relative;
+
+  .mui-tab-item-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 48px;
+    background-color: #00bcd4;
+    white-space: nowrap;
+    display: block;
+
+
+    .mui-tab-item {
+      display: inline-block;
+      height: 100%;
+      cursor: pointer;
+      text-align: center;
+      line-height: 48px;
+      color: #fff;
+      opacity: .6;
+      font-size: 14sp;
+      font-weight: 500;
+      font: @headingFontFamily;
+
+
+      &.mui-tab-is-active {
+        color: #fff;
+        opacity: 1;
+        font: @headingFontFamily;
+      }
+    
+      .mui-tab-template {
+        display: block;
+        width: 100%;
+        position: relative;
+        text-align: initial;
+      }
+    }
+  }
+}

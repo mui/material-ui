@@ -6,7 +6,8 @@ var Toggle = React.createClass({
 
   propTypes: {
     onToggle: React.PropTypes.func,
-    toggled: React.PropTypes.bool
+    toggled: React.PropTypes.bool,
+    label: React.PropTypes.string
   },
 
   mixins: [Classable],
@@ -17,15 +18,22 @@ var Toggle = React.createClass({
     }
   },
 
+  componentWillReceiveProps: function (nextProps) {
+    if (nextProps.hasOwnProperty('toggled')) this.setState({toggled: nextProps.toggled});
+  },
+
   render: function() {
     var classes = this.getClasses('mui-toggle', {
       'mui-is-toggled': this.state.toggled
     })
 
     return (
-      <div className={classes} onTouchTap={this._handleTouchTap}>
-        <div className="mui-toggle-track" />
-        <Paper className="mui-toggle-thumb" zDepth={1} />
+      <div className="mui-toggle-wrap">
+        {this.props.label ? <div className="mui-toggle-label" onTouchTap={this._handleTouchTap}>{this.props.label}</div> : ''}
+        <div className={classes} onTouchTap={this._handleTouchTap}>
+          <div className="mui-toggle-track" />
+          <Paper className="mui-toggle-thumb" zDepth={1} />
+        </div>
       </div>
     );
   },

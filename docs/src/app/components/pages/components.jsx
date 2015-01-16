@@ -1,7 +1,7 @@
 var React = require('react');
 var PageWithNav = require('./page-with-nav.jsx');
 
-var CssFramework = React.createClass({
+var Components = React.createClass({
 
   render: function() {
     var menuItems = [
@@ -18,6 +18,7 @@ var CssFramework = React.createClass({
       { route: 'sliders', text: 'Sliders'},
       { route: 'switches', text: 'Switches'},
       { route: 'snackbar', text: 'Snackbar'},
+      { route: 'tabs', text:'Tabs'},
       { route: 'toolbars', text: 'Toolbars'},
     ];
 
@@ -28,4 +29,4 @@ var CssFramework = React.createClass({
 
 });
 
-module.exports = CssFramework;
+module.exports = Components;

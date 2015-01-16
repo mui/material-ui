@@ -26,24 +26,24 @@ var ToolbarPage = React.createClass({
     ];
         
     return (
-    	<div>
-    		<h2 className="mui-font-style-headline">Toolbars</h2>
+      <div>
+        <h2 className="mui-font-style-headline">Toolbars</h2>
         <div className="toolbar-example">
           <Toolbar>
-			      <ToolbarGroup key={0} float="left">
-				      <DropDownMenu menuItems={filterOptions} />
-			      </ToolbarGroup>
-			      <ToolbarGroup key={1} float="right">
-				      <Icon icon='mui-icon-pie' />
-				      <Icon icon='mui-icon-sort' />
-				      <DropDownIcon icon="navigation-expand-more" menuItems={iconMenuItems} 
-				      	onChange={this._onDropDownMenuChange} />
+            <ToolbarGroup key={0} float="left">
+              <DropDownMenu menuItems={filterOptions} />
+            </ToolbarGroup>
+            <ToolbarGroup key={1} float="right">
+              <Icon icon='mui-icon-pie' />
+              <Icon icon='mui-icon-sort' />
+              <DropDownIcon icon="navigation-expand-more" menuItems={iconMenuItems} 
+                onChange={this._onDropDownMenuChange} />
               <span className="mui-toolbar-separator">&nbsp;</span>
-				      <RaisedButton label="Create Broadcast" primary={true} />
-			      </ToolbarGroup>
-		      </Toolbar>
+              <RaisedButton label="Create Broadcast" primary={true} />
+            </ToolbarGroup>
+          </Toolbar>
         </div>
-    	</div>
+      </div>
     );
   }
 

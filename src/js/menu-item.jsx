@@ -55,7 +55,7 @@ var MenuItem = React.createClass({
     if (this.props.toggle) toggle = <Toggle onToggle={this._onToggleClick} />;
 
     return (
-      <div key={this.props.index} className={classes} onMouseDown={this._onClick}>
+      <div key={this.props.index} className={classes} onTouchTap={this._onClick}>
         {icon}
         {this.props.children}
         {data}
