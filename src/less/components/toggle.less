@@ -1,6 +1,20 @@
 @toggle-width: 36px;
 
 .mui-toggle-wrap {
+  position: relative;
+  width: 100%;
+  height: auto;
+
+  input {
+    position: absolute;
+    cursor: pointer;
+    pointer-events: all;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    left: 0;
+  }
 
   .mui-toggle-label {
     display: inline-block;
@@ -9,12 +23,14 @@
     margin-left: @desktop-gutter-mini;
     width: calc(100% - @toggle-width);
   }
+
   .mui-toggle { 
     position: relative;
     line-height: 24px;
     width: @toggle-width;
     cursor: pointer;
     float: left;
+    top: 3px;
 
     * {
       .ease-out();
@@ -52,6 +68,7 @@
         left: 16px;
         background-color: @toggle-thumb-on-color;
       }
+
     }
 
     &.mui-is-disabled {
