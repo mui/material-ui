@@ -3,6 +3,7 @@ var WindowListenable = require('./mixins/window-listenable.js');
 var CssEvent = require('./utils/css-event.js');
 var KeyCode = require('./utils/key-code.js');
 var Classable = require('./mixins/classable');
+var FlatButton = require('./flat-button.jsx');
 var Overlay = require('./overlay.jsx');
 var Paper = require('./paper.jsx');
 
@@ -50,7 +51,7 @@ var DialogWindow = React.createClass({
       'mui-is-shown': this.state.open
     });
     var contentClasses = 'mui-dialog-window-contents';
-    var actions = this._getActions();
+    var actions = this._getActionsContainer(this.props.actions);
 
     if (this.props.contentClassName) {
       contentClasses += ' ' + this.props.contentClassName;
@@ -94,27 +95,46 @@ var DialogWindow = React.createClass({
     if (this.props.onShow) this.props.onShow();
   },
 
-  _getActions: function() {
+  _addClassName: function(reactObject, className) {
+    var originalClassName = reactObject.props.className;
+
+    reactObject.props.className = originalClassName ?
+      originalClassName + ' ' + className : className;
+  },
+
+  _getAction: function(actionJSON, key) {
+    var onClickHandler = actionJSON.onClick ? actionJSON.onClick : this.dismiss;
+    return (
+      <FlatButton
+        key={key}
+        secondary={true}
+        onClick={onClickHandler}
+        label={actionJSON.text} />
+    );
+  },
+
+  _getActionsContainer: function(actions) {
     var actionContainer;
-    var actions = this.props.actions;
-    var actionClassName;
+    var actionObjects = [];
 
     if (actions.length) {
-
       for (var i = 0; i < actions.length; i++) {
-        actionClassName = actions[i].props.className;
+        currentAction = actions[i];
 
-        actions[i].props.className = actionClassName ?
-          actionClassName + ' mui-dialog-window-action' :
-          'mui-dialog-window-action';
+        //if the current action isn't a react object, create one
+        if (!React.isValidElement(currentAction)) {
+          currentAction = this._getAction(currentAction, i);
+        }
+
+        this._addClassName(currentAction, 'mui-dialog-window-action');
+        actionObjects.push(currentAction);
       };
 
       actionContainer = (
         <div className="mui-dialog-window-actions">
-          {actions}
+          {actionObjects}
         </div>
       );
-
     }
 
     return actionContainer;

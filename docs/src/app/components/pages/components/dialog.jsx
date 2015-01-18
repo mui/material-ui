@@ -1,6 +1,7 @@
 var React = require('react');
 var mui = require('mui');
 var Dialog = mui.Dialog;
+var FlatButton = mui.FlatButton;
 var RaisedButton = mui.RaisedButton;
 var ComponentDoc = require('../../component-doc.jsx');
 
@@ -9,19 +10,28 @@ var DialogPage = React.createClass({
   render: function() {
 
     var code = 
-      'var dialogActions = [\n' +
-      '  { text: \'CANCEL\' },\n' +
-      '  { text: \'SUBMIT\', onClick: this._onDialogSubmit }\n' +
+      '//Standard Actions\n' +
+      'var standardActions = [\n' +
+      '  { text: \'Cancel\' },\n' +
+      '  { text: \'Submit\', onClick: this._onDialogSubmit }\n' +
       '];\n\n' +
-      '<Dialog title="Title" actions={dialogActions}>\n' +
-      '  This is an example of a dialog component built with Facebook\'s React and following \n' +
-      '  Google\'s Material Design principles.\n' +
+      '<Dialog title="Dialog With Standard Actions" actions={standardActions}>\n' +
+      '  The actions in this window are created from the json that\'s passed in. \n' +
+      '</Dialog>\n\n' +
+      '//Custom Actions\n' +
+      'var customActions = [\n' +
+      '  <FlatButton\n' +
+      '    label="Cancel"\n' +
+      '    secondary={true}\n' +
+      '    onTouchTap={this._handleCustomDialogCancel} />,\n' +
+      '  <FlatButton\n' +
+      '    label="Submit"\n' +
+      '    primary={true}\n' +
+      '    onTouchTap={this._handleCustomDialogSubmit} />\n' +
+      '];\n\n' +
+      '<Dialog title="Dialog With Custom Actions" actions={customActions}>\n' +
+      '  The actions in this window were passed in as an array of react objects.\n' +
       '</Dialog>\n';
-
-    var dialogActions = [
-      { text: 'CANCEL' },
-      { text: 'SUBMIT', onClick: this._onDialogSubmit }
-    ];
 
     var componentInfo = [
       {
@@ -31,7 +41,7 @@ var DialogPage = React.createClass({
             name: 'actions',
             type: 'array',
             header: 'optional',
-            desc: 'JSON data representing the button actions to render.'
+            desc: 'This prop can be either a JSON object containing the actions to render, or an array of react objects.'
           },
           {
             name: 'contentClassName',
@@ -85,20 +95,44 @@ var DialogPage = React.createClass({
       }
     ];
 
+    var standardActions = [
+      { text: 'Cancel' },
+      { text: 'Submit', onClick: this._onDialogSubmit }
+    ];
+
+    var customActions = [
+      <FlatButton
+        label="Cancel"
+        secondary={true}
+        onTouchTap={this._handleCustomDialogCancel} />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        onTouchTap={this._handleCustomDialogSubmit} />
+    ];
+
     return (
       <ComponentDoc
         name="Dialog"
         code={code}
         componentInfo={componentInfo}>
 
-        <RaisedButton label="DEMO" onTouchTap={this._showDialog} />
-        <Dialog
-          ref="dialogExample"
-          title="Title"
-          actions={dialogActions}>
+        <RaisedButton label="Standard Actions" onTouchTap={this.handleStandardDialogTouchTap} />
+        <br/><br/>
+        <RaisedButton label="Custom Actions" onTouchTap={this.handleCustomDialogTouchTap} />
 
-          This is an example of a dialog component built with Facebook's React and following 
-          Google's Material Design principles.
+        <Dialog
+          ref="standardDialog"
+          title="Dialog With Standard Actions"
+          actions={standardActions}>
+          The actions in this window are created from the json that's passed in.
+        </Dialog>
+
+        <Dialog
+          ref="customDialog"
+          title="Dialog With Custom Actions"
+          actions={customActions}>
+          The actions in this window were passed in as an array of react objects.
         </Dialog>
 
       </ComponentDoc>
@@ -106,8 +140,20 @@ var DialogPage = React.createClass({
 
   },
 
-  _showDialog: function() {
-    this.refs.dialogExample.show();
+  _handleCustomDialogCancel: function() {
+    this.refs.customDialog.dismiss();
+  },
+
+  _handleCustomDialogSubmit: function() {
+    this.refs.customDialog.dismiss();
+  },
+
+  handleCustomDialogTouchTap: function() {
+    this.refs.customDialog.show();
+  },
+
+  handleStandardDialogTouchTap: function() {
+    this.refs.standardDialog.show();
   }
 
 });
