@@ -77,7 +77,7 @@ var SnackbarPage = React.createClass({
         componentInfo={componentInfo}>
 
         <RaisedButton 
-          onClick={this._handleClick} 
+          onTouchTap={this._handleClick} 
           label="Add to my calendar" />
 
         <Snackbar 

@@ -1,4 +1,5 @@
 var React = require('react');
+var CssEvent = require('./utils/css-event.js');
 var Classable = require('./mixins/classable');
 var ClickAwayable = require('./mixins/click-awayable');
 var FlatButton = require('./flat-button.jsx');
@@ -7,14 +8,14 @@ var Snackbar = React.createClass({
 
   mixins: [Classable, ClickAwayable],
 
+  manualBind: true,
+
   propTypes: {
     action: React.PropTypes.string,
     message: React.PropTypes.string.isRequired,
     openOnMount: React.PropTypes.bool,
     onActionTouchTap: React.PropTypes.func
   },
-
-  manualBind: true,
 
   getInitialState: function() {
     return {
@@ -29,7 +30,10 @@ var Snackbar = React.createClass({
   componentDidUpdate: function(prevProps, prevState) {
     if (prevState.open != this.state.open) {
       if (this.state.open) {
-        this._bindClickAway();
+        //Only Bind clickaway after transition finishes
+        CssEvent.onTransitionEnd(this.getDOMNode(), function() {
+          this._bindClickAway();
+        }.bind(this));
       } else {
         this._unbindClickAway();
       }
