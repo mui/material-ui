@@ -12,11 +12,15 @@
   position: fixed;
   z-index: 10;
   bottom: @desktop-gutter;
-  left: @desktop-gutter;
+  margin-left: @desktop-gutter;
 
-  .ease-out();
+  left: -10000px;
   opacity: 0;
-  transform: translate3d(0, 8px, 0);
+  transform: translate3d(0, 20px, 0);
+  transition:
+    left 0ms @ease-out-function 400ms,
+    opacity 400ms @ease-out-function 0ms,
+    transform 400ms @ease-out-function 0ms;
 
   .mui-snackbar-action {
     color: @mui-snackbar-action-color;
@@ -28,8 +32,13 @@
   }
 
   &.mui-is-open {
+    left: 0;
     opacity: 1;
     transform: translate3d(0, 0, 0);
+    transition:
+      left 0ms @ease-out-function 0ms,
+      opacity 400ms @ease-out-function 0ms,
+      transform 400ms @ease-out-function 0ms;
   }
 
 }
