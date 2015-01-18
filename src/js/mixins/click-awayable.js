@@ -6,11 +6,11 @@ module.exports = {
   //When the component mounts, listen to click events and check if we need to
   //Call the componentClickAway function.
   componentDidMount: function() {
-    if (!this.manualBind) this._bindClickAway();
+    if (!this.manuallyBindClickAway) this._bindClickAway();
   },
 
   componentWillUnmount: function() {
-    if (!this.manualBind) this._unbindClickAway();
+    if (!this.manuallyBindClickAway) this._unbindClickAway();
   },
 
   _checkClickAway: function(e) {

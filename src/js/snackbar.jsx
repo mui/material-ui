@@ -8,7 +8,7 @@ var Snackbar = React.createClass({
 
   mixins: [Classable, ClickAwayable],
 
-  manualBind: true,
+  manuallyBindClickAway: true,
 
   propTypes: {
     action: React.PropTypes.string,
