@@ -41,7 +41,20 @@ var SwitchesPage = React.createClass({
       '  value="ludicrous"\n' +
       '  label="go to ludicous speed" />\n\n' +
       '//Toggle\n' +
-      '<Toggle />\n';
+      '<Toggle\n' +
+      '  name="toggleName1"\n' +
+      '  value="toggleValue1"\n' +
+      '  label="activate thrusters" />\n' +
+      '<Toggle\n' +
+      '  name="toggleName2"\n' +
+      '  value="toggleValue2"\n' +
+      '  label="auto-pilot"\n' +
+      '  defaultToggled={true} />\n' + 
+      '<Toggle\n' +
+      '  name="toggleName3"\n' +
+      '  value="toggleValue3"\n' +
+      '  label="initiate self-destruct sequence"\n' +
+      '  disabled={true} />\n\n';
 
     var desc = 'This component generates a switches element and all props except for the custom ' +
         'props below will be passed down to the switch element. Checkboxes can now accept input ' +
@@ -74,12 +87,6 @@ var SwitchesPage = React.createClass({
             type: 'boolean',
             header: 'default:false',
             desc: 'The default state of our checkbox component.'
-          },
-          {
-            name: 'onCheck',
-            type: 'function',
-            header: 'optional',
-            desc: 'Callback function that is called when the checkbox is checked.'
           }
         ]
       },
@@ -96,6 +103,17 @@ var SwitchesPage = React.createClass({
             header: 'Checkbox.setChecked(newCheckedValue)',
             desc: 'Sets the checkbox to the value of newCheckedValue. This method cannot be used ' + 
                   'while "checked" is defined as a property.'
+          }
+        ]
+      },
+      {
+        name: 'Checkbox Events',
+        infoArray: [
+          {
+            name: 'onCheck',
+            type: 'function(e, checked)',
+            header: 'optional',
+            desc: 'Callback function that is fired when the checkbox is checked.'
           }
         ]
       },
@@ -129,23 +147,75 @@ var SwitchesPage = React.createClass({
         ]
       },
       {
-        name: 'Toggle',
+        name: 'Toggle Props',
         infoArray: [
           {
-            name: 'onToggle',
-            type: 'event',
-            header: 'optional',
-            desc: 'The function that is called each time the user clicks the toggle button.'
+            name: 'name',
+            type: 'string',
+            header: 'required',
+            desc: 'This is the name of the toggle.'
           },
           {
-            name: 'toggled',
+            name: 'value',
+            type: 'string',
+            header: 'required',
+            desc: 'The value of our toggle component.'
+          },
+          {
+            name: 'label',
+            type: 'string',
+            header: 'optional',
+            desc: 'The text that is displayed to the right of the toggle switch.'
+          },
+          {
+            name: 'onToggle',
+            type: 'function',
+            header: 'optional',
+            desc: 'Callback function that is called each time the user clicks the toggle button.'
+          },
+          {
+            name: 'defaultToggled',
             type: 'boolean',
             header: 'default:false',
             desc: 'The value of the toggle button. Is true when toggle has been turned on. ' + 
               'False otherwise.'
+          },
+          {
+            name: 'labelPosition',
+            type: 'string',
+            header: 'default:"left"',
+            desc: 'Where the label will be placed next to the toggle switch. Options include ' + 
+                  '"left" and "right" (case-sensitive). Default option is "left".'
           }
         ]
-      }
+      },
+      {
+        name: 'Toggle Methods',
+        infoArray: [
+          {
+            name: 'isToggled',
+            header: 'Toggle.isToggled()',
+            desc: 'Returns true if the checkbox is currently checked. Returns false otherwise'
+          },
+          {
+            name: 'setToggled',
+            header: 'Toggle.setToggled(newToggledValue)',
+            desc: 'Sets the toggle to the value of newToggledValue. This method cannot be used ' + 
+                  'while "checked" is defined as a property.'
+          }
+        ]
+      },
+      {
+        name: 'Toggle Events',
+        infoArray: [
+          {
+            name: 'onToggle',
+            type: 'function(e, toggled)',
+            header: 'optional',
+            desc: 'Callback function that is fired when the toggle switch is toggled.'
+          }
+        ]
+      },
     ];
 
     return (
@@ -178,7 +248,8 @@ var SwitchesPage = React.createClass({
           <Checkbox
             name="checkboxName1" 
             value="checkboxValue1"
-            label="went for a run today"/>
+            label="went for a run today"
+            onCheck={this._onCheck}/>
         </div>
         <div className="switches-example-container">
           <Checkbox 
@@ -208,7 +279,26 @@ var SwitchesPage = React.createClass({
         </div>
 
         <div className="switches-example-container">
-          <Toggle onToggle={this._handleToggle} />
+          <Toggle 
+            name="toggleName1"
+            value="toggleValue1"
+            label="activate thrusters" 
+            onToggle={this._onToggle}/>
+        </div>
+        <div className="switches-example-container">
+          <Toggle 
+            name="toggleName2"
+            value="toggleValue2"
+            label="auto-pilot" 
+            defaultToggled={true}/>
+        </div>
+        <div className="switches-example-container">
+          <Toggle 
+            onToggle={this._onToggle}
+            name="toggleName3"
+            value="toggleValue3"
+            label="initiate self-destruct sequence" 
+            disabled={true}/>
         </div>
 
       </div>
@@ -255,7 +345,7 @@ var SwitchesPage = React.createClass({
     console.log('Checked: ', checked);
   },
 
-  _handleToggle: function(e, toggled) {
+  _onToggle: function(e, toggled) {
     console.log('Toggled: ', toggled);
   },
 
