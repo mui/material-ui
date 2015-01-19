@@ -54,8 +54,7 @@ var SwitchesPage = React.createClass({
       '  name="toggleName3"\n' +
       '  value="toggleValue3"\n' +
       '  label="initiate self-destruct sequence"\n' +
-      '  disabled={true}\n' +
-      '  labelPosition="right" />\n\n';
+      '  disabled={true} />\n\n';
 
     var desc = 'This component generates a switches element and all props except for the custom ' +
         'props below will be passed down to the switch element. Checkboxes can now accept input ' +
@@ -299,8 +298,7 @@ var SwitchesPage = React.createClass({
             name="toggleName3"
             value="toggleValue3"
             label="initiate self-destruct sequence" 
-            disabled={true}
-            labelPosition="right"/>
+            disabled={true}/>
         </div>
 
       </div>
