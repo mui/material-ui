@@ -6,7 +6,8 @@ var Icon = require('./icon.jsx');
 var EnhancedSwitch = React.createClass({
 	propTypes: {
       switchType: React.PropTypes.string.isRequired,
-	    name: React.PropTypes.string.isRequired,
+	    className: React.PropTypes.string.isRequired,
+      name: React.PropTypes.string.isRequired,
 	    value: React.PropTypes.string.isRequired,
 	    label: React.PropTypes.string,
 	    onSwitch: React.PropTypes.func,
@@ -35,13 +36,13 @@ var EnhancedSwitch = React.createClass({
 
   handleChange: function(e) {
     var isInputChecked = this.refs.checkbox.getDOMNode().checked;
-    console.log('handleChange');
-    if (!this.props.switched) this.setState({switched: isInputChecked});
+
+    if (!this.props.hasOwnProperty('checked')) this.setState({switched: isInputChecked});
     if (this.props.onSwitch) this.props.onSwitch(e, isInputChecked);
   },
 
   render: function() {
-    var classes = this.getClasses('mui-switch', {
+    var classes = this.getClasses(this.props.className, {
       'mui-is-switched': this.state.switched,
       'mui-is-disabled': this.props.disabled,
       'mui-is-required': this.props.required
@@ -89,7 +90,9 @@ var EnhancedSwitch = React.createClass({
           value={this.props.value}
           onChange={this.handleChange}/>
 
-        {childStyle}
+        <div className="mui-switch">
+          {childStyle}
+        </div>
 
         <div className="mui-switch-label">
           {this.props.label}

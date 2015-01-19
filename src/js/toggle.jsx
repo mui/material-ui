@@ -6,9 +6,9 @@ var EnhancedSwitch = require('./enhanced-switch.jsx');
 var Toggle = React.createClass({
 
   propTypes: {
-      onToggle: React.PropTypes.func,
-      defaultToggled: React.PropTypes.bool
-    },
+    onToggle: React.PropTypes.func,
+    defaultToggled: React.PropTypes.bool
+  },
 
   render: function() {
     var {
@@ -18,13 +18,24 @@ var Toggle = React.createClass({
     } = this.props;
 
     return (
-        <EnhancedSwitch 
-          {...other} 
-          switchType="toggle" 
-          onSwitch={this.props.onToggle}
-          defaultSwitched={this.props.defaultToggled} />
+      <EnhancedSwitch 
+        {...other} 
+        ref="enhancedSwitch"
+        switchType="toggle"
+        className="mui-switch-toggle"
+        onSwitch={this.props.onToggle}
+        defaultChecked={this.props.defaultToggled} />
     );
+  },
+
+  isToggled: function() {
+    return this.refs.enhancedSwitch.isSwitched();
+  },
+
+  setToggled: function(newToggledValue) {
+    this.refs.enhancedSwitch.setSwitched(newToggledValue);
   }
+
 });
 
 module.exports = Toggle;

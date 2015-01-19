@@ -1,23 +1,28 @@
-@toggle-width: 36px;
-@toggle-padding-right: calc(@mui-switch-width - @toggle-width);
+@toggle-track-width: 36px;
+@toggle-padding-right: calc(@mui-switch-width - @toggle-track-width);
 
-.mui-switch {
-  padding: 4px @toggle-padding-right 6px 2px;
+.mui-switch-toggle {
+  .ease-out();
+  padding: 4px 0px 6px 2px;
+  margin-right: @desktop-gutter-mini;
 
-    * {
-      .ease-out();
-    }
+  * {
+    .ease-out();
+  }
 
     .mui-toggle-track {
-      width: 100%;
+      .ease-out();
+      width: @toggle-track-width;
       height: 14px;
       border-radius: 30px;
       background-color: @toggle-track-off-color;
     }
 
     .mui-toggle-thumb {
+      .ease-out();
       position: absolute;
       top: 1px;
+      left: 2px;
       width: @toggle-size;
       height: @toggle-size;
       line-height: 24px;
@@ -36,6 +41,7 @@
       }
 
       .mui-toggle-thumb {
+        .ease-out();
         left: 16px;
         background-color: @toggle-thumb-on-color;
       }

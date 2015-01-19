@@ -8,48 +8,17 @@
 
 @checkbox-check-position: absolute;
 
-.mui-checkbox {
-  .ease-out;
-  cursor: @checkbox-cursor;
-  position: @checkbox-position;
-
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-
-  // The first nested div which is for the label area
-  .mui-checkbox-label {
-    float: right;
-    overflow: hidden;
-    position: relative;
-    width: calc(100% - @checkbox-size);
-    height: 100%;
-  }
-
-  input {
-    position: @checkbox-input-position;
-    cursor: @checkbox-cursor;
-    pointer-events: all;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    z-index: 2;
-    top: 0;
-  }
-
-  // The second nexted div containing the checkbox
-  .mui-checkbox-component {
+.mui-switch-checkbox {
     .ease-out;
+    height: @checkbox-size;
     width: @checkbox-size;
-    height: calc(@checkbox-size + 3);
-    float: left;
-    overflow: hidden;
-    z-index: 1;
+    margin-right: @desktop-gutter-mini;
 
     .mui-checkbox-box {
       .ease-out;
       color: @checkbox-box-color;
       position: @checkbox-box-position;
+      transition: color 1s ease;
     }
 
     .mui-checkbox-check {
@@ -61,10 +30,16 @@
       transform-origin: 50% 50%;
     }
 
-    &.mui-is-checked {
+    &.mui-is-switched {
       .mui-checkbox-check {
         opacity: 1;
         transform: scale(1);
+      }
+      .mui-checkbox-box {
+        & {
+          color: @checkbox-checked-color;
+          transition: color 0.5s ease;
+        }
       }
     }
 
@@ -86,5 +61,4 @@
         }
       }
     }
-  }
 }
