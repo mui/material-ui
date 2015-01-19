@@ -57,50 +57,15 @@ var EnhancedSwitch = React.createClass({
       ...other
     } = this.props;
 
-    var checkboxStyle = (
-      <div className={classes}>
-        <div className="mui-checkbox-box">
-          <Icon icon="toggle-check-box-outline-blank" />
-        </div>
-        <div className="mui-checkbox-check">
-          <Icon icon="toggle-check-box" />
-        </div>
-      </div>
-    );
-
-    var toggleStyle = (
-      <div className={classes}>
-        <div className="mui-toggle-track" />
-        <Paper className="mui-toggle-thumb" zDepth={1} />
-      </div>
-    );
-
-    var childStyle = 
-      (this.props.switchType == "checkbox") ? 
-        checkboxStyle : toggleStyle;
-
-    return (  
-      <div className="mui-switch-wrap">
-
-        <input 
+    return (
+      <input 
           {...other} 
           ref="checkbox"
           type="checkbox"
           name={this.props.name}
           value={this.props.value}
           onChange={this.handleChange}/>
-
-        <div className="mui-switch">
-          {childStyle}
-        </div>
-
-        <div className="mui-switch-label">
-          {this.props.label}
-        </div>
-
-      </div> 
     );
-
   },
 
 

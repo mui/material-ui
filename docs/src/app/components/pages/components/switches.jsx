@@ -54,7 +54,8 @@ var SwitchesPage = React.createClass({
       '  name="toggleName3"\n' +
       '  value="toggleValue3"\n' +
       '  label="initiate self-destruct sequence"\n' +
-      '  disabled={true} />\n\n';
+      '  disabled={true}\n' +
+      '  labelPosition="right" />\n\n';
 
     var desc = 'This component generates a switches element and all props except for the custom ' +
         'props below will be passed down to the switch element. Checkboxes can now accept input ' +
@@ -87,12 +88,6 @@ var SwitchesPage = React.createClass({
             type: 'boolean',
             header: 'default:false',
             desc: 'The default state of our checkbox component.'
-          },
-          {
-            name: 'onCheck',
-            type: 'function',
-            header: 'optional',
-            desc: 'Callback function that is called when the checkbox is checked.'
           }
         ]
       },
@@ -109,6 +104,17 @@ var SwitchesPage = React.createClass({
             header: 'Checkbox.setChecked(newCheckedValue)',
             desc: 'Sets the checkbox to the value of newCheckedValue. This method cannot be used ' + 
                   'while "checked" is defined as a property.'
+          }
+        ]
+      },
+      {
+        name: 'Checkbox Events',
+        infoArray: [
+          {
+            name: 'onCheck',
+            type: 'function(e, checked)',
+            header: 'optional',
+            desc: 'Callback function that is fired when the checkbox is checked.'
           }
         ]
       },
@@ -174,6 +180,13 @@ var SwitchesPage = React.createClass({
             header: 'default:false',
             desc: 'The value of the toggle button. Is true when toggle has been turned on. ' + 
               'False otherwise.'
+          },
+          {
+            name: 'labelPosition',
+            type: 'string',
+            header: 'default:"left',
+            desc: 'Where the label will be placed next to the toggle switch. Options include ' + 
+                  '"left" and "right" (case-insensitive). Default option is "left".'
           }
         ]
       },
@@ -190,6 +203,17 @@ var SwitchesPage = React.createClass({
             header: 'Toggle.setToggled(newToggledValue)',
             desc: 'Sets the toggle to the value of newToggledValue. This method cannot be used ' + 
                   'while "checked" is defined as a property.'
+          }
+        ]
+      },
+      {
+        name: 'Toggle Events',
+        infoArray: [
+          {
+            name: 'onToggle',
+            type: 'function(e, toggled)',
+            header: 'optional',
+            desc: 'Callback function that is fired when the toggle switch is toggled.'
           }
         ]
       },
@@ -275,7 +299,8 @@ var SwitchesPage = React.createClass({
             name="toggleName3"
             value="toggleValue3"
             label="initiate self-destruct sequence" 
-            disabled={true}/>
+            disabled={true}
+            labelPosition="right"/>
         </div>
 
       </div>
