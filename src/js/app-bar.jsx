@@ -11,6 +11,7 @@ var AppBar = React.createClass({
     onMenuIconButtonTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
     title : React.PropTypes.string,
+    icon: React.PropTypes.string,
     zDepth: React.PropTypes.number
   },
 
@@ -34,7 +35,7 @@ var AppBar = React.createClass({
       menuIconButton = (
         <IconButton
           className="mui-app-bar-navigation-icon-button"
-          icon="navigation-menu"
+          icon={ this.props.icon || "navigation-menu"}
           onTouchTap={this._onMenuIconButtonTouchTap}
         />
       );
