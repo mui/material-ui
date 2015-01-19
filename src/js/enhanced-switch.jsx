@@ -1,23 +1,25 @@
 var React = require('react');
 var Classable = require('./mixins/classable.js');
+var Paper = require('./paper.jsx');
+var Icon = require('./icon.jsx');
 
 var EnhancedSwitch = React.createClass({
 	propTypes: {
-      className: React.PropTypes.string.isRequired,
+      switchType: React.PropTypes.string.isRequired,
 	    name: React.PropTypes.string.isRequired,
 	    value: React.PropTypes.string.isRequired,
 	    label: React.PropTypes.string,
 	    onSwitch: React.PropTypes.func,
 	    required: React.PropTypes.bool,
 	    disabled: React.PropTypes.bool,
-	    defaultSwitch: React.PropTypes.bool
+	    defaultSwitched: React.PropTypes.bool
 	  },
 
   mixins: [Classable],
 
   getInitialState: function() {
     return {
-      switched: this.props.defaultSwitch || false
+      switched: this.props.defaultSwitched || false
     }
   },
 
@@ -33,13 +35,13 @@ var EnhancedSwitch = React.createClass({
 
   handleChange: function(e) {
     var isInputChecked = this.refs.checkbox.getDOMNode().checked;
-
-    if (!this.props.switched) this.setState({checked: isInputChecked});
-    if (this.props.onCheck) this.props.onCheck(e, isInputChecked);
+    console.log('handleChange');
+    if (!this.props.switched) this.setState({switched: isInputChecked});
+    if (this.props.onSwitch) this.props.onSwitch(e, isInputChecked);
   },
 
   render: function() {
-    var classes = this.getClasses(this.props.className, {
+    var classes = this.getClasses('mui-switch', {
       'mui-is-switched': this.state.switched,
       'mui-is-disabled': this.props.disabled,
       'mui-is-required': this.props.required
@@ -54,7 +56,7 @@ var EnhancedSwitch = React.createClass({
       ...other
     } = this.props;
 
-    var checkbox = (
+    var checkboxStyle = (
       <div className={classes}>
         <div className="mui-checkbox-box">
           <Icon icon="toggle-check-box-outline-blank" />
@@ -62,18 +64,22 @@ var EnhancedSwitch = React.createClass({
         <div className="mui-checkbox-check">
           <Icon icon="toggle-check-box" />
         </div>
-      </div> 
+      </div>
     );
 
-    var toggle = (
-      <div className={classes} >
+    var toggleStyle = (
+      <div className={classes}>
         <div className="mui-toggle-track" />
         <Paper className="mui-toggle-thumb" zDepth={1} />
       </div>
     );
 
-    return (this.props.className == "mui-checkbox") ? (
-      <div className={classes}>
+    var childStyle = 
+      (this.props.switchType == "checkbox") ? 
+        checkboxStyle : toggleStyle;
+
+    return (  
+      <div className="mui-switch-wrap">
 
         <input 
           {...other} 
@@ -83,43 +89,15 @@ var EnhancedSwitch = React.createClass({
           value={this.props.value}
           onChange={this.handleChange}/>
 
-        <div className={componentclasses}>
-          <div className="mui-checkbox-box">
-            <Icon icon="toggle-check-box-outline-blank" />
-          </div>
-          <div className="mui-checkbox-check">
-            <Icon icon="toggle-check-box" />
-          </div>
-        </div>
+        {childStyle}
 
-        <div className="mui-checkbox-label"> 
-          {this.props.label}
-        </div>
-      </div>
-
-    ) : (
-    
-      <div className="mui-toggle-wrap">
-
-        <input 
-          {...other} 
-          ref="checkbox"
-          type="checkbox"
-          name={this.props.name}
-          value={this.props.value}
-          onChange={this.handleChange}/>
-
-        <div className={classes} >
-          <div className="mui-toggle-track" />
-          <Paper className="mui-toggle-thumb" zDepth={1} />
-        </div>
-        
-        <div className="mui-toggle-label">
+        <div className="mui-switch-label">
           {this.props.label}
         </div>
 
       </div> 
     );
+
   },
 
 

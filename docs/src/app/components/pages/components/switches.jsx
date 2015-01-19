@@ -280,6 +280,7 @@ var SwitchesPage = React.createClass({
 
         <div className="switches-example-container">
           <Toggle 
+            onToggle={this._onToggle}
             name="toggleName"
             value="toggleValue"
             label="basic" />
@@ -330,9 +331,9 @@ var SwitchesPage = React.createClass({
     console.log('Checked: ', checked);
   },
 
-  _handleToggle: function(e, toggled) {
+  _onToggle: function(e, toggled) {
     console.log('Toggled: ', toggled);
-    this.refs.toggleA.setToggled(!this.refs.toggleB.isToggled());
+    //this.refs.toggleA.setToggled(!this.refs.toggleB.isToggled());
   },
 
   _onRadioButtonClick: function(e, checked) {

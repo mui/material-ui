@@ -1,7 +1,11 @@
+@mui-switch-width: 48px;
+
 .mui-switch-wrap {
   position: relative;
-  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
   height: auto;
+  width: 100%;
 
   input {
     position: absolute;
@@ -14,11 +18,14 @@
     left: 0;
   }
 
+  .mui-switch {
+    width: @mui-switch-width;
+    float: left;
+  }
+
   .mui-switch-label {
-    display: inline-block;
-    padding-right: 10px;
-    cursor: pointer;
-    margin-left: @desktop-gutter-mini;
-    width: calc(100% - @switch-width);//
+    float: left;
+    width: calc(~"100% - @{mui-switch-width}");
+    line-height: 24px;
   }
 }
