@@ -184,9 +184,9 @@ var SwitchesPage = React.createClass({
           {
             name: 'labelPosition',
             type: 'string',
-            header: 'default:"left',
+            header: 'default:"left"',
             desc: 'Where the label will be placed next to the toggle switch. Options include ' + 
-                  '"left" and "right" (case-insensitive). Default option is "left".'
+                  '"left" and "right" (case-sensitive). Default option is "left".'
           }
         ]
       },

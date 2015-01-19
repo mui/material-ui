@@ -10,7 +10,7 @@ var Toggle = React.createClass({
   propTypes: {
     onToggle: React.PropTypes.func,
     defaultToggled: React.PropTypes.bool,
-    labelPosition: React.PropTypes.string
+    labelPosition: React.PropTypes.oneOf(['left', 'right'])
   },
 
   getInitialState: function() {
