@@ -1,13 +1,13 @@
-var React = require('react'),
-  Classable = require('./mixins/classable.js'),
-  Icon = require('./icon.jsx'),
-  Toggle = require('./toggle.jsx'),
+var React = require('react');
+var Classable = require('./mixins/classable.js');
+var Icon = require('./icon.jsx');
+var Toggle = require('./toggle.jsx');
 
-  Types = {
-    LINK: 'LINK',
-    SUBHEADER: 'SUBHEADER',
-    NESTED: 'NESTED'
-  };
+var Types = {
+  LINK: 'LINK',
+  SUBHEADER: 'SUBHEADER',
+  NESTED: 'NESTED'
+};
 
 var MenuItem = React.createClass({
 
@@ -38,24 +38,28 @@ var MenuItem = React.createClass({
 
   render: function() {
     var classes = this.getClasses('mui-menu-item', {
-        'mui-selected': this.props.selected
-      }),
-      icon,
-      data,
-      iconRight,
-      attribute,
-      number,
-      toggle;
+      'mui-is-selected': this.props.selected
+    });
+    var icon;
+    var data;
+    var iconRight;
+    var attribute;
+    var number;
+    var toggle;
 
     if (this.props.icon) icon = <Icon className="mui-menu-item-icon" icon={this.props.icon} />;
     if (this.props.data) data = <span className="mui-menu-item-data">{this.props.data}</span>;
     if (this.props.iconRight) iconRight = <Icon className="mui-menu-item-icon-right" icon={this.props.iconRight} />;
     if (this.props.number !== undefined) number = <span className="mui-menu-item-number">{this.props.number}</span>;
     if (this.props.attribute !== undefined) attribute = <span className="mui-menu-item-attribute">{this.props.attribute}</span>;
-    if (this.props.toggle) toggle = <Toggle onToggle={this._onToggleClick} />;
+    if (this.props.toggle) toggle = <Toggle onToggle={this._handleToggle} />;
 
     return (
-      <div key={this.props.index} className={classes} onTouchTap={this._onClick}>
+      <div
+        key={this.props.index}
+        className={classes}
+        onTouchTap={this._handleTouchTap}>
+
         {icon}
         {this.props.children}
         {data}
@@ -63,20 +67,16 @@ var MenuItem = React.createClass({
         {number}
         {toggle}
         {iconRight}
+        
       </div>
     );
   },
 
-  _onClick: function(e) {
-    var _this = this;
-
-    //animate the ripple
-    // this.refs.ripple.animate(e, function() {
-      if (_this.props.onClick) _this.props.onClick(e, _this.props.index);
-    // });
+  _handleTouchTap: function(e) {
+    if (this.props.onClick) this.props.onClick(e, this.props.index);
   },
 
-  _onToggleClick: function(e, toggled) {
+  _handleToggle: function(e, toggled) {
     if (this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
   }
 
