@@ -1,10 +1,10 @@
-var React = require('react'),
-  Classable = require('./mixins/classable.js'),
-  ClickAwayable = require('./mixins/click-awayable'),
-  KeyLine = require('./utils/key-line.js'),
-  Paper = require('./paper.jsx'),
-  Icon = require('./icon.jsx'),
-  Menu = require('./menu.jsx');
+var React = require('react');
+var Classable = require('./mixins/classable.js');
+var ClickAwayable = require('./mixins/click-awayable');
+var DropDownArrow = require('./svg-icons/drop-down-arrow.jsx');
+var KeyLine = require('./utils/key-line.js');
+var Paper = require('./paper.jsx');
+var Menu = require('./menu.jsx');
 
 var DropDownMenu = React.createClass({
 
@@ -55,7 +55,7 @@ var DropDownMenu = React.createClass({
           <div className="mui-menu-label">
             {this.props.menuItems[this.state.selectedIndex].text}
           </div>
-          <Icon className="mui-menu-drop-down-icon" icon="navigation-arrow-drop-down" />
+          <DropDownArrow className="mui-menu-drop-down-icon" />
           <div className="mui-menu-control-underline" />
         </div>
         <Menu

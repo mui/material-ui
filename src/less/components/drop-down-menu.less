@@ -51,11 +51,12 @@
     }
 
     .mui-menu-drop-down-icon {
-      line-height: @desktop-toolbar-height;
       position: absolute;
-      top: 0;
+      top: ((@desktop-toolbar-height - 24px) / 2);
       right: @desktop-gutter-less;
-      color: @drop-down-menu-icon-color;
+      * {
+        fill: @drop-down-menu-icon-color;
+      }
     }
 
     .mui-menu-control-underline {
