@@ -1,7 +1,8 @@
 var React = require('react');
 var Classable = require('./mixins/classable.js');
-var Icon = require('./icon.jsx');
 var EnhancedSwitch = require('./enhanced-switch.jsx');
+var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank.jsx');
+var CheckboxChecked = require('./svg-icons/toggle-check-box-checked.jsx');
 
 var Checkbox = React.createClass({
 
@@ -44,12 +45,8 @@ var Checkbox = React.createClass({
 
         <div className="mui-switch">
           <div className={classes} >
-            <div className="mui-checkbox-box">
-              <Icon icon="toggle-check-box-outline-blank" />
-            </div>
-            <div className="mui-checkbox-check">
-              <Icon icon="toggle-check-box" />
-            </div>
+            <CheckboxOutline className="mui-checkbox-box" />
+            <CheckboxChecked className="mui-checkbox-check" />
           </div>
         </div>
 
