@@ -1,7 +1,6 @@
 var React = require('react');
 var Classable = require('./mixins/classable.js');
 var Paper = require('./paper.jsx');
-var Icon = require('./icon.jsx');
 
 var EnhancedSwitch = React.createClass({
 	propTypes: {
