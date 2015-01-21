@@ -16,7 +16,7 @@ var Toggle = React.createClass({
 
   getInitialState: function() {
     return {
-      switched: this.props.defaultToggled || this.props.checked || false
+      switched: this.props.defaultToggled || this.props.checked
     }
   },
 

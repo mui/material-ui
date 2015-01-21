@@ -21,7 +21,7 @@ var Checkbox = React.createClass({
 
   getInitialState: function() {
     return {
-      switched: this.props.defaultChecked || this.props.checked || false
+      switched: this.props.defaultChecked || this.props.checked
     }
   },
 
