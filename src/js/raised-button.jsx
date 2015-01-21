@@ -27,6 +27,14 @@ var RaisedButton = React.createClass({
     };
   },
 
+  componentWillReceiveProps: function(nextProps) {
+    var zDepth = nextProps.disabled ? 0 : 1;
+    this.setState({
+      zDepth: zDepth,
+      initialZDepth: zDepth
+    });
+  },
+
   render: function() {
     var {
       label,
