@@ -9,15 +9,30 @@ var Toggle = React.createClass({
 
   propTypes: {
     onToggle: React.PropTypes.func,
+    checked: React.PropTypes.bool,
     defaultToggled: React.PropTypes.bool,
     labelPosition: React.PropTypes.oneOf(['left', 'right'])
   },
 
   getInitialState: function() {
     return {
-      switched: this.props.defaultToggled || false
+      switched: this.props.defaultToggled || this.props.checked || false
     }
   },
+
+  componentWillReceiveProps: function(nextProps) {
+    var hasCheckedProperty = nextProps.hasOwnProperty('checked');
+    var hasDifferentDefaultProperty = 
+      (nextProps.hasOwnProperty('defaultToggled') && 
+      (nextProps.defaultToggled != this.props.defaultToggled));
+
+    if (hasCheckedProperty) {
+      this.setState({switched: nextProps.checked});
+    } else if (hasDifferentDefaultProperty) {
+      this.setState({switched: nextProps.defaultToggled});
+    }
+  },
+
 
   render: function() {
     var {
@@ -70,7 +85,7 @@ var Toggle = React.createClass({
           switchType="toggle"
           className="mui-switch-toggle"
           onSwitch={this._onToggle}
-          defaultChecked={this.props.defaultToggled} />
+          defaultSwitched={this.props.defaultToggled} />
 
         {divsInOrder}
 
@@ -79,7 +94,7 @@ var Toggle = React.createClass({
   },
 
   _onToggle: function(e, isInputChecked) {
-    this.setState({switched: !this.refs.enhancedSwitch.state.switched});
+    if (!this.props.hasOwnProperty('checked')) this.setState({switched: !this.refs.enhancedSwitch.state.switched});
     if (this.props.onToggle) this.props.onToggle(e, isInputChecked);
   },
 

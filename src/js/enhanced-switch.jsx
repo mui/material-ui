@@ -28,9 +28,17 @@ var EnhancedSwitch = React.createClass({
     this.setState({switched: inputNode.checked});
   },
 
-  componentWillReceiveProps: function() {
-    var inputNode = this.refs.checkbox.getDOMNode();
-    this.setState({switched: inputNode.checked});
+  componentWillReceiveProps: function(nextProps) {
+    var hasCheckedProperty = nextProps.hasOwnProperty('checked');
+    var hasDifferentDefaultProperty = 
+      (nextProps.hasOwnProperty('defaultSwitched') && 
+      (nextProps.defaultSwitched != this.props.defaultSwitched));
+
+    if (hasCheckedProperty) {
+      this.setState({switched: nextProps.checked});
+    } else if (hasDifferentDefaultProperty) {
+      this.setState({switched: nextProps.defaultSwitched});
+    }
   },
 
   handleChange: function(e) {
@@ -63,7 +71,7 @@ var EnhancedSwitch = React.createClass({
           type="checkbox"
           name={this.props.name}
           value={this.props.value}
-          onChange={this.handleChange}/>
+          onChange={this.handleChange} />
     );
   },
 
@@ -75,7 +83,7 @@ var EnhancedSwitch = React.createClass({
   // no callback here because there is no event
   setSwitched: function(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked')) {
-      this.setState({toggled: newSwitchedValue});  
+      this.setState({switched: newSwitchedValue});  
       this.refs.checkbox.getDOMNode().checked = newSwitchedValue;
     } else {
       var message = 'Cannot call set method while checked is defined as a property.';
