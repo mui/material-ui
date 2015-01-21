@@ -29,7 +29,7 @@ module.exports = {
   Tabs: require('./js/tabs/tabs.jsx'),
   Toggle: require('./js/toggle.jsx'),
   Snackbar: require('./js/snackbar.jsx'),
-
+  TextField: require('./js/text-field.jsx'),
   Toolbar: require('./js/toolbar.jsx'),
   ToolbarGroup: require('./js/toolbar-group.jsx'),
   Tooltip: require('./js/tooltip.jsx'),
