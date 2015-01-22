@@ -77,15 +77,19 @@ var TextField = React.createClass({
       <div className="mui-text-field-hint">{this.props.hintText}</div>
     ) : null;
 
-    var inputProps = {
+    var inputProps;
+    var inputElement;
+
+    inputProps = {
       ref: 'input',
       className: 'mui-text-field-input',
       onBlur: this._handleInputBlur,
-      onChange: this._handleInputChange,
       onFocus: this._handleInputFocus
     };
 
-    var inputElement = this.props.multiLine ? (
+    if (!this._isControlled()) inputProps.onChange = this._handleInputChange;
+
+    inputElement = this.props.multiLine ? (
       <EnhancedTextarea
         {...other}
         {...inputProps}
@@ -138,8 +142,8 @@ var TextField = React.createClass({
   },
 
   setValue: function(newValue) {
-    if (this.props.hasOwnProperty('value')) {
-      console.error('Cannot call TextField.setValue when value is defined as a property.');
+    if (this._isControlled()) {
+      console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
     } else if (this.isMounted()) {
       this._getInputNode().value = newValue;
       this.setState({hasValue: newValue});
@@ -156,10 +160,8 @@ var TextField = React.createClass({
   },
 
   _handleInputChange: function(e) {
-    if (!this.props.hasOwnProperty('value')) {
-      this.setState({hasValue: e.target.value});
-      if (this.props.onChange) this.props.onChange(e);
-    }
+    this.setState({hasValue: e.target.value});
+    if (this.props.onChange) this.props.onChange(e);
   },
 
   _handleInputFocus: function(e) {
@@ -171,6 +173,11 @@ var TextField = React.createClass({
     var newHeight = height + 24;
     if (this.props.floatingLabels) newHeight += 24;
     this.getDOMNode().style.height = newHeight + 'px';
+  },
+
+  _isControlled: function() {
+    return this.props.hasOwnProperty('value') ||
+      this.props.hasOwnProperty('valueLink');
   }
 
 });
