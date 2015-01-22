@@ -10,13 +10,31 @@ var Checkbox = React.createClass({
 
   propTypes: {
     onCheck: React.PropTypes.func,
+    checked: React.PropTypes.bool,
     defaultChecked: React.PropTypes.bool,
     labelPositionRight: React.PropTypes.bool
   },
 
+  componentDidMount: function() {
+    this.setState({switched: this.refs.enhancedSwitch.isSwitched()});
+  },
+
   getInitialState: function() {
     return {
-      switched: this.props.defaultChecked || false
+      switched: this.props.defaultChecked || this.props.checked
+    }
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    var hasCheckedProperty = nextProps.hasOwnProperty('checked');
+    var hasDifferentDefaultProperty = 
+      (nextProps.hasOwnProperty('defaultChecked') && 
+      (nextProps.defaultChecked != this.props.defaultChecked));
+
+    if (hasCheckedProperty) {
+      this.setState({switched: nextProps.checked});
+    } else if (hasDifferentDefaultProperty) {
+      this.setState({switched: nextProps.defaultChecked});
     }
   },
 
@@ -54,12 +72,12 @@ var Checkbox = React.createClass({
           {this.props.label}
         </div>
 
-    </div> 
+      </div> 
     );
   },
 
   _onCheck: function(e, isInputChecked) {
-    this.setState({switched: !this.refs.enhancedSwitch.state.switched});
+    if (!this.props.hasOwnProperty('checked')) this.setState({switched: !this.refs.enhancedSwitch.state.switched});
     if (this.props.onCheck) this.props.onCheck(e, isInputChecked);
   },
 
