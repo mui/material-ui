@@ -17,7 +17,7 @@ var TextFieldsPage = React.createClass({
   render: function() {
 
     var code =
-      '//Single Line Text Fields\n' +
+      '//In Line Hint Text\n' +
       '<TextField\n' +
       '  hintText="Hint Text" />\n' +
       '<TextField\n' +
@@ -46,7 +46,7 @@ var TextFieldsPage = React.createClass({
       '  disabled={true}\n' +
       '  defaultValue="Disabled With Value" />\n\n' +
 
-      '//Multi Line Text Fields\n' +
+      '//Floating Hint Text Labels\n' +
       '<TextField\n' +
       '  hintText="Floating Label Hint Text"\n' +
       '  floatingLabels={true} />\n' +
