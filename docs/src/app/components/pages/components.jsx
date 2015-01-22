@@ -11,7 +11,6 @@ var Components = React.createClass({
       { route: 'dropdown-menu', text: 'Dropdown Menu'},
       { route: 'icon-buttons', text: 'Icon Buttons'},
       { route: 'icons', text: 'Icons'},
-      { route: 'inputs', text: 'Inputs'},
       { route: 'left-nav', text: 'Left Nav'},
       { route: 'menus', text: 'Menus'},
       { route: 'paper', text: 'Paper'},
