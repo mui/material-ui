@@ -8,8 +8,9 @@ var TextField = React.createClass({
 
   propTypes: {
     errorText: React.PropTypes.string,
-    floatingLabels: React.PropTypes.bool,
+    floatingLabelText: React.PropTypes.string,
     hintText: React.PropTypes.string,
+    id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
@@ -54,7 +55,7 @@ var TextField = React.createClass({
     var {
       className,
       errorText,
-      floatingLabels,
+      floatingLabelText,
       hintText,
       multiLine,
       onBlur,
@@ -66,7 +67,7 @@ var TextField = React.createClass({
 
     var classes = this.getClasses('mui-text-field', {
       'mui-has-error': this.props.errorText,
-      'mui-has-floating-labels': this.props.floatingLabels,
+      'mui-has-floating-labels': this.props.floatingLabelText,
       'mui-has-value': this.state.hasValue,
       'mui-is-disabled': this.props.disabled,
       'mui-is-focused': this.state.isFocused,
@@ -79,6 +80,14 @@ var TextField = React.createClass({
 
     var hintTextElement = this.props.hintText ? (
       <div className="mui-text-field-hint">{this.props.hintText}</div>
+    ) : null;
+
+    var floatingLabelTextElement = this.props.floatingLabelText ? (
+      <label
+        className="mui-text-field-floating-label"
+        htmlFor={this.props.id}>
+        {this.props.floatingLabelText}
+      </label>
     ) : null;
 
     var inputProps;
@@ -111,6 +120,7 @@ var TextField = React.createClass({
     return (
       <div className={classes}>
 
+        {floatingLabelTextElement}
         {hintTextElement}
         {inputElement}
 

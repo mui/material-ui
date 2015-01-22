@@ -13,7 +13,8 @@
 
   //Normal Text Field Styles
   //------------------------
-  .mui-text-field-hint {
+  .mui-text-field-hint,
+  .mui-text-field-floating-label {
     position: absolute;
     line-height: 48px;
     color: @disabled-text-color;
@@ -106,10 +107,15 @@
   &.mui-has-floating-labels {
     height: 72px;
 
-    .mui-text-field-hint {
+    .mui-text-field-floating-label {
       top: 24px;
       transform: scale(1) translate3d(0, 0, 0);
       transform-origin: left top;
+    }
+
+    .mui-text-field-hint {
+      top: 24px;
+      opacity: 0;
     }
 
     .mui-text-field-input {
@@ -118,14 +124,13 @@
 
     &.mui-has-value,
     &.mui-is-focused {
-      .mui-text-field-hint {
-        opacity: 1;
+      .mui-text-field-floating-label {
         transform: scale(0.75) translate3d(0, -18px, 0);
       }
     }
 
     &.mui-has-value {
-      .mui-text-field-hint {
+      .mui-text-field-floating-label {
         color: fade(@body-text-color, 50%);
       }
     }
@@ -137,17 +142,27 @@
     }
 
     &.mui-is-focused {
+
       .mui-text-field-hint {
+        opacity: 1;
+      }
+
+      .mui-text-field-floating-label {
+        transform: scale(0.75) translate3d(0, -18px, 0);
         color: @primary-1-color;
       }
 
       &.mui-has-error {
-        .mui-text-field-hint {
+        .mui-text-field-floating-label {
           color: @error-color;
         }
       }
-    }
 
-    
+      &.mui-has-value {
+        .mui-text-field-hint {
+          opacity: 0;
+        }
+      }
+    }
   }
 }
