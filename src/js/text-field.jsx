@@ -69,35 +69,32 @@ var TextField = React.createClass({
       'mui-is-multiLine': this.props.multiLine
     });
 
-    var errorTextElement;
-    var hintTextElement;
-
-    if (this.state.errorText) errorTextElement = (
+    var errorTextElement = this.state.errorText ? (
       <div className="mui-text-field-error">{this.state.errorText}</div>
-    );
+    ) : null;
 
-    if (this.props.hintText) hintTextElement = (
+    var hintTextElement = this.props.hintText ? (
       <div className="mui-text-field-hint">{this.props.hintText}</div>
-    );
+    ) : null;
+
+    var inputProps = {
+      ref: 'input',
+      className: 'mui-text-field-input',
+      onBlur: this._handleInputBlur,
+      onChange: this._handleInputChange,
+      onFocus: this._handleInputFocus
+    };
 
     var inputElement = this.props.multiLine ? (
       <EnhancedTextarea
         {...other}
-        ref="input"
-        className="mui-text-field-input"
-        onBlur={this._handleInputBlur}
-        onChange={this._handleInputChange}
+        {...inputProps}
         onHeightChange={this._handleTextAreaHeightChange}
-        onFocus={this._handleInputFocus}
         textareaClassName="mui-text-field-textarea" />
     ) : (
       <input
         {...other}
-        ref="input"
-        className="mui-text-field-input"
-        onBlur={this._handleInputBlur}
-        onChange={this._handleInputChange}
-        onFocus={this._handleInputFocus}
+        {...inputProps}
         type={this.props.type} />
     );
 
@@ -105,7 +102,6 @@ var TextField = React.createClass({
       <div className={classes}>
 
         {hintTextElement}
-
         {inputElement}
 
         <hr className="mui-text-field-underline" />
@@ -137,9 +133,7 @@ var TextField = React.createClass({
     if (this.props.hasOwnProperty('errorText')) {
       console.error('Cannot call TextField.setErrorText when errorText is defined as a property.');
     } else if (this.isMounted()) {
-      this.setState({
-        errorText: newErrorText
-      });
+      this.setState({errorText: newErrorText});
     }
   },
 
@@ -148,9 +142,7 @@ var TextField = React.createClass({
       console.error('Cannot call TextField.setValue when value is defined as a property.');
     } else if (this.isMounted()) {
       this._getInputNode().value = newValue;
-      this.setState({
-        hasValue: newValue
-      });
+      this.setState({hasValue: newValue});
     }
   },
 
@@ -159,25 +151,19 @@ var TextField = React.createClass({
   },
 
   _handleInputBlur: function(e) {
-    this.setState({
-      isFocused: false
-    });
+    this.setState({isFocused: false});
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
   _handleInputChange: function(e) {
     if (!this.props.hasOwnProperty('value')) {
-      this.setState({
-        hasValue: e.target.value
-      });
+      this.setState({hasValue: e.target.value});
       if (this.props.onChange) this.props.onChange(e);
     }
   },
 
   _handleInputFocus: function(e) {
-    this.setState({
-      isFocused: true
-    });
+    this.setState({isFocused: true});
     if (this.props.onFocus) this.props.onFocus(e);
   },
 

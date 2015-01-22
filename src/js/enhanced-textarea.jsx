@@ -71,15 +71,12 @@ var EnhancedTextarea = React.createClass({
     newHeight = shadow.scrollHeight;
 
     if (currentHeight !== newHeight) {
-      this.setState({
-        height: newHeight 
-      });
+      this.setState({height: newHeight});
       if (this.props.onHeightChange) this.props.onHeightChange(e, newHeight);
     }
 
     if (this.props.onChange) this.props.onChange(e);
   }
-
 });
 
 module.exports = EnhancedTextarea;
