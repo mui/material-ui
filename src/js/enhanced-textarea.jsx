@@ -54,12 +54,17 @@ var EnhancedTextarea = React.createClass({
           tabIndex="-1" />
         <textarea
           {...other}
+          ref="input"
           className={textareaClassName}
           rows={this.props.rows}
           style={style}
           onChange={this._handleChange} />
       </div>
     );
+  },
+
+  getInputNode: function() {
+    return this.refs.input.getDOMNode();
   },
 
   _handleChange: function(e) {

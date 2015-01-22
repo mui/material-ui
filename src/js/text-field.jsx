@@ -151,7 +151,8 @@ var TextField = React.createClass({
   },
 
   _getInputNode: function() {
-    return this.refs.input.getDOMNode();
+    return this.props.multiLine ? 
+      this.refs.input.getInputNode() : this.refs.input.getDOMNode();
   },
 
   _handleInputBlur: function(e) {
