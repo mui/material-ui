@@ -5,12 +5,18 @@ var ComponentDoc = require('../../component-doc.jsx');
 
 var TextFieldsPage = React.createClass({
 
+  mixins: [React.addons.LinkedStateMixin],
+
   getInitialState: function() {
     return {
       errorText: 'This field is required.',
       error2Text: 'This field must be numeric.',
       floatingErrorText: 'This field is required.',
-      floatingError2Text: 'This field must be numeric.'
+      floatingError2Text: 'This field must be numeric.',
+      propValue: 'Prop Value',
+      floatingPropValue: 'Prop Value',
+      valueLinkValue: 'Value Link',
+      floatingValueLinkValue: 'Value Link'
     };
   },
 
@@ -25,7 +31,11 @@ var TextFieldsPage = React.createClass({
       '  defaultValue="Default Value" />\n' +
       '<TextField\n' +
       '  hintText="Hint Text"\n' +
-      '  value="Prop Value" />\n' +
+      '  value={this.state.propValue}\n' +
+      '  onChange={this._handleInputChange} />\n' +
+      '<TextField\n' +
+      '  hintText="Hint Text"\n' +
+      '  valueLink={this.linkState(\'valueLinkValue\')} />\n' +
       '<TextField\n' +
       '  hintText="Hint Text (MultiLine)"\n' +
       '  multiLine={true} />\n' +
@@ -57,7 +67,12 @@ var TextFieldsPage = React.createClass({
       '<TextField\n' +
       '  hintText="Floating Label Hint Text"\n' +
       '  floatingLabels={true}\n' +
-      '  value="Prop Value" />\n' +
+      '  value={this.state.floatingPropValue}\n' +
+      '  onChange={this._handleFloatingInputChange} />\n' +
+      '<TextField\n' +
+      '  hintText="Floating Label Hint Text"\n' +
+      '  floatingLabels={true}\n' +
+      '  valueLink={this.linkState(\'floatingValueLinkValue\')} />\n' +
       '<TextField\n' +
       '  hintText="Floating Label Hint Text (MultiLine)"\n' +
       '  floatingLabels={true} multiLine={true} />\n' +
@@ -163,7 +178,11 @@ var TextFieldsPage = React.createClass({
               defaultValue="Default Value" /><br/>
             <TextField
               hintText="Hint Text"
-              value="Prop Value" /><br/>
+              value={this.state.propValue}
+              onChange={this._handleInputChange} /><br/>
+            <TextField
+              hintText="Hint Text"
+              valueLink={this.linkState('valueLinkValue')} /><br/>
             <TextField
               hintText="Hint Text (MultiLine)"
               multiLine={true} /><br/>
@@ -196,7 +215,12 @@ var TextFieldsPage = React.createClass({
             <TextField
               hintText="Floating Label Hint Text"
               floatingLabels={true}
-              value="Prop Value" /><br/>
+              value={this.state.floatingPropValue}
+              onChange={this._handleFloatingInputChange} /><br/>
+            <TextField
+              hintText="Floating Label Hint Text"
+              floatingLabels={true}
+              valueLink={this.linkState('floatingValueLinkValue')} /><br/>
             <TextField
               hintText="Floating Label Hint Text (MultiLine)"
               floatingLabels={true} multiLine={true} /><br/>
@@ -250,6 +274,18 @@ var TextFieldsPage = React.createClass({
     var isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
     this.setState({
       floatingError2Text: isNumeric ? '' : 'This field must be numeric.' 
+    });
+  },
+
+  _handleInputChange: function(e) {
+    this.setState({
+      propValue: e.target.value
+    });
+  },
+
+  _handleFloatingInputChange: function(e) {
+    this.setState({
+      floatingPropValue: e.target.value
     });
   }
 

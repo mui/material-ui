@@ -26,18 +26,22 @@ var TextField = React.createClass({
   getInitialState: function() {
     return {
       errorText: this.props.errorText,
-      hasValue: this.props.value || this.props.defaultValue
+      hasValue: this.props.value || this.props.defaultValue ||
+        (this.props.valueLink && this.props.valueLink.value)
     };
   },
 
   componentWillReceiveProps: function(nextProps) {
     var hasErrorProp = nextProps.hasOwnProperty('errorText');
+    var hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
     var hasValueProp = nextProps.hasOwnProperty('value');
     var hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
     var newState = {};
 
     if (hasValueProp) {
       newState.hasValue = nextProps.value;
+    } else if (hasValueLinkProp) {
+      newState.hasValue = nextProps.valueLink.value;
     } else if (hasNewDefaultValue) {
       newState.hasValue = nextProps.defaultValue;
     }
@@ -87,7 +91,9 @@ var TextField = React.createClass({
       onFocus: this._handleInputFocus
     };
 
-    if (!this._isControlled()) inputProps.onChange = this._handleInputChange;
+    if (!this.props.hasOwnProperty('valueLink')) {
+      inputProps.onChange = this._handleInputChange;
+    }
 
     inputElement = this.props.multiLine ? (
       <EnhancedTextarea
