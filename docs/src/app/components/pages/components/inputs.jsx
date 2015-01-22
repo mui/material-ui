@@ -167,6 +167,16 @@ var InputsPage = React.createClass({
             name: 'onChange',
             header: 'function(e, value)',
             desc: 'Fired when the input is changed.'
+          },
+          {
+            name: 'onFocus',
+            header: 'function(e)',
+            desc: 'Fired when the input has received focus.'
+          },
+          {
+            name: 'onBlur',
+            header: 'function(e)',
+            desc: 'Fired when the input has lost focus.'
           }
         ]
       }
