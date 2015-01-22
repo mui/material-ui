@@ -4,7 +4,7 @@ var Paper = require('./paper.jsx');
 
 var EnhancedSwitch = React.createClass({
 	propTypes: {
-      switchType: React.PropTypes.string.isRequired,
+      inputType: React.PropTypes.string.isRequired,
 	    className: React.PropTypes.string.isRequired,
       name: React.PropTypes.string.isRequired,
 	    value: React.PropTypes.string.isRequired,
@@ -68,7 +68,7 @@ var EnhancedSwitch = React.createClass({
       <input 
           {...other} 
           ref="checkbox"
-          type="checkbox"
+          type={this.props.inputType}
           name={this.props.name}
           value={this.props.value}
           onChange={this.handleChange} />

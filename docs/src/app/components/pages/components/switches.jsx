@@ -2,6 +2,7 @@ var React = require('react');
 var mui = require('mui');
 var Checkbox = mui.Checkbox;
 var RadioButton = mui.RadioButton;
+var RadioButtonGroup = mui.RadioButtonGroup;
 var Toggle = mui.Toggle;
 var CodeExample = require('../../code-example/code-example.jsx');
 var ComponentDoc = require('../../component-doc.jsx');
@@ -225,11 +226,11 @@ var SwitchesPage = React.createClass({
         desc={desc}
         componentInfo={componentInfo}>
 
-        <div className="switches-examples">
+        <form className="switches-examples">
           {this._getCheckboxExample()}
           {this._getRadioButtonExample()}
           {this._getToggleExample()}
-        </div>
+        </form>
 
       </ComponentDoc>
     );
@@ -314,30 +315,24 @@ var SwitchesPage = React.createClass({
           <h2 className="mui-font-style-headline">Radio Buttons</h2>
         </div>
 
-      <div className="switches-example-container">
-        <RadioButton
-          name="shipSpeed1"
-          value="light"
-          label="prepare for light speed"
-          onClick={this._onRadioButtonClick} />
-      </div>
-      <div className="switches-example-container">
-        <RadioButton
-          name="shipSpeed2"
-          value="not_light"
-          label="light speed too slow"
-          defaultChecked={true}
-          onClick={this._onRadioButtonClick} />
-      </div>
-      <div className="switches-example-container">
-        <RadioButton
-          name="shipSpeed3"
-          value="ludicrous"
-          label="go to ludicrous speed"
-          onClick={this._onRadioButtonClick} />
-      </div>
 
-    </div>
+        <RadioButtonGroup 
+          name="shipSpeed"
+          onChange={this._onRadioButtonClick}>
+            <RadioButton
+              value="light"
+              label="prepare for light speed"/>
+            <RadioButton
+              value="not_light"
+              label="light speed too slow"
+              defaultChecked={true}/>
+            <RadioButton
+              value="ludicrous"
+              label="go to ludicrous speed"
+              disabled={true}/>
+        </RadioButtonGroup>
+
+      </div>
     );
   },
 
@@ -349,8 +344,8 @@ var SwitchesPage = React.createClass({
     console.log('Toggled: ', toggled);
   },
 
-  _onRadioButtonClick: function(e, checked) {
-    console.log('Clicked:', checked);
+  _onRadioButtonClick: function(e, selected) {
+    console.log('Clicked: ', selected);
   }
 
 });

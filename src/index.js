@@ -23,6 +23,7 @@ module.exports = {
   },
   Paper: require('./js/paper.jsx'),
   RadioButton: require('./js/radio-button.jsx'),
+  RadioButtonGroup: require('./js/radio-button-group.jsx'),
   RaisedButton: require('./js/raised-button.jsx'),
   Slider: require('./js/slider.jsx'),
   Tab: require('./js/tabs/tab.jsx'),

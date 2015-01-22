@@ -1,61 +1,95 @@
-var React = require('react'),
-    Paper = require('./paper.jsx'),
-    Classable = require('./mixins/classable.js');
+var React = require('react');
+var Paper = require('./paper.jsx');
+var Classable = require('./mixins/classable.js');
+var EnhancedSwitch = require('./enhanced-switch.jsx');
 
 var RadioButton = React.createClass({
 
   mixins: [Classable],
 
   propTypes: {
-    label: React.PropTypes.string,
-    name: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    value: React.PropTypes.string,
-    defaultChecked: React.PropTypes.bool
+    onCheck: React.PropTypes.func,
+    checked: React.PropTypes.bool,
+    defaultChecked: React.PropTypes.bool,
+    labelPositionRight: React.PropTypes.bool
   },
-  getDefaultProps: function(){
-    return {
-       defaultChecked: false
-    }
+
+  componentDidMount: function() {
+    this.setState({switched: this.refs.enhancedSwitch.isSwitched()});
   },
+
   getInitialState: function() {
     return {
-      checked: this.props.defaultChecked
+      switched: this.props.defaultChecked || this.props.checked
     }
   },
 
-  toggle: function() {
-    var radioButton = this.refs.radioButton.getDOMNode();
+  componentWillReceiveProps: function(nextProps) {
+    console.log("componentWillReceiveProps");
+    var hasCheckedProperty = nextProps.hasOwnProperty('checked');
+    var hasDifferentDefaultProperty = 
+      (nextProps.hasOwnProperty('defaultChecked') && 
+      (nextProps.defaultChecked != this.props.defaultChecked));
 
-    this.setState({ checked: !this.state.checked });
-    radioButton.checked = !radioButton.checked;
+    if (hasCheckedProperty) {
+      this.setState({switched: nextProps.checked});
+    } else if (hasDifferentDefaultProperty) {
+      this.setState({switched: nextProps.defaultChecked});
+    }
   },
 
   render: function() {
-    var classes = this.getClasses('mui-radio-button');
+    var {
+      onCheck,
+      ...other
+    } = this.props;
+
+    var classes = this.getClasses("mui-switch-radio-button", {
+      'mui-is-switched': this.state.switched,
+      'mui-is-disabled': this.props.disabled,
+      'mui-is-required': this.props.required
+    });
 
     return (
-      <div className={classes} onClick={this._onClick}>
-        <div className="mui-radio-button-target">
-          <input
-            ref="radioButton"
-            type="radio"
-            name={this.props.name}
-            value={this.props.value}
-            defaultChecked={this.props.defaultChecked}
-          />
-          <div className="mui-radio-button-fill" />
+      <div className="mui-switch-wrap">
+
+        <EnhancedSwitch 
+          {...other}
+          ref="enhancedSwitch"
+          inputType="radio"
+          className="mui-switch-radio-button"
+          onSwitch={this._onCheck}
+          defaultSwitched={this.props.defaultChecked} />
+
+        <div className="mui-switch">
+
+          <div className={classes}>
+            <div className="mui-radio-button-target" />
+            <div className="mui-radio-button-fill" />
           </div>
-        <span className="mui-radio-button-label">{this.props.label}</span>
-      </div>
+        </div>
+
+        <div className="mui-switch-label">
+          {this.props.label}
+        </div>
+
+      </div> 
     );
   },
 
-  _onClick: function(e) {
-    var checkedState = this.state.checked;
+  // Only called when selected, not when unselected, so switched will be true.
+  _onCheck: function(e) {
+    this.setState({switched: true});
+    if (this.props.onCheck) this.props.onCheck(e, this.props.value);
+  },
 
-    this.toggle();
-    if (this.props.onClick) this.props.onClick(e, !checkedState);
+  isChecked: function() {
+    return this.refs.enhancedSwitch.isSwitched();
+  },
+
+  setChecked: function(newCheckedValue) {
+    this.setState({switched: newCheckedValue});
+    this.refs.enhancedSwitch.setSwitched(newCheckedValue);
   }
 
 });

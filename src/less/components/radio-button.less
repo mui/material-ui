@@ -1,18 +1,19 @@
-.mui-radio-button {
-  * { .ease-out; }
+// .mui-radio-button {
+.mui-switch-radio-button {
 
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
+  height: @radio-button-size;
+  width: @radio-button-size;
+  margin-right: @desktop-gutter-less;
+  padding-top: 3px;
+  
+  * { .ease-out; }
   
   .mui-radio-button-fill {
     position: absolute;
-    background-color: @radio-button-background-color;
+    background-color: @radio-button-check-color;
     height: @radio-button-size;
     width: @radio-button-size;
     border-radius: 50%;
-    left: 0;
-    top: 0;
     transform: scale(0);
     
   }
@@ -32,15 +33,29 @@
     margin-left: @desktop-gutter-mini;
   }
 
-  input[type=radio] {
-    display: none;
+  &.mui-is-switched {
+    .mui-radio-button-fill {
+      transform: scale(0.5);
+    }
 
-    &:checked {
-      &+.mui-radio-button-fill {
-        background-color: @radio-button-check-color;
-        border-color: @radio-button-border-color;
-        transform: scale(.5);
-      }
+    .mui-radio-button-target {
+      color: @radio-button-check-color;
+      border-color: @radio-button-check-color;
+    }
+
+  }
+
+  &.mui-is-disabled {
+    .mui-radio-button-fill, .mui-radio-button-target {
+      color: @radio-button-disabled-color;
+      border-color: @radio-button-disabled-color;
+    }
+  }
+
+  &.mui-is-required {
+    .mui-radio-button-fill, .mui-radio-button-target {
+      color: @radio-button-required-color;
+      border-color: @radio-button-required-color;
     }
   }
 }
