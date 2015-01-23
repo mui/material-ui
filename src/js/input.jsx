@@ -34,6 +34,10 @@ var Input = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    console.warn('Input has been deprecated. Please use TextField instead. See http://material-ui.com/#/components/text-fields');
+  },
+
   render: function() {
     var classes = this.getClasses('mui-input', {
       'mui-floating': this.props.inputStyle === 'floating',

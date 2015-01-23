@@ -1,0 +1,168 @@
+.mui-text-field {
+  @disabled-text-color: fade(@body-text-color, 30%);
+  @error-color: @red-500;
+
+	font-size: 16px;
+  line-height: 24px;
+  
+  width: (64px * 4);
+  height: 48px;
+  display: inline-block;
+  position: relative;
+  .ease-out(@property: height, @duration: 200ms);
+
+  //Normal Text Field Styles
+  //------------------------
+  .mui-text-field-hint,
+  .mui-text-field-floating-label {
+    position: absolute;
+    line-height: 48px;
+    color: @disabled-text-color;
+    opacity: 1;
+    .ease-out();
+  }
+
+  .mui-text-field-error {
+    position: absolute;
+    bottom: -10px;
+    font-size: 12px;
+    line-height: 12px;
+    color: @error-color;
+    .ease-out();
+  }
+
+  .mui-text-field-input,
+  .mui-text-field-textarea {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: @transparent;
+    color: @body-text-color;
+  }
+
+  .mui-text-field-textarea {
+    margin-top: 12px;
+  }
+
+  .mui-text-field-underline,
+  .mui-text-field-focus-underline {
+    position: absolute;
+    width: 100%;
+    bottom: 8px;
+    margin: 0;
+  }
+
+  .mui-text-field-focus-underline {
+    border-color: @primary-1-color;
+    border-bottom-width: 2px;
+    transform: scaleX(0);
+    .ease-out();
+  }
+
+  &.mui-has-error {
+    .mui-text-field-focus-underline {
+      border-color: @error-color;
+      transform: scaleX(1);
+    }
+  }
+
+  &.mui-has-value {
+    .mui-text-field-hint {
+      opacity: 0;
+    }
+  }
+
+  &.mui-is-disabled {
+
+    .mui-text-field-input {
+      color: @disabled-text-color;
+    }
+
+    .mui-text-field-underline {
+      border: none;
+      height: 40px;
+      overflow: hidden;
+
+      //hack because border style dotted just doesn't look right
+      //border-bottom-style: dotted;
+      &:after {
+        content: '..............................................................................................................................................................................................................................................................................................................................................................';
+        position: absolute;
+        top: 23px;
+        color: @disabled-text-color;
+      }
+    }
+  }
+
+  &.mui-is-focused {
+    .mui-text-field-focus-underline {
+      transform: scaleX(1);
+    }
+  }
+
+  //Floating Label Text Field Styles
+  //--------------------------------
+  &.mui-has-floating-labels {
+    height: 72px;
+
+    .mui-text-field-floating-label {
+      top: 24px;
+      transform: scale(1) translate3d(0, 0, 0);
+      transform-origin: left top;
+    }
+
+    .mui-text-field-hint {
+      top: 24px;
+      opacity: 0;
+    }
+
+    .mui-text-field-input {
+      padding-top: 24px;
+    }
+
+    &.mui-has-value,
+    &.mui-is-focused {
+      .mui-text-field-floating-label {
+        transform: scale(0.75) translate3d(0, -18px, 0);
+      }
+    }
+
+    &.mui-has-value {
+      .mui-text-field-floating-label {
+        color: fade(@body-text-color, 50%);
+      }
+    }
+
+    &.mui-is-disabled {
+      .mui-text-field-hint {
+        color: @disabled-text-color;
+      }
+    }
+
+    &.mui-is-focused {
+
+      .mui-text-field-hint {
+        opacity: 1;
+      }
+
+      .mui-text-field-floating-label {
+        transform: scale(0.75) translate3d(0, -18px, 0);
+        color: @primary-1-color;
+      }
+
+      &.mui-has-error {
+        .mui-text-field-floating-label {
+          color: @error-color;
+        }
+      }
+
+      &.mui-has-value {
+        .mui-text-field-hint {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

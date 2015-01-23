@@ -21,7 +21,6 @@ var Dialog = require('./components/pages/components/dialog.jsx');
 var DropDownMenu = require('./components/pages/components/drop-down-menu.jsx');
 var IconButtons = require('./components/pages/components/icon-buttons.jsx');
 var Icons = require('./components/pages/components/icons.jsx');
-var Inputs = require('./components/pages/components/inputs.jsx');
 var LeftNav = require('./components/pages/components/left-nav.jsx');
 var Menus = require('./components/pages/components/menus.jsx');
 var Paper = require('./components/pages/components/paper.jsx');
@@ -29,6 +28,7 @@ var Sliders = require('./components/pages/components/sliders.jsx');
 var Snackbar = require('./components/pages/components/snackbar.jsx');
 var Switches = require('./components/pages/components/switches.jsx');
 var Tabs = require('./components/pages/components/tabs.jsx');
+var TextFields = require('./components/pages/components/text-fields.jsx');
 var Toolbars = require('./components/pages/components/toolbars.jsx');
 
 
@@ -58,7 +58,6 @@ var AppRoutes = (
       <Route name="dropdown-menu" handler={DropDownMenu} />
       <Route name="icon-buttons" handler={IconButtons} />
       <Route name="icons" handler={Icons} />
-      <Route name="inputs" handler={Inputs} />
       <Route name="left-nav" handler={LeftNav} />
       <Route name="menus" handler={Menus} />
       <Route name="paper" handler={Paper} />
@@ -66,6 +65,7 @@ var AppRoutes = (
       <Route name="switches" handler={Switches} />
       <Route name="snackbar" handler={Snackbar} />
       <Route name="tabs" handler={Tabs} />
+      <Route name="text-fields" handler={TextFields} />
       <Route name="toolbars" handler={Toolbars} />
       <Redirect from="/components" to="buttons" />
     </Route>

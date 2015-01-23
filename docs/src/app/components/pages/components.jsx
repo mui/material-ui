@@ -11,14 +11,14 @@ var Components = React.createClass({
       { route: 'dropdown-menu', text: 'Dropdown Menu'},
       { route: 'icon-buttons', text: 'Icon Buttons'},
       { route: 'icons', text: 'Icons'},
-      { route: 'inputs', text: 'Inputs'},
       { route: 'left-nav', text: 'Left Nav'},
       { route: 'menus', text: 'Menus'},
       { route: 'paper', text: 'Paper'},
       { route: 'sliders', text: 'Sliders'},
       { route: 'switches', text: 'Switches'},
       { route: 'snackbar', text: 'Snackbar'},
-      { route: 'tabs', text:'Tabs'},
+      { route: 'tabs', text: 'Tabs'},
+      { route: 'text-fields', text: 'Text Fields'},
       { route: 'toolbars', text: 'Toolbars'},
     ];
 
