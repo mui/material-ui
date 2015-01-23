@@ -188,7 +188,7 @@ var TextField = React.createClass({
 
   _handleTextAreaHeightChange: function(e, height) {
     var newHeight = height + 24;
-    if (this.props.floatingLabels) newHeight += 24;
+    if (this.props.floatingLabelText) newHeight += 24;
     this.getDOMNode().style.height = newHeight + 'px';
   },
 
