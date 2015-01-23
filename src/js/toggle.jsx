@@ -56,9 +56,9 @@ var Toggle = React.createClass({
     );
 
     var labelDiv = (
-      <div className="mui-switch-label">
+      <label className="mui-switch-label">
         {this.props.label}
-      </div>
+      </label>
     );
 
     var labelPositionExist = this.props.labelPosition;

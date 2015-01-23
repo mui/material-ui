@@ -68,9 +68,9 @@ var Checkbox = React.createClass({
           </div>
         </div>
 
-        <div className="mui-switch-label">
+        <label className="mui-switch-label">
           {this.props.label}
-        </div>
+        </label>
 
       </div> 
     );
