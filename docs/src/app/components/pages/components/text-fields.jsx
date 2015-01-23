@@ -107,6 +107,9 @@ var TextFieldsPage = React.createClass({
       '  defaultValue="Disabled With Value"\n' +
       '  floatingLabelText="Floating Label Text" />'; 
 
+    var desc = 'This component extends the current input element and will support all of its props and events. It supports ' +
+      'valueLink and can be controlled or uncontrolled.' ;
+
     var componentInfo = [
       {
         name: 'Props',
@@ -179,6 +182,7 @@ var TextFieldsPage = React.createClass({
       <ComponentDoc
         name="Text Field"
         code={code}
+        desc={desc}
         componentInfo={componentInfo}>
 
         <div className="text-field-example">
