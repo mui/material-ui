@@ -51,7 +51,7 @@ var Checkbox = React.createClass({
       'mui-is-required': this.props.required
     });
 
-    var labelDiv = this.props.label ? (
+    var labelElement = this.props.label ? (
       <label className="mui-switch-label" htmlFor={this.props.id}>
         {this.props.label}
       </label>
@@ -75,8 +75,8 @@ var Checkbox = React.createClass({
           </div>
         </div>
 
-        {labelDiv}
-        
+        {labelElement}
+
       </div> 
     );
   },

@@ -56,7 +56,7 @@ var Toggle = React.createClass({
       </div>
     );
 
-    var labelDiv = this.props.label ? (
+    var labelElement = this.props.label ? (
       <label className="mui-switch-label" htmlFor={this.props.id}>
         {this.props.label}
       </label>
@@ -68,11 +68,11 @@ var Toggle = React.createClass({
     var divsInOrder = (labelPositionExist && (this.props.labelPosition.toUpperCase() === "RIGHT")) ? (
         <div>
           {toggleDiv}
-          {labelDiv}
+          {labelElement}
         </div>
       ) : (
         <div>
-          {labelDiv}
+          {labelElement}
           {toggleDiv}
         </div>
     );
