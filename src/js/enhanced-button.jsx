@@ -51,10 +51,12 @@ var EnhancedButton = React.createClass({
     var touchRipple = (
       <TouchRipple
         ref="touchRipple"
+        key="touchRipple"
         centerRipple={centerRipple} />
     );
     var focusRipple = (
       <FocusRipple
+        key="focusRipple"
         show={this.state.isKeyboardFocused} />
     );
     var buttonProps = {
