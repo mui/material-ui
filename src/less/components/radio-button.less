@@ -1,60 +1,52 @@
 .mui-switch-radio-button {
+  @radio-button-size: 24px;
 
   height: @radio-button-size;
   width: @radio-button-size;
   margin-right: @desktop-gutter-less;
-  padding-top: 3px;
   
   * { .ease-out; }
   
   .mui-radio-button-fill {
     position: absolute;
-    background-color: @radio-button-check-color;
-    height: @radio-button-size;
-    width: @radio-button-size;
-    border-radius: 50%;
+    opacity: 0;
     transform: scale(0);
-    
+    transform-origin: 50% 50%;
+    .ease-out;
+    * { fill: @radio-button-checked-color; }
   }
 
   .mui-radio-button-target {
-    background-color: @radio-button-background-color;
-    border: 2px solid @radio-button-border-color;
-    border-radius: 50%;
-    height: @radio-button-size;
-    width: @radio-button-size;
-    float: left;
-  }
-
-  .mui-radio-button-label {
-    line-height: @radio-button-size;
-    float: left;
-    margin-left: @desktop-gutter-mini;
+    position: absolute;
+    * {
+      fill: @radio-button-border-color;
+      .ease-out(@duration: 2s; @delay: 200ms);
+    }
   }
 
   &.mui-is-switched {
     .mui-radio-button-fill {
-      transform: scale(0.5);
+      opacity: 1;
+      transform: scale(1);
     }
 
     .mui-radio-button-target {
-      color: @radio-button-check-color;
-      border-color: @radio-button-check-color;
+      .ease-out(@duration: 100s; @delay: 0ms);
+      * { fill: @radio-button-checked-color; }
     }
 
   }
 
   &.mui-is-disabled {
-    .mui-radio-button-fill, .mui-radio-button-target {
-      color: @radio-button-disabled-color;
-      border-color: @radio-button-disabled-color;
+    .mui-radio-button-fill,
+    .mui-radio-button-target {
+      * { fill: @radio-button-disabled-color; }
     }
   }
 
   &.mui-is-required {
-    .mui-radio-button-fill, .mui-radio-button-target {
-      color: @radio-button-required-color;
-      border-color: @radio-button-required-color;
+    .mui-radio-button-target {
+      * { fill: @radio-button-required-color; }
     }
   }
 }

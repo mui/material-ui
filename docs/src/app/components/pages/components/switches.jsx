@@ -10,12 +10,6 @@ var RaisedButton = mui.RaisedButton;
 
 var SwitchesPage = React.createClass({
 
-  getInitialState: function() {
-    return {
-      selected: 0
-    };
-  },
-
   render: function() {
 
     var code = 
@@ -36,7 +30,8 @@ var SwitchesPage = React.createClass({
       '  disabled={true} />\n\n' +
       '//Radio Buttons\n' +
       '<RadioButtonGroup \n' +
-      '  name="shipSpeed">\n' +
+      '  name="shipSpeed"\n' +
+      '  defaultSelected="not_light">\n' +
       '    <RadioButton\n' +
       '      value="light"\n' +
       '      label="prepare for light speed" />\n' +
@@ -157,9 +152,17 @@ var SwitchesPage = React.createClass({
             type: 'string',
             header: 'required',
             desc: 'The name that will be applied to all radio buttons inside it.'
+          },
+          {
+            name: 'defaultSelected',
+            type: 'string',
+            header: 'optional',
+            desc: 'Sets the default radio button to be the one whose value matches ' + 
+                  'defaultSelected (case-sensitive). This will override any individual radio ' +
+                  'button with the defaultChecked or checked property stated.'
           }
         ]
-      },,
+      },
       {
         name: 'Radio Button Group Methods',
         infoArray: [
@@ -361,14 +364,14 @@ var SwitchesPage = React.createClass({
 
         <RadioButtonGroup 
           name="shipSpeed"
+          defaultSelected="not_light"
           onChange={this._onRadioButtonClick}>
             <RadioButton
               value="light"
               label="prepare for light speed"/>
             <RadioButton
               value="not_light"
-              label="light speed too slow"
-              defaultChecked={true}/>
+              label="light speed too slow"/>
             <RadioButton
               value="ludicrous"
               label="go to ludicrous speed"

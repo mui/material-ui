@@ -2,6 +2,8 @@ var React = require('react');
 var Paper = require('./paper.jsx');
 var Classable = require('./mixins/classable.js');
 var EnhancedSwitch = require('./enhanced-switch.jsx');
+var RadioButtonOff = require('./svg-icons/toggle-radio-button-off.jsx');
+var RadioButtonOn = require('./svg-icons/toggle-radio-button-on.jsx');
 
 var RadioButton = React.createClass({
 
@@ -63,8 +65,8 @@ var RadioButton = React.createClass({
         <div className="mui-switch">
 
           <div className={classes}>
-            <div className="mui-radio-button-target" />
-            <div className="mui-radio-button-fill" />
+            <RadioButtonOff className="mui-radio-button-target" />
+            <RadioButtonOn className="mui-radio-button-fill" />
           </div>
         </div>
 

@@ -10,6 +10,7 @@ var RadioButtonGroup = React.createClass({
 
 	propTypes: {
 		name: React.PropTypes.string.isRequired,
+    defaultSelected: React.PropTypes.string,
 		onChange: React.PropTypes.func
 	},
 
@@ -21,9 +22,13 @@ var RadioButtonGroup = React.createClass({
   getInitialState: function() {
     var initialSelection = '';
     
-    this.props.children.forEach(function(option) {
-      if (this._hasCheckAttribute(option) || option.props.defaultChecked) initialSelection = option.props.value;
-    }, this);
+    if (this.props.hasOwnProperty('defaultSelected')) {
+      initialSelection = this.props.defaultSelected;
+    } else {
+      this.props.children.forEach(function(option) {
+        if (this._hasCheckAttribute(option) || option.props.defaultChecked) initialSelection = option.props.value;
+      }, this);
+    }
 
     return {
       numberCheckedRadioButtons: 0,
