@@ -9,6 +9,7 @@ var Checkbox = React.createClass({
   mixins: [Classable],
 
   propTypes: {
+    id: React.PropTypes.string,
     onCheck: React.PropTypes.func,
     checked: React.PropTypes.bool,
     defaultChecked: React.PropTypes.bool,
@@ -50,6 +51,12 @@ var Checkbox = React.createClass({
       'mui-is-required': this.props.required
     });
 
+    var labelDiv = this.props.label ? (
+      <label className="mui-switch-label" htmlFor={this.props.id}>
+        {this.props.label}
+      </label>
+    ) : null;
+
     return (
       <div className="mui-switch-wrap">
 
@@ -68,10 +75,8 @@ var Checkbox = React.createClass({
           </div>
         </div>
 
-        <label className="mui-switch-label">
-          {this.props.label}
-        </label>
-
+        {labelDiv}
+        
       </div> 
     );
   },
