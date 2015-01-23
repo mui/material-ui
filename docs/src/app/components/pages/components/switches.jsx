@@ -46,7 +46,8 @@ var SwitchesPage = React.createClass({
       '      defaultChecked={true} />\n' +
       '   <RadioButton\n' +
       '      value="ludicrous"\n' +
-      '      label="go to ludicous speed" />\n' +
+      '      label="go to ludicous speed"\n'+
+      '      disabled={true}/>\n' +
       '</RadioButtonGroup>\n\n' +
       '//Toggle\n' +
       '<Toggle\n' +
