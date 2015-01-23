@@ -8,6 +8,7 @@ var Toggle = React.createClass({
   mixins: [Classable],
 
   propTypes: {
+    id: React.PropTypes.string,
     onToggle: React.PropTypes.func,
     checked: React.PropTypes.bool,
     defaultToggled: React.PropTypes.bool,
@@ -55,11 +56,11 @@ var Toggle = React.createClass({
       </div>
     );
 
-    var labelDiv = (
-      <div className="mui-switch-label">
+    var labelElement = this.props.label ? (
+      <label className="mui-switch-label" htmlFor={this.props.id}>
         {this.props.label}
-      </div>
-    );
+      </label>
+    ) : null;
 
     var labelPositionExist = this.props.labelPosition;
 
@@ -67,11 +68,11 @@ var Toggle = React.createClass({
     var divsInOrder = (labelPositionExist && (this.props.labelPosition.toUpperCase() === "RIGHT")) ? (
         <div>
           {toggleDiv}
-          {labelDiv}
+          {labelElement}
         </div>
       ) : (
         <div>
-          {labelDiv}
+          {labelElement}
           {toggleDiv}
         </div>
     );

@@ -294,20 +294,23 @@ var SwitchesPage = React.createClass({
 
         <div className="switches-example-container">
           <Checkbox
+            id="checkboxId1"
             name="checkboxName1" 
             value="checkboxValue1"
             label="went for a run today"
             onCheck={this._onCheck}/>
         </div>
         <div className="switches-example-container">
-          <Checkbox 
+          <Checkbox
+            id="checkboxId2"
             name="checkboxName2" 
             value="checkboxValue2"
             label="fed the dog"
             defaultChecked={true}/>
         </div>
         <div className="switches-example-container">
-          <Checkbox 
+          <Checkbox
+            id="checkboxId3"
             name="checkboxName3" 
             value="checkboxValue3"
             label="built a house on the moon"
@@ -327,14 +330,16 @@ var SwitchesPage = React.createClass({
         </div>
 
         <div className="switches-example-container">
-          <Toggle 
+          <Toggle
+            id="toggleId1"
             name="toggleName1"
             value="toggleValue1"
             label="activate thrusters" 
             onToggle={this._onToggle}/>
         </div>
         <div className="switches-example-container">
-          <Toggle 
+          <Toggle
+            id="toggleId2"
             name="toggleName2"
             value="toggleValue2"
             label="auto-pilot" 
@@ -343,6 +348,7 @@ var SwitchesPage = React.createClass({
         <div className="switches-example-container">
           <Toggle 
             onToggle={this._onToggle}
+            id="toggleId3"
             name="toggleName3"
             value="toggleValue3"
             label="initiate self-destruct sequence" 
@@ -367,12 +373,15 @@ var SwitchesPage = React.createClass({
           defaultSelected="not_light"
           onChange={this._onRadioButtonClick}>
             <RadioButton
+              id="radioButtonId1"
               value="light"
               label="prepare for light speed"/>
             <RadioButton
+              id="radioButtonId2"
               value="not_light"
               label="light speed too slow"/>
             <RadioButton
+              id="radioButtonId3"
               value="ludicrous"
               label="go to ludicrous speed"
               disabled={true}/>
