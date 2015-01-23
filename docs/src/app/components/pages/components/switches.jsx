@@ -71,13 +71,13 @@ var SwitchesPage = React.createClass({
           {
             name: 'name',
             type: 'string',
-            header: 'required',
+            header: 'optional',
             desc: 'This is the name of the checkbox.'
           },
           {
             name: 'value',
             type: 'string',
-            header: 'required',
+            header: 'optional',
             desc: 'The value of our checkbox component.'
           },
           {
@@ -127,7 +127,7 @@ var SwitchesPage = React.createClass({
           {
             name: 'value',
             type: 'string',
-            header: 'required',
+            header: 'optional',
             desc: 'The value of our radio button component.'
           },
           {
@@ -200,13 +200,13 @@ var SwitchesPage = React.createClass({
           {
             name: 'name',
             type: 'string',
-            header: 'required',
+            header: 'optional',
             desc: 'This is the name of the toggle.'
           },
           {
             name: 'value',
             type: 'string',
-            header: 'required',
+            header: 'optional',
             desc: 'The value of our toggle component.'
           },
           {
