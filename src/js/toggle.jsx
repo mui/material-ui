@@ -82,7 +82,7 @@ var Toggle = React.createClass({
         <EnhancedSwitch 
           {...other} 
           ref="enhancedSwitch"
-          switchType="toggle"
+          inputType="checkbox"
           className="mui-switch-toggle"
           onSwitch={this._onToggle}
           defaultSwitched={this.props.defaultToggled} />

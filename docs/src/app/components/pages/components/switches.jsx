@@ -2,9 +2,11 @@ var React = require('react');
 var mui = require('mui');
 var Checkbox = mui.Checkbox;
 var RadioButton = mui.RadioButton;
+var RadioButtonGroup = mui.RadioButtonGroup;
 var Toggle = mui.Toggle;
 var CodeExample = require('../../code-example/code-example.jsx');
 var ComponentDoc = require('../../component-doc.jsx');
+var RaisedButton = mui.RaisedButton;
 
 var SwitchesPage = React.createClass({
 
@@ -27,19 +29,21 @@ var SwitchesPage = React.createClass({
       '  label="built a house on the moon"\n' +
       '  disabled={true} />\n\n' +
       '//Radio Buttons\n' +
-      '<RadioButton\n' +
-      '  name="shipSpeed1"\n' +
-      '  value="light"\n' +
-      '  label="prepare for light speed" />\n' +
-      '<RadioButton\n' +
-      '  name="shipSpeed2"\n' +
-      '  value="not_light"\n' +
-      '  label="light speed too slow"\n' +
-      '  defaultChecked={true} />\n' +
-      '<RadioButton\n' +
-      '  name="shipSpeed3"\n' +
-      '  value="ludicrous"\n' +
-      '  label="go to ludicous speed" />\n\n' +
+      '<RadioButtonGroup \n' +
+      '  name="shipSpeed"\n' +
+      '  defaultSelected="not_light">\n' +
+      '    <RadioButton\n' +
+      '      value="light"\n' +
+      '      label="prepare for light speed" />\n' +
+      '    <RadioButton\n' +
+      '      value="not_light"\n' +
+      '      label="light speed too slow"\n' +
+      '      defaultChecked={true} />\n' +
+      '   <RadioButton\n' +
+      '      value="ludicrous"\n' +
+      '      label="go to ludicous speed"\n'+
+      '      disabled={true}/>\n' +
+      '</RadioButtonGroup>\n\n' +
       '//Toggle\n' +
       '<Toggle\n' +
       '  name="toggleName1"\n' +
@@ -121,12 +125,6 @@ var SwitchesPage = React.createClass({
         name: 'Radio Button',
         infoArray: [
           {
-            name: 'name',
-            type: 'string',
-            header: 'required',
-            desc: 'The name of the radio button component.'
-          },
-          {
             name: 'value',
             type: 'string',
             header: 'required',
@@ -146,6 +144,56 @@ var SwitchesPage = React.createClass({
           }
         ]
       },
+      {
+        name: 'Radio Button Group',
+        infoArray: [
+          {
+            name: 'name',
+            type: 'string',
+            header: 'required',
+            desc: 'The name that will be applied to all radio buttons inside it.'
+          },
+          {
+            name: 'defaultSelected',
+            type: 'string',
+            header: 'optional',
+            desc: 'Sets the default radio button to be the one whose value matches ' + 
+                  'defaultSelected (case-sensitive). This will override any individual radio ' +
+                  'button with the defaultChecked or checked property stated.'
+          }
+        ]
+      },
+      {
+        name: 'Radio Button Group Methods',
+        infoArray: [
+          {
+            name: 'getSelectedValue',
+            header: 'RadioButtonGroup.getSelectedValue()',
+            desc: 'Returns the string value of the radio button that is currently selected. If nothing ' +
+                  'has been selected, an empty string is returned.'
+          },
+          {
+            name: 'setSelectedValue',
+            header: 'RadioButtonGroup.setSelectedValue(newSelection)',
+            desc: 'Sets the selected radio button to the radio button whose value matches ' +
+                  'newSelection'
+          }
+        ]
+      },
+      {
+        name: 'Radio Button Group Events',
+        infoArray: [
+          {
+            name: 'onChange',
+            type: 'function(e, selected)',
+            header: 'optional',
+            desc: 'Callback function that is fired when a radio button has been clicked. Returns ' + 
+                  'the event and the value of the radio button that has been selected.'
+          }
+        ]
+      },
+
+
       {
         name: 'Toggle Props',
         infoArray: [
@@ -225,11 +273,11 @@ var SwitchesPage = React.createClass({
         desc={desc}
         componentInfo={componentInfo}>
 
-        <div className="switches-examples">
+        <form className="switches-examples">
           {this._getCheckboxExample()}
           {this._getRadioButtonExample()}
           {this._getToggleExample()}
-        </div>
+        </form>
 
       </ComponentDoc>
     );
@@ -314,30 +362,23 @@ var SwitchesPage = React.createClass({
           <h2 className="mui-font-style-headline">Radio Buttons</h2>
         </div>
 
-      <div className="switches-example-container">
-        <RadioButton
-          name="shipSpeed1"
-          value="light"
-          label="prepare for light speed"
-          onClick={this._onRadioButtonClick} />
-      </div>
-      <div className="switches-example-container">
-        <RadioButton
-          name="shipSpeed2"
-          value="not_light"
-          label="light speed too slow"
-          defaultChecked={true}
-          onClick={this._onRadioButtonClick} />
-      </div>
-      <div className="switches-example-container">
-        <RadioButton
-          name="shipSpeed3"
-          value="ludicrous"
-          label="go to ludicrous speed"
-          onClick={this._onRadioButtonClick} />
-      </div>
+        <RadioButtonGroup 
+          name="shipSpeed"
+          defaultSelected="not_light"
+          onChange={this._onRadioButtonClick}>
+            <RadioButton
+              value="light"
+              label="prepare for light speed"/>
+            <RadioButton
+              value="not_light"
+              label="light speed too slow"/>
+            <RadioButton
+              value="ludicrous"
+              label="go to ludicrous speed"
+              disabled={true}/>
+        </RadioButtonGroup>
 
-    </div>
+      </div>
     );
   },
 
@@ -349,10 +390,9 @@ var SwitchesPage = React.createClass({
     console.log('Toggled: ', toggled);
   },
 
-  _onRadioButtonClick: function(e, checked) {
-    console.log('Clicked:', checked);
-  }
-
+  _onRadioButtonClick: function(e, selected) {
+    console.log('Selected: ', selected);
+  },
 });
 
 module.exports = SwitchesPage;

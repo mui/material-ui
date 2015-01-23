@@ -56,7 +56,7 @@ var Checkbox = React.createClass({
         <EnhancedSwitch 
           {...other}
           ref="enhancedSwitch"
-          switchType="checkbox"
+          inputType="checkbox"
           className="mui-switch-checkbox"
           onSwitch={this._onCheck}
           defaultSwitched={this.props.defaultChecked} />

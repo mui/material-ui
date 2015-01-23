@@ -1,46 +1,59 @@
-.mui-radio-button {
-  * { .ease-out; }
+.mui-switch-radio-button {
+  @radio-button-size: 24px;
 
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
+  height: @radio-button-size;
+  width: @radio-button-size;
+  margin-right: @desktop-gutter-less;
+  
+  * { .ease-out; }
   
   .mui-radio-button-fill {
     position: absolute;
-    background-color: @radio-button-background-color;
-    height: @radio-button-size;
-    width: @radio-button-size;
-    border-radius: 50%;
-    left: 0;
-    top: 0;
+    opacity: 0;
     transform: scale(0);
-    
+    transform-origin: 50% 50%;
+    .ease-out;
+    * { fill: @radio-button-checked-color; }
   }
 
   .mui-radio-button-target {
-    background-color: @radio-button-background-color;
-    border: 2px solid @radio-button-border-color;
-    border-radius: 50%;
-    height: @radio-button-size;
-    width: @radio-button-size;
-    float: left;
+    .ease-out();
+    position: absolute;
+    opacity: 1;
+    transform: scale(1);
+    * {
+      fill: @radio-button-border-color;
+      .ease-out(@duration: 2s; @delay: 200ms);
+    }
   }
 
-  .mui-radio-button-label {
-    line-height: @radio-button-size;
-    float: left;
-    margin-left: @desktop-gutter-mini;
-  }
+  &.mui-is-switched {
+    .mui-radio-button-fill {
+      opacity: 1;
+      transform: scale(1);
+    }
 
-  input[type=radio] {
-    display: none;
-
-    &:checked {
-      &+.mui-radio-button-fill {
-        background-color: @radio-button-check-color;
-        border-color: @radio-button-border-color;
-        transform: scale(.5);
+    .mui-radio-button-target {
+      opacity: 0;
+      transform: scale(0);
+      * { 
+        fill: @radio-button-checked-color; 
+        .ease-out(@duration: 100s; @delay: 0ms);
       }
+    }
+
+  }
+
+  &.mui-is-disabled {
+    .mui-radio-button-fill,
+    .mui-radio-button-target {
+      * { fill: @radio-button-disabled-color; }
+    }
+  }
+
+  &.mui-is-required {
+    .mui-radio-button-target {
+      * { fill: @radio-button-required-color; }
     }
   }
 }
