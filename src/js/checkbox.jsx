@@ -45,7 +45,8 @@ var Checkbox = React.createClass({
       ...other
     } = this.props;
 
-    var classes = this.getClasses("mui-switch-wrap", {
+    var classes = this.getClasses("mui-checkbox", {
+      'mui-switch-wrap': true,
       'mui-is-switched': this.state.switched,
       'mui-is-disabled': this.props.disabled,
       'mui-is-required': this.props.required
@@ -67,11 +68,9 @@ var Checkbox = React.createClass({
           onSwitch={this._onCheck}
           defaultSwitched={this.props.defaultChecked} />
 
-        <div className="mui-switch">
-          <div className="mui-checkbox">
-            <CheckboxOutline className="mui-checkbox-box" />
-            <CheckboxChecked className="mui-checkbox-check" />
-          </div>
+       <div className="mui-checkbox-icon mui-switch">
+          <CheckboxOutline className="mui-checkbox-box" />
+          <CheckboxChecked className="mui-checkbox-check" />
         </div>
 
         {labelElement}

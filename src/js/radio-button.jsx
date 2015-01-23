@@ -46,7 +46,8 @@ var RadioButton = React.createClass({
       ...other
     } = this.props;
 
-    var classes = this.getClasses("mui-switch-wrap", {
+    var classes = this.getClasses("mui-radio-button", {
+      'mui-switch-wrap': true,
       'mui-is-switched': this.state.switched,
       'mui-is-disabled': this.props.disabled,
       'mui-is-required': this.props.required
@@ -69,12 +70,9 @@ var RadioButton = React.createClass({
           onSwitch={this._onCheck}
           defaultSwitched={this.props.defaultChecked} />
 
-        <div className="mui-switch">
-
-          <div className="mui-radio-button">
-            <RadioButtonOff className="mui-radio-button-target" />
-            <RadioButtonOn className="mui-radio-button-fill" />
-          </div>
+        <div className="mui-radio-button-icon mui-switch">
+          <RadioButtonOff className="mui-radio-button-target" />
+          <RadioButtonOn className="mui-radio-button-fill" />
         </div>
 
         {labelElement}

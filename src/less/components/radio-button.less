@@ -1,56 +1,36 @@
-.mui-switch-wrap {
-  @mui-switch-width: 60px;
+.mui-radio-button {
+  .mui-radio-button-icon {
+    @radio-button-size: 24px;
 
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  height: auto;
-  width: 100%;
+    height: @radio-button-size;
+    width: @radio-button-size;
+    margin-right: @desktop-gutter-less;
+    
+    * { .ease-out; }
+    
+    .mui-radio-button-fill {
+      position: absolute;
+      opacity: 0;
+      transform: scale(0);
+      transform-origin: 50% 50%;
+      .ease-out;
+      * { fill: @radio-button-checked-color; }
+    }
 
-  .mui-switch {
-    .ease-out();
-    float: left;
-    position: relative;
-
-    .mui-radio-button {
-      @radio-button-size: 24px;
-
-      height: @radio-button-size;
-      width: @radio-button-size;
-      margin-right: @desktop-gutter-less;
-      
-      * { .ease-out; }
-      
-      .mui-radio-button-fill {
-        position: absolute;
-        opacity: 0;
-        transform: scale(0);
-        transform-origin: 50% 50%;
-        .ease-out;
-        * { fill: @radio-button-checked-color; }
-      }
-
-      .mui-radio-button-target {
-        .ease-out();
-        position: absolute;
-        opacity: 1;
-        transform: scale(1);
-        * {
-          fill: @radio-button-border-color;
-          .ease-out(@duration: 2s; @delay: 200ms);
-        }
+    .mui-radio-button-target {
+      .ease-out();
+      position: absolute;
+      opacity: 1;
+      transform: scale(1);
+      * {
+        fill: @radio-button-border-color;
+        .ease-out(@duration: 2s; @delay: 200ms);
       }
     }
   }
-
-  .mui-switch-label {
-    float: left;
-    width: calc(~"100% - @{mui-switch-width}");
-    line-height: 24px;
-  }
-
+    
   &.mui-is-switched {
-    .mui-switch {
+    .mui-radio-button-icon {
       .mui-radio-button-fill {
         opacity: 1;
         transform: scale(1);
@@ -68,7 +48,7 @@
   }
 
   &.mui-is-disabled {
-    .mui-switch {
+    .mui-radio-button-icon {
       .mui-radio-button-fill,
       .mui-radio-button-target {
         * { fill: @radio-button-disabled-color; }
@@ -77,10 +57,12 @@
   }
 
   &.mui-is-required {
-    .mui-switch {
+    .mui-radio-button-icon {
       .mui-radio-button-target {
         * { fill: @radio-button-required-color; }
       }
     }
   }
 }
+
+

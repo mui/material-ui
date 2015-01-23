@@ -1,61 +1,42 @@
-.mui-switch-wrap {
+.mui-toggle {
   @mui-switch-width: 60px;
   
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  height: auto;
-  width: 100%;
+  .mui-toggle-icon {
+    @toggle-track-width: 36px;
+    @toggle-padding-right: calc(@mui-switch-width - @toggle-track-width);
 
-  .mui-switch {
-    .ease-out();
-    float: left;
-    position: relative;
+    padding: 4px 0px 6px 2px;
+    margin-right: @desktop-gutter-mini;
 
-    .mui-toggle {
-      @toggle-track-width: 36px;
-      @toggle-padding-right: calc(@mui-switch-width - @toggle-track-width);
+    &,* {
+      .ease-out();
+    }
 
-      padding: 4px 0px 6px 2px;
-      margin-right: @desktop-gutter-mini;
+    .mui-toggle-track {
+      width: @toggle-track-width;
+      height: 14px;
+      border-radius: 30px;
+      background-color: @toggle-track-off-color;
+    }
 
-      &,* {
-        .ease-out();
-      }
+    .mui-toggle-thumb {
+      position: absolute;
+      top: 1px;
+      left: 2px;
+      width: @toggle-size;
+      height: @toggle-size;
+      line-height: 24px;
+      border-radius: 50%;
+      background-color: @toggle-thumb-off-color;
 
-      .mui-toggle-track {
-        width: @toggle-track-width;
-        height: 14px;
-        border-radius: 30px;
-        background-color: @toggle-track-off-color;
-      }
-
-      .mui-toggle-thumb {
-        position: absolute;
-        top: 1px;
-        left: 2px;
-        width: @toggle-size;
-        height: @toggle-size;
-        line-height: 24px;
+      .mui-paper-container {
         border-radius: 50%;
-        background-color: @toggle-thumb-off-color;
-
-        .mui-paper-container {
-          border-radius: 50%;
-        }
       }
     }
   }
 
-  .mui-switch-label {
-    float: left;
-    width: calc(~"100% - @{mui-switch-width}");
-    line-height: 24px;
-  }
-
-
   &.mui-is-switched {
-    .mui-switch {
+    .mui-toggle-icon {
       .mui-toggle-track {
         background-color: @toggle-track-on-color;
       }
@@ -67,7 +48,7 @@
   }
 
   &.mui-is-disabled {
-    .mui-switch {
+    .mui-toggle-icon {
       cursor: default;
       .mui-toggle-track {
         background-color: @toggle-track-disabled-color;
@@ -79,7 +60,7 @@
   }
 
   &.mui-is-required {
-    .mui-switch {
+    .mui-toggle-icon {
       .mui-toggle-track {
         background-color: @toggle-track-required-color;
       }
@@ -90,3 +71,7 @@
     }
   }
 }
+
+
+
+
