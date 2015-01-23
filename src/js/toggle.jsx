@@ -41,7 +41,7 @@ var Toggle = React.createClass({
       ...other
     } = this.props;
     
-    var classes = this.getClasses("mui-toggle", {
+    var classes = this.getClasses("mui-switch-wrap", {
       'mui-is-switched': this.state.switched,
       'mui-is-disabled': this.props.disabled,
       'mui-is-required': this.props.required
@@ -49,7 +49,7 @@ var Toggle = React.createClass({
 
     var toggleDiv = (
       <div className="mui-switch">
-        <div className={classes}>
+        <div className="mui-toggle">
           <div className="mui-toggle-track" />
           <Paper className="mui-toggle-thumb" zDepth={1} />
         </div>
@@ -78,7 +78,7 @@ var Toggle = React.createClass({
     );
 
     return (
-      <div className="mui-switch-wrap">
+      <div className={classes}>
 
         <EnhancedSwitch 
           {...other} 

@@ -1,6 +1,6 @@
 .mui-switch-wrap {
   @mui-switch-width: 60px;
-
+  
   position: relative;
   cursor: pointer;
   overflow: hidden;
@@ -44,42 +44,6 @@
           border-radius: 50%;
         }
       }
-        
-      &.mui-is-switched {
-
-        .mui-toggle-track {
-          background-color: @toggle-track-on-color;
-        }
-
-        .mui-toggle-thumb {
-          left: 18px;
-          background-color: @toggle-thumb-on-color;
-        }
-
-      }
-
-      &.mui-is-disabled {
-        cursor: default;
-
-        .mui-toggle-track {
-          background-color: @toggle-track-disabled-color;
-        }
-
-        .mui-toggle-thumb {
-          background-color: @toggle-thumb-disabled-color;
-        }
-      }
-
-      &.mui-is-required {
-
-        .mui-toggle-track {
-          background-color: @toggle-track-required-color;
-        }
-
-        .mui-toggle-thumb {
-          background-color: @toggle-thumb-required-color;
-        }
-      }
     }
   }
 
@@ -87,5 +51,42 @@
     float: left;
     width: calc(~"100% - @{mui-switch-width}");
     line-height: 24px;
+  }
+
+
+  &.mui-is-switched {
+    .mui-switch {
+      .mui-toggle-track {
+        background-color: @toggle-track-on-color;
+      }
+      .mui-toggle-thumb {
+        left: 18px;
+        background-color: @toggle-thumb-on-color;
+      }
+    }
+  }
+
+  &.mui-is-disabled {
+    .mui-switch {
+      cursor: default;
+      .mui-toggle-track {
+        background-color: @toggle-track-disabled-color;
+      }
+      .mui-toggle-thumb {
+        background-color: @toggle-thumb-disabled-color;
+      }
+    }
+  }
+
+  &.mui-is-required {
+    .mui-switch {
+      .mui-toggle-track {
+        background-color: @toggle-track-required-color;
+      }
+
+      .mui-toggle-thumb {
+        background-color: @toggle-thumb-required-color;
+      }
+    }
   }
 }

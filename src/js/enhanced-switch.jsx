@@ -48,7 +48,7 @@ var EnhancedSwitch = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses("mui-switch-input");
+    var classes = this.getClasses("mui-enhanced-switch");
 
     var {
       type,

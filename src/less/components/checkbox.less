@@ -35,30 +35,6 @@
           .ease-out(@duration: 2s; @delay: 200ms);
         }
       }
-
-      &.mui-is-switched {
-        .mui-checkbox-check {
-          opacity: 1;
-          transform: scale(1);
-        }
-        .mui-checkbox-box {
-          .ease-out(@duration: 100s; @delay: 0ms);
-          * { fill: @checkbox-checked-color; }
-        }
-      }
-
-      &.mui-is-disabled {
-        .mui-checkbox-check,
-        .mui-checkbox-box {
-          * { fill: @checkbox-disabled-color; }
-        }
-      }
-
-      &.mui-is-required {
-        .mui-checkbox-box {
-          * { fill: @checkbox-required-color; }
-        }
-      }
     }
   }
 
@@ -66,5 +42,35 @@
     float: left;
     width: calc(~"100% - @{mui-switch-width}");
     line-height: 24px;
+  }
+
+  &.mui-is-switched {
+    .mui-checkbox {
+      .mui-checkbox-check {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .mui-checkbox-box {
+        .ease-out(@duration: 100s; @delay: 0ms);
+        * { fill: @checkbox-checked-color; }
+      }
+    }
+  }
+
+  &.mui-is-disabled {
+    .mui-checkbox {
+      .mui-checkbox-check,
+      .mui-checkbox-box {
+        * { fill: @checkbox-disabled-color; }
+      }
+    }
+  }
+
+  &.mui-is-required {
+    .mui-checkbox {
+      .mui-checkbox-box {
+        * { fill: @checkbox-required-color; }
+      }
+    }
   }
 }
