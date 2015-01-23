@@ -15,7 +15,7 @@ var RadioButton = React.createClass({
   },
 
   componentDidMount: function() {
-    this.setState({switched: this.refs.enhancedSwitch.isSwitched()});
+    this.setState({switched: this.isChecked()});
   },
 
   getInitialState: function() {
@@ -25,7 +25,6 @@ var RadioButton = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    console.log("componentWillReceiveProps");
     var hasCheckedProperty = nextProps.hasOwnProperty('checked');
     var hasDifferentDefaultProperty = 
       (nextProps.hasOwnProperty('defaultChecked') && 
@@ -35,7 +34,7 @@ var RadioButton = React.createClass({
       this.setState({switched: nextProps.checked});
     } else if (hasDifferentDefaultProperty) {
       this.setState({switched: nextProps.defaultChecked});
-    }
+    } 
   },
 
   render: function() {
@@ -77,9 +76,8 @@ var RadioButton = React.createClass({
     );
   },
 
-  // Only called when selected, not when unselected, so switched will be true.
+  // Only called when selected, not when unselected.
   _onCheck: function(e) {
-    this.setState({switched: true});
     if (this.props.onCheck) this.props.onCheck(e, this.props.value);
   },
 
@@ -88,8 +86,8 @@ var RadioButton = React.createClass({
   },
 
   setChecked: function(newCheckedValue) {
-    this.setState({switched: newCheckedValue});
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
+    this.setState({switched: newCheckedValue});
   }
 
 });

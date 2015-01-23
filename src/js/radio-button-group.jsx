@@ -10,12 +10,50 @@ var RadioButtonGroup = React.createClass({
 
 	propTypes: {
 		name: React.PropTypes.string.isRequired,
-		options: React.PropTypes.array,
 		onChange: React.PropTypes.func
 	},
 
+  _hasCheckAttribute: function(radioButton) {
+    return radioButton.props.hasOwnProperty('checked') && 
+      radioButton.props.checked; 
+  },
+
+  getInitialState: function() {
+    var initialSelection = '';
+    
+    this.props.children.forEach(function(option) {
+      if (this._hasCheckAttribute(option) || option.props.defaultChecked) initialSelection = option.props.value;
+    }, this);
+
+    return {
+      numberCheckedRadioButtons: 0,
+      selected: initialSelection
+    };
+  },
+
+  componentWillMount: function() {
+    var cnt = 0;
+    
+    this.props.children.forEach(function(option) {
+      if (this._hasCheckAttribute(option)) cnt++;
+    }, this);
+
+    this.setState({numberCheckedRadioButtons: cnt});
+  }, 
+
+  componentWillReceiveProps: function(nextProps) {
+    var newSelection = '';
+    
+    nextProps.children.forEach(function(option) {
+      if (this._hasCheckAttribute(option) || option.props.defaultChecked) newSelection = option.props.value;
+    }, this);
+
+    this.setState({selected: newSelection});
+  },
+
 	render: function() {
     var options = this.props.children.map(function(option) {
+      
       var {
         name,
         value,
@@ -31,7 +69,9 @@ var RadioButtonGroup = React.createClass({
         key={option.props.value}
         value={option.props.value}
         label={option.props.label}
-        onCheck={this._onChange} />
+        onCheck={this._onChange}
+        checked={option.props.value == this.state.selected}/>
+
 		}, this);
 
 		return (
@@ -41,14 +81,34 @@ var RadioButtonGroup = React.createClass({
 		);
 	},
 
-	_onChange: function(e, selected) {
-    this.props.children.forEach(function(option) {
-      this.refs[option.props.value].setChecked(selected == option.props.value);
-    }, this);
+  _updateRadioButtons: function(newSelection) {
+    if (this.state.numberCheckedRadioButtons == 0) {
+      
+      this.setState({selected: newSelection});
 
-    if (this.props.onChange) this.props.onChange(e, selected);
-	}
+    } else {
+        var message = "Cannot select a different radio button while another radio button " + 
+                      "has the 'checked' property set to true.";
+        console.error(message);
+    }
+  },
 
+	_onChange: function(e, newSelection) {
+    this._updateRadioButtons(newSelection);
+
+    // Successful update
+    if (this.state.numberCheckedRadioButtons == 0) {
+      if (this.props.onChange) this.props.onChange(e, newSelection);
+    }
+	},
+
+  getSelectedValue: function() {
+    return this.state.selected;
+  },
+
+  setSelectedValue: function(newSelection) {
+    this._updateRadioButtons(newSelection);  
+  }
 });
 
 module.exports = RadioButtonGroup;
