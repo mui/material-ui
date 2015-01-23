@@ -5,7 +5,6 @@ var Paper = require('./paper.jsx');
 var EnhancedSwitch = React.createClass({
 	propTypes: {
       inputType: React.PropTypes.string.isRequired,
-	    className: React.PropTypes.string.isRequired,
       name: React.PropTypes.string.isRequired,
 	    value: React.PropTypes.string.isRequired,
 	    label: React.PropTypes.string,
@@ -49,11 +48,7 @@ var EnhancedSwitch = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses(this.props.className, {
-      'mui-is-switched': this.state.switched,
-      'mui-is-disabled': this.props.disabled,
-      'mui-is-required': this.props.required
-    });
+    var classes = this.getClasses("mui-switch-input");
 
     var {
       type,
@@ -68,6 +63,7 @@ var EnhancedSwitch = React.createClass({
       <input 
           {...other} 
           ref="checkbox"
+          className={classes}
           type={this.props.inputType}
           name={this.props.name}
           value={this.props.value}

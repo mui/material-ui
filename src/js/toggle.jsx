@@ -41,7 +41,7 @@ var Toggle = React.createClass({
       ...other
     } = this.props;
     
-    var classes = this.getClasses("mui-switch-toggle", {
+    var classes = this.getClasses("mui-toggle", {
       'mui-is-switched': this.state.switched,
       'mui-is-disabled': this.props.disabled,
       'mui-is-required': this.props.required
@@ -84,7 +84,6 @@ var Toggle = React.createClass({
           {...other} 
           ref="enhancedSwitch"
           inputType="checkbox"
-          className="mui-switch-toggle"
           onSwitch={this._onToggle}
           defaultSwitched={this.props.defaultToggled} />
 
