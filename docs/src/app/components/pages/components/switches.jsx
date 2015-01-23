@@ -61,8 +61,10 @@ var SwitchesPage = React.createClass({
       '  disabled={true} />\n\n';
 
     var desc = 'This component generates a switches element and all props except for the custom ' +
-        'props below will be passed down to the switch element. Checkboxes can now accept input ' +
-        'attributes of type "checkbox" as properties. See checkbox 3 for an example of this.';
+        'props below will be passed down to the switch element. All switch can now accept input ' +
+        'attributes of type "checkbox" and "radio" as properties. This can be seen in checkbox ' +
+        '3. In it the input attribute "disabled" is included as a property and is handled ' + 
+        'accordingly';
 
     var componentInfo = [
       {
