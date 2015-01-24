@@ -4,7 +4,6 @@ var Checkbox = mui.Checkbox;
 var RadioButton = mui.RadioButton;
 var RadioButtonGroup = mui.RadioButtonGroup;
 var Toggle = mui.Toggle;
-var CodeExample = require('../../code-example/code-example.jsx');
 var ComponentDoc = require('../../component-doc.jsx');
 var RaisedButton = mui.RaisedButton;
 
