@@ -17,7 +17,6 @@ var SnackbarPage = React.createClass({
       '  //We can add more code to this function, but for now we\'ll just include an alert.\n' +
       '  alert("We removed the event from your calendar.");\n' +
       '}';
-      ;
 
     var componentInfo = [
       {
