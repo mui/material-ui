@@ -5,8 +5,8 @@ var Paper = require('./paper.jsx');
 var EnhancedSwitch = React.createClass({
 	propTypes: {
       inputType: React.PropTypes.string.isRequired,
-      name: React.PropTypes.string.isRequired,
-	    value: React.PropTypes.string.isRequired,
+      name: React.PropTypes.string,
+	    value: React.PropTypes.string,
 	    label: React.PropTypes.string,
 	    onSwitch: React.PropTypes.func,
 	    required: React.PropTypes.bool,
