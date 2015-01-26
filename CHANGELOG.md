@@ -1,3 +1,51 @@
+## 0.6.0
+###### _Jan. 26, 2105_
+
+##### General
+- Fixed dependencies to prevent multiple versions of React getting loaded on the docs site (#194)
+
+##### Deprecated
+- Input - Please use TextField instead.
+
+##### New
+- Radio Button Group
+  - This component was created to make it easier to work with groups of radio buttons (#151)
+- Tabs
+  - Added new Tabs component.
+- TextField
+  - This component replaces Input. It extends the native input element and will support all of 
+    its props and events. It also supports valueLink and can be controlled or uncontrolled.
+  - MultiLine text fields now grow and shrink as the user inputs data.
+  - Allow for both floating labels and hint text in the same input.
+  - Floating labels now generate a label element.
+
+##### Fixes
+- AppBar
+  - Added icon prop. (#250)
+- Checkbox
+  - Checkbox styling now matches material design specs
+  - This component has been revamped and can now be controlled or uncontrolled.
+- Date Picker
+  - Fixed a bug with getDate() (#196)
+  - Added onChange prop (#198)
+- Dialog
+  - Actions can now be passed in as an array of react elements. (#241)
+- Menu Item
+  - Menu Items now respond to onTouchTap
+- Radio Button
+  - Checkbox styling now matches material design specs
+  - This component has been revamped and can now be controlled or uncontrolled.
+- Slider
+  - Fixed a css bug with slider handles (#225)
+  - Added onDragStart and onDragStop props (#217)
+- Snackbar
+  - Fixed Ghost hidden snackbar (#235)
+- Toggle
+  - This component now extends a native input checkbox.
+  - It can now be controlled or uncontrolled.
+- Toolbar
+  - Fixed FlatButton positioning inside toolbar (#224)
+
 ## 0.5.0
 ###### _Jan. 3, 2105_
 
@@ -12,7 +60,7 @@
   - Spacebar key up triggers button clicks. (#155)
 - Slider
   - Changed slider cursor (#187)
-- Snackbar (New)
+- Snackbar **(New)**
   - Added a snackbar component.
 
 ## 0.4.1
@@ -27,7 +75,7 @@
 - Buttons
   - Added secondary button colors
   - Removed underline styles on link buttons (#172)
-- Date Picker (New)
+- Date Picker **(New)**
   - Added new date picker component.
   - Dialog version is implemented, inline version to follow in upcoming release.
   - Has both portrait and landscape modes.
