@@ -102,10 +102,12 @@ var DialogPage = React.createClass({
 
     var customActions = [
       <FlatButton
+        key={1}
         label="Cancel"
         secondary={true}
         onTouchTap={this._handleCustomDialogCancel} />,
       <FlatButton
+        key={2}
         label="Submit"
         primary={true}
         onTouchTap={this._handleCustomDialogSubmit} />
