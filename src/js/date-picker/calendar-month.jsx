@@ -26,9 +26,11 @@ var CalendarMonth = React.createClass({
   _getWeekElements: function() {
     var weekArray = DateTime.getWeekArray(this.props.displayDate);
 
-    return weekArray.map(function(week) {
+    return weekArray.map(function(week, i) {
       return (
-        <div className="mui-date-picker-calendar-month-week">
+        <div
+          key={i}
+          className="mui-date-picker-calendar-month-week">
           {this._getDayElements(week)}
         </div>
       );
@@ -36,10 +38,11 @@ var CalendarMonth = React.createClass({
   },
 
   _getDayElements: function(week) {
-    return week.map(function(day) {
+    return week.map(function(day, i) {
       var selected = DateTime.isEqualDate(this.props.selectedDate, day);
       return (
         <DayButton
+          key={i}
           date={day}
           onTouchTap={this._handleDayTouchTap}
           selected={selected} />

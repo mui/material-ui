@@ -11,12 +11,12 @@ var ComponentInfo = React.createClass({
     var propElements = [],
       typesSpan;
 
-    this.props.infoArray.forEach(function(info) {
+    this.props.infoArray.forEach(function(info, i) {
 
       if (info.type) typesSpan = <span className="component-info-type">{info.type}</span>;
 
       propElements.push(
-        <tr>
+        <tr key={i}>
           <td className="component-info-name">{info.name}</td>
           <td className="component-info-desc">
             <p className="component-info-header">{typesSpan}{info.header}</p>
