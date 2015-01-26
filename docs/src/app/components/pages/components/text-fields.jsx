@@ -58,50 +58,41 @@ var TextFieldsPage = React.createClass({
 
       '//Floating Hint Text Labels\n' +
       '<TextField\n' +
-      '  id="FloatingTextField1"\n' +
       '  hintText="Hint Text"\n' +
       '  floatingLabelText="Floating Label Text" />\n' +
       '<TextField\n' +
-      '  id="FloatingTextField2"\n' +
       '  hintText="Hint Text"\n' +
       '  defaultValue="Default Value"\n' +
       '  floatingLabelText="Floating Label Text" />\n' +
       '<TextField\n' +
-      '  id="FloatingTextField3"\n' +
       '  hintText="Hint Text"\n' +
       '  floatingLabelText="Floating Label Text"\n' +
       '  value={this.state.floatingPropValue}\n' +
       '  onChange={this._handleFloatingInputChange} />\n' +
       '<TextField\n' +
-      '  id="FloatingTextField4"\n' +
       '  hintText="Hint Text"\n' +
       '  floatingLabelText="Floating Label Text"\n' +
       '  valueLink={this.linkState(\'floatingValueLinkValue\')} />\n' +
       '<TextField\n' +
-      '  id="FloatingTextField5"\n' +
       '  hintText="Hint Text (MultiLine)"\n' +
       '  floatingLabelText="Floating Label Text"\n' +
       '  multiLine={true} />\n' +
       '<TextField\n' +
-      '  id="FloatingTextField6"\n' +
       '  hintText="Hint Text"\n' +
       '  errorText={this.state.floatingErrorText}\n' +
       '  floatingLabelText="Floating Label Text"\n' +
       '  onChange={this._handleFloatingErrorInputChange} />\n' +
       '<TextField\n' +
-      '  id="FloatingTextField7"\n' +
       '  hintText="Hint Text"\n' +
       '  errorText={this.state.floatingError2Text}\n' +
       '  defaultValue="abc"\n' +
       '  floatingLabelText="Floating Label Text"\n' +
       '  onChange={this._handleFloating2ErrorInputChange} />\n' +
       '<TextField\n' +
-      '  id="FloatingTextField8"\n' +
       '  hintText="Disabled Hint Text"\n' +
       '  disabled={true}\n' +
       '  floatingLabelText="Floating Label Text" />\n' +
       '<TextField\n' +
-      '  id="FloatingTextField9"\n' +
       '  hintText="Disabled Hint Text"\n' +
       '  disabled={true}\n' +
       '  defaultValue="Disabled With Value"\n' +
@@ -124,8 +115,7 @@ var TextFieldsPage = React.createClass({
             name: 'floatingLabelText',
             type: 'string',
             header: 'optional',
-            desc: 'The text string to use for the floating label element. Be sure to also pass in an id prop ' +
-              'so that the generated label gets properly bound to the input.'
+            desc: 'The text string to use for the floating label element.'
           },
           {
             name: 'hintText',
@@ -222,50 +212,41 @@ var TextFieldsPage = React.createClass({
 
           <div className="text-field-example-group">
             <TextField
-              id="FloatingTextField1"
               hintText="Hint Text"
               floatingLabelText="Floating Label Text" /><br/>
             <TextField
-              id="FloatingTextField2"
               hintText="Hint Text"
               defaultValue="Default Value"
               floatingLabelText="Floating Label Text" /><br/>
             <TextField
-              id="FloatingTextField3"
               hintText="Hint Text"
               floatingLabelText="Floating Label Text"
               value={this.state.floatingPropValue}
               onChange={this._handleFloatingInputChange} /><br/>
             <TextField
-              id="FloatingTextField4"
               hintText="Hint Text"
               floatingLabelText="Floating Label Text"
               valueLink={this.linkState('floatingValueLinkValue')} /><br/>
             <TextField
-              id="FloatingTextField5"
               hintText="Hint Text (MultiLine)"
               floatingLabelText="Floating Label Text"
               multiLine={true} /><br/>
             <TextField
-              id="FloatingTextField6"
               hintText="Hint Text"
               errorText={this.state.floatingErrorText}
               floatingLabelText="Floating Label Text"
               onChange={this._handleFloatingErrorInputChange} /><br/>
             <TextField
-              id="FloatingTextField7"
               hintText="Hint Text"
               errorText={this.state.floatingError2Text}
               defaultValue="abc"
               floatingLabelText="Floating Label Text"
               onChange={this._handleFloating2ErrorInputChange} /><br/>
             <TextField
-              id="FloatingTextField8"
               hintText="Disabled Hint Text"
               disabled={true}
               floatingLabelText="Floating Label Text" /><br/>
             <TextField
-              id="FloatingTextField9"
               hintText="Disabled Hint Text"
               disabled={true}
               defaultValue="Disabled With Value"
