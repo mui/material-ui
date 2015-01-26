@@ -14,11 +14,10 @@ var EnhancedSwitch = React.createClass({
 	    defaultSwitched: React.PropTypes.bool
 	  },
 
-  mixins: [Classable],
-
   getInitialState: function() {
     return {
-      switched: this.props.defaultSwitched || false
+      switched: this.props.defaultSwitched ||
+        (this.props.valueLink && this.props.valueLink.value)
     }
   },
 
@@ -28,28 +27,26 @@ var EnhancedSwitch = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    var hasCheckedProperty = nextProps.hasOwnProperty('checked');
-    var hasDifferentDefaultProperty = 
+    var hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
+    var hasCheckedProp = nextProps.hasOwnProperty('checked');
+    var hasNewDefaultProp = 
       (nextProps.hasOwnProperty('defaultSwitched') && 
       (nextProps.defaultSwitched != this.props.defaultSwitched));
+    var newState = {};
 
-    if (hasCheckedProperty) {
-      this.setState({switched: nextProps.checked});
-    } else if (hasDifferentDefaultProperty) {
-      this.setState({switched: nextProps.defaultSwitched});
+
+    if (hasCheckedProp) {
+      newState.switched = nextProps.checked;
+    } else if (hasCheckedLinkProp) {
+      newState.switched = nextProps.checkedLink.value;
+    } else if (hasNewDefaultProp) {
+      newState.switched = nextProps.defaultSwitched;
     }
-  },
 
-  handleChange: function(e) {
-    var isInputChecked = this.refs.checkbox.getDOMNode().checked;
-
-    if (!this.props.hasOwnProperty('checked')) this.setState({switched: isInputChecked});
-    if (this.props.onSwitch) this.props.onSwitch(e, isInputChecked);
+    if (newState) this.setState(newState);
   },
 
   render: function() {
-    var classes = this.getClasses("mui-enhanced-switch");
-
     var {
       type,
       name,
@@ -59,15 +56,24 @@ var EnhancedSwitch = React.createClass({
       ...other
     } = this.props;
 
+    var inputProps;
+
+    inputProps = {
+      ref: "checkbox",
+      type: this.props.inputType,
+      name: this.props.name,
+      value: this.props.value,
+    };
+
+    if (!this.props.hasOwnProperty('checkedLink')) {
+      inputProps.onChange = this._handleChange;
+    }
+
     return (
       <input 
-          {...other} 
-          ref="checkbox"
-          className={classes}
-          type={this.props.inputType}
-          name={this.props.name}
-          value={this.props.value}
-          onChange={this.handleChange} />
+        {...other} 
+        {...inputProps}
+        className="mui-enhanced-switch"/>
     );
   },
 
@@ -85,7 +91,19 @@ var EnhancedSwitch = React.createClass({
       var message = 'Cannot call set method while checked is defined as a property.';
       console.error(message);
     }
+  },
+
+  _handleChange: function(e) {
+    var isInputChecked = this.refs.checkbox.getDOMNode().checked;
+
+    if (!this.props.hasOwnProperty('checked')) this.setState({switched: isInputChecked});
+    if (this.props.onSwitch) this.props.onSwitch(e, isInputChecked);
+  },
+
+  getValue: function() {
+    return this.refs.checkbox.getDOMNode().value;
   }
+
 });
 
 module.exports = EnhancedSwitch;
