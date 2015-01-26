@@ -73,6 +73,7 @@ var Checkbox = React.createClass({
 
         <EnhancedSwitch 
           {...other}
+          id={inputId}
           ref="enhancedSwitch"
           inputType="checkbox"
           onSwitch={this._onCheck}

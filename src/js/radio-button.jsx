@@ -76,6 +76,7 @@ var RadioButton = React.createClass({
 
         <EnhancedSwitch 
           {...other}
+          id={inputId}
           ref="enhancedSwitch"
           inputType="radio"
           onSwitch={this._onCheck}

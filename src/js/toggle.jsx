@@ -90,7 +90,8 @@ var Toggle = React.createClass({
       <div className={classes}>
 
         <EnhancedSwitch 
-          {...other} 
+          {...other}
+          id={inputId}
           ref="enhancedSwitch"
           inputType="checkbox"
           onSwitch={this._onToggle}
