@@ -4,7 +4,7 @@ var WindowListenable = require('../mixins/window-listenable.js');
 var DateTime = require('../utils/date-time.js');
 var KeyCode = require('../utils/key-code.js');
 var DatePickerDialog = require('./date-picker-dialog.jsx');
-var Input = require('../input.jsx');
+var TextField = require('../text-field.jsx');
 
 var DatePicker = React.createClass({
 
@@ -56,7 +56,7 @@ var DatePicker = React.createClass({
 
     return (
       <div className={classes}>
-        <Input
+        <TextField
           {...other}
           ref="input"
           defaultValue={defaultInputValue}

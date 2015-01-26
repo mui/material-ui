@@ -10,14 +10,10 @@ var DatePickerPage = React.createClass({
     var code =
       '//Portrait Dialog\n' +
       '<DatePicker\n' +
-      '  name="PortraitDialogDate"\n' +
-      '  placeholder="Portrait Dialog"\n' +
-      '  inlinePlaceholder={true} />\n\n' +
+      '  hintText="Portrait Dialog"\n\n' +
       '//Landscape Dialog\n' +
       '<DatePicker\n' +
-      '  name="LandscapeDialogDate"\n' +
-      '  placeholder="Landscape Dialog"\n' +
-      '  inlinePlaceholder={true}\n' +
+      '  hintText="Landscape Dialog"\n' +
       '  mode="landscape"/>'; 
 
     var componentInfo = [
@@ -69,14 +65,10 @@ var DatePickerPage = React.createClass({
         componentInfo={componentInfo}>
 
         <DatePicker
-          name="PortraitDialogDate"
-          placeholder="Portrait Dialog"
-          inlinePlaceholder={true} />
+          hintText="Portrait Dialog" />
 
         <DatePicker
-          name="LandscapeDialogDate"
-          placeholder="Landscape Dialog"
-          inlinePlaceholder={true}
+          hintText="Landscape Dialog"
           mode="landscape"/>
 
       </ComponentDoc>
