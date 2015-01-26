@@ -12,9 +12,10 @@ var ComponentDoc = React.createClass({
   },
 
   render: function() {
-    var componentInfo = this.props.componentInfo.map(function(info) {
+    var componentInfo = this.props.componentInfo.map(function(info, i) {
       return (
         <ComponentInfo
+          key={i}
           name={info.name}
           infoArray={info.infoArray} />
       );
