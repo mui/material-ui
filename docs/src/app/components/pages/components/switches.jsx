@@ -4,6 +4,7 @@ var Checkbox = mui.Checkbox;
 var RadioButton = mui.RadioButton;
 var RadioButtonGroup = mui.RadioButtonGroup;
 var Toggle = mui.Toggle;
+var CodeExample = require('../../code-example/code-example.jsx');
 var ComponentDoc = require('../../component-doc.jsx');
 var RaisedButton = mui.RaisedButton;
 
@@ -59,11 +60,9 @@ var SwitchesPage = React.createClass({
       '  label="initiate self-destruct sequence"\n' +
       '  disabled={true} />\n\n';
 
-    var desc = 'This component generates a switches element and all props except for the custom ' +
-        'props below will be passed down to the switch element. All switch can now accept input ' +
-        'attributes of type "checkbox" and "radio" as properties. This can be seen in checkbox ' +
-        '3. In it the input attribute "disabled" is included as a property and is handled ' + 
-        'accordingly';
+    var desc = 'These components extend their current input elements (checkbox and radio) and ' + 
+               'will support all of its props and events. Checkboxes and Toggles support ' + 
+               'checkedLink';
 
     var componentInfo = [
       {
@@ -161,6 +160,12 @@ var SwitchesPage = React.createClass({
             desc: 'Sets the default radio button to be the one whose value matches ' + 
                   'defaultSelected (case-sensitive). This will override any individual radio ' +
                   'button with the defaultChecked or checked property stated.'
+          },
+          {
+            name: 'valueSelected',
+            type: 'string',
+            header: 'optional',
+            desc: 'The value of the currently selected radio button.'
           }
         ]
       },
@@ -178,6 +183,11 @@ var SwitchesPage = React.createClass({
             header: 'RadioButtonGroup.setSelectedValue(newSelection)',
             desc: 'Sets the selected radio button to the radio button whose value matches ' +
                   'newSelection'
+          },
+          {
+            name: 'clearValue',
+            header: 'RadioButtonGroup.clearValue()',
+            desc: 'Clears the selected value for the radio button group.'
           }
         ]
       },
@@ -298,8 +308,7 @@ var SwitchesPage = React.createClass({
             id="checkboxId1"
             name="checkboxName1" 
             value="checkboxValue1"
-            label="went for a run today"
-            onCheck={this._onCheck}/>
+            label="went for a run today"/>
         </div>
         <div className="switches-example-container">
           <Checkbox

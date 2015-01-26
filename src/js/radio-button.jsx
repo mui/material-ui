@@ -1,13 +1,14 @@
 var React = require('react');
 var Paper = require('./paper.jsx');
 var Classable = require('./mixins/classable.js');
+var DomIdable = require('./mixins/dom-idable.js');
 var EnhancedSwitch = require('./enhanced-switch.jsx');
 var RadioButtonOff = require('./svg-icons/toggle-radio-button-off.jsx');
 var RadioButtonOn = require('./svg-icons/toggle-radio-button-on.jsx');
 
 var RadioButton = React.createClass({
 
-  mixins: [Classable],
+  mixins: [Classable, DomIdable],
 
   propTypes: {
     id: React.PropTypes.string,
@@ -28,20 +29,29 @@ var RadioButton = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    var hasCheckedProperty = nextProps.hasOwnProperty('checked');
-    var hasDifferentDefaultProperty = 
+    var hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
+    var hasCheckedProp = nextProps.hasOwnProperty('checked');
+    var hasNewDefaultProp = 
       (nextProps.hasOwnProperty('defaultChecked') && 
       (nextProps.defaultChecked != this.props.defaultChecked));
+    var newState = {};
 
-    if (hasCheckedProperty) {
-      this.setState({switched: nextProps.checked});
-    } else if (hasDifferentDefaultProperty) {
-      this.setState({switched: nextProps.defaultChecked});
-    } 
+
+    if (hasCheckedProp) {
+      newState.switched = nextProps.checked;
+    } else if (hasCheckedLinkProp) {
+      newState.switched = nextProps.checkedLink.value;
+    } else if (hasNewDefaultProp) {
+      newState.switched = nextProps.defaultChecked;
+    }
+
+    if (newState) this.setState(newState);
   },
 
   render: function() {
+
     var {
+      id,
       onCheck,
       ...other
     } = this.props;
@@ -53,9 +63,10 @@ var RadioButton = React.createClass({
       'mui-is-required': this.props.required
     });
 
+    var inputId = this.props.id || this.getDomId();
 
     var labelElement = this.props.label ? (
-      <label className="mui-switch-label" htmlFor={this.props.id}>
+      <label className="mui-switch-label" htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;
@@ -65,6 +76,7 @@ var RadioButton = React.createClass({
 
         <EnhancedSwitch 
           {...other}
+          id={inputId}
           ref="enhancedSwitch"
           inputType="radio"
           onSwitch={this._onCheck}
@@ -93,7 +105,12 @@ var RadioButton = React.createClass({
   setChecked: function(newCheckedValue) {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
     this.setState({switched: newCheckedValue});
+  },
+  
+  getValue: function() {
+    return this.refs.enhancedSwitch.getValue();
   }
+
 
 });
 

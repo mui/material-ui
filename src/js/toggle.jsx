@@ -1,11 +1,12 @@
 var React = require('react');
 var Classable = require('./mixins/classable.js');
+var DomIdable = require('./mixins/dom-idable.js');
 var Paper = require('./paper.jsx');
 var EnhancedSwitch = require('./enhanced-switch.jsx');
 
 var Toggle = React.createClass({
 
-  mixins: [Classable],
+  mixins: [Classable, DomIdable],
 
   propTypes: {
     id: React.PropTypes.string,
@@ -17,36 +18,45 @@ var Toggle = React.createClass({
 
   getInitialState: function() {
     return {
-      switched: this.props.defaultToggled || this.props.checked
+      toggled: this.props.defaultToggled || this.props.checked
     }
   },
 
   componentWillReceiveProps: function(nextProps) {
-    var hasCheckedProperty = nextProps.hasOwnProperty('checked');
-    var hasDifferentDefaultProperty = 
+    var hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
+    var hasCheckedProp = nextProps.hasOwnProperty('checked');
+    var hasNewDefaultProp = 
       (nextProps.hasOwnProperty('defaultToggled') && 
       (nextProps.defaultToggled != this.props.defaultToggled));
+    var newState = {};
 
-    if (hasCheckedProperty) {
-      this.setState({switched: nextProps.checked});
-    } else if (hasDifferentDefaultProperty) {
-      this.setState({switched: nextProps.defaultToggled});
+    if (hasCheckedProp) {
+      newState.toggled = nextProps.checked;
+    } else if (hasCheckedLinkProp) {
+      newState.toggled = nextProps.checkedLink.value;
+    } else if (hasNewDefaultProp) {
+      newState.toggled = nextProps.defaultToggled;
     }
+
+    if (newState) this.setState(newState);
   },
 
 
   render: function() {
     var {
+      id,
       onToggle,
       ...other
     } = this.props;
     
     var classes = this.getClasses("mui-toggle", {
       'mui-switch-wrap': true,
-      'mui-is-switched': this.state.switched,
+      'mui-is-switched': this.state.toggled,
       'mui-is-disabled': this.props.disabled,
       'mui-is-required': this.props.required
     });
+
+    var inputId = this.props.id || this.getDomId();
 
     var toggleDiv = (
       <div className="mui-toggle-icon mui-switch">
@@ -56,7 +66,7 @@ var Toggle = React.createClass({
     );
 
     var labelElement = this.props.label ? (
-      <label className="mui-switch-label" htmlFor={this.props.id}>
+      <label className="mui-switch-label" htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;
@@ -80,7 +90,8 @@ var Toggle = React.createClass({
       <div className={classes}>
 
         <EnhancedSwitch 
-          {...other} 
+          {...other}
+          id={inputId}
           ref="enhancedSwitch"
           inputType="checkbox"
           onSwitch={this._onToggle}
@@ -93,7 +104,7 @@ var Toggle = React.createClass({
   },
 
   _onToggle: function(e, isInputChecked) {
-    if (!this.props.hasOwnProperty('checked')) this.setState({switched: !this.refs.enhancedSwitch.state.switched});
+    if (!this.props.hasOwnProperty('checked')) this.setState({toggled: !this.refs.enhancedSwitch.state.toggled});
     if (this.props.onToggle) this.props.onToggle(e, isInputChecked);
   },
 
