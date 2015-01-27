@@ -1,3 +1,10 @@
+## 0.6.1
+###### _Jan. 26, 2105_
+
+##### Fixes
+- Checkbox & Toggle
+  - Fixed a bug that caused checkboxes and toggles to not uncheck.
+
 ## 0.6.0
 ###### _Jan. 26, 2105_
 
@@ -33,7 +40,7 @@
 - Menu Item
   - Menu Items now respond to onTouchTap
 - Radio Button
-  - Checkbox styling now matches material design specs
+  - Radio Button styling now matches material design specs
   - This component has been revamped and can now be controlled or uncontrolled.
 - Slider
   - Fixed a css bug with slider handles (#225)
