@@ -91,7 +91,7 @@ var Checkbox = React.createClass({
   },
 
   _onCheck: function(e, isInputChecked) {
-    if (!this.props.hasOwnProperty('checked')) this.setState({checked: !this.refs.enhancedSwitch.state.checked});
+    if (!this.props.hasOwnProperty('checked')) this.setState({checked: isInputChecked});
     if (this.props.onCheck) this.props.onCheck(e, isInputChecked);
   },
 

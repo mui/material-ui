@@ -34,7 +34,6 @@ var EnhancedSwitch = React.createClass({
       (nextProps.defaultSwitched != this.props.defaultSwitched));
     var newState = {};
 
-
     if (hasCheckedProp) {
       newState.switched = nextProps.checked;
     } else if (hasCheckedLinkProp) {
@@ -95,7 +94,7 @@ var EnhancedSwitch = React.createClass({
 
   _handleChange: function(e) {
     var isInputChecked = this.refs.checkbox.getDOMNode().checked;
-
+    
     if (!this.props.hasOwnProperty('checked')) this.setState({switched: isInputChecked});
     if (this.props.onSwitch) this.props.onSwitch(e, isInputChecked);
   },
