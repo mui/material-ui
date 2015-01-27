@@ -344,8 +344,7 @@ var SwitchesPage = React.createClass({
             id="toggleId1"
             name="toggleName1"
             value="toggleValue1"
-            label="activate thrusters" 
-            onToggle={this._onToggle}/>
+            label="activate thrusters"/>
         </div>
         <div className="switches-example-container">
           <Toggle
@@ -380,8 +379,7 @@ var SwitchesPage = React.createClass({
 
         <RadioButtonGroup 
           name="shipSpeed"
-          defaultSelected="not_light"
-          onChange={this._onRadioButtonClick}>
+          defaultSelected="not_light">
             <RadioButton
               id="radioButtonId1"
               value="light"

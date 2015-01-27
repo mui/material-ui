@@ -95,7 +95,7 @@ var Toggle = React.createClass({
           ref="enhancedSwitch"
           inputType="checkbox"
           onSwitch={this._onToggle}
-          defaultSwitched={this.props.defaultToggled} />
+          defaultChecked={this.props.defaultToggled} />
 
         {divsInOrder}
 
@@ -104,7 +104,7 @@ var Toggle = React.createClass({
   },
 
   _onToggle: function(e, isInputChecked) {
-    if (!this.props.hasOwnProperty('checked')) this.setState({toggled: !this.refs.enhancedSwitch.state.toggled});
+    if (!this.props.hasOwnProperty('checked')) this.setState({toggled: isInputChecked});
     if (this.props.onToggle) this.props.onToggle(e, isInputChecked);
   },
 
