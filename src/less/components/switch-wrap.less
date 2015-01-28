@@ -3,7 +3,8 @@
 
   position: relative;
   cursor: pointer;
-  overflow: hidden;
+  overflow: visible;
+  display: table;
   height: auto;
   width: 100%;
 
@@ -11,11 +12,23 @@
     .ease-out();
     float: left;
     position: relative;
-  }
+    display: table-column;
 
-  .mui-switch-label {
-    float: left;
-    width: calc(~"100% - @{mui-switch-width}");
-    line-height: 24px;
+
+    .mui-touch-ripple, 
+    .mui-focus-ripple-inner {
+        width: 200%;
+        height: 200%;
+        top: -12px;
+        left: -12px;
+    }
+
+    .mui-switch-label {
+      float: left;
+      position: relative;
+      display: table-column;
+      width: calc(~"100% - @{mui-switch-width}");
+      line-height: 24px;
+    }
   }
 }
