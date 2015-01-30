@@ -12,6 +12,7 @@ var RadioButtonGroup = React.createClass({
 		name: React.PropTypes.string.isRequired,
     valueSelected: React.PropTypes.string,
     defaultSelected: React.PropTypes.string,
+    labelPosition: React.PropTypes.oneOf(['left', 'right']),
 		onChange: React.PropTypes.func
 	},
 
@@ -44,6 +45,7 @@ var RadioButtonGroup = React.createClass({
   },
 
 	render: function() {
+
     var options = this.props.children.map(function(option) {
       
       var {
@@ -61,6 +63,7 @@ var RadioButtonGroup = React.createClass({
         key={option.props.value}
         value={option.props.value}
         label={option.props.label}
+        labelPosition={this.props.labelPosition}
         onCheck={this._onChange}
         checked={option.props.value == this.state.selected}/>
 

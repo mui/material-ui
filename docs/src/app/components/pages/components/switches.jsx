@@ -87,6 +87,13 @@ var SwitchesPage = React.createClass({
             desc: 'The text that is displayed to the right of the checkbox.'
           },
           {
+            name: 'labelPosition',
+            type: 'string',
+            header: 'default:"right"',
+            desc: 'Where the label will be placed next to the checkbox. Options include ' + 
+                  '"left" and "right" (case-sensitive). Default option is "left".'
+          },
+          {
             name: 'defaultChecked',
             type: 'boolean',
             header: 'default:false',
@@ -122,7 +129,7 @@ var SwitchesPage = React.createClass({
         ]
       },
       {
-        name: 'Radio Button',
+        name: 'Radio Button Props',
         infoArray: [
           {
             name: 'value',
@@ -135,6 +142,13 @@ var SwitchesPage = React.createClass({
             type: 'string',
             header: 'optional',
             desc: 'The text that is displayed to the right of the radio button.'
+          },
+          {
+            name: 'labelPosition',
+            type: 'string',
+            header: 'default:"right"',
+            desc: 'Where the label will be placed next to the radio button. Options include ' + 
+                  '"left" and "right" (case-sensitive). Default option is "left".'
           },
           {
             name: 'defaultChecked',
@@ -166,7 +180,15 @@ var SwitchesPage = React.createClass({
             type: 'string',
             header: 'optional',
             desc: 'The value of the currently selected radio button.'
-          }
+          },
+          {
+            name: 'labelPosition',
+            type: 'string',
+            header: 'optional',
+            desc: 'Where the label will be placed for all radio buttons. Options include ' + 
+                  '"left" and "right" (case-sensitive). This will override any labelPosition ' +
+                  'properties defined for an individual radio button.'
+          },
         ]
       },
       {
@@ -227,6 +249,13 @@ var SwitchesPage = React.createClass({
             desc: 'The text that is displayed to the right of the toggle switch.'
           },
           {
+            name: 'labelPosition',
+            type: 'string',
+            header: 'default:"left"',
+            desc: 'Where the label will be placed next to the toggle switch. Options include ' + 
+                  '"left" and "right" (case-sensitive). Default option is "left".'
+          },
+          {
             name: 'onToggle',
             type: 'function',
             header: 'optional',
@@ -238,13 +267,6 @@ var SwitchesPage = React.createClass({
             header: 'default:false',
             desc: 'The value of the toggle button. Is true when toggle has been turned on. ' + 
               'False otherwise.'
-          },
-          {
-            name: 'labelPosition',
-            type: 'string',
-            header: 'default:"left"',
-            desc: 'Where the label will be placed next to the toggle switch. Options include ' + 
-                  '"left" and "right" (case-sensitive). Default option is "left".'
           }
         ]
       },
@@ -316,7 +338,7 @@ var SwitchesPage = React.createClass({
             name="checkboxName2" 
             value="checkboxValue2"
             label="fed the dog"
-            defaultChecked={true}/>
+            defaultSwitched={true}/>
         </div>
         <div className="switches-example-container">
           <Checkbox
@@ -356,7 +378,6 @@ var SwitchesPage = React.createClass({
         </div>
         <div className="switches-example-container">
           <Toggle 
-            onToggle={this._onToggle}
             id="toggleId3"
             name="toggleName3"
             value="toggleValue3"
