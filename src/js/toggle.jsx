@@ -33,7 +33,7 @@ var Toggle = React.createClass({
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "left"
     };
 
-    if (this.props.toggled) enhancedSwitchProps.checked = this.props.toggled;
+    if (this.props.hasOwnProperty('toggled')) enhancedSwitchProps.checked = this.props.toggled;
 
     return (
       <EnhancedSwitch 
