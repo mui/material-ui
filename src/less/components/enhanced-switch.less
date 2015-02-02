@@ -36,10 +36,17 @@
   }
   
   .mui-switch-label {
-      float: left;
-      position: relative;
-      display: table-column;
-      width: calc(~"100% - @{mui-switch-width}");
-      line-height: 24px;
+    float: left;
+    position: relative;
+    display: table-column;
+    width: calc(~"100% - @{mui-switch-width}");
+    line-height: 24px;
+  }
+
+  &.mui-is-switched {
+    .mui-focus-ripple-inner,
+    .mui-ripple-circle-inner {
+      background-color: @switches-ripple-color;
     }
+  }
 }
