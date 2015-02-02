@@ -9,7 +9,13 @@
     .mui-checkbox-check {
       position: absolute;
       opacity: 0;
-      .ease-out(@duration: .25s; @delay: 0s);
+      transform: scale(0);
+      transform-origin: 50% 50%;
+
+      transition:
+        opacity 450ms @ease-out-function 0ms,
+        transform 0ms @ease-out-function 450ms;
+
       * { fill: @checkbox-checked-color; }
     }
 
@@ -25,8 +31,14 @@
   &.mui-is-switched {
     .mui-checkbox-icon {
       .mui-checkbox-check {
-        .ease-out(@duration: .25s; @delay: 0s);
+        .ease-out(@duration: .45s; @delay: 0s);
         opacity: 1;
+        transform: scale(1);
+        transform-origin: 50% 50%; 
+
+        transition:
+          opacity 0ms @ease-out-function 0ms,
+          transform 450ms @ease-out-function 0ms;
       }
       .mui-checkbox-box {
         .ease-out(@duration: 100s; @delay: 0ms);
