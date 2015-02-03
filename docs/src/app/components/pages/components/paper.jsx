@@ -29,7 +29,7 @@ var PaperPage = React.createClass({
       '//Inner Content\n' +
       '<Paper innerClassName="article">\n' +
       '  <h1>Paper</h1>\n' + 
-      '  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod' +
+      '  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,' +
       '  tempor incididunt ut labore et dolore magna aliqua.</p>\n' +
       '</Paper>\n';
 
