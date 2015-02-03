@@ -69,7 +69,8 @@ var MenuItem = React.createClass({
       <div
         key={this.props.index}
         className={classes}
-        onTouchTap={this._handleTouchTap}>
+        onTouchTap={this._handleTouchTap}
+        onClick={this._handleTouchTap}>
 
         {icon}
         {this.props.children}
