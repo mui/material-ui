@@ -25,7 +25,13 @@ var PaperPage = React.createClass({
       '<Paper zDepth={2} circle={true} />\n' +
       '<Paper zDepth={3} circle={true} />\n' +
       '<Paper zDepth={4} circle={true} />\n' +
-      '<Paper zDepth={5} circle={true} />';
+      '<Paper zDepth={5} circle={true} />\n\n' +
+      '//Inner Content\n' +
+      '<Paper innerClassName="article">\n' +
+      '  <h1>Paper</h1>\n' + 
+      '  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod' +
+      '  tempor incididunt ut labore et dolore magna aliqua.</p>\n' +
+      '</Paper>\n';
 
     var componentInfo = [
       {
