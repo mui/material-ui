@@ -16,6 +16,7 @@ var EnhancedSwitch = React.createClass({
       inputType: React.PropTypes.string.isRequired,
       switchElement: React.PropTypes.element.isRequired,
       className: React.PropTypes.string.isRequired,
+      innerClassName: React.PropTypes.string,
       name: React.PropTypes.string,
 	    value: React.PropTypes.string,
 	    label: React.PropTypes.string,
@@ -31,6 +32,12 @@ var EnhancedSwitch = React.createClass({
   windowListeners: {
     'keydown': '_handleWindowKeydown',
     'keyup': '_handleWindowKeyup'
+  },
+
+  getDefaultProps: function() {
+    return {
+      innerClassName: ''
+    };
   },
 
   getInitialState: function() {
@@ -83,10 +90,13 @@ var EnhancedSwitch = React.createClass({
       onTouchEnd,
       disableTouchRipple,
       disableFocusRipple,
+      innerClassName,
       ...other
     } = this.props;
 
-    var classes = this.getClasses(this.props.className, {
+    var classes = this.getClasses(
+      this.props.className + ' ' + 
+      this.props.innerClassName, {
       'mui-enhanced-switch': true,
       'mui-is-switched': this.state.switched,
       'mui-is-disabled': this.props.disabled,
@@ -146,8 +156,9 @@ var EnhancedSwitch = React.createClass({
     ];
 
     var iconClassName = this.props.className + '-icon mui-enhanced-switch-wrap';
+    // if (this.props.innerClassName) iconClassName += ' ' + this.props.innerClassName;
 
-    var switchElement = (this.props.className != "mui-toggle") ? (
+    var switchElement = (this.props.inputType != "toggle") ? (
         <div className={iconClassName}>
           {this.props.switchElement}
           {ripples}
