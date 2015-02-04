@@ -1,9 +1,12 @@
 var React = require('react');
+var Classable = require('./mixins/classable.js');
 var EnhancedSwitch = require('./enhanced-switch.jsx');
 var RadioButtonOff = require('./svg-icons/toggle-radio-button-off.jsx');
 var RadioButtonOn = require('./svg-icons/toggle-radio-button-on.jsx');
 
 var RadioButton = React.createClass({
+
+  mixins: [Classable],
 
   propTypes: {
     onCheck: React.PropTypes.func
@@ -28,6 +31,7 @@ var RadioButton = React.createClass({
       inputType: "radio",
       switchElement: radioButtonElement,
       className: "mui-radio-button",
+      iconClassName: "mui-radio-button-icon",
       onSwitch: this._handleCheck,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"
     };

@@ -1,9 +1,12 @@
 var React = require('react');
 var EnhancedSwitch = require('./enhanced-switch.jsx');
+var Classable = require('./mixins/classable.js');
 var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank.jsx');
 var CheckboxChecked = require('./svg-icons/toggle-check-box-checked.jsx');
 
 var Checkbox = React.createClass({
+
+  mixins: [Classable],
 
   propTypes: {
     onCheck: React.PropTypes.func,
@@ -14,6 +17,8 @@ var Checkbox = React.createClass({
       onCheck,
       ...other
     } = this.props;
+
+    var classes = this.getClasses("mui-checkbox");
 
     var checkboxElement = (
       <div>
@@ -26,7 +31,8 @@ var Checkbox = React.createClass({
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switchElement: checkboxElement,
-      className: "mui-checkbox",
+      className: classes,
+      iconClassName: "mui-checkbox-icon",
       onSwitch: this._handleCheck,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"
     };
