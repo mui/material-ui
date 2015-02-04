@@ -1,8 +1,11 @@
 var React = require('react');
+var Classable = require('./mixins/classable.js');
 var Paper = require('./paper.jsx');
 var EnhancedSwitch = require('./enhanced-switch.jsx');
 
 var Toggle = React.createClass({
+
+  mixins: [Classable],
 
   propTypes: {
     onToggle: React.PropTypes.func,
@@ -28,6 +31,7 @@ var Toggle = React.createClass({
       inputType: "checkbox",
       switchElement: toggleElement,
       className: "mui-toggle",
+      iconClassName: "mui-toggle-icon",
       onSwitch: this._handleToggle,
       defaultSwitched: this.props.defaultToggled,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "left"
