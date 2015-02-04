@@ -10,6 +10,7 @@ module.exports = {
   EnhancedButton: require('./js/enhanced-button.jsx'),
   FlatButton: require('./js/flat-button.jsx'),
   FloatingActionButton: require('./js/floating-action-button.jsx'),
+  FontIcon: require('./js/font-icon.jsx'),
   IconButton: require('./js/icon-button.jsx'),
   Icon: require('./js/icon.jsx'),
   Input: require('./js/input.jsx'),
