@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 
-var React = require('react/addons');
+var React = require('react');
 var Classable = require('./mixins/classable.js');
-var classSet = React.addons.classSet;
+var classSet = require('react-classset');
 
 var Input = React.createClass({
 
