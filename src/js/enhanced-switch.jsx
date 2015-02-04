@@ -153,7 +153,7 @@ var EnhancedSwitch = React.createClass({
 
     iconClassName += ' mui-enhanced-switch-wrap';
 
-    var switchElement = (this.props.inputType != "toggle") ? (
+    var switchElement = (this.props.iconClassName.indexOf("toggle") == -1) ? (
         <div className={iconClassName}>
           {this.props.switchElement}
           {ripples}
