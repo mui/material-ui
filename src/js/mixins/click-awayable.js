@@ -10,7 +10,7 @@ module.exports = {
   },
 
   componentWillUnmount: function() {
-    if (!this.manuallyBindClickAway) this._unbindClickAway();
+    this._unbindClickAway();
   },
 
   _checkClickAway: function(e) {

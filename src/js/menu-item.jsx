@@ -52,13 +52,25 @@ var MenuItem = React.createClass({
     if (this.props.iconRight) iconRight = <Icon className="mui-menu-item-icon-right" icon={this.props.iconRight} />;
     if (this.props.number !== undefined) number = <span className="mui-menu-item-number">{this.props.number}</span>;
     if (this.props.attribute !== undefined) attribute = <span className="mui-menu-item-attribute">{this.props.attribute}</span>;
-    if (this.props.toggle) toggle = <Toggle onToggle={this._handleToggle} />;
+    
+    if (this.props.toggle) {
+      var {
+        toggle,
+        onClick,
+        onToggle,
+        children,
+        label,
+        ...other
+      } = this.props;
+      toggle = <Toggle {...other} onToggle={this._handleToggle}/>;
+    }
 
     return (
       <div
         key={this.props.index}
         className={classes}
-        onTouchTap={this._handleTouchTap}>
+        onTouchTap={this._handleTouchTap}
+        onClick={this._handleTouchTap}>
 
         {icon}
         {this.props.children}

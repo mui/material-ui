@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var mui = require('mui');
 var TextField = mui.TextField;
 var ComponentDoc = require('../../component-doc.jsx');

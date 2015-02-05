@@ -1,11 +1,11 @@
-var React = require('react'),
-  CssEvent = require('./utils/css-event.js'),
-  Dom = require('./utils/dom.js'),
-  KeyLine = require('./utils/key-line.js'),
-  Classable = require('./mixins/classable.js'),
-  ClickAwayable = require('./mixins/click-awayable'),
-  Paper = require('./paper.jsx'),
-  MenuItem = require('./menu-item.jsx');
+var React = require('react');
+var CssEvent = require('./utils/css-event.js');
+var Dom = require('./utils/dom.js');
+var KeyLine = require('./utils/key-line.js');
+var Classable = require('./mixins/classable.js');
+var ClickAwayable = require('./mixins/click-awayable');
+var Paper = require('./paper.jsx');
+var MenuItem = require('./menu-item.jsx');
 
 /***********************
  * Nested Menu Component
@@ -151,6 +151,16 @@ var Menu = React.createClass({
       menuItem = this.props.menuItems[i];
       isSelected = i === this.props.selectedIndex;
 
+      var {
+        icon,
+        data,
+        attribute,
+        number,
+        toggle,
+        onClick,
+        ...other
+      } = menuItem;
+
       switch (menuItem.type) {
 
         case MenuItem.Types.LINK:
@@ -182,6 +192,7 @@ var Menu = React.createClass({
         default:
           itemComponent = (
             <MenuItem
+              {...other}
               selected={isSelected}
               key={i}
               index={i}
@@ -190,8 +201,7 @@ var Menu = React.createClass({
               attribute={menuItem.attribute}
               number={menuItem.number}
               toggle={menuItem.toggle}
-              onClick={this._onItemClick}
-              onToggle={this._onItemToggle}>
+              onClick={this._onItemClick}>
               {menuItem.text}
             </MenuItem>
           );

@@ -9,6 +9,11 @@ var Icon = React.createClass({
     icon: React.PropTypes.string
   },
 
+  componentDidMount: function() {
+    console.warn('Icon has been deprecated. Please use FontIcon instead. ' +
+      'See http://material-ui.com/#/components/font-icons');
+  },
+
   render: function() {
     var { className, icon, ...other } = this.props,
       isMuiCustomIcon = icon.indexOf('mui-icon') > -1,

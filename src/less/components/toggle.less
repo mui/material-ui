@@ -8,11 +8,8 @@
     padding: 4px 0px 6px 2px;
     margin-right: @desktop-gutter-mini;
 
-    &,* {
-      .ease-out();
-    }
-
     .mui-toggle-track {
+      .ease-out;
       width: @toggle-track-width;
       height: 14px;
       border-radius: 30px;
@@ -20,6 +17,7 @@
     }
 
     .mui-toggle-thumb {
+      .ease-out;
       position: absolute;
       top: 1px;
       left: 2px;
@@ -31,6 +29,14 @@
 
       .mui-paper-container {
         border-radius: 50%;
+      }
+      
+      .mui-touch-ripple, 
+      .mui-focus-ripple-inner {
+        width: 200%;
+        height: 200%;
+        top: -10px;
+        left: -10px;
       }
     }
   }

@@ -1,58 +1,58 @@
-var React = require('react'),
-  mui = require('mui'),
-  CodeExample = require('../../code-example/code-example.jsx'),
+var React = require('react');
+var mui = require('mui');
+var CodeExample = require('../../code-example/code-example.jsx');
 
-  labelMenuItems = [
-    { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
-    { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
-    { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }
-  ],
+var labelMenuItems = [
+  { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
+  { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
+  { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }
+];
 
-  numberMenuItems = [
-    { payload: '1', text: 'All', number: '22'},
-    { payload: '3', text: 'Uncategorized', number: '6'},
-    { payload: '4', text: 'Trash', number: '11' }
-  ],
+var numberMenuItems = [
+  { payload: '1', text: 'All', number: '22'},
+  { payload: '3', text: 'Uncategorized', number: '6'},
+  { payload: '4', text: 'Trash', number: '11' }
+];
 
-  iconMenuItems = [
-    { payload: '1', text: 'Live Answer', icon: 'communication_phone', number: '10' },
-    { payload: '2', text: 'Voicemail', icon: 'communication_voicemail',  number: '5' },
-    { payload: '3', text: 'Starred', icon: 'action_stars', number: '3' },
-    { payload: '4', text: 'Shared', icon: 'action_thumb_up',  number: '12' }
-  ],
+var iconMenuItems = [
+  { payload: '1', text: 'Live Answer', icon: 'communication_phone', number: '10' },
+  { payload: '2', text: 'Voicemail', icon: 'communication_voicemail',  number: '5' },
+  { payload: '3', text: 'Starred', icon: 'action_stars', number: '3' },
+  { payload: '4', text: 'Shared', icon: 'action_thumb_up',  number: '12' }
+];
 
-  filterMenuItems = [
-    { payload: '1', text: 'Text Opt-In', toggle: true},
-    { payload: '2', text: 'Text Opt-Out', toggle: true},
-    { payload: '3', text: 'Voice Opt-Out', toggle: true}
-  ],
+var filterMenuItems = [
+  { payload: '1', text: 'Text Opt-In', toggle: true},
+  { payload: '2', text: 'Text Opt-Out', toggle: true, defaultToggled: true},
+  { payload: '3', text: 'Voice Opt-Out', toggle: true, disabled: true}
+];
 
-  nestedMenuItems = [
-    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [
-      { payload: '1', text: 'Nested Item 1' },
-      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
-        { payload: '1', text: 'Nested Item 3' },
-        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
-          { payload: '1', text: 'Nested Item 5' },
-          { payload: '3', text: 'Nested Item 6' }
-        ] },
-        { payload: '3', text: 'Nested Item 7' }
+var nestedMenuItems = [
+  { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [
+    { payload: '1', text: 'Nested Item 1' },
+    { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
+      { payload: '1', text: 'Nested Item 3' },
+      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
+        { payload: '1', text: 'Nested Item 5' },
+        { payload: '3', text: 'Nested Item 6' }
       ] },
-      { payload: '3', text: 'Nested Item 9' },
-      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
-        { payload: '1', text: 'Nested Item 3' },
-        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
-          { payload: '1', text: 'Nested Item 5' },
-          { payload: '3', text: 'Nested Item 6' }
-        ] },
-        { payload: '3', text: 'Nested Item 7' }
-      ] },
-      { payload: '4', text: 'Nested Item 10' }
+      { payload: '3', text: 'Nested Item 7' }
     ] },
-    { payload: '1', text: 'Audio Library'},
-    { payload: '2', text: 'Settings'},
-    { payload: '3', text: 'Logout'}
-  ];
+    { payload: '3', text: 'Nested Item 9' },
+    { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
+      { payload: '1', text: 'Nested Item 3' },
+      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
+        { payload: '1', text: 'Nested Item 5' },
+        { payload: '3', text: 'Nested Item 6' }
+      ] },
+      { payload: '3', text: 'Nested Item 7' }
+    ] },
+    { payload: '4', text: 'Nested Item 10' }
+  ] },
+  { payload: '1', text: 'Audio Library'},
+  { payload: '2', text: 'Settings'},
+  { payload: '3', text: 'Logout'}
+];
 
 
 var MenusPage = React.createClass({
@@ -134,11 +134,12 @@ var MenusPage = React.createClass({
   },
 
   _getFilterMenuExample: function() {
-    var code = 
+    var code =
+      "// Include toggle properties as keys so that they are passed into the toggle component\n" +
       "filterMenuItems = [\n" +
       "   { payload: '1', text: 'Text Opt-In', toggle: true},\n" +
-      "   { payload: '2', text: 'Text Opt-Out', toggle: true},\n" +
-      "   { payload: '3', text: 'Voice Opt-Out', toggle: true}\n" +
+      "   { payload: '2', text: 'Text Opt-Out', toggle: true, defaultToggled: true},\n" +
+      "   { payload: '3', text: 'Voice Opt-Out', toggle: true, disabled: true}\n" +
       "];\n\n" +
       "<Menu menuItems={filterMenuItems} />";
 
