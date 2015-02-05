@@ -43,7 +43,7 @@
     "react-router": "^0.11.6"
   },
   "peerDependencies": {
-    "browserify": "^7.0.3",
+    "browserify": "^8.1.3",
     "reactify": "^0.17.1"
   }
 }
