@@ -20,7 +20,7 @@ var EnhancedTextarea = React.createClass({
 
   getInitialState: function() {
     return {
-      height: this.props.rows * 24 
+      height: this.props.rows * 24
     };
   },
 
@@ -32,7 +32,8 @@ var EnhancedTextarea = React.createClass({
       onHeightChange,
       textareaClassName,
       rows,
-      ...other
+      valueLink,
+      ...other,
     } = this.props;
 
     var classes = this.getClasses('mui-enhanced-textarea');
@@ -43,6 +44,10 @@ var EnhancedTextarea = React.createClass({
 
     if (this.props.textareaClassName) {
       textareaClassName += ' ' + this.props.textareaClassName;
+    }
+
+    if (this.props.hasOwnProperty('valueLink')) {
+      other.value = this.props.valueLink.value;
     }
 
     return (
@@ -78,6 +83,10 @@ var EnhancedTextarea = React.createClass({
     if (currentHeight !== newHeight) {
       this.setState({height: newHeight});
       if (this.props.onHeightChange) this.props.onHeightChange(e, newHeight);
+    }
+
+    if (this.props.hasOwnProperty('valueLink')) {
+      this.props.valueLink.requestChange(e.target.value);
     }
 
     if (this.props.onChange) this.props.onChange(e);
