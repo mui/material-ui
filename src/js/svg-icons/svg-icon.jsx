@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var StylePropable = require('../mixins/style-propable.js');
+var AutoPrefix = require('../styles/auto-prefix.js');
 var Theme = require('../styles/theme.js').get();
 
 var SvgIcon = React.createClass({
@@ -27,7 +28,7 @@ var SvgIcon = React.createClass({
       <svg
         {...other}
         viewBox="0 0 24 24"
-        style={styles}>
+        style={AutoPrefix(styles)}>
         {this.props.children}
       </svg>
     );
