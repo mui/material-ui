@@ -21,7 +21,10 @@
   }
 
   &.mui-is-disabled {
-    color: lighten(@body-text-color, 75%);
+    * {
+      color: lighten(@body-text-color, 75%);
+      fill: lighten(@body-text-color, 75%);
+    }
   }
 }
 

@@ -27,6 +27,12 @@ module.exports = {
   RadioButtonGroup: require('./js/radio-button-group.jsx'),
   RaisedButton: require('./js/raised-button.jsx'),
   Slider: require('./js/slider.jsx'),
+  SvgIcon: require('./js/svg-icons/svg-icon.jsx'),
+  Icons: {
+    NavigationMenu: require('./js/svg-icons/navigation-menu.jsx'),
+    NavigationChevronLeft: require('./js/svg-icons/navigation-chevron-left.jsx'),
+    NavigationChevronRight: require('./js/svg-icons/navigation-chevron-right.jsx')
+  },
   Tab: require('./js/tabs/tab.jsx'),
   Tabs: require('./js/tabs/tabs.jsx'),
   Toggle: require('./js/toggle.jsx'),

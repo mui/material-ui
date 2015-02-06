@@ -1,7 +1,8 @@
-var React = require('react'),
-  Classable = require('./mixins/classable.js'),
-  IconButton = require('./icon-button.jsx'),
-  Paper = require('./paper.jsx');
+var React = require('react');
+var Classable = require('./mixins/classable.js');
+var IconButton = require('./icon-button.jsx');
+var NavigationMenu = require('./svg-icons/navigation-menu.jsx');
+var Paper = require('./paper.jsx');
 
 var AppBar = React.createClass({
 
@@ -11,7 +12,6 @@ var AppBar = React.createClass({
     onMenuIconButtonTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
     title : React.PropTypes.string,
-    icon: React.PropTypes.string,
     zDepth: React.PropTypes.number
   },
 
@@ -24,6 +24,11 @@ var AppBar = React.createClass({
   },
 
   render: function() {
+    var {
+      onTouchTap,
+      ...other
+    } = this.props;
+
     var classes = this.getClasses('mui-app-bar'),
       title, menuIconButton;
 
@@ -31,13 +36,16 @@ var AppBar = React.createClass({
       title = <h1 className="mui-app-bar-title">{this.props.title}</h1>;
     }
 
+
+
+
     if (this.props.showMenuIconButton) {
       menuIconButton = (
         <IconButton
           className="mui-app-bar-navigation-icon-button"
-          icon={ this.props.icon || "navigation-menu"}
-          onTouchTap={this._onMenuIconButtonTouchTap}
-        />
+          onTouchTap={this._onMenuIconButtonTouchTap}>
+            <NavigationMenu/>
+        </IconButton>
       );
     }
 
