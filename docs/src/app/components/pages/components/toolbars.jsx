@@ -2,7 +2,7 @@ var React = require('react');
 var mui = require('mui');
 var DropDownIcon = mui.DropDownIcon;
 var DropDownMenu = mui.DropDownMenu;
-var Icon = mui.Icon;
+var FontIcon = mui.FontIcon;
 var RaisedButton = mui.RaisedButton;
 var Toolbar = mui.Toolbar;
 var ToolbarGroup = mui.ToolbarGroup;
@@ -31,8 +31,8 @@ var ToolbarPage = React.createClass({
       '    <DropDownMenu menuItems={filterOptions} />\n' +
       '  </ToolbarGroup>\n' +
       '  <ToolbarGroup key={1} float="right">\n' +
-      '    <Icon icon="mui-icon-pie" />\n' +
-      '    <Icon icon="mui-icon-sort" />\n' +
+      '    <FontIcon className="mui-icon-pie" />\n' +
+      '    <FontIcon className="mui-icon-sort" />\n' +
       '    <DropDownIcon icon="navigation-expand-more" menuItems={iconMenuItems} />\n' +
       '    <span className="mui-toolbar-separator">&nbsp;</span>\n' +
       '    <RaisedButton label="Create Broadcast" primary={true} />\n' +
@@ -77,8 +77,8 @@ var ToolbarPage = React.createClass({
             <DropDownMenu menuItems={filterOptions} />
           </ToolbarGroup>
           <ToolbarGroup key={1} float="right">
-            <Icon icon="mui-icon-pie" />
-            <Icon icon="mui-icon-sort" />
+            <FontIcon className="mui-icon-pie" />
+            <FontIcon className="mui-icon-sort" />
             <DropDownIcon icon="navigation-expand-more" menuItems={iconMenuItems} />
             <span className="mui-toolbar-separator">&nbsp;</span>
             <RaisedButton label="Create Broadcast" primary={true} />

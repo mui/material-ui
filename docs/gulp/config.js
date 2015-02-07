@@ -33,6 +33,10 @@ module.exports = {
     src: mui + '/less/material-ui-icons/fonts/**',
     dest: dest + '/fonts'
   },
+  fontIcons: {
+    src: src + "/less/font-icons/**",
+    dest: dest + '/font-icons'
+  },
   browserify: {
     // Enable source maps
     debug: true,

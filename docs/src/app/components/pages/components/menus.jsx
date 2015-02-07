@@ -15,10 +15,10 @@ var numberMenuItems = [
 ];
 
 var iconMenuItems = [
-  { payload: '1', text: 'Live Answer', icon: 'communication_phone', number: '10' },
-  { payload: '2', text: 'Voicemail', icon: 'communication_voicemail',  number: '5' },
-  { payload: '3', text: 'Starred', icon: 'action_stars', number: '3' },
-  { payload: '4', text: 'Shared', icon: 'action_thumb_up',  number: '12' }
+  { payload: '1', text: 'Live Answer', iconClassName: 'icon-communication-phone', number: '10' },
+  { payload: '2', text: 'Voicemail', iconClassName: 'icon-communication-voicemail',  number: '5' },
+  { payload: '3', text: 'Starred', iconClassName: 'icon-action-stars', number: '3' },
+  { payload: '4', text: 'Shared', iconClassName: 'icon-action-thumb-up',  number: '12' }
 ];
 
 var filterMenuItems = [
@@ -116,11 +116,12 @@ var MenusPage = React.createClass({
 
   _getIconMenuExample: function() {
     var code = 
+      "//iconClassName is the classname for our icon that will get passed into mui.FontIcon\n" +
       "iconMenuItems = [\n" +
-      "   { payload: '1', text: 'Live Answer', icon: 'communication_phone', number: '10' },\n" +
-      "   { payload: '2', text: 'Voicemail', icon: 'communication_voicemail',  number: '5' },\n" +
-      "   { payload: '3', text: 'Starred', icon: 'action_stars', number: '3' },\n" +
-      "   { payload: '4', text: 'Shared', icon: 'action_thumb_up',  number: '12' }\n" +
+      "   { payload: '1', text: 'Live Answer', iconClassName: 'icon-communication-phone', number: '10' },\n" +
+      "   { payload: '2', text: 'Voicemail', iconClassName: 'communication-voicemail',  number: '5' },\n" +
+      "   { payload: '3', text: 'Starred', iconClassName: 'action-stars', number: '3' },\n" +
+      "   { payload: '4', text: 'Shared', iconClassName: 'action-thumb-up',  number: '12' }\n" +
       "];\n\n" +
       "<Menu menuItems={iconMenuItems} />";
 
