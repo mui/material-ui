@@ -1,7 +1,18 @@
+var Colors = require('./colors.js');
+
 //Define default theme variables
 var currentTheme = {
+
   fontFamily: 'Roboto, sans-serif',
-  textColor: 'rgba(0, 0, 0, 0.87)'
+  textColor: Colors.darkBlack,
+
+  //App color palette
+  primary1Color: Colors.cyan500,
+  primary2Color: Colors.cyan700,
+  primary3Color: Colors.cyan100,
+  accent1Color: Colors.pinkA200,
+  accent2Color: Colors.pinkA400,
+  accent3Color: Colors.pinkA100
 };
 
 var Theme = {

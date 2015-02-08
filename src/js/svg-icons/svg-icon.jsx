@@ -28,7 +28,7 @@ var SvgIcon = React.createClass({
       <svg
         {...other}
         viewBox="0 0 24 24"
-        style={AutoPrefix(styles)}>
+        style={AutoPrefix.all(styles)}>
         {this.props.children}
       </svg>
     );
