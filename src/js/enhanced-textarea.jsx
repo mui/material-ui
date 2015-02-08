@@ -24,6 +24,10 @@ var EnhancedTextarea = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    this._syncHeightWithShadow();
+  },
+
   render: function() {
 
     var {
@@ -55,8 +59,10 @@ var EnhancedTextarea = React.createClass({
         <textarea
           ref="shadow"
           className="mui-enhanced-textarea-shadow"
+          tabIndex="-1"
           rows={this.props.rows}
-          tabIndex="-1" />
+          defaultValue={this.props.defaultValue}
+          value={this.props.value} />
         <textarea
           {...other}
           ref="input"
@@ -72,18 +78,22 @@ var EnhancedTextarea = React.createClass({
     return this.refs.input.getDOMNode();
   },
 
-  _handleChange: function(e) {
+  _syncHeightWithShadow: function(newValue, e) {
     var shadow = this.refs.shadow.getDOMNode();
     var currentHeight = this.state.height;
     var newHeight;
 
-    shadow.value = e.target.value;
+    if (newValue !== undefined) shadow.value = newValue;
     newHeight = shadow.scrollHeight;
 
     if (currentHeight !== newHeight) {
       this.setState({height: newHeight});
       if (this.props.onHeightChange) this.props.onHeightChange(e, newHeight);
     }
+  },
+
+  _handleChange: function(e) {
+    this._syncHeightWithShadow(e.target.value);
 
     if (this.props.hasOwnProperty('valueLink')) {
       this.props.valueLink.requestChange(e.target.value);
