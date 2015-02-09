@@ -21,12 +21,12 @@ var ButtonPage = React.createClass({
       '<RaisedButton label="Secondary" secondary={true} />\n' +
       '<RaisedButton label="Disabled" disabled={true} />\n\n' +
       '//Floating Action Buttons\n' +
-      '<FloatingActionButton iconClassName="icon-action-grade" />\n' +
-      '<FloatingActionButton iconClassName="icon-action-grade" mini={true} />\n' +
-      '<FloatingActionButton iconClassName="icon-action-grade" disabled={true} />\n' +
-      '<FloatingActionButton iconClassName="icon-action-grade" mini={true} disabled={true} />\n' +
-      '<FloatingActionButton iconClassName="icon-action-grade" secondary={true} />\n' +
-      '<FloatingActionButton iconClassName="icon-action-grade" mini={true} secondary={true} />';
+      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" />\n' +
+      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />\n' +
+      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />\n' +
+      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />\n' +
+      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />\n' +
+      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />';
 
     var desc = 'This component generates a button element and all props except for ' +
       'the custom props below will be passed down to the button element. Also, ' +
@@ -167,25 +167,25 @@ var ButtonPage = React.createClass({
 
           <div className="button-example-group">
             <div className="button-example-container">
-              <FloatingActionButton iconClassName="icon-action-grade" />
+              <FloatingActionButton iconClassName="muidocs-icon-action-grade" />
             </div>
             <div className="button-example-container">
-              <FloatingActionButton iconClassName="icon-action-grade" mini={true} />
+              <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />
             </div>
             <div className="button-example-container">
-              <FloatingActionButton iconClassName="icon-action-grade" disabled={true} />
+              <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />
             </div>
             <div className="button-example-container">
-              <FloatingActionButton iconClassName="icon-action-grade" mini={true} disabled={true} />
+              <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />
             </div>
           </div>
 
           <div className="button-example-group">
             <div className="button-example-container">
-              <FloatingActionButton iconClassName="icon-action-grade" secondary={true} />
+              <FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />
             </div>
             <div className="button-example-container">
-              <FloatingActionButton iconClassName="icon-action-grade" mini={true} secondary={true} />
+              <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />
             </div>
           </div>
 

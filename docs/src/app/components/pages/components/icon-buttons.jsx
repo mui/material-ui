@@ -12,8 +12,8 @@ var IconButtonsPage = React.createClass({
   render: function() {
 
     var code =
-        '//Method 1: mui-icon-github is defined in a style sheet.\n' +
-        '<IconButton iconClassName="mui-icon-github" tooltip="GitHub"/>\n\n' +
+        '//Method 1: muidocs-icon-github is defined in a style sheet.\n' +
+        '<IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>\n\n' +
         '//Method 2: ActionGrade is a component created using mui.SvgIcon.\n' +
         '<IconButton tooltip="Star" touch={true}>\n' +
         '  <ActionGrade/>\n' +
@@ -21,7 +21,7 @@ var IconButtonsPage = React.createClass({
         '//Method 3: Manually creating a mui.FontIcon component within ' +
         'IconButton\n' +
         '<IconButton tooltip="Sort" disabled={true}>\n' +
-        '  <FontIcon className="mui-icon-sort"/>\n' +
+        '  <FontIcon className="muidocs-icon-custom-sort"/>\n' +
         '</IconButton>';
 
     var desc =  <p>
@@ -85,14 +85,14 @@ var IconButtonsPage = React.createClass({
         desc={desc}
         componentInfo={componentInfo}>
 
-        <IconButton iconClassName="mui-icon-github" tooltip="GitHub"/>
+        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>
 
         <IconButton tooltip="Star" touch={true}>
           <ActionGrade/>
         </IconButton>
 
         <IconButton tooltip="Sort" disabled={true}>
-          <FontIcon className="mui-icon-sort"/>
+          <FontIcon className="muidocs-icon-custom-sort"/>
         </IconButton>
 
       </ComponentDoc>

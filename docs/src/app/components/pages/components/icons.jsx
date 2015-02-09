@@ -8,7 +8,7 @@ var FontIconPage = React.createClass({
 
 	render: function() {
     var fontIconCode =
-      '<FontIcon className="icon-action-home"/>';
+      '<FontIcon className="muidocs-icon-action-home"/>';
 
     var svgIconCode = 
       '/** action-home.jsx */\n' +
@@ -61,7 +61,7 @@ var FontIconPage = React.createClass({
           code={fontIconCode}
           desc={fontIconDesc}
           componentInfo={componentInfo}>
-            <FontIcon className="icon-action-home"/>
+            <FontIcon className="muidocs-icon-action-home"/>
         </ComponentDoc>
         <ComponentDoc
           name="SVG Icons"

@@ -77,9 +77,9 @@ var ToolbarPage = React.createClass({
             <DropDownMenu menuItems={filterOptions} />
           </ToolbarGroup>
           <ToolbarGroup key={1} float="right">
-            <FontIcon className="mui-icon-pie" />
-            <FontIcon className="mui-icon-sort" />
-            <DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />
+            <FontIcon className="muidocs-icon-custom-pie" />
+            <FontIcon className="muidocs-icon-custom-sort" />
+            <DropDownIcon iconClassName="muidocs-icon-navigation-expand-more" menuItems={iconMenuItems} />
             <span className="mui-toolbar-separator">&nbsp;</span>
             <RaisedButton label="Create Broadcast" primary={true} />
           </ToolbarGroup>
