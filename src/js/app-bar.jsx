@@ -10,7 +10,7 @@ var AppBar = React.createClass({
   propTypes: {
     onMenuIconButtonTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
-    title : React.PropTypes.string,
+    title : React.PropTypes.node,
     icon: React.PropTypes.string,
     zDepth: React.PropTypes.number
   },
