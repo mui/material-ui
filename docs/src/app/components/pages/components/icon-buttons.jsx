@@ -36,12 +36,14 @@ var IconButtonsPage = React.createClass({
                     </li>
                     <li>
                       For svg icons: Insert the svg component as a child of icon
-                      buttons. This is the method we are using. See font-icons to
-                      learn how to create a svg component using mui.SvgIcon.
+                      buttons. This is the method we are using. <a title="Source 
+                      code for ActionGrade" href="https://github.com/mmrtnz/material-ui/blob/font-icon-components/docs/src/app/components/svg-icons/action-grade.jsx">
+                      View our source</a> to see how ActionGrade was created 
+                      using mui.SvgIcon.
                     </li>
                     <li>
                       Alternative: You can also insert a <a title="Redirect to 
-                      Material UI's FontIcon component" href="#/components/font-icons">
+                      Material UI's FontIcon component" href="#/components/icons">
                       FontIcon</a> component as a child of IconButton. This is 
                       similiar to how the iconClassName prop from method 1 is 
                       handled.

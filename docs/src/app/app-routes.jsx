@@ -19,9 +19,8 @@ var Buttons = require('./components/pages/components/buttons.jsx');
 var DatePicker = require('./components/pages/components/date-picker.jsx');
 var Dialog = require('./components/pages/components/dialog.jsx');
 var DropDownMenu = require('./components/pages/components/drop-down-menu.jsx');
-var FontIcons = require('./components/pages/components/font-icons.jsx');
-var IconButtons = require('./components/pages/components/icon-buttons.jsx');
 var Icons = require('./components/pages/components/icons.jsx');
+var IconButtons = require('./components/pages/components/icon-buttons.jsx');
 var LeftNav = require('./components/pages/components/left-nav.jsx');
 var Menus = require('./components/pages/components/menus.jsx');
 var Paper = require('./components/pages/components/paper.jsx');
@@ -57,9 +56,8 @@ var AppRoutes = (
       <Route name="date-picker" handler={DatePicker} />
       <Route name="dialog" handler={Dialog} />
       <Route name="dropdown-menu" handler={DropDownMenu} />
-      <Route name="font-icons" handler={FontIcons} />
-      <Route name="icon-buttons" handler={IconButtons} />
       <Route name="icons" handler={Icons} />
+      <Route name="icon-buttons" handler={IconButtons} />
       <Route name="left-nav" handler={LeftNav} />
       <Route name="menus" handler={Menus} />
       <Route name="paper" handler={Paper} />
