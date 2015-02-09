@@ -1,6 +1,6 @@
 var React = require('react');
 var Classable = require('./mixins/classable.js');
-var Icon = require('./icon.jsx');
+var FontIcon = require('./font-icon.jsx');
 var Toggle = require('./toggle.jsx');
 
 var Types = {
@@ -15,8 +15,8 @@ var MenuItem = React.createClass({
 
   propTypes: {
     index: React.PropTypes.number.isRequired,
-    icon: React.PropTypes.string,
-    iconRight: React.PropTypes.string,
+    iconClassName: React.PropTypes.string,
+    iconRightClassName: React.PropTypes.string,
     attribute: React.PropTypes.string,
     number: React.PropTypes.string,
     data: React.PropTypes.string,
@@ -47,9 +47,11 @@ var MenuItem = React.createClass({
     var number;
     var toggle;
 
-    if (this.props.icon) icon = <Icon className="mui-menu-item-icon" icon={this.props.icon} />;
+    if (this.props.iconClassName) icon = <FontIcon className={'mui-menu-item-icon ' + this.props.iconClassName} />;
+    if (this.props.iconRightClassName) iconRight = <FontIcon className={'mui-menu-item-icon-right ' + this.props.iconRightClassName} />;
+    
+
     if (this.props.data) data = <span className="mui-menu-item-data">{this.props.data}</span>;
-    if (this.props.iconRight) iconRight = <Icon className="mui-menu-item-icon-right" icon={this.props.iconRight} />;
     if (this.props.number !== undefined) number = <span className="mui-menu-item-number">{this.props.number}</span>;
     if (this.props.attribute !== undefined) attribute = <span className="mui-menu-item-attribute">{this.props.attribute}</span>;
     

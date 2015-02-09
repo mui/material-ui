@@ -1,7 +1,7 @@
 var gulp = require('gulp');
-var config = require('../config').muiFonts;
+var config = require('../config').fontIcons;
 
-gulp.task('muiFonts', function() {
+gulp.task('fontIcons', function() {
   return gulp.src(config.src)
     .pipe(gulp.dest(config.dest));
 });

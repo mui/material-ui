@@ -1,6 +1,8 @@
 var React = require('react');
 var DateTime = require('../utils/date-time.js');
 var IconButton = require('../icon-button.jsx');
+var NavigationChevronLeft = require('../svg-icons/navigation-chevron-left.jsx');
+var NavigationChevronRight = require('../svg-icons/navigation-chevron-right.jsx');
 var SlideInTransitionGroup = require('../transition-groups/slide-in.jsx');
 
 var CalendarToolbar = React.createClass({
@@ -43,13 +45,16 @@ var CalendarToolbar = React.createClass({
 
         <IconButton
           className="mui-date-picker-calendar-toolbar-button-left"
-          icon="navigation-chevron-left"
-          onTouchTap={this.props.onLeftTouchTap} />
+          onTouchTap={this.props.onLeftTouchTap}>
+            <NavigationChevronLeft/>
+        </IconButton>
 
         <IconButton
           className="mui-date-picker-calendar-toolbar-button-right"
-          icon="navigation-chevron-right"
-          onTouchTap={this.props.onRightTouchTap} />
+          iconClassName="navigation-chevron-right"
+          onTouchTap={this.props.onRightTouchTap}>
+            <NavigationChevronRight/>
+        </IconButton>
 
       </div>
     );
