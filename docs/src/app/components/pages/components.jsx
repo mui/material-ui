@@ -9,6 +9,7 @@ var Components = React.createClass({
       { route: 'date-picker', text: 'Date Picker'},
       { route: 'dialog', text: 'Dialog'},
       { route: 'dropdown-menu', text: 'Dropdown Menu'},
+      { route: 'font-icons', text: 'Font Icons'},
       { route: 'icon-buttons', text: 'Icon Buttons'},
       { route: 'icons', text: 'Icons'},
       { route: 'left-nav', text: 'Left Nav'},

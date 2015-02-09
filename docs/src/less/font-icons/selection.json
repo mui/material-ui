@@ -4,6 +4,42 @@
 		{
 			"icon": {
 				"paths": [
+					"M426.667 853.333v-256h170.667v256h213.333v-341.333h128l-426.667-384-426.667 384h128v341.333z"
+				],
+				"attrs": [
+					{
+						"fill": "rgb(68, 68, 68)"
+					}
+				],
+				"isMulticolor": false,
+				"grid": 0,
+				"tags": [
+					"ic_home_24px"
+				],
+				"colorPermutations": {
+					"6868681": [
+						0
+					]
+				}
+			},
+			"attrs": [
+				{
+					"fill": "rgb(68, 68, 68)"
+				}
+			],
+			"properties": {
+				"order": 8,
+				"id": 6,
+				"prevSize": 24,
+				"code": 58886,
+				"name": "icon-action-home"
+			},
+			"setIdx": 0,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
 					"M512 736.853l263.68 159.147-69.973-299.947 232.96-201.813-306.773-26.027-119.893-282.88-119.893 282.88-306.773 26.027 232.96 201.813-69.973 299.947z"
 				],
 				"attrs": [
@@ -28,14 +64,14 @@
 				}
 			],
 			"properties": {
-				"order": 7,
+				"order": 6,
 				"id": 5,
-				"name": "ic_grade_24px",
+				"name": "icon-action-grade",
 				"prevSize": 24,
 				"code": 58885
 			},
 			"setIdx": 0,
-			"iconIdx": 0
+			"iconIdx": 1
 		},
 		{
 			"icon": {
@@ -68,10 +104,10 @@
 				"id": 4,
 				"prevSize": 24,
 				"code": 58884,
-				"name": "ic_expand_more_24px"
+				"name": "icon-navigation-expand-more"
 			},
 			"setIdx": 0,
-			"iconIdx": 1
+			"iconIdx": 2
 		},
 		{
 			"icon": {
@@ -103,11 +139,11 @@
 				"order": 1,
 				"id": 3,
 				"prevSize": 24,
-				"name": "ic_stars_24px",
+				"name": "icon-action-stars",
 				"code": 58880
 			},
 			"setIdx": 0,
-			"iconIdx": 2
+			"iconIdx": 3
 		},
 		{
 			"icon": {
@@ -139,11 +175,11 @@
 				"order": 2,
 				"id": 2,
 				"prevSize": 24,
-				"name": "ic_thumb_up_24px",
+				"name": "icon-action-thumb-up",
 				"code": 58881
 			},
 			"setIdx": 0,
-			"iconIdx": 3
+			"iconIdx": 4
 		},
 		{
 			"icon": {
@@ -175,11 +211,11 @@
 				"order": 3,
 				"id": 1,
 				"prevSize": 24,
-				"name": "ic_phone_24px",
+				"name": "icon-communication-phone",
 				"code": 58882
 			},
 			"setIdx": 0,
-			"iconIdx": 4
+			"iconIdx": 5
 		},
 		{
 			"icon": {
@@ -211,11 +247,11 @@
 				"order": 4,
 				"id": 0,
 				"prevSize": 24,
-				"name": "ic_voicemail_24px",
+				"name": "icon-communication-voicemail",
 				"code": 58883
 			},
 			"setIdx": 0,
-			"iconIdx": 5
+			"iconIdx": 6
 		}
 	],
 	"height": 1024,

@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-q9zc52');
-	src:url('fonts/icomoon.eot?#iefix-q9zc52') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-q9zc52') format('woff'),
-		url('fonts/icomoon.ttf?-q9zc52') format('truetype'),
-		url('fonts/icomoon.svg?-q9zc52#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-wu9dz');
+	src:url('fonts/icomoon.eot?#iefix-wu9dz') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-wu9dz') format('woff'),
+		url('fonts/icomoon.ttf?-wu9dz') format('truetype'),
+		url('fonts/icomoon.svg?-wu9dz#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,15 +23,23 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-action-home:before {
+	content: "\e606";
+}
+
 .icon-action-grade:before {
 	content: "\e605";
+}
+
+.icon-navigation-expand-more:before {
+	content: "\e604";
 }
 
 .icon-action-stars:before {
 	content: "\e600";
 }
 
-.icon-action-thumb_up:before {
+.icon-action-thumb-up:before {
 	content: "\e601";
 }
 
@@ -41,9 +49,5 @@
 
 .icon-communication-voicemail:before {
 	content: "\e603";
-}
-
-.icon-navigation-expand-more:before {
-	content: "\e604";
 }
 

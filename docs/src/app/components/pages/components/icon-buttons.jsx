@@ -30,17 +30,22 @@ var IconButtonsPage = React.createClass({
                   There are three ways to add an icon:
                   <br/>
                   <ol>
-                  <li>For stylesheets: Set the prop "iconClassName" to the 
-                  classname for you icon.
-                  </li><li>
-                  For svg icons: Insert the svg component as a child of icon
-                  buttons. This is the method we are using. See font-icons to
-                  learn how to create a svg component using mui.SvgIcon.
-                  </li><li>
-                  Alternative: You can also insert a FontIcon component 
-                  as a child of IconButton. This is similiar to how the 
-                  iconClassName prop from method 1 is handled.
-                  </li>
+                    <li>
+                      For stylesheets: Set the prop "iconClassName" to the 
+                      classname for you icon.
+                    </li>
+                    <li>
+                      For svg icons: Insert the svg component as a child of icon
+                      buttons. This is the method we are using. See font-icons to
+                      learn how to create a svg component using mui.SvgIcon.
+                    </li>
+                    <li>
+                      Alternative: You can also insert a <a title="Redirect to 
+                      Material UI's FontIcon component" href="#/components/font-icons">
+                      FontIcon</a> component as a child of IconButton. This is 
+                      similiar to how the iconClassName prop from method 1 is 
+                      handled.
+                    </li>
                   </ol>
                 </p>;
 
@@ -74,7 +79,6 @@ var IconButtonsPage = React.createClass({
     return (
       <ComponentDoc
         name="Icon Buttons"
-        className="icon-button-description"
         code={code}
         desc={desc}
         componentInfo={componentInfo}>
