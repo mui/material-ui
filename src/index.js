@@ -31,7 +31,11 @@ module.exports = {
   Icons: {
     NavigationMenu: require('./js/svg-icons/navigation-menu.jsx'),
     NavigationChevronLeft: require('./js/svg-icons/navigation-chevron-left.jsx'),
-    NavigationChevronRight: require('./js/svg-icons/navigation-chevron-right.jsx')
+    NavigationChevronRight: require('./js/svg-icons/navigation-chevron-right.jsx'),
+    GitHub: require('./js/svg-icons/github.jsx'),
+    ArrowDropRight: require('./js/svg-icons/arrow-drop-right.jsx'),
+    Sort: require('./js/svg-icons/sort.jsx'),
+    Pie: require('./js/svg-icons/pie.jsx'),
   },
   Tab: require('./js/tabs/tab.jsx'),
   Tabs: require('./js/tabs/tabs.jsx'),

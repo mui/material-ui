@@ -1,11 +1,11 @@
-var React = require('react'),
-  Classable = require('./mixins/classable.js'),
-  ClickAwayable = require('./mixins/click-awayable'),
-  KeyLine = require('./utils/key-line.js'),
-  Paper = require('./paper.jsx'),
-  Icon = require('./icon.jsx'),
-  Menu = require('./menu.jsx'),
-  MenuItem = require('./menu-item.jsx');
+var React = require('react');
+var Classable = require('./mixins/classable.js');
+var ClickAwayable = require('./mixins/click-awayable');
+var KeyLine = require('./utils/key-line.js');
+var Paper = require('./paper.jsx');
+var FontIcon = require('./font-icon.jsx');
+var Menu = require('./menu.jsx');
+var MenuItem = require('./menu-item.jsx');
 
 var DropDownIcon = React.createClass({
 
@@ -31,10 +31,14 @@ var DropDownIcon = React.createClass({
       'mui-open': this.state.open
     });
 
+    var icon;
+    if (this.props.iconClassName) icon = <FontIcon className={this.props.iconClassName} />;
+   
     return (
       <div className={classes}>
           <div className="mui-menu-control" onClick={this._onControlClick}>
-              <Icon icon={this.props.icon} />
+              {icon}
+              {this.props.children}
           </div>
           <Menu ref="menuItems" menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
         </div>

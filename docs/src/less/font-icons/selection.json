@@ -4,6 +4,42 @@
 		{
 			"icon": {
 				"paths": [
+					"M707.84 366.507l-195.84 195.413-195.84-195.413-60.16 60.16 256 256 256-256z"
+				],
+				"attrs": [
+					{
+						"fill": "rgb(68, 68, 68)"
+					}
+				],
+				"isMulticolor": false,
+				"grid": 0,
+				"tags": [
+					"ic_expand_more_24px"
+				],
+				"colorPermutations": {
+					"6868681": [
+						0
+					]
+				}
+			},
+			"attrs": [
+				{
+					"fill": "rgb(68, 68, 68)"
+				}
+			],
+			"properties": {
+				"order": 5,
+				"id": 4,
+				"prevSize": 24,
+				"code": 58884,
+				"name": "ic_expand_more_24px"
+			},
+			"setIdx": 0,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
 					"M511.573 85.333c-235.52 0-426.24 191.147-426.24 426.667s190.72 426.667 426.24 426.667c235.947 0 427.093-191.147 427.093-426.667s-191.147-426.667-427.093-426.667zM692.48 768l-180.48-108.8-180.48 108.8 47.787-205.227-159.147-137.813 209.92-17.92 81.92-193.707 81.92 193.28 209.92 17.92-159.147 137.813 47.787 205.653z"
 				],
 				"attrs": [
@@ -28,14 +64,14 @@
 				}
 			],
 			"properties": {
-				"order": 8,
+				"order": 1,
 				"id": 3,
 				"prevSize": 24,
 				"name": "ic_stars_24px",
 				"code": 58880
 			},
 			"setIdx": 0,
-			"iconIdx": 0
+			"iconIdx": 1
 		},
 		{
 			"icon": {
@@ -64,14 +100,14 @@
 				}
 			],
 			"properties": {
-				"order": 9,
+				"order": 2,
 				"id": 2,
 				"prevSize": 24,
 				"name": "ic_thumb_up_24px",
 				"code": 58881
 			},
 			"setIdx": 0,
-			"iconIdx": 1
+			"iconIdx": 2
 		},
 		{
 			"icon": {
@@ -100,14 +136,14 @@
 				}
 			],
 			"properties": {
-				"order": 10,
+				"order": 3,
 				"id": 1,
 				"prevSize": 24,
 				"name": "ic_phone_24px",
 				"code": 58882
 			},
 			"setIdx": 0,
-			"iconIdx": 2
+			"iconIdx": 3
 		},
 		{
 			"icon": {
@@ -136,14 +172,14 @@
 				}
 			],
 			"properties": {
-				"order": 12,
+				"order": 4,
 				"id": 0,
 				"prevSize": 24,
 				"name": "ic_voicemail_24px",
 				"code": 58883
 			},
 			"setIdx": 0,
-			"iconIdx": 3
+			"iconIdx": 4
 		}
 	],
 	"height": 1024,

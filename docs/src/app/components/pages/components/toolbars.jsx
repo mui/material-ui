@@ -33,7 +33,7 @@ var ToolbarPage = React.createClass({
       '  <ToolbarGroup key={1} float="right">\n' +
       '    <FontIcon className="mui-icon-pie" />\n' +
       '    <FontIcon className="mui-icon-sort" />\n' +
-      '    <DropDownIcon icon="navigation-expand-more" menuItems={iconMenuItems} />\n' +
+      '    <DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />\n' +
       '    <span className="mui-toolbar-separator">&nbsp;</span>\n' +
       '    <RaisedButton label="Create Broadcast" primary={true} />\n' +
       '  </ToolbarGroup>\n' +
@@ -79,7 +79,7 @@ var ToolbarPage = React.createClass({
           <ToolbarGroup key={1} float="right">
             <FontIcon className="mui-icon-pie" />
             <FontIcon className="mui-icon-sort" />
-            <DropDownIcon icon="navigation-expand-more" menuItems={iconMenuItems} />
+            <DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />
             <span className="mui-toolbar-separator">&nbsp;</span>
             <RaisedButton label="Create Broadcast" primary={true} />
           </ToolbarGroup>
