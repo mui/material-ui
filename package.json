@@ -34,10 +34,12 @@
     ]
   },
   "dependencies": {
-    "react": "^0.12.2",
     "react-classset": "0.0.2",
     "react-draggable2": "^0.4.2",
     "react-tap-event-plugin": "^0.1.3"
+  },
+  "peerDependencies": {
+    "react": "0.12.x"
   },
   "devDependencies": {
     "browserify": "^7.0.3",
