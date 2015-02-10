@@ -14,11 +14,19 @@ var ButtonPage = React.createClass({
       '<FlatButton label="Default" />\n' +
       '<FlatButton label="Primary" primary={true} />\n' +
       '<FlatButton label="Secondary" secondary={true} />\n' +
+      '<FlatButton secondary={true}>\n' +
+      '  <span className="mui-flat-button-label image-button">Choose an Image</span>\n' +
+      '  <input type="file" id="imageButton" className="image-input"></input>\n' +
+      '</FlatButton>\n' +
       '<FlatButton label="Disabled" disabled={true} />\n\n' +
       '//Raised Buttons\n' + 
       '<RaisedButton label="Default" />\n' +
       '<RaisedButton label="Primary" primary={true} />\n' +
       '<RaisedButton label="Secondary" secondary={true} />\n' +
+      '<RaisedButton secondary={true}>\n' +
+      '  <span className="mui-raised-button-label image-button">Choose an Image</span>\n' +
+      '  <input type="file" id="imageButton" className="image-input"></input>\n' +
+      '</RaisedButton>\n' +
       '<RaisedButton label="Disabled" disabled={true} />\n\n' +
       '//Floating Action Buttons\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" />\n' +
@@ -37,11 +45,13 @@ var ButtonPage = React.createClass({
         name: 'Flat Button',
         infoArray: [
           {
-            name: 'label',
-            type: 'string',
+            name: 'label or children',
+            type: 'string (label) or HTML/React elements (children)',
             header: 'required',
-            desc: 'This is the text to display inside the button. This only applies to flat and ' +
-              'raised buttons.'
+            desc: 'This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed.'+
+            ' Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />'+
+            'and a span that acts as our label to be displayed.) '+
+            'This only applies to flat and raised buttons.'
           },
           {
             name: 'linkButton',
@@ -67,11 +77,13 @@ var ButtonPage = React.createClass({
         name: 'Raised Button',
         infoArray: [
           {
-            name: 'label',
-            type: 'string',
+            name: 'label or children',
+            type: 'string (label) or HTML/React elements (children)',
             header: 'required',
-            desc: 'This is the text to display inside the button. This only applies to flat and ' +
-              'raised buttons.'
+            desc: 'This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed.'+
+            ' Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />'+
+            'and a span that acts as our label to be displayed.) '+
+            'This only applies to flat and raised buttons.'
           },
           {
             name: 'linkButton',
@@ -146,6 +158,12 @@ var ButtonPage = React.createClass({
               <FlatButton label="Secondary" secondary={true} />
             </div>
             <div className="button-example-container">
+              <FlatButton secondary={true}>
+                <span className="mui-flat-button-label example-image-button">Choose an Image</span>
+                <input type="file" id="imageButton" className="example-image-input"></input>
+              </FlatButton>
+            </div>
+            <div className="button-example-container">
               <FlatButton label="Disabled" disabled={true} />
             </div>
           </div>
@@ -159,6 +177,12 @@ var ButtonPage = React.createClass({
             </div>
             <div className="button-example-container">
               <RaisedButton label="Secondary" secondary={true} />
+            </div>
+            <div className="button-example-container">
+              <RaisedButton secondary={true}>
+                <span className="mui-raised-button-label example-image-button">Choose an Image</span>
+                <input type="file" id="imageButton" className="example-image-input"></input>
+              </RaisedButton>
             </div>
             <div className="button-example-container">
               <RaisedButton label="Disabled" disabled={true} />
