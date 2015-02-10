@@ -35,14 +35,16 @@ var TouchRipple = React.createClass({
 
     return (
       <div
-        className={classes}
         onMouseUp={this._handleMouseUp}
         onMouseDown={this._handleMouseDown}
         onMouseOut={this._handleMouseOut}
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}>
-        {this._getRippleElements()}
-        <div style={shieldStyle} />
+        <div className={classes}>
+          {this._getRippleElements()}
+          <div style={shieldStyle} />
+        </div>
+        {this.props.children}
       </div>
     );
   },

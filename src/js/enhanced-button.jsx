@@ -52,7 +52,9 @@ var EnhancedButton = React.createClass({
       <TouchRipple
         ref="touchRipple"
         key="touchRipple"
-        centerRipple={centerRipple} />
+        centerRipple={centerRipple}>
+        {this.props.children}
+        </TouchRipple>
     );
     var focusRipple = (
       <FocusRipple
@@ -67,8 +69,7 @@ var EnhancedButton = React.createClass({
       onTouchTap: this._handleTouchTap
     };
     var buttonChildren = [
-      this.props.children,
-      disabled || disableTouchRipple ? null : touchRipple,
+      disabled || disableTouchRipple ? this.props.children : touchRipple,
       disabled || disableFocusRipple ? null : focusRipple
     ];
 
