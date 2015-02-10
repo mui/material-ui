@@ -3,6 +3,7 @@ var mui = require('mui');
 var FlatButton = mui.FlatButton;
 var FloatingActionButton = mui.FloatingActionButton;
 var RaisedButton = mui.RaisedButton;
+var FontIcon = mui.FontIcon;
 var ComponentDoc = require('../../component-doc.jsx');
 
 var ButtonPage = React.createClass({
@@ -15,18 +16,30 @@ var ButtonPage = React.createClass({
       '<FlatButton label="Primary" primary={true} />\n' +
       '<FlatButton label="Secondary" secondary={true} />\n' +
       '<FlatButton secondary={true}>\n' +
-      '  <span className="mui-flat-button-label image-button">Choose an Image</span>\n' +
-      '  <input type="file" id="imageButton" className="image-input"></input>\n' +
+      '  <span className="mui-flat-button-label example-image-button">Choose an Image</span>\n' +
+      '  <input type="file" id="imageButton" className="example-image-input"></input>\n' +
       '</FlatButton>\n' +
+      '<div className="button-example-container">\n' +
+      '  <FlatButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true}>\n' +
+      '    <FontIcon className="muidocs-icon-custom-github example-flat-button-icon"/>\n' +
+      '    <span className="mui-flat-button-label">Github</span>\n' +
+      '  </FlatButton>\n' +
+      '</div>\n' +
       '<FlatButton label="Disabled" disabled={true} />\n\n' +
       '//Raised Buttons\n' + 
       '<RaisedButton label="Default" />\n' +
       '<RaisedButton label="Primary" primary={true} />\n' +
       '<RaisedButton label="Secondary" secondary={true} />\n' +
       '<RaisedButton secondary={true}>\n' +
-      '  <span className="mui-raised-button-label image-button">Choose an Image</span>\n' +
-      '  <input type="file" id="imageButton" className="image-input"></input>\n' +
+      '  <span className="mui-raised-button-label example-image-button">Choose an Image</span>\n' +
+      '  <input type="file" id="imageButton" className="example-image-input"></input>\n' +
       '</RaisedButton>\n' +
+      '<div className="button-example-container">\n' +
+      '  <RaisedButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true}>\n' +
+      '    <FontIcon className="muidocs-icon-custom-github example-button-icon"/>\n' +
+      '    <span className="mui-raised-button-label example-icon-button-label">Github</span>\n' +
+      '  </RaisedButton>\n' +
+      '</div>\n' +
       '<RaisedButton label="Disabled" disabled={true} />\n\n' +
       '//Floating Action Buttons\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" />\n' +
@@ -164,6 +177,12 @@ var ButtonPage = React.createClass({
               </FlatButton>
             </div>
             <div className="button-example-container">
+              <FlatButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true}>
+                <FontIcon className="muidocs-icon-custom-github example-flat-button-icon"/>
+                <span className="mui-flat-button-label">Github</span>
+              </FlatButton>
+            </div>
+            <div className="button-example-container">
               <FlatButton label="Disabled" disabled={true} />
             </div>
           </div>
@@ -181,7 +200,13 @@ var ButtonPage = React.createClass({
             <div className="button-example-container">
               <RaisedButton secondary={true}>
                 <span className="mui-raised-button-label example-image-button">Choose an Image</span>
-                <input type="file" id="imageButton" className="example-image-input"></input>
+                <input type="file" className="example-image-input"></input>
+              </RaisedButton>
+            </div>
+            <div className="button-example-container">
+              <RaisedButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true}>
+                <FontIcon className="muidocs-icon-custom-github example-button-icon"/>
+                <span className="mui-raised-button-label example-icon-button-label">Github</span>
               </RaisedButton>
             </div>
             <div className="button-example-container">
