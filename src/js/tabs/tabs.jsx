@@ -16,14 +16,19 @@ var Tabs = React.createClass({
   },
 
   getEvenWidth: function(){
-    return (
+    var width = (
       parseInt(window
         .getComputedStyle(this.getDOMNode())
         .getPropertyValue('width'), 10)
     );
+    this.setState({
+      width: width,
+      fixed: true
+    });
   },
 
   componentDidMount: function(){
+    window.addEventListener('resize', this.getEvenWidth);
     if(this.props.tabWidth) {
       if(!(this.props.children.length * this.props.tabWidth > this.getEvenWidth())){
         this.setState({
@@ -33,10 +38,7 @@ var Tabs = React.createClass({
         return;
       }
     }
-    this.setState({
-      width: this.getEvenWidth(),
-      fixed: true
-    });
+    this.getEvenWidth();
   },
 
   handleTouchTap: function(tabIndex, tab){
