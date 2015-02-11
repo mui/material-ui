@@ -1,0 +1,9 @@
+build
+docs
+example
+
+# jsx Transform Disk Cache
+.module-cache
+
+# Exclude jsx files
+src/js/**/*.jsx

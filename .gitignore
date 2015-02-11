@@ -1,3 +1,11 @@
 node_modules
 npm-debug.log
 build
+
+# jsx Transform Disk Cache
+.module-cache
+
+# Exclude compiled jsx files
+src/js/**/*.js
+!src/js/mixins/*.js
+!src/js/utils/*.js

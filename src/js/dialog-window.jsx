@@ -1,11 +1,11 @@
 var React = require('react');
-var WindowListenable = require('./mixins/window-listenable.js');
-var CssEvent = require('./utils/css-event.js');
-var KeyCode = require('./utils/key-code.js');
+var WindowListenable = require('./mixins/window-listenable');
+var CssEvent = require('./utils/css-event');
+var KeyCode = require('./utils/key-code');
 var Classable = require('./mixins/classable');
-var FlatButton = require('./flat-button.jsx');
-var Overlay = require('./overlay.jsx');
-var Paper = require('./paper.jsx');
+var FlatButton = require('./flat-button');
+var Overlay = require('./overlay');
+var Paper = require('./paper');
 
 var DialogWindow = React.createClass({
 

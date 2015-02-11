@@ -1,5 +1,5 @@
-var Events = require('../utils/events.js');
-var Dom = require('../utils/dom.js');
+var Events = require('../utils/events');
+var Dom = require('../utils/dom');
 
 module.exports = {
 

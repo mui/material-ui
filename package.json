@@ -5,7 +5,10 @@
   "description": "Material Design UI components built with React",
   "main": "./src/index",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jsx": "./node_modules/.bin/jsx --harmony -x jsx ./src/js ./src/js",
+    "prepublish": "npm run jsx",
+    "postpublish": "git clean -fX"
   },
   "keywords": [
     "react",
@@ -23,16 +26,6 @@
     "url": "https://github.com/callemall/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
-  "browserify": {
-    "transform": [
-      [
-        "reactify",
-        {
-          "es6": true
-        }
-      ]
-    ]
-  },
   "dependencies": {
     "react-classset": "0.0.2",
     "react-draggable2": "^0.4.2",
@@ -42,8 +35,6 @@
     "react": "0.12.x"
   },
   "devDependencies": {
-    "browserify": "^7.0.3",
-    "reactify": "^0.17.1",
-    "react-router": "^0.11.6"
+    "react-tools": "^0.12.2"
   }
 }

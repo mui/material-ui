@@ -1,11 +1,11 @@
 var React = require('react');
-var CssEvent = require('./utils/css-event.js');
-var Dom = require('./utils/dom.js');
-var KeyLine = require('./utils/key-line.js');
-var Classable = require('./mixins/classable.js');
+var CssEvent = require('./utils/css-event');
+var Dom = require('./utils/dom');
+var KeyLine = require('./utils/key-line');
+var Classable = require('./mixins/classable');
 var ClickAwayable = require('./mixins/click-awayable');
-var Paper = require('./paper.jsx');
-var MenuItem = require('./menu-item.jsx');
+var Paper = require('./paper');
+var MenuItem = require('./menu-item');
 
 /***********************
  * Nested Menu Component

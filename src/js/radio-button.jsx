@@ -1,8 +1,8 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
-var EnhancedSwitch = require('./enhanced-switch.jsx');
-var RadioButtonOff = require('./svg-icons/toggle-radio-button-off.jsx');
-var RadioButtonOn = require('./svg-icons/toggle-radio-button-on.jsx');
+var Classable = require('./mixins/classable');
+var EnhancedSwitch = require('./enhanced-switch');
+var RadioButtonOff = require('./svg-icons/toggle-radio-button-off');
+var RadioButtonOn = require('./svg-icons/toggle-radio-button-on');
 
 var RadioButton = React.createClass({
 

@@ -1,6 +1,6 @@
 var React = require('react');
-var Classable = require('../mixins/classable.js');
-var TabTemplate = require('./tabTemplate.jsx');
+var Classable = require('../mixins/classable');
+var TabTemplate = require('./tabTemplate');
 
 
 var Tab = React.createClass({
