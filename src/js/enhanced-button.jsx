@@ -16,6 +16,8 @@ var EnhancedButton = React.createClass({
     disableFocusRipple: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
     linkButton: React.PropTypes.bool,
+    focusRippleColor: React.PropTypes.string,
+    touchRippleColor: React.PropTypes.string,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func
@@ -39,6 +41,7 @@ var EnhancedButton = React.createClass({
       disableFocusRipple,
       disableTouchRipple,
       linkButton,
+      touchRippleColor,
       onBlur,
       onFocus,
       onTouchTap,
@@ -52,11 +55,13 @@ var EnhancedButton = React.createClass({
       <TouchRipple
         ref="touchRipple"
         key="touchRipple"
-        centerRipple={centerRipple} />
+        centerRipple={centerRipple}
+        color={this.props.touchRippleColor} />
     );
     var focusRipple = (
       <FocusRipple
         key="focusRipple"
+        color={this.props.focusRippleColor}
         show={this.state.isKeyboardFocused} />
     );
     var buttonProps = {

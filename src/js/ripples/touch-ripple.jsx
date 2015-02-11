@@ -1,15 +1,15 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable.js');
 var Dom = require('../utils/dom.js');
 var RippleCircle = require('./circle.jsx');
 
 var TouchRipple = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
-    className: React.PropTypes.string
+    color: React.PropTypes.string
   },
 
   getInitialState: function() {
@@ -23,7 +23,14 @@ var TouchRipple = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-touch-ripple');
+
+    var styles = this.mergePropStyles({
+      height: '100%',
+      width: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0
+    });
 
     //This is needed to keep click events from getting lost
     //in safari. Without it, onClick won't fire.
@@ -35,12 +42,12 @@ var TouchRipple = React.createClass({
 
     return (
       <div
-        className={classes}
         onMouseUp={this._handleMouseUp}
         onMouseDown={this._handleMouseDown}
         onMouseOut={this._handleMouseOut}
         onTouchStart={this._handleTouchStart}
-        onTouchEnd={this._handleTouchEnd}>
+        onTouchEnd={this._handleTouchEnd}
+        style={styles}>
         {this._getRippleElements()}
         <div style={shieldStyle} />
       </div>
@@ -171,7 +178,8 @@ var TouchRipple = React.createClass({
           key={ripple.key}
           started={ripple.started}
           ending={ripple.ending}
-          style={ripple.style} />
+          style={ripple.style}
+          color={this.props.color} />
       );
     }.bind(this));
   }
