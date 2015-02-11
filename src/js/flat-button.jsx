@@ -1,12 +1,7 @@
 var React = require('react');
-<<<<<<< HEAD
 var Classable = require('./mixins/classable.js');
 var EnhancedButton = require('./enhanced-button.jsx');
 var Theme = require('./styles/theme.js').get();
-=======
-var Classable = require('./mixins/classable');
-var EnhancedButton = require('./enhanced-button');
->>>>>>> master
 
 var FlatButton = React.createClass({
 

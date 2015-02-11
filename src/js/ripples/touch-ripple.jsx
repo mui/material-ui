@@ -39,8 +39,7 @@ var TouchRipple = React.createClass({
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}
         style={styles}>
-        {this._getRippleElements()}
-        <div style={shieldStyle} />
+          {this._getRippleElements()}
       </div>
     );
   },

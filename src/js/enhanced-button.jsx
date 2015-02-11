@@ -72,7 +72,8 @@ var EnhancedButton = React.createClass({
       onTouchTap: this._handleTouchTap
     };
     var buttonChildren = [
-      disabled || disableTouchRipple ? this.props.children : touchRipple,
+      this.props.children,
+      disabled || disableTouchRipple ? null : touchRipple,
       disabled || disableFocusRipple ? null : focusRipple
     ];
 

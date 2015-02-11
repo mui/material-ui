@@ -87,7 +87,7 @@ var IconButtonsPage = React.createClass({
 
         <IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>
 
-        <IconButton tooltip="Star" touch={true}>
+      <IconButton tooltip="Star" touch={true}>
           <ActionGrade/>
         </IconButton>
 
