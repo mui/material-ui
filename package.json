@@ -5,10 +5,7 @@
   "description": "Material Design UI components built with React",
   "main": "./src/index",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "jsx": "./node_modules/.bin/jsx --harmony -x jsx ./src/js ./src/js",
-    "prepublish": "npm run jsx",
-    "postpublish": "git clean -fX"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "react",
