@@ -1,7 +1,7 @@
 var React = require('react/addons');
-var Tab = require('./tab.jsx');
-var TabTemplate = require('./tabTemplate.jsx');
-var InkBar = require('../ink-bar.jsx');
+var Tab = require('./tab');
+var TabTemplate = require('./tabTemplate');
+var InkBar = require('../ink-bar');
 
 var Tabs = React.createClass({
 

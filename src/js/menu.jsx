@@ -1,11 +1,11 @@
 var React = require('react');
-var CssEvent = require('./utils/css-event.js');
-var Dom = require('./utils/dom.js');
-var KeyLine = require('./utils/key-line.js');
-var Classable = require('./mixins/classable.js');
+var CssEvent = require('./utils/css-event');
+var Dom = require('./utils/dom');
+var KeyLine = require('./utils/key-line');
+var Classable = require('./mixins/classable');
 var ClickAwayable = require('./mixins/click-awayable');
-var Paper = require('./paper.jsx');
-var MenuItem = require('./menu-item.jsx');
+var Paper = require('./paper');
+var MenuItem = require('./menu-item');
 
 /***********************
  * Nested Menu Component
@@ -19,7 +19,8 @@ var NestedMenuItem = React.createClass({
     text: React.PropTypes.string,
     menuItems: React.PropTypes.array.isRequired,
     zDepth: React.PropTypes.number,
-    onItemClick: React.PropTypes.func
+    onItemClick: React.PropTypes.func,
+    onItemTap: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -45,13 +46,14 @@ var NestedMenuItem = React.createClass({
 
     return (
       <div className={classes}>
-        <MenuItem index={this.props.index} iconRight="mui-icon-arrow-drop-right" onClick={this._onParentItemClick}>
+        <MenuItem index={this.props.index} iconRightClassName="muidocs-icon-custom-arrow-drop-right" onClick={this._onParentItemClick}>
           {this.props.text}
         </MenuItem>
         <Menu
           ref="nestedMenu"
           menuItems={this.props.menuItems}
           onItemClick={this._onMenuItemClick}
+          onItemTap={this._onMenuItemTap}
           hideable={true}
           visible={this.state.open}
           zDepth={this.props.zDepth + 1} />
@@ -73,6 +75,11 @@ var NestedMenuItem = React.createClass({
   _onMenuItemClick: function(e, index, menuItem) {
     this.setState({ open: false });
     if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
+  },
+  
+  _onMenuItemTap: function(e, index, menuItem) {
+    this.setState({ open: false });
+    if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
   }
 
 });
@@ -86,6 +93,7 @@ var Menu = React.createClass({
 
   propTypes: {
     autoWidth: React.PropTypes.bool,
+    onItemTap: React.PropTypes.func,
     onItemClick: React.PropTypes.func,
     onToggleClick: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
@@ -184,7 +192,8 @@ var Menu = React.createClass({
               text={menuItem.text}
               menuItems={menuItem.items}
               zDepth={this.props.zDepth}
-              onItemClick={this._onNestedItemClick} />
+              onItemClick={this._onNestedItemClick}
+              onItemTap={this._onNestedItemClick} />
           );
           this._nestedChildren.push(i);
           break;
@@ -201,7 +210,8 @@ var Menu = React.createClass({
               attribute={menuItem.attribute}
               number={menuItem.number}
               toggle={menuItem.toggle}
-              onClick={this._onItemClick}>
+              onClick={this._onItemClick}
+              onTouchTap={this._onItemTap}>
               {menuItem.text}
             </MenuItem>
           );
@@ -258,8 +268,16 @@ var Menu = React.createClass({
     if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
   },
 
+  _onNestedItemTap: function(e, index, menuItem) {
+    if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
+  },
+
   _onItemClick: function(e, index) {
     if (this.props.onItemClick) this.props.onItemClick(e, index, this.props.menuItems[index]);
+  },
+
+  _onItemTap: function(e, index) {
+    if (this.props.onItemTap) this.props.onItemTap(e, index, this.props.menuItems[index]);
   },
 
   _onItemToggle: function(e, index, toggled) {

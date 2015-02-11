@@ -25,17 +25,14 @@ module.exports = {
     src: src + "/www/**",
     dest: dest
   },
-  fonts: {
-    src: mui + '/less/material-design-fonticons/fonts/**',
-    dest: dest + '/fonts/mdfonticon'
-  },
-  muiFonts: {
-    src: mui + '/less/material-ui-icons/fonts/**',
-    dest: dest + '/fonts'
+  fontIcons: {
+    src: src + "/less/font-icons/**",
+    dest: dest + '/font-icons'
   },
   browserify: {
     // Enable source maps
     debug: true,
+    extensions: [ '.jsx' ],
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{

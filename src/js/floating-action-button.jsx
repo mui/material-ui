@@ -1,8 +1,8 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
-var EnhancedButton = require('./enhanced-button.jsx');
-var Icon = require('./icon.jsx');
-var Paper = require('./paper.jsx');
+var Classable = require('./mixins/classable');
+var EnhancedButton = require('./enhanced-button');
+var FontIcon = require('./font-icon');
+var Paper = require('./paper');
 
 var RaisedButton = React.createClass({
 
@@ -10,7 +10,7 @@ var RaisedButton = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
-    icon: React.PropTypes.string.isRequired,
+    iconClassName: React.PropTypes.string,
     mini: React.PropTypes.bool,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
@@ -28,6 +28,16 @@ var RaisedButton = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    if (this.props.iconClassName && this.props.children) {
+      var warning = 'You have set both an iconClassName and a child icon. ' +
+                    'It is recommended you use only one method when adding ' +
+                    'icons to FloatingActionButtons.';
+      console.warn(warning);
+    }
+  },
+
+
   render: function() {
     var {
       icon,
@@ -38,6 +48,10 @@ var RaisedButton = React.createClass({
       'mui-is-mini': mini,
       'mui-is-secondary': secondary
     });
+
+    var icon;
+    if (this.props.iconClassName) icon = <FontIcon className={"mui-floating-action-button-icon " + this.props.iconClassName} />
+
 
     return (
       <Paper
@@ -54,9 +68,8 @@ var RaisedButton = React.createClass({
           onTouchStart={this._handleTouchStart}
           onTouchEnd={this._handleTouchEnd}>
 
-          <Icon
-            className="mui-floating-action-button-icon"
-            icon={this.props.icon} />
+          {icon}
+          {this.props.children}
 
         </EnhancedButton>
         

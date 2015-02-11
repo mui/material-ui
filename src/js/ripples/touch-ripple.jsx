@@ -2,7 +2,6 @@ var React = require('react');
 var StylePropable = require('../mixins/style-propable.js');
 var Dom = require('../utils/dom.js');
 var RippleCircle = require('./circle.jsx');
-
 var TouchRipple = React.createClass({
 
   mixins: [StylePropable],
@@ -40,7 +39,7 @@ var TouchRipple = React.createClass({
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}
         style={styles}>
-        {this._getRippleElements()}
+          {this._getRippleElements()}
       </div>
     );
   },

@@ -1,8 +1,8 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
-var EnhancedButton = require('./enhanced-button.jsx');
-var Icon = require('./icon.jsx');
-var Tooltip = require('./tooltip.jsx');
+var Classable = require('./mixins/classable');
+var EnhancedButton = require('./enhanced-button');
+var FontIcon = require('./font-icon');
+var Tooltip = require('./tooltip');
 
 var IconButton = React.createClass({
 
@@ -11,7 +11,7 @@ var IconButton = React.createClass({
   propTypes: {
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
-    icon: React.PropTypes.string.isRequired,
+    iconClassName: React.PropTypes.string,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
@@ -28,16 +28,23 @@ var IconButton = React.createClass({
     if (this.props.tooltip) {
       this._positionTooltip();
     }
+
+    if (this.props.iconClassName && this.props.children) {
+      var warning = 'You have set both an iconClassName and a child icon. ' +
+                    'It is recommended you use only one method when adding ' +
+                    'icons to IconButtons.';
+      console.warn(warning);
+    }
   },
 
   render: function() {
     var {
-      icon,
       tooltip,
       touch,
       ...other } = this.props;
     var classes = this.getClasses('mui-icon-button');
     var tooltip;
+    var fonticon;
 
     if (this.props.tooltip) {
       tooltip = (
@@ -47,6 +54,12 @@ var IconButton = React.createClass({
           label={tooltip}
           show={this.state.tooltipShown}
           touch={touch} />
+      );
+    }
+
+    if (this.props.iconClassName) {
+      fonticon = (
+        <FontIcon className={this.props.iconClassName}/>
       );
     }
 
@@ -61,7 +74,8 @@ var IconButton = React.createClass({
         onMouseOver={this._handleMouseOver}>
 
         {tooltip}
-        <Icon icon={icon} />
+        {fonticon}
+        {this.props.children}
 
       </EnhancedButton>
     );

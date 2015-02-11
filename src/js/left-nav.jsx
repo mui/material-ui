@@ -1,10 +1,10 @@
 var React = require('react'),
-  KeyCode = require('./utils/key-code.js'),
-  Classable = require('./mixins/classable.js'),
-  WindowListenable = require('./mixins/window-listenable.js'),
-  Overlay = require('./overlay.jsx'),
-  Paper = require('./paper.jsx'),
-  Menu = require('./menu.jsx');
+  KeyCode = require('./utils/key-code'),
+  Classable = require('./mixins/classable'),
+  WindowListenable = require('./mixins/window-listenable'),
+  Overlay = require('./overlay'),
+  Paper = require('./paper'),
+  Menu = require('./menu');
 
 var LeftNav = React.createClass({
 

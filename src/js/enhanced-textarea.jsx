@@ -1,5 +1,5 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
+var Classable = require('./mixins/classable');
 
 var EnhancedTextarea = React.createClass({
 
@@ -20,8 +20,12 @@ var EnhancedTextarea = React.createClass({
 
   getInitialState: function() {
     return {
-      height: this.props.rows * 24 
+      height: this.props.rows * 24
     };
+  },
+
+  componentDidMount: function() {
+    this._syncHeightWithShadow();
   },
 
   render: function() {
@@ -32,7 +36,8 @@ var EnhancedTextarea = React.createClass({
       onHeightChange,
       textareaClassName,
       rows,
-      ...other
+      valueLink,
+      ...other,
     } = this.props;
 
     var classes = this.getClasses('mui-enhanced-textarea');
@@ -45,13 +50,19 @@ var EnhancedTextarea = React.createClass({
       textareaClassName += ' ' + this.props.textareaClassName;
     }
 
+    if (this.props.hasOwnProperty('valueLink')) {
+      other.value = this.props.valueLink.value;
+    }
+
     return (
       <div className={classes}>
         <textarea
           ref="shadow"
           className="mui-enhanced-textarea-shadow"
+          tabIndex="-1"
           rows={this.props.rows}
-          tabIndex="-1" />
+          defaultValue={this.props.defaultValue}
+          value={this.props.value} />
         <textarea
           {...other}
           ref="input"
@@ -67,17 +78,25 @@ var EnhancedTextarea = React.createClass({
     return this.refs.input.getDOMNode();
   },
 
-  _handleChange: function(e) {
+  _syncHeightWithShadow: function(newValue, e) {
     var shadow = this.refs.shadow.getDOMNode();
     var currentHeight = this.state.height;
     var newHeight;
 
-    shadow.value = e.target.value;
+    if (newValue !== undefined) shadow.value = newValue;
     newHeight = shadow.scrollHeight;
 
     if (currentHeight !== newHeight) {
       this.setState({height: newHeight});
       if (this.props.onHeightChange) this.props.onHeightChange(e, newHeight);
+    }
+  },
+
+  _handleChange: function(e) {
+    this._syncHeightWithShadow(e.target.value);
+
+    if (this.props.hasOwnProperty('valueLink')) {
+      this.props.valueLink.requestChange(e.target.value);
     }
 
     if (this.props.onChange) this.props.onChange(e);

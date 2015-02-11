@@ -1,5 +1,5 @@
 var React = require('react'),
-  Classable = require('./mixins/classable.js');
+  Classable = require('./mixins/classable');
 
 var TableHeader = React.createClass({
 

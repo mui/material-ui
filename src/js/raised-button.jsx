@@ -1,7 +1,7 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
-var EnhancedButton = require('./enhanced-button.jsx');
-var Paper = require('./paper.jsx');
+var Classable = require('./mixins/classable');
+var EnhancedButton = require('./enhanced-button');
+var Paper = require('./paper');
 
 var RaisedButton = React.createClass({
 
@@ -9,7 +9,11 @@ var RaisedButton = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
-    label: React.PropTypes.string.isRequired,
+    label: function(props, propName, componentName){
+      if (!props.children && !props.label) {
+        return new Error('Warning: Required prop `label` or `children` was not specified in `'+ componentName + '`.')
+      }
+    },
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
     onMouseOut: React.PropTypes.func,
@@ -45,6 +49,10 @@ var RaisedButton = React.createClass({
       'mui-is-primary': primary,
       'mui-is-secondary': !primary && secondary
     });
+    var children;
+
+    if (label) children = <span className="mui-raised-button-label">{label}</span>;
+    else children = this.props.children;
 
     return (
       <Paper className={classes} zDepth={this.state.zDepth}>
@@ -55,7 +63,7 @@ var RaisedButton = React.createClass({
           onMouseOut={this._handleMouseOut}
           onTouchStart={this._handleTouchStart}
           onTouchEnd={this._handleTouchEnd}>
-          <span className="mui-raised-button-label">{label}</span>
+          {children}
         </EnhancedButton>
       </Paper>
     );

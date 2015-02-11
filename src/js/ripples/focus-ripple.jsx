@@ -12,7 +12,8 @@ var FocusRipple = React.createClass({
 
   propTypes: {
     color: React.PropTypes.string,
-    show: React.PropTypes.bool
+    show: React.PropTypes.bool,
+    innerStyle: React.PropTypes.object
   },
 
   getDefaultProps: function() {
@@ -39,7 +40,7 @@ var FocusRipple = React.createClass({
       opacity: this.props.show ? 1 : 0
     });
 
-    var innerStyles = {
+    var innerStyles = this.mergePropStyles({
       position: 'absolute',
       height: '100%',
       width: '100%',
@@ -47,7 +48,7 @@ var FocusRipple = React.createClass({
       opacity: 0.2,
       backgroundColor: this.props.color,
       transition: Transitions.easeOut(pulsateDuration + 'ms', null, null, Transitions.easeInOutFunction)
-    };
+    }, this.props.innerStyle);
 
     return (
       <div style={AutoPrefix.all(outerStyles)}>

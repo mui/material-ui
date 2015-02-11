@@ -10,7 +10,10 @@
 
   .mui-icon-button {
     margin-top: ((@app-bar-height - @icon-button-size) / 2);
-    color: @app-bar-text-color;
+    * {
+      fill: @app-bar-text-color;
+      color: @app-bar-text-color;
+    }
   }
 
   .mui-app-bar-title {

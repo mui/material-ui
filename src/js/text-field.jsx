@@ -1,7 +1,7 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
-var DomIdable = require('./mixins/dom-idable.js');
-var EnhancedTextarea = require('./enhanced-textarea.jsx');
+var Classable = require('./mixins/classable');
+var DomIdable = require('./mixins/dom-idable');
+var EnhancedTextarea = require('./enhanced-textarea');
 
 var TextField = React.createClass({
 

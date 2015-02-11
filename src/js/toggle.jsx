@@ -1,7 +1,7 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
-var Paper = require('./paper.jsx');
-var EnhancedSwitch = require('./enhanced-switch.jsx');
+var Classable = require('./mixins/classable');
+var Paper = require('./paper');
+var EnhancedSwitch = require('./enhanced-switch');
 
 var Toggle = React.createClass({
 
@@ -26,11 +26,17 @@ var Toggle = React.createClass({
       </div>
     );
 
+    var customRippleStyle = {
+      top: '-10',
+      left: '-10'
+    };
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switchElement: toggleElement,
       className: "mui-toggle",
+      rippleStyle: customRippleStyle,
       iconClassName: "mui-toggle-icon",
       onSwitch: this._handleToggle,
       defaultSwitched: this.props.defaultToggled,
