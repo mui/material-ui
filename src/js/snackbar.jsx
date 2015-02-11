@@ -1,8 +1,8 @@
 var React = require('react');
-var CssEvent = require('./utils/css-event.js');
+var CssEvent = require('./utils/css-event');
 var Classable = require('./mixins/classable');
 var ClickAwayable = require('./mixins/click-awayable');
-var FlatButton = require('./flat-button.jsx');
+var FlatButton = require('./flat-button');
 
 var Snackbar = React.createClass({
 

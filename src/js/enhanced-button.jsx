@@ -1,9 +1,9 @@
 var React = require('react');
-var KeyCode = require('./utils/key-code.js');
-var Classable = require('./mixins/classable.js');
+var KeyCode = require('./utils/key-code');
+var Classable = require('./mixins/classable');
 var WindowListenable = require('./mixins/window-listenable');
-var FocusRipple = require('./ripples/focus-ripple.jsx');
-var TouchRipple = require('./ripples/touch-ripple.jsx');
+var FocusRipple = require('./ripples/focus-ripple');
+var TouchRipple = require('./ripples/touch-ripple');
 
 var EnhancedButton = React.createClass({
 
@@ -72,8 +72,7 @@ var EnhancedButton = React.createClass({
       onTouchTap: this._handleTouchTap
     };
     var buttonChildren = [
-      this.props.children,
-      disabled || disableTouchRipple ? null : touchRipple,
+      disabled || disableTouchRipple ? this.props.children : touchRipple,
       disabled || disableFocusRipple ? null : focusRipple
     ];
 

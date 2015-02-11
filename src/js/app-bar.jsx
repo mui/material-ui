@@ -1,8 +1,8 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
-var IconButton = require('./icon-button.jsx');
-var NavigationMenu = require('./svg-icons/navigation-menu.jsx');
-var Paper = require('./paper.jsx');
+var Classable = require('./mixins/classable');
+var IconButton = require('./icon-button');
+var NavigationMenu = require('./svg-icons/navigation-menu');
+var Paper = require('./paper');
 
 var AppBar = React.createClass({
 

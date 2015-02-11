@@ -1,5 +1,5 @@
 var React = require('react');
-var SvgIcon = require('./svg-icon.jsx');
+var SvgIcon = require('./svg-icon');
 
 var NavigationChevronLeft = React.createClass({
 

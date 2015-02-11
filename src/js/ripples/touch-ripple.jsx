@@ -2,7 +2,6 @@ var React = require('react');
 var StylePropable = require('../mixins/style-propable.js');
 var Dom = require('../utils/dom.js');
 var RippleCircle = require('./circle.jsx');
-
 var TouchRipple = React.createClass({
 
   mixins: [StylePropable],
@@ -31,14 +30,6 @@ var TouchRipple = React.createClass({
       top: 0,
       left: 0
     });
-
-    //This is needed to keep click events from getting lost
-    //in safari. Without it, onClick won't fire.
-    var shieldStyle = {
-      position: 'absolute',
-      height: '100%',
-      width: '100%'
-    };
 
     return (
       <div

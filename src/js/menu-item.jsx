@@ -1,7 +1,7 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
-var FontIcon = require('./font-icon.jsx');
-var Toggle = require('./toggle.jsx');
+var Classable = require('./mixins/classable');
+var FontIcon = require('./font-icon');
+var Toggle = require('./toggle');
 
 var Types = {
   LINK: 'LINK',
@@ -21,6 +21,7 @@ var MenuItem = React.createClass({
     number: React.PropTypes.string,
     data: React.PropTypes.string,
     toggle: React.PropTypes.bool,
+    onTouchTap: React.PropTypes.func,
     onClick: React.PropTypes.func,
     onToggle: React.PropTypes.func,
     selected: React.PropTypes.bool
@@ -49,8 +50,6 @@ var MenuItem = React.createClass({
 
     if (this.props.iconClassName) icon = <FontIcon className={'mui-menu-item-icon ' + this.props.iconClassName} />;
     if (this.props.iconRightClassName) iconRight = <FontIcon className={'mui-menu-item-icon-right ' + this.props.iconRightClassName} />;
-    
-
     if (this.props.data) data = <span className="mui-menu-item-data">{this.props.data}</span>;
     if (this.props.number !== undefined) number = <span className="mui-menu-item-number">{this.props.number}</span>;
     if (this.props.attribute !== undefined) attribute = <span className="mui-menu-item-attribute">{this.props.attribute}</span>;
@@ -72,7 +71,7 @@ var MenuItem = React.createClass({
         key={this.props.index}
         className={classes}
         onTouchTap={this._handleTouchTap}
-        onClick={this._handleTouchTap}>
+        onClick={this._handleOnClick}>
 
         {icon}
         {this.props.children}
@@ -87,6 +86,10 @@ var MenuItem = React.createClass({
   },
 
   _handleTouchTap: function(e) {
+    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
+  },
+
+  _handleOnClick: function(e) {
     if (this.props.onClick) this.props.onClick(e, this.props.index);
   },
 

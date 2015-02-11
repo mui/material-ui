@@ -1,10 +1,10 @@
 var React = require('react');
-var Classable = require('./mixins/classable.js');
+var Classable = require('./mixins/classable');
 var ClickAwayable = require('./mixins/click-awayable');
-var DropDownArrow = require('./svg-icons/drop-down-arrow.jsx');
-var KeyLine = require('./utils/key-line.js');
-var Paper = require('./paper.jsx');
-var Menu = require('./menu.jsx');
+var DropDownArrow = require('./svg-icons/drop-down-arrow');
+var KeyLine = require('./utils/key-line');
+var Paper = require('./paper');
+var Menu = require('./menu');
 
 var DropDownMenu = React.createClass({
 
