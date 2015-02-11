@@ -19,7 +19,8 @@ var NestedMenuItem = React.createClass({
     text: React.PropTypes.string,
     menuItems: React.PropTypes.array.isRequired,
     zDepth: React.PropTypes.number,
-    onItemClick: React.PropTypes.func
+    onItemClick: React.PropTypes.func,
+    onItemTap: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -52,6 +53,7 @@ var NestedMenuItem = React.createClass({
           ref="nestedMenu"
           menuItems={this.props.menuItems}
           onItemClick={this._onMenuItemClick}
+          onItemTap={this._onMenuItemTap}
           hideable={true}
           visible={this.state.open}
           zDepth={this.props.zDepth + 1} />
@@ -73,6 +75,11 @@ var NestedMenuItem = React.createClass({
   _onMenuItemClick: function(e, index, menuItem) {
     this.setState({ open: false });
     if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
+  },
+  
+  _onMenuItemTap: function(e, index, menuItem) {
+    this.setState({ open: false });
+    if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
   }
 
 });
@@ -86,6 +93,7 @@ var Menu = React.createClass({
 
   propTypes: {
     autoWidth: React.PropTypes.bool,
+    onItemTap: React.PropTypes.func,
     onItemClick: React.PropTypes.func,
     onToggleClick: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
@@ -184,7 +192,8 @@ var Menu = React.createClass({
               text={menuItem.text}
               menuItems={menuItem.items}
               zDepth={this.props.zDepth}
-              onItemClick={this._onNestedItemClick} />
+              onItemClick={this._onNestedItemClick}
+              onItemTap={this._onNestedItemClick} />
           );
           this._nestedChildren.push(i);
           break;
@@ -201,7 +210,8 @@ var Menu = React.createClass({
               attribute={menuItem.attribute}
               number={menuItem.number}
               toggle={menuItem.toggle}
-              onClick={this._onItemClick}>
+              onClick={this._onItemClick}
+              onTouchTap={this._onItemTap}>
               {menuItem.text}
             </MenuItem>
           );
@@ -258,8 +268,16 @@ var Menu = React.createClass({
     if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
   },
 
+  _onNestedItemTap: function(e, index, menuItem) {
+    if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
+  },
+
   _onItemClick: function(e, index) {
     if (this.props.onItemClick) this.props.onItemClick(e, index, this.props.menuItems[index]);
+  },
+
+  _onItemTap: function(e, index) {
+    if (this.props.onItemTap) this.props.onItemTap(e, index, this.props.menuItems[index]);
   },
 
   _onItemToggle: function(e, index, toggled) {
