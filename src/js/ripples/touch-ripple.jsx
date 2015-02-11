@@ -25,24 +25,17 @@ var TouchRipple = React.createClass({
   render: function() {
     var classes = this.getClasses('mui-touch-ripple');
 
-    //This is needed to keep click events from getting lost
-    //in safari. Without it, onClick won't fire.
-    var shieldStyle = {
-      position: 'absolute',
-      height: '100%',
-      width: '100%'
-    };
-
     return (
       <div
-        className={classes}
         onMouseUp={this._handleMouseUp}
         onMouseDown={this._handleMouseDown}
         onMouseOut={this._handleMouseOut}
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}>
-        {this._getRippleElements()}
-        <div style={shieldStyle} />
+        <div className={classes}>
+          {this._getRippleElements()}
+        </div>
+        {this.props.children}
       </div>
     );
   },
