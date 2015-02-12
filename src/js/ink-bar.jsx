@@ -1,4 +1,7 @@
 var React = require('react');
+var Transitions = require('./styles/mixins/transitions.js');
+var StylePropable = require('./mixins/style-propable.js');
+
 
 var InkBar = React.createClass({
   
@@ -6,15 +9,24 @@ var InkBar = React.createClass({
     position: React.PropTypes.string
   },
   
+  mixins: [StylePropable],
+
   render: function() {
 
-    var styles = {
+    var styles = this.mergePropStyles({
       left: this.props.left,
-      width: this.props.width
-    }
+      width: this.props.width,
+      bottom: '0',
+      display: 'block',
+      'background-color': 'yellow',
+      height: '2px',
+      'margin-top': '-2px',
+      position: 'relative',
+      transition: Transitions.easeOut('1s', 'left')
+    });
 
     return (
-      <div className='mui-ink-bar' style={styles}>
+      <div style={styles}>
         &nbsp;
       </div>
     );
