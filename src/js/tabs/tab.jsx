@@ -18,19 +18,18 @@ var Tab = React.createClass({
   },
 
   render: function(){
-    var styles = this.mergePropStyles({
+    var styles = {
       'display': 'inline-block',
       'height': '100%',
       'cursor': 'pointer',
       'textAlign': 'center',
       'lineHeight': '48px',
-      'color': '#fff',
       'opacity': '.6',
       'fontSize': '14sp',
       'fontWeight': '500',
       'font': Theme.fontFamily,
       'width': this.props.width
-    });
+    };
 
     if (this.props.selected) styles.opacity = '1';
 

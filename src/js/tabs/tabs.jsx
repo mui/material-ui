@@ -3,11 +3,8 @@ var Tab = require('./tab');
 var TabTemplate = require('./tabTemplate');
 var InkBar = require('../ink-bar');
 var Transitions = require('../styles/mixins/transitions.js');
-var StylePropable = require('../mixins/style-propable.js');
 
 var Tabs = React.createClass({
-
-  mixins: [StylePropable],
 
   propTypes: {
     onActive: React.PropTypes.func
@@ -51,15 +48,16 @@ var Tabs = React.createClass({
   },
 
   render: function(){
-    var tabItemContainerStyle = this.mergePropStyles({
+    var tabItemContainerStyle = {
       margin: '0',
       padding: '0',
       width: '100%',
+      'color': this.props.tabFontColor || '#fff',
       height: '48px',
-      'backgroundColor': '#00bcd4',
+      'backgroundColor': this.props.tabContainerColor || '#00bcd4',
       'whiteSpace': 'nowrap',
       display: 'block'
-    }, this.props.tabItemContainerStyle);
+    };
     var _this = this; 
     var width = this.state.fixed ?
       this.state.width/this.props.children.length :
@@ -87,7 +85,7 @@ var Tabs = React.createClass({
         <div style={tabItemContainerStyle}>
           {tabs}
         </div>
-        <InkBar left={left} width={width}/>
+        <InkBar inkBarColor={this.props.inkBarColor} left={left} width={width}/>
         <TabTemplate>
           {currentTemplate}
         </TabTemplate>
