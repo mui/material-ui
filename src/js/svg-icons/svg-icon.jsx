@@ -1,18 +1,34 @@
-var React = require('react');
-var Classable = require('../mixins/classable');
+var React = require('react/addons');
+var StylePropable = require('../mixins/style-propable.js');
+var AutoPrefix = require('../styles/auto-prefix.js');
+var Theme = require('../styles/theme.js').get();
 
 var SvgIcon = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   render: function() {
-    var classes = this.getClasses('mui-svg-icon');
+
+    var {
+      viewBox,
+      style,
+      ...other
+    } = this.props;
+
+    //merge styles that are passed in
+    var styles = this.mergePropStyles({
+      display: 'inline-block',
+      height: '24px',
+      width: '24px',
+      userSelect: 'none',
+      fill: Theme.textColor
+    });
 
     return (
       <svg
-        {...this.props}
-        className={classes}
-        viewBox="0 0 24 24">
+        {...other}
+        viewBox="0 0 24 24"
+        style={AutoPrefix.all(styles)}>
         {this.props.children}
       </svg>
     );

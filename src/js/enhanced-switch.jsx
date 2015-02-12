@@ -2,20 +2,23 @@ var React = require('react');
 var KeyCode = require('./utils/key-code');
 var Classable = require('./mixins/classable');
 var DomIdable = require('./mixins/dom-idable');
+var StylePropable = require('./mixins/style-propable.js');
 var WindowListenable = require('./mixins/window-listenable');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 var Paper = require('./paper');
+var Theme = require('./styles/theme.js').get();
 
 var EnhancedSwitch = React.createClass({
 
-  mixins: [Classable, DomIdable, WindowListenable],
+  mixins: [Classable, DomIdable, WindowListenable, StylePropable],
 
 	propTypes: {
       id: React.PropTypes.string,
       inputType: React.PropTypes.string.isRequired,
       switchElement: React.PropTypes.element.isRequired,
       iconClassName: React.PropTypes.string.isRequired,
+      rippleStyle: React.PropTypes.object,
       name: React.PropTypes.string,
 	    value: React.PropTypes.string,
 	    label: React.PropTypes.string,
@@ -133,16 +136,27 @@ var EnhancedSwitch = React.createClass({
         className="mui-enhanced-switch-input"/>
     );
 
+    var rippleStyle = this.mergePropStyles({
+        height: '200%',
+        width: '200%',
+        top: '-12',
+        left: '-12'
+    }, this.props.rippleStyle);
+
     var touchRipple = (
       <TouchRipple
         ref="touchRipple"
         key="touchRipple"
+        style={rippleStyle}
+        color={this.state.switched ? Theme.primary1Color : Theme.textColor}
         centerRipple={true} />
     );
 
     var focusRipple = (
       <FocusRipple
         key="focusRipple"
+        innerStyle={rippleStyle}
+        color={this.state.switched ? Theme.primary1Color : Theme.textColor}
         show={this.state.isKeyboardFocused} />
     );
 

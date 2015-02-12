@@ -2,6 +2,9 @@
   "name": "material-ui-example",
   "version": "0.0.1",
   "description": "Sample project that uses material-ui",
+  "scripts": {
+    "start": "gulp"
+  },
   "browserify": {
     "transform": [
       [

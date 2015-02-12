@@ -26,11 +26,17 @@ var Toggle = React.createClass({
       </div>
     );
 
+    var customRippleStyle = {
+      top: '-10',
+      left: '-10'
+    };
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switchElement: toggleElement,
       className: "mui-toggle",
+      rippleStyle: customRippleStyle,
       iconClassName: "mui-toggle-icon",
       onSwitch: this._handleToggle,
       defaultSwitched: this.props.defaultToggled,
