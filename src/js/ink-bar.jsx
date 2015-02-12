@@ -14,15 +14,15 @@ var InkBar = React.createClass({
   render: function() {
 
     var styles = this.mergePropStyles({
-      left: this.props.left,
-      width: this.props.width,
-      bottom: '0',
-      display: 'block',
-      'background-color': 'yellow',
-      height: '2px',
-      'margin-top': '-2px',
-      position: 'relative',
-      transition: Transitions.easeOut('1s', 'left')
+      'left': this.props.left,
+      'width': this.props.width,
+      'bottom': '0',
+      'display': 'block',
+      'backgroundColor': 'yellow',
+      'height': '2px',
+      'marginTop': '-2px',
+      'position': 'relative',
+      'transition': Transitions.easeOut('1s', 'left')
     });
 
     return (
