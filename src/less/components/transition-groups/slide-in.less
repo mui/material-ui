@@ -30,15 +30,19 @@
 
   &.mui-is-left {
     .mui-transition-slide-in-enter {
+      -webkit-transform: translate3d(100%,0,0);
       transform: translate3d(100%,0,0);
     }
     .mui-transition-slide-in-enter-active {
+      -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
     }
     .mui-transition-slide-in-leave {
+      -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
     }
     .mui-transition-slide-in-leave-active {
+      -webkit-transform: translate3d(-100%,0,0);
       transform: translate3d(-100%,0,0);
     }
 
@@ -46,45 +50,57 @@
 
   &.mui-is-right {
     .mui-transition-slide-in-enter {
+      -webkit-transform: translate3d(-100%,0,0);
       transform: translate3d(-100%,0,0);
     }
     .mui-transition-slide-in-enter-active {
+      -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
     }
     .mui-transition-slide-in-leave {
+      -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
     }
     .mui-transition-slide-in-leave-active {
+      -webkit-transform: translate3d(100%,0,0);
       transform: translate3d(100%,0,0);
     }
   }
 
   &.mui-is-up {
     .mui-transition-slide-in-enter {
+      -webkit-transform: translate3d(0,100%,0);
       transform: translate3d(0,100%,0);
     }
     .mui-transition-slide-in-enter-active {
+      -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
     }
     .mui-transition-slide-in-leave {
+      -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
     }
     .mui-transition-slide-in-leave-active {
+      -webkit-transform: translate3d(0,-100%,0);
       transform: translate3d(0,-100%,0);
     }
   }
 
   &.mui-is-down {
     .mui-transition-slide-in-enter {
+      -webkit-transform: translate3d(0,-100%,0);
       transform: translate3d(0,-100%,0);
     }
     .mui-transition-slide-in-enter-active {
+      -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
     }
     .mui-transition-slide-in-leave {
+      -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
     }
     .mui-transition-slide-in-leave-active {
+      -webkit-transform: translate3d(0,100%,0);
       transform: translate3d(0,100%,0);
     }
   }

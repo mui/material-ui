@@ -7,11 +7,14 @@
 .pulsate(@animation-name; @start-size: 0.75; @end-size: 1; @duration: 1.5s) {
   @keyframes ~"@{animation-name}" {
     0%, 100% {
+      -webkit-transform: scale(@start-size);
       transform: scale(@start-size);
     }
     50% {
+      -webkit-transform: scale(@end-size);
       transform: scale(@end-size);
     }
   }  
   animation: @animation-name @duration ease 0s infinite;
+  -webkit-animation: @animation-name @duration ease 0s infinite;
 }

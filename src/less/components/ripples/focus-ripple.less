@@ -6,6 +6,7 @@
   left: 0;
   
   .ease-out();
+  -webkit-transform: scale(0);
   transform: scale(0);
   opacity: 0;
 
@@ -24,6 +25,7 @@
   }
 
   &.mui-is-shown {
+    -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 1;
   }
