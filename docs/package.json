@@ -1,7 +1,11 @@
 {
   "name": "material-ui-docs",
-  "version": "0.0.1",
+  "version": "0.6.1",
   "description": "Documentation site for material-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/callemall/material-ui.git"
+  },
   "scripts": {
     "start": "gulp"
   },
