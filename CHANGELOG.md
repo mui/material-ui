@@ -26,7 +26,7 @@
     or to add a file input element. (#323, #189)
 - Menu Item
   - Fixed toggle display bug (#298)
-  - Toggle props can not be passed in (#299)
+  - Toggle props can now be passed in (#299)
 - Slider
   - Removed inline style @import (#218)
 - Switches
