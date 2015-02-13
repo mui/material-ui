@@ -3,6 +3,7 @@ var KeyCode = require('./utils/key-code');
 var Classable = require('./mixins/classable');
 var DomIdable = require('./mixins/dom-idable');
 var StylePropable = require('./mixins/style-propable.js');
+var Transitions = require('./styles/mixins/transitions.js');
 var WindowListenable = require('./mixins/window-listenable');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
@@ -18,6 +19,8 @@ var EnhancedSwitch = React.createClass({
       inputType: React.PropTypes.string.isRequired,
       switchElement: React.PropTypes.element.isRequired,
       iconClassName: React.PropTypes.string.isRequired,
+      onParentShouldUpdate: React.PropTypes.func.isRequired,
+      switched: React.PropTypes.bool.isRequired,
       rippleStyle: React.PropTypes.object,
       name: React.PropTypes.string,
 	    value: React.PropTypes.string,
@@ -28,7 +31,7 @@ var EnhancedSwitch = React.createClass({
 	    defaultSwitched: React.PropTypes.bool,
       labelPosition: React.PropTypes.oneOf(['left', 'right']),
       disableFocusRipple: React.PropTypes.bool,
-      disableTouchRipple: React.PropTypes.bool
+      disableTouchRipple: React.PropTypes.bool,
 	  },
 
   windowListeners: {
@@ -44,15 +47,15 @@ var EnhancedSwitch = React.createClass({
 
   getInitialState: function() {
     return {
-      switched: this.props.defaultSwitched ||
-        (this.props.valueLink && this.props.valueLink.value),
       isKeyboardFocused: false
     }
   },
 
   componentDidMount: function() {
     var inputNode = this.refs.checkbox.getDOMNode();
-    this.setState({switched: inputNode.checked});
+    if (!this.props.switched || 
+        this.props.switched == undefined ||
+        inputNode.checked != this.props.switched) this.props.onParentShouldUpdate(inputNode.checked);
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -72,7 +75,7 @@ var EnhancedSwitch = React.createClass({
       newState.switched = nextProps.checkedLink.value;
     }
 
-    if (newState) this.setState(newState);
+    if (newState.switched != undefined && (newState.switched != this.props.switched)) this.props.onParentShouldUpdate(newState.switched);
   },
 
   render: function() {
@@ -96,8 +99,25 @@ var EnhancedSwitch = React.createClass({
       ...other
     } = this.props;
 
+    var switchWidth = 60;
+    var styles = {
+      enhancedSwitch: {
+
+      },
+      enhancedSwitchInput: {
+
+      },
+      enhancedSwitchWrap: {
+
+      },
+      enhancedSwitchLabel: {
+        
+      }
+    }
+
+
     var classes = this.getClasses('mui-enhanced-switch', {
-      'mui-is-switched': this.state.switched,
+      'mui-is-switched': this.props.switched,
       'mui-is-disabled': this.props.disabled,
       'mui-is-required': this.props.required
     });
@@ -148,7 +168,7 @@ var EnhancedSwitch = React.createClass({
         ref="touchRipple"
         key="touchRipple"
         style={rippleStyle}
-        color={this.state.switched ? Theme.primary1Color : Theme.textColor}
+        color={this.props.switched ? Theme.primary1Color : Theme.textColor}
         centerRipple={true} />
     );
 
@@ -156,7 +176,7 @@ var EnhancedSwitch = React.createClass({
       <FocusRipple
         key="focusRipple"
         innerStyle={rippleStyle}
-        color={this.state.switched ? Theme.primary1Color : Theme.textColor}
+        color={this.props.switched ? Theme.primary1Color : Theme.textColor}
         show={this.state.isKeyboardFocused} />
     );
 
@@ -211,7 +231,8 @@ var EnhancedSwitch = React.createClass({
   // no callback here because there is no event
   setSwitched: function(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked == false) {
-      this.setState({switched: newSwitchedValue});  
+
+      this.props.onParentShouldUpdate(newSwitchedValue);  
       this.refs.checkbox.getDOMNode().checked = newSwitchedValue;
     } else {
       var message = 'Cannot call set method while checked is defined as a property.';
@@ -228,7 +249,6 @@ var EnhancedSwitch = React.createClass({
   },
 
   _handleChange: function(e) {
-    
     this._tabPressed = false;
     this.setState({
       isKeyboardFocused: false
@@ -236,7 +256,7 @@ var EnhancedSwitch = React.createClass({
 
     var isInputChecked = this.refs.checkbox.getDOMNode().checked;
     
-    if (!this.props.hasOwnProperty('checked')) this.setState({switched: isInputChecked});
+    if (!this.props.hasOwnProperty('checked')) this.props.onParentShouldUpdate(isInputChecked);
     if (this.props.onSwitch) this.props.onSwitch(e, isInputChecked);
   },
 
