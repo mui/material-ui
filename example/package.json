@@ -2,6 +2,9 @@
   "name": "material-ui-example",
   "version": "0.0.1",
   "description": "Sample project that uses material-ui",
+  "scripts": {
+    "start": "gulp"
+  },
   "browserify": {
     "transform": [
       [
@@ -29,7 +32,7 @@
     "watchify": "^2.2.1"
   },
   "dependencies": {
-    "material-ui": "^0.6",
+    "material-ui": "^0.7.0",
     "react": "^0.12.2",
     "react-tap-event-plugin": "^0.1.3"
   }
