@@ -11,7 +11,9 @@
       position: absolute;
       opacity: 0;
       transform: scale(0);
+      -webkit-transform: scale(0);
       transform-origin: 50% 50%;
+      -webkit-transform-origin: 50% 50%;
       .ease-out;
       * { fill: @radio-button-checked-color; }
     }
@@ -21,6 +23,7 @@
       position: absolute;
       opacity: 1;
       transform: scale(1);
+      -webkit-transform: scale(1);
       * {
         fill: @radio-button-border-color;
         .ease-out(@duration: 2s; @delay: 200ms);
@@ -33,11 +36,13 @@
       .mui-radio-button-fill {
         opacity: 1;
         transform: scale(1);
+        -webkit-transform: scale(1);
       }
 
       .mui-radio-button-target {
         opacity: 0;
         transform: scale(0);
+        -webkit-transform: scale(0);
         * { 
           fill: @radio-button-checked-color; 
           .ease-out(@duration: 100s; @delay: 0ms);

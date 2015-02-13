@@ -16,6 +16,7 @@
 
   left: -10000px;
   opacity: 0;
+  -webkit-transform: translate3d(0, 20px, 0);
   transform: translate3d(0, 20px, 0);
   transition:
     left 0ms @ease-out-function 400ms,
@@ -34,6 +35,7 @@
   &.mui-is-open {
     left: 0;
     opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     transition:
       left 0ms @ease-out-function 0ms,

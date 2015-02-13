@@ -11,8 +11,10 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
+    -webkit-transform: scale(0);
     transform: scale(0);
     background-color: rgba(0,0,0,0.2);
+    .ease-out(@property: -webkit-transform; @duration: 1s);
     .ease-out(@property: transform; @duration: 1s);
   }
 
@@ -20,6 +22,7 @@
     opacity: 1;
 
     .mui-ripple-circle-inner {
+      -webkit-transform: scale(1);
       transform: scale(1);
     }
   }

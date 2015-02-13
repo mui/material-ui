@@ -57,6 +57,7 @@
   .mui-text-field-focus-underline {
     border-color: @primary-1-color;
     border-bottom-width: 2px;
+    -webkit-transform: scaleX(0);
     transform: scaleX(0);
     .ease-out();
   }
@@ -64,6 +65,7 @@
   &.mui-has-error {
     .mui-text-field-focus-underline {
       border-color: @error-color;
+      -webkit-transform: scaleX(1);
       transform: scaleX(1);
     }
   }
@@ -98,6 +100,7 @@
 
   &.mui-is-focused {
     .mui-text-field-focus-underline {
+      -webkit-transform: scaleX(1);
       transform: scaleX(1);
     }
   }
@@ -109,7 +112,9 @@
 
     .mui-text-field-floating-label {
       top: 24px;
+      -webkit-transform: scale(1) translate3d(0, 0, 0);
       transform: scale(1) translate3d(0, 0, 0);
+      -webkit-transform-origin: left top;
       transform-origin: left top;
     }
 
@@ -125,6 +130,7 @@
     &.mui-has-value,
     &.mui-is-focused {
       .mui-text-field-floating-label {
+        -webkit-transform: scale(0.75) translate3d(0, -18px, 0);
         transform: scale(0.75) translate3d(0, -18px, 0);
       }
     }
@@ -148,6 +154,7 @@
       }
 
       .mui-text-field-floating-label {
+        -webkit-transform: scale(0.75) translate3d(0, -18px, 0);
         transform: scale(0.75) translate3d(0, -18px, 0);
         color: @primary-1-color;
       }

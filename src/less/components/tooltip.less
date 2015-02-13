@@ -15,6 +15,7 @@
 
   transition:
     top 0ms @ease-out-function 450ms,
+    -webkit-transform 450ms @ease-out-function 0ms,
     transform 450ms @ease-out-function 0ms,
     opacity 450ms @ease-out-function 0ms;
 
@@ -28,6 +29,7 @@
     left: 50%;
     top: 0px;
 
+    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background-color: transparent;
@@ -41,10 +43,12 @@
   &.mui-is-shown {
     top: -16px;
     opacity: 1;
+    -webkit-transform: translate3d(0px, 16px, 0px);
     transform: translate3d(0px, 16px, 0px);
 
     transition:
       top 0ms @ease-out-function 0ms, 
+      -webkit-transform 450ms @ease-out-function 0ms,
       transform 450ms @ease-out-function 0ms,
       opacity 450ms @ease-out-function 0ms;
 
