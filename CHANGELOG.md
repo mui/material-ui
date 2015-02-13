@@ -1,3 +1,45 @@
+## 0.7.0
+###### _Feb. 13, 2105_
+
+##### Breaking Changes
+- Removed Icon component - Replaced with FontIcon and SvgIcon (#318, #125, #148)
+  - The main motivation here is to give developers more control over which font icons to include
+    in their project. Instead of automatically including all material design icons in material-ui,
+    developers can now create their own custom icon font file and just pass the icon className into
+    the FontIcon component. [Read more about FontIcons](http://www.material-ui.com/#/components/icons).
+  - Upgrade path:
+    - If you were using the Icon component before, you'll need switch to either using FontIcon or SvgIcon.
+      For FontIcon, create a custom font file and include it in your project and just pass the Icon
+      className into the FontIcon component. For SvgIcon, create a new React component that represents
+      that particular icon. This will allow you to package your icons inside your js files. Examples
+      can be found [here](https://github.com/callemall/material-ui/tree/master/src/js/svg-icons).
+    - Additionally, all components that had an icon prop now take an iconClassName prop instead. These
+      include FloatingActionButton, IconButton, Menu, MenuItem, and DropDownIcon.
+
+##### General
+- All jsx files are now being compiled before publishing to npm. (#179, #215)
+
+##### Components
+- Buttons
+  - Fixed a bug that cause onClick to not fire in Safari (#307)
+  - You can now pass down children into all buttons. This allows you to add icons to flat and raised buttons
+    or to add a file input element. (#323, #189)
+- Menu Item
+  - Fixed toggle display bug (#298)
+  - Toggle props can not be passed in (#299)
+- Slider
+  - Removed inline style @import (#218)
+- Switches
+  - Switches now support focusability and can be focused/changed via keyboard inputs. (#292)
+  - Added focus and touch ripple animations.
+  - All switches use the labelPosition prop (as opposed to labelPositionRight), including RadioButtonGroup.
+  - Added innerClassName prop. (#309)
+- Tabs
+  - Fixes width transition for ink bar (#280)
+- Text Field
+  - Fixed a bug with using valueLink with a multiline Text Field (#311)
+  - Fixed a bug with multiline defaultValues in a multiline Text Field (#296)
+
 ## 0.6.1
 ###### _Jan. 26, 2105_
 
