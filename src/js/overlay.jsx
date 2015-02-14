@@ -1,26 +1,52 @@
-var React = require('react'),
-  Classable = require('./mixins/classable');
+var React = require('react');
+var StylePropable = require('./mixins/style-propable.js');
+var AutoPrefix = require('./styles/auto-prefix.js');
+var Transitions = require('./styles/mixins/transitions.js');
+var Colors = require('./styles/colors.js');
 
 var Overlay = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     show: React.PropTypes.bool
   },
 
   render: function() {
-    var 
-      {
-        className,
-        ...other
-      } = this.props,
-      classes = this.getClasses('mui-overlay', {
-        'mui-is-shown': this.props.show
+
+    var {
+      show,
+      style,
+      ...other
+    } = this.props;
+
+    var styles = {
+      position: 'fixed',
+      height: '100%',
+      width: '100%',
+      zIndex: 9,
+      top: 0,
+      left: '-100%',
+      backgroundColor: Colors.transparent,
+      transition:
+        Transitions.easeOut('0ms', 'left', '400ms') + ',' +
+        Transitions.easeOut('400ms', 'backgroundColor')
+    };
+
+    if (this.props.show) {
+      styles = this.mergePropStyles(styles, {
+        left: 0,
+        backgroundColor: Colors.lightBlack,
+        transition:
+          Transitions.easeOut('0ms', 'left') + ',' +
+          Transitions.easeOut('400ms', 'backgroundColor')
       });
+    }
+
+    styles = this.mergePropStyles(styles);
 
     return (
-      <div {...other} className={classes} />
+      <div {...other} style={AutoPrefix.all(styles)} />
     );
   }
 
