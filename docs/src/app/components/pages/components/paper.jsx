@@ -7,31 +7,56 @@ var PaperPage = React.createClass({
 
   render: function() {
 
-    var code = 
-      '//Rounded Corners\n' +
-      '<Paper zDepth={1} />\n' +
-      '<Paper zDepth={2} />\n' +
-      '<Paper zDepth={3} />\n' +
-      '<Paper zDepth={4} />\n' +
-      '<Paper zDepth={5} />\n\n' +
-      '//Sharp Corners\n' +
-      '<Paper zDepth={1} rounded={false} />\n' +
-      '<Paper zDepth={2} rounded={false} />\n' +
-      '<Paper zDepth={3} rounded={false} />\n' +
-      '<Paper zDepth={4} rounded={false} />\n' +
-      '<Paper zDepth={5} rounded={false} />\n\n' +
-      '//Circular\n' +
-      '<Paper zDepth={1} circle={true} />\n' +
-      '<Paper zDepth={2} circle={true} />\n' +
-      '<Paper zDepth={3} circle={true} />\n' +
-      '<Paper zDepth={4} circle={true} />\n' +
-      '<Paper zDepth={5} circle={true} />\n\n' +
-      '//Inner Content\n' +
-      '<Paper innerClassName="article">\n' +
-      '  <h1>Paper</h1>\n' + 
-      '  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,' +
-      '  tempor incididunt ut labore et dolore magna aliqua.</p>\n' +
-      '</Paper>\n';
+    var code = [
+      '//Rounded Corners',
+      '<Paper zDepth={1}>',
+      '  <p>zDepth=1</p>',
+      '</Paper>',
+      '<Paper zDepth={2}>',
+      '  <p>zDepth=2</p>',
+      '</Paper>',
+      '<Paper zDepth={3}>',
+      '  <p>zDepth=3</p>',
+      '</Paper>',
+      '<Paper zDepth={4}>',
+      '  <p>zDepth=4</p>',
+      '</Paper>',
+      '<Paper zDepth={5}>',
+      '  <p>zDepth=5</p>',
+      '</Paper>',
+      '//Sharp Corners',
+      '<Paper zDepth={1} rounded={false}>',
+      '  <p>rounded=false</p>',
+      '</Paper>',
+      '<Paper zDepth={2} rounded={false}>',
+      '  <p>rounded=false</p>',
+      '</Paper>',
+      '<Paper zDepth={3} rounded={false}>',
+      '  <p>rounded=false</p>',
+      '</Paper>',
+      '<Paper zDepth={4} rounded={false}>',
+      '  <p>rounded=false</p>',
+      '</Paper>',
+      '<Paper zDepth={5} rounded={false}>',
+      '  <p>rounded=false</p>',
+      '</Paper>',
+      '//Circular',
+      '<Paper zDepth={1} circle={true}>',
+      '  <p>circle=true</p>',
+      '</Paper>',
+      '<Paper zDepth={2} circle={true}>',
+      '  <p>circle=true</p>',
+      '</Paper>',
+      '<Paper zDepth={3} circle={true}>',
+      '  <p>circle=true</p>',
+      '</Paper>',
+      '<Paper zDepth={4} circle={true}>',
+      '  <p>circle=true</p>',
+      '</Paper>',
+      '<Paper zDepth={5} circle={true}>',
+      '  <p>circle=true</p>',
+      '</Paper>'
+      ].join('\n');
 
     var componentInfo = [
       {
@@ -86,27 +111,57 @@ var PaperPage = React.createClass({
 
         <div className="paper-examples">
           <div className="paper-examples-group">
-            <Paper zDepth={1} />
-            <Paper zDepth={2} />
-            <Paper zDepth={3} />
-            <Paper zDepth={4} />
-            <Paper zDepth={5} />
+	    <Paper zDepth={1}>
+	      <p>zDepth=1</p>
+	    </Paper>
+	    <Paper zDepth={2}>
+	      <p>zDepth=2</p>
+	    </Paper>
+	    <Paper zDepth={3}>
+	      <p>zDepth=3</p>
+	    </Paper>
+	    <Paper zDepth={4}>
+	      <p>zDepth=4</p>
+	    </Paper>
+	    <Paper zDepth={5}>
+	      <p>zDepth=5</p>
+	    </Paper>
           </div>
 
           <div className="paper-examples-group">
-            <Paper zDepth={1} rounded={false} />
-            <Paper zDepth={2} rounded={false} />
-            <Paper zDepth={3} rounded={false} />
-            <Paper zDepth={4} rounded={false} />
-            <Paper zDepth={5} rounded={false} />
+	    <Paper zDepth={1} rounded={false}>
+	      <p>rounded=false</p>
+	    </Paper>
+	    <Paper zDepth={2} rounded={false}>
+	      <p>rounded=false</p>
+	    </Paper>
+	    <Paper zDepth={3} rounded={false}>
+	      <p>rounded=false</p>
+	    </Paper>
+	    <Paper zDepth={4} rounded={false}>
+	      <p>rounded=false</p>
+	    </Paper>
+	    <Paper zDepth={5} rounded={false}>
+	      <p>rounded=false</p>
+	    </Paper>
           </div>
 
           <div className="paper-examples-group">
-            <Paper zDepth={1} circle={true} />
-            <Paper zDepth={2} circle={true} />
-            <Paper zDepth={3} circle={true} />
-            <Paper zDepth={4} circle={true} />
-            <Paper zDepth={5} circle={true} />
+	    <Paper zDepth={1} circle={true}>
+	      <p>circle=true</p>
+	    </Paper>
+	    <Paper zDepth={2} circle={true}>
+	      <p>circle=true</p>
+	    </Paper>
+	    <Paper zDepth={3} circle={true}>
+	      <p>circle=true</p>
+	    </Paper>
+	    <Paper zDepth={4} circle={true}>
+	      <p>circle=true</p>
+	    </Paper>
+	    <Paper zDepth={5} circle={true}>
+	      <p>circle=true</p>
+	    </Paper>
           </div>
         </div>
 
