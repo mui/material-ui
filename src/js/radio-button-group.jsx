@@ -1,12 +1,9 @@
 var React = require('react');
 var Paper = require('./paper');
-var Classable = require('./mixins/classable');
 var EnhancedSwitch = require('./enhanced-switch');
 var RadioButton = require('./radio-button');
 
 var RadioButtonGroup = React.createClass({
-
-	mixins: [Classable],
 
 	propTypes: {
 		name: React.PropTypes.string.isRequired,
@@ -99,8 +96,8 @@ var RadioButtonGroup = React.createClass({
     return this.state.selected;
   },
 
-  setSelectedValue: function(newSelection) {
-    this._updateRadioButtons(newSelection);  
+  setSelectedValue: function(newSelectionValue) {
+    this._updateRadioButtons(newSelectionValue);  
   },
 
   clearValue: function() {
