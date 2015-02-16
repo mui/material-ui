@@ -202,9 +202,9 @@ var SwitchesPage = React.createClass({
           },
           {
             name: 'setSelectedValue',
-            header: 'RadioButtonGroup.setSelectedValue(newSelection)',
+            header: 'RadioButtonGroup.setSelectedValue(newSelectionValue)',
             desc: 'Sets the selected radio button to the radio button whose value matches ' +
-                  'newSelection'
+                  'newSelectionValue'
           },
           {
             name: 'clearValue',
@@ -299,8 +299,6 @@ var SwitchesPage = React.createClass({
       },
     ];
 
-          // {this._getRadioButtonExample()}
-          // {this._getToggleExample()}
     return (
       <ComponentDoc 
         name="Switches"
@@ -310,6 +308,8 @@ var SwitchesPage = React.createClass({
 
         <form className="switches-examples">
           {this._getCheckboxExample()}
+          {this._getRadioButtonExample()}
+          {this._getToggleExample()}
         </form>
 
       </ComponentDoc>
@@ -384,7 +384,6 @@ var SwitchesPage = React.createClass({
             label="initiate self-destruct sequence" 
             disabled={true}/>
         </div>
-
       </div>
     );
   },

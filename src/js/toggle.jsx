@@ -1,16 +1,28 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable.js');
+var Transitions = require('./styles/mixins/transitions.js');
+var CustomVariables = require('./styles/custom-variables.js');
 var Paper = require('./paper');
 var EnhancedSwitch = require('./enhanced-switch');
 
 var Toggle = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     onToggle: React.PropTypes.func,
     toggled: React.PropTypes.bool,
     defaultToggled: React.PropTypes.bool
+  },
+
+  getInitialState: function() {
+    return {
+      switched: 
+        this.props.toggled ||
+        this.props.defaultToggled || 
+        (this.props.valueLink && this.props.valueLink.value) || 
+        false,
+    }
   },
 
   render: function() {
@@ -19,10 +31,42 @@ var Toggle = React.createClass({
       ...other
     } = this.props;
 
+    var toggleSize = 20;
+    var toggleTrackWidth = 36;
+    var styles = this.mergePropStyles({
+      icon: {
+        padding: '4px 0px 6px 2px'
+      },
+      track: {
+        transition: Transitions.easeOut(),
+        width: toggleTrackWidth,
+        height: 14,
+        borderRadius: 30,
+        opacity: this.props.disabled ? 1 : 0.5,  
+        backgroundColor: this.props.disabled ? CustomVariables.toggleTrackDisabledColor :
+                         this.state.switched ? CustomVariables.toggleTrackOnColor : 
+                         CustomVariables.toggleTrackOffColor,
+      },
+      thumb: {
+        transition: Transitions.easeOut(),
+        position: 'absolute',
+        top: 1,
+        left: this.state.switched ? 18 : 2,
+        width: toggleSize,
+        height: toggleSize,
+        lineHeight: '24px',
+        borderRadius: '50%',
+        backgroundColor: this.props.disabled ? CustomVariables.toggleThumbDisabledColor :
+                         this.state.switched ? CustomVariables.toggleThumbOnColor : 
+                         CustomVariables.toggleThumbOffColor,
+      }
+    });
+
+
     var toggleElement = (
       <div>
-        <div className="mui-toggle-track" />
-        <Paper className="mui-toggle-thumb" zDepth={1}/>
+        <div style={styles.track} />
+        <Paper style={styles.thumb} zDepth={1}/>
       </div>
     );
 
@@ -37,8 +81,10 @@ var Toggle = React.createClass({
       switchElement: toggleElement,
       className: "mui-toggle",
       rippleStyle: customRippleStyle,
-      iconClassName: "mui-toggle-icon",
+      iconStyle: styles,
+      switched: this.state.switched,
       onSwitch: this._handleToggle,
+      onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultToggled,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "left"
     };
@@ -62,7 +108,12 @@ var Toggle = React.createClass({
 
   _handleToggle: function(e, isInputChecked) {
     if (this.props.onToggle) this.props.onToggle(e, isInputChecked);
+  },
+
+  _handleStateChange: function(newSwitched) {
+    this.setState({switched: newSwitched});
   }
+
 });
 
 module.exports = Toggle;

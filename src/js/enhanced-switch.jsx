@@ -1,6 +1,5 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
-var Classable = require('./mixins/classable');
 var DomIdable = require('./mixins/dom-idable');
 var StylePropable = require('./mixins/style-propable.js');
 var Transitions = require('./styles/mixins/transitions.js');
@@ -13,7 +12,7 @@ var Theme = require('./styles/theme.js').get();
 
 var EnhancedSwitch = React.createClass({
 
-  mixins: [Classable, DomIdable, WindowListenable, StylePropable],
+  mixins: [DomIdable, WindowListenable, StylePropable],
 
 	propTypes: {
       id: React.PropTypes.string,
@@ -110,9 +109,9 @@ var EnhancedSwitch = React.createClass({
       ...other
     } = this.props;
 
-    var switchWidth = 60;
-    var labelWidth = this.state.parentWidth - switchWidth;
-    var styles = {
+    var switchWidth = 60 - CustomVariables.desktopGutterLess;
+    var labelWidth = this.state.parentWidth - switchWidth - 30;
+    var styles = this.mergePropStyles({
       enhancedSwitch: {
         position: 'relative',
         cursor: 'pointer',
@@ -149,13 +148,6 @@ var EnhancedSwitch = React.createClass({
         width: labelWidth,
         lineHeight: '24px'
       }
-    }
-
-
-    var classes = this.getClasses('mui-enhanced-switch', {
-      'mui-is-switched': this.props.switched,
-      'mui-is-disabled': this.props.disabled,
-      'mui-is-required': this.props.required
     });
 
     var inputId = this.props.id || this.getDomId();
@@ -225,7 +217,9 @@ var EnhancedSwitch = React.createClass({
 
     styles.enhancedSwitchWrap = this.mergePropStyles(styles.enhancedSwitchWrap, this.props.iconStyle.icon);
 
-    var switchElement = (this.props.iconClassName.indexOf("toggle") == -1) ? (
+    // If toggle component (indicated by whether the style includes thumb) manually lay out 
+    // elements in order to nest ripple elements
+    var switchElement = !this.props.iconStyle.thumb ? (
         <div style={styles.enhancedSwitchWrap}>
           {this.props.switchElement}
           {ripples}

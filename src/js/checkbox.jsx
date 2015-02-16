@@ -1,6 +1,5 @@
 var React = require('react');
 var EnhancedSwitch = require('./enhanced-switch');
-var Classable = require('./mixins/classable');
 var StylePropable = require('./mixins/style-propable.js');
 var Transitions = require('./styles/mixins/transitions.js');
 var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank');
@@ -9,7 +8,7 @@ var CustomVariables = require('./styles/custom-variables.js');
 
 var Checkbox = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     onCheck: React.PropTypes.func,
@@ -31,9 +30,8 @@ var Checkbox = React.createClass({
       ...other
     } = this.props;
 
-
     var checkboxSize = 24;
-    var styles = {
+    var styles = this.mergePropStyles({
       icon: {
         height: checkboxSize,
         width: checkboxSize,
@@ -59,9 +57,9 @@ var Checkbox = React.createClass({
         transition: this.state.switched ? 
           Transitions.easeOut('100ms', null, '0ms') : Transitions.easeOut('2s', null, '200ms') 
       }
-    };
+    });
 
-    var classes = this.getClasses("mui-checkbox");
+    if (this.state.switched && this.props.disabled) styles.box.opacity = 0;
 
     var checkboxElement = (
       <div>
@@ -75,7 +73,6 @@ var Checkbox = React.createClass({
       inputType: "checkbox",
       switched: this.state.switched,
       switchElement: checkboxElement,
-      className: classes,
       iconStyle: styles,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
