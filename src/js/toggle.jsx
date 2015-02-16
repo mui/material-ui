@@ -1,7 +1,7 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable.js');
 var Transitions = require('./styles/mixins/transitions.js');
-var CustomVariables = require('./styles/custom-variables.js');
+var CustomVariables = require('./styles/variables/custom-variables.js');
 var Paper = require('./paper');
 var EnhancedSwitch = require('./enhanced-switch');
 

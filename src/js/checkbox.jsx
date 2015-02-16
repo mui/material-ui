@@ -4,7 +4,7 @@ var StylePropable = require('./mixins/style-propable.js');
 var Transitions = require('./styles/mixins/transitions.js');
 var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank');
 var CheckboxChecked = require('./svg-icons/toggle-check-box-checked');
-var CustomVariables = require('./styles/custom-variables.js');
+var CustomVariables = require('./styles/variables/custom-variables.js');
 
 var Checkbox = React.createClass({
 

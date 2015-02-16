@@ -4,7 +4,7 @@ var DomIdable = require('./mixins/dom-idable');
 var StylePropable = require('./mixins/style-propable.js');
 var Transitions = require('./styles/mixins/transitions.js');
 var WindowListenable = require('./mixins/window-listenable');
-var CustomVariables = require('./styles/custom-variables.js');
+var CustomVariables = require('./styles/variables/custom-variables.js');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 var Paper = require('./paper');
@@ -104,7 +104,7 @@ var EnhancedSwitch = React.createClass({
       ...other
     } = this.props;
 
-    var switchWidth = 60 - CustomVariables.desktopGutterLess;
+    var switchWidth = 60 - CustomVariables.spacing.desktopGutterLess;
     var labelWidth = this.state.parentWidth - switchWidth - 30;
     var styles = this.mergePropStyles({
         position: 'relative',
@@ -131,9 +131,9 @@ var EnhancedSwitch = React.createClass({
         display: 'table-column',
         width: switchWidth,
         marginRight: (this.props.labelPosition == 'right') ? 
-          CustomVariables.desktopGutterLess : 0,
+          CustomVariables.spacing.desktopGutterLess : 0,
         marginLeft: (this.props.labelPosition == 'left') ? 
-          CustomVariables.desktopGutterLess : 0
+          CustomVariables.spacing.desktopGutterLess : 0
     }, this.props.iconStyle);
     var labelStyles = {
         float: 'left',
