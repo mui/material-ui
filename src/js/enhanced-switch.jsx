@@ -18,10 +18,12 @@ var EnhancedSwitch = React.createClass({
       id: React.PropTypes.string,
       inputType: React.PropTypes.string.isRequired,
       switchElement: React.PropTypes.element.isRequired,
-      iconClassName: React.PropTypes.string.isRequired,
       onParentShouldUpdate: React.PropTypes.func.isRequired,
       switched: React.PropTypes.bool.isRequired,
       rippleStyle: React.PropTypes.object,
+      iconStyle: React.PropTypes.object,
+      thumbStyle: React.PropTypes.object,
+      trackStyle: React.PropTypes.object,
       name: React.PropTypes.string,
 	    value: React.PropTypes.string,
 	    label: React.PropTypes.string,
@@ -37,12 +39,6 @@ var EnhancedSwitch = React.createClass({
   windowListeners: {
     'keydown': '_handleWindowKeydown',
     'keyup': '_handleWindowKeyup'
-  },
-
-  getDefaultProps: function() {
-    return {
-      iconClassName: ''
-    };
   },
 
   getInitialState: function() {
@@ -105,22 +101,20 @@ var EnhancedSwitch = React.createClass({
       onTouchEnd,
       disableTouchRipple,
       disableFocusRipple,
-      iconClassName,
       ...other
     } = this.props;
 
     var switchWidth = 60 - CustomVariables.desktopGutterLess;
     var labelWidth = this.state.parentWidth - switchWidth - 30;
     var styles = this.mergePropStyles({
-      enhancedSwitch: {
         position: 'relative',
         cursor: 'pointer',
         overflow: 'visible',
         display: 'table',
         height: 'auto',
         width: '100%'
-      },
-      enhancedSwitchInput: {
+    });
+    var inputStyles = {
         position: 'absolute',
         cursor: 'pointer',
         pointerEvents: 'all',
@@ -129,8 +123,8 @@ var EnhancedSwitch = React.createClass({
         height: '100%',
         zIndex: 2,
         left: 0
-      },
-      enhancedSwitchWrap: {
+    };
+    var wrapStyles = this.mergePropStyles({
         transition: Transitions.easeOut(),
         float: 'left',
         position: 'relative',
@@ -139,21 +133,20 @@ var EnhancedSwitch = React.createClass({
         marginRight: (this.props.labelPosition == 'right') ? 
           CustomVariables.desktopGutterLess : 0,
         marginLeft: (this.props.labelPosition == 'left') ? 
-          CustomVariables.desktopGutterLess : 0,
-      },
-      enhancedSwitchLabel: {
+          CustomVariables.desktopGutterLess : 0
+    }, this.props.iconStyle);
+    var labelStyles = {
         float: 'left',
         position: 'relative',
         display: 'table-column',
         width: labelWidth,
         lineHeight: '24px'
-      }
-    });
+    }
 
     var inputId = this.props.id || this.getDomId();
     
     var labelElement = this.props.label ? (
-      <label style={styles.enhancedSwitchLabel} htmlFor={inputId}>
+      <label style={labelStyles} htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;
@@ -181,7 +174,7 @@ var EnhancedSwitch = React.createClass({
       <input 
         {...other} 
         {...inputProps}
-        style={styles.enhancedSwitchInput}/>
+        style={inputStyles}/>
     );
 
     var rippleStyle = this.mergePropStyles({
@@ -213,21 +206,17 @@ var EnhancedSwitch = React.createClass({
       this.props.disabled || disableFocusRipple ? null : focusRipple
     ];
 
-    iconClassName += ' mui-enhanced-switch-wrap';
-
-    styles.enhancedSwitchWrap = this.mergePropStyles(styles.enhancedSwitchWrap, this.props.iconStyle.icon);
-
     // If toggle component (indicated by whether the style includes thumb) manually lay out 
     // elements in order to nest ripple elements
-    var switchElement = !this.props.iconStyle.thumb ? (
-        <div style={styles.enhancedSwitchWrap}>
+    var switchElement = !this.props.thumbStyle ? (
+        <div style={wrapStyles}>
           {this.props.switchElement}
           {ripples}
         </div>
       ) : (
-        <div style={styles.enhancedSwitchWrap}>
-          <div style={this.props.iconStyle.track}/>
-          <Paper style={this.props.iconStyle.thumb} zDepth={1}> {ripples} </Paper>
+        <div style={wrapStyles}>
+          <div style={this.props.trackStyle}/>
+          <Paper style={this.props.thumbStyle} zDepth={1}> {ripples} </Paper>
         </div>      
     );
 
@@ -248,7 +237,7 @@ var EnhancedSwitch = React.createClass({
     );
 
     return (
-      <div style={styles.enhancedSwitch}>
+      <div style={styles}>
           {inputElement}
           {elementsInOrder}
       </div>

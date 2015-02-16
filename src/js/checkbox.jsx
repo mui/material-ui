@@ -31,40 +31,59 @@ var Checkbox = React.createClass({
     } = this.props;
 
     var checkboxSize = 24;
-    var styles = this.mergePropStyles({
-      icon: {
+
+    var iconStyles = {
         height: checkboxSize,
         width: checkboxSize,
-      },
-      check: {
-        positiion: 'absolute',
-        opacity: this.props.disabled ? 0.3 :
-                 this.state.switched ? 1 : 0,
-        transform: this.state.switched ? 'scale(1)' : 'scale(0)',
-        transitionOrigin: '50% 50%',
-        transition: this.state.switched ? 
-          Transitions.easeOut('0ms', 'opacity', '0ms') + ', ' + Transitions.easeOut('800ms', 'transform', '0ms') : 
-          Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' + Transitions.easeOut('0ms', 'transform', '450ms'),
-        fill: this.props.disabled ? 
-          CustomVariables.disabledColor : CustomVariables.checkboxCheckedColor   
-      },
-      box: {
-        position: 'absolute',
-        opacity: this.props.disabled ? 0.3 : 1,
-        fill: this.props.disabled ? CustomVariables.disabledColor :
-              this.state.switched ? CustomVariables.checkboxCheckedColor :
-              CustomVariables.checkboxBoxColor,          
-        transition: this.state.switched ? 
-          Transitions.easeOut('100ms', null, '0ms') : Transitions.easeOut('2s', null, '200ms') 
-      }
-    });
+    }
 
-    if (this.state.switched && this.props.disabled) styles.box.opacity = 0;
+    var checkStyles = {
+        positiion: 'absolute',
+        opacity: 0,
+        transform: 'scale(0)',
+        transitionOrigin: '50% 50%',
+        transition: Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' + 
+                    Transitions.easeOut('0ms', 'transform', '450ms'),
+        fill: CustomVariables.checkboxCheckedColor   
+    }
+
+    var boxStyles = {
+        position: 'absolute',
+        opacity: 1,
+        fill: CustomVariables.checkboxBoxColor,          
+        transition: Transitions.easeOut('2s', null, '200ms') 
+    }
+
+    if (this.state.switched) {
+      checkStyles = this.mergePropStyles(checkStyles, {
+          opacity: 1,
+          transform: 'scale(1)',
+          transition: Transitions.easeOut('0ms', 'opacity', '0ms') + ', ' + 
+                      Transitions.easeOut('800ms', 'transform', '0ms')
+        });
+      boxStyles = this.mergePropStyles(boxStyles, {
+          transition: Transitions.easeOut('100ms', null, '0ms'),
+          fill: CustomVariables.checkboxCheckedColor
+        });
+    }
+
+    if (this.props.disabled) {
+      checkStyles = this.mergePropStyles(checkStyles, {
+          opacity: 0.3,
+          fill: CustomVariables.disabledColor,
+        });
+      boxStyles = this.mergePropStyles(boxStyles, {
+          opacity: 0.3,
+          fill: CustomVariables.disabledColor,
+        });
+    }
+
+    if (this.state.switched && this.props.disabled) boxStyles.opacity = 0;
 
     var checkboxElement = (
       <div>
-        <CheckboxOutline style={styles.box} />
-        <CheckboxChecked style={styles.check} />
+        <CheckboxOutline style={boxStyles} />
+        <CheckboxChecked style={checkStyles} />
       </div>
     );
 
@@ -73,7 +92,7 @@ var Checkbox = React.createClass({
       inputType: "checkbox",
       switched: this.state.switched,
       switchElement: checkboxElement,
-      iconStyle: styles,
+      iconStyle: iconStyles,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,

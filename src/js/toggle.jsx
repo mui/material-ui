@@ -33,11 +33,10 @@ var Toggle = React.createClass({
 
     var toggleSize = 20;
     var toggleTrackWidth = 36;
-    var styles = this.mergePropStyles({
-      icon: {
+    var iconStyles = {
         padding: '4px 0px 6px 2px'
-      },
-      track: {
+    };
+    var trackStyles = {
         transition: Transitions.easeOut(),
         width: toggleTrackWidth,
         height: 14,
@@ -45,9 +44,9 @@ var Toggle = React.createClass({
         opacity: this.props.disabled ? 1 : 0.5,  
         backgroundColor: this.props.disabled ? CustomVariables.toggleTrackDisabledColor :
                          this.state.switched ? CustomVariables.toggleTrackOnColor : 
-                         CustomVariables.toggleTrackOffColor,
-      },
-      thumb: {
+                         CustomVariables.toggleTrackOffColor
+    };
+    var thumbStyles = {
         transition: Transitions.easeOut(),
         position: 'absolute',
         top: 1,
@@ -58,15 +57,32 @@ var Toggle = React.createClass({
         borderRadius: '50%',
         backgroundColor: this.props.disabled ? CustomVariables.toggleThumbDisabledColor :
                          this.state.switched ? CustomVariables.toggleThumbOnColor : 
-                         CustomVariables.toggleThumbOffColor,
-      }
-    });
+                         CustomVariables.toggleThumbOffColor
+    };
 
+    if (this.state.switched) {
+      this.mergePropStyles(trackStyles, {
+        backgroundColor: CustomVariables.toggleTrackOnColor
+      });
+      this.mergePropStyles(thumbStyles, {
+        left: 18,
+        backgroundColor: CustomVariables.toggleThumbOnColor
+      });
+    }
+
+    if (this.props.disabled) {
+      this.mergePropStyles(trackStyles, {
+        backgroundColor: CustomVariables.toggleTrackDisabledColor
+      });
+      this.mergePropStyles(thumbStyles, {
+        backgroundColor: CustomVariables.toggleThumbDisabledColor
+      });
+    }
 
     var toggleElement = (
       <div>
-        <div style={styles.track} />
-        <Paper style={styles.thumb} zDepth={1}/>
+        <div style={trackStyles} />
+        <Paper style={thumbStyles} zDepth={1}/>
       </div>
     );
 
@@ -81,7 +97,9 @@ var Toggle = React.createClass({
       switchElement: toggleElement,
       className: "mui-toggle",
       rippleStyle: customRippleStyle,
-      iconStyle: styles,
+      iconStyle: iconStyles,
+      trackStyle: trackStyles,
+      thumbStyle: thumbStyles,
       switched: this.state.switched,
       onSwitch: this._handleToggle,
       onParentShouldUpdate: this._handleStateChange,
