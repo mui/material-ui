@@ -108,7 +108,7 @@ var EnhancedSwitch = React.createClass({
     var labelWidth = this.state.parentWidth - switchWidth - 30;
     var styles = this.mergePropStyles({
         position: 'relative',
-        cursor: 'pointer',
+        cursor: this.props.disabled ? 'default' : 'pointer',
         overflow: 'visible',
         display: 'table',
         height: 'auto',
@@ -116,7 +116,7 @@ var EnhancedSwitch = React.createClass({
     });
     var inputStyles = {
         position: 'absolute',
-        cursor: 'pointer',
+        cursor: this.props.disabled ? 'default' : 'pointer',
         pointerEvents: 'all',
         opacity: 0,
         width: '100%',
