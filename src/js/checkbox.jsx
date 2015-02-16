@@ -34,10 +34,9 @@ var Checkbox = React.createClass({
 
     var checkboxSize = 24;
     var styles = {
-      checkboxIcon: {
+      icon: {
         height: checkboxSize,
         width: checkboxSize,
-        marginRight: CustomVariables.desktopGutterMini,
       },
       check: {
         positiion: 'absolute',
@@ -45,13 +44,20 @@ var Checkbox = React.createClass({
                  this.state.switched ? 1 : 0,
         transform: this.state.switched ? 'scale(1)' : 'scale(0)',
         transitionOrigin: '50% 50%',
-        //transition: Transitions.easeOut(),
-        fill: !this.props.disabled ? CustomVariables.checkboxCheckedColor : CustomVariables.disabledColor
+        transition: this.state.switched ? 
+          Transitions.easeOut('0ms', 'opacity', '0ms') + ', ' + Transitions.easeOut('800ms', 'transform', '0ms') : 
+          Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' + Transitions.easeOut('0ms', 'transform', '450ms'),
+        fill: this.props.disabled ? 
+          CustomVariables.disabledColor : CustomVariables.checkboxCheckedColor   
       },
       box: {
         position: 'absolute',
         opacity: this.props.disabled ? 0.3 : 1,
-        fill: this.props.disabled ? CustomVariables.disabledColor : CustomVariables.checkboxCheckedColor
+        fill: this.props.disabled ? CustomVariables.disabledColor :
+              this.state.switched ? CustomVariables.checkboxCheckedColor :
+              CustomVariables.checkboxBoxColor,          
+        transition: this.state.switched ? 
+          Transitions.easeOut('100ms', null, '0ms') : Transitions.easeOut('2s', null, '200ms') 
       }
     };
 
@@ -70,7 +76,7 @@ var Checkbox = React.createClass({
       switched: this.state.switched,
       switchElement: checkboxElement,
       className: classes,
-      iconClassName: "mui-checkbox-icon",
+      iconStyle: styles,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,

@@ -5,6 +5,7 @@ var DomIdable = require('./mixins/dom-idable');
 var StylePropable = require('./mixins/style-propable.js');
 var Transitions = require('./styles/mixins/transitions.js');
 var WindowListenable = require('./mixins/window-listenable');
+var CustomVariables = require('./styles/custom-variables.js');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 var Paper = require('./paper');
@@ -51,11 +52,21 @@ var EnhancedSwitch = React.createClass({
     }
   },
 
+  getEvenWidth: function(){
+    return (
+      parseInt(window
+        .getComputedStyle(this.getDOMNode())
+        .getPropertyValue('width'), 10)
+    );
+  },
+
   componentDidMount: function() {
     var inputNode = this.refs.checkbox.getDOMNode();
     if (!this.props.switched || 
         this.props.switched == undefined ||
         inputNode.checked != this.props.switched) this.props.onParentShouldUpdate(inputNode.checked);
+  
+    this.setState({parentWidth: this.getEvenWidth()});
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -100,18 +111,43 @@ var EnhancedSwitch = React.createClass({
     } = this.props;
 
     var switchWidth = 60;
+    var labelWidth = this.state.parentWidth - switchWidth;
     var styles = {
       enhancedSwitch: {
-
+        position: 'relative',
+        cursor: 'pointer',
+        overflow: 'visible',
+        display: 'table',
+        height: 'auto',
+        width: '100%'
       },
       enhancedSwitchInput: {
-
+        position: 'absolute',
+        cursor: 'pointer',
+        pointerEvents: 'all',
+        opacity: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 2,
+        left: 0
       },
       enhancedSwitchWrap: {
-
+        transition: Transitions.easeOut(),
+        float: 'left',
+        position: 'relative',
+        display: 'table-column',
+        width: switchWidth,
+        marginRight: (this.props.labelPosition == 'right') ? 
+          CustomVariables.desktopGutterLess : 0,
+        marginLeft: (this.props.labelPosition == 'left') ? 
+          CustomVariables.desktopGutterLess : 0,
       },
       enhancedSwitchLabel: {
-        
+        float: 'left',
+        position: 'relative',
+        display: 'table-column',
+        width: labelWidth,
+        lineHeight: '24px'
       }
     }
 
@@ -125,7 +161,7 @@ var EnhancedSwitch = React.createClass({
     var inputId = this.props.id || this.getDomId();
     
     var labelElement = this.props.label ? (
-      <label className="mui-switch-label" htmlFor={inputId}>
+      <label style={styles.enhancedSwitchLabel} htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;
@@ -153,7 +189,7 @@ var EnhancedSwitch = React.createClass({
       <input 
         {...other} 
         {...inputProps}
-        className="mui-enhanced-switch-input"/>
+        style={styles.enhancedSwitchInput}/>
     );
 
     var rippleStyle = this.mergePropStyles({
@@ -187,15 +223,17 @@ var EnhancedSwitch = React.createClass({
 
     iconClassName += ' mui-enhanced-switch-wrap';
 
+    styles.enhancedSwitchWrap = this.mergePropStyles(styles.enhancedSwitchWrap, this.props.iconStyle.icon);
+
     var switchElement = (this.props.iconClassName.indexOf("toggle") == -1) ? (
-        <div className={iconClassName}>
+        <div style={styles.enhancedSwitchWrap}>
           {this.props.switchElement}
           {ripples}
         </div>
       ) : (
-        <div className={iconClassName}>
-          <div className="mui-toggle-track" />
-          <Paper className="mui-toggle-thumb" zDepth={1}> {ripples} </Paper>
+        <div style={styles.enhancedSwitchWrap}>
+          <div style={this.props.iconStyle.track}/>
+          <Paper style={this.props.iconStyle.thumb} zDepth={1}> {ripples} </Paper>
         </div>      
     );
 
@@ -216,7 +254,7 @@ var EnhancedSwitch = React.createClass({
     );
 
     return (
-      <div className={classes}>
+      <div style={styles.enhancedSwitch}>
           {inputElement}
           {elementsInOrder}
       </div>

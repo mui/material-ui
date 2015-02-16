@@ -299,6 +299,8 @@ var SwitchesPage = React.createClass({
       },
     ];
 
+          // {this._getRadioButtonExample()}
+          // {this._getToggleExample()}
     return (
       <ComponentDoc 
         name="Switches"
@@ -308,8 +310,6 @@ var SwitchesPage = React.createClass({
 
         <form className="switches-examples">
           {this._getCheckboxExample()}
-          {this._getRadioButtonExample()}
-          {this._getToggleExample()}
         </form>
 
       </ComponentDoc>
@@ -338,7 +338,7 @@ var SwitchesPage = React.createClass({
             name="checkboxName2" 
             value="checkboxValue2"
             label="fed the dog"
-            defaultSwitched={true}/>
+            defaultChecked={true}/>
         </div>
         <div className="switches-example-container">
           <Checkbox
