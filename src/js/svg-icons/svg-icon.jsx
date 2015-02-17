@@ -1,6 +1,6 @@
 var React = require('react/addons');
-var StylePropable = require('../mixins/style-propable.js');
-var Theme = require('../styles/theme.js').get();
+var StylePropable = require('../mixins/style-propable');
+var Theme = require('../styles/theme').get();
 
 var SvgIcon = React.createClass({
 

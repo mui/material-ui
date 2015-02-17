@@ -1,4 +1,4 @@
-var Colors = require('./colors.js');
+var Colors = require('./colors');
 
 //Define default theme variables
 var currentTheme = {

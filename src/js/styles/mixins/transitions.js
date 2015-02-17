@@ -1,4 +1,4 @@
-var AutoPrefix = require('../auto-prefix.js');
+var AutoPrefix = require('../auto-prefix');
 
 module.exports = {
 

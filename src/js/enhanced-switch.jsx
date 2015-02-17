@@ -1,14 +1,14 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
 var DomIdable = require('./mixins/dom-idable');
-var StylePropable = require('./mixins/style-propable.js');
-var Transitions = require('./styles/mixins/transitions.js');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
 var WindowListenable = require('./mixins/window-listenable');
-var CustomVariables = require('./styles/variables/custom-variables.js');
+var CustomVariables = require('./styles/variables/custom-variables');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 var Paper = require('./paper');
-var Theme = require('./styles/theme.js').get();
+var Theme = require('./styles/theme').get();
 
 var EnhancedSwitch = React.createClass({
 

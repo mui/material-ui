@@ -1,5 +1,5 @@
 var React = require('react/addons');
-var AutoPrefix = require('../styles/auto-prefix.js');
+var AutoPrefix = require('../styles/auto-prefix');
 
 module.exports = {
 

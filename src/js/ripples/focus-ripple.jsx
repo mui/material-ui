@@ -1,7 +1,7 @@
 var React = require('react');
-var StylePropable = require('../mixins/style-propable.js');
-var Transitions = require('../styles/mixins/transitions.js');
-var Colors = require('../styles/colors.js');
+var StylePropable = require('../mixins/style-propable');
+var Transitions = require('../styles/mixins/transitions');
+var Colors = require('../styles/colors');
 
 var pulsateDuration = 750;
 

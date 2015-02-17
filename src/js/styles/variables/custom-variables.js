@@ -1,6 +1,6 @@
-var Colors = require('../colors.js');
-var Spacing = require('./spacing.js');
-var Theme = require('../theme.js').get();
+var Colors = require('../colors');
+var Spacing = require('./spacing');
+var Theme = require('../theme').get();
 
 module.exports = {
 

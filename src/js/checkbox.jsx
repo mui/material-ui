@@ -1,10 +1,10 @@
 var React = require('react');
 var EnhancedSwitch = require('./enhanced-switch');
-var StylePropable = require('./mixins/style-propable.js');
-var Transitions = require('./styles/mixins/transitions.js');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
 var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank');
 var CheckboxChecked = require('./svg-icons/toggle-check-box-checked');
-var CustomVariables = require('./styles/variables/custom-variables.js');
+var CustomVariables = require('./styles/variables/custom-variables');
 
 var Checkbox = React.createClass({
 

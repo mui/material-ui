@@ -1,7 +1,7 @@
 var React = require('react');
-var StylePropable = require('../mixins/style-propable.js');
-var Dom = require('../utils/dom.js');
-var RippleCircle = require('./circle.jsx');
+var StylePropable = require('../mixins/style-propable');
+var Dom = require('../utils/dom');
+var RippleCircle = require('./circle');
 var TouchRipple = React.createClass({
 
   mixins: [StylePropable],
