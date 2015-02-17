@@ -106,7 +106,7 @@ var EnhancedSwitch = React.createClass({
 
     var switchWidth = 60 - CustomVariables.spacing.desktopGutterLess;
     var labelWidth = this.state.parentWidth - switchWidth - 30;
-    var styles = this.mergePropStyles({
+    var styles = this.mergeStyles({
         position: 'relative',
         cursor: this.props.disabled ? 'default' : 'pointer',
         overflow: 'visible',
@@ -124,7 +124,7 @@ var EnhancedSwitch = React.createClass({
         zIndex: 2,
         left: 0
     };
-    var wrapStyles = this.mergePropStyles({
+    var wrapStyles = this.mergeStyles({
         transition: Transitions.easeOut(),
         float: 'left',
         position: 'relative',
@@ -177,7 +177,7 @@ var EnhancedSwitch = React.createClass({
         style={inputStyles}/>
     );
 
-    var rippleStyle = this.mergePropStyles({
+    var rippleStyle = this.mergeStyles({
         height: '200%',
         width: '200%',
         top: '-12',

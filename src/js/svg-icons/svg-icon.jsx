@@ -16,7 +16,7 @@ var SvgIcon = React.createClass({
     } = this.props;
 
     //merge styles that are passed in
-    var styles = this.mergePropStyles({
+    var styles = this.mergeStyles({
       display: 'inline-block',
       height: '24px',
       width: '24px',

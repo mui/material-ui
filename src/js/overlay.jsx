@@ -34,7 +34,7 @@ var Overlay = React.createClass({
     };
 
     if (this.props.show) {
-      styles = this.mergePropStyles(styles, {
+      styles = this.mergeStyles(styles, {
         left: 0,
         backgroundColor: Colors.lightBlack,
         transition:
@@ -43,7 +43,7 @@ var Overlay = React.createClass({
       });
     }
 
-    styles = this.mergePropStyles(styles);
+    styles = this.mergeStyles(styles);
 
     return (
       <div {...other} style={AutoPrefix.all(styles)} />

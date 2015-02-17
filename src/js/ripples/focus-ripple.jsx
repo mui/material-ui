@@ -29,7 +29,7 @@ var FocusRipple = React.createClass({
 
   render: function() {
 
-    var outerStyles = this.mergePropStyles({
+    var outerStyles = this.mergeStyles({
       height: '100%',
       width: '100%',
       position: 'absolute',
@@ -40,7 +40,7 @@ var FocusRipple = React.createClass({
       opacity: this.props.show ? 1 : 0
     });
 
-    var innerStyles = this.mergePropStyles({
+    var innerStyles = this.mergeStyles({
       position: 'absolute',
       height: '100%',
       width: '100%',

@@ -43,22 +43,22 @@ var RadioButton = React.createClass({
     };
 
     if (this.props.checked) {
-      targetStyles = this.mergePropStyles(targetStyles, {
+      targetStyles = this.mergeStyles(targetStyles, {
         opacity: 0,
         transform: 'scale(0)'
       });
-      fillStyles = this.mergePropStyles(fillStyles, {
+      fillStyles = this.mergeStyles(fillStyles, {
         opacity: 1,
         transform: 'scale(1)'
       });
     }
 
     if (this.props.disabled) {
-      targetStyles = this.mergePropStyles(targetStyles, {
+      targetStyles = this.mergeStyles(targetStyles, {
         opacity: 0.3,
         fill: CustomVariables.radioButtonDisabledColor
       });
-      fillStyles = this.mergePropStyles(fillStyles, {
+      fillStyles = this.mergeStyles(fillStyles, {
         opacity: 0.3,
         fill: CustomVariables.radioButtonDisabledColor
       });

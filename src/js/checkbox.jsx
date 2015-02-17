@@ -55,24 +55,24 @@ var Checkbox = React.createClass({
     }
 
     if (this.state.switched) {
-      checkStyles = this.mergePropStyles(checkStyles, {
+      checkStyles = this.mergeStyles(checkStyles, {
           opacity: 1,
           transform: 'scale(1)',
           transition: Transitions.easeOut('0ms', 'opacity', '0ms') + ', ' + 
                       Transitions.easeOut('800ms', 'transform', '0ms')
         });
-      boxStyles = this.mergePropStyles(boxStyles, {
+      boxStyles = this.mergeStyles(boxStyles, {
           transition: Transitions.easeOut('100ms', null, '0ms'),
           fill: CustomVariables.checkboxCheckedColor
         });
     }
 
     if (this.props.disabled) {
-      checkStyles = this.mergePropStyles(checkStyles, {
+      checkStyles = this.mergeStyles(checkStyles, {
           opacity: 0.3,
           fill: CustomVariables.disabledColor,
         });
-      boxStyles = this.mergePropStyles(boxStyles, {
+      boxStyles = this.mergeStyles(boxStyles, {
           opacity: 0.3,
           fill: CustomVariables.disabledColor,
         });

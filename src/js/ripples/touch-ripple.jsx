@@ -23,7 +23,7 @@ var TouchRipple = React.createClass({
 
   render: function() {
 
-    var styles = this.mergePropStyles({
+    var styles = this.mergeStyles({
       height: '100%',
       width: '100%',
       position: 'absolute',
