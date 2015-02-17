@@ -1,20 +1,27 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var Spacing = require('./styles/variables/spacing');
 
 var FontIcon = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   render: function() {
 
     var {
-      className,
+      style,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-font-icon');
+
+    var styles = this.mergeAndPrefix({
+      position: 'relative',
+      fontSize: Spacing.iconSize + 'px',
+      display: 'inline-block',
+      userSelect: 'none'
+    });
 
     return (
-      <span {...other} className={classes} />
+      <span {...other} style={styles} />
     );
   }
 
