@@ -1,4 +1,5 @@
 var React = require('react/addons');
+var AutoPrefix = require('../styles/auto-prefix.js');
 
 module.exports = {
 
@@ -6,6 +7,10 @@ module.exports = {
     return React.addons.update(styles, {
       $merge: props || this.props.style || {}
     });
+  },
+
+  mergeAndPrefix: function(styles, props) {
+    return AutoPrefix.all(this.mergeStyles(styles, props));
   }
   
 }

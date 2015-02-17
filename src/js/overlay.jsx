@@ -1,6 +1,5 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable.js');
-var AutoPrefix = require('./styles/auto-prefix.js');
 var Transitions = require('./styles/mixins/transitions.js');
 var Colors = require('./styles/colors.js');
 
@@ -43,10 +42,10 @@ var Overlay = React.createClass({
       });
     }
 
-    styles = this.mergeStyles(styles);
+    styles = this.mergeAndPrefix(styles);
 
     return (
-      <div {...other} style={AutoPrefix.all(styles)} />
+      <div {...other} style={styles} />
     );
   }
 
