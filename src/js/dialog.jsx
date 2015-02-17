@@ -7,7 +7,7 @@ var Dialog = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    title: React.PropTypes.string
+    title: React.PropTypes.node
   },
 
   render: function() {

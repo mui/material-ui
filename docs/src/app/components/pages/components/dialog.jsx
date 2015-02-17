@@ -57,9 +57,9 @@ var DialogPage = React.createClass({
           },
           {
             name: 'title',
-            type: 'string',
+            type: 'node',
             header: 'optional',
-            desc: 'The title string to display on the dialog.'
+            desc: 'The title to display on the dialog. Could be number, string, element or an array containing these types.'
           }
         ]
       },
