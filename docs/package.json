@@ -26,7 +26,7 @@
     "browser-sync": "^1.8.1",
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^2.0.0",
-    "gulp-less": "^2.0.1",
+    "gulp-less": "^3.0.0",
     "gulp-notify": "^2.1.0",
     "gulp-sourcemaps": "^1.2.8",
     "gulp-util": "^3.0.1",

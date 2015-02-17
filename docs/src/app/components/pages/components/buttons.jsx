@@ -179,7 +179,7 @@ var ButtonPage = React.createClass({
             <div className="button-example-container">
               <FlatButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true}>
                 <FontIcon className="muidocs-icon-custom-github example-flat-button-icon"/>
-                <span className="mui-flat-button-label">Github</span>
+                <span className="mui-flat-button-label example-icon-button-label">Github</span>
               </FlatButton>
             </div>
             <div className="button-example-container">
