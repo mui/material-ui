@@ -96,6 +96,10 @@ var TextField = React.createClass({
       </label>
     ) : null;
 
+    var textAreaStyles = {
+      paddingTop: this.props.floatingLabelText ? '24px' : 0
+    };
+
     var inputProps;
     var inputElement;
 
@@ -117,7 +121,8 @@ var TextField = React.createClass({
         {...other}
         {...inputProps}
         onHeightChange={this._handleTextAreaHeightChange}
-        textareaClassName="mui-text-field-textarea" />
+        className="mui-text-field-textarea"
+        style={textAreaStyles} />
     ) : (
       <input
         {...other}
