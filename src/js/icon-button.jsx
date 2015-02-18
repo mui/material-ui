@@ -28,12 +28,13 @@ var IconButton = React.createClass({
     if (this.props.tooltip) {
       this._positionTooltip();
     }
-
-    if (this.props.iconClassName && this.props.children) {
-      var warning = 'You have set both an iconClassName and a child icon. ' +
-                    'It is recommended you use only one method when adding ' +
-                    'icons to IconButtons.';
-      console.warn(warning);
+    if (process.NODE_ENV !== 'production') {
+      if (this.props.iconClassName && this.props.children) {
+        var warning = 'You have set both an iconClassName and a child icon. ' +
+                      'It is recommended you use only one method when adding ' +
+                      'icons to IconButtons.';
+        console.warn(warning);
+      }
     }
   },
 
