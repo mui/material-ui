@@ -202,9 +202,9 @@ var SwitchesPage = React.createClass({
           },
           {
             name: 'setSelectedValue',
-            header: 'RadioButtonGroup.setSelectedValue(newSelection)',
+            header: 'RadioButtonGroup.setSelectedValue(newSelectionValue)',
             desc: 'Sets the selected radio button to the radio button whose value matches ' +
-                  'newSelection'
+                  'newSelectionValue'
           },
           {
             name: 'clearValue',
@@ -338,7 +338,7 @@ var SwitchesPage = React.createClass({
             name="checkboxName2" 
             value="checkboxValue2"
             label="fed the dog"
-            defaultSwitched={true}/>
+            defaultChecked={true}/>
         </div>
         <div className="switches-example-container">
           <Checkbox
@@ -384,7 +384,6 @@ var SwitchesPage = React.createClass({
             label="initiate self-destruct sequence" 
             disabled={true}/>
         </div>
-
       </div>
     );
   },

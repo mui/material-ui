@@ -1,8 +1,7 @@
 var React = require('react');
-var StylePropable = require('../mixins/style-propable.js');
-var AutoPrefix = require('../styles/auto-prefix.js');
-var Transitions = require('../styles/mixins/transitions.js');
-var Colors = require('../styles/colors.js');
+var StylePropable = require('../mixins/style-propable');
+var Transitions = require('../styles/mixins/transitions');
+var Colors = require('../styles/colors');
 
 var RippleCircle = React.createClass({
 
@@ -29,13 +28,13 @@ var RippleCircle = React.createClass({
       ...other
     } = this.props;
 
-    var styles = this.mergePropStyles({
+    var styles = this.mergeAndPrefix({
       position: 'absolute',
       top: 0,
       left: 0,
       height: '100%',
       width: '100%',
-      opacity: 0.2,
+      opacity: this.props.ending ? 0 : 0.1,
       borderRadius: '50%',
       transform: this.props.started ? 'scale(1)' : 'scale(0)',
       backgroundColor: this.props.color,
@@ -44,11 +43,8 @@ var RippleCircle = React.createClass({
         Transitions.easeOut('1s', 'transform')
     });
 
-    if (this.props.started) styles.opacity = 0.2;
-    if (this.props.ending) styles.opacity = 0;
-
     return (
-      <div {...other} style={AutoPrefix.all(styles)} />
+      <div {...other} style={styles} />
     );
   }
 

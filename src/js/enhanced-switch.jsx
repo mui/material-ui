@@ -1,24 +1,29 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
-var Classable = require('./mixins/classable');
 var DomIdable = require('./mixins/dom-idable');
-var StylePropable = require('./mixins/style-propable.js');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
 var WindowListenable = require('./mixins/window-listenable');
+var CustomVariables = require('./styles/variables/custom-variables');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 var Paper = require('./paper');
-var Theme = require('./styles/theme.js').get();
+var Theme = require('./styles/theme').get();
 
 var EnhancedSwitch = React.createClass({
 
-  mixins: [Classable, DomIdable, WindowListenable, StylePropable],
+  mixins: [DomIdable, WindowListenable, StylePropable],
 
 	propTypes: {
       id: React.PropTypes.string,
       inputType: React.PropTypes.string.isRequired,
       switchElement: React.PropTypes.element.isRequired,
-      iconClassName: React.PropTypes.string.isRequired,
+      onParentShouldUpdate: React.PropTypes.func.isRequired,
+      switched: React.PropTypes.bool.isRequired,
       rippleStyle: React.PropTypes.object,
+      iconStyle: React.PropTypes.object,
+      thumbStyle: React.PropTypes.object,
+      trackStyle: React.PropTypes.object,
       name: React.PropTypes.string,
 	    value: React.PropTypes.string,
 	    label: React.PropTypes.string,
@@ -28,7 +33,7 @@ var EnhancedSwitch = React.createClass({
 	    defaultSwitched: React.PropTypes.bool,
       labelPosition: React.PropTypes.oneOf(['left', 'right']),
       disableFocusRipple: React.PropTypes.bool,
-      disableTouchRipple: React.PropTypes.bool
+      disableTouchRipple: React.PropTypes.bool,
 	  },
 
   windowListeners: {
@@ -36,23 +41,27 @@ var EnhancedSwitch = React.createClass({
     'keyup': '_handleWindowKeyup'
   },
 
-  getDefaultProps: function() {
-    return {
-      iconClassName: ''
-    };
-  },
-
   getInitialState: function() {
     return {
-      switched: this.props.defaultSwitched ||
-        (this.props.valueLink && this.props.valueLink.value),
       isKeyboardFocused: false
     }
   },
 
+  getEvenWidth: function(){
+    return (
+      parseInt(window
+        .getComputedStyle(this.getDOMNode())
+        .getPropertyValue('width'), 10)
+    );
+  },
+
   componentDidMount: function() {
     var inputNode = this.refs.checkbox.getDOMNode();
-    this.setState({switched: inputNode.checked});
+    if (!this.props.switched || 
+        this.props.switched == undefined ||
+        inputNode.checked != this.props.switched) this.props.onParentShouldUpdate(inputNode.checked);
+  
+    this.setState({parentWidth: this.getEvenWidth()});
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -72,7 +81,7 @@ var EnhancedSwitch = React.createClass({
       newState.switched = nextProps.checkedLink.value;
     }
 
-    if (newState) this.setState(newState);
+    if (newState.switched != undefined && (newState.switched != this.props.switched)) this.props.onParentShouldUpdate(newState.switched);
   },
 
   render: function() {
@@ -92,20 +101,52 @@ var EnhancedSwitch = React.createClass({
       onTouchEnd,
       disableTouchRipple,
       disableFocusRipple,
-      iconClassName,
       ...other
     } = this.props;
 
-    var classes = this.getClasses('mui-enhanced-switch', {
-      'mui-is-switched': this.state.switched,
-      'mui-is-disabled': this.props.disabled,
-      'mui-is-required': this.props.required
+    var switchWidth = 60 - CustomVariables.spacing.desktopGutterLess;
+    var labelWidth = this.state.parentWidth - switchWidth - 30;
+    var styles = this.mergeStyles({
+        position: 'relative',
+        cursor: this.props.disabled ? 'default' : 'pointer',
+        overflow: 'visible',
+        display: 'table',
+        height: 'auto',
+        width: '100%'
     });
+    var inputStyles = {
+        position: 'absolute',
+        cursor: this.props.disabled ? 'default' : 'pointer',
+        pointerEvents: 'all',
+        opacity: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 2,
+        left: 0
+    };
+    var wrapStyles = this.mergeStyles({
+        transition: Transitions.easeOut(),
+        float: 'left',
+        position: 'relative',
+        display: 'table-column',
+        width: switchWidth,
+        marginRight: (this.props.labelPosition == 'right') ? 
+          CustomVariables.spacing.desktopGutterLess : 0,
+        marginLeft: (this.props.labelPosition == 'left') ? 
+          CustomVariables.spacing.desktopGutterLess : 0
+    }, this.props.iconStyle);
+    var labelStyles = {
+        float: 'left',
+        position: 'relative',
+        display: 'table-column',
+        width: labelWidth,
+        lineHeight: '24px'
+    }
 
     var inputId = this.props.id || this.getDomId();
     
     var labelElement = this.props.label ? (
-      <label className="mui-switch-label" htmlFor={inputId}>
+      <label style={labelStyles} htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;
@@ -133,10 +174,10 @@ var EnhancedSwitch = React.createClass({
       <input 
         {...other} 
         {...inputProps}
-        className="mui-enhanced-switch-input"/>
+        style={inputStyles}/>
     );
 
-    var rippleStyle = this.mergePropStyles({
+    var rippleStyle = this.mergeStyles({
         height: '200%',
         width: '200%',
         top: '-12',
@@ -148,7 +189,7 @@ var EnhancedSwitch = React.createClass({
         ref="touchRipple"
         key="touchRipple"
         style={rippleStyle}
-        color={this.state.switched ? Theme.primary1Color : Theme.textColor}
+        color={this.props.switched ? Theme.primary1Color : Theme.textColor}
         centerRipple={true} />
     );
 
@@ -156,7 +197,7 @@ var EnhancedSwitch = React.createClass({
       <FocusRipple
         key="focusRipple"
         innerStyle={rippleStyle}
-        color={this.state.switched ? Theme.primary1Color : Theme.textColor}
+        color={this.props.switched ? Theme.primary1Color : Theme.textColor}
         show={this.state.isKeyboardFocused} />
     );
 
@@ -165,17 +206,17 @@ var EnhancedSwitch = React.createClass({
       this.props.disabled || disableFocusRipple ? null : focusRipple
     ];
 
-    iconClassName += ' mui-enhanced-switch-wrap';
-
-    var switchElement = (this.props.iconClassName.indexOf("toggle") == -1) ? (
-        <div className={iconClassName}>
+    // If toggle component (indicated by whether the style includes thumb) manually lay out 
+    // elements in order to nest ripple elements
+    var switchElement = !this.props.thumbStyle ? (
+        <div style={wrapStyles}>
           {this.props.switchElement}
           {ripples}
         </div>
       ) : (
-        <div className={iconClassName}>
-          <div className="mui-toggle-track" />
-          <Paper className="mui-toggle-thumb" zDepth={1}> {ripples} </Paper>
+        <div style={wrapStyles}>
+          <div style={this.props.trackStyle}/>
+          <Paper style={this.props.thumbStyle} zDepth={1}> {ripples} </Paper>
         </div>      
     );
 
@@ -196,7 +237,7 @@ var EnhancedSwitch = React.createClass({
     );
 
     return (
-      <div className={classes}>
+      <div style={styles}>
           {inputElement}
           {elementsInOrder}
       </div>
@@ -211,7 +252,8 @@ var EnhancedSwitch = React.createClass({
   // no callback here because there is no event
   setSwitched: function(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked == false) {
-      this.setState({switched: newSwitchedValue});  
+
+      this.props.onParentShouldUpdate(newSwitchedValue);  
       this.refs.checkbox.getDOMNode().checked = newSwitchedValue;
     } else {
       var message = 'Cannot call set method while checked is defined as a property.';
@@ -228,7 +270,6 @@ var EnhancedSwitch = React.createClass({
   },
 
   _handleChange: function(e) {
-    
     this._tabPressed = false;
     this.setState({
       isKeyboardFocused: false
@@ -236,7 +277,7 @@ var EnhancedSwitch = React.createClass({
 
     var isInputChecked = this.refs.checkbox.getDOMNode().checked;
     
-    if (!this.props.hasOwnProperty('checked')) this.setState({switched: isInputChecked});
+    if (!this.props.hasOwnProperty('checked')) this.props.onParentShouldUpdate(isInputChecked);
     if (this.props.onSwitch) this.props.onSwitch(e, isInputChecked);
   },
 

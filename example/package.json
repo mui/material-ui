@@ -1,7 +1,11 @@
 {
   "name": "material-ui-example",
-  "version": "0.0.1",
+  "version": "0.7.0",
   "description": "Sample project that uses material-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/callemall/material-ui.git"
+  },
   "scripts": {
     "start": "gulp"
   },
@@ -20,7 +24,7 @@
     "browserify": "^7.0.3",
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^2.0.0",
-    "gulp-less": "^2.0.1",
+    "gulp-less": "^3.0.0",
     "gulp-notify": "^2.1.0",
     "gulp-sourcemaps": "^1.2.8",
     "gulp-util": "^3.0.1",
@@ -32,7 +36,7 @@
     "watchify": "^2.2.1"
   },
   "dependencies": {
-    "material-ui": "^0.6",
+    "material-ui": "^0.7.0",
     "react": "^0.12.2",
     "react-tap-event-plugin": "^0.1.3"
   }

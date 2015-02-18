@@ -1,10 +1,6 @@
 build
 docs
 example
-Makefile
 
 # jsx Transform Disk Cache
 .module-cache
-
-# Exclude jsx files
-src/js/**/*.jsx

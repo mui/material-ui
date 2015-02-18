@@ -21,7 +21,7 @@ Use [browserify](http://browserify.org/) and [reactify](https://github.com/andre
 the proper .styl version of the files.
 
 ### React-Tap-Event-Plugin
-Some components uses [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
+Some components use [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
 listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
 sure to inject this plugin at the start of your app.
 ```js
@@ -68,7 +68,7 @@ The styles are separated into 2 less files:
 * src/less/components.less
 
 This allows you to override any variables defined in [custom-variables.less](https://github.com/callemall/material-ui/blob/master/src/less/variables/custom-variables.less) without having to modify material-ui source files directly. For example, your main.less file could look something like this:
-```css
+```less
 @import "node_modules/material-ui/src/less/scaffolding.less";
 
 //Define a custom less file to override any variables defined in scaffolding.less

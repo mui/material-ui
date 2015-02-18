@@ -1,7 +1,7 @@
 var React = require('react');
-var StylePropable = require('../mixins/style-propable.js');
-var Dom = require('../utils/dom.js');
-var RippleCircle = require('./circle.jsx');
+var StylePropable = require('../mixins/style-propable');
+var Dom = require('../utils/dom');
+var RippleCircle = require('./circle');
 var TouchRipple = React.createClass({
 
   mixins: [StylePropable],
@@ -23,7 +23,7 @@ var TouchRipple = React.createClass({
 
   render: function() {
 
-    var styles = this.mergePropStyles({
+    var styles = this.mergeAndPrefix({
       height: '100%',
       width: '100%',
       position: 'absolute',
@@ -37,9 +37,11 @@ var TouchRipple = React.createClass({
         onMouseDown={this._handleMouseDown}
         onMouseOut={this._handleMouseOut}
         onTouchStart={this._handleTouchStart}
-        onTouchEnd={this._handleTouchEnd}
-        style={styles}>
+        onTouchEnd={this._handleTouchEnd}>
+        <div style={styles}>
           {this._getRippleElements()}
+        </div>
+        {this.props.children}
       </div>
     );
   },
