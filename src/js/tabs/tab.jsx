@@ -18,7 +18,7 @@ var Tab = React.createClass({
   },
 
   render: function(){
-    var styles = {
+    var styles = this.mergePropStyles({
       'display': 'inline-block',
       'height': '100%',
       'cursor': 'pointer',
@@ -29,7 +29,7 @@ var Tab = React.createClass({
       'fontWeight': '500',
       'font': Theme.fontFamily,
       'width': this.props.width
-    };
+    });
 
     if (this.props.selected) styles.opacity = '1';
 

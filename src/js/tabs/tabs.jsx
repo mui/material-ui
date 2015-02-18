@@ -48,6 +48,9 @@ var Tabs = React.createClass({
   },
 
   render: function(){
+    var styles = this.mergePropStyles({
+      position: 'relative'
+    });
     var tabItemContainerStyle = {
       margin: '0',
       padding: '0',
@@ -81,7 +84,7 @@ var Tabs = React.createClass({
     });
 
     return (
-      <div style={{position: 'relative'}}>
+      <div style={styles}>
         <div style={tabItemContainerStyle}>
           {tabs}
         </div>
