@@ -78,6 +78,8 @@ var Slider = React.createClass({
       cursor: 'default',
       height: CustomVariables.sliderHandleSizeActive,
       position: 'relative',
+      marginTop: 24,
+      marginBottom: 48
     };
 
     var sliderTrackStyles = {
@@ -214,7 +216,7 @@ var Slider = React.createClass({
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
         <span className="mui-input-error">{this.props.error}</span>
-        <div className={sliderClasses} 
+        <div style={sliderStyles} 
           onClick={this._onClick}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
