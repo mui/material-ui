@@ -12971,7 +12971,7 @@ var GetStarted = React.createClass({displayName: "GetStarted",
 
           React.createElement("h3", {className: "mui-font-style-title"}, "React-Tap-Event-Plugin"), 
           React.createElement("p", null, 
-            "Some components uses ", React.createElement("a", {href: "https://github.com/zilverline/react-tap-event-plugin"}, "react-tap-event-plugin"), " to" + ' ' +
+            "Some components use ", React.createElement("a", {href: "https://github.com/zilverline/react-tap-event-plugin"}, "react-tap-event-plugin"), " to" + ' ' +
             "listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be" + ' ' +
             "sure to inject this plugin at the start of your app."
           ), 
