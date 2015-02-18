@@ -1,14 +1,14 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
 var DomIdable = require('./mixins/dom-idable');
-var StylePropable = require('./mixins/style-propable.js');
-var Transitions = require('./styles/mixins/transitions.js');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
 var WindowListenable = require('./mixins/window-listenable');
-var CustomVariables = require('./styles/variables/custom-variables.js');
+var CustomVariables = require('./styles/variables/custom-variables');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 var Paper = require('./paper');
-var Theme = require('./styles/theme.js').get();
+var Theme = require('./styles/theme').get();
 
 var EnhancedSwitch = React.createClass({
 
@@ -106,7 +106,7 @@ var EnhancedSwitch = React.createClass({
 
     var switchWidth = 60 - CustomVariables.spacing.desktopGutterLess;
     var labelWidth = this.state.parentWidth - switchWidth - 30;
-    var styles = this.mergePropStyles({
+    var styles = this.mergeStyles({
         position: 'relative',
         cursor: this.props.disabled ? 'default' : 'pointer',
         overflow: 'visible',
@@ -124,7 +124,7 @@ var EnhancedSwitch = React.createClass({
         zIndex: 2,
         left: 0
     };
-    var wrapStyles = this.mergePropStyles({
+    var wrapStyles = this.mergeStyles({
         transition: Transitions.easeOut(),
         float: 'left',
         position: 'relative',
@@ -177,7 +177,7 @@ var EnhancedSwitch = React.createClass({
         style={inputStyles}/>
     );
 
-    var rippleStyle = this.mergePropStyles({
+    var rippleStyle = this.mergeStyles({
         height: '200%',
         width: '200%',
         top: '-12',

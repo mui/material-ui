@@ -1,8 +1,7 @@
 var React = require('react');
-var StylePropable = require('../mixins/style-propable.js');
-var Transitions = require('../styles/mixins/transitions.js');
-var AutoPrefix = require('../styles/auto-prefix.js');
-var Colors = require('../styles/colors.js');
+var StylePropable = require('../mixins/style-propable');
+var Transitions = require('../styles/mixins/transitions');
+var Colors = require('../styles/colors');
 
 var pulsateDuration = 750;
 
@@ -29,7 +28,7 @@ var FocusRipple = React.createClass({
 
   render: function() {
 
-    var outerStyles = this.mergePropStyles({
+    var outerStyles = this.mergeAndPrefix({
       height: '100%',
       width: '100%',
       position: 'absolute',
@@ -40,7 +39,7 @@ var FocusRipple = React.createClass({
       opacity: this.props.show ? 1 : 0
     });
 
-    var innerStyles = this.mergePropStyles({
+    var innerStyles = this.mergeAndPrefix({
       position: 'absolute',
       height: '100%',
       width: '100%',
@@ -51,8 +50,8 @@ var FocusRipple = React.createClass({
     }, this.props.innerStyle);
 
     return (
-      <div style={AutoPrefix.all(outerStyles)}>
-        <div ref="innerCircle" style={AutoPrefix.all(innerStyles)} />
+      <div style={outerStyles}>
+        <div ref="innerCircle" style={innerStyles} />
       </div>
     );
   },

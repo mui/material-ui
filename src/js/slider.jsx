@@ -1,8 +1,11 @@
-﻿
-var React = require('react'),
-    Paper = require('./paper'),
-    Classable = require('./mixins/classable'),
-    Draggable = require('react-draggable2');
+
+var React = require('react');
+var Paper = require('./paper');
+var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var Draggable = require('react-draggable2');
+var Transitions = require('./styles/mixins/transitions.js');
+var CustomVariables = require('./styles/variables/custom-variables.js');
 
 var Slider = React.createClass({
 
@@ -20,7 +23,7 @@ var Slider = React.createClass({
     onDragStop: React.PropTypes.func
   },
 
-  mixins: [Classable],
+  mixins: [Classable, StylePropable],
 
   getDefaultProps: function() {
     return {
@@ -40,7 +43,10 @@ var Slider = React.createClass({
     if (isNaN(percent)) percent = 0;
     return {
       value: value,
-      percent: percent
+      percent: percent,
+      focused: false,
+      active: false,
+      hovered: false
     }
   },
 
@@ -60,8 +66,147 @@ var Slider = React.createClass({
       'mui-disabled': this.props.disabled
     });
 
+
     var percent = this.state.percent;
+    
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
+    
+    var fillGutter = CustomVariables.sliderHandleSizeDisabled - CustomVariables.sliderTrackSize;
+    
+    var sliderStyles = {
+      // -webkit-touch-callout: 'none',
+      cursor: 'default',
+      height: CustomVariables.sliderHandleSizeActive,
+      position: 'relative',
+    };
+
+    var sliderTrackStyles = {
+      position: 'absolute',
+      top: (CustomVariables.sliderHandleSizeActive - CustomVariables.sliderTrackSize) / 2,
+      left: 0,
+      width: '100%',
+      height: CustomVariables.sliderTrackSize
+    };
+
+    var sliderSelectionLowStyles = {
+      position: 'absolute',
+      top: 0,
+      height: '100%',
+      transition: Transitions.easeOut(null, 'margin'),
+
+      left: 0,
+      backgroundColor: CustomVariables.sliderSelectionColor,
+      marginRight: fillGutter,
+      width: (percent * 100) + ((this.props.disabled) ? -1 : 0) + '%'
+    };
+
+    var sliderSelectionHighStyles = {
+      position: 'absolute',
+      top: 0,
+      height: '100%',
+      transition: Transitions.easeOut(null, 'margin'),
+
+      right: 0,
+      backgroundColor: CustomVariables.sliderTrackColor,
+      marginLeft: fillGutter,
+      width: ((1 - percent) * 100) + ((this.props.disabled) ? -1 : 0) + '%'
+    };
+
+    var sliderHandleStyles = {
+      position: 'absolute',
+      cursor: 'pointer',
+      top: 0,
+      left: '0%',
+      zIndex: 1,
+      margin: (CustomVariables.sliderTrackSize / 2) + 'px 0 0 0',   
+      width: CustomVariables.sliderHandleSize,
+      height: CustomVariables.sliderHandleSize,
+      backgroundColor: CustomVariables.sliderHandleFillColor,
+
+      backgroundClip: 'padding-box',
+      borderRadius: '50%',
+      transform: 'translate(-50%, -50%)',
+      transition:
+        Transitions.easeOut('450ms', 'border') + ',' +
+        Transitions.easeOut('450ms', 'width') + ',' +
+        Transitions.easeOut('450ms', 'height'),
+    };
+
+
+
+
+    var gutter = (CustomVariables.sliderHandleSizeDisabled + CustomVariables.sliderTrackSize) / 2;
+
+    if (this.props.disabled) {
+
+      sliderHandleStyles = this.mergeStyles(sliderHandleStyles, {
+        cursor: 'not-allowed',
+        backgroundColor: CustomVariables.sliderTrackColor,
+        width: CustomVariables.sliderHandleSizeDisabled,
+        height: CustomVariables.sliderHandleSizeDisabled,
+      });
+
+      sliderSelectionHighStyles.backgroundColor = CustomVariables.sliderTrackColor;
+      sliderSelectionLowStyles.backgroundColor = CustomVariables.sliderTrackColor;
+
+    } else {
+      sliderHandleStyles = this.mergeStyles(sliderHandleStyles, {
+        border: '0px solid transparent',
+        backgroundColor: CustomVariables.sliderSelectionColor,
+      });
+    }
+
+
+    if (percent === 0) {
+      sliderHandleStyles = this.mergeStyles(sliderHandleStyles, {
+        border: CustomVariables.sliderTrackSize + 'px solid ' + CustomVariables.sliderTrackColor,
+        backgroundColor: CustomVariables.sliderHandleFillColor,
+        boxShadow: 'none'
+      });
+
+      sliderSelectionHighStyles = this.mergeStyles(sliderSelectionHighStyles, {
+        left: 1,
+        width: sliderSelectionHighStyles.width - sliderSelectionHighStyles.left
+      });
+      
+
+
+      sliderSelectionHighStyles.marginLeft = gutter;
+      sliderSelectionLowStyles.marginRight = gutter;
+
+      if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
+        var size = CustomVariables.sliderHandleSize + CustomVariables.sliderTrackSize;
+        sliderHandleStyles = this.mergeStyles(sliderHandleStyles, {
+          border: CustomVariables.sliderTrackSize + 'px solid ' + CustomVariables.sliderHandleColorZero,
+          width: size,
+          height: size
+        });
+      }
+    } else {
+
+    }
+
+    if (this.state.active && !this.props.disabled) {
+        sliderHandleStyles = this.mergeStyles(sliderHandleStyles, {
+          borderColor: CustomVariables.sliderTrackColorSelected,
+          width: CustomVariables.sliderHandleSizeActive,
+          height: CustomVariables.sliderHandleSizeActive,
+          transition:
+            Transitions.easeOut('450ms', 'backgroundColor') + ',' +
+            Transitions.easeOut('450ms', 'width') + ',' +
+            Transitions.easeOut('450ms', 'height')
+        });
+      }
+
+    if (this.state.focused) sliderHandleStyles.outline = 'none';
+
+    if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
+      sliderSelectionHighStyles.backgroundColor = CustomVariables.sliderTrackColorSelected;
+    }
+
+    if (this.state.percent === 0 && this.state.active) {
+      sliderSelectionHighStyles.marginLeft = fillGutter;
+    }
 
     return (
       <div className={classes} style={this.props.style}>
@@ -69,24 +214,25 @@ var Slider = React.createClass({
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
         <span className="mui-input-error">{this.props.error}</span>
-        <div className={sliderClasses} onClick={this._onClick}>
-          <div ref="track" className="mui-slider-track">
+        <div className={sliderClasses} 
+          onClick={this._onClick}
+          onFocus={this._onFocus}
+          onBlur={this._onBlur}
+          onMouseOver={this._onMouseOver} 
+          onMouseOut={this._onMouseOut} 
+          onMouseUp={this._onMouseUp} 
+          onMouseDown={this._onMouseDown}>
+          <div ref="track" style={sliderTrackStyles}>
             <Draggable axis="x" bound="point"
               cancel={this.props.disabled ? '*' : null}
               start={{x: (percent * 100) + '%'}}
               onStart={this._onDragStart}
               onStop={this._onDragStop}
               onDrag={this._onDragUpdate}>
-              <div className="mui-slider-handle" tabIndex={0}></div>
+              <div style={sliderHandleStyles} tabIndex={0}></div>
             </Draggable>
-            <div className="mui-slider-selection mui-slider-selection-low"
-              style={{width: (percent * 100) + '%'}}>
-              <div className="mui-slider-selection-fill"></div>
-            </div>
-            <div className="mui-slider-selection mui-slider-selection-high"
-              style={{width: ((1 - percent) * 100) + '%'}}>
-              <div className="mui-slider-selection-fill"></div>
-            </div>
+            <div style={sliderSelectionLowStyles}></div>
+            <div style={sliderSelectionHighStyles}></div>
           </div>
         </div>
         <input ref="input" type="hidden"
@@ -138,16 +284,42 @@ var Slider = React.createClass({
     this._updateWithChangeEvent(e, offset / node.clientWidth);
   },
 
+  _onFocus: function (e) {
+    this.setState({focused: true});
+  },
+
+  _onBlur: function (e) {
+    this.setState({focused: false, active: false});
+  },
+
+  _onMouseOver: function (e) {
+    this.setState({hovered: true});
+  },
+
+  _onMouseOut: function (e) {
+    this.setState({hovered: false});
+  },
+
+  _onMouseUp: function (e) {
+    this.setState({active: false});
+  },
+
+  _onMouseDown: function (e) {
+    this.setState({active: true});
+  },
+
   _onDragStart: function(e, ui) {
     this.setState({
-      dragging: true
+      dragging: true,
+      active: true
     });
     if (this.props.onDragStart) this.props.onDragStart(e, ui);
   },
 
   _onDragStop: function(e, ui) {
     this.setState({
-      dragging: false
+      dragging: false,
+      active: false
     });
     if (this.props.onDragStop) this.props.onDragStop(e, ui);
   },

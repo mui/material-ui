@@ -1,7 +1,7 @@
 var React = require('react');
-var StylePropable = require('./mixins/style-propable.js');
-var Transitions = require('./styles/mixins/transitions.js');
-var CustomVariables = require('./styles/variables/custom-variables.js');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
+var CustomVariables = require('./styles/variables/custom-variables');
 var EnhancedSwitch = require('./enhanced-switch');
 var RadioButtonOff = require('./svg-icons/toggle-radio-button-off');
 var RadioButtonOn = require('./svg-icons/toggle-radio-button-on');
@@ -43,22 +43,22 @@ var RadioButton = React.createClass({
     };
 
     if (this.props.checked) {
-      targetStyles = this.mergePropStyles(targetStyles, {
+      targetStyles = this.mergeStyles(targetStyles, {
         opacity: 0,
         transform: 'scale(0)'
       });
-      fillStyles = this.mergePropStyles(fillStyles, {
+      fillStyles = this.mergeStyles(fillStyles, {
         opacity: 1,
         transform: 'scale(1)'
       });
     }
 
     if (this.props.disabled) {
-      targetStyles = this.mergePropStyles(targetStyles, {
+      targetStyles = this.mergeStyles(targetStyles, {
         opacity: 0.3,
         fill: CustomVariables.radioButtonDisabledColor
       });
-      fillStyles = this.mergePropStyles(fillStyles, {
+      fillStyles = this.mergeStyles(fillStyles, {
         opacity: 0.3,
         fill: CustomVariables.radioButtonDisabledColor
       });

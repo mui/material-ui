@@ -1,7 +1,7 @@
 var React = require('react');
-var StylePropable = require('./mixins/style-propable.js');
-var Transitions = require('./styles/mixins/transitions.js');
-var CustomVariables = require('./styles/variables/custom-variables.js');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
+var CustomVariables = require('./styles/variables/custom-variables');
 var Paper = require('./paper');
 var EnhancedSwitch = require('./enhanced-switch');
 
@@ -61,20 +61,20 @@ var Toggle = React.createClass({
     };
 
     if (this.state.switched) {
-      this.mergePropStyles(trackStyles, {
+      this.mergeStyles(trackStyles, {
         backgroundColor: CustomVariables.toggleTrackOnColor
       });
-      this.mergePropStyles(thumbStyles, {
+      this.mergeStyles(thumbStyles, {
         left: 18,
         backgroundColor: CustomVariables.toggleThumbOnColor
       });
     }
 
     if (this.props.disabled) {
-      this.mergePropStyles(trackStyles, {
+      this.mergeStyles(trackStyles, {
         backgroundColor: CustomVariables.toggleTrackDisabledColor
       });
-      this.mergePropStyles(thumbStyles, {
+      this.mergeStyles(thumbStyles, {
         backgroundColor: CustomVariables.toggleThumbDisabledColor
       });
     }

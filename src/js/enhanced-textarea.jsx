@@ -1,14 +1,14 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var AutoPrefix = require('./styles/auto-prefix');
 
 var EnhancedTextarea = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     onChange: React.PropTypes.func,
     onHeightChange: React.PropTypes.func,
-    textareaClassName: React.PropTypes.string,
     rows: React.PropTypes.number
   },
 
@@ -31,34 +31,37 @@ var EnhancedTextarea = React.createClass({
   render: function() {
 
     var {
-      className,
       onChange,
       onHeightChange,
-      textareaClassName,
       rows,
+      style,
       valueLink,
       ...other,
     } = this.props;
 
-    var classes = this.getClasses('mui-enhanced-textarea');
-    var textareaClassName = 'mui-enhanced-textarea-input';
-    var style = {
-      height: this.state.height + 'px'
+    var inputStyles = {
+      height: this.state.height + 'px',
+      width: '100%',
+      resize: 'none',
+      overflow: 'hidden'
     };
 
-    if (this.props.textareaClassName) {
-      textareaClassName += ' ' + this.props.textareaClassName;
-    }
+    var shadowStyles = {
+      position: 'absolute',
+      width: '100%',
+      resize: 'none',
+      transform: 'scale(0)'
+    };
 
     if (this.props.hasOwnProperty('valueLink')) {
       other.value = this.props.valueLink.value;
     }
 
     return (
-      <div className={classes}>
+      <div style={this.props.style}>
         <textarea
           ref="shadow"
-          className="mui-enhanced-textarea-shadow"
+          style={AutoPrefix.all(shadowStyles)}
           tabIndex="-1"
           rows={this.props.rows}
           defaultValue={this.props.defaultValue}
@@ -66,9 +69,9 @@ var EnhancedTextarea = React.createClass({
         <textarea
           {...other}
           ref="input"
-          className={textareaClassName}
+          style={inputStyles}
           rows={this.props.rows}
-          style={style}
+          style={AutoPrefix.all(inputStyles)}
           onChange={this._handleChange} />
       </div>
     );

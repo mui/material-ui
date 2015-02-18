@@ -1,4 +1,4 @@
-var Modernizr = require('../utils/modernizr.custom.js');
+var Modernizr = require('../utils/modernizr.custom');
 
 module.exports = {
 
