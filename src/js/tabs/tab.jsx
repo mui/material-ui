@@ -18,7 +18,7 @@ var Tab = React.createClass({
   },
 
   render: function(){
-    var styles = this.mergePropStyles({
+    var styles = this.mergeStyles({
       'display': 'inline-block',
       'height': '100%',
       'cursor': 'pointer',
