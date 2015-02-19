@@ -2,7 +2,7 @@ var React = require('react');
 var TabTemplate = require('./tabTemplate');
 var StylePropable = require('../mixins/style-propable.js');
 var Theme = require('../styles/theme.js');
-
+var Colors = require('../styles/colors.js')
 var Tab = React.createClass({
 
   mixins: [StylePropable],
@@ -24,6 +24,7 @@ var Tab = React.createClass({
       'cursor': 'pointer',
       'textAlign': 'center',
       'lineHeight': '48px',
+      'color': Colors.white,
       'opacity': '.6',
       'fontSize': '14sp',
       'fontWeight': '500',
