@@ -25,7 +25,7 @@ var Tabs = React.createClass({
   },
 
   getLeft: function(){
-    ((100/this.props.children.length) * this.state.selectedIndex) + '%'
+    return ((100/this.props.children.length) * this.state.selectedIndex) + '%'
   },
 
   handleTouchTap: function(tabIndex, tab){
