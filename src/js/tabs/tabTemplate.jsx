@@ -1,5 +1,4 @@
 var React = require('react');
-var StylePropable = require('../mixins/style-propable.js');
 
 var TabTemplate = React.createClass({
 
