@@ -32,6 +32,7 @@ var customVariables = new (function() {
   this.sliderHandleColorZero = Colors.grey400;
   this.sliderHandleFillColor = Colors.white;
   this.sliderSelectionColor = Theme.primary3Color;
+  this.sliderRippleColor = Theme.primary1Color;
 
   // toggle
   this.toggleThumbOnColor = Theme.primary1Color;
