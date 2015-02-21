@@ -173,7 +173,7 @@ var Menu = React.createClass({
 
         case MenuItem.Types.LINK:
           itemComponent = (
-            <a key={i} index={i} className="mui-menu-item" href={menuItem.payload}>{menuItem.text}</a>
+            <a key={i} index={i} className="mui-menu-item" href={menuItem.payload} target={menuItem.target}>{menuItem.text}</a>
           );
         break;
 
