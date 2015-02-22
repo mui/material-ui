@@ -100,6 +100,12 @@ var EnhancedTextarea = React.createClass({
     }
 
     if (this.props.onChange) this.props.onChange(e);
+  },
+  
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.value != this.props.value) {
+      this._syncHeightWithShadow(nextProps.value);
+    }
   }
 });
 
