@@ -62,6 +62,7 @@ var EnhancedTextarea = React.createClass({
           tabIndex="-1"
           rows={this.props.rows}
           defaultValue={this.props.defaultValue}
+          readOnly={true}
           value={this.props.value} />
         <textarea
           {...other}
