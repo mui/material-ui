@@ -26,6 +26,7 @@ var customVariables = new (function() {
   this.checkboxCheckedColor = Theme.primary1Color;
   this.checkboxRequiredColor = Theme.primary1Color;
   this.checkboxDisabledColor = this.disabledColor;
+
   // menu
   this.menuBackgroundColor = Colors.white;
   this.menuItemDataHeight = 32;
@@ -55,6 +56,11 @@ var customVariables = new (function() {
   this.sliderHandleFillColor = Colors.white;
   this.sliderSelectionColor = Theme.primary3Color;
   this.sliderRippleColor = Theme.primary1Color;
+
+  // snackbar
+  this.snackbarTextColor = Colors.white;
+  this.snackbarBackgroundColor = '#323232';
+  this.snackbarActionColor = Theme.accent1Color;
 
   // toggle
   this.toggleThumbOnColor = Theme.primary1Color;
