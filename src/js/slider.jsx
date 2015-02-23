@@ -61,7 +61,8 @@ var Slider = React.createClass({
   // Styles
   main: function() {
     return {
-      // -webkit-touch-callout: 'none',
+      touchCallout: 'none',
+      userSelect: 'none',
       cursor: 'default',
       height: CustomVariables.sliderHandleSizeActive,
       position: 'relative',
@@ -90,7 +91,7 @@ var Slider = React.createClass({
   },
 
   filled: function(fillGutter) {
-    return this.mergeStyles(this.filledAndRemaining(), {
+    return this.mergeAndPrefix(this.filledAndRemaining(), {
       left: 0,
       backgroundColor: (this.props.disabled) ? 
         CustomVariables.sliderTrackColor : 
@@ -101,7 +102,7 @@ var Slider = React.createClass({
   },
 
   remaining: function(fillGutter) {
-    return this.mergeStyles(this.filledAndRemaining(), {
+    return this.mergeAndPrefix(this.filledAndRemaining(), {
       right: 0,
       backgroundColor: CustomVariables.sliderTrackColor,
       marginLeft: fillGutter,
@@ -171,7 +172,7 @@ var Slider = React.createClass({
     };
 
     if ((this.state.hovered) && !this.props.disabled) {
-      style = this.mergeStyles(style, {
+      style = this.mergeAndPrefix(style, {
         border: CustomVariables.sliderTrackSize + 'px solid ' + CustomVariables.sliderHandleColorZero,
         width: size,
         height: size
@@ -234,16 +235,16 @@ var Slider = React.createClass({
     var ripples = this.props.disabled || this.props.disableFocusRipple ? null : focusRipple;
 
     if (this.props.disabled) {
-      handleStyles = this.mergeStyles(handleStyles, this.disabledHandle());
+      handleStyles = this.mergeAndPrefix(handleStyles, this.disabledHandle());
     } else if (this.state.active) {
-      handleStyles = this.mergeStyles(handleStyles, this.activeHandle());
+      handleStyles = this.mergeAndPrefix(handleStyles, this.activeHandle());
     } else if (this.state.hovered || this.state.focused) {
       remainingStyles.backgroundColor = CustomVariables.sliderTrackColorSelected;
     }
 
     if (percent === 0) {
-      handleStyles = this.mergeStyles(handleStyles, this.percentZeroHandle());
-      remainingStyles = this.mergeStyles(remainingStyles, this.percentZeroRemaining(gutter));
+      handleStyles = this.mergeAndPrefix(handleStyles, this.percentZeroHandle());
+      remainingStyles = this.mergeAndPrefix(remainingStyles, this.percentZeroRemaining(gutter));
       filledStyles.marginRight = gutter;
     }
 
@@ -267,15 +268,15 @@ var Slider = React.createClass({
               <div style={filledStyles}></div>
               <div style={remainingStyles}></div>
               <Draggable axis="x" bound="point"
-              cancel={this.props.disabled ? '*' : null}
-              start={{x: (percent * 100) + '%'}}
-              onStart={this._onDragStart}
-              onStop={this._onDragStop}
-              onDrag={this._onDragUpdate}
-              onMouseDown={this._onMouseDown}>
-                <div style={handleStyles} tabIndex={0}>
-                  {ripples}
-                </div>
+                cancel={this.props.disabled ? '*' : null}
+                start={{x: (percent * 100) + '%'}}
+                onStart={this._onDragStart}
+                onStop={this._onDragStop}
+                onDrag={this._onDragUpdate}
+                onMouseDown={this._onMouseDown}>
+                  <div style={handleStyles} tabIndex={0}>
+                    {ripples}
+                  </div>
               </Draggable>
             </div>
         </div>
