@@ -79,10 +79,10 @@ var RadioButtonGroup = React.createClass({
   _updateRadioButtons: function(newSelection) {
     if (this.state.numberCheckedRadioButtons == 0) {
       this.setState({selected: newSelection});
-    } else {
-        var message = "Cannot select a different radio button while another radio button " + 
-                      "has the 'checked' property set to true.";
-        console.error(message);
+    } else if (process.NODE_ENV !== 'production') {
+      var message = "Cannot select a different radio button while another radio button " + 
+                    "has the 'checked' property set to true.";
+      console.error(message);
     }
   },
 

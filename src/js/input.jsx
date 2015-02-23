@@ -35,7 +35,9 @@ var Input = React.createClass({
   },
 
   componentDidMount: function() {
-    console.warn('Input has been deprecated. Please use TextField instead. See http://material-ui.com/#/components/text-fields');
+    if (process.NODE_ENV !== 'production') {
+      console.warn('Input has been deprecated. Please use TextField instead. See http://material-ui.com/#/components/text-fields');
+    }
   },
 
   render: function() {
