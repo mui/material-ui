@@ -5,6 +5,10 @@ var ComponentDoc = require('../../component-doc.jsx');
 
 var SlidersPage = React.createClass({
 
+  handleMouseDown: function(e){
+    console.log('hmd', e);
+  },
+
   render: function() {
 
     var code =
@@ -28,7 +32,7 @@ var SlidersPage = React.createClass({
         componentInfo={componentInfo}>
 
         <Slider name="slider1" />
-          <Slider name="slider2" value={0.5} />
+          <Slider onMouseDown={this.handleMouseDown} name="slider2" value={0.5} />
           <Slider name="slider3" value={1} />
           <Slider name="slider1" disabled={true} />
           <Slider name="slider2" disabled={true} value={0.5} />

@@ -6,7 +6,6 @@ var customVariables = new (function() {
 
   //Border Colors
   this.borderColor = Colors.grey300;
-
   // Disabled Colors
   this.disabledColor = Theme.textColor; // fadeout 30%
 
@@ -27,7 +26,6 @@ var customVariables = new (function() {
   this.checkboxCheckedColor = Theme.primary1Color;
   this.checkboxRequiredColor = Theme.primary1Color;
   this.checkboxDisabledColor = this.disabledColor;
-
   // menu
   this.menuBackgroundColor = Colors.white;
   this.menuItemDataHeight = 32;
