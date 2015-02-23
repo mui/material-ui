@@ -3,6 +3,9 @@ var CssEvent = require('./utils/css-event');
 var Dom = require('./utils/dom');
 var KeyLine = require('./utils/key-line');
 var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
+var CustomVariables = require('./styles/variables/custom-variables');
 var ClickAwayable = require('./mixins/click-awayable');
 var Paper = require('./paper');
 var MenuItem = require('./menu-item');
@@ -12,7 +15,7 @@ var MenuItem = require('./menu-item');
  ***********************/
 var NestedMenuItem = React.createClass({
 
-  mixins: [Classable, ClickAwayable],
+  mixins: [Classable, ClickAwayable, StylePropable],
 
   propTypes: {
     index: React.PropTypes.number.isRequired,
@@ -40,14 +43,23 @@ var NestedMenuItem = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-nested-menu-item', {
-      'mui-open': this.state.open
+    var styles = this.mergeStyles({
+      position: 'relative',
     });
 
+    var iconCustomArrowDropRight = {
+      marginRight: CustomVariables.spacing.desktopGutterMini * -1,
+      color: CustomVariables.dropDownMenuIconColor
+    }
+
     return (
-      <div className={classes}>
-        <MenuItem index={this.props.index} iconRightClassName="muidocs-icon-custom-arrow-drop-right" onClick={this._onParentItemClick}>
-          {this.props.text}
+      <div style={styles}>
+        <MenuItem 
+          index={this.props.index} 
+          iconRightStyle={iconCustomArrowDropRight} 
+          iconRightClassName="muidocs-icon-custom-arrow-drop-right" 
+          onClick={this._onParentItemClick}>
+            {this.props.text}
         </MenuItem>
         <Menu
           ref="nestedMenu"
@@ -62,9 +74,8 @@ var NestedMenuItem = React.createClass({
   },
 
   _positionNestedMenu: function() {
-    var el = this.getDOMNode(),
-      nestedMenu = this.refs.nestedMenu.getDOMNode();
-
+    var el = this.getDOMNode();
+    var nestedMenu = this.refs.nestedMenu.getDOMNode();
     nestedMenu.style.left = el.offsetWidth + 'px';
   },
 
@@ -89,7 +100,7 @@ var NestedMenuItem = React.createClass({
  ****************/
 var Menu = React.createClass({
 
-  mixins: [Classable],
+  mixins: [Classable, StylePropable],
 
   propTypes: {
     autoWidth: React.PropTypes.bool,
@@ -133,14 +144,49 @@ var Menu = React.createClass({
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
   },
 
+
+  /** Styles */
+  _hideable: function() {
+    return {
+      opacity: (this.props.visible) ? 1 : 0,
+      position: 'absolute',
+      top: 0,
+      zIndex: 1,
+    }
+  },
+
+  // Main Style
+  _paperContainer: function() {
+    var styles = {
+      paddingTop: CustomVariables.desktopGutterMini,
+      paddingBottom: CustomVariables.desktopGutterMini,
+      backgroundColor: CustomVariables.menuBackgroundColor,
+      transition: Transitions.easeOut(null, 'height'),
+    };
+
+    if (this.props.hideable) {
+     this.mergeStyles(styles, {
+      overflow: 'hidden',
+      padding: 0,
+      });
+    }
+
+    return this.mergeAndPrefix(styles);
+  },
+
+  _subheader: function() {
+    return {
+      paddingLeft: CustomVariables.menuSubheaderPadding,
+      paddingRight: CustomVariables.menuSubheaderPadding,
+    }
+  },
+
   render: function() {
-    var classes = this.getClasses('mui-menu', {
-      'mui-menu-hideable': this.props.hideable,
-      'mui-visible': this.props.visible
-    });
+    var styles = this._paperContainer();
+    if (this.props.hideable) styles = this.mergeStyles(styles, this._hideable());
 
     return (
-      <Paper ref="paperContainer" zDepth={this.props.zDepth} className={classes}>
+      <Paper ref="paperContainer" zDepth={this.props.zDepth} style={styles}>
         {this._getChildren()}
       </Paper>
     );
@@ -179,7 +225,7 @@ var Menu = React.createClass({
 
         case MenuItem.Types.SUBHEADER:
           itemComponent = (
-            <div key={i} index={i} className="mui-subheader">{menuItem.text}</div>
+            <div key={i} index={i} style={this._subheader()}>{menuItem.text}</div>
           );
           break;
 
@@ -236,13 +282,13 @@ var Menu = React.createClass({
   _renderVisibility: function() {
     var el;
 
-    if (this.props.hideable) {
+    if (this.props.hideable) {    
       el = this.getDOMNode();
       var innerContainer = this.refs.paperContainer.getInnerContainer().getDOMNode();
       
       if (this.props.visible) {
-
-        //Open the menu
+        //Open the men, u
+console.log('_renderVisibility open', el.style.height,  this._initialMenuHeight);
         el.style.height = this._initialMenuHeight + 'px';
 
         //Set the overflow to visible after the animation is done so
@@ -251,10 +297,12 @@ var Menu = React.createClass({
           //Make sure the menu is open before setting the overflow.
           //This is to accout for fast clicks
           if (this.props.visible) innerContainer.style.overflow = 'visible';
+          console.log(innerContainer.style);
         }.bind(this));
 
       } else {
 
+console.log('_renderVisibility close');
         //Close the menu
         el.style.height = '0px';
 

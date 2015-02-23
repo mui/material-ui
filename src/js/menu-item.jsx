@@ -1,5 +1,6 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var CustomVariables = require('./styles/variables/custom-variables');
 var FontIcon = require('./font-icon');
 var Toggle = require('./toggle');
 
@@ -11,12 +12,14 @@ var Types = {
 
 var MenuItem = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     index: React.PropTypes.number.isRequired,
     iconClassName: React.PropTypes.string,
     iconRightClassName: React.PropTypes.string,
+    iconStyle: React.PropTypes.object,
+    iconRightStyle: React.PropTypes.object,
     attribute: React.PropTypes.string,
     number: React.PropTypes.string,
     data: React.PropTypes.string,
@@ -37,10 +40,79 @@ var MenuItem = React.createClass({
     };
   },
 
-  render: function() {
-    var classes = this.getClasses('mui-menu-item', {
-      'mui-is-selected': this.props.selected
+  getInitialState: function() {
+    return {
+      hovered: false
+    }
+  },
+
+  /** Styles */
+  _main: function() {
+    var style = this.mergeAndPrefix({
+      userSelect: 'none',
+      cursor: 'pointer',
+      lineHeight: CustomVariables.menuItemHeight + 'px',
+      paddingLeft: CustomVariables.menuItemPadding,
+      paddingRight: CustomVariables.menuItemPadding,
     });
+
+    if (this.state.hovered) style.backgroundColor = CustomVariables.menuItemHoverColor;
+    if (this.props.selected) style.color = CustomVariables.menuItemSelectedTextColor;
+
+    return style;
+  },
+
+  _number: function() {
+    return {
+      float: 'right',
+      width: 24,
+      textAlign: 'center'
+    }
+  },
+
+  _attribute: function() {
+    return {
+      float: 'right'
+    }
+  },
+
+  _iconRight: function() {
+    return this.mergeStyles({
+      lineHeight: CustomVariables.menuItemHeight + 'px',
+      float: 'right'
+    }, this.props.iconRightStyle);
+  },
+
+  _icon: function () {
+    return this.mergeStyles({
+      float: 'left',
+      lineHeight: CustomVariables.menuItemHeight + 'px',
+      marginRight: CustomVariables.spacing.desktopGutter
+    }, this.props.iconStyle);
+  },
+
+  _data: function() {
+    return {
+      display: 'block',
+      paddingLeft: CustomVariables.spacing.desktopGutter * 2,
+      lineHeight: CustomVariables.menuItemDataHeight + 'px',
+      height: CustomVariables.menuItemDataHeight + 'px',
+      verticalAlign: 'top',
+      top: -12,
+      position: 'relative',
+      fontWeight: 300,
+    }
+  },
+
+  _toggle: function() {
+    return {
+      marginTop: ((CustomVariables.menuItemHeight - CustomVariables.radioButtonSize) / 2),
+      float: 'right',
+      width: 42,
+    }
+  },
+
+  render: function() {
     var icon;
     var data;
     var iconRight;
@@ -48,30 +120,35 @@ var MenuItem = React.createClass({
     var number;
     var toggle;
 
-    if (this.props.iconClassName) icon = <FontIcon className={'mui-menu-item-icon ' + this.props.iconClassName} />;
-    if (this.props.iconRightClassName) iconRight = <FontIcon className={'mui-menu-item-icon-right ' + this.props.iconRightClassName} />;
-    if (this.props.data) data = <span className="mui-menu-item-data">{this.props.data}</span>;
-    if (this.props.number !== undefined) number = <span className="mui-menu-item-number">{this.props.number}</span>;
-    if (this.props.attribute !== undefined) attribute = <span className="mui-menu-item-attribute">{this.props.attribute}</span>;
+    if (this.props.iconClassName) icon = <FontIcon style={this._icon()} className={this.props.iconClassName} />;
+    if (this.props.iconRightClassName) iconRight = <FontIcon style={this._iconRight()} className={this.props.iconRightClassName} />;
+    if (this.props.data) data = <span style={this._data()}>{this.props.data}</span>;
+    if (this.props.number !== undefined) number = <span style={this._number()}>{this.props.number}</span>;
+    if (this.props.attribute !== undefined) attribute = <span style={this._style()}>{this.props.attribute}</span>;
     
     if (this.props.toggle) {
       var {
         toggle,
         onClick,
         onToggle,
+        onMouseOver,
+        onMouseOut,
         children,
         label,
+        style,
         ...other
       } = this.props;
-      toggle = <Toggle {...other} onToggle={this._handleToggle}/>;
+      toggle = <Toggle {...other} onToggle={this._handleToggle} style={this._toggle()}/>;
     }
 
     return (
       <div
         key={this.props.index}
-        className={classes}
+        style={this._main()}
         onTouchTap={this._handleTouchTap}
-        onClick={this._handleOnClick}>
+        onClick={this._handleOnClick}
+        onMouseOver={this._handleMouseOver}
+        onMouseOut={this._handleMouseOut}>
 
         {icon}
         {this.props.children}
@@ -95,6 +172,16 @@ var MenuItem = React.createClass({
 
   _handleToggle: function(e, toggled) {
     if (this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
+  },
+
+  _handleMouseOver: function(e) {
+    this.setState({hovered: true});
+    if (this.props.onMouseOver) this.props.onMouseOver(e);
+  },
+
+  _handleMouseOut: function(e) {
+    this.setState({hovered: false});
+    if (this.props.onMouseOut) this.props.onMouseOut(e);
   }
 
 });
