@@ -287,8 +287,8 @@ var Menu = React.createClass({
       var innerContainer = this.refs.paperContainer.getInnerContainer().getDOMNode();
       
       if (this.props.visible) {
-        //Open the men, u
-console.log('_renderVisibility open', el.style.height,  this._initialMenuHeight);
+        //Open the menu
+        el.style.transition = Transitions.easeOut();
         el.style.height = this._initialMenuHeight + 'px';
 
         //Set the overflow to visible after the animation is done so
@@ -297,12 +297,10 @@ console.log('_renderVisibility open', el.style.height,  this._initialMenuHeight)
           //Make sure the menu is open before setting the overflow.
           //This is to accout for fast clicks
           if (this.props.visible) innerContainer.style.overflow = 'visible';
-          console.log(innerContainer.style);
         }.bind(this));
 
       } else {
 
-console.log('_renderVisibility close');
         //Close the menu
         el.style.height = '0px';
 

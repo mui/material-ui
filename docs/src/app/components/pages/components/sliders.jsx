@@ -5,6 +5,10 @@ var ComponentDoc = require('../../component-doc.jsx');
 
 var SlidersPage = React.createClass({
 
+  handleMouseDown: function(e){
+    console.log('hmd', e);
+  },
+
   render: function() {
 
     var code =

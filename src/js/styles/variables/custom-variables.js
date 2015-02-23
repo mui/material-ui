@@ -2,60 +2,71 @@ var Colors = require('../colors');
 var Spacing = require('./spacing');
 var Theme = require('../theme').get();
 
-module.exports = {
+var customVariables = new (function() {
 
   //Border Colors
-  borderColor: Colors.grey300,
+  this.borderColor = Colors.grey300;
 
   // Disabled Colors
-  disabledColor: Theme.textColor, // fadeout 30%
-
+  this.disabledColor = Theme.textColor; // fadeout 30%
 
   //Component Colors
-  appBarColor: Theme.primary1Color,
-  appBarTextColor: Colors.darkWhite,
-  canvasColor: Colors.white,
-  dropDownMenuIconColor: Colors.minBlack,
-  leftNavColor: Colors.white,
-  subheaderBorderColor: this.borderColor,
-  subheaderTextColor: Theme.primary1Color,
-
-
+  this.appBarColor = Theme.primary1Color;
+  this.appBarTextColor = Colors.darkWhite;
+  this.canvasColor = Colors.white;
+  this.dropDownMenuIconColor = Colors.minBlack;
+  this.leftNavColor = Colors.white;
+  this.subheaderBorderColor = this.borderColor;
+  this.subheaderTextColor = Theme.primary1Color;
   
   // Spacing
-  spacing: Spacing,
+  this.spacing = Spacing;
 
   // checkbox
-  checkboxBoxColor: Theme.textColor,
-  checkboxCheckedColor: Theme.primary1Color,
-  checkboxRequiredColor: Theme.primary1Color,
-  checkboxDisabledColor: this.disabledColor,
+  this.checkboxBoxColor = Theme.textColor;
+  this.checkboxCheckedColor = Theme.primary1Color;
+  this.checkboxRequiredColor = Theme.primary1Color;
+  this.checkboxDisabledColor = this.disabledColor;
 
   // menu
-  menuBackgroundColor: Colors.white,
-  menuItemDataHeight: 32,
-  menuItemHeight: 48,
-  menuItemHoverColor: 'rgba(0, 0, 0, .035)',
-  menuItemPadding: Spacing.desktopGutter,
-  menuItemSelectedTextColor: Theme.accent1Color,
-  menuContainerBackgroundColor: Colors.white,
-  menuSubheaderPadding: Spacing.desktopGutter,
-
-  // toggle
-  toggleThumbOnColor: Theme.primary1Color,
-  toggleThumbOffColor: Colors.grey50,
-  toggleThumbDisabledColor: Colors.grey400,
-  toggleThumbRequiredColor: Theme.primary1Color,
-  toggleTrackOnColor: Theme.primary1Color, // fadeout 50%
-  toggleTrackOffColor: Colors.minBlack,
-  toggleTrackDisabledColor: Colors.faintBlack,
-  toggleTrackRequiredColor: this.toggleThumbRequiredColor, // fadeout 50%
+  this.menuBackgroundColor = Colors.white;
+  this.menuItemDataHeight = 32;
+  this.menuItemHeight = 48;
+  this.menuItemHoverColor = 'rgba(0, 0, 0, .035)';
+  this.menuItemPadding = Spacing.desktopGutter;
+  this.menuItemSelectedTextColor = Theme.accent1Color;
+  this.menuContainerBackgroundColor = Colors.white;
+  this.menuSubheaderPadding = Spacing.desktopGutter;
 
   // radio button 
-  radioButtonBorderColor:  Theme.textColor,
-  radioButtonBackgroundColor: Colors.white,
-  radioButtonCheckedColor: Theme.primary1Color,
-  radioButtonRequiredColor: Theme.primary1Color,
-  radioButtonDisabledColor: this.disabledColor,
-  radioButtonSize: 24,
-}
+  this.radioButtonBorderColor =  Theme.textColor;
+  this.radioButtonBackgroundColor = Colors.white;
+  this.radioButtonCheckedColor = Theme.primary1Color;
+  this.radioButtonRequiredColor = Theme.primary1Color;
+  this.radioButtonDisabledColor = this.disabledColor;
+  this.radioButtonSize = 24;
+
+  // slider
+  this.sliderTrackSize = 2;
+  this.sliderTrackColor = Colors.minBlack;
+  this.sliderTrackColorSelected = Colors.grey500;
+  this.sliderHandleSize = 12;
+  this.sliderHandleSizeActive = this.sliderHandleSize * 2;
+  this.sliderHandleSizeDisabled = 8;
+  this.sliderHandleColorZero = Colors.grey400;
+  this.sliderHandleFillColor = Colors.white;
+  this.sliderSelectionColor = Theme.primary3Color;
+  this.sliderRippleColor = Theme.primary1Color;
+
+  // toggle
+  this.toggleThumbOnColor = Theme.primary1Color;
+  this.toggleThumbOffColor = Colors.grey50;
+  this.toggleThumbDisabledColor = Colors.grey400;
+  this.toggleThumbRequiredColor = Theme.primary1Color;
+  this.toggleTrackOnColor = Theme.primary1Color; // fadeout 50%
+  this.toggleTrackOffColor = Colors.minBlack;
+  this.toggleTrackDisabledColor = Colors.faintBlack;
+  this.toggleTrackRequiredColor = this.toggleThumbRequiredColor; // fadeout 50%
+});
+
+module.exports = customVariables;
