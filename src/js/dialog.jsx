@@ -1,13 +1,28 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var CustomVariables = require('./styles/variables/custom-variables');
 var DialogWindow = require('./dialog-window');
 
 var Dialog = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     title: React.PropTypes.string
+  },
+
+  /** Styles */
+  title: function() {
+    var gutter = CustomVariables.spacing.desktopGutter + 'px ';
+    return {
+      padding: gutter + gutter + '0 ' + gutter,
+      marginBottom: 0,
+    }
+  },
+  content: function() {
+    return {
+      padding: CustomVariables.spacing.desktopGutter
+    }
   },
 
   render: function() {
@@ -16,16 +31,15 @@ var Dialog = React.createClass({
       title,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-dialog');
 
     return (
       <DialogWindow
         {...other}
         ref="dialogWindow"
-        className={classes}>
+        style={this.props.style}>
 
-        <h3 className="mui-dialog-title">{this.props.title}</h3>
-        <div ref="dialogContent" className="mui-dialog-content">
+        <h3 style={this.title()}>{this.props.title}</h3>
+        <div ref="dialogContent" style={this.content()}>
           {this.props.children}
         </div>
         
