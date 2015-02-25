@@ -14,7 +14,7 @@ var InkBar = React.createClass({
 
   render: function() {
 
-    var styles = this.mergeStyles({
+    var styles = this.mergeAndPrefix({
       left: this.props.left,
       width: this.props.width,
       bottom: '0',
