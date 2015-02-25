@@ -2,14 +2,16 @@ var React = require('react');
 var WindowListenable = require('./mixins/window-listenable');
 var CssEvent = require('./utils/css-event');
 var KeyCode = require('./utils/key-code');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
+var CustomVariables = require('./styles/variables/custom-variables');
 var FlatButton = require('./flat-button');
 var Overlay = require('./overlay');
 var Paper = require('./paper');
 
 var DialogWindow = React.createClass({
 
-  mixins: [Classable, WindowListenable],
+  mixins: [WindowListenable, StylePropable],
 
   propTypes: {
     actions: React.PropTypes.array,
@@ -42,15 +44,56 @@ var DialogWindow = React.createClass({
     this._positionDialog();
   },
 
-  componentDidUpdate: function (prevProps, prevState) {
+  componentDidUpdate: function(prevProps, prevState) {
     this._positionDialog();
   },
 
+  /** Styles */
+  _main: function() {
+    var style = {
+      position: 'fixed',
+      zIndex: 10,
+      top: 0,
+      left: -10000,
+      width: '100%',
+      height: '100%',
+      transition: Transitions.easeOut('0ms', 'left', '450ms'),
+    };
+
+    if (this.state.open) {
+      style = this.mergeAndPrefix(style, {
+        left: 0,
+        transition: Transitions.easeOut('0ms', 'left', '0ms'),
+      });
+    }
+
+    return this.mergeAndPrefix(style);
+  },
+
+  _contents: function() {
+    var style = {    
+      transition: Transitions.easeOut(),
+      position: 'relative',
+      width: '75%',
+      maxWidth: (CustomVariables.spacing.desktopKeylineIncrement * 12),
+      margin: '0 auto',
+      zIndex: 10,
+      background: CustomVariables.canvasColor,
+      opacity: 0,
+    };
+
+    if (this.state.open) {
+      style = this.mergeAndPrefix(style, {
+        opacity: 1,
+        top: 0,
+        transform: 'translate3d(0, ' + CustomVariables.spacing.desktopKeylineIncrement + 'px, 0)',
+      });
+    }
+
+    return this.mergeAndPrefix(style);
+  },
+
   render: function() {
-    var classes = this.getClasses('mui-dialog-window', { 
-      'mui-is-shown': this.state.open
-    });
-    var contentClasses = 'mui-dialog-window-contents';
     var actions = this._getActionsContainer(this.props.actions);
 
     if (this.props.contentClassName) {
@@ -58,8 +101,8 @@ var DialogWindow = React.createClass({
     }
 
     return (
-      <div className={classes}>
-        <Paper ref="dialogWindow" className={contentClasses} zDepth={4}>
+      <div ref="container" style={this._main()}>
+        <Paper ref="dialogWindow" style={this._contents()} zDepth={4}>
           {this.props.children}
           {actions}
         </Paper>
@@ -90,32 +133,34 @@ var DialogWindow = React.createClass({
     var body = document.getElementsByTagName('body')[0];
     body.style.overflow = 'hidden';
     body.style.position = 'fixed';
-
+ 
     this.setState({ open: true });
     if (this.props.onShow) this.props.onShow();
   },
 
-  _addClassName: function(reactObject, className) {
-    var originalClassName = reactObject.props.className;
-
-    reactObject.props.className = originalClassName ?
-      originalClassName + ' ' + className : className;
-  },
-
   _getAction: function(actionJSON, key) {
     var onClickHandler = actionJSON.onClick ? actionJSON.onClick : this.dismiss;
+    var styles = {marginRight: 8};
+
     return (
       <FlatButton
         key={key}
         secondary={true}
         onClick={onClickHandler}
-        label={actionJSON.text} />
+        label={actionJSON.text} 
+        style={styles}/>
     );
   },
 
   _getActionsContainer: function(actions) {
     var actionContainer;
     var actionObjects = [];
+    var actionStyle = {
+      padding: 8,
+      marginBottom: 8,
+      width: '100%',
+      textAlign: 'right',
+    };
 
     if (actions.length) {
       for (var i = 0; i < actions.length; i++) {
@@ -126,12 +171,11 @@ var DialogWindow = React.createClass({
           currentAction = this._getAction(currentAction, i);
         }
 
-        this._addClassName(currentAction, 'mui-dialog-window-action');
         actionObjects.push(currentAction);
       };
 
       actionContainer = (
-        <div className="mui-dialog-window-actions">
+        <div style={actionStyle}>
           {actionObjects}
         </div>
       );
@@ -140,28 +184,24 @@ var DialogWindow = React.createClass({
     return actionContainer;
   },
 
-  _positionDialog: function() {
-    var container, dialogWindow, containerHeight, dialogWindowHeight;
+  _positionDialog: function() {   
 
-    if (this.state.open) {
+    var container = this.getDOMNode();
+    var dialogWindow = this.refs.dialogWindow.getDOMNode(); 
+    var containerHeight = container.offsetHeight;
+   
+    //Reset the height in case the window was resized.   
+    dialogWindow.style.height = '';    
+    var dialogWindowHeight = dialogWindow.offsetHeight;  
 
-      container = this.getDOMNode(),
-      dialogWindow = this.refs.dialogWindow.getDOMNode(),
-      containerHeight = container.offsetHeight,
+    var paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64; 
 
-      //Reset the height in case the window was resized.
-      dialogWindow.style.height = '';
-      dialogWindowHeight = dialogWindow.offsetHeight;
-
-      //Vertically center the dialog window, but make sure it doesn't
-      //transition to that position.
-      if (this.props.repositionOnUpdate || !container.style.paddingTop) {
-        container.style.paddingTop = 
-          ((containerHeight - dialogWindowHeight) / 2) - 64 + 'px';
-      }
-      
-
+    //Vertically center the dialog window, but make sure it doesn't    
+    //transition to that position.   
+    if (this.props.repositionOnUpdate || !container.style.paddingTop) {  
+      container.style.paddingTop = paddingTop + 'px';
     }
+ 
   },
 
   _handleOverlayTouchTap: function() {
