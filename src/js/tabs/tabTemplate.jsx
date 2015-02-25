@@ -4,8 +4,15 @@ var TabTemplate = React.createClass({
 
   render: function(){
 
+    var styles = {
+      'display': 'block',
+      'width': '100%',
+      'position': 'relative',
+      'text-align': 'initial'
+    };
+
     return (
-      <div className='mui-tab-template'>
+      <div styles={styles}>
         {this.props.children}
       </div>
     );
