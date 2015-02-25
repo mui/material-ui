@@ -36,7 +36,7 @@ var Tabs = React.createClass({
   },
 
   render: function(){
-    var tabItemContainerStyle = this.mergeAndPrefix({
+    var tabItemContainerStyle = this.mergeStyles({
       margin: '0',
       padding: '0',
       width: '100%',
