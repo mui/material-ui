@@ -96,13 +96,9 @@ var DialogWindow = React.createClass({
   render: function() {
     var actions = this._getActionsContainer(this.props.actions);
 
-    if (this.props.contentClassName) {
-      contentClasses += ' ' + this.props.contentClassName;
-    }
-
     return (
       <div ref="container" style={this._main()}>
-        <Paper ref="dialogWindow" style={this._contents()} zDepth={4}>
+        <Paper ref="dialogWindow" style={this._contents()} className={this.props.contentClassName} zDepth={4}>
           {this.props.children}
           {actions}
         </Paper>
