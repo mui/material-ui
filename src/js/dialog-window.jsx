@@ -40,6 +40,14 @@ var DialogWindow = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    this._positionDialog();
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    this._positionDialog();
+  },
+
   /** Styles */
   _main: function() {
     var style = {
@@ -49,17 +57,13 @@ var DialogWindow = React.createClass({
       left: -10000,
       width: '100%',
       height: '100%',
-      paddingTop: window.outerHeight * 0.25,
-      transition: Transitions.easeOut('0ms', 'left', '450ms') + ',' +
-                  Transitions.easeOut('600ms', 'paddingTop'),
+      transition: Transitions.easeOut('0ms', 'left', '450ms'),
     };
 
     if (this.state.open) {
       style = this.mergeAndPrefix(style, {
         left: 0,
-        transition: Transitions.easeOut('0ms', 'left', '0ms') + ',' +
-                    Transitions.easeOut('600ms', 'paddingTop'),
-        paddingTop: style.paddingTop + 64,
+        transition: Transitions.easeOut('0ms', 'left', '0ms'),
       });
     }
 
@@ -71,7 +75,7 @@ var DialogWindow = React.createClass({
       transition: Transitions.easeOut(),
       position: 'relative',
       width: '75%',
-      maxWidth: (CustomVariables.desktopKeylineIncrement * 12),
+      maxWidth: (CustomVariables.spacing.desktopKeylineIncrement * 12),
       margin: '0 auto',
       zIndex: 10,
       background: CustomVariables.canvasColor,
@@ -82,7 +86,7 @@ var DialogWindow = React.createClass({
       style = this.mergeAndPrefix(style, {
         opacity: 1,
         top: 0,
-        transform: 'translate3d(0, ' + CustomVariables.spacing.desktopKeylineIncrement + ', 0)',
+        transform: 'translate3d(0, ' + CustomVariables.spacing.desktopKeylineIncrement + 'px, 0)',
       });
     }
 
@@ -97,7 +101,7 @@ var DialogWindow = React.createClass({
     }
 
     return (
-      <div style={this._main()}>
+      <div ref="container" style={this._main()}>
         <Paper ref="dialogWindow" style={this._contents()} zDepth={4}>
           {this.props.children}
           {actions}
@@ -178,6 +182,26 @@ var DialogWindow = React.createClass({
     }
 
     return actionContainer;
+  },
+
+  _positionDialog: function() {   
+
+    var container = this.getDOMNode();
+    var dialogWindow = this.refs.dialogWindow.getDOMNode(); 
+    var containerHeight = container.offsetHeight;
+   
+    //Reset the height in case the window was resized.   
+    dialogWindow.style.height = '';    
+    var dialogWindowHeight = dialogWindow.offsetHeight;  
+
+    var paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64; 
+
+    //Vertically center the dialog window, but make sure it doesn't    
+    //transition to that position.   
+    if (this.props.repositionOnUpdate || !container.style.paddingTop) {  
+      container.style.paddingTop = paddingTop + 'px';
+    }
+ 
   },
 
   _handleOverlayTouchTap: function() {
