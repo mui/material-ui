@@ -16,7 +16,6 @@ var AppBar = React.createClass({
     iconElementRight: React.PropTypes.element,
     title : React.PropTypes.node,
     zDepth: React.PropTypes.number,
-
   },
 
   getDefaultProps: function() {
@@ -28,9 +27,12 @@ var AppBar = React.createClass({
   },
 
   componentDidMount: function() {
-    var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
-                  'defined. Please use one or the other.';
-    if (this.props.iconElementLeft && this.props.iconClassNameLeft) console.warn(warning);
+    if (process.NODE_ENV !== 'production' && 
+       (this.props.iconElementLeft && this.props.iconClassNameLeft)) {
+        var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
+                      'defined. Please use one or the other.';
+        console.warn(warning);
+    }
   },
 
   render: function() {
