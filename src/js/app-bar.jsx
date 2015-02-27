@@ -11,8 +11,12 @@ var AppBar = React.createClass({
   propTypes: {
     onMenuIconButtonTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
+    iconClassNameLeft: React.PropTypes.string,
+    iconElementLeft: React.PropTypes.element,
+    iconElementRight: React.PropTypes.element,
     title : React.PropTypes.node,
-    zDepth: React.PropTypes.number
+    zDepth: React.PropTypes.number,
+
   },
 
   getDefaultProps: function() {
@@ -23,6 +27,12 @@ var AppBar = React.createClass({
     }
   },
 
+  componentDidMount: function() {
+    var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
+                  'defined. Please use one or the other.';
+    if (this.props.iconElementLeft && this.props.iconClassNameLeft) console.warn(warning);
+  },
+
   render: function() {
     var {
       onTouchTap,
@@ -30,7 +40,7 @@ var AppBar = React.createClass({
     } = this.props;
 
     var classes = this.getClasses('mui-app-bar'),
-      title, menuIconButton;
+      title, menuElementLeft, menuElementRight;
 
     if (this.props.title) {
       // If the title is a string, wrap in an h1 tag.
@@ -40,24 +50,34 @@ var AppBar = React.createClass({
         this.props.title;
     }
 
-
-
-
     if (this.props.showMenuIconButton) {
-      menuIconButton = (
-        <IconButton
-          className="mui-app-bar-navigation-icon-button"
-          onTouchTap={this._onMenuIconButtonTouchTap}>
-            <NavigationMenu/>
-        </IconButton>
-      );
+      if (this.props.iconElementLeft) {
+        menuElementLeft = (
+          <div className="mui-app-bar-navigation-icon-button"> 
+            {this.props.iconElementLeft} 
+          </div>
+        );
+      } else {
+        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu/>;
+        menuElementLeft = (
+          <IconButton
+            className="mui-app-bar-navigation-icon-button" 
+            iconClassName={this.props.iconClassNameLeft}
+            onTouchTap={this._onMenuIconButtonTouchTap}>
+              {child}
+          </IconButton>
+        );
+      }
     }
+
+    menuElementRight = (this.props.children) ? this.props.children : 
+                       (this.props.iconElementRight) ? this.props.iconElementRight : '';
 
     return (
       <Paper rounded={false} className={classes} zDepth={this.props.zDepth}>
-        {menuIconButton}
+        {menuElementLeft}
         {title}
-        {this.props.children}
+        {menuElementRight}
       </Paper>
     );
   },
