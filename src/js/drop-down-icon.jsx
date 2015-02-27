@@ -1,5 +1,7 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
+var CustomVariables = require('./styles/variables/custom-variables');
 var ClickAwayable = require('./mixins/click-awayable');
 var KeyLine = require('./utils/key-line');
 var Paper = require('./paper');
@@ -9,7 +11,7 @@ var MenuItem = require('./menu-item');
 
 var DropDownIcon = React.createClass({
 
-  mixins: [Classable, ClickAwayable],
+  mixins: [StylePropable, ClickAwayable],
 
   propTypes: {
     onChange: React.PropTypes.func,
@@ -26,21 +28,57 @@ var DropDownIcon = React.createClass({
     this.setState({ open: false });
   },
 
-  render: function() {
-    var classes = this.getClasses('mui-drop-down-icon', {
-      'mui-open': this.state.open
+  /** Styles */
+
+  _main: function() {
+    var iconWidth = 48;
+    return this.mergeAndPrefix({
+      display: 'inline-block',
+      width: iconWidth + 'px !important',
+      position: 'relative',
+      height: CustomVariables.spacing.desktopToolbarHeight,
+      fontSize: CustomVariables.spacing.desktopDropDownMenuFontSize,
+      cursor: 'pointer'
     });
+  },
+
+  _menu: function() {
+    
+    return {
+      transition: Transitions.easeOut(),
+      right: '-14px !important',
+      top: '9px !important',
+      opacity: (this.props.open) ? 1 : 0,
+    }
+  },
+
+  _menuItem: function() { // similair to drop down menu's menu item styles
+    return {
+      paddingRight: (CustomVariables.spacing.iconSize + (CustomVariables.spacing.desktopGutterLess*2)),
+      height: CustomVariables.spacing.desktopDropDownMenuItemHeight,
+      lineHeight: CustomVariables.spacing.desktopDropDownMenuItemHeight + 'px',
+    }
+  },
+
+  render: function() {
 
     var icon;
     if (this.props.iconClassName) icon = <FontIcon className={this.props.iconClassName} />;
    
     return (
-      <div className={classes}>
+      <div style={this._main()}>
           <div className="mui-menu-control" onClick={this._onControlClick}>
               {icon}
               {this.props.children}
           </div>
-          <Menu ref="menuItems" menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
+          <Menu 
+            ref="menuItems" 
+            style={this._menu()} 
+            menuItems={this.props.menuItems}
+            menuItemStyle={this._menuItem()}
+            hideable={true} 
+            visible={this.state.open} 
+            onItemClick={this._onMenuItemClick} />
         </div>
     );
   },

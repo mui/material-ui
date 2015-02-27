@@ -65,12 +65,17 @@ var ToolbarPage = React.createClass({
       { payload: '2', text: 'More Info' }
     ];
 
+    /** Styling */
+    // var dropDownMenuUnderline = {display: 'none'};
+    // var dropDownMenuControlBg = {        
+    //   backgroundColor: @toolbar-menu-hover-color,
+    //   borderRadius: 0,
+    // };
     return (
       <ComponentDoc
         name="Toolbars"
         code={code}
-        componentInfo={componentInfo}
-      >
+        componentInfo={componentInfo}>
 
         <Toolbar>
           <ToolbarGroup key={0} float="left">

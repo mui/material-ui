@@ -12,7 +12,7 @@ var Toolbar = React.createClass({
     });
 
     return (
-      <div className={classes}>
+      <div className={classes} style={this.props.style}>
         {this.props.children}
       </div>
     );

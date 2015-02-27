@@ -21,6 +21,7 @@ var NestedMenuItem = React.createClass({
     index: React.PropTypes.number.isRequired,
     text: React.PropTypes.string,
     menuItems: React.PropTypes.array.isRequired,
+    menuItemStyle: React.PropTypes.object,
     zDepth: React.PropTypes.number,
     onItemClick: React.PropTypes.func,
     onItemTap: React.PropTypes.func
@@ -55,7 +56,8 @@ var NestedMenuItem = React.createClass({
     return (
       <div style={styles}>
         <MenuItem 
-          index={this.props.index} 
+          index={this.props.index}
+          style={this.props.menuItemStyle}
           iconRightStyle={iconCustomArrowDropRight} 
           iconRightClassName="muidocs-icon-custom-arrow-drop-right" 
           onClick={this._onParentItemClick}>
@@ -108,6 +110,7 @@ var Menu = React.createClass({
     onItemClick: React.PropTypes.func,
     onToggleClick: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
+    menuItemStyle: React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
     hideable: React.PropTypes.bool,
     visible: React.PropTypes.bool,
@@ -158,8 +161,8 @@ var Menu = React.createClass({
   // Main Style
   _paperContainer: function() {
     var styles = {
-      paddingTop: CustomVariables.desktopGutterMini,
-      paddingBottom: CustomVariables.desktopGutterMini,
+      paddingTop: CustomVariables.spacing.desktopGutterMini,
+      paddingBottom: CustomVariables.spacing.desktopGutterMini,
       backgroundColor: CustomVariables.menuBackgroundColor,
       transition: Transitions.easeOut(null, 'height'),
     };
@@ -237,6 +240,7 @@ var Menu = React.createClass({
               index={i}
               text={menuItem.text}
               menuItems={menuItem.items}
+              menuItemStyle={this.props.menuItemStyle}
               zDepth={this.props.zDepth}
               onItemClick={this._onNestedItemClick}
               onItemTap={this._onNestedItemClick} />
@@ -253,6 +257,7 @@ var Menu = React.createClass({
               index={i}
               icon={menuItem.icon}
               data={menuItem.data}
+              style={this.props.menuItemStyle}
               attribute={menuItem.attribute}
               number={menuItem.number}
               toggle={menuItem.toggle}
