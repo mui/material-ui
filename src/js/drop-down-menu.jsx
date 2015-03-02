@@ -8,6 +8,7 @@ var DropDownArrow = require('./svg-icons/drop-down-arrow');
 var KeyLine = require('./utils/key-line');
 var Paper = require('./paper');
 var Menu = require('./menu');
+var ClearFix = require('./clearfix');
 
 var DropDownMenu = React.createClass({
 
@@ -74,7 +75,7 @@ var DropDownMenu = React.createClass({
   _control: function() {
     return this.mergeAndPrefix({
       cursor: 'pointer',
-      // .clearfix();
+      position: 'static',
       height: '100%',
     }, this.props.styleControl);
   },
@@ -101,6 +102,7 @@ var DropDownMenu = React.createClass({
 
   _label: function() {
     var style = {
+      transition: Transitions.easeOut(),
       lineHeight: CustomVariables.spacing.desktopToolbarHeight + 'px',
       position: 'absolute',
       paddingLeft: CustomVariables.spacing.desktopGutter,
@@ -144,14 +146,16 @@ var DropDownMenu = React.createClass({
 
     return (
       <div style={this._main()} onMouseOver={this._handleMouseOver} onMouseOut={this._handleMouseOut}>
-        <div style={this._control()} onClick={this._onControlClick}>
-          <Paper style={this._controlBg()} zDepth={0} />
-          <div style={this._label()}>
-            {this.props.menuItems[this.state.selectedIndex].text}
-          </div>
-          <DropDownArrow style={this._icon()} />
-          <div style={this._underline()}/>
-        </div>
+
+          <ClearFix style={this._control()} onClick={this._onControlClick}>
+            <Paper style={this._controlBg()} zDepth={0} />
+            <div style={this._label()}>
+              {this.props.menuItems[this.state.selectedIndex].text}
+            </div>
+            <DropDownArrow style={this._icon()} />
+            <div style={this._underline()}/>
+          </ClearFix>
+
         <Menu
           ref="menuItems"
           autoWidth={this.props.autoWidth}
@@ -165,7 +169,6 @@ var DropDownMenu = React.createClass({
     );
   },
 
-  // @todo: WIDTH DIFFERENCE 
   _setWidth: function() {
     var el = this.getDOMNode(),
       menuItemsDom = this.refs.menuItems.getDOMNode();
