@@ -69,8 +69,7 @@ var ToolbarPage = React.createClass({
       <ComponentDoc
         name="Toolbars"
         code={code}
-        componentInfo={componentInfo}
-      >
+        componentInfo={componentInfo}>
 
         <Toolbar>
           <ToolbarGroup key={0} float="left">

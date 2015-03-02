@@ -21,6 +21,9 @@ var customVariables = new (function() {
   // Spacing
   this.spacing = Spacing;
 
+  // Colors
+  this.colors = Colors;
+
   // checkbox
   this.checkboxBoxColor = Theme.textColor;
   this.checkboxCheckedColor = Theme.primary1Color;
@@ -71,6 +74,15 @@ var customVariables = new (function() {
   this.toggleTrackOffColor = Colors.minBlack;
   this.toggleTrackDisabledColor = Colors.faintBlack;
   this.toggleTrackRequiredColor = this.toggleThumbRequiredColor; // fadeout 50%
+
+  // toolbar
+  this.toolbarBackgroundColor = '#eeeeee'; //darken by 5%
+  this.toolbarHeight = 56;
+  this.toolbarIconColor = 'rgba(0, 0, 0, .40)';
+  this.toolbarSeparatorColor = 'rgba(0, 0, 0, .175)';
+  this.toolbarMenuHoverColor = 'rgba(0, 0, 0, .10)';
+  this.toolbarMenuHoverColor = Colors.white;
+
 });
 
 module.exports = customVariables;
