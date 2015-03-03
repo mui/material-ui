@@ -40,14 +40,17 @@ var Tabs = React.createClass({
   },
 
   handleTouchTap: function(tabIndex, tab){
-    if (this.props.onChange && this.state.selectedIndex !== tabIndex) this.props.onChange();
+    if (this.props.onChange && this.state.selectedIndex !== tabIndex) {
+      this.props.onChange(tabIndex, tab);
+    }
+
     this.setState({selectedIndex: tabIndex});
     //default CB is _onActive. Can be updated in tab.jsx
     if(tab.props.onActive) tab.props.onActive(tab);
   },
 
   render: function(){
-    var _this = this; 
+    var _this = this;
     var width = this.state.fixed ?
       this.state.width/this.props.children.length :
       this.props.tabWidth;
