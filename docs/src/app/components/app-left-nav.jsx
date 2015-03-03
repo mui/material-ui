@@ -26,14 +26,13 @@ var AppLeftNav = React.createClass({
     var header = <div className="logo" onClick={this._onHeaderClick}>material ui</div>;
 
     return (
-      <mui.LeftNav 
-        ref="leftNav"
-        docked={false}
-        isInitiallyOpen={false}
-        header={header}
-        menuItems={menuItems}
-        selectedIndex={this._getSelectedIndex()}
-        onChange={this._onLeftNavChange} />
+      <mui.LeftNav ref="leftNav" docked={false}>
+        {header}
+        <mui.Menu
+          menuItems={menuItems}
+          zDepth={0}
+          onItemClick={this._onLeftNavChange} />
+      </mui.LeftNav>
     );
   },
 
@@ -52,6 +51,7 @@ var AppLeftNav = React.createClass({
 
   _onLeftNavChange: function(e, key, payload) {
     this.transitionTo(payload.route);
+    this.refs.leftNav.close();
   },
 
   _onHeaderClick: function() {

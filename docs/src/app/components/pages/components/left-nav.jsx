@@ -2,6 +2,7 @@ var React = require('react');
 var mui = require('mui');
 var MenuItem = mui.MenuItem;
 var LeftNav = mui.LeftNav;
+var Menu = mui.Menu;
 var RaisedButton = mui.RaisedButton;
 var ComponentDoc = require('../../component-doc.jsx');
 
@@ -36,40 +37,25 @@ var LeftNavPage = React.createClass({
       '  },\n' +
       '];\n\n' +
       '//Docked Left Nav\n' +
-      '<LeftNav menuItems={menuItems} />\n\n' +
+      '<LeftNav docked={this.state.isDocked}>'+ '\n' +
+      '    <Menu menuItems={menuItems} zDepth={0} />'+ '\n' +
+      '</LeftNav>' + '\n\n' +
+
       '//Hideable Left Nav\n' +
-      '<LeftNav docked={false} menuItems={menuItems} />\n\n';
+      '<LeftNav docked={false}>'+ '\n' +
+      '    <Menu menuItems={menuItems} zDepth={0} />'+ '\n' +
+      '</LeftNav>';
 
     var componentInfo = [
       {
         name: 'Props',
         infoArray: [
           {
-            name: 'menuItems',
-            type: 'array',
-            header: 'required',
-            desc: 'JSON data representing all menu items to render.'
-          },
-          {
             name: 'docked',
             type: 'bool',
             header: 'default: true',
             desc: 'Indicates that the left nav should be docked. In this state, the ' +
               'overlay won\'t show and clicking on a menu item will not close the left nav.'
-          },
-          {
-            name: 'header',
-            type: 'element',
-            header: 'optional',
-            desc: 'A react component that will be displayed above all the menu items. ' +
-              'Usually, this is used for a logo or a profile image.'
-          },
-          {
-            name: 'selectedIndex',
-            type: 'number',
-            header: 'optional',
-            desc: 'Indicates the particular item in the menuItems array that is ' +
-              'currently selected.'
           }
         ]
       },
@@ -87,17 +73,6 @@ var LeftNavPage = React.createClass({
             desc: 'Toggles between the open and closed states.'
           }
         ]
-      },
-      {
-        name: 'Events',
-        infoArray: [
-          {
-            name: 'onChange',
-            header: 'function(e, selectedIndex, menuItem)',
-            desc: 'Fired when a menu item is clicked that is not the one currently ' +
-              'selected.'
-          }
-        ]
       }
     ];
 
@@ -110,8 +85,14 @@ var LeftNavPage = React.createClass({
         <div className="left-nav-example">
           <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
           <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
-          <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />
-          <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+
+          <LeftNav ref="dockedLeftNav" docked={this.state.isDocked}>
+            <Menu menuItems={menuItems} zDepth={0} />
+          </LeftNav>
+
+          <LeftNav ref="leftNav" docked={false}>
+            <Menu menuItems={menuItems} zDepth={0} />
+          </LeftNav>
         </div>
 
       </ComponentDoc>
