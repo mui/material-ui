@@ -8,7 +8,7 @@ var Tabs = mui.Tabs;
 var Tab= mui.Tab;
 
 var TabsPage = React.createClass({
-  
+
   mixins: [Router.Navigation, Router.State],
 
   render: function(){
@@ -51,7 +51,7 @@ var TabsPage = React.createClass({
       'If you need to access a tab directly - you can do so with the first argument of onActive or ' +
       'by accessing the props.children array by passing refs to the Tabs container.';
 
-         
+
 
     var componentInfo = [
       {
@@ -70,7 +70,7 @@ var TabsPage = React.createClass({
         infoArray: [
           {
             name: 'onChange',
-            type: 'function',
+            type: 'function(tabIndex, tab)',
             header: 'optional',
             desc: 'Fired on touch or tap of a tab.'
           }
