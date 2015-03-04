@@ -116,13 +116,17 @@ var Tooltip = React.createClass({
 
   _setRippleSize: function() {
     var ripple = this.refs.ripple.getDOMNode();
-    var tooltipSize = this.getDOMNode().offsetWidth;
-    var ripplePadding = this.props.touch ? 45 : 20;
-    var rippleSize = tooltipSize + ripplePadding + 'px';
+
+    var tooltip = window.getComputedStyle(this.getDOMNode());
+    var tooltipWidth = parseInt(tooltip.getPropertyValue("width"), 10);
+    var tooltipHeight = parseInt(tooltip.getPropertyValue("height"), 10);
+
+    var rippleDiameter = (Math.sqrt(Math.pow(tooltipHeight, 2) + 
+                                    Math.pow((tooltipWidth / 2.0), 2) ) * 2);
 
     if (this.props.show) {
-      ripple.style.height = rippleSize;
-      ripple.style.width = rippleSize;
+      ripple.style.height = rippleDiameter + 'px';
+      ripple.style.width = rippleDiameter + 'px';
     } else {
       ripple.style.width = '0px';
       ripple.style.height = '0px';
