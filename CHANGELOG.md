@@ -1,5 +1,36 @@
+## 0.7.1
+###### _Mar. 4, 2015_
+
+##### General
+- Allow removal of debug code in production builds (#349)
+
+##### Components
+- AppBar
+  - Fixed a styling bug that caused icons not to show (#336)
+  - Title prop can now be an element (#361)
+  - Added iconClassNameLeft, iconElementLeft, iconElementRight props (#367)
+- Date Picker
+  - Fixed a bug that caused the date picker dialog window to ghost on small screen widths (#342)
+- Dialog Window
+  - Window no longer loses scroll position after opening a dialog window. (#386)
+- DropDown Icon
+  - Added closeOnMenuItemClick prop (#376)
+- Flat Buttons
+  - Fixed a styling bug with touch ripples.
+- Icon Buttons
+  - Fixed a styling bug with touch ripples. (#341)
+- Menu Item
+  - Link targets can now be set on menu items. (#350)
+- Slider
+  - Fixed percentage calculation in getInitialState (#382)
+- Tabs
+  - The onChange event now passed in the tabIndex, and tab to the callBack (#384)
+- Text Field
+  - Added onEnterKeyDown prop. (#328)
+  - Fixed a bug with setting multiLine values (#356, #357)
+
 ## 0.7.0
-###### _Feb. 13, 2105_
+###### _Feb. 13, 2015_
 
 ##### Breaking Changes
 - Removed Icon component - Replaced with FontIcon and SvgIcon (#318, #125, #148)
@@ -41,14 +72,14 @@
   - Fixed a bug with multiline defaultValues in a multiline Text Field (#296)
 
 ## 0.6.1
-###### _Jan. 26, 2105_
+###### _Jan. 26, 2015_
 
 ##### Fixes
 - Checkbox & Toggle
   - Fixed a bug that caused checkboxes and toggles to not uncheck.
 
 ## 0.6.0
-###### _Jan. 26, 2105_
+###### _Jan. 26, 2015_
 
 ##### General
 - Fixed dependencies to prevent multiple versions of React getting loaded on the docs site (#194)
@@ -96,7 +127,7 @@
   - Fixed FlatButton positioning inside toolbar (#224)
 
 ## 0.5.0
-###### _Jan. 3, 2105_
+###### _Jan. 3, 2015_
 
 ##### Breaking Changes
 - Removed lesshat dependency. Be sure to change your build process to include an 
@@ -113,7 +144,7 @@
   - Added a snackbar component.
 
 ## 0.4.1
-###### _Dec. 25, 2104_
+###### _Dec. 25, 2014_
 
 ##### General
 - Updated to react 0.12.2; browserify 7.0.3
