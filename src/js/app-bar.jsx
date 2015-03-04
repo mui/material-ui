@@ -1,5 +1,6 @@
 var React = require('react');
 var Classable = require('./mixins/classable');
+var CustomVariables = require('./styles/variables/custom-variables');
 var IconButton = require('./icon-button');
 var NavigationMenu = require('./svg-icons/navigation-menu');
 var Paper = require('./paper');
@@ -23,6 +24,23 @@ var AppBar = React.createClass({
     }
   },
 
+  /** Styles */
+
+  _iconButton: function() {
+    return {
+      style: {
+        marginTop: (CustomVariables.appBarHeight - CustomVariables.iconButtonSize) / 2,
+        float: 'left',
+        marginRight: 8,
+        marginLeft: -16,
+      },
+      iconStyle: {
+        fill: CustomVariables.appBarTextColor,
+        color: CustomVariables.appBarTextColor,
+      }
+    }
+  },
+
   render: function() {
     var {
       onTouchTap,
@@ -36,15 +54,12 @@ var AppBar = React.createClass({
       title = <h1 className="mui-app-bar-title">{this.props.title}</h1>;
     }
 
-
-
-
     if (this.props.showMenuIconButton) {
       menuIconButton = (
         <IconButton
-          className="mui-app-bar-navigation-icon-button"
+          style={this._iconButton().style}
           onTouchTap={this._onMenuIconButtonTouchTap}>
-            <NavigationMenu/>
+            <NavigationMenu style={this._iconButton().iconStyle}/>
         </IconButton>
       );
     }

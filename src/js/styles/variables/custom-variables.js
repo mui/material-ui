@@ -3,13 +3,21 @@ var Spacing = require('./spacing');
 var Theme = require('../theme').get();
 
 var customVariables = new (function() {
+  
+  // Spacing
+  this.spacing = Spacing;
+
+  // Colors
+  this.colors = Colors;
 
   //Border Colors
   this.borderColor = Colors.grey300;
-  // Disabled Colors
-  this.disabledColor = Theme.textColor; // fadeout 30%
 
-  //Component Colors
+  // Disabled Colors
+  this.disabledColor = Theme.textColor;
+  this.disabledOpacity = 0.3; // fadeout 30%
+
+  // Component Colors
   this.appBarColor = Theme.primary1Color;
   this.appBarTextColor = Colors.darkWhite;
   this.canvasColor = Colors.white;
@@ -18,17 +26,19 @@ var customVariables = new (function() {
   this.subheaderBorderColor = this.borderColor;
   this.subheaderTextColor = Theme.primary1Color;
   
-  // Spacing
-  this.spacing = Spacing;
+  // Layout
+  this.appBarHeight = Spacing.desktopKeylineIncrement;
+  this.leftNavWidth = Spacing.desktopKeylineIncrement * 4;
 
-  // Colors
-  this.colors = Colors;
 
   // checkbox
   this.checkboxBoxColor = Theme.textColor;
   this.checkboxCheckedColor = Theme.primary1Color;
   this.checkboxRequiredColor = Theme.primary1Color;
   this.checkboxDisabledColor = this.disabledColor;
+
+  // buttons
+  this.iconButtonSize = Spacing.iconSize * 2;
 
   // menu
   this.menuBackgroundColor = Colors.white;
