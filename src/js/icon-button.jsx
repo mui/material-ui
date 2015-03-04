@@ -1,17 +1,21 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
+var CustomVariables = require('./styles/variables/custom-variables');
+var Theme = require('./styles/theme');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
 var Tooltip = require('./tooltip');
 
 var IconButton = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     iconClassName: React.PropTypes.string,
+    iconStyle: React.PropTypes.object,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
@@ -29,7 +33,8 @@ var IconButton = React.createClass({
       this._positionTooltip();
     }
 
-    if (this.props.iconClassName && this.props.children) {
+    if (process.NODE_ENV !== 'production' &&
+       (this.props.iconClassName && this.props.children)) {
       var warning = 'You have set both an iconClassName and a child icon. ' +
                     'It is recommended you use only one method when adding ' +
                     'icons to IconButtons.';
@@ -37,12 +42,40 @@ var IconButton = React.createClass({
     }
   },
 
+  /** Styles */
+  _main: function() {
+    var style = {
+      height: 48,
+      width: 48,
+      transition: Transitions.easeOut(),
+      position: 'relative',
+      padding: (CustomVariables.spacing.iconSize / 2),
+      width: CustomVariables.spacing.iconSize*2,
+      height: CustomVariables.spacing.iconSize*2,
+    };
+
+    if (this.props.disabled) {
+      style = this.mergeAndPrefix(style, {
+        opacity: CustomVariables.disabledOpacity,
+        color: CustomVariables.disabledColor,
+        fill: CustomVariables.disabledColor,
+      });
+    }
+
+    return this.mergeAndPrefix(style);
+  },
+
+  _tooltip: function() {
+    return {
+      marginTop: CustomVariables.iconButtonSize + 4,
+    };
+  },
+
   render: function() {
     var {
       tooltip,
       touch,
       ...other } = this.props;
-    var classes = this.getClasses('mui-icon-button');
     var tooltip;
     var fonticon;
 
@@ -53,13 +86,16 @@ var IconButton = React.createClass({
           className="mui-icon-button-tooltip"
           label={tooltip}
           show={this.state.tooltipShown}
-          touch={touch} />
+          touch={touch}
+          style={this._tooltip()}/>
       );
     }
 
     if (this.props.iconClassName) {
       fonticon = (
-        <FontIcon className={this.props.iconClassName}/>
+        <FontIcon 
+          className={this.props.iconClassName} 
+          style={this.props.iconStyle}/>
       );
     }
 
@@ -67,7 +103,7 @@ var IconButton = React.createClass({
       <EnhancedButton {...other}
         ref="button"
         centerRipple={true}
-        className={classes}
+        style={this._main()}
         onBlur={this._handleBlur}
         onFocus={this._handleFocus}
         onMouseOut={this._handleMouseOut}
