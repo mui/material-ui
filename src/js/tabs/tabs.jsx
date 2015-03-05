@@ -10,8 +10,12 @@ var Tabs = React.createClass({
   },
 
   getInitialState: function(){
+    var selectedIndex = 0;
+    if (this.props.initialSelectedIndex && this.props.initialSelectedIndex < this.props.children.length) {
+      selectedIndex = this.props.initialSelectedIndex;
+    }
     return {
-      selectedIndex: 0
+      selectedIndex: selectedIndex
     };
   },
 
