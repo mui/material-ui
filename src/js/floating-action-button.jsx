@@ -4,6 +4,15 @@ var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
 var Paper = require('./paper');
 
+var getZDepth = function(disabled) {
+  var zDepth = disabled ? 0 : 2;
+  return {
+    zDepth: zDepth,
+    initialZDepth: zDepth
+  };
+};
+
+
 var RaisedButton = React.createClass({
 
   mixins: [Classable],
@@ -20,12 +29,14 @@ var RaisedButton = React.createClass({
     secondary: React.PropTypes.bool
   },
 
-  getInitialState: function() {
-    var zDepth = this.props.disabled ? 0 : 2;
-    return {
-      zDepth: zDepth,
-      initialZDepth: zDepth
-    };
+  componentWillMount: function() {
+    this.setState(getZDepth(this.props.disabled));
+  },
+
+  componentWillReceiveProps: function(newProps) {
+    if(newProps.disabled !== this.props.disabled){
+      this.setState(getZDepth(newProps.disabled));
+    }
   },
 
   componentDidMount: function() {
@@ -63,7 +74,7 @@ var RaisedButton = React.createClass({
         circle={true}>
 
         <EnhancedButton {...other}
-          className="mui-floating-action-button-container" 
+          className="mui-floating-action-button-container"
           onMouseDown={this._handleMouseDown}
           onMouseUp={this._handleMouseUp}
           onMouseOut={this._handleMouseOut}
@@ -74,7 +85,7 @@ var RaisedButton = React.createClass({
           {this.props.children}
 
         </EnhancedButton>
-        
+
       </Paper>
     );
   },
