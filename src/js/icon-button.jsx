@@ -33,12 +33,13 @@ var IconButton = React.createClass({
       this._positionTooltip();
     }
 
-    if (process.NODE_ENV !== 'production' &&
-       (this.props.iconClassName && this.props.children)) {
-      var warning = 'You have set both an iconClassName and a child icon. ' +
-                    'It is recommended you use only one method when adding ' +
-                    'icons to IconButtons.';
-      console.warn(warning);
+    if (process.NODE_ENV !== 'production') {
+      if (this.props.iconClassName && this.props.children) {
+        var warning = 'You have set both an iconClassName and a child icon. ' +
+                      'It is recommended you use only one method when adding ' +
+                      'icons to IconButtons.';
+        console.warn(warning);
+      }
     }
   },
 
@@ -83,7 +84,6 @@ var IconButton = React.createClass({
       tooltip = (
         <Tooltip
           ref="tooltip"
-          className="mui-icon-button-tooltip"
           label={tooltip}
           show={this.state.tooltipShown}
           touch={touch}

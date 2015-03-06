@@ -12,8 +12,11 @@ var AppBar = React.createClass({
   propTypes: {
     onMenuIconButtonTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
-    title : React.PropTypes.string,
-    zDepth: React.PropTypes.number
+    iconClassNameLeft: React.PropTypes.string,
+    iconElementLeft: React.PropTypes.element,
+    iconElementRight: React.PropTypes.element,
+    title : React.PropTypes.node,
+    zDepth: React.PropTypes.number,
   },
 
   getDefaultProps: function() {
@@ -25,7 +28,6 @@ var AppBar = React.createClass({
   },
 
   /** Styles */
-
   _iconButton: function() {
     return {
       style: {
@@ -41,6 +43,15 @@ var AppBar = React.createClass({
     }
   },
 
+  componentDidMount: function() {
+    if (process.NODE_ENV !== 'production' && 
+       (this.props.iconElementLeft && this.props.iconClassNameLeft)) {
+        var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
+                      'defined. Please use one or the other.';
+        console.warn(warning);
+    }
+  },
+
   render: function() {
     var {
       onTouchTap,
@@ -48,27 +59,44 @@ var AppBar = React.createClass({
     } = this.props;
 
     var classes = this.getClasses('mui-app-bar'),
-      title, menuIconButton;
+      title, menuElementLeft, menuElementRight;
 
     if (this.props.title) {
-      title = <h1 className="mui-app-bar-title">{this.props.title}</h1>;
+      // If the title is a string, wrap in an h1 tag.
+      // If not, just use it as a node.
+      title = toString.call(this.props.title) === '[object String]' ?
+        <h1 className="mui-app-bar-title">{this.props.title}</h1> :
+        this.props.title;
     }
 
     if (this.props.showMenuIconButton) {
-      menuIconButton = (
-        <IconButton
-          style={this._iconButton().style}
-          onTouchTap={this._onMenuIconButtonTouchTap}>
-            <NavigationMenu style={this._iconButton().iconStyle}/>
-        </IconButton>
-      );
+      if (this.props.iconElementLeft) {
+        menuElementLeft = (
+          <div style={this._iconButton().style}> 
+            {this.props.iconElementLeft} 
+          </div>
+        );
+      } else {
+        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu/>;
+        menuElementLeft = (
+          <IconButton
+            style={this._iconButton().style}
+            iconClassName={this.props.iconClassNameLeft}
+            onTouchTap={this._onMenuIconButtonTouchTap}>
+              {child}
+          </IconButton>
+        );
+      }
     }
+
+    menuElementRight = (this.props.children) ? this.props.children : 
+                       (this.props.iconElementRight) ? this.props.iconElementRight : '';
 
     return (
       <Paper rounded={false} className={classes} zDepth={this.props.zDepth}>
-        {menuIconButton}
+        {menuElementLeft}
         {title}
-        {this.props.children}
+        {menuElementRight}
       </Paper>
     );
   },

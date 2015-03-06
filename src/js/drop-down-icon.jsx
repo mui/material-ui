@@ -15,12 +15,19 @@ var DropDownIcon = React.createClass({
 
   propTypes: {
     onChange: React.PropTypes.func,
-    menuItems: React.PropTypes.array.isRequired
+    menuItems: React.PropTypes.array.isRequired,
+    closeOnMenuItemClick: React.PropTypes.bool
   },
 
   getInitialState: function() {
     return {
       open: false
+    }
+  },
+  
+  getDefaultProps: function() {
+    return {
+      closeOnMenuItemClick: true
     }
   },
 
@@ -89,7 +96,10 @@ var DropDownIcon = React.createClass({
 
   _onMenuItemClick: function(e, key, payload) {
     if (this.props.onChange) this.props.onChange(e, key, payload);
-    this.setState({ open: false });
+    
+    if (this.props.closeOnMenuItemClick) {
+      this.setState({ open: false });
+    }
   }
 
 });

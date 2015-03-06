@@ -29,13 +29,17 @@ var Tabs = React.createClass({
   },
 
   handleTouchTap: function(tabIndex, tab){
-    if (this.props.onChange && this.state.selectedIndex !== tabIndex) this.props.onChange();
+    if (this.props.onChange && this.state.selectedIndex !== tabIndex) {
+      this.props.onChange(tabIndex, tab);
+    }
+
     this.setState({selectedIndex: tabIndex});
     //default CB is _onActive. Can be updated in tab.jsx
     if(tab.props.onActive) tab.props.onActive(tab);
   },
 
   render: function(){
+
     var tabItemContainerStyle = this.mergeStyles({
       margin: '0',
       padding: '0',
@@ -46,8 +50,11 @@ var Tabs = React.createClass({
       display: 'block'
     }, this.props.tabItemContainerStyle);
     var _this = this; 
-    var width = this.state.width;
-    var left = typeof(width) === 'number' ? width * this.state.selectedIndex : this.getLeft();
+    var width = this.state.fixed ?
+      this.state.width/this.props.children.length :
+      this.props.tabWidth;
+    var left = width * this.state.selectedIndex || 0;
+
     var currentTemplate;
     var tabs = React.Children.map(this.props.children, function(tab, index){
       if(tab.type.displayName === "Tab"){

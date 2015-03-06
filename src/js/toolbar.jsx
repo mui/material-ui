@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var Classable = require('./mixins/classable');
 var React = require('react');
 
