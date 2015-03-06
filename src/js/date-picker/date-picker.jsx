@@ -93,6 +93,8 @@ var DatePicker = React.createClass({
   },
 
   _handleInputTouchTap: function(e) {
+    e.preventDefault(); // Prevent touchTap to trigger on displayed Dialog
+
     this.setState({
       dialogDate: this.getDate()
     });
