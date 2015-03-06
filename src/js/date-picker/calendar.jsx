@@ -1,16 +1,18 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
 var WindowListenable = require('../mixins/window-listenable');
 var DateTime = require('../utils/date-time');
 var KeyCode = require('../utils/key-code');
+var Transitions = require('../styles/mixins/transitions');
 var CalendarMonth = require('./calendar-month');
 var CalendarToolbar = require('./calendar-toolbar');
 var DateDisplay = require('./date-display');
 var SlideInTransitionGroup = require('../transition-groups/slide-in');
+var ClearFix = require('../clearfix');
 
 var Calendar = React.createClass({
 
-  mixins: [Classable, WindowListenable],
+  mixins: [StylePropable, WindowListenable],
 
   propTypes: {
     initialDate: React.PropTypes.object,
@@ -47,35 +49,70 @@ var Calendar = React.createClass({
 
   render: function() {
     var weekCount = DateTime.getWeekArray(this.state.displayDate).length;
-    var classes = this.getClasses('mui-date-picker-calendar', {
-      'mui-is-4week': weekCount === 4,
-      'mui-is-5week': weekCount === 5,
-      'mui-is-6week': weekCount === 6
-    });
+    var isLandscape = this.props.mode === 'landscape';
+
+    var styles = {
+      root: {
+        fontSize: '12px'
+      },
+
+      calendarContainer: {
+        width: isLandscape ? '280px' : '100%',
+        height: weekCount === 5 ? '268px' :
+          weekCount === 6 ? '308px' : '288px',
+        float: isLandscape ? 'right' : 'none',
+        transition: Transitions.easeOut('150ms', 'height')
+      },
+
+      dateDisplay: {
+        width: isLandscape ? '280px' : '100%',
+        height: '100%',
+        float: isLandscape ? 'left' : 'none'
+      },
+
+      weekTitle: {
+        padding: '0 14px',
+        lineHeight: '12px',
+        opacity: '0.5',
+        height: '12px',
+        fontWeight: '500'
+      },
+
+      weekTitleDay: {
+        listStyle: 'none',
+        float: 'left',
+        width: '32px',
+        textAlign: 'center',
+        margin: '0 2px'
+      }
+    };
 
     return (
-      <div className={classes}>
+      <ClearFix style={this.mergeAndPrefix(styles.root)}>
 
         <DateDisplay
-          className="mui-date-picker-calendar-date-display"
-          selectedDate={this.state.selectedDate} />
+          style={styles.dateDisplay}
+          selectedDate={this.state.selectedDate}
+          mode={this.props.mode}
+          weekCount={weekCount} />
 
-        <div
-          className="mui-date-picker-calendar-container">
+        <div style={styles.calendarContainer}>
           <CalendarToolbar
             displayDate={this.state.displayDate}
             onLeftTouchTap={this._handleLeftTouchTap}
             onRightTouchTap={this._handleRightTouchTap} />
 
-          <ul className="mui-date-picker-calendar-week-title">
-            <li className="mui-date-picker-calendar-week-title-day">S</li>
-            <li className="mui-date-picker-calendar-week-title-day">M</li>
-            <li className="mui-date-picker-calendar-week-title-day">T</li>
-            <li className="mui-date-picker-calendar-week-title-day">W</li>
-            <li className="mui-date-picker-calendar-week-title-day">T</li>
-            <li className="mui-date-picker-calendar-week-title-day">F</li>
-            <li className="mui-date-picker-calendar-week-title-day">S</li>
-          </ul>
+          <ClearFix
+            elementType="ul"
+            style={styles.weekTitle}>
+            <li style={styles.weekTitleDay}>S</li>
+            <li style={styles.weekTitleDay}>M</li>
+            <li style={styles.weekTitleDay}>T</li>
+            <li style={styles.weekTitleDay}>W</li>
+            <li style={styles.weekTitleDay}>T</li>
+            <li style={styles.weekTitleDay}>F</li>
+            <li style={styles.weekTitleDay}>S</li>
+          </ClearFix>
 
           <SlideInTransitionGroup
             direction={this.state.transitionDirection}>
@@ -86,7 +123,7 @@ var Calendar = React.createClass({
               selectedDate={this.state.selectedDate} />
           </SlideInTransitionGroup>
         </div>
-      </div>
+      </ClearFix>
     );
   },
 

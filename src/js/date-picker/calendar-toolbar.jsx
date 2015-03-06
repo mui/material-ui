@@ -34,24 +34,49 @@ var CalendarToolbar = React.createClass({
     var month = DateTime.getFullMonth(this.props.displayDate);
     var year = this.props.displayDate.getFullYear();
 
+    var styles = {
+      root: {
+        height: '48px',
+        position: 'relative'
+      },
+
+      buttonLeft: {
+        position: 'absolute',
+        left: '0px',
+        top: '0px'
+      },
+
+      buttonRight: {
+        position: 'absolute',
+        right: '0px',
+        top: '0px'
+      },
+
+      title: {
+        lineHeight: '48px',
+        fontSize: '14px',
+        fontWeight: '500',
+        textAlign: 'center',
+      }
+    };
+
     return (
-      <div className="mui-date-picker-calendar-toolbar">
+      <div style={styles.root}>
 
         <SlideInTransitionGroup
-          className="mui-date-picker-calendar-toolbar-title"
+          style={styles.title}
           direction={this.state.transitionDirection}>
           <div key={month + '_' + year}>{month} {year}</div>
         </SlideInTransitionGroup>
 
         <IconButton
-          className="mui-date-picker-calendar-toolbar-button-left"
+          style={styles.buttonLeft}
           onTouchTap={this.props.onLeftTouchTap}>
             <NavigationChevronLeft/>
         </IconButton>
 
         <IconButton
-          className="mui-date-picker-calendar-toolbar-button-right"
-          iconClassName="navigation-chevron-right"
+          style={styles.buttonRight}
           onTouchTap={this.props.onRightTouchTap}>
             <NavigationChevronRight/>
         </IconButton>

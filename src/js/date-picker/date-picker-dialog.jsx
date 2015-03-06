@@ -1,14 +1,15 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
 var WindowListenable = require('../mixins/window-listenable');
 var KeyCode = require('../utils/key-code');
+var CustomVariables = require('../styles/variables/custom-variables.js');
 var Calendar = require('./calendar');
 var DialogWindow = require('../dialog-window');
 var FlatButton = require('../flat-button');
 
 var DatePickerDialog = React.createClass({
 
-  mixins: [Classable, WindowListenable],
+  mixins: [StylePropable, WindowListenable],
 
   propTypes: {
     initialDate: React.PropTypes.object,
@@ -29,9 +30,10 @@ var DatePickerDialog = React.createClass({
     var {
       initialDate,
       onAccept,
+      style,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-date-picker-dialog');
+    
     var actions = [
       <FlatButton
         key={0}
@@ -45,19 +47,31 @@ var DatePickerDialog = React.createClass({
         onTouchTap={this._handleOKTouchTap} />
     ];
 
+    var styles = {
+      root: {
+        fontSize: '14px',
+        color: CustomVariables.datePickerCalendarTextColor
+      },
+
+      dialogContents: {
+        width: this.props.mode === 'landscape' ? '560px' : '280px'
+      }
+    };
+
     return (
       <DialogWindow {...other}
         ref="dialogWindow"
-        className={classes}
+        style={styles.root}
+        contentStyle={styles.dialogContents}
         actions={actions}
-        contentClassName="mui-date-picker-dialog-window"
         onDismiss={this._handleDialogDismiss}
         onShow={this._handleDialogShow}
         repositionOnUpdate={false}>
         <Calendar
           ref="calendar"
           initialDate={this.props.initialDate}
-          isActive={this.state.isCalendarActive} />
+          isActive={this.state.isCalendarActive}
+          mode={this.props.mode} />
       </DialogWindow>
     );
   },

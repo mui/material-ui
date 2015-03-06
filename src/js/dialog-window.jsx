@@ -16,6 +16,7 @@ var DialogWindow = React.createClass({
   propTypes: {
     actions: React.PropTypes.array,
     contentClassName: React.PropTypes.string,
+    contentStyle: React.PropTypes.object,
     openImmediately: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
@@ -83,14 +84,14 @@ var DialogWindow = React.createClass({
     };
 
     if (this.state.open) {
-      style = this.mergeAndPrefix(style, {
+      style = this.mergeStyles(style, {
         opacity: 1,
         top: 0,
         transform: 'translate3d(0, ' + CustomVariables.spacing.desktopKeylineIncrement + 'px, 0)',
       });
     }
 
-    return this.mergeAndPrefix(style);
+    return this.mergeAndPrefix(style, this.props.contentStyle);
   },
 
   render: function() {
@@ -98,7 +99,11 @@ var DialogWindow = React.createClass({
 
     return (
       <div ref="container" style={this._main()}>
-        <Paper ref="dialogWindow" style={this._contents()} className={this.props.contentClassName} zDepth={4}>
+        <Paper
+          ref="dialogWindow"
+          style={this._contents()}
+          className={this.props.contentClassName}
+          zDepth={4}>
           {this.props.children}
           {actions}
         </Paper>

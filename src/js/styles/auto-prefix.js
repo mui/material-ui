@@ -10,6 +10,10 @@ module.exports = {
     return prefixedStyle;
   },
 
+  set: function(style, key, value) {
+    style[this.single(key)] = value;
+  },
+
   single: function(key) {
     return Modernizr.prefixed(key);
   },

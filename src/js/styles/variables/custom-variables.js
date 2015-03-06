@@ -30,7 +30,6 @@ var customVariables = new (function() {
   this.appBarHeight = Spacing.desktopKeylineIncrement;
   this.leftNavWidth = Spacing.desktopKeylineIncrement * 4;
 
-
   // checkbox
   this.checkboxBoxColor = Theme.textColor;
   this.checkboxCheckedColor = Theme.primary1Color;
@@ -39,6 +38,13 @@ var customVariables = new (function() {
 
   // buttons
   this.iconButtonSize = Spacing.iconSize * 2;
+
+  // date picker
+  this.datePickerColor = Theme.primary1Color;
+  this.datePickerTextColor = Colors.white;
+  this.datePickerCalendarTextColor = Theme.textColor;
+  this.datePickerSelectColor = Theme.primary2Color;
+  this.datePickerSelectTextColor = Colors.white;
 
   // menu
   this.menuBackgroundColor = Colors.white;

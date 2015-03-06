@@ -1,11 +1,13 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
+var Colors = require('../styles/colors');
 var DateTime = require('../utils/date-time');
 var DayButton = require('./day-button');
+var ClearFix = require('../clearfix');
 
 var CalendarMonth = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
@@ -14,10 +16,15 @@ var CalendarMonth = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-date-picker-calendar-month');
+    var styles = {
+      lineHeight: '32px',
+      textAlign: 'center',
+      padding: '8px 14px 0 14px',
+      backgroundColor: Colors.white
+    };
 
     return (
-      <div className={classes}>
+      <div style={styles}>
         {this._getWeekElements()}
       </div>
     );
@@ -28,11 +35,9 @@ var CalendarMonth = React.createClass({
 
     return weekArray.map(function(week, i) {
       return (
-        <div
-          key={i}
-          className="mui-date-picker-calendar-month-week">
+        <ClearFix key={i}>
           {this._getDayElements(week)}
-        </div>
+        </ClearFix>
       );
     }, this);
   },
