@@ -59,7 +59,7 @@ var Calendar = React.createClass({
       calendarContainer: {
         width: isLandscape ? '280px' : '100%',
         height: weekCount === 5 ? '268px' :
-          weekCount === 6 ? '308px' : '288px',
+          weekCount === 6 ? '308px' : '228px',
         float: isLandscape ? 'right' : 'none',
         transition: Transitions.easeOut('150ms', 'height')
       },

@@ -57,7 +57,7 @@ var DateDisplay = React.createClass({
     if (isLandscape) {
       dateYPosition = this.props.weekCount === 5 ? '14px' :
         this.props.weekCount === 6 ? '34px' : '8px';
-      yearYPosition = this.props.weekCount === 4 ? '104px' : '150px';
+      yearYPosition = this.props.weekCount === 4 ? '114px' : '150px';
       if (this.props.weekCount > 4) dayYPosition = '50px';
     }
 
