@@ -16,13 +16,13 @@ var ButtonPage = React.createClass({
       '<FlatButton label="Primary" primary={true} />\n' +
       '<FlatButton label="Secondary" secondary={true} />\n' +
       '<FlatButton secondary={true}>\n' +
-      '  <span className="mui-flat-button-label example-image-button">Choose an Image</span>\n' +
+      '  <span className="example-image-button">Choose an Image</span>\n' +
       '  <input type="file" id="imageButton" className="example-image-input"></input>\n' +
       '</FlatButton>\n' +
       '<div className="button-example-container">\n' +
       '  <FlatButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true}>\n' +
       '    <FontIcon className="muidocs-icon-custom-github example-flat-button-icon"/>\n' +
-      '    <span className="mui-flat-button-label">Github</span>\n' +
+      '    <span>Github</span>\n' +
       '  </FlatButton>\n' +
       '</div>\n' +
       '<FlatButton label="Disabled" disabled={true} />\n\n' +
@@ -172,14 +172,14 @@ var ButtonPage = React.createClass({
             </div>
             <div className="button-example-container">
               <FlatButton secondary={true}>
-                <span className="mui-flat-button-label example-image-button">Choose an Image</span>
+                <span className="example-image-button">Choose an Image</span>
                 <input type="file" id="imageButton" className="example-image-input"></input>
               </FlatButton>
             </div>
             <div className="button-example-container">
               <FlatButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true}>
                 <FontIcon className="muidocs-icon-custom-github example-flat-button-icon"/>
-                <span className="mui-flat-button-label example-icon-button-label">Github</span>
+                <span className="example-icon-button-label">Github</span>
               </FlatButton>
             </div>
             <div className="button-example-container">
