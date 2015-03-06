@@ -1,8 +1,9 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
 var DateTime = require('../utils/date-time');
-var CustomVariables = require('../styles/variables/custom-variables.js');
+var CustomVariables = require('../styles/variables/custom-variables');
 var Transitions = require('../styles/mixins/transitions');
+var AutoPrefix = require('../styles/auto-prefix');
 var SlideInTransitionGroup = require('../transition-groups/slide-in');
 
 var DateDisplay = React.createClass({
@@ -47,14 +48,17 @@ var DateDisplay = React.createClass({
     var month = DateTime.getShortMonth(this.props.selectedDate);
     var day = this.props.selectedDate.getDate();
     var year = this.props.selectedDate.getFullYear();
+    
     var isLandscape = this.props.mode === 'landscape';
-    var datePadding = '16px';
-    var dayMargin = '6px';
+    var dateYPosition = '0px';
+    var dayYPosition = '30px';
+    var yearYPosition = '95px';
 
     if (isLandscape) {
-      datePadding = this.props.weekCount === 5 ? '30px' :
-        this.props.weekCount === 6 ? '50px' : '24px';
-      if (this.props.weekCount > 4) dayMargin = '24px';
+      dateYPosition = this.props.weekCount === 5 ? '14px' :
+        this.props.weekCount === 6 ? '34px' : '8px';
+      yearYPosition = this.props.weekCount === 4 ? '104px' : '150px';
+      if (this.props.weekCount > 4) dayYPosition = '50px';
     }
 
     var styles = {
@@ -63,75 +67,101 @@ var DateDisplay = React.createClass({
         position: 'relative'
       },
 
-      date: {
-        padding: datePadding + ' 0',
+      dateContainer: {
         backgroundColor: CustomVariables.datePickerColor,
+        height: isLandscape ? this.props.weekCount * 40 + 36 + 'px' : '150px',
+        padding: '16px 0',
+        transition: Transitions.easeOut(),
+      },
+
+      date: {
+        position: 'relative',
         color: CustomVariables.datePickerTextColor,
-        transition: Transitions.easeOut()
+        transition: Transitions.easeOut(),
+        transform: 'translate3d(0,' + dateYPosition + ',0)'
+      },
+
+      dowContainer: {
+        height: '32px',
+        backgroundColor: CustomVariables.datePickerSelectColor,
+        borderRadius: isLandscape ? '2px 0 0 0' : '2px 2px 0 0',
+        paddingTop: '9px'
       },
 
       dow: {
         fontSize: '13px',
-        height: '32px',
-        lineHeight: '32px',
-        backgroundColor: CustomVariables.datePickerSelectColor,
-        color: CustomVariables.datePickerSelectTextColor,
-        borderRadius: isLandscape ? '2px 0 0 0' : '2px 2px 0 0'
+        lineHeight: '13px',
+        height: '13px',
+        color: CustomVariables.datePickerSelectTextColor
       },
 
       day: {
-        margin: dayMargin + ' 0',
+        position: 'absolute',
         lineHeight: isLandscape ? '76px' : '58px',
-        height: isLandscape ? '76px' : '58px',
         fontSize: isLandscape ? '76px' : '58px',
-        transition: Transitions.easeOut()
+        height: isLandscape ? '76px' : '58px',
+        width: '100%',
+        transition: Transitions.easeOut(),
+        transform: 'translate3d(0,' + dayYPosition + ',0)'
       },
 
       month: {
+        position: 'absolute',
+        top: isLandscape ? '0px' : '1px',
         fontSize: isLandscape ? '26px' : '22px',
-        lineHeight: isLandscape ? '26px' : '24px',
-        height: isLandscape ? '26px' : '24px',
+        lineHeight: isLandscape ? '26px' : '22px',
+        height: isLandscape ? '26px' : '22px',
+        width: '100%',
         textTransform: 'uppercase'
       },
 
       year: {
+        position: 'absolute',
+        margin: isLandscape ? '0px' : '1px',
         fontSize: isLandscape ? '26px' : '22px',
-        lineHeight: isLandscape ? '26px' : '24px',
-        height: isLandscape ? '26px' : '24px',
+        lineHeight: isLandscape ? '26px' : '22px',
+        height: isLandscape ? '26px' : '22px',
+        width: '100%',
         textTransform: 'uppercase',
-        opacity: '0.7'
+        opacity: '0.7',
+        transition: Transitions.easeOut(),
+        transform: 'translate3d(0,' + yearYPosition + ',0)'
       }
     };
 
     return (
       <div {...other} style={this.mergeAndPrefix(styles.root)}>
 
-        <SlideInTransitionGroup
-          style={styles.dow}
-          direction={this.state.transitionDirection}>
-          <div key={dayOfWeek}>{dayOfWeek}</div>
-        </SlideInTransitionGroup>
-
-        <div style={styles.date}>
-
+        <div style={styles.dowContainer}>
           <SlideInTransitionGroup
-            style={styles.month}
+            style={styles.dow}
             direction={this.state.transitionDirection}>
-            <div key={month}>{month}</div>
+            <div key={dayOfWeek}>{dayOfWeek}</div>
           </SlideInTransitionGroup>
+        </div>
 
-          <SlideInTransitionGroup
-            style={styles.day}
-            direction={this.state.transitionDirection}>
-            <div key={day}>{day}</div>
-          </SlideInTransitionGroup>
+        <div style={AutoPrefix.all(styles.dateContainer)}>
+          <div style={AutoPrefix.all(styles.date)}>
 
-          <SlideInTransitionGroup
-            style={styles.year}
-            direction={this.state.transitionDirection}>
-            <div key={year}>{year}</div>
-          </SlideInTransitionGroup>
+            <SlideInTransitionGroup
+              style={styles.month}
+              direction={this.state.transitionDirection}>
+              <div key={month}>{month}</div>
+            </SlideInTransitionGroup>
 
+            <SlideInTransitionGroup
+              style={styles.day}
+              direction={this.state.transitionDirection}>
+              <div key={day}>{day}</div>
+            </SlideInTransitionGroup>
+
+            <SlideInTransitionGroup
+              style={styles.year}
+              direction={this.state.transitionDirection}>
+              <div key={year}>{year}</div>
+            </SlideInTransitionGroup>
+
+          </div>
         </div>
 
       </div>
