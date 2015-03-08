@@ -78,7 +78,6 @@ var DialogWindow = React.createClass({
       //allow scrolling
       var body = document.getElementsByTagName('body')[0];
       body.style.overflow = '';
-      body.style.position = '';
     });
 
     this.setState({ open: false });
@@ -89,7 +88,6 @@ var DialogWindow = React.createClass({
     //prevent scrolling
     var body = document.getElementsByTagName('body')[0];
     body.style.overflow = 'hidden';
-    body.style.position = 'fixed';
 
     this.setState({ open: true });
     if (this.props.onShow) this.props.onShow();
