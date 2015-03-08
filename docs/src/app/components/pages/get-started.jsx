@@ -20,10 +20,10 @@ var GetStarted = React.createClass({
           'module.exports = MyAwesomeReactComponent;\n\n\n',
 
       customizationCode = 
-        '@import "node_modules/material-ui/dist/less/scaffolding.less";\n\n' +
+        '@import "node_modules/material-ui/src/less/scaffolding.less";\n\n' +
         '//Define a custom less file to override\n//any variables defined in scaffolding.less\n' +
         '@import "my-custom-overrides.less";\n\n' +
-        '@import "node_modules/material-ui/dist/less/components.less";',
+        '@import "node_modules/material-ui/src/less/components.less";',
 
       usageNotesCode =
         'var injectTapEventPlugin = require("react-tap-event-plugin");\n\n' +
