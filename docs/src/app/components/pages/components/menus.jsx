@@ -31,27 +31,27 @@ var nestedMenuItems = [
   { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [
     { payload: '1', text: 'Nested Item 1' },
     { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
-      { payload: '1', text: 'Nested Item 3' },
-      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
-        { payload: '1', text: 'Nested Item 5' },
-        { payload: '3', text: 'Nested Item 6' }
+      { payload: '1', text: 'Nested Item 2.1' },
+      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2.2', items: [
+        { payload: '1', text: 'Nested Item 2.2.1' },
+        { payload: '3', text: 'Nested Item 2.2.2' }
       ] },
-      { payload: '3', text: 'Nested Item 7' }
+      { payload: '3', text: 'Nested Item 2.3' }
     ] },
-    { payload: '3', text: 'Nested Item 9' },
-    { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
-      { payload: '1', text: 'Nested Item 3' },
-      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
-        { payload: '1', text: 'Nested Item 5' },
-        { payload: '3', text: 'Nested Item 6' }
+    { payload: '3', text: 'Nested Item 3' },
+    { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
+      { payload: '1', text: 'Nested Item 4.1' },
+      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4.2', items: [
+        { payload: '1', text: 'Nested Item 4.2.1', disabled: true },
+        { payload: '3', text: 'Nested Item 4.2.2' }
       ] },
-      { payload: '3', text: 'Nested Item 7' }
+      { payload: '3', text: 'Nested Item 4.3' }
     ] },
-    { payload: '4', text: 'Nested Item 10' }
+    { payload: '4', text: 'Nested Item 5' }
   ] },
   { payload: '1', text: 'Audio Library'},
   { payload: '2', text: 'Settings'},
-  { payload: '3', text: 'Logout'}
+  { payload: '3', text: 'Logout', disabled: true}
 ];
 
 
@@ -160,27 +160,27 @@ var MenusPage = React.createClass({
       "    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [\n" +
       "      { payload: '1', text: 'Nested Item 1' },\n" +
       "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
-      "        { payload: '1', text: 'Nested Item 3' },\n" +
-      "        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
-      "          { payload: '1', text: 'Nested Item 5' },\n" +
-      "          { payload: '3', text: 'Nested Item 6' }\n" +
+      "        { payload: '1', text: 'Nested Item 2.1' },\n" +
+      "        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2.2', items: [\n" +
+      "          { payload: '1', text: 'Nested Item 2.2.1' },\n" +
+      "          { payload: '3', text: 'Nested Item 2.2.2' }\n" +
       "        ] },\n" +
-      "        { payload: '3', text: 'Nested Item 7' }\n" +
+      "        { payload: '3', text: 'Nested Item 2.3' }\n" +
       "      ] },\n" +
-      "      { payload: '3', text: 'Nested Item 9' },\n" +
-      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
-      "        { payload: '1', text: 'Nested Item 3' },\n" +
-      "       { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
-      "          { payload: '1', text: 'Nested Item 5' },\n" +
-      "          { payload: '3', text: 'Nested Item 6' }\n" +
+      "      { payload: '3', text: 'Nested Item 3' },\n" +
+      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
+      "        { payload: '1', text: 'Nested Item 4.1' },\n" +
+      "        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4.2', items: [\n" +
+      "          { payload: '1', text: 'Nested Item 4.2.1', disabled: true },\n" +
+      "          { payload: '3', text: 'Nested Item 4.2.2' }\n" +
       "        ] },\n" +
-      "        { payload: '3', text: 'Nested Item 7' }\n" +
+      "        { payload: '3', text: 'Nested Item 4.3' }\n" +
       "      ] },\n" +
-      "      { payload: '4', text: 'Nested Item 10' }\n" +
+      "      { payload: '4', text: 'Nested Item 5' }\n" +
       "    ] },\n" +
       "    { payload: '1', text: 'Audio Library'},\n" +
       "    { payload: '2', text: 'Settings'},\n" +
-      "    { payload: '3', text: 'Logout'}\n" +
+      "    { payload: '3', text: 'Logout', disabled: true}\n" +
       "  ];\n\n" +
       '<Menu menuItems={nestedMenuItems} />';
 

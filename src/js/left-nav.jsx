@@ -4,7 +4,7 @@ var React = require('react'),
   WindowListenable = require('./mixins/window-listenable'),
   Overlay = require('./overlay'),
   Paper = require('./paper'),
-  Menu = require('./menu');
+  Menu = require('./menu/menu');
 
 var LeftNav = React.createClass({
 
@@ -82,10 +82,10 @@ var LeftNav = React.createClass({
   },
 
   _onMenuItemClick: function(e, key, payload) {
-    if (!this.props.docked) this.close();
     if (this.props.onChange && this.props.selectedIndex !== key) {
       this.props.onChange(e, key, payload);
     }
+    if (!this.props.docked) this.close();
   },
 
   _onOverlayTouchTap: function() {

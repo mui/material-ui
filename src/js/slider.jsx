@@ -1,4 +1,3 @@
-﻿
 var React = require('react'),
     Paper = require('./paper'),
     Classable = require('./mixins/classable'),
