@@ -40,7 +40,7 @@ var DialogWindow = React.createClass({
 
   componentDidMount: function() {
     this._positionDialog();
-    if (this.props.openImmediately) this._preventScrolling();
+    if (this.props.openImmediately) this.refs.dialogOverlay.preventScrolling();
   },
 
   componentDidUpdate: function (prevProps, prevState) {
@@ -74,10 +74,9 @@ var DialogWindow = React.createClass({
   },
 
   dismiss: function() {
-    var _this = this;
     CssEvent.onTransitionEnd(this.getDOMNode(), function() {
-      _this.refs.dialogOverlay.allowScrolling();
-    });
+      this.refs.dialogOverlay.allowScrolling();
+    }.bind(this));
 
     this.setState({ open: false });
     if (this.props.onDismiss) this.props.onDismiss();
