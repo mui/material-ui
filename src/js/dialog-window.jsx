@@ -40,6 +40,7 @@ var DialogWindow = React.createClass({
 
   componentDidMount: function() {
     this._positionDialog();
+    if (this.props.openImmediately) this._preventScrolling();
   },
 
   componentDidUpdate: function (prevProps, prevState) {
@@ -63,7 +64,7 @@ var DialogWindow = React.createClass({
           {this.props.children}
           {actions}
         </Paper>
-        <Overlay show={this.state.open} onTouchTap={this._handleOverlayTouchTap} />
+        <Overlay ref="dialogOverlay" show={this.state.open} autoLockScrolling={false} onTouchTap={this._handleOverlayTouchTap} />
       </div>
     );
   },
@@ -73,11 +74,9 @@ var DialogWindow = React.createClass({
   },
 
   dismiss: function() {
-
+    var _this = this;
     CssEvent.onTransitionEnd(this.getDOMNode(), function() {
-      //allow scrolling
-      var body = document.getElementsByTagName('body')[0];
-      body.style.overflow = '';
+      _this.refs.dialogOverlay.allowScrolling();
     });
 
     this.setState({ open: false });
@@ -85,9 +84,7 @@ var DialogWindow = React.createClass({
   },
 
   show: function() {
-    //prevent scrolling
-    var body = document.getElementsByTagName('body')[0];
-    body.style.overflow = 'hidden';
+    this.refs.dialogOverlay.preventScrolling();
 
     this.setState({ open: true });
     if (this.props.onShow) this.props.onShow();
