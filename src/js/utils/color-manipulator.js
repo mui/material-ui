@@ -51,7 +51,6 @@ module.exports = {
     return {type: type, values: values};
 	},
 
-
   // Set the absolute transparency of a color. 
   // Any existing alpha values are overwritten. 
   fade: function(color, amount) {
@@ -66,7 +65,7 @@ module.exports = {
 
     if (colorObj.type.indexOf('hsl') > -1) {
       colorObj.values[2] += amount;
-      return  this._decomposeColor(colorObj);
+      return  this._decomposeColor(this._convertColorToString(colorObj));
     } else if (colorObj.type.indexOf('rgb') > -1) {
       for (var i = 0; i < 3; i++) {
         colorObj.values[i] *= 1 + amount;
@@ -79,13 +78,12 @@ module.exports = {
     return  this._convertColorToString(colorObj, '0.15');
   },
 
-
   darken: function(color, amount) {
     var colorObj = this._decomposeColor(color);
 
     if (colorObj.type.indexOf('hsl') > -1) {
       colorObj.values[2] += amount;
-      return  this._decomposeColor(colorObj);
+      return  this._decomposeColor(this._convertColorToString(colorObj));
     } else if (colorObj.type.indexOf('rgb') > -1) {
       for (var i = 0; i < 3; i++) {
         colorObj.values[i] *= 1 - amount;

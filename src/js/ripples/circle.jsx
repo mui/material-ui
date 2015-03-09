@@ -34,7 +34,7 @@ var RippleCircle = React.createClass({
       left: 0,
       height: '100%',
       width: '100%',
-      opacity: this.props.ending ? 0 : 0.1,
+      opacity: this.props.ending ? 0 : 0.3,
       borderRadius: '50%',
       transform: this.props.started ? 'scale(1)' : 'scale(0)',
       backgroundColor: this.props.color,

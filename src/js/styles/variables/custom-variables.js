@@ -57,22 +57,22 @@ var customVariables = new (function() {
   this.flatButtonSecondaryFocusRippleColor = ColorManipulator.fade(this.flatButtonSecondaryRippleColor, 0.8);
   this.flatButtonDisabledTextColor = ColorManipulator.fade(this.flatButtonTextColor, 0.3);
 
-  // this.raisedButtonColor = Colors.white;
-  // this.raisedButtonHoverColor = darken(this.raisedButtonColor, 10%);
+  this.raisedButtonColor = Colors.white;
+  this.raisedButtonHoverColor = ColorManipulator.darken(this.raisedButtonColor, 0.1);
   this.raisedButtonTextColor = Theme.textColor;
-  // this.raisedButtonRippleColor = rgba(0,0,0,0.1);
-  // this.raisedButtonFocusRippleColor = fade(@raised-button-ripple-color, 7%);
-  // this.raisedButtonPrimaryColor = @accent-1-color;
-  // this.raisedButtonPrimaryHoverColor = darken(@accent-1-color, 15%);
+  this.raisedButtonRippleColor = 'rgba(0,0,0,0.7)';
+  this.raisedButtonFocusRippleColor = ColorManipulator.fade(this.raisedButtonRippleColor, 0.7);
+  this.raisedButtonPrimaryColor = Theme.accent1Color;
+  this.raisedButtonPrimaryHoverColor = ColorManipulator.darken(Theme.accent1Color, 0.08);
   this.raisedButtonPrimaryTextColor = Colors.white;
-  // this.raisedButtonPrimaryRippleColor = fade(@white, 50%);
-  // this.raisedButtonPrimaryFocusRippleColor = @raised-button-primary-ripple-color;
-  // this.raisedButtonSecondaryColor = @primary-1-color;
-  // this.raisedButtonSecondaryHoverColor = darken(@primary-1-color, 4%);
+  this.raisedButtonPrimaryRippleColor = Colors.white;//ColorManipulator.fade(Colors.white, 0.9);
+  this.raisedButtonPrimaryFocusRippleColor = this.raisedButtonPrimaryRippleColor;
+  this.raisedButtonSecondaryColor = Theme.primary1Color;
+  this.raisedButtonSecondaryHoverColor = ColorManipulator.darken(Theme.primary1Color, 0.1);
   this.raisedButtonSecondaryTextColor = Colors.white;
-  // this.raisedButtonSecondaryRippleColor = fade(@white, 35%);
-  // this.raisedButtonSecondaryFocusRippleColor = @raised-button-secondary-ripple-color;
-  // this.raisedButtonDisabledColor = @raised-button-hover-color;
+  this.raisedButtonSecondaryRippleColor = Colors.white;//ColorManipulator.fade(Colors.white, 0.9);
+  this.raisedButtonSecondaryFocusRippleColor = this.raisedButtonSecondaryRippleColor;
+  this.raisedButtonDisabledColor = this.raisedButtonHoverColor;
   this.raisedButtonDisabledTextColor = ColorManipulator.fade(this.raisedButtonTextColor, 0.3);
 
 

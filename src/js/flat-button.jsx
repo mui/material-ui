@@ -30,7 +30,7 @@ var FlatButton = React.createClass({
 
   /** Styles */
 
-  _getBackgroundColor: function() {
+  _getHoveredBackgroundColor: function() {
     return  this.props.primary ? CustomVariables.flatButtonPrimaryHoverColor :
             this.props.secondary ? CustomVariables.flatButtonSecondaryHoverColor :
             CustomVariables.flatButtonHoverColor;  
@@ -66,7 +66,7 @@ var FlatButton = React.createClass({
     };
 
     if (this.state.hovered && !this.props.disabled) {
-      style.backgroundColor = this._getBackgroundColor();
+      style.backgroundColor = this._getHoveredBackgroundColor();
     }  
     
     return this.mergeAndPrefix(style);
@@ -104,9 +104,10 @@ var FlatButton = React.createClass({
 
     return (
       <EnhancedButton {...other}
+        ref="enhancedButton"
         style={this._main()}
-        onMouseOver={this._onMouseOver} 
-        onMouseOut={this._onMouseOut} 
+        onMouseOver={this._handleMouseOver} 
+        onMouseOut={this._handleMouseOut} 
         focusRippleColor={focusRippleColor}
         touchRippleColor={touchRippleColor}
         onKeyboardFocus={this._handleKeyboardFocus}>
@@ -116,20 +117,20 @@ var FlatButton = React.createClass({
     );
   },
 
-  _onMouseOver: function(e) {
-    this.setState({hovered: true});
+  _handleMouseOver: function(e) {
+    if (!this.refs.enhancedButton.isKeyboardFocused()) this.setState({hovered: true});
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
-  _onMouseOut: function(e) {
-    this.setState({hovered: false});
+  _handleMouseOut: function(e) {
+    if (!this.refs.enhancedButton.isKeyboardFocused()) this.setState({hovered: false});
     if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleKeyboardFocus: function(keyboardFocused) {
 
     if (keyboardFocused && !this.props.disabled) {
-      this.getDOMNode().style.backgroundColor = this._getBackgroundColor();
+      this.getDOMNode().style.backgroundColor = this._getHoveredBackgroundColor();
     } else {
       this.getDOMNode().style.backgroundColor = 'transparent';
     }

@@ -1,5 +1,4 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/mixins/transitions');
 var CustomVariables = require('./styles/variables/custom-variables');
@@ -9,7 +8,7 @@ var Paper = require('./paper');
 
 var RaisedButton = React.createClass({
 
-  mixins: [Classable, StylePropable],
+  mixins: [StylePropable],
 
   propTypes: {
     className: React.PropTypes.string,
@@ -32,7 +31,8 @@ var RaisedButton = React.createClass({
     var zDepth = this.props.disabled ? 0 : 1;
     return {
       zDepth: zDepth,
-      initialZDepth: zDepth
+      initialZDepth: zDepth,
+      hovered: false
     };
   },
 
@@ -46,16 +46,48 @@ var RaisedButton = React.createClass({
 
   /** Styles */
 
-  _main: function() {
-    return {
+  _getHoveredBackgroundColor: function() {
+    return  this.props.primary ? CustomVariables.raisedButtonPrimaryHoverColor :
+            this.props.secondary ? CustomVariables.raisedButtonSecondaryHoverColor :
+            CustomVariables.raisedButtonHoverColor; 
+  },
 
-    };
+  _getBackgroundColor: function() {
+    return  this.props.disabled ? CustomVariables.raisedButtonDisabledColor :
+            this.props.primary ? CustomVariables.raisedButtonPrimaryColor :
+            this.props.secondary ? CustomVariables.raisedButtonSecondaryColor :
+            CustomVariables.raisedButtonColor; 
+  },
+
+  _main: function() {
+    return this.mergeAndPrefix({
+      display: 'inline-block',
+      minWidth: CustomVariables.buttonMinWidth,
+      height: CustomVariables.buttonHeight,
+      transition: Transitions.easeOut(),
+    });
   },
 
   _container: function() {
-    return {
-
+    var style =  {
+      position: 'relative',
+      width: '100%',
+      padding: 0,
+      overflow: 'hidden',
+      borderRadius: 2,
+      transition: Transitions.easeOut(),
+      backgroundColor: this._getBackgroundColor(),
+    
+      //This is need so that ripples do not bleed
+      //past border radius.
+      //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+      transform: 'translate3d(0, 0, 0)',
     };
+
+    if (this.state.hovered && !this.props.disabled) 
+        style.backgroundColor = this._getHoveredBackgroundColor(); 
+
+    return style;
   },
 
   _label: function() {
@@ -84,23 +116,32 @@ var RaisedButton = React.createClass({
       primary,
       secondary,
       ...other } = this.props;
-    var classes = this.getClasses('mui-raised-button', {
-      'mui-is-primary': primary,
-      'mui-is-secondary': !primary && secondary
-    });
+
     var labelElement;
 
     if (label) labelElement = <span style={this._label()}>{label}</span>;
 
+    var focusRippleColor =  primary ? CustomVariables.raisedButtonPrimaryFocusRippleColor : 
+                            secondary ? CustomVariables.raisedButtonSecondaryFocusRippleColor : 
+                            CustomVariables.raisedButtonFocusRippleColor;
+    var touchRippleColor =  primary ? CustomVariables.raisedButtonPrimaryRippleColor : 
+                            secondary ? CustomVariables.raisedButtonSecondaryRippleColor : 
+                            CustomVariables.raisedButtonRippleColor;
+
     return (
-      <Paper className={classes} zDepth={this.state.zDepth}>
+      <Paper style={this._main()} zDepth={this.state.zDepth}>
         <EnhancedButton {...other}
-          className="mui-raised-button-container" 
+          ref="container"
+          style={this._container()}
           onMouseUp={this._handleMouseUp}
           onMouseDown={this._handleMouseDown}
           onMouseOut={this._handleMouseOut}
+          onMouseOver={this._handleMouseOver}
           onTouchStart={this._handleTouchStart}
-          onTouchEnd={this._handleTouchEnd}>
+          onTouchEnd={this._handleTouchEnd}
+          focusRippleColor={focusRippleColor}
+          touchRippleColor={touchRippleColor}
+          onKeyboardFocus={this._handleKeyboardFocus}>
           {labelElement}
           {this.props.children}
         </EnhancedButton>
@@ -122,8 +163,13 @@ var RaisedButton = React.createClass({
   },
 
   _handleMouseOut: function(e) {
-    this.setState({ zDepth: this.state.initialZDepth });
+    if (!this.refs.container.isKeyboardFocused()) this.setState({ zDepth: this.state.initialZDepth, hovered: false });
     if (this.props.onMouseOut) this.props.onMouseOut(e);
+  },
+
+  _handleMouseOver: function(e) {
+    if (!this.refs.container.isKeyboardFocused()) this.setState({hovered: true});
+    if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
   _handleTouchStart: function(e) {
@@ -134,8 +180,17 @@ var RaisedButton = React.createClass({
   _handleTouchEnd: function(e) {
     this.setState({ zDepth: this.state.initialZDepth });
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
-  }
+  },
 
+  _handleKeyboardFocus: function(keyboardFocused) {
+    if (keyboardFocused && !this.props.disabled) {
+      this.setState({ zDepth: this.state.initialZDepth + 1 });
+      this.refs.container.getDOMNode().style.backgroundColor = this._getHoveredBackgroundColor();
+    } else if (!this.state.hovered) {
+      this.setState({ zDepth: this.state.initialZDepth });
+      this.refs.container.getDOMNode().style.backgroundColor = this._getBackgroundColor();
+    }
+  },
 });
 
 module.exports = RaisedButton;
