@@ -10,7 +10,10 @@ var ComponentDoc = React.createClass({
 
   propTypes: {
     code: React.PropTypes.string.isRequired,
-    desc: React.PropTypes.string,
+    desc: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.element
+    ]),
     name: React.PropTypes.string.isRequired,
     componentInfo: React.PropTypes.array.isRequired
   },
