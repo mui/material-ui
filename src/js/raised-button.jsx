@@ -1,11 +1,15 @@
 var React = require('react');
 var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
+var CustomVariables = require('./styles/variables/custom-variables');
+var Typography = require('./styles/core/typography');
 var EnhancedButton = require('./enhanced-button');
 var Paper = require('./paper');
 
 var RaisedButton = React.createClass({
 
-  mixins: [Classable],
+  mixins: [Classable, StylePropable],
 
   propTypes: {
     className: React.PropTypes.string,
@@ -20,7 +24,8 @@ var RaisedButton = React.createClass({
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     primary: React.PropTypes.bool,
-    secondary: React.PropTypes.bool
+    secondary: React.PropTypes.bool,
+    labelStyle: React.PropTypes.object,
   },
 
   getInitialState: function() {
@@ -39,6 +44,40 @@ var RaisedButton = React.createClass({
     });
   },
 
+  /** Styles */
+
+  _main: function() {
+    return {
+
+    };
+  },
+
+  _container: function() {
+    return {
+
+    };
+  },
+
+  _label: function() {
+    return this.mergeAndPrefix({
+      position: 'relative',
+      fontSize: '14px',
+      letterSpacing: 0,
+      textTransform: 'uppercase',
+      fontWeight: Typography.fontWeightMedium,
+      margin: 0,
+      padding: '0px ' + CustomVariables.spacing.desktopGutterLess + 'px',
+      userSelect: 'none',
+      lineHeight: CustomVariables.buttonHeight + 'px',
+      color:  this.props.disabled ? CustomVariables.raisedButtonDisabledTextColor :
+              this.props.primary ? CustomVariables.raisedButtonPrimaryTextColor :
+              this.props.secondary ? CustomVariables.raisedButtonSecondaryTextColor :
+              CustomVariables.raisedButtonTextColor,
+    }, this.props.labelStyle);
+  },
+
+
+
   render: function() {
     var {
       label,
@@ -49,10 +88,9 @@ var RaisedButton = React.createClass({
       'mui-is-primary': primary,
       'mui-is-secondary': !primary && secondary
     });
-    var children;
+    var labelElement;
 
-    if (label) children = <span className="mui-raised-button-label">{label}</span>;
-    else children = this.props.children;
+    if (label) labelElement = <span style={this._label()}>{label}</span>;
 
     return (
       <Paper className={classes} zDepth={this.state.zDepth}>
@@ -63,7 +101,8 @@ var RaisedButton = React.createClass({
           onMouseOut={this._handleMouseOut}
           onTouchStart={this._handleTouchStart}
           onTouchEnd={this._handleTouchEnd}>
-          {children}
+          {labelElement}
+          {this.props.children}
         </EnhancedButton>
       </Paper>
     );

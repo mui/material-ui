@@ -38,17 +38,13 @@ var customVariables = new (function() {
   this.checkboxDisabledColor = this.disabledColor;
 
   // buttons
-  this.iconButtonSize = Spacing.iconSize * 2;
-
   this.buttonHeight = 36;
   this.buttonMinWidth = 88;
-
   this.iconButtonSize = Spacing.iconSize * 2;
 
   this.flatButtonColor = Colors.white;
   this.flatButtonHoverColor = ColorManipulator.darken(this.flatButtonColor, 0.1);
   this.flatButtonTextColor = Theme.textColor;
-
   this.flatButtonRippleColor = 'rgba(0,0,0,0.7)';
   this.flatButtonFocusRippleColor = ColorManipulator.fade(this.flatButtonRippleColor, 0.7);
   this.flatButtonPrimaryHoverColor = ColorManipulator.lighten(Theme.accent1Color, 0.32);
@@ -60,6 +56,26 @@ var customVariables = new (function() {
   this.flatButtonSecondaryRippleColor = ColorManipulator.fade(this.flatButtonSecondaryTextColor, 0.8);
   this.flatButtonSecondaryFocusRippleColor = ColorManipulator.fade(this.flatButtonSecondaryRippleColor, 0.8);
   this.flatButtonDisabledTextColor = ColorManipulator.fade(this.flatButtonTextColor, 0.3);
+
+  // this.raisedButtonColor = Colors.white;
+  // this.raisedButtonHoverColor = darken(this.raisedButtonColor, 10%);
+  this.raisedButtonTextColor = Theme.textColor;
+  // this.raisedButtonRippleColor = rgba(0,0,0,0.1);
+  // this.raisedButtonFocusRippleColor = fade(@raised-button-ripple-color, 7%);
+  // this.raisedButtonPrimaryColor = @accent-1-color;
+  // this.raisedButtonPrimaryHoverColor = darken(@accent-1-color, 15%);
+  this.raisedButtonPrimaryTextColor = Colors.white;
+  // this.raisedButtonPrimaryRippleColor = fade(@white, 50%);
+  // this.raisedButtonPrimaryFocusRippleColor = @raised-button-primary-ripple-color;
+  // this.raisedButtonSecondaryColor = @primary-1-color;
+  // this.raisedButtonSecondaryHoverColor = darken(@primary-1-color, 4%);
+  this.raisedButtonSecondaryTextColor = Colors.white;
+  // this.raisedButtonSecondaryRippleColor = fade(@white, 35%);
+  // this.raisedButtonSecondaryFocusRippleColor = @raised-button-secondary-ripple-color;
+  // this.raisedButtonDisabledColor = @raised-button-hover-color;
+  this.raisedButtonDisabledTextColor = ColorManipulator.fade(this.raisedButtonTextColor, 0.3);
+
+
   
   // date picker
   this.datePickerColor = Theme.primary1Color;

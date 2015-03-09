@@ -18,7 +18,8 @@ var FlatButton = React.createClass({
       }
     },
     primary: React.PropTypes.bool,
-    secondary: React.PropTypes.bool
+    secondary: React.PropTypes.bool,
+    labelStyle: React.PropTypes.object,
   },
 
   getInitialState: function() {
@@ -39,16 +40,12 @@ var FlatButton = React.createClass({
 
     var style = {
       transition: Transitions.easeOut(),
-
       fontSize: Typography.fontStyleButtonFontSize,
       letterSpacing: 0,
       textTransform: 'uppercase',
-
       fontWeight: Typography.fontWeightMedium, 
-
       borderRadius: 2,
       userSelect: 'none',
-
       position: 'relative',
       overflow: 'hidden',
       backgroundColor: CustomVariables.flatButtonColor,
@@ -72,14 +69,14 @@ var FlatButton = React.createClass({
       style.backgroundColor = this._getBackgroundColor();
     }  
     
-    return style;
+    return this.mergeAndPrefix(style);
   },
 
   _label: function() {
-    return {
+    return this.mergeAndPrefix({
       position: 'relative',
-      padding: '0 ' + CustomVariables.spacing.desktopGutterLess + 'px',
-    };
+      padding: '0px ' + CustomVariables.spacing.desktopGutterLess + 'px',
+    }, this.props.labelStyle);
   },
 
 
@@ -94,16 +91,16 @@ var FlatButton = React.createClass({
         ...other
       } = this.props;
 
-    var children = label ?
-      <span style={this._label()}>{label}</span> :
-      this.props.children;
-
     var focusRippleColor =  primary ? CustomVariables.flatButtonPrimaryFocusRippleColor : 
                             secondary ? CustomVariables.flatButtonSecondaryFocusRippleColor : 
                             CustomVariables.flatButtonFocusRippleColor;
     var touchRippleColor =  primary ? CustomVariables.flatButtonPrimaryRippleColor : 
                             secondary ? CustomVariables.flatButtonSecondaryRippleColor : 
                             CustomVariables.flatButtonRippleColor;
+
+    var labelElement;
+
+    if (label) labelElement = <span style={this._label()}>{label}</span>;
 
     return (
       <EnhancedButton {...other}
@@ -113,7 +110,8 @@ var FlatButton = React.createClass({
         focusRippleColor={focusRippleColor}
         touchRippleColor={touchRippleColor}
         onKeyboardFocus={this._handleKeyboardFocus}>
-        {children}
+        {labelElement}
+        {this.props.children}
       </EnhancedButton>
     );
   },
