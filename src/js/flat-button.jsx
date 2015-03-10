@@ -1,11 +1,14 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
+var CustomVariables = require('./styles/variables/custom-variables');
+var Typography = require('./styles/core/typography');
+var Theme = require('./styles/theme');
 var EnhancedButton = require('./enhanced-button');
-var Theme = require('./styles/theme').get();
 
 var FlatButton = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     className: React.PropTypes.string,
@@ -18,11 +21,67 @@ var FlatButton = React.createClass({
     secondary: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getInitialState: function() {
     return {
-      
+      hovered: false,
     };
   },
+
+  /** Styles */
+
+  _getBackgroundColor: function() {
+    return  this.props.primary ? CustomVariables.flatButtonPrimaryHoverColor :
+            this.props.secondary ? CustomVariables.flatButtonSecondaryHoverColor :
+            CustomVariables.flatButtonHoverColor;  
+  },
+
+  _main: function() {
+
+    var style = {
+      transition: Transitions.easeOut(),
+
+      fontSize: Typography.fontStyleButtonFontSize,
+      letterSpacing: 0,
+      textTransform: 'uppercase',
+
+      fontWeight: Typography.fontWeightMedium, 
+
+      borderRadius: 2,
+      userSelect: 'none',
+
+      position: 'relative',
+      overflow: 'hidden',
+      backgroundColor: CustomVariables.flatButtonColor,
+      color: CustomVariables.flatButtonTextColor,
+      lineHeight: CustomVariables.buttonHeight + 'px',
+      minWidth: CustomVariables.buttonMinWidth,
+      padding: 0, 
+      margin: 0,
+
+      //This is need so that ripples do not bleed past border radius.
+      //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+      transform: 'translate3d(0, 0, 0)',
+
+      color:  this.props.disabled ? CustomVariables.flatButtonDisabledTextColor :
+              this.props.primary ? CustomVariables.flatButtonPrimaryTextColor :
+              this.props.secondary ? CustomVariables.flatButtonSecondaryTextColor :
+              Theme.textColor,
+    };
+
+    if (this.state.hovered && !this.props.disabled) {
+      style.backgroundColor = this._getBackgroundColor();
+    }  
+    
+    return style;
+  },
+
+  _label: function() {
+    return {
+      position: 'relative',
+      padding: '0 ' + CustomVariables.spacing.desktopGutterLess + 'px',
+    };
+  },
+
 
   render: function() {
 
@@ -30,32 +89,54 @@ var FlatButton = React.createClass({
         label,
         primary,
         secondary,
+        onMouseOver,
+        onMouseOut,
         ...other
       } = this.props;
 
-    var classes = this.getClasses('mui-flat-button', {
-      'mui-is-primary': primary,
-      'mui-is-secondary': !primary && secondary
-    });
     var children = label ?
-      <span className="mui-flat-button-label">{label}</span> :
+      <span style={this._label()}>{label}</span> :
       this.props.children;
 
-    var focusRippleColor = primary ?
-      Theme.accent1Color : secondary ?
-      Theme.primary1Color : Theme.textColor;
-
-    var touchRippleColor = focusRippleColor;
+    var focusRippleColor =  primary ? CustomVariables.flatButtonPrimaryFocusRippleColor : 
+                            secondary ? CustomVariables.flatButtonSecondaryFocusRippleColor : 
+                            CustomVariables.flatButtonFocusRippleColor;
+    var touchRippleColor =  primary ? CustomVariables.flatButtonPrimaryRippleColor : 
+                            secondary ? CustomVariables.flatButtonSecondaryRippleColor : 
+                            CustomVariables.flatButtonRippleColor;
 
     return (
       <EnhancedButton {...other}
-        className={classes}
+        style={this._main()}
+        onMouseOver={this._onMouseOver} 
+        onMouseOut={this._onMouseOut} 
         focusRippleColor={focusRippleColor}
-        touchRippleColor={touchRippleColor}>
+        touchRippleColor={touchRippleColor}
+        onKeyboardFocus={this._handleKeyboardFocus}>
         {children}
       </EnhancedButton>
     );
+  },
+
+  _onMouseOver: function(e) {
+    this.setState({hovered: true});
+    if (this.props.onMouseOver) this.props.onMouseOver(e);
+  },
+
+  _onMouseOut: function(e) {
+    this.setState({hovered: false});
+    if (this.props.onMouseOut) this.props.onMouseOut(e);
+  },
+
+  _handleKeyboardFocus: function(keyboardFocused) {
+
+    if (keyboardFocused && !this.props.disabled) {
+      this.getDOMNode().style.backgroundColor = this._getBackgroundColor();
+    } else {
+      this.getDOMNode().style.backgroundColor = 'transparent';
+    }
   }
+
 
 });
 

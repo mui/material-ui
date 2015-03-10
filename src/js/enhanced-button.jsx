@@ -120,6 +120,7 @@ var EnhancedButton = React.createClass({
     this.setState({
       isKeyboardFocused: false
     });
+    this.props.onKeyboardFocus(false);
 
     if (this.props.onBlur) this.props.onBlur(e);
   },
@@ -133,6 +134,7 @@ var EnhancedButton = React.createClass({
         this.setState({
           isKeyboardFocused: true
         });
+        this.props.onKeyboardFocus(true);
       }
     }.bind(this), 150);
     
@@ -144,6 +146,8 @@ var EnhancedButton = React.createClass({
     this.setState({
       isKeyboardFocused: false
     });
+    this.props.onKeyboardFocus(false);
+
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   }
 
