@@ -51,7 +51,6 @@ var CalendarToolbar = React.createClass({
 
         <IconButton
           className="mui-date-picker-calendar-toolbar-button-right"
-          iconClassName="navigation-chevron-right"
           onTouchTap={this.props.onRightTouchTap}>
             <NavigationChevronRight/>
         </IconButton>
