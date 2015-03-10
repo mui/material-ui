@@ -8,6 +8,7 @@ var Paper = React.createClass({
   propTypes: {
     circle: React.PropTypes.bool,
     innerClassName: React.PropTypes.string,
+    innerStyle: React.PropTypes.object,
     rounded: React.PropTypes.bool,
     zDepth: React.PropTypes.oneOf([0,1,2,3,4,5])
   },
@@ -41,7 +42,7 @@ var Paper = React.createClass({
 
     return (
       <div {...other} className={classes}>
-        <div ref="innerContainer" className={insideClasses}>
+        <div ref="innerContainer" className={insideClasses} style={this.props.innerStyle || {}}>
           {this.props.children}
         </div>
       </div>
