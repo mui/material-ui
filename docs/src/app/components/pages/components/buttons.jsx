@@ -144,10 +144,18 @@ var ButtonPage = React.createClass({
           {
             name: 'iconClassName',
             type: 'string',
+            header: 'optional', 
+            desc: 'The icon within the FloatingActionButton is a FontIcon component. This property ' + 
+                  'is the classname of the icon to be displayed inside the button. An alternative ' +
+                  'to adding an iconClassName would be to manually insert a FontIcon component or ' +
+                  'custom SvgIcon component or as a child of FloatingActionButton.'
+          },
+          {
+            name: 'iconStyle',
+            type: 'object',
             header: 'optional',
-            desc: 'This is the classname of the icon to display inside the button. This only applies to ' +
-              'floating action buttons. An alternative to adding an icon would be to insert a custom svg ' + 
-              'component or FontIcon as a child.'
+            desc: 'This is the equivalent to iconClassName except that it is used for overriding ' +
+                  'the inline-styles of the FontIcon component.'
           },
           {
             name: 'linkButton',

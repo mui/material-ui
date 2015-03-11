@@ -20,8 +20,8 @@ var HomePage = React.createClass({
       },
       demoStyle: {
         margin: '16px 32px 0px 32px',
-        minWidth: 0,        
-      }
+        minWidth: 0,
+      },
     }
   },
 

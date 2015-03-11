@@ -9,6 +9,7 @@ var RippleCircle = React.createClass({
 
   propTypes: {
     color: React.PropTypes.string,
+    opacity: React.PropTypes.number,
     started: React.PropTypes.bool,
     ending: React.PropTypes.bool
   },
@@ -34,7 +35,8 @@ var RippleCircle = React.createClass({
       left: 0,
       height: '100%',
       width: '100%',
-      opacity: this.props.ending ? 0 : 0.16,
+      opacity:  this.props.ending ? 0 : 
+                this.props.opacity ? this.props.opacity : 0.16,
       borderRadius: '50%',
       transform: this.props.started ? 'scale(1)' : 'scale(0)',
       backgroundColor: this.props.color,

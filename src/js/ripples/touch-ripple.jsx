@@ -8,7 +8,8 @@ var TouchRipple = React.createClass({
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
-    color: React.PropTypes.string
+    color: React.PropTypes.string,
+    opacity: React.PropTypes.number,
   },
 
   getInitialState: function() {
@@ -171,7 +172,8 @@ var TouchRipple = React.createClass({
           started={ripple.started}
           ending={ripple.ending}
           style={ripple.style}
-          color={this.props.color} />
+          color={this.props.color}
+          opacity={this.props.opacity} />
       );
     }.bind(this));
   }

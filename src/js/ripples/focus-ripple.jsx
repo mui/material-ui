@@ -11,6 +11,7 @@ var FocusRipple = React.createClass({
 
   propTypes: {
     color: React.PropTypes.string,
+    opacity: React.PropTypes.number,
     show: React.PropTypes.bool,
     innerStyle: React.PropTypes.object
   },
@@ -44,7 +45,7 @@ var FocusRipple = React.createClass({
       height: '100%',
       width: '100%',
       borderRadius: '50%',
-      opacity: 0.16,
+      opacity: this.props.opacity ? this.props.opacity : 0.16,
       backgroundColor: this.props.color,
       transition: Transitions.easeOut(pulsateDuration + 'ms', null, null, Transitions.easeInOutFunction)
     }, this.props.innerStyle);

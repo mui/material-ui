@@ -66,7 +66,15 @@ var customVariables = new (function() {
   this.raisedButtonDisabledColor = ColorManipulator.darken(this.raisedButtonColor, 0.1);
   this.raisedButtonDisabledTextColor = ColorManipulator.fade(this.raisedButtonTextColor, 0.3);
 
-  
+  this.floatingActionButtonSize = 56;
+  this.floatingActionButtonMiniSize = 40;
+  this.floatingActionButtonColor = Theme.accent1Color;
+  this.floatingActionButtonIconColor = Colors.white;
+  this.floatingActionButtonSecondaryColor = Theme.primary1Color;
+  this.floatingActionButtonSecondaryIconColor = Colors.white;
+  this.floatingActionButtonDisabledColor = this.raisedButtonDisabledColor;
+  this.floatingActionButtonDisabledTextColor = this.raisedButtonDisabledTextColor;
+
   // date picker
   this.datePickerColor = Theme.primary1Color;
   this.datePickerTextColor = Colors.white;
