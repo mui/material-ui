@@ -107,7 +107,8 @@ var RaisedButton = React.createClass({
     };
 
     if (this.state.hovered && !this.props.disabled) {
-      style.backgroundColor = ColorManipulator.fade(this._label().color, 0.2);
+      var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
+      style.backgroundColor = ColorManipulator.fade(this._label().color, amount);
     }
 
     return style;
@@ -188,10 +189,12 @@ var RaisedButton = React.createClass({
   _handleKeyboardFocus: function(keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
-      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this._label().color, 0.2);
+      var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
+      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this._label().color, amount);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this._label().color, 0.2);    }
+      this.refs.overlay.getDOMNode().style.backgroundColor = 'transparent';
+    }
   },
 });
 
