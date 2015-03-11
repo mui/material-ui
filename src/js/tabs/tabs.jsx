@@ -6,7 +6,8 @@ var InkBar = require('../ink-bar');
 var Tabs = React.createClass({
 
   propTypes: {
-    onActive: React.PropTypes.func
+    onActive: React.PropTypes.func,
+    initialSelectedIndex: React.PropTypes.number
   },
 
   getInitialState: function(){
