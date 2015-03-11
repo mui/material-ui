@@ -18,7 +18,8 @@ var FlatButton = React.createClass({
       }
     },
     primary: React.PropTypes.bool,
-    secondary: React.PropTypes.bool
+    secondary: React.PropTypes.bool,
+    labelStyle: React.PropTypes.object,
   },
 
   getInitialState: function() {
@@ -29,7 +30,7 @@ var FlatButton = React.createClass({
 
   /** Styles */
 
-  _getBackgroundColor: function() {
+  _getHoveredBackgroundColor: function() {
     return  this.props.primary ? CustomVariables.flatButtonPrimaryHoverColor :
             this.props.secondary ? CustomVariables.flatButtonSecondaryHoverColor :
             CustomVariables.flatButtonHoverColor;  
@@ -39,16 +40,12 @@ var FlatButton = React.createClass({
 
     var style = {
       transition: Transitions.easeOut(),
-
       fontSize: Typography.fontStyleButtonFontSize,
       letterSpacing: 0,
       textTransform: 'uppercase',
-
       fontWeight: Typography.fontWeightMedium, 
-
       borderRadius: 2,
       userSelect: 'none',
-
       position: 'relative',
       overflow: 'hidden',
       backgroundColor: CustomVariables.flatButtonColor,
@@ -69,17 +66,17 @@ var FlatButton = React.createClass({
     };
 
     if (this.state.hovered && !this.props.disabled) {
-      style.backgroundColor = this._getBackgroundColor();
+      style.backgroundColor = this._getHoveredBackgroundColor();
     }  
     
-    return style;
+    return this.mergeAndPrefix(style);
   },
 
   _label: function() {
-    return {
+    return this.mergeAndPrefix({
       position: 'relative',
-      padding: '0 ' + CustomVariables.spacing.desktopGutterLess + 'px',
-    };
+      padding: '0px ' + CustomVariables.spacing.desktopGutterLess + 'px',
+    }, this.props.labelStyle);
   },
 
 
@@ -94,10 +91,6 @@ var FlatButton = React.createClass({
         ...other
       } = this.props;
 
-    var children = label ?
-      <span style={this._label()}>{label}</span> :
-      this.props.children;
-
     var focusRippleColor =  primary ? CustomVariables.flatButtonPrimaryFocusRippleColor : 
                             secondary ? CustomVariables.flatButtonSecondaryFocusRippleColor : 
                             CustomVariables.flatButtonFocusRippleColor;
@@ -105,33 +98,39 @@ var FlatButton = React.createClass({
                             secondary ? CustomVariables.flatButtonSecondaryRippleColor : 
                             CustomVariables.flatButtonRippleColor;
 
+    var labelElement;
+
+    if (label) labelElement = <span style={this._label()}>{label}</span>;
+
     return (
       <EnhancedButton {...other}
+        ref="enhancedButton"
         style={this._main()}
-        onMouseOver={this._onMouseOver} 
-        onMouseOut={this._onMouseOut} 
+        onMouseOver={this._handleMouseOver} 
+        onMouseOut={this._handleMouseOut} 
         focusRippleColor={focusRippleColor}
         touchRippleColor={touchRippleColor}
         onKeyboardFocus={this._handleKeyboardFocus}>
-        {children}
+        {labelElement}
+        {this.props.children}
       </EnhancedButton>
     );
   },
 
-  _onMouseOver: function(e) {
-    this.setState({hovered: true});
+  _handleMouseOver: function(e) {
+    if (!this.refs.enhancedButton.isKeyboardFocused()) this.setState({hovered: true});
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
-  _onMouseOut: function(e) {
-    this.setState({hovered: false});
+  _handleMouseOut: function(e) {
+    if (!this.refs.enhancedButton.isKeyboardFocused()) this.setState({hovered: false});
     if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleKeyboardFocus: function(keyboardFocused) {
 
     if (keyboardFocused && !this.props.disabled) {
-      this.getDOMNode().style.backgroundColor = this._getBackgroundColor();
+      this.getDOMNode().style.backgroundColor = this._getHoveredBackgroundColor();
     } else {
       this.getDOMNode().style.backgroundColor = 'transparent';
     }

@@ -38,17 +38,13 @@ var customVariables = new (function() {
   this.checkboxDisabledColor = this.disabledColor;
 
   // buttons
-  this.iconButtonSize = Spacing.iconSize * 2;
-
   this.buttonHeight = 36;
   this.buttonMinWidth = 88;
-
   this.iconButtonSize = Spacing.iconSize * 2;
 
   this.flatButtonColor = Colors.white;
   this.flatButtonHoverColor = ColorManipulator.darken(this.flatButtonColor, 0.1);
   this.flatButtonTextColor = Theme.textColor;
-
   this.flatButtonRippleColor = 'rgba(0,0,0,0.7)';
   this.flatButtonFocusRippleColor = ColorManipulator.fade(this.flatButtonRippleColor, 0.7);
   this.flatButtonPrimaryHoverColor = ColorManipulator.lighten(Theme.accent1Color, 0.32);
@@ -60,6 +56,16 @@ var customVariables = new (function() {
   this.flatButtonSecondaryRippleColor = ColorManipulator.fade(this.flatButtonSecondaryTextColor, 0.8);
   this.flatButtonSecondaryFocusRippleColor = ColorManipulator.fade(this.flatButtonSecondaryRippleColor, 0.8);
   this.flatButtonDisabledTextColor = ColorManipulator.fade(this.flatButtonTextColor, 0.3);
+
+  this.raisedButtonColor = Colors.white;
+  this.raisedButtonTextColor = Theme.textColor;
+  this.raisedButtonPrimaryColor = Theme.accent1Color;
+  this.raisedButtonPrimaryTextColor = Colors.white;
+  this.raisedButtonSecondaryColor = Theme.primary1Color;
+  this.raisedButtonSecondaryTextColor = Colors.white;
+  this.raisedButtonDisabledColor = ColorManipulator.darken(this.raisedButtonColor, 0.1);
+  this.raisedButtonDisabledTextColor = ColorManipulator.fade(this.raisedButtonTextColor, 0.3);
+
   
   // date picker
   this.datePickerColor = Theme.primary1Color;
