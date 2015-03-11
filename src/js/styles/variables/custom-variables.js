@@ -58,21 +58,12 @@ var customVariables = new (function() {
   this.flatButtonDisabledTextColor = ColorManipulator.fade(this.flatButtonTextColor, 0.3);
 
   this.raisedButtonColor = Colors.white;
-  this.raisedButtonHoverColor = ColorManipulator.darken(this.raisedButtonColor, 0.1);
   this.raisedButtonTextColor = Theme.textColor;
-  this.raisedButtonRippleColor = 'rgba(0,0,0,0.7)';
-  this.raisedButtonFocusRippleColor = ColorManipulator.fade(this.raisedButtonRippleColor, 0.7);
   this.raisedButtonPrimaryColor = Theme.accent1Color;
-  this.raisedButtonPrimaryHoverColor = ColorManipulator.darken(Theme.accent1Color, 0.08);
   this.raisedButtonPrimaryTextColor = Colors.white;
-  this.raisedButtonPrimaryRippleColor = Colors.white;//ColorManipulator.fade(Colors.white, 0.9);
-  this.raisedButtonPrimaryFocusRippleColor = this.raisedButtonPrimaryRippleColor;
   this.raisedButtonSecondaryColor = Theme.primary1Color;
-  this.raisedButtonSecondaryHoverColor = ColorManipulator.darken(Theme.primary1Color, 0.1);
   this.raisedButtonSecondaryTextColor = Colors.white;
-  this.raisedButtonSecondaryRippleColor = Colors.white;//ColorManipulator.fade(Colors.white, 0.9);
-  this.raisedButtonSecondaryFocusRippleColor = this.raisedButtonSecondaryRippleColor;
-  this.raisedButtonDisabledColor = this.raisedButtonHoverColor;
+  this.raisedButtonDisabledColor = ColorManipulator.darken(this.raisedButtonColor, 0.1);
   this.raisedButtonDisabledTextColor = ColorManipulator.fade(this.raisedButtonTextColor, 0.3);
 
   this.floatingActionButtonSize = 56;
@@ -90,9 +81,6 @@ var customVariables = new (function() {
   this.floatingActionButtonDisabledColor = this.raisedButtonDisabledColor;
   this.floatingActionButtonDisabledTextColor = this.raisedButtonDisabledTextColor;
 
-
-
-  
   // date picker
   this.datePickerColor = Theme.primary1Color;
   this.datePickerTextColor = Colors.white;

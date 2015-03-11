@@ -3,6 +3,7 @@ var Classable = require('./mixins/classable');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/mixins/transitions');
 var CustomVariables = require('./styles/variables/custom-variables');
+var ColorManipulator = require('./utils/color-manipulator');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
 var Paper = require('./paper');
@@ -47,17 +48,11 @@ var RaisedButton = React.createClass({
 
   /** Styles */
 
-  _getHoveredBackgroundColor: function() {
-    return  this.props.secondary ? CustomVariables.floatingActionButtonSecondaryHoverColor :
-            CustomVariables.floatingActionButtonHoverColor; 
-  },
-
   _getBackgroundColor: function() {
     return  this.props.disabled ? CustomVariables.floatingActionButtonDisabledColor :
             this.props.secondary ? CustomVariables.floatingActionButtonSecondaryColor :
             CustomVariables.floatingActionButtonColor; 
   },
-
 
   _main: function() {
     return this.mergeAndPrefix({
@@ -71,13 +66,26 @@ var RaisedButton = React.createClass({
       lineHeight: CustomVariables.floatingActionButtonSize + 'px',
       fill: CustomVariables.floatingActionButtonIconColor,
       color:  this.props.disabled ? CustomVariables.floatingActionButtonDisabledTextColor :
-        this.props.secondary ? CustomVariables.floatingActionButtonSecondaryIconColor :
-        CustomVariables.floatingActionButtonIconColor,
+              this.props.secondary ? CustomVariables.floatingActionButtonSecondaryIconColor :
+              CustomVariables.floatingActionButtonIconColor,
     };
 
     if (this.props.mini) style.lineHeight = CustomVariables.floatingActionButtonMiniSize + 'px';
 
     return this.mergeAndPrefix(style, this.props.iconStyle); 
+  },
+
+  _overlay: function() {
+    var style = {
+      transition: Transitions.easeOut(),
+      top: 0,
+    };
+
+    if (this.state.hovered && !this.props.disabled) {
+      style.backgroundColor = ColorManipulator.fade(this._icon().color, 0.4);
+    }
+
+    return style;
   },
 
   _container: function() {
@@ -104,9 +112,6 @@ var RaisedButton = React.createClass({
       });
     }
 
-    if (this.state.hovered && !this.props.disabled) 
-        style.backgroundColor = this._getHoveredBackgroundColor(); 
-
     return style;
   },
 
@@ -120,10 +125,7 @@ var RaisedButton = React.createClass({
     var icon;
     if (this.props.iconClassName) icon = <FontIcon className={this.props.iconClassName} style={this._icon()}/>
 
-    var focusRippleColor =  secondary ? CustomVariables.floatingActionButtonSecondaryFocusRippleColor : 
-                            CustomVariables.floatingActionButtonFocusRippleColor;
-    var touchRippleColor =  secondary ? CustomVariables.floatingActionButtonSecondaryRippleColor : 
-                            CustomVariables.floatingActionButtonRippleColor;
+    var rippleColor = this._icon().color;
 
     // TODO: Pass innerStyle prop to Paper when it is created during it's refactoring.
     return (
@@ -142,15 +144,14 @@ var RaisedButton = React.createClass({
           onMouseOver={this._handleMouseOver}
           onTouchStart={this._handleTouchStart}
           onTouchEnd={this._handleTouchEnd}
-          focusRippleColor={focusRippleColor}
-          touchRippleColor={touchRippleColor}
+          focusRippleColor={rippleColor}
+          touchRippleColor={rippleColor}
           onKeyboardFocus={this._handleKeyboardFocus}>
-
-          {icon}
-          {this.props.children}
-
+            <div ref="overlay" style={this._overlay()} >
+              {icon}
+              {this.props.children}
+            </div>
         </EnhancedButton>
-        
       </Paper>
     );
   },
@@ -191,10 +192,10 @@ var RaisedButton = React.createClass({
   _handleKeyboardFocus: function(keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
-      this.refs.container.getDOMNode().style.backgroundColor = this._getHoveredBackgroundColor();
+      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this._icon().color, 0.4);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      this.refs.container.getDOMNode().style.backgroundColor = this._getBackgroundColor();
+      this.refs.overlay.getDOMNode().style.backgroundColor = 'transparent';
     }
   },
 

@@ -10,17 +10,18 @@ var HomePage = React.createClass({
   mixins: [Router.Navigation],
 
   _raisedButton: function() {
-    console.log(Theme);
     return {
       label: {
         color: Theme.primary1Color,
       },
       githubStyle: {
         margin: '16px 32px 0px 8px',
+        minWidth: 0,
       },
       demoStyle: {
         margin: '16px 32px 0px 32px',
-      }
+        minWidth: 0,
+      },
     }
   },
 
