@@ -31,10 +31,13 @@ module.exports = {
     NavigationChevronLeft: require('./js/svg-icons/navigation-chevron-left'),
     NavigationChevronRight: require('./js/svg-icons/navigation-chevron-right')
   },
+  Styles: {
+    Theme: require('./js/styles/theme').get(),
+  },
+  Snackbar: require('./js/snackbar'),
   Tab: require('./js/tabs/tab'),
   Tabs: require('./js/tabs/tabs'),
   Toggle: require('./js/toggle'),
-  Snackbar: require('./js/snackbar'),
   TextField: require('./js/text-field'),
   Toolbar: require('./js/toolbar'),
   ToolbarGroup: require('./js/toolbar-group'),
