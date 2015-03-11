@@ -132,6 +132,7 @@ var RaisedButton = React.createClass({
       <Paper
         style={this._main()}
         innerClassName={this.props.innerClassName}
+        innerStyle={{transition: Transitions.easeOut()}}
         zDepth={this.state.zDepth}
         circle={true}>
 

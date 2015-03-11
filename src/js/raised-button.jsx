@@ -125,26 +125,32 @@ var RaisedButton = React.createClass({
     if (label) labelElement = <span style={this._label()}>{label}</span>;
 
     var rippleColor = this._label().color;
+    var rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
 
     return (
-      <Paper style={this._main()} zDepth={this.state.zDepth}>
-        <EnhancedButton {...other}
-          ref="container"
-          style={this._container()}
-          onMouseUp={this._handleMouseUp}
-          onMouseDown={this._handleMouseDown}
-          onMouseOut={this._handleMouseOut}
-          onMouseOver={this._handleMouseOver}
-          onTouchStart={this._handleTouchStart}
-          onTouchEnd={this._handleTouchEnd}
-          focusRippleColor={rippleColor}
-          touchRippleColor={rippleColor}
-          onKeyboardFocus={this._handleKeyboardFocus}>
-            <div ref="overlay" style={this._overlay()} >
-              {labelElement}
-              {this.props.children}
-            </div>
-        </EnhancedButton>
+      <Paper 
+        style={this._main()} 
+        innerStyle={{transition: Transitions.easeOut()}}
+        zDepth={this.state.zDepth}>
+          <EnhancedButton {...other}
+            ref="container"
+            style={this._container()}
+            onMouseUp={this._handleMouseUp}
+            onMouseDown={this._handleMouseDown}
+            onMouseOut={this._handleMouseOut}
+            onMouseOver={this._handleMouseOver}
+            onTouchStart={this._handleTouchStart}
+            onTouchEnd={this._handleTouchEnd}
+            focusRippleColor={rippleColor}
+            touchRippleColor={rippleColor}
+            focusRippleOpacity={rippleOpacity}
+            touchRippleOpacity={rippleOpacity}
+            onKeyboardFocus={this._handleKeyboardFocus}>
+              <div ref="overlay" style={this._overlay()} >
+                {labelElement}
+                {this.props.children}
+              </div>
+          </EnhancedButton>
       </Paper>
     );
   },
