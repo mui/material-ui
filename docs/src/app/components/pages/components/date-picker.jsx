@@ -69,7 +69,7 @@ var DatePickerPage = React.createClass({
 
         <DatePicker
           hintText="Landscape Dialog"
-          mode="landscape"/>
+          mode="landscape" />
 
       </ComponentDoc>
     );
