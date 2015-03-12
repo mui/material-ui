@@ -3,19 +3,14 @@ var React = require('react'),
   Classable = require('./mixins/classable'),
   WindowListenable = require('./mixins/window-listenable'),
   Overlay = require('./overlay'),
-  Paper = require('./paper'),
-  Menu = require('./menu');
+  Paper = require('./paper');
 
 var LeftNav = React.createClass({
 
   mixins: [Classable, WindowListenable],
 
   propTypes: {
-    docked: React.PropTypes.bool,
-    header: React.PropTypes.element,
-    onChange: React.PropTypes.func,
-    menuItems: React.PropTypes.array.isRequired,
-    selectedIndex: React.PropTypes.number
+    docked: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -59,33 +54,19 @@ var LeftNav = React.createClass({
     if (!this.props.docked) overlay = <Overlay show={this.state.open} onTouchTap={this._onOverlayTouchTap} />;
 
     return (
-      <div className={classes}>
+      React.createElement("div", {className: classes},
 
-        {overlay}
-        <Paper
-          ref="clickAwayableElement"
-          className="mui-left-nav-menu"
-          zDepth={2}
-          rounded={false}>
-          
-          {this.props.header}
-          <Menu 
-            ref="menuItems"
-            zDepth={0}
-            menuItems={this.props.menuItems}
-            selectedIndex={selectedIndex}
-            onItemClick={this._onMenuItemClick} />
+        overlay,
+        React.createElement(Paper, {
+            ref: "clickAwayableElement",
+            className: "mui-left-nav-menu",
+            zDepth: 2,
+            rounded: false},
 
-        </Paper>
-      </div>
+          this.props.children
+        )
+      )
     );
-  },
-
-  _onMenuItemClick: function(e, key, payload) {
-    if (!this.props.docked) this.close();
-    if (this.props.onChange && this.props.selectedIndex !== key) {
-      this.props.onChange(e, key, payload);
-    }
   },
 
   _onOverlayTouchTap: function() {
