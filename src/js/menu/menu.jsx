@@ -206,7 +206,6 @@ var Menu = React.createClass({
           break;
 
         case MenuItem.Types.NESTED:
-          console.log(menuItem.items);
           itemComponent = (
             <NestedMenuItem
               ref={i}
