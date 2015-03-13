@@ -107,7 +107,8 @@ var IconButton = React.createClass({
         onBlur={this._handleBlur}
         onFocus={this._handleFocus}
         onMouseOut={this._handleMouseOut}
-        onMouseOver={this._handleMouseOver}>
+        onMouseOver={this._handleMouseOver}
+        onKeyboardFocus={this._handleKeyboardFocus}>
 
         {tooltip}
         {fonticon}
@@ -151,6 +152,16 @@ var IconButton = React.createClass({
   _handleMouseOver: function(e) {
     this._showTooltip();
     if (this.props.onMouseOver) this.props.onMouseOver(e);
+  },
+
+  _handleKeyboardFocus: function(keyboardFocused) {
+    if (keyboardFocused && !this.props.disabled) {
+      this._showTooltip();
+      if (this.props.onFocus) this.props.onFocus(e);
+    } else if (!this.state.hovered) {
+      this._hideTooltip();
+      if (this.props.onBlur) this.props.onBlur(e);
+    }
   }
 
 });
