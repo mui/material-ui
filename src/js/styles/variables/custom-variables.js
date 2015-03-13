@@ -43,18 +43,9 @@ var customVariables = new (function() {
   this.iconButtonSize = Spacing.iconSize * 2;
 
   this.flatButtonColor = Colors.white;
-  this.flatButtonHoverColor = ColorManipulator.darken(this.flatButtonColor, 0.1);
   this.flatButtonTextColor = Theme.textColor;
-  this.flatButtonRippleColor = 'rgba(0,0,0,0.7)';
-  this.flatButtonFocusRippleColor = ColorManipulator.fade(this.flatButtonRippleColor, 0.7);
-  this.flatButtonPrimaryHoverColor = ColorManipulator.lighten(Theme.accent1Color, 0.32);
   this.flatButtonPrimaryTextColor = Theme.accent1Color;
-  this.flatButtonPrimaryRippleColor = ColorManipulator.fade(this.flatButtonPrimaryTextColor, 0.8);
-  this.flatButtonPrimaryFocusRippleColor = ColorManipulator.fade(this.flatButtonPrimaryRippleColor, 0.8);
-  this.flatButtonSecondaryHoverColor = ColorManipulator.lighten(Theme.primary1Color, 0.52);
   this.flatButtonSecondaryTextColor = Theme.primary1Color;
-  this.flatButtonSecondaryRippleColor = ColorManipulator.fade(this.flatButtonSecondaryTextColor, 0.8);
-  this.flatButtonSecondaryFocusRippleColor = ColorManipulator.fade(this.flatButtonSecondaryRippleColor, 0.8);
   this.flatButtonDisabledTextColor = ColorManipulator.fade(this.flatButtonTextColor, 0.3);
 
   this.raisedButtonColor = Colors.white;
