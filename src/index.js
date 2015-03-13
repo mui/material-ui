@@ -14,8 +14,8 @@ module.exports = {
   IconButton: require('./js/icon-button'),
   Input: require('./js/input'),
   LeftNav: require('./js/left-nav'),
-  MenuItem: require('./js/menu-item'),
-  Menu: require('./js/menu'),
+  Menu: require('./js/menu/menu'),
+  MenuItem: require('./js/menu/menu-item'),
   Mixins: {
     Classable: require('./js/mixins/classable'),
     ClickAwayable: require('./js/mixins/click-awayable'),

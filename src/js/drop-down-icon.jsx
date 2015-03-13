@@ -4,8 +4,7 @@ var ClickAwayable = require('./mixins/click-awayable');
 var KeyLine = require('./utils/key-line');
 var Paper = require('./paper');
 var FontIcon = require('./font-icon');
-var Menu = require('./menu');
-var MenuItem = require('./menu-item');
+var Menu = require('./menu/menu');
 
 var DropDownIcon = React.createClass({
 

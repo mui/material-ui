@@ -297,11 +297,14 @@ input[type="submit"] {
 
 /**
  * Re-set default cursor for disabled elements.
+ *
+ * Input types do not display default cursor if element contains styling
+ * that overrides cursor.
  */
 
 button[disabled],
 html input[disabled] {
-  cursor: default;
+  cursor: default !important;
 }
 
 /**

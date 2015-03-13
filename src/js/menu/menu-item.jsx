@@ -1,7 +1,7 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
-var FontIcon = require('./font-icon');
-var Toggle = require('./toggle');
+var Classable = require('../mixins/classable');
+var FontIcon = require('../font-icon');
+var Toggle = require('../toggle');
 
 var Types = {
   LINK: 'LINK',
@@ -21,25 +21,28 @@ var MenuItem = React.createClass({
     number: React.PropTypes.string,
     data: React.PropTypes.string,
     toggle: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     onTouchTap: React.PropTypes.func,
     onClick: React.PropTypes.func,
     onToggle: React.PropTypes.func,
     selected: React.PropTypes.bool
   },
-
+  
   statics: {
     Types: Types
   },
 
   getDefaultProps: function() {
     return {
-      toggle: false
+      toggle: false,
+      disabled: false
     };
   },
 
   render: function() {
     var classes = this.getClasses('mui-menu-item', {
-      'mui-is-selected': this.props.selected
+      'mui-is-selected': this.props.selected,
+      'mui-is-disabled': this.props.disabled
     });
     var icon;
     var data;
@@ -86,15 +89,15 @@ var MenuItem = React.createClass({
   },
 
   _handleTouchTap: function(e) {
-    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
+    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
   },
 
   _handleOnClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.index);
+    if (!this.props.disabled && this.props.onClick) this.props.onClick(e, this.props.index);
   },
 
   _handleToggle: function(e, toggled) {
-    if (this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
+    if (!this.props.disabled && this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
   }
 
 });
