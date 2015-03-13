@@ -93,7 +93,6 @@ var MenuItem = React.createClass({
   },
 
   _handleOnClick: function(e) {
-    console.log('inside menu-item click: ' + this.props.disabled);
     if (!this.props.disabled && this.props.onClick) this.props.onClick(e, this.props.index);
   },
 
