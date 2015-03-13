@@ -2,8 +2,8 @@ var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/mixins/transitions');
 var CustomVariables = require('./styles/variables/custom-variables');
+var ColorManipulator = require('./utils/color-manipulator');
 var Typography = require('./styles/core/typography');
-var Theme = require('./styles/theme');
 var EnhancedButton = require('./enhanced-button');
 
 var FlatButton = React.createClass({
@@ -22,6 +22,12 @@ var FlatButton = React.createClass({
     labelStyle: React.PropTypes.object,
   },
 
+  getDefaultProps: function() {
+    return {
+      labelStyle: {},
+    }
+  },
+
   getInitialState: function() {
     return {
       hovered: false,
@@ -29,12 +35,6 @@ var FlatButton = React.createClass({
   },
 
   /** Styles */
-
-  _getHoveredBackgroundColor: function() {
-    return  this.props.primary ? CustomVariables.flatButtonPrimaryHoverColor :
-            this.props.secondary ? CustomVariables.flatButtonSecondaryHoverColor :
-            CustomVariables.flatButtonHoverColor;  
-  },
 
   _main: function() {
 
@@ -49,7 +49,6 @@ var FlatButton = React.createClass({
       position: 'relative',
       overflow: 'hidden',
       backgroundColor: CustomVariables.flatButtonColor,
-      color: CustomVariables.flatButtonTextColor,
       lineHeight: CustomVariables.buttonHeight + 'px',
       minWidth: CustomVariables.buttonMinWidth,
       padding: 0, 
@@ -62,11 +61,11 @@ var FlatButton = React.createClass({
       color:  this.props.disabled ? CustomVariables.flatButtonDisabledTextColor :
               this.props.primary ? CustomVariables.flatButtonPrimaryTextColor :
               this.props.secondary ? CustomVariables.flatButtonSecondaryTextColor :
-              Theme.textColor,
+              CustomVariables.flatButtonTextColor,
     };
 
     if (this.state.hovered && !this.props.disabled) {
-      style.backgroundColor = this._getHoveredBackgroundColor();
+      style.backgroundColor = ColorManipulator.fade(ColorManipulator.lighten(style.color, 0.4), 0.15);
     }  
     
     return this.mergeAndPrefix(style);
@@ -91,16 +90,10 @@ var FlatButton = React.createClass({
         ...other
       } = this.props;
 
-    var focusRippleColor =  primary ? CustomVariables.flatButtonPrimaryFocusRippleColor : 
-                            secondary ? CustomVariables.flatButtonSecondaryFocusRippleColor : 
-                            CustomVariables.flatButtonFocusRippleColor;
-    var touchRippleColor =  primary ? CustomVariables.flatButtonPrimaryRippleColor : 
-                            secondary ? CustomVariables.flatButtonSecondaryRippleColor : 
-                            CustomVariables.flatButtonRippleColor;
-
     var labelElement;
-
     if (label) labelElement = <span style={this._label()}>{label}</span>;
+    
+    var rippleColor = ColorManipulator.fade(this._main().color, 0.8);
 
     return (
       <EnhancedButton {...other}
@@ -108,8 +101,8 @@ var FlatButton = React.createClass({
         style={this._main()}
         onMouseOver={this._handleMouseOver} 
         onMouseOut={this._handleMouseOut} 
-        focusRippleColor={focusRippleColor}
-        touchRippleColor={touchRippleColor}
+        focusRippleColor={rippleColor}
+        touchRippleColor={rippleColor}
         onKeyboardFocus={this._handleKeyboardFocus}>
         {labelElement}
         {this.props.children}
@@ -130,7 +123,7 @@ var FlatButton = React.createClass({
   _handleKeyboardFocus: function(keyboardFocused) {
 
     if (keyboardFocused && !this.props.disabled) {
-      this.getDOMNode().style.backgroundColor = this._getHoveredBackgroundColor();
+      this.getDOMNode().style.backgroundColor = ColorManipulator.fade(ColorManipulator.lighten(this._main().color, 0.4), 0.15);
     } else {
       this.getDOMNode().style.backgroundColor = 'transparent';
     }
