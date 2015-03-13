@@ -1,13 +1,13 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
 var WindowListenable = require('./mixins/window-listenable');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 
 var EnhancedButton = React.createClass({
 
-  mixins: [Classable, WindowListenable],
+  mixins: [StylePropable, WindowListenable],
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
@@ -36,6 +36,25 @@ var EnhancedButton = React.createClass({
     };
   },
 
+  /** Styles */
+  _main: function() {
+    var style = {
+      border: 0,
+      background: 'none',
+    };
+
+    if (this.props.linkButton) {
+      style = this.mergeAndPrefix({
+        display: 'inline-block',
+        cursor: (this.props.disabled) ? 'default' : 'pointer',
+        textDecoration: 'none',
+      }, style);
+    }
+
+    return this.mergeAndPrefix(style);
+  },
+
+
   render: function() {
     var {
       centerRipple,
@@ -46,13 +65,10 @@ var EnhancedButton = React.createClass({
       touchRippleColor,
       onBlur,
       onFocus,
+      onMouseOver,
       onTouchTap,
       ...other } = this.props;
-    var classes = this.getClasses('mui-enhanced-button', {
-      'mui-is-disabled': disabled,
-      'mui-is-keyboard-focused': this.state.isKeyboardFocused,
-      'mui-is-link-button': linkButton
-    });
+
     var touchRipple = (
       <TouchRipple
         ref="touchRipple"
@@ -71,10 +87,11 @@ var EnhancedButton = React.createClass({
         show={this.state.isKeyboardFocused} />
     );
     var buttonProps = {
-      className: classes,
+      style: this._main(),
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
+      onMouseOver: this._handleMouseOver,
       onTouchTap: this._handleTouchTap
     };
     var buttonChildren = [
@@ -85,7 +102,7 @@ var EnhancedButton = React.createClass({
     if (disabled && linkButton) {
       return (
         <span {...other} 
-          className={classes} 
+          className={this.props.className} 
           disabled={disabled}>
           {this.props.children}
         </span>
@@ -130,6 +147,7 @@ var EnhancedButton = React.createClass({
   },
 
   _handleFocus: function(e) {
+    this.getDOMNode().style.outline = 'none';
     //setTimeout is needed becuase the focus event fires first
     //Wait so that we can capture if this was a keyboard focus
     //or touch focus
@@ -143,6 +161,11 @@ var EnhancedButton = React.createClass({
     }.bind(this), 150);
     
     if (this.props.onFocus) this.props.onFocus(e);
+  },
+
+  _handleMouseOver: function(e) {
+    this.getDOMNode().style.textDecoration = 'none';
+    if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
   _handleTouchTap: function(e) {
