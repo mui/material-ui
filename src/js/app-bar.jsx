@@ -77,7 +77,7 @@ var AppBar = React.createClass({
           </div>
         );
       } else {
-        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu/>;
+        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this._iconButton().iconStyle}/>;
         menuElementLeft = (
           <IconButton
             style={this._iconButton().style}
