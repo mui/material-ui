@@ -25,9 +25,6 @@ var TextField = React.createClass({
     onKeyDown: React.PropTypes.func,
     onEnterKeyDown: React.PropTypes.func,
     type: React.PropTypes.string,
-
-    focusUnderlineStyle: React.PropTypes.object,
-    underlineStyle: React.PropTypes.object,
   },
 
   getDefaultProps: function() {
@@ -149,12 +146,12 @@ var TextField = React.createClass({
   },
 
   _underline: function() {
-    return this.mergeAndPrefix({
+    return {
       position: 'absolute',
       width: '100%',
       bottom: 8,
       margin: 0,
-    }, this.props.underlineStyle);
+    };
   },
 
   //hack because border style dotted just doesn't look right
@@ -180,7 +177,7 @@ var TextField = React.createClass({
     if (this.props.errorText) style.borderColor = this.errorColor;
     if (this.props.errorText || this.state.isFocused) style.transform = 'scaleX(1)';
 
-    return this.mergeAndPrefix(style, this.props.focusUnderlineStyle);
+    return style;
   },
 
   render: function() {
