@@ -1,8 +1,8 @@
 var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var CustomVariables = require('./styles/variables/custom-variables');
-var FontIcon = require('./font-icon');
-var Toggle = require('./toggle');
+var StylePropable = require('../mixins/style-propable');
+var CustomVariables = require('../styles/variables/custom-variables');
+var FontIcon = require('../font-icon');
+var Toggle = require('../toggle');
 
 var Types = {
   LINK: 'LINK',
@@ -24,19 +24,21 @@ var MenuItem = React.createClass({
     number: React.PropTypes.string,
     data: React.PropTypes.string,
     toggle: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     onTouchTap: React.PropTypes.func,
     onClick: React.PropTypes.func,
     onToggle: React.PropTypes.func,
     selected: React.PropTypes.bool
   },
-
+  
   statics: {
     Types: Types
   },
 
   getDefaultProps: function() {
     return {
-      toggle: false
+      toggle: false,
+      disabled: false
     };
   },
 
@@ -163,25 +165,25 @@ var MenuItem = React.createClass({
   },
 
   _handleTouchTap: function(e) {
-    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
+    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
   },
 
   _handleOnClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.index);
+    if (!this.props.disabled && this.props.onClick) this.props.onClick(e, this.props.index);
   },
 
   _handleToggle: function(e, toggled) {
-    if (this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
+    if (!this.props.disabled && this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
   },
 
   _handleMouseOver: function(e) {
     this.setState({hovered: true});
-    if (this.props.onMouseOver) this.props.onMouseOver(e);
+    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
   _handleMouseOut: function(e) {
     this.setState({hovered: false});
-    if (this.props.onMouseOut) this.props.onMouseOut(e);
+    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e);
   }
 
 });

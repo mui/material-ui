@@ -1,0 +1,69 @@
+.mui-menu-item {
+
+  * { user-select: none }
+  
+  cursor: pointer;
+  line-height: @menu-item-height;
+  padding-left: @menu-item-padding;
+  padding-right: @menu-item-padding;
+  background-color: fade(@menu-item-hover-color, 0%);
+
+  &:hover {
+    &:not(.mui-is-disabled) {
+      background-color: @menu-item-hover-color;
+    }
+  }
+
+  .mui-menu-item-number {
+    float: right;
+    width: 24px;
+    text-align: center;
+  }
+
+  .mui-menu-item-attribute {
+    float: right;
+  }
+
+  .mui-menu-item-icon-right {
+    line-height: @menu-item-height;
+    float: right;
+  }
+
+  .mui-menu-item-icon {
+    float: left;
+    line-height: @menu-item-height;
+    margin-right: @desktop-gutter;
+  }
+
+  .mui-menu-item-data {
+    display: block;
+    padding-left: (@desktop-gutter * 2);
+    line-height: @menu-item-data-height;
+    height: @menu-item-data-height;
+    vertical-align: top;
+    top: -12px;
+    position: relative;
+    .mui-font-weight-light;
+  }
+
+  .muidocs-icon-custom-arrow-drop-right {
+    margin-right: (@desktop-gutter-mini * -1);
+    color: @drop-down-menu-icon-color;
+  }
+
+  .mui-toggle {
+    margin-top: ((@menu-item-height - @radio-button-size) / 2);
+    float: right;
+    width: 42px;
+  }
+
+  &.mui-is-selected {
+    color: @menu-item-selected-text-color;
+  }
+    
+  &.mui-is-disabled {
+    color: @disabled-color !important;
+    cursor: default;
+  }
+
+}

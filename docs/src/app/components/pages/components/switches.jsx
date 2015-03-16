@@ -22,7 +22,7 @@ var SwitchesPage = React.createClass({
       '  name="checkboxName2"\n' +
       '  value="checkboxValue2"\n' + 
       '  label="fed the dog"\n' +
-      '  defaultChecked={true} />\n' +
+      '  defaultSwitched={true} />\n' +
       '<Checkbox\n' +
       '  name="checkboxName3"\n' +
       '  value="checkboxValue3"\n' + 

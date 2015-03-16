@@ -13,7 +13,9 @@ var DatePickerDialog = React.createClass({
 
   propTypes: {
     initialDate: React.PropTypes.object,
-    onAccept: React.PropTypes.func
+    onAccept: React.PropTypes.func,
+    onShow: React.PropTypes.func,
+    onDismiss: React.PropTypes.func,
   },
 
   windowListeners: {
@@ -99,12 +101,20 @@ var DatePickerDialog = React.createClass({
     this.setState({
       isCalendarActive: true
     });
+
+    if(this.props.onShow) {
+      this.props.onShow();
+    }
   },
 
   _handleDialogDismiss: function() {
     this.setState({
       isCalendarActive: false
     });
+
+    if(this.props.onDismiss) {
+      this.props.onDismiss();
+    }
   },
 
   _handleWindowKeyUp: function(e) {

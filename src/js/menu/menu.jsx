@@ -1,18 +1,20 @@
 var React = require('react');
-var CssEvent = require('./utils/css-event');
-var Dom = require('./utils/dom');
-var KeyLine = require('./utils/key-line');
-var Classable = require('./mixins/classable');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
-var ClickAwayable = require('./mixins/click-awayable');
-var Paper = require('./paper');
+var CssEvent = require('../utils/css-event');
+var Dom = require('../utils/dom');
+var KeyLine = require('../utils/key-line');
+var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
+var Transitions = require('../styles/mixins/transitions');
+var CustomVariables = require('../styles/variables/custom-variables');
+var ClickAwayable = require('../mixins/click-awayable');
+var Paper = require('../paper');
 var MenuItem = require('./menu-item');
+var LinkMenuItem = require('./link-menu-item');
+var SubheaderMenuItem = require('./subheader-menu-item');
 
 /***********************
- * Nested Menu Component
- ***********************/
+* Nested Menu Component
+***********************/
 var NestedMenuItem = React.createClass({
 
   mixins: [Classable, ClickAwayable, StylePropable],
@@ -23,8 +25,15 @@ var NestedMenuItem = React.createClass({
     menuItems: React.PropTypes.array.isRequired,
     menuItemStyle: React.PropTypes.object,
     zDepth: React.PropTypes.number,
+    disabled: React.PropTypes.bool,
     onItemClick: React.PropTypes.func,
     onItemTap: React.PropTypes.func
+  },
+  
+  getDefaultProps: function() {
+    return {
+      disabled: false
+    };
   },
 
   getInitialState: function() {
@@ -82,24 +91,25 @@ var NestedMenuItem = React.createClass({
   },
 
   _onParentItemClick: function() {
-    this.setState({ open: !this.state.open });
+    if (!this.props.disabled) this.setState({ open: !this.state.open });
   },
 
   _onMenuItemClick: function(e, index, menuItem) {
-    this.setState({ open: false });
     if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
+    this.setState({ open: false });
   },
   
   _onMenuItemTap: function(e, index, menuItem) {
-    this.setState({ open: false });
     if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
+    this.setState({ open: false });
   }
 
 });
 
+
 /****************
- * Menu Component
- ****************/
+* Menu Component
+****************/
 var Menu = React.createClass({
 
   mixins: [Classable, StylePropable],
@@ -199,7 +209,8 @@ var Menu = React.createClass({
     var children = [],
       menuItem,
       itemComponent,
-      isSelected;
+      isSelected,
+      isDisabled;
 
     //This array is used to keep track of all nested menu refs
     this._nestedChildren = [];
@@ -207,6 +218,7 @@ var Menu = React.createClass({
     for (var i=0; i < this.props.menuItems.length; i++) {
       menuItem = this.props.menuItems[i];
       isSelected = i === this.props.selectedIndex;
+      isDisabled = (menuItem.disabled === undefined) ? false : menuItem.disabled;
 
       var {
         icon,
@@ -222,13 +234,22 @@ var Menu = React.createClass({
 
         case MenuItem.Types.LINK:
           itemComponent = (
-            <a key={i} index={i} className="mui-menu-item" href={menuItem.payload} target={menuItem.target}>{menuItem.text}</a>
+            <LinkMenuItem 
+              key={i}
+              index={i}
+              payload={menuItem.payload}
+              target={menuItem.target}
+              text={menuItem.text}
+              disabled={isDisabled} />
           );
-        break;
+          break;
 
         case MenuItem.Types.SUBHEADER:
           itemComponent = (
-            <div key={i} index={i} style={this._subheader()}>{menuItem.text}</div>
+            <SubheaderMenuItem 
+              key={i}
+              index={i}
+              text={menuItem.text} />
           );
           break;
 
@@ -239,6 +260,7 @@ var Menu = React.createClass({
               key={i}
               index={i}
               text={menuItem.text}
+              disabled={isDisabled}
               menuItems={menuItem.items}
               menuItemStyle={this.props.menuItemStyle}
               zDepth={this.props.zDepth}
@@ -261,6 +283,7 @@ var Menu = React.createClass({
               attribute={menuItem.attribute}
               number={menuItem.number}
               toggle={menuItem.toggle}
+              disabled={isDisabled}
               onClick={this._onItemClick}
               onTouchTap={this._onItemTap}>
               {menuItem.text}

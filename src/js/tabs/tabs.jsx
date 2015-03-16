@@ -12,13 +12,18 @@ var Tabs = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
+    initialSelectedIndex: React.PropTypes.number,
     onActive: React.PropTypes.func,
     tabWidth: React.PropTypes.number
   },
 
   getInitialState: function(){
+    var selectedIndex = 0;
+    if (this.props.initialSelectedIndex && this.props.initialSelectedIndex < this.props.children.length) {
+      selectedIndex = this.props.initialSelectedIndex;
+    }
     return {
-      selectedIndex: 0,
+      selectedIndex: selectedIndex,
       fixed: true,
       width: this.props.tabWidth || (100/this.props.children.length) + '%'
     };

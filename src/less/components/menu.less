@@ -1,0 +1,50 @@
+.mui-menu {
+
+  * { .ease-out; }
+
+  background-color: @menu-background-color;
+
+  &.mui-menu-hideable {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+
+    .mui-paper-container {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    &.mui-visible {
+      & > .mui-paper-container {
+        padding-top: @desktop-gutter-mini;
+        padding-bottom: @desktop-gutter-mini;
+      }
+    }
+  }
+
+  .mui-paper-container {
+    padding-top: @desktop-gutter-mini;
+    padding-bottom: @desktop-gutter-mini;
+  }
+
+  .mui-subheader {
+    padding-left: @menu-subheader-padding;
+    padding-right: @menu-subheader-padding;
+  }
+
+  .mui-nested-menu-item {
+    position: relative;
+      
+    &.mui-is-disabled {
+        color: @disabled-color;
+        cursor: default;
+    }
+
+    &.mui-open {
+      & > .mui-menu {
+        opacity: 1;
+      }
+    }
+  }
+}
