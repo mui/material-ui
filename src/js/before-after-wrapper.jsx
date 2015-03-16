@@ -56,14 +56,6 @@ var BeforeAfterWrapper = React.createClass({
     }
   },
 
-  /** Styles */
-  _main: function() {
-    return this.mergeAndPrefix({
-      width: '100%',
-      height: '100%',
-    });
-  },
-
   render: function() {
 
     var {
@@ -87,7 +79,7 @@ var BeforeAfterWrapper = React.createClass({
     var children = [beforeElement, this.props.children, afterElement];
 
     var props = other;
-    props.style = this._main();
+    props.style = this.props.style;
 
     return React.createElement(this.props.elementType, props, children);
   }

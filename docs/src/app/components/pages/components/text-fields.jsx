@@ -20,6 +20,12 @@ var TextFieldsPage = React.createClass({
     };
   },
 
+  _textfieldStyle: function() {
+    return {
+      marginTop: 24,
+    };
+  },
+
   render: function() {
 
     var code =
@@ -176,35 +182,44 @@ var TextFieldsPage = React.createClass({
         componentInfo={componentInfo}>
 
         <div className="text-field-example">
-          <div className="text-field-example-group text-field-example-single-line">
+          <div className="text-field-example-group">
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text" /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               defaultValue="Default Value" /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               value={this.state.propValue}
               onChange={this._handleInputChange} /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               valueLink={this.linkState('valueLinkValue')} /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text (MultiLine)"
               multiLine={true} /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               errorText={this.state.errorText}
               onChange={this._handleErrorInputChange} /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               errorText={this.state.error2Text}
               onChange={this._handleError2InputChange}
               defaultValue="abc" /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Disabled Hint Text"
               disabled={true} /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Disabled Hint Text"
               disabled={true}
               defaultValue="Disabled With Value" /><br/>
@@ -212,41 +227,50 @@ var TextFieldsPage = React.createClass({
 
           <div className="text-field-example-group">
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               floatingLabelText="Floating Label Text" /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               defaultValue="Default Value"
               floatingLabelText="Floating Label Text" /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               floatingLabelText="Floating Label Text"
               value={this.state.floatingPropValue}
               onChange={this._handleFloatingInputChange} /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               floatingLabelText="Floating Label Text"
               valueLink={this.linkState('floatingValueLinkValue')} /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text (MultiLine)"
               floatingLabelText="Floating Label Text"
               multiLine={true} /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               errorText={this.state.floatingErrorText}
               floatingLabelText="Floating Label Text"
               onChange={this._handleFloatingErrorInputChange} /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Hint Text"
               errorText={this.state.floatingError2Text}
               defaultValue="abc"
               floatingLabelText="Floating Label Text"
               onChange={this._handleFloating2ErrorInputChange} /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Disabled Hint Text"
               disabled={true}
               floatingLabelText="Floating Label Text" /><br/>
             <TextField
+              style={this._textfieldStyle()}
               hintText="Disabled Hint Text"
               disabled={true}
               defaultValue="Disabled With Value"
