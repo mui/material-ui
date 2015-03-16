@@ -46,8 +46,8 @@ var RaisedButton = React.createClass({
       secondary,
       ...other } = this.props;
     var classes = this.getClasses('mui-raised-button', {
-      'mui-is-primary': primary,
-      'mui-is-secondary': !primary && secondary
+      'mui-is-primary': !this.props.disabled && primary,
+      'mui-is-secondary': !this.props.disabled && !primary && secondary
     });
     var children;
 
