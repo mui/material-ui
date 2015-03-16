@@ -1,5 +1,4 @@
 var React = require('react');
-var BeforeAfterWrapper = require('./before-after-wrapper');
 var ColorManipulator = require('./utils/color-manipulator');
 var Colors = require('./styles/colors');
 var Theme = require('./styles/theme').get();
