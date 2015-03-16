@@ -9,6 +9,7 @@ var EnhancedTextarea = React.createClass({
   propTypes: {
     onChange: React.PropTypes.func,
     onHeightChange: React.PropTypes.func,
+    textareaStyle: React.PropTypes.object,
     rows: React.PropTypes.number
   },
 
@@ -35,16 +36,17 @@ var EnhancedTextarea = React.createClass({
       onHeightChange,
       rows,
       style,
+      textareaStyle,
       valueLink,
       ...other,
     } = this.props;
 
-    var inputStyles = {
+    var inputStyles = this.mergeAndPrefix({
       height: this.state.height + 'px',
       width: '100%',
       resize: 'none',
       overflow: 'hidden'
-    };
+    }, textareaStyle);
 
     var shadowStyles = {
       position: 'absolute',
