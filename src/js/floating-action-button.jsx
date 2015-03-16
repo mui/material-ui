@@ -59,7 +59,7 @@ var RaisedButton = React.createClass({
       ...other } = this.props;
     var classes = this.getClasses('mui-floating-action-button', {
       'mui-is-mini': mini,
-      'mui-is-secondary': secondary
+      'mui-is-secondary': !this.props.disabled && secondary
     });
 
     var icon;
