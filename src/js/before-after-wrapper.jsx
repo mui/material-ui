@@ -77,7 +77,7 @@ var BeforeAfterWrapper = React.createClass({
                           {style: AutoPrefix.all(this.props.afterStyle), key: "::after"});
 
     var children = [beforeElement, this.props.children, afterElement];
-
+    
     var props = other;
     props.style = this.props.style;
 
