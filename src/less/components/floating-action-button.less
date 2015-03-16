@@ -6,10 +6,10 @@
 
   .mui-floating-action-button-container {
     position: relative;
-    height: @floating-action-button-size;
-    width: @floating-action-button-size;
+    .mui-px-fallback(height, @floating-action-button-size);
+    .mui-px-fallback(width, @floating-action-button-size);
     padding: 0;
-    overflow: hidden; 
+    overflow: hidden;
     background-color: @floating-action-button-color;
     border-radius: 50%;
 
@@ -37,7 +37,7 @@
   }
 
   .mui-floating-action-button-icon {
-    line-height: @floating-action-button-size;
+    .mui-px-fallback(line-height, @floating-action-button-size);
     color: @floating-action-button-icon-color;
     fill: @floating-action-button-icon-color;
   }
@@ -56,12 +56,12 @@
 
   &.mui-is-mini {
     .mui-floating-action-button-container {
-      height: @floating-action-button-mini-size;
-      width: @floating-action-button-mini-size;
+      .mui-px-fallback(height, @floating-action-button-mini-size);
+      .mui-px-fallback(width, @floating-action-button-mini-size);
     }
 
     .mui-floating-action-button-icon {
-      line-height: @floating-action-button-mini-size;
+      .mui-px-fallback(line-height, @floating-action-button-mini-size);
     }
   }
 

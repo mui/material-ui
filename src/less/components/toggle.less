@@ -1,42 +1,42 @@
 .mui-toggle {
-  @mui-switch-width: 60px;
-  
+  @mui-switch-width: 6rem;
+
   .mui-toggle-icon {
-    @toggle-track-width: 36px;
+    @toggle-track-width: 3.6rem;
     @toggle-padding-right: calc(@mui-switch-width - @toggle-track-width);
 
-    padding: 4px 0px 6px 2px;
-    margin-right: @desktop-gutter-mini;
+    .mui-px-fallback-padding(0.4rem, 0rem, 0.6rem 0.2rem);
+    .mui-px-fallback(margin-right, @desktop-gutter-mini);
 
     .mui-toggle-track {
       .ease-out;
-      width: @toggle-track-width;
-      height: 14px;
-      border-radius: 30px;
+      .mui-px-fallback(width, @toggle-track-width);
+      .mui-px-fallback(height, 1.4rem);
+      .mui-px-fallback(border-radius, 3rem);
       background-color: @toggle-track-off-color;
     }
 
     .mui-toggle-thumb {
       .ease-out;
       position: absolute;
-      top: 1px;
-      left: 2px;
-      width: @toggle-size;
-      height: @toggle-size;
-      line-height: 24px;
+      .mui-px-fallback(top, 0.1rem);
+      .mui-px-fallback(left, 0.2rem);
+      .mui-px-fallback(width, @toggle-size);
+      .mui-px-fallback(height, @toggle-size);
+      .mui-px-fallback(line-height, 2.4rem);
       border-radius: 50%;
       background-color: @toggle-thumb-off-color;
 
       .mui-paper-container {
         border-radius: 50%;
       }
-      
-      .mui-touch-ripple, 
+
+      .mui-touch-ripple,
       .mui-focus-ripple-inner {
         width: 200%;
         height: 200%;
-        top: -10px;
-        left: -10px;
+        .mui-px-fallback(top, -1rem);
+        .mui-px-fallback(left, -1rem);
       }
     }
   }
@@ -47,7 +47,7 @@
         background-color: @toggle-track-on-color;
       }
       .mui-toggle-thumb {
-        left: 18px;
+        .mui-px-fallback(left, 1.8rem);
         background-color: @toggle-thumb-on-color;
       }
     }
@@ -77,7 +77,4 @@
     }
   }
 }
-
-
-
 

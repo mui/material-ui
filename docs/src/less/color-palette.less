@@ -6,11 +6,11 @@
   }
 
   .color {
-    padding: 15px;
+    .mui-px-fallback-padding(1.5rem);
 
     .name {
       display: block;
-      margin-bottom: 60px;
+      .mui-px-fallback(margin-bottom, 6rem);
     }
 
     .hex {
@@ -19,8 +19,8 @@
   }
 
   .color-group {
-    padding-top: 16px;
-    padding-bottom: 16px;
+    .mui-px-fallback(padding-top, 1.6rem);
+    .mui-px-fallback(padding-bottom, 1.6rem);
     display: block;
   }
 
@@ -39,10 +39,10 @@
 
     .neutral {
       .color-group {
-        padding-bottom: 216px;
+        .mui-px-fallback(padding-bottom, 21.6rem);
 
         &:last-child {
-          padding-bottom: 16px;
+          .mui-px-fallback(padding-bottom, 1.6rem);
         }
       }
     }
@@ -55,7 +55,7 @@
 
     .neutral {
       .color-group {
-        padding-bottom: 16px;
+        .mui-px-fallback(padding-bottom, 1.6rem);
       }
     }
   }

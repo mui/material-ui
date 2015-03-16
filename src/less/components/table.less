@@ -1,25 +1,25 @@
-@column-width: 200px;
+@column-width: 20rem;
 
 .mui-table {
   //background-color: darken(green, 10%);
-  padding: 0 @desktop-gutter;
+  .mui-px-fallback-padding(0, @desktop-gutter);
 
   .mui-table-header {
     //background-color: green;
 
     .mui-table-header-column {
       display: inline-block;
-      height: 48px;
-      line-height: 48px;
+      .mui-px-fallback(height, 4.8rem);
+      .mui-px-fallback(line-height, 4.8rem);
       //background-color: lighten(green, 10%);
-      width: @column-width;
+      .mui-px-fallback(width, @column-width);
     }
 
     .mui-table-header-pagify {
       display: inline-block;
       //background-color: lighten(green, 25%);
-      height: 48px;
-      line-height: 48px;
+      .mui-px-fallback(height, 4.8rem);
+      .mui-px-fallback(line-height, 4.8rem);
       float: right;
     }
   }
@@ -28,16 +28,16 @@
     //background-color: lighten(green, 20%);
 
     .mui-table-rows-item {
-      height: 48px;
-      line-height: 48px;
+      .mui-px-fallback(height, 4.8rem);
+      .mui-px-fallback(line-height, 4.8rem);
       //background-color: lighten(green, 30%);
       display: block;
       width: 100%;
     }
 
     .mui-table-rows-actions {
-      height: 48px;
-      line-height: 48px;
+      .mui-px-fallback(height, 4.8rem);
+      .mui-px-fallback(line-height, 4.8rem);
       display: inline-block;
       //background-color: lighten(green, 25%);
       float: right;

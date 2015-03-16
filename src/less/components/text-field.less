@@ -2,11 +2,11 @@
   @disabled-text-color: fade(@body-text-color, 30%);
   @error-color: @red-500;
 
-	font-size: 16px;
-  line-height: 24px;
-  
-  width: (64px * 4);
-  height: 48px;
+	.mui-px-fallback(font-size, 1.6rem);
+  .mui-px-fallback(line-height, 2.4rem);
+
+  width: (4em * 4);
+  .mui-px-fallback(height, 4.8rem);
   display: inline-block;
   position: relative;
   .ease-out(@property: height, @duration: 200ms);
@@ -16,7 +16,7 @@
   .mui-text-field-hint,
   .mui-text-field-floating-label {
     position: absolute;
-    line-height: 48px;
+    .mui-px-fallback(line-height, 4.8rem);
     color: @disabled-text-color;
     opacity: 1;
     .ease-out();
@@ -24,9 +24,9 @@
 
   .mui-text-field-error {
     position: absolute;
-    bottom: -10px;
-    font-size: 12px;
-    line-height: 12px;
+    .mui-px-fallback(bottom, -1.0rem);
+    .mui-px-fallback(font-size, 1.2rem);
+    .mui-px-fallback(line-height, 1.2rem);
     color: @error-color;
     .ease-out();
   }
@@ -43,20 +43,20 @@
   }
 
   .mui-text-field-textarea {
-    margin-top: 12px;
+    .mui-px-fallback(margin-top, 1.2rem);
   }
 
   .mui-text-field-underline,
   .mui-text-field-focus-underline {
     position: absolute;
     width: 100%;
-    bottom: 8px;
+    .mui-px-fallback(bottom, 0.8rem);
     margin: 0;
   }
 
   .mui-text-field-focus-underline {
     border-color: @primary-1-color;
-    border-bottom-width: 2px;
+    .mui-px-fallback(border-bottom-width, 0.2rem);
     transform: scaleX(0);
     .ease-out();
   }
@@ -82,7 +82,7 @@
 
     .mui-text-field-underline {
       border: none;
-      height: 40px;
+      .mui-px-fallback(height, 4rem);
       overflow: hidden;
 
       //hack because border style dotted just doesn't look right
@@ -90,7 +90,7 @@
       &:after {
         content: '..............................................................................................................................................................................................................................................................................................................................................................';
         position: absolute;
-        top: 23px;
+        .mui-px-fallback(top, 2.3rem);
         color: @disabled-text-color;
       }
     }
@@ -105,21 +105,21 @@
   //Floating Label Text Field Styles
   //--------------------------------
   &.mui-has-floating-labels {
-    height: 72px;
+    .mui-px-fallback(height, 7.2rem);
 
     .mui-text-field-floating-label {
-      top: 24px;
+      .mui-px-fallback(top, 2.4rem);
       transform: scale(1) translate3d(0, 0, 0);
       transform-origin: left top;
     }
 
     .mui-text-field-hint {
-      top: 24px;
+      .mui-px-fallback(top, 2.4rem);
       opacity: 0;
     }
 
     .mui-text-field-input {
-      padding-top: 24px;
+      .mui-px-fallback(padding-top, 2.4rem);
     }
 
     &.mui-has-value,

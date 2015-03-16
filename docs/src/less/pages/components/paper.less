@@ -1,15 +1,15 @@
 .paper-examples {
 
   .mui-paper {
-    height: 100px;
-    width: 100px;
+    .mui-px-fallback(height, 10rem);
+    .mui-px-fallback(width, 10rem);
     margin: 0 auto;
-    margin-bottom: 64px;
+    .mui-px-fallback(margin-bottom, 6.4rem);
   }
   .mui-paper-container {
     text-align: center;
     p {
-      line-height: 80px;
+      .mui-px-fallback(line-height, 8rem);
       height: 100%;
     }
   }

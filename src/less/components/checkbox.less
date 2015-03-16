@@ -1,10 +1,10 @@
 .mui-checkbox {
   .mui-checkbox-icon {
-    @checkbox-size: 24px;
+    @checkbox-size: 2.4rem;
 
-    height: @checkbox-size;
-    width: @checkbox-size;
-    margin-right: @desktop-gutter-less;
+    .mui-px-fallback(height, @checkbox-size);
+    .mui-px-fallback(width, @checkbox-size);
+    .mui-px-fallback(margin-right, @desktop-gutter-less);
 
     .mui-checkbox-check {
       position: absolute;
@@ -34,7 +34,7 @@
         .ease-out(@duration: .45s; @delay: 0s);
         opacity: 1;
         transform: scale(1);
-        transform-origin: 50% 50%; 
+        transform-origin: 50% 50%;
 
         transition:
           opacity 0ms @ease-out-function 0ms,
@@ -43,7 +43,7 @@
       .mui-checkbox-box {
         .ease-out(@duration: 100s; @delay: 0ms);
         * { fill: @checkbox-checked-color; }
-      } 
+      }
     }
   }
 
@@ -60,7 +60,7 @@
     .mui-checkbox-icon {
       .mui-checkbox-box {
         * { fill: @checkbox-required-color; }
-      } 
+      }
     }
   }
 }

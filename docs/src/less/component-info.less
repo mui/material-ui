@@ -4,7 +4,7 @@
   width: 100%;
 
   td {
-    padding: 16px 0;
+    .mui-px-fallback-padding(1.6rem, 0);
     vertical-align: top;
   }
 
@@ -16,7 +16,7 @@
 
   .component-info-type {
     .mui-text-light-black;
-    padding-right: @desktop-gutter;
+    .mui-px-fallback(padding-right, @desktop-gutter);
   }
 
   .component-info-header {
@@ -26,8 +26,8 @@
 
   .component-info-desc {
     width: 100%;
-    padding-top: 48px;
-    border-bottom: solid 1px @border-color;
+    .mui-px-fallback(padding-top, 4.8rem);
+    .mui-px-fallback-border-bottom(0.1rem, solid, @border-color);
 
     p {
       margin: 0;
@@ -43,24 +43,24 @@
   @media @device-medium {
     .component-info-name {
       position: inherit;
-      padding-right: @desktop-gutter;
+      .mui-px-fallback(padding-right, @desktop-gutter);
     }
     .component-info-desc {
-      padding-top: 16px;
+      .mui-px-fallback(padding-top, 1.6rem);
     }
   }
 
   @media @device-large {
     td {
-      padding: 32px 0;
+      .mui-px-fallback-padding(3.2rem, 0);
     }
 
     .component-info-name {
-      min-width: 128px;
+      .mui-px-fallback(min-width, 12.8rem);
     }
 
     .component-info-desc {
-      padding-top: 32px;
+      .mui-px-fallback(padding-top, 3.2rem);
     }
   }
 }

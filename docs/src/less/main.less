@@ -44,7 +44,7 @@ a {
   .mui-app-bar {
     .github-icon-button {
       float: right;
-      margin-right: -16px;
+      .mui-px-fallback(margin-right, -1.6rem);
     }
   }
 }
@@ -53,12 +53,12 @@ a {
   cursor: pointer;
   .mui-font-style-headline;
   .mui-text-full-white;
-  line-height: @app-bar-height;
+  .mui-px-fallback(line-height, @app-bar-height);
   .mui-font-weight-light;
   background-color: @primary-1-color;
-  padding-left: @desktop-gutter;
+  .mui-px-fallback(padding-left, @desktop-gutter);
   padding-top: 0;
-  margin-bottom: @desktop-gutter-mini;
+  .mui-px-fallback(margin-bottom, @desktop-gutter-mini);
 }
 
 .baseline-grid {
@@ -67,35 +67,35 @@ a {
 
 .code-example {
   background-color: @white;
-  margin-bottom: 32px;
+  .mui-px-fallback(margin-bottom, 3.2rem);
 
   .example-label {
     .mui-font-style-menu;
     display: inline-block;
     text-transform: uppercase;
     color: @min-black;
-    padding: @desktop-gutter-mini;
-    border-right: solid 1px @border-color;
-    border-bottom: solid 1px @border-color;
+    .mui-px-fallback-padding(@desktop-gutter-mini);
+    .mui-px-fallback-border-right(0.1rem, solid, @border-color);
+    .mui-px-fallback-border-bottom(0.1rem, solid, @border-color);
     margin-bottom: 0;
-    border-radius: 0 0 2px 0;
+    .mui-px-fallback-border-radius(0, 0, 0.2rem, 0);
   }
 
   .example-block,
   .code-block {
-    padding: @desktop-gutter;
+    .mui-px-fallback-padding(@desktop-gutter);
   }
 
   .code-block {
-    border-top: solid 1px @border-color;
-    border-radius: 0 0 2px 2px;
+    .mui-px-fallback-border-top(0.1rem, solid, @border-color);
+    .mui-px-fallback-border-radius(0, 0, 0.2rem, 0.2rem);
   }
 }
 
 .example-menu {
-  width: (64px * 4);
+  .mui-px-fallback(width, (6.4rem * 4));
 }
 
 .example-menu-nested {
-  width: (64px * 3);
+  .mui-px-fallback(width, (6.4rem * 3));
 }

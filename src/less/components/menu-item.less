@@ -1,11 +1,11 @@
 .mui-menu-item {
 
   * { user-select: none }
-  
+
   cursor: pointer;
-  line-height: @menu-item-height;
-  padding-left: @menu-item-padding;
-  padding-right: @menu-item-padding;
+  .mui-px-fallback(line-height, @menu-item-height);
+  .mui-px-fallback(padding-left, @menu-item-padding);
+  .mui-px-fallback(padding-right, @menu-item-padding);
   background-color: fade(@menu-item-hover-color, 0%);
 
   &:hover {
@@ -16,7 +16,7 @@
 
   .mui-menu-item-number {
     float: right;
-    width: 24px;
+    .mui-px-fallback(width, 2.4rem);
     text-align: center;
   }
 
@@ -25,42 +25,42 @@
   }
 
   .mui-menu-item-icon-right {
-    line-height: @menu-item-height;
+    .mui-px-fallback(line-height, @menu-item-height);
     float: right;
   }
 
   .mui-menu-item-icon {
     float: left;
-    line-height: @menu-item-height;
-    margin-right: @desktop-gutter;
+    .mui-px-fallback(line-height, @menu-item-height);
+    .mui-px-fallback(margin-right, @desktop-gutter);
   }
 
   .mui-menu-item-data {
     display: block;
-    padding-left: (@desktop-gutter * 2);
-    line-height: @menu-item-data-height;
-    height: @menu-item-data-height;
+    .mui-px-fallback(padding-left, (@desktop-gutter * 2));
+    .mui-px-fallback(line-height, @menu-item-data-height);
+    .mui-px-fallback(height, @menu-item-data-height);
     vertical-align: top;
-    top: -12px;
+    .mui-px-fallback(top, -1.2rem);
     position: relative;
     .mui-font-weight-light;
   }
 
   .muidocs-icon-custom-arrow-drop-right {
-    margin-right: (@desktop-gutter-mini * -1);
+    .mui-px-fallback(margin-right, (@desktop-gutter-mini * -1));
     color: @drop-down-menu-icon-color;
   }
 
   .mui-toggle {
-    margin-top: ((@menu-item-height - @radio-button-size) / 2);
+    .mui-px-fallback(margin-top, ((@menu-item-height - @radio-button-size) / 2));
     float: right;
-    width: 42px;
+    .mui-px-fallback(width, 4.2rem);
   }
 
   &.mui-is-selected {
     color: @menu-item-selected-text-color;
   }
-    
+
   &.mui-is-disabled {
     color: @disabled-color !important;
     cursor: default;

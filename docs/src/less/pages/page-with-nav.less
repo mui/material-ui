@@ -1,13 +1,13 @@
 .page-with-nav {
 
   .page-with-nav-secondary-nav {
-    border-top: solid 1px @grey-300;
+    .mui-px-fallback-border-top(0.1rem, solid, @grey-300);
     overflow: hidden;
   }
 
   .page-with-nav-content {
-    padding: @desktop-gutter;
-    max-width: (@desktop-keyline-increment * 14);
+    .mui-px-fallback(padding, @desktop-gutter);
+    .mui-px-fallback(max-width, (@desktop-keyline-increment * 14));
   }
 
   @media @device-medium {
@@ -18,14 +18,14 @@
     .page-with-nav-secondary-nav {
       border-top: none;
       position: absolute;
-      top: 64px;
-      width: @subNavWidth;
+      .mui-px-fallback(top, 6.4rem);
+      .mui-px-fallback(width, @subNavWidth);
     }
 
     .page-with-nav-content {
-      margin-left: @subNavWidth;
-      border-left: solid 1px @grey-300;
-      min-height: 800px;
+      .mui-px-fallback(margin-left, @subNavWidth);
+      .mui-px-fallback-border-left(0.1rem, solid, @grey-300);
+      .mui-px-fallback(min-height, 80rem);
     }
   }
 }

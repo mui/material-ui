@@ -1,0 +1,255 @@
+.mui-px-fallback(@property; @value) when (get-unit(@value) = rem) {
+  @value-in-px: unit(@value) * @root-font-size;
+  @{property}: @value-in-px;
+  @{property}: @value;
+}
+
+.mui-px-fallback(@property; @value) when (default()) {
+  @{property}: @value;
+}
+
+
+.mui-px-fallback-trbl(@property, @top, @right, @bottom, @left) {
+  .mui-px-fallback(~'@{property}-top', @top);
+  .mui-px-fallback(~'@{property}-right', @right);
+  .mui-px-fallback(~'@{property}-bottom', @bottom);
+  .mui-px-fallback(~'@{property}-left', @left);
+}
+
+.mui-px-fallback-border(@width, @style, @color) {
+  .mui-px-fallback(border-width, @width);
+  border-style: @style;
+  border-color: @color;
+}
+
+.mui-px-fallback-border-top(@width, @style, @color) {
+  .mui-px-fallback(border-top-width, @width);
+  border-top-style: @style;
+  border-top-color: @color;
+}
+
+.mui-px-fallback-border-right(@width, @style, @color) {
+  .mui-px-fallback(border-right-width, @width);
+  border-right-style: @style;
+  border-right-color: @color;
+}
+
+.mui-px-fallback-border-bottom(@width, @style, @color) {
+  .mui-px-fallback(border-bottom-width, @width);
+  border-bottom-style: @style;
+  border-bottom-color: @color;
+}
+
+.mui-px-fallback-border-left(@width, @style, @color) {
+  .mui-px-fallback(border-left-width, @width);
+  border-left-style: @style;
+  border-left-color: @color;
+}
+
+.mui-px-fallback-border-radius(
+    @top-left,
+    @top-right: @top-left,
+    @bottom-right: @top-left,
+    @bottom-left: @top-right) {
+  .mui-px-fallback(border-top-left-radius, @top-left);
+  .mui-px-fallback(border-top-right-radius, @top-right);
+  .mui-px-fallback(border-bottom-left-radius, @bottom-left);
+  .mui-px-fallback(border-bottom-right-radius, @bottom-right);
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when (get-unit(@offset-x) = rem)
+    and (get-unit(@offset-y) = rem)
+    and (get-unit(@blur-radius) = rem)
+    and (get-unit(@spread-radius) = rem) {
+  @offset-x-0: unit(@offset-x) * @root-font-size;
+  @offset-y-0: unit(@offset-y) * @root-font-size;
+  @blur-radius-0: unit(@blur-radius) * @root-font-size;
+  @spread-radius-0: unit(@spread-radius) * @root-font-size;
+  box-shadow: @offset-x-0 @offset-y-0 @blur-radius-0 @spread-radius-0 @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when (get-unit(@offset-x) = rem)
+    and (get-unit(@offset-y) = rem)
+    and (get-unit(@blur-radius) = rem)
+    and not (get-unit(@spread-radius) = rem) {
+  @offset-x-0: unit(@offset-x) * @root-font-size;
+  @offset-y-0: unit(@offset-y) * @root-font-size;
+  @blur-radius-0: unit(@blur-radius) * @root-font-size;
+  box-shadow: @offset-x-0 @offset-y-0 @blur-radius-0 @spread-radius @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when (get-unit(@offset-x) = rem)
+    and (get-unit(@offset-y) = rem)
+    and not (get-unit(@blur-radius) = rem)
+    and (get-unit(@spread-radius) = rem) {
+  @offset-x-0: unit(@offset-x) * @root-font-size;
+  @offset-y-0: unit(@offset-y) * @root-font-size;
+  @spread-radius-0: unit(@spread-radius) * @root-font-size;
+  box-shadow: @offset-x-0 @offset-y-0 @blur-radius @spread-radius-0 @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when (get-unit(@offset-x) = rem)
+    and not (get-unit(@offset-y) = rem)
+    and (get-unit(@blur-radius) = rem)
+    and (get-unit(@spread-radius) = rem) {
+  @offset-x-0: unit(@offset-x) * @root-font-size;
+  @blur-radius-0: unit(@blur-radius) * @root-font-size;
+  @spread-radius-0: unit(@spread-radius) * @root-font-size;
+  box-shadow: @offset-x-0 @offset-y @blur-radius-0 @spread-radius-0 @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when not (get-unit(@offset-x) = rem)
+    and (get-unit(@offset-y) = rem)
+    and (get-unit(@blur-radius) = rem)
+    and (get-unit(@spread-radius) = rem) {
+  @offset-y-0: unit(@offset-y) * @root-font-size;
+  @blur-radius-0: unit(@blur-radius) * @root-font-size;
+  @spread-radius-0: unit(@spread-radius) * @root-font-size;
+  box-shadow: @offset-x @offset-y-0 @blur-radius-0 @spread-radius-0 @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when (get-unit(@offset-x) = rem)
+    and (get-unit(@offset-y) = rem)
+    and not (get-unit(@blur-radius) = rem)
+    and not (get-unit(@spread-radius) = rem) {
+  @offset-x-0: unit(@offset-x) * @root-font-size;
+  @offset-y-0: unit(@offset-y) * @root-font-size;
+  box-shadow: @offset-x-0 @offset-y-0 @blur-radius @spread-radius @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when (get-unit(@offset-x) = rem)
+    and not (get-unit(@offset-y) = rem)
+    and (get-unit(@blur-radius) = rem)
+    and not (get-unit(@spread-radius) = rem) {
+  @offset-x-0: unit(@offset-x) * @root-font-size;
+  @blur-radius-0: unit(@blur-radius) * @root-font-size;
+  box-shadow: @offset-x-0 @offset-y @blur-radius-0 @spread-radius @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when not (get-unit(@offset-x) = rem)
+    and (get-unit(@offset-y) = rem)
+    and (get-unit(@blur-radius) = rem)
+    and not (get-unit(@spread-radius) = rem) {
+  @offset-y-0: unit(@offset-y) * @root-font-size;
+  @blur-radius-0: unit(@blur-radius) * @root-font-size;
+  box-shadow: @offset-x @offset-y-0 @blur-radius-0 @spread-radius @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when (get-unit(@offset-x) = rem)
+    and not (get-unit(@offset-y) = rem)
+    and not (get-unit(@blur-radius) = rem)
+    and (get-unit(@spread-radius) = rem) {
+  @offset-x-0: unit(@offset-x) * @root-font-size;
+  @spread-radius-0: unit(@spread-radius) * @root-font-size;
+  box-shadow: @offset-x-0 @offset-y @blur-radius @spread-radius-0 @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when not (get-unit(@offset-x) = rem)
+    and (get-unit(@offset-y) = rem)
+    and not (get-unit(@blur-radius) = rem)
+    and (get-unit(@spread-radius) = rem) {
+  @offset-y-0: unit(@offset-y) * @root-font-size;
+  @spread-radius-0: unit(@spread-radius) * @root-font-size;
+  box-shadow: @offset-x @offset-y-0 @blur-radius @spread-radius-0 @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when not (get-unit(@offset-x) = rem)
+    and not (get-unit(@offset-y) = rem)
+    and (get-unit(@blur-radius) = rem)
+    and (get-unit(@spread-radius) = rem) {
+  @blur-radius-0: unit(@blur-radius) * @root-font-size;
+  @spread-radius-0: unit(@spread-radius) * @root-font-size;
+  box-shadow: @offset-x @offset-y @blur-radius-0 @spread-radius-0 @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when (get-unit(@offset-x) = rem)
+    and not (get-unit(@offset-y) = rem)
+    and not (get-unit(@blur-radius) = rem)
+    and not (get-unit(@spread-radius) = rem) {
+  @offset-x-0: unit(@offset-x) * @root-font-size;
+  box-shadow: @offset-x-0 @offset-y @blur-radius @spread-radius @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when not (get-unit(@offset-x) = rem)
+    and (get-unit(@offset-y) = rem)
+    and not (get-unit(@blur-radius) = rem)
+    and not (get-unit(@spread-radius) = rem) {
+  @offset-y-0: unit(@offset-y) * @root-font-size;
+  box-shadow: @offset-x @offset-y-0 @blur-radius @spread-radius @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when not (get-unit(@offset-x) = rem)
+    and not (get-unit(@offset-y) = rem)
+    and (get-unit(@blur-radius) = rem)
+    and not (get-unit(@spread-radius) = rem) {
+  @blur-radius-0: unit(@blur-radius) * @root-font-size;
+  box-shadow: @offset-x @offset-y @blur-radius-0 @spread-radius @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when not (get-unit(@offset-x) = rem)
+    and not (get-unit(@offset-y) = rem)
+    and not (get-unit(@blur-radius) = rem)
+    and (get-unit(@spread-radius) = rem) {
+  @spread-radius-0: unit(@spread-radius) * @root-font-size;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius-0 @color;
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-box-shadow(
+      @offset-x; @offset-y; @blur-radius; @spread-radius; @color)
+    when (default()) {
+  box-shadow: @offset-x @offset-y @blur-radius @spread-radius @color;
+}
+
+.mui-px-fallback-margin(@top, @right: @top, @bottom: @top, @left: @right) {
+  .mui-px-fallback-trbl(margin, @top, @right, @bottom, @left);
+}
+
+.mui-px-fallback-padding(@top, @right: @top, @bottom: @top, @left: @right) {
+  .mui-px-fallback-trbl(padding, @top, @right, @bottom, @left);
+}
+

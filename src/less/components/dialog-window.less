@@ -1,8 +1,8 @@
 .mui-dialog-window {
   position: fixed;
   z-index: 10;
-  top: 0px;
-  left: -10000px;
+  top: 0em;
+  .mui-px-fallback(left, -1000rem);
   width: 100%;
   height: 100%;
   transition: left 0ms @ease-out-function 450ms;
@@ -11,7 +11,7 @@
     .ease-out();
     position: relative;
     width: 75%;
-    max-width: (@desktop-keyline-increment * 12);
+    .mui-px-fallback(max-width, (@desktop-keyline-increment * 12));
     margin: 0 auto;
     z-index: 10;
     background: @canvas-color;
@@ -19,23 +19,23 @@
   }
 
   .mui-dialog-window-actions {
-    padding: 8px;
-    margin-bottom: 8px;
+    .mui-px-fallback(padding, 0.8rem);
+    .mui-px-fallback(margin-bottom, 0.8rem);
     width: 100%;
     text-align: right;
 
     .mui-dialog-window-action {
-      margin-right: 8px;
+      .mui-px-fallback(margin-right, 0.8rem);
     }
   }
 
   &.mui-is-shown {
-    left: 0px;
+    left: 0em;
     transition: left 0ms @ease-out-function 0ms;
 
     .mui-dialog-window-contents {
       opacity: 1;
-      top: 0px;
+      top: 0em;
       transform: translate3d(0, @desktop-keyline-increment, 0);
     }
   }

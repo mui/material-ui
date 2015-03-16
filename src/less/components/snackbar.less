@@ -2,21 +2,21 @@
 
   color: @mui-snackbar-text-color;
   background-color: @mui-snackbar-background-color;
-  border-radius: 2px;
-  padding: 0 @desktop-gutter;
-  height: @desktop-subheader-height;
-  line-height: @desktop-subheader-height;
-  min-width: 288px;
-  max-width: 568px;
+  .mui-px-fallback(border-radius, 0.2rem);
+  .mui-px-fallback-padding(0, @desktop-gutter);
+  .mui-px-fallback(height, @desktop-subheader-height);
+  .mui-px-fallback(line-height, @desktop-subheader-height);
+  .mui-px-fallback(min-width, 28.8rem);
+  .mui-px-fallback(max-width, 56.8rem);
 
   position: fixed;
   z-index: 10;
-  bottom: @desktop-gutter;
-  margin-left: @desktop-gutter;
+  .mui-px-fallback(bottom, @desktop-gutter);
+  .mui-px-fallback(margin-left, @desktop-gutter);
 
-  left: -10000px;
+  .mui-px-fallback(left, -1000.0rem);
   opacity: 0;
-  transform: translate3d(0, 20px, 0);
+  transform: translate3d(0, 2rem, 0);
   transition:
     left 0ms @ease-out-function 400ms,
     opacity 400ms @ease-out-function 0ms,
@@ -25,9 +25,9 @@
   .mui-snackbar-action {
     color: @mui-snackbar-action-color;
     float: right;
-    margin-top: 6px;
-    margin-right: -16px;
-    margin-left: @desktop-gutter;
+    .mui-px-fallback(margin-top, 0.6rem);
+    .mui-px-fallback(margin-right, -1.6rem);
+    .mui-px-fallback(margin-left, @desktop-gutter);
     background-color: transparent;
   }
 
