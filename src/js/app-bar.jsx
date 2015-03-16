@@ -1,5 +1,6 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var Typography = require('./styles/core/typography');
 var CustomVariables = require('./styles/variables/custom-variables');
 var IconButton = require('./icon-button');
 var NavigationMenu = require('./svg-icons/navigation-menu');
@@ -7,7 +8,7 @@ var Paper = require('./paper');
 
 var AppBar = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     onMenuIconButtonTouchTap: React.PropTypes.func,
@@ -28,6 +29,29 @@ var AppBar = React.createClass({
   },
 
   /** Styles */
+
+  _main: function() {
+    return this.mergeAndPrefix({
+      zIndex: 5,
+      width: '100%',
+      minHeight: CustomVariables.spacing.desktopKeylineIncrement,
+      backgroundColor: CustomVariables.appBarColor,
+    });
+  },
+
+  _title: function() {
+    return {      
+      float: 'left',
+      paddingTop: 0,
+      letterSpacing: 0,
+      marginBottom: 12,
+      fontSize: '24px',
+      fontWeight: Typography.fontWeightNormal,
+      color: CustomVariables.appBarTextColor,
+      lineHeight: CustomVariables.spacing.desktopKeylineIncrement + 'px',
+    };
+  },
+
   _iconButton: function() {
     return {
       style: {
@@ -41,6 +65,13 @@ var AppBar = React.createClass({
         color: CustomVariables.appBarTextColor,
       }
     }
+  },
+
+  _paper: function() {
+    return {
+      paddingLeft: CustomVariables.spacing.desktopGutter,
+      paddingRight: CustomVariables.spacing.desktopGutter,
+    };
   },
 
   componentDidMount: function() {
@@ -58,14 +89,13 @@ var AppBar = React.createClass({
       ...other
     } = this.props;
 
-    var classes = this.getClasses('mui-app-bar'),
-      title, menuElementLeft, menuElementRight;
+    var title, menuElementLeft, menuElementRight;
 
     if (this.props.title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
       title = toString.call(this.props.title) === '[object String]' ?
-        <h1 className="mui-app-bar-title">{this.props.title}</h1> :
+        <h1 style={this._title()}>{this.props.title}</h1> :
         this.props.title;
     }
 
@@ -93,7 +123,7 @@ var AppBar = React.createClass({
                        (this.props.iconElementRight) ? this.props.iconElementRight : '';
 
     return (
-      <Paper rounded={false} className={classes} zDepth={this.props.zDepth}>
+      <Paper rounded={false} className={this.props.className}  style={this._main()} innerStyle={this._paper()} zDepth={this.props.zDepth}>
         {menuElementLeft}
         {title}
         {menuElementRight}
