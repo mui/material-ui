@@ -57,12 +57,6 @@ var BeforeAfterWrapper = React.createClass({
   },
 
   /** Styles */
-  _main: function() {
-    return this.mergeAndPrefix({
-      width: '100%',
-      height: '100%',
-    });
-  },
 
   render: function() {
 
@@ -78,16 +72,18 @@ var BeforeAfterWrapper = React.createClass({
     var beforeElement, afterElement;
 
     if (this.props.beforeStyle) beforeElement = 
-      React.createElement(this.props.beforeElementType, 
-                          {style: AutoPrefix.all(this.props.beforeStyle), key: "::before"});
+      React.createElement(beforeElementType, 
+                          {style: AutoPrefix.all(beforeStyle), key: "::before"}, beforeStyle.content);
     if (this.props.afterStyle) afterElement = 
-      React.createElement(this.props.afterElementType, 
-                          {style: AutoPrefix.all(this.props.afterStyle), key: "::after"});
+      React.createElement(afterElementType, 
+                          {style: AutoPrefix.all(afterStyle), key: "::after"}, afterStyle.content);
 
     var children = [beforeElement, this.props.children, afterElement];
 
+    console.log("BAW props", this.props);
+
     var props = other;
-    props.style = this._main();
+    props.style = this.props.style;
 
     return React.createElement(this.props.elementType, props, children);
   }

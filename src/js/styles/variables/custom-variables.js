@@ -15,8 +15,7 @@ var customVariables = new (function() {
   this.borderColor = Colors.grey300;
 
   // Disabled Colors
-  this.disabledColor = Theme.textColor;
-  this.disabledOpacity = 0.3; // fadeout 30%
+  this.disabledColor = ColorManipulator.fade(Theme.textColor, 0.3);
 
   // Component Colors
   this.canvasColor = Colors.white;
