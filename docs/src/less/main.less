@@ -27,6 +27,11 @@
 @import "pages/components/icon.less";
 @import "pages/components/paper.less";
 
+// appbar
+@app-bar-color: @primary-1-color;
+@app-bar-text-color: @dark-white;
+@app-bar-height: @desktop-keyline-increment;
+
 a {
   color: @accent-1-color;
   text-decoration: none;
@@ -37,19 +42,28 @@ a {
 }
 
 /* App Specific Styles */
-.mui-app-canvas {
+// .mui-app-canvas {
 
-  height: 100%;
+//   height: 100%;
 
-  .mui-app-bar {
-    .github-icon-button {
-      float: right;
-      margin-right: -16px;
-      margin-top: (@app-bar-height - @icon-button-size) / 2;
-      color: @app-bar-text-color;
-      fill: @app-bar-text-color;
-    }
-  }
+//   .mui-app-bar {
+//     .github-icon-button {
+//       float: right;
+//       margin-right: -16px;
+//       margin-top: (@app-bar-height - @icon-button-size) / 2;
+//       color: @app-bar-text-color;
+//       fill: @app-bar-text-color;
+//     }
+//   }
+// }
+
+
+.github-icon-button {
+  float: right;
+  margin-right: -16px;
+  margin-top: (@app-bar-height - @icon-button-size) / 2;
+  color: @app-bar-text-color;
+  fill: @app-bar-text-color;
 }
 
 .logo {

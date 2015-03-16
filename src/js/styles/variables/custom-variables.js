@@ -19,8 +19,6 @@ var customVariables = new (function() {
   this.disabledOpacity = 0.3; // fadeout 30%
 
   // Component Colors
-  this.appBarColor = Theme.primary1Color;
-  this.appBarTextColor = Colors.darkWhite;
   this.canvasColor = Colors.white;
   this.dropDownMenuIconColor = Colors.minBlack;
   this.leftNavColor = Colors.white;
@@ -28,14 +26,12 @@ var customVariables = new (function() {
   this.subheaderTextColor = Theme.primary1Color;
   
   // Layout
-  this.appBarHeight = Spacing.desktopKeylineIncrement;
   this.leftNavWidth = Spacing.desktopKeylineIncrement * 4;
 
-  // checkbox
-  this.checkboxBoxColor = Theme.textColor;
-  this.checkboxCheckedColor = Theme.primary1Color;
-  this.checkboxRequiredColor = Theme.primary1Color;
-  this.checkboxDisabledColor = this.disabledColor;
+  // appbar
+  this.appBarColor = Theme.primary1Color;
+  this.appBarTextColor = Colors.darkWhite;
+  this.appBarHeight = Spacing.desktopKeylineIncrement;
 
   // buttons
   this.buttonHeight = 36;
@@ -65,6 +61,12 @@ var customVariables = new (function() {
   this.floatingActionButtonSecondaryIconColor = Colors.white;
   this.floatingActionButtonDisabledColor = this.raisedButtonDisabledColor;
   this.floatingActionButtonDisabledTextColor = this.raisedButtonDisabledTextColor;
+
+  // checkbox
+  this.checkboxBoxColor = Theme.textColor;
+  this.checkboxCheckedColor = Theme.primary1Color;
+  this.checkboxRequiredColor = Theme.primary1Color;
+  this.checkboxDisabledColor = this.disabledColor;
 
   // date picker
   this.datePickerColor = Theme.primary1Color;
