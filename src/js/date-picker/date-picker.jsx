@@ -68,6 +68,7 @@ var DatePicker = React.createClass({
           onTouchTap={this._handleInputTouchTap} />
         <DatePickerDialog
           ref="dialogWindow"
+          mode={this.props.mode}
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}

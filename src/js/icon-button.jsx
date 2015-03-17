@@ -154,7 +154,7 @@ var IconButton = React.createClass({
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
-  _handleKeyboardFocus: function(keyboardFocused) {
+  _handleKeyboardFocus: function(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this._showTooltip();
       if (this.props.onFocus) this.props.onFocus(e);

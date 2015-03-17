@@ -42,7 +42,11 @@ var DayButton = React.createClass({
 
   _handleTouchTap: function(e) {
     if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.date);
-  }
+  },
+
+  _handleKeyboardFocus: function(e, keyboardFocused) {
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
+  } 
 
 });
 

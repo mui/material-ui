@@ -188,7 +188,7 @@ var RaisedButton = React.createClass({
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   },
 
-  _handleKeyboardFocus: function(keyboardFocused) {
+  _handleKeyboardFocus: function(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
       var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;

@@ -160,7 +160,6 @@ var Calendar = React.createClass({
 
   _setSelectedDate: function(d) {
     var newDisplayDate = DateTime.getFirstDayOfMonth(d);
-
     if (newDisplayDate !== this.state.displayDate) {
       this._setDisplayDate(newDisplayDate, d);
     } else {

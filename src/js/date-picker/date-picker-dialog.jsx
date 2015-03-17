@@ -54,7 +54,7 @@ var DatePickerDialog = React.createClass({
         fontSize: '14px',
         color: CustomVariables.datePickerCalendarTextColor
       },
-
+      
       dialogContents: {
         width: this.props.mode === 'landscape' ? '560px' : '280px'
       }

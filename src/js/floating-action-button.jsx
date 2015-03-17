@@ -209,7 +209,7 @@ var RaisedButton = React.createClass({
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   },
 
-  _handleKeyboardFocus: function(keyboardFocused) {
+  _handleKeyboardFocus: function(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
       this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this._icon().color, 0.4);
