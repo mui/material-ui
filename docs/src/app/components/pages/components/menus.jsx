@@ -3,6 +3,9 @@ var mui = require('mui');
 var CodeExample = require('../../code-example/code-example.jsx');
 
 var labelMenuItems = [
+  { payload: '4', text: 'subheader first child', type: mui.MenuItem.Types.SUBHEADER},
+  { payload: '5', text: 'subheader', type: mui.MenuItem.Types.SUBHEADER},
+  {type: mui.MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub'},
   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
   { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }

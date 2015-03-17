@@ -16,6 +16,7 @@ var MenuItem = React.createClass({
 
   propTypes: {
     index: React.PropTypes.number.isRequired,
+    className: React.PropTypes.string,
     iconClassName: React.PropTypes.string,
     iconRightClassName: React.PropTypes.string,
     iconStyle: React.PropTypes.object,
@@ -58,8 +59,13 @@ var MenuItem = React.createClass({
       paddingRight: CustomVariables.menuItemPadding,
     });
 
-    if (this.state.hovered) style.backgroundColor = CustomVariables.menuItemHoverColor;
+    if (this.state.hovered && !this.props.disabled) style.backgroundColor = CustomVariables.menuItemHoverColor;
     if (this.props.selected) style.color = CustomVariables.menuItemSelectedTextColor;
+
+    if (this.props.disabled) {
+      style.cursor = 'default';
+      style.color = CustomVariables.disabledColor;
+    }
 
     return style;
   },
@@ -147,6 +153,7 @@ var MenuItem = React.createClass({
       <div
         key={this.props.index}
         style={this._main()}
+        className={this.props.className} 
         onTouchTap={this._handleTouchTap}
         onClick={this._handleOnClick}
         onMouseOver={this._handleMouseOver}

@@ -23,11 +23,11 @@ var NestedMenuItem = React.createClass({
     index: React.PropTypes.number.isRequired,
     text: React.PropTypes.string,
     menuItems: React.PropTypes.array.isRequired,
-    menuItemStyle: React.PropTypes.object,
     zDepth: React.PropTypes.number,
     disabled: React.PropTypes.bool,
     onItemClick: React.PropTypes.func,
-    onItemTap: React.PropTypes.func
+    onItemTap: React.PropTypes.func,
+    menuItemStyle: React.PropTypes.object,
   },
   
   getDefaultProps: function() {
@@ -62,17 +62,23 @@ var NestedMenuItem = React.createClass({
       color: CustomVariables.dropDownMenuIconColor
     }
 
+    var {
+      index,
+      menuItemStyle,
+      ...other,
+    } = this.props;
+
     return (
       <div style={styles}>
         <MenuItem 
-          index={this.props.index}
-          style={this.props.menuItemStyle}
+          index={index}
+          style={menuItemStyle}
           iconRightStyle={iconCustomArrowDropRight} 
           iconRightClassName="muidocs-icon-custom-arrow-drop-right" 
           onClick={this._onParentItemClick}>
             {this.props.text}
         </MenuItem>
-        <Menu
+        <Menu {...other}
           ref="nestedMenu"
           menuItems={this.props.menuItems}
           onItemClick={this._onMenuItemClick}
@@ -120,11 +126,16 @@ var Menu = React.createClass({
     onItemClick: React.PropTypes.func,
     onToggleClick: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
-    menuItemStyle: React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
     hideable: React.PropTypes.bool,
     visible: React.PropTypes.bool,
-    zDepth: React.PropTypes.number
+    zDepth: React.PropTypes.number,
+    menuItemStyle: React.PropTypes.object,
+    menuItemStyleSubheader: React.PropTypes.object,
+    menuItemStyleLink: React.PropTypes.object,
+    menuItemClassName: React.PropTypes.string,
+    menuItemClassNameSubheader: React.PropTypes.string,
+    menuItemClassNameLink: React.PropTypes.string,
   },
 
   getInitialState: function() {
@@ -136,7 +147,7 @@ var Menu = React.createClass({
       autoWidth: true,
       hideable: false,
       visible: true,
-      zDepth: 1
+      zDepth: 1,
     };
   },
 
@@ -188,10 +199,10 @@ var Menu = React.createClass({
   },
 
   _subheader: function() {
-    return {
+    return this.mergeAndPrefix({
       paddingLeft: CustomVariables.menuSubheaderPadding,
       paddingRight: CustomVariables.menuSubheaderPadding,
-    }
+    }, this.props.menuItemStyleSubheader);
   },
 
   render: function() {
@@ -237,10 +248,12 @@ var Menu = React.createClass({
             <LinkMenuItem 
               key={i}
               index={i}
-              payload={menuItem.payload}
-              target={menuItem.target}
               text={menuItem.text}
-              disabled={isDisabled} />
+              disabled={isDisabled} 
+              className={this.props.menuItemClassNameLink}
+              style={this.props.menuItemStyleLink}
+              payload={menuItem.payload}
+              target={menuItem.target}/>
           );
           break;
 
@@ -249,13 +262,25 @@ var Menu = React.createClass({
             <SubheaderMenuItem 
               key={i}
               index={i}
+              className={this.props.menuItemClassNameSubheader}
+              style={this._subheader()}
+              firstChild={i == 0}
               text={menuItem.text} />
           );
           break;
 
         case MenuItem.Types.NESTED:
+          var {
+            ref,
+            key,
+            index,
+            zDepth,
+            ...other
+          } = this.props;
+
           itemComponent = (
             <NestedMenuItem
+              {...other}
               ref={i}
               key={i}
               index={i}
@@ -279,6 +304,7 @@ var Menu = React.createClass({
               index={i}
               icon={menuItem.icon}
               data={menuItem.data}
+              className={this.props.menuItemClassName}
               style={this.props.menuItemStyle}
               attribute={menuItem.attribute}
               number={menuItem.number}
