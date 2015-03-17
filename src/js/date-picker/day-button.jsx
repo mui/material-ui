@@ -1,11 +1,13 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
+var Transition = require('../styles/mixins/transitions');
+var CustomVariables = require('../styles/variables/custom-variables');
 var DateTime = require('../utils/date-time');
 var EnhancedButton = require('../enhanced-button');
 
 var DayButton = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     date: React.PropTypes.object,
@@ -21,22 +23,52 @@ var DayButton = React.createClass({
       selected,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-date-picker-day-button', { 
-      'mui-is-current-date': DateTime.isEqualDate(this.props.date, new Date()),
-      'mui-is-selected': this.props.selected
-    });
+
+    var styles = {
+      root: {
+        position: 'relative',
+        float: 'left',
+        width: 36,
+        padding: '4px 2px',
+      },
+
+      label: {
+        position: 'relative',
+      },
+
+      select: {
+        position: 'absolute',
+        height: 32,
+        width: 32,
+        opacity: 0,
+        borderRadius: '50%',
+        transform: 'scale(0)',
+        transition: Transition.easeOut(),
+        backgroundColor: CustomVariables.datePickerSelectColor,
+      },
+    };
+
+    if (this.props.selected) {
+      styles.label.color = CustomVariables.datePickerSelectTextColor;
+      styles.select.opacity = 1;
+      styles.select.transform = 'scale(1)';
+      if (DateTime.isEqualDate(this.props.date, new Date())) {
+        styles.root.color = CustomVariables.datePickerColor;
+      }
+    }
 
     return this.props.date ? (
       <EnhancedButton {...other}
-        className={classes}
+        style={styles.root}
         disableFocusRipple={true}
         disableTouchRipple={true}
-        onTouchTap={this._handleTouchTap}>
-        <div className="mui-date-picker-day-button-select" />
-        <span className="mui-date-picker-day-button-label">{this.props.date.getDate()}</span>
+        onTouchTap={this._handleTouchTap}
+        onKeyboardFocus={this._handleKeyboardFocus}>
+        <div style={styles.select}/>
+        <span style={styles.label}>{this.props.date.getDate()}</span>
       </EnhancedButton>
     ) : (
-      <span className={classes} />
+      <span style={styles.root} />
     );
   },
 
