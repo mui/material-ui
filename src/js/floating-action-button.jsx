@@ -1,5 +1,4 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/mixins/transitions');
 var CustomVariables = require('./styles/variables/custom-variables');
@@ -8,9 +7,17 @@ var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
 var Paper = require('./paper');
 
+var getZDepth = function(disabled) {
+  var zDepth = disabled ? 0 : 2;
+  return {
+    zDepth: zDepth,
+    initialZDepth: zDepth
+  };
+};
+
 var RaisedButton = React.createClass({
 
-  mixins: [Classable, StylePropable],
+  mixins: [StylePropable],
 
   propTypes: {
     className: React.PropTypes.string,
@@ -34,6 +41,16 @@ var RaisedButton = React.createClass({
       initialZDepth: zDepth,
       hovered: false,
     };
+  },
+
+  componentWillMount: function() {
+    this.setState(getZDepth(this.props.disabled));
+  },
+
+  componentWillReceiveProps: function(newProps) {
+    if(newProps.disabled !== this.props.disabled){
+      this.setState(getZDepth(newProps.disabled));
+    }
   },
 
   componentDidMount: function() {

@@ -1,8 +1,8 @@
 var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var CustomVariables = require('./styles/variables/custom-variables');
-var FontIcon = require('./font-icon');
-var Toggle = require('./toggle');
+var StylePropable = require('../mixins/style-propable');
+var CustomVariables = require('../styles/variables/custom-variables');
+var FontIcon = require('../font-icon');
+var Toggle = require('../toggle');
 
 var Types = {
   LINK: 'LINK',
@@ -16,6 +16,7 @@ var MenuItem = React.createClass({
 
   propTypes: {
     index: React.PropTypes.number.isRequired,
+    className: React.PropTypes.string,
     iconClassName: React.PropTypes.string,
     iconRightClassName: React.PropTypes.string,
     iconStyle: React.PropTypes.object,
@@ -24,19 +25,21 @@ var MenuItem = React.createClass({
     number: React.PropTypes.string,
     data: React.PropTypes.string,
     toggle: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     onTouchTap: React.PropTypes.func,
     onClick: React.PropTypes.func,
     onToggle: React.PropTypes.func,
     selected: React.PropTypes.bool
   },
-
+  
   statics: {
     Types: Types
   },
 
   getDefaultProps: function() {
     return {
-      toggle: false
+      toggle: false,
+      disabled: false
     };
   },
 
@@ -56,8 +59,13 @@ var MenuItem = React.createClass({
       paddingRight: CustomVariables.menuItemPadding,
     });
 
-    if (this.state.hovered) style.backgroundColor = CustomVariables.menuItemHoverColor;
+    if (this.state.hovered && !this.props.disabled) style.backgroundColor = CustomVariables.menuItemHoverColor;
     if (this.props.selected) style.color = CustomVariables.menuItemSelectedTextColor;
+
+    if (this.props.disabled) {
+      style.cursor = 'default';
+      style.color = CustomVariables.disabledColor;
+    }
 
     return style;
   },
@@ -145,6 +153,7 @@ var MenuItem = React.createClass({
       <div
         key={this.props.index}
         style={this._main()}
+        className={this.props.className} 
         onTouchTap={this._handleTouchTap}
         onClick={this._handleOnClick}
         onMouseOver={this._handleMouseOver}
@@ -163,25 +172,25 @@ var MenuItem = React.createClass({
   },
 
   _handleTouchTap: function(e) {
-    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
+    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
   },
 
   _handleOnClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.index);
+    if (!this.props.disabled && this.props.onClick) this.props.onClick(e, this.props.index);
   },
 
   _handleToggle: function(e, toggled) {
-    if (this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
+    if (!this.props.disabled && this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
   },
 
   _handleMouseOver: function(e) {
     this.setState({hovered: true});
-    if (this.props.onMouseOver) this.props.onMouseOver(e);
+    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
   _handleMouseOut: function(e) {
     this.setState({hovered: false});
-    if (this.props.onMouseOut) this.props.onMouseOut(e);
+    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e);
   }
 
 });

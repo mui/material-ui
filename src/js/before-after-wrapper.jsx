@@ -56,8 +56,6 @@ var BeforeAfterWrapper = React.createClass({
     }
   },
 
-  /** Styles */
-
   render: function() {
 
     var {
@@ -72,16 +70,14 @@ var BeforeAfterWrapper = React.createClass({
     var beforeElement, afterElement;
 
     if (this.props.beforeStyle) beforeElement = 
-      React.createElement(beforeElementType, 
-                          {style: AutoPrefix.all(beforeStyle), key: "::before"}, beforeStyle.content);
+      React.createElement(this.props.beforeElementType, 
+                          {style: AutoPrefix.all(this.props.beforeStyle), key: "::before"});
     if (this.props.afterStyle) afterElement = 
-      React.createElement(afterElementType, 
-                          {style: AutoPrefix.all(afterStyle), key: "::after"}, afterStyle.content);
+      React.createElement(this.props.afterElementType, 
+                          {style: AutoPrefix.all(this.props.afterStyle), key: "::after"});
 
     var children = [beforeElement, this.props.children, afterElement];
-
-    console.log("BAW props", this.props);
-
+    
     var props = other;
     props.style = this.props.style;
 

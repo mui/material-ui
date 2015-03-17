@@ -1,5 +1,5 @@
-var React = require('react'),
-  Classable = require('./mixins/classable');
+var React = require('react');
+var Classable = require('./mixins/classable');
 
 var Paper = React.createClass({
 
@@ -43,7 +43,7 @@ var Paper = React.createClass({
 
     return (
       <div {...other} className={classes}>
-        <div ref="innerContainer" className={insideClasses} style={innerStyle}>
+        <div ref="innerContainer" className={insideClasses} style={innerStyle || {}}>
           {this.props.children}
         </div>
       </div>
