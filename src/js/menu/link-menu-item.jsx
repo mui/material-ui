@@ -16,9 +16,9 @@ var LinkMenuItem = React.createClass({
   },
   
   getDefaultProps: function() {
-      return {
-          disabled: false
-      };
+    return {
+        disabled: false
+    };
   },
 
   getInitialState: function() {

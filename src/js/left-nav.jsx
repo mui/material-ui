@@ -1,21 +1,25 @@
-var React = require('react'),
-  KeyCode = require('./utils/key-code'),
-  Classable = require('./mixins/classable'),
-  WindowListenable = require('./mixins/window-listenable'),
-  Overlay = require('./overlay'),
-  Paper = require('./paper'),
-  Menu = require('./menu/menu');
+var React = require('react');
+var KeyCode = require('./utils/key-code');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/mixins/transitions');
+var Theme = require('./styles/theme').get();
+var CustomVariables = require('./styles/variables/custom-variables');
+var WindowListenable = require('./mixins/window-listenable');
+var Overlay = require('./overlay');
+var Paper = require('./paper');
+var Menu = require('./menu/menu');
 
 var LeftNav = React.createClass({
 
-  mixins: [Classable, WindowListenable],
+  mixins: [StylePropable, WindowListenable],
 
   propTypes: {
     docked: React.PropTypes.bool,
     header: React.PropTypes.element,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
-    selectedIndex: React.PropTypes.number
+    selectedIndex: React.PropTypes.number,
+    className: React.PropTypes.string,
   },
 
   windowListeners: {
@@ -49,33 +53,63 @@ var LeftNav = React.createClass({
     return this;
   },
 
+  /** Styles */
+  _main: function() {
+    var style = {
+      height: '100%',
+      width: CustomVariables.leftNavWidth,
+      position: 'fixed',
+      zIndex: 10,
+      left: 0,
+      top: 0,
+      transition: Transitions.easeOut(),
+      backgroundColor: CustomVariables.leftNavColor,
+    };
+
+    var x = ((-1 * CustomVariables.leftNavWidth) - 10) + 'px';
+    if (!this.state.open) style.transform = 'translate3d(' + x + ', 0, 0)';
+
+    return this.mergeAndPrefix(style);
+  },
+
+  _menuItem: function() {
+    return {
+      height: CustomVariables.spacing.desktopLeftNavMenuItemHeight,
+      lineDeight: CustomVariables.spacing.desktopLeftNavMenuItemHeight,
+    };
+  },
+
+  _menuItemLink: function() {
+    return this.mergeAndPrefix({
+      display: 'block',
+      textDecoration: 'none',
+      color: Theme.textColor,
+    }, this._menuItem());
+  },
+
   render: function() {
-    var classes = this.getClasses('mui-left-nav', {
-        'mui-closed': !this.state.open
-      }),
-      selectedIndex = this.props.selectedIndex,
-      overlay;
+    var selectedIndex = this.props.selectedIndex;
+    var overlay;
 
     if (!this.props.docked) overlay = <Overlay show={this.state.open} onTouchTap={this._onOverlayTouchTap} />;
 
     return (
-      <div className={classes}>
-
+      <div className={this.props.className}>
         {overlay}
         <Paper
           ref="clickAwayableElement"
-          className="mui-left-nav-menu"
+          style={this._main()}
           zDepth={2}
           rounded={false}>
-          
-          {this.props.header}
-          <Menu 
-            ref="menuItems"
-            zDepth={0}
-            menuItems={this.props.menuItems}
-            selectedIndex={selectedIndex}
-            onItemClick={this._onMenuItemClick} />
-
+            {this.props.header}
+            <Menu 
+              ref="menuItems"
+              zDepth={0}
+              menuItems={this.props.menuItems}
+              menuItemStyle={this._menuItem()} 
+              menuItemStyleLink={this._menuItemLink()}
+              selectedIndex={selectedIndex}
+              onItemClick={this._onMenuItemClick} />
         </Paper>
       </div>
     );
@@ -99,7 +133,6 @@ var LeftNav = React.createClass({
       this.close();
     }
   }
-
 });
 
 module.exports = LeftNav;

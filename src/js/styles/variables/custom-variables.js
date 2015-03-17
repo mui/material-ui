@@ -20,13 +20,9 @@ var customVariables = new (function() {
   // Component Colors
   this.canvasColor = Colors.white;
   this.dropDownMenuIconColor = Colors.minBlack;
-  this.leftNavColor = Colors.white;
   this.subheaderBorderColor = this.borderColor;
   this.subheaderTextColor = Theme.primary1Color;
   
-  // Layout
-  this.leftNavWidth = Spacing.desktopKeylineIncrement * 4;
-
   // appbar
   this.appBarColor = Theme.primary1Color;
   this.appBarTextColor = Colors.darkWhite;
@@ -73,6 +69,10 @@ var customVariables = new (function() {
   this.datePickerCalendarTextColor = Theme.textColor;
   this.datePickerSelectColor = Theme.primary2Color;
   this.datePickerSelectTextColor = Colors.white;
+
+  // leftnav
+  this.leftNavWidth = Spacing.desktopKeylineIncrement * 4;
+  this.leftNavColor = Colors.white;
 
   // menu
   this.menuBackgroundColor = Colors.white;
