@@ -22,7 +22,8 @@ var EnhancedButton = React.createClass({
     touchRippleOpacity: React.PropTypes.number,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func
+    onTouchTap: React.PropTypes.func,
+    onKeyboardFocus: React.PropTypes.func,
   },
 
   windowListeners: {
@@ -141,8 +142,7 @@ var EnhancedButton = React.createClass({
     this.setState({
       isKeyboardFocused: false
     });
-    this.props.onKeyboardFocus(false);
-
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
@@ -156,7 +156,7 @@ var EnhancedButton = React.createClass({
         this.setState({
           isKeyboardFocused: true
         });
-        this.props.onKeyboardFocus(true);
+        if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, true);
       }
     }.bind(this), 150);
     
@@ -173,8 +173,7 @@ var EnhancedButton = React.createClass({
     this.setState({
       isKeyboardFocused: false
     });
-    this.props.onKeyboardFocus(false);
-
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   }
 
