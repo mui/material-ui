@@ -77,6 +77,13 @@ var PaperPage = React.createClass({
               'for styling. This property is the className for the inner div.'
           },
           {
+            name: 'innerStyle',
+            type: 'string',
+            header: 'optional',
+            desc: 'Similiar to innerClassName. Overrides the inline-style of ' +
+                  'the inner div.' 
+          },
+          {
             name: 'rounded',
             type: 'bool',
             header: 'default: true',
