@@ -37,7 +37,7 @@ var DayButton = React.createClass({
 
     return this.props.date ? (
       <EnhancedButton {...other}
-        key={this.props.key}
+        key={this.props.date.getTime()}
         className={classes}
         disabled={this.props.disabled}
         disableFocusRipple={true}

@@ -94,7 +94,7 @@ var Calendar = React.createClass({
             disabledNextMonth={!toolbarInteractions.nextMonth}
             disabledPrevYear={!toolbarInteractions.prevYear}
             disabledNextYear={!toolbarInteractions.nextYear}
-            hideYearChange={this.props.hideToolbarYearChange}/>
+            hideYearChangeButtons={this.props.hideToolbarYearChange}/>
 
           <ul className="mui-date-picker-calendar-week-title">
             <li className="mui-date-picker-calendar-week-title-day">S</li>
