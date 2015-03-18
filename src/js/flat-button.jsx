@@ -25,8 +25,8 @@ var FlatButton = React.createClass({
         ...other
       } = this.props;
     var classes = this.getClasses('mui-flat-button', {
-      'mui-is-primary': primary,
-      'mui-is-secondary': !primary && secondary
+      'mui-is-primary': !this.props.disabled && primary,
+      'mui-is-secondary': !this.props.disabled && !primary && secondary
     });
     var children;
 
