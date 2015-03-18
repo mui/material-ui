@@ -72,10 +72,14 @@ var FlatButton = React.createClass({
   },
 
   _label: function() {
-    return this.mergeAndPrefix({
+    var style = {
       position: 'relative',
       padding: '0px ' + CustomVariables.spacing.desktopGutterLess + 'px',
-    }, this.props.labelStyle);
+    };
+    
+    if (this.props.labelStyle) style = this.mergeAndPrefix(style, this.props.labelStyle);
+
+    return style;
   },
 
 
