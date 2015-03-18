@@ -15,12 +15,15 @@ var DropDownIcon = React.createClass({
   propTypes: {
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
-    closeOnMenuItemClick: React.PropTypes.bool
+    closeOnMenuItemClick: React.PropTypes.bool,
+    hoverStyle: React.PropTypes.object,
+    iconStyle: React.PropTypes.object,
+    iconClassName: React.PropTypes.string,
   },
 
   getInitialState: function() {
     return {
-      open: false
+      open: false,
     }
   },
   
@@ -67,14 +70,13 @@ var DropDownIcon = React.createClass({
   },
 
   render: function() {
-
-    var icon;
-    if (this.props.iconClassName) icon = <FontIcon className={this.props.iconClassName} />;
-   
     return (
       <div style={this._main()}>
-          <div className="mui-menu-control" onClick={this._onControlClick}>
-              {icon}
+          <div onClick={this._onControlClick}>
+              <FontIcon 
+                className={this.props.iconClassName} 
+                style={this.props.iconStyle}
+                hoverStyle={this.props.hoverStyle}/>
               {this.props.children}
           </div>
           <Menu 
@@ -99,8 +101,7 @@ var DropDownIcon = React.createClass({
     if (this.props.closeOnMenuItemClick) {
       this.setState({ open: false });
     }
-  }
-
+  },
 });
 
 module.exports = DropDownIcon;

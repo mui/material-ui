@@ -1,5 +1,4 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/mixins/transitions');
 var CustomVariables = require('./styles/variables/custom-variables');
@@ -11,18 +10,20 @@ var Menu = require('./menu/menu');
 var ClearFix = require('./clearfix');
 var DropDownMenu = React.createClass({
 
-  mixins: [Classable, StylePropable, ClickAwayable],
+  mixins: [StylePropable, ClickAwayable],
 
   // The nested styles for drop-down-menu are modified by toolbar and possibly 
   // other user components, so it will give full access to its js styles rather 
   // than just the parent. 
   propTypes: {
+    className: React.PropTypes.string,
     autoWidth: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     styleControl: React.PropTypes.object,
     styleControlBg: React.PropTypes.object,
     styleIcon: React.PropTypes.object,
+    styleIconHover: React.PropTypes.object,
     styleLabel: React.PropTypes.object,
     styleUnderline: React.PropTypes.object,
     styleMenuItem: React.PropTypes.object,
@@ -37,7 +38,7 @@ var DropDownMenu = React.createClass({
   getInitialState: function() {
     return {
       open: false,
-      hovered: true,
+      isHovered: false,
       selectedIndex: this.props.selectedIndex || 0
     }
   },
@@ -72,31 +73,43 @@ var DropDownMenu = React.createClass({
   },
 
   _control: function() {
-    return this.mergeAndPrefix({
+    var style = {
       cursor: 'pointer',
       position: 'static',
       height: '100%',
-    }, this.props.styleControl);
+    };
+
+    if (this.props.styleControl) this.mergeAndPrefix(style, this.props.styleControl);
+
+    return style;
   },
 
   _controlBg: function() { 
-    return this.mergeAndPrefix({
+    var style = {
       transition: Transitions.easeOut(),
       backgroundColor: CustomVariables.menuBackgroundColor,
       height: '100%',
       width: '100%',
       opacity: (this.state.open) ? 0 : 
-               (this.state.hovered) ? 1 : 0,
-    }, this.props.styleControlBg);
+               (this.state.isHovered) ? 1 : 0,
+    };
+
+    if (this.props.styleControlBg) style = this.mergeAndPrefix(style, this.props.styleControlBg);
+  
+    return style;
   },
 
   _icon: function() {
-    return this.mergeAndPrefix({
+    var style = {
       position: 'absolute',
       top: ((CustomVariables.spacing.desktopToolbarHeight - 24) / 2),
       right: CustomVariables.spacing.desktopGutterLess,
       fill: CustomVariables.dropDownMenuIconColor,
-    }, this.props.styleIcon);
+    };
+
+    if (this.props.styleIcon) style = this.mergeAndPrefix(style, this.props.styleIcon);
+  
+    return style;
   },
 
   _label: function() {
@@ -116,54 +129,64 @@ var DropDownMenu = React.createClass({
       });
     }
 
-    return this.mergeAndPrefix(style, this.props.styleLabel);
+    if (this.props.styleLabel) style = this.mergeAndPrefix(style, this.props.styleLabel);
+  
+    return style;
   },
 
   _underline: function() {
-    return this.mergeAndPrefix({
+    var style = {
       borderTop: 'solid 1px ' + CustomVariables.borderColor,
       margin: '0 ' + CustomVariables.spacing.desktopGutter + 'px',
-    }, this.props.styleUnderline);
+    };
+
+    if (this.props.styleUnderline) style =this.mergeAndPrefix(style, this.props.styleUnderline);
+  
+    return style;
   },
 
   _menuItem: function() {
-    return this.mergeAndPrefix({
+    var style = {
       paddingRight: CustomVariables.spacing.iconSize + 
                     CustomVariables.spacing.desktopGutterLess + 
                     CustomVariables.spacing.desktopGutterMini,
       height: CustomVariables.spacing.desktopDropDownMenuItemHeight,
       lineHeight: CustomVariables.spacing.desktopDropDownMenuItemHeight + 'px',
       whiteSpace: 'nowrap',
-    }, this.props.styleMenuItem);
+    };
+
+    if (this.props.styleMenuItem) style = this.mergeAndPrefix(style, this.props.styleMenuItem);
+  
+    return style;
   },
 
 
   render: function() {
-    var classes = this.getClasses('mui-drop-down-menu', {
-      'mui-open': this.state.open
-    });
-
     return (
-      <div style={this._main()} onMouseOver={this._handleMouseOver} onMouseOut={this._handleMouseOut}>
+      <div 
+        style={this._main()} 
+        className={this.props.className} 
+        onMouseOut={this._handleMouseOut}
+        onMouseOver={this._handleMouseOver}>
 
           <ClearFix style={this._control()} onClick={this._onControlClick}>
             <Paper style={this._controlBg()} zDepth={0} />
             <div style={this._label()}>
               {this.props.menuItems[this.state.selectedIndex].text}
             </div>
-            <DropDownArrow style={this._icon()} />
+            <DropDownArrow style={this._icon()} hoverStyle={this.props.styleIconHover}/>
             <div style={this._underline()}/>
           </ClearFix>
 
-        <Menu
-          ref="menuItems"
-          autoWidth={this.props.autoWidth}
-          selectedIndex={this.state.selectedIndex}
-          menuItems={this.props.menuItems}
-          menuItemStyle={this._menuItem()}
-          hideable={true}
-          visible={this.state.open}
-          onItemClick={this._onMenuItemClick} />
+          <Menu
+            ref="menuItems"
+            autoWidth={this.props.autoWidth}
+            selectedIndex={this.state.selectedIndex}
+            menuItems={this.props.menuItems}
+            menuItemStyle={this._menuItem()}
+            hideable={true}
+            visible={this.state.open}
+            onItemClick={this._onMenuItemClick} />
       </div>
     );
   },
@@ -188,11 +211,11 @@ var DropDownMenu = React.createClass({
   },
 
   _handleMouseOver: function(e) {
-    this.setState({hovered: true});
+    this.setState({isHovered: true});
   },
 
   _handleMouseOut: function(e) {
-    this.setState({hovered: false});
+    this.setState({isHovered: false});
   }
 
 });
