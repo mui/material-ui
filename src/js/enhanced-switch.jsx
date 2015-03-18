@@ -216,7 +216,7 @@ var EnhancedSwitch = React.createClass({
       ) : (
         <div style={wrapStyles}>
           <div style={this.props.trackStyle}/>
-          <Paper style={this.props.thumbStyle} zDepth={1}> {ripples} </Paper>
+          <Paper style={this.props.thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
         </div>      
     );
 
