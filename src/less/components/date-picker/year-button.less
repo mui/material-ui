@@ -1,11 +1,13 @@
-.mui-date-picker-day-button {
+.mui-date-picker-year-button {
   position: relative;
-  float: left;
+  display: block;
+  margin: 0 auto;
   width: 36px;
   padding: 4px 2px;
 
-  .mui-date-picker-day-button-select {
+  .mui-date-picker-year-button-select {
     position: absolute;
+    top: 7px;
     background-color: @date-picker-select-color;
     height: 32px;
     width: 32px;
@@ -15,17 +17,17 @@
     .ease-out();
   }
 
-  .mui-date-picker-day-button-label {
+  .mui-date-picker-year-button-label {
     position: relative;
   }
 
   &.mui-is-selected {
-    .mui-date-picker-day-button-label {
+    .mui-date-picker-year-button-label {
       color: @date-picker-select-text-color;
     }
-    .mui-date-picker-day-button-select {
+    .mui-date-picker-year-button-select {
       opacity: 1;
-      transform: scale(1);
+      transform: scale(1.5);
     }
   }
 
@@ -33,7 +35,7 @@
     color: @disabled-color
   }
 
-  &.mui-is-current-date {
+  &.mui-is-current-year {
     color: @date-picker-color;
   }
 }

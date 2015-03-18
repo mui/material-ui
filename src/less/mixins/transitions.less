@@ -15,3 +15,13 @@
   }  
   animation: @animation-name @duration ease 0s infinite;
 }
+
+.hidden-transition-safe {
+  visibility: hidden;
+  height: 0 !important;
+
+  * {
+    visibility: hidden;
+    height: 0 !important;
+  }
+}

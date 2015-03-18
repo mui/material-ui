@@ -11,9 +11,21 @@ module.exports = {
     newDate.setMonth(d.getMonth() + months);
     return newDate;
   },
+    
+  addYears: function(d, years) {
+    var newDate = this.clone(d);
+    newDate.setFullYear(d.getFullYear() + years);
+    return newDate;
+  },
 
   clone: function(d) {
     return new Date(d.getTime());
+  },
+    
+  cloneAsDate: function(d) {
+    var clonedDate = this.clone(d);
+    clonedDate.setHours(0,0,0,0);
+    return clonedDate;
   },
 
   getDaysInMonth: function(d) {
@@ -120,6 +132,25 @@ module.exports = {
       (d1.getMonth() === d2.getMonth()) &&
       (d1.getDate() === d2.getDate());
   },
+  
+  isBeforeDate: function(d1, d2) {
+    var date1 = this.cloneAsDate(d1);
+    var date2 = this.cloneAsDate(d2);
+
+    return (date1.getTime() < date2.getTime());
+  },
+    
+  isAfterDate: function(d1, d2) {
+    var date1 = this.cloneAsDate(d1);
+    var date2 = this.cloneAsDate(d2);
+
+    return (date1.getTime() > date2.getTime());
+  },
+    
+  isBetweenDates: function(dateToCheck, startDate, endDate) {
+    return (!(this.isBeforeDate(dateToCheck, startDate)) &&
+            !(this.isAfterDate(dateToCheck, endDate)));
+  },
 
   monthDiff: function(d1, d2) {
     var m;
@@ -127,6 +158,10 @@ module.exports = {
     m += d1.getMonth();
     m -= d2.getMonth();
     return m;
+  },
+    
+  yearDiff: function(d1, d2) {
+    return ~~(this.monthDiff(d1, d2) / 12);
   }
 
 }

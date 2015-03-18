@@ -19,6 +19,10 @@ var DatePicker = React.createClass({
     onChange: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    startDate: React.PropTypes.object,
+    endDate: React.PropTypes.object,
+    shouldDisableDate: React.PropTypes.func,
+    hideToolbarYearChange: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -71,7 +75,11 @@ var DatePicker = React.createClass({
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
-          onDismiss={onDismiss} />
+          onDismiss={onDismiss}
+          startDate={this.props.startDate}
+          endDate={this.props.endDate}
+          shouldDisableDate={this.props.shouldDisableDate}
+          hideToolbarYearChange={this.props.hideToolbarYearChange} />
       </div>
 
     );

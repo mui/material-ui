@@ -1,5 +1,7 @@
 .mui-date-picker-calendar-toolbar {
-  height: 48px;
+  background-color: inherit !important;
+  height: 48px !important;
+  padding: 0 !important;
   position: relative;
 
   .mui-date-picker-calendar-toolbar-title {
@@ -9,15 +11,27 @@
     .mui-font-weight-medium;
   }
 
-  .mui-date-picker-calendar-toolbar-button-left {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
+  .mui-toolbar-group {
+    .mui-icon-button {
+      padding: 8px;
+      width: 36px;
+    }
+      
+    &.mui-left {
+      * {
+        vertical-align: top;
+      }
+        
+      &:first-child {
+        margin-left: 0 !important;
+      }
+    }
 
-  .mui-date-picker-calendar-toolbar-button-right {
-    position: absolute;
-    right: 0;
-    top: 0;
+    &.mui-right {
+        
+      &:last-child {
+        margin-right: 0 !important;
+      }
+    }   
   }
 }

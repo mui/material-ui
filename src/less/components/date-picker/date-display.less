@@ -31,9 +31,21 @@
     height: 58px;
     font-size: 58px;
   }
-
+    
+  .mui-date-picker-date-display-day,
+  .mui-date-picker-date-display-month,
   .mui-date-picker-date-display-year {
     color: fade(@date-picker-text-color, 70%);
+    cursor: pointer;
+    
+    &.selected {
+      color: @date-picker-text-color;
+      cursor: default;
+    }
+      
+    &.unavailable {
+      cursor: default;
+    }
   }
 }
 

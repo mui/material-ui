@@ -1,16 +1,16 @@
-var Classable = require('./mixins/classable');
 var React = require('react');
 
 var Toolbar = React.createClass({
-
-  mixins: [Classable],
+  
+  propTypes: {
+    className: React.PropTypes.string
+  },
 
   render: function() {
-    var classes = this.getClasses('mui-toolbar', {
-    });
-
+    var className = (this.props.className !== undefined) ? this.props.className + ' mui-toolbar' : 'mui-toolbar';
+    
     return (
-      <div className={classes}>
+      <div className={className}>
         {this.props.children}
       </div>
     );
