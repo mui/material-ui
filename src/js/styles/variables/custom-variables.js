@@ -120,8 +120,9 @@ var customVariables = new (function() {
   this.toggleTrackRequiredColor = this.toggleThumbRequiredColor; // fadeout 50%
 
   // toolbar
-  this.toolbarBackgroundColor = '#eeeeee'; //darken by 5%
+  this.toolbarBackgroundColor = ColorManipulator.darken('#eeeeee', 0.05);
   this.toolbarHeight = 56;
+  this.toolbarTitleFontSize = 20;
   this.toolbarIconColor = 'rgba(0, 0, 0, .40)';
   this.toolbarSeparatorColor = 'rgba(0, 0, 0, .175)';
   this.toolbarMenuHoverColor = 'rgba(0, 0, 0, .10)';

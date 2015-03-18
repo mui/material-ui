@@ -6,6 +6,8 @@ var FontIcon = mui.FontIcon;
 var RaisedButton = mui.RaisedButton;
 var Toolbar = mui.Toolbar;
 var ToolbarGroup = mui.ToolbarGroup;
+var ToolbarSeparator = mui.ToolbarSeparator;
+var ToolbarTitle = mui.ToolbarTitle;
 var ComponentDoc = require('../../component-doc.jsx');
 
 var ToolbarPage = React.createClass({
@@ -31,25 +33,38 @@ var ToolbarPage = React.createClass({
       '    <DropDownMenu menuItems={filterOptions} />\n' +
       '  </ToolbarGroup>\n' +
       '  <ToolbarGroup key={1} float="right">\n' +
-      '    <FontIcon className="mui-icon-pie" />\n' +
+      '    <ToolbarTitle text="Options" />\n' +
       '    <FontIcon className="mui-icon-sort" />\n' +
       '    <DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />\n' +
-      '    <span className="mui-toolbar-separator">&nbsp;</span>\n' +
+      '    <ToolbarSeparator/>\n' +
       '    <RaisedButton label="Create Broadcast" primary={true} />\n' +
       '  </ToolbarGroup>\n' +
       '</Toolbar>';
 
-    var componentInfo = [{
-      name: 'ToolbarGroup',
-        infoArray: [
-          {
-            name: 'float',
-            type: 'string',
-            header: 'optional',
-            desc: 'Optional pull "left" or "right"'
-          }
-        ]
-    }];
+    var componentInfo = [
+      {
+        name: 'ToolbarGroup',
+          infoArray: [
+            {
+              name: 'float',
+              type: 'string',
+              header: 'optional',
+              desc: 'Optional pull "left" or "right"'
+            }
+          ]
+      },
+      {
+        name: 'ToolbarTitle',
+          infoArray: [
+            {
+              name: 'text',
+              type: 'string',
+              header: 'optional',
+              desc: 'The text to be displayed for the element.'
+            }
+          ]
+      },      
+    ];
 
     var filterOptions = [
       { payload: '1', text: 'All Broadcasts' },
@@ -76,10 +91,10 @@ var ToolbarPage = React.createClass({
             <DropDownMenu menuItems={filterOptions} />
           </ToolbarGroup>
           <ToolbarGroup key={1} float="right">
-            <FontIcon className="muidocs-icon-custom-pie" />
+            <ToolbarTitle text="Options" />
             <FontIcon className="muidocs-icon-custom-sort" />
             <DropDownIcon iconClassName="muidocs-icon-navigation-expand-more" menuItems={iconMenuItems} />
-            <span className="mui-toolbar-separator">&nbsp;</span>
+            <ToolbarSeparator/>
             <RaisedButton label="Create Broadcast" primary={true} />
           </ToolbarGroup>
         </Toolbar>

@@ -39,8 +39,10 @@ module.exports = {
   Tabs: require('./js/tabs/tabs'),
   Toggle: require('./js/toggle'),
   TextField: require('./js/text-field'),
-  Toolbar: require('./js/toolbar'),
-  ToolbarGroup: require('./js/toolbar-group'),
+  Toolbar: require('./js/toolbar/toolbar'),
+  ToolbarGroup: require('./js/toolbar/toolbar-group'),
+  ToolbarSeparator: require('./js/toolbar/toolbar-separator'),
+  ToolbarTitle: require('./js/toolbar/toolbar-title'),
   Tooltip: require('./js/tooltip'),
   Utils: {
     CssEvent: require('./js/utils/css-event'),
