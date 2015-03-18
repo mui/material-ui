@@ -11,7 +11,7 @@ var Paper = React.createClass({
     innerClassName: React.PropTypes.string,
     innerStyle: React.PropTypes.object,
     rounded: React.PropTypes.bool,
-    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5])
+    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5]),
   },
 
   getDefaultProps: function() {
@@ -33,11 +33,14 @@ var Paper = React.createClass({
   },
 
   _inner: function() {
-    var style = this.mergeAndPrefix({
-      boxShadow: this.getZDepthShadows(this.props.zDepth).bottomBoxShadow,
+    var style = {
       width: '100%', 
       height: '100%',
-    }, this._main());
+      boxShadow: this.getZDepthShadows(this.props.zDepth).bottomBoxShadow,
+      borderRadius: this.props.circle ? '50%' : 
+                    this.props.rounded ? '2px' :
+                    '0px',
+    };
 
     if (this.props.innerStyle) {
       style = this.mergeAndPrefix(style, this.props.innerStyle);

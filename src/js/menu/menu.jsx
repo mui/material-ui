@@ -180,22 +180,27 @@ var Menu = React.createClass({
   },
 
   // Main Style
-  _paperContainer: function() {
-    var styles = {
-      paddingTop: CustomVariables.spacing.desktopGutterMini,
-      paddingBottom: CustomVariables.spacing.desktopGutterMini,
+  _main: function() {
+    return this.mergeAndPrefix({
       backgroundColor: CustomVariables.menuBackgroundColor,
       transition: Transitions.easeOut(null, 'height'),
-    };
+    });
+  },
+
+  _innerPaper: function() {
+    var style = {
+      paddingTop: CustomVariables.spacing.desktopGutterMini,
+      paddingBottom: CustomVariables.spacing.desktopGutterMini,
+    }
 
     if (this.props.hideable) {
-     this.mergeStyles(styles, {
+     this.mergeStyles(style, {
       overflow: 'hidden',
       padding: 0,
       });
     }
 
-    return this.mergeAndPrefix(styles);
+    return style;
   },
 
   _subheader: function() {
@@ -206,11 +211,11 @@ var Menu = React.createClass({
   },
 
   render: function() {
-    var styles = this._paperContainer();
+    var styles = this._main();
     if (this.props.hideable) styles = this.mergeStyles(styles, this._hideable());
 
     return (
-      <Paper ref="paperContainer" zDepth={this.props.zDepth} style={styles}>
+      <Paper ref="paperContainer" zDepth={this.props.zDepth} style={styles} innerStyle={this._innerPaper()}>
         {this._getChildren()}
       </Paper>
     );
