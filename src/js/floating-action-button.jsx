@@ -90,8 +90,9 @@ var RaisedButton = React.createClass({
     };
 
     if (this.props.mini) style.lineHeight = CustomVariables.floatingActionButtonMiniSize + 'px';
+    if (this.props.iconStyle) style = this.mergeAndPrefix(style, this.props.iconStyle);
 
-    return this.mergeAndPrefix(style, this.props.iconStyle); 
+    return style;
   },
 
   _overlay: function() {

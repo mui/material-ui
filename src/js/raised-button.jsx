@@ -41,7 +41,7 @@ var RaisedButton = React.createClass({
     var zDepth = nextProps.disabled ? 0 : 1;
     this.setState({
       zDepth: zDepth,
-      initialZDepth: zDepth
+      initialZDepth: zDepth,
     });
   },
 
@@ -81,7 +81,7 @@ var RaisedButton = React.createClass({
   },
 
   _label: function() {
-    return this.mergeAndPrefix({
+    var style = {
       position: 'relative',
       opacity: 1,
       fontSize: '14px',
@@ -96,7 +96,11 @@ var RaisedButton = React.createClass({
               this.props.primary ? CustomVariables.raisedButtonPrimaryTextColor :
               this.props.secondary ? CustomVariables.raisedButtonSecondaryTextColor :
               CustomVariables.raisedButtonTextColor,
-    }, this.props.labelStyle);
+    };
+
+    if (this.props.labelStyle) style = this.mergeAndPrefix(style, this.props.labelStyle);
+
+    return style;
   },
 
   _overlay: function() {
