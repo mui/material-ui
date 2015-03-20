@@ -15,4 +15,3 @@ var NavigationChevronRightDouble = React.createClass({
 });
 
 module.exports = NavigationChevronRightDouble;
-
