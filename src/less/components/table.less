@@ -1,46 +1,66 @@
-@column-width: 200px;
-
 .mui-table {
-  //background-color: darken(green, 10%);
+  background-color: @table-background-color;
   padding: 0 @desktop-gutter;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: @table-font-size;
 
   .mui-table-header {
-    //background-color: green;
-
-    .mui-table-header-column {
-      display: inline-block;
-      height: 48px;
-      line-height: 48px;
-      //background-color: lighten(green, 10%);
-      width: @column-width;
-    }
-
-    .mui-table-header-pagify {
-      display: inline-block;
-      //background-color: lighten(green, 25%);
-      height: 48px;
-      line-height: 48px;
-      float: right;
+    
+    .mui-table-header-row {
+        
+      .mui-table-header-column {
+        border-bottom: 1px solid @border-color;
+        vertical-align: bottom;
+        font-weight: 300;
+        .mui-table-cell;
+      }
     }
   }
+    
+  &.mui-row-hover .mui-table-row:hover {
+    .mui-table-row-column {
+      background-color: @table-row-hover-color;
+    }
+  }
+    
+  .striped .mui-table-row:nth-child(odd) {
+    background-color: @table-row-stripe-color;
+  }
 
-  .mui-table-rows {
-    //background-color: lighten(green, 20%);
+  .mui-table-row {
+    font-weight: 200;
 
-    .mui-table-rows-item {
-      height: 48px;
-      line-height: 48px;
-      //background-color: lighten(green, 30%);
+    .mui-table-row-column {
+      .mui-table-cell;
+    }
+      
+    &.mui-is-selected {
+      .mui-table-row-column {
+        background-color: @table-row-selected-color;
+      }
+    }
+  }
+    
+  &.fixed-header {
+    thead {
       display: block;
-      width: 100%;
     }
-
-    .mui-table-rows-actions {
-      height: 48px;
-      line-height: 48px;
-      display: inline-block;
-      //background-color: lighten(green, 25%);
-      float: right;
+      
+    tbody {
+      display: block;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
   }
+}
+
+.mui-table-cell {
+  padding: 20px;
+  text-align: left;
+}
+
+.mui-table-container {
+  position: relative;
 }

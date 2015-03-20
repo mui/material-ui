@@ -27,6 +27,7 @@ var Paper = require('./components/pages/components/paper.jsx');
 var Sliders = require('./components/pages/components/sliders.jsx');
 var Snackbar = require('./components/pages/components/snackbar.jsx');
 var Switches = require('./components/pages/components/switches.jsx');
+var Table = require('./components/pages/components/table.jsx');
 var Tabs = require('./components/pages/components/tabs.jsx');
 var TextFields = require('./components/pages/components/text-fields.jsx');
 var Toolbars = require('./components/pages/components/toolbars.jsx');
@@ -64,6 +65,7 @@ var AppRoutes = (
       <Route name="sliders" handler={Sliders} />
       <Route name="switches" handler={Switches} />
       <Route name="snackbar" handler={Snackbar} />
+      <Route name="table" handler={Table} />
       <Route name="tabs" handler={Tabs} />
       <Route name="text-fields" handler={TextFields} />
       <Route name="toolbars" handler={Toolbars} />

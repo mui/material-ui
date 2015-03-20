@@ -17,6 +17,7 @@ var Components = React.createClass({
       { route: 'sliders', text: 'Sliders'},
       { route: 'switches', text: 'Switches'},
       { route: 'snackbar', text: 'Snackbar'},
+      { route: 'table', text: 'Table'},
       { route: 'tabs', text: 'Tabs'},
       { route: 'text-fields', text: 'Text Fields'},
       { route: 'toolbars', text: 'Toolbars'},

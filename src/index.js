@@ -34,6 +34,7 @@ module.exports = {
   },
   Tab: require('./js/tabs/tab'),
   Tabs: require('./js/tabs/tabs'),
+  Table: require('./js/table/table'),
   Toggle: require('./js/toggle'),
   Snackbar: require('./js/snackbar'),
   TextField: require('./js/text-field'),
