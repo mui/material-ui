@@ -1,5 +1,5 @@
 var React = require('react');
-var BeforeAfterWrapper = require('./before-after-wrapper.jsx');
+var BeforeAfterWrapper = require('./before-after-wrapper');
 
 var ClearFix = React.createClass({
   
