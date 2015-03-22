@@ -38,6 +38,20 @@ var DialogWindow = React.createClass({
     };
   },
 
+  componentWillReceiveProps: function(nextProps) {
+    if (typeof nextProps.openImmediately === 'boolean') {
+      this.setState({
+        open: nextProps.openImmediately
+      });
+      
+      if(nextProps.openImmediately) {
+        this.refs.dialogOverlay.preventScrolling()
+      } else {
+        this.refs.dialogOverlay.allowScrolling();
+      }
+    }
+  },
+
   componentDidMount: function() {
     this._positionDialog();
     if (this.props.openImmediately) this.refs.dialogOverlay.preventScrolling();
