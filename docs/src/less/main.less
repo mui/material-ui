@@ -9,6 +9,7 @@
 //@import (less) "monokai_sublime.css";
 @import (less) "github.css";
 
+@import "clearfix.less";
 @import "color-palette.less";
 @import "component-info.less";
 @import "footer.less";
@@ -63,6 +64,10 @@ a {
   margin-bottom: @desktop-gutter-mini;
 }
 
+.app-content-canvas {
+  padding-top: (@app-bar-height);
+}
+
 .baseline-grid {
   background-image: url('images/baseline-20px-grid.gif');
 }
@@ -102,6 +107,6 @@ a {
   width: (64px * 3);
 }
 
-.app-content-canvas {
-  padding-top: (@app-bar-height);
+.no-wrap {
+  white-space: nowrap;
 }
