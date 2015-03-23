@@ -1,5 +1,5 @@
 .mui-enhanced-switch {
-  @mui-switch-width: 60px;
+  @mui-switch-width: 6rem;
 
   position: relative;
   cursor: pointer;
@@ -26,21 +26,21 @@
     display: table-column;
 
 
-    .mui-touch-ripple, 
+    .mui-touch-ripple,
     .mui-focus-ripple-inner {
         width: 200%;
         height: 200%;
-        top: -12px;
-        left: -12px;
+        .mui-px-fallback(top, -1.2rem);
+        .mui-px-fallback(bottom, -1.2rem);
     }
   }
-  
+
   .mui-switch-label {
     float: left;
     position: relative;
     display: table-column;
     width: calc(~"100% - @{mui-switch-width}");
-    line-height: 24px;
+    .mui-px-fallback(line-height, 2.4rem);
   }
 
   &.mui-is-switched {

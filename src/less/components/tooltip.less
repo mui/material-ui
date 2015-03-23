@@ -2,14 +2,14 @@
   position: absolute;
 
   font-family: @contentFontFamily;
-  font-size: 10px;
-  line-height: 22px;
-  padding: 0 8px;
+  .mui-px-fallback(font-size, 1.0rem);
+  .mui-px-fallback(line-height, 2.2rem);
+  .mui-px-fallback-padding(0, 0.8rem);
   color: @white;
   overflow: hidden;
-  top: -10000px;
+  .mui-px-fallback(top, -1000rem);
 
-  border-radius: 2px;
+  .mui-px-fallback-border-radius(0.2rem);
   user-select: none;
   opacity: 0;
 
@@ -26,7 +26,7 @@
   .mui-tooltip-ripple {
     position: absolute;
     left: 50%;
-    top: 0px;
+    top: 0em;
 
     transform: translate(-50%, -50%);
     border-radius: 50%;
@@ -39,12 +39,12 @@
   }
 
   &.mui-is-shown {
-    top: -16px;
+    .mui-px-fallback(top, -1.6rem);
     opacity: 1;
-    transform: translate3d(0px, 16px, 0px);
+    transform: translate3d(0rem, 1.6rem, 0rem);
 
     transition:
-      top 0ms @ease-out-function 0ms, 
+      top 0ms @ease-out-function 0ms,
       transform 450ms @ease-out-function 0ms,
       opacity 450ms @ease-out-function 0ms;
 
@@ -59,14 +59,14 @@
   }
 
   &.mui-is-touch {
-    font-size: 14px;
-    line-height: 44px;
-    padding: 0 16px;
+    .mui-px-fallback(font-size, 1.4rem);
+    .mui-px-fallback(line-height, 4.4rem);
+    padding: 0 1.1429em;
 
     &.mui-is-shown {
       .mui-tooltip-ripple {
-        height: 105px;
-        width: 105px;
+        .mui-px-fallback(height, 10.5rem);
+        .mui-px-fallback(width, 10.5rem);
       }
     }
   }

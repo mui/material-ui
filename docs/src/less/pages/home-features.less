@@ -8,12 +8,12 @@
     text-align: center;
     margin: 0;
     padding: 0;
-    line-height: @desktop-keyline-increment;
+    .mui-px-fallback(line-height, @desktop-keyline-increment);
   }
 
   .home-feature {
-    max-width: 300px;
-    margin: 0 auto @desktop-gutter auto;
+    max-width: 23.0769em;
+    .mui-px-fallback-margin(0, auto, @desktop-gutter, auto);
 
     &:last-child {
       margin-bottom: 0;
@@ -23,30 +23,30 @@
   .home-feature-image {
     //Not sure why this is needed but it fixes a display
     //issue in chrome
-    margin-bottom: -6px;
+    margin-bottom: -0.6rem;
   }
 
   @media @device-medium {
 
     .feature-container {
       .clearfix();
-      max-width: 906px;
+      max-width: 69.6923em;
     }
 
     .home-feature {
       float: left;
       width: 33%;
-      margin-right: 4px;
+      .mui-px-fallback(margin-right, 0.4rem);
       margin-bottom: 0;
 
       &:first-child {
-        margin-left: -2px;
+        .mui-px-fallback(margin-left, -0.2rem);
       }
 
       &:last-child {
         margin-right: 0;
       }
     }
-    
+
   }
 }

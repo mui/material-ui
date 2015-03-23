@@ -4,8 +4,8 @@
 
   position: relative;
   display: inline-block;
-  height: @desktop-toolbar-height;
-  font-size: @desktop-drop-down-menu-font-size;
+  .mui-px-fallback(height, @desktop-toolbar-height);
+  .mui-px-fallback(font-size, @desktop-drop-down-menu-font-size);
 
   &.mui-open {
     .mui-menu-control,
@@ -14,7 +14,7 @@
         opacity: 0;
       }
       .mui-menu-label {
-        top: (@desktop-toolbar-height / 2);
+        .mui-px-fallback(top, (@desktop-toolbar-height / 2));
         opacity: 0;
       }
     }
@@ -43,33 +43,35 @@
     }
 
     .mui-menu-label {
-      line-height: @desktop-toolbar-height;
+      .mui-px-fallback(line-height, @desktop-toolbar-height);
       position: absolute;
-      padding-left: @desktop-gutter;
+      .mui-px-fallback(padding-left, @desktop-gutter);
       top: 0;
       opacity: 1;
     }
 
     .mui-menu-drop-down-icon {
       position: absolute;
-      top: ((@desktop-toolbar-height - 24px) / 2);
-      right: @desktop-gutter-less;
+      .mui-px-fallback(top, ((@desktop-toolbar-height - 2.4rem) / 2));
+      .mui-px-fallback(right, @desktop-gutter-less);
       * {
         fill: @drop-down-menu-icon-color;
       }
     }
 
     .mui-menu-control-underline {
-      border-top: solid 1px @border-color;
-      margin: 0 @desktop-gutter;
+      .mui-px-fallback-border-top(0.1rem, solid, @border-color);
+      .mui-px-fallback-margin(0, @desktop-gutter);
     }
   }
 
   .mui-menu {
     .mui-menu-item {
-      padding-right: (@icon-size + @desktop-gutter-less + @desktop-gutter-mini);
-      height: @desktop-drop-down-menu-item-height;
-      line-height: @desktop-drop-down-menu-item-height;
+      .mui-px-fallback(
+        padding-right,
+        (@icon-size + @desktop-gutter-less + @desktop-gutter-mini));
+      .mui-px-fallback(height, @desktop-drop-down-menu-item-height);
+      .mui-px-fallback(line-height, @desktop-drop-down-menu-item-height);
       white-space: nowrap;
     }
   }

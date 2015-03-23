@@ -1,14 +1,17 @@
+html {
+	font-size: 62.5%;
+}
 body {
 	padding: 0;
 	margin: 0;
 	font-family: sans-serif;
-	font-size: 1em;
+	font-size: 1.6rem;
 	line-height: 1.5;
 	color: #555;
 	background: #fff;
 }
 h1 {
-	font-size: 1.5em;
+	font-size: 2.4rem;
 	font-weight: normal;
 }
 small {
@@ -19,16 +22,16 @@ a {
 	text-decoration: none;
 }
 a:hover, a:focus {
-	box-shadow: 0 1px #e74c3c;
+	box-shadow: 0 0.1rem #e74c3c;
 }
 .bshadow0, input {
-	box-shadow: inset 0 -2px #e7e7e7;
+	box-shadow: inset 0 -0.2rem #e7e7e7;
 }
 input:hover {
-	box-shadow: inset 0 -2px #ccc;
+	box-shadow: inset 0 -0.2rem #ccc;
 }
 input, fieldset {
-	font-size: 1em;
+	font-size: 1.6rem;
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -36,15 +39,15 @@ input, fieldset {
 input {
 	color: inherit;
 	line-height: 1.5;
-	height: 1.5em;
-	padding: .25em 0;
+	height: 2.4rem;
+	padding: 0.4rem 0;
 }
 input:focus {
 	outline: none;
-	box-shadow: inset 0 -2px #449fdb;
+	box-shadow: inset 0 -0.2rem #449fdb;
 }
 .glyph {
-	font-size: 16px;
+	font-size: 1.6rem;
 	width: 15em;
 	padding-bottom: 1em;
 	margin-right: 4em;
@@ -72,8 +75,8 @@ input:focus {
 	color: #000;
 }
 p {
-	margin-top: 1em;
-	margin-bottom: 1em;
+	margin-top: 1.6rem;
+	margin-bottom: 1.6rem;
 }
 .mvm {
 	margin-top: .75em;
@@ -133,18 +136,18 @@ p {
 .textbox0 {
 	width: 3em;
 	background: #f1f1f1;
-	padding: .25em .5em;
+	padding: 0.4rem 0.5em;
 	line-height: 1.5;
-	height: 1.5em;
+	height: 2.4rem;
 }
 #testDrive {
 	display: block;
-	padding-top: 24px;
+	padding-top: 2.4rem;
 	line-height: 1.5;
 }
 .fs0 {
-	font-size: 16px;
+	font-size: 1.6rem;
 }
 .fs1 {
-	font-size: 24px;
+	font-size: 2.4rem;
 }

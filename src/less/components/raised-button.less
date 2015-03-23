@@ -1,8 +1,8 @@
 .mui-raised-button {
 
   display: inline-block;
-  min-width: @button-min-width;
-  height: @button-height;
+  .mui-px-fallback(min-width, @button-min-width);
+  .mui-px-fallback(height, @button-height);
 
   &, * { .ease-out(); }
 
@@ -11,9 +11,9 @@
     width: 100%;
     padding: 0;
     overflow: hidden;
-    border-radius: 2px;
+    .mui-px-fallback(border-radius, 0.2rem);
     background-color: @raised-button-color;
-    
+
     //This is need so that ripples do not bleed
     //past border radius.
     //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
@@ -52,9 +52,9 @@
     position: relative;
     .mui-font-style-button;
     margin: 0;
-    padding: 0 @desktop-gutter-less;
+    .mui-px-fallback-padding(0, @desktop-gutter-less);
     user-select: none;
-    line-height: @button-height;
+    .mui-px-fallback(line-height, @button-height);
     color: @raised-button-text-color;
   }
 

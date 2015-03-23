@@ -17,25 +17,25 @@
 
     &.mui-visible {
       & > .mui-paper-container {
-        padding-top: @desktop-gutter-mini;
-        padding-bottom: @desktop-gutter-mini;
+        .mui-px-fallback(padding-top, @desktop-gutter-mini);
+        .mui-px-fallback(padding-bottom, @desktop-gutter-mini);
       }
     }
   }
 
   .mui-paper-container {
-    padding-top: @desktop-gutter-mini;
-    padding-bottom: @desktop-gutter-mini;
+    .mui-px-fallback(padding-top, @desktop-gutter-mini);
+    .mui-px-fallback(padding-bottom, @desktop-gutter-mini);
   }
 
   .mui-subheader {
-    padding-left: @menu-subheader-padding;
-    padding-right: @menu-subheader-padding;
+    .mui-px-fallback(padding-left, @menu-subheader-padding);
+    .mui-px-fallback(padding-right, @menu-subheader-padding);
   }
 
   .mui-nested-menu-item {
     position: relative;
-      
+
     &.mui-is-disabled {
         color: @disabled-color;
         cursor: default;

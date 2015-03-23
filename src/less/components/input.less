@@ -1,21 +1,21 @@
 .mui-input {
   position: relative;
-  margin-top: 24px;
-  margin-bottom: 48px;
+  .mui-px-fallback(margin-top, 2.4rem);
+  .mui-px-fallback(margin-bottom, 4.8rem);
 
   input, textarea {
     background-color: transparent;
-    font-size: @input-font-size;
+    .mui-px-fallback(font-size, @input-font-size);
     border: 0;
     outline: none;
-    border-bottom: 1px solid lightgray;
+    .mui-px-fallback-border-bottom(0.1rem, solid, lightgray);
     padding: 0;
     box-sizing: border-box;
-    padding-bottom: 14px;
+    .mui-px-fallback(padding-bottom, 1.4rem);
 
     &[type='text'], &[type='password'], &[type='email'] {
       display: block;
-      width: @input-width;
+      .mui-px-fallback(width, @input-width);
     }
 
     &:focus, &.mui-is-not-empty, &:disabled[value]:not([value=""]) {
@@ -23,9 +23,9 @@
       box-shadow: none;
       &~.mui-input-placeholder {
         color: blue;
-        font-size: @input-placeholder-size !important;
+        .mui-px-fallback(font-size, @input-placeholder-size) !important;
         font-weight: 300;
-        top: -32px;
+        .mui-px-fallback(top, -3.2rem);
         .ease-out;
       }
       &~.mui-input-highlight {
@@ -63,10 +63,10 @@
     }
 
     &+.mui-input-placeholder {
-      font-size: @input-font-size;
+      .mui-px-fallback(font-size, @input-font-size);
       color: gray;
       position: absolute;
-      top: -4px;
+      .mui-px-fallback(top, -0.4rem);
       //z-index: -1;
       .ease-out;
     }
@@ -77,21 +77,21 @@
     position: absolute;
     background-color: transparent;
     opacity: 0.25;
-    height: 19px;
-    top: -3px;
-    width: (@input-width/2);
+    .mui-px-fallback(height, 1.9rem);
+    .mui-px-fallback(top, -0.3rem);
+    .mui-px-fallback(width, (@input-width)/2);
     z-index: -1;
   }
 
   .mui-input-bar {
     position: relative;
     display: block;
-    width: @input-width;
+    .mui-px-fallback(width, @input-width);
 
     &::before, &::after {
       content: '';
-      height: @input-bar-height;
-      top: (-1 * @input-bar-height);
+      .mui-px-fallback(height, @input-bar-height);
+      .mui-px-fallback(top, (-1 * @input-bar-height));
       width: 0;
       position: absolute;
       .ease-out;
@@ -150,15 +150,15 @@
   }
 
   &.mui-floating {
-    margin-top: @desktop-gutter;
+    .mui-px-fallback(margin-top, @desktop-gutter);
     input, textarea {
       &:focus {
         &+.mui-input-placeholder {
           display: block;
           color: gray;
-          font-size: 16px !important;
+          .mui-px-fallback(font-size, 1.6rem) !important;
           font-weight: 400;
-          top: -4px;
+          .mui-px-fallback(top, 0.4rem);
         }
 
         &.mui-is-not-empty {
@@ -175,12 +175,12 @@
       }
     }
   }
-  
+
   &.mui-disabled { opacity: 0.4 }
 
   &::-webkit-input-placeholder {
     position: absolute !important;
-    top: -20px !important;
+    .mui-px-fallback(top, -2rem) !important;
   }
 
 }

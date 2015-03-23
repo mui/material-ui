@@ -1,38 +1,38 @@
 .mui-toolbar {
   background-color: @toolbar-background-color;
-  height: @toolbar-height;
+  .mui-px-fallback(height, @toolbar-height);
   width: 100%;
-  padding: 0 @desktop-gutter;
+  .mui-px-fallback-padding(0, @desktop-gutter);
 
   .mui-toolbar-group {
     position: relative;
 
     .mui-toolbar-title {
-      padding-right: @desktop-gutter-less;
-      line-height: @toolbar-height;
+      .mui-px-fallback(padding-right, @desktop-gutter-less);
+      .mui-px-fallback(line-height, @toolbar-height);
     }
 
     .mui-toolbar-separator {
       background-color: @toolbar-separator-color;
       display: inline-block;
-      height: @desktop-gutter-more;
-      margin-left: @desktop-gutter;
+      .mui-px-fallback(height, @desktop-gutter-more);
+      .mui-px-fallback(margin-left, @desktop-gutter);
       position: relative;
-      top: ((@toolbar-height - @desktop-gutter-more) / 2);
-      width: 1px;
+      .mui-px-fallback(top, ((@toolbar-height - @desktop-gutter-more) / 2));
+      .mui-px-fallback(width, 0.1rem);
     }
 
     .mui-raised-button,
     .mui-flat-button {
-      margin: 0 @desktop-gutter;
-      margin-top: ((@toolbar-height - @button-height) / 2);
+      .mui-px-fallback-margin(0, @desktop-gutter);
+      .mui-px-fallback(margin-top, ((@toolbar-height - @button-height) / 2));
       position: relative;
     }
 
     .mui-drop-down-menu {
       color: @light-black;
       display: inline-block;
-      margin-right: @desktop-gutter;
+      .mui-px-fallback(margin-right, @desktop-gutter);
 
       .mui-menu-control-bg {
         background-color: @toolbar-menu-hover-color;
@@ -55,8 +55,8 @@
     .mui-font-icon {
       color: @toolbar-icon-color;
       cursor: pointer;
-      line-height: @toolbar-height;
-      padding-left: @desktop-gutter;
+      .mui-px-fallback(line-height, @toolbar-height);
+      .mui-px-fallback(padding-left, @desktop-gutter);
 
       &:hover {
         color: @dark-black;
@@ -72,10 +72,10 @@
       }
 
       &:first-child {
-        margin-left: -24px;
+        .mui-px-fallback(margin-left, -2.4rem);
 
         .mui-toolbar-title {
-          margin-left: 24px;
+          .mui-px-fallback(margin-left, 2.4rem);
         }
       }
     }
@@ -88,7 +88,7 @@
       }
 
       &:last-child {
-        margin-right: -24px;
+        .mui-px-fallback(margin-right, -2.4rem);
       }
     }
   }

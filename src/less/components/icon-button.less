@@ -4,22 +4,24 @@
 
   * { .ease-out(); }
   position: relative;
-  padding: (@icon-size / 2);
-  width: @icon-size*2;
-  height: @icon-size*2;
+  .mui-px-fallback-padding(@icon-size / 2);
+  .mui-px-fallback(width, @icon-size * 2);
+  .mui-px-fallback(height, @icon-size * 2);
 
   .mui-focus-ripple {
     .mui-focus-ripple-inner {
       background-color: rgba(0,0,0,0.1);
-      box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.1);
-      border: solid 6px @transparent;
+      .mui-px-fallback-box-shadow(0rem, 0rem, 0rem, 0.1rem, rgba(0, 0, 0, 0.1));
+      .mui-px-fallback(border-width, 6rem);
+      border-style: solid;
+      border-color: @transparent;
       background-clip: padding-box;
       .pulsate(icon-button-focus-ripple-pulsate);
     }
   }
 
-  .mui-icon-button-tooltip {  
-    margin-top: (@icon-button-size + 4);
+  .mui-icon-button-tooltip {
+    .mui-px-fallback(margin-top, (@icon-button-size + 0.4rem));
   }
 
   &.mui-is-disabled {
@@ -40,7 +42,8 @@
   .mui-focus-ripple {
     .mui-focus-ripple-inner {
       background-color: rgba(255,255,255,0.3);
-      box-shadow: 0px 0px 0px 1px rgba(255,255,255,0.3);
+      .mui-px-fallback-box-shadow(
+        0rem, 0rem, 0rem, 0.1rem, rgba(255, 255, 255, 255, 0.3));
     }
   }
 }

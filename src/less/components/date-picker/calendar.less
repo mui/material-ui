@@ -1,21 +1,21 @@
 .mui-date-picker-calendar {
-  font-size: 12px;
+  .mui-px-fallback(font-size, 1.2rem);
 
   .mui-date-picker-calendar-week-title {
     .clearfix();
     .mui-font-weight-medium;
     color: fade(@date-picker-calendar-text-color, 50%);
-    
-    line-height: 12px;
-    padding: 0 14px;
+
+    .mui-px-fallback(line-height, 1.2rem);
+    padding: 0 1.1667em;
   }
 
   .mui-date-picker-calendar-week-title-day {
     list-style: none;
     float: left;
-    width: 32px;
+    width: 2.6667em;
     text-align: center;
-    margin: 0 2px;
+    margin: 0 0.1667em;
   }
 
   .mui-date-picker-calendar-container {
@@ -24,19 +24,19 @@
 
   &.mui-is-4week {
     .mui-date-picker-calendar-container {
-      height: 228px;
+      .mui-px-fallback(height, 22.8rem);
     }
   }
 
   &.mui-is-5week {
     .mui-date-picker-calendar-container {
-      height: 268px;
+      .mui-px-fallback(height, 26.8rem);
     }
-  } 
+  }
 
   &.mui-is-6week {
     .mui-date-picker-calendar-container {
-      height: 308px;
+      .mui-px-fallback(height, 30.8rem);
     }
   }
 }
@@ -47,13 +47,13 @@
   }
 
   .mui-date-picker-calendar-date-display {
-    width: 280px;
+    width: 23.3333em;
     height: 100%;
     float: left;
   }
 
   .mui-date-picker-calendar-container {
-    width: 280px;
+    width: 23.3333em;
     float: right;
   }
 }

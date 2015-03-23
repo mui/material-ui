@@ -1,10 +1,10 @@
 .mui-radio-button {
   .mui-radio-button-icon {
-    @radio-button-size: 24px;
+    @radio-button-size: 2.4rem;
 
-    height: @radio-button-size;
-    width: @radio-button-size;
-    margin-right: @desktop-gutter-less;
+    .mui-px-fallback(height, @radio-button-size);
+    .mui-px-fallback(width, @radio-button-size);
+    .mui-px-fallback(margin-right, @desktop-gutter-less);
     
 
     .mui-radio-button-fill {

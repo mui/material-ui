@@ -1,11 +1,11 @@
-@icon-width: 48px;
+@icon-width: 4.8rem;
 
 .mui-drop-down-icon {
   display: inline-block;
-  width: @icon-width !important;
+  .mui-px-fallback(width, @icon-width) !important;
   position: relative;
-  height: @desktop-toolbar-height;
-  font-size: @desktop-drop-down-menu-font-size;
+  .mui-px-fallback(height, @desktop-toolbar-height);
+  .mui-px-fallback(font-size, @desktop-drop-down-menu-font-size);
   cursor: pointer;
 
   &.mui-open {
@@ -19,7 +19,7 @@
         opacity: 0;
       }
       .mui-menu-label {
-        top: (@desktop-toolbar-height / 2);
+        .mui-px-fallback(top, (@desktop-toolbar-height / 2));
         opacity: 0;
       }
     }
@@ -31,13 +31,13 @@
 
   .mui-menu {
     .ease-out;
-    right: -14px !important;
-    top: 9px !important;
+    right: 0.9333em !important;
+    .mui-px-fallback(top, 0.9rem) !important;
 
     .mui-menu-item {
-      padding-right: (@icon-size + (@desktop-gutter-less*2));
-      height: @desktop-drop-down-menu-item-height;
-      line-height: @desktop-drop-down-menu-item-height;
+      .mui-px-fallback(padding-right, (@icon-size + (@desktop-gutter-less*2)));
+      .mui-px-fallback(height, @desktop-drop-down-menu-item-height);
+      .mui-px-fallback(line-height, @desktop-drop-down-menu-item-height);
     }
   }
 }

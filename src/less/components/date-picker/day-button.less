@@ -1,14 +1,14 @@
 .mui-date-picker-day-button {
   position: relative;
   float: left;
-  width: 36px;
-  padding: 4px 2px;
+  .mui-px-fallback(width, 3.6rem);
+  .mui-px-fallback-padding(0.4rem, 0.2rem);
 
   .mui-date-picker-day-button-select {
     position: absolute;
     background-color: @date-picker-select-color;
-    height: 32px;
-    width: 32px;
+    .mui-px-fallback(height, 3.2rem);
+    .mui-px-fallback(width, 3.2rem);
     opacity: 0;
     border-radius: 50%;
     transform: scale(0);

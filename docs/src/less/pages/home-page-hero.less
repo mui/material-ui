@@ -3,14 +3,14 @@
   overflow: hidden;
 
   .svg-logo {
-    margin-left: calc(~'50% - 97px');
-    width: 420px;
+    margin-left: calc(~'50% - 9.7rem');
+    .mui-px-fallback(width, 42rem);
   }
 
   .tagline {
-    margin: 16px auto 0 auto;
+    .mui-px-fallback-margin(1.6rem, auto, 0, auto);
     text-align: center;
-    max-width: 575px;
+    max-width: 44.2308em;
 
     h2 {
       .mui-font-style-title;
@@ -22,8 +22,8 @@
     }
 
     .demo-button, .github-button {
-      margin-right: 32px;
-      margin-top: 16px;
+      .mui-px-fallback(margin-right, 3.2rem);
+      .mui-px-fallback(margin-top, 1.6rem);
 
       .mui-raised-button-label {
         color: @primary-1-color;
@@ -35,10 +35,10 @@
     }
 
     @media @device-large {
-      margin-top: 32px;
+      .mui-px-fallback(margin-top, 3.2rem);
 
       h1 {
-        font-size: 56px;
+        .mui-px-fallback(font-size, 5.6rem);
       }
 
       h2 {
