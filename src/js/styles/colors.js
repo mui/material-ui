@@ -1,3 +1,7 @@
+// To include this file in your project:
+// var mui = require('mui');
+// var Colors = mui.Styles.Colors;
+
 module.exports = {
 
   red50:    '#ffebee',

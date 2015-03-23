@@ -1,7 +1,41 @@
 module.exports = {
 
-  // additionalValue = An extra value that has been calculated but not included 
-  // with the original color object, such as an alpha value.
+  /**
+   * The relative brightness of any point in a colorspace, normalized to 0 for 
+   * darkest black and 1 for lightest white. RGB colors only. Does not take 
+   * into account alpha values. 
+   *
+   * TODO: 
+   * - Take into account alpha values.
+   * - Identify why there are minor discrepancies for some use cases 
+   *   (i.e. #F0F & #FFF). Note that these cases rarely occur.
+   *
+   * Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+   */
+  _luminance: function(color) {
+    color = this._decomposeColor(color);
+
+    if (color.type.indexOf('rgb') > -1) {
+      var rgb = color.values.map(function(val) {
+        val /= 255; // normalized
+        return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
+      });
+
+      return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+
+    } else {
+      var message = 'Calculating the relative luminance is not available for ' + 
+                    'HSL and HSLA.';
+      console.error(message);
+      return -1;
+    }
+  },
+
+  /**
+   * @params:
+   * additionalValue = An extra value that has been calculated but not included 
+   *                   with the original color object, such as an alpha value.
+   */
   _convertColorToString: function (color, additonalValue) {
     var str = color.type + '(' + 
               parseInt(color.values[0]) + ',' +
@@ -19,6 +53,7 @@ module.exports = {
     return str;
   },
 
+  // Converts a color from hex format to rgb format.
 	_convertHexToRGB: function(color) {
     if (color.length === 4) {
       var extendedColor = '#';
@@ -39,6 +74,7 @@ module.exports = {
                     values.b + ')';
 	},
 
+  // Returns the type and values of a color of any given type.
 	_decomposeColor: function(color) {
 		if (color.charAt(0) === '#') {
       return this._decomposeColor(this._convertHexToRGB(color));
@@ -61,6 +97,8 @@ module.exports = {
 
   // Desaturates rgb and sets opacity to 0.15
   lighten: function(color, amount) {
+    color = this._format(color, amount);
+
     var colorObj = this._decomposeColor(color);
 
     if (colorObj.type.indexOf('hsl') > -1) {
@@ -93,4 +131,55 @@ module.exports = {
 
     return this._convertColorToString(colorObj);
   },
+
+
+  // Calculates the contrast ratio between two colors. 
+  //
+  // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
+  contrastRatio: function(background, foreground) {
+    var lumA = this._luminance(background);
+    var lumB = this._luminance(foreground);
+
+    if (lumA >= lumB) {
+      return ((lumA + 0.05) / (lumB + 0.05)).toFixed(2);
+    } else {
+      return ((lumB + 0.05) / (lumA + 0.05)).toFixed(2);
+    }
+  },
+
+  /** 
+   * Determines how readable a color combination is based on its level.
+   * Levels are defined from @LeaVerou:
+   * https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/contrast-ratio.js
+   */
+  contrastRatioLevel: function(background, foreground) {
+    var levels = {
+      'fail': {
+        range: [0, 3],
+        color: 'hsl(0, 100%, 40%)'
+      },
+      'aa-large': {
+        range: [3, 4.5],
+        color: 'hsl(40, 100%, 45%)'
+      },
+      'aa': {
+        range: [4.5, 7],
+        color: 'hsl(80, 60%, 45%)'
+      },
+      'aaa': {
+        range: [7, 22],
+        color: 'hsl(95, 60%, 41%)'
+      }
+    };
+
+    var ratio = this.contrastRatio(background, foreground);
+
+    for (level in levels) {
+      console.log(level);
+      var range = levels[level].range;
+      if (ratio >= range[0] && ratio <= range[1]) return level;
+    }
+
+  },
+
 };
