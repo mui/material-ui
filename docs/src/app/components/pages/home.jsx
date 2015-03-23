@@ -28,7 +28,7 @@ var HomePage = React.createClass({
   render: function() {
 
     return (
-      <div className="mui-app-content-canvas">
+      <div className="app-content-canvas">
         <div className="home-page-hero full-width-section">
           <div className="home-page-hero-content">
             <img className="svg-logo" src="images/material-ui-logo.svg" />

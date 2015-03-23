@@ -14,7 +14,7 @@ var PageWithNav = React.createClass({
 
   render: function() {
     return (
-      <div className="mui-app-content-canvas page-with-nav">
+      <div className="app-content-canvas page-with-nav">
         <div className="page-with-nav-content">
           <RouteHandler />
         </div>
