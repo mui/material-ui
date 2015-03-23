@@ -14,6 +14,7 @@ var DatePicker = React.createClass({
     defaultDate: React.PropTypes.object,
     formatDate: React.PropTypes.func,
     mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline']),
+    open: React.PropTypes.bool,
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     onChange: React.PropTypes.func,
@@ -46,6 +47,7 @@ var DatePicker = React.createClass({
       onTouchTap,
       onShow,
       onDismiss,
+      open,
       ...other
     } = this.props;
     var classes = this.getClasses('mui-date-picker', {
@@ -69,6 +71,7 @@ var DatePicker = React.createClass({
         <DatePickerDialog
           ref="dialogWindow"
           initialDate={this.state.dialogDate}
+          open={open}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
           onDismiss={onDismiss} />

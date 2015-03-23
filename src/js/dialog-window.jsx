@@ -15,6 +15,7 @@ var DialogWindow = React.createClass({
     actions: React.PropTypes.array,
     contentClassName: React.PropTypes.string,
     openImmediately: React.PropTypes.bool,
+    open: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
@@ -34,8 +35,22 @@ var DialogWindow = React.createClass({
 
   getInitialState: function() {
     return {
-      open: this.props.openImmediately || false
+      open: this.props.open || this.props.openImmediately || false
     };
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if(nextProps.hasOwnProperty('open')) {
+      this.setState({
+        open: nextProps.open,
+      });
+
+      if (nextProps.open) {
+        this.refs.dialogOverlay.preventScrolling();
+      } else {
+        this.refs.dialogOverlay.allowScrolling();
+      }
+    }
   },
 
   componentDidMount: function() {
@@ -51,7 +66,7 @@ var DialogWindow = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-dialog-window', { 
+    var classes = this.getClasses('mui-dialog-window', {
       'mui-is-shown': this.state.open
     });
     var contentClasses = 'mui-dialog-window-contents';
@@ -153,16 +168,16 @@ var DialogWindow = React.createClass({
       //Vertically center the dialog window, but make sure it doesn't
       //transition to that position.
       if (this.props.repositionOnUpdate || !container.style.paddingTop) {
-        container.style.paddingTop = 
+        container.style.paddingTop =
           ((containerHeight - dialogWindowHeight) / 2) - 64 + 'px';
       }
     }
   },
-  
+
   _onShow: function() {
     if (this.props.onShow) this.props.onShow();
   },
-  
+
   _onDismiss: function() {
     if (this.props.onDismiss) this.props.onDismiss();
   },
