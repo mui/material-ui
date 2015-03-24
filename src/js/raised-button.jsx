@@ -14,6 +14,8 @@ var RaisedButton = React.createClass({
         return new Error('Warning: Required prop `label` or `children` was not specified in `'+ componentName + '`.')
       }
     },
+    outerStyle: React.PropTypes.object,
+    style: React.PropTypes.object,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
     onMouseOut: React.PropTypes.func,
@@ -55,7 +57,7 @@ var RaisedButton = React.createClass({
     else children = this.props.children;
 
     return (
-      <Paper className={classes} zDepth={this.state.zDepth}>
+      <Paper className={classes} zDepth={this.state.zDepth} style={this.props.outerStyle}>
         <EnhancedButton {...other}
           className="mui-raised-button-container" 
           onMouseUp={this._handleMouseUp}
