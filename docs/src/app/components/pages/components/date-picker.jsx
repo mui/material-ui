@@ -14,7 +14,7 @@ var DatePickerPage = React.createClass({
       '//Landscape Dialog\n' +
       '<DatePicker\n' +
       '  hintText="Landscape Dialog"\n' +
-      '  mode="landscape"/>'; 
+      '  mode="landscape"/>';
 
     var componentInfo = [
       {
@@ -38,7 +38,13 @@ var DatePickerPage = React.createClass({
             type: 'one of: portrait, landscape',
             header: 'default: portrait',
             desc: 'Tells the component to display the picker in portrait or landscape mode.'
-          }
+          },
+          {
+            name: 'open',
+            type: 'bool',
+            header: 'default: no used',
+            desc: 'Tells the component to show or dismiss the dialog.'
+          },
         ]
       },
       {
