@@ -1,3 +1,37 @@
+## 0.7.2
+###### _Mar. 25, 2015_
+
+##### General
+- Updated react-draggable2 dependency (#391)
+- Updated react and peer dependecies to React v0.13 (#452)
+
+##### Components
+- Date Picker 
+  - Added `onShow` and `onDismiss` props (#399)
+- Dialog 
+  - Fixed scrolling issue when opened immediately (#406)
+  - `onShow` is now called when opened immediately (#453)
+- Flat Button
+  - Disabled primary buttons use disabled styling over primary (#432) 
+- Floating Action Button
+  - Fixed zdepth to update when `disabled` prop changes (#390)
+  - Disabled secondary buttons use disabled styling over secondary (#432) 
+- Left Nav
+  - Scrolling is prevented when displayed (#406) 
+- Menu
+  - Menu and menu-related components have been moved into `js/menu/*` (#402)
+  - Added LinkMenuItem component (#402)
+- Menu Item
+  - Added `disable` prop (#402)
+- Overlay
+  - Now control scroll un/locking. (#406)
+- Paper 
+  - Added `innerStyle` prop (#418)
+- Raised Button
+  - Disabled primary buttons use disabled styling over primary (#432) 
+- Tabs
+  - Added `initialSelectedIndex` prop (#389)
+
 ## 0.7.1
 ###### _Mar. 4, 2015_
 
