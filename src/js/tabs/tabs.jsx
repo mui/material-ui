@@ -29,6 +29,12 @@ var Tabs = React.createClass({
     );
   },
 
+  componentWillReceiveProps: function(newProps) {
+    this.setState({
+      selectedIndex: newProps.selectedIndex
+    });
+  },
+
   componentDidMount: function(){
     if(this.props.tabWidth) {
       if(!(this.props.children.length * this.props.tabWidth > this.getEvenWidth())){
@@ -40,6 +46,7 @@ var Tabs = React.createClass({
       }
     }
     this.setState({
+      selectedIndex: this.props.selectedIndex,
       width: this.getEvenWidth(),
       fixed: true
     });
