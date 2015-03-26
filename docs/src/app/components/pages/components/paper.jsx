@@ -3,9 +3,9 @@ var mui = require('mui');
 var Paper = mui.Paper;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var PaperPage = React.createClass({
+class PaperPage extends React.Component {
 
-  render: function() {
+  render() {
 
     var code = [
       '//Rounded Corners',
@@ -81,7 +81,7 @@ var PaperPage = React.createClass({
             type: 'string',
             header: 'optional',
             desc: 'Similiar to innerClassName. Overrides the inline-style of ' +
-                  'the inner div.' 
+                  'the inner div.'
           },
           {
             name: 'rounded',
@@ -183,6 +183,6 @@ var PaperPage = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = PaperPage;
