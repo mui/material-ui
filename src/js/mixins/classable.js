@@ -1,5 +1,5 @@
 var React = require('react');
-var classSet = require('react-classset');
+var classNames = require('classnames');
 
 module.exports = {
 
@@ -15,16 +15,16 @@ module.exports = {
 
     //Add in initial classes
     if (typeof initialClasses === 'object') {
-      classString += ' ' + classSet(initialClasses);
+      classString += ' ' + classNames(initialClasses);
     } else {
       classString += ' ' + initialClasses;
     }
 
     //Add in additional classes
-    if (additionalClassObj) classString += ' ' + classSet(additionalClassObj);
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
 
     //Convert the class string into an object and run it through the class set
-    return classSet(this.getClassSet(classString));
+    return classNames(this.getClassSet(classString));
   },
 
   getClassSet: function(classString) {

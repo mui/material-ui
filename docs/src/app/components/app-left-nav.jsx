@@ -46,16 +46,16 @@ var AppLeftNav = React.createClass({
 
     for (var i = menuItems.length - 1; i >= 0; i--) {
       currentItem = menuItems[i];
-      if (currentItem.route && this.isActive(currentItem.route)) return i;
+      if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
     };
   },
 
   _onLeftNavChange: function(e, key, payload) {
-    this.transitionTo(payload.route);
+    this.context.router.transitionTo(payload.route);
   },
 
   _onHeaderClick: function() {
-    this.transitionTo('root');
+    this.context.router.transitionTo('root');
     this.refs.leftNav.close();
   }
 
