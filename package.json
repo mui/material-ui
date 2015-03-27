@@ -29,7 +29,7 @@
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
-    "react-classset": "0.0.2",
+    "classnames": "^1.2.0",
     "react-draggable2": "^0.5.1"
   },
   "peerDependencies": {

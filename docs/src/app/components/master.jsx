@@ -15,9 +15,9 @@ var Master = React.createClass({
   render: function() {
 
     var title = 
-      this.isActive('get-started') ? 'Get Started' :
-      this.isActive('css-framework') ? 'Css Framework' :
-      this.isActive('components') ? 'Components' : '';
+      this.context.router.isActive('get-started') ? 'Get Started' :
+      this.context.router.isActive('css-framework') ? 'Css Framework' :
+      this.context.router.isActive('components') ? 'Components' : '';
     var githubButton = (
       <IconButton
         className="github-icon-button"
