@@ -1,24 +1,21 @@
 var React = require('react');
 var mui = require('mui');
-var FlatButton = mui.FlatButton;
-var FloatingActionButton = mui.FloatingActionButton;
-var RaisedButton = mui.RaisedButton;
-var FontIcon = mui.FontIcon;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var ButtonPage = React.createClass({
+var {FlatButton, FloatingActionButton, RaisedButton, FontIcon} = mui;
 
+class ButtonPage extends React.Component {
 
   /** Styles */
-  _buttonLabel: function() {
+  _buttonLabel() {
     return {
       padding: '0px 16px 0px 8px',
     }
-  },
+  }
 
-  render: function() {
+  render() {
 
-    var code = 
+    var code =
       '//Flat Buttons\n' +
       '<FlatButton label="Default" />\n' +
       '<FlatButton label="Primary" primary={true} />\n' +
@@ -34,7 +31,7 @@ var ButtonPage = React.createClass({
       '  </FlatButton>\n' +
       '</div>\n' +
       '<FlatButton label="Disabled" disabled={true} />\n\n' +
-      '//Raised Buttons\n' + 
+      '//Raised Buttons\n' +
       '<RaisedButton label="Default" />\n' +
       '<RaisedButton label="Primary" primary={true} />\n' +
       '<RaisedButton label="Secondary" secondary={true} />\n' +
@@ -144,8 +141,8 @@ var ButtonPage = React.createClass({
           {
             name: 'iconClassName',
             type: 'string',
-            header: 'optional', 
-            desc: 'The icon within the FloatingActionButton is a FontIcon component. This property ' + 
+            header: 'optional',
+            desc: 'The icon within the FloatingActionButton is a FontIcon component. This property ' +
                   'is the classname of the icon to be displayed inside the button. An alternative ' +
                   'to adding an iconClassName would be to manually insert a FontIcon component or ' +
                   'custom SvgIcon component or as a child of FloatingActionButton.'
@@ -274,6 +271,6 @@ var ButtonPage = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = ButtonPage;

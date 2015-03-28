@@ -1,18 +1,15 @@
 var React = require('react');
 var mui = require('mui');
-var Checkbox = mui.Checkbox;
-var RadioButton = mui.RadioButton;
-var RadioButtonGroup = mui.RadioButtonGroup;
-var Toggle = mui.Toggle;
 var CodeExample = require('../../code-example/code-example.jsx');
 var ComponentDoc = require('../../component-doc.jsx');
-var RaisedButton = mui.RaisedButton;
 
-var SwitchesPage = React.createClass({
+var {Checkbox, RadioButton, RadioButtonGroup, Toggle, RaisedButton} = mui;
 
-  render: function() {
+class SwitchesPage extends React.Component {
 
-    var code = 
+  render() {
+
+    var code =
       '//Checkboxes\n' +
       '<Checkbox\n' +
       '  name="checkboxName1"\n' +
@@ -20,12 +17,12 @@ var SwitchesPage = React.createClass({
       '  label="went for a run today" />\n' +
       '<Checkbox\n' +
       '  name="checkboxName2"\n' +
-      '  value="checkboxValue2"\n' + 
+      '  value="checkboxValue2"\n' +
       '  label="fed the dog"\n' +
       '  defaultSwitched={true} />\n' +
       '<Checkbox\n' +
       '  name="checkboxName3"\n' +
-      '  value="checkboxValue3"\n' + 
+      '  value="checkboxValue3"\n' +
       '  label="built a house on the moon"\n' +
       '  disabled={true} />\n\n' +
       '//Radio Buttons\n' +
@@ -53,15 +50,15 @@ var SwitchesPage = React.createClass({
       '  name="toggleName2"\n' +
       '  value="toggleValue2"\n' +
       '  label="auto-pilot"\n' +
-      '  defaultToggled={true} />\n' + 
+      '  defaultToggled={true} />\n' +
       '<Toggle\n' +
       '  name="toggleName3"\n' +
       '  value="toggleValue3"\n' +
       '  label="initiate self-destruct sequence"\n' +
       '  disabled={true} />\n\n';
 
-    var desc = 'These components extend their current input elements (checkbox and radio) and ' + 
-               'will support all of its props and events. Checkboxes and Toggles support ' + 
+    var desc = 'These components extend their current input elements (checkbox and radio) and ' +
+               'will support all of its props and events. Checkboxes and Toggles support ' +
                'checkedLink';
 
     var componentInfo = [
@@ -90,7 +87,7 @@ var SwitchesPage = React.createClass({
             name: 'labelPosition',
             type: 'string',
             header: 'default:"right"',
-            desc: 'Where the label will be placed next to the checkbox. Options include ' + 
+            desc: 'Where the label will be placed next to the checkbox. Options include ' +
                   '"left" and "right" (case-sensitive). Default option is "left".'
           },
           {
@@ -112,7 +109,7 @@ var SwitchesPage = React.createClass({
           {
             name: 'setChecked',
             header: 'Checkbox.setChecked(newCheckedValue)',
-            desc: 'Sets the checkbox to the value of newCheckedValue. This method cannot be used ' + 
+            desc: 'Sets the checkbox to the value of newCheckedValue. This method cannot be used ' +
                   'while "checked" is defined as a property.'
           }
         ]
@@ -147,7 +144,7 @@ var SwitchesPage = React.createClass({
             name: 'labelPosition',
             type: 'string',
             header: 'default:"right"',
-            desc: 'Where the label will be placed next to the radio button. Options include ' + 
+            desc: 'Where the label will be placed next to the radio button. Options include ' +
                   '"left" and "right" (case-sensitive). Default option is "left".'
           },
           {
@@ -171,7 +168,7 @@ var SwitchesPage = React.createClass({
             name: 'defaultSelected',
             type: 'string',
             header: 'optional',
-            desc: 'Sets the default radio button to be the one whose value matches ' + 
+            desc: 'Sets the default radio button to be the one whose value matches ' +
                   'defaultSelected (case-sensitive). This will override any individual radio ' +
                   'button with the defaultChecked or checked property stated.'
           },
@@ -185,7 +182,7 @@ var SwitchesPage = React.createClass({
             name: 'labelPosition',
             type: 'string',
             header: 'optional',
-            desc: 'Where the label will be placed for all radio buttons. Options include ' + 
+            desc: 'Where the label will be placed for all radio buttons. Options include ' +
                   '"left" and "right" (case-sensitive). This will override any labelPosition ' +
                   'properties defined for an individual radio button.'
           },
@@ -220,7 +217,7 @@ var SwitchesPage = React.createClass({
             name: 'onChange',
             type: 'function(e, selected)',
             header: 'optional',
-            desc: 'Callback function that is fired when a radio button has been clicked. Returns ' + 
+            desc: 'Callback function that is fired when a radio button has been clicked. Returns ' +
                   'the event and the value of the radio button that has been selected.'
           }
         ]
@@ -252,7 +249,7 @@ var SwitchesPage = React.createClass({
             name: 'labelPosition',
             type: 'string',
             header: 'default:"left"',
-            desc: 'Where the label will be placed next to the toggle switch. Options include ' + 
+            desc: 'Where the label will be placed next to the toggle switch. Options include ' +
                   '"left" and "right" (case-sensitive). Default option is "left".'
           },
           {
@@ -265,7 +262,7 @@ var SwitchesPage = React.createClass({
             name: 'defaultToggled',
             type: 'boolean',
             header: 'default:false',
-            desc: 'The value of the toggle button. Is true when toggle has been turned on. ' + 
+            desc: 'The value of the toggle button. Is true when toggle has been turned on. ' +
               'False otherwise.'
           }
         ]
@@ -281,7 +278,7 @@ var SwitchesPage = React.createClass({
           {
             name: 'setToggled',
             header: 'Toggle.setToggled(newToggledValue)',
-            desc: 'Sets the toggle to the value of newToggledValue. This method cannot be used ' + 
+            desc: 'Sets the toggle to the value of newToggledValue. This method cannot be used ' +
                   'while "checked" is defined as a property.'
           }
         ]
@@ -300,7 +297,7 @@ var SwitchesPage = React.createClass({
     ];
 
     return (
-      <ComponentDoc 
+      <ComponentDoc
         name="Switches"
         code={code}
         desc={desc}
@@ -314,9 +311,9 @@ var SwitchesPage = React.createClass({
 
       </ComponentDoc>
     );
-  },
+  }
 
-  _getCheckboxExample: function() {
+  _getCheckboxExample() {
 
     return (
       <div className="switches-example-group">
@@ -328,14 +325,14 @@ var SwitchesPage = React.createClass({
         <div className="switches-example-container">
           <Checkbox
             id="checkboxId1"
-            name="checkboxName1" 
+            name="checkboxName1"
             value="checkboxValue1"
             label="went for a run today"/>
         </div>
         <div className="switches-example-container">
           <Checkbox
             id="checkboxId2"
-            name="checkboxName2" 
+            name="checkboxName2"
             value="checkboxValue2"
             label="fed the dog"
             defaultChecked={true}/>
@@ -343,16 +340,16 @@ var SwitchesPage = React.createClass({
         <div className="switches-example-container">
           <Checkbox
             id="checkboxId3"
-            name="checkboxName3" 
+            name="checkboxName3"
             value="checkboxValue3"
             label="built a house on the moon"
             disabled={true}/>
         </div>
       </div>
     );
-  },
+  }
 
-  _getToggleExample: function() {
+  _getToggleExample() {
 
     return (
       <div className="switches-example-group">
@@ -373,22 +370,22 @@ var SwitchesPage = React.createClass({
             id="toggleId2"
             name="toggleName2"
             value="toggleValue2"
-            label="auto-pilot" 
+            label="auto-pilot"
             defaultToggled={true}/>
         </div>
         <div className="switches-example-container">
-          <Toggle 
+          <Toggle
             id="toggleId3"
             name="toggleName3"
             value="toggleValue3"
-            label="initiate self-destruct sequence" 
+            label="initiate self-destruct sequence"
             disabled={true}/>
         </div>
       </div>
     );
-  },
+  }
 
-  _getRadioButtonExample: function() {
+  _getRadioButtonExample() {
 
     return (
       <div className="switches-example-group">
@@ -397,7 +394,7 @@ var SwitchesPage = React.createClass({
           <h2 className="mui-font-style-headline">Radio Buttons</h2>
         </div>
 
-        <RadioButtonGroup 
+        <RadioButtonGroup
           name="shipSpeed"
           defaultSelected="not_light">
             <RadioButton
@@ -417,19 +414,19 @@ var SwitchesPage = React.createClass({
 
       </div>
     );
-  },
+  }
 
-  _onCheck: function(e, checked) {
+  _onCheck(e, checked) {
     console.log('Checked: ', checked);
-  },
+  }
 
-  _onToggle: function(e, toggled) {
+  _onToggle(e, toggled) {
     console.log('Toggled: ', toggled);
-  },
+  }
 
-  _onRadioButtonClick: function(e, selected) {
+  _onRadioButtonClick(e, selected) {
     console.log('Selected: ', selected);
-  },
-});
+  }
+}
 
 module.exports = SwitchesPage;

@@ -3,13 +3,13 @@ var mui = require('mui');
 var Slider = mui.Slider;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var SlidersPage = React.createClass({
+class SlidersPage extends React.Component {
 
-  handleMouseDown: function(e){
+  handleMouseDown(e){
     console.log('hmd', e);
-  },
+  }
 
-  render: function() {
+  render() {
 
     var code =
       '// Default\n' +
@@ -32,16 +32,16 @@ var SlidersPage = React.createClass({
         componentInfo={componentInfo}>
 
         <Slider name="slider1" />
-          <Slider onMouseDown={this.handleMouseDown} name="slider2" value={0.5} />
-          <Slider name="slider3" value={1} />
-          <Slider name="slider1" disabled={true} />
-          <Slider name="slider2" disabled={true} value={0.5} />
-          <Slider name="slider3" disabled={true} value={1} />
+        <Slider onMouseDown={this.handleMouseDown} name="slider2" value={0.5} />
+        <Slider name="slider3" value={1} />
+        <Slider name="slider1" disabled={true} />
+        <Slider name="slider2" disabled={true} value={0.5} />
+        <Slider name="slider3" disabled={true} value={1} />
 
       </ComponentDoc>
     );
   }
 
-});
+}
 
 module.exports = SlidersPage;

@@ -5,11 +5,14 @@ var RaisedButton = mui.RaisedButton;
 var HomeFeature = require('./home-feature.jsx');
 var Theme = mui.Styles.Theme;
 
-var HomePage = React.createClass({
+class HomePage extends React.Component {
 
-  mixins: [Router.Navigation],
+  constructor() {
+    super();
+    this._onDemoClick = this._onDemoClick.bind(this);
+  }
 
-  _raisedButton: function() {
+  _raisedButton() {
     return {
       label: {
         color: Theme.primary1Color,
@@ -23,9 +26,9 @@ var HomePage = React.createClass({
         minWidth: 0,
       },
     }
-  },
+  }
 
-  render: function() {
+  render() {
 
     return (
       <div className="mui-app-content-canvas">
@@ -78,12 +81,16 @@ var HomePage = React.createClass({
 
       </div>
     );
-  },
-
-  _onDemoClick: function() {
-    this.transitionTo('components');
   }
 
-});
+  _onDemoClick() {
+    this.context.router.transitionTo('components');
+  }
+
+}
+
+HomePage.contextTypes = {
+  router: React.PropTypes.func
+};
 
 module.exports = HomePage;

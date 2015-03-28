@@ -1,20 +1,14 @@
 var React = require('react');
 var mui = require('mui');
-var DropDownIcon = mui.DropDownIcon;
-var DropDownMenu = mui.DropDownMenu;
-var FontIcon = mui.FontIcon;
-var RaisedButton = mui.RaisedButton;
-var Toolbar = mui.Toolbar;
-var ToolbarGroup = mui.ToolbarGroup;
-var ToolbarSeparator = mui.ToolbarSeparator;
-var ToolbarTitle = mui.ToolbarTitle;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var ToolbarPage = React.createClass({
+var {DropDownIcon, DropDownMenu, FontIcon, RaisedButton, Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} = mui;
 
-  render: function() {
+class ToolbarPage extends React.Component {
 
-    var code = 
+  render() {
+
+    var code =
       'var filterOptions = [\n' +
       '  { payload: \'1\', text: \'All Broadcasts\' },\n' +
       '  { payload: \'2\', text: \'All Voice\' },\n' +
@@ -28,7 +22,7 @@ var ToolbarPage = React.createClass({
       '  { payload: \'1\', text: \'Download\' },\n' +
       '  { payload: \'2\', text: \'More Info\' }\n' +
       '];\n\n' +
-      '<Toolbar>\n' + 
+      '<Toolbar>\n' +
       '  <ToolbarGroup key={0} float="left">\n' +
       '    <DropDownMenu menuItems={filterOptions} />\n' +
       '  </ToolbarGroup>\n' +
@@ -63,7 +57,7 @@ var ToolbarPage = React.createClass({
               desc: 'The text to be displayed for the element.'
             }
           ]
-      },      
+      },
     ];
 
     var filterOptions = [
@@ -103,6 +97,6 @@ var ToolbarPage = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = ToolbarPage;

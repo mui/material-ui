@@ -2,9 +2,9 @@ var React = require('react'),
   mui = require('mui'),
   CodeBlock = require('../code-example/code-block.jsx');
 
-var GetStarted = React.createClass({
+class GetStarted extends React.Component {
 
-  render: function() {
+  render() {
     var usageCode =
           '/** MyAwesomeReactComponent.jsx */\n\n' +
           'var React = require(\'react\'),\n' +
@@ -19,7 +19,7 @@ var GetStarted = React.createClass({
           '});\n\n' +
           'module.exports = MyAwesomeReactComponent;\n\n\n',
 
-      customizationCode = 
+      customizationCode =
         '@import "node_modules/material-ui/src/less/scaffolding.less";\n\n' +
         '//Define a custom less file to override\n//any variables defined in scaffolding.less\n' +
         '@import "my-custom-overrides.less";\n\n' +
@@ -39,15 +39,15 @@ var GetStarted = React.createClass({
 
           <h2 className="mui-font-style-headline">Prerequisites</h2>
           <p>
-            We recommend that you get started with the <a href="http://facebook.github.io/react/">React Library</a> before diving into 
-            material-ui for a better understanding. Should you choose to skip this, don&apos;t worry, we&apos;ll explain relevant React concepts as 
+            We recommend that you get started with the <a href="http://facebook.github.io/react/">React Library</a> before diving into
+            material-ui for a better understanding. Should you choose to skip this, don&apos;t worry, we&apos;ll explain relevant React concepts as
             they come along.
           </p>
 
 
           <h2 className="mui-font-style-headline">Installation</h2>
           <p>
-            Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>. 
+            Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>.
             Use <a href="http://browserify.org/">browserify</a> and <a href="https://github.com/andreypopp/reactify">reactify</a> for
             dependency management and JSX transformation. The CSS framework is written in <a href="http://lesscss.org/">Less</a>,
             so you&apos;ll need to compile that as well. For <a href="http://www.sass-lang.com/">Sass</a> users, <a href="https://github.com/gpbl/material-ui-sass">material-ui-sass</a> contains
@@ -107,6 +107,6 @@ var GetStarted = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = GetStarted;
