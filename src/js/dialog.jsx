@@ -7,16 +7,24 @@ var Dialog = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    title: React.PropTypes.string
+    title: React.PropTypes.node
   },
 
   render: function() {
     var {
       className,
-      title,
       ...other
     } = this.props;
     var classes = this.getClasses('mui-dialog');
+    var title;
+
+    if (this.props.title) {
+      // If the title is a string, wrap in an h3 tag.
+      // If not, just use it as a node.
+      title = toString.call(this.props.title) === '[object String]' ?
+        <h3 className="mui-dialog-title">{this.props.title}</h3> :
+        this.props.title;
+    }
 
     return (
       <DialogWindow
@@ -24,11 +32,11 @@ var Dialog = React.createClass({
         ref="dialogWindow"
         className={classes}>
 
-        <h3 className="mui-dialog-title">{this.props.title}</h3>
+        {title}
         <div ref="dialogContent" className="mui-dialog-content">
           {this.props.children}
         </div>
-        
+
       </DialogWindow>
     );
   },
