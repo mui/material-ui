@@ -40,7 +40,10 @@ var DialogWindow = React.createClass({
 
   componentDidMount: function() {
     this._positionDialog();
-    if (this.props.openImmediately) this.refs.dialogOverlay.preventScrolling();
+    if (this.props.openImmediately) {
+      this.refs.dialogOverlay.preventScrolling();
+      this._onShow();
+    }
   },
 
   componentDidUpdate: function (prevProps, prevState) {
@@ -79,14 +82,14 @@ var DialogWindow = React.createClass({
     }.bind(this));
 
     this.setState({ open: false });
-    if (this.props.onDismiss) this.props.onDismiss();
+    this._onDismiss();
   },
 
   show: function() {
     this.refs.dialogOverlay.preventScrolling();
 
     this.setState({ open: true });
-    if (this.props.onShow) this.props.onShow();
+    this._onShow();
   },
 
   _addClassName: function(reactObject, className) {
@@ -153,9 +156,15 @@ var DialogWindow = React.createClass({
         container.style.paddingTop = 
           ((containerHeight - dialogWindowHeight) / 2) - 64 + 'px';
       }
-      
-
     }
+  },
+  
+  _onShow: function() {
+    if (this.props.onShow) this.props.onShow();
+  },
+  
+  _onDismiss: function() {
+    if (this.props.onDismiss) this.props.onDismiss();
   },
 
   _handleOverlayTouchTap: function() {

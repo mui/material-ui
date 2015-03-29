@@ -1,6 +1,6 @@
 var React = require('react');
 var Classable = require('./mixins/classable');
-var classSet = require('react-classset');
+var ClassNames = require('classnames');
 
 var Input = React.createClass({
 
@@ -47,10 +47,10 @@ var Input = React.createClass({
     });
     var placeholder = this.props.inlinePlaceholder ? this.props.placeholder : "";
     var inputIsNotEmpty = !!this.state.value;
-    var inputClassName = classSet({
+    var inputClassName = ClassNames({
       'mui-is-not-empty': inputIsNotEmpty
     });
-    var textareaClassName = classSet({
+    var textareaClassName = ClassNames({
       'mui-input-textarea': true,
       'mui-is-not-empty': inputIsNotEmpty
     });

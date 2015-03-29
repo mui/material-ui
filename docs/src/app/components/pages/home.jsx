@@ -64,7 +64,7 @@ var HomePage = React.createClass({
   },
 
   _onDemoClick: function() {
-    this.transitionTo('components');
+    this.context.router.transitionTo('components');
   }
 
 });

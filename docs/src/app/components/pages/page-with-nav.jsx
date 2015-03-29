@@ -36,12 +36,12 @@ var PageWithNav = React.createClass({
 
     for (var i = menuItems.length - 1; i >= 0; i--) {
       currentItem = menuItems[i];
-      if (currentItem.route && this.isActive(currentItem.route)) return i;
+      if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
     };
   },
 
   _onMenuItemClick: function(e, index, item) {
-    this.transitionTo(item.route);
+    this.context.router.transitionTo(item.route);
   }
   
 });
