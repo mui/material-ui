@@ -13,12 +13,26 @@ var TablePage = React.createClass({
   mixins: [Router.Navigation, Router.State],
   
   getInitialState: function() {
+    var rowData = [
+      {id: {content: '1'}, name: {content: 'John Smith'}, status: {content: 'Employed'}},
+      {id: {content: '2'}, name: {content: 'Randal White'}, status: {content: 'Unemployed'}},
+      {id: {content: '3'}, name: {content: 'Stephanie Sanders'}, status: {content: 'Employed'}},
+      {id: {content: '4'}, name: {content: 'Steve Brown'}, status: {content: 'Employed'}},
+      {id: {content: '5'}, name: {content: 'Joyce Whitten'}, status: {content: 'Employed'}},
+      {id: {content: '6'}, name: {content: 'Samuel Roberts'}, status: {content: 'Unemployed'}},
+      {id: {content: '7'}, name: {content: 'Adam Moore'}, status: {content: 'Employed'}},
+      {id: {content: '8'}, name: {content: 'Robert Brown'}, status: {content: 'Employed'}},
+      {id: {content: '9'}, name: {content: 'Elizabeth Stevenson'}, status: {content: 'Employed'}},
+      {id: {content: '10'}, name: {content: 'Zachary Dobb'}, status: {content: 'Employed'}}
+    ];
+    
     return {
       stripedRows: false,
       showRowHover: false,
       selectEnabled: false,
       multiSelectEnabled: false,
-      height: '300px'
+      height: '300px',
+      rowData: rowData
     };
   },
 
@@ -41,20 +55,9 @@ var TablePage = React.createClass({
       }
     ];
     
-    var colHeaders = {id: {displayName: 'ID'}, name: {displayName: 'Name'}, status: {displayName: 'Status'}};
+    var headerCols = {id: {displayName: 'ID'}, name: {displayName: 'Name'}, status: {displayName: 'Status'}};
     var colOrder = ['id', 'name', 'status'];
-    var rowData = [
-      {id: {content: '1'}, name: {content: 'John Smith'}, status: {content: 'Employed'}},
-      {id: {content: '2'}, name: {content: 'Randal White'}, status: {content: 'Unemployed'}},
-      {id: {content: '3'}, name: {content: 'Stephanie Sanders'}, status: {content: 'Employed'}},
-      {id: {content: '4'}, name: {content: 'Steve Brown'}, status: {content: 'Employed'}},
-      {id: {content: '5'}, name: {content: 'Joyce Whitten'}, status: {content: 'Employed'}},
-      {id: {content: '6'}, name: {content: 'Samuel Roberts'}, status: {content: 'Unemployed'}},
-      {id: {content: '7'}, name: {content: 'Adam Moore'}, status: {content: 'Employed'}},
-      {id: {content: '8'}, name: {content: 'Robert Brown'}, status: {content: 'Employed'}},
-      {id: {content: '9'}, name: {content: 'Elizabeth Stevenson'}, status: {content: 'Employed'}},
-      {id: {content: '10'}, name: {content: 'Zachary Dobb'}, status: {content: 'Employed'}}
-    ];
+    var footerCols = {id: {displayName: 'ID'}, name: {displayName: 'Name'}, status: {displayName: 'Status'}};
 
     var propContainerStyle = {
       width: '200px',
@@ -71,9 +74,10 @@ var TablePage = React.createClass({
 
         <div className='table-examples'>
           <Table 
-            columnHeaders={colHeaders} 
+            headerColumns={headerCols}
+            footerColumns={footerCols}
             columnOrder={colOrder} 
-            rowData={rowData} 
+            rowData={this.state.rowData} 
             height={this.state.height} 
             stripedRows={this.state.stripedRows}
             showRowHover={this.state.showRowHover}
@@ -118,7 +122,20 @@ var TablePage = React.createClass({
   },
   
   _onChange: function(e) {
-    this.setState({height: e.target.value});
+    var rowData = [
+      {id: {content: '1'}, name: {content: 'John Smith'}, status: {content: 'Employed'}},
+      {id: {content: '2'}, name: {content: 'Randal White'}, status: {content: 'Unemployed'}},
+      {id: {content: '3'}, name: {content: 'Stephanie Sandersaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, status: {content: 'Employed'}},
+      {id: {content: '4'}, name: {content: 'Steve Brown'}, status: {content: 'Employed'}},
+      {id: {content: '5'}, name: {content: 'Joyce Whitten'}, status: {content: 'Employed'}},
+      {id: {content: '6'}, name: {content: 'Samuel Roberts'}, status: {content: 'Unemployed'}},
+      {id: {content: '7'}, name: {content: 'Adam Moore'}, status: {content: 'Employed'}},
+      {id: {content: '8'}, name: {content: 'Robert Brown'}, status: {content: 'Employed'}},
+      {id: {content: '9'}, name: {content: 'Elizabeth Stevenson'}, status: {content: 'Employed'}},
+      {id: {content: '10'}, name: {content: 'Zachary Dobb'}, status: {content: 'Employed'}}
+    ];
+    
+    this.setState({height: e.target.value, rowData: rowData});
   },
   
   _onToggle: function(e, toggled) {

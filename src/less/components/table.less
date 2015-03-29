@@ -19,6 +19,19 @@
     }
   }
     
+  .mui-table-footer {
+    
+    .mui-table-footer-row {
+        
+      .mui-table-footer-column {
+        border-top: 1px solid @border-color;
+        vertical-align: bottom;
+        font-weight: 300;
+        .mui-table-cell;
+      }
+    }
+  }
+    
   &.mui-row-hover .mui-table-row:hover {
     .mui-table-row-column {
       background-color: @table-row-hover-color;
@@ -42,25 +55,9 @@
       }
     }
   }
-    
-  &.fixed-header {
-    thead {
-      display: block;
-    }
-      
-    tbody {
-      display: block;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
-  }
 }
 
 .mui-table-cell {
   padding: 20px;
   text-align: left;
-}
-
-.mui-table-container {
-  position: relative;
 }

@@ -10,7 +10,9 @@ var TableRow = React.createClass({
     rowNumber: React.PropTypes.number.isRequired,
     rowData: React.PropTypes.array.isRequired,
     onRowClick: React.PropTypes.func,
-    onColumnClick: React.PropTypes.func,
+    onCellClick: React.PropTypes.func,
+    onRowHover: React.PropTypes.func,
+    onCellHover: React.PropTypes.func,
     selected: React.PropTypes.bool
   },
 
@@ -40,7 +42,12 @@ var TableRow = React.createClass({
       var colData = this.props.rowData[index];
       
       var columnComponent = (
-        <TableRowColumn key={key} columnNumber={index} colData={colData} onColumnClick={this._onColumnClick} />
+        <TableRowColumn 
+          key={key}
+          columnNumber={index}
+          colData={colData}
+          onColumnClick={this._onCellClick}
+          onColumnHover={this._onCellHover} />
       );
 
       columns.push(columnComponent);
@@ -53,8 +60,18 @@ var TableRow = React.createClass({
     if (this.props.onRowClick) this.props.onRowClick(e, this.props.rowNumber);
   },
   
-  _onColumnClick: function(e, columnIndex) {
-    if (this.props.onColumnClick) this.props.onColumnClick(e, this.props.rowNumber, columnIndex);
+  _onRowHover: function(e) {
+    if (this.props.onRowHover) this.props.onRowHover(e, this.props.rowNumber);
+  },
+  
+  _onCellClick: function(e, columnIndex) {
+    if (this.props.onCellClick) this.props.onCellClick(e, this.props.rowNumber, columnIndex);
+    this._onRowClick(e);
+  },
+  
+  _onCellHover: function(e, columnIndex) {
+    if (this.props.onCellHove) this.props.onCellHover(e, this.props.rowNumber, columnIndex);
+    this._onRowHover(e);
   }
 
 });
