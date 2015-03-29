@@ -11,22 +11,22 @@ var EnhancedSwitch = React.createClass({
 
   mixins: [Classable, WindowListenable],
 
-	propTypes: {
+  propTypes: {
       id: React.PropTypes.string,
       inputType: React.PropTypes.string.isRequired,
       switchElement: React.PropTypes.element.isRequired,
       iconClassName: React.PropTypes.string.isRequired,
       name: React.PropTypes.string,
-	    value: React.PropTypes.string,
-	    label: React.PropTypes.string,
-	    onSwitch: React.PropTypes.func,
-	    required: React.PropTypes.bool,
-	    disabled: React.PropTypes.bool,
-	    defaultSwitched: React.PropTypes.bool,
+      value: React.PropTypes.string,
+      label: React.PropTypes.string,
+      onSwitch: React.PropTypes.func,
+      required: React.PropTypes.bool,
+      disabled: React.PropTypes.bool,
+      defaultSwitched: React.PropTypes.bool,
       labelPosition: React.PropTypes.oneOf(['left', 'right']),
       disableFocusRipple: React.PropTypes.bool,
       disableTouchRipple: React.PropTypes.bool
-	  },
+    },
 
   windowListeners: {
     'keydown': '_handleWindowKeydown',
@@ -44,7 +44,7 @@ var EnhancedSwitch = React.createClass({
       switched: this.props.defaultSwitched ||
         (this.props.valueLink && this.props.valueLink.value),
       isKeyboardFocused: false
-    }
+    };
   },
 
   componentDidMount: function() {
@@ -115,12 +115,17 @@ var EnhancedSwitch = React.createClass({
       defaultChecked: this.props.defaultSwitched,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
-      onMouseUp: this._handleMouseUp,
-      onMouseDown: this._handleMouseDown,
-      onMouseOut: this._handleMouseOut,
-      onTouchStart: this._handleTouchStart,
-      onTouchEnd: this._handleTouchEnd
     };
+
+    var hideTouchRipple = this.props.disabled || disableTouchRipple;
+
+    if(!hideTouchRipple) {
+      inputProps.onMouseUp = this._handleMouseUp;
+      inputProps.onMouseDown = this._handleMouseDown;
+      inputProps.onMouseOut = this._handleMouseOut;
+      inputProps.onTouchStart = this._handleTouchStart;
+      inputProps.onTouchEnd = this._handleTouchEnd;
+    }
 
     if (!this.props.hasOwnProperty('checkedLink')) {
       inputProps.onChange = this._handleChange;
@@ -147,7 +152,7 @@ var EnhancedSwitch = React.createClass({
     );
 
     var ripples = [
-      this.props.disabled || disableTouchRipple ? null : touchRipple,
+      hideTouchRipple ? null : touchRipple,
       this.props.disabled || disableFocusRipple ? null : focusRipple
     ];
 
@@ -196,7 +201,7 @@ var EnhancedSwitch = React.createClass({
 
   // no callback here because there is no event
   setSwitched: function(newSwitchedValue) {
-    if (!this.props.hasOwnProperty('checked') || this.props.checked == false) {
+    if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
       this.setState({switched: newSwitchedValue});
       this.refs.checkbox.getDOMNode().checked = newSwitchedValue;
     } else if (process.NODE_ENV !== 'production') {
