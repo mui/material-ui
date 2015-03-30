@@ -41,7 +41,7 @@ var NestedMenuItem = React.createClass({
   },
 
   componentClickAway: function() {
-    this.setState({ open: false });
+    this._closeNestedMenu();
   },
 
   componentDidMount: function() {
@@ -69,10 +69,11 @@ var NestedMenuItem = React.createClass({
     } = this.props;
 
     return (
-      <div style={styles}>
+      <div style={styles} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
         <MenuItem 
           index={index}
           style={menuItemStyle}
+          disabled={this.props.disabled} 
           iconRightStyle={iconCustomArrowDropRight} 
           iconRightClassName="muidocs-icon-custom-arrow-drop-right" 
           onClick={this._onParentItemClick}>
@@ -95,19 +96,31 @@ var NestedMenuItem = React.createClass({
     var nestedMenu = this.refs.nestedMenu.getDOMNode();
     nestedMenu.style.left = el.offsetWidth + 'px';
   },
+  
+  _openNestedMenu: function() {
+    if (!this.props.disabled) this.setState({ open: true });
+  },
+  
+  _closeNestedMenu: function() {
+    this.setState({ open: false });
+  },
+  
+  _toggleNestedMenu: function() {
+    if (!this.props.disabled) this.setState({ open: !this.state.open });
+  },
 
   _onParentItemClick: function() {
-    if (!this.props.disabled) this.setState({ open: !this.state.open });
+    this._toggleNestedMenu();
   },
 
   _onMenuItemClick: function(e, index, menuItem) {
     if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
-    this.setState({ open: false });
+    this._closeNestedMenu();
   },
   
   _onMenuItemTap: function(e, index, menuItem) {
     if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
-    this.setState({ open: false });
+    this._closeNestedMenu();
   }
 
 });
