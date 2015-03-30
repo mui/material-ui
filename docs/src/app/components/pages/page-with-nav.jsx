@@ -14,7 +14,7 @@ class PageWithNav extends React.Component {
 
   render() {
     return (
-      <div className="mui-app-content-canvas page-with-nav">
+      <div className="app-content-canvas page-with-nav">
         <div className="page-with-nav-content">
           <RouteHandler />
         </div>

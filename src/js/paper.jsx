@@ -1,5 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
+var CustomVariables = require('./styles/variables/custom-variables');
 
 var Paper = React.createClass({
 
@@ -25,6 +26,9 @@ var Paper = React.createClass({
   /** Styles */
   _main: function() {
     return this.mergeAndPrefix({
+      boxSizing: 'border-box',
+      fontFamily: CustomVariables.contentFontFamily,
+      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
       boxShadow: this.getZDepthShadows(this.props.zDepth).boxShadow,
       borderRadius: this.props.circle ? '50%' : 
                     this.props.rounded ? '2px' :
@@ -36,6 +40,9 @@ var Paper = React.createClass({
     var style = {
       width: '100%', 
       height: '100%',
+      boxSizing: 'border-box',
+      fontFamily: CustomVariables.contentFontFamily,
+      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
       boxShadow: this.getZDepthShadows(this.props.zDepth).bottomBoxShadow,
       borderRadius: this.props.circle ? '50%' : 
                     this.props.rounded ? '2px' :

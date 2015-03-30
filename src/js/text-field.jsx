@@ -71,7 +71,9 @@ var TextField = React.createClass({
       height: (this.props.floatingLabelText) ? 72 : 48,
       display: 'inline-block',
       position: 'relative',
+      fontFamily: CustomVariables.contentFontFamily,
       transition: Transitions.easeOut('200ms', 'height'),
+      
     });
   },
 
@@ -121,6 +123,8 @@ var TextField = React.createClass({
 
   _input: function() {
     var style = {
+      boxSizing: 'border-box',
+      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
       position: 'relative',
       width: '100%',
       height: '100%',
@@ -146,6 +150,8 @@ var TextField = React.createClass({
 
   _underline: function() {
     return {
+      border: 'none',
+      borderBottom: 'solid 1px ' + CustomVariables.borderColor,
       position: 'absolute',
       width: '100%',
       bottom: 8,
@@ -166,16 +172,15 @@ var TextField = React.createClass({
   },
 
   _focusUnderline: function() {
-    var style = this.mergeAndPrefix({
-      borderColor: Theme.primary1Color,
-      borderBottomWidth: 2,
+    var style = this.mergeAndPrefix(this._underline(), {
+      borderBottom: 'solid 2px ' + Theme.primary1Color,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut(),
-    }, this._underline());
+    });
 
     if (this.props.errorText) style.borderColor = this.errorColor;
     if (this.props.errorText || this.state.isFocused) style.transform = 'scaleX(1)';
-
+    
     return style;
   },
 

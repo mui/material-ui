@@ -135,7 +135,7 @@ class DialogPage extends React.Component {
           ref="standardDialog"
           title="Dialog With Standard Actions"
           actions={standardActions}>
-          The actions in this window are created from the json that's passed in.
+          The actions in this window are created from the json that&#39;s passed in.
         </Dialog>
 
         <Dialog

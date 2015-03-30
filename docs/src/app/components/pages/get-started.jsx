@@ -34,7 +34,7 @@ class GetStarted extends React.Component {
         'injectTapEventPlugin();\n';
 
     return (
-      <div className="get-started-page mui-app-content-canvas">
+      <div className="get-started-page app-content-canvas">
         <div className="full-width-section">
 
           <h2 className="mui-font-style-headline">Prerequisites</h2>

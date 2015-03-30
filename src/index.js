@@ -33,6 +33,7 @@ module.exports = {
   },
   Styles: {
     Theme: require('./js/styles/theme').get(),
+    Colors: require('./js/styles/colors'),
   },
   Snackbar: require('./js/snackbar'),
   Tab: require('./js/tabs/tab'),
@@ -49,6 +50,7 @@ module.exports = {
     Dom: require('./js/utils/dom'),
     Events: require('./js/utils/events'),
     KeyCode: require('./js/utils/key-code'),
-    KeyLine: require('./js/utils/key-line')
+    KeyLine: require('./js/utils/key-line'),
+    ColorManipulator: require('./js/utils/color-manipulator'),
   }
 };

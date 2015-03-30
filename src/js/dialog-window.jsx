@@ -57,6 +57,8 @@ var DialogWindow = React.createClass({
   _main: function() {
     var style = {
       position: 'fixed',
+      boxSizing: 'border-box',
+      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
       zIndex: 10,
       top: 0,
       left: -10000,
@@ -76,7 +78,9 @@ var DialogWindow = React.createClass({
   },
 
   _contents: function() {
-    var style = {    
+    var style = { 
+      boxSizing: 'border-box',
+      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
       transition: Transitions.easeOut(),
       position: 'relative',
       width: '75%',
@@ -153,6 +157,8 @@ var DialogWindow = React.createClass({
     var actionContainer;
     var actionObjects = [];
     var actionStyle = {
+      boxSizing: 'border-box',
+      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
       padding: 8,
       marginBottom: 8,
       width: '100%',

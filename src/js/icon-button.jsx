@@ -19,7 +19,7 @@ var IconButton = React.createClass({
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
-    touch: React.PropTypes.bool
+    touch: React.PropTypes.bool,
   },
 
   getInitialState: function() {
@@ -48,8 +48,9 @@ var IconButton = React.createClass({
     var style = {
       height: 48,
       width: 48,
-      transition: Transitions.easeOut(),
       position: 'relative',
+      boxSizing: 'border-box',
+      transition: Transitions.easeOut(),
       padding: (CustomVariables.spacing.iconSize / 2),
       width: CustomVariables.spacing.iconSize*2,
       height: CustomVariables.spacing.iconSize*2,
@@ -57,7 +58,6 @@ var IconButton = React.createClass({
 
     if (this.props.disabled) {
       style = this.mergeAndPrefix(style, {
-        opacity: CustomVariables.disabledOpacity,
         color: CustomVariables.disabledColor,
         fill: CustomVariables.disabledColor,
       });
@@ -68,8 +68,46 @@ var IconButton = React.createClass({
 
   _tooltip: function() {
     return {
+      boxSizing: 'border-box',
       marginTop: CustomVariables.iconButtonSize + 4,
     };
+  },
+
+  _icon: function() {
+    var style = {
+        color: Theme.textColor,
+        fill: Theme.textColor,
+    };
+
+    if (this.props.disabled) {
+      style = {
+        color: CustomVariables.disabledColor,
+        fill: CustomVariables.disabledColor,
+      };
+    }
+
+    if (this.props.iconStyle) {
+      style = this.mergeAndPrefix(style, this.props.iconStyle);
+    }
+
+    return style;
+  },
+
+  /**
+   * If the user has children icon and is disabled, we have no way of knowing 
+   * how to override children styles to apply disabled styles. Instead, we 
+   * add a color overlay with disabled styles above the children. This can be 
+   * removed by the user if he/she has his/her own custom disabled styles.
+   */
+  _overlay: function() {
+    return {
+      position: 'relative',
+      top: 0,
+      width: '100%',
+      height: '100%',
+      background: CustomVariables.disabledColor,
+
+    }
   },
 
   render: function() {
@@ -95,9 +133,18 @@ var IconButton = React.createClass({
       fonticon = (
         <FontIcon 
           className={this.props.iconClassName} 
-          style={this.props.iconStyle}/>
+          style={this._icon()}/>
       );
     }
+
+    if (this.props.children && this.props.disabled) {
+      React.Children.forEach(this.props.children, function(child) {
+        child.props.style = {
+          color: CustomVariables.disabledColor,
+          fill: CustomVariables.disabledColor,
+        }
+      });
+    } 
 
     return (
       <EnhancedButton {...other}

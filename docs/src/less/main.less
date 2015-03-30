@@ -9,10 +9,12 @@
 //@import (less) "monokai_sublime.css";
 @import (less) "github.css";
 
+@import "clearfix.less";
 @import "color-palette.less";
 @import "component-info.less";
 @import "footer.less";
 @import "layout/full-width-section.less";
+@import "typography.less";
 
 @import "pages/get-started-page.less";
 @import "pages/home-contribute.less";
@@ -28,8 +30,6 @@
 @import "pages/components/paper.less";
 
 // appbar
-@app-bar-color: @primary-1-color;
-@app-bar-text-color: @dark-white;
 @app-bar-height: @desktop-keyline-increment;
 
 a {
@@ -41,15 +41,11 @@ a {
   }
 }
 
-/* App Specific Styles */
-
-.github-icon-button {
-  float: right;
-  margin-right: -16px;
-  margin-top: (@app-bar-height - @icon-button-size) / 2;
-  color: @app-bar-text-color;
-  fill: @app-bar-text-color;
+html {
+  font-family: @contentFontFamily;
 }
+
+/* App Specific Styles */
 
 .logo {
   cursor: pointer;
@@ -61,6 +57,10 @@ a {
   padding-left: @desktop-gutter;
   padding-top: 0;
   margin-bottom: @desktop-gutter-mini;
+}
+
+.app-content-canvas {
+  padding-top: (@app-bar-height);
 }
 
 .baseline-grid {
@@ -100,4 +100,8 @@ a {
 
 .example-menu-nested {
   width: (64px * 3);
+}
+
+.no-wrap {
+  white-space: nowrap;
 }

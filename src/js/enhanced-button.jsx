@@ -1,6 +1,7 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
 var StylePropable = require('./mixins/style-propable');
+var CustomVariables = require('./styles/variables/custom-variables');
 var WindowListenable = require('./mixins/window-listenable');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
@@ -40,8 +41,11 @@ var EnhancedButton = React.createClass({
   /** Styles */
   _main: function() {
     var style = {
-      border: 0,
+      border: 10,
       background: 'none',
+      boxSizing: 'border-box',
+      fontFamily: CustomVariables.contentFontFamily,
+      // -webkit-tap-highlight-color: rgba(0, 0, 0, 0),
     };
 
     if (this.props.linkButton) {
@@ -51,7 +55,7 @@ var EnhancedButton = React.createClass({
         textDecoration: 'none',
       }, style);
     }
-
+    
     return this.mergeAndPrefix(style);
   },
 
@@ -93,7 +97,7 @@ var EnhancedButton = React.createClass({
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
       onMouseOver: this._handleMouseOver,
-      onTouchTap: this._handleTouchTap
+      onTouchTap: this._handleTouchTap,
     };
     var buttonChildren = [
       disabled || disableTouchRipple ? this.props.children : touchRipple,

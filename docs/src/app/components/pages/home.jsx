@@ -19,11 +19,9 @@ class HomePage extends React.Component {
       },
       githubStyle: {
         margin: '16px 32px 0px 8px',
-        minWidth: 0,
       },
       demoStyle: {
         margin: '16px 32px 0px 32px',
-        minWidth: 0,
       },
     }
   }
@@ -31,7 +29,7 @@ class HomePage extends React.Component {
   render() {
 
     return (
-      <div className="mui-app-content-canvas">
+      <div className="app-content-canvas">
         <div className="home-page-hero full-width-section">
           <div className="home-page-hero-content">
             <img className="svg-logo" src="images/material-ui-logo.svg" />
