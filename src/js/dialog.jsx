@@ -8,7 +8,7 @@ var Dialog = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-    title: React.PropTypes.string
+    title: React.PropTypes.node
   },
 
   /** Styles */
@@ -28,9 +28,19 @@ var Dialog = React.createClass({
   render: function() {
     var {
       className,
-      title,
       ...other
     } = this.props;
+
+    var classes = this.getClasses('mui-dialog');
+    var title;
+
+    if (this.props.title) {
+      // If the title is a string, wrap in an h3 tag.
+      // If not, just use it as a node.
+      title = toString.call(this.props.title) === '[object String]' ?
+        <h3 style={this.title()}>{this.props.title}</h3> :
+        this.props.title;
+    }
 
     return (
       <DialogWindow
@@ -38,11 +48,12 @@ var Dialog = React.createClass({
         ref="dialogWindow"
         style={this.props.style}>
 
-        <h3 style={this.title()}>{this.props.title}</h3>
+        {title}
+        
         <div ref="dialogContent" style={this.content()}>
           {this.props.children}
         </div>
-        
+
       </DialogWindow>
     );
   },

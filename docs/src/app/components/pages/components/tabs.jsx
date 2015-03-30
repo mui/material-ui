@@ -45,10 +45,10 @@ class TabsPage extends React.Component {
                 '</Tabs> \n' +
                 '\n' +
                 '_onActive: function(tab){ \n' +
-                '  this.transitionTo(tab.props.route); \n' +
+                '  this.context.router.transitionTo(tab.props.route); \n' +
                 '}';
 
-    var desc = 'Refs cannont be set on individual Tab components as cloneWithProps is being ' +
+    var desc = 'Refs cannot be set on individual Tab components as cloneWithProps is being ' +
       'used to extend the individual tab components under the hood. However, ' +
       'refs can be passed to the Tabs container and to any element or component within the template. ' +
       'If you need to access a tab directly - you can do so with the first argument of onActive or ' +
