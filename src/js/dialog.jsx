@@ -21,7 +21,7 @@ var Dialog = React.createClass({
   },
   content: function() {
     return {
-      padding: CustomVariables.spacing.desktopGutter
+      padding: CustomVariables.spacing.desktopGutter,
     }
   },
 

@@ -90,46 +90,44 @@ module.exports = {
   // Set the absolute transparency of a color. 
   // Any existing alpha values are overwritten. 
   fade: function(color, amount) {
-    var colorObj = this._decomposeColor(color);
-    if (colorObj.type == 'rgb' || colorObj.type == 'hsl') colorObj.type += 'a';
-    return this._convertColorToString(colorObj, amount)
+    color = this._decomposeColor(color);
+    if (color.type == 'rgb' || color.type == 'hsl') color.type += 'a';
+    return this._convertColorToString(color, amount)
   },
 
   // Desaturates rgb and sets opacity to 0.15
   lighten: function(color, amount) {
-    color = this._format(color, amount);
+    color = this._decomposeColor(color);
 
-    var colorObj = this._decomposeColor(color);
-
-    if (colorObj.type.indexOf('hsl') > -1) {
-      colorObj.values[2] += amount;
-      return  this._decomposeColor(this._convertColorToString(colorObj));
-    } else if (colorObj.type.indexOf('rgb') > -1) {
+    if (color.type.indexOf('hsl') > -1) {
+      color.values[2] += amount;
+      return  this._decomposeColor(this._convertColorToString(color));
+    } else if (color.type.indexOf('rgb') > -1) {
       for (var i = 0; i < 3; i++) {
-        colorObj.values[i] *= 1 + amount;
-        if (colorObj.values[i] > 255) colorObj.values[i] = 255;  
+        color.values[i] *= 1 + amount;
+        if (color.values[i] > 255) color.values[i] = 255;  
       }
     }
 
-    if (colorObj.type.indexOf('a') <= -1) colorObj.type += 'a';
+    if (color.type.indexOf('a') <= -1) color.type += 'a';
 
-    return  this._convertColorToString(colorObj, '0.15');
+    return  this._convertColorToString(color, '0.15');
   },
 
   darken: function(color, amount) {
-    var colorObj = this._decomposeColor(color);
+    var color = this._decomposeColor(color);
 
-    if (colorObj.type.indexOf('hsl') > -1) {
-      colorObj.values[2] += amount;
-      return  this._decomposeColor(this._convertColorToString(colorObj));
-    } else if (colorObj.type.indexOf('rgb') > -1) {
+    if (color.type.indexOf('hsl') > -1) {
+      color.values[2] += amount;
+      return  this._decomposeColor(this._convertColorToString(color));
+    } else if (color.type.indexOf('rgb') > -1) {
       for (var i = 0; i < 3; i++) {
-        colorObj.values[i] *= 1 - amount;
-        if (colorObj.values[i] < 0) colorObj.values[i] = 0;  
+        color.values[i] *= 1 - amount;
+        if (color.values[i] < 0) color.values[i] = 0;  
       }
     }
 
-    return this._convertColorToString(colorObj);
+    return this._convertColorToString(color);
   },
 
 
@@ -175,7 +173,6 @@ module.exports = {
     var ratio = this.contrastRatio(background, foreground);
 
     for (level in levels) {
-      console.log(level);
       var range = levels[level].range;
       if (ratio >= range[0] && ratio <= range[1]) return level;
     }

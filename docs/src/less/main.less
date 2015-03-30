@@ -14,6 +14,7 @@
 @import "component-info.less";
 @import "footer.less";
 @import "layout/full-width-section.less";
+@import "typography.less";
 
 @import "pages/get-started-page.less";
 @import "pages/home-contribute.less";
@@ -29,8 +30,6 @@
 @import "pages/components/paper.less";
 
 // appbar
-@app-bar-color: @primary-1-color;
-@app-bar-text-color: @dark-white;
 @app-bar-height: @desktop-keyline-increment;
 
 a {
@@ -42,15 +41,11 @@ a {
   }
 }
 
-/* App Specific Styles */
-
-.github-icon-button {
-  float: right;
-  margin-right: -16px;
-  margin-top: (@app-bar-height - @icon-button-size) / 2;
-  color: @app-bar-text-color;
-  fill: @app-bar-text-color;
+html {
+  font-family: @contentFontFamily;
 }
+
+/* App Specific Styles */
 
 .logo {
   cursor: pointer;

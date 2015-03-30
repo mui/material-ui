@@ -68,13 +68,18 @@ var BeforeAfterWrapper = React.createClass({
     } = this.props;
 
     var beforeElement, afterElement;
+    
+    beforeStyle = AutoPrefix.all({boxSizing: 'border-box'});
+    afterStyle = AutoPrefix.all({boxSizing: 'border-box'});
 
     if (this.props.beforeStyle) beforeElement = 
-      React.createElement(this.props.beforeElementType, 
-                          {style: AutoPrefix.all(this.props.beforeStyle), key: "::before"});
+      React.createElement(  this.props.beforeElementType, 
+                            {style: this.mergeAndPrefix(beforeStyle, this.props.beforeStyle), 
+                            key: "::before"}  );
     if (this.props.afterStyle) afterElement = 
-      React.createElement(this.props.afterElementType, 
-                          {style: AutoPrefix.all(this.props.afterStyle), key: "::after"});
+      React.createElement(  this.props.afterElementType, 
+                            {style: this.mergeAndPrefix(afterStyle, this.props.afterStyle), 
+                            key: "::after"}   );
 
     var children = [beforeElement, this.props.children, afterElement];
     

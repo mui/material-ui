@@ -19,11 +19,9 @@ class HomePage extends React.Component {
       },
       githubStyle: {
         margin: '16px 32px 0px 8px',
-        minWidth: 0,
       },
       demoStyle: {
         margin: '16px 32px 0px 32px',
-        minWidth: 0,
       },
     }
   }

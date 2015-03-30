@@ -34,9 +34,8 @@ class Master extends React.Component {
           className="mui-dark-theme"
           onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}
           title={title}
-          zDepth={0}>
-          {githubButton}
-        </AppBar>
+          zDepth={0}
+          iconClassNameRight="muidocs-icon-custom-github"/>
 
         <AppLeftNav ref="leftNav" />
 

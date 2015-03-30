@@ -5,6 +5,10 @@ var ColorManipulator = require('../../utils/color-manipulator');
 
 var customVariables = new (function() {
   
+  //Typography
+  this.headingFontFamily = "'Roboto', sans-serif";
+  this.contentFontFamily = "'Roboto', sans-serif";
+
   // Spacing
   this.spacing = Spacing;
 

@@ -124,6 +124,11 @@ var RaisedButton = React.createClass({
       secondary,
       ...other } = this.props;
 
+    
+    console.log('CustomVariables', CustomVariables);
+    console.log('minWidth', this._main().minWidth);
+
+
     var labelElement;
 
     if (label) labelElement = <span style={this._label()}>{label}</span>;

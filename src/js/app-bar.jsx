@@ -14,6 +14,7 @@ var AppBar = React.createClass({
     onMenuIconButtonTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
     iconClassNameLeft: React.PropTypes.string,
+    iconClassNameRight: React.PropTypes.string,
     iconElementLeft: React.PropTypes.element,
     iconElementRight: React.PropTypes.element,
     title : React.PropTypes.node,
@@ -90,6 +91,13 @@ var AppBar = React.createClass({
     } = this.props;
 
     var title, menuElementLeft, menuElementRight;
+    var iconRightStyle = this.mergeAndPrefix(this._iconButton().style, {
+      float: 'right',
+      marginRight: -16,
+      marginLeft: 8,
+    });
+
+
 
     if (this.props.title) {
       // If the title is a string, wrap in an h1 tag.
@@ -111,16 +119,31 @@ var AppBar = React.createClass({
         menuElementLeft = (
           <IconButton
             style={this._iconButton().style}
+            iconStyle={this._iconButton().iconStyle}
             iconClassName={this.props.iconClassNameLeft}
             onTouchTap={this._onMenuIconButtonTouchTap}>
               {child}
           </IconButton>
         );
       }
-    }
 
-    menuElementRight = (this.props.children) ? this.props.children : 
-                       (this.props.iconElementRight) ? this.props.iconElementRight : '';
+      if (this.props.iconElementRight) {
+        menuElementRight = (
+          <div style={iconRightStyle}> 
+            {this.props.iconElementRight} 
+          </div>
+        );
+      } else if (this.props.iconClassNameRight) {
+        menuElementRight = (
+          <IconButton
+            style={iconRightStyle}
+            iconStyle={this._iconButton().iconStyle}
+            iconClassName={this.props.iconClassNameRight}
+            onTouchTap={this._onMenuIconButtonTouchTap}>
+          </IconButton>
+        );
+      }
+    }
 
     return (
       <Paper rounded={false} className={this.props.className}  style={this._main()} innerStyle={this._paper()} zDepth={this.props.zDepth}>

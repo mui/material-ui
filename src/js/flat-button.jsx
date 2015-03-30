@@ -67,7 +67,7 @@ var FlatButton = React.createClass({
     if (this.state.hovered && !this.props.disabled) {
       style.backgroundColor = ColorManipulator.fade(ColorManipulator.lighten(style.color, 0.4), 0.15);
     }  
-    
+
     return this.mergeAndPrefix(style);
   },
 
