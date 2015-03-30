@@ -48,12 +48,14 @@ var DropDownMenu = React.createClass({
       'mui-open': this.state.open
     });
 
+    var selectedIndex = this.state.selectedIndex > -1 ? this.state.selectedIndex : 0;
+
     return (
       <div className={classes}>
         <div className="mui-menu-control" onClick={this._onControlClick}>
           <Paper className="mui-menu-control-bg" zDepth={0} />
           <div className="mui-menu-label">
-            {this.props.menuItems[this.state.selectedIndex].text}
+            {this.props.menuItems[selectedIndex].text}
           </div>
           <DropDownArrow className="mui-menu-drop-down-icon" />
           <div className="mui-menu-control-underline" />
