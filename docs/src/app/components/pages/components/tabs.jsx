@@ -4,14 +4,17 @@ var mui = require('mui');
 var Router = require('react-router');
 var ComponentDoc = require('../../component-doc.jsx');
 var RouteHandler = Router.RouteHandler;
-var Tabs = mui.Tabs;
-var Tab= mui.Tab;
 
-var TabsPage = React.createClass({
+var {Tabs, Tab} = mui;
 
-  mixins: [Router.Navigation, Router.State],
+class TabsPage extends React.Component {
 
-  render: function(){
+  constructor() {
+    super();
+    this._onActive = this._onActive.bind(this);
+  }
+
+  render(){
     var code =  '<Tabs> \n' +
                 '  <Tab label="Item One" > \n' +
                 '    <div className="tab-template-container"> \n' +
@@ -152,11 +155,15 @@ var TabsPage = React.createClass({
 
       </ComponentDoc>
     );
-  },
-
-  _onActive: function(tab){
-    this.transitionTo(tab.props.route);
   }
-});
+
+  _onActive(tab){
+    this.context.router.transitionTo(tab.props.route);
+  }
+}
+
+TabsPage.contextTypes = {
+  router: React.PropTypes.func
+};
 
 module.exports = TabsPage;

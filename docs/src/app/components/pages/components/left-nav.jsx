@@ -5,15 +5,19 @@ var LeftNav = mui.LeftNav;
 var RaisedButton = mui.RaisedButton;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var LeftNavPage = React.createClass({
+class LeftNavPage extends React.Component {
 
-  getInitialState: function() {
-    return {
+  constructor() {
+    super();
+    this._showLeftNavClick = this._showLeftNavClick.bind(this);
+    this._toggleDockedLeftNavClick = this._toggleDockedLeftNavClick.bind(this);
+
+    this.state = {
       isDocked: false
     };
-  },
+  }
 
-  render: function() { 
+  render() {
 
     var menuItems = [
       { route: 'get-started', text: 'Get Started' },
@@ -25,7 +29,7 @@ var LeftNavPage = React.createClass({
       { type: MenuItem.Types.LINK, payload: 'https://www.google.com', text: 'Disabled Link', disabled: true }
     ];
 
-    var code = 
+    var code =
       'menuItems = [\n' +
       '  { route: \'get-started\', text: \'Get Started\' },\n' +
       '  { route: \'css-framework\', text: \'CSS Framework\' },\n' +
@@ -128,20 +132,20 @@ var LeftNavPage = React.createClass({
 
       </ComponentDoc>
     );
-    
-  },
 
-  _showLeftNavClick: function() {
+  }
+
+  _showLeftNavClick() {
     this.refs.leftNav.toggle();
-  },
+  }
 
-  _toggleDockedLeftNavClick: function() {
+  _toggleDockedLeftNavClick() {
     this.refs.dockedLeftNav.toggle();
     this.setState({
       isDocked: !this.state.isDocked
     });
   }
 
-});
+}
 
 module.exports = LeftNavPage;
