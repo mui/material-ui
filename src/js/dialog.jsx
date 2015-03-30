@@ -31,9 +31,7 @@ var Dialog = React.createClass({
       ...other
     } = this.props;
 
-    var classes = this.getClasses('mui-dialog');
     var title;
-
     if (this.props.title) {
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.
@@ -46,10 +44,11 @@ var Dialog = React.createClass({
       <DialogWindow
         {...other}
         ref="dialogWindow"
+        className={className}
         style={this.props.style}>
 
         {title}
-        
+
         <div ref="dialogContent" style={this.content()}>
           {this.props.children}
         </div>
