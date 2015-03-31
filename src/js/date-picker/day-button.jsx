@@ -27,7 +27,7 @@ var DayButton = React.createClass({
     var styles = {
       root: {
         boxSizing: 'border-box',
-        webkitTapHighlightColor: 'rgba(0,0,0,0)', 
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
         position: 'relative',
         float: 'left',
         width: 36,
