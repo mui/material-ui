@@ -51,7 +51,7 @@ var RaisedButton = React.createClass({
     return  this.props.disabled ? CustomVariables.raisedButtonDisabledColor :
             this.props.primary ? CustomVariables.raisedButtonPrimaryColor :
             this.props.secondary ? CustomVariables.raisedButtonSecondaryColor :
-            CustomVariables.raisedButtonColor; 
+            CustomVariables.raisedButtonColor;
   },
 
   _main: function() {
@@ -122,12 +122,8 @@ var RaisedButton = React.createClass({
       label,
       primary,
       secondary,
-      ...other } = this.props;
-
-    
-    console.log('CustomVariables', CustomVariables);
-    console.log('minWidth', this._main().minWidth);
-
+      ...other
+    } = this.props;
 
     var labelElement;
 
@@ -137,8 +133,8 @@ var RaisedButton = React.createClass({
     var rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
 
     return (
-      <Paper 
-        style={this._main()} 
+      <Paper
+        style={this._main()}
         innerStyle={{transition: Transitions.easeOut()}}
         zDepth={this.state.zDepth}>
           <EnhancedButton {...other}
