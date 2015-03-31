@@ -2,6 +2,6 @@ var index = 0;
 
 module.exports = {
   generate: function() {
-    return "ui-id-" + (index++);
+    return "mui-id-" + (index++);
   }
 };
