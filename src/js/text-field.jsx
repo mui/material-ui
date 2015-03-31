@@ -5,12 +5,12 @@ var Theme = require('./styles/theme').get();
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/mixins/transitions');
 var CustomVariables = require('./styles/variables/custom-variables');
-var DomIdable = require('./mixins/dom-idable');
+var UniqueId = require('./utils/unique-id');
 var EnhancedTextarea = require('./enhanced-textarea');
 
 var TextField = React.createClass({
 
-  mixins: [StylePropable, DomIdable],
+  mixins: [StylePropable],
 
   propTypes: {
     errorText: React.PropTypes.string,
@@ -73,7 +73,7 @@ var TextField = React.createClass({
       position: 'relative',
       fontFamily: CustomVariables.contentFontFamily,
       transition: Transitions.easeOut('200ms', 'height'),
-      
+
     });
   },
 
@@ -124,7 +124,7 @@ var TextField = React.createClass({
   _input: function() {
     var style = {
       boxSizing: 'border-box',
-      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
+      webkitTapHighlightColor: 'rgba(0,0,0,0)',
       position: 'relative',
       width: '100%',
       height: '100%',
@@ -180,7 +180,7 @@ var TextField = React.createClass({
 
     if (this.props.errorText) style.borderColor = this.errorColor;
     if (this.props.errorText || this.state.isFocused) style.transform = 'scaleX(1)';
-    
+
     return style;
   },
 
@@ -199,7 +199,7 @@ var TextField = React.createClass({
       ...other
     } = this.props;
 
-    var inputId = this.props.id || this.getDomId();
+    var inputId = this.props.id || UniqueId.generate();
 
     var errorTextElement = this.state.errorText ? (
       <div style={this._error()}>{this.state.errorText}</div>
@@ -301,7 +301,7 @@ var TextField = React.createClass({
   },
 
   _getInputNode: function() {
-    return this.props.multiLine ? 
+    return this.props.multiLine ?
       this.refs.input.getInputNode() : this.refs.input.getDOMNode();
   },
 
