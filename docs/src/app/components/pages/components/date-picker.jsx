@@ -3,9 +3,9 @@ var mui = require('mui');
 var DatePicker = mui.DatePicker;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var DatePickerPage = React.createClass({
+class DatePickerPage extends React.Component {
 
-  render: function() {
+  render() {
 
     var code =
       '//Portrait Dialog\n' +
@@ -14,7 +14,7 @@ var DatePickerPage = React.createClass({
       '//Landscape Dialog\n' +
       '<DatePicker\n' +
       '  hintText="Landscape Dialog"\n' +
-      '  mode="landscape"/>'; 
+      '  mode="landscape"/>';
 
     var componentInfo = [
       {
@@ -75,6 +75,6 @@ var DatePickerPage = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = DatePickerPage;
