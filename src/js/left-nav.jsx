@@ -15,7 +15,8 @@ var LeftNav = React.createClass({
     header: React.PropTypes.element,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
-    selectedIndex: React.PropTypes.number
+    selectedIndex: React.PropTypes.number,
+    optionalContent: React.PropTypes.element
   },
 
   windowListeners: {
@@ -76,6 +77,7 @@ var LeftNav = React.createClass({
             selectedIndex={selectedIndex}
             onItemClick={this._onMenuItemClick} />
 
+        {this.props.optionalContent}
         </Paper>
       </div>
     );
