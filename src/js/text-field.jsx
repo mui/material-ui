@@ -73,7 +73,6 @@ var TextField = React.createClass({
       position: 'relative',
       fontFamily: CustomVariables.contentFontFamily,
       transition: Transitions.easeOut('200ms', 'height'),
-      
     });
   },
 
@@ -156,6 +155,9 @@ var TextField = React.createClass({
       width: '100%',
       bottom: 8,
       margin: 0,
+      MozBoxSizing: 'content-box',
+      boxSizing: 'content-box',
+      height: 0,
     };
   },
 
@@ -255,8 +257,12 @@ var TextField = React.createClass({
     );
     var focusUnderlineElement = <hr style={this._focusUnderline()} />;
 
+
+    var rootStyle = this._main();
+    if (this.props.multiLine) rootStyle.maxHeight = rootStyle.height;
+
     return (
-      <div className={this.props.className} style={this._main()}>
+      <div className={this.props.className} style={rootStyle}>
         {floatingLabelTextElement}
         {hintTextElement}
         {inputElement}
@@ -329,6 +335,7 @@ var TextField = React.createClass({
     var newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
     this.getDOMNode().style.height = newHeight + 'px';
+    this.getDOMNode().style.maxHeight = newHeight + 'px';
   },
 
   _isControlled: function() {

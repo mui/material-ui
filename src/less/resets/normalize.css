@@ -30,7 +30,7 @@ body {
  * Correct `block` display not defined for `main` in IE 11.
  */
 
-article,
+/*article,
 aside,
 details,
 figcaption,
@@ -44,40 +44,40 @@ nav,
 section,
 summary {
   display: block;
-}
+}*/
 
 /**
  * 1. Correct `inline-block` display not defined in IE 8/9.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
 
-audio,
+/*audio,
 canvas,
 progress,
 video {
-  display: inline-block; /* 1 */
-  vertical-align: baseline; /* 2 */
-}
+  display: inline-block; // 1
+  vertical-align: baseline; // 2
+}*/
 
 /**
  * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices.
  */
 
-audio:not([controls]) {
+/*audio:not([controls]) {
   display: none;
   height: 0;
-}
+}*/
 
 /**
  * Address `[hidden]` styling not present in IE 8/9/10.
  * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
  */
 
-[hidden],
+/*[hidden],
 template {
   display: none;
-}
+}*/
 
 /* Links
    ========================================================================== */
@@ -158,7 +158,7 @@ small {
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
 
-sub,
+/*sub,
 sup {
   font-size: 75%;
   line-height: 0;
@@ -172,7 +172,7 @@ sup {
 
 sub {
   bottom: -0.25em;
-}
+}*/
 
 /* Embedded content
    ========================================================================== */
@@ -181,17 +181,17 @@ sub {
  * Remove border when inside `a` element in IE 8/9/10.
  */
 
-img {
+/*img {
   border: 0;
-}
+}*/
 
 /**
  * Correct overflow not hidden in IE 9/10/11.
  */
 
-svg:not(:root) {
+/*svg:not(:root) {
   overflow: hidden;
-}
+}*/
 
 /* Grouping content
    ========================================================================== */
@@ -200,39 +200,39 @@ svg:not(:root) {
  * Address margin not present in IE 8/9 and Safari.
  */
 
-figure {
+/*figure {
   margin: 1em 40px;
-}
+}*/
 
 /**
  * Address differences between Firefox and other browsers.
  */
 
-hr {
+/*hr {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
-}
+}*/
 
 /**
  * Contain overflow in all browsers.
  */
 
-pre {
+/*pre {
   overflow: auto;
-}
+}*/
 
 /**
  * Address odd `em`-unit font size rendering in all browsers.
  */
 
-code,
+/*code,
 kbd,
 pre,
 samp {
   font-family: monospace, monospace;
   font-size: 1em;
-}
+}*/
 
 /* Forms
    ========================================================================== */
