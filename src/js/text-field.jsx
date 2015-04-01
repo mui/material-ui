@@ -124,7 +124,7 @@ var TextField = React.createClass({
   _input: function() {
     var style = {
       boxSizing: 'border-box',
-      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       position: 'relative',
       width: '100%',
       height: '100%',

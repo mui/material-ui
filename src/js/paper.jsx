@@ -28,7 +28,7 @@ var Paper = React.createClass({
     return this.mergeAndPrefix({
       boxSizing: 'border-box',
       fontFamily: CustomVariables.contentFontFamily,
-      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
       boxShadow: this.getZDepthShadows(this.props.zDepth).boxShadow,
       borderRadius: this.props.circle ? '50%' : 
                     this.props.rounded ? '2px' :
@@ -42,7 +42,7 @@ var Paper = React.createClass({
       height: '100%',
       boxSizing: 'border-box',
       fontFamily: CustomVariables.contentFontFamily,
-      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
       boxShadow: this.getZDepthShadows(this.props.zDepth).bottomBoxShadow,
       borderRadius: this.props.circle ? '50%' : 
                     this.props.rounded ? '2px' :

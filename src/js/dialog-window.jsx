@@ -58,7 +58,7 @@ var DialogWindow = React.createClass({
     var style = {
       position: 'fixed',
       boxSizing: 'border-box',
-      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       zIndex: 10,
       top: 0,
       left: -10000,
@@ -78,9 +78,9 @@ var DialogWindow = React.createClass({
   },
 
   _contents: function() {
-    var style = { 
+    var style = {
       boxSizing: 'border-box',
-      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       transition: Transitions.easeOut(),
       position: 'relative',
       width: '75%',
@@ -148,7 +148,7 @@ var DialogWindow = React.createClass({
         key={key}
         secondary={true}
         onClick={onClickHandler}
-        label={actionJSON.text} 
+        label={actionJSON.text}
         style={styles}/>
     );
   },
@@ -158,7 +158,7 @@ var DialogWindow = React.createClass({
     var actionObjects = [];
     var actionStyle = {
       boxSizing: 'border-box',
-      webkitTapHighlightColor: 'rgba(0,0,0,0)', 
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       padding: 8,
       marginBottom: 8,
       width: '100%',
@@ -187,30 +187,30 @@ var DialogWindow = React.createClass({
     return actionContainer;
   },
 
-  _positionDialog: function() {   
+  _positionDialog: function() {
 
     var container = this.getDOMNode();
-    var dialogWindow = this.refs.dialogWindow.getDOMNode(); 
+    var dialogWindow = this.refs.dialogWindow.getDOMNode();
     var containerHeight = container.offsetHeight;
-   
-    //Reset the height in case the window was resized.   
-    dialogWindow.style.height = '';    
-    var dialogWindowHeight = dialogWindow.offsetHeight;  
 
-    var paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64; 
+    //Reset the height in case the window was resized.
+    dialogWindow.style.height = '';
+    var dialogWindowHeight = dialogWindow.offsetHeight;
 
-    //Vertically center the dialog window, but make sure it doesn't    
-    //transition to that position.   
-    if (this.props.repositionOnUpdate || !container.style.paddingTop) {  
+    var paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64;
+
+    //Vertically center the dialog window, but make sure it doesn't
+    //transition to that position.
+    if (this.props.repositionOnUpdate || !container.style.paddingTop) {
       container.style.paddingTop = paddingTop + 'px';
     }
- 
+
   },
-  
+
   _onShow: function() {
     if (this.props.onShow) this.props.onShow();
   },
-  
+
   _onDismiss: function() {
     if (this.props.onDismiss) this.props.onDismiss();
   },
