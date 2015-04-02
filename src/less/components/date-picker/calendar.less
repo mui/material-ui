@@ -21,6 +21,16 @@
   .mui-date-picker-calendar-container {
     .ease-out(@property: height; @duration: 150ms);
   }
+  
+  .mui-date-picker-calendar-year-container {
+    .mui-date-picker-calendar-year {
+      position: relative !important;
+      text-align: center;
+      font-size: 14px;
+      line-height: 36px;
+      overflow: scroll;
+    }
+  }
 
   &.mui-is-4week {
     .mui-date-picker-calendar-container {
@@ -39,6 +49,10 @@
       height: 308px;
     }
   }
+    
+  .hidden {
+    .hidden-transition-safe;
+  }
 }
 
 .mui-is-landscape {
@@ -52,7 +66,8 @@
     float: left;
   }
 
-  .mui-date-picker-calendar-container {
+  .mui-date-picker-calendar-container,
+  .mui-date-picker-year-container {
     width: 280px;
     float: right;
   }

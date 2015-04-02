@@ -10,7 +10,15 @@ var DayButton = React.createClass({
   propTypes: {
     date: React.PropTypes.object,
     onTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool
+    selected: React.PropTypes.bool,
+    disabled: React.PropTypes.bool
+  },
+  
+  getDefaultProps: function() {
+    return {
+      selected: false,
+      disabled: false
+    };
   },
 
   render: function() {
@@ -23,12 +31,15 @@ var DayButton = React.createClass({
     } = this.props;
     var classes = this.getClasses('mui-date-picker-day-button', { 
       'mui-is-current-date': DateTime.isEqualDate(this.props.date, new Date()),
-      'mui-is-selected': this.props.selected
+      'mui-is-selected': this.props.selected,
+      'mui-is-disabled': this.props.disabled
     });
 
     return this.props.date ? (
       <EnhancedButton {...other}
+        key={this.props.date.getTime()}
         className={classes}
+        disabled={this.props.disabled}
         disableFocusRipple={true}
         disableTouchRipple={true}
         onTouchTap={this._handleTouchTap}>
@@ -41,7 +52,7 @@ var DayButton = React.createClass({
   },
 
   _handleTouchTap: function(e) {
-    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.date);
+    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.date);
   }
 
 });

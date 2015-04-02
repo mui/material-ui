@@ -15,6 +15,10 @@ var DatePickerDialog = React.createClass({
     onAccept: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    startDate: React.PropTypes.object,
+    endDate: React.PropTypes.object,
+    shouldDisableDate: React.PropTypes.func,
+    hideToolbarYearChange: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -59,7 +63,11 @@ var DatePickerDialog = React.createClass({
         <Calendar
           ref="calendar"
           initialDate={this.props.initialDate}
-          isActive={this.state.isCalendarActive} />
+          isActive={this.state.isCalendarActive}
+          startDate={this.props.startDate}
+          endDate={this.props.endDate}
+          shouldDisableDate={this.props.shouldDisableDate}
+          hideToolbarYearChange={this.props.hideToolbarYearChange} />
       </DialogWindow>
     );
   },
@@ -78,7 +86,7 @@ var DatePickerDialog = React.createClass({
 
   _handleOKTouchTap: function() {
     this.dismiss();
-    if (this.props.onAccept) {
+    if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
   },

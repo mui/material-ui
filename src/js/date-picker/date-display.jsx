@@ -8,12 +8,20 @@ var DateDisplay = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    selectedDate: React.PropTypes.object.isRequired
+    selectedDate: React.PropTypes.object.isRequired,
+    yearSelectionAvailable: React.PropTypes.bool
+  },
+  
+  getDefaultProps: function() {
+    return {
+      yearSelectionAvailable: true
+    };
   },
 
   getInitialState: function() {
     return {
-      transitionDirection: 'up'
+      transitionDirection: 'up',
+      selectedYear: false
     };
   },
 
@@ -38,6 +46,9 @@ var DateDisplay = React.createClass({
     var month = DateTime.getShortMonth(this.props.selectedDate);
     var day = this.props.selectedDate.getDate();
     var year = this.props.selectedDate.getFullYear();
+    var dayClass = this._getDayClassName();
+    var monthClass = this._getMonthClassName();
+    var yearClass = this._getYearClassName();
 
     return (
       <div {...other} className={classes}>
@@ -51,27 +62,66 @@ var DateDisplay = React.createClass({
         <div className="mui-date-picker-date-display-date">
 
           <SlideInTransitionGroup
-            className="mui-date-picker-date-display-month"
+            className={monthClass}
             direction={this.state.transitionDirection}>
-            <div key={month}>{month}</div>
+            <div key={month} onClick={this._handleMonthDayClick}>{month}</div>
           </SlideInTransitionGroup>
 
           <SlideInTransitionGroup
-            className="mui-date-picker-date-display-day"
+            className={dayClass}
             direction={this.state.transitionDirection}>
-            <div key={day}>{day}</div>
+            <div key={day} onClick={this._handleMonthDayClick}>{day}</div>
           </SlideInTransitionGroup>
 
           <SlideInTransitionGroup
-            className="mui-date-picker-date-display-year"
+            className={yearClass}
             direction={this.state.transitionDirection}>
-            <div key={year}>{year}</div>
+            <div key={year} onClick={this._handleYearClick}>{year}</div>
           </SlideInTransitionGroup>
 
         </div>
 
       </div>
     );
+  },
+  
+  _getYearClassName: function() {
+    var className = "mui-date-picker-date-display-year";
+    
+    if (!this.props.yearSelectionAvailable) className += " unavailable";
+    if (this.state.selectedYear) className += " selected";
+    
+    return className;
+  },
+  
+  _getMonthClassName: function() {
+    var className = "mui-date-picker-date-display-month";
+    
+    if (!this.state.selectedYear) className += " selected";
+    
+    return className;
+  },
+  
+  _getDayClassName: function() {
+    var className = "mui-date-picker-date-display-day";
+    
+    if (!this.state.selectedYear) className += " selected";
+    
+    return className;
+  },
+  
+  _handleMonthDayClick: function() {
+    if (this.props.handleMonthDayClick && this.state.selectedYear) {
+      this.props.handleMonthDayClick();
+      this.setState({selectedYear: false});
+    }
+  },
+  
+  _handleYearClick: function() {
+    if (this.props.handleYearClick && !this.state.selectedYear && this.props.yearSelectionAvailable) {
+      this.props.handleYearClick();
+      this.setState({selectedYear: true});
+    }
   }
 
 });
