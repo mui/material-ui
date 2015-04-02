@@ -94,9 +94,9 @@ var DialogWindow = React.createClass({
 
   _addClassName: function(reactObject, className) {
     var originalClassName = reactObject.props.className;
+    var newClassname = originalClassName ? originalClassName + ' ' + className : className;
 
-    reactObject.props.className = originalClassName ?
-      originalClassName + ' ' + className : className;
+    return React.cloneElement(reactObject, { className: newClassname });
   },
 
   _getAction: function(actionJSON, key) {
@@ -116,14 +116,14 @@ var DialogWindow = React.createClass({
 
     if (actions.length) {
       for (var i = 0; i < actions.length; i++) {
-        currentAction = actions[i];
+        var currentAction = actions[i];
 
         //if the current action isn't a react object, create one
         if (!React.isValidElement(currentAction)) {
           currentAction = this._getAction(currentAction, i);
         }
 
-        this._addClassName(currentAction, 'mui-dialog-window-action');
+        currentAction = this._addClassName(currentAction, 'mui-dialog-window-action');
         actionObjects.push(currentAction);
       };
 
