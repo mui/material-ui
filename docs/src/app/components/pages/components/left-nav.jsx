@@ -13,7 +13,7 @@ var LeftNavPage = React.createClass({
     };
   },
 
-  render: function() { 
+  render: function() {
 
     var menuItems = [
       { route: 'get-started', text: 'Get Started' },
@@ -25,7 +25,7 @@ var LeftNavPage = React.createClass({
       { type: MenuItem.Types.LINK, payload: 'https://www.google.com', text: 'Disabled Link', disabled: true }
     ];
 
-    var code = 
+    var code =
       'menuItems = [\n' +
       '  { route: \'get-started\', text: \'Get Started\' },\n' +
       '  { route: \'css-framework\', text: \'CSS Framework\' },\n' +
@@ -108,6 +108,16 @@ var LeftNavPage = React.createClass({
             header: 'function(e, selectedIndex, menuItem)',
             desc: 'Fired when a menu item is clicked that is not the one currently ' +
               'selected.'
+          },
+          {
+            name: 'onNavOpen',
+            header: 'function()',
+            desc: 'Fired when the component is opened'
+          },
+          {
+            name: 'onNavClose',
+            header: 'function()',
+            desc: 'Fired when the component is closed'
           }
         ]
       }
@@ -128,7 +138,7 @@ var LeftNavPage = React.createClass({
 
       </ComponentDoc>
     );
-    
+
   },
 
   _showLeftNavClick: function() {
