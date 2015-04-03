@@ -72,6 +72,7 @@ var DateDisplay = React.createClass({
         height: isLandscape ? this.props.weekCount * 40 + 36 + 'px' : '150px',
         padding: '16px 0',
         transition: Transitions.easeOut(),
+        boxSizing: 'border-box',
       },
 
       date: {
@@ -85,13 +86,14 @@ var DateDisplay = React.createClass({
         height: '32px',
         backgroundColor: CustomVariables.datePickerSelectColor,
         borderRadius: isLandscape ? '2px 0 0 0' : '2px 2px 0 0',
-        paddingTop: '9px'
+        paddingTop: '9px',
+        boxSizing: 'border-box',
       },
 
       dow: {
         fontSize: '13px',
         lineHeight: '13px',
-        height: '13px',
+        height: '100%',
         color: CustomVariables.datePickerSelectTextColor
       },
 
@@ -117,7 +119,7 @@ var DateDisplay = React.createClass({
 
       year: {
         position: 'absolute',
-        margin: isLandscape ? '0px' : '1px',
+        margin: '0px',
         fontSize: isLandscape ? '26px' : '22px',
         lineHeight: isLandscape ? '26px' : '22px',
         height: isLandscape ? '26px' : '22px',

@@ -45,19 +45,25 @@ var EnhancedTextarea = React.createClass({
       height: this.state.height + 'px',
       width: '100%',
       resize: 'none',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      font: 'inherit',
     }, textareaStyle);
 
+
+    // Overflow also needed to here to remove the extra row 
+    // added to textareas in Firefox.
     var shadowStyles = {
       position: 'absolute',
       width: '100%',
       resize: 'none',
-      transform: 'scale(0)'
+      //transform: 'scale(0)',
+      opacity: 0,
+      overflow: 'hidden',
+      font: 'inherit',
     };
 
-    if (this.props.hasOwnProperty('valueLink')) {
-      other.value = this.props.valueLink.value;
-    }
+    if (this.props.hasOwnProperty('valueLink')) other.value = this.props.valueLink.value;
+    if (this.props.disabled) style.cursor = 'default';
 
     return (
       <div style={this.props.style}>
@@ -84,6 +90,7 @@ var EnhancedTextarea = React.createClass({
     return this.refs.input.getDOMNode();
   },
 
+// firefox chrome diff here
   _syncHeightWithShadow: function(newValue, e) {
     var shadow = this.refs.shadow.getDOMNode();
     var currentHeight = this.state.height;

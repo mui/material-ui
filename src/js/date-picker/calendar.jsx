@@ -75,7 +75,8 @@ var Calendar = React.createClass({
         lineHeight: '12px',
         opacity: '0.5',
         height: '12px',
-        fontWeight: '500'
+        fontWeight: '500',
+        margin: 0
       },
 
       weekTitleDay: {

@@ -60,7 +60,7 @@ var EnhancedSwitch = React.createClass({
     if (!this.props.switched || 
         this.props.switched == undefined ||
         inputNode.checked != this.props.switched) this.props.onParentShouldUpdate(inputNode.checked);
-  
+
     this.setState({parentWidth: this.getEvenWidth()});
   },
 
@@ -105,15 +105,17 @@ var EnhancedSwitch = React.createClass({
     } = this.props;
 
     var switchWidth = 60 - CustomVariables.spacing.desktopGutterLess;
-    var labelWidth = this.state.parentWidth - switchWidth - 30;
+    var labelWidth = this.state.parentWidth - 60;
+
     var styles = this.mergeStyles({
         position: 'relative',
         cursor: this.props.disabled ? 'default' : 'pointer',
         overflow: 'visible',
         display: 'table',
         height: 'auto',
-        width: '100%'
+        width: '100%',
     });
+
     var inputStyles = {
         position: 'absolute',
         cursor: this.props.disabled ? 'default' : 'pointer',
@@ -122,8 +124,11 @@ var EnhancedSwitch = React.createClass({
         width: '100%',
         height: '100%',
         zIndex: 2,
-        left: 0
+        left: 0,
+        boxSizing: 'border-box', 
+        padding: 0,
     };
+
     var wrapStyles = this.mergeStyles({
         transition: Transitions.easeOut(),
         float: 'left',
@@ -135,12 +140,18 @@ var EnhancedSwitch = React.createClass({
         marginLeft: (this.props.labelPosition == 'left') ? 
           CustomVariables.spacing.desktopGutterLess : 0
     }, this.props.iconStyle);
+
     var labelStyles = {
         float: 'left',
         position: 'relative',
         display: 'table-column',
         width: labelWidth,
         lineHeight: '24px'
+    }
+
+    if (this.props.thumbStyle) {
+      wrapStyles.marginLeft /= 2;
+      wrapStyles.marginRight /= 2;
     }
 
     var inputId = this.props.id || this.getDomId();
