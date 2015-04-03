@@ -21,6 +21,7 @@ var SubheaderMenuItem = React.createClass({
     var subheaderHeight = CustomVariables.spacing.desktopSubheaderHeight;
 
     var style = {
+      boxSizing: 'border-box',
       fontSize: '13px',
       letterSpacing: 0,
       fontWeight: Typography.fontWeightMedium,

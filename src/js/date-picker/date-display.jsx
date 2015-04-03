@@ -119,7 +119,7 @@ var DateDisplay = React.createClass({
 
       year: {
         position: 'absolute',
-        margin: isLandscape ? '0px' : '1px',
+        margin: '0px',
         fontSize: isLandscape ? '26px' : '22px',
         lineHeight: isLandscape ? '26px' : '22px',
         height: isLandscape ? '26px' : '22px',
