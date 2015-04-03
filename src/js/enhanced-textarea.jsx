@@ -45,7 +45,8 @@ var EnhancedTextarea = React.createClass({
       height: this.state.height + 'px',
       width: '100%',
       resize: 'none',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      font: 'inherit',
     }, textareaStyle);
 
 
@@ -55,13 +56,14 @@ var EnhancedTextarea = React.createClass({
       position: 'absolute',
       width: '100%',
       resize: 'none',
-      transform: 'scale(0)',
-      overflow: 'hidden'
+      //transform: 'scale(0)',
+      opacity: 0,
+      overflow: 'hidden',
+      font: 'inherit',
     };
 
-    if (this.props.hasOwnProperty('valueLink')) {
-      other.value = this.props.valueLink.value;
-    }
+    if (this.props.hasOwnProperty('valueLink')) other.value = this.props.valueLink.value;
+    if (this.props.disabled) style.cursor = 'default';
 
     return (
       <div style={this.props.style}>

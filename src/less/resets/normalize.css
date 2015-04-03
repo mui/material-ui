@@ -6,19 +6,19 @@
  *    user zoom.
  */
 
-html {
-  font-family: sans-serif; /* 1 */
-  -ms-text-size-adjust: 100%; /* 2 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+/*html {
+  font-family: sans-serif; 
+  -ms-text-size-adjust: 100%; 
+  -webkit-text-size-adjust: 100%;
 }
-
+*/
 /**
  * Remove default margin.
  */
 
-body {
+/*body {
   margin: 0;
-}
+}*/
 
 /* HTML5 display definitions
    ========================================================================== */
@@ -86,18 +86,18 @@ template {
  * Remove the gray background color from active links in IE 10.
  */
 
-a {
+/*a {
   background-color: transparent;
-}
+}*/
 
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
 
-a:active,
+/*a:active,
 a:hover {
   outline: 0;
-}
+}*/
 
 /* Text-level semantics
    ========================================================================== */
@@ -106,54 +106,54 @@ a:hover {
  * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
  */
 
-abbr[title] {
+/*abbr[title] {
   border-bottom: 1px dotted;
-}
+}*/
 
 /**
  * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
 
-b,
+/*b,
 strong {
   font-weight: bold;
-}
+}*/
 
 /**
  * Address styling not present in Safari and Chrome.
  */
 
-dfn {
+/*dfn {
   font-style: italic;
-}
+}*/
 
 /**
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
 
-h1 {
+/*h1 {
   font-size: 2em;
   margin: 0.67em 0;
-}
+}*/
 
 /**
  * Address styling not present in IE 8/9.
  */
 
-mark {
+/*mark {
   background: #ff0;
   color: #000;
-}
+}*/
 
 /**
  * Address inconsistent and variable font size in all browsers.
  */
 
-small {
+/*small {
   font-size: 80%;
 }
-
+*/
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
@@ -248,24 +248,24 @@ samp {
  * 2. Correct font properties not being inherited.
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
-
+/*
 button,
 input,
 optgroup,
 select,
 textarea {
-  color: inherit; /* 1 */
-  font: inherit; /* 2 */
-  margin: 0; /* 3 */
-}
+  color: inherit; 
+  font: inherit; 
+  margin: 0; 
+}*/
 
 /**
  * Address `overflow` set to `hidden` in IE 8/9/10/11.
  */
 
-button {
+/*button {
   overflow: visible;
-}
+}*/
 
 /**
  * Address inconsistent `text-transform` inheritance for `button` and `select`.
@@ -274,10 +274,10 @@ button {
  * Correct `select` style inheritance in Firefox.
  */
 
-button,
+/*button,
 select {
   text-transform: none;
-}
+}*/
 
 /**
  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
@@ -287,14 +287,14 @@ select {
  *    `input` and others.
  */
 
-button,
-html input[type="button"], /* 1 */
+/*button,
+html input[type="button"], 
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button; /* 2 */
-  cursor: pointer; /* 3 */
+  -webkit-appearance: button; 
+  cursor: pointer; 
 }
-
+*/
 /**
  * Re-set default cursor for disabled elements.
  *
@@ -302,30 +302,30 @@ input[type="submit"] {
  * that overrides cursor.
  */
 
-button[disabled],
+/*button[disabled],
 html input[disabled] {
   cursor: default !important;
-}
+}*/
 
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-
+/*
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
   padding: 0;
-}
+}*/
 
 /**
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-
+/*
 input {
   line-height: normal;
 }
-
+*/
 /**
  * It's recommended that you don't attempt to style these elements.
  * Firefox's implementation doesn't respect box-sizing, padding, or width.
@@ -334,22 +334,22 @@ input {
  * 2. Remove excess padding in IE 8/9/10.
  */
 
-input[type="checkbox"],
+/*input[type="checkbox"],
 input[type="radio"] {
-  box-sizing: border-box; /* 1 */
-  padding: 0; /* 2 */
+  box-sizing: border-box; 
+  padding: 0; 
 }
-
+*/
 /**
  * Fix the cursor style for Chrome's increment/decrement buttons. For certain
  * `font-size` values of the `input`, it causes the cursor style of the
  * decrement button to change from `default` to `text`.
  */
 
-input[type="number"]::-webkit-inner-spin-button,
+/*input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   height: auto;
-}
+}*/
 
 /**
  * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
@@ -357,60 +357,60 @@ input[type="number"]::-webkit-outer-spin-button {
  *    (include `-moz` to future-proof).
  */
 
-input[type="search"] {
-  -webkit-appearance: textfield; /* 1 */
+/*input[type="search"] {
+  -webkit-appearance: textfield; 
   -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box; /* 2 */
+  -webkit-box-sizing: content-box; 
   box-sizing: content-box;
 }
-
+*/
 /**
  * Remove inner padding and search cancel button in Safari and Chrome on OS X.
  * Safari (but not Chrome) clips the cancel button when the search input has
  * padding (and `textfield` appearance).
  */
 
-input[type="search"]::-webkit-search-cancel-button,
+/*input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
-}
+}*/
 
 /**
  * Define consistent border, margin, and padding.
  */
-
+/*
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
-}
+}*/
 
 /**
  * 1. Correct `color` not being inherited in IE 8/9/10/11.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
 
-legend {
-  border: 0; /* 1 */
-  padding: 0; /* 2 */
-}
+/*legend {
+  border: 0;
+  padding: 0;
+}*/
 
 /**
  * Remove default vertical scrollbar in IE 8/9/10/11.
  */
 
-textarea {
+/*textarea {
   overflow: auto;
-}
+}*/
 
 /**
  * Don't inherit the `font-weight` (applied by a rule above).
  * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
  */
-
+/*
 optgroup {
   font-weight: bold;
-}
+}*/
 
 /* Tables
    ========================================================================== */
@@ -419,7 +419,7 @@ optgroup {
  * Remove most spacing between table cells.
  */
 
-table {
+/*table {
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -427,4 +427,4 @@ table {
 td,
 th {
   padding: 0;
-}
+}*/

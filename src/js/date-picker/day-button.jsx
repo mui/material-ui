@@ -54,9 +54,10 @@ var DayButton = React.createClass({
       styles.label.color = CustomVariables.datePickerSelectTextColor;
       styles.select.opacity = 1;
       styles.select.transform = 'scale(1)';
-      if (DateTime.isEqualDate(this.props.date, new Date())) {
-        styles.root.color = CustomVariables.datePickerColor;
-      }
+    }
+
+    if (DateTime.isEqualDate(this.props.date, new Date()) && !this.props.selected) {
+        styles.label.color = CustomVariables.datePickerColor;
     }
 
     return this.props.date ? (

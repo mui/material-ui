@@ -116,7 +116,7 @@ var TextField = React.createClass({
     if (this.props.floatingLabelText) style.top = 24;
     if (this.props.disabled) style.color = this.disabledTextColor;
     if (this.props.floatingLabelText || this.state.hasValue) style.opacity = 0;
-
+// show hint text for multiline
     return style;
   },
 
@@ -131,6 +131,7 @@ var TextField = React.createClass({
       outline: 'none',
       backgroundColor: 'transparent',
       color: Theme.textColor,
+      font: 'inherit',
     };
 
     if (this.props.disabled) style.color = this.disabledTextColor;
@@ -143,6 +144,7 @@ var TextField = React.createClass({
     return this.mergeAndPrefix(this._input(), {
       paddingTop: this.props.floatingLabelText ? 24 : 0,
       marginTop: 12,
+      font: 'inherit',
     });
 
   },
