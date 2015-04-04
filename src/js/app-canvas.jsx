@@ -18,17 +18,21 @@ var AppCanvas = React.createClass({
 
     React.Children.forEach(this.props.children, function(currentChild) {
       switch (currentChild.type.displayName) {
-        case 'AppBar' : 
+        case 'AppBar' :
           currentChild.props.style = {
-            position: 'fixed', 
+            position: 'fixed',
             height: CustomVariables.appBarHeight
           };
           break;
       }
     });
 
+    styles = {
+      WebkitFontSmoothing: 'antialiased'
+    }
+
     return (
-      <div className={classes}>
+      <div className={classes} style={styles}>
         {this.props.children}
       </div>
     );
