@@ -1,6 +1,3 @@
-/* material-ui */
-@import "../../../src/less/scaffolding.less";
-
 /* custom font icons */
 @import "font-icons/style.css";
 
@@ -28,11 +25,23 @@
 @import "pages/components/icon.less";
 @import "pages/components/paper.less";
 
-// appbar
-@app-bar-height: @desktop-keyline-increment;
+// Media Queries
+@device-large:   ~"only screen and (min-width: 992px)";
+@device-medium:  ~"only screen and (min-width: 768px)";
+@device-small:   ~"only screen and (min-width: 375px)";
+
+// Spacing
+@desktop-gutter: 24px;//
+@desktop-keyline-increment: 64px;//4
+
+// Colors
+@grey-200:  #eeeeee;
+@grey-300:  #e0e0e0;
+@dark-white:  rgba(255, 255, 255, 0.87);
+@border-color: @grey-300;
 
 a {
-  color: @accent-1-color;
+  color: #ff4081; //pinkA200
   text-decoration: none;
 
   &:hover {
@@ -41,7 +50,7 @@ a {
 }
 
 html {
-  font-family: @contentFontFamily;
+  font-family: 'Roboto', sans-serif;
 }
 
 body, h1, h2, h3, h4, h5, h6 {
@@ -54,16 +63,16 @@ body, h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   .mui-font-style-headline;
   .mui-text-full-white;
-  line-height: @app-bar-height;
+  line-height: @desktop-keyline-increment;
   .mui-font-weight-light;
-  background-color: @primary-1-color;
+  background-color: #00bcd4; //cyan500
   padding-left: @desktop-gutter;
   padding-top: 0;
-  margin-bottom: @desktop-gutter-mini;
+  margin-bottom: 8px;
 }
 
 .app-content-canvas {
-  padding-top: (@app-bar-height);
+  padding-top: (@desktop-keyline-increment);
 }
 
 .baseline-grid {
@@ -71,15 +80,15 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .code-example {
-  background-color: @white;
+  background-color: #ffffff;
   margin-bottom: 32px;
 
   .example-label {
     .mui-font-style-menu;
     display: inline-block;
     text-transform: uppercase;
-    color: @min-black;
-    padding: @desktop-gutter-mini;
+    color: rgba(0, 0, 0, 0.26); // minBlack;
+    padding: 8px;
     border-right: solid 1px @border-color;
     border-bottom: solid 1px @border-color;
     margin-bottom: 0;
