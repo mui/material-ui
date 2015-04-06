@@ -112,17 +112,19 @@ var TextField = React.createClass({
       transition: Transitions.easeOut(),
     };
 
-    if (this.state.isFocused) style.opacity = 1;
-    if (this.props.floatingLabelText) style.top = 24;
     if (this.props.disabled) style.color = this.disabledTextColor;
-    if (this.props.floatingLabelText || this.state.hasValue) style.opacity = 0;
-// show hint text for multiline
+    if (this.state.hasValue) style.opacity = 0;
+    if (this.props.floatingLabelText) {
+      style.top = 24;
+      style.opacity = 0;
+      if (this.state.isFocused && !this.state.hasValue) style.opacity = 1;
+    }
+
     return style;
   },
 
   _input: function() {
     var style = {
-      boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       position: 'relative',
       width: '100%',
@@ -135,15 +137,16 @@ var TextField = React.createClass({
     };
 
     if (this.props.disabled) style.color = this.disabledTextColor;
-    if (this.props.floatingLabelText && !this.props.multiLine) style.paddingTop = 24;
+    if (this.props.floatingLabelText) style.boxSizing = 'border-box';
+    if (this.props.floatingLabelText && !this.props.multiLine) style.paddingTop = 26;
 
     return style;
   },
 
   _textarea: function() {
     return this.mergeAndPrefix(this._input(), {
-      paddingTop: this.props.floatingLabelText ? 24 : 0,
-      marginTop: 12,
+      paddingTop: this.props.floatingLabelText ? 36 : 12,
+      boxSizing: 'border-box',
       font: 'inherit',
     });
 
@@ -261,7 +264,6 @@ var TextField = React.createClass({
 
 
     var rootStyle = this._main();
-    if (this.props.multiLine) rootStyle.maxHeight = rootStyle.height;
 
     return (
       <div className={this.props.className} style={rootStyle}>
@@ -337,7 +339,6 @@ var TextField = React.createClass({
     var newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
     this.getDOMNode().style.height = newHeight + 'px';
-    this.getDOMNode().style.maxHeight = newHeight + 'px';
   },
 
   _isControlled: function() {

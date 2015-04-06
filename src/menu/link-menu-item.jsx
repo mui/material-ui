@@ -17,7 +17,7 @@ var LinkMenuItem = React.createClass({
   
   getDefaultProps: function() {
     return {
-        disabled: false
+      disabled: false
     };
   },
 
@@ -41,11 +41,6 @@ var LinkMenuItem = React.createClass({
     if (this.state.hovered && !this.props.disabled) style.backgroundColor = CustomVariables.menuItemHoverColor;
     if (this.props.selected) style.color = CustomVariables.menuItemSelectedTextColor;
 
-    if (this.props.disabled) {
-      style.cursor = 'default';
-      style.color = CustomVariables.disabledColor;
-    }
-
     return this.mergeAndPrefix(style);
   },
 
@@ -55,11 +50,17 @@ var LinkMenuItem = React.createClass({
     var linkAttribute = (this.props.disabled) ? 'data-href' : 'href';
     var link = {linkAttribute: this.props.payload};
 
+    var styles = this._main(); 
+    if (this.props.disabled) {
+      styles.cursor = 'default';
+      styles.color = CustomVariables.disabledColor;
+    }
+
     return (
       <a 
         key={this.props.index} 
         target={this.props.target} 
-        style={this._main()} {...link} 
+        style={styles} {...link} 
         className={this.props.className} 
         onClick={onClickHandler}
         onMouseOver={this._handleMouseOver}

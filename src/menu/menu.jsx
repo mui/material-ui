@@ -171,7 +171,7 @@ var Menu = React.createClass({
     this._setKeyWidth(el);
 
     //Save the initial menu height for later
-    this._initialMenuHeight = el.offsetHeight + KeyLine.Desktop.GUTTER_LESS;
+    this._initialMenuHeight = el.offsetHeight;
 
     //Show or Hide the menu according to visibility
     this._renderVisibility();

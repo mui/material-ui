@@ -24,13 +24,8 @@ var Tabs = React.createClass({
     }
     return {
       selectedIndex: selectedIndex,
-      fixed: true,
       width: this.props.tabWidth || (100/this.props.children.length) + '%'
     };
-  },
-
-  getLeft: function(){
-    return ((100/this.props.children.length) * this.state.selectedIndex) + '%'
   },
 
   handleTouchTap: function(tabIndex, tab){
@@ -54,35 +49,34 @@ var Tabs = React.createClass({
       whiteSpace: 'nowrap',
       display: 'block'
     }, this.props.tabItemContainerStyle);
-    var _this = this; 
-    var width = this.state.fixed ?
-      this.state.width/this.props.children.length :
-      this.props.tabWidth;
-    var left = width * this.state.selectedIndex || 0;
+    
+    var left = this.props.tabWidth ? 
+      (this.props.tabWidth * this.state.selectedIndex) :
+      (parseFloat(this.state.width) * this.state.selectedIndex) + '%';
 
     var currentTemplate;
     var tabs = React.Children.map(this.props.children, function(tab, index){
       if(tab.type.displayName === "Tab"){
-        if(_this.state.selectedIndex === index) currentTemplate = tab.props.children;
+        if(this.state.selectedIndex === index) currentTemplate = tab.props.children;
          return React.addons.cloneWithProps(tab, {
             key: index,
-            selected: _this.state.selectedIndex === index,
+            selected: this.state.selectedIndex === index,
             tabIndex: index,
-            width: width,
-            handleTouchTap: _this.handleTouchTap
+            width: this.state.width,
+            handleTouchTap: this.handleTouchTap
           })
       } else {
         var type = tab.type.displayName || tab.type;
         throw "Tabs only accepts Tab Components as children. Found " + type + " as child number " + (index + 1) + " of Tabs";
       }
-    });
+    }, this);
 
     return (
       <div style={{position: 'relative'}}>
         <div style={tabItemContainerStyle}>
           {tabs}
         </div>
-        <InkBar left={left} width={width}/>
+        <InkBar left={left} width={this.state.width}/>
         <TabTemplate>
           {currentTemplate}
         </TabTemplate>
