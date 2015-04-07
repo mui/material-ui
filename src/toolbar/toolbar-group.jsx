@@ -38,7 +38,7 @@ var ToolbarGroup = React.createClass({
     return style;
   },
 
-  _button: function (){
+  _button: function() {
     var marginVertical = (CustomVariables.toolbarHeight - CustomVariables.buttonHeight) / 2;
     var marginHorizontal = CustomVariables.spacing.desktopGutter;
     return {

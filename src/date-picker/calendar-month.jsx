@@ -1,13 +1,10 @@
 var React = require('react');
-var StylePropable = require('../mixins/style-propable');
 var Colors = require('../styles/colors');
 var DateTime = require('../utils/date-time');
 var DayButton = require('./day-button');
 var ClearFix = require('../clearfix');
 
 var CalendarMonth = React.createClass({
-
-  //mixins: [StylePropable],
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,

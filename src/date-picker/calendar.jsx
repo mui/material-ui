@@ -222,16 +222,14 @@ var Calendar = React.createClass({
   },
 
   _setSelectedDate: function(d) {
-    var adjustedDate;
+    var adjustedDate = d;
     if (DateTime.isBeforeDate(d, this.props.startDate)) {
       adjustedDate = this.props.startDate;
     }
     else if (DateTime.isAfterDate(d, this.props.endDate)) {
       adjustedDate = this.props.endDate;
     }
-    else {
-      adjustedDate = d;
-    }
+    
     var newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
     if (newDisplayDate !== this.state.displayDate) {
       this._setDisplayDate(newDisplayDate, adjustedDate);
