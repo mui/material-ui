@@ -41,7 +41,7 @@ var Toggle = React.createClass({
         width: toggleTrackWidth,
         height: 14,
         borderRadius: 30,
-        opacity: this.props.disabled ? 1 : 0.5,  
+        opacity: this.state.switched ? 0.5 : 1,  
         backgroundColor: this.props.disabled ? CustomVariables.toggleTrackDisabledColor :
                          this.state.switched ? CustomVariables.toggleTrackOnColor : 
                          CustomVariables.toggleTrackOffColor
@@ -61,22 +61,14 @@ var Toggle = React.createClass({
     };
 
     if (this.state.switched) {
-      this.mergeStyles(trackStyles, {
-        backgroundColor: CustomVariables.toggleTrackOnColor
-      });
-      this.mergeStyles(thumbStyles, {
-        left: 18,
-        backgroundColor: CustomVariables.toggleThumbOnColor
-      });
+      trackStyles.backgroundColor = CustomVariables.toggleTrackOnColor;
+      thumbStyles.backgroundColor = CustomVariables.toggleTrackOnColor;
+      thumbStyles.left = 18;
     }
 
     if (this.props.disabled) {
-      this.mergeStyles(trackStyles, {
-        backgroundColor: CustomVariables.toggleTrackDisabledColor
-      });
-      this.mergeStyles(thumbStyles, {
-        backgroundColor: CustomVariables.toggleThumbDisabledColor
-      });
+      trackStyles.backgroundColor = CustomVariables.toggleTrackDisabledColor;
+      thumbStyles.backgroundColor = CustomVariables.toggleThumbDisabledColor;
     }
 
     var toggleElement = (

@@ -125,7 +125,6 @@ var RaisedButton = React.createClass({
       ...other } = this.props;
 
     var labelElement;
-
     if (label) labelElement = <span style={this._label()}>{label}</span>;
 
     var rippleColor = this._label().color;

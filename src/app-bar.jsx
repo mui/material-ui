@@ -45,7 +45,7 @@ var AppBar = React.createClass({
       float: 'left',
       paddingTop: 0,
       letterSpacing: 0,
-      marginBottom: 12,
+      margin: '0px 0px 12px 0px',
       fontSize: '24px',
       fontWeight: Typography.fontWeightNormal,
       color: CustomVariables.appBarTextColor,

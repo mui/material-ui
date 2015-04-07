@@ -42,20 +42,6 @@ var DatePickerDialog = React.createClass({
       style,
       ...other
     } = this.props;
-    
-    var actions = [
-      <FlatButton
-        key={0}
-        label="Cancel"
-        secondary={true}
-        onTouchTap={this._handleCancelTouchTap} />,
-      <FlatButton
-        key={1}
-        label="OK"
-        secondary={true}
-        disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
-        onTouchTap={this._handleOKTouchTap} />
-    ];
 
     var styles = {
       root: {
@@ -65,8 +51,28 @@ var DatePickerDialog = React.createClass({
       
       dialogContents: {
         width: this.props.mode === 'landscape' ? '560px' : '280px'
+      },
+
+      actions: {
+        marginRight: 8,
       }
     };
+
+    var actions = [
+      <FlatButton
+        key={0}
+        label="Cancel"
+        secondary={true}
+        style={styles.actions}
+        onTouchTap={this._handleCancelTouchTap} />,
+      <FlatButton
+        key={1}
+        label="OK"
+        secondary={true}
+        disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
+        style={styles.actions}
+        onTouchTap={this._handleOKTouchTap} />
+    ];
 
     return (
       <DialogWindow {...other}

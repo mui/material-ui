@@ -40,14 +40,31 @@ var EnhancedButton = React.createClass({
     };
   },
 
+
+  // Remove inner padding and border in Firefox 4+.
+  componentDidMount: function() {
+    if (!EnhancedButton.hasStyleBeenInjected) {
+      var style = document.createElement("style");
+      style.innerHTML = 'button::-moz-focus-inner,' +
+                        'input::-moz-focus-inner {' +
+                        ' border: 0;' +
+                        ' padding: 0;' +
+                        ' }';
+      document.body.appendChild(style);
+      EnhancedButton.hasStyleBeenInjected = true;
+    }
+  }, 
+
   /** Styles */
   _main: function() {
     var style = {
       border: 10,
       background: 'none',
       boxSizing: 'border-box',
+      font: 'inherit',
       fontFamily: CustomVariables.contentFontFamily,
-      // -webkit-tap-highlight-color: rgba(0, 0, 0, 0),
+      WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+      WebkitApperance: 'button'
     };
 
     if (this.props.linkButton) {
@@ -58,6 +75,9 @@ var EnhancedButton = React.createClass({
       }, style);
     }
     
+    if (this.props.disabled) style.cursor = 'default';
+
+
     return this.mergeAndPrefix(style);
   },
 
@@ -123,6 +143,7 @@ var EnhancedButton = React.createClass({
         {buttonChildren}
       </a>
     ) : (
+
       <button {...other} {...buttonProps}>
         {buttonChildren}
       </button>
@@ -190,5 +211,7 @@ var EnhancedButton = React.createClass({
   }
 
 });
+
+EnhancedButton.hasStyleBeenInjected = false;
 
 module.exports = EnhancedButton;

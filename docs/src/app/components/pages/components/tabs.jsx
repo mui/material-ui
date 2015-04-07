@@ -54,8 +54,6 @@ class TabsPage extends React.Component {
       'If you need to access a tab directly - you can do so with the first argument of onActive or ' +
       'by accessing the props.children array by passing refs to the Tabs container.';
 
-
-
     var componentInfo = [
       {
         name: 'Tabs Props',

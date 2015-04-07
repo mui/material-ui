@@ -73,7 +73,6 @@ var TextField = React.createClass({
       position: 'relative',
       fontFamily: CustomVariables.contentFontFamily,
       transition: Transitions.easeOut('200ms', 'height'),
-      
     });
   },
 
@@ -113,17 +112,19 @@ var TextField = React.createClass({
       transition: Transitions.easeOut(),
     };
 
-    if (this.state.isFocused) style.opacity = 1;
-    if (this.props.floatingLabelText) style.top = 24;
     if (this.props.disabled) style.color = this.disabledTextColor;
-    if (this.props.floatingLabelText || this.state.hasValue) style.opacity = 0;
+    if (this.state.hasValue) style.opacity = 0;
+    if (this.props.floatingLabelText) {
+      style.top = 24;
+      style.opacity = 0;
+      if (this.state.isFocused && !this.state.hasValue) style.opacity = 1;
+    }
 
     return style;
   },
 
   _input: function() {
     var style = {
-      boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       position: 'relative',
       width: '100%',
@@ -132,18 +133,21 @@ var TextField = React.createClass({
       outline: 'none',
       backgroundColor: 'transparent',
       color: Theme.textColor,
+      font: 'inherit',
     };
 
     if (this.props.disabled) style.color = this.disabledTextColor;
-    if (this.props.floatingLabelText && !this.props.multiLine) style.paddingTop = 24;
+    if (this.props.floatingLabelText) style.boxSizing = 'border-box';
+    if (this.props.floatingLabelText && !this.props.multiLine) style.paddingTop = 26;
 
     return style;
   },
 
   _textarea: function() {
     return this.mergeAndPrefix(this._input(), {
-      paddingTop: this.props.floatingLabelText ? 24 : 0,
-      marginTop: 12,
+      paddingTop: this.props.floatingLabelText ? 36 : 12,
+      boxSizing: 'border-box',
+      font: 'inherit',
     });
 
   },
@@ -156,6 +160,9 @@ var TextField = React.createClass({
       width: '100%',
       bottom: 8,
       margin: 0,
+      MozBoxSizing: 'content-box',
+      boxSizing: 'content-box',
+      height: 0,
     };
   },
 
@@ -255,8 +262,11 @@ var TextField = React.createClass({
     );
     var focusUnderlineElement = <hr style={this._focusUnderline()} />;
 
+
+    var rootStyle = this._main();
+
     return (
-      <div className={this.props.className} style={this._main()}>
+      <div className={this.props.className} style={rootStyle}>
         {floatingLabelTextElement}
         {hintTextElement}
         {inputElement}

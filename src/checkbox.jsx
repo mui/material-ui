@@ -68,14 +68,8 @@ var Checkbox = React.createClass({
     }
 
     if (this.props.disabled) {
-      checkStyles = this.mergeStyles(checkStyles, {
-          opacity: 0.3,
-          fill: CustomVariables.disabledColor,
-        });
-      boxStyles = this.mergeStyles(boxStyles, {
-          opacity: 0.3,
-          fill: CustomVariables.disabledColor,
-        });
+      checkStyles.fill = CustomVariables.disabledColor;
+      boxStyles.fill = CustomVariables.disabledColor;
     }
 
     if (this.state.switched && this.props.disabled) boxStyles.opacity = 0;

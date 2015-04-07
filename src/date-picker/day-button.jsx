@@ -77,9 +77,9 @@ var DayButton = React.createClass({
     else if (this.props.disabled) {
       styles.root.opacity = '0.6';
     }
-    
-    if (DateTime.isEqualDate(this.props.date, new Date())) {
-      styles.root.color = CustomVariables.datePickerColor;
+
+    if (DateTime.isEqualDate(this.props.date, new Date()) && !this.props.selected) {
+        styles.label.color = CustomVariables.datePickerColor;
     }
 
     return this.props.date ? (
