@@ -78,7 +78,7 @@ var DateDisplay = React.createClass({
 
       dateContainer: {
         backgroundColor: CustomVariables.datePickerColor,
-        height: isLandscape ? this.props.weekCount * 40 + 36 + 'px' : '120px',
+        height: isLandscape ? this.props.weekCount * 40 + 36 + 'px' : '150px',
         padding: '16px 0',
         transition: Transitions.easeOut(),
         boxSizing: 'border-box',
