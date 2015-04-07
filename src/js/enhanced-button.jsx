@@ -99,47 +99,56 @@ var EnhancedButton = React.createClass({
   },
 
   _handleWindowKeydown: function(e) {
-    if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
-    if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {
-      this._handleTouchTap(e);
+    if (!this.props.disabled) {
+      if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
+      if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {
+        this._handleTouchTap(e);
+      }
     }
   },
 
   _handleWindowKeyup: function(e) {
-    if (e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
+    if (!this.props.disabled && e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
       this._handleTouchTap(e);
     }
   },
 
   _handleBlur: function(e) {
-    this.setState({
-      isKeyboardFocused: false
-    });
+    if (!this.props.disabled) {
+      this.setState({
+        isKeyboardFocused: false
+      });
 
-    if (this.props.onBlur) this.props.onBlur(e);
+      if (this.props.onBlur) this.props.onBlur(e);
+    }
   },
 
   _handleFocus: function(e) {
-    //setTimeout is needed becuase the focus event fires first
-    //Wait so that we can capture if this was a keyboard focus
-    //or touch focus
-    setTimeout(function() {
-      if (this._tabPressed) {
-        this.setState({
-          isKeyboardFocused: true
-        });
-      }
-    }.bind(this), 150);
+    if (!this.props.disabled) {
+      //setTimeout is needed becuase the focus event fires first
+      //Wait so that we can capture if this was a keyboard focus
+      //or touch focus
+      setTimeout(function() {
+        if (this._tabPressed) {
+          this.setState({
+            isKeyboardFocused: true
+          });
+        }
+      }.bind(this), 150);
     
-    if (this.props.onFocus) this.props.onFocus(e);
+      if (this.props.onFocus) this.props.onFocus(e);
+    }
   },
 
   _handleTouchTap: function(e) {
-    this._tabPressed = false;
-    this.setState({
-      isKeyboardFocused: false
-    });
-    if (this.props.onTouchTap) this.props.onTouchTap(e);
+    if (!this.props.disabled) {
+      this._tabPressed = false;
+      this.setState({
+        isKeyboardFocused: false
+      });
+     
+      if (this.props.onTouchTap) this.props.onTouchTap(e);
+    }
   }
 
 });
