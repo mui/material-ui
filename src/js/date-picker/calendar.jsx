@@ -1,17 +1,20 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
 var WindowListenable = require('../mixins/window-listenable');
 var DateTime = require('../utils/date-time');
 var KeyCode = require('../utils/key-code');
+var Transitions = require('../styles/mixins/transitions');
+var CustomVariables = require('../styles/variables/custom-variables.js');
 var CalendarMonth = require('./calendar-month');
 var CalendarYear = require('./calendar-year');
 var CalendarToolbar = require('./calendar-toolbar');
 var DateDisplay = require('./date-display');
 var SlideInTransitionGroup = require('../transition-groups/slide-in');
+var ClearFix = require('../clearfix');
 
 var Calendar = React.createClass({
 
-  mixins: [Classable, WindowListenable],
+  mixins: [StylePropable, WindowListenable],
 
   propTypes: {
     initialDate: React.PropTypes.object,
@@ -19,7 +22,9 @@ var Calendar = React.createClass({
     startDate: React.PropTypes.object,
     endDate: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
-    hideToolbarYearChange: React.PropTypes.bool
+    hideToolbarYearChange: React.PropTypes.bool,
+    shouldShowMonthDayPickerFirst: React.PropTypes.bool,
+    shouldShowYearPickerFirst: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -31,7 +36,9 @@ var Calendar = React.createClass({
       initialDate: new Date(),
       startDate: DateTime.addYears(new Date(), -100),
       endDate: DateTime.addYears(new Date(), 100),
-      hideToolbarYearChange: false
+      hideToolbarYearChange: false,
+      shouldShowMonthDayPickerFirst: true,
+      shouldShowYearPickerFirst: false
     };
   },
 
@@ -40,7 +47,7 @@ var Calendar = React.createClass({
       displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
       selectedDate: this.props.initialDate,
       transitionDirection: 'left',
-      displayMonthDay: true,
+      displayMonthDay: this.props.shouldShowMonthDayPickerFirst || this.props.shouldShowYearPickerFirst || true,
       transitionEnter: true
     };
   },
@@ -53,39 +60,84 @@ var Calendar = React.createClass({
         selectedDate: d
       });
     }
+    
+    if (nextProps.shouldShowMonthDayPickerFirst) {
+      this.setState({displayMonthDay: nextProps.shouldShowMonthDayPickerFirst});
+    }
   },
 
   render: function() {
+    var yearCount = DateTime.yearDiff(this.props.endDate, this.props.startDate) + 1;
     var weekCount = DateTime.getWeekArray(this.state.displayDate).length;
-    var classes = this.getClasses('mui-date-picker-calendar', {
-      'mui-is-4week': weekCount === 4,
-      'mui-is-5week': weekCount === 5,
-      'mui-is-6week': weekCount === 6
-    });
     var toolbarInteractions = this._getToolbarInteractions();
-    var calendarContainerClass = "mui-date-picker-calendar-container";
-    var yearContainerClass = "mui-date-picker-calendar-year-container";
-    var isMultiYearRange = DateTime.yearDiff(this.props.endDate, this.props.startDate) > 1;
+    var isMultiYearRange = yearCount > 2; // Want a year range greater than 1. Ex. [2014,2016] has a count of 3
+    var isLandscape = this.props.mode === 'landscape';
+    var styles = {
+      root: {
+        fontSize: '12px'
+      },
+
+      calendarContainer: {
+        width: isLandscape ? '280px' : '100%',
+        height: weekCount === 5 ? '268px' :
+          weekCount === 6 ? '308px' : '228px',
+        float: isLandscape ? 'right' : 'none',
+        transition: Transitions.easeOut('150ms', 'height')
+      },
+      
+      yearContainer: {
+        width: '280px',
+        overflow: 'hidden',
+        height: yearCount < 6 ? yearCount * 56 + 10 :
+          weekCount === 5 ? '268px' :
+          weekCount === 6 ? '308px' : '228px',
+        float: isLandscape ? 'right' : 'none'
+      },
+
+      dateDisplay: {
+        width: isLandscape ? '280px' : '100%',
+        height: '100%',
+        float: isLandscape ? 'left' : 'none'
+      },
+
+      weekTitle: {
+        padding: '0 14px',
+        lineHeight: '12px',
+        opacity: '0.5',
+        height: '12px',
+        fontWeight: '500'
+      },
+
+      weekTitleDay: {
+        listStyle: 'none',
+        float: 'left',
+        width: '32px',
+        textAlign: 'center',
+        margin: '0 2px'
+      }
+    };
     
     if (this.state.displayMonthDay) {
-      yearContainerClass = "hidden";
+      styles.yearContainer.display = 'none';
     }
     else {
-      calendarContainerClass = "hidden";
+      styles.calendarContainer.display = 'none';
     }
 
     return (
-      <div className={classes}>
+      <ClearFix style={this.mergeAndPrefix(styles.root)}>
 
         <DateDisplay
-          className="mui-date-picker-calendar-date-display"
+          style={styles.dateDisplay}
           selectedDate={this.state.selectedDate}
           handleMonthDayClick={this._handleMonthDayClick}
           handleYearClick={this._handleYearClick}
-          yearSelectionAvailable={isMultiYearRange}/>
+          yearSelectionAvailable={isMultiYearRange}
+          monthDaySelected={this.state.displayMonthDay}
+          mode={this.props.mode}
+          weekCount={weekCount} />
 
-        <div
-          className={calendarContainerClass}>
+        <div style={styles.calendarContainer}>
           <CalendarToolbar
             displayDate={this.state.displayDate}
             onMonthChange={this._handleMonthChange}
@@ -94,17 +146,19 @@ var Calendar = React.createClass({
             disabledNextMonth={!toolbarInteractions.nextMonth}
             disabledPrevYear={!toolbarInteractions.prevYear}
             disabledNextYear={!toolbarInteractions.nextYear}
-            hideYearChangeButtons={this.props.hideToolbarYearChange}/>
+            hideYearChangeButtons={this.props.hideToolbarYearChange} />
 
-          <ul className="mui-date-picker-calendar-week-title">
-            <li className="mui-date-picker-calendar-week-title-day">S</li>
-            <li className="mui-date-picker-calendar-week-title-day">M</li>
-            <li className="mui-date-picker-calendar-week-title-day">T</li>
-            <li className="mui-date-picker-calendar-week-title-day">W</li>
-            <li className="mui-date-picker-calendar-week-title-day">T</li>
-            <li className="mui-date-picker-calendar-week-title-day">F</li>
-            <li className="mui-date-picker-calendar-week-title-day">S</li>
-          </ul>
+          <ClearFix
+            elementType="ul"
+            style={styles.weekTitle}>
+            <li style={styles.weekTitleDay}>S</li>
+            <li style={styles.weekTitleDay}>M</li>
+            <li style={styles.weekTitleDay}>T</li>
+            <li style={styles.weekTitleDay}>W</li>
+            <li style={styles.weekTitleDay}>T</li>
+            <li style={styles.weekTitleDay}>F</li>
+            <li style={styles.weekTitleDay}>S</li>
+          </ClearFix>
 
           <SlideInTransitionGroup
             direction={this.state.transitionDirection}>
@@ -120,8 +174,7 @@ var Calendar = React.createClass({
           </SlideInTransitionGroup>
         </div>
         
-        <div
-          className={yearContainerClass}>
+        <div style={styles.yearContainer}>
           <CalendarYear
             key={'year-' + this.state.displayDate.toDateString()}
             displayDate={this.state.displayDate}
@@ -130,7 +183,7 @@ var Calendar = React.createClass({
             startDate={this.props.startDate}
             endDate={this.props.endDate} />
         </div>
-      </div>
+      </ClearFix>
     );
   },
 
@@ -168,13 +221,22 @@ var Calendar = React.createClass({
   },
 
   _setSelectedDate: function(d) {
-    var newDisplayDate = DateTime.getFirstDayOfMonth(d);
-
+    var adjustedDate;
+    if (DateTime.isBeforeDate(d, this.props.startDate)) {
+      adjustedDate = this.props.startDate;
+    }
+    else if (DateTime.isAfterDate(d, this.props.endDate)) {
+      adjustedDate = this.props.endDate;
+    }
+    else {
+      adjustedDate = d;
+    }
+    var newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
     if (newDisplayDate !== this.state.displayDate) {
-      this._setDisplayDate(newDisplayDate, d);
+      this._setDisplayDate(newDisplayDate, adjustedDate);
     } else {
       this.setState({
-        selectedDate: d
+        selectedDate: adjustedDate
       });
     }
   },

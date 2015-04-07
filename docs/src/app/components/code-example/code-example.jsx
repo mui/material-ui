@@ -1,14 +1,11 @@
 var React = require('react'),
   mui = require('mui'),
+  Paper = mui.Paper,
   CodeBlock = require('./code-block.jsx');
 
-var CodeExample = React.createClass({
+class CodeExample extends React.Component {
 
-  propTypes: {
-    code: React.PropTypes.string.isRequired
-  },
-
-  render: function() {
+  render() {
     return (
       <mui.Paper className="code-example">
         <div className="example-label">example</div>
@@ -20,6 +17,10 @@ var CodeExample = React.createClass({
     );
   }
 
-});
+}
+
+CodeExample.propTypes = {
+  code: React.PropTypes.string.isRequired
+};
 
 module.exports = CodeExample;

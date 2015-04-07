@@ -1,17 +1,20 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var Typography = require('./styles/core/typography');
+var CustomVariables = require('./styles/variables/custom-variables');
 var IconButton = require('./icon-button');
 var NavigationMenu = require('./svg-icons/navigation-menu');
 var Paper = require('./paper');
 
 var AppBar = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     onMenuIconButtonTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
     iconClassNameLeft: React.PropTypes.string,
+    iconClassNameRight: React.PropTypes.string,
     iconElementLeft: React.PropTypes.element,
     iconElementRight: React.PropTypes.element,
     title : React.PropTypes.node,
@@ -24,6 +27,52 @@ var AppBar = React.createClass({
       title: '',
       zDepth: 1
     }
+  },
+
+  /** Styles */
+
+  _main: function() {
+    return this.mergeAndPrefix({
+      zIndex: 5,
+      width: '100%',
+      minHeight: CustomVariables.spacing.desktopKeylineIncrement,
+      backgroundColor: CustomVariables.appBarColor,
+    });
+  },
+
+  _title: function() {
+    return {      
+      float: 'left',
+      paddingTop: 0,
+      letterSpacing: 0,
+      marginBottom: 12,
+      fontSize: '24px',
+      fontWeight: Typography.fontWeightNormal,
+      color: CustomVariables.appBarTextColor,
+      lineHeight: CustomVariables.spacing.desktopKeylineIncrement + 'px',
+    };
+  },
+
+  _iconButton: function() {
+    return {
+      style: {
+        marginTop: (CustomVariables.appBarHeight - CustomVariables.iconButtonSize) / 2,
+        float: 'left',
+        marginRight: 8,
+        marginLeft: -16,
+      },
+      iconStyle: {
+        fill: CustomVariables.appBarTextColor,
+        color: CustomVariables.appBarTextColor,
+      }
+    }
+  },
+
+  _paper: function() {
+    return {
+      paddingLeft: CustomVariables.spacing.desktopGutter,
+      paddingRight: CustomVariables.spacing.desktopGutter,
+    };
   },
 
   componentDidMount: function() {
@@ -41,42 +90,63 @@ var AppBar = React.createClass({
       ...other
     } = this.props;
 
-    var classes = this.getClasses('mui-app-bar'),
-      title, menuElementLeft, menuElementRight;
+    var title, menuElementLeft, menuElementRight;
+    var iconRightStyle = this.mergeAndPrefix(this._iconButton().style, {
+      float: 'right',
+      marginRight: -16,
+      marginLeft: 8,
+    });
+
+
 
     if (this.props.title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
       title = toString.call(this.props.title) === '[object String]' ?
-        <h1 className="mui-app-bar-title">{this.props.title}</h1> :
+        <h1 style={this._title()}>{this.props.title}</h1> :
         this.props.title;
     }
 
     if (this.props.showMenuIconButton) {
       if (this.props.iconElementLeft) {
         menuElementLeft = (
-          <div className="mui-app-bar-navigation-icon-button"> 
+          <div style={this._iconButton().style}> 
             {this.props.iconElementLeft} 
           </div>
         );
       } else {
-        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu/>;
+        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this._iconButton().iconStyle}/>;
         menuElementLeft = (
           <IconButton
-            className="mui-app-bar-navigation-icon-button" 
+            style={this._iconButton().style}
+            iconStyle={this._iconButton().iconStyle}
             iconClassName={this.props.iconClassNameLeft}
             onTouchTap={this._onMenuIconButtonTouchTap}>
               {child}
           </IconButton>
         );
       }
+
+      if (this.props.iconElementRight) {
+        menuElementRight = (
+          <div style={iconRightStyle}> 
+            {this.props.iconElementRight} 
+          </div>
+        );
+      } else if (this.props.iconClassNameRight) {
+        menuElementRight = (
+          <IconButton
+            style={iconRightStyle}
+            iconStyle={this._iconButton().iconStyle}
+            iconClassName={this.props.iconClassNameRight}
+            onTouchTap={this._onMenuIconButtonTouchTap}>
+          </IconButton>
+        );
+      }
     }
 
-    menuElementRight = (this.props.children) ? this.props.children : 
-                       (this.props.iconElementRight) ? this.props.iconElementRight : '';
-
     return (
-      <Paper rounded={false} className={classes} zDepth={this.props.zDepth}>
+      <Paper rounded={false} className={this.props.className}  style={this._main()} innerStyle={this._paper()} zDepth={this.props.zDepth}>
         {menuElementLeft}
         {title}
         {menuElementRight}

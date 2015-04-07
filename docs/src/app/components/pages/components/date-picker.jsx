@@ -2,10 +2,11 @@ var React = require('react');
 var mui = require('mui');
 var DatePicker = mui.DatePicker;
 var TextField = mui.TextField;
+var Toggle = mui.Toggle;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var DatePickerPage = React.createClass({
-  getInitialState: function() {
+class DatePickerPage extends React.Component {
+  constructor() {
     var startDate = new Date();
     var endDate = new Date();
     startDate.setFullYear(startDate.getFullYear() -1);
@@ -13,13 +14,14 @@ var DatePickerPage = React.createClass({
     endDate.setFullYear(endDate.getFullYear() +1);
     endDate.setHours(0,0,0,0);
     
-    return {
+    this.state = {
       startDate: startDate,
-      endDate: endDate
+      endDate: endDate,
+      opensOnFocus: false
     };
-  },
+  }
 
-  render: function() {
+  render() {
 
     var code =
       '//Portrait Dialog\n' +
@@ -33,7 +35,8 @@ var DatePickerPage = React.createClass({
       '<DatePicker\n' +
       '  hintText="Ranged Date Picker"\n' +
       '  startDate={this.state.startDate}\n' +
-      '  endDate={this.state.endDate}/>'; 
+      '  endDate={this.state.endDate}/>' +
+      '  mode="landscape"/>';
 
     var componentInfo = [
       {
@@ -85,6 +88,12 @@ var DatePickerPage = React.createClass({
             header: 'optional',
             desc: 'Hide year change buttons on calendar; good for short time spans. Clicking ' +
               'the year will always result in selecting a year.'
+          },
+          {
+            name: 'opensOnFocus',
+            type: 'boolean',
+            header: 'optional',
+            desc: 'If true, open the date picker when it has focus. Default value is false.'
           }
         ]
       },
@@ -104,6 +113,11 @@ var DatePickerPage = React.createClass({
         ]
       }
     ];
+    
+    var optionsStyle = {
+      width: '300px',
+      margin: '0 auto'
+    };
 
     return (
       <ComponentDoc
@@ -112,45 +126,60 @@ var DatePickerPage = React.createClass({
         componentInfo={componentInfo}>
 
         <DatePicker
-          hintText="Portrait Dialog" />
+          hintText="Portrait Dialog"
+          opensOnFocus={this.state.opensOnFocus} />
 
         <DatePicker
           hintText="Landscape Dialog"
-          mode="landscape" />
+          mode="landscape"
+          opensOnFocus={this.state.opensOnFocus} />
           
         <DatePicker
           hintText="Ranged Date Picker"
           startDate={this.state.startDate}
-          endDate={this.state.endDate} />
+          endDate={this.state.endDate}
+          opensOnFocus={this.state.opensOnFocus} />
           
-        <TextField
-          floatingLabelText="Start Date"
-          defaultValue={this.state.startDate.toDateString()}
-          onChange={this._updateStartDate} />
+        <div style={optionsStyle}>
+          <TextField
+            floatingLabelText="Start Date"
+            defaultValue={this.state.startDate.toDateString()}
+            onChange={this._updateStartDate.bind(this)} />
         
-        <span>&nbsp;</span>
-        
-        <TextField
-          floatingLabelText="End Date"
-          defaultValue={this.state.endDate.toDateString()}
-          onChange={this._updateEndDate} />
-
+          <TextField
+            floatingLabelText="End Date"
+            defaultValue={this.state.endDate.toDateString()}
+            onChange={this._updateEndDate.bind(this)} />
+          
+          <Toggle
+            name="opensOnFocus"
+            value="opensOnFocus"
+            label="Opens On Focus"
+            defaultToggled={false}
+            onToggle={this._handleToggle.bind(this)} />
+        </div>
       </ComponentDoc>
     );
-  },
+  }
   
-  _updateStartDate: function(e) {
+  _updateStartDate(e) {
     this.setState({
       startDate: new Date(e.target.value)
     });
-  },
+  }
   
-  _updateEndDate: function(e) {
+  _updateEndDate(e) {
     this.setState({
       endDate: new Date(e.target.value)
     });
   }
+  
+  _handleToggle(e, toggled) {
+    this.setState({
+      opensOnFocus: toggled
+    });
+  }
 
-});
+}
 
 module.exports = DatePickerPage;

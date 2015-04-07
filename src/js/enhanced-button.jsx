@@ -1,13 +1,14 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
-var Classable = require('./mixins/classable');
+var StylePropable = require('./mixins/style-propable');
+var CustomVariables = require('./styles/variables/custom-variables');
 var WindowListenable = require('./mixins/window-listenable');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 
 var EnhancedButton = React.createClass({
 
-  mixins: [Classable, WindowListenable],
+  mixins: [StylePropable, WindowListenable],
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
@@ -16,9 +17,16 @@ var EnhancedButton = React.createClass({
     disableFocusRipple: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
     linkButton: React.PropTypes.bool,
+    focusRippleColor: React.PropTypes.string,
+    touchRippleColor: React.PropTypes.string,
+    focusRippleOpacity: React.PropTypes.number,
+    touchRippleOpacity: React.PropTypes.number,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
+    onKeyboardFocus: React.PropTypes.func,
   },
 
   windowListeners: {
@@ -32,6 +40,28 @@ var EnhancedButton = React.createClass({
     };
   },
 
+  /** Styles */
+  _main: function() {
+    var style = {
+      border: 10,
+      background: 'none',
+      boxSizing: 'border-box',
+      fontFamily: CustomVariables.contentFontFamily,
+      // -webkit-tap-highlight-color: rgba(0, 0, 0, 0),
+    };
+
+    if (this.props.linkButton) {
+      style = this.mergeAndPrefix({
+        display: 'inline-block',
+        cursor: (this.props.disabled) ? 'default' : 'pointer',
+        textDecoration: 'none',
+      }, style);
+    }
+    
+    return this.mergeAndPrefix(style);
+  },
+
+
   render: function() {
     var {
       centerRipple,
@@ -39,34 +69,39 @@ var EnhancedButton = React.createClass({
       disableFocusRipple,
       disableTouchRipple,
       linkButton,
+      touchRippleColor,
       onBlur,
       onFocus,
+      onMouseOver,
+      onMouseOut,
       onTouchTap,
       ...other } = this.props;
-    var classes = this.getClasses('mui-enhanced-button', {
-      'mui-is-disabled': disabled,
-      'mui-is-keyboard-focused': this.state.isKeyboardFocused,
-      'mui-is-link-button': linkButton
-    });
+
     var touchRipple = (
       <TouchRipple
         ref="touchRipple"
         key="touchRipple"
-        centerRipple={centerRipple}>
+        centerRipple={centerRipple}
+        color={this.props.touchRippleColor}
+        opacity={this.props.touchRippleOpacity}>
         {this.props.children}
-        </TouchRipple>
+      </TouchRipple>
     );
     var focusRipple = (
       <FocusRipple
         key="focusRipple"
+        color={this.props.focusRippleColor}
+        opacity={this.props.focusRippleOpacity}
         show={this.state.isKeyboardFocused} />
     );
     var buttonProps = {
-      className: classes,
+      style: this._main(),
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
-      onTouchTap: this._handleTouchTap
+      onMouseOver: this._handleMouseOver,
+      onMouseOut: this._handleMouseOut,
+      onTouchTap: this._handleTouchTap,
     };
     var buttonChildren = [
       disabled || disableTouchRipple ? this.props.children : touchRipple,
@@ -76,7 +111,7 @@ var EnhancedButton = React.createClass({
     if (disabled && linkButton) {
       return (
         <span {...other} 
-          className={classes} 
+          className={this.props.className} 
           disabled={disabled}>
           {this.props.children}
         </span>
@@ -115,11 +150,12 @@ var EnhancedButton = React.createClass({
     this.setState({
       isKeyboardFocused: false
     });
-
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
   _handleFocus: function(e) {
+    this.getDOMNode().style.outline = 'none';
     //setTimeout is needed becuase the focus event fires first
     //Wait so that we can capture if this was a keyboard focus
     //or touch focus
@@ -128,10 +164,20 @@ var EnhancedButton = React.createClass({
         this.setState({
           isKeyboardFocused: true
         });
+        if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, true);
       }
     }.bind(this), 150);
     
     if (this.props.onFocus) this.props.onFocus(e);
+  },
+
+  _handleMouseOver: function(e) {
+    this.getDOMNode().style.textDecoration = 'none';
+    if (this.props.onMouseOver) this.props.onMouseOver(e);
+  },
+  
+  _handleMouseOut: function(e) {
+    if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleTouchTap: function(e) {
@@ -139,6 +185,7 @@ var EnhancedButton = React.createClass({
     this.setState({
       isKeyboardFocused: false
     });
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   }
 

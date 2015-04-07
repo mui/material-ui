@@ -1,27 +1,34 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
 var DateTime = require('../utils/date-time');
+var CustomVariables = require('../styles/variables/custom-variables');
+var Transitions = require('../styles/mixins/transitions');
+var AutoPrefix = require('../styles/auto-prefix');
 var SlideInTransitionGroup = require('../transition-groups/slide-in');
 
 var DateDisplay = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     selectedDate: React.PropTypes.object.isRequired,
-    yearSelectionAvailable: React.PropTypes.bool
+    weekCount: React.PropTypes.number,
+    yearSelectionAvailable: React.PropTypes.bool,
+    monthDaySelected: React.PropTypes.bool
   },
   
   getDefaultProps: function() {
     return {
-      yearSelectionAvailable: true
+      weekCount: 4,
+      yearSelectionAvailable: true,
+      monthDaySelected: true
     };
   },
 
   getInitialState: function() {
     return {
       transitionDirection: 'up',
-      selectedYear: false
+      selectedYear: !this.props.monthDaySelected
     };
   },
 
@@ -34,94 +41,184 @@ var DateDisplay = React.createClass({
         transitionDirection: direction
       });
     }
+    
+    if (nextProps.monthDaySelected !== undefined) {
+      this.setState({selectedYear: !nextProps.monthDaySelected});
+    }
   },
 
   render: function() {
     var {
       selectedDate,
+      style,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-date-picker-date-display');
     var dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
     var month = DateTime.getShortMonth(this.props.selectedDate);
     var day = this.props.selectedDate.getDate();
     var year = this.props.selectedDate.getFullYear();
-    var dayClass = this._getDayClassName();
-    var monthClass = this._getMonthClassName();
-    var yearClass = this._getYearClassName();
+    
+    var isLandscape = this.props.mode === 'landscape';
+    var dateYPosition = '0px';
+    var dayYPosition = '30px';
+    var yearYPosition = '95px';
+
+    if (isLandscape) {
+      dateYPosition = this.props.weekCount === 5 ? '14px' :
+        this.props.weekCount === 6 ? '34px' : '8px';
+      yearYPosition = this.props.weekCount === 4 ? '114px' : '150px';
+      if (this.props.weekCount > 4) dayYPosition = '50px';
+    }
+
+    var styles = {
+      root: {
+        textAlign: 'center',
+        position: 'relative'
+      },
+
+      dateContainer: {
+        backgroundColor: CustomVariables.datePickerColor,
+        height: isLandscape ? this.props.weekCount * 40 + 36 + 'px' : '120px',
+        padding: '16px 0',
+        transition: Transitions.easeOut(),
+      },
+
+      date: {
+        position: 'relative',
+        color: CustomVariables.datePickerTextColor,
+        transition: Transitions.easeOut(),
+        transform: 'translate3d(0,' + dateYPosition + ',0)'
+      },
+
+      dowContainer: {
+        height: '32px',
+        backgroundColor: CustomVariables.datePickerSelectColor,
+        borderRadius: isLandscape ? '2px 0 0 0' : '2px 2px 0 0'
+      },
+
+      dow: {
+        fontSize: '13px',
+        lineHeight: '32px',
+        height: '32px',
+        color: CustomVariables.datePickerSelectTextColor
+      },
+
+      day: {
+        root: {
+          position: 'absolute',
+          lineHeight: isLandscape ? '76px' : '58px',
+          fontSize: isLandscape ? '76px' : '58px',
+          height: isLandscape ? '76px' : '58px',
+          width: '100%',
+          opacity: this.state.selectedYear ? '0.7' : '1.0',
+          transition: Transitions.easeOut(),
+          transform: 'translate3d(0,' + dayYPosition + ',0)'
+        },
+        
+        title: {
+          width: '100px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          cursor: !this.state.selectedYear ? 'default' : 'pointer'
+        }
+      },
+
+      month: {
+        root: {
+          position: 'absolute',
+          top: isLandscape ? '0px' : '1px',
+          fontSize: isLandscape ? '26px' : '22px',
+          lineHeight: isLandscape ? '26px' : '22px',
+          height: isLandscape ? '26px' : '22px',
+          width: '100%',
+          textTransform: 'uppercase',
+          opacity: this.state.selectedYear ? '0.7' : '1.0'
+        },
+        
+        title: {
+          width: '100px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          cursor: !this.state.selectedYear ? 'default' : 'pointer'
+        }
+      },
+
+      year: {
+        root: {
+          position: 'absolute',
+          margin: isLandscape ? '0px' : '1px',
+          fontSize: isLandscape ? '26px' : '22px',
+          lineHeight: isLandscape ? '26px' : '22px',
+          height: isLandscape ? '26px' : '22px',
+          width: '100%',
+          textTransform: 'uppercase',
+          opacity: this.state.selectedYear ? '1.0' : '0.7',
+          transition: Transitions.easeOut(),
+          transform: 'translate3d(0,' + yearYPosition + ',0)'
+        },
+        
+        title: {
+          width: '100px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          cursor: this.state.selectedYear ? 'default' : 'pointer'
+        }
+      }
+    };
 
     return (
-      <div {...other} className={classes}>
-
-        <SlideInTransitionGroup
-          className="mui-date-picker-date-display-dow"
-          direction={this.state.transitionDirection}>
-          <div key={dayOfWeek}>{dayOfWeek}</div>
-        </SlideInTransitionGroup>
-
-        <div className="mui-date-picker-date-display-date">
-
+      <div {...other} style={this.mergeAndPrefix(styles.root)}>
+      
+        <div style={styles.dowContainer}>          
           <SlideInTransitionGroup
-            className={monthClass}
+            style={styles.dow}
             direction={this.state.transitionDirection}>
-            <div key={month} onClick={this._handleMonthDayClick}>{month}</div>
+            <div key={dayOfWeek}>{dayOfWeek}</div>
           </SlideInTransitionGroup>
-
-          <SlideInTransitionGroup
-            className={dayClass}
-            direction={this.state.transitionDirection}>
-            <div key={day} onClick={this._handleMonthDayClick}>{day}</div>
-          </SlideInTransitionGroup>
-
-          <SlideInTransitionGroup
-            className={yearClass}
-            direction={this.state.transitionDirection}>
-            <div key={year} onClick={this._handleYearClick}>{year}</div>
-          </SlideInTransitionGroup>
-
         </div>
 
+        <div style={AutoPrefix.all(styles.dateContainer)}>
+          <div style={AutoPrefix.all(styles.date)}>
+
+            <SlideInTransitionGroup
+              style={styles.month.root}
+              direction={this.state.transitionDirection}>
+              <div key={month} style={styles.month.title} onClick={this._handleMonthDayClick}>{month}</div>
+            </SlideInTransitionGroup>
+
+            <SlideInTransitionGroup
+              style={styles.day.root}
+              direction={this.state.transitionDirection}>
+              <div key={day} style={styles.day.title} onClick={this._handleMonthDayClick}>{day}</div>
+            </SlideInTransitionGroup>
+
+            <SlideInTransitionGroup
+              style={styles.year.root}
+              direction={this.state.transitionDirection}>
+              <div key={year} style={styles.year.title} onClick={this._handleYearClick}>{year}</div>
+            </SlideInTransitionGroup>
+          </div>
+          
+        </div>
+        
       </div>
     );
-  },
-  
-  _getYearClassName: function() {
-    var className = "mui-date-picker-date-display-year";
-    
-    if (!this.props.yearSelectionAvailable) className += " unavailable";
-    if (this.state.selectedYear) className += " selected";
-    
-    return className;
-  },
-  
-  _getMonthClassName: function() {
-    var className = "mui-date-picker-date-display-month";
-    
-    if (!this.state.selectedYear) className += " selected";
-    
-    return className;
-  },
-  
-  _getDayClassName: function() {
-    var className = "mui-date-picker-date-display-day";
-    
-    if (!this.state.selectedYear) className += " selected";
-    
-    return className;
   },
   
   _handleMonthDayClick: function() {
     if (this.props.handleMonthDayClick && this.state.selectedYear) {
       this.props.handleMonthDayClick();
-      this.setState({selectedYear: false});
     }
+    
+    if (this.props.yearSelectionAvailable) this.setState({selectedYear: false});
   },
   
   _handleYearClick: function() {
     if (this.props.handleYearClick && !this.state.selectedYear && this.props.yearSelectionAvailable) {
       this.props.handleYearClick();
-      this.setState({selectedYear: true});
     }
+    
+    if (this.props.yearSelectionAvailable) this.setState({selectedYear: true});
   }
 
 });

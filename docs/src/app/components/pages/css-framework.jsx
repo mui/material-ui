@@ -1,9 +1,9 @@
 var React = require('react'),
   PageWithNav = require('./page-with-nav.jsx');
 
-var CssFramework = React.createClass({
+class CssFramework extends React.Component {
 
-  render: function() {
+  render() {
     var menuItems = [
       { route: 'colors', text: 'Colors'},
       { route: 'typography', text: 'Typography'}
@@ -14,6 +14,6 @@ var CssFramework = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = CssFramework;

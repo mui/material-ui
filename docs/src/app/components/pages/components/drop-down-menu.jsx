@@ -3,9 +3,9 @@ var mui = require('mui');
 var DropDownMenu = mui.DropDownMenu;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var DropDownMenuPage = React.createClass({
+class DropDownMenuPage extends React.Component {
 
-  render: function() {
+  render() {
 
     var menuItems = [
       { payload: '1', text: 'Never' },
@@ -15,7 +15,7 @@ var DropDownMenuPage = React.createClass({
       { payload: '5', text: 'Weekly' },
     ];
 
-    var code = 
+    var code =
       "var menuItems = [\n" +
       "   { payload: '1', text: 'Never' },\n" +
       "   { payload: '2', text: 'Every Night' },\n" +
@@ -70,6 +70,6 @@ var DropDownMenuPage = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = DropDownMenuPage;

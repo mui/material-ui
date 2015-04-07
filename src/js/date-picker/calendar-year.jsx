@@ -1,11 +1,12 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
+var Colors = require('../styles/colors');
 var DateTime = require('../utils/date-time');
 var YearButton = require('./year-button');
 
 var CalendarYear = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
@@ -24,11 +25,21 @@ var CalendarYear = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-date-picker-calendar-year');
+    var years = this._getYears();
+    var styles = {
+      position: 'relative',
+      height: 'inherit',
+      lineHeight: '36px',
+      textAlign: 'center',
+      padding: '8px 14px 0 14px',
+      backgroundColor: Colors.white,
+      overflowX: 'hidden',
+      overflowY: 'scroll'
+    };
 
     return (
-      <div className={classes}>
-      {this._getYears()}
+      <div style={styles}>
+        {years}
       </div>
     );
   },
@@ -64,15 +75,15 @@ var CalendarYear = React.createClass({
   },
   
   _scrollToSelectedYear: function() {
+    if (this.refs.selectedYearButton === undefined) return;
+    
     var container = this.getDOMNode();
-    var ybNode = this.refs.selectedYearButton.getDOMNode();
+    var yearButtonNode = this.refs.selectedYearButton.getDOMNode();
+
+    var containerHeight = container.clientHeight;
+    var yearButtonNodeHeight = yearButtonNode.clientHeight || 32;
     
-    // Currently do not have DOM utils to get the height of an element when height is 
-    // specified in a CSS class across all browsers.
-    var containerHeight = 268;
-    var ybNodeHeight = 32;
-    
-    var scrollYOffset = (ybNode.offsetTop + ybNodeHeight / 2) - containerHeight / 2;
+    var scrollYOffset = (yearButtonNode.offsetTop + yearButtonNodeHeight / 2) - containerHeight / 2;
     container.scrollTop = scrollYOffset;
   },
 

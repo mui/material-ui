@@ -1,11 +1,12 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
+var CustomVariables = require('../styles/variables/custom-variables');
 var DateTime = require('../utils/date-time');
 var EnhancedButton = require('../enhanced-button');
 
 var YearButton = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     year: React.PropTypes.number,
@@ -18,6 +19,12 @@ var YearButton = React.createClass({
       selected: false
     };
   },
+  
+  getInitialState: function() {
+    return {
+      hover: false
+    };
+  },
 
   render: function() {
     var {
@@ -27,21 +34,71 @@ var YearButton = React.createClass({
       selected,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-date-picker-year-button', { 
-      'mui-is-current-year': this.props.year === new Date().getFullYear(),
-      'mui-is-selected': this.props.selected
-    });
+    
+    var styles = {
+      root: {
+        boxSizing: 'border-box',
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
+        position: 'relative',
+        display: 'block',
+        margin: '0 auto',
+        width: 36,
+        fontSize: '14px',
+        padding: '8px 2px'
+      },
+
+      label: {
+        position: 'relative',
+        top: '-1px'
+      },
+
+      buttonState: {
+        position: 'absolute',
+        height: 32,
+        width: 32,
+        opacity: 0,
+        borderRadius: '50%',
+        transform: 'scale(0)',
+        backgroundColor: CustomVariables.datePickerSelectColor
+      },
+    };
+    
+    if (this.state.hover) {
+      styles.label.color = CustomVariables.datePickerSelectTextColor;
+      styles.buttonState.opacity = '0.6';
+      styles.buttonState.transform = 'scale(1.5)';
+    }
+    
+    if (this.props.selected) {
+      styles.label.color = CustomVariables.datePickerSelectTextColor;
+      styles.buttonState.opacity = 1;
+      styles.buttonState.transform = 'scale(1.5)';
+    }
+    
+    if (this.props.year === new Date().getFullYear()) {
+      styles.root.color = CustomVariables.datePickerColor;
+    }
 
     return (
       <EnhancedButton {...other}
-        className={classes}
+        style={styles.root}
         disableFocusRipple={true}
         disableTouchRipple={true}
+        onMouseOver={this._handleMouseOver}
+        onMouseOut={this._handleMouseOut}
         onTouchTap={this._handleTouchTap}>
-        <div className="mui-date-picker-year-button-select" />
-        <span className="mui-date-picker-year-button-label">{this.props.year}</span>
+        <div style={styles.buttonState} />
+        <span style={styles.label}>{this.props.year}</span>
       </EnhancedButton>
     );
+  },
+
+  _handleMouseOver: function() {
+    this.setState({hover: true});
+  },
+  
+  _handleMouseOut: function() {
+    this.setState({hover: false});
   },
 
   _handleTouchTap: function(e) {

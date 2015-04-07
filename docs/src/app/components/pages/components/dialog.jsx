@@ -5,11 +5,19 @@ var FlatButton = mui.FlatButton;
 var RaisedButton = mui.RaisedButton;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var DialogPage = React.createClass({
+class DialogPage extends React.Component {
 
-  render: function() {
+  constructor() {
+    super();
+    this._handleCustomDialogCancel = this._handleCustomDialogCancel.bind(this);
+    this._handleCustomDialogSubmit = this._handleCustomDialogSubmit.bind(this);
+    this.handleCustomDialogTouchTap = this.handleCustomDialogTouchTap.bind(this);
+    this.handleStandardDialogTouchTap = this.handleStandardDialogTouchTap.bind(this);
+  }
 
-    var code = 
+  render() {
+
+    var code =
       '//Standard Actions\n' +
       'var standardActions = [\n' +
       '  { text: \'Cancel\' },\n' +
@@ -57,9 +65,9 @@ var DialogPage = React.createClass({
           },
           {
             name: 'title',
-            type: 'string',
+            type: 'node',
             header: 'optional',
-            desc: 'The title string to display on the dialog.'
+            desc: 'The title to display on the dialog. Could be number, string, element or an array containing these types.'
           }
         ]
       },
@@ -127,7 +135,7 @@ var DialogPage = React.createClass({
           ref="standardDialog"
           title="Dialog With Standard Actions"
           actions={standardActions}>
-          The actions in this window are created from the json that's passed in.
+          The actions in this window are created from the json that&#39;s passed in.
         </Dialog>
 
         <Dialog
@@ -140,24 +148,24 @@ var DialogPage = React.createClass({
       </ComponentDoc>
     );
 
-  },
+  }
 
-  _handleCustomDialogCancel: function() {
+  _handleCustomDialogCancel() {
     this.refs.customDialog.dismiss();
-  },
+  }
 
-  _handleCustomDialogSubmit: function() {
+  _handleCustomDialogSubmit() {
     this.refs.customDialog.dismiss();
-  },
+  }
 
-  handleCustomDialogTouchTap: function() {
+  handleCustomDialogTouchTap() {
     this.refs.customDialog.show();
-  },
+  }
 
-  handleStandardDialogTouchTap: function() {
+  handleStandardDialogTouchTap() {
     this.refs.standardDialog.show();
   }
 
-});
+}
 
 module.exports = DialogPage;

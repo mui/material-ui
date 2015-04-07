@@ -1,28 +1,77 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
+var Transitions = require('../styles/mixins/transitions');
+var Colors = require('../styles/colors');
+
+var pulsateDuration = 750;
 
 var FocusRipple = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
-    show: React.PropTypes.bool
+    color: React.PropTypes.string,
+    opacity: React.PropTypes.number,
+    show: React.PropTypes.bool,
+    innerStyle: React.PropTypes.object
+  },
+
+  getDefaultProps: function() {
+    return {
+      color: Colors.darkBlack
+    };
   },
 
   componentDidMount: function() {
     this._setRippleSize();
+    this._pulsate();
   },
 
   render: function() {
-    var classes = this.getClasses('mui-focus-ripple', {
-      'mui-is-shown': this.props.show
+
+    var outerStyles = this.mergeAndPrefix({
+      height: '100%',
+      width: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      transition: Transitions.easeOut(),
+      transform: this.props.show ? 'scale(1)' : 'scale(0)',
+      opacity: this.props.show ? 1 : 0
     });
 
+    var innerStyles = this.mergeAndPrefix({
+      position: 'absolute',
+      height: '100%',
+      width: '100%',
+      borderRadius: '50%',
+      opacity: this.props.opacity ? this.props.opacity : 0.16,
+      backgroundColor: this.props.color,
+      transition: Transitions.easeOut(pulsateDuration + 'ms', null, null, Transitions.easeInOutFunction)
+    }, this.props.innerStyle);
+
     return (
-      <div className={classes}>
-        <div className="mui-focus-ripple-inner" />
+      <div style={outerStyles}>
+        <div ref="innerCircle" style={innerStyles} />
       </div>
     );
+  },
+
+  _pulsate: function() {
+    if (!this.isMounted() || !this.props.show) return;
+
+    var startScale = 'scale(0.75)';
+    var endScale = 'scale(0.85)';
+    var innerCircle = this.refs.innerCircle.getDOMNode();
+    var currentScale = innerCircle.style.transform;
+    var nextScale;
+
+    currentScale = currentScale || startScale;
+    nextScale = currentScale === startScale ?
+      endScale : startScale;
+
+    innerCircle.style.transform = nextScale;
+    setTimeout(this._pulsate, pulsateDuration);
   },
 
   _setRippleSize: function() {

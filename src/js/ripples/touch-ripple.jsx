@@ -1,15 +1,15 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
 var Dom = require('../utils/dom');
 var RippleCircle = require('./circle');
-
 var TouchRipple = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
-    className: React.PropTypes.string
+    color: React.PropTypes.string,
+    opacity: React.PropTypes.number,
   },
 
   getInitialState: function() {
@@ -23,7 +23,14 @@ var TouchRipple = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-touch-ripple');
+
+    var styles = this.mergeAndPrefix({
+      height: '100%',
+      width: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0
+    });
 
     return (
       <div
@@ -32,7 +39,7 @@ var TouchRipple = React.createClass({
         onMouseOut={this._handleMouseOut}
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}>
-        <div className={classes}>
+        <div style={styles}>
           {this._getRippleElements()}
         </div>
         {this.props.children}
@@ -164,7 +171,9 @@ var TouchRipple = React.createClass({
           key={ripple.key}
           started={ripple.started}
           ending={ripple.ending}
-          style={ripple.style} />
+          style={ripple.style}
+          color={this.props.color}
+          opacity={this.props.opacity} />
       );
     }.bind(this));
   }

@@ -1,10 +1,11 @@
 var React = require('react/addons');
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-var Classable = require('../mixins/classable');
+var ReactTransitionGroup = React.addons.TransitionGroup;
+var StylePropable = require('../mixins/style-propable');
+var SlideInChild = require('./slide-in-child');
 
 var SlideIn = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
 
   propTypes: {
     direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down'])
@@ -18,29 +19,40 @@ var SlideIn = React.createClass({
 
   render: function() {
     var {
-      className,
       direction,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-transition-slide-in');
 
-    classes += ' mui-is-' + this.props.direction;
-
-    //Add a custom className to every child
-    React.Children.forEach(this.props.children, function(child) {
-      child.props.className = child.props.className ?
-        child.props.className + ' mui-transition-slide-in-child':
-        'mui-transition-slide-in-child';
+    var styles = this.mergeAndPrefix({
+      position: 'relative',
+      overflow: 'hidden',
+      height: '100%'
     });
 
     return (
-      <ReactCSSTransitionGroup {...other}
-        className={classes}
-        transitionName="mui-transition-slide-in"
+      <ReactTransitionGroup {...other}
+        style={styles}
         component="div">
-        {this.props.children}
-      </ReactCSSTransitionGroup>
+        {this._getSlideInChildren()}
+      </ReactTransitionGroup>
     );
+  },
+
+  _getSlideInChildren: function() {
+    return React.Children.map(this.props.children, function(child) {
+      return (
+        <SlideInChild
+          key={child.key}
+          direction={this.props.direction}
+          getLeaveDirection={this._getLeaveDirection}>
+          {child}
+        </SlideInChild>
+      );
+    }, this);
+  },
+
+  _getLeaveDirection: function() {
+    return this.props.direction;
   }
 
 });

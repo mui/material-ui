@@ -1,8 +1,8 @@
 var React = require('react');
 var DateTime = require('../utils/date-time');
 var IconButton = require('../icon-button');
-var Toolbar = require('../toolbar');
-var ToolbarGroup = require('../toolbar-group');
+var Toolbar = require('../toolbar/toolbar');
+var ToolbarGroup = require('../toolbar/toolbar-group');
 var DropDownMenu = require('../drop-down-menu');
 var NavigationChevronLeft = require('../svg-icons/navigation-chevron-left');
 var NavigationChevronLeftDouble = require('../svg-icons/navigation-chevron-left-double');
@@ -57,15 +57,47 @@ var CalendarToolbar = React.createClass({
     var prevYearChangeButton = this._getPrevYearChangeButton();
     var nextYearChangeButton = this._getNextYearChangeButton();
 
+    var styles = {
+      root: {
+        position: 'relative',
+        padding: 0,
+        backgroundColor: 'inherit'
+      },
+
+      buttonLeft: {
+        position: 'absolute',
+        left: '0px',
+        top: '0px'
+      },
+
+      buttonRight: {
+        position: 'absolute',
+        right: '0px',
+        top: '0px'
+      },
+
+      title: {
+        position: 'absolute',
+        top: '17px',
+        lineHeight: '14px',
+        fontSize: '14px',
+        height: '14px',
+        width: '100%',
+        fontWeight: '500',
+        textAlign: 'center',
+        zIndex: -1
+      }
+    };
+
     return (
-      <Toolbar className="mui-date-picker-calendar-toolbar">
+      <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root}>
         <ToolbarGroup key={0} float="left">
-        {prevYearChangeButton}
+          {prevYearChangeButton}
               
           <IconButton
             onTouchTap={this._prevMonthTouchTap}
             disabled={this.props.disabledPrevMonth}>
-              <NavigationChevronLeft/>
+              <NavigationChevronLeft />
           </IconButton>
         </ToolbarGroup>
         
@@ -73,14 +105,14 @@ var CalendarToolbar = React.createClass({
           <IconButton
             onTouchTap={this._nextMonthTouchTap}
             disabled={this.props.disabledNextMonth}>
-              <NavigationChevronRight/>
+              <NavigationChevronRight />
           </IconButton>
           
           {nextYearChangeButton}
         </ToolbarGroup>
-        
+
         <SlideInTransitionGroup
-          className="mui-date-picker-calendar-toolbar-title"
+          style={styles.title}
           direction={this.state.transitionDirection}>
           <div key={month + '_' + year}>{month} {year}</div>
         </SlideInTransitionGroup>
@@ -96,7 +128,7 @@ var CalendarToolbar = React.createClass({
         <IconButton
           onTouchTap={this._prevYearTouchTap}
           disabled={this.props.disabledPrevYear}>
-            <NavigationChevronLeftDouble/>
+            <NavigationChevronLeftDouble />
         </IconButton>
       );
     }
@@ -112,7 +144,7 @@ var CalendarToolbar = React.createClass({
         <IconButton
           onTouchTap={this._nextYearTouchTap}
           disabled={this.props.disabledNextYear}>
-            <NavigationChevronRightDouble/>
+            <NavigationChevronRightDouble />
         </IconButton>
       );
     }

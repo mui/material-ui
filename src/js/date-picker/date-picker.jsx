@@ -22,7 +22,8 @@ var DatePicker = React.createClass({
     startDate: React.PropTypes.object,
     endDate: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
-    hideToolbarYearChange: React.PropTypes.bool
+    hideToolbarYearChange: React.PropTypes.bool,
+    opensOnFocus: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -31,7 +32,8 @@ var DatePicker = React.createClass({
 
   getDefaultProps: function() {
     return {
-      formatDate: DateTime.format
+      formatDate: DateTime.format,
+      opensOnFocus: false
     };
   },
 
@@ -63,7 +65,7 @@ var DatePicker = React.createClass({
     }
 
     return (
-      <div className={classes}>
+      <div>
         <TextField
           {...other}
           ref="input"
@@ -72,6 +74,7 @@ var DatePicker = React.createClass({
           onTouchTap={this._handleInputTouchTap} />
         <DatePickerDialog
           ref="dialogWindow"
+          mode={this.props.mode}
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
@@ -102,6 +105,13 @@ var DatePicker = React.createClass({
   },
 
   _handleInputFocus: function(e) {
+    if (this.props.opensOnFocus) {
+      this.setState({
+        dialogDate: this.getDate()
+      });
+      this.refs.dialogWindow.show();
+    }
+    
     e.target.blur();
     if (this.props.onFocus) this.props.onFocus(e);
   },

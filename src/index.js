@@ -12,7 +12,6 @@ module.exports = {
   FloatingActionButton: require('./js/floating-action-button'),
   FontIcon: require('./js/font-icon'),
   IconButton: require('./js/icon-button'),
-  Input: require('./js/input'),
   LeftNav: require('./js/left-nav'),
   Menu: require('./js/menu/menu'),
   MenuItem: require('./js/menu/menu-item'),
@@ -32,19 +31,26 @@ module.exports = {
     NavigationChevronLeft: require('./js/svg-icons/navigation-chevron-left'),
     NavigationChevronRight: require('./js/svg-icons/navigation-chevron-right')
   },
+  Styles: {
+    Theme: require('./js/styles/theme').get(),
+    Colors: require('./js/styles/colors'),
+  },
+  Snackbar: require('./js/snackbar'),
   Tab: require('./js/tabs/tab'),
   Tabs: require('./js/tabs/tabs'),
   Toggle: require('./js/toggle'),
-  Snackbar: require('./js/snackbar'),
   TextField: require('./js/text-field'),
-  Toolbar: require('./js/toolbar'),
-  ToolbarGroup: require('./js/toolbar-group'),
+  Toolbar: require('./js/toolbar/toolbar'),
+  ToolbarGroup: require('./js/toolbar/toolbar-group'),
+  ToolbarSeparator: require('./js/toolbar/toolbar-separator'),
+  ToolbarTitle: require('./js/toolbar/toolbar-title'),
   Tooltip: require('./js/tooltip'),
   Utils: {
     CssEvent: require('./js/utils/css-event'),
     Dom: require('./js/utils/dom'),
     Events: require('./js/utils/events'),
     KeyCode: require('./js/utils/key-code'),
-    KeyLine: require('./js/utils/key-line')
+    KeyLine: require('./js/utils/key-line'),
+    ColorManipulator: require('./js/utils/color-manipulator'),
   }
 };
