@@ -1,7 +1,6 @@
 var React = require('react');
 var ColorManipulator = require('./utils/color-manipulator');
 var Colors = require('./styles/colors');
-var Theme = require('./styles/theme').get();
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/mixins/transitions');
 var CustomVariables = require('./styles/variables/custom-variables');
@@ -11,6 +10,10 @@ var EnhancedTextarea = require('./enhanced-textarea');
 var TextField = React.createClass({
 
   mixins: [StylePropable, DomIdable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     errorText: React.PropTypes.string,
@@ -60,8 +63,11 @@ var TextField = React.createClass({
   },
 
   /** Styles */
-  disabledTextColor: ColorManipulator.fade(Theme.textColor, 0.3),
   errorColor: Colors.red500,
+
+  _getDisabledTextColor: function() {
+    return ColorManipulator.fade(this.context.theme.textColor, 0.3);
+  },
 
   _main: function() {
     return this.mergeAndPrefix({
@@ -95,8 +101,8 @@ var TextField = React.createClass({
       transformOrigin: 'left top',
    });
 
-    if (this.state.isFocused) style.color = Theme.primary1Color;
-    if (this.state.hasValue) style.color = ColorManipulator.fade(Theme.textColor, 0.5);
+    if (this.state.isFocused) style.color = this.context.theme.primary1Color;
+    if (this.state.hasValue) style.color = ColorManipulator.fade(this.context.theme.textColor, 0.5);
     if (this.state.isFocused || this.state.hasValue) style.transform = 'scale(0.75) translate3d(0, -18px, 0)';
     if (this.props.errorText && this.state.isFocused) style.color = this.errorColor;
 
@@ -108,11 +114,11 @@ var TextField = React.createClass({
       position: 'absolute',
       lineHeight: '48px',
       opacity: 1,
-      color: this.disabledTextColor,
+      color: this._getDisabledTextColor(),
       transition: Transitions.easeOut(),
     };
 
-    if (this.props.disabled) style.color = this.disabledTextColor;
+    if (this.props.disabled) style.color = this._getDisabledTextColor();
     if (this.state.hasValue) style.opacity = 0;
     if (this.props.floatingLabelText) {
       style.top = 24;
@@ -132,11 +138,11 @@ var TextField = React.createClass({
       border: 'none',
       outline: 'none',
       backgroundColor: 'transparent',
-      color: Theme.textColor,
+      color: this.context.theme.textColor,
       font: 'inherit',
     };
 
-    if (this.props.disabled) style.color = this.disabledTextColor;
+    if (this.props.disabled) style.color = this._getDisabledTextColor();
     if (this.props.floatingLabelText) style.boxSizing = 'border-box';
     if (this.props.floatingLabelText && !this.props.multiLine) style.paddingTop = 26;
 
@@ -174,13 +180,13 @@ var TextField = React.createClass({
       userSelect: 'none',
       cursor: 'default',
       bottom: 0,
-      color: this.disabledTextColor,
+      color: this._getDisabledTextColor(),
     }, null);
   },
 
   _focusUnderline: function() {
     var style = this.mergeAndPrefix(this._underline(), {
-      borderBottom: 'solid 2px ' + Theme.primary1Color,
+      borderBottom: 'solid 2px ' + this.context.theme.primary1Color,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut(),
     });

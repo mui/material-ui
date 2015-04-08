@@ -1,11 +1,14 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Spacing = require('./styles/variables/spacing');
-var Theme = require('./styles/theme').get();
 
 var FontIcon = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     hoverStyle: React.PropTypes.object,
@@ -30,7 +33,7 @@ var FontIcon = React.createClass({
       style = this.mergeAndPrefix(style, this.props.hoverStyle);
     }
     if (!style.color && !this.props.className) {
-      style.color = Theme.textColor;
+      style.color = this.context.theme.textColor;
     }
     
     return this.mergeAndPrefix(style);

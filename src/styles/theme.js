@@ -11,9 +11,12 @@ var defaultVariables = new (function() {
     accent1Color: Colors.pinkA200,
     accent2Color: Colors.pinkA400,
     accent3Color: Colors.pinkA100,
-    textColor: Colors.darkBlack
+    textColor: Colors.darkBlack,
+  
+    fontFamily: 'Roboto, sans-serif',
   };
 
+// migiht need to move these to palette
   this.colors = Colors,
   this.spacing = Spacing,
   this.fontFamily = 'Roboto, sans-serif',
@@ -141,8 +144,6 @@ var defaultVariables = new (function() {
     toolbarMenuHoverColor: 'rgba(0, 0, 0, .10)',
     toolbarMenuHoverColor: Colors.white
   };
-
-  console.log('done');
 });
 
 var Theme = {

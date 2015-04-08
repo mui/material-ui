@@ -14,6 +14,10 @@ var Checkbox = React.createClass({
     onCheck: React.PropTypes.func,
   },
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   getInitialState: function() {
     return {
       switched: 

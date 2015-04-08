@@ -8,11 +8,14 @@ var CustomVariables = require('./styles/variables/custom-variables');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 var Paper = require('./paper');
-var Theme = require('./styles/theme').get();
 
 var EnhancedSwitch = React.createClass({
 
   mixins: [DomIdable, WindowListenable, StylePropable],
+  
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
 	propTypes: {
       id: React.PropTypes.string,
@@ -200,7 +203,7 @@ var EnhancedSwitch = React.createClass({
         ref="touchRipple"
         key="touchRipple"
         style={rippleStyle}
-        color={this.props.switched ? Theme.primary1Color : Theme.textColor}
+        color={this.props.switched ? this.context.theme.primary1Color : this.context.theme.textColor}
         centerRipple={true} />
     );
 
@@ -208,7 +211,7 @@ var EnhancedSwitch = React.createClass({
       <FocusRipple
         key="focusRipple"
         innerStyle={rippleStyle}
-        color={this.props.switched ? Theme.primary1Color : Theme.textColor}
+        color={this.props.switched ? this.context.theme.primary1Color : this.context.theme.textColor}
         show={this.state.isKeyboardFocused} />
     );
 

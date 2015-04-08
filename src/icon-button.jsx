@@ -2,7 +2,6 @@ var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/mixins/transitions');
 var CustomVariables = require('./styles/variables/custom-variables');
-var Theme = require('./styles/theme');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
 var Tooltip = require('./tooltip');
@@ -10,6 +9,10 @@ var Tooltip = require('./tooltip');
 var IconButton = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     className: React.PropTypes.string,
@@ -75,8 +78,8 @@ var IconButton = React.createClass({
 
   _icon: function() {
     var style = {
-        color: Theme.textColor,
-        fill: Theme.textColor,
+        color: this.context.theme.textColor,
+        fill: this.context.theme.textColor,
     };
 
     if (this.props.disabled) {

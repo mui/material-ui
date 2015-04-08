@@ -1,11 +1,14 @@
 var React = require('react');
 var TabTemplate = require('./tabTemplate');
 var StylePropable = require('../mixins/style-propable.js');
-var Theme = require('../styles/theme.js');
 var Colors = require('../styles/colors.js')
 var Tab = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     handleTouchTap: React.PropTypes.func,
@@ -18,6 +21,8 @@ var Tab = React.createClass({
   },
 
   render: function(){
+    console.log('tab theme', this.context.theme)
+
     var styles = this.mergeAndPrefix({
       'display': 'inline-block',
       'height': '100%',
@@ -28,7 +33,7 @@ var Tab = React.createClass({
       'opacity': '.6',
       'fontSize': '14sp',
       'fontWeight': '500',
-      'font': Theme.fontFamily,
+      'font': this.context.theme.fontFamily,
       'width': this.props.width
     });
 

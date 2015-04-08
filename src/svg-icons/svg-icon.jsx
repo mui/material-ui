@@ -1,10 +1,13 @@
 var React = require('react/addons');
 var StylePropable = require('../mixins/style-propable');
-var Theme = require('../styles/theme').get();
 
 var SvgIcon = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     hoverStyle: React.PropTypes.object,
@@ -23,7 +26,7 @@ var SvgIcon = React.createClass({
       height: '24px',
       width: '24px',
       userSelect: 'none',
-      fill: Theme.textColor
+      fill: this.context.theme.textColor
     });
 
     if (this.state.isHovered && this.props.hoverStyle) {

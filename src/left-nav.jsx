@@ -2,7 +2,6 @@ var React = require('react');
 var KeyCode = require('./utils/key-code');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/mixins/transitions');
-var Theme = require('./styles/theme').get();
 var CustomVariables = require('./styles/variables/custom-variables');
 var WindowListenable = require('./mixins/window-listenable');
 var Overlay = require('./overlay');
@@ -12,6 +11,10 @@ var Menu = require('./menu/menu');
 var LeftNav = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     docked: React.PropTypes.bool,
@@ -83,7 +86,7 @@ var LeftNav = React.createClass({
     return this.mergeAndPrefix({
       display: 'block',
       textDecoration: 'none',
-      color: Theme.textColor,
+      color: this.context.theme.textColor,
     }, this._menuItem());
   },
 

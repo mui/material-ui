@@ -3,6 +3,7 @@ var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
 var mui = require('mui');
 var AppLeftNav = require('./app-left-nav.jsx');
+var Theme = mui.Styles.Theme;
 
 var { AppBar, AppCanvas, Menu, IconButton } = mui;
 
@@ -11,6 +12,12 @@ class Master extends React.Component {
   constructor() {
     super();
     this._onMenuIconButtonTouchTap = this._onMenuIconButtonTouchTap.bind(this);
+  }
+
+  getChildContext() {
+    return {
+      theme: Theme
+    }
   }
 
   render() {
@@ -61,6 +68,10 @@ class Master extends React.Component {
 
 Master.contextTypes = {
   router: React.PropTypes.func
+};
+
+Master.childContextTypes = {
+  theme: React.PropTypes.object
 };
 
 module.exports = Master;
