@@ -21,7 +21,7 @@ var Dialog = React.createClass({
     if (this.props.title) {
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.
-      title = toString.call(this.props.title) === '[object String]' ?
+      title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
         <h3 className="mui-dialog-title">{this.props.title}</h3> :
         this.props.title;
     }
