@@ -85,7 +85,8 @@ var LeftNav = React.createClass({
   _menu: function() {
     return {
       overflowY: 'auto',
-      overflowX: 'hidden'
+      overflowX: 'hidden',
+      height: '100%'
     };
   },
 
