@@ -3,7 +3,7 @@ var Router = require('react-router');
 var mui = require('mui');
 var RaisedButton = mui.RaisedButton;
 var HomeFeature = require('./home-feature.jsx');
-var Theme = mui.Styles.Theme;
+var Theme = mui.Styles.Theme.get();
 
 class HomePage extends React.Component {
 
@@ -15,7 +15,7 @@ class HomePage extends React.Component {
   _raisedButton() {
     return {
       label: {
-        color: Theme.primary1Color,
+        color: Theme.palette.primary1Color,
       },
       githubStyle: {
         margin: '16px 32px 0px 8px',

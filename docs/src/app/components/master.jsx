@@ -1,8 +1,8 @@
 var React = require('react');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
-var mui = require('mui');
 var AppLeftNav = require('./app-left-nav.jsx');
+var mui = require('mui');
 var Theme = mui.Styles.Theme;
 
 var { AppBar, AppCanvas, Menu, IconButton } = mui;
@@ -16,7 +16,7 @@ class Master extends React.Component {
 
   getChildContext() {
     return {
-      theme: Theme
+      theme: Theme.get()
     }
   }
 
@@ -28,7 +28,7 @@ class Master extends React.Component {
 
     var githubButton = (
       <IconButton
-        className="github-icon-button"
+        iconStyle={{color: '#FFF', fill: '#FFF'}}
         iconClassName="muidocs-icon-custom-github"
         href="https://github.com/callemall/material-ui"
         linkButton={true} />

@@ -1,15 +1,18 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var ColorManipulator = require('./utils/color-manipulator');
-var Typography = require('./styles/core/typography');
+var Typography = require('./styles/typography');
 var EnhancedButton = require('./enhanced-button');
 var Paper = require('./paper');
 
 var RaisedButton = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     className: React.PropTypes.string,
@@ -48,17 +51,17 @@ var RaisedButton = React.createClass({
   /** Styles */
 
   _getBackgroundColor: function() {
-    return  this.props.disabled ? CustomVariables.raisedButtonDisabledColor :
-            this.props.primary ? CustomVariables.raisedButtonPrimaryColor :
-            this.props.secondary ? CustomVariables.raisedButtonSecondaryColor :
-            CustomVariables.raisedButtonColor; 
+    return  this.props.disabled ? this.getTheme().disabledColor :
+            this.props.primary ? this.getTheme().primaryColor :
+            this.props.secondary ? this.getTheme().secondaryColor :
+            this.getTheme().color; 
   },
 
   _main: function() {
     return this.mergeAndPrefix({
       display: 'inline-block',
-      minWidth: CustomVariables.buttonMinWidth,
-      height: CustomVariables.buttonHeight,
+      minWidth: this.getThemeButton().minWidth,
+      height: this.getThemeButton().height,
     });
   },
 
@@ -89,13 +92,13 @@ var RaisedButton = React.createClass({
       textTransform: 'uppercase',
       fontWeight: Typography.fontWeightMedium,
       margin: 0,
-      padding: '0px ' + CustomVariables.spacing.desktopGutterLess + 'px',
+      padding: '0px ' + this.context.theme.spacing.desktopGutterLess + 'px',
       userSelect: 'none',
-      lineHeight: CustomVariables.buttonHeight + 'px',
-      color:  this.props.disabled ? CustomVariables.raisedButtonDisabledTextColor :
-              this.props.primary ? CustomVariables.raisedButtonPrimaryTextColor :
-              this.props.secondary ? CustomVariables.raisedButtonSecondaryTextColor :
-              CustomVariables.raisedButtonTextColor,
+      lineHeight: this.getThemeButton().height + 'px',
+      color:  this.props.disabled ? this.getTheme().disabledTextColor :
+              this.props.primary ? this.getTheme().primaryTextColor :
+              this.props.secondary ? this.getTheme().secondaryTextColor :
+              this.getTheme().textColor,
     };
 
     if (this.props.labelStyle) style = this.mergeAndPrefix(style, this.props.labelStyle);
@@ -115,6 +118,14 @@ var RaisedButton = React.createClass({
     }
 
     return style;
+  },
+
+  getThemeButton: function() {
+    return this.context.theme.button;
+  },
+
+  getTheme: function() {
+    return this.context.theme.raisedButton;
   },
 
   render: function() {

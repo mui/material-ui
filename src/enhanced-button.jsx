@@ -1,7 +1,6 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
 var StylePropable = require('./mixins/style-propable');
-var CustomVariables = require('./styles/variables/custom-variables');
 var WindowListenable = require('./mixins/window-listenable');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
@@ -9,6 +8,10 @@ var TouchRipple = require('./ripples/touch-ripple');
 var EnhancedButton = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
@@ -60,7 +63,7 @@ var EnhancedButton = React.createClass({
       background: 'none',
       boxSizing: 'border-box',
       font: 'inherit',
-      fontFamily: CustomVariables.contentFontFamily,
+      fontFamily: this.context.theme.contentFontFamily,
       WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
       WebkitApperance: 'button'
     };

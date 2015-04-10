@@ -1,5 +1,5 @@
 var React = require('react');
-var Transitions = require('./styles/mixins/transitions');
+var Transitions = require('./styles/transitions');
 var StylePropable = require('./mixins/style-propable');
 var Colors = require('./styles/colors')
 var InkBar = React.createClass({
@@ -14,6 +14,10 @@ var InkBar = React.createClass({
   
   mixins: [StylePropable],
 
+  getTheme: function() {
+    return this.context.theme.palette;
+  },
+
   render: function() {
 
     var styles = this.mergeAndPrefix({
@@ -21,7 +25,7 @@ var InkBar = React.createClass({
       width: this.props.width,
       bottom: '0',
       display: 'block',
-      backgroundColor: this.context.theme.accent1Color,
+      backgroundColor: this.getTheme().accent1Color,
       height: '2px',
       marginTop: '-2px',
       position: 'relative',

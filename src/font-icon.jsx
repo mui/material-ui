@@ -1,6 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Spacing = require('./styles/variables/spacing');
+var Spacing = require('./styles/spacing');
 
 var FontIcon = React.createClass({
 
@@ -33,10 +33,14 @@ var FontIcon = React.createClass({
       style = this.mergeAndPrefix(style, this.props.hoverStyle);
     }
     if (!style.color && !this.props.className) {
-      style.color = this.context.theme.textColor;
+      style.color = this.getTheme().textColor;
     }
     
     return this.mergeAndPrefix(style);
+  },
+
+  getTheme: function() {
+    return this.context.theme.palette;
   },
 
   render: function() {

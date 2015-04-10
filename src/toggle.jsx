@@ -1,13 +1,16 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var Paper = require('./paper');
 var EnhancedSwitch = require('./enhanced-switch');
 
 var Toggle = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     onToggle: React.PropTypes.func,
@@ -23,6 +26,10 @@ var Toggle = React.createClass({
         (this.props.valueLink && this.props.valueLink.value) || 
         false,
     }
+  },
+
+  getTheme: function() {
+    return this.context.theme.toggle;
   },
 
   render: function() {
@@ -41,10 +48,9 @@ var Toggle = React.createClass({
         width: toggleTrackWidth,
         height: 14,
         borderRadius: 30,
-        opacity: this.state.switched ? 0.5 : 1,  
-        backgroundColor: this.props.disabled ? CustomVariables.toggleTrackDisabledColor :
-                         this.state.switched ? CustomVariables.toggleTrackOnColor : 
-                         CustomVariables.toggleTrackOffColor
+        backgroundColor: this.props.disabled ? this.getTheme().trackDisabledColor :
+                         this.state.switched ? this.getTheme().trackOnColor : 
+                         this.getTheme().trackOffColor
     };
     var thumbStyles = {
         transition: Transitions.easeOut(),
@@ -55,20 +61,20 @@ var Toggle = React.createClass({
         height: toggleSize,
         lineHeight: '24px',
         borderRadius: '50%',
-        backgroundColor: this.props.disabled ? CustomVariables.toggleThumbDisabledColor :
-                         this.state.switched ? CustomVariables.toggleThumbOnColor : 
-                         CustomVariables.toggleThumbOffColor
+        backgroundColor: this.props.disabled ? this.getTheme().thumbDisabledColor :
+                         this.state.switched ? this.getTheme().thumbOnColor : 
+                         this.getTheme().thumbOffColor
     };
 
     if (this.state.switched) {
-      trackStyles.backgroundColor = CustomVariables.toggleTrackOnColor;
-      thumbStyles.backgroundColor = CustomVariables.toggleTrackOnColor;
+      trackStyles.backgroundColor = this.getTheme().trackOnColor;
+      thumbStyles.backgroundColor = this.getTheme().thumbOnColor;
       thumbStyles.left = 18;
     }
 
     if (this.props.disabled) {
-      trackStyles.backgroundColor = CustomVariables.toggleTrackDisabledColor;
-      thumbStyles.backgroundColor = CustomVariables.toggleThumbDisabledColor;
+      trackStyles.backgroundColor = this.getTheme().trackDisabledColor;
+      thumbStyles.backgroundColor = this.getTheme().thumbDisabledColor;
     }
 
     var toggleElement = (

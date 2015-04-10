@@ -1,21 +1,20 @@
 var React = require('react');
 var EnhancedSwitch = require('./enhanced-switch');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
+var Transitions = require('./styles/transitions');
 var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank');
 var CheckboxChecked = require('./svg-icons/toggle-check-box-checked');
-var CustomVariables = require('./styles/variables/custom-variables');
 
 var Checkbox = React.createClass({
 
   mixins: [StylePropable],
 
-  propTypes: {
-    onCheck: React.PropTypes.func,
-  },
-
   contextTypes: {
     theme: React.PropTypes.object
+  },
+
+  propTypes: {
+    onCheck: React.PropTypes.func,
   },
 
   getInitialState: function() {
@@ -26,6 +25,10 @@ var Checkbox = React.createClass({
         (this.props.valueLink && this.props.valueLink.value) || 
         false,
     }
+  },
+
+  getTheme: function() {
+    return this.context.theme.checkbox;
   },
 
   render: function() {
@@ -48,13 +51,13 @@ var Checkbox = React.createClass({
         transitionOrigin: '50% 50%',
         transition: Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' + 
                     Transitions.easeOut('0ms', 'transform', '450ms'),
-        fill: CustomVariables.checkboxCheckedColor   
+        fill: this.getTheme().checkedColor   
     }
 
     var boxStyles = {
         position: 'absolute',
         opacity: 1,
-        fill: CustomVariables.checkboxBoxColor,          
+        fill: this.getTheme().boxColor,          
         transition: Transitions.easeOut('2s', null, '200ms') 
     }
 
@@ -67,13 +70,13 @@ var Checkbox = React.createClass({
         });
       boxStyles = this.mergeStyles(boxStyles, {
           transition: Transitions.easeOut('100ms', null, '0ms'),
-          fill: CustomVariables.checkboxCheckedColor
+          fill: this.getTheme().checkedColor
         });
     }
 
     if (this.props.disabled) {
-      checkStyles.fill = CustomVariables.disabledColor;
-      boxStyles.fill = CustomVariables.disabledColor;
+      checkStyles.fill = this.getTheme().disabledColor;
+      boxStyles.fill = this.getTheme().disabledColor;
     }
 
     if (this.state.switched && this.props.disabled) boxStyles.opacity = 0;

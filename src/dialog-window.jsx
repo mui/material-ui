@@ -3,8 +3,7 @@ var WindowListenable = require('./mixins/window-listenable');
 var CssEvent = require('./utils/css-event');
 var KeyCode = require('./utils/key-code');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var FlatButton = require('./flat-button');
 var Overlay = require('./overlay');
 var Paper = require('./paper');
@@ -12,6 +11,10 @@ var Paper = require('./paper');
 var DialogWindow = React.createClass({
 
   mixins: [WindowListenable, StylePropable],
+  
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     actions: React.PropTypes.array,
@@ -84,10 +87,10 @@ var DialogWindow = React.createClass({
       transition: Transitions.easeOut(),
       position: 'relative',
       width: '75%',
-      maxWidth: (CustomVariables.spacing.desktopKeylineIncrement * 12),
+      maxWidth: (this.getSpacing().desktopKeylineIncrement * 12),
       margin: '0 auto',
       zIndex: 10,
-      background: CustomVariables.canvasColor,
+      background: this.getTheme().palette.canvasColor,
       opacity: 0,
     };
 
@@ -95,11 +98,19 @@ var DialogWindow = React.createClass({
       style = this.mergeStyles(style, {
         opacity: 1,
         top: 0,
-        transform: 'translate3d(0, ' + CustomVariables.spacing.desktopKeylineIncrement + 'px, 0)',
+        transform: 'translate3d(0, ' + this.getSpacing().desktopKeylineIncrement + 'px, 0)',
       });
     }
 
     return this.mergeAndPrefix(style, this.props.contentStyle);
+  },
+
+  getTheme: function() {
+    return this.context.theme;
+  },
+
+  getSpacing: function() {
+    return this.context.theme.spacing;
   },
 
   render: function() {

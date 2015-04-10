@@ -1,21 +1,28 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var CustomVariables = require('../styles/variables/custom-variables');
 
 var ToolbarTitle = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
     text: React.PropTypes.string,
+  },
+
+  getTheme: function() {
+    return this.context.theme.toolbar;
   },
 
   render: function() {
 
     var styles = this.mergeAndPrefix({
-      paddingRight: CustomVariables.spacing.desktopGutterLess,
-      lineHeight: CustomVariables.toolbarHeight + 'px',
-      fontSize: CustomVariables.toolbarTitleFontSize + 'px',
+      paddingRight: this.context.theme.spacing.desktopGutterLess,
+      lineHeight: this.getTheme().height + 'px',
+      fontSize: this.getTheme().titleFontSize + 'px',
       display: 'inline-block',
       position: 'relative',
     });

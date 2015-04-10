@@ -1,8 +1,7 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var WindowListenable = require('./mixins/window-listenable');
 var Overlay = require('./overlay');
 var Paper = require('./paper');
@@ -60,16 +59,16 @@ var LeftNav = React.createClass({
   _main: function() {
     var style = {
       height: '100%',
-      width: CustomVariables.leftNavWidth,
+      width: this.getTheme().width,
       position: 'fixed',
       zIndex: 10,
       left: 0,
       top: 0,
       transition: Transitions.easeOut(),
-      backgroundColor: CustomVariables.leftNavColor,
+      backgroundColor: this.getTheme().color,
     };
 
-    var x = ((-1 * CustomVariables.leftNavWidth) - 10) + 'px';
+    var x = ((-1 * this.getTheme().width) - 10) + 'px';
     if (!this.state.open) style.transform = 'translate3d(' + x + ', 0, 0)';
 
     return this.mergeAndPrefix(style);
@@ -77,8 +76,8 @@ var LeftNav = React.createClass({
 
   _menuItem: function() {
     return {
-      height: CustomVariables.spacing.desktopLeftNavMenuItemHeight,
-      lineDeight: CustomVariables.spacing.desktopLeftNavMenuItemHeight,
+      height: this.context.theme.spacing.desktopLeftNavMenuItemHeight,
+      lineDeight: this.context.theme.spacing.desktopLeftNavMenuItemHeight,
     };
   },
 
@@ -86,8 +85,16 @@ var LeftNav = React.createClass({
     return this.mergeAndPrefix({
       display: 'block',
       textDecoration: 'none',
-      color: this.context.theme.textColor,
+      color: this.getThemePalette().textColor,
     }, this._menuItem());
+  },
+
+  getThemePalette: function() {
+    return this.context.theme.palette;
+  },
+
+  getTheme: function() {
+    return this.context.theme.leftNav;
   },
 
   render: function() {

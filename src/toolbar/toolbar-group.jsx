@@ -1,10 +1,14 @@
 var React = require('react');
+var Colors = require('../styles/colors');
 var StylePropable = require('../mixins/style-propable');
-var CustomVariables = require('../styles/variables/custom-variables');
 
 var ToolbarGroup = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     className: React.PropTypes.string,
@@ -24,12 +28,12 @@ var ToolbarGroup = React.createClass({
     var style = {
       main: {
         float: 'left',
-        color: CustomVariables.colors.lightBlack,// removes hover color change, we want to keep it
+        color: Colors.lightBlack,// removes hover color change, we want to keep it
         display: 'inline-block',
-        marginRight: CustomVariables.spacing.desktopGutter,
+        marginRight: this.getSpacing(),
       },
       controlBg: {  
-        backgroundColor: CustomVariables.toolbarMenuHoverColor,
+        backgroundColor: this.getTheme().menuHoverColor,
         borderRadius: 0,
       },
       underline: {
@@ -41,8 +45,8 @@ var ToolbarGroup = React.createClass({
   },
 
   _button: function (){
-    var marginVertical = (CustomVariables.toolbarHeight - CustomVariables.buttonHeight) / 2;
-    var marginHorizontal = CustomVariables.spacing.desktopGutter;
+    var marginVertical = (this.getTheme().height - this.context.theme.button.height) / 2;
+    var marginHorizontal = this.getSpacing();
     return {
       float: 'left',
       margin: marginVertical + 'px ' + marginHorizontal + 'px',
@@ -55,13 +59,13 @@ var ToolbarGroup = React.createClass({
       main: {
         float: 'left',
         cursor: 'pointer',
-        color: CustomVariables.toolbarIconColor,
-        lineHeight: CustomVariables.toolbarHeight + 'px',
-        paddingLeft: CustomVariables.spacing.desktopGutter,
+        color: this.getTheme().iconColor,
+        lineHeight: this.getTheme().height + 'px',
+        paddingLeft: this.getSpacing(),
       },
       hover: {
         zIndex: 1,
-        color: CustomVariables.colors.darkBlack,
+        color: Colors.darkBlack,
       }
     };
   },
@@ -69,11 +73,18 @@ var ToolbarGroup = React.createClass({
   _span: function() {
     return {
         float: 'left',
-        color: CustomVariables.toolbarIconColor,
-        lineHeight: CustomVariables.toolbarHeight + 'px',
+        color: this.getTheme().iconColor,
+        lineHeight: this.getTheme().height + 'px',
       };
   },
 
+  getTheme: function() {
+    return this.context.theme.toolbar;
+  },
+
+  getSpacing: function() {
+    return this.context.theme.spacing.desktopGutter;
+  },
 
   render: function() {
 

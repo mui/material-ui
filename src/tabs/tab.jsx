@@ -15,14 +15,15 @@ var Tab = React.createClass({
     selected: React.PropTypes.bool
   },
 
-
   handleTouchTap: function(){
     this.props.handleTouchTap(this.props.tabIndex, this);
   },
 
-  render: function(){
-    console.log('tab theme', this.context.theme)
+  getTheme: function() {
+    return this.context.theme.palette;
+  },
 
+  render: function(){
     var styles = this.mergeAndPrefix({
       'display': 'inline-block',
       'height': '100%',
@@ -33,7 +34,7 @@ var Tab = React.createClass({
       'opacity': '.6',
       'fontSize': '14sp',
       'fontWeight': '500',
-      'font': this.context.theme.fontFamily,
+      'font': this.getTheme().fontFamily,
       'width': this.props.width
     });
 

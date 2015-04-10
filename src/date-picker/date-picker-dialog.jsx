@@ -2,7 +2,6 @@ var React = require('react');
 var StylePropable = require('../mixins/style-propable');
 var WindowListenable = require('../mixins/window-listenable');
 var KeyCode = require('../utils/key-code');
-var CustomVariables = require('../styles/variables/custom-variables.js');
 var Calendar = require('./calendar');
 var DialogWindow = require('../dialog-window');
 var FlatButton = require('../flat-button');
@@ -10,6 +9,10 @@ var FlatButton = require('../flat-button');
 var DatePickerDialog = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     initialDate: React.PropTypes.object,
@@ -39,7 +42,7 @@ var DatePickerDialog = React.createClass({
     var styles = {
       root: {
         fontSize: '14px',
-        color: CustomVariables.datePickerCalendarTextColor
+        color: this.context.theme.datePicker.calendarTextColor
       },
       
       dialogContents: {

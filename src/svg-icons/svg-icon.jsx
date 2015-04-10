@@ -26,7 +26,7 @@ var SvgIcon = React.createClass({
       height: '24px',
       width: '24px',
       userSelect: 'none',
-      fill: this.context.theme.textColor
+      fill: this.getTheme().textColor
     });
 
     if (this.state.isHovered && this.props.hoverStyle) {
@@ -34,6 +34,10 @@ var SvgIcon = React.createClass({
     }
 
     return style;
+  },
+
+  getTheme: function() {
+    return this.context.theme.palette;
   },
 
   render: function() {

@@ -3,14 +3,17 @@ var Paper = require('./paper');
 var Classable = require('./mixins/classable');
 var StylePropable = require('./mixins/style-propable');
 var Draggable = require('react-draggable2');
-var Transitions = require('./styles/mixins/transitions.js');
-var CustomVariables = require('./styles/variables/custom-variables.js');
+var Transitions = require('./styles/transitions.js');
 var FocusRipple = require('./ripples/focus-ripple');
 var Paper = require('./paper');
 
 var Slider = React.createClass({
 
   mixins: [Classable, StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     required: React.PropTypes.bool,
@@ -63,7 +66,7 @@ var Slider = React.createClass({
       touchCallout: 'none',
       userSelect: 'none',
       cursor: 'default',
-      height: CustomVariables.sliderHandleSizeActive,
+      height: this.getTheme().handleSizeActive,
       position: 'relative',
       marginTop: 24,
       marginBottom: 48
@@ -73,10 +76,10 @@ var Slider = React.createClass({
   track: function() {
     return {
       position: 'absolute',
-      top: (CustomVariables.sliderHandleSizeActive - CustomVariables.sliderTrackSize) / 2,
+      top: (this.getTheme().handleSizeActive - this.getTheme().trackSize) / 2,
       left: 0,
       width: '100%',
-      height: CustomVariables.sliderTrackSize
+      height: this.getTheme().trackSize
     }
   },
 
@@ -93,8 +96,8 @@ var Slider = React.createClass({
     return this.mergeAndPrefix(this.filledAndRemaining(), {
       left: 0,
       backgroundColor: (this.props.disabled) ? 
-        CustomVariables.sliderTrackColor : 
-        CustomVariables.sliderSelectionColor,
+        this.getTheme().trackColor : 
+        this.getTheme().selectionColor,
       marginRight: fillGutter,
       width: (this.state.percent * 100) + (this.props.disabled ? -2 : 0) + '%'
     });
@@ -103,7 +106,7 @@ var Slider = React.createClass({
   remaining: function(fillGutter) {
     return this.mergeAndPrefix(this.filledAndRemaining(), {
       right: 0,
-      backgroundColor: CustomVariables.sliderTrackColor,
+      backgroundColor: this.getTheme().trackColor,
       marginLeft: fillGutter,
       width: ((1 - this.state.percent) * 100) + (this.props.disabled ? -2 : 0) + '%'
     });
@@ -125,13 +128,13 @@ var Slider = React.createClass({
       position: 'absolute',
       cursor: 'pointer',
       pointerEvents: 'inherit',
-      top: ((CustomVariables.sliderHandleSizeActive - CustomVariables.sliderTrackSize) / 2) + 'px',
+      top: ((this.getTheme().handleSizeActive - this.getTheme().trackSize) / 2) + 'px',
       left: '0%',
       zIndex: 1,
-      margin: (CustomVariables.sliderTrackSize / 2) + 'px 0 0 0',   
-      width: CustomVariables.sliderHandleSize,
-      height: CustomVariables.sliderHandleSize,
-      backgroundColor: CustomVariables.sliderSelectionColor,
+      margin: (this.getTheme().trackSize / 2) + 'px 0 0 0',   
+      width: this.getTheme().handleSize,
+      height: this.getTheme().handleSize,
+      backgroundColor: this.getTheme().selectionColor,
       backgroundClip: 'padding-box',
       border: '0px solid transparent',
       borderRadius: '50%',
@@ -145,12 +148,12 @@ var Slider = React.createClass({
   },
 
   disabledHandle: function() {
-    var size = CustomVariables.sliderHandleSize + CustomVariables.sliderTrackSize;
+    var size = this.getTheme().handleSize + this.getTheme().trackSize;
     var style = {
       cursor: 'not-allowed',
-      backgroundColor: CustomVariables.sliderTrackColor,
-      width: CustomVariables.sliderHandleSizeDisabled,
-      height: CustomVariables.sliderHandleSizeDisabled,
+      backgroundColor: this.getTheme().trackColor,
+      width: this.getTheme().handleSizeDisabled,
+      height: this.getTheme().handleSizeDisabled,
       border: '2px solid white'
     };
 
@@ -163,16 +166,16 @@ var Slider = React.createClass({
   },
 
   percentZeroHandle: function() {
-    var size = CustomVariables.sliderHandleSize + CustomVariables.sliderTrackSize;
+    var size = this.getTheme().handleSize + this.getTheme().trackSize;
     var style = {
-      border: CustomVariables.sliderTrackSize + 'px solid ' + CustomVariables.sliderTrackColor,
-      backgroundColor: CustomVariables.sliderHandleFillColor,
+      border: this.getTheme().trackSize + 'px solid ' + this.getTheme().trackColor,
+      backgroundColor: this.getTheme().handleFillColor,
       boxShadow: 'none'
     };
 
     if ((this.state.hovered) && !this.props.disabled) {
       style = this.mergeAndPrefix(style, {
-        border: CustomVariables.sliderTrackSize + 'px solid ' + CustomVariables.sliderHandleColorZero,
+        border: this.getTheme().trackSize + 'px solid ' + this.getTheme().handleColorZero,
         width: size,
         height: size
       });
@@ -183,9 +186,9 @@ var Slider = React.createClass({
 
   activeHandle: function() {
     return {
-      borderColor: CustomVariables.sliderTrackColorSelected,
-      width: CustomVariables.sliderHandleSizeActive,
-      height: CustomVariables.sliderHandleSizeActive,
+      borderColor: this.getTheme().trackColorSelected,
+      width: this.getTheme().handleSizeActive,
+      height: this.getTheme().handleSizeActive,
       transition:
         Transitions.easeOut('450ms', 'backgroundColor') + ',' +
         Transitions.easeOut('450ms', 'width') + ',' +
@@ -202,13 +205,17 @@ var Slider = React.createClass({
     }
   },
 
+  getTheme: function() {
+    return this.context.theme.slider;
+  },
+
   render: function() {
     var classes = this.getClasses('mui-input', {
       'mui-error': this.props.error != null
     });
 
-    var gutter = (CustomVariables.sliderHandleSizeDisabled + CustomVariables.sliderTrackSize) / 2;
-    var fillGutter = CustomVariables.sliderHandleSizeDisabled - CustomVariables.sliderTrackSize;
+    var gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
+    var fillGutter = this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
     var percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
     
@@ -227,7 +234,7 @@ var Slider = React.createClass({
         style={{height: '12px'}}
         innerStyle={this.ripples('focus')} 
         color={this.state.percent === 0 ? 
-          CustomVariables.sliderHandleColorZero : CustomVariables.sliderRippleColor}
+          this.getTheme().handleColorZero : this.getTheme().rippleColor}
         show={rippleShowCondition}/>
     );
 
@@ -238,7 +245,7 @@ var Slider = React.createClass({
     } else if (this.state.active) {
       handleStyles = this.mergeAndPrefix(handleStyles, this.activeHandle());
     } else if (this.state.hovered || this.state.focused) {
-      remainingStyles.backgroundColor = CustomVariables.sliderTrackColorSelected;
+      remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
     }
 
     if (percent === 0) {

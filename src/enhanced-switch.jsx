@@ -2,9 +2,9 @@ var React = require('react');
 var KeyCode = require('./utils/key-code');
 var DomIdable = require('./mixins/dom-idable');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
+var Transitions = require('./styles/transitions');
 var WindowListenable = require('./mixins/window-listenable');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Spacing = require('./styles/spacing');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 var Paper = require('./paper');
@@ -87,6 +87,10 @@ var EnhancedSwitch = React.createClass({
     if (newState.switched != undefined && (newState.switched != this.props.switched)) this.props.onParentShouldUpdate(newState.switched);
   },
 
+  getTheme: function() {
+    return this.context.theme.palette;
+  },
+
   render: function() {
     var {
       type,
@@ -107,7 +111,7 @@ var EnhancedSwitch = React.createClass({
       ...other
     } = this.props;
 
-    var switchWidth = 60 - CustomVariables.spacing.desktopGutterLess;
+    var switchWidth = 60 - Spacing.desktopGutterLess;
     var labelWidth = this.state.parentWidth - 60;
 
     var styles = this.mergeStyles({
@@ -139,9 +143,9 @@ var EnhancedSwitch = React.createClass({
         display: 'table-column',
         width: switchWidth,
         marginRight: (this.props.labelPosition == 'right') ? 
-          CustomVariables.spacing.desktopGutterLess : 0,
+          Spacing.desktopGutterLess : 0,
         marginLeft: (this.props.labelPosition == 'left') ? 
-          CustomVariables.spacing.desktopGutterLess : 0
+          Spacing.desktopGutterLess : 0
     }, this.props.iconStyle);
 
     var labelStyles = {
@@ -203,7 +207,7 @@ var EnhancedSwitch = React.createClass({
         ref="touchRipple"
         key="touchRipple"
         style={rippleStyle}
-        color={this.props.switched ? this.context.theme.primary1Color : this.context.theme.textColor}
+        color={this.props.switched ? this.getTheme().primary1Color : this.getTheme().textColor}
         centerRipple={true} />
     );
 
@@ -211,7 +215,7 @@ var EnhancedSwitch = React.createClass({
       <FocusRipple
         key="focusRipple"
         innerStyle={rippleStyle}
-        color={this.props.switched ? this.context.theme.primary1Color : this.context.theme.textColor}
+        color={this.props.switched ? this.getTheme().primary1Color : this.getTheme().textColor}
         show={this.state.isKeyboardFocused} />
     );
 

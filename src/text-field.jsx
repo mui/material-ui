@@ -2,8 +2,7 @@ var React = require('react');
 var ColorManipulator = require('./utils/color-manipulator');
 var Colors = require('./styles/colors');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var DomIdable = require('./mixins/dom-idable');
 var EnhancedTextarea = require('./enhanced-textarea');
 
@@ -63,10 +62,15 @@ var TextField = React.createClass({
   },
 
   /** Styles */
+  getTheme: function() {
+    return m(Theme.palette, Theme.radioButton);
+  },
+
+
   errorColor: Colors.red500,
 
   _getDisabledTextColor: function() {
-    return ColorManipulator.fade(this.context.theme.textColor, 0.3);
+    return ColorManipulator.fade(this.getTheme().textColor, 0.3);
   },
 
   _main: function() {
@@ -77,7 +81,7 @@ var TextField = React.createClass({
       height: (this.props.floatingLabelText) ? 72 : 48,
       display: 'inline-block',
       position: 'relative',
-      fontFamily: CustomVariables.contentFontFamily,
+      fontFamily: this.context.theme.contentFontFamily,
       transition: Transitions.easeOut('200ms', 'height'),
     });
   },
@@ -101,8 +105,8 @@ var TextField = React.createClass({
       transformOrigin: 'left top',
    });
 
-    if (this.state.isFocused) style.color = this.context.theme.primary1Color;
-    if (this.state.hasValue) style.color = ColorManipulator.fade(this.context.theme.textColor, 0.5);
+    if (this.state.isFocused) style.color = this.getTheme().primary1Color;
+    if (this.state.hasValue) style.color = ColorManipulator.fade(this.getTheme().textColor, 0.5);
     if (this.state.isFocused || this.state.hasValue) style.transform = 'scale(0.75) translate3d(0, -18px, 0)';
     if (this.props.errorText && this.state.isFocused) style.color = this.errorColor;
 
@@ -138,7 +142,7 @@ var TextField = React.createClass({
       border: 'none',
       outline: 'none',
       backgroundColor: 'transparent',
-      color: this.context.theme.textColor,
+      color: this.getTheme().textColor,
       font: 'inherit',
     };
 
@@ -161,7 +165,7 @@ var TextField = React.createClass({
   _underline: function() {
     return {
       border: 'none',
-      borderBottom: 'solid 1px ' + CustomVariables.borderColor,
+      borderBottom: 'solid 1px ' + this.context.theme.borderColor,
       position: 'absolute',
       width: '100%',
       bottom: 8,
@@ -186,7 +190,7 @@ var TextField = React.createClass({
 
   _focusUnderline: function() {
     var style = this.mergeAndPrefix(this._underline(), {
-      borderBottom: 'solid 2px ' + this.context.theme.primary1Color,
+      borderBottom: 'solid 2px ' + this.getTheme().primary1Color,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut(),
     });
@@ -195,6 +199,10 @@ var TextField = React.createClass({
     if (this.props.errorText || this.state.isFocused) style.transform = 'scaleX(1)';
     
     return style;
+  },
+
+  getTheme: function() {
+    return this.context.theme.palette;
   },
 
   render: function() {

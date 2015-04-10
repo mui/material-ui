@@ -1,7 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Typography = require('./styles/core/typography');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Typography = require('./styles/typography');
 var IconButton = require('./icon-button');
 var NavigationMenu = require('./svg-icons/navigation-menu');
 var Paper = require('./paper');
@@ -9,6 +8,10 @@ var Paper = require('./paper');
 var AppBar = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     onMenuIconButtonTouchTap: React.PropTypes.func,
@@ -35,8 +38,8 @@ var AppBar = React.createClass({
     return this.mergeAndPrefix({
       zIndex: 5,
       width: '100%',
-      minHeight: CustomVariables.spacing.desktopKeylineIncrement,
-      backgroundColor: CustomVariables.appBarColor,
+      minHeight: this.getSpacing().desktopKeylineIncrement,
+      backgroundColor: this.getThemeVariables().color,
     });
   },
 
@@ -45,33 +48,33 @@ var AppBar = React.createClass({
       float: 'left',
       paddingTop: 0,
       letterSpacing: 0,
-      margin: '0px 0px 12px 0px',
       fontSize: '24px',
       fontWeight: Typography.fontWeightNormal,
-      color: CustomVariables.appBarTextColor,
-      lineHeight: CustomVariables.spacing.desktopKeylineIncrement + 'px',
+      color: this.getThemeVariables().textColor,
+      lineHeight: this.getSpacing().desktopKeylineIncrement + 'px',
     };
   },
 
   _iconButton: function() {
+    var iconButtonSize = this.context.theme.button.iconButtonSize;
     return {
       style: {
-        marginTop: (CustomVariables.appBarHeight - CustomVariables.iconButtonSize) / 2,
+        marginTop: (this.getThemeVariables().height - iconButtonSize) / 2,
         float: 'left',
         marginRight: 8,
         marginLeft: -16,
       },
       iconStyle: {
-        fill: CustomVariables.appBarTextColor,
-        color: CustomVariables.appBarTextColor,
+        fill: this.getThemeVariables().textColor,
+        color: this.getThemeVariables().textColor,
       }
     }
   },
 
   _paper: function() {
     return {
-      paddingLeft: CustomVariables.spacing.desktopGutter,
-      paddingRight: CustomVariables.spacing.desktopGutter,
+      paddingLeft: this.getSpacing().desktopGutter,
+      paddingRight: this.getSpacing().desktopGutter,
     };
   },
 
@@ -82,6 +85,14 @@ var AppBar = React.createClass({
                       'defined. Please use one or the other.';
         console.warn(warning);
     }
+  },
+
+  getSpacing: function() {
+    return this.context.theme.spacing;
+  },
+
+  getThemeVariables: function() {
+    return this.context.theme.appBar;
   },
 
   render: function() {
