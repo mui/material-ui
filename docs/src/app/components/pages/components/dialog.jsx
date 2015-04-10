@@ -10,7 +10,7 @@ var DialogPage = React.createClass({
 
   getInitialState: function() {
     return {
-      isModal: false
+      modal: false
     };
   },
 
@@ -146,7 +146,7 @@ var DialogPage = React.createClass({
           ref="standardDialog"
           title="Dialog With Standard Actions"
           actions={standardActions}
-          isModal={this.state.isModal}>
+          modal={this.state.modal}>
           The actions in this window are created from the json that's passed in.
         </Dialog>
 
@@ -154,7 +154,7 @@ var DialogPage = React.createClass({
           ref="customDialog"
           title="Dialog With Custom Actions"
           actions={customActions}
-          isModal={this.state.isModal}>
+          modal={this.state.modal}>
           The actions in this window were passed in as an array of react objects.
         </Dialog>
         
@@ -162,7 +162,7 @@ var DialogPage = React.createClass({
           <Toggle 
             label="Is Modal"
             onToggle={this._handleToggleChange}
-            defaultToggled={this.state.isModal}/>
+            defaultToggled={this.state.modal}/>
         </div>
 
       </ComponentDoc>
@@ -179,7 +179,7 @@ var DialogPage = React.createClass({
   },
   
   _handleToggleChange: function(e, toggled) {
-    this.setState({isModal: toggled});
+    this.setState({modal: toggled});
   },
 
   handleCustomDialogTouchTap: function() {
