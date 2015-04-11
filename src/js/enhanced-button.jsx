@@ -114,6 +114,7 @@ var EnhancedButton = React.createClass({
   },
 
   _handleBlur: function(e) {
+    this._cancelFocusTimeout();
     if (!this.props.disabled) {
       this.setState({
         isKeyboardFocused: false
@@ -128,7 +129,7 @@ var EnhancedButton = React.createClass({
       //setTimeout is needed becuase the focus event fires first
       //Wait so that we can capture if this was a keyboard focus
       //or touch focus
-      setTimeout(function() {
+      this._focusTimeout = setTimeout(function() {
         if (this._tabPressed) {
           this.setState({
             isKeyboardFocused: true
@@ -141,6 +142,7 @@ var EnhancedButton = React.createClass({
   },
 
   _handleTouchTap: function(e) {
+    this._cancelFocusTimeout();
     if (!this.props.disabled) {
       this._tabPressed = false;
       this.setState({
@@ -148,6 +150,13 @@ var EnhancedButton = React.createClass({
       });
      
       if (this.props.onTouchTap) this.props.onTouchTap(e);
+    }
+  },
+
+  cancelFocusTimeout: function () {
+    if (this._focusTimeout) {
+      clearTimeout(this._focusTimeout);
+      this._focusTimeout = null;
     }
   }
 
