@@ -110,7 +110,7 @@ var DatePickerDialog = React.createClass({
           this._handleOKTouchTap();
           break;
       }
-    } 
+    }
   }
 
 });
