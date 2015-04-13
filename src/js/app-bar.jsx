@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var Classable = require('./mixins/classable');
 var IconButton = require('./icon-button');
 var NavigationMenu = require('./svg-icons/navigation-menu');
@@ -6,7 +6,10 @@ var Paper = require('./paper');
 
 var AppBar = React.createClass({
 
-  mixins: [Classable],
+  mixins: [
+    Classable,
+    React.addons.PureRenderMixin,
+  ],
 
   propTypes: {
     onMenuIconButtonTouchTap: React.PropTypes.func,
@@ -27,7 +30,7 @@ var AppBar = React.createClass({
   },
 
   componentDidMount: function() {
-    if (process.NODE_ENV !== 'production' && 
+    if (process.NODE_ENV !== 'production' &&
        (this.props.iconElementLeft && this.props.iconClassNameLeft)) {
         var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
                       'defined. Please use one or the other.';
@@ -55,15 +58,15 @@ var AppBar = React.createClass({
     if (this.props.showMenuIconButton) {
       if (this.props.iconElementLeft) {
         menuElementLeft = (
-          <div className="mui-app-bar-navigation-icon-button"> 
-            {this.props.iconElementLeft} 
+          <div className="mui-app-bar-navigation-icon-button">
+            {this.props.iconElementLeft}
           </div>
         );
       } else {
         var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu/>;
         menuElementLeft = (
           <IconButton
-            className="mui-app-bar-navigation-icon-button" 
+            className="mui-app-bar-navigation-icon-button"
             iconClassName={this.props.iconClassNameLeft}
             onTouchTap={this._onMenuIconButtonTouchTap}>
               {child}
@@ -72,7 +75,7 @@ var AppBar = React.createClass({
       }
     }
 
-    menuElementRight = (this.props.children) ? this.props.children : 
+    menuElementRight = (this.props.children) ? this.props.children :
                        (this.props.iconElementRight) ? this.props.iconElementRight : '';
 
     return (

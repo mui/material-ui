@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var Classable = require('./mixins/classable');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
@@ -6,7 +6,10 @@ var Tooltip = require('./tooltip');
 
 var IconButton = React.createClass({
 
-  mixins: [Classable],
+  mixins: [
+    Classable,
+    React.addons.PureRenderMixin,
+  ],
 
   propTypes: {
     className: React.PropTypes.string,
@@ -20,7 +23,7 @@ var IconButton = React.createClass({
 
   getInitialState: function() {
     return {
-      tooltipShown: false 
+      tooltipShown: false
     };
   },
 
@@ -91,7 +94,9 @@ var IconButton = React.createClass({
   },
 
   _showTooltip: function() {
-    if (!this.props.disabled) this.setState({ tooltipShown: true });
+    if (!this.props.disabled && this.props.tooltip) {
+      this.setState({ tooltipShown: true });
+    }
   },
 
   _hideTooltip: function() {
