@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var Classable = require('../mixins/classable');
 var WindowListenable = require('../mixins/window-listenable');
 var KeyCode = require('../utils/key-code');
@@ -8,7 +8,11 @@ var FlatButton = require('../flat-button');
 
 var DatePickerDialog = React.createClass({
 
-  mixins: [Classable, WindowListenable],
+  mixins: [
+    Classable,
+    WindowListenable,
+    React.addons.PureRenderMixin,
+  ],
 
   propTypes: {
     initialDate: React.PropTypes.object,

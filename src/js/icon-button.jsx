@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var Classable = require('./mixins/classable');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
@@ -6,7 +6,10 @@ var Tooltip = require('./tooltip');
 
 var IconButton = React.createClass({
 
-  mixins: [Classable],
+  mixins: [
+    Classable,
+    React.addons.PureRenderMixin,
+  ],
 
   propTypes: {
     className: React.PropTypes.string,
