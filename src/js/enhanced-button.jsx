@@ -125,7 +125,7 @@ var EnhancedButton = React.createClass({
 
   _handleFocus: function(e) {
     if (!this.props.disabled) {
-      //setTimeout is needed becuase the focus event fires first
+      //setTimeout is needed because the focus event fires first
       //Wait so that we can capture if this was a keyboard focus
       //or touch focus
       setTimeout(function() {
