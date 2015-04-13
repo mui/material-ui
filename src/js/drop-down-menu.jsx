@@ -76,7 +76,7 @@ var DropDownMenu = React.createClass({
   },
 
   _setSelectedIndex: function(props) {
-    let selectedIndex = props.selectedIndex;
+    var selectedIndex = props.selectedIndex;
 
     if (process.NODE_ENV !== 'production' && selectedIndex < 0) {
       console.warn('Cannot set selectedIndex to a negative index.', selectedIndex);
