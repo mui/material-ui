@@ -61,7 +61,8 @@ var Calendar = React.createClass({
         height: weekCount === 5 ? '268px' :
           weekCount === 6 ? '308px' : '228px',
         float: isLandscape ? 'right' : 'none',
-        transition: Transitions.easeOut('150ms', 'height')
+        transition: Transitions.easeOut('150ms', 'height'),
+        overflow: 'hidden'
       },
 
       dateDisplay: {
