@@ -83,7 +83,7 @@ var DatePickerPage = React.createClass({
         componentInfo={componentInfo}>
 
         <DatePicker
-          hintText="Portrait Dialog" autoOk={true} />
+          hintText="Portrait Dialog" />
 
         <DatePicker
           hintText="Landscape Dialog"
