@@ -49,6 +49,10 @@ var DatePickerDialog = React.createClass({
         onTouchTap={this._handleOKTouchTap} />
     ];
 
+    if(this.props.autoOk){
+      actions = actions.slice(0, 1);
+    }
+
     return (
       <DialogWindow {...other}
         ref="dialogWindow"

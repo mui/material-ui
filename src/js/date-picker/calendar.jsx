@@ -68,6 +68,8 @@ var Calendar = React.createClass({
         <div
           className="mui-date-picker-calendar-container">
           <CalendarToolbar
+            minDate={this.props.minDate}
+            maxDate={this.props.maxDate} 
             displayDate={this.state.displayDate}
             onLeftTouchTap={this._handleLeftTouchTap}
             onRightTouchTap={this._handleRightTouchTap} />
