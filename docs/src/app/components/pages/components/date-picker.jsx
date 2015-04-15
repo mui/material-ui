@@ -40,6 +40,12 @@ var DatePickerPage = React.createClass({
             desc: 'Tells the component to display the picker in portrait or landscape mode.'
           },
           {
+            name: 'autoOk',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, automatically accept and close the picker on select a date.'
+          },
+          {
             name: 'maxDate',
             type: 'date object',
             header: 'optional',
