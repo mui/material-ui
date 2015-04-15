@@ -153,7 +153,7 @@ var EnhancedButton = React.createClass({
     }
   },
 
-  cancelFocusTimeout: function () {
+  _cancelFocusTimeout: function () {
     if (this._focusTimeout) {
       clearTimeout(this._focusTimeout);
       this._focusTimeout = null;
