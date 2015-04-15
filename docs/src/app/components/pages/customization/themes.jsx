@@ -2,6 +2,7 @@ var React = require('react');
 var mui = require('mui');
 var CodeBlock = require('../../code-example/code-block.jsx');
 var ComponentDoc = require('../../component-doc.jsx');
+var ComponentInfo = require('../../component-info.jsx');
 
 var {
   Checkbox,
@@ -29,6 +30,10 @@ class ThemesPage extends React.Component {
 
   constructor() {
     this.onTabChange = this.onTabChange.bind(this);
+    this.handleClickNav = this.handleClickNav.bind(this);
+    this.handleClickSnackbar = this.handleClickSnackbar.bind(this);
+    this.handleTouchTapDialog = this.handleTouchTapDialog.bind(this);
+    this.handleAction = this.handleAction.bind(this);
 
     this.state = {
       isThemeDark: false
@@ -43,33 +48,15 @@ class ThemesPage extends React.Component {
 
 	render() {
 
-    var usageCodeReact12 = 
+    var usageCode = 
           'var React = require(\'react\');\n' +
           'var mui = require(\'mui\');\n' +
           'var Theme = mui.Styles.Theme;\n' +
-          'var MainPage = React.createClass ({\n' +
-          '...\n' +
-          '  childContextTypes: {\n' +
-          '    theme: React.PropTypes.object\n' +
-          '  };\n\n' +
-          '  getChildContext: function() {\n' +
-          '    return {\n' +
-          '      theme: Theme.get()\n' +
-          '    }\n' +
-          '  }\n' +
-          '...\n' +
-          '};\n\n' +
-          'module.exports = MainPage;';
-
-    var usageCodeReact13 = 
-          'var React = require(\'react\');\n' +
-          'var mui = require(\'mui\');\n' +
-          'var Theme = mui.Styles.Theme;\n' +
-          'class MainPage extends React.Component {\n' +
+          'class RootComponent extends React.Component {\n' +
           '...\n' +
           '  getChildContext() {\n' +
           '    return {\n' +
-          '      theme: Theme.get()\n' +
+          '      theme: Theme.getCurrentTheme()\n' +
           '    }\n' +
           '  }\n' +
           '...\n' +
@@ -77,7 +64,7 @@ class ThemesPage extends React.Component {
           'Master.childContextTypes = {\n' +
           '  theme: React.PropTypes.object\n' +
           '};\n\n' +
-          'module.exports = MainPage;';
+          'module.exports = RootComponent;';
 
     var overridingThemeCode = 
           '  // \'Use getChildContext: function()\' for React v0.12 '
@@ -96,13 +83,26 @@ class ThemesPage extends React.Component {
           '    }\n' +
           '  }';
 
-    var componentInfo = [
+    var customComponentCode = 
+          'CustomReactComponent.contextTypes = {\n' +
+          '  theme: React.PropTypes.object\n' +
+          '}';
+
+    var desc = 'Themes give you further customization by allowing you to apply ' +
+               'changes across your entire website or for specific instances.';
+        
+    var info = [
       {
         name: 'Theme',
         infoArray: [
           {
-            name: 'set',
-            header: 'Theme.set(overrides)',
+            name: 'getCurrentTheme',
+            header: 'Theme.getCurrentTheme()',
+            desc: 'Returns the current theme being used by the context.'           
+          },
+          {
+            name: 'setTheme',
+            header: 'Theme.setTheme(newTheme)',
             desc: 'Sets the properties of the current theme with those defined ' +
                   'from the overrides object argument. Overriding properties of ' +
                   'Theme.palette (your primary and accent colors) will signal ' + 
@@ -111,205 +111,132 @@ class ThemesPage extends React.Component {
                   'made before '
           },
           {
-
+            name: 'setPalette',
+            header: 'Theme.setPalette(newPalette)',
+            desc: 'Updates the palette object of the current theme to use the ' +
+                  'properties defined in newPalette. The theme\'s component ' +
+                  'object is also updated to used the new palette, so it is ' +
+                  'important to call setPalette() before setComponentThemes().' +
+                  'setTheme() basically does handles this for you'  
+          },
+          {
+            name: 'setComponentThemes',
+            header: 'Theme.setComponentThemes(overrides)',
+            desc: 'Updates the component object of the current theme to use the ' +
+                  'properties defined in overrides.'            
           },
         ]
       }
     ];
 
+    var code = 
+      '// Toggles between light and dark themes\n' +
+      '// This function is passed as the \'onChange\' prop for Tabs\n' +
+      'onTabChange(tabIndex, tab) {\n' +
+      '  if (this.state.isThemeDark) {\n' +
+      '    Theme.setTheme(Theme.types.LIGHT);\n' +
+      '  } else {\n' +
+      '    Theme.setTheme(Theme.types.DARK);\n' +
+      '  }\n' +
+      '  this.setState({isThemeDark: !this.state.isThemeDark});\n' +
+      '}';
+
 		return (
-			<div className="app-content-canvas">
-        <h2 className="mui-font-style-headline">Themes</h2>
-        <p>
-          Themes give you further customization by allowing you to apply changes across 
-          your entire website or for specific instances. Here is an example:
-        </p>
+			<div>
 
-        <Paper className="code-example">
-          {this.getComponentExamples()}
-        </Paper>
+        <ComponentDoc
+          name="Themes"
+          code={code}
+          desc={desc}
+          componentInfo={info}>
+            {this.getThemeExamples()}
+        </ComponentDoc>
 
-        <h3 className="mui-font-style-title">Structure</h3>
-        <p>
-          Theme objects are composed of nested objects for each component along 
-          with a palette object containing colors used by all component:
-        </p>
-
-        <Paper>
-          <CodeBlock>{this.getThemeStructure()}</CodeBlock>
-        </Paper>
 
         <h3 className="mui-font-style-title">Usage</h3>
         <p>
           Material-UI&#39;s <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme.js">
           Theme component</a> uses React&#39;s <a href="https://facebook.github.io/react/blog/2014/03/28/the-road-to-1.0.html#context">
-          context</a> feature. Contexts in React are a way to pass values down from one component down to all 
-          of its grandchildren. Let&#39;s pass down our theme from our main page, so that all mui component 
-          used through-out the site can get access.
+          context</a> feature. Contexts in React pass values down from one component down to all of 
+          its grandchildren. Insert the following code in your outermost component, so that all 
+          Material-UI components used through-out the site can get access to the theme.
         </p>
-
-        <Tabs>
-            <Tab label='React v0.13'>
-              <Paper className="code-example">
-                <CodeBlock>{usageCodeReact13}</CodeBlock>
-              </Paper>
-            </Tab>
-            <Tab label='React v0.12'>
-              <Paper className="code-example">
-                <CodeBlock>{usageCodeReact12}</CodeBlock>
-              </Paper>
-            </Tab>
-        </Tabs>
-
+        <Paper className="code-example">
+          <CodeBlock>{usageCode}</CodeBlock>
+        </Paper>
         <p>
-          <b>Important:</b> The code above is required when using mui component. Without it, mui component will not 
-          have access to the default theme and will not render as a result.
+          <b>Important:</b> The code above is <u>required</u> when using Material-UI. Without it, 
+          Material-UI components will not have access to the default theme and will not render as 
+          a result. Keep in mind that the user is responsible for updating CSS classes to be in 
+          sync with theme properties, because Material-UI components only use inline-styles.
         </p>
+
+
+        <h3 className="mui-font-style-title">Custom Themes</h3>
+        <p>
+          To see an example containing all theme variables, checkout our <a href="https://github.com/callemall/material-ui/blob/master/src/styles/themes/light-theme.js">
+          light-theme</a>. The code-block below defines the structure needed to have a valid custom 
+          theme. Note that if a property is not defined in the custom theme, the default will be 
+          what is defined in our light theme.
+        </p>
+        <Paper>
+          <CodeBlock>{this.getThemeStructure()}</CodeBlock>
+        </Paper>
 
 
         <h3 className="mui-font-style-title">Overriding Theme Variables</h3>
         <p>
-          If we want to modify parts of our default theme. Simply use <b>Theme.set</b>
+          If you would only like override specific theme variables rather than pass a custom theme, 
+          use <code>setPalette()</code> or <code>setComponentThemes()</code> where appropriate.
         </p>
+
+        <Paper>
+          <CodeBlock>{this.getOverrideExample()}</CodeBlock>
+        </Paper>
+
+
+
+        <h3 className="mui-font-style-title">Giving Custom React Components Access to Theme</h3>
+        <p>
+          If you would only like to create a React component with access to Theme, include the code 
+          below at the end of your component&#39;s class definition. This is valid because the usage 
+          code mentioned earlier had been inserted in the outer most component. <a href='https://github.com/callemall/material-ui/blob/master/docs/src/app/components/code-example/code-example.jsx'>
+          CodeExample</a> is an example of a custom component using Theme. 
+        </p>
+        <Paper>
+          <CodeBlock>{customComponentCode}</CodeBlock>
+        </Paper>
+
       </div>
 		);
 	}
 
   getThemeStructure() {
     var text =
-      'palette: {\n' +
-      '  primary1Color,\n' +
-      '  primary2Color,\n' +
-      '  primary3Color,\n' +
-      '  accent1Color,\n' +
-      '  accent2Color,\n' +
-      '  accent3Color,\n' +
-      '  textColor,\n' +
-      '  canvasColor,\n' +
-      '  borderColor,\n' +
-      '  disabledColor\n' +
-      '},\n' +
-      'fontFamily,  \n' +
-      'appBar: {\n' +
-      '  color,\n' +
-      '  textColor,\n' +
-      '  height,\n' +
-      '},\n' +
-      'button: {\n' +
-      '  height,\n' +
-      '  minWidth,\n' +
-      '  iconButtonSize,\n' +
-      '},\n' +
-      'checkbox: {\n' +
-      '  boxColor,\n' +
-      '  checkedColor,\n' +
-      '  requiredColor,\n' +
-      '  disabledColor,\n' +
-      '};\n' +
-      'datePicker: {\n' +
-      '  color,\n' +
-      '  textColor,\n' +
-      '  calendarTextColor,\n' +
-      '  selectColor,\n' +
-      '  selectTextColor,\n' +
-      '},\n' +
-      'dropDownMenu: {\n' +
-      '  accentColor,\n' +
-      '},\n' +
-      'flatButton: {\n' +
-      '  color,\n' +
-      '  textColor,\n' +
-      '  primaryTextColor,\n' +
-      '  secondaryTextColor,\n' +
-      '  disabledTextColor\n' +
-      '},\n' +
-      'floatingActionButton: {\n' +
-      '  buttonSize,\n' +
-      '  miniSize,\n' +
-      '  color,\n' +
-      '  iconColor,\n' +
-      '  secondaryColor,\n' +
-      '  secondaryIconColor,\n' +
-      '  disabledColor,\n' +
-      '  disabledTextColor,\n' +
-      '},\n' +
-      'leftNav: {\n' +
-      '  width,\n' +
-      '  color,\n' +
-      '},\n' +
-      'menu: {\n' +
-      '  backgroundColor,\n' +
-      '  containerBackgroundColor,\n' +
-      '},\n' +
-      'menuItem: {\n' +
-      '  dataHeight,\n' +
-      '  height,\n' +
-      '  hoverColor,\n' +
-      '  padding,\n' +
-      '  selectedTextColor,\n' +
-      '},\n' +
-      'menuSubheader: {\n' +
-      '  padding,\n' +
-      '  borderColor,\n' +
-      '  textColor,\n' +
-      '},\n' +
-      'paper: {\n' +
-      '  backgroundColor,\n'
-      '},\n' +
-      'radioButton: {\n' +
-      '  borderColor,\n' +
-      '  backgroundColor\n' +
-      '  checkedColor,\n' +
-      '  requiredColor,\n' +
-      '  disabledColor,\n' +
-      '  size,\n' +
-      '},\n' +
-      'raisedButton: {\n' +
-      '  color,\n' +
-      '  textColor,\n' +
-      '  primaryColor,\n' +
-      '  primaryTextColor,\n' +
-      '  secondaryColor,\n' +
-      '  secondaryTextColor,\n' +
-      '  disabledColor,\n' +
-      '  disabledTextColor,\n' +
-      '},\n' +
-      'slider: {\n' +
-      '  trackSize,\n' +
-      '  trackColor,\n' +
-      '  trackColorSelected,\n' +
-      '  handleSize,\n' +
-      '  handleSizeActive,\n' +
-      '  handleSizeDisabled,\n' +
-      '  handleColorZero,\n' +
-      '  handleFillColor,\n' +
-      '  selectionColor,\n' +
-      '  rippleColor,\n' +
-      '},\n' +
-      'snackbar: {\n' +
-      '  textColor,\n' +
-      '  backgroundColor,\n' +
-      '  actionColor\n' +
-      '},\n' +
-      'toggle: {\n' +
-      '  thumbOnColor,\n' +
-      '  thumbOffColor,\n' +
-      '  thumbDisabledColor,\n' +
-      '  thumbRequiredColor,\n' +
-      '  trackOnColor,\n' +
-      '  trackOffColor,\n' +
-      '  trackDisabledColor,\n' +
-      '  trackRequiredColor\n' +
-      '},\n' +
-      'toolbar: {\n' +
-      '  backgroundColor,\n' +
-      '  height,\n' +
-      '  titleFontSize,\n' +
-      '  iconColor,\n' +
-      '  separatorColor,\n' +
-      '  menuHoverColor,\n' +
-      '  menuHoverColor,\n' +
-      '}\n';
+      'var CustomTheme = {\n' +
+      '  getPalette: function() {\n' +
+      '    return {\n' +  
+      '      // Define palette property overrides here. For example:\n' +
+      '      canvasColor: \'#303030\',\n' +
+      '    };\n' +
+      '  },\n' +
+      '  getComponentThemes: function() {\n' +
+      '    return {\n' +
+      '      // Define component property overrides. For example:\n' +
+      '      floatingActionButton: {\n' +
+      '        disabledColor: ColorManipulator.fade(this.palette.textColor, 0.12)\n' +
+      '      },\n' +
+      '      slider: {\n' +
+      '        trackColor: Colors.minBlack,\n' +
+      '        handleColorZero: cardColor,\n' +
+      '        handleFillColor: cardColor,\n' +
+      '        selectionColor: Colors.cyan200,\n' +
+      '      }\n' +
+      '    };\n' +
+      '  }\n' +
+      '}\n\n' +
+      '// Initializing our component object\n' +
+      'CustomTheme.component = CustomTheme.getComponentThemes();';
       return text;
   }
 
@@ -320,7 +247,7 @@ class ThemesPage extends React.Component {
       { text: 'Submit', onClick: this._onDialogSubmit }
     ];
 
-    var menuItems = [
+    var menuItemsNav = [
       { route: 'get-started', text: 'Get Started' },
       { route: 'customization', text: 'Customization' },
       { route: 'component', text: 'Component' },
@@ -408,8 +335,8 @@ class ThemesPage extends React.Component {
                     label="Euro"
                     defaultChecked={true} />
                  <RadioButton
-                    value="jpy"
-                    label="JPY"
+                    value="mxn"
+                    label="MXN"
                     disabled={true}/>
               </RadioButtonGroup>
             </div>
@@ -461,7 +388,7 @@ class ThemesPage extends React.Component {
               <FlatButton
                   onTouchTap={this.handleClickNav}
                   label="View LeftNav" />
-              <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+              <LeftNav ref="leftNav" docked={false} menuItems={menuItemsNav} />
             </div>
           </div>
           
@@ -481,7 +408,7 @@ class ThemesPage extends React.Component {
     );
   }
 
-  getComponentExamples() {
+  getThemeExamples() {
     return (
       <Tabs onChange={this.onTabChange}>
         <Tab label='Light Theme (Default)'>
@@ -494,6 +421,34 @@ class ThemesPage extends React.Component {
     );
   }
 
+  getOverrideExample() {
+
+    var theme1 = Theme.getCurrentTheme();
+
+
+
+    return (
+      <div className="component-examples">
+        <div className="component-examples-group">
+          <div className="component-examples-container">
+            <RaisedButton label="Override 1"/>
+          </div>
+        </div>
+        <div className="component-examples-group">
+          <div className="component-examples-container">
+            <RaisedButton label="Override 2"/>
+          </div>
+        </div>
+        <div className="component-examples-group">
+          <div className="component-examples-container">
+            <RaisedButton label="Override 3"/>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+
   // Toggles between light and dark themes
   onTabChange(tabIndex, tab) {
     if (this.state.isThemeDark) {
@@ -504,12 +459,12 @@ class ThemesPage extends React.Component {
     this.setState({isThemeDark: !this.state.isThemeDark});
   }
 
-  handleAction() {
-    alert("We removed the event from your calendar.");
+  handleAction(e) {
+    this.refs.snackbar.dismiss();
   }
 
   handleClickNav(e) {
-    this.refs.leftNav.show();
+    this.refs.leftNav.toggle();
   }
 
   handleClickSnackbar(e) {

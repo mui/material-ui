@@ -7,8 +7,8 @@ var Types = {
   DARK: require('./themes/dark-theme')
 };
 
-var Theme = (function(){
-  var instance; 
+var Theme = function() {
+  var instance;
 
   /** 
   *  A recursive merge between two objects. Keep in mind that overriding the 
@@ -26,34 +26,31 @@ var Theme = (function(){
   *                     should have the same structure as the theme object.
   */
   var merge = function(theme, overrides) {
-    var keys = Object.keys(overrides);
-    for (var keyIndex in keys) {
-      var currentKey = keys[keyIndex];
-      if (typeof(overrides[currentKey]) === 'object') {
+    Object.keys(overrides).forEach(function(currentKey) {
+      var overridesCheck = overrides[currentKey] && !Array.isArray(overrides[currentKey]);
+      if (typeof(overrides[currentKey]) === 'object' && overridesCheck) {
         merge(theme[currentKey], overrides[currentKey]);
       } else {
         theme[currentKey] = overrides[currentKey];
       }
-    }
+    });
   };
 
   return {
     types: Types,
 
     getCurrentTheme: function() {
-      if (!instance) {
-        instance = Object.create(Types.LIGHT);
-      }
+      if (!instance) instance = Object.create(Types.LIGHT);
       return instance;
     },
 
     setTheme: function(newTheme) {
-      this.setPalette(newTheme.palette);
-      this.setComponentThemes(newTheme.component);
+      this.setPalette(newTheme.getPalette());
+      this.setComponentThemes(newTheme.getComponentThemes());
     },
 
     setPalette: function(newPalette) {
-      instance.palette = newPalette;
+      merge(instance.palette, newPalette);
       instance.component = instance.getComponentThemes();
     },
 
@@ -61,6 +58,6 @@ var Theme = (function(){
       merge(instance.component, overrides);
     }
   };
-});
+};
 
-module.exports = Theme();
+module.exports = new Theme();

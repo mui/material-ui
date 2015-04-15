@@ -4,51 +4,45 @@ var ColorManipulator = require('../../utils/color-manipulator');
 
 /**
  *  Light Theme is the default theme used in material-ui. It is guaranteed to
- *  have all theme variables needed for every component. 
+ *  have all theme variables needed for every component. Variables not defined 
+ *  in a custom theme will default to these values.
  */
 
 var LightTheme = {
-
   spacing: Spacing,
   fontFamily: 'Roboto, sans-serif',
-
-  palette: {
-    primary1Color: Colors.cyan500,
-    primary2Color: Colors.cyan700,
-    primary3Color: Colors.cyan100,
-    accent1Color: Colors.pinkA200,
-    accent2Color: Colors.pinkA400,
-    accent3Color: Colors.pinkA100,
-    textColor: Colors.darkBlack,
-    canvasColor: Colors.white,
-    borderColor: Colors.grey300,
-    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
+  getPalette: function() {
+    return {
+      primary1Color: Colors.cyan500,
+      primary2Color: Colors.cyan700,
+      primary3Color: Colors.cyan100,
+      accent1Color: Colors.pinkA200,
+      accent2Color: Colors.pinkA400,
+      accent3Color: Colors.pinkA100,
+      textColor: Colors.darkBlack,
+      canvasColor: Colors.white,
+      borderColor: Colors.grey300,
+      disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
+    };
   },
-
   getComponentThemes: function() {
-    console.log('getComponentVariables LIGHT');
-
     var obj = {
-      
       appBar: {
         color: this.palette.primary1Color,
         textColor: Colors.darkWhite,
         height: Spacing.desktopKeylineIncrement
       },
-
       button: {
         height: 36,
         minWidth: 88,
         iconButtonSize: Spacing.iconSize * 2
       },
-
       checkbox: {
         boxColor: this.palette.textColor,
         checkedColor: this.palette.primary1Color,
         requiredColor: this.palette.primary1Color,
         disabledColor: this.palette.disabledColor
       },
-
       datePicker: {
         color: this.palette.primary1Color,
         textColor: Colors.white,
@@ -56,18 +50,15 @@ var LightTheme = {
         selectColor: this.palette.primary2Color,
         selectTextColor: Colors.white
       },
-
       dropDownMenu: {
         accentColor: this.palette.borderColor
       },
-
       flatButton: {
         color: this.palette.canvasColor,
         textColor: this.palette.textColor,
         primaryTextColor: this.palette.accent1Color,
         secondaryTextColor: this.palette.primary1Color,
       },
-
       floatingActionButton: {
         buttonSize: 56,
         miniSize: 40,
@@ -76,17 +67,14 @@ var LightTheme = {
         secondaryColor: this.palette.primary1Color,
         secondaryIconColor: Colors.white,
       },
-
       leftNav: {
         width: Spacing.desktopKeylineIncrement * 4,
         color: Colors.white
       },
-
       menu: {
         backgroundColor: Colors.white,
         containerBackgroundColor: Colors.white,
       },
-
       menuItem: {
         dataHeight: 32,
         height: 48,
@@ -94,17 +82,14 @@ var LightTheme = {
         padding: Spacing.desktopGutter,
         selectedTextColor: this.palette.accent1Color,
       },
-
       menuSubheader: {
         padding: Spacing.desktopGutter,
         borderColor: this.palette.borderColor,
         textColor: this.palette.primary1Color
       },
-
       paper: {
         backgroundColor: Colors.white,
       },
-
       radioButton: {
         borderColor:  this.palette.textColor,
         backgroundColor: Colors.white,
@@ -113,7 +98,6 @@ var LightTheme = {
         disabledColor: this.palette.disabledColor,
         size: 24,
       },
-
       raisedButton: {
         color: Colors.white,
         textColor: this.palette.textColor,
@@ -122,7 +106,6 @@ var LightTheme = {
         secondaryColor: this.palette.primary1Color,
         secondaryTextColor: Colors.white
       },
-
       slider: {
         trackSize: 2,
         trackColor: Colors.minBlack,
@@ -134,13 +117,11 @@ var LightTheme = {
         selectionColor: this.palette.primary3Color,
         rippleColor: this.palette.primary1Color
       },
-
       snackbar: {
         textColor: Colors.white,
         backgroundColor: '#323232',
         actionColor: this.palette.accent1Color
       },
-
       toggle: {
         thumbOnColor: this.palette.primary1Color,
         thumbOffColor: Colors.grey50,
@@ -150,7 +131,6 @@ var LightTheme = {
         trackOffColor: Colors.minBlack,
         trackDisabledColor: Colors.faintBlack
       },
-
       toolbar: {
         backgroundColor: ColorManipulator.darken('#eeeeee', 0.05),
         height: 56,
@@ -173,9 +153,9 @@ var LightTheme = {
 
     return obj;
   }
-
 }
 
-LightTheme.component = LightTheme.getComponentThemes();//LightTheme.this.palette);
+LightTheme.palette = LightTheme.getPalette();
+LightTheme.component = LightTheme.getComponentThemes();
 
 module.exports = LightTheme;

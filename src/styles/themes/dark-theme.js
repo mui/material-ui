@@ -2,35 +2,35 @@ var Colors = require('../colors');
 var ColorManipulator = require('../../utils/color-manipulator');
 
 var DarkTheme = {
-  // we don't call parent because this.palette will be overridden
-  // TODO: test to see if all the values of this.palette are needed
-  palette: {
-    primary1Color: Colors.cyan500,
-    primary2Color: Colors.cyan700,
-    primary3Color: Colors.cyan100,
-    accent1Color: Colors.pinkA200,
-    accent2Color: Colors.pinkA400,
-    accent3Color: Colors.pinkA100,
-    textColor: Colors.fullWhite,
-    canvasColor: '#303030',
-    borderColor: Colors.grey300,
-    disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3)
+  getPalette: function() {
+    return {
+      textColor: Colors.fullWhite,
+      canvasColor: '#303030',
+      borderColor: Colors.grey300,
+      disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3)
+    };
   },
-
   getComponentThemes: function() {
+    var cardColor = Colors.grey800;
     return {
       floatingActionButton: {
         disabledColor: ColorManipulator.fade(this.palette.textColor, 0.12),
       },
+      leftNav: {
+        color: cardColor
+      },
       menu: {
-        backgroundColor: this.palette.canvasColor,
-        containerBackgroundColor: Colors.grey500,
+        backgroundColor: cardColor,
+        containerBackgroundColor: cardColor
       },
       menuItem: {
         hoverColor: 'rgba(255, 255, 255, .03)',
+      },      
+      menuSubheader: {
+        borderColor: 'rgba(255, 255, 255, 0.3)',
       },
       paper: {
-        backgroundColor: Colors.grey800
+        backgroundColor: cardColor
       },
       raisedButton: {
         color: Colors.grey500,
@@ -43,11 +43,18 @@ var DarkTheme = {
         trackOnColor: ColorManipulator.fade(Colors.cyan200, 0.5),
         trackOffColor: 'rgba(255, 255, 255, 0.3)',
         trackDisabledColor: 'rgba(255, 255, 255, 0.1)',
-      }
+      },
+      slider: {
+        trackColor: Colors.minBlack,
+        handleColorZero: cardColor,
+        handleFillColor: cardColor,
+        selectionColor: Colors.cyan200,
+      },
     };
   }
 };
 
-DarkTheme.component = DarkTheme.getComponentThemes();//DarkTheme.this.palette);
+DarkTheme.palette = DarkTheme.getPalette();
+DarkTheme.component = DarkTheme.getComponentThemes();
 
 module.exports = DarkTheme;

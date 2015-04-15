@@ -10,11 +10,12 @@ var AppCanvas = React.createClass({
     predefinedLayout: React.PropTypes.number
   },
 
-  styles: {
-    height: '100%',
-  },
-
   render: function() {
+
+    var styles = {
+      height: '100%',
+      backgroundColor: this.context.theme.palette.canvasColor
+    };
 
     React.Children.forEach(this.props.children, function(currentChild) {
       switch (currentChild.type.displayName) {
@@ -28,7 +29,7 @@ var AppCanvas = React.createClass({
     }, this);
 
     return (
-      <div style={this.styles}>
+      <div style={styles}>
         {this.props.children}
       </div>
     );

@@ -68,6 +68,7 @@ var DialogWindow = React.createClass({
       width: '100%',
       height: '100%',
       transition: Transitions.easeOut('0ms', 'left', '450ms'),
+      color: this.getTheme().palette.textColor
     };
 
     if (this.state.open) {

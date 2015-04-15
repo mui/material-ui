@@ -60,6 +60,7 @@ var MenuItem = React.createClass({
       lineHeight: this.getTheme().height + 'px',
       paddingLeft: this.getTheme().padding,
       paddingRight: this.getTheme().padding,
+      color: this.context.theme.palette.textColor
     });
 
     if (this.state.hovered && !this.props.disabled) style.backgroundColor = this.getTheme().hoverColor;
@@ -103,9 +104,6 @@ var MenuItem = React.createClass({
   },
 
   _data: function() {
-
-    console.log('text', this.context.theme.palette.textColor);
-
     return {
       display: 'block',
       paddingLeft: this.getSpacing().desktopGutter * 2,

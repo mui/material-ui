@@ -29,8 +29,8 @@ var Paper = React.createClass({
   /** Styles */
   _main: function() {
     return this.mergeAndPrefix({
-      transition: Transitions.easeOut(),
       backgroundColor: this.context.theme.component.paper.backgroundColor,
+      transition: Transitions.easeOut(),
       boxSizing: 'border-box',
       fontFamily: this.context.theme.contentFontFamily,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', 

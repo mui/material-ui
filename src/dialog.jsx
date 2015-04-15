@@ -7,6 +7,10 @@ var Dialog = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
     title: React.PropTypes.node
   },
@@ -16,6 +20,7 @@ var Dialog = React.createClass({
     var gutter = Spacing.desktopGutter + 'px ';
     return {
       padding: gutter + gutter + '0 ' + gutter,
+      color: this.context.theme.palette.textColor
     }
   },
   _content: function() {

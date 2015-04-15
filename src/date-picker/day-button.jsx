@@ -43,6 +43,7 @@ var DayButton = React.createClass({
 
       label: {
         position: 'relative',
+        color: this.context.theme.palette.textColor
       },
 
       select: {
