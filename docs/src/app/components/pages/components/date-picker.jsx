@@ -38,6 +38,18 @@ var DatePickerPage = React.createClass({
             type: 'one of: portrait, landscape',
             header: 'default: portrait',
             desc: 'Tells the component to display the picker in portrait or landscape mode.'
+          },
+          {
+            name: 'maxDate',
+            type: 'date object',
+            header: 'optional',
+            desc: 'Indicates the maximum selectable date.'
+          },
+          {
+            name: 'minDate',
+            type: 'date object',
+            header: 'optional',
+            desc: 'Indicates the minimum selectable date.'
           }
         ]
       },
@@ -65,7 +77,7 @@ var DatePickerPage = React.createClass({
         componentInfo={componentInfo}>
 
         <DatePicker
-          hintText="Portrait Dialog" />
+          hintText="Portrait Dialog" autoOk={true} />
 
         <DatePicker
           hintText="Landscape Dialog"
