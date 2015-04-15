@@ -86,11 +86,11 @@ var FlatButton = React.createClass({
   },
 
   getThemeButton: function() {
-    return this.context.theme.button;
+    return this.context.theme.component.button;
   },
 
   getTheme: function() {
-    return this.context.theme.flatButton;
+    return this.context.theme.component.flatButton;
   },
 
   render: function() {

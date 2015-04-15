@@ -29,7 +29,7 @@ var Toggle = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.toggle;
+    return this.context.theme.component.toggle;
   },
 
   render: function() {

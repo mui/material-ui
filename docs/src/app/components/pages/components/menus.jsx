@@ -2,8 +2,6 @@ var React = require('react');
 var mui = require('mui');
 var CodeExample = require('../../code-example/code-example.jsx');
 
-var Theme = mui.Styles.Theme;
-
 var labelMenuItems = [
   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },

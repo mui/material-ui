@@ -56,7 +56,7 @@ var AppBar = React.createClass({
   },
 
   _iconButton: function() {
-    var iconButtonSize = this.context.theme.button.iconButtonSize;
+    var iconButtonSize = this.context.theme.component.button.iconButtonSize;
     return {
       style: {
         marginTop: (this.getThemeVariables().height - iconButtonSize) / 2,
@@ -92,7 +92,7 @@ var AppBar = React.createClass({
   },
 
   getThemeVariables: function() {
-    return this.context.theme.appBar;
+    return this.context.theme.component.appBar;
   },
 
   render: function() {

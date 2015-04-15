@@ -10,7 +10,7 @@ var ToolbarSeparator = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.toolbar;
+    return this.context.theme.component.toolbar;
   },
 
   getSpacing: function() {

@@ -1,6 +1,5 @@
 var React = require('react');
 var Paper = require('./paper');
-var Classable = require('./mixins/classable');
 var StylePropable = require('./mixins/style-propable');
 var Draggable = require('react-draggable2');
 var Transitions = require('./styles/transitions.js');
@@ -9,7 +8,7 @@ var Paper = require('./paper');
 
 var Slider = React.createClass({
 
-  mixins: [Classable, StylePropable],
+  mixins: [StylePropable],
 
   contextTypes: {
     theme: React.PropTypes.object
@@ -62,7 +61,7 @@ var Slider = React.createClass({
 
   // Styles
   main: function() {
-    return {
+    return this.mergeAndPrefix({
       touchCallout: 'none',
       userSelect: 'none',
       cursor: 'default',
@@ -70,7 +69,7 @@ var Slider = React.createClass({
       position: 'relative',
       marginTop: 24,
       marginBottom: 48
-    }
+    });
   },
 
   track: function() {
@@ -116,7 +115,7 @@ var Slider = React.createClass({
     var style = {
       left: 1,
       marginLeft: gutter
-    }
+    };
 
     style.width = this.remaining().width - style.left;
 
@@ -206,13 +205,10 @@ var Slider = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.slider;
+    return this.context.theme.component.slider;
   },
 
   render: function() {
-    var classes = this.getClasses('mui-input', {
-      'mui-error': this.props.error != null
-    });
 
     var gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
     var fillGutter = this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
@@ -258,7 +254,7 @@ var Slider = React.createClass({
     if (this.state.percent === 0 && this.state.active) remainingStyles.marginLeft = fillGutter;
 
     return (
-      <div className={classes} style={this.props.style}>
+      <div style={this.props.style}>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>

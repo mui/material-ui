@@ -28,7 +28,7 @@ var Checkbox = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.checkbox;
+    return this.context.theme.component.checkbox;
   },
 
   render: function() {

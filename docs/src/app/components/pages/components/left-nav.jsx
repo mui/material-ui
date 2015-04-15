@@ -21,7 +21,7 @@ class LeftNavPage extends React.Component {
 
     var menuItems = [
       { route: 'get-started', text: 'Get Started' },
-      { route: 'css-framework', text: 'CSS Framework' },
+      { route: 'customization', text: 'Customization' },
       { route: 'components', text: 'Components' },
       { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
       { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
@@ -32,7 +32,7 @@ class LeftNavPage extends React.Component {
     var code =
       'menuItems = [\n' +
       '  { route: \'get-started\', text: \'Get Started\' },\n' +
-      '  { route: \'css-framework\', text: \'CSS Framework\' },\n' +
+      '  { route: \'customization\', text: \'Customization\' },\n' +
       '  { route: \'components\', text: \'Components\' },\n' +
       '  { type: MenuItem.Types.SUBHEADER, text: \'Resources\' },\n' +
       '  { \n' +
@@ -123,7 +123,7 @@ class LeftNavPage extends React.Component {
         code={code}
         componentInfo={componentInfo}>
 
-        <div className="left-nav-example">
+        <div>
           <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
           <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
           <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />

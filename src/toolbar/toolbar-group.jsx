@@ -45,7 +45,7 @@ var ToolbarGroup = React.createClass({
   },
 
   _button: function (){
-    var marginVertical = (this.getTheme().height - this.context.theme.button.height) / 2;
+    var marginVertical = (this.getTheme().height - this.context.theme.component.button.height) / 2;
     var marginHorizontal = this.getSpacing();
     return {
       float: 'left',
@@ -79,7 +79,7 @@ var ToolbarGroup = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.toolbar;
+    return this.context.theme.component.toolbar;
   },
 
   getSpacing: function() {

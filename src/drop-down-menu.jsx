@@ -90,7 +90,7 @@ var DropDownMenu = React.createClass({
   _controlBg: function() { 
     var style = {
       transition: Transitions.easeOut(),
-      backgroundColor: this.context.theme.menu.backgroundColor,
+      backgroundColor: this.context.theme.component.menu.backgroundColor,
       height: '100%',
       width: '100%',
       opacity: (this.state.open) ? 0 : 
@@ -107,7 +107,7 @@ var DropDownMenu = React.createClass({
       position: 'absolute',
       top: ((this.getSpacing().desktopToolbarHeight - 24) / 2),
       right: this.getSpacing().desktopGutterLess,
-      fill: this.getTheme().iconColor,
+      fill: this.context.theme.component.dropDownMenu.accentColor,
     };
 
     if (this.props.styleIcon) style = this.mergeAndPrefix(style, this.props.styleIcon);
@@ -123,6 +123,7 @@ var DropDownMenu = React.createClass({
       paddingLeft: this.getSpacing().desktopGutter,
       top: 0,
       opacity: 1,
+      color: this.getTextColor()
     };
 
     if (this.state.open) {
@@ -139,7 +140,7 @@ var DropDownMenu = React.createClass({
 
   _underline: function() {
     var style = {
-      borderTop: 'solid 1px ' + this.context.theme.borderColor,
+      borderTop: 'solid 1px ' + this.context.theme.component.dropDownMenu.accentColor,
       margin: '0 ' + this.getSpacing().desktopGutter + 'px',
     };
 
@@ -167,8 +168,8 @@ var DropDownMenu = React.createClass({
     return this.context.theme.spacing;
   },
 
-  getTheme: function() {
-    return this.context.theme.dropDownMenu;
+  getTextColor: function() {
+    return this.context.theme.palette.textColor;
   },
 
   render: function() {

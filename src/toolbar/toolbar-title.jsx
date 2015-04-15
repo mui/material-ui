@@ -14,7 +14,7 @@ var ToolbarTitle = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.toolbar;
+    return this.context.theme.component.toolbar;
   },
 
   render: function() {

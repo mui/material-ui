@@ -65,7 +65,7 @@ var NestedMenuItem = React.createClass({
 
     var iconCustomArrowDropRight = {
       marginRight: this.getSpacing().desktopGutterMini * -1,
-      color: this.context.theme.dropDownMenu.iconColor
+      color: this.context.theme.component.dropDownMenu.iconColor
     }
 
     var {
@@ -214,6 +214,7 @@ var Menu = React.createClass({
     var style = {
       paddingTop: this.getSpacing().desktopGutterMini,
       paddingBottom: this.getSpacing().desktopGutterMini,
+      backgroundColor: this.getTheme().containerBackgroundColor,
     }
 
     if (this.props.hideable) {
@@ -228,13 +229,13 @@ var Menu = React.createClass({
 
   _subheader: function() {
     return this.mergeAndPrefix({
-      paddingLeft: this.context.theme.menuSubheader.padding,
-      paddingRight: this.context.theme.menuSubheader.padding,
+      paddingLeft: this.context.theme.component.menuSubheader.padding,
+      paddingRight: this.context.theme.component.menuSubheader.padding,
     }, this.props.menuItemStyleSubheader);
   },
 
   getTheme: function() {
-    return this.context.theme.menu
+    return this.context.theme.component.menu
   },
 
   getSpacing: function() {

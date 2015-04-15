@@ -16,14 +16,14 @@ class Master extends React.Component {
 
   getChildContext() {
     return {
-      theme: Theme.get()
+      theme: Theme.getCurrentTheme()
     }
   }
 
   render() {
     var title =
       this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('css-framework') ? 'Css Framework' :
+      this.context.router.isActive('customization') ? 'Customization' :
       this.context.router.isActive('components') ? 'Components' : '';
 
     var githubButton = (

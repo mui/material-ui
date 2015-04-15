@@ -42,7 +42,7 @@ var DatePickerDialog = React.createClass({
     var styles = {
       root: {
         fontSize: '14px',
-        color: this.context.theme.datePicker.calendarTextColor
+        color: this.context.theme.component.datePicker.calendarTextColor
       },
       
       dialogContents: {

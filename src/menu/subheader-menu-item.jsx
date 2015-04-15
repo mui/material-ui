@@ -51,7 +51,7 @@ var SubheaderMenuItem = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.menuSubheader;
+    return this.context.theme.component.menuSubheader;
   },
 
   getSpacing: function() {

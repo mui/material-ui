@@ -48,7 +48,7 @@ var LinkMenuItem = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.menuItem;
+    return this.context.theme.component.menuItem;
   },
 
   render: function() {

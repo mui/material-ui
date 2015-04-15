@@ -153,7 +153,8 @@ var EnhancedSwitch = React.createClass({
         position: 'relative',
         display: 'table-column',
         width: labelWidth,
-        lineHeight: '24px'
+        lineHeight: '24px',
+        color: this.getTheme().textColor
     }
 
     if (this.props.thumbStyle) {

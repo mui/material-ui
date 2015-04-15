@@ -18,7 +18,7 @@ var RadioButton = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.radioButton;
+    return this.context.theme.component.radioButton;
   },
 
   render: function() {

@@ -139,7 +139,7 @@ var RaisedButton = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.floatingActionButton;
+    return this.context.theme.component.floatingActionButton;
   },
 
   render: function() {

@@ -42,7 +42,7 @@ var DateDisplay = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.datePicker;
+    return this.context.theme.component.datePicker;
   },
 
   render: function() {

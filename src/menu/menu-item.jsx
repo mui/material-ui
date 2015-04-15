@@ -103,6 +103,9 @@ var MenuItem = React.createClass({
   },
 
   _data: function() {
+
+    console.log('text', this.context.theme.palette.textColor);
+
     return {
       display: 'block',
       paddingLeft: this.getSpacing().desktopGutter * 2,
@@ -112,19 +115,20 @@ var MenuItem = React.createClass({
       top: -12,
       position: 'relative',
       fontWeight: 300,
+      color: this.context.theme.palette.textColor
     }
   },
 
   _toggle: function() {
     return {
-      marginTop: ((this.getTheme().height - this.context.theme.radioButton.size) / 2),
+      marginTop: ((this.getTheme().height - this.context.theme.component.radioButton.size) / 2),
       float: 'right',
       width: 42,
     }
   },
 
   getTheme: function() {
-    return this.context.theme.menuItem;
+    return this.context.theme.component.menuItem;
   },
 
   getSpacing: function() {

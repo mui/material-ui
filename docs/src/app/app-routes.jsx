@@ -10,9 +10,12 @@ var Master = require('./components/master.jsx');
 var Home = require('./components/pages/home.jsx');
 var GetStarted = require('./components/pages/get-started.jsx');
 
-var CssFramework = require('./components/pages/css-framework.jsx');
-var Colors = require('./components/pages/css-framework/colors.jsx');
-var Typography = require('./components/pages/css-framework/typography.jsx');
+var Customization = require('./components/pages/customization.jsx');
+// var Colors = require('./components/pages/customization/colors.jsx');
+// var Typography = require('./components/pages/customization/typography.jsx');
+
+var Colors = require('./components/pages/customization/colors.jsx');
+var Themes = require('./components/pages/customization/themes.jsx'); 
 
 var Components = require('./components/pages/components.jsx');
 var Buttons = require('./components/pages/components/buttons.jsx');
@@ -45,10 +48,10 @@ var AppRoutes = (
   <Route name="root" path="/" handler={Master}>
     <Route name="home" handler={Home} />
     <Route name="get-started" handler={GetStarted} />
-    <Route name="css-framework" handler={CssFramework}>
+    <Route name="customization" handler={Customization}>
       <Route name="colors" handler={Colors} />
-      <Route name="typography" handler={Typography} />
-      <Redirect from="/css-framework" to="colors" />
+      <Route name="themes" handler={Themes} />
+      <Redirect from="/customization" to="colors" />
     </Route>
 
     <Route name="components" handler={Components}>

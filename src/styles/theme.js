@@ -1,48 +1,66 @@
-var Colors = require('./colors');
+var Color = require('./colors');
 var Spacing = require('./spacing');
 var ColorManipulator = require('../utils/color-manipulator');
 
-var DefaultTheme = require('./default-theme');
+var Types = {
+  LIGHT: require('./themes/light-theme'),
+  DARK: require('./themes/dark-theme')
+};
 
-var Theme = {
+var Theme = (function(){
+  var instance; 
 
-  //Gets the current theme variables
-  get: function() {
-    if (Theme.initialCreation) {
-      Theme.initialCreation = false;
-      DefaultTheme.update();
-    }
-    return DefaultTheme;
-  },
-
-  /**
-   *  A recursive 
-   * 
-   *  @param theme     - the object whose properties are to be overwritten. It
-   *                     should be either the root level or some nested level 
-   *                     of defaultVariables.
-   *  @param overrides - an object containing properties to be overwritten. It 
-   *                     should have the same structure as the defaultVariables
-   *                     object.
-   */
-  setHelper: function(theme, overrides) {
+  /** 
+  *  A recursive merge between two objects. Keep in mind that overriding the 
+  *  palette nested object of theme does not automatically update component
+  *  properties, because they are still using the old color values of palette
+  *  that they were defined with. 
+  *
+  for all component variables of a theme. Use setPalette
+  *  if you would like to override a theme's palette object.
+  * 
+  *  @param theme     - the object whose properties are to be overwritten. It
+  *                     should be either the root level or some nested level 
+  *                     of theme.
+  *  @param overrides - an object containing properties to be overwritten. It 
+  *                     should have the same structure as the theme object.
+  */
+  var merge = function(theme, overrides) {
     var keys = Object.keys(overrides);
-    for (var i = 0; i < keys.length; i++) {
-      var currentKey = keys[i];
+    for (var keyIndex in keys) {
+      var currentKey = keys[keyIndex];
       if (typeof(overrides[currentKey]) === 'object') {
-        this.setHelper(theme[currentKey], overrides[currentKey]);
-        if (currentKey === 'palette') DefaultTheme.update();
+        merge(theme[currentKey], overrides[currentKey]);
       } else {
         theme[currentKey] = overrides[currentKey];
       }
     }
-  },
+  };
 
-  set: function(overrides) {
-    this.setHelper(DefaultTheme, overrides);
-  },
-};
+  return {
+    types: Types,
 
-Theme.initialCreation = true;
+    getCurrentTheme: function() {
+      if (!instance) {
+        instance = Object.create(Types.LIGHT);
+      }
+      return instance;
+    },
 
-module.exports = Theme;
+    setTheme: function(newTheme) {
+      this.setPalette(newTheme.palette);
+      this.setComponentThemes(newTheme.component);
+    },
+
+    setPalette: function(newPalette) {
+      instance.palette = newPalette;
+      instance.component = instance.getComponentThemes();
+    },
+
+    setComponentThemes: function(overrides) {
+      merge(instance.component, overrides);
+    }
+  };
+});
+
+module.exports = Theme();

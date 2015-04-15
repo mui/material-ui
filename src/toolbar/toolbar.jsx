@@ -26,7 +26,7 @@ var Toolbar = React.createClass({
   },
 
   getTheme: function (argument) {
-    return this.context.theme.toolbar;
+    return this.context.theme.component.toolbar;
   },
 
   render: function() {

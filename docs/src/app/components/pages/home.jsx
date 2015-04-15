@@ -3,7 +3,7 @@ var Router = require('react-router');
 var mui = require('mui');
 var RaisedButton = mui.RaisedButton;
 var HomeFeature = require('./home-feature.jsx');
-var Theme = mui.Styles.Theme.get();
+var Theme = mui.Styles.Theme.getCurrentTheme();
 
 class HomePage extends React.Component {
 
@@ -62,7 +62,7 @@ class HomePage extends React.Component {
 
           <div className="feature-container full-width-section-content">
             <HomeFeature heading="Get Started" route="get-started" img="images/get-started.svg" />
-            <HomeFeature heading="CSS Framework" route="css-framework" img="images/css-framework.svg" />
+            <HomeFeature heading="Customization" route="customization" img="images/css-framework.svg" />
             <HomeFeature heading="Components" route="components" img="images/components.svg" />
           </div>
 

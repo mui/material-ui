@@ -62,10 +62,6 @@ var TextField = React.createClass({
   },
 
   /** Styles */
-  getTheme: function() {
-    return m(Theme.palette, Theme.radioButton);
-  },
-
 
   errorColor: Colors.red500,
 
@@ -165,7 +161,7 @@ var TextField = React.createClass({
   _underline: function() {
     return {
       border: 'none',
-      borderBottom: 'solid 1px ' + this.context.theme.borderColor,
+      borderBottom: 'solid 1px ' + this._getDisabledTextColor(),
       position: 'absolute',
       width: '100%',
       bottom: 8,

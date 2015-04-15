@@ -21,7 +21,7 @@ var AppCanvas = React.createClass({
         case 'AppBar' : 
           currentChild.props.style = {
             position: 'fixed', 
-            height: this.context.theme.appBar.height
+            height: this.context.theme.component.appBar.height
           };
           break;
       }

@@ -1,6 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-
+var Transitions = require('./styles/transitions');
 var Paper = React.createClass({
 
   mixins: [StylePropable],
@@ -29,6 +29,8 @@ var Paper = React.createClass({
   /** Styles */
   _main: function() {
     return this.mergeAndPrefix({
+      transition: Transitions.easeOut(),
+      backgroundColor: this.context.theme.component.paper.backgroundColor,
       boxSizing: 'border-box',
       fontFamily: this.context.theme.contentFontFamily,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', 

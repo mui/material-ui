@@ -94,7 +94,7 @@ var LeftNav = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.leftNav;
+    return this.context.theme.component.leftNav;
   },
 
   render: function() {

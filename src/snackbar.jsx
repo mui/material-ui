@@ -95,7 +95,7 @@ var Snackbar = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.snackbar;
+    return this.context.theme.component.snackbar;
   },
 
   getSpacing: function() {

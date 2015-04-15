@@ -71,7 +71,7 @@ var IconButton = React.createClass({
   _tooltip: function() {
     return {
       boxSizing: 'border-box',
-      marginTop: this.context.theme.button.iconButtonSize + 4,
+      marginTop: this.context.theme.component.button.iconButtonSize + 4,
     };
   },
 
