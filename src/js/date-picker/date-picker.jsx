@@ -67,8 +67,6 @@ var DatePicker = React.createClass({
       defaultInputValue = this.props.formatDate(this.props.defaultDate);
     }
 
-    console.log(minDate);
-
     return (
       <div className={classes}>
         <TextField
