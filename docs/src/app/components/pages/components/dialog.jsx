@@ -25,6 +25,7 @@ var DialogPage = React.createClass({
       '<Dialog\n' +
       '  title="Dialog With Standard Actions"\n' +
       '  actions={standardActions}\n' +
+      '  modal={this.state.modal}\n' +
       '  dismissOnClickAway={this.state.dismissOnClickAway}>\n' +
       '  The actions in this window are created from the json that\'s passed in. \n' +
       '</Dialog>\n\n' +
@@ -42,6 +43,7 @@ var DialogPage = React.createClass({
       '<Dialog\n' +
       '  title="Dialog With Custom Actions"\n' +
       '  actions={customActions}\n' +
+      '  modal={this.state.modal}\n' +
       '  dismissOnClickAway={this.state.dismissOnClickAway}>\n' +
       '  The actions in this window were passed in as an array of react objects.\n' +
       '</Dialog>\n';
@@ -75,7 +77,7 @@ var DialogPage = React.createClass({
             desc: 'The title to display on the dialog. Could be number, string, element or an array containing these types.'
           },
           {
-            name: 'isModal',
+            name: 'modal',
             type: 'bool',
             header: 'optional',
             desc: 'Determine if a dialog should display as a modal dialog. Default value is false.'
