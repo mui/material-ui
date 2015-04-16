@@ -113,7 +113,7 @@ var Dialog = React.createClass({
     var gutter = CustomVariables.spacing.desktopGutter + 'px ';
     return {
       padding: gutter + gutter + '0 ' + gutter,
-    }
+    };
   },
   
   _dialogBody: function() {
@@ -209,7 +209,7 @@ var Dialog = React.createClass({
 
     if (actions.length) {
       for (var i = 0; i < actions.length; i++) {
-        currentAction = actions[i];
+        var currentAction = actions[i];
 
         //if the current action isn't a react object, create one
         if (!React.isValidElement(currentAction)) {
@@ -217,7 +217,7 @@ var Dialog = React.createClass({
         }
 
         actionObjects.push(currentAction);
-      };
+      }
 
       actionContainer = (
         <div style={actionStyle}>
@@ -255,8 +255,8 @@ var Dialog = React.createClass({
     
     // Force a height if the dialog is taller than clientHeight
     maxDialogWindowHeight = clientHeight - (2 * paddingTop);
-    if ((this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) 
-      && (dialogWindowHeight > maxDialogWindowHeight)) {
+    if ((this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) &&
+      (dialogWindowHeight > maxDialogWindowHeight)) {
       dialogWindow.style.height = maxDialogWindowHeight + 'px';
       
       this._updateContentHeight();
