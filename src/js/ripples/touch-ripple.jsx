@@ -121,6 +121,10 @@ var TouchRipple = React.createClass({
   },
 
   _handleTouchEnd: function(e) {
+    // Prevent mouse events from firing on touch-enabled devices.
+    if (e.cancelable) {
+      e.preventDefault();
+    }
     this.end();
   },
 
@@ -130,8 +134,9 @@ var TouchRipple = React.createClass({
     var elHeight = el.offsetHeight;
     var elWidth = el.offsetWidth;
     var offset = Dom.offset(el);
-    var pageX = e.pageX == undefined ? e.nativeEvent.pageX : e.pageX;
-    var pageY = e.pageY == undefined ? e.nativeEvent.pageY : e.pageY;
+    var isTouchEvent = e.touches && e.touches.length;
+    var pageX = isTouchEvent ? e.touches[0].pageX : e.pageX;
+    var pageY = isTouchEvent ? e.touches[0].pageY : e.pageY;
     var pointerX = pageX - offset.left;
     var pointerY = pageY - offset.top;
     var topLeftDiag = this._calcDiag(pointerX, pointerY);
