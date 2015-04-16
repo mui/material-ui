@@ -3,9 +3,16 @@ var mui = require('mui');
 var Dialog = mui.Dialog;
 var FlatButton = mui.FlatButton;
 var RaisedButton = mui.RaisedButton;
+var Toggle = mui.Toggle;
 var ComponentDoc = require('../../component-doc.jsx');
 
 var DialogPage = React.createClass({
+
+  getInitialState: function() {
+    return {
+      modal: false
+    };
+  },
 
   render: function() {
 
@@ -15,7 +22,11 @@ var DialogPage = React.createClass({
       '  { text: \'Cancel\' },\n' +
       '  { text: \'Submit\', onClick: this._onDialogSubmit }\n' +
       '];\n\n' +
-      '<Dialog title="Dialog With Standard Actions" actions={standardActions}>\n' +
+      '<Dialog\n' +
+      '  title="Dialog With Standard Actions"\n' +
+      '  actions={standardActions}\n' +
+      '  modal={this.state.modal}\n' +
+      '  dismissOnClickAway={this.state.dismissOnClickAway}>\n' +
       '  The actions in this window are created from the json that\'s passed in. \n' +
       '</Dialog>\n\n' +
       '//Custom Actions\n' +
@@ -29,7 +40,11 @@ var DialogPage = React.createClass({
       '    primary={true}\n' +
       '    onTouchTap={this._handleCustomDialogSubmit} />\n' +
       '];\n\n' +
-      '<Dialog title="Dialog With Custom Actions" actions={customActions}>\n' +
+      '<Dialog\n' +
+      '  title="Dialog With Custom Actions"\n' +
+      '  actions={customActions}\n' +
+      '  modal={this.state.modal}\n' +
+      '  dismissOnClickAway={this.state.dismissOnClickAway}>\n' +
       '  The actions in this window were passed in as an array of react objects.\n' +
       '</Dialog>\n';
 
@@ -60,6 +75,12 @@ var DialogPage = React.createClass({
             type: 'node',
             header: 'optional',
             desc: 'The title to display on the dialog. Could be number, string, element or an array containing these types.'
+          },
+          {
+            name: 'modal',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Determine if a dialog should display as a modal dialog. Default value is false.'
           }
         ]
       },
@@ -126,16 +147,25 @@ var DialogPage = React.createClass({
         <Dialog
           ref="standardDialog"
           title="Dialog With Standard Actions"
-          actions={standardActions}>
+          actions={standardActions}
+          modal={this.state.modal}>
           The actions in this window are created from the json that's passed in.
         </Dialog>
 
         <Dialog
           ref="customDialog"
           title="Dialog With Custom Actions"
-          actions={customActions}>
+          actions={customActions}
+          modal={this.state.modal}>
           The actions in this window were passed in as an array of react objects.
         </Dialog>
+        
+        <div style={{width: '300px', margin: '0 auto', paddingTop: '20px'}}>
+          <Toggle 
+            label="Is Modal"
+            onToggle={this._handleToggleChange}
+            defaultToggled={this.state.modal}/>
+        </div>
 
       </ComponentDoc>
     );
@@ -148,6 +178,10 @@ var DialogPage = React.createClass({
 
   _handleCustomDialogSubmit: function() {
     this.refs.customDialog.dismiss();
+  },
+  
+  _handleToggleChange: function(e, toggled) {
+    this.setState({modal: toggled});
   },
 
   handleCustomDialogTouchTap: function() {
