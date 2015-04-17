@@ -24,7 +24,7 @@ var {
   TextField,
   Toggle} = mui;
 
-var Theme = mui.Styles.Theme;
+var Theme = new mui.Styles.Theme();
 
 class ThemesPage extends React.Component {
 

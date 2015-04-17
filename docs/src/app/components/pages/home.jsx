@@ -3,7 +3,7 @@ var Router = require('react-router');
 var mui = require('mui');
 var RaisedButton = mui.RaisedButton;
 var HomeFeature = require('./home-feature.jsx');
-var Theme = mui.Styles.Theme.getCurrentTheme();
+var Theme = new mui.Styles.Theme().getCurrentTheme();
 
 class HomePage extends React.Component {
 

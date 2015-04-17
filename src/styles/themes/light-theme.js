@@ -25,10 +25,10 @@ var LightTheme = {
       disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
     };
   },
-  getComponentThemes: function() {
+  getComponentThemes: function(palette) {
     var obj = {
       appBar: {
-        color: this.palette.primary1Color,
+        color: palette.primary1Color,
         textColor: Colors.darkWhite,
         height: Spacing.desktopKeylineIncrement
       },
@@ -38,33 +38,33 @@ var LightTheme = {
         iconButtonSize: Spacing.iconSize * 2
       },
       checkbox: {
-        boxColor: this.palette.textColor,
-        checkedColor: this.palette.primary1Color,
-        requiredColor: this.palette.primary1Color,
-        disabledColor: this.palette.disabledColor
+        boxColor: palette.textColor,
+        checkedColor: palette.primary1Color,
+        requiredColor: palette.primary1Color,
+        disabledColor: palette.disabledColor
       },
       datePicker: {
-        color: this.palette.primary1Color,
+        color: palette.primary1Color,
         textColor: Colors.white,
-        calendarTextColor: this.palette.textColor,
-        selectColor: this.palette.primary2Color,
+        calendarTextColor: palette.textColor,
+        selectColor: palette.primary2Color,
         selectTextColor: Colors.white
       },
       dropDownMenu: {
-        accentColor: this.palette.borderColor
+        accentColor: palette.borderColor
       },
       flatButton: {
-        color: this.palette.canvasColor,
-        textColor: this.palette.textColor,
-        primaryTextColor: this.palette.accent1Color,
-        secondaryTextColor: this.palette.primary1Color,
+        color: palette.canvasColor,
+        textColor: palette.textColor,
+        primaryTextColor: palette.accent1Color,
+        secondaryTextColor: palette.primary1Color,
       },
       floatingActionButton: {
         buttonSize: 56,
         miniSize: 40,
-        color: this.palette.accent1Color,
+        color: palette.accent1Color,
         iconColor: Colors.white,
-        secondaryColor: this.palette.primary1Color,
+        secondaryColor: palette.primary1Color,
         secondaryIconColor: Colors.white,
       },
       leftNav: {
@@ -80,30 +80,30 @@ var LightTheme = {
         height: 48,
         hoverColor: 'rgba(0, 0, 0, .035)',
         padding: Spacing.desktopGutter,
-        selectedTextColor: this.palette.accent1Color,
+        selectedTextColor: palette.accent1Color,
       },
       menuSubheader: {
         padding: Spacing.desktopGutter,
-        borderColor: this.palette.borderColor,
-        textColor: this.palette.primary1Color
+        borderColor: palette.borderColor,
+        textColor: palette.primary1Color
       },
       paper: {
         backgroundColor: Colors.white,
       },
       radioButton: {
-        borderColor:  this.palette.textColor,
+        borderColor:  palette.textColor,
         backgroundColor: Colors.white,
-        checkedColor: this.palette.primary1Color,
-        requiredColor: this.palette.primary1Color,
-        disabledColor: this.palette.disabledColor,
+        checkedColor: palette.primary1Color,
+        requiredColor: palette.primary1Color,
+        disabledColor: palette.disabledColor,
         size: 24,
       },
       raisedButton: {
         color: Colors.white,
-        textColor: this.palette.textColor,
-        primaryColor: this.palette.accent1Color,
+        textColor: palette.textColor,
+        primaryColor: palette.accent1Color,
         primaryTextColor: Colors.white,
-        secondaryColor: this.palette.primary1Color,
+        secondaryColor: palette.primary1Color,
         secondaryTextColor: Colors.white
       },
       slider: {
@@ -114,20 +114,20 @@ var LightTheme = {
         handleSizeDisabled: 8,
         handleColorZero: Colors.grey400,
         handleFillColor: Colors.white,
-        selectionColor: this.palette.primary3Color,
-        rippleColor: this.palette.primary1Color
+        selectionColor: palette.primary3Color,
+        rippleColor: palette.primary1Color
       },
       snackbar: {
         textColor: Colors.white,
         backgroundColor: '#323232',
-        actionColor: this.palette.accent1Color
+        actionColor: palette.accent1Color
       },
       toggle: {
-        thumbOnColor: this.palette.primary1Color,
+        thumbOnColor: palette.primary1Color,
         thumbOffColor: Colors.grey50,
         thumbDisabledColor: Colors.grey400,
-        thumbRequiredColor: this.palette.primary1Color,
-        trackOnColor: ColorManipulator.fade(this.palette.primary1Color, 0.5),
+        thumbRequiredColor: palette.primary1Color,
+        trackOnColor: ColorManipulator.fade(palette.primary1Color, 0.5),
         trackOffColor: Colors.minBlack,
         trackDisabledColor: Colors.faintBlack
       },
@@ -145,7 +145,7 @@ var LightTheme = {
     // Properties based on previous properties
     obj.flatButton.disabledTextColor = ColorManipulator.fade(obj.flatButton.textColor, 0.3),
     obj.floatingActionButton.disabledColor = ColorManipulator.darken(Colors.white, 0.1),
-    obj.floatingActionButton.disabledTextColor = ColorManipulator.fade(this.palette.textColor, 0.3)
+    obj.floatingActionButton.disabledTextColor = ColorManipulator.fade(palette.textColor, 0.3)
     obj.raisedButton.disabledColor = ColorManipulator.darken(obj.raisedButton.color, 0.1),
     obj.raisedButton.disabledTextColor = ColorManipulator.fade(obj.raisedButton.textColor, 0.3)
     obj.slider.handleSizeActive = obj.slider.handleSize * 2;
@@ -154,8 +154,5 @@ var LightTheme = {
     return obj;
   }
 }
-
-LightTheme.palette = LightTheme.getPalette();
-LightTheme.component = LightTheme.getComponentThemes();
 
 module.exports = LightTheme;

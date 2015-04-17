@@ -8,7 +8,6 @@ var Types = {
 };
 
 var Theme = function() {
-  var instance;
 
   /** 
   *  A recursive merge between two objects. Keep in mind that overriding the 
@@ -26,38 +25,55 @@ var Theme = function() {
   *                     should have the same structure as the theme object.
   */
   var merge = function(theme, overrides) {
-    Object.keys(overrides).forEach(function(currentKey) {
-      var overridesCheck = overrides[currentKey] && !Array.isArray(overrides[currentKey]);
-      if (typeof(overrides[currentKey]) === 'object' && overridesCheck) {
-        merge(theme[currentKey], overrides[currentKey]);
-      } else {
-        theme[currentKey] = overrides[currentKey];
+    var mergeObject = {};
+
+    Object.keys(theme).forEach(function(currentKey) {
+
+      var overridesCheck = theme[currentKey] && !Array.isArray(theme[currentKey]);
+      
+      // Recursive call to next level
+      if (typeof(theme[currentKey]) === 'object' && overridesCheck) 
+        mergeObject[currentKey] = merge(theme[currentKey], overrides[currentKey]);
+      else {
+        if (overrides && overrides[currentKey])
+          mergeObject[currentKey] = overrides[currentKey]; 
+        else
+          mergeObject[currentKey] = theme[currentKey];
       }
+
     });
+
+    return mergeObject;
   };
 
   return {
     types: Types,
+    template: Types.LIGHT,
+
+    spacing: Spacing,
+    fontFamily: 'Roboto, sans-serif',
+
+    palette: Types.LIGHT.getPalette(),
+    component: Types.LIGHT.getComponentThemes(Types.LIGHT.getPalette()),
 
     getCurrentTheme: function() {
-      if (!instance) instance = Object.create(Types.LIGHT);
-      return instance;
+      return this;
     },
 
     setTheme: function(newTheme) {
       this.setPalette(newTheme.getPalette());
-      this.setComponentThemes(newTheme.getComponentThemes());
+      this.setComponentThemes(newTheme.getComponentThemes(newTheme.getPalette()));
     },
 
     setPalette: function(newPalette) {
-      merge(instance.palette, newPalette);
-      instance.component = instance.getComponentThemes();
+      this.palette = merge(this.palette, newPalette);
+      this.component = merge(this.component, this.template.getComponentThemes(this.palette));
     },
 
     setComponentThemes: function(overrides) {
-      merge(instance.component, overrides);
+      this.component = merge(this.component, overrides);
     }
   };
 };
 
-module.exports = new Theme();
+module.exports = Theme;

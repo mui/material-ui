@@ -10,11 +10,11 @@ var DarkTheme = {
       disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3)
     };
   },
-  getComponentThemes: function() {
+  getComponentThemes: function(palette) {
     var cardColor = Colors.grey800;
     return {
       floatingActionButton: {
-        disabledColor: ColorManipulator.fade(this.palette.textColor, 0.12),
+        disabledColor: ColorManipulator.fade(palette.textColor, 0.12),
       },
       leftNav: {
         color: cardColor
@@ -53,8 +53,5 @@ var DarkTheme = {
     };
   }
 };
-
-DarkTheme.palette = DarkTheme.getPalette();
-DarkTheme.component = DarkTheme.getComponentThemes();
 
 module.exports = DarkTheme;

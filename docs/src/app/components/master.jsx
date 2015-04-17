@@ -4,7 +4,7 @@ var RouteHandler = Router.RouteHandler;
 var AppLeftNav = require('./app-left-nav.jsx');
 var mui = require('mui');
 
-var Theme = mui.Styles.Theme;
+var Theme = new mui.Styles.Theme();
 
 var { AppBar, AppCanvas, Menu, IconButton } = mui;
 
@@ -16,7 +16,6 @@ class Master extends React.Component {
   }
 
   getChildContext() {
-    console.log('masters getChildContext');
     return {
       theme: Theme.getCurrentTheme()
     }
