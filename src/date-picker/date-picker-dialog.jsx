@@ -4,7 +4,7 @@ var WindowListenable = require('../mixins/window-listenable');
 var KeyCode = require('../utils/key-code');
 var CustomVariables = require('../styles/variables/custom-variables.js');
 var Calendar = require('./calendar');
-var DialogWindow = require('../dialog-window');
+var Dialog = require('../dialog');
 var FlatButton = require('../flat-button');
 
 var DatePickerDialog = React.createClass({
@@ -45,6 +45,10 @@ var DatePickerDialog = React.createClass({
       dialogContents: {
         width: this.props.mode === 'landscape' ? '560px' : '280px'
       },
+      
+      dialogBodyContent: {
+        padding: 0
+      },
 
       actions: {
         marginRight: 8,
@@ -67,10 +71,11 @@ var DatePickerDialog = React.createClass({
     ];
 
     return (
-      <DialogWindow {...other}
-        ref="dialogWindow"
+      <Dialog {...other}
+        ref="dialog"
         style={styles.root}
         contentStyle={styles.dialogContents}
+        bodyStyle={styles.dialogBodyContent}
         actions={actions}
         onDismiss={this._handleDialogDismiss}
         onShow={this._handleDialogShow}
@@ -80,16 +85,16 @@ var DatePickerDialog = React.createClass({
           initialDate={this.props.initialDate}
           isActive={this.state.isCalendarActive}
           mode={this.props.mode} />
-      </DialogWindow>
+      </Dialog>
     );
   },
 
   show: function() {
-    this.refs.dialogWindow.show();
+    this.refs.dialog.show();
   },
 
   dismiss: function() {
-    this.refs.dialogWindow.dismiss();
+    this.refs.dialog.dismiss();
   },
 
   _handleCancelTouchTap: function() {
@@ -124,7 +129,7 @@ var DatePickerDialog = React.createClass({
   },
 
   _handleWindowKeyUp: function(e) {
-    if (this.refs.dialogWindow.isOpen()) {
+    if (this.refs.dialog.isOpen()) {
       switch (e.keyCode) {
         case KeyCode.ENTER:
           this._handleOKTouchTap();
