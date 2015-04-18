@@ -20,7 +20,7 @@ module.exports = {
     if (this.isMounted() && 
       e.target != el &&
       !Dom.isDescendant(el, e.target) &&
-      document.contains(e.target)) {
+      document.documentElement.contains(e.target)) {
       if (this.componentClickAway) this.componentClickAway();
     }
   },
