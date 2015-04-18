@@ -21,11 +21,12 @@ var LeftNav = React.createClass({
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
-    className: React.PropTypes.string,
+    className: React.PropTypes.string
   },
 
   windowListeners: {
-    'keyup': '_onWindowKeyUp'
+    'keyup': '_onWindowKeyUp',
+    'resize': '_onWindowResize'
   },
 
   getDefaultProps: function() {
@@ -38,6 +39,14 @@ var LeftNav = React.createClass({
     return {
       open: this.props.docked
     };
+  },
+  
+  componentDidMount: function() {
+    this._updateMenuHeight();
+  },
+  
+  componentDidUpdate: function(prevProps, prevState) {
+    this._updateMenuHeight();
   },
 
   toggle: function() {
@@ -66,12 +75,21 @@ var LeftNav = React.createClass({
       top: 0,
       transition: Transitions.easeOut(),
       backgroundColor: this.getTheme().color,
+      overflow: 'hidden'
     };
 
     var x = ((-1 * this.getTheme().width) - 10) + 'px';
     if (!this.state.open) style.transform = 'translate3d(' + x + ', 0, 0)';
 
     return this.mergeAndPrefix(style);
+  },
+  
+  _menu: function() {
+    return {
+      overflowY: 'auto',
+      overflowX: 'hidden',
+      height: '100%'
+    };
   },
 
   _menuItem: function() {
@@ -86,6 +104,12 @@ var LeftNav = React.createClass({
       display: 'block',
       textDecoration: 'none',
       color: this.getThemePalette().textColor,
+    }, this._menuItem());
+  },
+  
+  _menuItemSubheader: function() {
+    return this.mergeAndPrefix({
+      overflow: 'hidden'
     }, this._menuItem());
   },
 
@@ -112,17 +136,28 @@ var LeftNav = React.createClass({
           zDepth={2}
           rounded={false}>
             {this.props.header}
-            <Menu 
+            <Menu
               ref="menuItems"
+              style={this._menu()}
               zDepth={0}
               menuItems={this.props.menuItems}
               menuItemStyle={this._menuItem()} 
               menuItemStyleLink={this._menuItemLink()}
+              menuItemStyleSubheader={this._menuItemSubheader()}
               selectedIndex={selectedIndex}
               onItemClick={this._onMenuItemClick} />
         </Paper>
       </div>
     );
+  },
+  
+  _updateMenuHeight: function() {
+    if (this.props.header) {
+      var container = this.refs.clickAwayableElement.getDOMNode();
+      var menu = this.refs.menuItems.getDOMNode();
+      var menuHeight = container.clientHeight - menu.offsetTop;
+      menu.style.height = menuHeight + 'px';
+    }
   },
 
   _onMenuItemClick: function(e, key, payload) {
@@ -142,7 +177,12 @@ var LeftNav = React.createClass({
         this.state.open) {
       this.close();
     }
+  },
+  
+  _onWindowResize: function(e) {
+    this._updateMenuHeight();
   }
+  
 });
 
 module.exports = LeftNav;

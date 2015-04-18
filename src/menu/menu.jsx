@@ -177,7 +177,7 @@ var Menu = React.createClass({
   componentDidMount: function() {
     var el = this.getDOMNode();
 
-    //Set the menu with
+    //Set the menu width
     this._setKeyWidth(el);
 
     //Save the initial menu height for later
