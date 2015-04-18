@@ -55,21 +55,17 @@ var nestedMenuItems = [
 ];
 
 
+
 class MenusPage extends React.Component {
 
-  // getChildContext() {
-  //   var theme = mui.Styles.Theme;
-  //   theme.getCurrentTheme();
-  //   theme.setComponentThemes({
-  //     toggle: {
-  //       thumbOnColor: 'rgb(255,255,0)',
-  //       trackOnColor: 'rgba(255,255,0,0.5)'
-  //     }
-  //   });
-  //   return {
-  //     theme: theme.getCurrentTheme()
-  //   }
-  // }
+  componentWillMount() {
+    this.context.theme.setComponentThemes({
+      toggle: {
+        thumbOnColor: 'rgb(255,100,0)',
+        trackOnColor: 'rgba(255,100,0,0.5)'
+      }
+    });
+  }
 
   render() {
     return (
@@ -221,8 +217,8 @@ class MenusPage extends React.Component {
 
 }
 
-// MenusPage.childContextTypes = {
-//   theme: React.PropTypes.object
-// };
+MenusPage.contextTypes = {
+  theme: React.PropTypes.object
+};
 
 module.exports = MenusPage;

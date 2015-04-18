@@ -7,7 +7,7 @@ var Types = {
   DARK: require('./themes/dark-theme')
 };
 
-var Theme = function() {
+var ThemeManager = function() {
 
   /** 
   *  A recursive merge between two objects. Keep in mind that overriding the 
@@ -76,4 +76,4 @@ var Theme = function() {
   };
 };
 
-module.exports = Theme;
+module.exports = ThemeManager;

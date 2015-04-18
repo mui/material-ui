@@ -34,7 +34,7 @@ module.exports = {
   Styles: {
     Colors: require('./styles/colors'),
     Spacing: require('./styles/spacing'),
-    Theme: require('./styles/theme')
+    ThemeManager: require('./styles/theme-manager')
   },
   Snackbar: require('./snackbar'),
   Tab: require('./tabs/tab'),
