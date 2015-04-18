@@ -29,7 +29,7 @@ var YearButton = React.createClass({
   render: function() {
     var {
       className,
-      date,
+      year,
       onTouchTap,
       selected,
       ...other
@@ -69,13 +69,13 @@ var YearButton = React.createClass({
       styles.buttonState.transform = 'scale(1.5)';
     }
     
-    if (this.props.selected) {
+    if (selected) {
       styles.label.color = CustomVariables.datePickerSelectTextColor;
       styles.buttonState.opacity = 1;
       styles.buttonState.transform = 'scale(1.5)';
     }
     
-    if (this.props.year === new Date().getFullYear()) {
+    if (year === new Date().getFullYear()) {
       styles.root.color = CustomVariables.datePickerColor;
     }
 
@@ -88,7 +88,7 @@ var YearButton = React.createClass({
         onMouseOut={this._handleMouseOut}
         onTouchTap={this._handleTouchTap}>
         <div style={styles.buttonState} />
-        <span style={styles.label}>{this.props.year}</span>
+        <span style={styles.label}>{year}</span>
       </EnhancedButton>
     );
   },

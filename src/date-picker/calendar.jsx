@@ -177,7 +177,7 @@ var Calendar = React.createClass({
         
         <div style={styles.yearContainer}>
           <CalendarYear
-            key={'year-' + this.state.displayDate.toDateString()}
+            key={'years'}
             displayDate={this.state.displayDate}
             onYearTouchTap={this._handleYearTouchTap}
             selectedDate={this.state.selectedDate}

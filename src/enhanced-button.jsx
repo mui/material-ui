@@ -95,25 +95,34 @@ var EnhancedButton = React.createClass({
       onMouseOver,
       onMouseOut,
       onTouchTap,
-      ...other } = this.props;
+      ...other } = this.props;  
+    var buttonChildren = [];
+    
+    // Create ripples if we need to
+    buttonChildren.push((disabled || disableTouchRipple) ?
+      this.props.children :
+      (
+        <TouchRipple
+          ref="touchRipple"
+          key="touchRipple"
+          centerRipple={centerRipple}
+          color={this.props.touchRippleColor}
+          opacity={this.props.touchRippleOpacity}>
+            {this.props.children}
+        </TouchRipple>
+      )
+    );
+    buttonChildren.push((disabled || disableFocusRipple) ?
+      null :
+      (
+        <FocusRipple
+          key="focusRipple"
+          color={this.props.focusRippleColor}
+          opacity={this.props.focusRippleOpacity}
+          show={this.state.isKeyboardFocused} />
+      )
+    );
 
-    var touchRipple = (
-      <TouchRipple
-        ref="touchRipple"
-        key="touchRipple"
-        centerRipple={centerRipple}
-        color={this.props.touchRippleColor}
-        opacity={this.props.touchRippleOpacity}>
-        {this.props.children}
-      </TouchRipple>
-    );
-    var focusRipple = (
-      <FocusRipple
-        key="focusRipple"
-        color={this.props.focusRippleColor}
-        opacity={this.props.focusRippleOpacity}
-        show={this.state.isKeyboardFocused} />
-    );
     var buttonProps = {
       style: this._main(),
       disabled: disabled,
@@ -123,10 +132,6 @@ var EnhancedButton = React.createClass({
       onMouseOut: this._handleMouseOut,
       onTouchTap: this._handleTouchTap,
     };
-    var buttonChildren = [
-      disabled || disableTouchRipple ? this.props.children : touchRipple,
-      disabled || disableFocusRipple ? null : focusRipple
-    ];
 
     if (disabled && linkButton) {
       return (

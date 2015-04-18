@@ -61,7 +61,7 @@ var CalendarYear = React.createClass({
       
       var yearButton = (
         <YearButton
-          key={'year-button-' + year}
+          key={'yb' + year}
           year={year}
           onTouchTap={this._handleYearTouchTap}
           selected={selected}
