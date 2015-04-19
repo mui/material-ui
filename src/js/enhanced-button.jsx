@@ -15,6 +15,7 @@ var EnhancedButton = React.createClass({
     disabled: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
+    keyboardFocused: React.PropTypes.bool,
     linkButton: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
@@ -28,7 +29,7 @@ var EnhancedButton = React.createClass({
 
   getInitialState: function() {
     return {
-      isKeyboardFocused: false 
+      isKeyboardFocused: !this.props.disabled && this.props.keyboardFocused
     };
   },
 

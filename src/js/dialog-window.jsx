@@ -13,6 +13,7 @@ var DialogWindow = React.createClass({
 
   propTypes: {
     actions: React.PropTypes.array,
+    actionFocus: React.PropTypes.string,
     contentClassName: React.PropTypes.string,
     openImmediately: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
@@ -45,11 +46,13 @@ var DialogWindow = React.createClass({
     if (this.props.openImmediately) {
       this.refs.dialogOverlay.preventScrolling();
       this._onShow();
+      this._focusOnAction();
     }
   },
 
   componentDidUpdate: function (prevProps, prevState) {
     this._positionDialog();
+    this._focusOnAction();
   },
 
   render: function() {
@@ -89,6 +92,7 @@ var DialogWindow = React.createClass({
 
   show: function() {
     this.refs.dialogOverlay.preventScrolling();
+    this._focusOnAction();
 
     this.setState({ open: true });
     this._onShow();
@@ -102,13 +106,20 @@ var DialogWindow = React.createClass({
   },
 
   _getAction: function(actionJSON, key) {
-    var onClickHandler = actionJSON.onClick ? actionJSON.onClick : this.dismiss;
+    var props = {
+      key: key,
+      secondary: true,
+      onClick: actionJSON.onClick ? actionJSON.onClick : this.dismiss,
+      label: actionJSON.text
+    };
+    if (actionJSON.ref) {
+      props.ref = actionJSON.ref;
+      props.keyboardFocused = actionJSON.ref === this.props.actionFocus;
+    }
+    
     return (
       <FlatButton
-        key={key}
-        secondary={true}
-        onClick={onClickHandler}
-        label={actionJSON.text} />
+        {...props} />
     );
   },
 
@@ -158,6 +169,12 @@ var DialogWindow = React.createClass({
         container.style.paddingTop = 
           ((containerHeight - dialogWindowHeight) / 2) - 64 + 'px';
       }
+    }
+  },
+  
+  _focusOnAction: function() {
+    if (this.props.actionFocus) {
+      this.refs[this.props.actionFocus].getDOMNode().focus();
     }
   },
   

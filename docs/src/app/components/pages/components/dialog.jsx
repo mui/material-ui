@@ -20,11 +20,12 @@ var DialogPage = React.createClass({
       '//Standard Actions\n' +
       'var standardActions = [\n' +
       '  { text: \'Cancel\' },\n' +
-      '  { text: \'Submit\', onClick: this._onDialogSubmit }\n' +
+      '  { text: \'Submit\', onClick: this._onDialogSubmit, ref: \'submit\' }\n' +
       '];\n\n' +
       '<Dialog\n' +
       '  title="Dialog With Standard Actions"\n' +
       '  actions={standardActions}\n' +
+      '  actionFocus="submit"\n' +
       '  modal={this.state.modal}\n' +
       '  dismissOnClickAway={this.state.dismissOnClickAway}>\n' +
       '  The actions in this window are created from the json that\'s passed in. \n' +
@@ -57,6 +58,12 @@ var DialogPage = React.createClass({
             type: 'array',
             header: 'optional',
             desc: 'This prop can be either a JSON object containing the actions to render, or an array of react objects.'
+          },
+          {
+            name: 'actionFocus',
+            type: 'string',
+            header: 'optional',
+            desc: 'The ref of the action to focus on when the dialog is displayed.'
           },
           {
             name: 'contentClassName',
@@ -118,7 +125,7 @@ var DialogPage = React.createClass({
 
     var standardActions = [
       { text: 'Cancel' },
-      { text: 'Submit', onClick: this._onDialogSubmit }
+      { text: 'Submit', onClick: this._onDialogSubmit, ref: 'submit' }
     ];
 
     var customActions = [
@@ -148,6 +155,7 @@ var DialogPage = React.createClass({
           ref="standardDialog"
           title="Dialog With Standard Actions"
           actions={standardActions}
+          actionFocus="submit"
           modal={this.state.modal}>
           The actions in this window are created from the json that's passed in.
         </Dialog>
