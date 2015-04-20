@@ -10,7 +10,16 @@ var CalendarToolbar = React.createClass({
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
     onLeftTouchTap: React.PropTypes.func,
-    onRightTouchTap: React.PropTypes.func
+    onRightTouchTap: React.PropTypes.func,
+    maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object
+  },
+
+  getDefaultProps: function () {
+      return {
+        maxDate: null,
+        minDate: null
+      };
   },
 
   getInitialState: function() {
@@ -29,11 +38,29 @@ var CalendarToolbar = React.createClass({
       });
     }
   },
+  _isDisabled: function(direction){
+    
+    var date = this.props.displayDate;
+    var minDate = this.props.minDate;
+    var maxDate = this.props.maxDate;
 
+    if(direction == "left" && minDate){      
+      if(date.getFullYear() < minDate.getFullYear()) return true;
+      if(date.getFullYear() == minDate.getFullYear()){
+        return date.getMonth() <= minDate.getMonth();
+      }
+    }else if(direction == "right" && maxDate){
+      if(date.getFullYear() > maxDate.getFullYear()) return true;
+      if(date.getFullYear() == maxDate.getFullYear()){
+        return date.getMonth() >= maxDate.getMonth();
+      }
+    }
+
+    return false;
+  },
   render: function() {
     var month = DateTime.getFullMonth(this.props.displayDate);
     var year = this.props.displayDate.getFullYear();
-
     var styles = {
       root: {
         height: '48px',
@@ -63,6 +90,8 @@ var CalendarToolbar = React.createClass({
         textAlign: 'center',
       }
     };
+    var disableLeft = this._isDisabled("left");
+    var disableRight = this._isDisabled("right");
 
     return (
       <div style={styles.root}>
@@ -75,12 +104,14 @@ var CalendarToolbar = React.createClass({
 
         <IconButton
           style={styles.buttonLeft}
+          disabled={disableLeft}
           onTouchTap={this.props.onLeftTouchTap}>
             <NavigationChevronLeft/>
         </IconButton>
 
         <IconButton
           style={styles.buttonRight}
+          disabled={disableRight}
           onTouchTap={this.props.onRightTouchTap}>
             <NavigationChevronRight/>
         </IconButton>

@@ -19,6 +19,8 @@ var DatePickerDialog = React.createClass({
     onAccept: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    minDate: React.PropTypes.object,
+    maxDate: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -69,6 +71,10 @@ var DatePickerDialog = React.createClass({
         onTouchTap={this._handleOKTouchTap} />
     ];
 
+    if(this.props.autoOk){
+      actions = actions.slice(0, 1);
+    }
+
     return (
       <DialogWindow {...other}
         ref="dialogWindow"
@@ -79,7 +85,10 @@ var DatePickerDialog = React.createClass({
         onShow={this._handleDialogShow}
         repositionOnUpdate={false}>
         <Calendar
+          minDate={this.props.minDate}
+          maxDate={this.props.maxDate}
           ref="calendar"
+          onSelectedDate={this._onSelectedDate}
           initialDate={this.props.initialDate}
           isActive={this.state.isCalendarActive}
           mode={this.props.mode} />
@@ -93,6 +102,12 @@ var DatePickerDialog = React.createClass({
 
   dismiss: function() {
     this.refs.dialogWindow.dismiss();
+  },
+
+  _onSelectedDate: function(){
+    if(this.props.autoOk){
+      setTimeout(this._handleOKTouchTap.bind(this), 300);
+    }
   },
 
   _handleCancelTouchTap: function() {
@@ -133,7 +148,7 @@ var DatePickerDialog = React.createClass({
           this._handleOKTouchTap();
           break;
       }
-    } 
+    }
   }
 
 });

@@ -55,7 +55,8 @@ var LinkMenuItem = React.createClass({
     var onClickHandler = (this.props.disabled) ? this._stopLink : undefined;
     // Prevent context menu 'Open In New Tab/Window'
     var linkAttribute = (this.props.disabled) ? 'data-href' : 'href';
-    var link = {linkAttribute: this.props.payload};
+    var link = {};
+    link[linkAttribute] = this.props.payload
 
     var styles = this._main(); 
     if (this.props.disabled) {

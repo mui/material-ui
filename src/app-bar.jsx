@@ -108,12 +108,10 @@ var AppBar = React.createClass({
       marginLeft: 8,
     });
 
-
-
     if (this.props.title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
-      title = toString.call(this.props.title) === '[object String]' ?
+      title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
         <h1 style={this._title()}>{this.props.title}</h1> :
         this.props.title;
     }

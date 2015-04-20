@@ -290,7 +290,7 @@ class ThemesPage extends React.Component {
       '        disabledTextColor: String\n' +
       '      },\n' +
       '      leftNav: {\n' +
-      '        width: Spacing.desktopKeylineIncrement * Number,\n' +
+      '        width: Number,\n' +
       '        color: String,\n' +
       '      },\n' +
       '      menu: {\n' +
@@ -301,11 +301,11 @@ class ThemesPage extends React.Component {
       '        dataHeight: Number,\n' +
       '        height: Number,\n' +
       '        hoverColor: String,\n' +
-      '        padding: Spacing.Number,\n' +
+      '        padding: Number,\n' +
       '        selectedTextColor: String,\n' +
       '      },\n' +
       '      menuSubheader: {\n' +
-      '        padding: Spacing.Number,\n' +
+      '        padding: Number,\n' +
       '        borderColor: String,\n' +
       '        textColor: String,\n' +
       '      },\n' +

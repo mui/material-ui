@@ -188,7 +188,9 @@ var IconButton = React.createClass({
   },
 
   _showTooltip: function() {
-    if (!this.props.disabled) this.setState({ tooltipShown: true });
+    if (!this.props.disabled && this.props.tooltip) {
+      this.setState({ tooltipShown: true });
+    }
   },
 
   _hideTooltip: function() {

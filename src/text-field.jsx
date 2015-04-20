@@ -3,12 +3,12 @@ var ColorManipulator = require('./utils/color-manipulator');
 var Colors = require('./styles/colors');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
-var DomIdable = require('./mixins/dom-idable');
+var UniqueId = require('./utils/unique-id');
 var EnhancedTextarea = require('./enhanced-textarea');
 
 var TextField = React.createClass({
 
-  mixins: [StylePropable, DomIdable],
+  mixins: [StylePropable],
 
   contextTypes: {
     theme: React.PropTypes.object
@@ -216,7 +216,7 @@ var TextField = React.createClass({
       ...other
     } = this.props;
 
-    var inputId = this.props.id || this.getDomId();
+    var inputId = this.props.id || UniqueId.generate();
 
     var errorTextElement = this.state.errorText ? (
       <div style={this._error()}>{this.state.errorText}</div>
@@ -321,7 +321,7 @@ var TextField = React.createClass({
   },
 
   _getInputNode: function() {
-    return this.props.multiLine ? 
+    return this.props.multiLine ?
       this.refs.input.getInputNode() : this.refs.input.getDOMNode();
   },
 

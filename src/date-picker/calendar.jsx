@@ -16,7 +16,10 @@ var Calendar = React.createClass({
 
   propTypes: {
     initialDate: React.PropTypes.object,
-    isActive: React.PropTypes.bool
+    isActive: React.PropTypes.bool,
+    maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
+    onSelectedDate: React.PropTypes.func
   },
 
   windowListeners: {
@@ -25,7 +28,9 @@ var Calendar = React.createClass({
 
   getDefaultProps: function() {
     return {
-      initialDate: new Date()
+      initialDate: new Date(),
+      maxDate: null,
+      minDate: null
     };
   },
 
@@ -99,6 +104,8 @@ var Calendar = React.createClass({
 
         <div style={styles.calendarContainer}>
           <CalendarToolbar
+            minDate={this.props.minDate}
+            maxDate={this.props.maxDate} 
             displayDate={this.state.displayDate}
             onLeftTouchTap={this._handleLeftTouchTap}
             onRightTouchTap={this._handleRightTouchTap} />
@@ -118,6 +125,8 @@ var Calendar = React.createClass({
           <SlideInTransitionGroup
             direction={this.state.transitionDirection}>
             <CalendarMonth
+              minDate={this.props.minDate}
+              maxDate={this.props.maxDate} 
               key={this.state.displayDate.toDateString()}
               displayDate={this.state.displayDate}
               onDayTouchTap={this._handleDayTouchTap}
@@ -168,6 +177,7 @@ var Calendar = React.createClass({
         selectedDate: d
       });
     }
+    if(this.props.onSelectedDate) this.props.onSelectedDate(d);
   },
 
   _handleDayTouchTap: function(e, date) {

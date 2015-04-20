@@ -18,13 +18,15 @@ var DialogWindow = React.createClass({
 
   propTypes: {
     actions: React.PropTypes.array,
+    actionFocus: React.PropTypes.string,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
     openImmediately: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
-    repositionOnUpdate: React.PropTypes.bool
+    repositionOnUpdate: React.PropTypes.bool,
+    modal: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -34,7 +36,8 @@ var DialogWindow = React.createClass({
   getDefaultProps: function() {
     return {
       actions: [],
-      repositionOnUpdate: true
+      repositionOnUpdate: true,
+      modal: false
     };
   },
 
@@ -49,11 +52,13 @@ var DialogWindow = React.createClass({
     if (this.props.openImmediately) {
       this.refs.dialogOverlay.preventScrolling();
       this._onShow();
+      this._focusOnAction();
     }
   },
 
   componentDidUpdate: function(prevProps, prevState) {
     this._positionDialog();
+    this._focusOnAction();
   },
 
   /** Styles */
@@ -147,6 +152,7 @@ var DialogWindow = React.createClass({
 
   show: function() {
     this.refs.dialogOverlay.preventScrolling();
+    this._focusOnAction();
     this.setState({ open: true });
     this._onShow();
   },
@@ -154,23 +160,30 @@ var DialogWindow = React.createClass({
   _getAction: function(actionJSON, key) {
     var onClickHandler = actionJSON.onClick ? actionJSON.onClick : this.dismiss;
     var styles = {marginRight: 8};
-
+    var props = {
+      key: key,
+      secondary: true,
+      onClick: onClickHandler,
+      label: actionJSON.text,
+      style: styles
+    };
+    if (actionJSON.ref) {
+      props.ref = actionJSON.ref;
+      props.keyboardFocused = actionJSON.ref === this.props.actionFocus;
+    }
+    
     return (
       <FlatButton
-        key={key}
-        secondary={true}
-        onClick={onClickHandler}
-        label={actionJSON.text}
-        style={styles}/>
+        {...props} />
     );
   },
 
-  _getActionsContainer: function(actions) {
+  _getActionsContainer: function(actions) { //json w/ refs
     var actionContainer;
     var actionObjects = [];
     var actionStyle = {
       boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      WebkitTapHighlightColor: 'rgba(s0,0,0,0)',
       padding: 8,
       marginBottom: 8,
       width: '100%',
@@ -179,13 +192,12 @@ var DialogWindow = React.createClass({
 
     if (actions.length) {
       for (var i = 0; i < actions.length; i++) {
-        currentAction = actions[i];
+        var currentAction = actions[i];
 
         //if the current action isn't a react object, create one
         if (!React.isValidElement(currentAction)) {
           currentAction = this._getAction(currentAction, i);
         }
-
         actionObjects.push(currentAction);
       };
 
@@ -218,7 +230,13 @@ var DialogWindow = React.createClass({
     }
 
   },
-
+  
+  _focusOnAction: function() {
+    if (this.props.actionFocus) {
+      this.refs[this.props.actionFocus].getDOMNode().focus();
+    }
+  },
+  
   _onShow: function() {
     if (this.props.onShow) this.props.onShow();
   },
@@ -228,12 +246,14 @@ var DialogWindow = React.createClass({
   },
 
   _handleOverlayTouchTap: function() {
-    this.dismiss();
-    if (this.props.onClickAway) this.props.onClickAway();
+    if (!this.props.modal) {
+      this.dismiss();
+      if (this.props.onClickAway) this.props.onClickAway();
+    }
   },
 
   _handleWindowKeyUp: function(e) {
-    if (e.keyCode == KeyCode.ESC) {
+    if (!this.props.modal && e.keyCode == KeyCode.ESC) {
       this.dismiss();
     }
   }

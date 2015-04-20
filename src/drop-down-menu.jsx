@@ -52,13 +52,14 @@ var DropDownMenu = React.createClass({
 
   componentDidMount: function() {
     if (this.props.autoWidth) this._setWidth();
+    if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(this.props);
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (nextProps.hasOwnProperty('selectedIndex')) {
-      this.setState({selectedIndex: nextProps.selectedIndex});
+    if (props.hasOwnProperty('selectedIndex')) {
+      this._setSelectedIndex(nextProps);
     }
-  },
+ },
 
   /** Styles */
   _main: function() {
@@ -207,6 +208,16 @@ var DropDownMenu = React.createClass({
       menuItemsDom = this.refs.menuItems.getDOMNode();
 
     el.style.width = menuItemsDom.offsetWidth + 'px';
+  },
+
+  _setSelectedIndex: function(props) {
+    var selectedIndex = props.selectedIndex;
+
+    if (process.NODE_ENV !== 'production' && selectedIndex < 0) {
+      console.warn('Cannot set selectedIndex to a negative index.', selectedIndex);
+    }
+
+    this.setState({selectedIndex: (selectedIndex > -1) ? selectedIndex : 0});
   },
 
   _onControlClick: function(e) {

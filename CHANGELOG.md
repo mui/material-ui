@@ -1,3 +1,18 @@
+## 0.7.3
+###### _Apr. 1, 2015_
+
+##### General
+- Updated mui to use peer dependency changes (#471)
+- Replaced `DOMIdable` with `UniqueId` (#490)
+
+##### Components
+- Dialog 
+  - Changed `title` prop to accept node types instead of just strings (#474) 
+- Link Menu Item
+  - Fixed anchor attribute name (#493)
+- Menu
+  - Nested menus expand when hovered (#475)
+
 ## 0.7.2
 ###### _Mar. 25, 2015_
 

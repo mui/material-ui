@@ -18,7 +18,6 @@ class LeftNavPage extends React.Component {
   }
 
   render() {
-
     var menuItems = [
       { route: 'get-started', text: 'Get Started' },
       { route: 'customization', text: 'Customization' },
@@ -112,6 +111,16 @@ class LeftNavPage extends React.Component {
             header: 'function(e, selectedIndex, menuItem)',
             desc: 'Fired when a menu item is clicked that is not the one currently ' +
               'selected.'
+          },
+          {
+            name: 'onNavOpen',
+            header: 'function()',
+            desc: 'Fired when the component is opened'
+          },
+          {
+            name: 'onNavClose',
+            header: 'function()',
+            desc: 'Fired when the component is closed'
           }
         ]
       }
@@ -132,7 +141,6 @@ class LeftNavPage extends React.Component {
 
       </ComponentDoc>
     );
-
   }
 
   _showLeftNavClick() {
