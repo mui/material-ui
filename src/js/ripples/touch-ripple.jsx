@@ -18,7 +18,8 @@ var TouchRipple = React.createClass({
         key: 0,
         started: false,
         ending: false
-      }]
+      }],
+      touchInProgress: false
     };
   },
 
@@ -105,15 +106,15 @@ var TouchRipple = React.createClass({
 
   _handleMouseDown: function(e) {
     //only listen to left clicks
-    if (e.button === 0) this.start(e);
+    if (e.button === 0 && !this.state.touchInProgress) this.start(e);
   },
 
   _handleMouseUp: function(e) {
-    this.end();
+    if (!this.state.touchInProgress) this.end();
   },
 
   _handleMouseOut: function(e) {
-    this.end();
+    if (!this.state.touchInProgress) this.end();
   },
 
   _handleTouchStart: function(e) {
@@ -121,10 +122,13 @@ var TouchRipple = React.createClass({
   },
 
   _handleTouchEnd: function(e) {
-    // Prevent mouse events from firing on touch-enabled devices.
-    if (e.cancelable) {
-      e.preventDefault();
-    }
+    this.setState({ touchInProgress: true });
+    setTimeout(function () {
+      if (this.isMounted()) {
+        this.setState({ touchInProgress: false });
+      }
+    }.bind(this), 100);
+
     this.end();
   },
 
