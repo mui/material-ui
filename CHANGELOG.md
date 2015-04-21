@@ -1,3 +1,30 @@
+## 0.7.4
+###### _Apr. 21, 2015_
+
+##### General
+- Updated to react v0.13
+
+##### Components
+- AppBar
+  - Fixed IE toString.Call() issue (#518, #468)
+- Buttons
+  - Button events now do not fire on disabled buttons (#512)
+  - Fixed rapid keyboard tabbing issue (#528)
+- DatePicker
+  - Added autoOk, minDate, and maxDate props (#538)
+- Dialog
+  - Fixed IE toString.Call() issue (#518, #468)
+  - Added modal prop (#523)
+  - Fixed warnings caused by overwriting props (#500)
+  - Added ability to give an action button autofocus (#552)
+- DropDownMenu
+  - Handle selectIndex less than 0 (#480)
+  - Fixed issue of using this component outside strict mode (#533)
+- LeftNav
+  - Added onNavOpen & onNavClose events (#495)
+- Switches
+  - Fixed errors on disabled switches on mobile (#476)
+
 ## 0.7.3
 ###### _Apr. 1, 2015_
 
