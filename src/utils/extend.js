@@ -1,3 +1,8 @@
+// http://stackoverflow.com/questions/1187518/javascript-array-difference
+Array.prototype.diff = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
+
 /** 
 *  A recursive merge between two objects. 
 * 
@@ -11,10 +16,11 @@ var extend = function(object, overrides) {
 
   Object.keys(object).forEach(function(currentKey) {
 
-    var overridesCheck = object[currentKey] && !Array.isArray(object[currentKey]);
+    // Arrays and null are also objects, 
+    var overridesIsValidObject = object[currentKey] && !Array.isArray(object[currentKey]);
     
     // Recursive call to next level
-    if (typeof(object[currentKey]) === 'object' && overridesCheck) {
+    if (typeof(object[currentKey]) === 'object' && overridesIsValidObject) {
       mergeObject[currentKey] = extend(object[currentKey], overrides[currentKey]);
     } else {
       if (overrides && overrides[currentKey]) {
@@ -24,9 +30,14 @@ var extend = function(object, overrides) {
       }
     }
 
-    if (Object.keys(overrides) > 0) console.log('unadded props: ', overrides);
-
   });
+
+  // Overrides not defined in object are immediately added.
+  if (overrides && typeof(overrides) === 'object' && !Array.isArray(overrides)) {
+    Object.keys(overrides).diff(Object.keys(object)).forEach(function(currentDiff) {
+      mergeObject[currentDiff] = overrides[currentDiff];
+    });
+  }
 
   return mergeObject;
 };

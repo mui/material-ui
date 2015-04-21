@@ -6,7 +6,7 @@ var DarkTheme = {
     return {
       textColor: Colors.fullWhite,
       canvasColor: '#303030',
-      borderColor: Colors.grey300,
+      borderColor:  ColorManipulator.fade(Colors.fullWhite, 0.3), //Colors.grey300
       disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3)
     };
   },

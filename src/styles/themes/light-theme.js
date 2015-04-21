@@ -51,7 +51,7 @@ var LightTheme = {
         selectTextColor: Colors.white
       },
       dropDownMenu: {
-        accentColor: palette.borderColor
+        iconColor: palette.borderColor
       },
       flatButton: {
         color: palette.canvasColor,

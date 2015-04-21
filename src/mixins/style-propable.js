@@ -29,6 +29,5 @@ module.exports = {
       if (arguments[i]) base = Extend(base, arguments[i]);
     }
     return AutoPrefix.all(base);
-	}
-
+	},
 }

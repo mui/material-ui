@@ -19,7 +19,7 @@ var ToolbarSeparator = React.createClass({
 
   render: function() {
 
-    var styles = this.mergeAndPrefix({
+    var styles = this.m({
       backgroundColor: this.getTheme().separatorColor,
       display: 'inline-block',
       height: this.getSpacing().desktopGutterMore,
@@ -27,7 +27,7 @@ var ToolbarSeparator = React.createClass({
       position: 'relative',
       top: ((this.getTheme().height - this.getSpacing().desktopGutterMore) / 2),
       width: 1,
-    });
+    }, this.props.style);
 
     return (
       <span className={this.props.className} style={styles}/>

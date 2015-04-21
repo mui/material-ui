@@ -61,110 +61,6 @@ var DropDownMenu = React.createClass({
     }
  },
 
-  /** Styles */
-  _main: function() {
-    var style = {
-      transition: Transitions.easeOut(),
-      position: 'relative',
-      display: 'inline-block',
-      height: this.getSpacing().desktopToolbarHeight,
-      fontSize: this.getSpacing().desktopDropDownMenuFontSize
-    };
-
-    if (this.state.open) style.opacity = 1;
-
-    return this.mergeAndPrefix(style);
-  },
-
-  _control: function() {
-    var style = {
-      cursor: 'pointer',
-      position: 'static',
-      height: '100%',
-    };
-
-    if (this.props.styleControl) this.mergeAndPrefix(style, this.props.styleControl);
-
-    return style;
-  },
-
-  _controlBg: function() { 
-    var style = {
-      transition: Transitions.easeOut(),
-      backgroundColor: this.context.theme.component.menu.backgroundColor,
-      height: '100%',
-      width: '100%',
-      opacity: (this.state.open) ? 0 : 
-               (this.state.isHovered) ? 1 : 0,
-    };
-
-    if (this.props.styleControlBg) style = this.mergeAndPrefix(style, this.props.styleControlBg);
-  
-    return style;
-  },
-
-  _icon: function() {
-    var style = {
-      position: 'absolute',
-      top: ((this.getSpacing().desktopToolbarHeight - 24) / 2),
-      right: this.getSpacing().desktopGutterLess,
-      fill: this.context.theme.component.dropDownMenu.accentColor,
-    };
-
-    if (this.props.styleIcon) style = this.mergeAndPrefix(style, this.props.styleIcon);
-  
-    return style;
-  },
-
-  _label: function() {
-    var style = {
-      transition: Transitions.easeOut(),
-      lineHeight: this.getSpacing().desktopToolbarHeight + 'px',
-      position: 'absolute',
-      paddingLeft: this.getSpacing().desktopGutter,
-      top: 0,
-      opacity: 1,
-      color: this.getTextColor()
-    };
-
-    if (this.state.open) {
-      style = this.mergeAndPrefix(style, {
-        opacity: 0,
-        top: this.getSpacing().desktopToolbarHeight / 2,
-      });
-    }
-
-    if (this.props.styleLabel) style = this.mergeAndPrefix(style, this.props.styleLabel);
-  
-    return style;
-  },
-
-  _underline: function() {
-    var style = {
-      borderTop: 'solid 1px ' + this.context.theme.component.dropDownMenu.accentColor,
-      margin: '0 ' + this.getSpacing().desktopGutter + 'px',
-    };
-
-    if (this.props.styleUnderline) style =this.mergeAndPrefix(style, this.props.styleUnderline);
-  
-    return style;
-  },
-
-  _menuItem: function() {
-    var style = {
-      paddingRight: this.getSpacing().iconSize + 
-                    this.getSpacing().desktopGutterLess + 
-                    this.getSpacing().desktopGutterMini,
-      height: this.getSpacing().desktopDropDownMenuItemHeight,
-      lineHeight: this.getSpacing().desktopDropDownMenuItemHeight + 'px',
-      whiteSpace: 'nowrap',
-    };
-
-    if (this.props.styleMenuItem) style = this.mergeAndPrefix(style, this.props.styleMenuItem);
-  
-    return style;
-  },
-
   getSpacing: function() {
     return this.context.theme.spacing;
   },
@@ -173,21 +69,85 @@ var DropDownMenu = React.createClass({
     return this.context.theme.palette.textColor;
   },
 
+  getStyles: function(){
+    var styles = {
+      root: {
+        transition: Transitions.easeOut(),
+        position: 'relative',
+        display: 'inline-block',
+        height: this.getSpacing().desktopToolbarHeight,
+        fontSize: this.getSpacing().desktopDropDownMenuFontSize
+      },
+      control: {
+        cursor: 'pointer',
+        position: 'static',
+        height: '100%'
+      },
+      controlBg: {
+        transition: Transitions.easeOut(),
+        backgroundColor: this.context.theme.component.menu.backgroundColor,
+        height: '100%',
+        width: '100%',
+        opacity: (this.state.open) ? 0 : 
+                 (this.state.isHovered) ? 1 : 0
+      },
+      icon: {
+        position: 'absolute',
+        top: ((this.getSpacing().desktopToolbarHeight - 24) / 2),
+        right: this.getSpacing().desktopGutterLess,
+        fill: this.context.theme.component.dropDownMenu.accentColor
+      },
+      label: {
+        transition: Transitions.easeOut(),
+        lineHeight: this.getSpacing().desktopToolbarHeight + 'px',
+        position: 'absolute',
+        paddingLeft: this.getSpacing().desktopGutter,
+        top: 0,
+        opacity: 1,
+        color: this.getTextColor()
+      },
+      underline: {
+        borderTop: 'solid 1px ' + this.context.theme.component.dropDownMenu.accentColor,
+        margin: '0 ' + this.getSpacing().desktopGutter + 'px'
+      },
+      menuItem: {
+        paddingRight: this.getSpacing().iconSize + 
+                      this.getSpacing().desktopGutterLess + 
+                      this.getSpacing().desktopGutterMini,
+        height: this.getSpacing().desktopDropDownMenuItemHeight,
+        lineHeight: this.getSpacing().desktopDropDownMenuItemHeight + 'px',
+        whiteSpace: 'nowrap'
+      },
+      rootWhenOpen: {
+        opacity: 1
+      },
+      labelWhenOpen: {
+        opacity: 0,
+        top: this.getSpacing().desktopToolbarHeight / 2
+      }
+    };
+    return styles;
+  },
+
   render: function() {
+    var styles = this.getStyles();
     return (
       <div 
-        style={this._main()} 
-        className={this.props.className} 
         onMouseOut={this._handleMouseOut}
-        onMouseOver={this._handleMouseOver}>
+        onMouseOver={this._handleMouseOver}
+        className={this.props.className}
+        style={this.m(
+          styles.root, 
+          this.state.open && styles.rootWhenOpen,
+          this.props.style)} >
 
-          <ClearFix style={this._control()} onClick={this._onControlClick}>
-            <Paper style={this._controlBg()} zDepth={0} />
-            <div style={this._label()}>
+          <ClearFix style={this.m(styles.control, this.props.styleControl)} onClick={this._onControlClick}>
+            <Paper style={this.m(styles.controlBg, this.props.styleControlBg)} zDepth={0} />
+            <div style={this.m(styles.label, this.state.open && styles.labelWhenOpen, this.props.styleLabel)}>
               {this.props.menuItems[this.state.selectedIndex].text}
             </div>
-            <DropDownArrow style={this._icon()} hoverStyle={this.props.styleIconHover}/>
-            <div style={this._underline()}/>
+            <DropDownArrow style={this.m(styles.icon, this.props.styleIcon)} hoverStyle={this.props.styleIconHover}/>
+            <div style={this.m(styles.underline, this.props.styleUnderline)}/>
           </ClearFix>
 
           <Menu
@@ -195,7 +155,7 @@ var DropDownMenu = React.createClass({
             autoWidth={this.props.autoWidth}
             selectedIndex={this.state.selectedIndex}
             menuItems={this.props.menuItems}
-            menuItemStyle={this._menuItem()}
+            menuItemStyle={this.m(styles.menuItem, this.props.styleMenuItem)}
             hideable={true}
             visible={this.state.open}
             onItemClick={this._onMenuItemClick} />

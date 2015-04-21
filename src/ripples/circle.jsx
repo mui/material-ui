@@ -29,7 +29,7 @@ var RippleCircle = React.createClass({
       ...other
     } = this.props;
 
-    var styles = this.mergeAndPrefix({
+    var styles = this.m({
       position: 'absolute',
       top: 0,
       left: 0,
@@ -43,7 +43,7 @@ var RippleCircle = React.createClass({
       transition:
         Transitions.easeOut('2s', 'opacity') + ',' +
         Transitions.easeOut('1s', 'transform')
-    });
+    }, this.props.style);
 
     return (
       <div {...other} style={styles} />

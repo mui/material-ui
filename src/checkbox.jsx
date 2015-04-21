@@ -79,23 +79,23 @@ var Checkbox = React.createClass({
       ...other
     } = this.props;
 
-    if (!this.hasOwnProperty('styles')) this.styles = this.getStyles();
+    var styles = this.getStyles();
 
     var checkboxElement = (
       <div>
         <CheckboxOutline style={
           this.m(
-            this.styles.box,
-            this.state.switched && this.styles.boxWhenSwitched,
+            styles.box,
+            this.state.switched && styles.boxWhenSwitched,
             this.props.style,
-            this.props.disabled && this.styles.boxWhenDisabled
+            this.props.disabled && styles.boxWhenDisabled
         )} />
         <CheckboxChecked style={
           this.m(
-            this.styles.check,
-            this.state.switched && this.styles.checkWhenSwitched,
+            styles.check,
+            this.state.switched && styles.checkWhenSwitched,
             this.props.style,            
-            this.props.disabled && this.styles.checkWhenDisabled
+            this.props.disabled && styles.checkWhenDisabled
         )} />
       </div>
     );
@@ -105,7 +105,7 @@ var Checkbox = React.createClass({
       inputType: "checkbox",
       switched: this.state.switched,
       switchElement: checkboxElement,
-      iconStyle: this.styles.icon,
+      iconStyle: styles.icon,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,

@@ -45,55 +45,6 @@ var Snackbar = React.createClass({
     }
   },
 
-  _main: function() {
-    return this.mergeAndPrefix({
-      color: this.getTheme().textColor,
-      backgroundColor: this.getTheme().backgroundColor,
-      borderRadius: 2,
-      padding: '0px ' + this.getSpacing().desktopGutter + 'px',
-      height: this.getSpacing().desktopSubheaderHeight,
-      lineHeight: this.getSpacing().desktopSubheaderHeight + 'px',
-      minWidth: 288,
-      maxWidth: 568,
-
-      position: 'fixed',
-      zIndex: 10,
-      bottom: this.getSpacing().desktopGutter,
-      marginLeft: this.getSpacing().desktopGutter,
-
-      left: -10000,
-      opacity: 0,
-      transform: 'translate3d(0, 20px, 0)',
-      transition:
-        Transitions.easeOut('0ms', 'left', '400ms') + ',' +
-        Transitions.easeOut('400ms', 'opacity') + ',' +
-        Transitions.easeOut('400ms', 'transform'),
-    });
-  },
-
-  _openMain: function() {
-    return {
-      left: 0,
-      opacity: 1,
-      transform: 'translate3d(0, 0, 0)',
-      transition:
-        Transitions.easeOut('0ms', 'left', '0ms') + ',' +
-        Transitions.easeOut('400ms', 'opacity', '0ms') + ',' +
-        Transitions.easeOut('400ms', 'transform', '0ms'),
-    }
-  },
-
-  _action: function() {
-    return {
-      color: this.getTheme().actionColor,
-      float: 'right',
-      marginTop: 6,
-      marginRight: -16,
-      marginLeft: this.getSpacing().desktopGutter,
-      backgroundColor: 'transparent',
-    }
-  },
-
   getTheme: function() {
     return this.context.theme.component.snackbar;
   },
@@ -102,25 +53,72 @@ var Snackbar = React.createClass({
     return this.context.theme.spacing;
   },
 
+  getStyles: function() {
+    var styles = {
+      root: {
+        color: this.getTheme().textColor,
+        backgroundColor: this.getTheme().backgroundColor,
+        borderRadius: 2,
+        padding: '0px ' + this.getSpacing().desktopGutter + 'px',
+        height: this.getSpacing().desktopSubheaderHeight,
+        lineHeight: this.getSpacing().desktopSubheaderHeight + 'px',
+        minWidth: 288,
+        maxWidth: 568,
+
+        position: 'fixed',
+        zIndex: 10,
+        bottom: this.getSpacing().desktopGutter,
+        marginLeft: this.getSpacing().desktopGutter,
+
+        left: -10000,
+        opacity: 0,
+        transform: 'translate3d(0, 20px, 0)',
+        transition:
+          Transitions.easeOut('0ms', 'left', '400ms') + ',' +
+          Transitions.easeOut('400ms', 'opacity') + ',' +
+          Transitions.easeOut('400ms', 'transform'),
+      },
+      action: {
+        color: this.getTheme().actionColor,
+        float: 'right',
+        marginTop: 6,
+        marginRight: -16,
+        marginLeft: this.getSpacing().desktopGutter,
+        backgroundColor: 'transparent'
+      },
+      rootWhenOpen: {
+        left: 0,
+        opacity: 1,
+        transform: 'translate3d(0, 0, 0)',
+        transition:
+          Transitions.easeOut('0ms', 'left', '0ms') + ',' +
+          Transitions.easeOut('400ms', 'opacity', '0ms') + ',' +
+          Transitions.easeOut('400ms', 'transform', '0ms')   
+      }
+    };
+    return styles;
+  },
+
   render: function() {
 
-    var styles = this._main();
-    if (this.state.open) styles = this.mergeStyles(styles, this._openMain());
+    var styles = this.getStyles(); 
 
     var action;
     if (this.props.action) {
       action = (
         <FlatButton
-          style={this._action()}
+          style={styles.action}
           label={this.props.action}
           onTouchTap={this.props.onActionTouchTap} />
       );
     }
 
     return (
-      <span style={styles}>
-        <span className="mui-snackbar-message">{this.props.message}</span>
-        {action}
+      <span style={this.m(
+        styles.root,
+        this.state.open && styles.rootWhenOpen)}>
+          <span>{this.props.message}</span>
+          {action}
       </span>
     );
   },

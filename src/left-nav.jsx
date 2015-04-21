@@ -68,55 +68,6 @@ var LeftNav = React.createClass({
     return this;
   },
 
-  /** Styles */
-  _main: function() {
-    var style = {
-      height: '100%',
-      width: this.getTheme().width,
-      position: 'fixed',
-      zIndex: 10,
-      left: 0,
-      top: 0,
-      transition: Transitions.easeOut(),
-      backgroundColor: this.getTheme().color,
-      overflow: 'hidden'
-    };
-
-    var x = ((-1 * this.getTheme().width) - 10) + 'px';
-    if (!this.state.open) style.transform = 'translate3d(' + x + ', 0, 0)';
-
-    return this.mergeAndPrefix(style);
-  },
-  
-  _menu: function() {
-    return {
-      overflowY: 'auto',
-      overflowX: 'hidden',
-      height: '100%'
-    };
-  },
-
-  _menuItem: function() {
-    return {
-      height: this.context.theme.spacing.desktopLeftNavMenuItemHeight,
-      lineDeight: this.context.theme.spacing.desktopLeftNavMenuItemHeight,
-    };
-  },
-
-  _menuItemLink: function() {
-    return this.mergeAndPrefix({
-      display: 'block',
-      textDecoration: 'none',
-      color: this.getThemePalette().textColor,
-    }, this._menuItem());
-  },
-  
-  _menuItemSubheader: function() {
-    return this.mergeAndPrefix({
-      overflow: 'hidden'
-    }, this._menuItem());
-  },
-
   getThemePalette: function() {
     return this.context.theme.palette;
   },
@@ -125,29 +76,73 @@ var LeftNav = React.createClass({
     return this.context.theme.component.leftNav;
   },
 
+  getStyles: function() {
+    var x = ((-1 * this.getTheme().width) - 10) + 'px';
+    var styles = {
+      root: {
+        height: '100%',
+        width: this.getTheme().width,
+        position: 'fixed',
+        zIndex: 10,
+        left: 0,
+        top: 0,
+        transition: Transitions.easeOut(),
+        backgroundColor: this.getTheme().color,
+        overflow: 'hidden'
+      },
+      menu: {
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        height: '100%'
+      },
+      menuItem: {
+        height: this.context.theme.spacing.desktopLeftNavMenuItemHeight,
+        lineDeight: this.context.theme.spacing.desktopLeftNavMenuItemHeight
+      },
+      rootWhenNotOpen: {
+        transform: 'translate3d(' + x + ', 0, 0)'
+      }
+    };
+    styles.menuItemLink = this.m(styles.menuItem, {
+      display: 'block',
+      textDecoration: 'none',
+      color: this.getThemePalette().textColor
+    });
+    styles.menuItemSubheader = this.m(styles.menuItem, {
+      overflow: 'hidden'
+    });
+
+    return styles;
+  },
+
   render: function() {
     var selectedIndex = this.props.selectedIndex;
     var overlay;
 
+    var styles = this.getStyles();
     if (!this.props.docked) overlay = <Overlay show={this.state.open} onTouchTap={this._onOverlayTouchTap} />;
+
 
     return (
       <div className={this.props.className}>
         {overlay}
         <Paper
           ref="clickAwayableElement"
-          style={this._main()}
           zDepth={2}
-          rounded={false}>
+          rounded={false}
+          style={this.m(
+            styles.root, 
+            !this.state.open && styles.rootWhenNotOpen,
+            this.props.style)}>
             {this.props.header}
             <Menu
               ref="menuItems"
-              style={this._menu()}
+              style={this.m(styles.menu)}
               zDepth={0}
               menuItems={this.props.menuItems}
-              menuItemStyle={this._menuItem()} 
-              menuItemStyleLink={this._menuItemLink()}
-              menuItemStyleSubheader={this._menuItemSubheader()}
+              menuItemStyle={this.m(styles.menuItem)} 
+              menuItemStyleLink={this.m(styles.menuItemLink)}
+              menuItemStyleSubheader={this.m(styles.menuItemSubheader)}
               selectedIndex={selectedIndex}
               onItemClick={this._onMenuItemClick} />
         </Paper>

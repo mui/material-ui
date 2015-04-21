@@ -32,52 +32,6 @@ var AppBar = React.createClass({
     }
   },
 
-  /** Styles */
-
-  _main: function() {
-    return this.mergeAndPrefix({
-      zIndex: 5,
-      width: '100%',
-      minHeight: this.getSpacing().desktopKeylineIncrement,
-      backgroundColor: this.getThemeVariables().color,
-    });
-  },
-
-  _title: function() {
-    return {      
-      float: 'left',
-      paddingTop: 0,
-      letterSpacing: 0,
-      fontSize: '24px',
-      fontWeight: Typography.fontWeightNormal,
-      color: this.getThemeVariables().textColor,
-      lineHeight: this.getSpacing().desktopKeylineIncrement + 'px',
-    };
-  },
-
-  _iconButton: function() {
-    var iconButtonSize = this.context.theme.component.button.iconButtonSize;
-    return {
-      style: {
-        marginTop: (this.getThemeVariables().height - iconButtonSize) / 2,
-        float: 'left',
-        marginRight: 8,
-        marginLeft: -16,
-      },
-      iconStyle: {
-        fill: this.getThemeVariables().textColor,
-        color: this.getThemeVariables().textColor,
-      }
-    }
-  },
-
-  _paper: function() {
-    return {
-      paddingLeft: this.getSpacing().desktopGutter,
-      paddingRight: this.getSpacing().desktopGutter,
-    };
-  },
-
   componentDidMount: function() {
     if (process.NODE_ENV !== 'production' && 
        (this.props.iconElementLeft && this.props.iconClassNameLeft)) {
@@ -95,40 +49,79 @@ var AppBar = React.createClass({
     return this.context.theme.component.appBar;
   },
 
+  getStyles: function(){
+    var iconButtonSize = this.context.theme.component.button.iconButtonSize;
+    var styles = {
+      root: {
+        zIndex: 5,
+        width: '100%',
+        minHeight: this.getSpacing().desktopKeylineIncrement,
+        backgroundColor: this.getThemeVariables().color
+      },
+      title: {
+        float: 'left',
+        paddingTop: 0,
+        letterSpacing: 0,
+        fontSize: '24px',
+        fontWeight: Typography.fontWeightNormal,
+        color: this.getThemeVariables().textColor,
+        lineHeight: this.getSpacing().desktopKeylineIncrement + 'px'
+      },
+      iconButton: {
+        style: {
+          marginTop: (this.getThemeVariables().height - iconButtonSize) / 2,
+          float: 'left',
+          marginRight: 8,
+          marginLeft: -16
+        },
+        iconStyle: {
+          fill: this.getThemeVariables().textColor,
+          color: this.getThemeVariables().textColor
+        }
+      },
+      paper: {
+        paddingLeft: this.getSpacing().desktopGutter,
+        paddingRight: this.getSpacing().desktopGutter
+      }
+    };
+    return styles;
+  },
+
   render: function() {
     var {
       onTouchTap,
       ...other
     } = this.props;
+    var styles = this.getStyles();
 
     var title, menuElementLeft, menuElementRight;
-    var iconRightStyle = this.mergeAndPrefix(this._iconButton().style, {
+    var iconRightStyle = this.m(styles.iconButton.style, {
       float: 'right',
       marginRight: -16,
-      marginLeft: 8,
+      marginLeft: 8
     });
 
     if (this.props.title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
       title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
-        <h1 style={this._title()}>{this.props.title}</h1> :
+        <h1 style={this.m(styles.title)}>{this.props.title}</h1> :
         this.props.title;
     }
 
     if (this.props.showMenuIconButton) {
       if (this.props.iconElementLeft) {
         menuElementLeft = (
-          <div style={this._iconButton().style}> 
+          <div style={styles.iconButton.style}> 
             {this.props.iconElementLeft} 
           </div>
         );
       } else {
-        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this._iconButton().iconStyle}/>;
+        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this.m(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
-            style={this._iconButton().style}
-            iconStyle={this._iconButton().iconStyle}
+            style={this.m(styles.iconButton.style)}
+            iconStyle={this.m(styles.iconButton.iconStyle)}
             iconClassName={this.props.iconClassNameLeft}
             onTouchTap={this._onMenuIconButtonTouchTap}>
               {child}
@@ -146,7 +139,7 @@ var AppBar = React.createClass({
         menuElementRight = (
           <IconButton
             style={iconRightStyle}
-            iconStyle={this._iconButton().iconStyle}
+            iconStyle={this.m(styles.iconButton.iconStyle)}
             iconClassName={this.props.iconClassNameRight}
             onTouchTap={this._onMenuIconButtonTouchTap}>
           </IconButton>
@@ -155,10 +148,15 @@ var AppBar = React.createClass({
     }
 
     return (
-      <Paper rounded={false} className={this.props.className}  style={this._main()} innerStyle={this._paper()} zDepth={this.props.zDepth}>
-        {menuElementLeft}
-        {title}
-        {menuElementRight}
+      <Paper 
+        rounded={false} 
+        className={this.props.className}  
+        style={this.m(styles.root, this.props.style)} 
+        innerStyle={this.m(styles.paper)} 
+        zDepth={this.props.zDepth}>
+          {menuElementLeft}
+          {title}
+          {menuElementRight}
       </Paper>
     );
   },

@@ -24,13 +24,13 @@ var TouchRipple = React.createClass({
 
   render: function() {
 
-    var styles = this.mergeAndPrefix({
+    var styles = this.m({
       height: '100%',
       width: '100%',
       position: 'absolute',
       top: 0,
       left: 0
-    });
+    }, this.props.style);
 
     return (
       <div

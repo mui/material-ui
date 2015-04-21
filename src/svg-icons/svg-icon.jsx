@@ -19,25 +19,24 @@ var SvgIcon = React.createClass({
     };
   },
 
-  /** Styles */
-  _main: function() {
-    var style = this.mergeAndPrefix({
-      display: 'inline-block',
-      height: '24px',
-      width: '24px',
-      userSelect: 'none',
-      fill: this.getTheme().textColor
-    });
-
-    if (this.state.isHovered && this.props.hoverStyle) {
-      style = this.mergeAndPrefix(style, this.props.hoverStyle);
-    }
-
-    return style;
-  },
-
   getTheme: function() {
     return this.context.theme.palette;
+  },
+
+  getStyles: function() {
+    var styles = {
+      root: {
+        display: 'inline-block',
+        height: '24px',
+        width: '24px',
+        userSelect: 'none',
+        fill: this.getTheme().textColor
+      },
+      rootWhenHovered: {
+
+      }
+    };
+    return styles;
   },
 
   render: function() {
@@ -55,10 +54,13 @@ var SvgIcon = React.createClass({
       <svg
         {...other}
         viewBox="0 0 24 24"
-        style={this._main()}
         onMouseOver={this._onMouseOver} 
-        onMouseOut={this._onMouseOut}>
-          {this.props.children}
+        onMouseOut={this._onMouseOut}
+        style={this.m(
+          this.getStyles().root, 
+          this.props.style,
+          this.state.isHovered && this.props.hoverStyle)}>
+            {this.props.children}
       </svg>
     );
   },

@@ -23,11 +23,11 @@ var SlideIn = React.createClass({
       ...other
     } = this.props;
 
-    var styles = this.mergeAndPrefix({
+    var styles = this.m({
       position: 'relative',
       overflow: 'hidden',
       height: '100%'
-    });
+    }, this.props.style);
 
     return (
       <ReactTransitionGroup {...other}

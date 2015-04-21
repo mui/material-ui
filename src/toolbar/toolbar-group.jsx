@@ -88,10 +88,10 @@ var ToolbarGroup = React.createClass({
 
   render: function() {
 
-    var styles = this.mergeAndPrefix({
+    var styles = this.m({
       position: 'relative',
       float: this.props.float,
-    });
+    }, this.props.style);
 
     if (this.props.firstChild) styles.marginLeft = -24;
     if (this.props.lastChild) styles.marginRight = -24;

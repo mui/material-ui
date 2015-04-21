@@ -20,31 +20,24 @@ var FontIcon = React.createClass({
     };
   },
 
-  /** Styles */
-  _main: function() {
-    var style = this.mergeAndPrefix({
-      position: 'relative',
-      fontSize: Spacing.iconSize + 'px',
-      display: 'inline-block',
-      userSelect: 'none'
-    });
-
-    if (this.state.isHovered && this.props.hoverStyle) {
-      style = this.mergeAndPrefix(style, this.props.hoverStyle);
-    }
-    if (!style.color && !this.props.className) {
-      style.color = this.getTheme().textColor;
-    }
-    
-    return this.mergeAndPrefix(style);
-  },
-
   getTheme: function() {
     return this.context.theme.palette;
   },
 
-  render: function() {
+  getStyles: function() {
+    var styles = {
+      position: 'relative',
+      fontSize: Spacing.iconSize + 'px',
+      display: 'inline-block',
+      userSelect: 'none'  
+    };
+    if (!styles.color && !this.props.className) {
+      styles.color = this.getTheme().textColor;
+    }
+    return styles;
+  },
 
+  render: function() {
     var {
       style,
       hoverStyle,
@@ -55,7 +48,10 @@ var FontIcon = React.createClass({
 
     return (
       <span {...other} 
-        style={this._main()} 
+        style={this.m(
+          this.getStyles(),
+          this.props.style,
+          this.state.isHovered && this.props.hoverStyle)} 
         onMouseOver={this._onMouseOver} 
         onMouseOut={this._onMouseOut}/>
     );
