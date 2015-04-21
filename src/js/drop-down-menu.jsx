@@ -38,7 +38,7 @@ var DropDownMenu = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(nextProps);
+    if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(nextProps);
   },
 
   render: function() {
