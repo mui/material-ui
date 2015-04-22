@@ -154,7 +154,7 @@ var TextField = React.createClass({
       styles.input.color = this._getDisabledTextColor();
     }
 
-    if (this.props.isFocused) {
+    if (this.state.isFocused) {
       styles.floatingLabel.color = this.getTheme().primary1Color;
       styles.floatingLabel.transform = 'scale(0.75) translate3d(0, -18px, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';

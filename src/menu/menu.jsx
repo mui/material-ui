@@ -65,7 +65,7 @@ var NestedMenuItem = React.createClass({
 
     var iconCustomArrowDropRight = {
       marginRight: this.getSpacing().desktopGutterMini * -1,
-      color: this.context.theme.component.dropDownMenu.iconColor
+      color: this.context.theme.component.dropDownMenu.accentColor
     };
 
     var {
@@ -75,7 +75,7 @@ var NestedMenuItem = React.createClass({
     } = this.props;
 
     return (
-      <div style={styles} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
+      <div ref="root" style={styles} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
         <MenuItem 
           index={index}
           style={menuItemStyle}

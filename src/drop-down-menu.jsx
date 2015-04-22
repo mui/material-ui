@@ -70,6 +70,8 @@ var DropDownMenu = React.createClass({
   },
 
   getStyles: function(){
+    var accentColor = this.context.theme.component.dropDownMenu.accentColor;
+    var backgroundColor = this.context.theme.component.menu.backgroundColor;
     var styles = {
       root: {
         transition: Transitions.easeOut(),
@@ -85,7 +87,7 @@ var DropDownMenu = React.createClass({
       },
       controlBg: {
         transition: Transitions.easeOut(),
-        backgroundColor: this.context.theme.component.menu.backgroundColor,
+        backgroundColor: backgroundColor,
         height: '100%',
         width: '100%',
         opacity: (this.state.open) ? 0 : 
@@ -107,7 +109,7 @@ var DropDownMenu = React.createClass({
         color: this.getTextColor()
       },
       underline: {
-        borderTop: 'solid 1px ' + this.context.theme.component.dropDownMenu.accentColor,
+        borderTop: 'solid 1px ' + accentColor,
         margin: '0 ' + this.getSpacing().desktopGutter + 'px'
       },
       menuItem: {
@@ -133,6 +135,7 @@ var DropDownMenu = React.createClass({
     var styles = this.getStyles();
     return (
       <div 
+        ref="root"
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
         className={this.props.className}

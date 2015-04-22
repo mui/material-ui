@@ -66,7 +66,7 @@ var DropDownIcon = React.createClass({
   render: function() {
     var styles = this.getStyles();
     return (
-      <div style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div ref="root" style={this.mergeAndPrefix(styles.root, this.props.style)}>
           <div onClick={this._onControlClick}>
               <FontIcon 
                 className={this.props.iconClassName} 
