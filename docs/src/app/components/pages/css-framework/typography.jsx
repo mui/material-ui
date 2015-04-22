@@ -157,7 +157,7 @@ var TypographyPage = React.createClass({
   },
 
   _onClick: function(e) {
-    Dom.toggleClass(this.refs.verticalRhythmContainer.getDOMNode(), 'baseline-grid');
+    Dom.toggleClass(React.findDOMNode(this.refs.verticalRhythmContainer), 'baseline-grid');
   }
 
 });

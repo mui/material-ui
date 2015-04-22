@@ -82,7 +82,7 @@ var DialogWindow = React.createClass({
   },
 
   dismiss: function() {
-    CssEvent.onTransitionEnd(this.getDOMNode(), function() {
+    CssEvent.onTransitionEnd(React.findDOMNode(this), function() {
       this.refs.dialogOverlay.allowScrolling();
     }.bind(this));
 
@@ -155,8 +155,8 @@ var DialogWindow = React.createClass({
 
     if (this.state.open) {
 
-      container = this.getDOMNode(),
-      dialogWindow = this.refs.dialogWindow.getDOMNode(),
+      container = React.findDOMNode(this),
+      dialogWindow = React.findDOMNode(this.refs.dialogWindow),
       containerHeight = container.offsetHeight,
 
       //Reset the height in case the window was resized.
@@ -174,7 +174,7 @@ var DialogWindow = React.createClass({
   
   _focusOnAction: function() {
     if (this.props.actionFocus) {
-      this.refs[this.props.actionFocus].getDOMNode().focus();
+      React.findDOMNode(this.refs[this.props.actionFocus]).focus();
     }
   },
   

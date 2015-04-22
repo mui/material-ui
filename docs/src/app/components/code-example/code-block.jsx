@@ -4,11 +4,11 @@ var React = require('react'),
 var CodeBlock = React.createClass({
 
   componentDidMount: function() {
-    hljs.highlightBlock(this.getDOMNode());
+    hljs.highlightBlock(React.findDOMNode(this));
   },
 
   componentDidUpdate: function(prevProps, prevState) {
-    hljs.highlightBlock(this.getDOMNode());
+    hljs.highlightBlock(React.findDOMNode(this));
   },
 
   render: function() {

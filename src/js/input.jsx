@@ -105,11 +105,11 @@ var Input = React.createClass({
   },
 
   blur: function() {
-    if(this.isMounted()) this.refs.input.getDOMNode().blur();
+    if(this.isMounted()) React.findDOMNode(this.refs.input).blur();
   },
   
   focus: function() {
-    if (this.isMounted()) this.refs.input.getDOMNode().focus();
+    if (this.isMounted()) React.findDOMNode(this.refs.input).focus();
   },
 
   _onInputChange: function(e) {

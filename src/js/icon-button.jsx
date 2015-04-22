@@ -83,7 +83,7 @@ var IconButton = React.createClass({
   },
 
   _positionTooltip: function() {
-    var tooltip = this.refs.tooltip.getDOMNode();
+    var tooltip = React.findDOMNode(this.refs.tooltip);
     var tooltipWidth = tooltip.offsetWidth;
     var buttonWidth = 48;
 

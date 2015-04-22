@@ -48,7 +48,7 @@ var EnhancedSwitch = React.createClass({
   },
 
   componentDidMount: function() {
-    var inputNode = this.refs.checkbox.getDOMNode();
+    var inputNode = React.findDOMNode(this.refs.checkbox);
     this.setState({switched: inputNode.checked});
   },
 
@@ -196,14 +196,14 @@ var EnhancedSwitch = React.createClass({
 
 
   isSwitched: function() {
-    return this.refs.checkbox.getDOMNode().checked;
+    return React.findDOMNode(this.refs.checkbox).checked;
   },
 
   // no callback here because there is no event
   setSwitched: function(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
       this.setState({switched: newSwitchedValue});
-      this.refs.checkbox.getDOMNode().checked = newSwitchedValue;
+      React.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
     } else if (process.NODE_ENV !== 'production') {
       var message = 'Cannot call set method while checked is defined as a property.';
       console.error(message);
@@ -211,7 +211,7 @@ var EnhancedSwitch = React.createClass({
   },
 
   getValue: function() {
-    return this.refs.checkbox.getDOMNode().value;
+    return React.findDOMNode(this.refs.checkbox).value;
   },
 
   isKeyboardFocused: function() {
@@ -225,7 +225,7 @@ var EnhancedSwitch = React.createClass({
       isKeyboardFocused: false
     });
 
-    var isInputChecked = this.refs.checkbox.getDOMNode().checked;
+    var isInputChecked = React.findDOMNode(this.refs.checkbox).checked;
 
     if (!this.props.hasOwnProperty('checked')) this.setState({switched: isInputChecked});
     if (this.props.onSwitch) this.props.onSwitch(e, isInputChecked);
