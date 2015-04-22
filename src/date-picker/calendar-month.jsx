@@ -12,7 +12,10 @@ var CalendarMonth = React.createClass({
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
     onDayTouchTap: React.PropTypes.func,
-    selectedDate: React.PropTypes.object.isRequired
+    selectedDate: React.PropTypes.object.isRequired,
+    maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
+    autoOk: React.PropTypes.bool
   },
 
   render: function() {
@@ -20,7 +23,6 @@ var CalendarMonth = React.createClass({
       lineHeight: '32px',
       textAlign: 'center',
       padding: '8px 14px 0 14px',
-      backgroundColor: Colors.white
     };
 
     return (
@@ -41,14 +43,29 @@ var CalendarMonth = React.createClass({
       );
     }, this);
   },
+  _isDisabled: function(day){
+    var minDate = this.props.minDate;
+    var maxDate = this.props.maxDate;
 
+    if(minDate != null && day < minDate){
+      return true;
+    }
+
+    if(maxDate != null && day > maxDate){
+      return true;
+    }
+
+    return false;
+  },
   _getDayElements: function(week) {
     return week.map(function(day, i) {
       var selected = DateTime.isEqualDate(this.props.selectedDate, day);
+      var disabled = this._isDisabled(day);
       return (
         <DayButton
           key={i}
           date={day}
+          disabled={disabled}
           onTouchTap={this._handleDayTouchTap}
           selected={selected} />
       );

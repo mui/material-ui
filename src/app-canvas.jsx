@@ -1,34 +1,35 @@
 var React = require('react');
-var Classable = require('./mixins/classable');
-var CustomVariables = require('./styles/variables/custom-variables');
 
 var AppCanvas = React.createClass({
-
-  mixins: [Classable],
+  
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     predefinedLayout: React.PropTypes.number
   },
 
   render: function() {
-    var classes = this.getClasses({
-      'mui-app-canvas': true,
-      'mui-predefined-layout-1': this.props.predefinedLayout === 1
-    });
+
+    var styles = {
+      height: '100%',
+      backgroundColor: this.context.theme.palette.canvasColor
+    };
 
     React.Children.forEach(this.props.children, function(currentChild) {
       switch (currentChild.type.displayName) {
         case 'AppBar' : 
           currentChild.props.style = {
             position: 'fixed', 
-            height: CustomVariables.appBarHeight
+            height: this.context.theme.component.appBar.height
           };
           break;
       }
-    });
+    }, this);
 
     return (
-      <div className={classes}>
+      <div style={styles}>
         {this.props.children}
       </div>
     );

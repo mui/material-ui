@@ -1,7 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var ColorManipulator = require('./utils/color-manipulator');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
@@ -18,6 +17,10 @@ var getZDepth = function(disabled) {
 var RaisedButton = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     className: React.PropTypes.string,
@@ -68,9 +71,9 @@ var RaisedButton = React.createClass({
   /** Styles */
 
   _getBackgroundColor: function() {
-    return  this.props.disabled ? CustomVariables.floatingActionButtonDisabledColor :
-            this.props.secondary ? CustomVariables.floatingActionButtonSecondaryColor :
-            CustomVariables.floatingActionButtonColor; 
+    return  this.props.disabled ? this.getTheme().disabledColor :
+            this.props.secondary ? this.getTheme().secondaryColor :
+            this.getTheme().color; 
   },
 
   _main: function() {
@@ -82,14 +85,14 @@ var RaisedButton = React.createClass({
 
   _icon: function() {
     var style = {
-      lineHeight: CustomVariables.floatingActionButtonSize + 'px',
-      fill: CustomVariables.floatingActionButtonIconColor,
-      color:  this.props.disabled ? CustomVariables.floatingActionButtonDisabledTextColor :
-              this.props.secondary ? CustomVariables.floatingActionButtonSecondaryIconColor :
-              CustomVariables.floatingActionButtonIconColor,
+      lineHeight: this.getTheme().buttonSize + 'px',
+      fill: this.getTheme().iconColor,
+      color:  this.props.disabled ? this.getTheme().disabledTextColor :
+              this.props.secondary ? this.getTheme().secondaryIconColor :
+              this.getTheme().iconColor,
     };
 
-    if (this.props.mini) style.lineHeight = CustomVariables.floatingActionButtonMiniSize + 'px';
+    if (this.props.mini) style.lineHeight = this.getTheme().miniSize + 'px';
     if (this.props.iconStyle) style = this.mergeAndPrefix(style, this.props.iconStyle);
 
     return style;
@@ -112,8 +115,8 @@ var RaisedButton = React.createClass({
     var style = {
       transition: Transitions.easeOut(),
       position: 'relative',
-      height: CustomVariables.floatingActionButtonSize,
-      width: CustomVariables.floatingActionButtonSize,
+      height: this.getTheme().buttonSize,
+      width: this.getTheme().buttonSize,
       padding: 0,
       overflow: 'hidden',
       backgroundColor: this._getBackgroundColor(),
@@ -127,12 +130,16 @@ var RaisedButton = React.createClass({
 
     if (this.props.mini) {
       style = this.mergeAndPrefix(style, {
-        height: CustomVariables.floatingActionButtonMiniSize,
-        width: CustomVariables.floatingActionButtonMiniSize,
+        height: this.getTheme().miniSize,
+        width: this.getTheme().miniSize,
       });
     }
 
     return style;
+  },
+
+  getTheme: function() {
+    return this.context.theme.component.floatingActionButton;
   },
 
   render: function() {

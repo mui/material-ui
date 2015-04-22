@@ -2,10 +2,8 @@ var React = require('react');
 var CssEvent = require('../utils/css-event');
 var Dom = require('../utils/dom');
 var KeyLine = require('../utils/key-line');
-var Classable = require('../mixins/classable');
 var StylePropable = require('../mixins/style-propable');
-var Transitions = require('../styles/mixins/transitions');
-var CustomVariables = require('../styles/variables/custom-variables');
+var Transitions = require('../styles/transitions');
 var ClickAwayable = require('../mixins/click-awayable');
 var Paper = require('../paper');
 var MenuItem = require('./menu-item');
@@ -17,7 +15,11 @@ var SubheaderMenuItem = require('./subheader-menu-item');
 ***********************/
 var NestedMenuItem = React.createClass({
 
-  mixins: [Classable, ClickAwayable, StylePropable],
+  mixins: [ClickAwayable, StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     index: React.PropTypes.number.isRequired,
@@ -52,14 +54,18 @@ var NestedMenuItem = React.createClass({
     this._positionNestedMenu();
   },
 
+  getSpacing: function() {
+    return this.context.theme.spacing;
+  },
+
   render: function() {
     var styles = this.mergeStyles({
       position: 'relative',
     });
 
     var iconCustomArrowDropRight = {
-      marginRight: CustomVariables.spacing.desktopGutterMini * -1,
-      color: CustomVariables.dropDownMenuIconColor
+      marginRight: this.getSpacing().desktopGutterMini * -1,
+      color: this.context.theme.component.dropDownMenu.iconColor
     }
 
     var {
@@ -131,7 +137,11 @@ var NestedMenuItem = React.createClass({
 ****************/
 var Menu = React.createClass({
 
-  mixins: [Classable, StylePropable],
+  mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     autoWidth: React.PropTypes.bool,
@@ -195,15 +205,16 @@ var Menu = React.createClass({
   // Main Style
   _main: function() {
     return this.mergeAndPrefix({
-      backgroundColor: CustomVariables.menuBackgroundColor,
+      backgroundColor: this.getTheme().backgroundColor,
       transition: Transitions.easeOut(null, 'height'),
     });
   },
 
   _innerPaper: function() {
     var style = {
-      paddingTop: CustomVariables.spacing.desktopGutterMini,
-      paddingBottom: CustomVariables.spacing.desktopGutterMini,
+      paddingTop: this.getSpacing().desktopGutterMini,
+      paddingBottom: this.getSpacing().desktopGutterMini,
+      backgroundColor: this.getTheme().containerBackgroundColor,
     }
 
     if (this.props.hideable) {
@@ -218,9 +229,17 @@ var Menu = React.createClass({
 
   _subheader: function() {
     return this.mergeAndPrefix({
-      paddingLeft: CustomVariables.menuSubheaderPadding,
-      paddingRight: CustomVariables.menuSubheaderPadding,
+      paddingLeft: this.context.theme.component.menuSubheader.padding,
+      paddingRight: this.context.theme.component.menuSubheader.padding,
     }, this.props.menuItemStyleSubheader);
+  },
+
+  getTheme: function() {
+    return this.context.theme.component.menu
+  },
+
+  getSpacing: function() {
+    return this.context.theme.spacing;
   },
 
   render: function() {

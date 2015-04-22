@@ -1,11 +1,14 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var Typography = require('../styles/core/typography');
-var CustomVariables = require('../styles/variables/custom-variables');
+var Typography = require('../styles/typography');
 
 var SubheaderMenuItem = React.createClass({
   
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
       index: React.PropTypes.number.isRequired,
@@ -17,8 +20,8 @@ var SubheaderMenuItem = React.createClass({
   /** Styles */
   _main: function() {
 
-    var gutterMini = CustomVariables.spacing.desktopGutterMini;
-    var subheaderHeight = CustomVariables.spacing.desktopSubheaderHeight;
+    var gutterMini = this.getSpacing().desktopGutterMini;
+    var subheaderHeight = this.getSpacing().desktopSubheaderHeight;
 
     var style = {
       boxSizing: 'border-box',
@@ -29,8 +32,8 @@ var SubheaderMenuItem = React.createClass({
       margin: 0,
       height: subheaderHeight + gutterMini,
       lineHeight: subheaderHeight + 'px',
-      color: CustomVariables.subheaderTextColor,
-      borderTop: 'solid 1px ' + CustomVariables.subheaderBorderColor,
+      color: this.getTheme().textColor,
+      borderTop: 'solid 1px ' + this.getTheme().borderColor,
       paddingTop: gutterMini,
       marginTop: gutterMini,
     };
@@ -45,6 +48,14 @@ var SubheaderMenuItem = React.createClass({
     }
 
     return this.mergeAndPrefix(style);
+  },
+
+  getTheme: function() {
+    return this.context.theme.component.menuSubheader;
+  },
+
+  getSpacing: function() {
+    return this.context.theme.spacing;
   },
 
   render: function() {

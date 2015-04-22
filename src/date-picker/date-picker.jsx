@@ -19,6 +19,9 @@ var DatePicker = React.createClass({
     onChange: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    minDate: React.PropTypes.object,
+    maxDate: React.PropTypes.object,
+    autoOk: React.PropTypes.bool,
   },
 
   windowListeners: {
@@ -27,7 +30,10 @@ var DatePicker = React.createClass({
 
   getDefaultProps: function() {
     return {
-      formatDate: DateTime.format
+      formatDate: DateTime.format,
+      minDate: null,
+      maxDate: null,
+      autoOk: false
     };
   },
 
@@ -46,6 +52,9 @@ var DatePicker = React.createClass({
       onTouchTap,
       onShow,
       onDismiss,
+      minDate,
+      maxDate,
+      autoOk,
       ...other
     } = this.props;
     var classes = this.getClasses('mui-date-picker', {
@@ -65,8 +74,12 @@ var DatePicker = React.createClass({
           ref="input"
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}
-          onTouchTap={this._handleInputTouchTap} />
+          onTouchTap={this._handleInputTouchTap}
+          style={{width: '100%'}} />
         <DatePickerDialog
+          minDate={minDate} 
+          maxDate={maxDate} 
+          autoOk={autoOk}
           ref="dialogWindow"
           mode={this.props.mode}
           initialDate={this.state.dialogDate}

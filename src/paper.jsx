@@ -1,10 +1,13 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var CustomVariables = require('./styles/variables/custom-variables');
-
+var Transitions = require('./styles/transitions');
 var Paper = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     circle: React.PropTypes.bool,
@@ -26,8 +29,10 @@ var Paper = React.createClass({
   /** Styles */
   _main: function() {
     return this.mergeAndPrefix({
+      backgroundColor: this.context.theme.component.paper.backgroundColor,
+      transition: Transitions.easeOut(),
       boxSizing: 'border-box',
-      fontFamily: CustomVariables.contentFontFamily,
+      fontFamily: this.context.theme.contentFontFamily,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
       boxShadow: this.getZDepthShadows(this.props.zDepth).boxShadow,
       borderRadius: this.props.circle ? '50%' : 
@@ -41,7 +46,7 @@ var Paper = React.createClass({
       width: '100%', 
       height: '100%',
       boxSizing: 'border-box',
-      fontFamily: CustomVariables.contentFontFamily,
+      fontFamily: this.context.theme.contentFontFamily,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
       boxShadow: this.getZDepthShadows(this.props.zDepth).bottomBoxShadow,
       borderRadius: this.props.circle ? '50%' : 

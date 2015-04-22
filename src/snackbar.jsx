@@ -1,8 +1,7 @@
 var React = require('react');
 var CssEvent = require('./utils/css-event');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var ClickAwayable = require('./mixins/click-awayable');
 var FlatButton = require('./flat-button');
 
@@ -11,6 +10,10 @@ var Snackbar = React.createClass({
   mixins: [StylePropable, ClickAwayable],
 
   manuallyBindClickAway: true,
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     action: React.PropTypes.string,
@@ -44,19 +47,19 @@ var Snackbar = React.createClass({
 
   _main: function() {
     return this.mergeAndPrefix({
-      color: CustomVariables.snackbarTextColor,
-      backgroundColor: CustomVariables.snackbarBackgroundColor,
+      color: this.getTheme().textColor,
+      backgroundColor: this.getTheme().backgroundColor,
       borderRadius: 2,
-      padding: '0px ' + CustomVariables.spacing.desktopGutter + 'px',
-      height: CustomVariables.spacing.desktopSubheaderHeight,
-      lineHeight: CustomVariables.spacing.desktopSubheaderHeight + 'px',
+      padding: '0px ' + this.getSpacing().desktopGutter + 'px',
+      height: this.getSpacing().desktopSubheaderHeight,
+      lineHeight: this.getSpacing().desktopSubheaderHeight + 'px',
       minWidth: 288,
       maxWidth: 568,
 
       position: 'fixed',
       zIndex: 10,
-      bottom: CustomVariables.spacing.desktopGutter,
-      marginLeft: CustomVariables.spacing.desktopGutter,
+      bottom: this.getSpacing().desktopGutter,
+      marginLeft: this.getSpacing().desktopGutter,
 
       left: -10000,
       opacity: 0,
@@ -82,13 +85,21 @@ var Snackbar = React.createClass({
 
   _action: function() {
     return {
-      color: CustomVariables.snackbarActionColor,
+      color: this.getTheme().actionColor,
       float: 'right',
       marginTop: 6,
       marginRight: -16,
-      marginLeft: CustomVariables.spacing.desktopGutter,
+      marginLeft: this.getSpacing().desktopGutter,
       backgroundColor: 'transparent',
     }
+  },
+
+  getTheme: function() {
+    return this.context.theme.component.snackbar;
+  },
+
+  getSpacing: function() {
+    return this.context.theme.spacing;
   },
 
   render: function() {

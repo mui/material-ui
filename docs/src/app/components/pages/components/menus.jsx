@@ -55,7 +55,17 @@ var nestedMenuItems = [
 ];
 
 
+
 class MenusPage extends React.Component {
+
+  componentWillMount() {
+    this.context.theme.setComponentThemes({
+      toggle: {
+        thumbOnColor: 'rgb(255,100,0)',
+        trackOnColor: 'rgba(255,100,0,0.5)'
+      }
+    });
+  }
 
   render() {
     return (
@@ -206,5 +216,9 @@ class MenusPage extends React.Component {
   }
 
 }
+
+MenusPage.contextTypes = {
+  theme: React.PropTypes.object
+};
 
 module.exports = MenusPage;

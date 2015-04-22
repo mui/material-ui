@@ -1,7 +1,7 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
+var Spacing = require('./styles/spacing');
 var ClickAwayable = require('./mixins/click-awayable');
 var KeyLine = require('./utils/key-line');
 var Paper = require('./paper');
@@ -45,8 +45,8 @@ var DropDownIcon = React.createClass({
       display: 'inline-block',
       width: iconWidth + 'px !important',
       position: 'relative',
-      height: CustomVariables.spacing.desktopToolbarHeight,
-      fontSize: CustomVariables.spacing.desktopDropDownMenuFontSize,
+      height: Spacing.desktopToolbarHeight,
+      fontSize: Spacing.desktopDropDownMenuFontSize,
       cursor: 'pointer'
     });
   },
@@ -63,9 +63,9 @@ var DropDownIcon = React.createClass({
 
   _menuItem: function() { // similair to drop down menu's menu item styles
     return {
-      paddingRight: (CustomVariables.spacing.iconSize + (CustomVariables.spacing.desktopGutterLess*2)),
-      height: CustomVariables.spacing.desktopDropDownMenuItemHeight,
-      lineHeight: CustomVariables.spacing.desktopDropDownMenuItemHeight + 'px',
+      paddingRight: (Spacing.iconSize + (Spacing.desktopGutterLess*2)),
+      height: Spacing.desktopDropDownMenuItemHeight,
+      lineHeight: Spacing.desktopDropDownMenuItemHeight + 'px',
     }
   },
 

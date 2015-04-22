@@ -2,7 +2,7 @@ var React = require('react/addons');
 var Tab = require('./tab');
 var TabTemplate = require('./tabTemplate');
 var InkBar = require('../ink-bar');
-var Transitions = require('../styles/mixins/transitions.js');
+var Transitions = require('../styles/transitions.js');
 var StylePropable = require('../mixins/style-propable.js');
 var Colors = require('../styles/colors.js')
 

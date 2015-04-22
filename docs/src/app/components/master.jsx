@@ -1,8 +1,10 @@
 var React = require('react');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
-var mui = require('mui');
 var AppLeftNav = require('./app-left-nav.jsx');
+var mui = require('mui');
+
+var ThemeManager = new mui.Styles.ThemeManager();
 
 var { AppBar, AppCanvas, Menu, IconButton } = mui;
 
@@ -13,15 +15,21 @@ class Master extends React.Component {
     this._onMenuIconButtonTouchTap = this._onMenuIconButtonTouchTap.bind(this);
   }
 
+  getChildContext() {
+    return {
+      theme: ThemeManager.getCurrentTheme()
+    }
+  }
+
   render() {
     var title =
       this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('css-framework') ? 'Css Framework' :
+      this.context.router.isActive('customization') ? 'Customization' :
       this.context.router.isActive('components') ? 'Components' : '';
 
     var githubButton = (
       <IconButton
-        className="github-icon-button"
+        iconStyle={{color: '#FFF', fill: '#FFF'}}
         iconClassName="muidocs-icon-custom-github"
         href="https://github.com/callemall/material-ui"
         linkButton={true} />
@@ -61,6 +69,10 @@ class Master extends React.Component {
 
 Master.contextTypes = {
   router: React.PropTypes.func
+};
+
+Master.childContextTypes = {
+  theme: React.PropTypes.object
 };
 
 module.exports = Master;

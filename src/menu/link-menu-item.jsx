@@ -1,11 +1,14 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var CustomVariables = require('../styles/variables/custom-variables');
 
 var LinkMenuItem = React.createClass({
 
   mixins: [StylePropable],
   
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
     index: React.PropTypes.number.isRequired,
     payload: React.PropTypes.string.isRequired,
@@ -33,27 +36,32 @@ var LinkMenuItem = React.createClass({
       userSelect: 'none',
       cursor: 'pointer',
       display: 'block',
-      lineHeight: CustomVariables.menuItemHeight + 'px',
-      paddingLeft: CustomVariables.menuItemPadding,
-      paddingRight: CustomVariables.menuItemPadding,
+      lineHeight: this.getTheme().height + 'px',
+      paddingLeft: this.getTheme().padding,
+      paddingRight: this.getTheme().padding,
     });
 
-    if (this.state.hovered && !this.props.disabled) style.backgroundColor = CustomVariables.menuItemHoverColor;
-    if (this.props.selected) style.color = CustomVariables.menuItemSelectedTextColor;
+    if (this.state.hovered && !this.props.disabled) style.backgroundColor = this.getTheme().hoverColor;
+    if (this.props.selected) style.color = this.getTheme().selectedTextColor;
 
     return this.mergeAndPrefix(style);
+  },
+
+  getTheme: function() {
+    return this.context.theme.component.menuItem;
   },
 
   render: function() {
     var onClickHandler = (this.props.disabled) ? this._stopLink : undefined;
     // Prevent context menu 'Open In New Tab/Window'
     var linkAttribute = (this.props.disabled) ? 'data-href' : 'href';
-    var link = {linkAttribute: this.props.payload};
+    var link = {};
+    link[linkAttribute] = this.props.payload
 
     var styles = this._main(); 
     if (this.props.disabled) {
       styles.cursor = 'default';
-      styles.color = CustomVariables.disabledColor;
+      styles.color = this.context.theme.palette.disabledColor;
     }
 
     return (

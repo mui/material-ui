@@ -1,7 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var EnhancedSwitch = require('./enhanced-switch');
 var RadioButtonOff = require('./svg-icons/toggle-radio-button-off');
 var RadioButtonOn = require('./svg-icons/toggle-radio-button-on');
@@ -10,8 +9,16 @@ var RadioButton = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
     onCheck: React.PropTypes.func
+  },
+
+  getTheme: function() {
+    return this.context.theme.component.radioButton;
   },
 
   render: function() {
@@ -21,17 +28,16 @@ var RadioButton = React.createClass({
       ...other
     } = this.props;
 
-    var radioButtonSize = 24;
     var iconStyles = {
-        height: radioButtonSize,
-        width: radioButtonSize
+        height: this.getTheme().size,
+        width: this.getTheme().size
     };
     var targetStyles = {
         transition: Transitions.easeOut(),
         position: 'absolute',
         opacity: 1,
         transform: 'scale(1)',
-        fill: CustomVariables.radioButtonBorderColor
+        fill: this.getTheme().borderColor
     };
     var fillStyles = {
         position: 'absolute',
@@ -39,7 +45,7 @@ var RadioButton = React.createClass({
         transform: 'scale(0)',
         transformOrigin: '50% 50%',
         transition: Transitions.easeOut(),
-        fill: CustomVariables.radioButtonCheckedColor
+        fill: this.getTheme().checkedColor
     };
 
     if (this.props.checked) {
@@ -54,8 +60,8 @@ var RadioButton = React.createClass({
     }
 
     if (this.props.disabled) {
-      targetStyles.fill = CustomVariables.radioButtonDisabledColor;
-      fillStyles.fill = CustomVariables.radioButtonDisabledColor;
+      targetStyles.fill = this.getTheme().disabledColor;
+      fillStyles.fill = this.getTheme().disabledColor;
     }
 
     if (this.props.checked && this.props.disabled) {

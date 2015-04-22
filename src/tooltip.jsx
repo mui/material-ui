@@ -1,7 +1,7 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
+var Colors = require('./styles/colors');
 
 var Tooltip = React.createClass({
 
@@ -31,7 +31,7 @@ var Tooltip = React.createClass({
       fontSize: '10px',
       lineHeight: '22px',
       padding: '0 8px',
-      color: CustomVariables.colors.white,
+      color: Colors.white,
       overflow: 'hidden',
       top: -10000,
       borderRadius: 2,
@@ -89,7 +89,7 @@ var Tooltip = React.createClass({
 
     if (this.props.show) {
       style = this.mergeAndPrefix(style, {
-        backgroundColor: CustomVariables.colors.grey600,
+        backgroundColor: Colors.grey600,
         transition:
           Transitions.easeOut('450ms', 'width', '0ms') + ',' +
           Transitions.easeOut('450ms', 'height', '0ms') + ',' +

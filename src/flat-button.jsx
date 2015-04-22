@@ -1,14 +1,17 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var ColorManipulator = require('./utils/color-manipulator');
-var Typography = require('./styles/core/typography');
+var Typography = require('./styles/typography');
 var EnhancedButton = require('./enhanced-button');
 
 var FlatButton = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     className: React.PropTypes.string,
@@ -48,9 +51,9 @@ var FlatButton = React.createClass({
       userSelect: 'none',
       position: 'relative',
       overflow: 'hidden',
-      backgroundColor: CustomVariables.flatButtonColor,
-      lineHeight: CustomVariables.buttonHeight + 'px',
-      minWidth: CustomVariables.buttonMinWidth,
+      backgroundColor: this.getTheme().color,
+      lineHeight: this.getThemeButton().height + 'px',
+      minWidth: this.getThemeButton().minWidth,
       padding: 0, 
       margin: 0,
 
@@ -58,10 +61,10 @@ var FlatButton = React.createClass({
       //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
       transform: 'translate3d(0, 0, 0)',
 
-      color:  this.props.disabled ? CustomVariables.flatButtonDisabledTextColor :
-              this.props.primary ? CustomVariables.flatButtonPrimaryTextColor :
-              this.props.secondary ? CustomVariables.flatButtonSecondaryTextColor :
-              CustomVariables.flatButtonTextColor,
+      color:  this.props.disabled ? this.getTheme().disabledTextColor :
+              this.props.primary ? this.getTheme().primaryTextColor :
+              this.props.secondary ? this.getTheme().secondaryTextColor :
+              this.getTheme().textColor,
     };
 
     if (this.state.hovered && !this.props.disabled) {
@@ -74,7 +77,7 @@ var FlatButton = React.createClass({
   _label: function() {
     var style = {
       position: 'relative',
-      padding: '0px ' + CustomVariables.spacing.desktopGutterLess + 'px',
+      padding: '0px ' + this.context.theme.spacing.desktopGutterLess + 'px',
     };
     
     if (this.props.labelStyle) style = this.mergeAndPrefix(style, this.props.labelStyle);
@@ -82,6 +85,13 @@ var FlatButton = React.createClass({
     return style;
   },
 
+  getThemeButton: function() {
+    return this.context.theme.component.button;
+  },
+
+  getTheme: function() {
+    return this.context.theme.component.flatButton;
+  },
 
   render: function() {
 

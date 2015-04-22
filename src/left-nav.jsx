@@ -1,9 +1,7 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var Theme = require('./styles/theme').get();
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var WindowListenable = require('./mixins/window-listenable');
 var Overlay = require('./overlay');
 var Paper = require('./paper');
@@ -13,13 +11,19 @@ var LeftNav = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
     docked: React.PropTypes.bool,
     header: React.PropTypes.element,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
-    className: React.PropTypes.string
+    className: React.PropTypes.string,
+    onNavOpen: React.PropTypes.func,
+    onNavClose: React.PropTypes.func
   },
 
   windowListeners: {
@@ -54,11 +58,13 @@ var LeftNav = React.createClass({
 
   close: function() {
     this.setState({ open: false });
+    if (this.props.onNavClose) this.props.onNavClose();
     return this;
   },
 
   open: function() {
     this.setState({ open: true });
+    if (this.props.onNavOpen) this.props.onNavOpen();
     return this;
   },
 
@@ -66,17 +72,17 @@ var LeftNav = React.createClass({
   _main: function() {
     var style = {
       height: '100%',
-      width: CustomVariables.leftNavWidth,
+      width: this.getTheme().width,
       position: 'fixed',
       zIndex: 10,
       left: 0,
       top: 0,
       transition: Transitions.easeOut(),
-      backgroundColor: CustomVariables.leftNavColor,
+      backgroundColor: this.getTheme().color,
       overflow: 'hidden'
     };
 
-    var x = ((-1 * CustomVariables.leftNavWidth) - 10) + 'px';
+    var x = ((-1 * this.getTheme().width) - 10) + 'px';
     if (!this.state.open) style.transform = 'translate3d(' + x + ', 0, 0)';
 
     return this.mergeAndPrefix(style);
@@ -92,8 +98,8 @@ var LeftNav = React.createClass({
 
   _menuItem: function() {
     return {
-      height: CustomVariables.spacing.desktopLeftNavMenuItemHeight,
-      lineDeight: CustomVariables.spacing.desktopLeftNavMenuItemHeight,
+      height: this.context.theme.spacing.desktopLeftNavMenuItemHeight,
+      lineDeight: this.context.theme.spacing.desktopLeftNavMenuItemHeight,
     };
   },
 
@@ -101,7 +107,7 @@ var LeftNav = React.createClass({
     return this.mergeAndPrefix({
       display: 'block',
       textDecoration: 'none',
-      color: Theme.textColor,
+      color: this.getThemePalette().textColor,
     }, this._menuItem());
   },
   
@@ -109,6 +115,14 @@ var LeftNav = React.createClass({
     return this.mergeAndPrefix({
       overflow: 'hidden'
     }, this._menuItem());
+  },
+
+  getThemePalette: function() {
+    return this.context.theme.palette;
+  },
+
+  getTheme: function() {
+    return this.context.theme.component.leftNav;
   },
 
   render: function() {

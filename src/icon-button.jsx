@@ -1,8 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
-var Theme = require('./styles/theme');
+var Transitions = require('./styles/transitions');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
 var Tooltip = require('./tooltip');
@@ -10,6 +8,10 @@ var Tooltip = require('./tooltip');
 var IconButton = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     className: React.PropTypes.string,
@@ -51,15 +53,15 @@ var IconButton = React.createClass({
       position: 'relative',
       boxSizing: 'border-box',
       transition: Transitions.easeOut(),
-      padding: (CustomVariables.spacing.iconSize / 2),
-      width: CustomVariables.spacing.iconSize*2,
-      height: CustomVariables.spacing.iconSize*2,
+      padding: (this.getSpacing().iconSize / 2),
+      width: this.getSpacing().iconSize*2,
+      height: this.getSpacing().iconSize*2,
     };
 
     if (this.props.disabled) {
       style = this.mergeAndPrefix(style, {
-        color: CustomVariables.disabledColor,
-        fill: CustomVariables.disabledColor,
+        color: this.getDisabledColor(),
+        fill: this.getDisabledColor(),
       });
     }
 
@@ -69,20 +71,20 @@ var IconButton = React.createClass({
   _tooltip: function() {
     return {
       boxSizing: 'border-box',
-      marginTop: CustomVariables.iconButtonSize + 4,
+      marginTop: this.context.theme.component.button.iconButtonSize + 4,
     };
   },
 
   _icon: function() {
     var style = {
-        color: Theme.textColor,
-        fill: Theme.textColor,
+        color: this.getTheme().textColor,
+        fill: this.getTheme().textColor,
     };
 
     if (this.props.disabled) {
       style = {
-        color: CustomVariables.disabledColor,
-        fill: CustomVariables.disabledColor,
+        color: this.getDisabledColor(),
+        fill: this.getDisabledColor(),
       };
     }
 
@@ -105,9 +107,21 @@ var IconButton = React.createClass({
       top: 0,
       width: '100%',
       height: '100%',
-      background: CustomVariables.disabledColor,
+      background: this.getDisabledColor(),
 
     }
+  },
+
+  getTheme: function() {
+    return this.context.theme.palette;
+  },
+
+  getSpacing: function() {
+    return this.context.theme.spacing;
+  },
+
+  getDisabledColor: function() {
+    return this.context.theme.palette.disabledColor;
   },
 
   render: function() {
@@ -140,10 +154,10 @@ var IconButton = React.createClass({
     if (this.props.children && this.props.disabled) {
       React.Children.forEach(this.props.children, function(child) {
         child.props.style = {
-          color: CustomVariables.disabledColor,
-          fill: CustomVariables.disabledColor,
+          color: this.getDisabledColor(),
+          fill: this.getDisabledColor(),
         }
-      });
+      }, this);
     } 
 
     return (
@@ -174,7 +188,9 @@ var IconButton = React.createClass({
   },
 
   _showTooltip: function() {
-    if (!this.props.disabled) this.setState({ tooltipShown: true });
+    if (!this.props.disabled && this.props.tooltip) {
+      this.setState({ tooltipShown: true });
+    }
   },
 
   _hideTooltip: function() {

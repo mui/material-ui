@@ -1,7 +1,6 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var Transition = require('../styles/mixins/transitions');
-var CustomVariables = require('../styles/variables/custom-variables');
+var Transition = require('../styles/transitions');
 var DateTime = require('../utils/date-time');
 var EnhancedButton = require('../enhanced-button');
 
@@ -9,10 +8,18 @@ var DayButton = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
     date: React.PropTypes.object,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool
+  },
+
+  getTheme: function() {
+    return this.context.theme.component.datePicker;
   },
 
   render: function() {
@@ -36,6 +43,7 @@ var DayButton = React.createClass({
 
       label: {
         position: 'relative',
+        color: this.context.theme.palette.textColor
       },
 
       select: {
@@ -46,18 +54,18 @@ var DayButton = React.createClass({
         borderRadius: '50%',
         transform: 'scale(0)',
         transition: Transition.easeOut(),
-        backgroundColor: CustomVariables.datePickerSelectColor,
+        backgroundColor: this.getTheme().selectColor,
       },
     };
 
     if (this.props.selected) {
-      styles.label.color = CustomVariables.datePickerSelectTextColor;
+      styles.label.color = this.getTheme().selectTextColor;
       styles.select.opacity = 1;
       styles.select.transform = 'scale(1)';
     }
 
     if (DateTime.isEqualDate(this.props.date, new Date()) && !this.props.selected) {
-        styles.label.color = CustomVariables.datePickerColor;
+        styles.label.color = this.getTheme().color;
     }
 
     return this.props.date ? (

@@ -1,6 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
+var Transitions = require('./styles/transitions');
 var Colors = require('./styles/colors');
 
 var Overlay = React.createClass({

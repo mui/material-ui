@@ -1,20 +1,26 @@
 var React = require('react');
 var TabTemplate = require('./tabTemplate');
 var StylePropable = require('../mixins/style-propable.js');
-var Theme = require('../styles/theme.js');
 var Colors = require('../styles/colors.js')
 var Tab = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     handleTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool
   },
 
-
   handleTouchTap: function(){
     this.props.handleTouchTap(this.props.tabIndex, this);
+  },
+
+  getTheme: function() {
+    return this.context.theme.palette;
   },
 
   render: function(){
@@ -28,7 +34,7 @@ var Tab = React.createClass({
       'opacity': '.6',
       'fontSize': '14sp',
       'fontWeight': '500',
-      'font': Theme.fontFamily,
+      'font': this.getTheme().fontFamily,
       'width': this.props.width
     });
 

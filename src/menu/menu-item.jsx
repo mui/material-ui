@@ -1,6 +1,5 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var CustomVariables = require('../styles/variables/custom-variables');
 var FontIcon = require('../font-icon');
 var Toggle = require('../toggle');
 
@@ -13,6 +12,10 @@ var Types = {
 var MenuItem = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     index: React.PropTypes.number.isRequired,
@@ -54,17 +57,18 @@ var MenuItem = React.createClass({
     var style = this.mergeAndPrefix({
       userSelect: 'none',
       cursor: 'pointer',
-      lineHeight: CustomVariables.menuItemHeight + 'px',
-      paddingLeft: CustomVariables.menuItemPadding,
-      paddingRight: CustomVariables.menuItemPadding,
+      lineHeight: this.getTheme().height + 'px',
+      paddingLeft: this.getTheme().padding,
+      paddingRight: this.getTheme().padding,
+      color: this.context.theme.palette.textColor
     });
 
-    if (this.state.hovered && !this.props.disabled) style.backgroundColor = CustomVariables.menuItemHoverColor;
-    if (this.props.selected) style.color = CustomVariables.menuItemSelectedTextColor;
+    if (this.state.hovered && !this.props.disabled) style.backgroundColor = this.getTheme().hoverColor;
+    if (this.props.selected) style.color = this.getTheme().selectedTextColor;
 
     if (this.props.disabled) {
       style.cursor = 'default';
-      style.color = CustomVariables.disabledColor;
+      style.color = this.context.theme.palette.disabledColor;
     }
 
     return style;
@@ -86,7 +90,7 @@ var MenuItem = React.createClass({
 
   _iconRight: function() {
     return this.mergeStyles({
-      lineHeight: CustomVariables.menuItemHeight + 'px',
+      lineHeight: this.getTheme().height + 'px',
       float: 'right'
     }, this.props.iconRightStyle);
   },
@@ -94,30 +98,39 @@ var MenuItem = React.createClass({
   _icon: function () {
     return this.mergeStyles({
       float: 'left',
-      lineHeight: CustomVariables.menuItemHeight + 'px',
-      marginRight: CustomVariables.spacing.desktopGutter
+      lineHeight: this.getTheme().height + 'px',
+      marginRight: this.getSpacing().desktopGutter
     }, this.props.iconStyle);
   },
 
   _data: function() {
     return {
       display: 'block',
-      paddingLeft: CustomVariables.spacing.desktopGutter * 2,
-      lineHeight: CustomVariables.menuItemDataHeight + 'px',
-      height: CustomVariables.menuItemDataHeight + 'px',
+      paddingLeft: this.getSpacing().desktopGutter * 2,
+      lineHeight: this.getTheme().dataHeight + 'px',
+      height: this.getTheme().dataHeight + 'px',
       verticalAlign: 'top',
       top: -12,
       position: 'relative',
       fontWeight: 300,
+      color: this.context.theme.palette.textColor
     }
   },
 
   _toggle: function() {
     return {
-      marginTop: ((CustomVariables.menuItemHeight - CustomVariables.radioButtonSize) / 2),
+      marginTop: ((this.getTheme().height - this.context.theme.component.radioButton.size) / 2),
       float: 'right',
       width: 42,
     }
+  },
+
+  getTheme: function() {
+    return this.context.theme.component.menuItem;
+  },
+
+  getSpacing: function() {
+    return this.context.theme.spacing;
   },
 
   render: function() {
