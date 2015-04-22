@@ -1,5 +1,5 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
 var WindowListenable = require('../mixins/window-listenable');
 var DateTime = require('../utils/date-time');
 var KeyCode = require('../utils/key-code');
@@ -8,7 +8,7 @@ var TextField = require('../text-field');
 
 var DatePicker = React.createClass({
 
-  mixins: [Classable, WindowListenable],
+  mixins: [StylePropable, WindowListenable],
 
   propTypes: {
     defaultDate: React.PropTypes.object,
@@ -57,10 +57,6 @@ var DatePicker = React.createClass({
       autoOk,
       ...other
     } = this.props;
-    var classes = this.getClasses('mui-date-picker', {
-      'mui-is-landscape': this.props.mode === 'landscape',
-      'mui-is-inline': this.props.mode === 'inline'
-    });
     var defaultInputValue;
 
     if (this.props.defaultDate) {
@@ -68,7 +64,7 @@ var DatePicker = React.createClass({
     }
 
     return (
-      <div className={classes}>
+      <div style={this.props.style}>
         <TextField
           {...other}
           ref="input"
