@@ -130,7 +130,7 @@ var RaisedButton = React.createClass({
     var labelElement;
     if (label) {
       labelElement = (
-        <span style={this.m(this.styles.label, this.props.labelStyle)}>
+        <span style={this.mergeAndPrefix(this.styles.label, this.props.labelStyle)}>
           {label}
         </span>
       );
@@ -143,12 +143,12 @@ var RaisedButton = React.createClass({
 
     return (
       <Paper 
-        style={this.m(this.styles.root, this.props.style)} 
+        style={this.mergeAndPrefix(this.styles.root, this.props.style)} 
         innerStyle={{transition: Transitions.easeOut()}}
         zDepth={this.state.zDepth}>
           <EnhancedButton {...other}
             ref="container"
-            style={this.m(this.styles.container)}
+            style={this.mergeAndPrefix(this.styles.container)}
             onMouseUp={this._handleMouseUp}
             onMouseDown={this._handleMouseDown}
             onMouseOut={this._handleMouseOut}
@@ -160,7 +160,7 @@ var RaisedButton = React.createClass({
             focusRippleOpacity={rippleOpacity}
             touchRippleOpacity={rippleOpacity}
             onKeyboardFocus={this._handleKeyboardFocus}>
-              <div ref="overlay" style={this.m(
+              <div ref="overlay" style={this.mergeAndPrefix(
                   this.styles.overlay,
                   (this.state.hovered && !this.props.disabled) && this.styles.overlayWhenHovered
                 )}>
@@ -209,7 +209,7 @@ var RaisedButton = React.createClass({
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
       var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this.m(this.styles.label, this.props.labelStyle).color, amount);
+      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this.mergeAndPrefix(this.styles.label, this.props.labelStyle).color, amount);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
       this.refs.overlay.getDOMNode().style.backgroundColor = 'transparent';

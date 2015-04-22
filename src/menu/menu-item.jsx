@@ -127,11 +127,11 @@ var MenuItem = React.createClass({
 
     var styles = this.getStyles();
 
-    if (this.props.iconClassName) icon = <FontIcon style={this.m(styles.icon, this.props.iconStyle)} className={this.props.iconClassName} />;
-    if (this.props.iconRightClassName) iconRight = <FontIcon style={this.m(styles.iconRight, this.props.iconRightStyle)} className={this.props.iconRightClassName} />;
-    if (this.props.data) data = <span style={this.m(styles.data)}>{this.props.data}</span>;
-    if (this.props.number !== undefined) number = <span style={this.m(styles.number)}>{this.props.number}</span>;
-    if (this.props.attribute !== undefined) attribute = <span style={this.m(styles.style)}>{this.props.attribute}</span>;
+    if (this.props.iconClassName) icon = <FontIcon style={this.mergeAndPrefix(styles.icon, this.props.iconStyle)} className={this.props.iconClassName} />;
+    if (this.props.iconRightClassName) iconRight = <FontIcon style={this.mergeAndPrefix(styles.iconRight, this.props.iconRightStyle)} className={this.props.iconRightClassName} />;
+    if (this.props.data) data = <span style={this.mergeAndPrefix(styles.data)}>{this.props.data}</span>;
+    if (this.props.number !== undefined) number = <span style={this.mergeAndPrefix(styles.number)}>{this.props.number}</span>;
+    if (this.props.attribute !== undefined) attribute = <span style={this.mergeAndPrefix(styles.style)}>{this.props.attribute}</span>;
     
     if (this.props.toggle) {
       var {
@@ -156,7 +156,7 @@ var MenuItem = React.createClass({
         onClick={this._handleOnClick}
         onMouseOver={this._handleMouseOver}
         onMouseOut={this._handleMouseOut}
-        style={this.m(
+        style={this.mergeAndPrefix(
           styles.root, 
           this.props.selected && styles.rootWhenSelected,
           (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,

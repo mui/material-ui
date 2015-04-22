@@ -103,7 +103,7 @@ var FlatButton = React.createClass({
     var labelElement;
     if (label) {
       labelElement = (
-        <span style={this.m(styles.label, this.props.labelStyle)}>
+        <span style={this.mergeAndPrefix(styles.label, this.props.labelStyle)}>
           {label}
         </span>
       );
@@ -114,7 +114,7 @@ var FlatButton = React.createClass({
     return (
       <EnhancedButton {...other}
         ref="enhancedButton"
-        style={this.m(
+        style={this.mergeAndPrefix(
           styles.root,
           (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,
           this.props.style

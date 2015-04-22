@@ -94,7 +94,7 @@ var Calendar = React.createClass({
     };
 
     return (
-      <ClearFix style={this.m(styles.root)}>
+      <ClearFix style={this.mergeAndPrefix(styles.root)}>
 
         <DateDisplay
           style={styles.dateDisplay}

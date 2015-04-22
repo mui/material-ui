@@ -84,14 +84,14 @@ var Checkbox = React.createClass({
     var checkboxElement = (
       <div>
         <CheckboxOutline style={
-          this.m(
+          this.mergeAndPrefix(
             styles.box,
             this.state.switched && styles.boxWhenSwitched,
             this.props.style,
             this.props.disabled && styles.boxWhenDisabled
         )} />
         <CheckboxChecked style={
-          this.m(
+          this.mergeAndPrefix(
             styles.check,
             this.state.switched && styles.checkWhenSwitched,
             this.props.style,            

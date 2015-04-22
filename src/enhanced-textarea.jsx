@@ -64,16 +64,16 @@ var EnhancedTextarea = React.createClass({
       padding: 0,
     };
 
-    var inputStyles = this.m(styles,{
+    var inputStyles = this.mergeAndPrefix(styles,{
       height: this.state.height + 'px',
     });
 
-    inputStyles = this.m(inputStyles, textareaStyle);
+    inputStyles = this.mergeAndPrefix(inputStyles, textareaStyle);
 
 
     // Overflow also needed to here to remove the extra row 
     // added to textareas in Firefox.
-    var shadowStyles = this.m(textAreaStyles, {
+    var shadowStyles = this.mergeAndPrefix(textAreaStyles, {
       position: 'absolute',
       opacity: 0
     });

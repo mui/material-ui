@@ -90,7 +90,7 @@ var Tooltip = React.createClass({
     return (
       <div {...other} 
         ref="root" 
-        style={this.m(
+        style={this.mergeAndPrefix(
             styles.root,
             this.props.show && styles.rootWhenShown,
             this.props.touch && styles.rootWhenTouched,
@@ -98,10 +98,10 @@ var Tooltip = React.createClass({
           )}>
         <div 
           ref="ripple" 
-          style={this.m(
+          style={this.mergeAndPrefix(
             styles.ripple,
             this.props.show && styles.rippleWhenShown)} />
-        <span style={this.m(styles.label)}>{this.props.label}</span>
+        <span style={this.mergeAndPrefix(styles.label)}>{this.props.label}</span>
       </div>
     );
   },

@@ -94,7 +94,7 @@ var EnhancedButton = React.createClass({
       onTouchTap,
       ...other } = this.props;
 
-    var styles = this.m(
+    var styles = this.mergeAndPrefix(
       this.getStyles().root,
       this.props.linkButton && this.getStyles().rootWhenLinkButton,
       this.props.disabled && this.getStyles().rootWhenDisabled,

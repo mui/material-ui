@@ -139,7 +139,7 @@ var DateDisplay = React.createClass({
     };
 
     return (
-      <div {...other} style={this.m(styles.root)}>
+      <div {...other} style={this.mergeAndPrefix(styles.root)}>
 
         <div style={styles.dowContainer}>
           <SlideInTransitionGroup

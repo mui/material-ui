@@ -19,7 +19,7 @@ var ToolbarTitle = React.createClass({
 
   render: function() {
 
-    var styles = this.m({
+    var styles = this.mergeAndPrefix({
       paddingRight: this.context.theme.spacing.desktopGutterLess,
       lineHeight: this.getTheme().height + 'px',
       fontSize: this.getTheme().titleFontSize + 'px',

@@ -48,7 +48,7 @@ var FontIcon = React.createClass({
 
     return (
       <span {...other} 
-        style={this.m(
+        style={this.mergeAndPrefix(
           this.getStyles(),
           this.props.style,
           this.state.isHovered && this.props.hoverStyle)} 

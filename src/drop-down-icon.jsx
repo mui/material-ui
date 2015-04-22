@@ -66,7 +66,7 @@ var DropDownIcon = React.createClass({
   render: function() {
     var styles = this.getStyles();
     return (
-      <div style={this.m(styles.root, this.props.style)}>
+      <div style={this.mergeAndPrefix(styles.root, this.props.style)}>
           <div onClick={this._onControlClick}>
               <FontIcon 
                 className={this.props.iconClassName} 
@@ -76,7 +76,7 @@ var DropDownIcon = React.createClass({
           </div>
           <Menu 
             ref="menuItems" 
-            style={this.m(styles.menu)} 
+            style={this.mergeAndPrefix(styles.menu)} 
             menuItems={this.props.menuItems}
             menuItemStyle={styles.menuItem}
             hideable={true} 

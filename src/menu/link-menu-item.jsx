@@ -68,7 +68,7 @@ var LinkMenuItem = React.createClass({
     var styles = this.getStyles();
 
     var linkStyles = 
-      this.m(
+      this.mergeAndPrefix(
         styles.root, 
         this.props.selected && styles.rootWhenSelected,
         (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,

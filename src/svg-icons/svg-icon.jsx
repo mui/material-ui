@@ -56,7 +56,7 @@ var SvgIcon = React.createClass({
         viewBox="0 0 24 24"
         onMouseOver={this._onMouseOver} 
         onMouseOut={this._onMouseOut}
-        style={this.m(
+        style={this.mergeAndPrefix(
           this.getStyles().root, 
           this.props.style,
           this.state.isHovered && this.props.hoverStyle)}>

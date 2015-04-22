@@ -59,7 +59,7 @@ var NestedMenuItem = React.createClass({
   },
 
   render: function() {
-    var styles = this.m({
+    var styles = this.mergeAndPrefix({
       position: 'relative'
     }, this.props.style);
 
@@ -233,11 +233,11 @@ var Menu = React.createClass({
       <Paper 
         ref="paperContainer" 
         zDepth={this.props.zDepth} 
-        style={this.m(
+        style={this.mergeAndPrefix(
           styles.root,
           this.props.hideable && styles.hideable,
           this.props.style)} 
-        innerStyle={this.m(
+        innerStyle={this.mergeAndPrefix(
           styles.innerPaper,
           this.props.hideable && styles.innerPaperWhenHideable)}>
             {this._getChildren()}
@@ -294,7 +294,7 @@ var Menu = React.createClass({
               key={i}
               index={i}
               className={this.props.menuItemClassNameSubheader}
-              style={this.m(styles.subheader)}
+              style={this.mergeAndPrefix(styles.subheader)}
               firstChild={i == 0}
               text={menuItem.text} />
           );

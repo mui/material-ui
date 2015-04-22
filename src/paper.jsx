@@ -68,8 +68,8 @@ var Paper = React.createClass({
     var styles = this.getStyles();
 
     return (
-      <div {...other} className={this.props.className} style={this.m(styles.root, this.props.style)}>
-        <div ref="innerContainer" className={this.props.innerClassName} style={this.m(styles.inner, this.props.innerStyle)}>
+      <div {...other} className={this.props.className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
+        <div ref="innerContainer" className={this.props.innerClassName} style={this.mergeAndPrefix(styles.inner, this.props.innerStyle)}>
           {this.props.children}
         </div>
       </div>

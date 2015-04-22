@@ -70,13 +70,13 @@ var RadioButton = React.createClass({
 
     var radioButtonElement = (
       <div>
-          <RadioButtonOff style={this.m(
+          <RadioButtonOff style={this.mergeAndPrefix(
             styles.target,
             this.props.checked && styles.targetWhenChecked,
             this.props.style,
             this.props.disabled && styles.targetWhenDisabled
           )} />
-          <RadioButtonOn style={this.m(
+          <RadioButtonOn style={this.mergeAndPrefix(
             styles.fill,
             this.props.checked && styles.fillWhenChecked,
             this.props.style,

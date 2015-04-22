@@ -114,7 +114,7 @@ var Snackbar = React.createClass({
     }
 
     return (
-      <span style={this.m(
+      <span style={this.mergeAndPrefix(
         styles.root,
         this.state.open && styles.rootWhenOpen)}>
           <span>{this.props.message}</span>

@@ -136,18 +136,18 @@ var DropDownMenu = React.createClass({
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
         className={this.props.className}
-        style={this.m(
+        style={this.mergeAndPrefix(
           styles.root, 
           this.state.open && styles.rootWhenOpen,
           this.props.style)} >
 
-          <ClearFix style={this.m(styles.control, this.props.styleControl)} onClick={this._onControlClick}>
-            <Paper style={this.m(styles.controlBg, this.props.styleControlBg)} zDepth={0} />
-            <div style={this.m(styles.label, this.state.open && styles.labelWhenOpen, this.props.styleLabel)}>
+          <ClearFix style={this.mergeAndPrefix(styles.control, this.props.styleControl)} onClick={this._onControlClick}>
+            <Paper style={this.mergeAndPrefix(styles.controlBg, this.props.styleControlBg)} zDepth={0} />
+            <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen, this.props.styleLabel)}>
               {this.props.menuItems[this.state.selectedIndex].text}
             </div>
-            <DropDownArrow style={this.m(styles.icon, this.props.styleIcon)} hoverStyle={this.props.styleIconHover}/>
-            <div style={this.m(styles.underline, this.props.styleUnderline)}/>
+            <DropDownArrow style={this.mergeAndPrefix(styles.icon, this.props.styleIcon)} hoverStyle={this.props.styleIconHover}/>
+            <div style={this.mergeAndPrefix(styles.underline, this.props.styleUnderline)}/>
           </ClearFix>
 
           <Menu
@@ -155,7 +155,7 @@ var DropDownMenu = React.createClass({
             autoWidth={this.props.autoWidth}
             selectedIndex={this.state.selectedIndex}
             menuItems={this.props.menuItems}
-            menuItemStyle={this.m(styles.menuItem, this.props.styleMenuItem)}
+            menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.styleMenuItem)}
             hideable={true}
             visible={this.state.open}
             onItemClick={this._onMenuItemClick} />

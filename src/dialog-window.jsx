@@ -113,10 +113,10 @@ var DialogWindow = React.createClass({
     var styles = this.getStyles();
 
     return (
-      <div ref="container" style={this.m(styles.root, this.props.style, this.state.open && styles.rootWhenOpen)}>
+      <div ref="container" style={this.mergeAndPrefix(styles.root, this.props.style, this.state.open && styles.rootWhenOpen)}>
         <Paper
           ref="dialogWindow"
-          style={this.m(styles.contents, this.state.open && styles.contentsWhenOpen)}
+          style={this.mergeAndPrefix(styles.contents, this.state.open && styles.contentsWhenOpen)}
           className={this.props.contentClassName}
           zDepth={4}>
           {this.props.children}

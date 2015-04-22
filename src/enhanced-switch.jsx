@@ -169,8 +169,8 @@ var EnhancedSwitch = React.createClass({
 
     styles.root.cursor = styles.root.input = this.props.disabled ? 'default' : 'pointer';
 
-    var wrapStyles = this.m(styles.wrap, this.props.iconStyle);
-    var rippleStyle = this.m(styles.ripple, this.props.rippleStyle);
+    var wrapStyles = this.mergeAndPrefix(styles.wrap, this.props.iconStyle);
+    var rippleStyle = this.mergeAndPrefix(styles.ripple, this.props.rippleStyle);
 
     if (this.props.thumbStyle) {
       wrapStyles.marginLeft /= 2;
@@ -180,7 +180,7 @@ var EnhancedSwitch = React.createClass({
     var inputId = this.props.id || UniqueId.generate();
 
     var labelElement = this.props.label ? (
-      <label style={this.m(styles.label)} htmlFor={inputId}>
+      <label style={this.mergeAndPrefix(styles.label)} htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;
@@ -188,7 +188,7 @@ var EnhancedSwitch = React.createClass({
     var inputProps = {
       ref: "checkbox",
       type: this.props.inputType,
-      style: this.m(styles.input),
+      style: this.mergeAndPrefix(styles.input),
       name: this.props.name,
       value: this.props.value,
       defaultChecked: this.props.defaultSwitched,
@@ -269,7 +269,7 @@ var EnhancedSwitch = React.createClass({
     );
 
     return (
-      <div ref="root" style={this.m(styles.root, this.props.style)}>
+      <div ref="root" style={this.mergeAndPrefix(styles.root, this.props.style)}>
           {inputElement}
           {elementsInOrder}
       </div>

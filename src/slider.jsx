@@ -154,7 +154,7 @@ var Slider = React.createClass({
         height: size + 'px'
       },
     };
-    styles.filled = this.m(styles.filledAndRemaining, {
+    styles.filled = this.mergeAndPrefix(styles.filledAndRemaining, {
       left: 0,
       backgroundColor: (this.props.disabled) ? 
         this.getTheme().trackColor : 
@@ -162,7 +162,7 @@ var Slider = React.createClass({
       marginRight: fillGutter,
       width: (this.state.percent * 100) + (this.props.disabled ? -1 : 0) + '%'
     });
-    styles.remaining = this.m(styles.filledAndRemaining, {
+    styles.remaining = this.mergeAndPrefix(styles.filledAndRemaining, {
       right: 0,
       backgroundColor: this.getTheme().trackColor,
       marginLeft: fillGutter,
@@ -181,21 +181,21 @@ var Slider = React.createClass({
     var fillGutter = this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
 
     var styles = this.getStyles();
-    var sliderStyles = this.m(styles.root, this.props.style);
+    var sliderStyles = this.mergeAndPrefix(styles.root, this.props.style);
     var trackStyles = styles.track;
     var filledStyles = styles.filled;
-    var remainingStyles = this.m(
+    var remainingStyles = this.mergeAndPrefix(
       styles.remaining,
       percent === 0 && styles.percentZeroRemaining
     );
-    var handleStyles = percent === 0 ? this.m(
+    var handleStyles = percent === 0 ? this.mergeAndPrefix(
       styles.handle,
       styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
       this.props.focused && {outline: 'none'},
       this.state.hovered && styles.handleWhenPercentZeroAndHovered,
       this.props.disabled && styles.handleWhenDisabledAndZero
-    ) : this.m(
+    ) : this.mergeAndPrefix(
       styles.handle,
       this.state.active && styles.handleWhenActive,
       this.props.focused && {outline: 'none'},

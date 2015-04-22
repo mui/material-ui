@@ -129,20 +129,20 @@ var TextField = React.createClass({
       }
     };
 
-    styles.floatingLabel = this.m(styles.hint, {
+    styles.floatingLabel = this.mergeAndPrefix(styles.hint, {
       top: 24,
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top'
     });
 
-    styles.textarea = this.m(styles.input, {
+    styles.textarea = this.mergeAndPrefix(styles.input, {
       paddingTop: this.props.floatingLabelText ? 36 : 12,
       boxSizing: 'border-box',
       font: 'inherit'
     });
 
-    styles.focusUnderline= this.m(styles.underline, {
+    styles.focusUnderline= this.mergeAndPrefix(styles.underline, {
       borderBottom: 'solid 2px ' + this.getTheme().primary1Color,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut(),
@@ -204,16 +204,16 @@ var TextField = React.createClass({
     var inputId = this.props.id || UniqueId.generate();
 
     var errorTextElement = this.state.errorText ? (
-      <div style={this.m(styles.error)}>{this.state.errorText}</div>
+      <div style={this.mergeAndPrefix(styles.error)}>{this.state.errorText}</div>
     ) : null;
 
     var hintTextElement = this.props.hintText ? (
-      <div style={this.m(styles.hint)}>{this.props.hintText}</div>
+      <div style={this.mergeAndPrefix(styles.hint)}>{this.props.hintText}</div>
     ) : null;
 
     var floatingLabelTextElement = this.props.floatingLabelText ? (
       <label
-        style={this.m(styles.floatingLabel)}
+        style={this.mergeAndPrefix(styles.floatingLabel)}
         htmlFor={inputId}>
         {this.props.floatingLabelText}
       </label>
@@ -225,7 +225,7 @@ var TextField = React.createClass({
     inputProps = {
       id: inputId,
       ref: 'input',
-      style: this.m(styles.input),
+      style: this.mergeAndPrefix(styles.input),
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
       onKeyDown: this._handleInputKeyDown
@@ -240,7 +240,7 @@ var TextField = React.createClass({
         {...other}
         {...inputProps}
         onHeightChange={this._handleTextAreaHeightChange}
-        textareaStyle={this.m(styles.textarea)} />
+        textareaStyle={this.mergeAndPrefix(styles.textarea)} />
     ) : (
       <input
         {...other}
@@ -249,17 +249,17 @@ var TextField = React.createClass({
     );
 
     var underlineElement = this.props.disabled ? (
-      <div style={this.m(styles.underlineAfter)}>
+      <div style={this.mergeAndPrefix(styles.underlineAfter)}>
         .............................................................
       </div>
     ) : (
-      <hr style={this.m(styles.underline)}/>
+      <hr style={this.mergeAndPrefix(styles.underline)}/>
     );
-    var focusUnderlineElement = <hr style={this.m(styles.focusUnderline)} />;
+    var focusUnderlineElement = <hr style={this.mergeAndPrefix(styles.focusUnderline)} />;
 
 
     return (
-      <div className={this.props.className} style={this.m(styles.root, this.props.style)}>
+      <div className={this.props.className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
         {floatingLabelTextElement}
         {hintTextElement}
         {inputElement}

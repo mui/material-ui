@@ -113,7 +113,7 @@ var IconButton = React.createClass({
           label={tooltip}
           show={this.state.tooltipShown}
           touch={touch}
-          style={this.m(styles.tooltip)}/>
+          style={this.mergeAndPrefix(styles.tooltip)}/>
       );
     }
 
@@ -121,7 +121,7 @@ var IconButton = React.createClass({
       fonticon = (
         <FontIcon 
           className={this.props.iconClassName} 
-          style={this.m(
+          style={this.mergeAndPrefix(
             styles.icon, 
             this.props.disabled && styles.iconWhenDisabled,
             this.props.iconStyle
@@ -142,7 +142,7 @@ var IconButton = React.createClass({
       <EnhancedButton {...other}
         ref="button"
         centerRipple={true}
-        style={this.m(styles.root, this.props.style)}
+        style={this.mergeAndPrefix(styles.root, this.props.style)}
         onBlur={this._handleBlur}
         onFocus={this._handleFocus}
         onMouseOut={this._handleMouseOut}

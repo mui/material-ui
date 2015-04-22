@@ -103,12 +103,12 @@ var LeftNav = React.createClass({
         transform: 'translate3d(' + x + ', 0, 0)'
       }
     };
-    styles.menuItemLink = this.m(styles.menuItem, {
+    styles.menuItemLink = this.mergeAndPrefix(styles.menuItem, {
       display: 'block',
       textDecoration: 'none',
       color: this.getThemePalette().textColor
     });
-    styles.menuItemSubheader = this.m(styles.menuItem, {
+    styles.menuItemSubheader = this.mergeAndPrefix(styles.menuItem, {
       overflow: 'hidden'
     });
 
@@ -130,19 +130,19 @@ var LeftNav = React.createClass({
           ref="clickAwayableElement"
           zDepth={2}
           rounded={false}
-          style={this.m(
+          style={this.mergeAndPrefix(
             styles.root, 
             !this.state.open && styles.rootWhenNotOpen,
             this.props.style)}>
             {this.props.header}
             <Menu
               ref="menuItems"
-              style={this.m(styles.menu)}
+              style={this.mergeAndPrefix(styles.menu)}
               zDepth={0}
               menuItems={this.props.menuItems}
-              menuItemStyle={this.m(styles.menuItem)} 
-              menuItemStyleLink={this.m(styles.menuItemLink)}
-              menuItemStyleSubheader={this.m(styles.menuItemSubheader)}
+              menuItemStyle={this.mergeAndPrefix(styles.menuItem)} 
+              menuItemStyleLink={this.mergeAndPrefix(styles.menuItemLink)}
+              menuItemStyleSubheader={this.mergeAndPrefix(styles.menuItemSubheader)}
               selectedIndex={selectedIndex}
               onItemClick={this._onMenuItemClick} />
         </Paper>

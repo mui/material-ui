@@ -95,7 +95,7 @@ var AppBar = React.createClass({
     var styles = this.getStyles();
 
     var title, menuElementLeft, menuElementRight;
-    var iconRightStyle = this.m(styles.iconButton.style, {
+    var iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
       float: 'right',
       marginRight: -16,
       marginLeft: 8
@@ -105,7 +105,7 @@ var AppBar = React.createClass({
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
       title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
-        <h1 style={this.m(styles.title)}>{this.props.title}</h1> :
+        <h1 style={this.mergeAndPrefix(styles.title)}>{this.props.title}</h1> :
         this.props.title;
     }
 
@@ -117,11 +117,11 @@ var AppBar = React.createClass({
           </div>
         );
       } else {
-        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this.m(styles.iconButton.iconStyle)}/>;
+        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
-            style={this.m(styles.iconButton.style)}
-            iconStyle={this.m(styles.iconButton.iconStyle)}
+            style={this.mergeAndPrefix(styles.iconButton.style)}
+            iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
             iconClassName={this.props.iconClassNameLeft}
             onTouchTap={this._onMenuIconButtonTouchTap}>
               {child}
@@ -139,7 +139,7 @@ var AppBar = React.createClass({
         menuElementRight = (
           <IconButton
             style={iconRightStyle}
-            iconStyle={this.m(styles.iconButton.iconStyle)}
+            iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
             iconClassName={this.props.iconClassNameRight}
             onTouchTap={this._onMenuIconButtonTouchTap}>
           </IconButton>
@@ -151,8 +151,8 @@ var AppBar = React.createClass({
       <Paper 
         rounded={false} 
         className={this.props.className}  
-        style={this.m(styles.root, this.props.style)} 
-        innerStyle={this.m(styles.paper)} 
+        style={this.mergeAndPrefix(styles.root, this.props.style)} 
+        innerStyle={this.mergeAndPrefix(styles.paper)} 
         zDepth={this.props.zDepth}>
           {menuElementLeft}
           {title}

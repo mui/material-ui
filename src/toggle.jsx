@@ -82,20 +82,20 @@ var Toggle = React.createClass({
 
     var styles = this.getStyles();
 
-    var trackStyles = this.m(
+    var trackStyles = this.mergeAndPrefix(
       styles.track,
       this.state.switched && styles.trackWhenSwitched,
       this.props.disabled && styles.trackWhenDisabled
     );
 
-    var thumbStyles = this.m(
+    var thumbStyles = this.mergeAndPrefix(
       styles.thumb,
       this.state.switched && styles.thumbWhenSwitched,
       this.props.disabled && styles.thumbWhenDisabled
     );
 
     var toggleElement = (
-      <div style={this.m(this.props.style)}>
+      <div style={this.mergeAndPrefix(this.props.style)}>
         <div style={trackStyles} />
         <Paper style={thumbStyles} circle={true} zDepth={1} />
       </div>

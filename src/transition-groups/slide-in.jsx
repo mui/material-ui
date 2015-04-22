@@ -23,7 +23,7 @@ var SlideIn = React.createClass({
       ...other
     } = this.props;
 
-    var styles = this.m({
+    var styles = this.mergeAndPrefix({
       position: 'relative',
       overflow: 'hidden',
       height: '100%'

@@ -144,7 +144,7 @@ var RaisedButton = React.createClass({
       icon = 
         <FontIcon 
           className={this.props.iconClassName} 
-          style={this.m(
+          style={this.mergeAndPrefix(
             styles.icon,
             this.props.mini && styles.iconWhenMini)}/>
     }
@@ -153,15 +153,15 @@ var RaisedButton = React.createClass({
 
     return (
       <Paper
-        style={this.m(styles.root, this.props.style)}
+        style={this.mergeAndPrefix(styles.root, this.props.style)}
         innerClassName={this.props.innerClassName}
-        innerStyle={this.m(styles.inner, this.props.innerStyle)}
+        innerStyle={this.mergeAndPrefix(styles.inner, this.props.innerStyle)}
         zDepth={this.state.zDepth}
         circle={true}>
 
         <EnhancedButton {...other}
           ref="container"
-          style={this.m(
+          style={this.mergeAndPrefix(
             styles.container, 
             this.props.mini && styles.containerWhenMini
           )}
@@ -176,7 +176,7 @@ var RaisedButton = React.createClass({
           onKeyboardFocus={this._handleKeyboardFocus}>
             <div 
               ref="overlay" 
-              style={this.m(
+              style={this.mergeAndPrefix(
                 styles.overlay,
                 (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
               )}>

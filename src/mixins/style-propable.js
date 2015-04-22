@@ -9,25 +9,35 @@ var Extend = require('../utils/extend');
  */
 module.exports = {
 
-  mergeStyles: function(styles, props) {
-    return React.addons.update(styles, {
-      $merge: props || this.props.style || {}
-    });
+  propTypes: {
+    style: React.PropTypes.object
   },
 
-  mergeAndPrefix: function(styles, props) {
-    return AutoPrefix.all(this.mergeStyles(styles, props));
+  mergeStyles: function() {
+    var args = Array.prototype.slice.call(arguments, 0);
+    var base = args[0];
+    for (var i = 1; i < args.length; i++) {
+      if (args[i]) base = Extend(base, args[i]);
+    }
+    return base;
   },
-  
+
+
   /** 
    * m loops through all properties defined in the first argument, so overrides
    * of undefined properties will not take place.
    */
-  m: function() {
-    var base = arguments[0];
-    for (var i = 1; i < arguments.length; i++) {
-      if (arguments[i]) base = Extend(base, arguments[i]);
+  mergeAndPrefix: function() {
+    var args = Array.prototype.slice.call(arguments, 0);
+
+    var base = args[0];
+    for (var i = 1; i < args.length; i++) {
+      if (args[i]) base = Extend(base, args[i]);
     }
+
     return AutoPrefix.all(base);
+    // return function(args){
+    //   return AutoPrefix.all()
+    // }.bind()
 	},
 }

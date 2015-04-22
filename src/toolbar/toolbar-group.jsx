@@ -88,7 +88,7 @@ var ToolbarGroup = React.createClass({
 
   render: function() {
 
-    var styles = this.m({
+    var styles = this.mergeAndPrefix({
       position: 'relative',
       float: this.props.float,
     }, this.props.style);
