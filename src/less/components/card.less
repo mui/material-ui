@@ -1,20 +1,34 @@
 .mui-card {
-  @card-padding: 24px;
+  padding: 0;
 
-  background-color: @white;
-  padding: @card-padding;
-  //.border-radius;
+  &.mui-z-depth-1 {
+    &:extend(.mui-paper.mui-z-depth-1);
+  }
+  &.mui-z-depth-2 {
+    &:extend(.mui-paper.mui-z-depth-2);
+  }
+  &.mui-z-depth-3 {
+    &:extend(.mui-paper.mui-z-depth-3);
+  }
+  &.mui-z-depth-4 {
+    &:extend(.mui-paper.mui-z-depth-4);
+  }
+  &.mui-z-depth-5 {
+    &:extend(.mui-paper.mui-z-depth-5);
+  }
 
-  .mui-card-toolbar {
-    margin-top: (@card-padding * -1);
-    margin-left: (@card-padding * -1);
-    margin-right: (@card-padding * -1);
-    margin-bottom: @card-padding;
-    //border-bottom: solid 1px @border-color;
-    line-height: 56px;
-    height: 56px;
-    padding-left: @card-padding;
-    padding-right: @card-padding;
-    .mui-font-style-menu;
+  .mui-card-content {
+    padding: 24px;
+
+    .mui-card-title {
+      font-size: 24px;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+  }
+
+  .mui-card-actions {
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    padding: 10px;
   }
 }
