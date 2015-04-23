@@ -72,6 +72,12 @@ class ButtonPage extends React.Component {
             'This only applies to flat and raised buttons.'
           },
           {
+            name: 'labelStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the button\'s label element.'
+          },
+          {
             name: 'linkButton',
             type: 'bool',
             header: 'default: false',
@@ -90,10 +96,10 @@ class ButtonPage extends React.Component {
             desc: 'If true, the button will use the secondary button colors.'
           },
           {
-            name: 'labelStyle',
+            name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the button\'s label element.'
+            desc: 'Override the inline-styles of the button\'s root element.'
           }
         ]
       },
@@ -110,6 +116,12 @@ class ButtonPage extends React.Component {
             'This only applies to flat and raised buttons.'
           },
           {
+            name: 'labelStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the button\'s label element.'
+          },
+          {
             name: 'linkButton',
             type: 'bool',
             header: 'default: false',
@@ -128,10 +140,10 @@ class ButtonPage extends React.Component {
             desc: 'If true, the button will use the secondary button colors.'
           },
           {
-            name: 'labelStyle',
+            name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the button\'s label element.'
+            desc: 'Override the inline-styles of the button\'s root element.'
           }
         ]
       },
@@ -155,6 +167,12 @@ class ButtonPage extends React.Component {
                   'the inline-styles of the FontIcon component.'
           },
           {
+            name: 'innerStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Propagated down to the innerStyle prop of the component\'s Paper element.'
+          },
+          {
             name: 'linkButton',
             type: 'bool',
             header: 'default: false',
@@ -173,10 +191,10 @@ class ButtonPage extends React.Component {
             desc: 'If true, the button will use the secondary button colors.'
           },
           {
-            name: 'labelStyle',
+            name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the button\'s label element.'
+            desc: 'Override the inline-styles of the button\'s root element.'
           }
         ]
       }

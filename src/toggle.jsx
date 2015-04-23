@@ -13,6 +13,7 @@ var Toggle = React.createClass({
   },
 
   propTypes: {
+    elementStyle: React.PropTypes.object,
     onToggle: React.PropTypes.func,
     toggled: React.PropTypes.bool,
     defaultToggled: React.PropTypes.bool
@@ -95,7 +96,7 @@ var Toggle = React.createClass({
     );
 
     var toggleElement = (
-      <div style={this.mergeAndPrefix(this.props.style)}>
+      <div style={this.mergeAndPrefix(this.props.elementStyle)}>
         <div style={trackStyles} />
         <Paper style={thumbStyles} circle={true} zDepth={1} />
       </div>
@@ -106,11 +107,15 @@ var Toggle = React.createClass({
       left: '-10'
     };
 
+    var rippleColor =  this.state.switched ? 
+      this.getTheme().thumbOnColor : this.context.theme.component.textColor;
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switchElement: toggleElement,
       rippleStyle: customRippleStyle,
+      rippleColor: rippleColor,
       iconStyle: styles.icon,
       trackStyle: trackStyles,
       thumbStyle: thumbStyles,

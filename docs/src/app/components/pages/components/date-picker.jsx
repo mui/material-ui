@@ -56,6 +56,12 @@ class DatePickerPage extends React.Component {
             type: 'date object',
             header: 'optional',
             desc: 'Indicates the minimum selectable date.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of DatePicker\'s root element.'
           }
         ]
       },

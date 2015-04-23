@@ -65,6 +65,18 @@ class IconButtonsPage extends React.Component {
                   'class name for the icon to be used here.'
           },
           {
+            name: 'iconStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the icon element.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the button\'s root element.'
+          },
+          {
             name: 'tooltip',
             type: 'string',
             header: 'optional',
@@ -75,6 +87,21 @@ class IconButtonsPage extends React.Component {
             type: 'bool',
             header: 'default: false',
             desc: 'If true, this component will render the touch sized tooltip.'
+          }
+        ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
+          {
+            name: 'onBlur',
+            header: 'IconButton.onBlur(e)',
+            desc: 'Callback function for when the component loses focus.'
+          },
+          {
+            name: 'onFocus',
+            header: 'IconButton.onFocus(e)',
+            desc: 'Callback function for when the component gains focus.'
           }
         ]
       }

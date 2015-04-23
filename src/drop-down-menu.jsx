@@ -23,13 +23,8 @@ var DropDownMenu = React.createClass({
     autoWidth: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
-    styleControl: React.PropTypes.object,
-    styleControlBg: React.PropTypes.object,
-    styleIcon: React.PropTypes.object,
-    styleIconHover: React.PropTypes.object,
-    styleLabel: React.PropTypes.object,
-    styleUnderline: React.PropTypes.object,
-    styleMenuItem: React.PropTypes.object,
+    menuItemStyle: React.PropTypes.object,
+    selectedIndex: React.PropTypes.number
   },
 
   getDefaultProps: function() {
@@ -144,13 +139,13 @@ var DropDownMenu = React.createClass({
           this.state.open && styles.rootWhenOpen,
           this.props.style)} >
 
-          <ClearFix style={this.mergeAndPrefix(styles.control, this.props.styleControl)} onClick={this._onControlClick}>
-            <Paper style={this.mergeAndPrefix(styles.controlBg, this.props.styleControlBg)} zDepth={0} />
-            <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen, this.props.styleLabel)}>
+          <ClearFix style={this.mergeAndPrefix(styles.control)} onClick={this._onControlClick}>
+            <Paper style={this.mergeAndPrefix(styles.controlBg)} zDepth={0} />
+            <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen)}>
               {this.props.menuItems[this.state.selectedIndex].text}
             </div>
-            <DropDownArrow style={this.mergeAndPrefix(styles.icon, this.props.styleIcon)} hoverStyle={this.props.styleIconHover}/>
-            <div style={this.mergeAndPrefix(styles.underline, this.props.styleUnderline)}/>
+            <DropDownArrow style={this.mergeAndPrefix(styles.icon)}/>
+            <div style={this.mergeAndPrefix(styles.underline)}/>
           </ClearFix>
 
           <Menu
@@ -158,7 +153,7 @@ var DropDownMenu = React.createClass({
             autoWidth={this.props.autoWidth}
             selectedIndex={this.state.selectedIndex}
             menuItems={this.props.menuItems}
-            menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.styleMenuItem)}
+            menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.menuItemStyle)}
             hideable={true}
             visible={this.state.open}
             onItemClick={this._onMenuItemClick} />

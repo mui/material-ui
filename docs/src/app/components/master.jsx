@@ -12,7 +12,7 @@ class Master extends React.Component {
 
   constructor() {
     super();
-    this._onMenuIconButtonTouchTap = this._onMenuIconButtonTouchTap.bind(this);
+    this._onLeftIconButtonTouchTap = this._onLeftIconButtonTouchTap.bind(this);
   }
 
   getChildContext() {
@@ -40,7 +40,7 @@ class Master extends React.Component {
 
         <AppBar
           className="mui-dark-theme"
-          onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}
+          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
           title={title}
           zDepth={0}
           iconClassNameRight="muidocs-icon-custom-github"/>
@@ -61,7 +61,7 @@ class Master extends React.Component {
     );
   }
 
-  _onMenuIconButtonTouchTap() {
+  _onLeftIconButtonTouchTap() {
     this.refs.leftNav.toggle();
   }
 

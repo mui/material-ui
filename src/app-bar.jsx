@@ -14,7 +14,8 @@ var AppBar = React.createClass({
   },
 
   propTypes: {
-    onMenuIconButtonTouchTap: React.PropTypes.func,
+    onLeftIconButtonTouchTap: React.PropTypes.func,
+    onRightIconButtonTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
     iconClassNameLeft: React.PropTypes.string,
     iconClassNameRight: React.PropTypes.string,
@@ -123,7 +124,7 @@ var AppBar = React.createClass({
             style={this.mergeAndPrefix(styles.iconButton.style)}
             iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
             iconClassName={this.props.iconClassNameLeft}
-            onTouchTap={this._onMenuIconButtonTouchTap}>
+            onTouchTap={this._onLeftIconButtonTouchTap}>
               {child}
           </IconButton>
         );
@@ -141,7 +142,7 @@ var AppBar = React.createClass({
             style={iconRightStyle}
             iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
             iconClassName={this.props.iconClassNameRight}
-            onTouchTap={this._onMenuIconButtonTouchTap}>
+            onTouchTap={this._onRightIconButtonTouchTap}>
           </IconButton>
         );
       }
@@ -161,8 +162,12 @@ var AppBar = React.createClass({
     );
   },
 
-  _onMenuIconButtonTouchTap: function(e) {
-    if (this.props.onMenuIconButtonTouchTap) this.props.onMenuIconButtonTouchTap(e);
+  _onLeftIconButtonTouchTap: function(e) {
+    if (this.props.onLeftIconButtonTouchTap) this.props.onLeftIconButtonTouchTap(e);
+  },
+
+  _onRightIconButtonTouchTap: function(e) {
+    if (this.props.onRightIconButtonTouchTap) this.props.onRightIconButtonTouchTap(e);
   }
 
 });

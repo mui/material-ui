@@ -72,9 +72,11 @@ class PaperPage extends React.Component {
             name: 'innerClassName',
             type: 'string',
             header: 'optional',
-            desc: 'The paper container consists of 2 nested divs. It\'s ' +
-              'sometimes helpful to assign an className to the inner div ' +
-              'for styling. This property is the className for the inner div.'
+            desc: 'The paper container consists of an outer div and inner div. ' + 
+                  'This one done in order to achieve Material Design\'s shadows. ' + 
+                  'It\'s sometimes helpful to assign an className to the inner ' +
+                  'div for styling. This property is the className for the inner ' +
+                  'div.'
           },
           {
             name: 'innerStyle',
@@ -89,6 +91,13 @@ class PaperPage extends React.Component {
             header: 'default: true',
             desc: 'By default, the paper container will have a border radius. ' +
               'Set this to false to generate a container with sharp corners.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of Paper\'s root element (its ' +
+                  'outer div).'
           },
           {
             name: 'zDepth',

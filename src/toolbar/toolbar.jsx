@@ -13,7 +13,10 @@ var Toolbar = React.createClass({
     className: React.PropTypes.string,
   },
 
-  /** Styles */
+  getTheme: function (argument) {
+    return this.context.theme.component.toolbar;
+  },
+
   getStyles: function() {
     return this.mergeAndPrefix({
       boxSizing: 'border-box',
@@ -23,10 +26,6 @@ var Toolbar = React.createClass({
       width: '100%',
       padding: '0px ' + this.context.theme.spacing.desktopGutter + 'px',
     }, this.props.style);
-  },
-
-  getTheme: function (argument) {
-    return this.context.theme.component.toolbar;
   },
 
   render: function() {

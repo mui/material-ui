@@ -72,7 +72,7 @@ var Tabs = React.createClass({
     }, this);
 
     return (
-      <div style={{position: 'relative'}}>
+      <div style={this.mergeAndPrefix({position: 'relative'}, this.props.style)}>
         <div style={tabItemContainerStyle}>
           {tabs}
         </div>

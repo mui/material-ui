@@ -5,8 +5,9 @@ class CssFramework extends React.Component {
 
   render() {
     var menuItems = [
-      { route: 'colors', text: 'Colors'},
-      { route: 'themes', text: 'Themes'}
+      { route: 'inline-styles', text: 'Inline Styles'},
+      { route: 'themes', text: 'Themes'},
+      { route: 'colors', text: 'Colors'}
     ];
 
     return (

@@ -74,7 +74,14 @@ class DialogPage extends React.Component {
             name: 'contentClassName',
             type: 'string',
             header: 'optional',
-            desc: 'The className to add to the dialog window content container.'
+            desc: 'The className to add to the dialog window content container. This is the Paper ' + 
+                  'element that is seen when the dialog is shown.'
+          },
+          {
+            name: 'contentStyle',
+            type: 'string',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the dialog window content container.'
           },
           {
             name: 'openImmediately',
@@ -93,6 +100,12 @@ class DialogPage extends React.Component {
             type: 'bool',
             header: 'optional',
             desc: 'Determine if a dialog should display as a modal dialog. Default value is false.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of Dialog\'s root element.'
           }
         ]
       },
