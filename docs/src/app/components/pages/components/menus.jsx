@@ -2,6 +2,9 @@ var React = require('react');
 var mui = require('mui');
 var CodeExample = require('../../code-example/code-example.jsx');
 
+
+var ThemeManager = new mui.Styles.ThemeManager();
+
 var labelMenuItems = [
   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
@@ -59,12 +62,18 @@ var nestedMenuItems = [
 class MenusPage extends React.Component {
 
   componentWillMount() {
-    this.context.theme.setComponentThemes({
+    ThemeManager.setComponentThemes({
       toggle: {
         thumbOnColor: 'rgb(255,100,0)',
         trackOnColor: 'rgba(255,100,0,0.5)'
       }
     });
+  }
+
+  getChildContext() {
+    return {
+      theme: ThemeManager.getCurrentTheme()
+    };
   }
 
   render() {
@@ -218,6 +227,10 @@ class MenusPage extends React.Component {
 }
 
 MenusPage.contextTypes = {
+  theme: React.PropTypes.object
+};
+
+MenusPage.childContextTypes = {
   theme: React.PropTypes.object
 };
 
