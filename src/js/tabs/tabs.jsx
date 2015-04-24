@@ -24,7 +24,7 @@ var Tabs = React.createClass({
   getEvenWidth: function(){
     return (
       parseInt(window
-        .getComputedStyle(this.getDOMNode())
+        .getComputedStyle(React.findDOMNode(this))
         .getPropertyValue('width'), 10)
     );
   },

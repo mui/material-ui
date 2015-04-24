@@ -31,7 +31,7 @@ var Snackbar = React.createClass({
     if (prevState.open != this.state.open) {
       if (this.state.open) {
         //Only Bind clickaway after transition finishes
-        CssEvent.onTransitionEnd(this.getDOMNode(), function() {
+        CssEvent.onTransitionEnd(React.findDOMNode(this), function() {
           this._bindClickAway();
         }.bind(this));
       } else {

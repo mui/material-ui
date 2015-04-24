@@ -126,7 +126,7 @@ var TouchRipple = React.createClass({
 
   _getRippleStyle: function(e) {
     var style = {};
-    var el = this.getDOMNode();
+    var el = React.findDOMNode(this);
     var elHeight = el.offsetHeight;
     var elWidth = el.offsetWidth;
     var offset = Dom.offset(el);

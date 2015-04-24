@@ -176,7 +176,7 @@ var TextField = React.createClass({
 
   _getInputNode: function() {
     return this.props.multiLine ?
-      this.refs.input.getInputNode() : this.refs.input.getDOMNode();
+      this.refs.input.getInputNode() : React.findDOMNode(this.refs.input);
   },
 
   _handleInputBlur: function(e) {
@@ -202,7 +202,7 @@ var TextField = React.createClass({
   _handleTextAreaHeightChange: function(e, height) {
     var newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
-    this.getDOMNode().style.height = newHeight + 'px';
+    React.findDOMNode(this).style.height = newHeight + 'px';
   },
 
   _isControlled: function() {

@@ -131,7 +131,7 @@ var Slider = React.createClass({
     // let draggable handle the slider
     if (this.state.dragging || this.props.disabled) return;
     var value = this.state.value;
-    var node = this.refs.track.getDOMNode();
+    var node = React.findDOMNode(this.refs.track);
     var boundingClientRect = node.getBoundingClientRect();
     var offset = e.clientX - boundingClientRect.left;
     this._updateWithChangeEvent(e, offset / node.clientWidth);
@@ -157,7 +157,7 @@ var Slider = React.createClass({
   },
 
   _dragX: function(e, pos) {
-    var max = this.refs.track.getDOMNode().clientWidth;
+    var max = React.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
     this._updateWithChangeEvent(e, pos / max);
   },

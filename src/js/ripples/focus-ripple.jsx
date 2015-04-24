@@ -26,7 +26,7 @@ var FocusRipple = React.createClass({
   },
 
   _setRippleSize: function() {
-    var el = this.getDOMNode();
+    var el = React.findDOMNode(this);
     var height = el.offsetHeight;
     var width = el.offsetWidth;
     var size = Math.max(height, width);

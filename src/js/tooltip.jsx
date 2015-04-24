@@ -39,8 +39,8 @@ var Tooltip = React.createClass({
   },
 
   _setRippleSize: function() {
-    var ripple = this.refs.ripple.getDOMNode();
-    var tooltipSize = this.getDOMNode().offsetWidth;
+    var ripple = React.findDOMNode(this.refs.ripple);
+    var tooltipSize = React.findDOMNode(this).offsetWidth;
     var ripplePadding = this.props.touch ? 45 : 20;
     var rippleSize = tooltipSize + ripplePadding + 'px';
 
