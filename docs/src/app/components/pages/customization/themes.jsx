@@ -203,7 +203,8 @@ class ThemesPage extends React.Component {
           If you would like to make changes to the Theme for a specific pages, include the code 
           below in said page. All components defined on this page along with there children will 
           use your Theme overrides. The toggle buttons in the <a href="#/components/menus">Menus 
-          page</a> is an example of this.
+          page</a> is an example of this. Notice how these changes do not bleed over on to sibling
+          pages such as the <a href="#/components/switches">Switches page</a>.
         </p>
         <Paper>
           <CodeBlock>{this.getOverrideExamplePage()}</CodeBlock>
@@ -583,11 +584,17 @@ class ThemesPage extends React.Component {
 
   getOverrideExamplePage() {
     return (
-      'class MenusPage extends React.Component {\n' +
+      'var React = require(\'react\');\n' +
+      'var mui = require(\'mui\');\n' +
+      'var ThemeManager = new mui.Styles.ThemeManager();\n\n' +
+      'class MenusPage extends React.Component {\n\n' +
+      '  getChildContext() { \n' +
+      '    return {\n' +
+      '      theme: ThemeManager.getCurrentTheme()\n' +
+      '    }\n' +
+      '  }\n\n' +
       '  componentWillMount() {\n' +
-      '    //this.context is valid because the context was defined in the \n' +
-      '    //main page which is MenuPage\'s grandparent.\n' +
-      '    this.context.theme.setComponentThemes({\n' +
+      '    ThemeManager.setComponentThemes({\n' +
       '      toggle: {\n' +
       '        thumbOnColor: String,\n' +
       '        trackOnColor: String,\n' +
@@ -595,7 +602,7 @@ class ThemesPage extends React.Component {
       '    });\n' +
       '  }\n' +
       '}\n\n' +
-      'MenusPage.contextTypes = {\n' +
+      'MenusPage.childContextTypes = {\n' +
       '  theme: React.PropTypes.object\n' +
       '};'
     );
