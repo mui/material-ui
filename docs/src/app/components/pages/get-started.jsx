@@ -1,6 +1,6 @@
-var React = require('react'),
-  mui = require('mui'),
-  CodeBlock = require('../code-example/code-block.jsx');
+var React = require('react');
+var mui = require('mui');
+var CodeBlock = require('../code-example/code-block.jsx');
 
 class GetStarted extends React.Component {
 

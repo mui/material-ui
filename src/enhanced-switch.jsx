@@ -24,6 +24,7 @@ var EnhancedSwitch = React.createClass({
       onParentShouldUpdate: React.PropTypes.func.isRequired,
       switched: React.PropTypes.bool.isRequired,
       rippleStyle: React.PropTypes.object,
+      rippleColor: React.PropTypes.string,
       iconStyle: React.PropTypes.object,
       thumbStyle: React.PropTypes.object,
       trackStyle: React.PropTypes.object,
@@ -114,7 +115,8 @@ var EnhancedSwitch = React.createClass({
         zIndex: 2,
         left: 0,
         boxSizing: 'border-box', 
-        padding: 0
+        padding: 0,
+        margin: 0
       },
       label: {
         float: 'left',
@@ -162,6 +164,7 @@ var EnhancedSwitch = React.createClass({
       onTouchEnd,
       disableTouchRipple,
       disableFocusRipple,
+      className,
       ...other
     } = this.props;
 
@@ -171,6 +174,8 @@ var EnhancedSwitch = React.createClass({
 
     var wrapStyles = this.mergeAndPrefix(styles.wrap, this.props.iconStyle);
     var rippleStyle = this.mergeAndPrefix(styles.ripple, this.props.rippleStyle);
+    var rippleColor = this.props.hasOwnProperty('rippleColor') ? this.props.rippleColor : 
+                      this.getTheme().primary1Color;
 
     if (this.props.thumbStyle) {
       wrapStyles.marginLeft /= 2;
@@ -221,7 +226,7 @@ var EnhancedSwitch = React.createClass({
         ref="touchRipple"
         key="touchRipple"
         style={rippleStyle}
-        color={this.props.switched ? this.getTheme().primary1Color : this.getTheme().textColor}
+        color={rippleColor}
         centerRipple={true} />
     );
 
@@ -229,7 +234,7 @@ var EnhancedSwitch = React.createClass({
       <FocusRipple
         key="focusRipple"
         innerStyle={rippleStyle}
-        color={this.props.switched ? this.getTheme().primary1Color : this.getTheme().textColor}
+        color={rippleColor}
         show={this.state.isKeyboardFocused} />
     );
 
@@ -269,7 +274,7 @@ var EnhancedSwitch = React.createClass({
     );
 
     return (
-      <div ref="root" style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div ref="root"  className={className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
           {inputElement}
           {elementsInOrder}
       </div>

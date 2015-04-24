@@ -14,7 +14,8 @@ var Checkbox = React.createClass({
   },
 
   propTypes: {
-    onCheck: React.PropTypes.func,
+    iconStyle: React.PropTypes.object,
+    onCheck: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -39,7 +40,7 @@ var Checkbox = React.createClass({
           width: checkboxSize,
       },
       check: {
-          positiion: 'absolute',
+          position: 'absolute',
           opacity: 0, 
           transform: 'scale(0)',
           transitionOrigin: '50% 50%',
@@ -80,31 +81,34 @@ var Checkbox = React.createClass({
     } = this.props;
 
     var styles = this.getStyles();
+    var boxStyles = 
+      this.mergeAndPrefix(
+        styles.box,
+        this.state.switched && styles.boxWhenSwitched,
+        this.props.iconStyle,
+        this.props.disabled && styles.boxWhenDisabled);
+    var checkStyles = 
+      this.mergeAndPrefix(
+        styles.check,
+        this.state.switched && styles.checkWhenSwitched,
+        this.props.iconStyle,
+        this.props.disabled && styles.checkWhenDisabled);
 
     var checkboxElement = (
       <div>
-        <CheckboxOutline style={
-          this.mergeAndPrefix(
-            styles.box,
-            this.state.switched && styles.boxWhenSwitched,
-            this.props.style,
-            this.props.disabled && styles.boxWhenDisabled
-        )} />
-        <CheckboxChecked style={
-          this.mergeAndPrefix(
-            styles.check,
-            this.state.switched && styles.checkWhenSwitched,
-            this.props.style,            
-            this.props.disabled && styles.checkWhenDisabled
-        )} />
+        <CheckboxOutline style={boxStyles} />
+        <CheckboxChecked style={checkStyles} />
       </div>
     );
+
+    var rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
 
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switched: this.state.switched,
       switchElement: checkboxElement,
+      rippleColor: rippleColor,
       iconStyle: styles.icon,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,

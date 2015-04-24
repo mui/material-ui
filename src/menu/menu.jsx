@@ -147,7 +147,7 @@ var Menu = React.createClass({
     autoWidth: React.PropTypes.bool,
     onItemTap: React.PropTypes.func,
     onItemClick: React.PropTypes.func,
-    onToggleClick: React.PropTypes.func,
+    onToggle: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
     hideable: React.PropTypes.bool,
@@ -340,6 +340,7 @@ var Menu = React.createClass({
               attribute={menuItem.attribute}
               number={menuItem.number}
               toggle={menuItem.toggle}
+              onToggle={this.props.onToggle}
               disabled={isDisabled}
               onClick={this._onItemClick}
               onTouchTap={this._onItemTap}>

@@ -34,7 +34,7 @@ var Paper = React.createClass({
         boxSizing: 'border-box',
         fontFamily: this.context.theme.contentFontFamily,
         WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
-        boxShadow: this.getZDepthShadows(this.props.zDepth).boxShadow,
+        boxShadow: this._getZDepthShadows(this.props.zDepth).boxShadow,
         borderRadius: this.props.circle ? '50%' : 
                       this.props.rounded ? '2px' :
                       '0px'
@@ -45,7 +45,7 @@ var Paper = React.createClass({
         boxSizing: 'border-box',
         fontFamily: this.context.theme.contentFontFamily,
         WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
-        boxShadow: this.getZDepthShadows(this.props.zDepth).bottomBoxShadow,
+        boxShadow: this._getZDepthShadows(this.props.zDepth).bottomBoxShadow,
         borderRadius: this.props.circle ? '50%' : 
                       this.props.rounded ? '2px' :
                       '0px'       
@@ -80,7 +80,7 @@ var Paper = React.createClass({
     return this.refs.innerContainer;
   },
 
-  getZDepthShadows: function(zDepth) {
+  _getZDepthShadows: function(zDepth) {
     var shadows = [
       {
         boxShadow: '',

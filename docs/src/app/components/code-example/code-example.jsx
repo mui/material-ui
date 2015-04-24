@@ -12,8 +12,6 @@ class CodeExample extends React.Component {
         color: borderColor
       },
       block: {
-        borderRight: 'solid 1px ' + borderColor,
-        borderBottom: 'solid 1px ' + borderColor,
         borderRadius: '0 0 2px 0'
       }
     };

@@ -30,12 +30,6 @@ class DropDownMenuPage extends React.Component {
         name: 'Props',
         infoArray: [
           {
-            name: 'selectedIndex',
-            type: 'number',
-            header: 'default: 0',
-            desc: 'Index of the item selected.'
-          },
-          {
             name: 'autoWidth',
             type: 'bool',
             header: 'default: true',
@@ -48,6 +42,25 @@ class DropDownMenuPage extends React.Component {
             type: 'array',
             header: 'required',
             desc: 'JSON data representing all menu items in the dropdown.'
+          },
+          {
+            name: 'menuItemStyle',
+            type: 'array',
+            header: 'required',
+            desc: 'Overrides the inline-styles of the MenuItems when the ' + 
+                  'DropDownMenu is expanded.'
+          },
+          {
+            name: 'selectedIndex',
+            type: 'number',
+            header: 'default: 0',
+            desc: 'Index of the item selected.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of DropDownMenu\'s root element.'
           }
         ]
       },

@@ -5,6 +5,7 @@ class Components extends React.Component {
 
   render() {
     var menuItems = [
+      { route: 'appbar', text: 'AppBar'},
       { route: 'buttons', text: 'Buttons'},
       { route: 'date-picker', text: 'Date Picker'},
       { route: 'dialog', text: 'Dialog'},

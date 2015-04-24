@@ -146,7 +146,8 @@ var RaisedButton = React.createClass({
           className={this.props.iconClassName} 
           style={this.mergeAndPrefix(
             styles.icon,
-            this.props.mini && styles.iconWhenMini)}/>
+            this.props.mini && styles.iconWhenMini,
+            this.props.iconStyle)}/>
     }
 
     var rippleColor = styles.icon.color;

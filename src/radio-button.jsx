@@ -14,6 +14,7 @@ var RadioButton = React.createClass({
   },
 
   propTypes: {
+    iconStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func
   },
 
@@ -67,29 +68,34 @@ var RadioButton = React.createClass({
     } = this.props;
 
     var styles = this.getStyles();
+    var onStyles = 
+      this.mergeAndPrefix(
+        styles.target,
+        this.props.checked && styles.targetWhenChecked,
+        this.props.iconStyle,
+        this.props.disabled && styles.targetWhenDisabled);
+    var offStyles = 
+      this.mergeAndPrefix(
+        styles.fill,
+        this.props.checked && styles.fillWhenChecked,
+        this.props.iconStyle,
+        this.props.disabled && styles.fillWhenDisabled);
 
     var radioButtonElement = (
       <div>
-          <RadioButtonOff style={this.mergeAndPrefix(
-            styles.target,
-            this.props.checked && styles.targetWhenChecked,
-            this.props.style,
-            this.props.disabled && styles.targetWhenDisabled
-          )} />
-          <RadioButtonOn style={this.mergeAndPrefix(
-            styles.fill,
-            this.props.checked && styles.fillWhenChecked,
-            this.props.style,
-            this.props.disabled && styles.fillWhenDisabled
-          )} />
+          <RadioButtonOff style={onStyles} />
+          <RadioButtonOn style={offStyles} />
       </div>
     );
+
+    var rippleColor = this.props.checked ? this.getTheme().checkedColor : this.getTheme().borderColor;
 
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "radio",
       switched: this.props.checked,
       switchElement: radioButtonElement,
+      rippleColor: rippleColor,
       iconStyle: styles.icon,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,

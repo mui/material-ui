@@ -35,10 +35,23 @@ class ToolbarPage extends React.Component {
       '  </ToolbarGroup>\n' +
       '</Toolbar>';
 
+    var desc = 'Toolbars are collections of components stacked horizontally ' +
+               'against each other. Toolbars provide greater versatility than ' +
+               'appBars. AppBars are a subset of toolbars. The following ' + 
+               'toolbar components can help organize your layout. Note that ' +
+               'every component listed here (including Toolbar) have a style ' +
+               'prop which overrides the inline-styles of their root element.'
+
     var componentInfo = [
       {
         name: 'ToolbarGroup',
           infoArray: [
+            {
+              name: 'Description',
+              desc: 'Toolbar Group contains a collection of components for you. ' +
+                    'It is recommended that all components in a Toolbar are ' +
+                    'contained within a ToolbarGroup.'
+            },
             {
               name: 'float',
               type: 'string',
@@ -48,8 +61,22 @@ class ToolbarPage extends React.Component {
           ]
       },
       {
+        name: 'ToolbarSeparator',
+          infoArray: [
+            {
+              name: 'Description',
+              desc: 'A vertical bar used to separate groups of components. It ' +
+                    'is used to easily organize components.'
+            }
+          ]
+      },
+      {
         name: 'ToolbarTitle',
           infoArray: [
+            {
+              name: 'Description',
+              desc: 'Simply a string of text that is displayed in the Toolbar.'
+            },
             {
               name: 'text',
               type: 'string',
@@ -78,6 +105,7 @@ class ToolbarPage extends React.Component {
       <ComponentDoc
         name="Toolbars"
         code={code}
+        desc={desc}
         componentInfo={componentInfo}>
 
         <Toolbar>

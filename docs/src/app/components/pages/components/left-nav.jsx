@@ -60,12 +60,6 @@ class LeftNavPage extends React.Component {
         name: 'Props',
         infoArray: [
           {
-            name: 'menuItems',
-            type: 'array',
-            header: 'required',
-            desc: 'JSON data representing all menu items to render.'
-          },
-          {
             name: 'docked',
             type: 'bool',
             header: 'default: true',
@@ -80,11 +74,23 @@ class LeftNavPage extends React.Component {
               'Usually, this is used for a logo or a profile image.'
           },
           {
+            name: 'menuItems',
+            type: 'array',
+            header: 'required',
+            desc: 'JSON data representing all menu items to render.'
+          },
+          {
             name: 'selectedIndex',
             type: 'number',
             header: 'optional',
             desc: 'Indicates the particular item in the menuItems array that is ' +
               'currently selected.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of LeftNav\'s root element.'
           }
         ]
       },

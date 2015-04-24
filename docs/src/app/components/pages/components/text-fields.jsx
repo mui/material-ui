@@ -134,6 +134,12 @@ var TextFieldsPage = React.createClass({
             type: 'bool',
             header: 'default: false',
             desc: 'If true, a textarea element will be rendered. The textarea also grows and shrinks according to the number of lines.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the TextField\'s root element.'
           }
         ]
       },
@@ -170,6 +176,29 @@ var TextFieldsPage = React.createClass({
             header: 'TextField.setValue(newValue)',
             desc: 'Sets the value of the input element.'
           }
+        ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
+          {
+            name: 'onBlur',
+            header: 'function(e)',
+            desc: 'Callback function that is fired when the textfield loses' +
+                  'focus.'
+          },
+          {
+            name: 'onChange',
+            header: 'function(e)',
+            desc: 'Callback function that is fired when the textfield\'s value ' +
+                  'changes.'
+          },
+          {
+            name: 'onFocus',
+            header: 'function(e)',
+            desc: 'Callback function that is fired when the textfield gains ' +
+                  'focus.'
+          },
         ]
       }
     ];

@@ -44,6 +44,12 @@ class SnackbarPage extends React.Component {
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the snackbar will open once mounted.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the Snackbar\'s root element.'
           }
         ]
       },
