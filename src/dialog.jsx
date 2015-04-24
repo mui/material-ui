@@ -15,18 +15,18 @@ var Dialog = React.createClass({
     title: React.PropTypes.node
   },
 
-  /** Styles */
-  _title: function() {
+  getStyles: function() {
     var gutter = Spacing.desktopGutter + 'px ';
-    return {
-      padding: gutter + gutter + '0 ' + gutter,
-      color: this.context.theme.palette.textColor
-    }
-  },
-  _content: function() {
-    return {
-      padding: Spacing.desktopGutter,
-    }
+    var styles = {
+      title: {
+        padding: gutter + gutter + '0 ' + gutter,
+        color: this.context.theme.palette.textColor
+      },
+      content: {
+        padding: Spacing.desktopGutter
+      }
+    };
+    return styles;
   },
 
   render: function() {
@@ -35,12 +35,14 @@ var Dialog = React.createClass({
       ...other
     } = this.props;
 
+    var styles = this.getStyles();
+
     var title;
     if (this.props.title) {
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.
       title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
-        <h3 style={this._title()}>{this.props.title}</h3> :
+        <h3 style={styles.title}>{this.props.title}</h3> :
         this.props.title;
     }
 
@@ -53,7 +55,7 @@ var Dialog = React.createClass({
 
         {title}
 
-        <div ref="dialogContent" style={this._content()}>
+        <div ref="dialogContent" style={styles.content}>
           {this.props.children}
         </div>
 
