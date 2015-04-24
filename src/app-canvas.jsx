@@ -14,7 +14,8 @@ var AppCanvas = React.createClass({
 
     var styles = {
       height: '100%',
-      backgroundColor: this.context.theme.palette.canvasColor
+      backgroundColor: this.context.theme.palette.canvasColor,
+      WebkitFontSmoothing: 'antialiased'
     };
 
     var stylesAppBar = {
