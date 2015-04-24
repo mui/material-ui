@@ -9,10 +9,6 @@ var SvgIcon = React.createClass({
     theme: React.PropTypes.object
   },
 
-  propTypes: {
-    hoverStyle: React.PropTypes.object,
-  },
-
   getInitialState: function() {
     return {
       isHovered: false,
@@ -44,9 +40,6 @@ var SvgIcon = React.createClass({
     var {
       viewBox,
       style,
-      hoverStyle,
-      onMouseOver,
-      onMouseOut,
       ...other
     } = this.props;
 
@@ -54,27 +47,13 @@ var SvgIcon = React.createClass({
       <svg
         {...other}
         viewBox="0 0 24 24"
-        onMouseOver={this._onMouseOver} 
-        onMouseOut={this._onMouseOut}
         style={this.mergeAndPrefix(
           this.getStyles().root, 
-          this.props.style,
-          this.state.isHovered && this.props.hoverStyle)}>
+          this.props.style)}>
             {this.props.children}
       </svg>
     );
-  },
-
-  _onMouseOut: function(e) {
-    this.setState({isHovered: false});    
-    if (this.props.onMouseOut) this.props.onMouseOut(e);
-  },
-
-  _onMouseOver: function(e) {
-    this.setState({isHovered: true});
-    if (this.props.onMouseOver) this.props.onMouseOver(e);
-  },
-
+  }
 });
 
 module.exports = SvgIcon;

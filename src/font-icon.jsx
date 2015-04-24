@@ -10,10 +10,6 @@ var FontIcon = React.createClass({
     theme: React.PropTypes.object
   },
 
-  propTypes: {
-    hoverStyle: React.PropTypes.object,
-  },
-
   getInitialState: function() {
     return {
       isHovered: false,
@@ -40,9 +36,6 @@ var FontIcon = React.createClass({
   render: function() {
     var {
       style,
-      hoverStyle,
-      onMouseOver,
-      onMouseOut,
       ...other
     } = this.props;
 
@@ -50,23 +43,9 @@ var FontIcon = React.createClass({
       <span {...other} 
         style={this.mergeAndPrefix(
           this.getStyles(),
-          this.props.style,
-          this.state.isHovered && this.props.hoverStyle)} 
-        onMouseOver={this._onMouseOver} 
-        onMouseOut={this._onMouseOut}/>
+          this.props.style)} />
     );
-  },
-
-  _onMouseOut: function(e) {
-    this.setState({isHovered: false});    
-    if (this.props.onMouseOut) this.props.onMouseOut(e);
-  },
-
-  _onMouseOver: function(e) {
-    this.setState({isHovered: true});
-    if (this.props.onMouseOver) this.props.onMouseOver(e);
-  },
-
+  }
 });
 
 module.exports = FontIcon;
