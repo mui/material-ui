@@ -244,12 +244,12 @@ class MenusPage extends React.Component {
       "   { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
       "];\n\n" +
       "//You can also pass an onItemTap or onItemClick callback prop.\n"
-      "<Menu menuItems={labelMenuItems} />";
+      "<Menu menuItems={labelMenuItems} autoWidth={false}/>";
 
     return (
       <CodeExample code={code}>
         <div className="example-menu">
-          <mui.Menu menuItems={labelMenuItems} onItemClick={this._onItemClick} />
+          <mui.Menu menuItems={labelMenuItems} onItemClick={this._onItemClick} autoWidth={false}/>
         </div>
       </CodeExample>
     );
@@ -262,12 +262,12 @@ class MenusPage extends React.Component {
       "   { payload: '3', text: 'Uncategorized', number: '6'},\n" +
       "   { payload: '4', text: 'Trash', number: '11' }\n" +
       "];\n\n"  +
-      "<Menu menuItems={numberMenuItems} />";
+      "<Menu menuItems={numberMenuItems} autoWidth={false}/>";
 
     return (
       <CodeExample code={code}>
         <div className="example-menu">
-          <mui.Menu menuItems={numberMenuItems} onItemClick={this._onItemClick} />
+          <mui.Menu menuItems={numberMenuItems} onItemClick={this._onItemClick} autoWidth={false}/>
         </div>
       </CodeExample>
     );
@@ -282,12 +282,12 @@ class MenusPage extends React.Component {
       "   { payload: '3', text: 'Starred', iconClassName: 'muidocs-icon-action-stars', number: '3' },\n" +
       "   { payload: '4', text: 'Shared', iconClassName: 'muidocs-icon-action-thumb-up',  number: '12' }\n" +
       "];\n\n" +
-      "<Menu menuItems={iconMenuItems} />";
+      "<Menu menuItems={iconMenuItems} autoWidth={false}/>";
 
     return (
       <CodeExample code={code}>
         <div className="example-menu">
-          <mui.Menu menuItems={iconMenuItems} onItemClick={this._onItemClick} />
+          <mui.Menu menuItems={iconMenuItems} onItemClick={this._onItemClick} autoWidth={false}/>
         </div>
       </CodeExample>
     );
@@ -301,12 +301,12 @@ class MenusPage extends React.Component {
       "   { payload: '2', text: 'Text Opt-Out', toggle: true, defaultToggled: true},\n" +
       "   { payload: '3', text: 'Voice Opt-Out', toggle: true, disabled: true}\n" +
       "];\n\n" +
-      "<Menu menuItems={filterMenuItems} />";
+      "<Menu menuItems={filterMenuItems} autoWidth={false}/>";
 
     return (
       <CodeExample code={code}>
         <div className="example-menu">
-          <mui.Menu menuItems={filterMenuItems} onItemToggle={this._onFilterMenuToggle}  onItemClick={this._onItemClick}/>
+          <mui.Menu menuItems={filterMenuItems} onItemToggle={this._onFilterMenuToggle}  onItemClick={this._onItemClick}autoWidth={false}/>
         </div>
       </CodeExample>
     );
@@ -340,12 +340,12 @@ class MenusPage extends React.Component {
       "    { payload: '2', text: 'Settings'},\n" +
       "    { payload: '3', text: 'Logout', disabled: true}\n" +
       "  ];\n\n" +
-      '<Menu menuItems={nestedMenuItems} />';
+      '<Menu menuItems={nestedMenuItems} autoWidth={false}/>';
 
     return (
       <CodeExample code={code}>
         <div className="example-menu-nested">
-          <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} onItemTap={this._onItemTap} />
+          <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} onItemTap={this._onItemTap} autoWidth={false}/>
         </div>
       </CodeExample>
     );

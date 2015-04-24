@@ -70,8 +70,7 @@ var DatePicker = React.createClass({
           ref="input"
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}
-          onTouchTap={this._handleInputTouchTap}
-          style={{width: '100%'}} />
+          onTouchTap={this._handleInputTouchTap}/>
         <DatePickerDialog
           minDate={minDate} 
           maxDate={maxDate} 

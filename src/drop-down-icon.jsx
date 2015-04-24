@@ -16,7 +16,6 @@ var DropDownIcon = React.createClass({
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     closeOnMenuItemClick: React.PropTypes.bool,
-    hoverStyle: React.PropTypes.object,
     iconStyle: React.PropTypes.object,
     iconClassName: React.PropTypes.string,
   },
@@ -64,20 +63,30 @@ var DropDownIcon = React.createClass({
   },
 
   render: function() {
+    var {
+      style,
+      children,
+      menuItems,
+      closeOnMenuItemClick,
+      iconStyle,
+      iconClassName,
+      ...other
+    } = this.props;
+
     var styles = this.getStyles();
+    
     return (
-      <div ref="root" style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>
           <div onClick={this._onControlClick}>
               <FontIcon 
-                className={this.props.iconClassName} 
-                style={this.props.iconStyle}
-                hoverStyle={this.props.hoverStyle}/>
+                className={iconClassName} 
+                style={iconStyle}/>
               {this.props.children}
           </div>
           <Menu 
             ref="menuItems" 
             style={this.mergeAndPrefix(styles.menu)} 
-            menuItems={this.props.menuItems}
+            menuItems={menuItems}
             menuItemStyle={styles.menuItem}
             hideable={true} 
             visible={this.state.open} 
@@ -96,7 +105,7 @@ var DropDownIcon = React.createClass({
     if (this.props.closeOnMenuItemClick) {
       this.setState({ open: false });
     }
-  },
+  }
 });
 
 module.exports = DropDownIcon;

@@ -14,16 +14,8 @@ module.exports = {
   },
 
   _checkClickAway: function(e) {
-    var el; 
-    if (this.refs.hasOwnProperty("root")) {
-      el = React.findDOMNode(this.refs.root);
-    } else {
-      var message = 'Please set your outermost component\'s ref to \'root\' ' + 
-                    'when using ClickAwayable.';
-      console.warn(message);
-      el = this.getDOMNode();
-    }
-
+    var el = React.findDOMNode(this); 
+    
     // Check if the target is inside the current component
     if (this.isMounted() && 
       e.target != el &&

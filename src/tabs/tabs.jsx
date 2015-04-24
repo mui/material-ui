@@ -47,7 +47,7 @@ var Tabs = React.createClass({
       height: '48px',
       backgroundColor: Colors.cyan500,
       whiteSpace: 'nowrap',
-      display: 'block'
+      display: 'table'
     }, this.props.tabItemContainerStyle);
     
     var left = this.props.tabWidth ? 
