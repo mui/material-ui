@@ -27,7 +27,7 @@ var AppBar = React.createClass({
   },
 
   componentDidMount: function() {
-    if (process.NODE_ENV !== 'production' &&
+    if (process.env.NODE_ENV !== 'production' &&
        (this.props.iconElementLeft && this.props.iconClassNameLeft)) {
         var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
                       'defined. Please use one or the other.';
