@@ -17,20 +17,23 @@ var AppCanvas = React.createClass({
       backgroundColor: this.context.theme.palette.canvasColor
     };
 
-    React.Children.forEach(this.props.children, function(currentChild) {
+    var stylesAppBar = {
+      position: 'fixed', 
+      height: this.context.theme.component.appBar.height
+    };
+
+    var newChildren = React.Children.map(this.props.children, function(currentChild) {
       switch (currentChild.type.displayName) {
         case 'AppBar' : 
-          currentChild.props.style = {
-            position: 'fixed', 
-            height: this.context.theme.component.appBar.height
-          };
-          break;
+          return React.cloneElement(currentChild, {style: stylesAppBar});
+        default:
+          return currentChild;
       }
     }, this);
 
     return (
       <div style={styles}>
-        {this.props.children}
+        {newChildren}
       </div>
     );
   }
