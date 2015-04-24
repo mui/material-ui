@@ -25,15 +25,17 @@ var Tab = React.createClass({
 
   render: function(){
     var styles = this.mergeAndPrefix({
-      'display': 'inline-block',
+      'display': 'table-cell',
       'height': '100%',
       'cursor': 'pointer',
       'textAlign': 'center',
-      'lineHeight': '48px',
+      'verticalAlign': 'middle',
+      'height': '48px',
       'color': Colors.white,
       'opacity': '.6',
       'fontSize': '14sp',
       'fontWeight': '500',
+      'whiteSpace': 'initial',
       'font': this.getTheme().fontFamily,
       'width': this.props.width
     }, this.props.style);
