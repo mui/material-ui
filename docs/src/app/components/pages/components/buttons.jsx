@@ -45,6 +45,7 @@ var ButtonPage = React.createClass({
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />\n' +
+      '<FloatingActionButton iconClassName="muidocs-icon-custom-github" linkButton={true} href="https://github.com/callemall/material-ui" mini={true} secondary={true}/>' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />';
@@ -126,7 +127,7 @@ var ButtonPage = React.createClass({
             type: 'string',
             header: 'optional',
             desc: 'This is the classname of the icon to display inside the button. This only applies to ' +
-              'floating action buttons. An alternative to adding an icon would be to insert a custom svg ' + 
+              'floating action buttons. An alternative to adding an icon would be to insert a custom svg ' +
               'component or FontIcon as a child.'
           },
           {
@@ -223,6 +224,9 @@ var ButtonPage = React.createClass({
             </div>
             <div className="button-example-container">
               <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />
+            </div>
+            <div className="button-example-container">
+              <FloatingActionButton iconClassName="muidocs-icon-custom-github" linkButton={true} href="https://github.com/callemall/material-ui" mini={true} secondary={true}/>
             </div>
             <div className="button-example-container">
               <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />
