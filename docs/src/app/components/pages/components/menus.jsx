@@ -72,7 +72,8 @@ var componentInfo = [
         name: 'hideable',
         type: 'boolean',
         header: 'default: false',
-        desc: 'ASK HAI ABOUT THIS PROP.'
+        desc: 'Determines whether of not the Menu can be hidden via the ' +
+              'visible prop.'
       },
       {
         name: 'menuItems',
@@ -136,7 +137,7 @@ var componentInfo = [
         name: 'visible',
         type: 'boolean',
         header: 'default: true',
-        desc: ''
+        desc: 'Determines whether of not the Menu is displayed.'
       },
       {
         name: 'zDepth',
