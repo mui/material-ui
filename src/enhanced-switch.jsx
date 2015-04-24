@@ -66,7 +66,13 @@ var EnhancedSwitch = React.createClass({
         this.props.switched == undefined ||
         inputNode.checked != this.props.switched) this.props.onParentShouldUpdate(inputNode.checked);
 
-    this.setState({parentWidth: this.getEvenWidth()});
+    window.addEventListener("resize", this._handleResize);
+
+    this._handleResize();
+  },
+
+  componentWillUnmount: function() {
+    window.removeEventListener("resize", this._handleResize);
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -96,6 +102,7 @@ var EnhancedSwitch = React.createClass({
   getStyles: function() {
     var switchWidth = 60 - Spacing.desktopGutterLess;
     var labelWidth = this.state.parentWidth - 60;
+
     var styles = {
       root: {
         position: 'relative',
@@ -380,6 +387,10 @@ var EnhancedSwitch = React.createClass({
     }.bind(this), 150);
 
     if (this.props.onFocus) this.props.onFocus(e);
+  },
+
+  _handleResize: function(e) {
+    this.setState({parentWidth: this.getEvenWidth()});
   }
 
 });
