@@ -99,6 +99,8 @@ var RaisedButton = React.createClass({
         overflow: 'hidden',
         backgroundColor: this._getBackgroundColor(),
         borderRadius: '50%',
+        textAlign: 'center',
+        verticalAlign: 'bottom',
         //This is need so that ripples do not bleed
         //past border radius.
         //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
