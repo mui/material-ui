@@ -37,60 +37,48 @@ var FlatButton = React.createClass({
     };
   },
 
-  /** Styles */
-
-  _main: function() {
-
-    var style = {
-      transition: Transitions.easeOut(),
-      fontSize: Typography.fontStyleButtonFontSize,
-      letterSpacing: 0,
-      textTransform: 'uppercase',
-      fontWeight: Typography.fontWeightMedium, 
-      borderRadius: 2,
-      userSelect: 'none',
-      position: 'relative',
-      overflow: 'hidden',
-      backgroundColor: this.getTheme().color,
-      lineHeight: this.getThemeButton().height + 'px',
-      minWidth: this.getThemeButton().minWidth,
-      padding: 0, 
-      margin: 0,
-
-      //This is need so that ripples do not bleed past border radius.
-      //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-      transform: 'translate3d(0, 0, 0)',
-
-      color:  this.props.disabled ? this.getTheme().disabledTextColor :
-              this.props.primary ? this.getTheme().primaryTextColor :
-              this.props.secondary ? this.getTheme().secondaryTextColor :
-              this.getTheme().textColor,
-    };
-
-    if (this.state.hovered && !this.props.disabled) {
-      style.backgroundColor = ColorManipulator.fade(ColorManipulator.lighten(style.color, 0.4), 0.15);
-    }  
-
-    return this.mergeAndPrefix(style);
-  },
-
-  _label: function() {
-    var style = {
-      position: 'relative',
-      padding: '0px ' + this.context.theme.spacing.desktopGutterLess + 'px',
-    };
-    
-    if (this.props.labelStyle) style = this.mergeAndPrefix(style, this.props.labelStyle);
-
-    return style;
-  },
-
   getThemeButton: function() {
     return this.context.theme.component.button;
   },
 
   getTheme: function() {
     return this.context.theme.component.flatButton;
+  },
+
+  getStyles: function() {
+    var styles = {
+      root: {
+        transition: Transitions.easeOut(),
+        fontSize: Typography.fontStyleButtonFontSize,
+        letterSpacing: 0,
+        textTransform: 'uppercase',
+        fontWeight: Typography.fontWeightMedium, 
+        borderRadius: 2,
+        userSelect: 'none',
+        position: 'relative',
+        overflow: 'hidden',
+        backgroundColor: this.getTheme().color,
+        lineHeight: this.getThemeButton().height + 'px',
+        minWidth: this.getThemeButton().minWidth,
+        padding: 0, 
+        margin: 0,
+        //This is need so that ripples do not bleed past border radius.
+        //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+        transform: 'translate3d(0, 0, 0)',
+      },
+      label: {
+        position: 'relative',
+        padding: '0px ' + this.context.theme.spacing.desktopGutterLess + 'px',
+      }
+    };
+    return styles;
+  },
+
+  _getColor: function(){
+    return  this.props.disabled ? this.getTheme().disabledTextColor :
+            this.props.primary ? this.getTheme().primaryTextColor :
+            this.props.secondary ? this.getTheme().secondaryTextColor :
+            this.getTheme().textColor;
   },
 
   render: function() {
@@ -104,15 +92,33 @@ var FlatButton = React.createClass({
         ...other
       } = this.props;
 
+    var styles = this.getStyles();
+
+    styles.root.color = this._getColor();
+
+    styles.rootWhenHovered = {
+        backgroundColor: ColorManipulator.fade(ColorManipulator.lighten(styles.root.color, 0.4), 0.15)
+    };
+
     var labelElement;
-    if (label) labelElement = <span style={this._label()}>{label}</span>;
+    if (label) {
+      labelElement = (
+        <span style={this.mergeAndPrefix(styles.label, this.props.labelStyle)}>
+          {label}
+        </span>
+      );
+    };
     
-    var rippleColor = ColorManipulator.fade(this._main().color, 0.8);
+    var rippleColor = ColorManipulator.fade(styles.root.color, 0.8);
 
     return (
       <EnhancedButton {...other}
         ref="enhancedButton"
-        style={this._main()}
+        style={this.mergeAndPrefix(
+          styles.root,
+          (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,
+          this.props.style
+        )}
         onMouseOver={this._handleMouseOver} 
         onMouseOut={this._handleMouseOut} 
         focusRippleColor={rippleColor}
@@ -137,7 +143,7 @@ var FlatButton = React.createClass({
   _handleKeyboardFocus: function(e, keyboardFocused) {
 
     if (keyboardFocused && !this.props.disabled) {
-      this.getDOMNode().style.backgroundColor = ColorManipulator.fade(ColorManipulator.lighten(this._main().color, 0.4), 0.15);
+      this.getDOMNode().style.backgroundColor = ColorManipulator.fade(ColorManipulator.lighten(this.getStyles().root.color, 0.4), 0.15);
     } else {
       this.getDOMNode().style.backgroundColor = 'transparent';
     }

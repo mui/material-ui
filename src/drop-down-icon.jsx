@@ -37,41 +37,36 @@ var DropDownIcon = React.createClass({
     this.setState({ open: false });
   },
 
-  /** Styles */
-
-  _main: function() {
+  getStyles: function() {
     var iconWidth = 48;
-    return this.mergeAndPrefix({
-      display: 'inline-block',
-      width: iconWidth + 'px !important',
-      position: 'relative',
-      height: Spacing.desktopToolbarHeight,
-      fontSize: Spacing.desktopDropDownMenuFontSize,
-      cursor: 'pointer'
-    });
-  },
-
-  _menu: function() {
-    
-    return {
-      transition: Transitions.easeOut(),
-      right: '-14px !important',
-      top: '9px !important',
-      opacity: (this.props.open) ? 1 : 0,
-    }
-  },
-
-  _menuItem: function() { // similair to drop down menu's menu item styles
-    return {
-      paddingRight: (Spacing.iconSize + (Spacing.desktopGutterLess*2)),
-      height: Spacing.desktopDropDownMenuItemHeight,
-      lineHeight: Spacing.desktopDropDownMenuItemHeight + 'px',
-    }
+    var styles = {
+      root: {
+        display: 'inline-block',
+        width: iconWidth + 'px !important',
+        position: 'relative',
+        height: Spacing.desktopToolbarHeight,
+        fontSize: Spacing.desktopDropDownMenuFontSize,
+        cursor: 'pointer'
+       },
+      menu: {
+        transition: Transitions.easeOut(),
+        right: '-14px !important',
+        top: '9px !important',
+        opacity: (this.props.open) ? 1 : 0
+      },
+      menuItem: { // similair to drop down menu's menu item styles
+        paddingRight: (Spacing.iconSize + (Spacing.desktopGutterLess*2)),
+        height: Spacing.desktopDropDownMenuItemHeight,
+        lineHeight: Spacing.desktopDropDownMenuItemHeight + 'px'
+      }
+    };
+    return styles;   
   },
 
   render: function() {
+    var styles = this.getStyles();
     return (
-      <div style={this._main()}>
+      <div ref="root" style={this.mergeAndPrefix(styles.root, this.props.style)}>
           <div onClick={this._onControlClick}>
               <FontIcon 
                 className={this.props.iconClassName} 
@@ -81,9 +76,9 @@ var DropDownIcon = React.createClass({
           </div>
           <Menu 
             ref="menuItems" 
-            style={this._menu()} 
+            style={this.mergeAndPrefix(styles.menu)} 
             menuItems={this.props.menuItems}
-            menuItemStyle={this._menuItem()}
+            menuItemStyle={styles.menuItem}
             hideable={true} 
             visible={this.state.open} 
             onItemClick={this._onMenuItemClick} />

@@ -60,7 +60,7 @@ var SlideInChild = React.createClass({
       top: '0px',
       left: '0px',
       transition: Transitions.easeOut()
-    });
+    }, this.props.style);
 
     return (
       <div {...other}

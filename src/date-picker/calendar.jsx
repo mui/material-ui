@@ -60,7 +60,6 @@ var Calendar = React.createClass({
       root: {
         fontSize: '12px'
       },
-
       calendarContainer: {
         width: isLandscape ? '280px' : '100%',
         height: weekCount === 5 ? '268px' :
@@ -68,13 +67,11 @@ var Calendar = React.createClass({
         float: isLandscape ? 'right' : 'none',
         transition: Transitions.easeOut('150ms', 'height')
       },
-
       dateDisplay: {
         width: isLandscape ? '280px' : '100%',
         height: '100%',
         float: isLandscape ? 'left' : 'none'
       },
-
       weekTitle: {
         padding: '0 14px',
         lineHeight: '12px',
@@ -83,7 +80,6 @@ var Calendar = React.createClass({
         fontWeight: '500',
         margin: 0
       },
-
       weekTitleDay: {
         listStyle: 'none',
         float: 'left',

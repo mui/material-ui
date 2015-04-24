@@ -21,58 +21,67 @@ var RadioButton = React.createClass({
     return this.context.theme.component.radioButton;
   },
 
-  render: function() {
+  getStyles: function() {
+    var styles = {
+      icon: {
+          height: this.getTheme().size,
+          width: this.getTheme().size
+      },
+      target: {
+          transition: Transitions.easeOut(),
+          position: 'absolute',
+          opacity: 1,
+          transform: 'scale(1)',
+          fill: this.getTheme().borderColor
+      },
+      fill: {
+          position: 'absolute',
+          opacity: 1,
+          transform: 'scale(0)',
+          transformOrigin: '50% 50%',
+          transition: Transitions.easeOut(),
+          fill: this.getTheme().checkedColor
+      },
+      targetWhenChecked: {
+        opacity: 0,
+        transform: 'scale(0)'
+      },
+      fillWhenChecked: {
+        opacity: 1,
+        transform: 'scale(1)'
+      },
+      targetWhenDisabled: {
+        fill: this.getTheme().disabledColor
+      },
+      fillWhenDisabled: {
+        fill: this.getTheme().disabledColor
+      },
+    };
+    return styles;
+  },
 
+  render: function() {
     var {
       onCheck,
       ...other
     } = this.props;
 
-    var iconStyles = {
-        height: this.getTheme().size,
-        width: this.getTheme().size
-    };
-    var targetStyles = {
-        transition: Transitions.easeOut(),
-        position: 'absolute',
-        opacity: 1,
-        transform: 'scale(1)',
-        fill: this.getTheme().borderColor
-    };
-    var fillStyles = {
-        position: 'absolute',
-        opacity: 1,
-        transform: 'scale(0)',
-        transformOrigin: '50% 50%',
-        transition: Transitions.easeOut(),
-        fill: this.getTheme().checkedColor
-    };
-
-    if (this.props.checked) {
-      targetStyles = this.mergeStyles(targetStyles, {
-        opacity: 0,
-        transform: 'scale(0)'
-      });
-      fillStyles = this.mergeStyles(fillStyles, {
-        opacity: 1,
-        transform: 'scale(1)'
-      });
-    }
-
-    if (this.props.disabled) {
-      targetStyles.fill = this.getTheme().disabledColor;
-      fillStyles.fill = this.getTheme().disabledColor;
-    }
-
-    if (this.props.checked && this.props.disabled) {
-      targetStyles.opacity = 0.3;
-      fillStyles.opacity = 0.3;
-    }
+    var styles = this.getStyles();
 
     var radioButtonElement = (
       <div>
-          <RadioButtonOff style={targetStyles} />
-          <RadioButtonOn style={fillStyles} />
+          <RadioButtonOff style={this.mergeAndPrefix(
+            styles.target,
+            this.props.checked && styles.targetWhenChecked,
+            this.props.style,
+            this.props.disabled && styles.targetWhenDisabled
+          )} />
+          <RadioButtonOn style={this.mergeAndPrefix(
+            styles.fill,
+            this.props.checked && styles.fillWhenChecked,
+            this.props.style,
+            this.props.disabled && styles.fillWhenDisabled
+          )} />
       </div>
     );
 
@@ -81,7 +90,7 @@ var RadioButton = React.createClass({
       inputType: "radio",
       switched: this.props.checked,
       switchElement: radioButtonElement,
-      iconStyle: iconStyles,
+      iconStyle: styles.icon,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"

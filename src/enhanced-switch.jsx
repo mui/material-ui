@@ -46,20 +46,21 @@ var EnhancedSwitch = React.createClass({
 
   getInitialState: function() {
     return {
-      isKeyboardFocused: false
+      isKeyboardFocused: false,
+      parentWidth: 100,
     };
   },
 
   getEvenWidth: function(){
     return (
       parseInt(window
-        .getComputedStyle(this.getDOMNode())
+        .getComputedStyle(React.findDOMNode(this.refs.root))
         .getPropertyValue('width'), 10)
     );
   },
 
   componentDidMount: function() {
-    var inputNode = this.refs.checkbox.getDOMNode();
+    var inputNode = React.findDOMNode(this.refs.checkbox);
     if (!this.props.switched || 
         this.props.switched == undefined ||
         inputNode.checked != this.props.switched) this.props.onParentShouldUpdate(inputNode.checked);
@@ -91,6 +92,59 @@ var EnhancedSwitch = React.createClass({
     return this.context.theme.palette;
   },
 
+  getStyles: function() {
+    var switchWidth = 60 - Spacing.desktopGutterLess;
+    var labelWidth = this.state.parentWidth - 60;
+    var styles = {
+      root: {
+        position: 'relative',
+        cursor: this.props.disabled ? 'default' : 'pointer',
+        overflow: 'visible',
+        display: 'table',
+        height: 'auto',
+        width: '100%'
+      },
+      input: {
+        position: 'absolute',
+        cursor: this.props.disabled ? 'default' : 'pointer',
+        pointerEvents: 'all',
+        opacity: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 2,
+        left: 0,
+        boxSizing: 'border-box', 
+        padding: 0
+      },
+      label: {
+        float: 'left',
+        position: 'relative',
+        display: 'table-column',
+        width: labelWidth,
+        lineHeight: '24px',
+        color: this.getTheme().textColor
+      },
+      wrap: {
+        transition: Transitions.easeOut(),
+        float: 'left',
+        position: 'relative',
+        display: 'table-column',
+        width: switchWidth,
+        marginRight: (this.props.labelPosition == 'right') ? 
+          Spacing.desktopGutterLess : 0,
+        marginLeft: (this.props.labelPosition == 'left') ? 
+          Spacing.desktopGutterLess : 0
+      },
+      ripple: {
+        height: '200%',
+        width: '200%',
+        top: '-12',
+        left: '-12'
+      }
+    };
+    return styles;
+  },
+
   render: function() {
     var {
       type,
@@ -111,51 +165,12 @@ var EnhancedSwitch = React.createClass({
       ...other
     } = this.props;
 
-    var switchWidth = 60 - Spacing.desktopGutterLess;
-    var labelWidth = this.state.parentWidth - 60;
+    var styles = this.getStyles();
 
-    var styles = this.mergeStyles({
-        position: 'relative',
-        cursor: this.props.disabled ? 'default' : 'pointer',
-        overflow: 'visible',
-        display: 'table',
-        height: 'auto',
-        width: '100%',
-    });
+    styles.root.cursor = styles.root.input = this.props.disabled ? 'default' : 'pointer';
 
-    var inputStyles = {
-        position: 'absolute',
-        cursor: this.props.disabled ? 'default' : 'pointer',
-        pointerEvents: 'all',
-        opacity: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 2,
-        left: 0,
-        boxSizing: 'border-box', 
-        padding: 0,
-    };
-
-    var wrapStyles = this.mergeStyles({
-        transition: Transitions.easeOut(),
-        float: 'left',
-        position: 'relative',
-        display: 'table-column',
-        width: switchWidth,
-        marginRight: (this.props.labelPosition == 'right') ? 
-          Spacing.desktopGutterLess : 0,
-        marginLeft: (this.props.labelPosition == 'left') ? 
-          Spacing.desktopGutterLess : 0
-    }, this.props.iconStyle);
-
-    var labelStyles = {
-        float: 'left',
-        position: 'relative',
-        display: 'table-column',
-        width: labelWidth,
-        lineHeight: '24px',
-        color: this.getTheme().textColor
-    }
+    var wrapStyles = this.mergeAndPrefix(styles.wrap, this.props.iconStyle);
+    var rippleStyle = this.mergeAndPrefix(styles.ripple, this.props.rippleStyle);
 
     if (this.props.thumbStyle) {
       wrapStyles.marginLeft /= 2;
@@ -165,7 +180,7 @@ var EnhancedSwitch = React.createClass({
     var inputId = this.props.id || UniqueId.generate();
 
     var labelElement = this.props.label ? (
-      <label style={labelStyles} htmlFor={inputId}>
+      <label style={this.mergeAndPrefix(styles.label)} htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;
@@ -173,11 +188,12 @@ var EnhancedSwitch = React.createClass({
     var inputProps = {
       ref: "checkbox",
       type: this.props.inputType,
+      style: this.mergeAndPrefix(styles.input),
       name: this.props.name,
       value: this.props.value,
       defaultChecked: this.props.defaultSwitched,
       onBlur: this._handleBlur,
-      onFocus: this._handleFocus,
+      onFocus: this._handleFocus
     };
 
     var hideTouchRipple = this.props.disabled || disableTouchRipple;
@@ -197,16 +213,8 @@ var EnhancedSwitch = React.createClass({
     var inputElement = (
       <input
         {...other}
-        {...inputProps}
-        style={inputStyles}/>
+        {...inputProps}/>
     );
-
-    var rippleStyle = this.mergeStyles({
-        height: '200%',
-        width: '200%',
-        top: '-12',
-        left: '-12'
-    }, this.props.rippleStyle);
 
     var touchRipple = (
       <TouchRipple
@@ -261,7 +269,7 @@ var EnhancedSwitch = React.createClass({
     );
 
     return (
-      <div style={styles}>
+      <div ref="root" style={this.mergeAndPrefix(styles.root, this.props.style)}>
           {inputElement}
           {elementsInOrder}
       </div>

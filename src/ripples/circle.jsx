@@ -43,7 +43,7 @@ var RippleCircle = React.createClass({
       transition:
         Transitions.easeOut('2s', 'opacity') + ',' +
         Transitions.easeOut('1s', 'transform')
-    });
+    }, this.props.style);
 
     return (
       <div {...other} style={styles} />

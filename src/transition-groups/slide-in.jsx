@@ -27,7 +27,7 @@ var SlideIn = React.createClass({
       position: 'relative',
       overflow: 'hidden',
       height: '100%'
-    });
+    }, this.props.style);
 
     return (
       <ReactTransitionGroup {...other}

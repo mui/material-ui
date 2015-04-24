@@ -30,7 +30,7 @@ var TouchRipple = React.createClass({
       position: 'absolute',
       top: 0,
       left: 0
-    });
+    }, this.props.style);
 
     return (
       <div

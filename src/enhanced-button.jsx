@@ -57,32 +57,28 @@ var EnhancedButton = React.createClass({
     }
   }, 
 
-  /** Styles */
-  _main: function() {
-    var style = {
-      border: 10,
-      background: 'none',
-      boxSizing: 'border-box',
-      font: 'inherit',
-      fontFamily: this.context.theme.contentFontFamily,
-      WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-      WebkitApperance: 'button'
-    };
-
-    if (this.props.linkButton) {
-      style = this.mergeAndPrefix({
+  getStyles: function() {
+    var styles = {
+      root: {
+        border: 10,
+        background: 'none',
+        boxSizing: 'border-box',
+        font: 'inherit',
+        fontFamily: this.context.theme.contentFontFamily,
+        WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+        WebkitApperance: 'button'
+      },
+      rootWhenLinkButton: {
         display: 'inline-block',
         cursor: (this.props.disabled) ? 'default' : 'pointer',
-        textDecoration: 'none',
-      }, style);
-    }
-    
-    if (this.props.disabled) style.cursor = 'default';
-
-
-    return this.mergeAndPrefix(style);
+        textDecoration: 'none'
+      },
+      rootWhenDisabled: {
+        cursor: 'default'
+      }
+    };
+    return styles;
   },
-
 
   render: function() {
     var {
@@ -97,6 +93,13 @@ var EnhancedButton = React.createClass({
       onMouseOver,
       onTouchTap,
       ...other } = this.props;
+
+    var styles = this.mergeAndPrefix(
+      this.getStyles().root,
+      this.props.linkButton && this.getStyles().rootWhenLinkButton,
+      this.props.disabled && this.getStyles().rootWhenDisabled,
+      this.props.style
+    );
 
     var touchRipple = (
       <TouchRipple
@@ -116,7 +119,7 @@ var EnhancedButton = React.createClass({
         show={this.state.isKeyboardFocused} />
     );
     var buttonProps = {
-      style: this._main(),
+      style: styles,
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,

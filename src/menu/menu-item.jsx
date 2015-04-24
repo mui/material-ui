@@ -52,85 +52,69 @@ var MenuItem = React.createClass({
     }
   },
 
-  /** Styles */
-  _main: function() {
-    var style = this.mergeAndPrefix({
-      userSelect: 'none',
-      cursor: 'pointer',
-      lineHeight: this.getTheme().height + 'px',
-      paddingLeft: this.getTheme().padding,
-      paddingRight: this.getTheme().padding,
-      color: this.context.theme.palette.textColor
-    });
-
-    if (this.state.hovered && !this.props.disabled) style.backgroundColor = this.getTheme().hoverColor;
-    if (this.props.selected) style.color = this.getTheme().selectedTextColor;
-
-    if (this.props.disabled) {
-      style.cursor = 'default';
-      style.color = this.context.theme.palette.disabledColor;
-    }
-
-    return style;
-  },
-
-  _number: function() {
-    return {
-      float: 'right',
-      width: 24,
-      textAlign: 'center'
-    }
-  },
-
-  _attribute: function() {
-    return {
-      float: 'right'
-    }
-  },
-
-  _iconRight: function() {
-    return this.mergeStyles({
-      lineHeight: this.getTheme().height + 'px',
-      float: 'right'
-    }, this.props.iconRightStyle);
-  },
-
-  _icon: function () {
-    return this.mergeStyles({
-      float: 'left',
-      lineHeight: this.getTheme().height + 'px',
-      marginRight: this.getSpacing().desktopGutter
-    }, this.props.iconStyle);
-  },
-
-  _data: function() {
-    return {
-      display: 'block',
-      paddingLeft: this.getSpacing().desktopGutter * 2,
-      lineHeight: this.getTheme().dataHeight + 'px',
-      height: this.getTheme().dataHeight + 'px',
-      verticalAlign: 'top',
-      top: -12,
-      position: 'relative',
-      fontWeight: 300,
-      color: this.context.theme.palette.textColor
-    }
-  },
-
-  _toggle: function() {
-    return {
-      marginTop: ((this.getTheme().height - this.context.theme.component.radioButton.size) / 2),
-      float: 'right',
-      width: 42,
-    }
-  },
-
   getTheme: function() {
     return this.context.theme.component.menuItem;
   },
 
   getSpacing: function() {
     return this.context.theme.spacing;
+  },
+
+  getStyles: function() {
+    var styles = {
+      root: {
+        userSelect: 'none',
+        cursor: 'pointer',
+        lineHeight: this.getTheme().height + 'px',
+        paddingLeft: this.getTheme().padding,
+        paddingRight: this.getTheme().padding,
+        color: this.context.theme.palette.textColor
+      },
+      number: {
+        float: 'right',
+        width: 24,
+        textAlign: 'center'
+      },
+      attribute: {
+        float: 'right'
+      },
+      iconRight: {
+        lineHeight: this.getTheme().height + 'px',
+        float: 'right'
+      },
+      icon: {
+        float: 'left',
+        lineHeight: this.getTheme().height + 'px',
+        marginRight: this.getSpacing().desktopGutter
+      },
+      data: {
+        display: 'block',
+        paddingLeft: this.getSpacing().desktopGutter * 2,
+        lineHeight: this.getTheme().dataHeight + 'px',
+        height: this.getTheme().dataHeight + 'px',
+        verticalAlign: 'top',
+        top: -12,
+        position: 'relative',
+        fontWeight: 300,
+        color: this.context.theme.palette.textColor
+      },
+      toggle: {
+        marginTop: ((this.getTheme().height - this.context.theme.component.radioButton.size) / 2),
+        float: 'right',
+        width: 42
+      },
+      rootWhenHovered: {
+        backgroundColor: this.getTheme().hoverColor
+      },
+      rootWhenSelected: {
+        color: this.getTheme().selectedTextColor
+      },
+      rootWhenDisabled: {
+        cursor: 'default',
+        color: this.context.theme.palette.disabledColor
+      }
+    };
+    return styles;
   },
 
   render: function() {
@@ -141,11 +125,13 @@ var MenuItem = React.createClass({
     var number;
     var toggle;
 
-    if (this.props.iconClassName) icon = <FontIcon style={this._icon()} className={this.props.iconClassName} />;
-    if (this.props.iconRightClassName) iconRight = <FontIcon style={this._iconRight()} className={this.props.iconRightClassName} />;
-    if (this.props.data) data = <span style={this._data()}>{this.props.data}</span>;
-    if (this.props.number !== undefined) number = <span style={this._number()}>{this.props.number}</span>;
-    if (this.props.attribute !== undefined) attribute = <span style={this._style()}>{this.props.attribute}</span>;
+    var styles = this.getStyles();
+
+    if (this.props.iconClassName) icon = <FontIcon style={this.mergeAndPrefix(styles.icon, this.props.iconStyle)} className={this.props.iconClassName} />;
+    if (this.props.iconRightClassName) iconRight = <FontIcon style={this.mergeAndPrefix(styles.iconRight, this.props.iconRightStyle)} className={this.props.iconRightClassName} />;
+    if (this.props.data) data = <span style={this.mergeAndPrefix(styles.data)}>{this.props.data}</span>;
+    if (this.props.number !== undefined) number = <span style={this.mergeAndPrefix(styles.number)}>{this.props.number}</span>;
+    if (this.props.attribute !== undefined) attribute = <span style={this.mergeAndPrefix(styles.style)}>{this.props.attribute}</span>;
     
     if (this.props.toggle) {
       var {
@@ -159,18 +145,23 @@ var MenuItem = React.createClass({
         style,
         ...other
       } = this.props;
-      toggle = <Toggle {...other} onToggle={this._handleToggle} style={this._toggle()}/>;
+      toggle = <Toggle {...other} onToggle={this._handleToggle} style={styles.toggle}/>;
     }
 
     return (
       <div
         key={this.props.index}
-        style={this._main()}
         className={this.props.className} 
         onTouchTap={this._handleTouchTap}
         onClick={this._handleOnClick}
         onMouseOver={this._handleMouseOver}
-        onMouseOut={this._handleMouseOut}>
+        onMouseOut={this._handleMouseOut}
+        style={this.mergeAndPrefix(
+          styles.root, 
+          this.props.selected && styles.rootWhenSelected,
+          (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,
+          this.props.style,
+          this.props.disabled && styles.rootWhenDisabled)}>
 
         {icon}
         {this.props.children}

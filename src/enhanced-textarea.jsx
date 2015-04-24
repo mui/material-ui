@@ -29,6 +29,19 @@ var EnhancedTextarea = React.createClass({
     this._syncHeightWithShadow();
   },
 
+  getStyles: function() {
+    var styles = {
+      root: {
+        width: '100%',
+        resize: 'none',
+        overflow: 'hidden',
+        font: 'inherit',
+        padding: 0,
+      }
+    };
+    return styles;
+  },
+
   render: function() {
 
     var {
@@ -41,6 +54,8 @@ var EnhancedTextarea = React.createClass({
       ...other,
     } = this.props;
 
+    var styles = this.getStyles().root;
+
     var textAreaStyles = {
       width: '100%',
       resize: 'none',
@@ -49,7 +64,7 @@ var EnhancedTextarea = React.createClass({
       padding: 0,
     };
 
-    var inputStyles = this.mergeAndPrefix(textAreaStyles,{
+    var inputStyles = this.mergeAndPrefix(styles,{
       height: this.state.height + 'px',
     });
 

@@ -14,7 +14,7 @@ var Toolbar = React.createClass({
   },
 
   /** Styles */
-  _main: function() {
+  getStyles: function() {
     return this.mergeAndPrefix({
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
@@ -22,7 +22,7 @@ var Toolbar = React.createClass({
       height: this.getTheme().height,
       width: '100%',
       padding: '0px ' + this.context.theme.spacing.desktopGutter + 'px',
-    });
+    }, this.props.style);
   },
 
   getTheme: function (argument) {
@@ -37,7 +37,7 @@ var Toolbar = React.createClass({
     if (lastChild.type.displayName === 'ToolbarGroup') lastChild.props.lastChild = true;
 
     return (
-      <div className={this.props.className} style={this._main()}>
+      <div className={this.props.className} style={this.getStyles()}>
         {this.props.children}
       </div>
     );

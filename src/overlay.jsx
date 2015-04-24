@@ -22,6 +22,31 @@ var Overlay = React.createClass({
     if (this.props.autoLockScrolling) (this.props.show) ? this._preventScrolling() : this._allowScrolling();
   },
 
+  getStyles: function() {
+    var styles = {
+      root: {
+        position: 'fixed',
+        height: '100%',
+        width: '100%',
+        zIndex: 9,
+        top: 0,
+        left: '-100%',
+        backgroundColor: Colors.transparent,
+        transition:
+          Transitions.easeOut('0ms', 'left', '400ms') + ',' +
+          Transitions.easeOut('400ms', 'backgroundColor')
+      },
+      rootWhenShown: {
+        left: '0',
+        backgroundColor: Colors.lightBlack,
+        transition:
+          Transitions.easeOut('0ms', 'left') + ',' +
+          Transitions.easeOut('400ms', 'backgroundColor')
+      }
+    };
+    return styles;
+  },
+
   render: function() {
 
     var {
@@ -30,30 +55,7 @@ var Overlay = React.createClass({
       ...other
     } = this.props;
 
-    var styles = {
-      position: 'fixed',
-      height: '100%',
-      width: '100%',
-      zIndex: 9,
-      top: 0,
-      left: '-100%',
-      backgroundColor: Colors.transparent,
-      transition:
-        Transitions.easeOut('0ms', 'left', '400ms') + ',' +
-        Transitions.easeOut('400ms', 'backgroundColor')
-    };
-
-    if (this.props.show) {
-      styles = this.mergeStyles(styles, {
-        left: 0,
-        backgroundColor: Colors.lightBlack,
-        transition:
-          Transitions.easeOut('0ms', 'left') + ',' +
-          Transitions.easeOut('400ms', 'backgroundColor')
-      });
-    }
-
-    styles = this.mergeAndPrefix(styles);
+    var styles = this.mergeAndPrefix(this.getStyles().root, this.props.style, this.props.show && this.getStyles().rootWhenShown)
 
     return (
       <div {...other} style={styles} />

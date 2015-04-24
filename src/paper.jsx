@@ -26,39 +26,32 @@ var Paper = React.createClass({
     };
   },
 
-  /** Styles */
-  _main: function() {
-    return this.mergeAndPrefix({
-      backgroundColor: this.context.theme.component.paper.backgroundColor,
-      transition: Transitions.easeOut(),
-      boxSizing: 'border-box',
-      fontFamily: this.context.theme.contentFontFamily,
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
-      boxShadow: this.getZDepthShadows(this.props.zDepth).boxShadow,
-      borderRadius: this.props.circle ? '50%' : 
-                    this.props.rounded ? '2px' :
-                    '0px',
-    });
-  },
-
-  _inner: function() {
-    var style = {
-      width: '100%', 
-      height: '100%',
-      boxSizing: 'border-box',
-      fontFamily: this.context.theme.contentFontFamily,
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
-      boxShadow: this.getZDepthShadows(this.props.zDepth).bottomBoxShadow,
-      borderRadius: this.props.circle ? '50%' : 
-                    this.props.rounded ? '2px' :
-                    '0px',
+  getStyles: function() {
+    var styles = {
+      root: {
+        backgroundColor: this.context.theme.component.paper.backgroundColor,
+        transition: Transitions.easeOut(),
+        boxSizing: 'border-box',
+        fontFamily: this.context.theme.contentFontFamily,
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
+        boxShadow: this.getZDepthShadows(this.props.zDepth).boxShadow,
+        borderRadius: this.props.circle ? '50%' : 
+                      this.props.rounded ? '2px' :
+                      '0px'
+      },
+      inner: {
+        width: '100%', 
+        height: '100%',
+        boxSizing: 'border-box',
+        fontFamily: this.context.theme.contentFontFamily,
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
+        boxShadow: this.getZDepthShadows(this.props.zDepth).bottomBoxShadow,
+        borderRadius: this.props.circle ? '50%' : 
+                      this.props.rounded ? '2px' :
+                      '0px'       
+      }
     };
-
-    if (this.props.innerStyle) {
-      style = this.mergeAndPrefix(style, this.props.innerStyle);
-    }
-
-    return style;
+    return styles;
   },
 
   render: function() {
@@ -72,9 +65,11 @@ var Paper = React.createClass({
       zDepth,
       ...other } = this.props;
 
+    var styles = this.getStyles();
+
     return (
-      <div {...other} className={this.props.className} style={this._main()}>
-        <div ref="innerContainer" className={this.props.innerClassName} style={this._inner()}>
+      <div {...other} className={this.props.className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
+        <div ref="innerContainer" className={this.props.innerClassName} style={this.mergeAndPrefix(styles.inner, this.props.innerStyle)}>
           {this.props.children}
         </div>
       </div>

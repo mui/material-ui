@@ -46,9 +46,8 @@ var RaisedButton = React.createClass({
       zDepth: zDepth,
       initialZDepth: zDepth,
     });
+    this.styles = this.getStyles();
   },
-
-  /** Styles */
 
   _getBackgroundColor: function() {
     return  this.props.disabled ? this.getTheme().disabledColor :
@@ -57,67 +56,11 @@ var RaisedButton = React.createClass({
             this.getTheme().color; 
   },
 
-  _main: function() {
-    return this.mergeAndPrefix({
-      display: 'inline-block',
-      minWidth: this.getThemeButton().minWidth,
-      height: this.getThemeButton().height,
-    });
-  },
-
-  _container: function() {
-    return  {
-      position: 'relative',
-      height: '100%',
-      width: '100%',
-      padding: 0,
-      overflow: 'hidden',
-      borderRadius: 2,
-      transition: Transitions.easeOut(),
-      backgroundColor: this._getBackgroundColor(),
-
-      //This is need so that ripples do not bleed
-      //past border radius.
-      //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-      transform: 'translate3d(0, 0, 0)',
-    };
-  },
-
-  _label: function() {
-    var style = {
-      position: 'relative',
-      opacity: 1,
-      fontSize: '14px',
-      letterSpacing: 0,
-      textTransform: 'uppercase',
-      fontWeight: Typography.fontWeightMedium,
-      margin: 0,
-      padding: '0px ' + this.context.theme.spacing.desktopGutterLess + 'px',
-      userSelect: 'none',
-      lineHeight: this.getThemeButton().height + 'px',
-      color:  this.props.disabled ? this.getTheme().disabledTextColor :
-              this.props.primary ? this.getTheme().primaryTextColor :
-              this.props.secondary ? this.getTheme().secondaryTextColor :
-              this.getTheme().textColor,
-    };
-
-    if (this.props.labelStyle) style = this.mergeAndPrefix(style, this.props.labelStyle);
-
-    return style;
-  },
-
-  _overlay: function() {
-    var style = {
-      transition: Transitions.easeOut(),
-      top: 0,
-    };
-
-    if (this.state.hovered && !this.props.disabled) {
-      var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      style.backgroundColor = ColorManipulator.fade(this._label().color, amount);
-    }
-
-    return style;
+  _getLabelColor: function() {
+    return  this.props.disabled ? this.getTheme().disabledTextColor :
+            this.props.primary ? this.getTheme().primaryTextColor :
+            this.props.secondary ? this.getTheme().secondaryTextColor :
+            this.getTheme().textColor;
   },
 
   getThemeButton: function() {
@@ -128,6 +71,53 @@ var RaisedButton = React.createClass({
     return this.context.theme.component.raisedButton;
   },
 
+  getStyles: function() {
+    var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
+    var styles = {
+      root: {
+        display: 'inline-block',
+        minWidth: this.getThemeButton().minWidth,
+        height: this.getThemeButton().height
+      },
+      container: {
+        position: 'relative',
+        height: '100%',
+        width: '100%',
+        padding: 0,
+        overflow: 'hidden',
+        borderRadius: 2,
+        transition: Transitions.easeOut(),
+        backgroundColor: this._getBackgroundColor(),
+
+        //This is need so that ripples do not bleed
+        //past border radius.
+        //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+        transform: 'translate3d(0, 0, 0)'
+      },
+      label: {
+        position: 'relative',
+        opacity: 1,
+        fontSize: '14px',
+        letterSpacing: 0,
+        textTransform: 'uppercase',
+        fontWeight: Typography.fontWeightMedium,
+        margin: 0,
+        padding: '0px ' + this.context.theme.spacing.desktopGutterLess + 'px',
+        userSelect: 'none',
+        lineHeight: this.getThemeButton().height + 'px',
+        color:  this._getLabelColor(),
+      },
+      overlay: {
+        transition: Transitions.easeOut(),
+        top: 0
+      },
+      overlayWhenHovered: {
+        backgroundColor: ColorManipulator.fade(this._getLabelColor(), amount)
+      }
+    };
+    return styles;
+  },
+
   render: function() {
     var {
       label,
@@ -135,20 +125,30 @@ var RaisedButton = React.createClass({
       secondary,
       ...other } = this.props;
 
-    var labelElement;
-    if (label) labelElement = <span style={this._label()}>{label}</span>;
+    if (!this.hasOwnProperty('styles')) this.styles = this.getStyles();
 
-    var rippleColor = this._label().color;
+    var labelElement;
+    if (label) {
+      labelElement = (
+        <span style={this.mergeAndPrefix(this.styles.label, this.props.labelStyle)}>
+          {label}
+        </span>
+      );
+    }
+
+    var rippleColor = this.styles.label.color;
     var rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
+
+    if (!this.hasOwnProperty('styles')) this.styles = this.getStyles();
 
     return (
       <Paper 
-        style={this._main()} 
+        style={this.mergeAndPrefix(this.styles.root, this.props.style)} 
         innerStyle={{transition: Transitions.easeOut()}}
         zDepth={this.state.zDepth}>
           <EnhancedButton {...other}
             ref="container"
-            style={this._container()}
+            style={this.mergeAndPrefix(this.styles.container)}
             onMouseUp={this._handleMouseUp}
             onMouseDown={this._handleMouseDown}
             onMouseOut={this._handleMouseOut}
@@ -160,9 +160,12 @@ var RaisedButton = React.createClass({
             focusRippleOpacity={rippleOpacity}
             touchRippleOpacity={rippleOpacity}
             onKeyboardFocus={this._handleKeyboardFocus}>
-              <div ref="overlay" style={this._overlay()} >
-                {labelElement}
-                {this.props.children}
+              <div ref="overlay" style={this.mergeAndPrefix(
+                  this.styles.overlay,
+                  (this.state.hovered && !this.props.disabled) && this.styles.overlayWhenHovered
+                )}>
+                  {labelElement}
+                  {this.props.children}
               </div>
           </EnhancedButton>
       </Paper>
@@ -206,7 +209,7 @@ var RaisedButton = React.createClass({
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
       var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this._label().color, amount);
+      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this.mergeAndPrefix(this.styles.label, this.props.labelStyle).color, amount);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
       this.refs.overlay.getDOMNode().style.backgroundColor = 'transparent';

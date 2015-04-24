@@ -30,25 +30,32 @@ var LinkMenuItem = React.createClass({
     }
   },
 
-  /** Styles */
-  _main: function() { // Same as MenuItem.
-    var style = this.mergeAndPrefix({
-      userSelect: 'none',
-      cursor: 'pointer',
-      display: 'block',
-      lineHeight: this.getTheme().height + 'px',
-      paddingLeft: this.getTheme().padding,
-      paddingRight: this.getTheme().padding,
-    });
-
-    if (this.state.hovered && !this.props.disabled) style.backgroundColor = this.getTheme().hoverColor;
-    if (this.props.selected) style.color = this.getTheme().selectedTextColor;
-
-    return this.mergeAndPrefix(style);
-  },
-
   getTheme: function() {
     return this.context.theme.component.menuItem;
+  },
+
+  getStyles: function() {
+    var style = {
+      root: {
+        userSelect: 'none',
+        cursor: 'pointer',
+        display: 'block',
+        lineHeight: this.getTheme().height + 'px',
+        paddingLeft: this.getTheme().padding,
+        paddingRight: this.getTheme().padding
+      },
+      rootWhenHovered: {
+        backgroundColor: this.getTheme().hoverColor
+      },
+      rootWhenSelected: {
+        color: this.getTheme().selectedTextColor
+      },
+      rootWhenDisabled: {
+        cursor: 'default',
+        color: this.context.theme.palette.disabledColor
+      }
+    };
+    return style;
   },
 
   render: function() {
@@ -58,17 +65,21 @@ var LinkMenuItem = React.createClass({
     var link = {};
     link[linkAttribute] = this.props.payload
 
-    var styles = this._main(); 
-    if (this.props.disabled) {
-      styles.cursor = 'default';
-      styles.color = this.context.theme.palette.disabledColor;
-    }
+    var styles = this.getStyles();
+
+    var linkStyles = 
+      this.mergeAndPrefix(
+        styles.root, 
+        this.props.selected && styles.rootWhenSelected,
+        (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,
+        this.props.style,
+        this.props.disabled && styles.rootWhenDisabled);
 
     return (
       <a 
         key={this.props.index} 
         target={this.props.target} 
-        style={styles} {...link} 
+        style={linkStyles} {...link} 
         className={this.props.className} 
         onClick={onClickHandler}
         onMouseOver={this._handleMouseOver}

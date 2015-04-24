@@ -59,23 +59,23 @@ var NestedMenuItem = React.createClass({
   },
 
   render: function() {
-    var styles = this.mergeStyles({
-      position: 'relative',
-    });
+    var styles = this.mergeAndPrefix({
+      position: 'relative'
+    }, this.props.style);
 
     var iconCustomArrowDropRight = {
       marginRight: this.getSpacing().desktopGutterMini * -1,
-      color: this.context.theme.component.dropDownMenu.iconColor
-    }
+      color: this.context.theme.component.dropDownMenu.accentColor
+    };
 
     var {
       index,
       menuItemStyle,
-      ...other,
+      ...other
     } = this.props;
 
     return (
-      <div style={styles} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
+      <div ref="root" style={styles} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
         <MenuItem 
           index={index}
           style={menuItemStyle}
@@ -99,7 +99,7 @@ var NestedMenuItem = React.createClass({
 
   _positionNestedMenu: function() {
     var el = this.getDOMNode();
-    var nestedMenu = this.refs.nestedMenu.getDOMNode();
+    var nestedMenu = React.findDOMNode(this.refs.nestedMenu);
     nestedMenu.style.left = el.offsetWidth + 'px';
   },
   
@@ -191,49 +191,6 @@ var Menu = React.createClass({
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
   },
 
-
-  /** Styles */
-  _hideable: function() {
-    return {
-      opacity: (this.props.visible) ? 1 : 0,
-      position: 'absolute',
-      top: 0,
-      zIndex: 1,
-    }
-  },
-
-  // Main Style
-  _main: function() {
-    return this.mergeAndPrefix({
-      backgroundColor: this.getTheme().backgroundColor,
-      transition: Transitions.easeOut(null, 'height'),
-    });
-  },
-
-  _innerPaper: function() {
-    var style = {
-      paddingTop: this.getSpacing().desktopGutterMini,
-      paddingBottom: this.getSpacing().desktopGutterMini,
-      backgroundColor: this.getTheme().containerBackgroundColor,
-    }
-
-    if (this.props.hideable) {
-     this.mergeStyles(style, {
-      overflow: 'hidden',
-      padding: 0,
-      });
-    }
-
-    return style;
-  },
-
-  _subheader: function() {
-    return this.mergeAndPrefix({
-      paddingLeft: this.context.theme.component.menuSubheader.padding,
-      paddingRight: this.context.theme.component.menuSubheader.padding,
-    }, this.props.menuItemStyleSubheader);
-  },
-
   getTheme: function() {
     return this.context.theme.component.menu
   },
@@ -242,13 +199,48 @@ var Menu = React.createClass({
     return this.context.theme.spacing;
   },
 
-  render: function() {
-    var styles = this._main();
-    if (this.props.hideable) styles = this.mergeStyles(styles, this._hideable());
+  getStyles: function() {
+    var styles = {
+      root: {
+        backgroundColor: this.getTheme().backgroundColor,
+        transition: Transitions.easeOut(null, 'height')
+      },
+      innerPaper: {
+        paddingTop: this.getSpacing().desktopGutterMini,
+        paddingBottom: this.getSpacing().desktopGutterMini,
+        backgroundColor: this.getTheme().containerBackgroundColor
+      },
+      subheader: {
+        paddingLeft: this.context.theme.component.menuSubheader.padding,
+        paddingRight: this.context.theme.component.menuSubheader.padding
+      },
+      hideable: {
+        opacity: (this.props.visible) ? 1 : 0,
+        position: 'absolute',
+        top: 0,
+        zIndex: 1
+      },
+      innerPaperWhenHideable: {
+        overflow: 'hidden'
+      }
+    };
+    return styles;
+  },
 
+  render: function() {
+    var styles = this.getStyles();
     return (
-      <Paper ref="paperContainer" zDepth={this.props.zDepth} style={styles} innerStyle={this._innerPaper()}>
-        {this._getChildren()}
+      <Paper 
+        ref="paperContainer" 
+        zDepth={this.props.zDepth} 
+        style={this.mergeAndPrefix(
+          styles.root,
+          this.props.hideable && styles.hideable,
+          this.props.style)} 
+        innerStyle={this.mergeAndPrefix(
+          styles.innerPaper,
+          this.props.hideable && styles.innerPaperWhenHideable)}>
+            {this._getChildren()}
       </Paper>
     );
   },
@@ -259,6 +251,8 @@ var Menu = React.createClass({
       itemComponent,
       isSelected,
       isDisabled;
+
+    var styles = this.getStyles();
 
     //This array is used to keep track of all nested menu refs
     this._nestedChildren = [];
@@ -300,7 +294,7 @@ var Menu = React.createClass({
               key={i}
               index={i}
               className={this.props.menuItemClassNameSubheader}
-              style={this._subheader()}
+              style={this.mergeAndPrefix(styles.subheader)}
               firstChild={i == 0}
               text={menuItem.text} />
           );

@@ -38,7 +38,7 @@ var FocusRipple = React.createClass({
       transition: Transitions.easeOut(),
       transform: this.props.show ? 'scale(1)' : 'scale(0)',
       opacity: this.props.show ? 1 : 0
-    });
+    }, this.props.style);
 
     var innerStyles = this.mergeAndPrefix({
       position: 'absolute',

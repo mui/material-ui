@@ -61,56 +61,6 @@ var DialogWindow = React.createClass({
     this._focusOnAction();
   },
 
-  /** Styles */
-  _main: function() {
-    var style = {
-      position: 'fixed',
-      boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-      zIndex: 10,
-      top: 0,
-      left: -10000,
-      width: '100%',
-      height: '100%',
-      transition: Transitions.easeOut('0ms', 'left', '450ms'),
-      color: this.getTheme().palette.textColor
-    };
-
-    if (this.state.open) {
-      style = this.mergeAndPrefix(style, {
-        left: 0,
-        transition: Transitions.easeOut('0ms', 'left', '0ms'),
-      });
-    }
-
-    return this.mergeAndPrefix(style);
-  },
-
-  _contents: function() {
-    var style = {
-      boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-      transition: Transitions.easeOut(),
-      position: 'relative',
-      width: '75%',
-      maxWidth: (this.getSpacing().desktopKeylineIncrement * 12),
-      margin: '0 auto',
-      zIndex: 10,
-      background: this.getTheme().palette.canvasColor,
-      opacity: 0,
-    };
-
-    if (this.state.open) {
-      style = this.mergeStyles(style, {
-        opacity: 1,
-        top: 0,
-        transform: 'translate3d(0, ' + this.getSpacing().desktopKeylineIncrement + 'px, 0)',
-      });
-    }
-
-    return this.mergeAndPrefix(style, this.props.contentStyle);
-  },
-
   getTheme: function() {
     return this.context.theme;
   },
@@ -119,14 +69,54 @@ var DialogWindow = React.createClass({
     return this.context.theme.spacing;
   },
 
+  getStyles: function() {
+    var styles = {
+      root: {
+        position: 'fixed',
+        boxSizing: 'border-box',
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+        zIndex: 10,
+        top: 0,
+        left: -10000,
+        width: '100%',
+        height: '100%',
+        transition: Transitions.easeOut('0ms', 'left', '450ms'),
+        color: this.getTheme().palette.textColor
+      },
+      contents: {
+        boxSizing: 'border-box',
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+        transition: Transitions.easeOut(),
+        position: 'relative',
+        width: '75%',
+        maxWidth: (this.getSpacing().desktopKeylineIncrement * 12),
+        margin: '0 auto',
+        zIndex: 10,
+        background: this.getTheme().palette.canvasColor,
+        opacity: 0
+      },
+      rootWhenOpen: {
+        left: 2,
+        transition: Transitions.easeOut('0ms', 'left', '0ms')
+      },
+      contentsWhenOpen: {
+        opacity: 1,
+        top: 0,
+        transform: 'translate3d(0, ' + this.getSpacing().desktopKeylineIncrement + 'px, 0)'
+      }
+    };
+    return styles;
+  },
+
   render: function() {
     var actions = this._getActionsContainer(this.props.actions);
+    var styles = this.getStyles();
 
     return (
-      <div ref="container" style={this._main()}>
+      <div ref="container" style={this.mergeAndPrefix(styles.root, this.props.style, this.state.open && styles.rootWhenOpen)}>
         <Paper
           ref="dialogWindow"
-          style={this._contents()}
+          style={this.mergeAndPrefix(styles.contents, this.props.contentStyle, this.state.open && styles.contentsWhenOpen)}
           className={this.props.contentClassName}
           zDepth={4}>
           {this.props.children}

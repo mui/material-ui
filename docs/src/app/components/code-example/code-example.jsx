@@ -6,14 +6,22 @@ var React = require('react'),
 class CodeExample extends React.Component {
 
   render() {
+    var borderColor = this.context.theme.palette.borderColor;
     var style = {
-      color: this.context.theme.palette.textColor
+      label: {
+        color: borderColor
+      },
+      block: {
+        borderRight: 'solid 1px ' + borderColor,
+        borderBottom: 'solid 1px ' + borderColor,
+        borderRadius: '0 0 2px 0'
+      }
     };
 
     return (
       <mui.Paper className="code-example">
-        <div className="example-label" style={style}>example</div>
-        <div className="example-block">
+        <div className="example-label" style={style.label}>example</div>
+        <div className="example-block" style={style.block}>
           {this.props.children}
         </div>
         <CodeBlock>{this.props.code}</CodeBlock>

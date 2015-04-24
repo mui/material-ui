@@ -25,7 +25,7 @@ var ToolbarTitle = React.createClass({
       fontSize: this.getTheme().titleFontSize + 'px',
       display: 'inline-block',
       position: 'relative',
-    });
+    }, this.props.style);
 
     return (
       <span className={this.props.className} style={styles}>{this.props.text}</span>

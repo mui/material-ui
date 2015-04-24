@@ -36,7 +36,7 @@ var Tab = React.createClass({
       'fontWeight': '500',
       'font': this.getTheme().fontFamily,
       'width': this.props.width
-    });
+    }, this.props.style);
 
     if (this.props.selected) styles.opacity = '1';
 

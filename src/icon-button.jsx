@@ -45,73 +45,6 @@ var IconButton = React.createClass({
     }
   },
 
-  /** Styles */
-  _main: function() {
-    var style = {
-      height: 48,
-      width: 48,
-      position: 'relative',
-      boxSizing: 'border-box',
-      transition: Transitions.easeOut(),
-      padding: (this.getSpacing().iconSize / 2),
-      width: this.getSpacing().iconSize*2,
-      height: this.getSpacing().iconSize*2,
-    };
-
-    if (this.props.disabled) {
-      style = this.mergeAndPrefix(style, {
-        color: this.getDisabledColor(),
-        fill: this.getDisabledColor(),
-      });
-    }
-
-    return this.mergeAndPrefix(style);
-  },
-
-  _tooltip: function() {
-    return {
-      boxSizing: 'border-box',
-      marginTop: this.context.theme.component.button.iconButtonSize + 4,
-    };
-  },
-
-  _icon: function() {
-    var style = {
-        color: this.getTheme().textColor,
-        fill: this.getTheme().textColor,
-    };
-
-    if (this.props.disabled) {
-      style = {
-        color: this.getDisabledColor(),
-        fill: this.getDisabledColor(),
-      };
-    }
-
-    if (this.props.iconStyle) {
-      style = this.mergeAndPrefix(style, this.props.iconStyle);
-    }
-
-    return style;
-  },
-
-  /**
-   * If the user has children icon and is disabled, we have no way of knowing 
-   * how to override children styles to apply disabled styles. Instead, we 
-   * add a color overlay with disabled styles above the children. This can be 
-   * removed by the user if he/she has his/her own custom disabled styles.
-   */
-  _overlay: function() {
-    return {
-      position: 'relative',
-      top: 0,
-      width: '100%',
-      height: '100%',
-      background: this.getDisabledColor(),
-
-    }
-  },
-
   getTheme: function() {
     return this.context.theme.palette;
   },
@@ -124,6 +57,45 @@ var IconButton = React.createClass({
     return this.context.theme.palette.disabledColor;
   },
 
+  getStyles: function() {
+    var styles = {
+      root: {
+        height: 48,
+        width: 48,
+        position: 'relative',
+        boxSizing: 'border-box',
+        transition: Transitions.easeOut(),
+        padding: (this.getSpacing().iconSize / 2),
+        width: this.getSpacing().iconSize*2,
+        height: this.getSpacing().iconSize*2
+      },
+      tooltip: {
+        boxSizing: 'border-box',
+        marginTop: this.context.theme.component.button.iconButtonSize + 4
+      },
+      icon: {
+        color: this.getTheme().textColor,
+        fill: this.getTheme().textColor
+      },
+      overlay: {
+        position: 'relative',
+        top: 0,
+        width: '100%',
+        height: '100%',
+        background: this.getDisabledColor()
+      },
+      rootWhenDisabled: {
+        color: this.getDisabledColor(),
+        fill: this.getDisabledColor()
+      },
+      iconWhenDisabled: {
+        color: this.getDisabledColor(),
+        fill: this.getDisabledColor()
+      }
+    };
+    return styles;
+  },
+
   render: function() {
     var {
       tooltip,
@@ -132,6 +104,8 @@ var IconButton = React.createClass({
     var tooltip;
     var fonticon;
 
+    var styles = this.getStyles();
+
     if (this.props.tooltip) {
       tooltip = (
         <Tooltip
@@ -139,7 +113,7 @@ var IconButton = React.createClass({
           label={tooltip}
           show={this.state.tooltipShown}
           touch={touch}
-          style={this._tooltip()}/>
+          style={this.mergeAndPrefix(styles.tooltip)}/>
       );
     }
 
@@ -147,7 +121,11 @@ var IconButton = React.createClass({
       fonticon = (
         <FontIcon 
           className={this.props.iconClassName} 
-          style={this._icon()}/>
+          style={this.mergeAndPrefix(
+            styles.icon, 
+            this.props.disabled && styles.iconWhenDisabled,
+            this.props.iconStyle
+          )}/>
       );
     }
 
@@ -164,7 +142,7 @@ var IconButton = React.createClass({
       <EnhancedButton {...other}
         ref="button"
         centerRipple={true}
-        style={this._main()}
+        style={this.mergeAndPrefix(styles.root, this.props.style)}
         onBlur={this._handleBlur}
         onFocus={this._handleFocus}
         onMouseOut={this._handleMouseOut}
