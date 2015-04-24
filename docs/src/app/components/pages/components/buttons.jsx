@@ -2,26 +2,20 @@ var React = require('react');
 var mui = require('mui');
 var ComponentDoc = require('../../component-doc.jsx');
 
-var {FlatButton, FloatingActionButton, RaisedButton, FontIcon} = mui;
+var {FlatButton, FloatingActionButton, FontIcon, RaisedButton, Tab, Tabs} = mui;
 
 class ButtonPage extends React.Component {
 
-  /** Styles */
-  _buttonLabel() {
-    return {
-      padding: '0px 16px 0px 8px',
-    }
-  }
+  constructor(props) {
+    super(props);
 
-  render() {
-
-    var code =
+    this.codeFlatButton = 
       '//Flat Buttons\n' +
       '<FlatButton label="Default" />\n' +
       '<FlatButton label="Primary" primary={true} />\n' +
       '<FlatButton label="Secondary" secondary={true} />\n' +
       '<div className="button-example-container">\n' +
-      '  <FlatButton secondary={true} label="Choose an Image">\n' +
+      '  <FlatButton primary={true} label="Choose an Image">\n' +
       '    <input type="file" id="imageButton" className="example-image-input"></input>\n' +
       '  </FlatButton>\n' +
       '</div>\n' +
@@ -30,13 +24,15 @@ class ButtonPage extends React.Component {
       '    <FontIcon className="muidocs-icon-custom-github example-flat-button-icon"/>\n' +
       '  </FlatButton>\n' +
       '</div>\n' +
-      '<FlatButton label="Disabled" disabled={true} />\n\n' +
+      '<FlatButton label="Disabled" disabled={true} />';
+
+    this.codeRaisedButton =     
       '//Raised Buttons\n' +
       '<RaisedButton label="Default" />\n' +
       '<RaisedButton label="Primary" primary={true} />\n' +
       '<RaisedButton label="Secondary" secondary={true} />\n' +
       '<div className="button-example-container">\n' +
-      '  <RaisedButton secondary={true} label="Choose an Image">\n' +
+      '  <RaisedButton primary={true} label="Choose an Image">\n' +
       '    <input type="file" className="example-image-input"></input>\n' +
       '  </RaisedButton>\n' +
       '</div>\n' +
@@ -45,20 +41,22 @@ class ButtonPage extends React.Component {
       '    <FontIcon className="muidocs-icon-custom-github example-button-icon"/>\n' +
       '  </RaisedButton>\n' +
       '</div>\n' +
-      '<RaisedButton label="Disabled" disabled={true} />\n\n' +
+      '<RaisedButton label="Disabled" disabled={true} />';
+
+    this.codeFloatingActionButton = 
       '//Floating Action Buttons\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />\n' +
-      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />';
+      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />';          
+  
+    this.desc = 'This component generates a button element and all props except for ' +
+                'the custom props below will be passed down to the button element. Also, ' +
+                'focus styles will happen on tab but not on click.';
 
-    var desc = 'This component generates a button element and all props except for ' +
-      'the custom props below will be passed down to the button element. Also, ' +
-      'focus styles will happen on tab but not on click.';
-
-    var componentInfo = [
+    this.componentInfo = [
       {
         name: 'Flat Button',
         infoArray: [
@@ -199,93 +197,125 @@ class ButtonPage extends React.Component {
         ]
       }
     ];
+  }
 
+  /** Styles */
+  _buttonLabel() {
+    return {
+      padding: '0px 16px 0px 8px',
+    }
+  }
+
+  render() {
     return (
-      <ComponentDoc
-        name="Buttons"
-        code={code}
-        desc={desc}
-        componentInfo={componentInfo}>
-
-        <div className="button-examples">
-
-          <div className="button-example-group">
-            <div className="button-example-container">
-              <FlatButton label="Default" />
-            </div>
-            <div className="button-example-container">
-              <FlatButton label="Primary" primary={true} />
-            </div>
-            <div className="button-example-container">
-              <FlatButton label="Secondary" secondary={true} />
-            </div>
-            <div className="button-example-container">
-              <FlatButton secondary={true} label="Choose an Image">
-                <input type="file" id="imageButton" className="example-image-input"></input>
-              </FlatButton>
-            </div>
-            <div className="button-example-container">
-              <FlatButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true} label="GitHub" labelStyle={this._buttonLabel()}>
-                <FontIcon className="muidocs-icon-custom-github example-flat-button-icon"/>
-              </FlatButton>
-            </div>
-            <div className="button-example-container">
-              <FlatButton label="Disabled" disabled={true} />
-            </div>
-          </div>
-
-          <div className="button-example-group">
-            <div className="button-example-container">
-              <RaisedButton label="Default" />
-            </div>
-            <div className="button-example-container">
-              <RaisedButton label="Primary" primary={true} />
-            </div>
-            <div className="button-example-container">
-              <RaisedButton label="Secondary" secondary={true} />
-            </div>
-            <div className="button-example-container">
-              <RaisedButton secondary={true} label="Choose an Image">
-                <input type="file" className="example-image-input"></input>
-              </RaisedButton>
-            </div>
-            <div className="button-example-container">
-              <RaisedButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true} label="Github" labelStyle={this._buttonLabel()}>
-                <FontIcon className="muidocs-icon-custom-github example-button-icon"/>
-              </RaisedButton>
-            </div>
-            <div className="button-example-container">
-              <RaisedButton label="Disabled" disabled={true} />
-            </div>
-          </div>
-
-          <div className="button-example-group">
-            <div className="button-example-container">
-              <FloatingActionButton iconClassName="muidocs-icon-action-grade" />
-            </div>
-            <div className="button-example-container">
-              <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />
-            </div>
-            <div className="button-example-container">
-              <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />
-            </div>
-            <div className="button-example-container">
-              <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />
-            </div>
-          </div>
-
-          <div className="button-example-group">
-            <div className="button-example-container">
-              <FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />
-            </div>
-            <div className="button-example-container">
-              <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />
-            </div>
-          </div>
-
-        </div>
-
-      </ComponentDoc>
+      <div>
+        <h2 className="mui-font-style-headline">Buttons</h2>
+        <Tabs>
+          <Tab label="Flat Buttons">
+            <ComponentDoc
+              name=""
+              code={this.codeFlatButton}
+              desc={this.desc}
+              componentInfo={this.componentInfo.slice(0,1)}
+              className="button-examples">
+              <div className="button-example-group">
+                <div className="button-example-container">
+                  <FlatButton label="Default" />
+                </div>
+                <div className="button-example-container">
+                  <FlatButton label="Primary" primary={true} />
+                </div>
+                <div className="button-example-container">
+                  <FlatButton label="Secondary" secondary={true} />
+                </div>
+              </div>
+              <div className="button-example-group">
+                <div className="button-example-container">
+                  <FlatButton primary={true} label="Choose an Image">
+                    <input type="file" id="imageButton" className="example-image-input"></input>
+                  </FlatButton>
+                </div>
+                <div className="button-example-container">
+                  <FlatButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true} label="GitHub" labelStyle={this._buttonLabel()}>
+                    <FontIcon className="muidocs-icon-custom-github example-flat-button-icon"/>
+                  </FlatButton>
+                </div>
+                <div className="button-example-container">
+                  <FlatButton label="Disabled" disabled={true} />
+                </div>
+              </div>
+            </ComponentDoc>
+          </Tab>
+          <Tab label="Raised Buttons">
+            <ComponentDoc
+              name=""
+              code={this.codeFlatButton}
+              desc={this.desc}
+              componentInfo={this.componentInfo.slice(1,2)}
+              className="button-examples">
+              <div className="button-example-group">
+                <div className="button-example-container">
+                  <RaisedButton label="Default" />
+                </div>
+                <div className="button-example-container">
+                  <RaisedButton label="Primary" primary={true} />
+                </div>
+                <div className="button-example-container">
+                  <RaisedButton label="Secondary" secondary={true} />
+                </div>
+              </div>
+              <div className="button-example-group">
+                <div className="button-example-container">
+                  <RaisedButton primary={true} label="Choose an Image">
+                    <input type="file" className="example-image-input"></input>
+                  </RaisedButton>
+                </div>
+                <div className="button-example-container">
+                  <RaisedButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true} label="Github" labelStyle={this._buttonLabel()}>
+                    <FontIcon className="muidocs-icon-custom-github example-button-icon"/>
+                  </RaisedButton>
+                </div>
+                <div className="button-example-container">
+                  <RaisedButton label="Disabled" disabled={true} />
+                </div>
+              </div>
+            </ComponentDoc>
+          </Tab>
+          <Tab label="Floating Action Buttons">
+            <ComponentDoc
+              name=""
+              code={this.codeFlatButton}
+              desc={this.desc}
+              componentInfo={this.componentInfo.slice(2)}
+              className="button-examples">
+              <div className="button-example-group-floating-action">
+                <div className="button-example-container">
+                  <FloatingActionButton iconClassName="muidocs-icon-action-grade" />
+                </div>
+                <div className="button-example-container">
+                  <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />
+                </div>
+              </div>
+              <div className="button-example-group-floating-action">
+                <div className="button-example-container">
+                  <FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />
+                </div>
+                <div className="button-example-container">
+                  <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />
+                </div>
+              </div>
+              <div className="button-example-group-floating-action">
+                <div className="button-example-container">
+                  <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />
+                </div>
+                <div className="button-example-container">
+                  <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />
+                </div>
+              </div>              
+            </ComponentDoc>
+          </Tab>
+        </Tabs>
+      </div>
     );
   }
 

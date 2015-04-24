@@ -5,6 +5,9 @@ var ComponentInfo = require('../../component-info.jsx');
 
 var {Tab, Tabs} = mui;
 
+
+var ThemeManager = new mui.Styles.ThemeManager();
+
 var labelMenuItems = [
   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
@@ -72,7 +75,8 @@ var componentInfo = [
         name: 'hideable',
         type: 'boolean',
         header: 'default: false',
-        desc: 'ASK HAI ABOUT THIS PROP.'
+        desc: 'Determines whether of not the Menu can be hidden via the ' +
+              'visible prop.'
       },
       {
         name: 'menuItems',
@@ -136,7 +140,7 @@ var componentInfo = [
         name: 'visible',
         type: 'boolean',
         header: 'default: true',
-        desc: ''
+        desc: 'Determines whether of not the Menu is displayed.'
       },
       {
         name: 'zDepth',
@@ -179,12 +183,18 @@ var componentInfo = [
 class MenusPage extends React.Component {
 
   componentWillMount() {
-    this.context.theme.setComponentThemes({
+    ThemeManager.setComponentThemes({
       toggle: {
         thumbOnColor: 'rgb(255,100,0)',
         trackOnColor: 'rgba(255,100,0,0.5)'
       }
     });
+  }
+
+  getChildContext() {
+    return {
+      theme: ThemeManager.getCurrentTheme()
+    };
   }
 
   render() {
@@ -356,6 +366,10 @@ class MenusPage extends React.Component {
 }
 
 MenusPage.contextTypes = {
+  theme: React.PropTypes.object
+};
+
+MenusPage.childContextTypes = {
   theme: React.PropTypes.object
 };
 
