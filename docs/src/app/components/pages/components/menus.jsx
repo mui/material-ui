@@ -85,7 +85,7 @@ var MenusPage = React.createClass({
       "   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
       "   { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
       "];\n\n" +
-      "//You can also pass an onItemTap or onItemClick callback prop.\n"
+      "//You can also pass an onItemClick callback prop.\n"
       "<Menu menuItems={labelMenuItems} />";
 
     return (
@@ -187,7 +187,7 @@ var MenusPage = React.createClass({
     return (
       <CodeExample code={code}>
         <div className="example-menu-nested">
-          <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} onItemTap={this._onItemTap} />
+          <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} />
         </div>
       </CodeExample>
     );
@@ -199,10 +199,6 @@ var MenusPage = React.createClass({
 
   _onItemClick: function(e, key, menuItem) {
     console.log("Menu Item Click: ", menuItem);
-  },
-
-  _onItemTap: function(e, key, menuItem) {
-    console.log("Menu Item Tap: ", menuItem);
   }
 
 });
