@@ -165,8 +165,8 @@ var DialogWindow = React.createClass({
 
       //Vertically center the dialog window, but make sure it doesn't
       //transition to that position.
-      if (this.props.repositionOnUpdate || !container.style.paddingTop) {
-        container.style.paddingTop = 
+      if (this.props.repositionOnUpdate || !container.style.marginTop) {
+        container.style.marginTop = 
           ((containerHeight - dialogWindowHeight) / 2) - 64 + 'px';
       }
     }
