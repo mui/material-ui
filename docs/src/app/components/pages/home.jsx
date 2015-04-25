@@ -36,9 +36,9 @@ class HomePage extends React.Component {
             <div className="tagline">
               <h1 className="brand-name">material ui</h1>
               <h2 className="mui-font-style-headline">
-                A CSS Framework and a Set of React
-                Components <span className="no-wrap">that
-                Implement</span> <span className="no-wrap">Google&apos;s Material Design</span>
+                A Set of React Components <span className="no-wrap">
+                that Implement</span> <span className="no-wrap">
+                Google&apos;s Material Design</span>
               </h2>
               <RaisedButton 
                 className="demo-button" 
