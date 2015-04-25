@@ -95,7 +95,13 @@ var EnhancedButton = React.createClass({
       onMouseOver,
       onMouseOut,
       onTouchTap,
-      ...other } = this.props;  
+      ...other } = this.props;
+    var styles = this.mergeAndPrefix(
+      this.getStyles().root,
+      this.props.linkButton && this.getStyles().rootWhenLinkButton,
+      this.props.disabled && this.getStyles().rootWhenDisabled,
+      this.props.style
+    );
     var buttonChildren = [];
     
     // Create ripples if we need to

@@ -58,18 +58,6 @@ var CalendarToolbar = React.createClass({
         backgroundColor: 'inherit'
       },
 
-      buttonLeft: {
-        position: 'absolute',
-        left: '0px',
-        top: '0px'
-      },
-
-      buttonRight: {
-        position: 'absolute',
-        right: '0px',
-        top: '0px'
-      },
-
       title: {
         position: 'absolute',
         top: '17px',
@@ -92,12 +80,11 @@ var CalendarToolbar = React.createClass({
     var styles = this._styles();
 
     return (
-      <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root}>
+      <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root} noGutter={true}>
         <ToolbarGroup key={0} float="left">
           {prevYearChangeButton}
               
           <IconButton
-            style={styles.buttonLeft}
             disabled={!this.props.prevMonth}
             onTouchTap={this._prevMonthTouchTap}>
               <NavigationChevronLeft />
@@ -106,7 +93,6 @@ var CalendarToolbar = React.createClass({
         
         <ToolbarGroup key={1} float="right">
           <IconButton
-            style={styles.buttonRight}
             disabled={!this.props.nextMonth}
             onTouchTap={this._nextMonthTouchTap}>
               <NavigationChevronRight />
@@ -130,7 +116,6 @@ var CalendarToolbar = React.createClass({
     if (!this.props.hideYearChangeButtons) {
       icon = (
         <IconButton
-          style={styles.buttonLeft}
           disabled={!this.props.prevYear}
           onTouchTap={this._prevYearTouchTap}>
             <NavigationChevronLeftDouble />
@@ -147,7 +132,6 @@ var CalendarToolbar = React.createClass({
     if (!this.props.hideYearChangeButtons) {
       icon = (
         <IconButton
-          style={styles.buttonRight}
           disabled={!this.props.nextYear}
           onTouchTap={this._nextYearTouchTap}>
             <NavigationChevronRightDouble />

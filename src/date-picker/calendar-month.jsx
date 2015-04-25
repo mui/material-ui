@@ -40,14 +40,14 @@ var CalendarMonth = React.createClass({
     return weekArray.map(function(week, i) {
       return (
         <ClearFix key={i}>
-          {this._getDayElements(week)}
+          {this._getDayElements(week, i)}
         </ClearFix>
       );
     }, this);
   },
 
-  _getDayElements: function(week) {
-    return week.map(function(day, i) {
+  _getDayElements: function(week, i) {
+    return week.map(function(day, j) {
       var isSameDate = DateTime.isEqualDate(this.props.selectedDate, day);
       var disabled = this._shouldDisableDate(day);
       var selected = !disabled && isSameDate;
@@ -63,7 +63,7 @@ var CalendarMonth = React.createClass({
 
       return (
         <DayButton
-          key={'db' + i}
+          key={'db' + i + j}
           date={day}
           disabled={disabled}
           onTouchTap={this._handleDayTouchTap}

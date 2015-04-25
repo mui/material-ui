@@ -10,10 +10,11 @@ var Toolbar = React.createClass({
   },
 
   propTypes: {
-    className: React.PropTypes.string
+    className: React.PropTypes.string,
+    style: React.PropTypes.object
   },
 
-  getTheme: function (argument) {
+  getTheme: function() {
     return this.context.theme.component.toolbar;
   },
 
@@ -24,7 +25,7 @@ var Toolbar = React.createClass({
       backgroundColor: this.getTheme().backgroundColor,
       height: this.getTheme().height,
       width: '100%',
-      padding: '0px ' + this.context.theme.spacing.desktopGutter + 'px',
+      padding: this.props.noGutter ? 0 : '0px ' + this.context.theme.spacing.desktopGutter + 'px'
     }, this.props.style);
   },
 

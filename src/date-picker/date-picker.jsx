@@ -114,7 +114,6 @@ var DatePicker = React.createClass({
       this.refs.dialogWindow.show();
     }
     
-    e.target.blur();
     if (this.props.onFocus) this.props.onFocus(e);
   },
 

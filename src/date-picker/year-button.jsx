@@ -1,6 +1,5 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var CustomVariables = require('../styles/variables/custom-variables');
 var DateTime = require('../utils/date-time');
 var EnhancedButton = require('../enhanced-button');
 
