@@ -1,3 +1,4 @@
+var React = require('react');
 var Events = require('../utils/events');
 var Dom = require('../utils/dom');
 

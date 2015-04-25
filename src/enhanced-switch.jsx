@@ -290,22 +290,22 @@ var EnhancedSwitch = React.createClass({
 
 
   isSwitched: function() {
-    return this.refs.checkbox.getDOMNode().checked;
+    return React.findDOMNode(this.refs.checkbox).checked;
   },
 
   // no callback here because there is no event
   setSwitched: function(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked == false) {
       this.props.onParentShouldUpdate(newSwitchedValue);  
-      this.refs.checkbox.getDOMNode().checked = newSwitchedValue;
-    } else if (process.NODE_ENV !== 'production') {
+      React.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
+    } else if (process.env.NODE_ENV !== 'production') {
       var message = 'Cannot call set method while checked is defined as a property.';
       console.error(message);
     }
   },
 
   getValue: function() {
-    return this.refs.checkbox.getDOMNode().value;
+    return React.findDOMNode(this.refs.checkbox).value;
   },
 
   isKeyboardFocused: function() {

@@ -34,8 +34,7 @@ var IconButton = React.createClass({
     if (this.props.tooltip) {
       this._positionTooltip();
     }
-
-    if (process.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       if (this.props.iconClassName && this.props.children) {
         var warning = 'You have set both an iconClassName and a child icon. ' +
                       'It is recommended you use only one method when adding ' +
@@ -158,7 +157,7 @@ var IconButton = React.createClass({
   },
 
   _positionTooltip: function() {
-    var tooltip = this.refs.tooltip.getDOMNode();
+    var tooltip = React.findDOMNode(this.refs.tooltip);
     var tooltipWidth = tooltip.offsetWidth;
     var buttonWidth = 48;
 

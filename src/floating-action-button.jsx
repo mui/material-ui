@@ -57,7 +57,7 @@ var RaisedButton = React.createClass({
   },
 
   componentDidMount: function() {
-    if (process.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       if (this.props.iconClassName && this.props.children) {
         var warning = 'You have set both an iconClassName and a child icon. ' +
                       'It is recommended you use only one method when adding ' +
@@ -227,10 +227,10 @@ var RaisedButton = React.createClass({
   _handleKeyboardFocus: function(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
-      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
+      React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      this.refs.overlay.getDOMNode().style.backgroundColor = 'transparent';
+      React.findOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
 

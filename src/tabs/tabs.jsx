@@ -28,6 +28,32 @@ var Tabs = React.createClass({
     };
   },
 
+  getEvenWidth: function(){
+    return (
+      parseInt(window
+        .getComputedStyle(React.findDOMNode(this))
+        .getPropertyValue('width'), 10)
+    );
+  },
+
+  // Validates that the tabWidth can fit all tabs on the tab bar. If not, the 
+  // tabWidth is recalculated and fixed. 
+  componentDidMount: function(){
+    if(this.props.tabWidth) {
+      if(!(this.props.children.length * this.props.tabWidth > this.getEvenWidth())){
+        this.setState({
+          width: this.props.tabWidth,
+          fixed: false
+        });
+        return;
+      }
+    }
+    this.setState({
+      width: this.getEvenWidth(),
+      fixed: true
+    });
+  },
+
   handleTouchTap: function(tabIndex, tab){
     if (this.props.onChange && this.state.selectedIndex !== tabIndex) {
       this.props.onChange(tabIndex, tab);
@@ -50,9 +76,10 @@ var Tabs = React.createClass({
       display: 'table'
     }, this.props.tabItemContainerStyle);
     
-    var left = this.props.tabWidth ? 
-      (this.props.tabWidth * this.state.selectedIndex) :
-      (parseFloat(this.state.width) * this.state.selectedIndex) + '%';
+    var width = this.state.fixed ?
+      this.state.width/this.props.children.length :
+      this.props.tabWidth;
+    var left = width * this.state.selectedIndex || 0;
 
     var currentTemplate;
     var tabs = React.Children.map(this.props.children, function(tab, index){
@@ -62,7 +89,7 @@ var Tabs = React.createClass({
             key: index,
             selected: this.state.selectedIndex === index,
             tabIndex: index,
-            width: this.state.width,
+            width: width,
             handleTouchTap: this.handleTouchTap
           })
       } else {
@@ -76,7 +103,7 @@ var Tabs = React.createClass({
         <div style={tabItemContainerStyle}>
           {tabs}
         </div>
-        <InkBar left={left} width={this.state.width}/>
+        <InkBar left={left} width={width}/>
         <TabTemplate>
           {currentTemplate}
         </TabTemplate>

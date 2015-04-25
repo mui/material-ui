@@ -36,7 +36,7 @@ var Snackbar = React.createClass({
     if (prevState.open != this.state.open) {
       if (this.state.open) {
         //Only Bind clickaway after transition finishes
-        CssEvent.onTransitionEnd(React.findDOMNode(this.refs.root), function() {
+        CssEvent.onTransitionEnd(React.findDOMNode(this), function() {
           this._bindClickAway();
         }.bind(this));
       } else {
@@ -117,7 +117,7 @@ var Snackbar = React.createClass({
     if (this.state.open) rootStyles = this.mergeStyles(styles.root, styles.rootWhenOpen, this.props.style);
     
     return (
-      <span ref="root" style={rootStyles}>
+      <span style={rootStyles}>
           <span>{this.props.message}</span>
           {action}
       </span>

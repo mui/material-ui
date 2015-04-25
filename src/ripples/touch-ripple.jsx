@@ -18,7 +18,8 @@ var TouchRipple = React.createClass({
         key: 0,
         started: false,
         ending: false
-      }]
+      }],
+      touchInProgress: false
     };
   },
 
@@ -112,15 +113,15 @@ var TouchRipple = React.createClass({
 
   _handleMouseDown: function(e) {
     //only listen to left clicks
-    if (e.button === 0) this.start(e);
+    if (e.button === 0 && !this.state.touchInProgress) this.start(e);
   },
 
   _handleMouseUp: function(e) {
-    this.end();
+    if (!this.state.touchInProgress) this.end();
   },
 
   _handleMouseOut: function(e) {
-    this.end();
+    if (!this.state.touchInProgress) this.end();
   },
 
   _handleTouchStart: function(e) {
@@ -128,17 +129,25 @@ var TouchRipple = React.createClass({
   },
 
   _handleTouchEnd: function(e) {
+    this.setState({ touchInProgress: true });
+    setTimeout(function () {
+      if (this.isMounted()) {
+        this.setState({ touchInProgress: false });
+      }
+    }.bind(this), 100);
+
     this.end();
   },
 
   _getRippleStyle: function(e) {
     var style = {};
-    var el = this.getDOMNode();
+    var el = React.findDOMNode(this);
     var elHeight = el.offsetHeight;
     var elWidth = el.offsetWidth;
     var offset = Dom.offset(el);
-    var pageX = e.pageX == undefined ? e.nativeEvent.pageX : e.pageX;
-    var pageY = e.pageY == undefined ? e.nativeEvent.pageY : e.pageY;
+    var isTouchEvent = e.touches && e.touches.length;
+    var pageX = isTouchEvent ? e.touches[0].pageX : e.pageX;
+    var pageY = isTouchEvent ? e.touches[0].pageY : e.pageY;
     var pointerX = pageX - offset.left;
     var pointerY = pageY - offset.top;
     var topLeftDiag = this._calcDiag(pointerX, pointerY);
