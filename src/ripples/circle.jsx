@@ -1,6 +1,6 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var Transitions = require('../styles/mixins/transitions');
+var Transitions = require('../styles/transitions');
 var Colors = require('../styles/colors');
 
 var RippleCircle = React.createClass({
@@ -43,7 +43,7 @@ var RippleCircle = React.createClass({
       transition:
         Transitions.easeOut('2s', 'opacity') + ',' +
         Transitions.easeOut('1s', 'transform')
-    });
+    }, this.props.style);
 
     return (
       <div {...other} style={styles} />

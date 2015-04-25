@@ -1,16 +1,18 @@
 var React = require('react');
 var ColorManipulator = require('./utils/color-manipulator');
 var Colors = require('./styles/colors');
-var Theme = require('./styles/theme').get();
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
-var DomIdable = require('./mixins/dom-idable');
+var Transitions = require('./styles/transitions');
+var UniqueId = require('./utils/unique-id');
 var EnhancedTextarea = require('./enhanced-textarea');
 
 var TextField = React.createClass({
 
-  mixins: [StylePropable, DomIdable],
+  mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     errorText: React.PropTypes.string,
@@ -59,136 +61,127 @@ var TextField = React.createClass({
     if (newState) this.setState(newState);
   },
 
-  /** Styles */
-  disabledTextColor: ColorManipulator.fade(Theme.textColor, 0.3),
   errorColor: Colors.red500,
 
-  _main: function() {
-    return this.mergeAndPrefix({
-      fontSize: '16px',
-      lineHeight: '24px',
-      width: (64 * 4),
-      height: (this.props.floatingLabelText) ? 72 : 48,
-      display: 'inline-block',
-      position: 'relative',
-      fontFamily: CustomVariables.contentFontFamily,
-      transition: Transitions.easeOut('200ms', 'height'),
-    });
+  _getDisabledTextColor: function() {
+    return this.getTheme().disabledColor;
   },
 
-  _error: function() {
-    return {
-      position: 'absolute',
-      bottom: -10,
-      fontSize: '12px',
-      lineHeight: '12px',
-      color: this.errorColor,
-      transition: Transitions.easeOut(),
+  getTheme: function() {
+    return this.context.theme.palette;
+  },
+
+  getStyles: function() {
+    var styles = {
+      root: {
+        fontSize: '16px',
+        lineHeight: '24px',
+        width: (64 * 4),
+        height: (this.props.floatingLabelText) ? 72 : 48,
+        display: 'inline-block',
+        position: 'relative',
+        fontFamily: this.context.theme.contentFontFamily,
+        transition: Transitions.easeOut('200ms', 'height')
+      },
+      error: {
+        position: 'absolute',
+        bottom: -10,
+        fontSize: '12px',
+        lineHeight: '12px',
+        color: this.errorColor,
+        transition: Transitions.easeOut(),
+      },
+      hint: {
+        position: 'absolute',
+        lineHeight: '48px',
+        opacity: 1,
+        color: this._getDisabledTextColor(),
+        transition: Transitions.easeOut()            
+      },
+      input: {
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        border: 'none',
+        outline: 'none',
+        backgroundColor: 'transparent',
+        color: this.getTheme().textColor,
+        font: 'inherit'
+      },
+      underline: {
+        border: 'none',
+        borderBottom: 'solid 1px ' + this.getTheme().borderColor,
+        position: 'absolute',
+        width: '100%',
+        bottom: 8,
+        margin: 0,
+        MozBoxSizing: 'content-box',
+        boxSizing: 'content-box',
+        height: 0
+      },
+      underlineAfter: {
+        position: 'absolute',
+        userSelect: 'none',
+        cursor: 'default',
+        bottom: 0,
+        color: this._getDisabledTextColor()
+      }
     };
-  },
 
-  _floatingLabel: function() {
-    var style = this.mergeAndPrefix(this._hint(), {
+    styles.floatingLabel = this.mergeAndPrefix(styles.hint, {
       top: 24,
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
-      transformOrigin: 'left top',
-   });
-
-    if (this.state.isFocused) style.color = Theme.primary1Color;
-    if (this.state.hasValue) style.color = ColorManipulator.fade(Theme.textColor, 0.5);
-    if (this.state.isFocused || this.state.hasValue) style.transform = 'scale(0.75) translate3d(0, -18px, 0)';
-    if (this.props.errorText && this.state.isFocused) style.color = this.errorColor;
-
-    return style;
-  },
-
-  _hint: function() {
-    var style = {
-      position: 'absolute',
-      lineHeight: '48px',
-      opacity: 1,
-      color: this.disabledTextColor,
-      transition: Transitions.easeOut(),
-    };
-
-    if (this.props.disabled) style.color = this.disabledTextColor;
-    if (this.state.hasValue) style.opacity = 0;
-    if (this.props.floatingLabelText) {
-      style.top = 24;
-      style.opacity = 0;
-      if (this.state.isFocused && !this.state.hasValue) style.opacity = 1;
-    }
-
-    return style;
-  },
-
-  _input: function() {
-    var style = {
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-      position: 'relative',
-      width: '100%',
-      height: '100%',
-      border: 'none',
-      outline: 'none',
-      backgroundColor: 'transparent',
-      color: Theme.textColor,
-      font: 'inherit',
-    };
-
-    if (this.props.disabled) style.color = this.disabledTextColor;
-    if (this.props.floatingLabelText) style.boxSizing = 'border-box';
-    if (this.props.floatingLabelText && !this.props.multiLine) style.paddingTop = 26;
-
-    return style;
-  },
-
-  _textarea: function() {
-    return this.mergeAndPrefix(this._input(), {
-      paddingTop: this.props.floatingLabelText ? 36 : 12,
-      boxSizing: 'border-box',
-      font: 'inherit',
+      transformOrigin: 'left top'
     });
 
-  },
+    styles.textarea = this.mergeAndPrefix(styles.input, {
+      paddingTop: this.props.floatingLabelText ? 36 : 12,
+      boxSizing: 'border-box',
+      font: 'inherit'
+    });
 
-  _underline: function() {
-    return {
-      border: 'none',
-      borderBottom: 'solid 1px ' + CustomVariables.borderColor,
-      position: 'absolute',
-      width: '100%',
-      bottom: 8,
-      margin: 0,
-      MozBoxSizing: 'content-box',
-      boxSizing: 'content-box',
-      height: 0,
-    };
-  },
-
-  //hack because border style dotted just doesn't look right
-  //border-bottom-style: dotted;
-  _underlineAfter: function() {
-    return this.mergeAndPrefix({
-      position: 'absolute',
-      userSelect: 'none',
-      cursor: 'default',
-      bottom: 0,
-      color: this.disabledTextColor,
-    }, null);
-  },
-
-  _focusUnderline: function() {
-    var style = this.mergeAndPrefix(this._underline(), {
-      borderBottom: 'solid 2px ' + Theme.primary1Color,
+    styles.focusUnderline= this.mergeAndPrefix(styles.underline, {
+      borderBottom: 'solid 2px ' + this.getTheme().primary1Color,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut(),
     });
 
-    if (this.props.errorText) style.borderColor = this.errorColor;
-    if (this.props.errorText || this.state.isFocused) style.transform = 'scaleX(1)';
-    
-    return style;
+
+    if (this.props.disabled) {
+      styles.hint.color = this._getDisabledTextColor();
+      styles.input.color = this._getDisabledTextColor();
+    }
+
+    if (this.state.isFocused) {
+      styles.floatingLabel.color = this.getTheme().primary1Color;
+      styles.floatingLabel.transform = 'scale(0.75) translate3d(0, -18px, 0)';
+      styles.focusUnderline.transform = 'scaleX(1)';
+    }
+
+    if (this.state.hasValue) {
+      styles.floatingLabel.color = ColorManipulator.fade(this.getTheme().textColor, 0.5);
+      styles.floatingLabel.transform = 'scale(0.75) translate3d(0, -18px, 0)';
+      styles.hint.opacity = 0;
+    }
+
+    if (this.props.floatingLabelText) {
+      styles.hint.top = 24;
+      styles.hint.opacity = 0;
+      styles.input.boxSizing = 'border-box';
+      if (this.state.isFocused && !this.state.hasValue) styles.hint.opacity = 1;
+    }
+
+    if (this.props.errorText && this.state.isFocused) styles.floatingLabel.color = this.errorColor;
+    if (this.props.floatingLabelText && !this.props.multiLine) styles.input.paddingTop = 26;
+
+    if (this.props.errorText) {
+      styles.focusUnderline.borderColor = this.errorColor;
+      styles.focusUnderline.transform = 'scaleX(1)';
+    }
+
+    return styles;
   },
 
   render: function() {
@@ -206,19 +199,21 @@ var TextField = React.createClass({
       ...other
     } = this.props;
 
-    var inputId = this.props.id || this.getDomId();
+    var styles = this.getStyles();
+
+    var inputId = this.props.id || UniqueId.generate();
 
     var errorTextElement = this.state.errorText ? (
-      <div style={this._error()}>{this.state.errorText}</div>
+      <div style={this.mergeAndPrefix(styles.error)}>{this.state.errorText}</div>
     ) : null;
 
     var hintTextElement = this.props.hintText ? (
-      <div style={this._hint()}>{this.props.hintText}</div>
+      <div style={this.mergeAndPrefix(styles.hint)}>{this.props.hintText}</div>
     ) : null;
 
     var floatingLabelTextElement = this.props.floatingLabelText ? (
       <label
-        style={this._floatingLabel()}
+        style={this.mergeAndPrefix(styles.floatingLabel)}
         htmlFor={inputId}>
         {this.props.floatingLabelText}
       </label>
@@ -230,7 +225,7 @@ var TextField = React.createClass({
     inputProps = {
       id: inputId,
       ref: 'input',
-      style: this._input(),
+      style: this.mergeAndPrefix(styles.input),
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
       onKeyDown: this._handleInputKeyDown
@@ -245,7 +240,7 @@ var TextField = React.createClass({
         {...other}
         {...inputProps}
         onHeightChange={this._handleTextAreaHeightChange}
-        textareaStyle={this._textarea()} />
+        textareaStyle={this.mergeAndPrefix(styles.textarea)} />
     ) : (
       <input
         {...other}
@@ -254,19 +249,17 @@ var TextField = React.createClass({
     );
 
     var underlineElement = this.props.disabled ? (
-      <div style={this._underlineAfter()}>
+      <div style={this.mergeAndPrefix(styles.underlineAfter)}>
         .............................................................
       </div>
     ) : (
-      <hr style={this._underline()}/>
+      <hr style={this.mergeAndPrefix(styles.underline)}/>
     );
-    var focusUnderlineElement = <hr style={this._focusUnderline()} />;
+    var focusUnderlineElement = <hr style={this.mergeAndPrefix(styles.focusUnderline)} />;
 
-
-    var rootStyle = this._main();
 
     return (
-      <div className={this.props.className} style={rootStyle}>
+      <div className={this.props.className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
         {floatingLabelTextElement}
         {hintTextElement}
         {inputElement}
@@ -294,7 +287,7 @@ var TextField = React.createClass({
   },
 
   setErrorText: function(newErrorText) {
-    if (process.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
+    if (process.env.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
       console.error('Cannot call TextField.setErrorText when errorText is defined as a property.');
     } else if (this.isMounted()) {
       this.setState({errorText: newErrorText});
@@ -302,7 +295,7 @@ var TextField = React.createClass({
   },
 
   setValue: function(newValue) {
-    if (process.NODE_ENV !== 'production' && this._isControlled()) {
+    if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
       console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
     } else if (this.isMounted()) {
       this._getInputNode().value = newValue;
@@ -311,8 +304,8 @@ var TextField = React.createClass({
   },
 
   _getInputNode: function() {
-    return this.props.multiLine ? 
-      this.refs.input.getInputNode() : this.refs.input.getDOMNode();
+    return this.props.multiLine ?
+      this.refs.input.getInputNode() : React.findDOMNode(this.refs.input);
   },
 
   _handleInputBlur: function(e) {
@@ -338,7 +331,7 @@ var TextField = React.createClass({
   _handleTextAreaHeightChange: function(e, height) {
     var newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
-    this.getDOMNode().style.height = newHeight + 'px';
+    React.findDOMNode(this).style.height = newHeight + 'px';
   },
 
   _isControlled: function() {

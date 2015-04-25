@@ -7,16 +7,16 @@ var ComponentDoc = require('../../component-doc.jsx');
 
 class DatePickerPage extends React.Component {
   constructor() {
-    var startDate = new Date();
-    var endDate = new Date();
-    startDate.setFullYear(startDate.getFullYear() -1);
-    startDate.setHours(0,0,0,0);
-    endDate.setFullYear(endDate.getFullYear() +1);
-    endDate.setHours(0,0,0,0);
+    var minDate = new Date();
+    var maxDate = new Date();
+    minDate.setFullYear(minDate.getFullYear() -1);
+    minDate.setHours(0,0,0,0);
+    maxDate.setFullYear(maxDate.getFullYear() +1);
+    maxDate.setHours(0,0,0,0);
     
     this.state = {
-      startDate: startDate,
-      endDate: endDate,
+      minDate: minDate,
+      maxDate: maxDate,
       opensOnFocus: false
     };
   }
@@ -34,8 +34,8 @@ class DatePickerPage extends React.Component {
       '// Ranged Date Picker\n' +
       '<DatePicker\n' +
       '  hintText="Ranged Date Picker"\n' +
-      '  startDate={this.state.startDate}\n' +
-      '  endDate={this.state.endDate}/>' +
+      '  minDate={this.state.minDate}\n' +
+      '  maxDate={this.state.maxDate}/>' +
       '  mode="landscape"/>';
 
     var componentInfo = [
@@ -62,14 +62,14 @@ class DatePickerPage extends React.Component {
             desc: 'Tells the component to display the picker in portrait or landscape mode.'
           },
           {
-            name: 'startDate',
+            name: 'minDate',
             type: 'date object',
             header: 'optional',
             desc: 'The beginning of a range of valid dates. The range includes the startDate. ' +
               'The default value is current date - 100 years.'
           },
           {
-            name: 'endDate',
+            name: 'maxDate',
             type: 'date object',
             header: 'optional',
             desc: 'The ending of a range of valid dates. The range includes the endDate. ' +
@@ -94,6 +94,18 @@ class DatePickerPage extends React.Component {
             type: 'boolean',
             header: 'optional',
             desc: 'If true, open the date picker when it has focus. Default value is false.'
+          },
+          {
+            name: 'autoOk',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, automatically accept and close the picker on select a date.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of DatePicker\'s root element.'
           }
         ]
       },
@@ -136,20 +148,20 @@ class DatePickerPage extends React.Component {
           
         <DatePicker
           hintText="Ranged Date Picker"
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
+          minDate={this.state.minDate}
+          maxDate={this.state.maxDate}
           opensOnFocus={this.state.opensOnFocus} />
           
         <div style={optionsStyle}>
           <TextField
-            floatingLabelText="Start Date"
-            defaultValue={this.state.startDate.toDateString()}
-            onChange={this._updateStartDate.bind(this)} />
+            floatingLabelText="Min Date"
+            defaultValue={this.state.minDate.toDateString()}
+            onChange={this._updateMinDate.bind(this)} />
         
           <TextField
-            floatingLabelText="End Date"
-            defaultValue={this.state.endDate.toDateString()}
-            onChange={this._updateEndDate.bind(this)} />
+            floatingLabelText="Max Date"
+            defaultValue={this.state.maxDate.toDateString()}
+            onChange={this._updateMaxDate.bind(this)} />
           
           <Toggle
             name="opensOnFocus"
@@ -162,15 +174,15 @@ class DatePickerPage extends React.Component {
     );
   }
   
-  _updateStartDate(e) {
+  _updateMinDate(e) {
     this.setState({
-      startDate: new Date(e.target.value)
+      minDate: new Date(e.target.value)
     });
   }
   
-  _updateEndDate(e) {
+  _updateMaxDate(e) {
     this.setState({
-      endDate: new Date(e.target.value)
+      maxDate: new Date(e.target.value)
     });
   }
   

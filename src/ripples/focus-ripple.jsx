@@ -1,6 +1,6 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var Transitions = require('../styles/mixins/transitions');
+var Transitions = require('../styles/transitions');
 var Colors = require('../styles/colors');
 
 var pulsateDuration = 750;
@@ -38,7 +38,7 @@ var FocusRipple = React.createClass({
       transition: Transitions.easeOut(),
       transform: this.props.show ? 'scale(1)' : 'scale(0)',
       opacity: this.props.show ? 1 : 0
-    });
+    }, this.props.style);
 
     var innerStyles = this.mergeAndPrefix({
       position: 'absolute',
@@ -62,7 +62,7 @@ var FocusRipple = React.createClass({
 
     var startScale = 'scale(0.75)';
     var endScale = 'scale(0.85)';
-    var innerCircle = this.refs.innerCircle.getDOMNode();
+    var innerCircle = React.findDOMNode(this.refs.innerCircle);
     var currentScale = innerCircle.style.transform;
     var nextScale;
 
@@ -75,7 +75,7 @@ var FocusRipple = React.createClass({
   },
 
   _setRippleSize: function() {
-    var el = this.getDOMNode();
+    var el = React.findDOMNode(this);
     var height = el.offsetHeight;
     var width = el.offsetWidth;
     var size = Math.max(height, width);

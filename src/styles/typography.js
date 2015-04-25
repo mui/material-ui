@@ -1,4 +1,4 @@
-var Colors = require('../colors');
+var Colors = require('./colors');
 
 var typography = new (function() {
 

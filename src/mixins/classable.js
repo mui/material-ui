@@ -7,11 +7,17 @@ module.exports = {
     className: React.PropTypes.string
   },
 
+  getDefaultProps: function(){
+    return {
+      className: ''
+    }
+  },
+
   getClasses: function(initialClasses, additionalClassObj) {
     var classString = '';
 
     //Initialize the classString with the classNames that were passed in
-    if (this.props.className) classString += ' ' + this.props.className;
+    if (this.props.className.length) classString += ' ' + this.props.className;
 
     //Add in initial classes
     if (typeof initialClasses === 'object') {

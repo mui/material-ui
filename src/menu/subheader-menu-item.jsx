@@ -1,11 +1,14 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var Typography = require('../styles/core/typography');
-var CustomVariables = require('../styles/variables/custom-variables');
+var Typography = require('../styles/typography');
 
 var SubheaderMenuItem = React.createClass({
   
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
       index: React.PropTypes.number.isRequired,
@@ -13,46 +16,53 @@ var SubheaderMenuItem = React.createClass({
       firstChild: React.PropTypes.bool,
       className: React.PropTypes.string,
   },
-  
-  /** Styles */
-  _main: function() {
 
-    var gutterMini = CustomVariables.spacing.desktopGutterMini;
-    var subheaderHeight = CustomVariables.spacing.desktopSubheaderHeight;
+  getTheme: function() {
+    return this.context.theme.component.menuSubheader;
+  },
 
-    var style = {
-      boxSizing: 'border-box',
-      fontSize: '13px',
-      letterSpacing: 0,
-      fontWeight: Typography.fontWeightMedium,
-      color: Typography.textDarkBlack,
-      margin: 0,
-      height: subheaderHeight + gutterMini,
-      lineHeight: subheaderHeight + 'px',
-      color: CustomVariables.subheaderTextColor,
-      borderTop: 'solid 1px ' + CustomVariables.subheaderBorderColor,
-      paddingTop: gutterMini,
-      marginTop: gutterMini,
-    };
+  getSpacing: function() {
+    return this.context.theme.spacing;
+  },
 
-    if (this.props.firstChild) {
-      style = this.mergeAndPrefix(style, {
+  getStyles: function() {
+    var gutterMini = this.getSpacing().desktopGutterMini;
+    var subheaderHeight = this.getSpacing().desktopSubheaderHeight;
+    var styles = {
+      root: {
+        boxSizing: 'border-box',
+        fontSize: '13px',
+        letterSpacing: 0,
+        fontWeight: Typography.fontWeightMedium,
+        color: Typography.textDarkBlack,
+        margin: 0,
+        height: subheaderHeight + gutterMini,
+        lineHeight: subheaderHeight + 'px',
+        color: this.getTheme().textColor,
+        borderTop: 'solid 1px ' + this.getTheme().borderColor,
+        paddingTop: gutterMini,
+        marginTop: gutterMini
+      },
+      rootWhenFirstChild: {
         height: subheaderHeight,
         borderTop: 'none',
         paddingTop: 0,
-        marginTop: 0,
-      });
-    }
-
-    return this.mergeAndPrefix(style);
+        marginTop: 0        
+      }
+    };
+    return styles;
   },
 
   render: function() {
     return (
         <div 
         	key={this.props.index} 
-        	style={this._main()}
-          className={this.props.className}>
+          className={this.props.className}
+          style={this.mergeAndPrefix(
+            this.getStyles().root,
+            this.props.firstChild && this.getStyles().rootWhenFirstChild,
+            this.props.style
+          )}>
         		{this.props.text}
         </div>
     );

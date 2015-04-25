@@ -33,7 +33,7 @@ var Input = React.createClass({
   },
 
   componentDidMount: function() {
-    if (process.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       console.warn('Input has been deprecated. Please use TextField instead. See http://material-ui.com/#/components/text-fields');
     }
   },
@@ -105,11 +105,11 @@ var Input = React.createClass({
   },
 
   blur: function() {
-    if(this.isMounted()) this.refs.input.getDOMNode().blur();
+    if(this.isMounted()) React.findDOMNode(this.refs.input).blur();
   },
   
   focus: function() {
-    if (this.isMounted()) this.refs.input.getDOMNode().focus();
+    if (this.isMounted()) React.findDOMNode(this.refs.input).focus();
   },
 
   _onInputChange: function(e) {

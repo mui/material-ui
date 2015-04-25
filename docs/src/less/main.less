@@ -25,6 +25,9 @@
 @import "pages/components/icon.less";
 @import "pages/components/paper.less";
 
+@import "pages/customization/themes.less";
+@import "pages/customization/inline-styles.less";
+
 // Media Queries
 @device-large:   ~"only screen and (min-width: 992px)";
 @device-medium:  ~"only screen and (min-width: 768px)";
@@ -85,14 +88,10 @@ body, h1, h2, h3, h4, h5, h6 {
 
   .example-label {
     .mui-font-style-menu;
-    display: inline-block;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.26); // minBlack;
     padding: 8px;
-    border-right: solid 1px @border-color;
-    border-bottom: solid 1px @border-color;
     margin-bottom: 0;
-    border-radius: 0 0 2px 0;
   }
 
   .example-block,
@@ -108,7 +107,7 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .example-menu {
-  width: (64px * 4);
+  width: 100%;
 }
 
 .example-menu-nested {
@@ -117,4 +116,9 @@ body, h1, h2, h3, h4, h5, h6 {
 
 .no-wrap {
   white-space: nowrap;
+}
+
+.github-icon-button {
+  color: white;
+  fill: white;
 }

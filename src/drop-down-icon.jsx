@@ -1,7 +1,7 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
+var Spacing = require('./styles/spacing');
 var ClickAwayable = require('./mixins/click-awayable');
 var KeyLine = require('./utils/key-line');
 var Paper = require('./paper');
@@ -16,7 +16,6 @@ var DropDownIcon = React.createClass({
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     closeOnMenuItemClick: React.PropTypes.bool,
-    hoverStyle: React.PropTypes.object,
     iconStyle: React.PropTypes.object,
     iconClassName: React.PropTypes.string,
   },
@@ -37,53 +36,58 @@ var DropDownIcon = React.createClass({
     this.setState({ open: false });
   },
 
-  /** Styles */
-
-  _main: function() {
+  getStyles: function() {
     var iconWidth = 48;
-    return this.mergeAndPrefix({
-      display: 'inline-block',
-      width: iconWidth + 'px !important',
-      position: 'relative',
-      height: CustomVariables.spacing.desktopToolbarHeight,
-      fontSize: CustomVariables.spacing.desktopDropDownMenuFontSize,
-      cursor: 'pointer'
-    });
-  },
-
-  _menu: function() {
-    
-    return {
-      transition: Transitions.easeOut(),
-      right: '-14px !important',
-      top: '9px !important',
-      opacity: (this.props.open) ? 1 : 0,
-    }
-  },
-
-  _menuItem: function() { // similair to drop down menu's menu item styles
-    return {
-      paddingRight: (CustomVariables.spacing.iconSize + (CustomVariables.spacing.desktopGutterLess*2)),
-      height: CustomVariables.spacing.desktopDropDownMenuItemHeight,
-      lineHeight: CustomVariables.spacing.desktopDropDownMenuItemHeight + 'px',
-    }
+    var styles = {
+      root: {
+        display: 'inline-block',
+        width: iconWidth + 'px !important',
+        position: 'relative',
+        height: Spacing.desktopToolbarHeight,
+        fontSize: Spacing.desktopDropDownMenuFontSize,
+        cursor: 'pointer'
+       },
+      menu: {
+        transition: Transitions.easeOut(),
+        right: '-14px !important',
+        top: '9px !important',
+        opacity: (this.props.open) ? 1 : 0
+      },
+      menuItem: { // similair to drop down menu's menu item styles
+        paddingRight: (Spacing.iconSize + (Spacing.desktopGutterLess*2)),
+        height: Spacing.desktopDropDownMenuItemHeight,
+        lineHeight: Spacing.desktopDropDownMenuItemHeight + 'px'
+      }
+    };
+    return styles;   
   },
 
   render: function() {
+    var {
+      style,
+      children,
+      menuItems,
+      closeOnMenuItemClick,
+      iconStyle,
+      iconClassName,
+      ...other
+    } = this.props;
+
+    var styles = this.getStyles();
+    
     return (
-      <div style={this._main()}>
+      <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>
           <div onClick={this._onControlClick}>
               <FontIcon 
-                className={this.props.iconClassName} 
-                style={this.props.iconStyle}
-                hoverStyle={this.props.hoverStyle}/>
+                className={iconClassName} 
+                style={iconStyle}/>
               {this.props.children}
           </div>
           <Menu 
             ref="menuItems" 
-            style={this._menu()} 
-            menuItems={this.props.menuItems}
-            menuItemStyle={this._menuItem()}
+            style={this.mergeAndPrefix(styles.menu)} 
+            menuItems={menuItems}
+            menuItemStyle={styles.menuItem}
             hideable={true} 
             visible={this.state.open} 
             onItemClick={this._onMenuItemClick} />
@@ -101,7 +105,7 @@ var DropDownIcon = React.createClass({
     if (this.props.closeOnMenuItemClick) {
       this.setState({ open: false });
     }
-  },
+  }
 });
 
 module.exports = DropDownIcon;

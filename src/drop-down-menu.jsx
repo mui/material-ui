@@ -1,7 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var ClickAwayable = require('./mixins/click-awayable');
 var DropDownArrow = require('./svg-icons/drop-down-arrow');
 var KeyLine = require('./utils/key-line');
@@ -12,6 +11,10 @@ var DropDownMenu = React.createClass({
 
   mixins: [StylePropable, ClickAwayable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   // The nested styles for drop-down-menu are modified by toolbar and possibly 
   // other user components, so it will give full access to its js styles rather 
   // than just the parent. 
@@ -20,13 +23,8 @@ var DropDownMenu = React.createClass({
     autoWidth: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
-    styleControl: React.PropTypes.object,
-    styleControlBg: React.PropTypes.object,
-    styleIcon: React.PropTypes.object,
-    styleIconHover: React.PropTypes.object,
-    styleLabel: React.PropTypes.object,
-    styleUnderline: React.PropTypes.object,
-    styleMenuItem: React.PropTypes.object,
+    menuItemStyle: React.PropTypes.object,
+    selectedIndex: React.PropTypes.number
   },
 
   getDefaultProps: function() {
@@ -49,133 +47,105 @@ var DropDownMenu = React.createClass({
 
   componentDidMount: function() {
     if (this.props.autoWidth) this._setWidth();
+    if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(this.props);
   },
 
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.hasOwnProperty('selectedIndex')) {
-      this.setState({selectedIndex: nextProps.selectedIndex});
+      this._setSelectedIndex(nextProps);
     }
+ },
+
+  getSpacing: function() {
+    return this.context.theme.spacing;
   },
 
-  /** Styles */
-  _main: function() {
-    var style = {
-      transition: Transitions.easeOut(),
-      position: 'relative',
-      display: 'inline-block',
-      height: CustomVariables.spacing.desktopToolbarHeight,
-      fontSize: CustomVariables.spacing.desktopDropDownMenuFontSize
-    };
-
-    if (this.state.open) style.opacity = 1;
-
-    return this.mergeAndPrefix(style);
+  getTextColor: function() {
+    return this.context.theme.palette.textColor;
   },
 
-  _control: function() {
-    var style = {
-      cursor: 'pointer',
-      position: 'static',
-      height: '100%',
-    };
-
-    if (this.props.styleControl) this.mergeAndPrefix(style, this.props.styleControl);
-
-    return style;
-  },
-
-  _controlBg: function() { 
-    var style = {
-      transition: Transitions.easeOut(),
-      backgroundColor: CustomVariables.menuBackgroundColor,
-      height: '100%',
-      width: '100%',
-      opacity: (this.state.open) ? 0 : 
-               (this.state.isHovered) ? 1 : 0,
-    };
-
-    if (this.props.styleControlBg) style = this.mergeAndPrefix(style, this.props.styleControlBg);
-  
-    return style;
-  },
-
-  _icon: function() {
-    var style = {
-      position: 'absolute',
-      top: ((CustomVariables.spacing.desktopToolbarHeight - 24) / 2),
-      right: CustomVariables.spacing.desktopGutterLess,
-      fill: CustomVariables.dropDownMenuIconColor,
-    };
-
-    if (this.props.styleIcon) style = this.mergeAndPrefix(style, this.props.styleIcon);
-  
-    return style;
-  },
-
-  _label: function() {
-    var style = {
-      transition: Transitions.easeOut(),
-      lineHeight: CustomVariables.spacing.desktopToolbarHeight + 'px',
-      position: 'absolute',
-      paddingLeft: CustomVariables.spacing.desktopGutter,
-      top: 0,
-      opacity: 1,
-    };
-
-    if (this.state.open) {
-      style = this.mergeAndPrefix(style, {
+  getStyles: function(){
+    var accentColor = this.context.theme.component.dropDownMenu.accentColor;
+    var backgroundColor = this.context.theme.component.menu.backgroundColor;
+    var styles = {
+      root: {
+        transition: Transitions.easeOut(),
+        position: 'relative',
+        display: 'inline-block',
+        height: this.getSpacing().desktopToolbarHeight,
+        fontSize: this.getSpacing().desktopDropDownMenuFontSize
+      },
+      control: {
+        cursor: 'pointer',
+        position: 'static',
+        height: '100%'
+      },
+      controlBg: {
+        transition: Transitions.easeOut(),
+        backgroundColor: backgroundColor,
+        height: '100%',
+        width: '100%',
+        opacity: (this.state.open) ? 0 : 
+                 (this.state.isHovered) ? 1 : 0
+      },
+      icon: {
+        position: 'absolute',
+        top: ((this.getSpacing().desktopToolbarHeight - 24) / 2),
+        right: this.getSpacing().desktopGutterLess,
+        fill: this.context.theme.component.dropDownMenu.accentColor
+      },
+      label: {
+        transition: Transitions.easeOut(),
+        lineHeight: this.getSpacing().desktopToolbarHeight + 'px',
+        position: 'absolute',
+        paddingLeft: this.getSpacing().desktopGutter,
+        top: 0,
+        opacity: 1,
+        color: this.getTextColor()
+      },
+      underline: {
+        borderTop: 'solid 1px ' + accentColor,
+        margin: '0 ' + this.getSpacing().desktopGutter + 'px'
+      },
+      menuItem: {
+        paddingRight: this.getSpacing().iconSize + 
+                      this.getSpacing().desktopGutterLess + 
+                      this.getSpacing().desktopGutterMini,
+        height: this.getSpacing().desktopDropDownMenuItemHeight,
+        lineHeight: this.getSpacing().desktopDropDownMenuItemHeight + 'px',
+        whiteSpace: 'nowrap'
+      },
+      rootWhenOpen: {
+        opacity: 1
+      },
+      labelWhenOpen: {
         opacity: 0,
-        top: CustomVariables.spacing.desktopToolbarHeight / 2,
-      });
-    }
-
-    if (this.props.styleLabel) style = this.mergeAndPrefix(style, this.props.styleLabel);
-  
-    return style;
-  },
-
-  _underline: function() {
-    var style = {
-      borderTop: 'solid 1px ' + CustomVariables.borderColor,
-      margin: '0 ' + CustomVariables.spacing.desktopGutter + 'px',
+        top: this.getSpacing().desktopToolbarHeight / 2
+      }
     };
-
-    if (this.props.styleUnderline) style =this.mergeAndPrefix(style, this.props.styleUnderline);
-  
-    return style;
+    return styles;
   },
-
-  _menuItem: function() {
-    var style = {
-      paddingRight: CustomVariables.spacing.iconSize + 
-                    CustomVariables.spacing.desktopGutterLess + 
-                    CustomVariables.spacing.desktopGutterMini,
-      height: CustomVariables.spacing.desktopDropDownMenuItemHeight,
-      lineHeight: CustomVariables.spacing.desktopDropDownMenuItemHeight + 'px',
-      whiteSpace: 'nowrap',
-    };
-
-    if (this.props.styleMenuItem) style = this.mergeAndPrefix(style, this.props.styleMenuItem);
-  
-    return style;
-  },
-
 
   render: function() {
+    var styles = this.getStyles();
     return (
       <div 
-        style={this._main()} 
-        className={this.props.className} 
+        ref="root"
         onMouseOut={this._handleMouseOut}
-        onMouseOver={this._handleMouseOver}>
+        onMouseOver={this._handleMouseOver}
+        className={this.props.className}
+        style={this.mergeAndPrefix(
+          styles.root, 
+          this.state.open && styles.rootWhenOpen,
+          this.props.style)} >
 
-          <ClearFix style={this._control()} onClick={this._onControlClick}>
-            <Paper style={this._controlBg()} zDepth={0} />
-            <div style={this._label()}>
+          <ClearFix style={this.mergeAndPrefix(styles.control)} onClick={this._onControlClick}>
+            <Paper style={this.mergeAndPrefix(styles.controlBg)} zDepth={0} />
+            <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen)}>
               {this.props.menuItems[this.state.selectedIndex].text}
             </div>
-            <DropDownArrow style={this._icon()} hoverStyle={this.props.styleIconHover}/>
-            <div style={this._underline()}/>
+            <DropDownArrow style={this.mergeAndPrefix(styles.icon)}/>
+            <div style={this.mergeAndPrefix(styles.underline)}/>
           </ClearFix>
 
           <Menu
@@ -183,7 +153,7 @@ var DropDownMenu = React.createClass({
             autoWidth={this.props.autoWidth}
             selectedIndex={this.state.selectedIndex}
             menuItems={this.props.menuItems}
-            menuItemStyle={this._menuItem()}
+            menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.menuItemStyle)}
             hideable={true}
             visible={this.state.open}
             onItemClick={this._onMenuItemClick} />
@@ -192,10 +162,20 @@ var DropDownMenu = React.createClass({
   },
 
   _setWidth: function() {
-    var el = this.getDOMNode(),
+    var el = React.findDOMNode(this),
       menuItemsDom = this.refs.menuItems.getDOMNode();
 
     el.style.width = menuItemsDom.offsetWidth + 'px';
+  },
+
+  _setSelectedIndex: function(props) {
+    var selectedIndex = props.selectedIndex;
+
+    if (process.env.NODE_ENV !== 'production' && selectedIndex < 0) {
+      console.warn('Cannot set selectedIndex to a negative index.', selectedIndex);
+    }
+
+    this.setState({selectedIndex: (selectedIndex > -1) ? selectedIndex : 0});
   },
 
   _onControlClick: function(e) {

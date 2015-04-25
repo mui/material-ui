@@ -3,8 +3,7 @@ var StylePropable = require('../mixins/style-propable');
 var WindowListenable = require('../mixins/window-listenable');
 var DateTime = require('../utils/date-time');
 var KeyCode = require('../utils/key-code');
-var Transitions = require('../styles/mixins/transitions');
-var CustomVariables = require('../styles/variables/custom-variables.js');
+var Transitions = require('../styles/transitions');
 var CalendarMonth = require('./calendar-month');
 var CalendarYear = require('./calendar-year');
 var CalendarToolbar = require('./calendar-toolbar');
@@ -19,12 +18,13 @@ var Calendar = React.createClass({
   propTypes: {
     initialDate: React.PropTypes.object,
     isActive: React.PropTypes.bool,
-    startDate: React.PropTypes.object,
-    endDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
+    maxDate: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
     hideToolbarYearChange: React.PropTypes.bool,
     shouldShowMonthDayPickerFirst: React.PropTypes.bool,
-    shouldShowYearPickerFirst: React.PropTypes.bool
+    shouldShowYearPickerFirst: React.PropTypes.bool,
+    onSelectedDate: React.PropTypes.func
   },
 
   windowListeners: {
@@ -34,8 +34,8 @@ var Calendar = React.createClass({
   getDefaultProps: function() {
     return {
       initialDate: new Date(),
-      startDate: DateTime.addYears(new Date(), -100),
-      endDate: DateTime.addYears(new Date(), 100),
+      minDate: DateTime.addYears(new Date(), -100),
+      maxDate: DateTime.addYears(new Date(), 100),
       hideToolbarYearChange: false,
       shouldShowMonthDayPickerFirst: true,
       shouldShowYearPickerFirst: false
@@ -67,7 +67,7 @@ var Calendar = React.createClass({
   },
 
   render: function() {
-    var yearCount = DateTime.yearDiff(this.props.endDate, this.props.startDate) + 1;
+    var yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
     var weekCount = DateTime.getWeekArray(this.state.displayDate).length;
     var toolbarInteractions = this._getToolbarInteractions();
     var isMultiYearRange = yearCount > 2; // Want a year range greater than 1. Ex. [2014,2016] has a count of 3
@@ -76,7 +76,6 @@ var Calendar = React.createClass({
       root: {
         fontSize: '12px'
       },
-
       calendarContainer: {
         width: isLandscape ? '280px' : '100%',
         height: weekCount === 5 ? '268px' :
@@ -84,7 +83,6 @@ var Calendar = React.createClass({
         float: isLandscape ? 'right' : 'none',
         transition: Transitions.easeOut('150ms', 'height')
       },
-      
       yearContainer: {
         width: '280px',
         overflow: 'hidden',
@@ -93,13 +91,11 @@ var Calendar = React.createClass({
           weekCount === 6 ? '308px' : '228px',
         float: isLandscape ? 'right' : 'none'
       },
-
       dateDisplay: {
         width: isLandscape ? '280px' : '100%',
         height: '100%',
         float: isLandscape ? 'left' : 'none'
       },
-
       weekTitle: {
         padding: '0 14px',
         lineHeight: '12px',
@@ -108,7 +104,6 @@ var Calendar = React.createClass({
         fontWeight: '500',
         margin: 0
       },
-
       weekTitleDay: {
         listStyle: 'none',
         float: 'left',
@@ -143,10 +138,10 @@ var Calendar = React.createClass({
             displayDate={this.state.displayDate}
             onMonthChange={this._handleMonthChange}
             onYearChange={this._handleYearChange}
-            disabledPrevMonth={!toolbarInteractions.prevMonth}
-            disabledNextMonth={!toolbarInteractions.nextMonth}
-            disabledPrevYear={!toolbarInteractions.prevYear}
-            disabledNextYear={!toolbarInteractions.nextYear}
+            prevMonth={toolbarInteractions.prevMonth}
+            nextMonth={toolbarInteractions.nextMonth}
+            prevYear={toolbarInteractions.prevYear}
+            nextYear={toolbarInteractions.nextYear}
             hideYearChangeButtons={this.props.hideToolbarYearChange} />
 
           <ClearFix
@@ -169,8 +164,8 @@ var Calendar = React.createClass({
               displayDate={this.state.displayDate}
               onDayTouchTap={this._handleDayTouchTap}
               selectedDate={this.state.selectedDate}
-              startDate={this.props.startDate}
-              endDate={this.props.endDate}
+              minDate={this.props.minDate}
+              maxDate={this.props.maxDate}
               shouldDisableDate={this.props.shouldDisableDate} />
           </SlideInTransitionGroup>
         </div>
@@ -181,8 +176,8 @@ var Calendar = React.createClass({
             displayDate={this.state.displayDate}
             onYearTouchTap={this._handleYearTouchTap}
             selectedDate={this.state.selectedDate}
-            startDate={this.props.startDate}
-            endDate={this.props.endDate} />
+            minDate={this.props.minDate}
+            maxDate={this.props.maxDate} />
         </div>
       </ClearFix>
     );
@@ -223,11 +218,11 @@ var Calendar = React.createClass({
 
   _setSelectedDate: function(d) {
     var adjustedDate = d;
-    if (DateTime.isBeforeDate(d, this.props.startDate)) {
-      adjustedDate = this.props.startDate;
+    if (DateTime.isBeforeDate(d, this.props.minDate)) {
+      adjustedDate = this.props.minDate;
     }
-    else if (DateTime.isAfterDate(d, this.props.endDate)) {
-      adjustedDate = this.props.endDate;
+    else if (DateTime.isAfterDate(d, this.props.maxDate)) {
+      adjustedDate = this.props.maxDate;
     }
     
     var newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
@@ -238,6 +233,7 @@ var Calendar = React.createClass({
         selectedDate: adjustedDate
       });
     }
+    if(this.props.onSelectedDate) this.props.onSelectedDate(d);
   },
 
   _handleDayTouchTap: function(e, date) {
@@ -260,10 +256,10 @@ var Calendar = React.createClass({
   
   _getToolbarInteractions: function() {
     return {
-      prevMonth: DateTime.monthDiff(this.state.selectedDate, this.props.startDate) > 0,
-      nextMonth: DateTime.monthDiff(this.state.selectedDate, this.props.endDate) < 0,
-      prevYear: DateTime.yearDiff(this.state.selectedDate, this.props.startDate) > 0,
-      nextYear: DateTime.yearDiff(this.state.selectedDate, this.props.endDate) < 0
+      prevMonth: DateTime.monthDiff(this.state.selectedDate, this.props.minDate) > 0,
+      nextMonth: DateTime.monthDiff(this.state.selectedDate, this.props.maxDate) < 0,
+      prevYear: DateTime.yearDiff(this.state.selectedDate, this.props.minDate) > 0,
+      nextYear: DateTime.yearDiff(this.state.selectedDate, this.props.maxDate) < 0
     }
   },
   

@@ -10,9 +10,10 @@ var CalendarMonth = React.createClass({
     displayDate: React.PropTypes.object.isRequired,
     onDayTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
-    startDate: React.PropTypes.object,
-    endDate: React.PropTypes.object,
-    shouldDisableDate: React.PropTypes.func
+    minDate: React.PropTypes.object,
+    maxDate: React.PropTypes.object,
+    shouldDisableDate: React.PropTypes.func,
+    autoOk: React.PropTypes.bool
   },
 
   render: function() {
@@ -20,7 +21,6 @@ var CalendarMonth = React.createClass({
       lineHeight: '32px',
       textAlign: 'center',
       padding: '8px 14px 0 14px',
-      backgroundColor: Colors.white
     };
 
     return (
@@ -60,11 +60,12 @@ var CalendarMonth = React.createClass({
           this._selectedDateDisabled = false;
         }
       }
-      
+
       return (
         <DayButton
           key={'db' + i}
           date={day}
+          disabled={disabled}
           onTouchTap={this._handleDayTouchTap}
           selected={selected}
           disabled={disabled} />
@@ -78,7 +79,7 @@ var CalendarMonth = React.createClass({
   
   _shouldDisableDate: function(day) {
     if (day === null) return false;
-    var disabled = !DateTime.isBetweenDates(day, this.props.startDate, this.props.endDate);
+    var disabled = !DateTime.isBetweenDates(day, this.props.minDate, this.props.maxDate);
     if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
     
     return disabled;

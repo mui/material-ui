@@ -1,7 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var ColorManipulator = require('./utils/color-manipulator');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
@@ -18,6 +17,10 @@ var getZDepth = function(disabled) {
 var RaisedButton = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     className: React.PropTypes.string,
@@ -54,7 +57,7 @@ var RaisedButton = React.createClass({
   },
 
   componentDidMount: function() {
-    if (process.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       if (this.props.iconClassName && this.props.children) {
         var warning = 'You have set both an iconClassName and a child icon. ' +
                       'It is recommended you use only one method when adding ' +
@@ -64,75 +67,69 @@ var RaisedButton = React.createClass({
     }
   },
 
-
-  /** Styles */
-
   _getBackgroundColor: function() {
-    return  this.props.disabled ? CustomVariables.floatingActionButtonDisabledColor :
-            this.props.secondary ? CustomVariables.floatingActionButtonSecondaryColor :
-            CustomVariables.floatingActionButtonColor; 
+    return  this.props.disabled ? this.getTheme().disabledColor :
+            this.props.secondary ? this.getTheme().secondaryColor :
+            this.getTheme().color; 
   },
 
-  _main: function() {
-    return this.mergeAndPrefix({
-      transition: Transitions.easeOut(),
-      display: 'inline-block',
-    }); 
+
+  getTheme: function() {
+    return this.context.theme.component.floatingActionButton;
   },
 
-  _icon: function() {
-    var style = {
-      lineHeight: CustomVariables.floatingActionButtonSize + 'px',
-      fill: CustomVariables.floatingActionButtonIconColor,
-      color:  this.props.disabled ? CustomVariables.floatingActionButtonDisabledTextColor :
-              this.props.secondary ? CustomVariables.floatingActionButtonSecondaryIconColor :
-              CustomVariables.floatingActionButtonIconColor,
+  _getIconColor: function() {
+    return  this.props.disabled ? this.getTheme().disabledTextColor :
+            this.props.secondary ? this.getTheme().secondaryIconColor :
+            this.getTheme().iconColor;
+  },
+
+  getStyles: function() {
+    var styles = {
+      root: {
+        transition: Transitions.easeOut(),
+        display: 'inline-block'
+      },
+      container: {
+        transition: Transitions.easeOut(),
+        position: 'relative',
+        height: this.getTheme().buttonSize,
+        width: this.getTheme().buttonSize,
+        padding: 0,
+        overflow: 'hidden',
+        backgroundColor: this._getBackgroundColor(),
+        borderRadius: '50%',
+        textAlign: 'center',
+        verticalAlign: 'bottom',
+        //This is need so that ripples do not bleed
+        //past border radius.
+        //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+        transform: 'translate3d(0, 0, 0)'
+      },
+      icon: {
+        lineHeight: this.getTheme().buttonSize + 'px',
+        fill: this.getTheme().iconColor,
+        color: this._getIconColor()
+      },
+      overlay: {
+        transition: Transitions.easeOut(),
+        top: 0
+      },
+      containerWhenMini: {
+        height: this.getTheme().miniSize,
+        width: this.getTheme().miniSize
+      },
+      iconWhenMini: {
+        lineHeight: this.getTheme().miniSize + 'px'
+      },
+      overlayWhenHovered: {
+        backgroundColor: ColorManipulator.fade(this._getIconColor(), 0.4)
+      },
+      inner: {
+        transition: Transitions.easeOut()
+      }
     };
-
-    if (this.props.mini) style.lineHeight = CustomVariables.floatingActionButtonMiniSize + 'px';
-    if (this.props.iconStyle) style = this.mergeAndPrefix(style, this.props.iconStyle);
-
-    return style;
-  },
-
-  _overlay: function() {
-    var style = {
-      transition: Transitions.easeOut(),
-      top: 0,
-    };
-
-    if (this.state.hovered && !this.props.disabled) {
-      style.backgroundColor = ColorManipulator.fade(this._icon().color, 0.4);
-    }
-
-    return style;
-  },
-
-  _container: function() {
-    var style = {
-      transition: Transitions.easeOut(),
-      position: 'relative',
-      height: CustomVariables.floatingActionButtonSize,
-      width: CustomVariables.floatingActionButtonSize,
-      padding: 0,
-      overflow: 'hidden',
-      backgroundColor: this._getBackgroundColor(),
-      borderRadius: '50%',
-
-      //This is need so that ripples do not bleed
-      //past border radius.
-      //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-      transform: 'translate3d(0, 0, 0)',
-    }; 
-
-    if (this.props.mini) {
-      style = this.mergeAndPrefix(style, {
-        height: CustomVariables.floatingActionButtonMiniSize,
-        width: CustomVariables.floatingActionButtonMiniSize,
-      });
-    }
-
-    return style;
+    return styles;
   },
 
   render: function() {
@@ -142,23 +139,35 @@ var RaisedButton = React.createClass({
       secondary,
       ...other } = this.props;
 
+    var styles = this.getStyles();
+
     var icon;
-    if (this.props.iconClassName) icon = <FontIcon className={this.props.iconClassName} style={this._icon()}/>
+    if (this.props.iconClassName) {
+      icon = 
+        <FontIcon 
+          className={this.props.iconClassName} 
+          style={this.mergeAndPrefix(
+            styles.icon,
+            this.props.mini && styles.iconWhenMini,
+            this.props.iconStyle)}/>
+    }
 
-    var rippleColor = this._icon().color;
+    var rippleColor = styles.icon.color;
 
-    // TODO: Pass innerStyle prop to Paper when it is created during it's refactoring.
     return (
       <Paper
-        style={this._main()}
+        style={this.mergeAndPrefix(styles.root, this.props.style)}
         innerClassName={this.props.innerClassName}
-        innerStyle={{transition: Transitions.easeOut()}}
+        innerStyle={this.mergeAndPrefix(styles.inner, this.props.innerStyle)}
         zDepth={this.state.zDepth}
         circle={true}>
 
         <EnhancedButton {...other}
           ref="container"
-          style={this._container()}
+          style={this.mergeAndPrefix(
+            styles.container, 
+            this.props.mini && styles.containerWhenMini
+          )}
           onMouseDown={this._handleMouseDown}
           onMouseUp={this._handleMouseUp}
           onMouseOut={this._handleMouseOut}
@@ -168,9 +177,14 @@ var RaisedButton = React.createClass({
           focusRippleColor={rippleColor}
           touchRippleColor={rippleColor}
           onKeyboardFocus={this._handleKeyboardFocus}>
-            <div ref="overlay" style={this._overlay()} >
-              {icon}
-              {this.props.children}
+            <div 
+              ref="overlay" 
+              style={this.mergeAndPrefix(
+                styles.overlay,
+                (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
+              )}>
+                {icon}
+                {this.props.children}
             </div>
         </EnhancedButton>
       </Paper>
@@ -213,10 +227,10 @@ var RaisedButton = React.createClass({
   _handleKeyboardFocus: function(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
-      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this._icon().color, 0.4);
+      React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      this.refs.overlay.getDOMNode().style.backgroundColor = 'transparent';
+      React.findOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
 

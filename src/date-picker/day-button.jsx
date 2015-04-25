@@ -1,13 +1,16 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var Transition = require('../styles/mixins/transitions');
-var CustomVariables = require('../styles/variables/custom-variables');
+var Transition = require('../styles/transitions');
 var DateTime = require('../utils/date-time');
 var EnhancedButton = require('../enhanced-button');
 
 var DayButton = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     date: React.PropTypes.object,
@@ -29,6 +32,10 @@ var DayButton = React.createClass({
     };
   },
 
+  getTheme: function() {
+    return this.context.theme.component.datePicker;
+  },
+
   render: function() {
     var {
       date,
@@ -48,7 +55,8 @@ var DayButton = React.createClass({
       },
 
       label: {
-        position: 'relative'
+        position: 'relative',
+        color: this.context.theme.palette.textColor
       },
 
       buttonState: {
@@ -59,18 +67,18 @@ var DayButton = React.createClass({
         borderRadius: '50%',
         transform: 'scale(0)',
         transition: Transition.easeOut(),
-        backgroundColor: CustomVariables.datePickerSelectColor
+        backgroundColor: this.getTheme().selectColor,
       }
     };
 
     if (this.state.hover) {
-      styles.label.color = CustomVariables.datePickerSelectTextColor;
+      styles.label.color = this.getTheme().selectTextColor;
       styles.buttonState.opacity = '0.6';
       styles.buttonState.transform = 'scale(1)';
     }
 
     if (this.props.selected) {
-      styles.label.color = CustomVariables.datePickerSelectTextColor;
+      styles.label.color = this.getTheme().selectTextColor;
       styles.buttonState.opacity = 1;
       styles.buttonState.transform = 'scale(1)';
     }
@@ -79,7 +87,7 @@ var DayButton = React.createClass({
     }
 
     if (DateTime.isEqualDate(this.props.date, new Date()) && !this.props.selected) {
-        styles.label.color = CustomVariables.datePickerColor;
+        styles.label.color = this.getTheme().color;
     }
 
     return this.props.date ? (

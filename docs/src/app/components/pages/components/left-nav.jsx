@@ -18,10 +18,9 @@ class LeftNavPage extends React.Component {
   }
 
   render() {
-
     var menuItems = [
       { route: 'get-started', text: 'Get Started' },
-      { route: 'css-framework', text: 'CSS Framework' },
+      { route: 'customization', text: 'Customization' },
       { route: 'components', text: 'Components' },
       { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
       { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
@@ -32,7 +31,7 @@ class LeftNavPage extends React.Component {
     var code =
       'menuItems = [\n' +
       '  { route: \'get-started\', text: \'Get Started\' },\n' +
-      '  { route: \'css-framework\', text: \'CSS Framework\' },\n' +
+      '  { route: \'customization\', text: \'Customization\' },\n' +
       '  { route: \'components\', text: \'Components\' },\n' +
       '  { type: MenuItem.Types.SUBHEADER, text: \'Resources\' },\n' +
       '  { \n' +
@@ -61,12 +60,6 @@ class LeftNavPage extends React.Component {
         name: 'Props',
         infoArray: [
           {
-            name: 'menuItems',
-            type: 'array',
-            header: 'required',
-            desc: 'JSON data representing all menu items to render.'
-          },
-          {
             name: 'docked',
             type: 'bool',
             header: 'default: true',
@@ -81,11 +74,23 @@ class LeftNavPage extends React.Component {
               'Usually, this is used for a logo or a profile image.'
           },
           {
+            name: 'menuItems',
+            type: 'array',
+            header: 'required',
+            desc: 'JSON data representing all menu items to render.'
+          },
+          {
             name: 'selectedIndex',
             type: 'number',
             header: 'optional',
             desc: 'Indicates the particular item in the menuItems array that is ' +
               'currently selected.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of LeftNav\'s root element.'
           }
         ]
       },
@@ -112,6 +117,16 @@ class LeftNavPage extends React.Component {
             header: 'function(e, selectedIndex, menuItem)',
             desc: 'Fired when a menu item is clicked that is not the one currently ' +
               'selected.'
+          },
+          {
+            name: 'onNavOpen',
+            header: 'function()',
+            desc: 'Fired when the component is opened'
+          },
+          {
+            name: 'onNavClose',
+            header: 'function()',
+            desc: 'Fired when the component is closed'
           }
         ]
       }
@@ -123,7 +138,7 @@ class LeftNavPage extends React.Component {
         code={code}
         componentInfo={componentInfo}>
 
-        <div className="left-nav-example">
+        <div>
           <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
           <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
           <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />
@@ -132,7 +147,6 @@ class LeftNavPage extends React.Component {
 
       </ComponentDoc>
     );
-
   }
 
   _showLeftNavClick() {

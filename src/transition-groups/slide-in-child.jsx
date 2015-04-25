@@ -2,7 +2,7 @@ var React = require('react/addons');
 var ReactTransitionGroup = React.addons.TransitionGroup;
 var StylePropable = require('../mixins/style-propable');
 var AutoPrefix = require('../styles/auto-prefix');
-var Transitions = require('../styles/mixins/transitions');
+var Transitions = require('../styles/transitions');
 
 var SlideInChild = React.createClass({
 
@@ -60,7 +60,7 @@ var SlideInChild = React.createClass({
       top: '0px',
       left: '0px',
       transition: Transitions.easeOut()
-    });
+    }, this.props.style);
 
     return (
       <div {...other}

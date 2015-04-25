@@ -32,8 +32,9 @@ module.exports = {
     NavigationChevronRight: require('./svg-icons/navigation-chevron-right')
   },
   Styles: {
-    Theme: require('./styles/theme').get(),
     Colors: require('./styles/colors'),
+    Spacing: require('./styles/spacing'),
+    ThemeManager: require('./styles/theme-manager')
   },
   Snackbar: require('./snackbar'),
   Tab: require('./tabs/tab'),

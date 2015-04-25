@@ -1,14 +1,13 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Spacing = require('./styles/variables/spacing');
-var Theme = require('./styles/theme').get();
+var Spacing = require('./styles/spacing');
 
 var FontIcon = React.createClass({
 
   mixins: [StylePropable],
 
-  propTypes: {
-    hoverStyle: React.PropTypes.object,
+  contextTypes: {
+    theme: React.PropTypes.object
   },
 
   getInitialState: function() {
@@ -17,53 +16,36 @@ var FontIcon = React.createClass({
     };
   },
 
-  /** Styles */
-  _main: function() {
-    var style = this.mergeAndPrefix({
+  getTheme: function() {
+    return this.context.theme.palette;
+  },
+
+  getStyles: function() {
+    var styles = {
       position: 'relative',
       fontSize: Spacing.iconSize + 'px',
       display: 'inline-block',
-      userSelect: 'none'
-    });
-
-    if (this.state.isHovered && this.props.hoverStyle) {
-      style = this.mergeAndPrefix(style, this.props.hoverStyle);
+      userSelect: 'none'  
+    };
+    if (!styles.color && !this.props.className) {
+      styles.color = this.getTheme().textColor;
     }
-    if (!style.color && !this.props.className) {
-      style.color = Theme.textColor;
-    }
-    
-    return this.mergeAndPrefix(style);
+    return styles;
   },
 
   render: function() {
-
     var {
       style,
-      hoverStyle,
-      onMouseOver,
-      onMouseOut,
       ...other
     } = this.props;
 
     return (
       <span {...other} 
-        style={this._main()} 
-        onMouseOver={this._onMouseOver} 
-        onMouseOut={this._onMouseOut}/>
+        style={this.mergeAndPrefix(
+          this.getStyles(),
+          this.props.style)} />
     );
-  },
-
-  _onMouseOut: function(e) {
-    this.setState({isHovered: false});    
-    if (this.props.onMouseOut) this.props.onMouseOut(e);
-  },
-
-  _onMouseOver: function(e) {
-    this.setState({isHovered: true});
-    if (this.props.onMouseOver) this.props.onMouseOver(e);
-  },
-
+  }
 });
 
 module.exports = FontIcon;

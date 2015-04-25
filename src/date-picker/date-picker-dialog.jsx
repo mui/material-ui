@@ -3,7 +3,6 @@ var StylePropable = require('../mixins/style-propable');
 var WindowListenable = require('../mixins/window-listenable');
 var CssEvent = require('../utils/css-event');
 var KeyCode = require('../utils/key-code');
-var CustomVariables = require('../styles/variables/custom-variables.js');
 var Calendar = require('./calendar');
 var DialogWindow = require('../dialog-window');
 var FlatButton = require('../flat-button');
@@ -12,14 +11,18 @@ var DatePickerDialog = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
     initialDate: React.PropTypes.object,
     onAccept: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onClickAway: React.PropTypes.func,
-    startDate: React.PropTypes.object,
-    endDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
+    maxDate: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
     hideToolbarYearChange: React.PropTypes.bool
   },
@@ -46,7 +49,7 @@ var DatePickerDialog = React.createClass({
     var styles = {
       root: {
         fontSize: '14px',
-        color: CustomVariables.datePickerCalendarTextColor
+        color: this.context.theme.component.datePicker.calendarTextColor
       },
       
       dialogContents: {
@@ -74,6 +77,10 @@ var DatePickerDialog = React.createClass({
         onTouchTap={this._handleOKTouchTap} />
     ];
 
+    if(this.props.autoOk){
+      actions = actions.slice(0, 1);
+    }
+
     return (
       <DialogWindow {...other}
         ref="dialogWindow"
@@ -86,10 +93,11 @@ var DatePickerDialog = React.createClass({
         repositionOnUpdate={false}>
         <Calendar
           ref="calendar"
+          onSelectedDate={this._onSelectedDate}
           initialDate={this.props.initialDate}
           isActive={this.state.isCalendarActive}
-          startDate={this.props.startDate}
-          endDate={this.props.endDate}
+          minDate={this.props.minDate}
+          maxDate={this.props.maxDate}
           shouldDisableDate={this.props.shouldDisableDate}
           shouldShowMonthDayPickerFirst={this.state.showMonthDayPicker}
           hideToolbarYearChange={this.props.hideToolbarYearChange}
@@ -104,6 +112,12 @@ var DatePickerDialog = React.createClass({
 
   dismiss: function() {
     this.refs.dialogWindow.dismiss();
+  },
+
+  _onSelectedDate: function(){
+    if(this.props.autoOk){
+      setTimeout(this._handleOKTouchTap.bind(this), 300);
+    }
   },
 
   _handleCancelTouchTap: function() {
@@ -159,7 +173,7 @@ var DatePickerDialog = React.createClass({
           this._handleOKTouchTap();
           break;
       }
-    } 
+    }
   }
 
 });

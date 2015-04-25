@@ -12,8 +12,8 @@ var CalendarYear = React.createClass({
     displayDate: React.PropTypes.object.isRequired,
     onYearTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
-    startDate: React.PropTypes.object,
-    endDate: React.PropTypes.object
+    minDate: React.PropTypes.object,
+    maxDate: React.PropTypes.object
   },
   
   componentDidMount: function() {
@@ -45,14 +45,14 @@ var CalendarYear = React.createClass({
   },
 
   _getYears: function() {
-    var startYear = this.props.startDate.getFullYear();
-    var endYear = this.props.endDate.getFullYear();
+    var minYear = this.props.minDate.getFullYear();
+    var maxYear = this.props.maxDate.getFullYear();
     
     var years = [];
     var dateCheck = DateTime.clone(this.props.selectedDate);
-    for (var year = startYear; year <= endYear; year++) {
+    for (var year = minYear; year <= maxYear; year++) {
       dateCheck.setFullYear(year);
-      if (!DateTime.isBetweenDates(dateCheck, this.props.startDate, this.props.endDate)) continue;
+      if (!DateTime.isBetweenDates(dateCheck, this.props.minDate, this.props.maxDate)) continue;
       var selected = this.props.selectedDate.getFullYear() === year;
       var selectedProps = {};
       if (selected) {

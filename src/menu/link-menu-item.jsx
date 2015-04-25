@@ -1,11 +1,14 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var CustomVariables = require('../styles/variables/custom-variables');
 
 var LinkMenuItem = React.createClass({
 
   mixins: [StylePropable],
   
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
     index: React.PropTypes.number.isRequired,
     payload: React.PropTypes.string.isRequired,
@@ -27,40 +30,56 @@ var LinkMenuItem = React.createClass({
     }
   },
 
-  /** Styles */
-  _main: function() { // Same as MenuItem.
-    var style = this.mergeAndPrefix({
-      userSelect: 'none',
-      cursor: 'pointer',
-      display: 'block',
-      lineHeight: CustomVariables.menuItemHeight + 'px',
-      paddingLeft: CustomVariables.menuItemPadding,
-      paddingRight: CustomVariables.menuItemPadding,
-    });
+  getTheme: function() {
+    return this.context.theme.component.menuItem;
+  },
 
-    if (this.state.hovered && !this.props.disabled) style.backgroundColor = CustomVariables.menuItemHoverColor;
-    if (this.props.selected) style.color = CustomVariables.menuItemSelectedTextColor;
-
-    return this.mergeAndPrefix(style);
+  getStyles: function() {
+    var style = {
+      root: {
+        userSelect: 'none',
+        cursor: 'pointer',
+        display: 'block',
+        lineHeight: this.getTheme().height + 'px',
+        paddingLeft: this.getTheme().padding,
+        paddingRight: this.getTheme().padding
+      },
+      rootWhenHovered: {
+        backgroundColor: this.getTheme().hoverColor
+      },
+      rootWhenSelected: {
+        color: this.getTheme().selectedTextColor
+      },
+      rootWhenDisabled: {
+        cursor: 'default',
+        color: this.context.theme.palette.disabledColor
+      }
+    };
+    return style;
   },
 
   render: function() {
     var onClickHandler = (this.props.disabled) ? this._stopLink : undefined;
     // Prevent context menu 'Open In New Tab/Window'
     var linkAttribute = (this.props.disabled) ? 'data-href' : 'href';
-    var link = {linkAttribute: this.props.payload};
+    var link = {};
+    link[linkAttribute] = this.props.payload
 
-    var styles = this._main(); 
-    if (this.props.disabled) {
-      styles.cursor = 'default';
-      styles.color = CustomVariables.disabledColor;
-    }
+    var styles = this.getStyles();
+
+    var linkStyles = 
+      this.mergeAndPrefix(
+        styles.root, 
+        this.props.selected && styles.rootWhenSelected,
+        (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,
+        this.props.style,
+        this.props.disabled && styles.rootWhenDisabled);
 
     return (
       <a 
         key={this.props.index} 
         target={this.props.target} 
-        style={styles} {...link} 
+        style={linkStyles} {...link} 
         className={this.props.className} 
         onClick={onClickHandler}
         onMouseOver={this._handleMouseOver}

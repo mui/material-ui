@@ -7,6 +7,10 @@ var EnhancedButton = require('../enhanced-button');
 var YearButton = React.createClass({
 
   mixins: [StylePropable],
+  
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     year: React.PropTypes.number,
@@ -24,6 +28,10 @@ var YearButton = React.createClass({
     return {
       hover: false
     };
+  },
+  
+  getTheme: function() {
+    return this.context.theme.component.datePicker;
   },
 
   render: function() {
@@ -49,7 +57,8 @@ var YearButton = React.createClass({
 
       label: {
         position: 'relative',
-        top: '-1px'
+        top: '-1px',
+        color: this.context.theme.palette.textColor
       },
 
       buttonState: {
@@ -59,24 +68,24 @@ var YearButton = React.createClass({
         opacity: 0,
         borderRadius: '50%',
         transform: 'scale(0)',
-        backgroundColor: CustomVariables.datePickerSelectColor
+        backgroundColor: this.getTheme().selectColor
       },
     };
     
     if (this.state.hover) {
-      styles.label.color = CustomVariables.datePickerSelectTextColor;
+      styles.label.color = this.getTheme().selectTextColor;
       styles.buttonState.opacity = '0.6';
       styles.buttonState.transform = 'scale(1.5)';
     }
     
     if (selected) {
-      styles.label.color = CustomVariables.datePickerSelectTextColor;
+      styles.label.color = this.getTheme().selectTextColor;
       styles.buttonState.opacity = 1;
       styles.buttonState.transform = 'scale(1.5)';
     }
     
     if (year === new Date().getFullYear()) {
-      styles.root.color = CustomVariables.datePickerColor;
+      styles.root.color = this.getTheme().color;
     }
 
     return (

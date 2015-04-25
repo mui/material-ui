@@ -1,27 +1,32 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Spacing = require('./styles/spacing');
 var DialogWindow = require('./dialog-window');
 
 var Dialog = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
     title: React.PropTypes.node
   },
 
-  /** Styles */
-  _title: function() {
-    var gutter = CustomVariables.spacing.desktopGutter + 'px ';
-    return {
-      padding: gutter + gutter + '0 ' + gutter,
-    }
-  },
-  _content: function() {
-    return {
-      padding: CustomVariables.spacing.desktopGutter,
-    }
+  getStyles: function() {
+    var gutter = Spacing.desktopGutter + 'px ';
+    var styles = {
+      title: {
+        padding: gutter + gutter + '0 ' + gutter,
+        color: this.context.theme.palette.textColor
+      },
+      content: {
+        padding: Spacing.desktopGutter
+      }
+    };
+    return styles;
   },
 
   render: function() {
@@ -30,12 +35,14 @@ var Dialog = React.createClass({
       ...other
     } = this.props;
 
+    var styles = this.getStyles();
+
     var title;
     if (this.props.title) {
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.
-      title = toString.call(this.props.title) === '[object String]' ?
-        <h3 style={this._title()}>{this.props.title}</h3> :
+      title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
+        <h3 style={styles.title}>{this.props.title}</h3> :
         this.props.title;
     }
 
@@ -48,7 +55,7 @@ var Dialog = React.createClass({
 
         {title}
 
-        <div ref="dialogContent" style={this._content()}>
+        <div ref="dialogContent" style={styles.content}>
           {this.props.children}
         </div>
 

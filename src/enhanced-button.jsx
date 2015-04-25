@@ -1,7 +1,6 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
 var StylePropable = require('./mixins/style-propable');
-var CustomVariables = require('./styles/variables/custom-variables');
 var WindowListenable = require('./mixins/window-listenable');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
@@ -10,12 +9,17 @@ var EnhancedButton = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
     centerRipple: React.PropTypes.bool,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
+    keyboardFocused: React.PropTypes.bool,
     linkButton: React.PropTypes.bool,
     focusRippleColor: React.PropTypes.string,
     touchRippleColor: React.PropTypes.string,
@@ -36,7 +40,7 @@ var EnhancedButton = React.createClass({
 
   getInitialState: function() {
     return {
-      isKeyboardFocused: false 
+      isKeyboardFocused: !this.props.disabled && this.props.keyboardFocused
     };
   },
 
@@ -55,32 +59,28 @@ var EnhancedButton = React.createClass({
     }
   }, 
 
-  /** Styles */
-  _main: function() {
-    var style = {
-      border: 10,
-      background: 'none',
-      boxSizing: 'border-box',
-      font: 'inherit',
-      fontFamily: CustomVariables.contentFontFamily,
-      WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-      WebkitApperance: 'button'
-    };
-
-    if (this.props.linkButton) {
-      style = this.mergeAndPrefix({
+  getStyles: function() {
+    var styles = {
+      root: {
+        border: 10,
+        background: 'none',
+        boxSizing: 'border-box',
+        font: 'inherit',
+        fontFamily: this.context.theme.contentFontFamily,
+        WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+        WebkitApperance: 'button'
+      },
+      rootWhenLinkButton: {
         display: 'inline-block',
         cursor: (this.props.disabled) ? 'default' : 'pointer',
-        textDecoration: 'none',
-      }, style);
-    }
-    
-    if (this.props.disabled) style.cursor = 'default';
-
-
-    return this.mergeAndPrefix(style);
+        textDecoration: 'none'
+      },
+      rootWhenDisabled: {
+        cursor: 'default'
+      }
+    };
+    return styles;
   },
-
 
   render: function() {
     var {
@@ -124,7 +124,7 @@ var EnhancedButton = React.createClass({
     );
 
     var buttonProps = {
-      style: this._main(),
+      style: styles,
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
@@ -160,41 +160,48 @@ var EnhancedButton = React.createClass({
   },
 
   _handleWindowKeydown: function(e) {
-    if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
-    if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {
-      this._handleTouchTap(e);
+    if (!this.props.disabled) {
+      if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
+      if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {
+        this._handleTouchTap(e);
+      }
     }
   },
 
   _handleWindowKeyup: function(e) {
-    if (e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
+    if (!this.props.disabled && e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
       this._handleTouchTap(e);
     }
   },
 
   _handleBlur: function(e) {
-    this.setState({
-      isKeyboardFocused: false
-    });
-    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
-    if (this.props.onBlur) this.props.onBlur(e);
+    this._cancelFocusTimeout();
+    if (!this.props.disabled) {
+      this.setState({
+        isKeyboardFocused: false
+      });
+      if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
+      if (this.props.onBlur) this.props.onBlur(e);
+    }
   },
 
   _handleFocus: function(e) {
     this.getDOMNode().style.outline = 'none';
-    //setTimeout is needed becuase the focus event fires first
-    //Wait so that we can capture if this was a keyboard focus
-    //or touch focus
-    setTimeout(function() {
-      if (this._tabPressed) {
-        this.setState({
-          isKeyboardFocused: true
-        });
-        if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, true);
-      }
-    }.bind(this), 150);
-    
-    if (this.props.onFocus) this.props.onFocus(e);
+    if (!this.props.disabled) {
+      //setTimeout is needed because the focus event fires first
+      //Wait so that we can capture if this was a keyboard focus
+      //or touch focus
+      this._focusTimeout = setTimeout(function() {
+        if (this._tabPressed) {
+          this.setState({
+            isKeyboardFocused: true
+          });  
+          if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, true);
+        }
+      }.bind(this), 150);
+
+      if (this.props.onFocus) this.props.onFocus(e);
+    }
   },
 
   _handleMouseOver: function(e) {
@@ -207,12 +214,22 @@ var EnhancedButton = React.createClass({
   },
 
   _handleTouchTap: function(e) {
-    this._tabPressed = false;
-    this.setState({
-      isKeyboardFocused: false
-    });
-    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
-    if (this.props.onTouchTap) this.props.onTouchTap(e);
+    this._cancelFocusTimeout();
+    if (!this.props.disabled) {
+      this._tabPressed = false;
+      this.setState({
+        isKeyboardFocused: false
+      });
+      if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
+      if (this.props.onTouchTap) this.props.onTouchTap(e);
+    }
+  },
+
+  _cancelFocusTimeout: function () {
+    if (this._focusTimeout) {
+      clearTimeout(this._focusTimeout);
+      this._focusTimeout = null;
+    }
   }
 
 });

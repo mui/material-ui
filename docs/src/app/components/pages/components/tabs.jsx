@@ -65,6 +65,12 @@ class TabsPage extends React.Component {
             desc: 'Specify initial visible tab index. Initial selected index is set by default to 0. If initialSelectedIndex is set but larger than the total amount of specified tabs, initialSelectedIndex will revert back to default'
           },
           {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the Tabs\' root element.'
+          },
+          {
             name: 'tabWidth',
             type: 'number',
             header: 'optional',

@@ -1,8 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
-var Theme = require('./styles/theme');
+var Transitions = require('./styles/transitions');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
 var Tooltip = require('./tooltip');
@@ -10,6 +8,10 @@ var Tooltip = require('./tooltip');
 var IconButton = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     className: React.PropTypes.string,
@@ -32,8 +34,7 @@ var IconButton = React.createClass({
     if (this.props.tooltip) {
       this._positionTooltip();
     }
-
-    if (process.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       if (this.props.iconClassName && this.props.children) {
         var warning = 'You have set both an iconClassName and a child icon. ' +
                       'It is recommended you use only one method when adding ' +
@@ -43,71 +44,55 @@ var IconButton = React.createClass({
     }
   },
 
-  /** Styles */
-  _main: function() {
-    var style = {
-      height: 48,
-      width: 48,
-      position: 'relative',
-      boxSizing: 'border-box',
-      transition: Transitions.easeOut(),
-      padding: (CustomVariables.spacing.iconSize / 2),
-      width: CustomVariables.spacing.iconSize*2,
-      height: CustomVariables.spacing.iconSize*2,
-    };
-
-    if (this.props.disabled) {
-      style = this.mergeAndPrefix(style, {
-        color: CustomVariables.disabledColor,
-        fill: CustomVariables.disabledColor,
-      });
-    }
-
-    return this.mergeAndPrefix(style);
+  getTheme: function() {
+    return this.context.theme.palette;
   },
 
-  _tooltip: function() {
-    return {
-      boxSizing: 'border-box',
-      marginTop: CustomVariables.iconButtonSize + 4,
-    };
+  getSpacing: function() {
+    return this.context.theme.spacing;
   },
 
-  _icon: function() {
-    var style = {
-        color: Theme.textColor,
-        fill: Theme.textColor,
-    };
-
-    if (this.props.disabled) {
-      style = {
-        color: CustomVariables.disabledColor,
-        fill: CustomVariables.disabledColor,
-      };
-    }
-
-    if (this.props.iconStyle) {
-      style = this.mergeAndPrefix(style, this.props.iconStyle);
-    }
-
-    return style;
+  getDisabledColor: function() {
+    return this.context.theme.palette.disabledColor;
   },
 
-  /**
-   * If the user has children icon and is disabled, we have no way of knowing 
-   * how to override children styles to apply disabled styles. Instead, we 
-   * add a color overlay with disabled styles above the children. This can be 
-   * removed by the user if he/she has his/her own custom disabled styles.
-   */
-  _overlay: function() {
-    return {
-      position: 'relative',
-      top: 0,
-      width: '100%',
-      height: '100%',
-      background: CustomVariables.disabledColor,
-
-    }
+  getStyles: function() {
+    var styles = {
+      root: {
+        height: 48,
+        width: 48,
+        position: 'relative',
+        boxSizing: 'border-box',
+        transition: Transitions.easeOut(),
+        padding: (this.getSpacing().iconSize / 2),
+        width: this.getSpacing().iconSize*2,
+        height: this.getSpacing().iconSize*2
+      },
+      tooltip: {
+        boxSizing: 'border-box',
+        marginTop: this.context.theme.component.button.iconButtonSize + 4
+      },
+      icon: {
+        color: this.getTheme().textColor,
+        fill: this.getTheme().textColor
+      },
+      overlay: {
+        position: 'relative',
+        top: 0,
+        width: '100%',
+        height: '100%',
+        background: this.getDisabledColor()
+      },
+      rootWhenDisabled: {
+        color: this.getDisabledColor(),
+        fill: this.getDisabledColor()
+      },
+      iconWhenDisabled: {
+        color: this.getDisabledColor(),
+        fill: this.getDisabledColor()
+      }
+    };
+    return styles;
   },
 
   render: function() {
@@ -118,6 +103,8 @@ var IconButton = React.createClass({
     var tooltip;
     var fonticon;
 
+    var styles = this.getStyles();
+
     if (this.props.tooltip) {
       tooltip = (
         <Tooltip
@@ -125,7 +112,7 @@ var IconButton = React.createClass({
           label={tooltip}
           show={this.state.tooltipShown}
           touch={touch}
-          style={this._tooltip()}/>
+          style={this.mergeAndPrefix(styles.tooltip)}/>
       );
     }
 
@@ -133,24 +120,28 @@ var IconButton = React.createClass({
       fonticon = (
         <FontIcon 
           className={this.props.iconClassName} 
-          style={this._icon()}/>
+          style={this.mergeAndPrefix(
+            styles.icon, 
+            this.props.disabled && styles.iconWhenDisabled,
+            this.props.iconStyle
+          )}/>
       );
     }
 
     if (this.props.children && this.props.disabled) {
       React.Children.forEach(this.props.children, function(child) {
         child.props.style = {
-          color: CustomVariables.disabledColor,
-          fill: CustomVariables.disabledColor,
+          color: this.getDisabledColor(),
+          fill: this.getDisabledColor(),
         }
-      });
+      }, this);
     } 
 
     return (
       <EnhancedButton {...other}
         ref="button"
         centerRipple={true}
-        style={this._main()}
+        style={this.mergeAndPrefix(styles.root, this.props.style)}
         onBlur={this._handleBlur}
         onFocus={this._handleFocus}
         onMouseOut={this._handleMouseOut}
@@ -166,7 +157,7 @@ var IconButton = React.createClass({
   },
 
   _positionTooltip: function() {
-    var tooltip = this.refs.tooltip.getDOMNode();
+    var tooltip = React.findDOMNode(this.refs.tooltip);
     var tooltipWidth = tooltip.offsetWidth;
     var buttonWidth = 48;
 
@@ -174,7 +165,9 @@ var IconButton = React.createClass({
   },
 
   _showTooltip: function() {
-    if (this.props.tooltip) this.setState({ tooltipShown: true });
+    if (!this.props.disabled && this.props.tooltip) {
+      this.setState({ tooltipShown: true });
+    }
   },
 
   _hideTooltip: function() {

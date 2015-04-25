@@ -1,14 +1,17 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
 var DateTime = require('../utils/date-time');
-var CustomVariables = require('../styles/variables/custom-variables');
-var Transitions = require('../styles/mixins/transitions');
+var Transitions = require('../styles/transitions');
 var AutoPrefix = require('../styles/auto-prefix');
 var SlideInTransitionGroup = require('../transition-groups/slide-in');
 
 var DateDisplay = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     selectedDate: React.PropTypes.object.isRequired,
@@ -47,6 +50,10 @@ var DateDisplay = React.createClass({
     }
   },
 
+  getTheme: function() {
+    return this.context.theme.component.datePicker;
+  },
+
   render: function() {
     var {
       selectedDate,
@@ -77,7 +84,7 @@ var DateDisplay = React.createClass({
       },
 
       dateContainer: {
-        backgroundColor: CustomVariables.datePickerColor,
+        backgroundColor: this.getTheme().color,
         height: isLandscape ? this.props.weekCount * 40 + 36 + 'px' : '150px',
         padding: '16px 0',
         transition: Transitions.easeOut(),
@@ -86,14 +93,14 @@ var DateDisplay = React.createClass({
 
       date: {
         position: 'relative',
-        color: CustomVariables.datePickerTextColor,
+        color: this.getTheme().textColor,
         transition: Transitions.easeOut(),
         transform: 'translate3d(0,' + dateYPosition + ',0)'
       },
 
       dowContainer: {
         height: '32px',
-        backgroundColor: CustomVariables.datePickerSelectColor,
+        backgroundColor: this.getTheme().selectColor,
         borderRadius: isLandscape ? '2px 0 0 0' : '2px 2px 0 0',
         paddingTop: '9px',
         boxSizing: 'border-box'
@@ -103,7 +110,7 @@ var DateDisplay = React.createClass({
         fontSize: '13px',
         lineHeight: '13px',
         height: '100%',
-        color: CustomVariables.datePickerSelectTextColor
+        color: this.getTheme().selectTextColor
       },
 
       day: {
@@ -170,8 +177,7 @@ var DateDisplay = React.createClass({
     };
 
     return (
-      <div {...other} style={this.mergeAndPrefix(styles.root)}>
-      
+      <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>
         <div style={styles.dowContainer}>
           <SlideInTransitionGroup
             style={styles.dow}

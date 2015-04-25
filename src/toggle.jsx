@@ -1,7 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
-var CustomVariables = require('./styles/variables/custom-variables');
+var Transitions = require('./styles/transitions');
 var Paper = require('./paper');
 var EnhancedSwitch = require('./enhanced-switch');
 
@@ -9,7 +8,12 @@ var Toggle = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
+    elementStyle: React.PropTypes.object,
     onToggle: React.PropTypes.func,
     toggled: React.PropTypes.bool,
     defaultToggled: React.PropTypes.bool
@@ -25,54 +29,74 @@ var Toggle = React.createClass({
     }
   },
 
+  getTheme: function() {
+    return this.context.theme.component.toggle;
+  },
+
+  getStyles: function() {
+    var toggleSize = 20;
+    var toggleTrackWidth = 36;
+    var styles = {
+      icon: {
+        padding: '4px 0px 6px 2px'
+      },
+      track: {
+          transition: Transitions.easeOut(),
+          width: toggleTrackWidth,
+          height: 14,
+          borderRadius: 30,
+          backgroundColor: this.getTheme().trackOffColor
+      },
+      thumb: {
+        transition: Transitions.easeOut(),
+        position: 'absolute',
+        top: 1,
+        left: 2,
+        width: toggleSize,
+        height: toggleSize,
+        lineHeight: '24px',
+        borderRadius: '50%',
+        backgroundColor: this.getTheme().thumbOffColor
+      },
+      trackWhenSwitched: {
+        backgroundColor: this.getTheme().trackOnColor
+      },      
+      thumbWhenSwitched: {
+        backgroundColor: this.getTheme().thumbOnColor,
+        left: 18
+      },
+      trackWhenDisabled: {
+        backgroundColor: this.getTheme().trackDisabledColor
+      },
+      thumbWhenDisabled: {
+        backgroundColor: this.getTheme().thumbDisabledColor
+      }
+    };
+    return styles;
+  },
+
   render: function() {
     var {
       onToggle,
       ...other
     } = this.props;
 
-    var toggleSize = 20;
-    var toggleTrackWidth = 36;
-    var iconStyles = {
-        padding: '4px 0px 6px 2px'
-    };
-    var trackStyles = {
-        transition: Transitions.easeOut(),
-        width: toggleTrackWidth,
-        height: 14,
-        borderRadius: 30,
-        opacity: this.state.switched ? 0.5 : 1,  
-        backgroundColor: this.props.disabled ? CustomVariables.toggleTrackDisabledColor :
-                         this.state.switched ? CustomVariables.toggleTrackOnColor : 
-                         CustomVariables.toggleTrackOffColor
-    };
-    var thumbStyles = {
-        transition: Transitions.easeOut(),
-        position: 'absolute',
-        top: 1,
-        left: this.state.switched ? 18 : 2,
-        width: toggleSize,
-        height: toggleSize,
-        lineHeight: '24px',
-        borderRadius: '50%',
-        backgroundColor: this.props.disabled ? CustomVariables.toggleThumbDisabledColor :
-                         this.state.switched ? CustomVariables.toggleThumbOnColor : 
-                         CustomVariables.toggleThumbOffColor
-    };
+    var styles = this.getStyles();
 
-    if (this.state.switched) {
-      trackStyles.backgroundColor = CustomVariables.toggleTrackOnColor;
-      thumbStyles.backgroundColor = CustomVariables.toggleTrackOnColor;
-      thumbStyles.left = 18;
-    }
+    var trackStyles = this.mergeAndPrefix(
+      styles.track,
+      this.state.switched && styles.trackWhenSwitched,
+      this.props.disabled && styles.trackWhenDisabled
+    );
 
-    if (this.props.disabled) {
-      trackStyles.backgroundColor = CustomVariables.toggleTrackDisabledColor;
-      thumbStyles.backgroundColor = CustomVariables.toggleThumbDisabledColor;
-    }
+    var thumbStyles = this.mergeAndPrefix(
+      styles.thumb,
+      this.state.switched && styles.thumbWhenSwitched,
+      this.props.disabled && styles.thumbWhenDisabled
+    );
 
     var toggleElement = (
-      <div>
+      <div style={this.mergeAndPrefix(this.props.elementStyle)}>
         <div style={trackStyles} />
         <Paper style={thumbStyles} circle={true} zDepth={1} />
       </div>
@@ -83,13 +107,16 @@ var Toggle = React.createClass({
       left: '-10'
     };
 
+    var rippleColor =  this.state.switched ? 
+      this.getTheme().thumbOnColor : this.context.theme.component.textColor;
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switchElement: toggleElement,
-      className: "mui-toggle",
       rippleStyle: customRippleStyle,
-      iconStyle: iconStyles,
+      rippleColor: rippleColor,
+      iconStyle: styles.icon,
       trackStyle: trackStyles,
       thumbStyle: thumbStyles,
       switched: this.state.switched,

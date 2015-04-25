@@ -1,17 +1,21 @@
 var React = require('react');
 var EnhancedSwitch = require('./enhanced-switch');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/mixins/transitions');
+var Transitions = require('./styles/transitions');
 var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank');
 var CheckboxChecked = require('./svg-icons/toggle-check-box-checked');
-var CustomVariables = require('./styles/variables/custom-variables');
 
 var Checkbox = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
+
   propTypes: {
-    onCheck: React.PropTypes.func,
+    iconStyle: React.PropTypes.object,
+    onCheck: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -24,55 +28,71 @@ var Checkbox = React.createClass({
     }
   },
 
+  getTheme: function() {
+    return this.context.theme.component.checkbox;
+  },
+
+  getStyles: function() {
+    var checkboxSize = 24;
+    var styles = {
+      icon: {
+          height: checkboxSize,
+          width: checkboxSize,
+      },
+      check: {
+          position: 'absolute',
+          opacity: 0, 
+          transform: 'scale(0)',
+          transitionOrigin: '50% 50%',
+          transition: Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' + 
+                      Transitions.easeOut('0ms', 'transform', '450ms'),
+          fill: this.getTheme().checkedColor   
+      },
+      box: {
+          position: 'absolute',
+          opacity: 1,
+          fill: this.getTheme().boxColor,          
+          transition: Transitions.easeOut('2s', null, '200ms') 
+      },
+      checkWhenSwitched: {
+        opacity: 1,
+        transform: 'scale(1)',
+        transition: Transitions.easeOut('0ms', 'opacity', '0ms') + ', ' + 
+                    Transitions.easeOut('800ms', 'transform', '0ms')
+      },
+      boxWhenSwitched: {
+        transition: Transitions.easeOut('100ms', null, '0ms'),
+        fill: this.getTheme().checkedColor
+      },
+      checkWhenDisabled: {
+        fill: this.getTheme().disabledColor
+      },
+      boxWhenDisabled: {
+        fill: this.getTheme().disabledColor
+      }
+    };
+    return styles;
+  },
+
   render: function() {
     var {
       onCheck,
       ...other
     } = this.props;
 
-    var checkboxSize = 24;
-
-    var iconStyles = {
-        height: checkboxSize,
-        width: checkboxSize,
-    }
-
-    var checkStyles = {
-        positiion: 'absolute',
-        opacity: 0,
-        transform: 'scale(0)',
-        transitionOrigin: '50% 50%',
-        transition: Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' + 
-                    Transitions.easeOut('0ms', 'transform', '450ms'),
-        fill: CustomVariables.checkboxCheckedColor   
-    }
-
-    var boxStyles = {
-        position: 'absolute',
-        opacity: 1,
-        fill: CustomVariables.checkboxBoxColor,          
-        transition: Transitions.easeOut('2s', null, '200ms') 
-    }
-
-    if (this.state.switched) {
-      checkStyles = this.mergeStyles(checkStyles, {
-          opacity: 1,
-          transform: 'scale(1)',
-          transition: Transitions.easeOut('0ms', 'opacity', '0ms') + ', ' + 
-                      Transitions.easeOut('800ms', 'transform', '0ms')
-        });
-      boxStyles = this.mergeStyles(boxStyles, {
-          transition: Transitions.easeOut('100ms', null, '0ms'),
-          fill: CustomVariables.checkboxCheckedColor
-        });
-    }
-
-    if (this.props.disabled) {
-      checkStyles.fill = CustomVariables.disabledColor;
-      boxStyles.fill = CustomVariables.disabledColor;
-    }
-
-    if (this.state.switched && this.props.disabled) boxStyles.opacity = 0;
+    var styles = this.getStyles();
+    var boxStyles = 
+      this.mergeAndPrefix(
+        styles.box,
+        this.state.switched && styles.boxWhenSwitched,
+        this.props.iconStyle,
+        this.props.disabled && styles.boxWhenDisabled);
+    var checkStyles = 
+      this.mergeAndPrefix(
+        styles.check,
+        this.state.switched && styles.checkWhenSwitched,
+        this.props.iconStyle,
+        this.props.disabled && styles.checkWhenDisabled);
 
     var checkboxElement = (
       <div>
@@ -81,12 +101,15 @@ var Checkbox = React.createClass({
       </div>
     );
 
+    var rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switched: this.state.switched,
       switchElement: checkboxElement,
-      iconStyle: iconStyles,
+      rippleColor: rippleColor,
+      iconStyle: styles.icon,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,

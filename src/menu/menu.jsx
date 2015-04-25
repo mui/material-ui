@@ -2,10 +2,8 @@ var React = require('react');
 var CssEvent = require('../utils/css-event');
 var Dom = require('../utils/dom');
 var KeyLine = require('../utils/key-line');
-var Classable = require('../mixins/classable');
 var StylePropable = require('../mixins/style-propable');
-var Transitions = require('../styles/mixins/transitions');
-var CustomVariables = require('../styles/variables/custom-variables');
+var Transitions = require('../styles/transitions');
 var ClickAwayable = require('../mixins/click-awayable');
 var Paper = require('../paper');
 var MenuItem = require('./menu-item');
@@ -17,7 +15,11 @@ var SubheaderMenuItem = require('./subheader-menu-item');
 ***********************/
 var NestedMenuItem = React.createClass({
 
-  mixins: [Classable, ClickAwayable, StylePropable],
+  mixins: [ClickAwayable, StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     index: React.PropTypes.number.isRequired,
@@ -52,24 +54,28 @@ var NestedMenuItem = React.createClass({
     this._positionNestedMenu();
   },
 
+  getSpacing: function() {
+    return this.context.theme.spacing;
+  },
+
   render: function() {
-    var styles = this.mergeStyles({
-      position: 'relative',
-    });
+    var styles = this.mergeAndPrefix({
+      position: 'relative'
+    }, this.props.style);
 
     var iconCustomArrowDropRight = {
-      marginRight: CustomVariables.spacing.desktopGutterMini * -1,
-      color: CustomVariables.dropDownMenuIconColor
-    }
+      marginRight: this.getSpacing().desktopGutterMini * -1,
+      color: this.context.theme.component.dropDownMenu.accentColor
+    };
 
     var {
       index,
       menuItemStyle,
-      ...other,
+      ...other
     } = this.props;
 
     return (
-      <div style={styles} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
+      <div ref="root" style={styles} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
         <MenuItem 
           index={index}
           style={menuItemStyle}
@@ -92,8 +98,14 @@ var NestedMenuItem = React.createClass({
   },
 
   _positionNestedMenu: function() {
+// <<<<<<< HEAD:src/menu/menu.jsx
     var el = this.getDOMNode();
-    var nestedMenu = this.refs.nestedMenu.getDOMNode();
+    var nestedMenu = React.findDOMNode(this.refs.nestedMenu);
+// =======
+//     var el = React.findDOMNode(this),
+//       nestedMenu = React.findDOMNode(this.refs.nestedMenu);
+
+// >>>>>>> master:src/js/menu/menu.jsx
     nestedMenu.style.left = el.offsetWidth + 'px';
   },
   
@@ -131,13 +143,17 @@ var NestedMenuItem = React.createClass({
 ****************/
 var Menu = React.createClass({
 
-  mixins: [Classable, StylePropable],
+  mixins: [StylePropable],
+
+  contextTypes: {
+    theme: React.PropTypes.object
+  },
 
   propTypes: {
     autoWidth: React.PropTypes.bool,
     onItemTap: React.PropTypes.func,
     onItemClick: React.PropTypes.func,
-    onToggleClick: React.PropTypes.func,
+    onToggle: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
     hideable: React.PropTypes.bool,
@@ -165,7 +181,7 @@ var Menu = React.createClass({
   },
 
   componentDidMount: function() {
-    var el = this.getDOMNode();
+    var el = React.findDOMNode(this);
 
     //Set the menu width
     this._setKeyWidth(el);
@@ -181,55 +197,56 @@ var Menu = React.createClass({
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
   },
 
-
-  /** Styles */
-  _hideable: function() {
-    return {
-      opacity: (this.props.visible) ? 1 : 0,
-      position: 'absolute',
-      top: 0,
-      zIndex: 1,
-    }
+  getTheme: function() {
+    return this.context.theme.component.menu
   },
 
-  // Main Style
-  _main: function() {
-    return this.mergeAndPrefix({
-      backgroundColor: CustomVariables.menuBackgroundColor,
-      transition: Transitions.easeOut(null, 'height'),
-    });
+  getSpacing: function() {
+    return this.context.theme.spacing;
   },
 
-  _innerPaper: function() {
-    var style = {
-      paddingTop: CustomVariables.spacing.desktopGutterMini,
-      paddingBottom: CustomVariables.spacing.desktopGutterMini,
-    }
-
-    if (this.props.hideable) {
-     this.mergeStyles(style, {
-      overflow: 'hidden',
-      padding: 0,
-      });
-    }
-
-    return style;
-  },
-
-  _subheader: function() {
-    return this.mergeAndPrefix({
-      paddingLeft: CustomVariables.menuSubheaderPadding,
-      paddingRight: CustomVariables.menuSubheaderPadding,
-    }, this.props.menuItemStyleSubheader);
+  getStyles: function() {
+    var styles = {
+      root: {
+        backgroundColor: this.getTheme().backgroundColor,
+        transition: Transitions.easeOut(null, 'height')
+      },
+      innerPaper: {
+        paddingTop: this.getSpacing().desktopGutterMini,
+        paddingBottom: this.getSpacing().desktopGutterMini,
+        backgroundColor: this.getTheme().containerBackgroundColor
+      },
+      subheader: {
+        paddingLeft: this.context.theme.component.menuSubheader.padding,
+        paddingRight: this.context.theme.component.menuSubheader.padding
+      },
+      hideable: {
+        opacity: (this.props.visible) ? 1 : 0,
+        position: 'absolute',
+        top: 0,
+        zIndex: 1
+      },
+      innerPaperWhenHideable: {
+        overflow: 'hidden'
+      }
+    };
+    return styles;
   },
 
   render: function() {
-    var styles = this._main();
-    if (this.props.hideable) styles = this.mergeStyles(styles, this._hideable());
-
+    var styles = this.getStyles();
     return (
-      <Paper ref="paperContainer" zDepth={this.props.zDepth} style={styles} innerStyle={this._innerPaper()}>
-        {this._getChildren()}
+      <Paper 
+        ref="paperContainer" 
+        zDepth={this.props.zDepth} 
+        style={this.mergeAndPrefix(
+          styles.root,
+          this.props.hideable && styles.hideable,
+          this.props.style)} 
+        innerStyle={this.mergeAndPrefix(
+          styles.innerPaper,
+          this.props.hideable && styles.innerPaperWhenHideable)}>
+            {this._getChildren()}
       </Paper>
     );
   },
@@ -240,6 +257,8 @@ var Menu = React.createClass({
       itemComponent,
       isSelected,
       isDisabled;
+
+    var styles = this.getStyles();
 
     //This array is used to keep track of all nested menu refs
     this._nestedChildren = [];
@@ -281,7 +300,7 @@ var Menu = React.createClass({
               key={i}
               index={i}
               className={this.props.menuItemClassNameSubheader}
-              style={this._subheader()}
+              style={this.mergeAndPrefix(styles.subheader)}
               firstChild={i == 0}
               text={menuItem.text} />
           );
@@ -327,6 +346,7 @@ var Menu = React.createClass({
               attribute={menuItem.attribute}
               number={menuItem.number}
               toggle={menuItem.toggle}
+              onToggle={this.props.onToggle}
               disabled={isDisabled}
               onClick={this._onItemClick}
               onTouchTap={this._onItemTap}>
@@ -355,8 +375,8 @@ var Menu = React.createClass({
     var el;
 
     if (this.props.hideable) {    
-      el = this.getDOMNode();
-      var innerContainer = this.refs.paperContainer.getInnerContainer().getDOMNode();
+      el = React.findDOMNode(this);
+      var innerContainer = React.findDOMNode(this.refs.paperContainer.getInnerContainer());
       
       if (this.props.visible) {
         //Open the menu
