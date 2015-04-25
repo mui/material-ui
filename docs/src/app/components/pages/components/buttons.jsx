@@ -48,6 +48,7 @@ class ButtonPage extends React.Component {
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />\n' +
+      '<FloatingActionButton iconClassName="muidocs-icon-custom-github" linkButton={true} href="https://github.com/callemall/material-ui" mini={true} secondary={true}/>' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />';          

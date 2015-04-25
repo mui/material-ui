@@ -132,7 +132,7 @@ var DialogWindow = React.createClass({
   },
 
   dismiss: function() {
-    CssEvent.onTransitionEnd(this.getDOMNode(), function() {
+    CssEvent.onTransitionEnd(React.findDOMNode(this), function() {
       this.refs.dialogOverlay.allowScrolling();
     }.bind(this));
 
@@ -203,13 +203,13 @@ var DialogWindow = React.createClass({
 
   _positionDialog: function() {
 
-    var container = this.getDOMNode();
-    var dialogWindow = this.refs.dialogWindow.getDOMNode();
+    var container = React.findDOMNode(this);
+    var dialogWindow = React.findDOMNode(this.refs.dialogWindow);
     var containerHeight = container.offsetHeight;
+    var dialogWindowHeight = dialogWindow.offsetHeight;
 
     //Reset the height in case the window was resized.
     dialogWindow.style.height = '';
-    var dialogWindowHeight = dialogWindow.offsetHeight;
 
     var paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64;
 
@@ -223,7 +223,7 @@ var DialogWindow = React.createClass({
   
   _focusOnAction: function() {
     if (this.props.actionFocus) {
-      this.refs[this.props.actionFocus].getDOMNode().focus();
+      React.findDOMNode(this.refs[this.props.actionFocus]).focus();
     }
   },
   

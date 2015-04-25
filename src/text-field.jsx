@@ -287,7 +287,7 @@ var TextField = React.createClass({
   },
 
   setErrorText: function(newErrorText) {
-    if (process.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
+    if (process.env.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
       console.error('Cannot call TextField.setErrorText when errorText is defined as a property.');
     } else if (this.isMounted()) {
       this.setState({errorText: newErrorText});
@@ -295,7 +295,7 @@ var TextField = React.createClass({
   },
 
   setValue: function(newValue) {
-    if (process.NODE_ENV !== 'production' && this._isControlled()) {
+    if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
       console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
     } else if (this.isMounted()) {
       this._getInputNode().value = newValue;
@@ -305,7 +305,7 @@ var TextField = React.createClass({
 
   _getInputNode: function() {
     return this.props.multiLine ?
-      this.refs.input.getInputNode() : this.refs.input.getDOMNode();
+      this.refs.input.getInputNode() : React.findDOMNode(this.refs.input);
   },
 
   _handleInputBlur: function(e) {
@@ -331,7 +331,7 @@ var TextField = React.createClass({
   _handleTextAreaHeightChange: function(e, height) {
     var newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
-    this.getDOMNode().style.height = newHeight + 'px';
+    React.findDOMNode(this).style.height = newHeight + 'px';
   },
 
   _isControlled: function() {

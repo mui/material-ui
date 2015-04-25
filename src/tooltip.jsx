@@ -88,8 +88,7 @@ var Tooltip = React.createClass({
       ...other } = this.props;
     var styles = this.getStyles();
     return (
-      <div {...other} 
-        ref="root" 
+      <div {...other}
         style={this.mergeAndPrefix(
             styles.root,
             this.props.show && styles.rootWhenShown,
@@ -108,8 +107,7 @@ var Tooltip = React.createClass({
 
   _setRippleSize: function() {
     var ripple = React.findDOMNode(this.refs.ripple);
-
-    var tooltip = window.getComputedStyle(React.findDOMNode(this.refs.root));
+    var tooltip = window.getComputedStyle(React.findDOMNode(this));
     var tooltipWidth = parseInt(tooltip.getPropertyValue("width"), 10);
     var tooltipHeight = parseInt(tooltip.getPropertyValue("height"), 10);
 
