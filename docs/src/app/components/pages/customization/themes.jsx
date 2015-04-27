@@ -219,7 +219,7 @@ class ThemesPage extends React.Component {
           page</a> is an example of this. Notice how these changes do not bleed over on to sibling
           pages such as the <a href="#/components/switches">Switches page</a>.
         </p>
-        <Paper>
+        <Paper className="code-example">
           <CodeBlock>{this.getOverrideExamplePage()}</CodeBlock>
         </Paper>
 
@@ -231,7 +231,7 @@ class ThemesPage extends React.Component {
           code mentioned earlier had been inserted in the outer most component. <a href='https://github.com/callemall/material-ui/blob/master/docs/src/app/components/code-example/code-example.jsx'>
           CodeExample</a> is an example of a custom component using ThemeManager. 
         </p>
-        <Paper>
+        <Paper className="code-example">
           <CodeBlock>{customComponentCode}</CodeBlock>
         </Paper>
 
@@ -243,7 +243,7 @@ class ThemesPage extends React.Component {
           theme. Note that if a property is not defined in the custom theme, the default will be 
           what is defined in our light theme.
         </p>
-        <Paper>
+        <Paper className="code-example">
           <CodeBlock>{this.getThemeStructure()}</CodeBlock>
         </Paper>
 
