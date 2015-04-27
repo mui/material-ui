@@ -49,9 +49,7 @@ class GetStarted extends React.Component {
           <p>
             Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>.
             Use <a href="http://browserify.org/">browserify</a> and <a href="https://github.com/andreypopp/reactify">reactify</a> for
-            dependency management and JSX transformation. The CSS framework is written in <a href="http://lesscss.org/">Less</a>,
-            so you&apos;ll need to compile that as well. For <a href="http://www.sass-lang.com/">Sass</a> users, <a href="https://github.com/gpbl/material-ui-sass">material-ui-sass</a> contains
-            the .scss version of the Less framework.
+            dependency management and JSX transformation. 
           </p>
 
           <h3 className="mui-font-style-title">React-Tap-Event-Plugin</h3>
@@ -79,16 +77,12 @@ class GetStarted extends React.Component {
           </mui.Paper>
 
           <h2 className="mui-font-style-headline">Customization</h2>
-          <p>The styles are separated into 2 less files:</p>
-          <li>dist/less/scaffolding.less</li>
-          <li>dist/less/components.less</li>
+          <p>Material-UI components have their styles defined inline. There are two approaches to overriding these styles:</p>
+          <li><a href="#/customization/inline-styles">Override individual component styles via the style prop</a></li>
+          <li><a href="#/customization/themes">Define a Theme to apply overarching style changes</a></li>
           <p>
-            This allows you to override any variables defined in custom-variables.less without having to
-            modify material-ui source files directly. For example, your main.less file could look something like this:
+            This allows you to override any variables used without having to modify material-ui source files directly.
           </p>
-          <mui.Paper className="code-example">
-            <CodeBlock>{customizationCode}</CodeBlock>
-          </mui.Paper>
 
           <h2 className="mui-font-style-headline">Examples</h2>
           <p>
