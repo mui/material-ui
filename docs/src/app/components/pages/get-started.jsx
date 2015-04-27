@@ -79,16 +79,12 @@ class GetStarted extends React.Component {
           </mui.Paper>
 
           <h2 className="mui-font-style-headline">Customization</h2>
-          <p>The styles are separated into 2 less files:</p>
-          <li>dist/less/scaffolding.less</li>
-          <li>dist/less/components.less</li>
+          <p>Material-UI components have their styles defined inline. There are two approaches to overriding these styles:</p>
+          <li><a href="#/customization/inline-styles">Override individual component styles via the style prop</a></li>
+          <li><a href="#/customization/themes">Define a Theme to apply overarching style changes</a></li>
           <p>
-            This allows you to override any variables defined in custom-variables.less without having to
-            modify material-ui source files directly. For example, your main.less file could look something like this:
+            This allows you to override any variables used without having to modify material-ui source files directly.
           </p>
-          <mui.Paper className="code-example">
-            <CodeBlock>{customizationCode}</CodeBlock>
-          </mui.Paper>
 
           <h2 className="mui-font-style-headline">Examples</h2>
           <p>

@@ -63,19 +63,11 @@ module.exports = MyAwesomeReactComponent;
 
 ## Customization
 
-The styles are separated into 2 less files:
-* src/less/scaffolding.less
-* src/less/components.less
+Material-UI components have their styles defined inline. There are two approaches to overriding these styles:
+* [Override individual component styles via the `style` prop](http://material-ui.com/#/customization/inline-styles)
+* [Define a Theme to apply overarching style changes](http://material-ui.com/#/customization/themes)
 
-This allows you to override any variables defined in [custom-variables.less](https://github.com/callemall/material-ui/blob/master/src/less/variables/custom-variables.less) without having to modify material-ui source files directly. For example, your main.less file could look something like this:
-```less
-@import "node_modules/material-ui/src/less/scaffolding.less";
-
-//Define a custom less file to override any variables defined in scaffolding.less
-@import "my-custom-overrides.less";
-
-@import "node_modules/material-ui/src/less/components.less";
-```
+This allows you to override variables used by components without having to modify material-ui source files directly.
 
 ## Examples
 There are 2 projects that you can look at to help you get started. The first project can be found in the [example folder](https://github.com/callemall/material-ui/tree/master/example). This is a basic project that shows how you can consume material-ui components in your own project.
