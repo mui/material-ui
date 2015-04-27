@@ -49,9 +49,7 @@ class GetStarted extends React.Component {
           <p>
             Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>.
             Use <a href="http://browserify.org/">browserify</a> and <a href="https://github.com/andreypopp/reactify">reactify</a> for
-            dependency management and JSX transformation. The CSS framework is written in <a href="http://lesscss.org/">Less</a>,
-            so you&apos;ll need to compile that as well. For <a href="http://www.sass-lang.com/">Sass</a> users, <a href="https://github.com/gpbl/material-ui-sass">material-ui-sass</a> contains
-            the .scss version of the Less framework.
+            dependency management and JSX transformation. 
           </p>
 
           <h3 className="mui-font-style-title">React-Tap-Event-Plugin</h3>

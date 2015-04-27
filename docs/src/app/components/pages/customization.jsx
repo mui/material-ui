@@ -1,7 +1,7 @@
 var React = require('react'),
   PageWithNav = require('./page-with-nav.jsx');
 
-class CssFramework extends React.Component {
+class Customization extends React.Component {
 
   render() {
     var menuItems = [
@@ -17,4 +17,4 @@ class CssFramework extends React.Component {
 
 }
 
-module.exports = CssFramework;
+module.exports = Customization;
