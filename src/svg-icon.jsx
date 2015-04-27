@@ -9,30 +9,18 @@ var SvgIcon = React.createClass({
     theme: React.PropTypes.object
   },
 
-  getInitialState: function() {
-    return {
-      isHovered: false,
-    };
-  },
-
   getTheme: function() {
     return this.context.theme.palette;
   },
 
   getStyles: function() {
-    var styles = {
-      root: {
-        display: 'inline-block',
-        height: '24px',
-        width: '24px',
-        userSelect: 'none',
-        fill: this.getTheme().textColor
-      },
-      rootWhenHovered: {
-
-      }
+    return {
+      display: 'inline-block',
+      height: '24px',
+      width: '24px',
+      userSelect: 'none',
+      fill: this.getTheme().textColor
     };
-    return styles;
   },
 
   render: function() {
@@ -48,7 +36,7 @@ var SvgIcon = React.createClass({
         {...other}
         viewBox="0 0 24 24"
         style={this.mergeAndPrefix(
-          this.getStyles().root, 
+          this.getStyles(), 
           this.props.style)}>
             {this.props.children}
       </svg>

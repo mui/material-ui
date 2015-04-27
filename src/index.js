@@ -26,7 +26,7 @@ module.exports = {
   RadioButtonGroup: require('./radio-button-group'),
   RaisedButton: require('./raised-button'),
   Slider: require('./slider'),
-  SvgIcon: require('./svg-icons/svg-icon'),
+  SvgIcon: require('./svg-icon'),
   Icons: {
     NavigationMenu: require('./svg-icons/navigation-menu'),
     NavigationChevronLeft: require('./svg-icons/navigation-chevron-left'),

@@ -1,5 +1,5 @@
 var React = require('react');
-var SvgIcon = require('./svg-icon');
+var SvgIcon = require('../svg-icon');
 
 var ToggleCheckBoxOutlineBlank = React.createClass({
 
