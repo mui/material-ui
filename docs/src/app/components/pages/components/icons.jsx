@@ -4,13 +4,13 @@ var FontIcon = mui.FontIcon;
 var ComponentDoc = require('../../component-doc.jsx');
 var ActionHome = require('../../svg-icons/action-home.jsx');
 
-var FontIconPage = React.createClass({
+class FontIconPage extends React.Component {
 
-	render: function() {
+	render() {
     var fontIconCode =
       '<FontIcon className="muidocs-icon-action-home"/>';
 
-    var svgIconCode = 
+    var svgIconCode =
       '/** action-home.jsx */\n' +
       'var React = require(\'react\');\n' +
       'var mui = require(\'mui\');\n' +
@@ -31,26 +31,28 @@ var FontIconPage = React.createClass({
       '<ActionHome/>\n' +
       '...';
 
-    var fontIconDesc = 
-              <p className="mui-font-style-subhead-1">
-                This component will render any icon defined in any style sheets included in your 
-                project. We are using <a title="Google's Material Design Icons GitHub" 
-                href="https://github.com/google/material-design-icons">Google&#39;s Material Design 
-                Icons</a> for our documentation site along with some custom icons. You can use  
-                sites like <a title="Icomoon website" href="https://icomoon.io/">IcoMoon</a> for 
-                generating custom font files. To use FontIcons, add your stylesheet to your project 
-                and reference the icon&#39;s className in the "className" prop.
-              </p>;
+    var fontIconDesc = (
+      <p className="mui-font-style-subhead-1">
+        This component will render any icon defined in any style sheets included in your
+        project. We are using <a title="Google's Material Design Icons GitHub"
+        href="https://github.com/google/material-design-icons">Google&#39;s Material Design
+        Icons</a> for our documentation site along with some custom icons. You can use
+        sites like <a title="Icomoon website" href="https://icomoon.io/">IcoMoon</a> for
+        generating custom font files. To use FontIcons, add your stylesheet to your project
+        and reference the icon&#39;s className in the "className" prop.
+      </p>
+    );
 
-    var svgIconDesc = 
-              <p className="mui-font-style-subhead-1">
-                Alternatively, it is possible to include svg icons using mui.SvgIcon to 
-                create a custom svg component. Here we are creating the ActionHome 
-                SvgIcon for this docs site, and using it in some seperate component. 
-                Custom SvgIcon components can be included as children for other Material 
-                UI components that use icons such as <a title="Example of SvgIcon usage" 
-                href="#/components/icon-buttons">IconButtons</a>.
-              </p>;
+    var svgIconDesc = (
+      <p className="mui-font-style-subhead-1">
+        Alternatively, it is possible to include svg icons using mui.SvgIcon to
+        create a custom svg component. Here we are creating the ActionHome
+        SvgIcon for this docs site, and using it in some seperate component.
+        Custom SvgIcon components can be included as children for other Material
+        UI components that use icons such as <a title="Example of SvgIcon usage"
+        href="#/components/icon-buttons">IconButtons</a>.
+      </p>
+    );
 
     var componentInfo = [];
 
@@ -74,6 +76,6 @@ var FontIconPage = React.createClass({
 		);
 	}
 
-});
+}
 
 module.exports = FontIconPage;

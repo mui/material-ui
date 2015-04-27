@@ -1,26 +1,35 @@
 var React = require('react');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
-var mui = require('mui');
-var AppBar = mui.AppBar;
-var AppCanvas = mui.AppCanvas;
-var Menu = mui.Menu;
-var IconButton = mui.IconButton;
 var AppLeftNav = require('./app-left-nav.jsx');
+var mui = require('mui');
 
-var Master = React.createClass({
+var ThemeManager = new mui.Styles.ThemeManager();
 
-  mixins: [Router.State],
+var { AppBar, AppCanvas, Menu, IconButton } = mui;
 
-  render: function() {
+class Master extends React.Component {
 
-    var title = 
+  constructor() {
+    super();
+    this._onLeftIconButtonTouchTap = this._onLeftIconButtonTouchTap.bind(this);
+  }
+
+  getChildContext() {
+    return {
+      theme: ThemeManager.getCurrentTheme()
+    }
+  }
+
+  render() {
+    var title =
       this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('css-framework') ? 'Css Framework' :
+      this.context.router.isActive('customization') ? 'Customization' :
       this.context.router.isActive('components') ? 'Components' : '';
+
     var githubButton = (
       <IconButton
-        className="github-icon-button"
+        iconStyle={{color: '#FFF', fill: '#FFF'}}
         iconClassName="muidocs-icon-custom-github"
         href="https://github.com/callemall/material-ui"
         linkButton={true} />
@@ -31,11 +40,10 @@ var Master = React.createClass({
 
         <AppBar
           className="mui-dark-theme"
-          onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}
+          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
           title={title}
-          zDepth={0}>
-          {githubButton}
-        </AppBar>
+          zDepth={0}
+          iconElementRight={githubButton}/>
 
         <AppLeftNav ref="leftNav" />
 
@@ -43,7 +51,7 @@ var Master = React.createClass({
 
         <div className="footer full-width-section mui-dark-theme">
           <p>
-            Hand crafted with love by the engineers at <a href="http://call-em-all.com">Call-Em-All</a> and our 
+            Hand crafted with love by the engineers at <a href="http://call-em-all.com">Call-Em-All</a> and our
             awesome <a href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
           </p>
           {githubButton}
@@ -51,12 +59,19 @@ var Master = React.createClass({
 
       </AppCanvas>
     );
-  },
+  }
 
-  _onMenuIconButtonTouchTap: function() {
+  _onLeftIconButtonTouchTap() {
     this.refs.leftNav.toggle();
   }
-  
-});
+}
+
+Master.contextTypes = {
+  router: React.PropTypes.func
+};
+
+Master.childContextTypes = {
+  theme: React.PropTypes.object
+};
 
 module.exports = Master;
