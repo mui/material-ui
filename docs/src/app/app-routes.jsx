@@ -71,7 +71,7 @@ var AppRoutes = (
       <Route name="tabs" handler={Tabs} />
       <Route name="text-fields" handler={TextFields} />
       <Route name="toolbars" handler={Toolbars} />
-      <Redirect from="/components" to="buttons" />
+      <Redirect from="/components" to="appbar" />
     </Route>
 
     <DefaultRoute handler={Home}/>
