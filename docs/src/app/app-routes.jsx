@@ -51,7 +51,7 @@ var AppRoutes = (
       <Route name="colors" handler={Colors} />
       <Route name="themes" handler={Themes} />
       <Route name="inline-styles" handler={InlineStyles} />
-      <Redirect from="/customization" to="inline-styles" />
+      <Redirect from="/customization" to="themes" />
     </Route>
 
     <Route name="components" handler={Components}>

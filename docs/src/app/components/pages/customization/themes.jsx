@@ -48,7 +48,7 @@ class ThemesPage extends React.Component {
 
 	render() {
 
-    var usageCode = 
+    var usageCodeES6 = 
           'var React = require(\'react\');\n' +
           'var mui = require(\'mui\');\n' +
           'var ThemeManager = new mui.Styles.ThemeManager();\n\n' +
@@ -57,13 +57,31 @@ class ThemesPage extends React.Component {
           '  getChildContext() { \n' +
           '    return {\n' +
           '      theme: ThemeManager.getCurrentTheme()\n' +
-          '    }\n' +
+          '    };\n' +
           '  }\n' +
           '};\n\n' +
           '// Important!\n' +
           'OuterMostParentComponent.childContextTypes = {\n' +
           '  theme: React.PropTypes.object\n' +
           '};\n\n' +
+          'module.exports = OuterMostParentComponent;';
+
+    var usageCodeES5 = 
+          'var React = require(\'react\');\n' +
+          'var mui = require(\'mui\');\n' +
+          'var ThemeManager = new mui.Styles.ThemeManager();\n\n' +
+          'var OuterMostParentComponent = React.createClass ({\n' +
+          '  // Important!\n' +
+          '  childContextTypes: {\n' +
+          '    theme: React.PropTypes.object\n' +
+          '  },\n\n' +
+          '  // Important!\n' +
+          '  getChildContext: function() { \n' +
+          '    return {\n' +
+          '      theme: ThemeManager.getCurrentTheme()\n' +
+          '    };\n' +
+          '  }\n' +
+          '});\n\n' +
           'module.exports = OuterMostParentComponent;';
 
     var customComponentCode = 
@@ -175,7 +193,14 @@ class ThemesPage extends React.Component {
           access to the theme.
         </p>
         <Paper className="code-example">
-          <CodeBlock>{usageCode}</CodeBlock>
+          <Tabs>
+            <Tab label="ES6">
+              <CodeBlock>{usageCodeES6}</CodeBlock>
+            </Tab>
+            <Tab label="ES5">
+              <CodeBlock>{usageCodeES5}</CodeBlock>
+            </Tab>
+          </Tabs>
         </Paper>
         <p>
           <b>Important:</b> The code above is <u>required</u> when using Material-UI. Without it, 
@@ -183,18 +208,6 @@ class ThemesPage extends React.Component {
           a result. Keep in mind that the user is responsible for updating CSS classes to be in 
           sync with theme properties, because Material-UI components only use inline-styles.
         </p>
-
-
-        <h3 className="mui-font-style-title">Custom Themes</h3>
-        <p>
-          To see an example containing all theme variables, checkout our <a href="https://github.com/callemall/material-ui/blob/master/src/styles/themes/light-theme.js">
-          light-theme</a>. The code-block below defines the structure needed to have a valid custom 
-          theme. Note that if a property is not defined in the custom theme, the default will be 
-          what is defined in our light theme.
-        </p>
-        <Paper>
-          <CodeBlock>{this.getThemeStructure()}</CodeBlock>
-        </Paper>
 
 
         <h3 className="mui-font-style-title">Overriding Theme Variables</h3>
@@ -211,8 +224,6 @@ class ThemesPage extends React.Component {
         </Paper>
 
 
-
-
         <h3 className="mui-font-style-title">Giving Custom React Components Access to Theme</h3>
         <p>
           If you would only like to create a React component with access to Theme, include the code 
@@ -222,6 +233,18 @@ class ThemesPage extends React.Component {
         </p>
         <Paper>
           <CodeBlock>{customComponentCode}</CodeBlock>
+        </Paper>
+
+
+        <h3 className="mui-font-style-title">Custom Themes</h3>
+        <p>
+          To see an example containing all theme variables, checkout our <a href="https://github.com/callemall/material-ui/blob/master/src/styles/themes/light-theme.js">
+          light-theme</a>. The code-block below defines the structure needed to have a valid custom 
+          theme. Note that if a property is not defined in the custom theme, the default will be 
+          what is defined in our light theme.
+        </p>
+        <Paper>
+          <CodeBlock>{this.getThemeStructure()}</CodeBlock>
         </Paper>
 
       </div>
@@ -497,7 +520,8 @@ class ThemesPage extends React.Component {
             <div className="component-examples-container">
               <DatePicker
                 hintText="Landscape Dialog"
-                mode="landscape"/>
+                mode="landscape"
+                style={{width: '100%'}}/>
             </div>
             <div className="component-examples-container">
               <DropDownMenu menuItems={menuItems} />
