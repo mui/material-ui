@@ -63,8 +63,9 @@ module.exports = MyAwesomeReactComponent;
 ## Customization
 
 Material-UI components have their styles defined inline. There are two approaches to overriding these styles:
-* [Override individual component styles via the `style` prop](http://material-ui.com/#/customization/inline-styles)
-* [Define a Theme to apply overarching style changes](http://material-ui.com/#/customization/themes)
+
+* Override individual component styles via the `style` prop
+* Define a Theme to apply overarching style changes
 
 This allows you to override variables used by components without having to modify material-ui source files directly.
 
