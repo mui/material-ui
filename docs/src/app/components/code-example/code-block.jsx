@@ -1,17 +1,23 @@
 var React = require('react'),
   hljs = require('highlight.js');
 
-var CodeBlock = React.createClass({
+class CodeBlock extends React.Component {
 
-  componentDidMount: function() {
+  constructor() {
+    super();
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
+  }
+
+  componentDidMount() {
     hljs.highlightBlock(React.findDOMNode(this));
-  },
+  }
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     hljs.highlightBlock(React.findDOMNode(this));
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <pre className="code-block">
         <code>{this.props.children}</code>
@@ -19,6 +25,6 @@ var CodeBlock = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = CodeBlock;

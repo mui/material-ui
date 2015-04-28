@@ -1,3 +1,50 @@
+## 0.8.0 (Pre-release)
+###### _TBD_
+
+##### Breaking Changes
+- Refactored all CSS into Javascript (#30, #316)
+  - All Material-UI components now have their styles defined inline. This solves 
+    many problems with CSS as mentions in [@vjeux's presentation](https://speakerdeck.com/vjeux/react-css-in-js) 
+    such polluting the global namespace with classes that really should be 
+    component specific. In addition to the benefits mentioned in the 
+    presentation, inline styles allow Material-UI to become CSS preprocessor 
+    agnostic and make Themeing much more dynamic and simple.
+    [Read our CSS in JS discussion](https://github.com/callemall/material-ui/issues/30)
+  - Upgrade path:
+    - *If you are overriding component CSS classes:* Redefine your overrides as 
+      an object following [React's inline styles format](https://facebook.github.io/react/tips/inline-styles.html),
+      then pass it into the material-ui component via the `style` prop. These 
+      changes are applied to the root element of the component. If you are 
+      overriding a nested element of the component, check the component's
+      documentation and see if there is a style prop available for that nested 
+      element. If a style prop does not exist for the component's nested element 
+      that you are trying to override, [submit an issue](https://github.com/callemall/material-ui/issues/new) 
+      requesting to have it added.
+    - *If you are using any of Material-UI's Less files:* These files have been 
+      refactored into their [own javascript files](https://github.com/callemall/material-ui/tree/css-in-js/src/styles) 
+      and can be accessed like so `var FILENAME = require('material-ui').Styles.FILENAME;`.
+      Material-UI has moved away from being a CSS Framework to being simply a 
+      set of React components.
+
+##### General
+- Themes have been added (#202)
+- Requiring individual components is now supported (#363)
+  - An example would be: `var SvgIcon = require('material-ui/lib/svg-icon);`
+  - The `/lib` folder in Material-UI contains the file structure needed when referencing individual components. 
+
+## 0.7.5
+###### _Apr. 27, 2015_
+
+###### General
+- Removed deprecation warnings by replacing `this.getDOMNode()` with `React.findDOMNode()` (#558)
+- Replaced `process.NODE_ENV` with `process.env.NODE_ENV` (#573)
+
+###### Components
+- DropDownMenu
+  - Fixed `props is not defined` error when `onChange` is invoked (#556)
+- Floating Action Button
+  - Fixed alignment bug on Chrome when using FAB as a link (#574)
+
 ## 0.7.4
 ###### _Apr. 21, 2015_
 

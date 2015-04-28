@@ -4,17 +4,17 @@ var React = require('react'),
   mui = require('mui'),
   Menu = mui.Menu;
 
-var PageWithNav = React.createClass({
+class PageWithNav extends React.Component {
 
-  mixins: [Router.Navigation, Router.State],
+  constructor() {
+    super();
+    this._getSelectedIndex = this._getSelectedIndex.bind(this);
+    this._onMenuItemClick = this._onMenuItemClick.bind(this);
+  }
 
-  propTypes: {
-    menuItems: React.PropTypes.array
-  },
-
-  render: function() {
+  render() {
     return (
-      <div className="mui-app-content-canvas page-with-nav">
+      <div className="app-content-canvas page-with-nav">
         <div className="page-with-nav-content">
           <RouteHandler />
         </div>
@@ -28,22 +28,30 @@ var PageWithNav = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
-  _getSelectedIndex: function() {
-    var menuItems = this.props.menuItems,
-      currentItem;
+  _getSelectedIndex() {
+    var menuItems = this.props.menuItems;
+    var currentItem;
 
     for (var i = menuItems.length - 1; i >= 0; i--) {
       currentItem = menuItems[i];
       if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
-    };
-  },
+    }
+  }
 
-  _onMenuItemClick: function(e, index, item) {
+  _onMenuItemClick(e, index, item) {
     this.context.router.transitionTo(item.route);
   }
   
-});
+}
+
+PageWithNav.propTypes = {
+  menuItems: React.PropTypes.array
+};
+
+PageWithNav.contextTypes = {
+  router: React.PropTypes.func
+};
 
 module.exports = PageWithNav;

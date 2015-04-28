@@ -1,0 +1,38 @@
+.component-examples {
+  .clearfix();
+
+
+
+  .component-examples-group,
+  .component-examples-group-centered,
+  .component-examples-group-slider, {
+    float: left;
+    width: 100%;
+    margin-top: 16px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    
+    .component-examples-container {
+    	margin-bottom: 16px;
+    	min-height: 24px;
+  		text-align: left;
+  	}
+  }
+
+  .component-examples-group-centered {
+  	.component-examples-container {
+  		text-align: center;
+  	}
+  }
+
+  .component-examples-group-slider, {
+  	margin-top: 0;
+  }
+
+  @media @device-medium {
+    .component-examples-group,
+    .component-examples-group-centered {
+      width: 33%;
+    }
+  }
+}

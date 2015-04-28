@@ -1,18 +1,14 @@
 var React = require('react');
 var mui = require('mui');
-var DropDownIcon = mui.DropDownIcon;
-var DropDownMenu = mui.DropDownMenu;
-var FontIcon = mui.FontIcon;
-var RaisedButton = mui.RaisedButton;
-var Toolbar = mui.Toolbar;
-var ToolbarGroup = mui.ToolbarGroup;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var ToolbarPage = React.createClass({
+var {DropDownIcon, DropDownMenu, FontIcon, RaisedButton, Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} = mui;
 
-  render: function() {
+class ToolbarPage extends React.Component {
 
-    var code = 
+  render() {
+
+    var code =
       'var filterOptions = [\n' +
       '  { payload: \'1\', text: \'All Broadcasts\' },\n' +
       '  { payload: \'2\', text: \'All Voice\' },\n' +
@@ -26,30 +22,70 @@ var ToolbarPage = React.createClass({
       '  { payload: \'1\', text: \'Download\' },\n' +
       '  { payload: \'2\', text: \'More Info\' }\n' +
       '];\n\n' +
-      '<Toolbar>\n' + 
+      '<Toolbar>\n' +
       '  <ToolbarGroup key={0} float="left">\n' +
       '    <DropDownMenu menuItems={filterOptions} />\n' +
       '  </ToolbarGroup>\n' +
       '  <ToolbarGroup key={1} float="right">\n' +
-      '    <FontIcon className="mui-icon-pie" />\n' +
+      '    <ToolbarTitle text="Options" />\n' +
       '    <FontIcon className="mui-icon-sort" />\n' +
       '    <DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />\n' +
-      '    <span className="mui-toolbar-separator">&nbsp;</span>\n' +
+      '    <ToolbarSeparator/>\n' +
       '    <RaisedButton label="Create Broadcast" primary={true} />\n' +
       '  </ToolbarGroup>\n' +
       '</Toolbar>';
 
-    var componentInfo = [{
-      name: 'ToolbarGroup',
-        infoArray: [
-          {
-            name: 'float',
-            type: 'string',
-            header: 'optional',
-            desc: 'Optional pull "left" or "right"'
-          }
-        ]
-    }];
+    var desc = 'Toolbars are collections of components stacked horizontally ' +
+               'against each other. Toolbars provide greater versatility than ' +
+               'appBars. AppBars are a subset of toolbars. The following ' + 
+               'toolbar components can help organize your layout. Note that ' +
+               'every component listed here (including Toolbar) have a style ' +
+               'prop which overrides the inline-styles of their root element.'
+
+    var componentInfo = [
+      {
+        name: 'ToolbarGroup',
+          infoArray: [
+            {
+              name: 'Description',
+              desc: 'Toolbar Group contains a collection of components for you. ' +
+                    'It is recommended that all components in a Toolbar are ' +
+                    'contained within a ToolbarGroup.'
+            },
+            {
+              name: 'float',
+              type: 'string',
+              header: 'optional',
+              desc: 'Optional pull "left" or "right"'
+            }
+          ]
+      },
+      {
+        name: 'ToolbarSeparator',
+          infoArray: [
+            {
+              name: 'Description',
+              desc: 'A vertical bar used to separate groups of components. It ' +
+                    'is used to easily organize components.'
+            }
+          ]
+      },
+      {
+        name: 'ToolbarTitle',
+          infoArray: [
+            {
+              name: 'Description',
+              desc: 'Simply a string of text that is displayed in the Toolbar.'
+            },
+            {
+              name: 'text',
+              type: 'string',
+              header: 'optional',
+              desc: 'The text to be displayed for the element.'
+            }
+          ]
+      },
+    ];
 
     var filterOptions = [
       { payload: '1', text: 'All Broadcasts' },
@@ -69,18 +105,18 @@ var ToolbarPage = React.createClass({
       <ComponentDoc
         name="Toolbars"
         code={code}
-        componentInfo={componentInfo}
-      >
+        desc={desc}
+        componentInfo={componentInfo}>
 
         <Toolbar>
           <ToolbarGroup key={0} float="left">
             <DropDownMenu menuItems={filterOptions} />
           </ToolbarGroup>
           <ToolbarGroup key={1} float="right">
-            <FontIcon className="muidocs-icon-custom-pie" />
+            <ToolbarTitle text="Options" />
             <FontIcon className="muidocs-icon-custom-sort" />
             <DropDownIcon iconClassName="muidocs-icon-navigation-expand-more" menuItems={iconMenuItems} />
-            <span className="mui-toolbar-separator">&nbsp;</span>
+            <ToolbarSeparator/>
             <RaisedButton label="Create Broadcast" primary={true} />
           </ToolbarGroup>
         </Toolbar>
@@ -89,6 +125,6 @@ var ToolbarPage = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = ToolbarPage;

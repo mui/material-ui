@@ -1,13 +1,8 @@
 var React = require('react');
 
-var ComponentInfo = React.createClass({
+class ComponentInfo extends React.Component {
 
-  propTypes: {
-    name: React.PropTypes.string.isRequired,
-    infoArray: React.PropTypes.array.isRequired
-  },
-
-  render: function() {
+  render() {
     var propElements = [],
       typesSpan;
 
@@ -38,6 +33,11 @@ var ComponentInfo = React.createClass({
     );
   }
 
-});
+}
+
+ComponentInfo.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  infoArray: React.PropTypes.array.isRequired
+};
 
 module.exports = ComponentInfo;
