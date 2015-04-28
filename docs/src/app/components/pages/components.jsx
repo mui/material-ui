@@ -20,6 +20,7 @@ class Components extends React.Component {
       { route: 'snackbar', text: 'Snackbar'},
       { route: 'tabs', text: 'Tabs'},
       { route: 'text-fields', text: 'Text Fields'},
+      { route: 'time-picker', text: 'Time Picker'},
       { route: 'toolbars', text: 'Toolbars'},
     ];
 
