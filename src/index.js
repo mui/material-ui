@@ -44,6 +44,7 @@ module.exports = {
   Tab: require('./tabs/tab'),
   Tabs: require('./tabs/tabs'),
   Toggle: require('./toggle'),
+  TimePicker: require('./time-picker'),
   TextField: require('./text-field'),
   Toolbar: require('./toolbar/toolbar'),
   ToolbarGroup: require('./toolbar/toolbar-group'),

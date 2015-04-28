@@ -122,6 +122,14 @@ var LightTheme = {
         backgroundColor: '#323232',
         actionColor: palette.accent1Color
       },
+      timePicker: {
+        color: Colors.white,
+        textColor: Colors.grey600,
+        accentColor: palette.primary1Color,
+        clockColor: Colors.black,
+        selectColor: palette.primary2Color,
+        selectTextColor: Colors.white
+      },
       toggle: {
         thumbOnColor: palette.primary1Color,
         thumbOffColor: Colors.grey50,
