@@ -1,4 +1,5 @@
-var Modernizr = require('../utils/modernizr.custom');
+var isBrowser = typeof window !== 'undefined' ? true : false;
+var Modernizr = isBrowser ? require('../utils/modernizr.custom') : undefined;
 
 module.exports = {
 
@@ -15,15 +16,15 @@ module.exports = {
   },
 
   single: function(key) {
-    return Modernizr.prefixed(key);
+    return isBrowser ? Modernizr.prefixed(key) : key;
   },
 
   singleHyphened: function(key) {
     var str = this.single(key);
 
-    return str.replace(/([A-Z])/g, function(str,m1){ 
+    return !str ? key : str.replace(/([A-Z])/g, function(str,m1){
       return '-' + m1.toLowerCase();
     }).replace(/^ms-/,'-ms-');
   }
 
-}
+};
