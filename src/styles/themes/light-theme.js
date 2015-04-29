@@ -161,6 +161,6 @@ var LightTheme = {
 
     return obj;
   }
-}
+};
 
 module.exports = LightTheme;
