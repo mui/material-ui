@@ -1,4 +1,4 @@
-var isBrowser = typeof window !== 'undefined' ? true : false;
+var isBrowser = typeof window !== 'undefined';
 var Modernizr = isBrowser ? require('../utils/modernizr.custom') : undefined;
 
 module.exports = {
