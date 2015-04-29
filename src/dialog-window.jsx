@@ -49,11 +49,16 @@ var DialogWindow = React.createClass({
 
   componentDidMount: function() {
     this._positionDialog();
+    window.addEventListener('resize', this._positionDialog);
     if (this.props.openImmediately) {
       this.refs.dialogOverlay.preventScrolling();
       this._onShow();
       this._focusOnAction();
     }
+  },
+
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this._positionDialog);
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -211,7 +216,7 @@ var DialogWindow = React.createClass({
     //Reset the height in case the window was resized.
     dialogWindow.style.height = '';
 
-    var paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64;
+    var paddingTop = Math.max(((containerHeight - dialogWindowHeight) / 2) - 64, 0);
 
     //Vertically center the dialog window, but make sure it doesn't
     //transition to that position.
