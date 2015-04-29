@@ -1,9 +1,21 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
 var React = require('react');
-var SvgIcon = require('../../../../src/js/svg-icons/svg-icon.jsx');
+var mui = require('material-ui');
+var SvgIcon = mui.SvgIcon;
+var ThemeManager = new mui.Styles.ThemeManager();
 
 var Main = React.createClass({
+
+  childContextTypes: {
+    theme: React.PropTypes.object
+  },
+
+  getChildContext: function() {
+    return {
+      theme: ThemeManager.getCurrentTheme()
+    };
+  },
 
   render: function() {
 
