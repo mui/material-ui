@@ -16,14 +16,15 @@ var LeftNav = React.createClass({
   },
 
   propTypes: {
+    className: React.PropTypes.string,
     docked: React.PropTypes.bool,
     header: React.PropTypes.element,
-    onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
-    selectedIndex: React.PropTypes.number,
-    className: React.PropTypes.string,
+    onChange: React.PropTypes.func,
     onNavOpen: React.PropTypes.func,
-    onNavClose: React.PropTypes.func
+    onNavClose: React.PropTypes.func,
+    openRight: React.PropTypes.bool,
+    selectedIndex: React.PropTypes.number
   },
 
   windowListeners: {
@@ -77,7 +78,7 @@ var LeftNav = React.createClass({
   },
 
   getStyles: function() {
-    var x = ((-1 * this.getTheme().width) - 10) + 'px';
+    var x = (this.props.openRight ? 1 : -1) * (this.getTheme().width + 10) + 'px';
     var styles = {
       root: {
         height: '100%',
@@ -101,6 +102,10 @@ var LeftNav = React.createClass({
       },
       rootWhenNotOpen: {
         transform: 'translate3d(' + x + ', 0, 0)'
+      },
+      rootWhenOpenRight: {
+        left: 'auto',
+        right: '0'
       }
     };
     styles.menuItemLink = this.mergeAndPrefix(styles.menuItem, {
@@ -132,6 +137,7 @@ var LeftNav = React.createClass({
           rounded={false}
           style={this.mergeAndPrefix(
             styles.root, 
+            this.props.openRight && styles.rootWhenOpenRight,
             !this.state.open && styles.rootWhenNotOpen,
             this.props.style)}>
             {this.props.header}
