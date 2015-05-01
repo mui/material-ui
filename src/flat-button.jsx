@@ -10,7 +10,7 @@ var FlatButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -38,11 +38,11 @@ var FlatButton = React.createClass({
   },
 
   getThemeButton: function() {
-    return this.context.theme.component.button;
+    return this.context.muiTheme.component.button;
   },
 
   getTheme: function() {
-    return this.context.theme.component.flatButton;
+    return this.context.muiTheme.component.flatButton;
   },
 
   getStyles: function() {
@@ -68,7 +68,7 @@ var FlatButton = React.createClass({
       },
       label: {
         position: 'relative',
-        padding: '0px ' + this.context.theme.spacing.desktopGutterLess + 'px',
+        padding: '0px ' + this.context.muiTheme.spacing.desktopGutterLess + 'px',
       }
     };
     return styles;

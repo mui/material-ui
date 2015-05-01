@@ -14,7 +14,7 @@ var EnhancedSwitch = React.createClass({
   mixins: [WindowListenable, StylePropable],
   
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -96,7 +96,7 @@ var EnhancedSwitch = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.palette;
+    return this.context.muiTheme.palette;
   },
 
   getStyles: function() {

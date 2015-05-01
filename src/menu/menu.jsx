@@ -18,7 +18,7 @@ var NestedMenuItem = React.createClass({
   mixins: [ClickAwayable, StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -55,7 +55,7 @@ var NestedMenuItem = React.createClass({
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   render: function() {
@@ -65,7 +65,7 @@ var NestedMenuItem = React.createClass({
 
     var iconCustomArrowDropRight = {
       marginRight: this.getSpacing().desktopGutterMini * -1,
-      color: this.context.theme.component.dropDownMenu.accentColor
+      color: this.context.muiTheme.component.dropDownMenu.accentColor
     };
 
     var {
@@ -146,7 +146,7 @@ var Menu = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -198,11 +198,11 @@ var Menu = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.menu
+    return this.context.muiTheme.component.menu
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getStyles: function() {
@@ -217,8 +217,8 @@ var Menu = React.createClass({
         backgroundColor: this.getTheme().containerBackgroundColor
       },
       subheader: {
-        paddingLeft: this.context.theme.component.menuSubheader.padding,
-        paddingRight: this.context.theme.component.menuSubheader.padding
+        paddingLeft: this.context.muiTheme.component.menuSubheader.padding,
+        paddingRight: this.context.muiTheme.component.menuSubheader.padding
       },
       hideable: {
         opacity: (this.props.visible) ? 1 : 0,

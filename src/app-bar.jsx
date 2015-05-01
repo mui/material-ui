@@ -10,7 +10,7 @@ var AppBar = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -43,15 +43,15 @@ var AppBar = React.createClass({
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getThemeVariables: function() {
-    return this.context.theme.component.appBar;
+    return this.context.muiTheme.component.appBar;
   },
 
   getStyles: function(){
-    var iconButtonSize = this.context.theme.component.button.iconButtonSize;
+    var iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
     var styles = {
       root: {
         zIndex: 5,

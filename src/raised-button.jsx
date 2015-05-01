@@ -11,7 +11,7 @@ var RaisedButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -64,11 +64,11 @@ var RaisedButton = React.createClass({
   },
 
   getThemeButton: function() {
-    return this.context.theme.component.button;
+    return this.context.muiTheme.component.button;
   },
 
   getTheme: function() {
-    return this.context.theme.component.raisedButton;
+    return this.context.muiTheme.component.raisedButton;
   },
 
   getStyles: function() {
@@ -102,7 +102,7 @@ var RaisedButton = React.createClass({
         textTransform: 'uppercase',
         fontWeight: Typography.fontWeightMedium,
         margin: 0,
-        padding: '0px ' + this.context.theme.spacing.desktopGutterLess + 'px',
+        padding: '0px ' + this.context.muiTheme.spacing.desktopGutterLess + 'px',
         userSelect: 'none',
         lineHeight: this.getThemeButton().height + 'px',
         color:  this._getLabelColor(),

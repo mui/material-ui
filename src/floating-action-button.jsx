@@ -19,7 +19,7 @@ var RaisedButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -75,7 +75,7 @@ var RaisedButton = React.createClass({
 
 
   getTheme: function() {
-    return this.context.theme.component.floatingActionButton;
+    return this.context.muiTheme.component.floatingActionButton;
   },
 
   _getIconColor: function() {

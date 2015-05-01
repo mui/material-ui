@@ -9,7 +9,7 @@ var Toggle = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -30,7 +30,7 @@ var Toggle = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.toggle;
+    return this.context.muiTheme.component.toggle;
   },
 
   getStyles: function() {
@@ -108,7 +108,7 @@ var Toggle = React.createClass({
     };
 
     var rippleColor =  this.state.switched ? 
-      this.getTheme().thumbOnColor : this.context.theme.component.textColor;
+      this.getTheme().thumbOnColor : this.context.muiTheme.component.textColor;
 
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",

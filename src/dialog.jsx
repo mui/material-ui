@@ -8,7 +8,7 @@ var Dialog = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -20,7 +20,7 @@ var Dialog = React.createClass({
     var styles = {
       title: {
         padding: gutter + gutter + '0 ' + gutter,
-        color: this.context.theme.palette.textColor
+        color: this.context.muiTheme.palette.textColor
       },
       content: {
         padding: Spacing.desktopGutter

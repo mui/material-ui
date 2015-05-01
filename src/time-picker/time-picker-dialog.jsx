@@ -11,7 +11,7 @@ var TimePickerDialog = React.createClass({
   mixins: [StylePropable, WindowListenable],
   
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -27,7 +27,7 @@ var TimePickerDialog = React.createClass({
 
  
   getTheme: function() {
-    return this.context.theme.component.timePicker;
+    return this.context.muiTheme.component.timePicker;
   },
   render: function() {
     var {

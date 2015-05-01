@@ -6,7 +6,7 @@ var Paper = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -29,10 +29,10 @@ var Paper = React.createClass({
   getStyles: function() {
     var styles = {
       root: {
-        backgroundColor: this.context.theme.component.paper.backgroundColor,
+        backgroundColor: this.context.muiTheme.component.paper.backgroundColor,
         transition: Transitions.easeOut(),
         boxSizing: 'border-box',
-        fontFamily: this.context.theme.contentFontFamily,
+        fontFamily: this.context.muiTheme.contentFontFamily,
         WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
         boxShadow: this._getZDepthShadows(this.props.zDepth).boxShadow,
         borderRadius: this.props.circle ? '50%' : 
@@ -43,7 +43,7 @@ var Paper = React.createClass({
         width: '100%', 
         height: '100%',
         boxSizing: 'border-box',
-        fontFamily: this.context.theme.contentFontFamily,
+        fontFamily: this.context.muiTheme.contentFontFamily,
         WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
         boxShadow: this._getZDepthShadows(this.props.zDepth).bottomBoxShadow,
         borderRadius: this.props.circle ? '50%' : 

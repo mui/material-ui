@@ -42,7 +42,7 @@ class ThemesPage extends React.Component {
 
   getChildContext() {
     return {
-      theme: ThemeManager.getCurrentTheme()
+      muiTheme: ThemeManager.getCurrentTheme()
     }
   }
 
@@ -56,13 +56,13 @@ class ThemesPage extends React.Component {
           '  // Important!\n' +
           '  getChildContext() { \n' +
           '    return {\n' +
-          '      theme: ThemeManager.getCurrentTheme()\n' +
+          '      muiTheme: ThemeManager.getCurrentTheme()\n' +
           '    };\n' +
           '  }\n' +
           '};\n\n' +
           '// Important!\n' +
           'OuterMostParentComponent.childContextTypes = {\n' +
-          '  theme: React.PropTypes.object\n' +
+          '  muiTheme: React.PropTypes.object\n' +
           '};\n\n' +
           'module.exports = OuterMostParentComponent;';
 
@@ -73,12 +73,12 @@ class ThemesPage extends React.Component {
           'var OuterMostParentComponent = React.createClass ({\n' +
           '  // Important!\n' +
           '  childContextTypes: {\n' +
-          '    theme: React.PropTypes.object\n' +
+          '    muiTheme: React.PropTypes.object\n' +
           '  },\n\n' +
           '  // Important!\n' +
           '  getChildContext: function() { \n' +
           '    return {\n' +
-          '      theme: ThemeManager.getCurrentTheme()\n' +
+          '      muiTheme: ThemeManager.getCurrentTheme()\n' +
           '    };\n' +
           '  }\n' +
           '});\n\n' +
@@ -86,7 +86,7 @@ class ThemesPage extends React.Component {
 
     var customComponentCode = 
           'CustomReactComponent.contextTypes = {\n' +
-          '  theme: React.PropTypes.object\n' +
+          '  muiTheme: React.PropTypes.object\n' +
           '}';
 
     var desc = 'ThemeManager allows you to manipulate the current theme of your website. Themes are ' +
@@ -614,7 +614,7 @@ class ThemesPage extends React.Component {
       'class MenusPage extends React.Component {\n\n' +
       '  getChildContext() { \n' +
       '    return {\n' +
-      '      theme: ThemeManager.getCurrentTheme()\n' +
+      '      muiTheme: ThemeManager.getCurrentTheme()\n' +
       '    }\n' +
       '  }\n\n' +
       '  componentWillMount() {\n' +
@@ -627,7 +627,7 @@ class ThemesPage extends React.Component {
       '  }\n' +
       '}\n\n' +
       'MenusPage.childContextTypes = {\n' +
-      '  theme: React.PropTypes.object\n' +
+      '  muiTheme: React.PropTypes.object\n' +
       '};'
     );
   }
@@ -661,7 +661,7 @@ class ThemesPage extends React.Component {
 }
 
 ThemesPage.childContextTypes = {
-  theme: React.PropTypes.object
+  muiTheme: React.PropTypes.object
 };
 
 module.exports = ThemesPage;

@@ -13,7 +13,7 @@ var DialogWindow = React.createClass({
   mixins: [WindowListenable, StylePropable],
   
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -62,11 +62,11 @@ var DialogWindow = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme;
+    return this.context.muiTheme;
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getStyles: function() {

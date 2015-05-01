@@ -11,7 +11,7 @@ var TextField = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -68,7 +68,7 @@ var TextField = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.palette;
+    return this.context.muiTheme.palette;
   },
 
   getStyles: function() {
@@ -80,7 +80,7 @@ var TextField = React.createClass({
         height: (this.props.floatingLabelText) ? 72 : 48,
         display: 'inline-block',
         position: 'relative',
-        fontFamily: this.context.theme.contentFontFamily,
+        fontFamily: this.context.muiTheme.contentFontFamily,
         transition: Transitions.easeOut('200ms', 'height')
       },
       error: {

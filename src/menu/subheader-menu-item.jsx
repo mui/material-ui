@@ -7,7 +7,7 @@ var SubheaderMenuItem = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -18,11 +18,11 @@ var SubheaderMenuItem = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.menuSubheader;
+    return this.context.muiTheme.component.menuSubheader;
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getStyles: function() {

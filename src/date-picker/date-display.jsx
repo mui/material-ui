@@ -10,7 +10,7 @@ var DateDisplay = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -42,7 +42,7 @@ var DateDisplay = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.datePicker;
+    return this.context.muiTheme.component.datePicker;
   },
 
   render: function() {

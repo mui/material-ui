@@ -193,7 +193,7 @@ class MenusPage extends React.Component {
 
   getChildContext() {
     return {
-      theme: ThemeManager.getCurrentTheme()
+      muiTheme: ThemeManager.getCurrentTheme()
     };
   }
 
@@ -366,11 +366,11 @@ class MenusPage extends React.Component {
 }
 
 MenusPage.contextTypes = {
-  theme: React.PropTypes.object
+  muiTheme: React.PropTypes.object
 };
 
 MenusPage.childContextTypes = {
-  theme: React.PropTypes.object
+  muiTheme: React.PropTypes.object
 };
 
 module.exports = MenusPage;

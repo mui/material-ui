@@ -14,7 +14,7 @@ var MenuItem = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -53,11 +53,11 @@ var MenuItem = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.menuItem;
+    return this.context.muiTheme.component.menuItem;
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getStyles: function() {
@@ -68,7 +68,7 @@ var MenuItem = React.createClass({
         lineHeight: this.getTheme().height + 'px',
         paddingLeft: this.getTheme().padding,
         paddingRight: this.getTheme().padding,
-        color: this.context.theme.palette.textColor
+        color: this.context.muiTheme.palette.textColor
       },
       number: {
         float: 'right',
@@ -96,10 +96,10 @@ var MenuItem = React.createClass({
         top: -12,
         position: 'relative',
         fontWeight: 300,
-        color: this.context.theme.palette.textColor
+        color: this.context.muiTheme.palette.textColor
       },
       toggle: {
-        marginTop: ((this.getTheme().height - this.context.theme.component.radioButton.size) / 2),
+        marginTop: ((this.getTheme().height - this.context.muiTheme.component.radioButton.size) / 2),
         float: 'right',
         width: 42
       },
@@ -111,7 +111,7 @@ var MenuItem = React.createClass({
       },
       rootWhenDisabled: {
         cursor: 'default',
-        color: this.context.theme.palette.disabledColor
+        color: this.context.muiTheme.palette.disabledColor
       }
     };
     return styles;

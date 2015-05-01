@@ -17,7 +17,7 @@ class Master extends React.Component {
 
   getChildContext() {
     return {
-      theme: ThemeManager.getCurrentTheme()
+      muiTheme: ThemeManager.getCurrentTheme()
     }
   }
 
@@ -71,7 +71,7 @@ Master.contextTypes = {
 };
 
 Master.childContextTypes = {
-  theme: React.PropTypes.object
+  muiTheme: React.PropTypes.object
 };
 
 module.exports = Master;

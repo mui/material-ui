@@ -12,7 +12,7 @@ var DropDownMenu = React.createClass({
   mixins: [StylePropable, ClickAwayable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   // The nested styles for drop-down-menu are modified by toolbar and possibly 
@@ -57,16 +57,16 @@ var DropDownMenu = React.createClass({
  },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getTextColor: function() {
-    return this.context.theme.palette.textColor;
+    return this.context.muiTheme.palette.textColor;
   },
 
   getStyles: function(){
-    var accentColor = this.context.theme.component.dropDownMenu.accentColor;
-    var backgroundColor = this.context.theme.component.menu.backgroundColor;
+    var accentColor = this.context.muiTheme.component.dropDownMenu.accentColor;
+    var backgroundColor = this.context.muiTheme.component.menu.backgroundColor;
     var styles = {
       root: {
         transition: Transitions.easeOut(),
@@ -92,7 +92,7 @@ var DropDownMenu = React.createClass({
         position: 'absolute',
         top: ((this.getSpacing().desktopToolbarHeight - 24) / 2),
         right: this.getSpacing().desktopGutterLess,
-        fill: this.context.theme.component.dropDownMenu.accentColor
+        fill: this.context.muiTheme.component.dropDownMenu.accentColor
       },
       label: {
         transition: Transitions.easeOut(),

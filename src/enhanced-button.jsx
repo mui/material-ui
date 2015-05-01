@@ -10,7 +10,7 @@ var EnhancedButton = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -64,7 +64,7 @@ var EnhancedButton = React.createClass({
         background: 'none',
         boxSizing: 'border-box',
         font: 'inherit',
-        fontFamily: this.context.theme.contentFontFamily,
+        fontFamily: this.context.muiTheme.contentFontFamily,
         WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
         WebkitApperance: 'button',
         cursor: 'pointer'

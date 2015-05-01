@@ -3,7 +3,7 @@ var React = require('react');
 var AppCanvas = React.createClass({
   
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -14,13 +14,13 @@ var AppCanvas = React.createClass({
 
     var styles = {
       height: '100%',
-      backgroundColor: this.context.theme.palette.canvasColor,
+      backgroundColor: this.context.muiTheme.palette.canvasColor,
       WebkitFontSmoothing: 'antialiased'
     };
 
     var stylesAppBar = {
       position: 'fixed', 
-      height: this.context.theme.component.appBar.height
+      height: this.context.muiTheme.component.appBar.height
     };
 
     var newChildren = React.Children.map(this.props.children, function(currentChild) {

@@ -12,7 +12,7 @@ var LeftNav = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -69,11 +69,11 @@ var LeftNav = React.createClass({
   },
 
   getThemePalette: function() {
-    return this.context.theme.palette;
+    return this.context.muiTheme.palette;
   },
 
   getTheme: function() {
-    return this.context.theme.component.leftNav;
+    return this.context.muiTheme.component.leftNav;
   },
 
   getStyles: function() {
@@ -96,8 +96,8 @@ var LeftNav = React.createClass({
         height: '100%'
       },
       menuItem: {
-        height: this.context.theme.spacing.desktopLeftNavMenuItemHeight,
-        lineDeight: this.context.theme.spacing.desktopLeftNavMenuItemHeight
+        height: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight,
+        lineDeight: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight
       },
       rootWhenNotOpen: {
         transform: 'translate3d(' + x + ', 0, 0)'

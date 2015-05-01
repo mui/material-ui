@@ -6,7 +6,7 @@ var ToolbarTitle = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -14,13 +14,13 @@ var ToolbarTitle = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.toolbar;
+    return this.context.muiTheme.component.toolbar;
   },
 
   render: function() {
 
     var styles = this.mergeAndPrefix({
-      paddingRight: this.context.theme.spacing.desktopGutterLess,
+      paddingRight: this.context.muiTheme.spacing.desktopGutterLess,
       lineHeight: this.getTheme().height + 'px',
       fontSize: this.getTheme().titleFontSize + 'px',
       display: 'inline-block',
