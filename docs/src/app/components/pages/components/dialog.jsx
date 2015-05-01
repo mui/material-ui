@@ -31,8 +31,7 @@ class DialogPage extends React.Component {
       '  title="Dialog With Standard Actions"\n' +
       '  actions={standardActions}\n' +
       '  actionFocus="submit"\n' +
-      '  modal={this.state.modal}\n' +
-      '  dismissOnClickAway={this.state.dismissOnClickAway}>\n' +
+      '  modal={this.state.modal}>\n' +
       '  The actions in this window are created from the json that\'s passed in. \n' +
       '</Dialog>\n\n' +
       '//Custom Actions\n' +
@@ -49,8 +48,7 @@ class DialogPage extends React.Component {
       '<Dialog\n' +
       '  title="Dialog With Custom Actions"\n' +
       '  actions={customActions}\n' +
-      '  modal={this.state.modal}\n' +
-      '  dismissOnClickAway={this.state.dismissOnClickAway}>\n' +
+      '  modal={this.state.modal}>\n' +
       '  The actions in this window were passed in as an array of react objects.\n' +
       '</Dialog>\n';
 
