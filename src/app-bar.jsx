@@ -61,6 +61,7 @@ var AppBar = React.createClass({
       },
       title: {
         float: 'left',
+        margin: 0,
         paddingTop: 0,
         letterSpacing: 0,
         fontSize: '24px',

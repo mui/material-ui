@@ -19,6 +19,7 @@ var Dialog = React.createClass({
     var gutter = Spacing.desktopGutter + 'px ';
     var styles = {
       title: {
+        margin: 0,
         padding: gutter + gutter + '0 ' + gutter,
         color: this.context.muiTheme.palette.textColor
       },
