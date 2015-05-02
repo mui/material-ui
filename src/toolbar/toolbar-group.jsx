@@ -116,7 +116,7 @@ var ToolbarGroup = React.createClass({
           });
         case 'ToolbarSeparator' : case 'ToolbarTitle' : 
           return React.cloneElement(currentChild, {
-            style: styles.span
+            style: this.mergeStyles(styles.span, currentChild.props.style)
           });
         default:
           return currentChild;
