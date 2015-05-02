@@ -18,6 +18,11 @@ var ToolbarTitle = React.createClass({
   },
 
   render: function() {
+    var {
+      style,
+      text,
+      ...other
+    } = this.props;
 
     var styles = this.mergeAndPrefix({
       paddingRight: this.context.muiTheme.spacing.desktopGutterLess,
@@ -25,10 +30,10 @@ var ToolbarTitle = React.createClass({
       fontSize: this.getTheme().titleFontSize + 'px',
       display: 'inline-block',
       position: 'relative',
-    }, this.props.style);
+    }, style);
 
     return (
-      <span className={this.props.className} style={styles}>{this.props.text}</span>
+      <span style={styles} {...other} >{text}</span>
     );
   }
 
