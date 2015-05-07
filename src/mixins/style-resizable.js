@@ -2,9 +2,9 @@ var React = require('react');
 var Events = require('../utils/events');
 
 var Sizes = {
-  SMALL: 'small',
-  MEDIUM: 'medium',
-  LARGE: 'large'
+  SMALL: 1,
+  MEDIUM: 2,
+  LARGE: 3
 };
 
 module.exports = {
@@ -26,6 +26,10 @@ module.exports = {
 
   componentWillUnmount: function() {
     this._unbindResize();
+  },
+
+  isDeviceSize: function(desiredSize) {
+    return this.state.deviceSize === desiredSize;
   },
 
   _updateDeviceSize: function(e) {

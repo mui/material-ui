@@ -1,8 +1,16 @@
 var React = require('react');
 var mui = require('mui');
 var CodeBlock = require('../code-example/code-block.jsx');
+var FullWidthSection = require('../full-width-section.jsx');
 
 class GetStarted extends React.Component {
+
+  getStyles() {
+    return {
+      maxWidth: '650px',
+      margin: '0 auto'
+    };
+  }
 
   render() {
     var usageCode =
@@ -35,7 +43,7 @@ class GetStarted extends React.Component {
 
     return (
       <div className="get-started-page app-content-canvas">
-        <div className="full-width-section">
+        <FullWidthSection style={this.getStyles()}>
 
           <h2 className="mui-font-style-headline">Prerequisites</h2>
           <p>
@@ -96,7 +104,7 @@ class GetStarted extends React.Component {
             build instructions.
           </p>
 
-        </div>
+        </FullWidthSection>
       </div>
     );
   }

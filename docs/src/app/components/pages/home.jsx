@@ -3,6 +3,8 @@ var Router = require('react-router');
 var mui = require('mui');
 var RaisedButton = mui.RaisedButton;
 var HomeFeature = require('./home-feature.jsx');
+var FullWidthSection = require('../full-width-section.jsx');
+var Typography = mui.Styles.Typography;
 var ThemeManager = new mui.Styles.ThemeManager().getCurrentTheme();
 
 class HomePage extends React.Component {
@@ -26,12 +28,30 @@ class HomePage extends React.Component {
     }
   }
 
+  getStyles() {
+    return {
+      root: {
+
+      },
+      featureContainer: {
+        maxWidth: '906px'
+        // margin: '0 auto'
+      },
+      purposeContent: {
+        maxWidth: '700px',
+        padding: 0,
+        margin: 0,
+        fontStyle: Typography.fontStyleTitle,
+        fontWeight: Typography.fontWeightLight
+      }
+    };
+  }
+
   render() {
 
     return (
       <div className="app-content-canvas">
-        <div className="home-page-hero full-width-section">
-          <div className="home-page-hero-content">
+        <FullWidthSection className="home-page-hero">
             <img className="svg-logo" src="images/material-ui-logo.svg" />
             <div className="tagline">
               <h1 className="brand-name">material ui</h1>
@@ -55,39 +75,30 @@ class HomePage extends React.Component {
                 style={this._raisedButton().githubStyle} 
                 labelStyle={this._raisedButton().label}/>
             </div>
-          </div>
-        </div>
+        </FullWidthSection>
 
-        <div className="full-width-section home-purpose">
-          <p className="full-width-section-content">
-            Material-UI came about from our love of&nbsp;
-            <a href="http://facebook.github.io/react/">React</a> and&nbsp;
-            <a href="https://www.google.com/design/spec/material-design/introduction.html">
-              Google's Material Design
-            </a>. We're currently using it on a project at&nbsp;
-            <a href="https://www.call-em-all.com/">Call-Em-All</a> and plan on adding to it 
-            and making it better in the coming months.
-          </p>
-        </div>
+        <FullWidthSection useContent={true} contentStyle={this.getStyles().purposeContent} contentType="p" className="home-purpose">
+          Material-UI came about from our love of&nbsp;
+          <a href="http://facebook.github.io/react/">React</a> and&nbsp;
+          <a href="https://www.google.com/design/spec/material-design/introduction.html">
+            Google's Material Design
+          </a>. We're currently using it on a project at&nbsp;
+          <a href="https://www.call-em-all.com/">Call-Em-All</a> and plan on adding to it 
+          and making it better in the coming months.
+        </FullWidthSection>
 
-        <div className="full-width-section home-features">
+        <FullWidthSection useContent={true} contentStyle={this.getStyles().featureContainer} className="home-features">
+          <HomeFeature heading="Get Started" route="get-started" img="images/get-started.svg" />
+          <HomeFeature heading="Customization" route="customization" img="images/css-framework.svg" />
+          <HomeFeature heading="Components" route="components" img="images/components.svg" />
+        </FullWidthSection>
 
-          <div className="feature-container full-width-section-content">
-            <HomeFeature heading="Get Started" route="get-started" img="images/get-started.svg" />
-            <HomeFeature heading="Customization" route="customization" img="images/css-framework.svg" />
-            <HomeFeature heading="Components" route="components" img="images/components.svg" />
-          </div>
-
-        </div>
-
-        <div className="full-width-section home-contribute">
-          <div className="full-width-section-content">
-            <h3>
-              Want to help make this <span className="no-wrap">project awesome?</span> <span className="no-wrap">Check out our repo.</span>
-            </h3>
-            <RaisedButton label="GitHub" primary={true} linkButton={true} href="https://github.com/callemall/material-ui" />
-          </div>
-        </div>
+        <FullWidthSection useContent={true} className="home-contribute">
+          <h3>
+            Want to help make this <span className="no-wrap">project awesome?</span> <span className="no-wrap">Check out our repo.</span>
+          </h3>
+          <RaisedButton label="GitHub" primary={true} linkButton={true} href="https://github.com/callemall/material-ui" />
+        </FullWidthSection>
 
       </div>
     );
