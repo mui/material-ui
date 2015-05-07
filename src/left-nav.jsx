@@ -1,5 +1,6 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
+var Modernizr = require('./utils/modernizr.custom');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var WindowListenable = require('./mixins/window-listenable');
@@ -40,16 +41,23 @@ var LeftNav = React.createClass({
 
   getInitialState: function() {
     return {
-      open: this.props.docked
+      open: this.props.docked,
+      swiping: false
     };
   },
   
   componentDidMount: function() {
     this._updateMenuHeight();
+    this._enableSwipeHandling();
   },
   
   componentDidUpdate: function(prevProps, prevState) {
     this._updateMenuHeight();
+    this._enableSwipeHandling();
+  },
+
+  componentWillUnmount: function() {
+    this._disableSwipeHandling();
   },
 
   toggle: function() {
@@ -78,7 +86,7 @@ var LeftNav = React.createClass({
   },
 
   getStyles: function() {
-    var x = (this.props.openRight ? 1 : -1) * (this.getTheme().width + 10) + 'px';
+    var x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX()) + 'px';
     var styles = {
       root: {
         height: '100%',
@@ -87,7 +95,8 @@ var LeftNav = React.createClass({
         zIndex: 10,
         left: 0,
         top: 0,
-        transition: Transitions.easeOut(),
+        transform: 'translate3d(' + x + ', 0, 0)',
+        transition: !this.state.swiping && Transitions.easeOut(),
         backgroundColor: this.getTheme().color,
         overflow: 'hidden'
       },
@@ -99,9 +108,6 @@ var LeftNav = React.createClass({
       menuItem: {
         height: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight,
         lineDeight: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight
-      },
-      rootWhenNotOpen: {
-        transform: 'translate3d(' + x + ', 0, 0)'
       },
       rootWhenOpenRight: {
         left: 'auto',
@@ -125,7 +131,12 @@ var LeftNav = React.createClass({
     var overlay;
 
     var styles = this.getStyles();
-    if (!this.props.docked) overlay = <Overlay show={this.state.open} onTouchTap={this._onOverlayTouchTap} />;
+    if (!this.props.docked) {
+      overlay = <Overlay ref="overlay"
+                         show={this.state.open}
+                         transitionEnabled={!this.state.swiping}
+                         onTouchTap={this._onOverlayTouchTap} />;
+    }
 
 
     return (
@@ -135,10 +146,10 @@ var LeftNav = React.createClass({
           ref="clickAwayableElement"
           zDepth={2}
           rounded={false}
+          transitionEnabled={!this.state.swiping}
           style={this.mergeAndPrefix(
             styles.root, 
             this.props.openRight && styles.rootWhenOpenRight,
-            !this.state.open && styles.rootWhenNotOpen,
             this.props.style)}>
             {this.props.header}
             <Menu
@@ -186,6 +197,73 @@ var LeftNav = React.createClass({
   
   _onWindowResize: function(e) {
     this._updateMenuHeight();
+  },
+
+  _getMaxTranslateX: function() {
+    return this.getTheme().width + 10;
+  },
+
+  _getTranslateMultiplier: function() {
+    return this.props.openRight ? 1 : -1;
+  },
+
+  _enableSwipeHandling: function() {
+    var overlay = React.findDOMNode(this.refs.overlay);
+    if (this.state.open && !this.props.docked) {
+      overlay.addEventListener('touchstart', this._onOverlayTouchStart);
+    } else {
+      this._disableSwipeHandling();
+    }
+  },
+
+  _disableSwipeHandling: function() {
+    var overlay = React.findDOMNode(this.refs.overlay);
+    if (overlay) {
+      overlay.removeEventListener('touchstart', this._onOverlayTouchStart);
+    }
+  },
+
+  _onOverlayTouchStart: function(e) {
+    var swipeStartX = e.touches[0].pageX;
+    this.setState({
+      swiping: true,
+      swipeStartX: swipeStartX
+    });
+
+    var overlay = React.findDOMNode(this.refs.overlay);
+    overlay.addEventListener('touchmove', this._onOverlayTouchMove);
+    overlay.addEventListener('touchend', this._onOverlayTouchEnd);
+    overlay.addEventListener('touchcancel', this._onOverlayTouchEnd);
+  },
+
+  _onOverlayTouchMove: function(e) {
+    e.preventDefault();
+    var currentX = e.touches[0].pageX;
+    var translateX = Math.min(
+                       Math.max(
+                         this._getTranslateMultiplier() * (currentX - this.state.swipeStartX),
+                         0
+                       ),
+                       this._getMaxTranslateX()
+                     );
+
+    var leftNav = React.findDOMNode(this.refs.clickAwayableElement);
+    leftNav.style[Modernizr.prefixed('transform')] =
+      'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
+    this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
+  },
+
+  _onOverlayTouchEnd: function() {
+    this.setState({
+      swiping: false
+    });
+
+    this.close();
+
+    var overlay = React.findDOMNode(this.refs.overlay);
+    overlay.removeEventListener('touchmove', this._onOverlayTouchMove);
+    overlay.removeEventListener('touchend', this._onOverlayTouchEnd);
+    overlay.removeEventListener('touchcancel', this._onOverlayTouchEnd);
   }
   
 });

@@ -16,13 +16,15 @@ var Paper = React.createClass({
     innerStyle: React.PropTypes.object,
     rounded: React.PropTypes.bool,
     zDepth: React.PropTypes.oneOf([0,1,2,3,4,5]),
+    transitionEnabled: React.PropTypes.bool
   },
 
   getDefaultProps: function() {
     return {
       innerClassName: '',
       rounded: true,
-      zDepth: 1
+      zDepth: 1,
+      transitionEnabled: true
     };
   },
 
@@ -30,7 +32,7 @@ var Paper = React.createClass({
     var styles = {
       root: {
         backgroundColor: this.context.muiTheme.component.paper.backgroundColor,
-        transition: Transitions.easeOut(),
+        transition: this.props.transitionEnabled && Transitions.easeOut(),
         boxSizing: 'border-box',
         fontFamily: this.context.muiTheme.contentFontFamily,
         WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
