@@ -33,6 +33,7 @@ module.exports = {
   },
 
   _updateDeviceSize: function(e) {
+    console.log('updating device size');
     var width = window.innerWidth;
     if (width >= 992) this.setState({deviceSize: Sizes.LARGE});
     else if (width >= 768) this.setState({deviceSize: Sizes.MEDIUM});
@@ -40,10 +41,10 @@ module.exports = {
   },
 
   _bindResize: function() {
-    Events.on(document, 'resize', this._updateDeviceSize);
+    Events.on(window, 'resize', this._updateDeviceSize);
   },
 
   _unbindResize: function() {
-    Events.off(document, 'resize', this._updateDeviceSize);
+    Events.off(window, 'resize', this._updateDeviceSize);
   }
 };
