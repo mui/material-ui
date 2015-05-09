@@ -10,7 +10,7 @@ var ColorManipulator = require('../../utils/color-manipulator');
 
 var LightTheme = {
   spacing: Spacing,
-  fontFamily: 'Roboto, sans-serif',
+  contentFontFamily: 'Roboto, sans-serif',
   getPalette: function() {
     return {
       primary1Color: Colors.cyan500,
