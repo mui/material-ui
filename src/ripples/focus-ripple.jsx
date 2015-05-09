@@ -1,4 +1,5 @@
 var React = require('react');
+var Modernizr = require('../utils/modernizr.custom');
 var StylePropable = require('../mixins/style-propable');
 var Transitions = require('../styles/transitions');
 var Colors = require('../styles/colors');
@@ -63,14 +64,14 @@ var FocusRipple = React.createClass({
     var startScale = 'scale(0.75)';
     var endScale = 'scale(0.85)';
     var innerCircle = React.findDOMNode(this.refs.innerCircle);
-    var currentScale = innerCircle.style.transform;
+    var currentScale = innerCircle.style[Modernizr.prefixed('transform')];
     var nextScale;
 
     currentScale = currentScale || startScale;
     nextScale = currentScale === startScale ?
       endScale : startScale;
 
-    innerCircle.style.transform = nextScale;
+    innerCircle.style[Modernizr.prefixed('transform')] = nextScale;
     setTimeout(this._pulsate, pulsateDuration);
   },
 
