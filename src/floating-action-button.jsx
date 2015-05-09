@@ -230,7 +230,7 @@ var RaisedButton = React.createClass({
       React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      React.findOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
+      React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
 
