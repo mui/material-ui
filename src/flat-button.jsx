@@ -143,7 +143,7 @@ var FlatButton = React.createClass({
   _handleKeyboardFocus: function(e, keyboardFocused) {
 
     if (keyboardFocused && !this.props.disabled) {
-      this.getDOMNode().style.backgroundColor = ColorManipulator.fade(ColorManipulator.lighten(this.getStyles().root.color, 0.4), 0.15);
+      this.getDOMNode().style.backgroundColor = ColorManipulator.fade(ColorManipulator.lighten(this._getColor(), 0.4), 0.15);
     } else {
       this.getDOMNode().style.backgroundColor = 'transparent';
     }
