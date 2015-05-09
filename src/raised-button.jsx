@@ -209,10 +209,10 @@ var RaisedButton = React.createClass({
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
       var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this.mergeAndPrefix(this.styles.label, this.props.labelStyle).color, amount);
+      React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.mergeAndPrefix(this.styles.label, this.props.labelStyle).color, amount);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      this.refs.overlay.getDOMNode().style.backgroundColor = 'transparent';
+      React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
 });

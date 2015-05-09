@@ -163,7 +163,7 @@ var DropDownMenu = React.createClass({
 
   _setWidth: function() {
     var el = React.findDOMNode(this),
-      menuItemsDom = this.refs.menuItems.getDOMNode();
+      menuItemsDom = React.findDOMNode(this.refs.menuItems);
 
     el.style.width = menuItemsDom.offsetWidth + 'px';
   },
