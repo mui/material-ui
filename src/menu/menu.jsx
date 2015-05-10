@@ -99,7 +99,7 @@ var NestedMenuItem = React.createClass({
 
   _positionNestedMenu: function() {
 // <<<<<<< HEAD:src/menu/menu.jsx
-    var el = this.getDOMNode();
+    var el = React.findDOMNode(this);
     var nestedMenu = React.findDOMNode(this.refs.nestedMenu);
 // =======
 //     var el = React.findDOMNode(this),
