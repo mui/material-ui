@@ -1,9 +1,54 @@
 var React = require('react');
 var mui = require('mui');
+var ClearFix = mui.ClearFix;
 var Colors = mui.Styles.Colors;
 var ColorManipulator = mui.Utils.ColorManipulator;
 
+var {StyleResizable, StylePropable} = mui.Mixins;
+
 var ColorsPage = React.createClass({
+
+  mixins: [StyleResizable, StylePropable],
+
+  getStyles: function() {
+    var styles = {
+      root: {
+        //null
+      },
+      name: {
+        display: 'block',
+        marginBottom: '60px'
+      },
+      hex: {
+        float: 'right'
+      },
+      colorGroup: {
+        float: 'left',
+        padding: '16px 0',
+        display: 'block',
+        margin: '0'
+      },
+      colorGroupWhenSmall: {
+        width: '50%'
+      },
+      colorGroupWhenMedium: {
+        width: '33%'
+      },
+      colorGroupWhenLarge: {
+        width: '25%'
+      },
+    };
+
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
+      styles.colorGroup = this.mergeStyles(styles.colorGroup, styles.colorGroupWhenLarge);
+    } else if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
+      styles.colorGroup = this.mergeStyles(styles.colorGroup, styles.colorGroupWhenMedium);
+    } else {
+      styles.colorGroup = this.mergeStyles(styles.colorGroup, styles.colorGroupWhenSmall);   
+    }
+
+    return styles;
+  },
 
   render: function() {
     var mainColors = [
@@ -34,13 +79,13 @@ var ColorsPage = React.createClass({
           in <a href={githubLink}>styles/colors.js</a>. 
         </p>
 
-        <div className="color-palette">
+        <ClearFix>
           {colorGroups}
 
-          <div className="neutral">
+          <div>
             {neutralGroups}
           </div>
-        </div>
+        </ClearFix>
       </div>
     );
   },
@@ -50,6 +95,7 @@ var ColorsPage = React.createClass({
     var altPalette = ['A100','A200','A400','A700'];
     var cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
     var colors = [];
+    var colorGroupStyle = this.getStyles().colorGroup;
 
     mainPalette.forEach(function(mainValue) {
       colors.push(this._getColorBlock(cssColor, mainValue));
@@ -62,7 +108,7 @@ var ColorsPage = React.createClass({
     }
 
     return (
-      <ul className="color-group">
+      <ul style={colorGroupStyle}>
         {this._getColorBlock(cssColor, 500, color)}
         {colors}
       </ul>
@@ -77,15 +123,19 @@ var ColorsPage = React.createClass({
     var blockTitle;
 
     if (contrastRatio < 7) fgColor = Colors.fullWhite;
-    if (colorTitle) blockTitle = <span className="name">{colorTitle}</span>;
+    if (colorTitle) blockTitle = <span style={this.getStyles().name}>{colorTitle}</span>;
 
     var styles = {
       backgroundColor: bgColor,
       color: fgColor,
+      listStyle: 'none',
+      padding: '15px'
     };
 
+    // if (colorValue === 900) styles.paddingBottom = '16px';
+
     return (
-      <li style={styles} className="color">{blockTitle}{bgColorText}</li>
+      <li style={styles}>{blockTitle}{bgColorText}</li>
     );
   }
 

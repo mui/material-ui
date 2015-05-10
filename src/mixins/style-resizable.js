@@ -29,11 +29,10 @@ module.exports = {
   },
 
   isDeviceSize: function(desiredSize) {
-    return this.state.deviceSize === desiredSize;
+    return this.state.deviceSize >= desiredSize;
   },
 
   _updateDeviceSize: function(e) {
-    console.log('updating device size');
     var width = window.innerWidth;
     if (width >= 992) this.setState({deviceSize: Sizes.LARGE});
     else if (width >= 768) this.setState({deviceSize: Sizes.MEDIUM});

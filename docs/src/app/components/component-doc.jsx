@@ -3,10 +3,16 @@ var mui = require('mui');
 var Classable = mui.Mixins.Classable;
 var CodeExample = require('./code-example/code-example.jsx');
 var ComponentInfo = require('./component-info.jsx');
+var Typography = mui.Styles.Typography;
+var StylePropable = mui.Mixins.StylePropable;
 
 var ComponentDoc = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
 
   propTypes: {
     code: React.PropTypes.string.isRequired,
@@ -18,35 +24,79 @@ var ComponentDoc = React.createClass({
     componentInfo: React.PropTypes.array.isRequired
   },
 
+  getStyles: function() {
+    var borderColor = this.context.muiTheme.palette.borderColor;
+    return {
+      desc: {
+        borderBottom: 'solid 1px ' + borderColor,
+        paddingTop: '8px',
+        paddingBottom: '40px',
+        marginBottom: '24px',
+        //mui-font-style-subhead-1
+        fontSize: '15px',
+        letterSpacing: '0',
+        lineHeight: '24px',
+        color: Typography.textDarkBlack
+      },
+      ol: {
+        fontSize: '13px',
+        paddingLeft: '48px'
+      },
+      componentInfo: {
+        borderTop: 'solid 1px ' + borderColor,
+        paddingTop: '24px',
+        marginTop: '24px'
+      },
+      componentInfoWhenFirstChild: {
+        borderTop: 'none',
+        marginTop: '0',
+        paddingTop: '0'
+      },
+      headline: {
+        //headline
+        fontSize: '24px',
+        lineHeight: '32px',
+        paddingTop: '16px',
+        marginBottom: '12px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightNormal,
+        color: Typography.textDarkBlack
+      }
+    };
+  },
+
   render: function() {
-    var classes = this.getClasses("component-doc");
+    var styles = this.getStyles();
 
     var componentInfo = this.props.componentInfo.map(function(info, i) {
+      var infoStyle = styles.componentInfo;
+      if (i == 0) infoStyle = this.mergeStyles(infoStyle, styles.componentInfoWhenFirstChild);
       return (
         <ComponentInfo
           key={i}
           name={info.name}
+          style={infoStyle}
           infoArray={info.infoArray} />
       );
-    });
+    }, this);
 
     var desc = null;
 
     if (this.props.desc) {
       if ((typeof this.props.desc) == "string") {
-        desc = <p className="mui-font-style-subhead-1 component-doc-desc">{this.props.desc}</p>
+        desc = <p style={styles.desc}>{this.props.desc}</p>
       } else {
-        desc = <div className="mui-font-style-subhead-1 component-doc-desc">{this.props.desc}</div>
+        desc = <div style={styles.desc}>{this.props.desc}</div>
       }
     }
 
     var header;
     if (this.props.name.length > 0) {
-      header = <h2 className="mui-font-style-headline">{this.props.name}</h2>
+      header = <h2 style={styles.headline}>{this.props.name}</h2>
     }
 
     return (
-      <div className={classes}>
+      <div>
         
         {header}
 
@@ -56,7 +106,7 @@ var ComponentDoc = React.createClass({
 
         {desc}
 
-        <div className="component-doc-info">
+        <div>
           {componentInfo}
         </div>
 
