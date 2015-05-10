@@ -66,7 +66,7 @@ var EnhancedButton = React.createClass({
         font: 'inherit',
         fontFamily: this.context.muiTheme.contentFontFamily,
         WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-        WebkitApperance: 'button',
+        WebkitAppearance: 'button',
         cursor: 'pointer'
       },
       rootWhenLinkButton: {
