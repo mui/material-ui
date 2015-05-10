@@ -24,6 +24,10 @@ var AppCanvas = React.createClass({
     };
 
     var newChildren = React.Children.map(this.props.children, function(currentChild) {
+      if (!currentChild) { // If undefined, skip it
+        return;
+      }
+
       switch (currentChild.type.displayName) {
         case 'AppBar' : 
           return React.cloneElement(currentChild, {style: stylesAppBar});
