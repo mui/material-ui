@@ -90,6 +90,8 @@ var EnhancedSwitch = React.createClass({
       newState.switched = nextProps.toggled;
     } else if (hasCheckedLinkProp) {
       newState.switched = nextProps.checkedLink.value;
+    } else if (hasNewDefaultProp) {
+      newState.switched = nextProps.defaultSwitched;
     }
 
     if (newState.switched != undefined && (newState.switched != this.props.switched)) this.props.onParentShouldUpdate(newState.switched);
