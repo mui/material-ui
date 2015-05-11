@@ -77,7 +77,8 @@ var RaisedButton = React.createClass({
       root: {
         display: 'inline-block',
         minWidth: this.getThemeButton().minWidth,
-        height: this.getThemeButton().height
+        height: this.getThemeButton().height,
+        transition: Transitions.easeOut()
       },
       container: {
         position: 'relative',
@@ -143,8 +144,7 @@ var RaisedButton = React.createClass({
 
     return (
       <Paper 
-        style={this.mergeAndPrefix(this.styles.root, this.props.style)} 
-        innerStyle={{transition: Transitions.easeOut()}}
+        style={this.mergeAndPrefix(this.styles.root, this.props.style)}
         zDepth={this.state.zDepth}>
           <EnhancedButton {...other}
             ref="container"

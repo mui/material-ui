@@ -11,9 +11,6 @@ var Paper = React.createClass({
 
   propTypes: {
     circle: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    innerClassName: React.PropTypes.string,
-    innerStyle: React.PropTypes.object,
     rounded: React.PropTypes.bool,
     zDepth: React.PropTypes.oneOf([0,1,2,3,4,5]),
   },
@@ -34,9 +31,8 @@ var Paper = React.createClass({
         fontFamily: this.context.muiTheme.contentFontFamily,
         WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
         boxShadow: this._getZDepthShadows(this.props.zDepth),
-        borderRadius: this.props.circle ? '50%' : 
-                      this.props.rounded ? '2px' :
-                      '0px'
+        borderRadius: this.props.circle ? '50%' :
+          this.props.rounded ? '2px' : '0px'
       }
     };
     return styles;
@@ -44,7 +40,6 @@ var Paper = React.createClass({
 
   render: function() {
     var {
-      className,
       style,
       circle,
       rounded,
@@ -54,7 +49,7 @@ var Paper = React.createClass({
     var styles = this.getStyles();
 
     return (
-      <div {...other} className={this.props.className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>
         {this.props.children}
       </div>
     );

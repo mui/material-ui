@@ -23,11 +23,8 @@ var RaisedButton = React.createClass({
   },
 
   propTypes: {
-    className: React.PropTypes.string,
     iconClassName: React.PropTypes.string,
     iconStyle: React.PropTypes.object,
-    innerClassName: React.PropTypes.string,
-    innerStyle: React.PropTypes.object,
     mini: React.PropTypes.bool,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
@@ -124,9 +121,6 @@ var RaisedButton = React.createClass({
       },
       overlayWhenHovered: {
         backgroundColor: ColorManipulator.fade(this._getIconColor(), 0.4)
-      },
-      inner: {
-        transition: Transitions.easeOut()
       }
     };
     return styles;
@@ -157,8 +151,6 @@ var RaisedButton = React.createClass({
     return (
       <Paper
         style={this.mergeAndPrefix(styles.root, this.props.style)}
-        innerClassName={this.props.innerClassName}
-        innerStyle={this.mergeAndPrefix(styles.inner, this.props.innerStyle)}
         zDepth={this.state.zDepth}
         circle={true}>
 

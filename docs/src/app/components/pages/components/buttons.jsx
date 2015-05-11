@@ -166,12 +166,6 @@ class ButtonPage extends React.Component {
                   'the inline-styles of the FontIcon component.'
           },
           {
-            name: 'innerStyle',
-            type: 'object',
-            header: 'optional',
-            desc: 'Propagated down to the innerStyle prop of the component\'s Paper element.'
-          },
-          {
             name: 'linkButton',
             type: 'bool',
             header: 'default: false',
