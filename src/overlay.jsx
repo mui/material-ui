@@ -1,5 +1,4 @@
 var React = require('react');
-var Modernizr = require('./utils/modernizr.custom');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var Colors = require('./styles/colors');
@@ -27,7 +26,7 @@ var Overlay = React.createClass({
 
   setOpacity(opacity) {
     var overlay = React.findDOMNode(this);
-    overlay.style[Modernizr.prefixed('opacity')] = opacity;
+    overlay.style.opacity = opacity;
   },
 
   getStyles: function() {
