@@ -30,7 +30,8 @@ var DialogWindow = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    'keyup': '_handleWindowKeyUp',
+    'resize': '_positionDialog'
   },
 
   getDefaultProps: function() {
@@ -49,16 +50,11 @@ var DialogWindow = React.createClass({
 
   componentDidMount: function() {
     this._positionDialog();
-    window.addEventListener('resize', this._positionDialog);
     if (this.props.openImmediately) {
       this.refs.dialogOverlay.preventScrolling();
       this._onShow();
       this._focusOnAction();
     }
-  },
-
-  componentWillUnmount: function() {
-    window.removeEventListener('resize', this._positionDialog);
   },
 
   componentDidUpdate: function(prevProps, prevState) {
