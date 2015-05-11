@@ -69,23 +69,6 @@ class PaperPage extends React.Component {
             desc: 'Set to true to generate a circlular paper container.'
           },
           {
-            name: 'innerClassName',
-            type: 'string',
-            header: 'optional',
-            desc: 'The paper container consists of an outer div and inner div. ' + 
-                  'This one done in order to achieve Material Design\'s shadows. ' + 
-                  'It\'s sometimes helpful to assign an className to the inner ' +
-                  'div for styling. This property is the className for the inner ' +
-                  'div.'
-          },
-          {
-            name: 'innerStyle',
-            type: 'string',
-            header: 'optional',
-            desc: 'Similiar to innerClassName. Overrides the inline-style of ' +
-                  'the inner div.'
-          },
-          {
             name: 'rounded',
             type: 'bool',
             header: 'default: true',
@@ -96,24 +79,13 @@ class PaperPage extends React.Component {
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of Paper\'s root element (its ' +
-                  'outer div).'
+            desc: 'Override the inline-styles of Paper\'s root element.'
           },
           {
             name: 'zDepth',
             type: 'number (0-5)',
             header: 'default: 1',
             desc: 'This number represents the zDepth of the paper shadow.'
-          }
-        ]
-      },
-      {
-        name: 'Methods',
-        infoArray: [
-          {
-            name: 'getInnerContainer',
-            header: 'Paper.getInnerContainer()',
-            desc: 'Returns a reference to the inner container div.'
           }
         ]
       }
@@ -134,55 +106,55 @@ class PaperPage extends React.Component {
 
         <div className="paper-examples">
           <div className="paper-examples-group">
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={1}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={1}>
       	      <p>zDepth=1</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={2}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={2}>
       	      <p>zDepth=2</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={3}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={3}>
       	      <p>zDepth=3</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={4}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={4}>
       	      <p>zDepth=4</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={5}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={5}>
       	      <p>zDepth=5</p>
       	    </Paper>
           </div>
 
           <div className="paper-examples-group">
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={1} rounded={false}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={1} rounded={false}>
       	      <p>rounded=false</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={2} rounded={false}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={2} rounded={false}>
       	      <p>rounded=false</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={3} rounded={false}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={3} rounded={false}>
       	      <p>rounded=false</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={4} rounded={false}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={4} rounded={false}>
       	      <p>rounded=false</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={5} rounded={false}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={5} rounded={false}>
       	      <p>rounded=false</p>
       	    </Paper>
           </div>
 
           <div className="paper-examples-group">
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={1} circle={true}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={1} circle={true}>
       	      <p>circle=true</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={2} circle={true}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={2} circle={true}>
       	      <p>circle=true</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={3} circle={true}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={3} circle={true}>
       	      <p>circle=true</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={4} circle={true}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={4} circle={true}>
       	      <p>circle=true</p>
       	    </Paper>
-      	    <Paper style={styles} innerClassName="mui-paper-container" zDepth={5} circle={true}>
+      	    <Paper style={styles} className="mui-paper-container" zDepth={5} circle={true}>
       	      <p>circle=true</p>
       	    </Paper>
           </div>
