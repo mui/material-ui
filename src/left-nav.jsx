@@ -1,7 +1,7 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
-var Modernizr = require('./utils/modernizr.custom');
 var StylePropable = require('./mixins/style-propable');
+var AutoPrefix = require('./styles/auto-prefix');
 var Transitions = require('./styles/transitions');
 var WindowListenable = require('./mixins/window-listenable');
 var Overlay = require('./overlay');
@@ -42,6 +42,7 @@ var LeftNav = React.createClass({
   getInitialState: function() {
     return {
       open: this.props.docked,
+      maybeSwiping: false,
       swiping: false
     };
   },
@@ -208,62 +209,85 @@ var LeftNav = React.createClass({
   },
 
   _enableSwipeHandling: function() {
-    var overlay = React.findDOMNode(this.refs.overlay);
     if (this.state.open && !this.props.docked) {
-      overlay.addEventListener('touchstart', this._onOverlayTouchStart);
+      document.body.addEventListener('touchstart', this._onBodyTouchStart);
     } else {
       this._disableSwipeHandling();
     }
   },
 
   _disableSwipeHandling: function() {
-    var overlay = React.findDOMNode(this.refs.overlay);
-    if (overlay) {
-      overlay.removeEventListener('touchstart', this._onOverlayTouchStart);
+    document.body.removeEventListener('touchstart', this._onBodyTouchStart);
+  },
+
+  _onBodyTouchStart: function(e) {
+    var touchStartX = e.touches[0].pageX;
+    var touchStartY = e.touches[0].pageY;
+    this.setState({
+      maybeSwiping: true,
+      touchStartX: touchStartX,
+      touchStartY: touchStartY
+    });
+
+    document.body.addEventListener('touchmove', this._onBodyTouchMove);
+    document.body.addEventListener('touchend', this._onBodyTouchEnd);
+    document.body.addEventListener('touchcancel', this._onBodyTouchEnd);
+  },
+
+  _onBodyTouchMove: function(e) {
+    var currentX = e.touches[0].pageX;
+    var currentY = e.touches[0].pageY;
+
+    if (this.state.swiping) {
+      e.preventDefault();
+      var translateX = Math.min(
+                         Math.max(
+                           this._getTranslateMultiplier() * (currentX - this.state.swipeStartX),
+                           0
+                         ),
+                         this._getMaxTranslateX()
+                       );
+
+      var leftNav = React.findDOMNode(this.refs.clickAwayableElement);
+      leftNav.style[AutoPrefix.single('transform')] =
+        'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
+      this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
+    } else if (this.state.maybeSwiping) {
+      var dXAbs = Math.abs(currentX - this.state.touchStartX);
+      var dYAbs = Math.abs(currentY - this.state.touchStartY);
+      // If the user has moved his thumb ten pixels in either direction,
+      // we can safely make an assumption about whether he was intending
+      // to swipe or scroll.
+      var threshold = 10;
+
+      if (dXAbs > threshold && dYAbs <= threshold) {
+        this.setState({
+          swiping: true,
+          swipeStartX: currentX
+        });
+      } else if (dXAbs <= threshold && dYAbs > threshold) {
+        this._onBodyTouchEnd();
+      }
     }
   },
 
-  _onOverlayTouchStart: function(e) {
-    var swipeStartX = e.touches[0].pageX;
+  _onBodyTouchEnd: function() {
+    var shouldClose = false;
+
+    if (this.state.swiping) shouldClose = true;
+
     this.setState({
-      swiping: true,
-      swipeStartX: swipeStartX
-    });
-
-    var overlay = React.findDOMNode(this.refs.overlay);
-    overlay.addEventListener('touchmove', this._onOverlayTouchMove);
-    overlay.addEventListener('touchend', this._onOverlayTouchEnd);
-    overlay.addEventListener('touchcancel', this._onOverlayTouchEnd);
-  },
-
-  _onOverlayTouchMove: function(e) {
-    e.preventDefault();
-    var currentX = e.touches[0].pageX;
-    var translateX = Math.min(
-                       Math.max(
-                         this._getTranslateMultiplier() * (currentX - this.state.swipeStartX),
-                         0
-                       ),
-                       this._getMaxTranslateX()
-                     );
-
-    var leftNav = React.findDOMNode(this.refs.clickAwayableElement);
-    leftNav.style[Modernizr.prefixed('transform')] =
-      'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
-    this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
-  },
-
-  _onOverlayTouchEnd: function() {
-    this.setState({
+      maybeSwiping: false,
       swiping: false
     });
 
-    this.close();
+    // We have to call close() after setting swiping to false,
+    // because only then CSS transition is enabled.
+    if (shouldClose) this.close();
 
-    var overlay = React.findDOMNode(this.refs.overlay);
-    overlay.removeEventListener('touchmove', this._onOverlayTouchMove);
-    overlay.removeEventListener('touchend', this._onOverlayTouchEnd);
-    overlay.removeEventListener('touchcancel', this._onOverlayTouchEnd);
+    document.body.removeEventListener('touchmove', this._onBodyTouchMove);
+    document.body.removeEventListener('touchend', this._onBodyTouchEnd);
+    document.body.removeEventListener('touchcancel', this._onBodyTouchEnd);
   }
   
 });

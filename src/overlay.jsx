@@ -41,6 +41,7 @@ var Overlay = React.createClass({
         left: '-100%',
         opacity: 0,
         backgroundColor: Colors.lightBlack,
+        WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
 
         // Two ways to promote overlay to its own render layer
         willChange: 'opacity',
