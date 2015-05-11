@@ -40,10 +40,15 @@ var ComponentDoc = React.createClass({
       }
     }
 
+    var header;
+    if (this.props.name.length > 0) {
+      header = <h2 className="mui-font-style-headline">{this.props.name}</h2>
+    }
+
     return (
       <div className={classes}>
-      
-        <h2 className="mui-font-style-headline">{this.props.name}</h2>
+        
+        {header}
 
         <CodeExample code={this.props.code}>
           {this.props.children}

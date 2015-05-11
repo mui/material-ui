@@ -1,7 +1,7 @@
 {
   "name": "material-ui",
   "author": "Call-em-all Engineering Team",
-  "version": "0.7.4",
+  "version": "0.8.0",
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
@@ -39,7 +39,7 @@
   "devDependencies": {
     "react-tools": "^0.13",
     "browserify": "^7.0.3",
-    "reactify": "^0.17.1",
+    "reactify": "^1.1.0",
     "react-router": "^0.13"
   }
 }

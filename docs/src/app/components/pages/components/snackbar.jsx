@@ -4,13 +4,18 @@ var RaisedButton = mui.RaisedButton;
 var Snackbar = mui.Snackbar;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var SnackbarPage = React.createClass({
+class SnackbarPage extends React.Component {
 
-  render: function() {
-    var code = 
-      '<Snackbar\n' + 
-      '  message="Event added to your calendar"\n' + 
-      '  action="undo"\n' + 
+  constructor() {
+    super();
+    this._handleClick = this._handleClick.bind(this);
+  }
+
+  render() {
+    var code =
+      '<Snackbar\n' +
+      '  message="Event added to your calendar"\n' +
+      '  action="undo"\n' +
       '  onActionTouchTap={this._handleAction}/>\n\n' +
       '//Somewhere in our code\n' +
       '_handleAction: function() {\n' +
@@ -39,6 +44,12 @@ var SnackbarPage = React.createClass({
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the snackbar will open once mounted.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the Snackbar\'s root element.'
           }
         ]
       },
@@ -75,29 +86,29 @@ var SnackbarPage = React.createClass({
         code={code}
         componentInfo={componentInfo}>
 
-        <RaisedButton 
-          onTouchTap={this._handleClick} 
+        <RaisedButton
+          onTouchTap={this._handleClick}
           label="Add to my calendar" />
 
-        <Snackbar 
-          ref="snackbar" 
+        <Snackbar
+          ref="snackbar"
           message="Event added to your calendar"
-          action="undo" 
+          action="undo"
           onActionTouchTap={this._handleAction} />
 
       </ComponentDoc>
     );
-  },
+  }
 
-  _handleClick: function(e) {
+  _handleClick(e) {
     this.refs.snackbar.show();
-  },
+  }
 
-  _handleAction: function() {
+  _handleAction() {
     //We can add more code here! In this example, we'll just include an alert.
     alert("We removed the event from your calendar.");
   }
 
-});
+}
 
 module.exports = SnackbarPage;

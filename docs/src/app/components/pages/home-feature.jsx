@@ -4,21 +4,19 @@ var React = require('react'),
   mui = require('mui'),
   Paper = mui.Paper;
 
-var HomeFeature = React.createClass({
+class HomeFeature extends React.Component {
 
-  propTypes: {
-    heading: React.PropTypes.string,
-    route: React.PropTypes.string,
-    img: React.PropTypes.string
-  },
-
-  getInitialState: function() {
-    return {
-      zDepth: 0 
+  constructor(props) {
+    super(props);
+    this.state = {
+      zDepth: 0
     };
-  },
 
-  render: function() {
+    this._onMouseOver = this._onMouseOver.bind(this);
+    this._onMouseOut = this._onMouseOut.bind(this);
+  }
+
+  render() {
     return (
       <Paper className="home-feature" zDepth={this.state.zDepth} 
         onMouseOver={this._onMouseOver} onMouseOut={this._onMouseOut}>
@@ -26,20 +24,26 @@ var HomeFeature = React.createClass({
         <Link to={this.props.route}><img className="home-feature-image" src={this.props.img} /></Link>
       </Paper>
     );
-  },
+  }
 
-  _onMouseOver: function() {
+  _onMouseOver() {
     this.setState({
       zDepth: 4
     });
-  },
+  }
 
-  _onMouseOut: function() {
+  _onMouseOut() {
     this.setState({
       zDepth: 0
     });
   }
 
-});
+}
+
+HomeFeature.propTypes = {
+  heading: React.PropTypes.string,
+  route: React.PropTypes.string,
+  img: React.PropTypes.string
+};
 
 module.exports = HomeFeature;
