@@ -19,15 +19,12 @@ var RaisedButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
-    className: React.PropTypes.string,
     iconClassName: React.PropTypes.string,
     iconStyle: React.PropTypes.object,
-    innerClassName: React.PropTypes.string,
-    innerStyle: React.PropTypes.object,
     mini: React.PropTypes.bool,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
@@ -75,7 +72,7 @@ var RaisedButton = React.createClass({
 
 
   getTheme: function() {
-    return this.context.theme.component.floatingActionButton;
+    return this.context.muiTheme.component.floatingActionButton;
   },
 
   _getIconColor: function() {
@@ -124,9 +121,6 @@ var RaisedButton = React.createClass({
       },
       overlayWhenHovered: {
         backgroundColor: ColorManipulator.fade(this._getIconColor(), 0.4)
-      },
-      inner: {
-        transition: Transitions.easeOut()
       }
     };
     return styles;
@@ -157,8 +151,6 @@ var RaisedButton = React.createClass({
     return (
       <Paper
         style={this.mergeAndPrefix(styles.root, this.props.style)}
-        innerClassName={this.props.innerClassName}
-        innerStyle={this.mergeAndPrefix(styles.inner, this.props.innerStyle)}
         zDepth={this.state.zDepth}
         circle={true}>
 
@@ -230,7 +222,7 @@ var RaisedButton = React.createClass({
       React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      React.findOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
+      React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
 

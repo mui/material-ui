@@ -1,6 +1,7 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
 var StylePropable = require('./mixins/style-propable');
+var AutoPrefix = require('./styles/auto-prefix');
 var Transitions = require('./styles/transitions');
 var WindowListenable = require('./mixins/window-listenable');
 var Overlay = require('./overlay');
@@ -12,18 +13,19 @@ var LeftNav = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
+    className: React.PropTypes.string,
     docked: React.PropTypes.bool,
     header: React.PropTypes.element,
-    onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
-    selectedIndex: React.PropTypes.number,
-    className: React.PropTypes.string,
+    onChange: React.PropTypes.func,
     onNavOpen: React.PropTypes.func,
-    onNavClose: React.PropTypes.func
+    onNavClose: React.PropTypes.func,
+    openRight: React.PropTypes.bool,
+    selectedIndex: React.PropTypes.number
   },
 
   windowListeners: {
@@ -39,16 +41,24 @@ var LeftNav = React.createClass({
 
   getInitialState: function() {
     return {
-      open: this.props.docked
+      open: this.props.docked,
+      maybeSwiping: false,
+      swiping: false
     };
   },
   
   componentDidMount: function() {
     this._updateMenuHeight();
+    this._enableSwipeHandling();
   },
   
   componentDidUpdate: function(prevProps, prevState) {
     this._updateMenuHeight();
+    this._enableSwipeHandling();
+  },
+
+  componentWillUnmount: function() {
+    this._disableSwipeHandling();
   },
 
   toggle: function() {
@@ -69,15 +79,15 @@ var LeftNav = React.createClass({
   },
 
   getThemePalette: function() {
-    return this.context.theme.palette;
+    return this.context.muiTheme.palette;
   },
 
   getTheme: function() {
-    return this.context.theme.component.leftNav;
+    return this.context.muiTheme.component.leftNav;
   },
 
   getStyles: function() {
-    var x = ((-1 * this.getTheme().width) - 10) + 'px';
+    var x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX()) + 'px';
     var styles = {
       root: {
         height: '100%',
@@ -86,7 +96,8 @@ var LeftNav = React.createClass({
         zIndex: 10,
         left: 0,
         top: 0,
-        transition: Transitions.easeOut(),
+        transform: 'translate3d(' + x + ', 0, 0)',
+        transition: !this.state.swiping && Transitions.easeOut(),
         backgroundColor: this.getTheme().color,
         overflow: 'hidden'
       },
@@ -96,11 +107,12 @@ var LeftNav = React.createClass({
         height: '100%'
       },
       menuItem: {
-        height: this.context.theme.spacing.desktopLeftNavMenuItemHeight,
-        lineDeight: this.context.theme.spacing.desktopLeftNavMenuItemHeight
+        height: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight,
+        lineDeight: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight
       },
-      rootWhenNotOpen: {
-        transform: 'translate3d(' + x + ', 0, 0)'
+      rootWhenOpenRight: {
+        left: 'auto',
+        right: '0'
       }
     };
     styles.menuItemLink = this.mergeAndPrefix(styles.menuItem, {
@@ -120,7 +132,12 @@ var LeftNav = React.createClass({
     var overlay;
 
     var styles = this.getStyles();
-    if (!this.props.docked) overlay = <Overlay show={this.state.open} onTouchTap={this._onOverlayTouchTap} />;
+    if (!this.props.docked) {
+      overlay = <Overlay ref="overlay"
+                         show={this.state.open}
+                         transitionEnabled={!this.state.swiping}
+                         onTouchTap={this._onOverlayTouchTap} />;
+    }
 
 
     return (
@@ -130,9 +147,10 @@ var LeftNav = React.createClass({
           ref="clickAwayableElement"
           zDepth={2}
           rounded={false}
+          transitionEnabled={!this.state.swiping}
           style={this.mergeAndPrefix(
             styles.root, 
-            !this.state.open && styles.rootWhenNotOpen,
+            this.props.openRight && styles.rootWhenOpenRight,
             this.props.style)}>
             {this.props.header}
             <Menu
@@ -152,8 +170,8 @@ var LeftNav = React.createClass({
   
   _updateMenuHeight: function() {
     if (this.props.header) {
-      var container = this.refs.clickAwayableElement.getDOMNode();
-      var menu = this.refs.menuItems.getDOMNode();
+      var container = React.findDOMNode(this.refs.clickAwayableElement);
+      var menu = React.findDOMNode(this.refs.menuItems);
       var menuHeight = container.clientHeight - menu.offsetTop;
       menu.style.height = menuHeight + 'px';
     }
@@ -180,6 +198,96 @@ var LeftNav = React.createClass({
   
   _onWindowResize: function(e) {
     this._updateMenuHeight();
+  },
+
+  _getMaxTranslateX: function() {
+    return this.getTheme().width + 10;
+  },
+
+  _getTranslateMultiplier: function() {
+    return this.props.openRight ? 1 : -1;
+  },
+
+  _enableSwipeHandling: function() {
+    if (this.state.open && !this.props.docked) {
+      document.body.addEventListener('touchstart', this._onBodyTouchStart);
+    } else {
+      this._disableSwipeHandling();
+    }
+  },
+
+  _disableSwipeHandling: function() {
+    document.body.removeEventListener('touchstart', this._onBodyTouchStart);
+  },
+
+  _onBodyTouchStart: function(e) {
+    var touchStartX = e.touches[0].pageX;
+    var touchStartY = e.touches[0].pageY;
+    this.setState({
+      maybeSwiping: true,
+      touchStartX: touchStartX,
+      touchStartY: touchStartY
+    });
+
+    document.body.addEventListener('touchmove', this._onBodyTouchMove);
+    document.body.addEventListener('touchend', this._onBodyTouchEnd);
+    document.body.addEventListener('touchcancel', this._onBodyTouchEnd);
+  },
+
+  _onBodyTouchMove: function(e) {
+    var currentX = e.touches[0].pageX;
+    var currentY = e.touches[0].pageY;
+
+    if (this.state.swiping) {
+      e.preventDefault();
+      var translateX = Math.min(
+                         Math.max(
+                           this._getTranslateMultiplier() * (currentX - this.state.swipeStartX),
+                           0
+                         ),
+                         this._getMaxTranslateX()
+                       );
+
+      var leftNav = React.findDOMNode(this.refs.clickAwayableElement);
+      leftNav.style[AutoPrefix.single('transform')] =
+        'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
+      this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
+    } else if (this.state.maybeSwiping) {
+      var dXAbs = Math.abs(currentX - this.state.touchStartX);
+      var dYAbs = Math.abs(currentY - this.state.touchStartY);
+      // If the user has moved his thumb ten pixels in either direction,
+      // we can safely make an assumption about whether he was intending
+      // to swipe or scroll.
+      var threshold = 10;
+
+      if (dXAbs > threshold && dYAbs <= threshold) {
+        this.setState({
+          swiping: true,
+          swipeStartX: currentX
+        });
+      } else if (dXAbs <= threshold && dYAbs > threshold) {
+        this._onBodyTouchEnd();
+      }
+    }
+  },
+
+  _onBodyTouchEnd: function() {
+    var shouldClose = false;
+
+    if (this.state.swiping) shouldClose = true;
+
+    this.setState({
+      maybeSwiping: false,
+      swiping: false
+    });
+
+    // We have to call close() after setting swiping to false,
+    // because only then CSS transition is enabled.
+    if (shouldClose) this.close();
+
+    document.body.removeEventListener('touchmove', this._onBodyTouchMove);
+    document.body.removeEventListener('touchend', this._onBodyTouchEnd);
+    document.body.removeEventListener('touchcancel', this._onBodyTouchEnd);
   }
   
 });

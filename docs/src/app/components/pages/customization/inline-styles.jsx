@@ -3,9 +3,32 @@ var mui = require('mui');
 var CodeBlock = require('../../code-example/code-block.jsx');
 var CodeExample = require('../../code-example/code-example.jsx');
 var Checkbox = mui.Checkbox;
-
+var Typography = mui.Styles.Typography;
 
 class InlineStyles extends React.Component {
+
+  getStyles() {
+    return {
+      headline: {
+        fontSize: '24px',
+        lineHeight: '32px',
+        paddingTop: '16px',
+        marginBottom: '12px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightNormal,
+        color: Typography.textDarkBlack
+      },
+      title: {
+        fontSize: '20px',
+        lineHeight: '28px',
+        paddingTop: '19px',
+        marginBottom: '13px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightMedium,
+        color: Typography.textDarkBlack
+      }
+    }
+  }
 
 	render() {
     var codeOverrideStyles = 
@@ -37,10 +60,11 @@ class InlineStyles extends React.Component {
       '  background-color: #FF9800;\n' +
       '}';
 
+      var styles = this.getStyles();
 
 		return (
       <div>
-        <h2 className="mui-font-style-headline">Inline Styles</h2>
+        <h2 style={styles.headline}>Inline Styles</h2>
         <p>
           All Material-UI components have their styles defined inline. You 
           can read our <a href="https://github.com/callemall/material-ui/issues/30">
@@ -48,7 +72,7 @@ class InlineStyles extends React.Component {
           this presentation</a> discussing CSS in JS.
         </p>
 
-        <h3 className="mui-font-style-title">Overriding Inline Styles</h3>
+        <h3 style={styles.title}>Overriding Inline Styles</h3>
         <CodeExample code={codeOverrideStyles}>
           <Checkbox
             id="checkboxId1"
@@ -75,7 +99,7 @@ class InlineStyles extends React.Component {
           submit an issue</a> requesting to have one added.
         </p>
 
-        <h3 className="mui-font-style-title">Mixing Inline and CSS Styles</h3>
+        <h3 style={styles.title}>Mixing Inline and CSS Styles</h3>
         <CodeExample code={codeMixStyles}>
           <Checkbox
             id="checkboxId1"

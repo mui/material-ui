@@ -6,7 +6,7 @@ var ClockPointer = React.createClass({
   mixins: [StylePropable],
   
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
   
   propTypes: {
@@ -54,7 +54,7 @@ var ClockPointer = React.createClass({
 
   },
   getTheme: function() {
-    return this.context.theme.component.timePicker;
+    return this.context.muiTheme.component.timePicker;
   },
   render: function() {
 

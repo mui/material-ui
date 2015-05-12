@@ -13,7 +13,7 @@ var DialogWindow = React.createClass({
   mixins: [WindowListenable, StylePropable],
   
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -30,7 +30,8 @@ var DialogWindow = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    'keyup': '_handleWindowKeyUp',
+    'resize': '_positionDialog'
   },
 
   getDefaultProps: function() {
@@ -62,11 +63,11 @@ var DialogWindow = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme;
+    return this.context.muiTheme;
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getStyles: function() {
@@ -211,7 +212,7 @@ var DialogWindow = React.createClass({
     //Reset the height in case the window was resized.
     dialogWindow.style.height = '';
 
-    var paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64;
+    var paddingTop = Math.max(((containerHeight - dialogWindowHeight) / 2) - 64, 0);
 
     //Vertically center the dialog window, but make sure it doesn't
     //transition to that position.

@@ -18,7 +18,7 @@ var NestedMenuItem = React.createClass({
   mixins: [ClickAwayable, StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -55,7 +55,7 @@ var NestedMenuItem = React.createClass({
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   render: function() {
@@ -65,7 +65,7 @@ var NestedMenuItem = React.createClass({
 
     var iconCustomArrowDropRight = {
       marginRight: this.getSpacing().desktopGutterMini * -1,
-      color: this.context.theme.component.dropDownMenu.accentColor
+      color: this.context.muiTheme.component.dropDownMenu.accentColor
     };
 
     var {
@@ -98,14 +98,9 @@ var NestedMenuItem = React.createClass({
   },
 
   _positionNestedMenu: function() {
-// <<<<<<< HEAD:src/menu/menu.jsx
-    var el = this.getDOMNode();
+    var el = React.findDOMNode(this);
     var nestedMenu = React.findDOMNode(this.refs.nestedMenu);
-// =======
-//     var el = React.findDOMNode(this),
-//       nestedMenu = React.findDOMNode(this.refs.nestedMenu);
 
-// >>>>>>> master:src/js/menu/menu.jsx
     nestedMenu.style.left = el.offsetWidth + 'px';
   },
   
@@ -146,7 +141,7 @@ var Menu = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -198,36 +193,31 @@ var Menu = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.menu
+    return this.context.muiTheme.component.menu
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getStyles: function() {
     var styles = {
       root: {
-        backgroundColor: this.getTheme().backgroundColor,
-        transition: Transitions.easeOut(null, 'height')
-      },
-      innerPaper: {
+        backgroundColor: this.getTheme().containerBackgroundColor,
         paddingTop: this.getSpacing().desktopGutterMini,
         paddingBottom: this.getSpacing().desktopGutterMini,
-        backgroundColor: this.getTheme().containerBackgroundColor
+        transition: Transitions.easeOut(null, 'height')
       },
       subheader: {
-        paddingLeft: this.context.theme.component.menuSubheader.padding,
-        paddingRight: this.context.theme.component.menuSubheader.padding
+        paddingLeft: this.context.muiTheme.component.menuSubheader.padding,
+        paddingRight: this.context.muiTheme.component.menuSubheader.padding
       },
       hideable: {
         opacity: (this.props.visible) ? 1 : 0,
+        overflow: 'hidden',
         position: 'absolute',
         top: 0,
         zIndex: 1
-      },
-      innerPaperWhenHideable: {
-        overflow: 'hidden'
       }
     };
     return styles;
@@ -242,11 +232,8 @@ var Menu = React.createClass({
         style={this.mergeAndPrefix(
           styles.root,
           this.props.hideable && styles.hideable,
-          this.props.style)} 
-        innerStyle={this.mergeAndPrefix(
-          styles.innerPaper,
-          this.props.hideable && styles.innerPaperWhenHideable)}>
-            {this._getChildren()}
+          this.props.style)}>
+        {this._getChildren()}
       </Paper>
     );
   },
@@ -376,7 +363,7 @@ var Menu = React.createClass({
 
     if (this.props.hideable) {    
       el = React.findDOMNode(this);
-      var innerContainer = React.findDOMNode(this.refs.paperContainer.getInnerContainer());
+      var container = React.findDOMNode(this.refs.paperContainer);
       
       if (this.props.visible) {
         //Open the menu
@@ -388,7 +375,7 @@ var Menu = React.createClass({
         CssEvent.onTransitionEnd(el, function() {
           //Make sure the menu is open before setting the overflow.
           //This is to accout for fast clicks
-          if (this.props.visible) innerContainer.style.overflow = 'visible';
+          if (this.props.visible) container.style.overflow = 'visible';
         }.bind(this));
 
       } else {
@@ -397,7 +384,7 @@ var Menu = React.createClass({
         el.style.height = '0px';
 
         //Set the overflow to hidden so that animation works properly
-        innerContainer.style.overflow = 'hidden';
+        container.style.overflow = 'hidden';
       }
     }
   },

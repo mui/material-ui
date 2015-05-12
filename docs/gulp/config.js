@@ -13,20 +13,12 @@ module.exports = {
       dest + '/**'
     ]
   },
-  less: {
-    src: src + '/less/main.less',
-    watch: [
-      src + '/less/**',
-      mui + '/less/**'
-    ],
-    dest: dest
-  },
   markup: {
     src: src + "/www/**",
     dest: dest
   },
   fontIcons: {
-    src: src + "/less/font-icons/**",
+    src: src + "/css/font-icons/**",
     dest: dest + '/font-icons'
   },
   browserify: {
