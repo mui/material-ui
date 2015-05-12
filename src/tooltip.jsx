@@ -7,6 +7,10 @@ var Tooltip = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
   propTypes: {
     className: React.PropTypes.string,
     label: React.PropTypes.string.isRequired,
@@ -26,7 +30,7 @@ var Tooltip = React.createClass({
     var styles = {
       root: {
         position: 'absolute',
-        fontFamily: "'Roboto'",
+        fontFamily: this.context.muiTheme.contentFontFamily,
         fontSize: '10px',
         lineHeight: '22px',
         padding: '0 8px',

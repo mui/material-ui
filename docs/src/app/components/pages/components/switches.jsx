@@ -10,7 +10,7 @@ class SwitchesPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.codeCheckbox = 
+    this.codeCheckbox =
       '//Checkboxes\n' +
       '<Checkbox\n' +
       '  name="checkboxName1"\n' +
@@ -20,14 +20,14 @@ class SwitchesPage extends React.Component {
       '  name="checkboxName2"\n' +
       '  value="checkboxValue2"\n' +
       '  label="fed the dog"\n' +
-      '  defaultSwitched={true} />\n' +
+      '  defaultChecked={true} />\n' +
       '<Checkbox\n' +
       '  name="checkboxName3"\n' +
       '  value="checkboxValue3"\n' +
       '  label="built a house on the moon"\n' +
       '  disabled={true} />';
 
-    this.codeRadioButton = 
+    this.codeRadioButton =
       '//Radio Buttons\n' +
       '<RadioButtonGroup \n' +
       '  name="shipSpeed"\n' +
@@ -37,15 +37,14 @@ class SwitchesPage extends React.Component {
       '      label="prepare for light speed" />\n' +
       '    <RadioButton\n' +
       '      value="not_light"\n' +
-      '      label="light speed too slow"\n' +
-      '      defaultChecked={true} />\n' +
+      '      label="light speed too slow" />\n' +
       '   <RadioButton\n' +
       '      value="ludicrous"\n' +
       '      label="go to ludicous speed"\n'+
       '      disabled={true}/>\n' +
       '</RadioButtonGroup>';
 
-    this.codeToggle = 
+    this.codeToggle =
       '//Toggle\n' +
       '<Toggle\n' +
       '  name="toggleName1"\n' +

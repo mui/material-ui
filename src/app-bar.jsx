@@ -57,7 +57,9 @@ var AppBar = React.createClass({
         zIndex: 5,
         width: '100%',
         minHeight: this.getSpacing().desktopKeylineIncrement,
-        backgroundColor: this.getThemeVariables().color
+        backgroundColor: this.getThemeVariables().color,
+        paddingLeft: this.getSpacing().desktopGutter,
+        paddingRight: this.getSpacing().desktopGutter
       },
       title: {
         float: 'left',
@@ -80,10 +82,6 @@ var AppBar = React.createClass({
           fill: this.getThemeVariables().textColor,
           color: this.getThemeVariables().textColor
         }
-      },
-      paper: {
-        paddingLeft: this.getSpacing().desktopGutter,
-        paddingRight: this.getSpacing().desktopGutter
       }
     };
     return styles;
@@ -153,8 +151,7 @@ var AppBar = React.createClass({
       <Paper 
         rounded={false} 
         className={this.props.className}  
-        style={this.mergeAndPrefix(styles.root, this.props.style)} 
-        innerStyle={this.mergeAndPrefix(styles.paper)} 
+        style={this.mergeAndPrefix(styles.root, this.props.style)}
         zDepth={this.props.zDepth}>
           {menuElementLeft}
           {title}

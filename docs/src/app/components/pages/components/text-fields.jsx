@@ -152,6 +152,12 @@ var TextFieldsPage = React.createClass({
             desc: 'If true, a textarea element will be rendered. The textarea also grows and shrinks according to the number of lines.'
           },
           {
+            name: 'onEnterKeyDown',
+            type: 'function',
+            header: 'optional',
+            desc: 'The function to call when the user presses the Enter key.'
+          },
+          {
             name: 'style',
             type: 'object',
             header: 'optional',

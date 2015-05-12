@@ -18,8 +18,7 @@ var TouchRipple = React.createClass({
         key: 0,
         started: false,
         ending: false
-      }],
-      touchInProgress: false
+      }]
     };
   },
 
@@ -48,17 +47,26 @@ var TouchRipple = React.createClass({
     );
   },
 
-  start: function(e) {
+  start: function(e, isRippleTouchGenerated) {
     var ripples = this.state.ripples;
     var nextKey = ripples[ripples.length-1].key + 1;
     var style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
     var ripple;
+
+    //Do nothing if we're starting a click-event-generated ripple
+    //while having touch-generated ripples
+    if (!isRippleTouchGenerated) {
+      for (var i = 0; i < ripples.length; i++) {
+        if (ripples[i].touchGenerated) return;
+      }
+    }
 
     //Start the next unstarted ripple
     for (var i = 0; i < ripples.length; i++) {
       ripple = ripples[i];
       if (!ripple.started) {
         ripple.started = true;
+        ripple.touchGenerated = isRippleTouchGenerated;
         ripple.style = style;
         break;
       }
@@ -113,29 +121,22 @@ var TouchRipple = React.createClass({
 
   _handleMouseDown: function(e) {
     //only listen to left clicks
-    if (e.button === 0 && !this.state.touchInProgress) this.start(e);
+    if (e.button === 0) this.start(e, false);
   },
 
   _handleMouseUp: function(e) {
-    if (!this.state.touchInProgress) this.end();
+    this.end();
   },
 
   _handleMouseOut: function(e) {
-    if (!this.state.touchInProgress) this.end();
+    this.end();
   },
 
   _handleTouchStart: function(e) {
-    this.start(e);
+    this.start(e, true);
   },
 
   _handleTouchEnd: function(e) {
-    this.setState({ touchInProgress: true });
-    setTimeout(function () {
-      if (this.isMounted()) {
-        this.setState({ touchInProgress: false });
-      }
-    }.bind(this), 100);
-
     this.end();
   },
 

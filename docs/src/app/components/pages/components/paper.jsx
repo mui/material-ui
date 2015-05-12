@@ -15,9 +15,7 @@ var PaperPage = React.createClass ({
         height: '100px',
         width: '100px',
         margin: '0 auto',
-        marginBottom: '64px'
-      },
-      container: {
+        marginBottom: '64px',
         textAlign: 'center'
       },
       group: {
@@ -101,23 +99,6 @@ var PaperPage = React.createClass ({
             desc: 'Set to true to generate a circlular paper container.'
           },
           {
-            name: 'innerClassName',
-            type: 'string',
-            header: 'optional',
-            desc: 'The paper container consists of an outer div and inner div. ' + 
-                  'This one done in order to achieve Material Design\'s shadows. ' + 
-                  'It\'s sometimes helpful to assign an className to the inner ' +
-                  'div for styling. This property is the className for the inner ' +
-                  'div.'
-          },
-          {
-            name: 'innerStyle',
-            type: 'string',
-            header: 'optional',
-            desc: 'Similiar to innerClassName. Overrides the inline-style of ' +
-                  'the inner div.'
-          },
-          {
             name: 'rounded',
             type: 'bool',
             header: 'default: true',
@@ -128,24 +109,19 @@ var PaperPage = React.createClass ({
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of Paper\'s root element (its ' +
-                  'outer div).'
+            desc: 'Override the inline-styles of Paper\'s root element.'
           },
           {
             name: 'zDepth',
             type: 'number (0-5)',
             header: 'default: 1',
             desc: 'This number represents the zDepth of the paper shadow.'
-          }
-        ]
-      },
-      {
-        name: 'Methods',
-        infoArray: [
+          },
           {
-            name: 'getInnerContainer',
-            header: 'Paper.getInnerContainer()',
-            desc: 'Returns a reference to the inner container div.'
+            name: 'transitionEnabled',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'Set to false to disable CSS transitions for the paper element.'
           }
         ]
       }
@@ -183,8 +159,7 @@ var PaperPage = React.createClass ({
     var styles = this.getStyles();
     return (
       <Paper 
-        style={styles.root} 
-        innerStyle={styles.container}
+        style={styles.root}
         zDepth={zDepth}>
         {this._createParagraphElement(text)}
       </Paper>
