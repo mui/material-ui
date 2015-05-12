@@ -6,6 +6,7 @@ var ComponentInfo = require('../../component-info.jsx');
 
 var {
   Checkbox,
+  ClearFix,
   DatePicker, 
   Dialog,
   DropDownMenu,
@@ -24,29 +25,93 @@ var {
   TextField,
   Toggle} = mui;
 
+var {StylePropable, StyleResizable} = mui.Mixins;
+
+var Typography = mui.Styles.Typography;
 var ThemeManager = new mui.Styles.ThemeManager();
 
-class ThemesPage extends React.Component {
+var ThemesPage = React.createClass({
 
-  constructor() {
-    this.onTabChange = this.onTabChange.bind(this);
-    this.handleClickNav = this.handleClickNav.bind(this);
-    this.handleClickSnackbar = this.handleClickSnackbar.bind(this);
-    this.handleTouchTapDialog = this.handleTouchTapDialog.bind(this);
-    this.handleAction = this.handleAction.bind(this);
+  mixins: [StylePropable, StyleResizable],
 
-    this.state = {
-      isThemeDark: false
-    };
-  }
+  childContextTypes: {
+    muiTheme: React.PropTypes.object
+  },
 
-  getChildContext() {
+  getChildContext: function() {
     return {
       muiTheme: ThemeManager.getCurrentTheme()
     }
-  }
+  },
 
-	render() {
+  getInitialState: function() {
+    return {
+      isThemeDark: false
+    };
+  },
+
+
+  getStyles: function() {
+    var canvasColor = ThemeManager.getCurrentTheme().palette.canvasColor;
+    var styles = {
+      group: {
+        float: 'left',
+        width: '100%',
+        marginTop: '16px',
+        padding: '0 50px',
+        boxSizing: 'border-box'
+      },
+      groupSlider: {
+        marginTop: '0px',
+        width: '100%'
+      },
+      container: {
+        marginBottom: '16px',
+        minHeight: '24px',
+        textAlign: 'left'
+      },
+      containerCentered: {
+        textAlign: 'center'
+      },
+      paper: {
+        height: '100px',
+        width: '100px',
+        margin: '0 auto',
+        marginBottom: '64px',
+      },
+      textfield: {
+        width: '100%',
+      },
+      slider: {
+        marginTop: '0px',
+        marginBottom: '0px'
+      },
+      codeExample: {
+        backgroundColor: canvasColor,
+        marginBottom: '32px'
+      },
+      title: {
+        fontSize: '20px',
+        lineHeight: '28px',
+        paddingTop: '19px',
+        marginBottom: '13px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightMedium,
+        color: Typography.textDarkBlack
+      }
+    };
+
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
+      styles.group.width = '33%';
+    }
+
+    styles.containerCentered = this.mergeStyles(styles.container, styles.containerCentered);
+    styles.groupSlider = this.mergeStyles(styles.group, styles.groupSlider);
+
+    return styles;
+  },
+
+	render: function() {
 
     var usageCodeES6 = 
           'var React = require(\'react\');\n' +
@@ -171,6 +236,8 @@ class ThemesPage extends React.Component {
       '  this.setState({isThemeDark: !this.state.isThemeDark});\n' +
       '}';
 
+    var styles = this.getStyles();
+
 		return (
 			<div>
 
@@ -179,11 +246,11 @@ class ThemesPage extends React.Component {
           code={code}
           desc={desc}
           componentInfo={info}>
-            {this.getThemeExamples()}
+              {this.getThemeExamples()}
         </ComponentDoc>
 
 
-        <h3 className="mui-font-style-title">Usage</h3>
+        <h3 style={styles.title}>Usage</h3>
         <p>
           Material-UI&#39;s <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme-manager.js">
           ThemeManager component</a> uses React&#39;s <a href="https://facebook.github.io/react/blog/2014/03/28/the-road-to-1.0.html#context">
@@ -192,7 +259,7 @@ class ThemesPage extends React.Component {
           outermost component, so that all Material-UI components used through-out the site have 
           access to the theme.
         </p>
-        <Paper className="code-example">
+        <Paper style={styles.codeExample}>
           <Tabs>
             <Tab label="ES6">
               <CodeBlock>{usageCodeES6}</CodeBlock>
@@ -210,7 +277,7 @@ class ThemesPage extends React.Component {
         </p>
 
 
-        <h3 className="mui-font-style-title">Overriding Theme Variables</h3>
+        <h3 style={styles.title}>Overriding Theme Variables</h3>
 
         <p>
           If you would like to make changes to the Theme for a specific pages, include the code 
@@ -219,39 +286,39 @@ class ThemesPage extends React.Component {
           page</a> is an example of this. Notice how these changes do not bleed over on to sibling
           pages such as the <a href="#/components/switches">Switches page</a>.
         </p>
-        <Paper className="code-example">
+        <Paper style={styles.codeExample}>
           <CodeBlock>{this.getOverrideExamplePage()}</CodeBlock>
         </Paper>
 
 
-        <h3 className="mui-font-style-title">Giving Custom React Components Access to Theme</h3>
+        <h3 style={styles.title}>Giving Custom React Components Access to Theme</h3>
         <p>
           If you would only like to create a React component with access to Theme, include the code 
           below at the end of your component&#39;s class definition. This is valid because the usage 
           code mentioned earlier had been inserted in the outer most component. <a href='https://github.com/callemall/material-ui/blob/master/docs/src/app/components/code-example/code-example.jsx'>
           CodeExample</a> is an example of a custom component using ThemeManager. 
         </p>
-        <Paper className="code-example">
+        <Paper style={styles.codeExample}>
           <CodeBlock>{customComponentCode}</CodeBlock>
         </Paper>
 
 
-        <h3 className="mui-font-style-title">Custom Themes</h3>
+        <h3 style={styles.title}>Custom Themes</h3>
         <p>
           To see an example containing all theme variables, checkout our <a href="https://github.com/callemall/material-ui/blob/master/src/styles/themes/light-theme.js">
           light-theme</a>. The code-block below defines the structure needed to have a valid custom 
           theme. Note that if a property is not defined in the custom theme, the default will be 
           what is defined in our light theme.
         </p>
-        <Paper className="code-example">
+        <Paper style={styles.codeExample}>
           <CodeBlock>{this.getThemeStructure()}</CodeBlock>
         </Paper>
 
       </div>
 		);
-	}
+	},
 
-  getThemeStructure() {
+  getThemeStructure: function() {
     var text =
       'var CustomTheme = {\n' +
       '  getPalette: function() {\n' +
@@ -395,9 +462,9 @@ class ThemesPage extends React.Component {
       '}\n\n' +
       'module.exports = CustomTheme;';
       return text;
-  }
+  },
 
-  getComponentGroup() {
+  getComponentGroup: function() {
     //Standard Actions
     var standardActions = [
       { text: 'Cancel' },
@@ -426,21 +493,7 @@ class ThemesPage extends React.Component {
       },
     ];
 
-    var paperStyles = {
-      height: 100,
-      width: 100,
-      margin: '0 auto',
-      marginBottom: 64,
-    };
-
-    var textfieldStyles = {
-      width: '100%',
-    };
-
-    var sliderStyles = {
-      marginTop: 0,
-      marginBottom: 0
-    }
+    var styles = this.getStyles();
 
     var menuItems = [
        { payload: '1', text: 'Never' },
@@ -451,25 +504,25 @@ class ThemesPage extends React.Component {
     ];
 
     return (
-      <div className="component-examples">
+      <ClearFix>
 
-          <div className="component-examples-group-centered">
-            <div className="component-examples-container">
+          <div style={styles.group}>
+            <div style={styles.containerCentered}>
               <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true}/>
             </div>
-            <div className="component-examples-container">
+            <div style={styles.containerCentered}>
               <RaisedButton label="Secondary" secondary={true} />
             </div>
-            <div className="component-examples-container">
+            <div style={styles.containerCentered}>
               <RaisedButton label="Primary"  primary={true}/>
             </div>
-            <div className="component-examples-container">
+            <div style={styles.containerCentered}>
               <RaisedButton label="Default"/>
             </div>
           </div>
 
-          <div className="component-examples-group">
-            <div className="component-examples-container">
+          <div style={styles.group}>
+            <div style={styles.container}>
               <Checkbox
                 name="checkboxName1"
                 value="checkboxValue1"
@@ -480,7 +533,7 @@ class ThemesPage extends React.Component {
                 label="disabled checkbox"
                 disabled={true} />
             </div>
-            <div className="component-examples-container">
+            <div style={styles.container}>
               <RadioButtonGroup 
                 name="shipSpeed"
                 defaultSelected="usd">
@@ -497,7 +550,7 @@ class ThemesPage extends React.Component {
                     disabled={true}/>
               </RadioButtonGroup>
             </div>
-            <div className="component-examples-container">
+            <div style={styles.container}>
               <Toggle
                 name="toggleName1"
                 value="toggleValue1"
@@ -511,29 +564,29 @@ class ThemesPage extends React.Component {
             </div>
           </div>
 
-          <div className="component-examples-group" style={{marginTop: 0}}>
-            <div className="component-examples-container">
+          <div style={this.mergeStyles(styles.group, {marginTop: 0})}>
+            <div style={styles.container}>
               <TextField
-                style={textfieldStyles}
+                style={styles.textfield}
                 hintText="TextField"/>
             </div>
-            <div className="component-examples-container">
+            <div style={styles.container}>
               <DatePicker
                 hintText="Landscape Dialog"
                 mode="landscape"
                 style={{width: '100%'}}/>
             </div>
-            <div className="component-examples-container">
-              <DropDownMenu menuItems={menuItems} />
+            <div style={styles.container}>
+              <DropDownMenu menuItems={menuItems} style={{width: '100%'}}/>
            </div>
           </div>
 
-          <div className="component-examples-group-slider">
-            <Slider style={sliderStyles} name="slider2" defaultValue={0.5} />
+          <div style={styles.groupSlider}>
+            <Slider style={styles.slider} name="slider2" defaultValue={0.5} />
           </div>
 
-          <div className="component-examples-group-centered">
-            <div className="component-examples-container">
+          <div style={styles.group}>
+            <div style={styles.containerCentered}>
               <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
               <Dialog ref="dialog" title="Dialog With Standard Actions" actions={standardActions}>
                 The actions in this window are created from the json that&#39;s passed in. 
@@ -541,8 +594,8 @@ class ThemesPage extends React.Component {
             </div>
           </div>
 
-          <div className="component-examples-group-centered">
-            <div className="component-examples-container">
+          <div style={styles.group}>
+            <div style={styles.containerCentered}>
               <FlatButton
                   onTouchTap={this.handleClickNav}
                   label="View LeftNav" />
@@ -550,8 +603,8 @@ class ThemesPage extends React.Component {
             </div>
           </div>
           
-          <div className="component-examples-group-centered">
-            <div className="component-examples-container">
+          <div style={styles.group}>
+            <div style={styles.containerCentered}>
               <FlatButton
                 onTouchTap={this.handleClickSnackbar}
                 label="View Snackbar" />
@@ -562,11 +615,11 @@ class ThemesPage extends React.Component {
                 onActionTouchTap={this.handleAction}/>
             </div>            
           </div>
-      </div>
+      </ClearFix>
     );
-  }
+  },
 
-  getThemeExamples() {
+  getThemeExamples: function() {
     return (
       <Tabs onChange={this.onTabChange}>
         <Tab label='Light Theme (Default)'>
@@ -577,36 +630,9 @@ class ThemesPage extends React.Component {
         </Tab>
       </Tabs>
     );
-  }
+  },
 
-  getOverrideExampleComponent() {
-
-    var theme1 = ThemeManager.getCurrentTheme();
-
-
-
-    return (
-      <div className="component-examples">
-        <div className="component-examples-group">
-          <div className="component-examples-container">
-            <RaisedButton label="Override 1"/>
-          </div>
-        </div>
-        <div className="component-examples-group">
-          <div className="component-examples-container">
-            <RaisedButton label="Override 2"/>
-          </div>
-        </div>
-        <div className="component-examples-group">
-          <div className="component-examples-container">
-            <RaisedButton label="Override 3"/>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  getOverrideExamplePage() {
+  getOverrideExamplePage: function() {
     return (
       'var React = require(\'react\');\n' +
       'var mui = require(\'mui\');\n' +
@@ -630,38 +656,34 @@ class ThemesPage extends React.Component {
       '  muiTheme: React.PropTypes.object\n' +
       '};'
     );
-  }
+  },
 
 
   // Toggles between light and dark themes
-  onTabChange(tabIndex, tab) {
+  onTabChange: function(tabIndex, tab) {
     if (this.state.isThemeDark) {
       ThemeManager.setTheme(ThemeManager.types.LIGHT);
     } else {
       ThemeManager.setTheme(ThemeManager.types.DARK);
     }
     this.setState({isThemeDark: !this.state.isThemeDark});
-  }
+  },
 
-  handleAction(e) {
+  handleAction: function(e) {
     this.refs.snackbar.dismiss();
-  }
+  },
 
-  handleClickNav(e) {
+  handleClickNav: function(e) {
     this.refs.leftNav.toggle();
-  }
+  },
 
-  handleClickSnackbar(e) {
+  handleClickSnackbar: function(e) {
     this.refs.snackbar.show();
-  }
+  },
 
-  handleTouchTapDialog(e) {
+  handleTouchTapDialog: function(e) {
     this.refs.dialog.show();
   }
-}
-
-ThemesPage.childContextTypes = {
-  muiTheme: React.PropTypes.object
-};
+});
 
 module.exports = ThemesPage;

@@ -8,15 +8,6 @@
 @import "clearfix.less";
 @import "typography.less";
 
-@import "pages/components/buttons.less";
-@import "pages/components/switches.less";
-@import "pages/components/text-fields.less";
-@import "pages/components/icon.less";
-@import "pages/components/paper.less";
-
-@import "pages/customization/themes.less";
-@import "pages/customization/inline-styles.less";
-
 // Media Queries
 @device-large:   ~"only screen and (min-width: 992px)";
 @device-medium:  ~"only screen and (min-width: 768px)";
@@ -71,30 +62,6 @@ body, h1, h2, h3, h4, h5, h6 {
   background-image: url('images/baseline-20px-grid.gif');
 }
 
-.code-example {
-  background-color: #ffffff;
-  margin-bottom: 32px;
-
-  .example-label {
-    .mui-font-style-menu;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.26); // minBlack;
-    padding: 8px;
-    margin-bottom: 0;
-  }
-
-  .example-block,
-  .code-block {
-    padding: @desktop-gutter;
-    margin: 0;
-  }
-
-  .code-block {
-    border-top: solid 1px @border-color;
-    border-radius: 0 0 2px 2px;
-  }
-}
-
 .example-menu {
   width: 100%;
 }
@@ -110,4 +77,10 @@ body, h1, h2, h3, h4, h5, h6 {
 .github-icon-button {
   color: white;
   fill: white;
+}
+
+// Used in our inline-styles.jsx as an example 
+.muidocs-checkbox-example { 
+  border: 2px solid #FF9800;
+  background-color: #4CAF50;
 }

@@ -1,9 +1,9 @@
 var React = require('react');
 var mui = require('mui');
 var ClearFix = mui.ClearFix;
-var Colors = mui.Styles.Colors;
 var ColorManipulator = mui.Utils.ColorManipulator;
 
+var {Colors, Typography} = mui.Styles;
 var {StyleResizable, StylePropable} = mui.Mixins;
 
 var ColorsPage = React.createClass({
@@ -28,6 +28,16 @@ var ColorsPage = React.createClass({
         display: 'block',
         margin: '0'
       },
+      headline: {
+        //mui-font-style-headline
+        fontSize: '24px',
+        lineHeight: '32px',
+        paddingTop: '16px',
+        marginBottom: '12px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightNormal,
+        color: Typography.textDarkBlack        
+      },
       colorGroupWhenSmall: {
         width: '50%'
       },
@@ -36,7 +46,7 @@ var ColorsPage = React.createClass({
       },
       colorGroupWhenLarge: {
         width: '25%'
-      },
+      }
     };
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
@@ -72,7 +82,7 @@ var ColorsPage = React.createClass({
 
     return (
       <div>
-        <h2 className="mui-font-style-headline">UI Color Palette</h2>
+        <h2 style={this.getStyles().headline}>UI Color Palette</h2>
         <p>
           We&#39;ve created javascript variables for every color used in 
           the <a href={googleLink}>UI Color Palette</a>. They are stored 

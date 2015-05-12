@@ -5,6 +5,7 @@ var CodeExample = require('./code-example/code-example.jsx');
 var ComponentInfo = require('./component-info.jsx');
 var Typography = mui.Styles.Typography;
 var StylePropable = mui.Mixins.StylePropable;
+var ClearFix = mui.ClearFix;
 
 var ComponentDoc = React.createClass({
 
@@ -96,7 +97,7 @@ var ComponentDoc = React.createClass({
     }
 
     return (
-      <div>
+      <ClearFix>
         
         {header}
 
@@ -110,7 +111,7 @@ var ComponentDoc = React.createClass({
           {componentInfo}
         </div>
 
-      </div>
+      </ClearFix>
     );
   }
 

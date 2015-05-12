@@ -1,5 +1,7 @@
-var React = require('react'),
-  hljs = require('highlight.js');
+var React = require('react');
+var hljs = require('highlight.js');
+var mui = require('mui');
+var Spacing = mui.Styles.Spacing;
 
 class CodeBlock extends React.Component {
 
@@ -17,14 +19,27 @@ class CodeBlock extends React.Component {
     hljs.highlightBlock(React.findDOMNode(this));
   }
 
+  getStyles() {
+    var borderColor = this.context.muiTheme.palette.borderColor;
+    return {
+      padding: Spacing.desktopGutter,
+      margin: '0',
+      borderRadius: '0 0 2px 2px',
+      borderTop: 'solid 1px ' + borderColor
+    };
+  }
+
   render() {
     return (
-      <pre className="code-block">
+      <pre style={this.getStyles()}>
         <code>{this.props.children}</code>
       </pre>
     );
   }
+}
 
+CodeBlock.contextTypes = {
+  muiTheme: React.PropTypes.object
 }
 
 module.exports = CodeBlock;
