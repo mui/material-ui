@@ -309,7 +309,7 @@ var TextField = React.createClass({
 
   _getInputNode: function() {
     return this.props.multiLine ?
-      this.refs.[this._getRef()].getInputNode() : React.findDOMNode(this._getRef());
+      this.refs[this._getRef()].getInputNode() : React.findDOMNode(this._getRef());
   },
 
   _handleInputBlur: function(e) {
