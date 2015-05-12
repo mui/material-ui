@@ -69,7 +69,36 @@ class FontIconPage extends React.Component {
       </p>
     );
 
-    var componentInfo = [];
+    var componentInfo = [
+      {
+        name: 'Properties',
+        infoArray: [
+          {
+            name: 'className',
+            type: 'string',
+            header: 'optional',
+            desc: 'If you are using a stylesheet for your icons, enter the ' +
+                  'class name for the icon to be used here.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the icon\'s root element.'
+          },
+          {
+            name: 'hoverColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the inline hover color of the icons\'s root element.'
+          }
+        ]
+      },
+      {
+        name: 'Properties',
+        infoArray: [],
+      }
+    ];
 
     return (
       <div>
@@ -77,14 +106,14 @@ class FontIconPage extends React.Component {
           name="Font Icons"
           code={fontIconCode}
           desc={fontIconDesc}
-          componentInfo={componentInfo}>
+          componentInfo={componentInfo.slice(0,1)}>
             <FontIcon className="muidocs-icon-action-home"/>
         </ComponentDoc>
         <ComponentDoc
           name="SVG Icons"
           code={svgIconCode}
           desc={svgIconDesc}
-          componentInfo={componentInfo}>
+          componentInfo={componentInfo.slice(1,2)}>
             <ActionHome/>
         </ComponentDoc>
       </div>

@@ -26,7 +26,7 @@ var IconButton = React.createClass({
 
   getInitialState: function() {
     return {
-      tooltipShown: false 
+      tooltipShown: false
     };
   },
 
@@ -112,18 +112,21 @@ var IconButton = React.createClass({
           label={tooltip}
           show={this.state.tooltipShown}
           touch={touch}
-          style={this.mergeAndPrefix(styles.tooltip)}/>
+          style={this.mergeStyles(styles.tooltip)}/>
       );
     }
 
     if (this.props.iconClassName) {
+      var { iconHoverColor, ...iconStyle } = this.props.iconStyle;
+
       fonticon = (
-        <FontIcon 
-          className={this.props.iconClassName} 
-          style={this.mergeAndPrefix(
-            styles.icon, 
+        <FontIcon
+          className={this.props.iconClassName}
+          hoverColor={iconHoverColor}
+          style={this.mergeStyles(
+            styles.icon,
             this.props.disabled && styles.iconWhenDisabled,
-            this.props.iconStyle
+            iconStyle
           )}/>
       );
     }
@@ -135,13 +138,13 @@ var IconButton = React.createClass({
           fill: this.getDisabledColor(),
         }
       }, this);
-    } 
+    }
 
     return (
       <EnhancedButton {...other}
         ref="button"
         centerRipple={true}
-        style={this.mergeAndPrefix(styles.root, this.props.style)}
+        style={this.mergeStyles(styles.root, this.props.style)}
         onBlur={this._handleBlur}
         onFocus={this._handleFocus}
         onMouseOut={this._handleMouseOut}
