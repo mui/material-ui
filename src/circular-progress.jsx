@@ -1,6 +1,5 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Animations = require("./styles/animations");
 var Transitions = require("./styles/transitions");
 
   var easeInOut = "cubic-bezier(0.35, 0, 0.25, 1)";                                                   
