@@ -29,37 +29,52 @@ var LinearProgress = React.createClass({
     return relValue * 100;
   },
 
-  componentWillMount: function () {
+  componentDidMount: function () {
     
-    Animations.create("linear-progress-indeterminate", {
-      "0%": {
-        left: "-35%",
-        right: "100%"
-      },
-      "60%": {
-        left: "100%",
-        right: "-90%"
-      },
-      "100%": {
-        left: "100%",
-        right: "-90%"
-      }
-    });
 
-    Animations.create("linear-progress-indeterminate-short", { 
-      "0%": {
-        left: "-200%",
-        right: "100%"
-      },
-      "60%": {
-        left: "107%",
-        right: "-8%"
-      },
-      "100%": {
-        left: "107%",
-        right: "-8%"
-      }
-    });
+    var bar1 = React.findDOMNode(this.refs.bar1);
+    var bar2 = React.findDOMNode(this.refs.bar2);
+
+    this._barUpdate(0, bar1, [
+      [-35, 100],
+      [100, -90] 
+    ]);
+
+    setTimeout(function(){
+
+      this._barUpdate(0, bar2, [
+        [-200, 100],
+        [107, -8] 
+      ]);
+
+    }.bind(this), 850);
+
+ 
+
+  },
+
+  _barUpdate: function(step, barElement, stepValues){
+    step = step || 0;
+    step %= 4;
+    setTimeout(this._barUpdate.bind(this, step + 1, barElement, stepValues), 420);
+    if (!this.isMounted()) return;
+    if (this.props.mode != "indeterminate") return;
+
+    if (step == 0) {
+      barElement.style.left = stepValues[0][0] + "%";
+      barElement.style.right = stepValues[0][1] + "%";
+    } else if (step == 1) {
+
+      barElement.style.transitionDuration = "840ms";
+
+
+    } else if (step == 2) {
+
+      barElement.style.left = stepValues[1][0] + "%";
+      barElement.style.right = stepValues[1][1] + "%";
+    } else if (step == 3) {
+      barElement.style.transitionDuration = "0ms";
+    }
 
 
   },
@@ -104,7 +119,7 @@ var LinearProgress = React.createClass({
         top: 0,
         left:0,
         bottom: 0,
-        animation: "linear-progress-indeterminate 2.1s cubic-bezier(0.650, 0.815, 0.735, 0.395) infinite"
+        transition: Transitions.create("all", "840ms", null, "cubic-bezier(0.650, 0.815, 0.735, 0.395)")
       };
 
       styles.barFragment2 = {
@@ -113,7 +128,7 @@ var LinearProgress = React.createClass({
         top: 0,
         left:0,
         bottom: 0,
-        animation: "linear-progress-indeterminate-short 2.1s 1.15s cubic-bezier(0.165, 0.840, 0.440, 1.000) infinite", 
+        transition: Transitions.create("all", "840ms", null, "cubic-bezier(0.165, 0.840, 0.440, 1.000)")
       };
     }else{
       styles.bar.backgroundColor= this.getTheme().primary1Color;
@@ -135,8 +150,8 @@ var LinearProgress = React.createClass({
     return (
       <div {...other} style={this.mergeAndPrefix(styles.root, style)}>
         <div style={this.mergeAndPrefix(styles.bar)}>
-          <div style={this.mergeAndPrefix(styles.barFragment1)}></div>
-          <div style={this.mergeAndPrefix(styles.barFragment2)}></div>
+          <div ref="bar1" style={this.mergeAndPrefix(styles.barFragment1)}></div>
+          <div ref="bar2" style={this.mergeAndPrefix(styles.barFragment2)}></div>
         </div>
       </div>
     );
