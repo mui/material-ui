@@ -103,7 +103,7 @@ var EnhancedSwitch = React.createClass({
 
   getStyles: function() {
     var switchWidth = 60 - Spacing.desktopGutterLess;
-    var labelWidth = this.state.parentWidth - 60;
+    var labelWidth = 'calc(100% - 60px)';
 
     var styles = {
       root: {

@@ -16,7 +16,7 @@ var typography = new (function() {
 	this.fontWeightNormal = 400;
 	this.fontWeightMedium = 500;
 
-  this.fontStyleButtonFontSize = 14;
+  	this.fontStyleButtonFontSize = 14;
 });
 
 module.exports = typography;
