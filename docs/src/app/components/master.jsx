@@ -20,31 +20,7 @@ class Master extends React.Component {
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme(),
-      fontStyles: this.getFontStyles()
-    }
-  }
-
-  getFontStyles() {
-    return {
-      headline: {
-        fontSize: '24px',
-        lineHeight: '32px',
-        paddingTop: '16px',
-        marginBottom: '12px',
-        letterSpacing: '0',
-        fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack
-      },
-      title: {
-        fontSize: '20px',
-        lineHeight: '28px',
-        paddingTop: '19px',
-        marginBottom: '13px',
-        letterSpacing: '0',
-        fontWeight: Typography.fontWeightMedium,
-        color: '#f00'//Typography.textDarkBlack
-      }
+      muiTheme: ThemeManager.getCurrentTheme()
     }
   }
 
@@ -120,8 +96,7 @@ Master.contextTypes = {
 };
 
 Master.childContextTypes = {
-  muiTheme: React.PropTypes.object,
-  fontStyles: React.PropTypes.object
+  muiTheme: React.PropTypes.object
 };
 
 module.exports = Master;
