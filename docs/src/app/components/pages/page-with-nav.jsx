@@ -23,7 +23,7 @@ var PageWithNav = React.createClass({
     var subNavWidth = Spacing.desktopKeylineIncrement * 3 + 'px';
     var styles = {
       root: {
-        // null
+        paddingTop: Spacing.desktopKeylineIncrement + 'px'
       },
       rootWhenMedium: {
         position: 'relative'
@@ -52,7 +52,7 @@ var PageWithNav = React.createClass({
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) || 
         this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
-      styles.root = styles.rootWhenMedium;
+      styles.root = this.mergeStyles(styles.root, styles.rootWhenMedium);
       styles.secondaryNav = this.mergeStyles(styles.secondaryNav, styles.secondaryNavWhenMedium);
       styles.content = this.mergeStyles(styles.content, styles.contentWhenMedium);
     }
@@ -63,7 +63,7 @@ var PageWithNav = React.createClass({
   render: function() {
     var styles = this.getStyles();
     return (
-      <div style={styles.root} className="app-content-canvas">
+      <div style={styles.root}>
         <div style={styles.content}>
           <RouteHandler />
         </div>

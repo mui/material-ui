@@ -2,13 +2,41 @@ var React = require('react');
 var mui = require('mui');
 var CodeBlock = require('../code-example/code-block.jsx');
 var FullWidthSection = require('../full-width-section.jsx');
+var Spacing = mui.Styles.Spacing;
 
 class GetStarted extends React.Component {
 
   getStyles() {
     return {
-      maxWidth: '650px',
-      margin: '0 auto'
+      root: {
+        paddingTop: Spacing.desktopKeylineIncrement
+      },
+      fullWidthSection: {
+        maxWidth: '650px',
+        margin: '0 auto'      
+      },
+      headline: {
+        fontSize: '24px',
+        lineHeight: '32px',
+        paddingTop: '16px',
+        marginBottom: '12px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightNormal,
+        color: Typography.textDarkBlack
+      },
+      title: {
+        fontSize: '20px',
+        lineHeight: '28px',
+        paddingTop: '19px',
+        marginBottom: '13px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightMedium,
+        color: '#f00'//Typography.textDarkBlack
+      },
+      codeExample: {
+        backgroundColor: canvasColor,
+        marginBottom: '32px'
+      }
     };
   }
 
@@ -41,11 +69,13 @@ class GetStarted extends React.Component {
         '//https://github.com/zilverline/react-tap-event-plugin\n' +
         'injectTapEventPlugin();\n';
 
-    return (
-      <div className="get-started-page app-content-canvas">
-        <FullWidthSection style={this.getStyles()}>
+    var styles = this.getStyles();
 
-          <h2 className="mui-font-style-headline">Prerequisites</h2>
+    return (
+      <div style={styles.root}>
+        <FullWidthSection style={styles.FullWidthSection}>
+
+          <h2 style={styles.headline}>Prerequisites</h2>
           <p>
             We recommend that you get started with the <a href="http://facebook.github.io/react/">React Library</a> before diving into
             material-ui for a better understanding. Should you choose to skip this, don&apos;t worry, we&apos;ll explain relevant React concepts as
@@ -53,38 +83,38 @@ class GetStarted extends React.Component {
           </p>
 
 
-          <h2 className="mui-font-style-headline">Installation</h2>
+          <h2 style={styles.headline}>Installation</h2>
           <p>
             Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>.
             Use <a href="http://browserify.org/">browserify</a> and <a href="https://github.com/andreypopp/reactify">reactify</a> for
             dependency management and JSX transformation. 
           </p>
 
-          <h3 className="mui-font-style-title">React-Tap-Event-Plugin</h3>
+          <h3 style={styles.title}>React-Tap-Event-Plugin</h3>
           <p>
             Some components use <a href="https://github.com/zilverline/react-tap-event-plugin">react-tap-event-plugin</a> to
             listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
             sure to inject this plugin at the start of your app.
           </p>
-          <mui.Paper className="code-example">
+          <mui.Paper style={styles.codeExample}>
             <CodeBlock>{usageNotesCode}</CodeBlock>
           </mui.Paper>
 
-          <h3 className="mui-font-style-title">Roboto Font</h3>
+          <h3 style={styles.title}>Roboto Font</h3>
           <p>
             Be sure to include the <a href="http://www.google.com/fonts/specimen/Roboto">Roboto</a> font
             in your project. Here are <a href="http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500">some instructions</a> on how to include it in your project.
           </p>
 
-          <h2 className="mui-font-style-headline">Usage</h2>
+          <h2 style={styles.headline}>Usage</h2>
           <p>
             Once material-ui is included in your project, you can use the components this way:
           </p>
-          <mui.Paper className="code-example">
+          <mui.Paper style={styles.codeExample}>
             <CodeBlock>{usageCode}</CodeBlock>
           </mui.Paper>
 
-          <h2 className="mui-font-style-headline">Customization</h2>
+          <h2 style={styles.headline}>Customization</h2>
           <p>Material-UI components have their styles defined inline. There are two approaches to overriding these styles:</p>
           <li><a href="#/customization/inline-styles">Override individual component styles via the style prop</a></li>
           <li><a href="#/customization/themes">Define a Theme to apply overarching style changes</a></li>
@@ -92,7 +122,7 @@ class GetStarted extends React.Component {
             This allows you to override any variables used without having to modify material-ui source files directly.
           </p>
 
-          <h2 className="mui-font-style-headline">Examples</h2>
+          <h2 style={styles.headline}>Examples</h2>
           <p>
             There are 2 projects that you can look at to help you get started. The first project can be found
             in the <a href="https://github.com/callemall/material-ui/tree/master/example">example folder</a>. This

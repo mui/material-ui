@@ -4,11 +4,10 @@ var mui = require('mui');
 var RaisedButton = mui.RaisedButton;
 var HomeFeature = require('./home-feature.jsx');
 var FullWidthSection = require('../full-width-section.jsx');
-var Colors = mui.Styles.Colors;
-var Typography = mui.Styles.Typography;
 var ThemeManager = new mui.Styles.ThemeManager().getCurrentTheme();
 
 var {StylePropable, StyleResizable} = mui.Mixins;
+var {Colors, Spacing, Typography} = mui.Styles;
 
 var HomePage = React.createClass({
 
@@ -19,8 +18,12 @@ var HomePage = React.createClass({
   },
 
   render: function() {
+    var style = {
+      paddingTop: Spacing.desktopKeylineIncrement
+    };
+
     return (
-      <div className="app-content-canvas">
+      <div style={style}>
         {this._getHomePageHero()}
         {this._getHomePurpose()}
         {this._getHomeFeatures()}
@@ -65,6 +68,9 @@ var HomePage = React.createClass({
         marginBottom: '13px',
         letterSpacing: '0',
       },
+      nowrap: {
+        whiteSpace: 'nowrap'
+      },
       taglineWhenLarge: {
         marginTop: '32px'
       },
@@ -91,11 +97,11 @@ var HomePage = React.createClass({
     return (
       <FullWidthSection style={styles.root}>
           <img style={styles.svgLogo} src="images/material-ui-logo.svg" />
-          <div style={styles.tagline} className="tagline">
+          <div style={styles.tagline}>
             <h1 style={styles.h1}>material ui</h1>
             <h2 style={styles.h2}>
-              A Set of React Components <span className="no-wrap">
-              that Implement</span> <span className="no-wrap">
+              A Set of React Components <span style={styles.nowrap}>
+              that Implement</span> <span style={styles.nowrap}>
               Google&apos;s Material Design</span>
             </h2>
             <RaisedButton 
@@ -180,7 +186,7 @@ var HomePage = React.createClass({
     return (
       <FullWidthSection useContent={true} style={styles.root}>
         <h3 style={styles.h3}>
-          Want to help make this <span className="no-wrap">project awesome?</span> <span className="no-wrap">Check out our repo.</span>
+          Want to help make this <span style={styles.nowrap}>project awesome?</span> <span style={styles.nowrap}>Check out our repo.</span>
         </h3>
         <RaisedButton label="GitHub" primary={true} linkButton={true} href="https://github.com/callemall/material-ui" style={styles.button}/>
       </FullWidthSection>
