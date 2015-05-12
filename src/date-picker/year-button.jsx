@@ -57,7 +57,7 @@ var YearButton = React.createClass({
       label: {
         position: 'relative',
         top: '-1px',
-        color: this.getTheme().textColor
+        color: this.context.muiTheme.palette.textColor
       },
 
       buttonState: {
