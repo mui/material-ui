@@ -6,9 +6,9 @@ var EnhancedButton = require('../enhanced-button');
 var YearButton = React.createClass({
 
   mixins: [StylePropable],
-  
+
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -16,21 +16,21 @@ var YearButton = React.createClass({
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool
   },
-  
+
   getDefaultProps: function() {
     return {
       selected: false
     };
   },
-  
+
   getInitialState: function() {
     return {
       hover: false
     };
   },
-  
+
   getTheme: function() {
-    return this.context.theme.component.datePicker;
+    return this.context.muiTheme.component.datePicker;
   },
 
   render: function() {
@@ -41,11 +41,11 @@ var YearButton = React.createClass({
       selected,
       ...other
     } = this.props;
-    
+
     var styles = {
       root: {
         boxSizing: 'border-box',
-        WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
         position: 'relative',
         display: 'block',
         margin: '0 auto',
@@ -57,7 +57,7 @@ var YearButton = React.createClass({
       label: {
         position: 'relative',
         top: '-1px',
-        color: this.context.theme.palette.textColor
+        color: this.getTheme().textColor
       },
 
       buttonState: {
@@ -70,19 +70,19 @@ var YearButton = React.createClass({
         backgroundColor: this.getTheme().selectColor
       },
     };
-    
+
     if (this.state.hover) {
       styles.label.color = this.getTheme().selectTextColor;
       styles.buttonState.opacity = '0.6';
       styles.buttonState.transform = 'scale(1.5)';
     }
-    
+
     if (selected) {
       styles.label.color = this.getTheme().selectTextColor;
       styles.buttonState.opacity = 1;
       styles.buttonState.transform = 'scale(1.5)';
     }
-    
+
     if (year === new Date().getFullYear()) {
       styles.root.color = this.getTheme().color;
     }
@@ -104,7 +104,7 @@ var YearButton = React.createClass({
   _handleMouseOver: function() {
     this.setState({hover: true});
   },
-  
+
   _handleMouseOut: function() {
     this.setState({hover: false});
   },
