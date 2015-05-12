@@ -9,17 +9,24 @@ var Overlay = React.createClass({
 
   propTypes: {
     show: React.PropTypes.bool,
-    autoLockScrolling: React.PropTypes.bool
+    autoLockScrolling: React.PropTypes.bool,
+    transitionEnabled: React.PropTypes.bool
   },
   
   getDefaultProps: function() {
     return {
-      autoLockScrolling: true
+      autoLockScrolling: true,
+      transitionEnabled: true
     };
   },
   
   componentDidUpdate: function(prevProps, prevState) {
     if (this.props.autoLockScrolling) (this.props.show) ? this._preventScrolling() : this._allowScrolling();
+  },
+
+  setOpacity(opacity) {
+    var overlay = React.findDOMNode(this);
+    overlay.style.opacity = opacity;
   },
 
   getStyles: function() {
@@ -31,17 +38,26 @@ var Overlay = React.createClass({
         zIndex: 9,
         top: 0,
         left: '-100%',
-        backgroundColor: Colors.transparent,
+        opacity: 0,
+        backgroundColor: Colors.lightBlack,
+        WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+
+        // Two ways to promote overlay to its own render layer
+        willChange: 'opacity',
+        transform: 'translateZ(0)',
+
         transition:
+          this.props.transitionEnabled &&
           Transitions.easeOut('0ms', 'left', '400ms') + ',' +
-          Transitions.easeOut('400ms', 'backgroundColor')
+          Transitions.easeOut('400ms', 'opacity')
       },
       rootWhenShown: {
         left: '0',
-        backgroundColor: Colors.lightBlack,
+        opacity: 1,
         transition:
+          this.props.transitionEnabled &&
           Transitions.easeOut('0ms', 'left') + ',' +
-          Transitions.easeOut('400ms', 'backgroundColor')
+          Transitions.easeOut('400ms', 'opacity')
       }
     };
     return styles;

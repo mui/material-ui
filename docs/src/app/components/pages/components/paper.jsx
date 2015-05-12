@@ -86,6 +86,12 @@ class PaperPage extends React.Component {
             type: 'number (0-5)',
             header: 'default: 1',
             desc: 'This number represents the zDepth of the paper shadow.'
+          },
+          {
+            name: 'transitionEnabled',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'Set to false to disable CSS transitions for the paper element.'
           }
         ]
       }
