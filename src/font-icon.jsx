@@ -7,7 +7,7 @@ var FontIcon = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   getInitialState: function() {
@@ -17,7 +17,7 @@ var FontIcon = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.palette;
+    return this.context.muiTheme.palette;
   },
 
   getStyles: function() {

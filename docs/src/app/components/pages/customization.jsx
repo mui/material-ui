@@ -1,12 +1,12 @@
 var React = require('react'),
   PageWithNav = require('./page-with-nav.jsx');
 
-class CssFramework extends React.Component {
+class Customization extends React.Component {
 
   render() {
     var menuItems = [
-      { route: 'inline-styles', text: 'Inline Styles'},
       { route: 'themes', text: 'Themes'},
+      { route: 'inline-styles', text: 'Inline Styles'},
       { route: 'colors', text: 'Colors'}
     ];
 
@@ -17,4 +17,4 @@ class CssFramework extends React.Component {
 
 }
 
-module.exports = CssFramework;
+module.exports = Customization;

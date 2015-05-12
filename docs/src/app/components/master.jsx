@@ -17,7 +17,7 @@ class Master extends React.Component {
 
   getChildContext() {
     return {
-      theme: ThemeManager.getCurrentTheme()
+      muiTheme: ThemeManager.getCurrentTheme()
     }
   }
 
@@ -43,7 +43,7 @@ class Master extends React.Component {
           onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
           title={title}
           zDepth={0}
-          iconClassNameRight="muidocs-icon-custom-github"/>
+          iconElementRight={githubButton}/>
 
         <AppLeftNav ref="leftNav" />
 
@@ -64,7 +64,6 @@ class Master extends React.Component {
   _onLeftIconButtonTouchTap() {
     this.refs.leftNav.toggle();
   }
-
 }
 
 Master.contextTypes = {
@@ -72,7 +71,7 @@ Master.contextTypes = {
 };
 
 Master.childContextTypes = {
-  theme: React.PropTypes.object
+  muiTheme: React.PropTypes.object
 };
 
 module.exports = Master;

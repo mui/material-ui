@@ -14,7 +14,7 @@ var EnhancedSwitch = React.createClass({
   mixins: [WindowListenable, StylePropable],
   
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -90,13 +90,15 @@ var EnhancedSwitch = React.createClass({
       newState.switched = nextProps.toggled;
     } else if (hasCheckedLinkProp) {
       newState.switched = nextProps.checkedLink.value;
+    } else if (hasNewDefaultProp) {
+      newState.switched = nextProps.defaultSwitched;
     }
 
     if (newState.switched != undefined && (newState.switched != this.props.switched)) this.props.onParentShouldUpdate(newState.switched);
   },
 
   getTheme: function() {
-    return this.context.theme.palette;
+    return this.context.muiTheme.palette;
   },
 
   getStyles: function() {

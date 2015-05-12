@@ -7,7 +7,7 @@ var ToolbarGroup = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -22,16 +22,16 @@ var ToolbarGroup = React.createClass({
   },
   
   getTheme: function() {
-    return this.context.theme.component.toolbar;
+    return this.context.muiTheme.component.toolbar;
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing.desktopGutter;
+    return this.context.muiTheme.spacing.desktopGutter;
   },
 
   getStyles: function() {
     var marginHorizontal = this.getSpacing();
-    var marginVertical = (this.getTheme().height - this.context.theme.component.button.height) / 2;
+    var marginVertical = (this.getTheme().height - this.context.muiTheme.component.button.height) / 2;
     var styles = {
       root: {
         position: 'relative',
@@ -113,7 +113,7 @@ var ToolbarGroup = React.createClass({
           });
         case 'ToolbarSeparator' : case 'ToolbarTitle' : 
           return React.cloneElement(currentChild, {
-            style: styles.span
+            style: this.mergeStyles(styles.span, currentChild.props.style)
           });
         default:
           return currentChild;

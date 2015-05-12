@@ -10,7 +10,7 @@ var IconButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -45,15 +45,15 @@ var IconButton = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.palette;
+    return this.context.muiTheme.palette;
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getDisabledColor: function() {
-    return this.context.theme.palette.disabledColor;
+    return this.context.muiTheme.palette.disabledColor;
   },
 
   getStyles: function() {
@@ -70,7 +70,7 @@ var IconButton = React.createClass({
       },
       tooltip: {
         boxSizing: 'border-box',
-        marginTop: this.context.theme.component.button.iconButtonSize + 4
+        marginTop: this.context.muiTheme.component.button.iconButtonSize + 4
       },
       icon: {
         color: this.getTheme().textColor,

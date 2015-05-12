@@ -6,15 +6,15 @@ var ToolbarSeparator = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   getTheme: function() {
-    return this.context.theme.component.toolbar;
+    return this.context.muiTheme.component.toolbar;
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   render: function() {

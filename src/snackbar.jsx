@@ -12,7 +12,7 @@ var Snackbar = React.createClass({
   manuallyBindClickAway: true,
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -46,11 +46,11 @@ var Snackbar = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.snackbar;
+    return this.context.muiTheme.component.snackbar;
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getStyles: function() {

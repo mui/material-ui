@@ -5,7 +5,7 @@ var Colors = require('./styles/colors')
 var InkBar = React.createClass({
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -15,7 +15,7 @@ var InkBar = React.createClass({
   mixins: [StylePropable],
 
   getTheme: function() {
-    return this.context.theme.palette;
+    return this.context.muiTheme.palette;
   },
 
   render: function() {

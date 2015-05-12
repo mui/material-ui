@@ -9,7 +9,7 @@ var DayButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -33,7 +33,7 @@ var DayButton = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.datePicker;
+    return this.context.muiTheme.component.datePicker;
   },
 
   render: function() {
@@ -56,7 +56,7 @@ var DayButton = React.createClass({
 
       label: {
         position: 'relative',
-        color: this.context.theme.palette.textColor
+        color: this.context.muiTheme.palette.textColor
       },
 
       buttonState: {

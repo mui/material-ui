@@ -18,28 +18,33 @@ module.exports = {
   Mixins: {
     Classable: require('./mixins/classable'),
     ClickAwayable: require('./mixins/click-awayable'),
-    WindowListenable: require('./mixins/window-listenable')
+    WindowListenable: require('./mixins/window-listenable'),
+    StylePropable: require('./mixins/style-propable')
   },
   Paper: require('./paper'),
   RadioButton: require('./radio-button'),
   RadioButtonGroup: require('./radio-button-group'),
   RaisedButton: require('./raised-button'),
   Slider: require('./slider'),
-  SvgIcon: require('./svg-icons/svg-icon'),
+  SvgIcon: require('./svg-icon'),
   Icons: {
     NavigationMenu: require('./svg-icons/navigation-menu'),
     NavigationChevronLeft: require('./svg-icons/navigation-chevron-left'),
     NavigationChevronRight: require('./svg-icons/navigation-chevron-right')
   },
   Styles: {
+    AutoPrefix: require('./styles/auto-prefix'),
     Colors: require('./styles/colors'),
     Spacing: require('./styles/spacing'),
-    ThemeManager: require('./styles/theme-manager')
+    ThemeManager: require('./styles/theme-manager'),
+    Transitions: require('./styles/transitions'),
+    Typography: require('./styles/typography')
   },
   Snackbar: require('./snackbar'),
   Tab: require('./tabs/tab'),
   Tabs: require('./tabs/tabs'),
   Toggle: require('./toggle'),
+  TimePicker: require('./time-picker'),
   TextField: require('./text-field'),
   Toolbar: require('./toolbar/toolbar'),
   ToolbarGroup: require('./toolbar/toolbar-group'),
@@ -53,5 +58,7 @@ module.exports = {
     KeyCode: require('./utils/key-code'),
     KeyLine: require('./utils/key-line'),
     ColorManipulator: require('./utils/color-manipulator'),
+    Extend: require('./utils/extend'),
+    UniqueId: require('./utils/unique-id')
   }
 };
