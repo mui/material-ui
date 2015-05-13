@@ -128,6 +128,11 @@ var DropDownMenu = React.createClass({
 
   render: function() {
     var styles = this.getStyles();
+    
+    if (process.env.NODE_ENV !== 'production') {
+      console.assert(!!this.props.menuItems[this.state.selectedIndex], 'SelectedIndex of ' + this.state.selectedIndex + ' does not exist in menuItems.');
+    }
+
     return (
       <div 
         ref="root"
