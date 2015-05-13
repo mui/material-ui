@@ -30,7 +30,8 @@ var DialogWindow = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    'keyup': '_handleWindowKeyUp',
+    'resize': '_positionDialog'
   },
 
   getDefaultProps: function() {
@@ -211,7 +212,7 @@ var DialogWindow = React.createClass({
     //Reset the height in case the window was resized.
     dialogWindow.style.height = '';
 
-    var paddingTop = ((containerHeight - dialogWindowHeight) / 2) - 64;
+    var paddingTop = Math.max(((containerHeight - dialogWindowHeight) / 2) - 64, 0);
 
     //Vertically center the dialog window, but make sure it doesn't
     //transition to that position.

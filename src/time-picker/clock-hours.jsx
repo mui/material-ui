@@ -37,7 +37,7 @@ var ClockHours = React.createClass({
   },
 
   componentDidMount: function () {
-    var clockElement = this.refs.mask.getDOMNode();
+    var clockElement = React.findDOMNode(this.refs.mask);
 
       this.center = {
         x: clockElement.offsetWidth / 2,
@@ -175,4 +175,3 @@ var ClockHours = React.createClass({
 });
 
 module.exports = ClockHours;
- 

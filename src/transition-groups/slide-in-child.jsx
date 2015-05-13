@@ -15,7 +15,7 @@ var SlideInChild = React.createClass({
   },
 
   componentWillEnter: function(callback) {
-    var style = this.getDOMNode().style;
+    var style = React.findDOMNode(this).style;
     var x = this.props.direction === 'left' ? '100%' :
       this.props.direction === 'right' ? '-100%' : '0';
     var y = this.props.direction === 'up' ? '100%' :
@@ -28,13 +28,13 @@ var SlideInChild = React.createClass({
   },
 
   componentDidEnter: function() {
-    var style = this.getDOMNode().style;
+    var style = React.findDOMNode(this).style;
     style.opacity = '1';
     AutoPrefix.set(style, 'transform', 'translate3d(0,0,0)');
   },
 
   componentWillLeave: function(callback) {
-    var style = this.getDOMNode().style;
+    var style = React.findDOMNode(this).style;
     var direction = this.props.getLeaveDirection();
     var x = direction === 'left' ? '-100%' :
       direction === 'right' ? '100%' : '0';

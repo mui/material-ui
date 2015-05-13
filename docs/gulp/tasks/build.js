@@ -1,3 +1,3 @@
 var gulp = require('gulp');
 
-gulp.task('build', ['browserify', 'markup', 'less', 'fontIcons']);
+gulp.task('build', ['browserify', 'markup', 'fontIcons']);

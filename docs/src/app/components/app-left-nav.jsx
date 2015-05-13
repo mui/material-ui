@@ -1,8 +1,8 @@
-var React = require('react'),
-  Router = require('react-router'),
-  mui = require('mui'),
-
-  { MenuItem, LeftNav } = mui,
+var React = require('react');
+var Router = require('react-router');
+var mui = require('mui');
+var {MenuItem, LeftNav} = mui;
+var {Colors, Spacing, Typography} = mui.Styles;
 
   menuItems = [
     { route: 'get-started', text: 'Get Started' },
@@ -24,8 +24,27 @@ class AppLeftNav extends React.Component {
     this._onHeaderClick = this._onHeaderClick.bind(this);
   }
 
+  getStyles() {
+    return {
+      cursor: 'pointer',
+      //.mui-font-style-headline
+      fontSize: '24px',
+      color: Typography.textFullWhite,
+      lineHeight: Spacing.desktopKeylineIncrement + 'px',
+      fontWeight: Typography.fontWeightLight,
+      backgroundColor: Colors.cyan500,
+      paddingLeft: Spacing.desktopGutter,
+      paddingTop: '0px',
+      marginBottom: '8px'
+    };
+  }
+
   render() {
-    var header = <div className="logo" onClick={this._onHeaderClick}>material ui</div>;
+    var header = (
+      <div style={this.getStyles()} onClick={this._onHeaderClick}>
+        material ui
+      </div>
+    );
 
     return (
       <LeftNav 

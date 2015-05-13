@@ -66,7 +66,7 @@ var EnhancedButton = React.createClass({
         font: 'inherit',
         fontFamily: this.context.muiTheme.contentFontFamily,
         WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-        WebkitApperance: 'button',
+        WebkitAppearance: !this.props.linkButton && 'button',
         cursor: 'pointer'
       },
       rootWhenLinkButton: {
@@ -185,7 +185,7 @@ var EnhancedButton = React.createClass({
   },
 
   _handleFocus: function(e) {
-    this.getDOMNode().style.outline = 'none';
+    React.findDOMNode(this).style.outline = 'none';
     if (!this.props.disabled) {
       //setTimeout is needed because the focus event fires first
       //Wait so that we can capture if this was a keyboard focus
@@ -204,7 +204,7 @@ var EnhancedButton = React.createClass({
   },
 
   _handleMouseOver: function(e) {
-    this.getDOMNode().style.textDecoration = 'none';
+    React.findDOMNode(this).style.textDecoration = 'none';
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 

@@ -90,6 +90,8 @@ var EnhancedSwitch = React.createClass({
       newState.switched = nextProps.toggled;
     } else if (hasCheckedLinkProp) {
       newState.switched = nextProps.checkedLink.value;
+    } else if (hasNewDefaultProp) {
+      newState.switched = nextProps.defaultSwitched;
     }
 
     if (newState.switched != undefined && (newState.switched != this.props.switched)) this.props.onParentShouldUpdate(newState.switched);
@@ -101,7 +103,7 @@ var EnhancedSwitch = React.createClass({
 
   getStyles: function() {
     var switchWidth = 60 - Spacing.desktopGutterLess;
-    var labelWidth = this.state.parentWidth - 60;
+    var labelWidth = 'calc(100% - 60px)';
 
     var styles = {
       root: {
