@@ -224,7 +224,7 @@ var TextField = React.createClass({
 
     inputProps = {
       id: inputId,
-      ref: 'input',
+      ref: this._getRef(),
       style: this.mergeAndPrefix(styles.input),
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
@@ -303,9 +303,13 @@ var TextField = React.createClass({
     }
   },
 
+  _getRef: function() {
+    return this.props.ref ? this.props.ref : 'input';
+  },
+
   _getInputNode: function() {
     return this.props.multiLine ?
-      this.refs.input.getInputNode() : React.findDOMNode(this.refs.input);
+      this.refs[this._getRef()].getInputNode() : React.findDOMNode(this._getRef());
   },
 
   _handleInputBlur: function(e) {
