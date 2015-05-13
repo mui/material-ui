@@ -10,7 +10,7 @@ var RadioButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -19,7 +19,7 @@ var RadioButton = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.radioButton;
+    return this.context.muiTheme.component.radioButton;
   },
 
   getStyles: function() {

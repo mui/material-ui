@@ -290,4 +290,4 @@ module.exports = {
   darkWhite:    'rgba(255, 255, 255, 0.87)',
   lightWhite:   'rgba(255, 255, 255, 0.54)'
 
-}
+};

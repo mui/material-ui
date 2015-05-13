@@ -80,6 +80,12 @@ class LeftNavPage extends React.Component {
             desc: 'JSON data representing all menu items to render.'
           },
           {
+            name: 'openRight',
+            type: 'boole',
+            header: 'default: false',
+            desc: 'Positions the LeftNav to open from the right side.'
+          },
+          {
             name: 'selectedIndex',
             type: 'number',
             header: 'optional',

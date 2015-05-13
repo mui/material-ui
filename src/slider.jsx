@@ -11,7 +11,7 @@ var Slider = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -60,7 +60,7 @@ var Slider = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.slider;
+    return this.context.muiTheme.component.slider;
   },
 
   getStyles: function() {

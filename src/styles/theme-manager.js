@@ -14,7 +14,7 @@ var ThemeManager = function() {
     template: Types.LIGHT,
 
     spacing: Spacing,
-    fontFamily: 'Roboto, sans-serif',
+    contentFontFamily: 'Roboto, sans-serif',
 
     palette: Types.LIGHT.getPalette(),
     component: Types.LIGHT.getComponentThemes(Types.LIGHT.getPalette()),

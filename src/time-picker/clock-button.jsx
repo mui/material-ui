@@ -8,7 +8,7 @@ var ClockButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -28,7 +28,7 @@ var ClockButton = React.createClass({
     this.props.onTouchTap();
   },
   getTheme: function() {
-    return this.context.theme.component.timePicker;
+    return this.context.muiTheme.component.timePicker;
   },
   render: function() {
     

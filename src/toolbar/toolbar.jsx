@@ -6,7 +6,7 @@ var Toolbar = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -14,7 +14,7 @@ var Toolbar = React.createClass({
   },
 
   getTheme: function (argument) {
-    return this.context.theme.component.toolbar;
+    return this.context.muiTheme.component.toolbar;
   },
 
   getStyles: function() {
@@ -24,7 +24,7 @@ var Toolbar = React.createClass({
       backgroundColor: this.getTheme().backgroundColor,
       height: this.getTheme().height,
       width: '100%',
-      padding: '0px ' + this.context.theme.spacing.desktopGutter + 'px',
+      padding: '0px ' + this.context.muiTheme.spacing.desktopGutter + 'px',
     }, this.props.style);
   },
 

@@ -11,7 +11,7 @@ var DatePickerDialog = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -44,7 +44,7 @@ var DatePickerDialog = React.createClass({
     var styles = {
       root: {
         fontSize: '14px',
-        color: this.context.theme.component.datePicker.calendarTextColor
+        color: this.context.muiTheme.component.datePicker.calendarTextColor
       },
       
       dialogContents: {

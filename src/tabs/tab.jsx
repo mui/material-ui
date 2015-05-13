@@ -7,7 +7,7 @@ var Tab = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -17,10 +17,6 @@ var Tab = React.createClass({
 
   handleTouchTap: function(){
     this.props.handleTouchTap(this.props.tabIndex, this);
-  },
-
-  getTheme: function() {
-    return this.context.theme.palette;
   },
 
   render: function(){
@@ -36,7 +32,7 @@ var Tab = React.createClass({
       'fontSize': '14sp',
       'fontWeight': '500',
       'whiteSpace': 'initial',
-      'font': this.getTheme().fontFamily,
+      fontFamily: this.context.muiTheme.contentFontFamily,
       'width': this.props.width
     }, this.props.style);
 
