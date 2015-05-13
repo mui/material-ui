@@ -4,7 +4,8 @@ var TabTemplate = require('./tabTemplate');
 var InkBar = require('../ink-bar');
 var Transitions = require('../styles/transitions.js');
 var StylePropable = require('../mixins/style-propable.js');
-var Colors = require('../styles/colors.js')
+var Colors = require('../styles/colors.js');
+var Events = require('../utils/events');
 
 
 var Tabs = React.createClass({
@@ -23,8 +24,7 @@ var Tabs = React.createClass({
       selectedIndex = this.props.initialSelectedIndex;
     }
     return {
-      selectedIndex: selectedIndex,
-      width: this.props.tabWidth || (100/this.props.children.length) + '%'
+      selectedIndex: selectedIndex
     };
   },
 
@@ -36,22 +36,17 @@ var Tabs = React.createClass({
     );
   },
 
-  // Validates that the tabWidth can fit all tabs on the tab bar. If not, the 
-  // tabWidth is recalculated and fixed. 
-  componentDidMount: function(){
-    if(this.props.tabWidth) {
-      if(!(this.props.children.length * this.props.tabWidth > this.getEvenWidth())){
-        this.setState({
-          width: this.props.tabWidth,
-          fixed: false
-        });
-        return;
-      }
-    }
-    this.setState({
-      width: this.getEvenWidth(),
-      fixed: true
-    });
+  componentDidMount: function() {
+    this._updateTabWidth();
+    Events.on(window, 'resize', this._updateTabWidth);
+  },
+
+  componentWillUnmount: function() {
+    Events.off(window, 'resize', this._updateTabWidth);
+  },
+
+  componentWillReceiveProps: function(newProps) {
+    if (newProps.hasOwnProperty('style')) this._updateTabWidth();
   },
 
   handleTouchTap: function(tabIndex, tab){
@@ -64,27 +59,36 @@ var Tabs = React.createClass({
     if(tab.props.onActive) tab.props.onActive(tab);
   },
 
-  render: function(){
+  getStyles: function() {
+    return {
+      root: {
+        position: 'relative'
+      },
+      tabItemContainer: {
+        margin: '0',
+        padding: '0',
+        width: '100%',
+        height: '48px',
+        backgroundColor: Colors.cyan500,
+        whiteSpace: 'nowrap',
+        display: 'table'
+      }
+    };
+  },
 
-    var tabItemContainerStyle = this.mergeAndPrefix({
-      margin: '0',
-      padding: '0',
-      width: '100%',
-      height: '48px',
-      backgroundColor: Colors.cyan500,
-      whiteSpace: 'nowrap',
-      display: 'table'
-    }, this.props.tabItemContainerStyle);
-    
-    var width = this.state.fixed ?
-      this.state.width/this.props.children.length :
-      this.props.tabWidth;
-    var left = width * this.state.selectedIndex || 0;
+  render: function(){    
+    var styles = this.getStyles();
+
+    var width = this.state.fixedWidth ?
+      100 / this.props.children.length +'%' :
+      this.props.tabWidth + 'px';
+
+    var left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
 
     var currentTemplate;
-    var tabs = React.Children.map(this.props.children, function(tab, index){
-      if(tab.type.displayName === "Tab"){
-        if(this.state.selectedIndex === index) currentTemplate = tab.props.children;
+    var tabs = React.Children.map(this.props.children, function(tab, index) {
+      if (tab.type.displayName === "Tab") {
+        if (this.state.selectedIndex === index) currentTemplate = tab.props.children;
          return React.addons.cloneWithProps(tab, {
             key: index,
             selected: this.state.selectedIndex === index,
@@ -94,13 +98,14 @@ var Tabs = React.createClass({
           })
       } else {
         var type = tab.type.displayName || tab.type;
-        throw "Tabs only accepts Tab Components as children. Found " + type + " as child number " + (index + 1) + " of Tabs";
+        throw 'Tabs only accepts Tab Components as children. Found ' + 
+              type + ' as child number ' + (index + 1) + ' of Tabs';
       }
     }, this);
 
     return (
-      <div style={this.mergeAndPrefix({position: 'relative'}, this.props.style)}>
-        <div style={tabItemContainerStyle}>
+      <div style={this.mergeAndPrefix(styles.root, this.props.style)}>
+        <div style={this.mergeAndPrefix(styles.tabItemContainer, this.props.tabItemContainerStyle)}>
           {tabs}
         </div>
         <InkBar left={left} width={width}/>
@@ -110,6 +115,25 @@ var Tabs = React.createClass({
       </div>
     )
   },
+
+  _tabWidthPropIsValid: function() {
+    return this.props.tabWidth && 
+      (this.props.tabWidth * this.props.children.length <= this.getEvenWidth());
+  },
+
+  // Validates that the tabWidth can fit all tabs on the tab bar. If not, the 
+  // tabWidth is recalculated and fixed. 
+  _updateTabWidth: function() {
+    if(this._tabWidthPropIsValid()) {
+      this.setState({
+        fixedWidth: false
+      });
+    } else {
+      this.setState({
+        fixedWidth: true
+      });
+    }
+  }
 
 });
 
