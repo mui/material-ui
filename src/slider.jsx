@@ -192,13 +192,13 @@ var Slider = React.createClass({
       styles.handle,
       styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
-      this.props.focused && {outline: 'none'},
+      this.state.focused && {outline: 'none'},
       this.state.hovered && styles.handleWhenPercentZeroAndHovered,
       this.props.disabled && styles.handleWhenDisabledAndZero
     ) : this.mergeAndPrefix(
       styles.handle,
       this.state.active && styles.handleWhenActive,
-      this.props.focused && {outline: 'none'},
+      this.state.focused && {outline: 'none'},
       this.props.disabled && styles.handleWhenDisabled
     );
 
