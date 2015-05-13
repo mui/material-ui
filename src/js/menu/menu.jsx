@@ -228,7 +228,7 @@ var Menu = React.createClass({
               menuItems={menuItem.items}
               zDepth={this.props.zDepth}
               onItemClick={this._onNestedItemClick}
-              onItemTap={this._onNestedItemClick} />
+              onItemTap={this._onNestedItemTap} />
           );
           this._nestedChildren.push(i);
           break;
