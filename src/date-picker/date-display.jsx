@@ -19,7 +19,7 @@ var DateDisplay = React.createClass({
     yearSelectionAvailable: React.PropTypes.bool,
     monthDaySelected: React.PropTypes.bool
   },
-  
+
   getDefaultProps: function() {
     return {
       weekCount: 4,
@@ -44,7 +44,7 @@ var DateDisplay = React.createClass({
         transitionDirection: direction
       });
     }
-    
+
     if (nextProps.monthDaySelected !== undefined) {
       this.setState({selectedYear: !nextProps.monthDaySelected});
     }
@@ -64,7 +64,7 @@ var DateDisplay = React.createClass({
     var month = DateTime.getShortMonth(this.props.selectedDate);
     var day = this.props.selectedDate.getDate();
     var year = this.props.selectedDate.getFullYear();
-    
+
     var isLandscape = this.props.mode === 'landscape';
     var dateYPosition = '0px';
     var dayYPosition = '30px';
@@ -124,7 +124,7 @@ var DateDisplay = React.createClass({
           transition: Transitions.easeOut(),
           transform: 'translate3d(0,' + dayYPosition + ',0)'
         },
-        
+
         title: {
           width: '100px',
           marginLeft: 'auto',
@@ -144,7 +144,7 @@ var DateDisplay = React.createClass({
           textTransform: 'uppercase',
           opacity: this.state.selectedYear ? '0.7' : '1.0'
         },
-        
+
         title: {
           width: '100px',
           marginLeft: 'auto',
@@ -166,12 +166,12 @@ var DateDisplay = React.createClass({
           transition: Transitions.easeOut(),
           transform: 'translate3d(0,' + yearYPosition + ',0)'
         },
-        
+
         title: {
           width: '100px',
           marginLeft: 'auto',
           marginRight: 'auto',
-          cursor: this.state.selectedYear ? 'default' : 'pointer'
+          cursor: (!this.props.yearSelectionAvailable || this.state.selectedYear) ? 'default' : 'pointer'
         }
       }
     };
@@ -207,26 +207,26 @@ var DateDisplay = React.createClass({
               <div key={year} style={styles.year.title} onClick={this._handleYearClick}>{year}</div>
             </SlideInTransitionGroup>
           </div>
-          
+
         </div>
-        
+
       </div>
     );
   },
-  
+
   _handleMonthDayClick: function() {
     if (this.props.handleMonthDayClick && this.state.selectedYear) {
       this.props.handleMonthDayClick();
     }
-    
+
     if (this.props.yearSelectionAvailable) this.setState({selectedYear: false});
   },
-  
+
   _handleYearClick: function() {
     if (this.props.handleYearClick && !this.state.selectedYear && this.props.yearSelectionAvailable) {
       this.props.handleYearClick();
     }
-    
+
     if (this.props.yearSelectionAvailable) this.setState({selectedYear: true});
   }
 

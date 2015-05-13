@@ -24,7 +24,7 @@ var DatePicker = React.createClass({
     shouldDisableDate: React.PropTypes.func,
     hideToolbarYearChange: React.PropTypes.bool,
     opensOnFocus: React.PropTypes.bool,
-    autoOk: React.PropTypes.bool,
+    autoOk: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -113,7 +113,7 @@ var DatePicker = React.createClass({
       });
       this.refs.dialogWindow.show();
     }
-    
+
     if (this.props.onFocus) this.props.onFocus(e);
   },
 

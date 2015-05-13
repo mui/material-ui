@@ -13,11 +13,13 @@ class DatePickerPage extends React.Component {
     minDate.setHours(0,0,0,0);
     maxDate.setFullYear(maxDate.getFullYear() +1);
     maxDate.setHours(0,0,0,0);
-    
+
     this.state = {
       minDate: minDate,
       maxDate: maxDate,
-      opensOnFocus: false
+      opensOnFocus: false,
+      autoOk: false,
+      showYearSelector: false
     };
   }
 
@@ -125,7 +127,7 @@ class DatePickerPage extends React.Component {
         ]
       }
     ];
-    
+
     var optionsStyle = {
       width: '300px',
       margin: '0 auto'
@@ -145,51 +147,67 @@ class DatePickerPage extends React.Component {
           hintText="Landscape Dialog"
           mode="landscape"
           opensOnFocus={this.state.opensOnFocus} />
-          
+
         <DatePicker
           hintText="Ranged Date Picker"
+          autoOk={this.state.autoOk}
           minDate={this.state.minDate}
           maxDate={this.state.maxDate}
+          showYearSelector={this.state.showYearSelector}
           opensOnFocus={this.state.opensOnFocus} />
-          
+
         <div style={optionsStyle}>
           <TextField
             floatingLabelText="Min Date"
             defaultValue={this.state.minDate.toDateString()}
             onChange={this._updateMinDate.bind(this)} />
-        
+
           <TextField
             floatingLabelText="Max Date"
             defaultValue={this.state.maxDate.toDateString()}
             onChange={this._updateMaxDate.bind(this)} />
-          
+
           <Toggle
             name="opensOnFocus"
             value="opensOnFocus"
             label="Opens On Focus"
-            defaultToggled={false}
+            defaultToggled={this.state.opensOnFocus}
             onToggle={this._handleToggle.bind(this)} />
+
+          <Toggle
+            name="autoOk"
+            value="autoOk"
+            label="Auto Accept"
+            defaultToggled={this.state.autoOk}
+            onToggle={this._handleToggle.bind(this)} />
+
+            <Toggle
+              name="showYearSelector"
+              value="showYearSelector"
+              label="Show Year Selector"
+              defaultToggled={this.state.showYearSelector}
+              onToggle={this._handleToggle.bind(this)} />
         </div>
       </ComponentDoc>
     );
   }
-  
+
   _updateMinDate(e) {
     this.setState({
       minDate: new Date(e.target.value)
     });
   }
-  
+
   _updateMaxDate(e) {
     this.setState({
       maxDate: new Date(e.target.value)
     });
   }
-  
+
   _handleToggle(e, toggled) {
-    this.setState({
-      opensOnFocus: toggled
-    });
+    var state = {};
+    state[e.target.name] = toggled;
+    this.setState(state);
   }
 
 }

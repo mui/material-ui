@@ -24,7 +24,8 @@ var DatePickerDialog = React.createClass({
     minDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
-    hideToolbarYearChange: React.PropTypes.bool
+    hideToolbarYearChange: React.PropTypes.bool,
+    showYearSelector: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -51,7 +52,7 @@ var DatePickerDialog = React.createClass({
         fontSize: '14px',
         color: this.context.muiTheme.component.datePicker.calendarTextColor
       },
-      
+
       dialogContents: {
         width: this.props.mode === 'landscape' ? '560px' : '280px'
       },
@@ -101,6 +102,7 @@ var DatePickerDialog = React.createClass({
           shouldDisableDate={this.props.shouldDisableDate}
           shouldShowMonthDayPickerFirst={this.state.showMonthDayPicker}
           hideToolbarYearChange={this.props.hideToolbarYearChange}
+          showYearSelector={this.props.showYearSelector}
           mode={this.props.mode} />
       </DialogWindow>
     );
@@ -116,7 +118,7 @@ var DatePickerDialog = React.createClass({
 
   _onSelectedDate: function(){
     if(this.props.autoOk){
-      setTimeout(this._handleOKTouchTap.bind(this), 300);
+      setTimeout(this._handleOKTouchTap, 300);
     }
   },
 
@@ -128,7 +130,7 @@ var DatePickerDialog = React.createClass({
     if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
-    
+
     this.dismiss();
   },
 
@@ -154,7 +156,7 @@ var DatePickerDialog = React.createClass({
       this.props.onDismiss();
     }
   },
-  
+
   _handleDialogClickAway: function() {
     CssEvent.onTransitionEnd(this.refs.dialogWindow.getDOMNode(), function() {
       this.setState({
@@ -162,7 +164,7 @@ var DatePickerDialog = React.createClass({
         showMonthDayPicker: true
       });
     }.bind(this));
-    
+
     if (this.props.onClickAway) this.props.onClickAway();
   },
 
