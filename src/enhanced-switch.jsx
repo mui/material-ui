@@ -5,6 +5,7 @@ var Transitions = require('./styles/transitions');
 var UniqueId = require('./utils/unique-id');
 var WindowListenable = require('./mixins/window-listenable');
 var Spacing = require('./styles/spacing');
+var ClearFix = require('./clearfix');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
 var Paper = require('./paper');
@@ -126,6 +127,10 @@ var EnhancedSwitch = React.createClass({
         boxSizing: 'border-box', 
         padding: 0,
         margin: 0
+      },
+      controls: {
+        width: '100%',
+        height: '100%'
       },
       label: {
         float: 'left',
@@ -271,15 +276,15 @@ var EnhancedSwitch = React.createClass({
     // Position is left if not defined or invalid.
     var elementsInOrder = (labelPositionExist &&
       (this.props.labelPosition.toUpperCase() === "RIGHT")) ? (
-        <div>
+        <ClearFix style={this.mergeAndPrefix(styles.controls)}>
           {switchElement}
           {labelElement}
-        </div>
+        </ClearFix>
       ) : (
-        <div>
+        <ClearFix style={this.mergeAndPrefix(styles.controls)}>
           {labelElement}
           {switchElement}
-        </div>
+        </ClearFix>
     );
 
     return (
