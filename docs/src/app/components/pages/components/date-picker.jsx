@@ -36,9 +36,11 @@ class DatePickerPage extends React.Component {
       '// Ranged Date Picker\n' +
       '<DatePicker\n' +
       '  hintText="Ranged Date Picker"\n' +
+      '  autoOk={this.state.autoOk}\n' +
       '  minDate={this.state.minDate}\n' +
-      '  maxDate={this.state.maxDate}/>' +
-      '  mode="landscape"/>';
+      '  maxDate={this.state.maxDate}\n' +
+      '  showYearSelector={this.state.showYearSelector}\n' +
+      '  opensOnFocus={this.state.opensOnFocus} />';
 
     var componentInfo = [
       {
@@ -90,6 +92,13 @@ class DatePickerPage extends React.Component {
             header: 'optional',
             desc: 'Hide year change buttons on calendar; good for short time spans. Clicking ' +
               'the year will always result in selecting a year.'
+          },
+          {
+            name: 'showYearSelector',
+            type: 'boolean',
+            header: 'default: false',
+            desc: 'Determines whether or not a DatePicker has a year selection capability. ' +
+              'If false, the year change buttons in the toolbar are hidden.'
           },
           {
             name: 'opensOnFocus',

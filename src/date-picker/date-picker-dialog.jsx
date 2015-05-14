@@ -113,11 +113,12 @@ var DatePickerDialog = React.createClass({
   },
 
   dismiss: function() {
+    console.log('dismissing1');
     this.refs.dialogWindow.dismiss();
   },
 
-  _onSelectedDate: function(){
-    if(this.props.autoOk){
+  _onSelectedDate: function(e) {
+    if(this.props.autoOk && e !== undefined) {
       setTimeout(this._handleOKTouchTap, 300);
     }
   },
@@ -139,9 +140,7 @@ var DatePickerDialog = React.createClass({
       isCalendarActive: true
     });
 
-    if(this.props.onShow) {
-      this.props.onShow();
-    }
+    if(this.props.onShow) this.props.onShow();
   },
 
   _handleDialogDismiss: function() {
@@ -152,9 +151,7 @@ var DatePickerDialog = React.createClass({
       });
     }.bind(this));
 
-    if(this.props.onDismiss) {
-      this.props.onDismiss();
-    }
+    if(this.props.onDismiss) this.props.onDismiss();
   },
 
   _handleDialogClickAway: function() {

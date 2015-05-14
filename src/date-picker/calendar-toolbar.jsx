@@ -22,7 +22,7 @@ var CalendarToolbar = React.createClass({
     nextMonth: React.PropTypes.bool,
     hideYearChangeButtons: React.PropTypes.bool
   },
-  
+
   getDefaultProps: function() {
     return {
       prevYear: true,
@@ -49,7 +49,7 @@ var CalendarToolbar = React.createClass({
       });
     }
   },
-  
+
   _styles: function() {
     return {
       root: {
@@ -71,7 +71,7 @@ var CalendarToolbar = React.createClass({
       }
     };
   },
-  
+
   render: function() {
     var month = DateTime.getFullMonth(this.props.displayDate);
     var year = this.props.displayDate.getFullYear();
@@ -83,21 +83,21 @@ var CalendarToolbar = React.createClass({
       <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root} noGutter={true}>
         <ToolbarGroup key={0} float="left">
           {prevYearChangeButton}
-              
+
           <IconButton
             disabled={!this.props.prevMonth}
             onTouchTap={this._prevMonthTouchTap}>
               <NavigationChevronLeft />
           </IconButton>
         </ToolbarGroup>
-        
+
         <ToolbarGroup key={1} float="right">
           <IconButton
             disabled={!this.props.nextMonth}
             onTouchTap={this._nextMonthTouchTap}>
               <NavigationChevronRight />
           </IconButton>
-          
+
           {nextYearChangeButton}
         </ToolbarGroup>
 
@@ -109,51 +109,49 @@ var CalendarToolbar = React.createClass({
       </Toolbar>
     );
   },
-  
+
   _getPrevYearChangeButton: function() {
-    var icon = '';
-    
-    if (!this.props.hideYearChangeButtons) {
-      icon = (
-        <IconButton
-          disabled={!this.props.prevYear}
-          onTouchTap={this._prevYearTouchTap}>
-            <NavigationChevronLeftDouble />
-        </IconButton>
-      );
-    }
-    
-    return icon;
+    var style = {
+      visibility: this.props.hideYearChangeButtons ? 'hidden' : 'visible'
+    };
+
+    return (
+      <IconButton
+        style={style}
+        disabled={!this.props.prevYear}
+        onTouchTap={this._prevYearTouchTap}>
+          <NavigationChevronLeftDouble />
+      </IconButton>
+    );
   },
-  
+
   _getNextYearChangeButton: function() {
-    var icon = '';
-    
-    if (!this.props.hideYearChangeButtons) {
-      icon = (
-        <IconButton
-          disabled={!this.props.nextYear}
-          onTouchTap={this._nextYearTouchTap}>
-            <NavigationChevronRightDouble />
-        </IconButton>
-      );
-    }
-    
-    return icon;
+    var style = {
+      visibility: this.props.hideYearChangeButtons ? 'hidden' : 'visible'
+    };
+
+    return (
+      <IconButton
+        style={style}
+        disabled={!this.props.nextYear}
+        onTouchTap={this._nextYearTouchTap}>
+          <NavigationChevronRightDouble />
+      </IconButton>
+    );
   },
-  
+
   _prevYearTouchTap: function() {
     if (this.props.onYearChange && this.props.prevYear) this.props.onYearChange(-1);
   },
-  
+
   _nextYearTouchTap: function() {
     if (this.props.onYearChange && this.props.nextYear) this.props.onYearChange(1);
   },
-  
+
   _prevMonthTouchTap: function() {
     if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
   },
-  
+
   _nextMonthTouchTap: function() {
     if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
   }

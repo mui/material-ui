@@ -8,6 +8,8 @@ var TextField = require('../text-field');
 
 var DatePicker = React.createClass({
 
+  isActive: false,
+
   mixins: [StylePropable, WindowListenable],
 
   propTypes: {
@@ -24,7 +26,8 @@ var DatePicker = React.createClass({
     shouldDisableDate: React.PropTypes.func,
     hideToolbarYearChange: React.PropTypes.bool,
     opensOnFocus: React.PropTypes.bool,
-    autoOk: React.PropTypes.bool
+    autoOk: React.PropTypes.bool,
+    showYearSelector: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -35,7 +38,8 @@ var DatePicker = React.createClass({
     return {
       formatDate: DateTime.format,
       opensOnFocus: false,
-      autoOk: false
+      autoOk: false,
+      showYearSelector: false
     };
   },
 
@@ -57,6 +61,7 @@ var DatePicker = React.createClass({
       minDate,
       maxDate,
       autoOk,
+      showYearSelector,
       ...other
     } = this.props;
     var defaultInputValue;
@@ -79,10 +84,11 @@ var DatePicker = React.createClass({
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
-          onDismiss={onDismiss}
+          onDismiss={this._handleDialogDismiss}
           minDate={minDate}
           maxDate={maxDate}
           autoOk={autoOk}
+          showYearSelector={showYearSelector}
           shouldDisableDate={this.props.shouldDisableDate}
           hideToolbarYearChange={this.props.hideToolbarYearChange} />
       </div>
@@ -102,32 +108,39 @@ var DatePicker = React.createClass({
   },
 
   _handleDialogAccept: function(d) {
+    this.isActive = false;
     this.setDate(d);
     if (this.props.onChange) this.props.onChange(null, d);
   },
 
-  _handleInputFocus: function(e) {
-    if (this.props.opensOnFocus) {
-      this.setState({
-        dialogDate: this.getDate()
-      });
-      this.refs.dialogWindow.show();
-    }
+  _handleDialogDismiss: function() {
+    this.isActive = false;
+    if (this.props.onDismiss) this.props.onDismiss();
+  },
 
+  _handleInputFocus: function(e) {
+    if (this.props.opensOnFocus) this._openDialog();
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
   _handleInputTouchTap: function(e) {
-    this.setState({
-      dialogDate: this.getDate()
-    });
+    this._openDialog();
 
-    this.refs.dialogWindow.show();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   },
 
   _handleWindowKeyUp: function(e) {
     //TO DO: open the dialog if input has focus
+  },
+
+  _openDialog: function() {
+    if (!this.isActive) {
+      this.isActive = true;
+      this.setState({
+        dialogDate: this.getDate()
+      });
+      this.refs.dialogWindow.show();
+    }
   }
 
 });
