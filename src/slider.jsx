@@ -24,6 +24,8 @@ var Slider = React.createClass({
     description: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onBlur: React.PropTypes.func,
     onDragStart: React.PropTypes.func,
     onDragStop: React.PropTypes.func
   },
@@ -311,10 +313,12 @@ var Slider = React.createClass({
 
   _onFocus: function (e) {    
     this.setState({focused: true});
+    if (this.props.onFocus) this.props.onFocus(e);
   },
 
   _onBlur: function (e) {
     this.setState({focused: false, active: false});
+    if (this.props.onBlur) this.props.onBlur(e);
   },
 
   _onMouseOver: function (e) {
