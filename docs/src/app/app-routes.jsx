@@ -10,11 +10,13 @@ var Master = require('./components/master.jsx');
 var Home = require('./components/pages/home.jsx');
 var GetStarted = require('./components/pages/get-started.jsx');
 
-var CssFramework = require('./components/pages/css-framework.jsx');
-var Colors = require('./components/pages/css-framework/colors.jsx');
-var Typography = require('./components/pages/css-framework/typography.jsx');
+var Customization = require('./components/pages/customization.jsx');
+var Colors = require('./components/pages/customization/colors.jsx');
+var Themes = require('./components/pages/customization/themes.jsx'); 
+var InlineStyles = require('./components/pages/customization/inline-styles.jsx'); 
 
 var Components = require('./components/pages/components.jsx');
+var AppBar = require('./components/pages/components/app-bar.jsx');
 var Buttons = require('./components/pages/components/buttons.jsx');
 var DatePicker = require('./components/pages/components/date-picker.jsx');
 var Dialog = require('./components/pages/components/dialog.jsx');
@@ -30,6 +32,7 @@ var Switches = require('./components/pages/components/switches.jsx');
 var Table = require('./components/pages/components/table.jsx');
 var Tabs = require('./components/pages/components/tabs.jsx');
 var TextFields = require('./components/pages/components/text-fields.jsx');
+var TimePicker = require('./components/pages/components/time-picker.jsx');
 var Toolbars = require('./components/pages/components/toolbars.jsx');
 
 
@@ -46,13 +49,15 @@ var AppRoutes = (
   <Route name="root" path="/" handler={Master}>
     <Route name="home" handler={Home} />
     <Route name="get-started" handler={GetStarted} />
-    <Route name="css-framework" handler={CssFramework}>
+    <Route name="customization" handler={Customization}>
       <Route name="colors" handler={Colors} />
-      <Route name="typography" handler={Typography} />
-      <Redirect from="/css-framework" to="colors" />
+      <Route name="themes" handler={Themes} />
+      <Route name="inline-styles" handler={InlineStyles} />
+      <Redirect from="/customization" to="themes" />
     </Route>
 
     <Route name="components" handler={Components}>
+      <Route name="appbar" handler={AppBar} />
       <Route name="buttons" handler={Buttons} />
       <Route name="date-picker" handler={DatePicker} />
       <Route name="dialog" handler={Dialog} />
@@ -68,8 +73,9 @@ var AppRoutes = (
       <Route name="table" handler={Table} />
       <Route name="tabs" handler={Tabs} />
       <Route name="text-fields" handler={TextFields} />
+      <Route name="time-picker" handler={TimePicker} />
       <Route name="toolbars" handler={Toolbars} />
-      <Redirect from="/components" to="buttons" />
+      <Redirect from="/components" to="appbar" />
     </Route>
 
     <DefaultRoute handler={Home}/>

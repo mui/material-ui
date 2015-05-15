@@ -4,14 +4,17 @@ var mui = require('mui');
 var Router = require('react-router');
 var ComponentDoc = require('../../component-doc.jsx');
 var RouteHandler = Router.RouteHandler;
-var Tabs = mui.Tabs;
-var Tab= mui.Tab;
 
-var TabsPage = React.createClass({
+var {Tabs, Tab} = mui;
 
-  mixins: [Router.Navigation, Router.State],
+class TabsPage extends React.Component {
 
-  render: function(){
+  constructor() {
+    super();
+    this._onActive = this._onActive.bind(this);
+  }
+
+  render(){
     var code =  '<Tabs> \n' +
                 '  <Tab label="Item One" > \n' +
                 '    <div className="tab-template-container"> \n' +
@@ -51,8 +54,6 @@ var TabsPage = React.createClass({
       'If you need to access a tab directly - you can do so with the first argument of onActive or ' +
       'by accessing the props.children array by passing refs to the Tabs container.';
 
-
-
     var componentInfo = [
       {
         name: 'Tabs Props',
@@ -62,6 +63,12 @@ var TabsPage = React.createClass({
             type: 'number',
             header: 'optional',
             desc: 'Specify initial visible tab index. Initial selected index is set by default to 0. If initialSelectedIndex is set but larger than the total amount of specified tabs, initialSelectedIndex will revert back to default'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the Tabs\' root element.'
           },
           {
             name: 'tabWidth',
@@ -152,11 +159,15 @@ var TabsPage = React.createClass({
 
       </ComponentDoc>
     );
-  },
+  }
 
-  _onActive: function(tab){
+  _onActive(tab){
     this.context.router.transitionTo(tab.props.route);
   }
-});
+}
+
+TabsPage.contextTypes = {
+  router: React.PropTypes.func
+};
 
 module.exports = TabsPage;

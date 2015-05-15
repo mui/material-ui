@@ -1,10 +1,11 @@
 var React = require('react');
 var PageWithNav = require('./page-with-nav.jsx');
 
-var Components = React.createClass({
+class Components extends React.Component {
 
-  render: function() {
+  render() {
     var menuItems = [
+      { route: 'appbar', text: 'AppBar'},
       { route: 'buttons', text: 'Buttons'},
       { route: 'date-picker', text: 'Date Picker'},
       { route: 'dialog', text: 'Dialog'},
@@ -20,6 +21,7 @@ var Components = React.createClass({
       { route: 'table', text: 'Table'},
       { route: 'tabs', text: 'Tabs'},
       { route: 'text-fields', text: 'Text Fields'},
+      { route: 'time-picker', text: 'Time Picker'},
       { route: 'toolbars', text: 'Toolbars'},
     ];
 
@@ -28,6 +30,6 @@ var Components = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = Components;

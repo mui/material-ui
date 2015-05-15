@@ -3,9 +3,9 @@ var mui = require('mui');
 var DropDownMenu = mui.DropDownMenu;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var DropDownMenuPage = React.createClass({
+class DropDownMenuPage extends React.Component {
 
-  render: function() {
+  render() {
 
     var menuItems = [
       { payload: '1', text: 'Never' },
@@ -15,7 +15,7 @@ var DropDownMenuPage = React.createClass({
       { payload: '5', text: 'Weekly' },
     ];
 
-    var code = 
+    var code =
       "var menuItems = [\n" +
       "   { payload: '1', text: 'Never' },\n" +
       "   { payload: '2', text: 'Every Night' },\n" +
@@ -42,6 +42,25 @@ var DropDownMenuPage = React.createClass({
             type: 'array',
             header: 'required',
             desc: 'JSON data representing all menu items in the dropdown.'
+          },
+          {
+            name: 'menuItemStyle',
+            type: 'array',
+            header: 'required',
+            desc: 'Overrides the inline-styles of the MenuItems when the ' + 
+                  'DropDownMenu is expanded.'
+          },
+          {
+            name: 'selectedIndex',
+            type: 'number',
+            header: 'default: 0',
+            desc: 'Index of the item selected.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of DropDownMenu\'s root element.'
           }
         ]
       },
@@ -70,6 +89,6 @@ var DropDownMenuPage = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = DropDownMenuPage;
