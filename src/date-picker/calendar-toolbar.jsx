@@ -112,7 +112,7 @@ var CalendarToolbar = React.createClass({
 
   _getPrevYearChangeButton: function() {
     var style = {
-      visibility: this.props.hideYearChangeButtons ? 'hidden' : 'visible'
+      display: this.props.hideYearChangeButtons ? 'none' : ''
     };
 
     return (
@@ -127,7 +127,7 @@ var CalendarToolbar = React.createClass({
 
   _getNextYearChangeButton: function() {
     var style = {
-      visibility: this.props.hideYearChangeButtons ? 'hidden' : 'visible'
+      display: this.props.hideYearChangeButtons ? 'none' : ''
     };
 
     return (

@@ -25,7 +25,6 @@ var DatePicker = React.createClass({
     maxDate: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
     hideToolbarYearChange: React.PropTypes.bool,
-    opensOnFocus: React.PropTypes.bool,
     autoOk: React.PropTypes.bool,
     showYearSelector: React.PropTypes.bool
   },
@@ -37,7 +36,6 @@ var DatePicker = React.createClass({
   getDefaultProps: function() {
     return {
       formatDate: DateTime.format,
-      opensOnFocus: false,
       autoOk: false,
       showYearSelector: false
     };
@@ -108,7 +106,6 @@ var DatePicker = React.createClass({
   },
 
   _handleDialogAccept: function(d) {
-    this.isActive = false;
     this.setDate(d);
     if (this.props.onChange) this.props.onChange(null, d);
   },
@@ -119,28 +116,21 @@ var DatePicker = React.createClass({
   },
 
   _handleInputFocus: function(e) {
-    if (this.props.opensOnFocus) this._openDialog();
+    e.target.blur();
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
   _handleInputTouchTap: function(e) {
-    this._openDialog();
+    this.setState({
+      dialogDate: this.getDate()
+    });
 
+    this.refs.dialogWindow.show();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   },
 
   _handleWindowKeyUp: function(e) {
     //TO DO: open the dialog if input has focus
-  },
-
-  _openDialog: function() {
-    if (!this.isActive) {
-      this.isActive = true;
-      this.setState({
-        dialogDate: this.getDate()
-      });
-      this.refs.dialogWindow.show();
-    }
   }
 
 });

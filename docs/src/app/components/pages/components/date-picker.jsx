@@ -17,7 +17,6 @@ class DatePickerPage extends React.Component {
     this.state = {
       minDate: minDate,
       maxDate: maxDate,
-      opensOnFocus: false,
       autoOk: false,
       showYearSelector: false
     };
@@ -39,8 +38,7 @@ class DatePickerPage extends React.Component {
       '  autoOk={this.state.autoOk}\n' +
       '  minDate={this.state.minDate}\n' +
       '  maxDate={this.state.maxDate}\n' +
-      '  showYearSelector={this.state.showYearSelector}\n' +
-      '  opensOnFocus={this.state.opensOnFocus} />';
+      '  showYearSelector={this.state.showYearSelector} />';
 
     var componentInfo = [
       {
@@ -101,12 +99,6 @@ class DatePickerPage extends React.Component {
               'If false, the year change buttons in the toolbar are hidden.'
           },
           {
-            name: 'opensOnFocus',
-            type: 'boolean',
-            header: 'optional',
-            desc: 'If true, open the date picker when it has focus. Default value is false.'
-          },
-          {
             name: 'autoOk',
             type: 'bool',
             header: 'default: false',
@@ -149,21 +141,18 @@ class DatePickerPage extends React.Component {
         componentInfo={componentInfo}>
 
         <DatePicker
-          hintText="Portrait Dialog"
-          opensOnFocus={this.state.opensOnFocus} />
+          hintText="Portrait Dialog" />
 
         <DatePicker
           hintText="Landscape Dialog"
-          mode="landscape"
-          opensOnFocus={this.state.opensOnFocus} />
+          mode="landscape" />
 
         <DatePicker
           hintText="Ranged Date Picker"
           autoOk={this.state.autoOk}
           minDate={this.state.minDate}
           maxDate={this.state.maxDate}
-          showYearSelector={this.state.showYearSelector}
-          opensOnFocus={this.state.opensOnFocus} />
+          showYearSelector={this.state.showYearSelector} />
 
         <div style={optionsStyle}>
           <TextField
@@ -175,13 +164,6 @@ class DatePickerPage extends React.Component {
             floatingLabelText="Max Date"
             defaultValue={this.state.maxDate.toDateString()}
             onChange={this._updateMaxDate.bind(this)} />
-
-          <Toggle
-            name="opensOnFocus"
-            value="opensOnFocus"
-            label="Opens On Focus"
-            defaultToggled={this.state.opensOnFocus}
-            onToggle={this._handleToggle.bind(this)} />
 
           <Toggle
             name="autoOk"
