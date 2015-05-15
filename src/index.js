@@ -1,7 +1,10 @@
 module.exports = {
   AppBar: require('./app-bar'),
   AppCanvas: require('./app-canvas'),
+  BeforeAfterWrapper: require('./before-after-wrapper'),
   Checkbox: require('./checkbox'),
+  CircularProgress: require('./circular-progress'),
+  ClearFix: require('./clearfix'),
   DatePicker: require('./date-picker/date-picker'),
   Dialog: require('./dialog'),
   DialogWindow: require('./dialog-window'),
@@ -13,13 +16,15 @@ module.exports = {
   FontIcon: require('./font-icon'),
   IconButton: require('./icon-button'),
   LeftNav: require('./left-nav'),
+  LinearProgress: require('./linear-progress'),
   Menu: require('./menu/menu'),
   MenuItem: require('./menu/menu-item'),
   Mixins: {
     Classable: require('./mixins/classable'),
     ClickAwayable: require('./mixins/click-awayable'),
     WindowListenable: require('./mixins/window-listenable'),
-    StylePropable: require('./mixins/style-propable')
+    StylePropable: require('./mixins/style-propable'),
+    StyleResizable: require('./mixins/style-resizable')
   },
   Paper: require('./paper'),
   RadioButton: require('./radio-button'),

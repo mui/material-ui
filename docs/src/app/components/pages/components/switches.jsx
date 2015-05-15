@@ -2,8 +2,8 @@ var React = require('react');
 var mui = require('mui');
 var CodeExample = require('../../code-example/code-example.jsx');
 var ComponentDoc = require('../../component-doc.jsx');
-
-var {Checkbox, RadioButton, RadioButtonGroup, Tab, Tabs, Toggle, RaisedButton} = mui;
+var Typography = mui.Styles.Typography;
+var {Checkbox, ClearFix, RadioButton, RadioButtonGroup, Tab, Tabs, Toggle, RaisedButton} = mui;
 
 class SwitchesPage extends React.Component {
 
@@ -335,11 +335,37 @@ class SwitchesPage extends React.Component {
     ];
   }
 
+  getStyles() {
+    return {
+      container: {
+        textAlign: 'left',
+        marginBottom: '16px',
+        minHeight: '24px'
+      },
+      group: {
+        float: 'left',
+        width: '30%',
+        padding: '0 50px',
+        boxSizing: 'border-box'
+      },
+      headline: {
+        //mui-font-style-headline
+        fontSize: '24px',
+        lineHeight: '32px',
+        paddingTop: '16px',
+        marginBottom: '12px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightNormal,
+        color: Typography.textDarkBlack
+      }
+    }
+  }
+
   render() {
 
     return (
       <div>
-      <h2 className="mui-font-style-headline">Switches</h2>
+      <h2 styles={this.getStyles().headline}>Switches</h2>
       <Tabs>
         <Tab label="Checkbox">
           <ComponentDoc
@@ -347,9 +373,9 @@ class SwitchesPage extends React.Component {
             code={this.codeCheckbox}
             desc={this.desc}
             componentInfo={this.componentInfo.slice(0,3)}>
-            <form className="switches-examples">
+            <ClearFix elementType="form">
               {this._getCheckboxExample()}
-            </form>
+            </ClearFix>
           </ComponentDoc>
         </Tab>
         <Tab label="RadioButtons">
@@ -358,9 +384,9 @@ class SwitchesPage extends React.Component {
             code={this.codeRadioButton}
             desc={this.desc}
             componentInfo={this.componentInfo.slice(3,7)}>
-            <form className="switches-examples">
+            <ClearFix elementType="form">
               {this._getRadioButtonExample()}
-            </form>
+            </ClearFix>
           </ComponentDoc>
         </Tab>
         <Tab label="Toggle">
@@ -369,9 +395,9 @@ class SwitchesPage extends React.Component {
             code={this.codeToggle}
             desc={this.desc}
             componentInfo={this.componentInfo.slice(7)}>
-            <form className="switches-examples">
+            <ClearFix elementType="form">
               {this._getToggleExample()}
-            </form>
+            </ClearFix>
           </ComponentDoc>
         </Tab>
       </Tabs>
@@ -380,17 +406,17 @@ class SwitchesPage extends React.Component {
   }
 
   _getCheckboxExample() {
-
+    var styles = this.getStyles();
     return (
-      <div className="switches-example-group">
-        <div className="switches-example-container">
+      <div style={styles.group}>
+        <div style={styles.container}>
           <Checkbox
             id="checkboxId1"
             name="checkboxName1"
             value="checkboxValue1"
             label="went for a run today"/>
         </div>
-        <div className="switches-example-container">
+        <div style={styles.container}>
           <Checkbox
             id="checkboxId2"
             name="checkboxName2"
@@ -398,7 +424,7 @@ class SwitchesPage extends React.Component {
             label="fed the dog"
             defaultChecked={true}/>
         </div>
-        <div className="switches-example-container">
+        <div style={styles.container}>
           <Checkbox
             id="checkboxId3"
             name="checkboxName3"
@@ -411,17 +437,17 @@ class SwitchesPage extends React.Component {
   }
 
   _getToggleExample() {
-
+    var styles = this.getStyles();
     return (
-      <div className="switches-example-group">
-        <div className="switches-example-container">
+      <div style={styles.group}>
+        <div style={styles.container}>
           <Toggle
             id="toggleId1"
             name="toggleName1"
             value="toggleValue1"
             label="activate thrusters"/>
         </div>
-        <div className="switches-example-container">
+        <div style={styles.container}>
           <Toggle
             id="toggleId2"
             name="toggleName2"
@@ -429,7 +455,7 @@ class SwitchesPage extends React.Component {
             label="auto-pilot"
             defaultToggled={true}/>
         </div>
-        <div className="switches-example-container">
+        <div style={styles.container}>
           <Toggle
             id="toggleId3"
             name="toggleName3"
@@ -442,9 +468,9 @@ class SwitchesPage extends React.Component {
   }
 
   _getRadioButtonExample() {
-
+    var styles = this.getStyles();
     return (
-      <div className="switches-example-group">
+      <div style={styles.group}>
         <RadioButtonGroup
           name="shipSpeed"
           defaultSelected="not_light">

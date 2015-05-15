@@ -1,11 +1,41 @@
 var React = require('react');
 var mui = require('mui');
 var Paper = mui.Paper;
+var ClearFix = mui.ClearFix;
+var StyleResizable = mui.Mixins.StyleResizable;
 var ComponentDoc = require('../../component-doc.jsx');
 
-class PaperPage extends React.Component {
+var PaperPage = React.createClass ({
 
-  render() {
+  mixins: [StyleResizable],
+
+  getStyles: function() {
+    var styles = {
+      root: {
+        height: '100px',
+        width: '100px',
+        margin: '0 auto',
+        marginBottom: '64px',
+        textAlign: 'center'
+      },
+      group: {
+        float: 'left',
+        width: '100%'
+      },
+      p: {
+        lineHeight: '80px',
+        height: '100%'
+      }
+    };
+
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
+      styles.group.width = '33%';
+    }
+
+    return styles;
+  },
+
+  render: function() {
 
     var code = [
       '//Rounded Corners',
@@ -86,17 +116,18 @@ class PaperPage extends React.Component {
             type: 'number (0-5)',
             header: 'default: 1',
             desc: 'This number represents the zDepth of the paper shadow.'
+          },
+          {
+            name: 'transitionEnabled',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'Set to false to disable CSS transitions for the paper element.'
           }
         ]
       }
     ];
 
-    var styles = {
-      height: 100,
-      width: 100,
-      margin: '0 auto',
-      marginBottom: 64,
-    };
+    var groupStyle = this.getStyles().group;
 
     return (
       <ComponentDoc
@@ -104,66 +135,61 @@ class PaperPage extends React.Component {
         code={code}
         componentInfo={componentInfo}>
 
-        <div className="paper-examples">
-          <div className="paper-examples-group">
-      	    <Paper style={styles} className="mui-paper-container" zDepth={1}>
-      	      <p>zDepth=1</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={2}>
-      	      <p>zDepth=2</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={3}>
-      	      <p>zDepth=3</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={4}>
-      	      <p>zDepth=4</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={5}>
-      	      <p>zDepth=5</p>
-      	    </Paper>
-          </div>
-
-          <div className="paper-examples-group">
-      	    <Paper style={styles} className="mui-paper-container" zDepth={1} rounded={false}>
-      	      <p>rounded=false</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={2} rounded={false}>
-      	      <p>rounded=false</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={3} rounded={false}>
-      	      <p>rounded=false</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={4} rounded={false}>
-      	      <p>rounded=false</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={5} rounded={false}>
-      	      <p>rounded=false</p>
-      	    </Paper>
-          </div>
-
-          <div className="paper-examples-group">
-      	    <Paper style={styles} className="mui-paper-container" zDepth={1} circle={true}>
-      	      <p>circle=true</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={2} circle={true}>
-      	      <p>circle=true</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={3} circle={true}>
-      	      <p>circle=true</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={4} circle={true}>
-      	      <p>circle=true</p>
-      	    </Paper>
-      	    <Paper style={styles} className="mui-paper-container" zDepth={5} circle={true}>
-      	      <p>circle=true</p>
-      	    </Paper>
-          </div>
+        <div>
+          <ClearFix style={groupStyle}>
+      	    {this._getGroupDefault()}
+          </ClearFix>
+          <ClearFix style={groupStyle}>
+      	    {this._getGroupRounded()}
+          </ClearFix>
+          <ClearFix style={groupStyle}>
+      	    {this._getGroupCircle()}
+          </ClearFix>
         </div>
 
       </ComponentDoc>
     );
+  },
+
+  _createParagraphElement: function(text) {
+    return <p style={this.getStyles().p}>{text}</p>;
+  },
+
+  _createPaperElement: function(zDepth, text) {
+    var styles = this.getStyles();
+    return (
+      <Paper 
+        style={styles.root}
+        zDepth={zDepth}>
+        {this._createParagraphElement(text)}
+      </Paper>
+    );
+  },
+
+  _getGroupDefault: function() {
+    var elements = [];
+    for (var i = 1; i <= 5; i++) {
+      elements.push(this._createPaperElement(i, "zDepth="+i));
+    }
+    return elements;
+  },
+
+  _getGroupRounded: function() {
+    var elements = [];
+    for (var i = 1; i <= 5; i++) {
+      elements.push(React.cloneElement(this._createPaperElement(i, "rounded=false"), {rounded: false}));
+    }
+    return elements;
+  },
+
+  _getGroupCircle: function() {
+    var elements = [];
+    for (var i = 1; i <= 5; i++) {
+      elements.push(React.cloneElement(this._createPaperElement(i, "circle=true"), {circle: true}));
+    }
+    return elements;
   }
 
-}
+});
 
 module.exports = PaperPage;

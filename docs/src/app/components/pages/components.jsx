@@ -15,6 +15,7 @@ class Components extends React.Component {
       { route: 'left-nav', text: 'Left Nav'},
       { route: 'menus', text: 'Menus'},
       { route: 'paper', text: 'Paper'},
+      { route: 'progress', text: 'Progress'},
       { route: 'sliders', text: 'Sliders'},
       { route: 'switches', text: 'Switches'},
       { route: 'snackbar', text: 'Snackbar'},

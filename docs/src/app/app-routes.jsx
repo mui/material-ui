@@ -26,6 +26,7 @@ var IconButtons = require('./components/pages/components/icon-buttons.jsx');
 var LeftNav = require('./components/pages/components/left-nav.jsx');
 var Menus = require('./components/pages/components/menus.jsx');
 var Paper = require('./components/pages/components/paper.jsx');
+var Progress = require('./components/pages/components/progress.jsx');
 var Sliders = require('./components/pages/components/sliders.jsx');
 var Snackbar = require('./components/pages/components/snackbar.jsx');
 var Switches = require('./components/pages/components/switches.jsx');
@@ -67,6 +68,7 @@ var AppRoutes = (
       <Route name="left-nav" handler={LeftNav} />
       <Route name="menus" handler={Menus} />
       <Route name="paper" handler={Paper} />
+      <Route name="progress" handler={Progress} />
       <Route name="sliders" handler={Sliders} />
       <Route name="switches" handler={Switches} />
       <Route name="snackbar" handler={Snackbar} />

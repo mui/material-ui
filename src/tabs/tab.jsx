@@ -12,7 +12,8 @@ var Tab = React.createClass({
 
   propTypes: {
     handleTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool
+    selected: React.PropTypes.bool,
+    width: React.PropTypes.string
   },
 
   handleTouchTap: function(){
@@ -32,7 +33,8 @@ var Tab = React.createClass({
       'fontSize': '14sp',
       'fontWeight': '500',
       'whiteSpace': 'initial',
-      fontFamily: this.context.muiTheme.contentFontFamily,
+      'fontFamily': this.context.muiTheme.contentFontFamily,
+      'boxSizing': 'border-box',
       'width': this.props.width
     }, this.props.style);
 

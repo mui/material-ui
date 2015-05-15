@@ -1,10 +1,25 @@
 var React = require('react');
 var mui = require('mui');
-var FontIcon = mui.FontIcon;
 var ComponentDoc = require('../../component-doc.jsx');
 var ActionHome = require('../../svg-icons/action-home.jsx');
 
+var Typography = mui.Styles.Typography;
+var {ClearFix, FontIcon} = mui;
+
 class FontIconPage extends React.Component {
+
+  getStyles() {
+    return {
+      //mui-font-style-subhead-2
+      fontSize: '15px',
+      letterSpacing: '0',
+      fontWeight: Typography.fontWeightNormal,
+      color: Typography.textDarkBlack,
+      lineHeight: '24px',
+      paddingTop: '3px',
+      marginBottom: '13px'
+    };
+  }
 
 	render() {
     var fontIconCode =
@@ -32,7 +47,7 @@ class FontIconPage extends React.Component {
       '...';
 
     var fontIconDesc = (
-      <p className="mui-font-style-subhead-1">
+      <p style={this.getStyles()}>
         This component will render any icon defined in any style sheets included in your
         project. We are using <a title="Google's Material Design Icons GitHub"
         href="https://github.com/google/material-design-icons">Google&#39;s Material Design
@@ -44,7 +59,7 @@ class FontIconPage extends React.Component {
     );
 
     var svgIconDesc = (
-      <p className="mui-font-style-subhead-1">
+      <p style={this.getStyles()}>
         Alternatively, it is possible to include svg icons using mui.SvgIcon to
         create a custom svg component. Here we are creating the ActionHome
         SvgIcon for this docs site, and using it in some seperate component.
