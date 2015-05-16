@@ -11,7 +11,7 @@ var RaisedButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -64,11 +64,11 @@ var RaisedButton = React.createClass({
   },
 
   getThemeButton: function() {
-    return this.context.theme.component.button;
+    return this.context.muiTheme.component.button;
   },
 
   getTheme: function() {
-    return this.context.theme.component.raisedButton;
+    return this.context.muiTheme.component.raisedButton;
   },
 
   getStyles: function() {
@@ -77,7 +77,8 @@ var RaisedButton = React.createClass({
       root: {
         display: 'inline-block',
         minWidth: this.getThemeButton().minWidth,
-        height: this.getThemeButton().height
+        height: this.getThemeButton().height,
+        transition: Transitions.easeOut()
       },
       container: {
         position: 'relative',
@@ -102,7 +103,7 @@ var RaisedButton = React.createClass({
         textTransform: 'uppercase',
         fontWeight: Typography.fontWeightMedium,
         margin: 0,
-        padding: '0px ' + this.context.theme.spacing.desktopGutterLess + 'px',
+        padding: '0px ' + this.context.muiTheme.spacing.desktopGutterLess + 'px',
         userSelect: 'none',
         lineHeight: this.getThemeButton().height + 'px',
         color:  this._getLabelColor(),
@@ -143,8 +144,7 @@ var RaisedButton = React.createClass({
 
     return (
       <Paper 
-        style={this.mergeAndPrefix(this.styles.root, this.props.style)} 
-        innerStyle={{transition: Transitions.easeOut()}}
+        style={this.mergeAndPrefix(this.styles.root, this.props.style)}
         zDepth={this.state.zDepth}>
           <EnhancedButton {...other}
             ref="container"
@@ -209,10 +209,10 @@ var RaisedButton = React.createClass({
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
       var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      this.refs.overlay.getDOMNode().style.backgroundColor = ColorManipulator.fade(this.mergeAndPrefix(this.styles.label, this.props.labelStyle).color, amount);
+      React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.mergeAndPrefix(this.styles.label, this.props.labelStyle).color, amount);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      this.refs.overlay.getDOMNode().style.backgroundColor = 'transparent';
+      React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
 });

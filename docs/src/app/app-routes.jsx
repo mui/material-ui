@@ -31,6 +31,7 @@ var Snackbar = require('./components/pages/components/snackbar.jsx');
 var Switches = require('./components/pages/components/switches.jsx');
 var Tabs = require('./components/pages/components/tabs.jsx');
 var TextFields = require('./components/pages/components/text-fields.jsx');
+var TimePicker = require('./components/pages/components/time-picker.jsx');
 var Toolbars = require('./components/pages/components/toolbars.jsx');
 
 
@@ -70,6 +71,7 @@ var AppRoutes = (
       <Route name="snackbar" handler={Snackbar} />
       <Route name="tabs" handler={Tabs} />
       <Route name="text-fields" handler={TextFields} />
+      <Route name="time-picker" handler={TimePicker} />
       <Route name="toolbars" handler={Toolbars} />
       <Redirect from="/components" to="appbar" />
     </Route>

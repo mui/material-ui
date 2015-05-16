@@ -10,7 +10,7 @@ var FlatButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -38,11 +38,11 @@ var FlatButton = React.createClass({
   },
 
   getThemeButton: function() {
-    return this.context.theme.component.button;
+    return this.context.muiTheme.component.button;
   },
 
   getTheme: function() {
-    return this.context.theme.component.flatButton;
+    return this.context.muiTheme.component.flatButton;
   },
 
   getStyles: function() {
@@ -68,7 +68,7 @@ var FlatButton = React.createClass({
       },
       label: {
         position: 'relative',
-        padding: '0px ' + this.context.theme.spacing.desktopGutterLess + 'px',
+        padding: '0px ' + this.context.muiTheme.spacing.desktopGutterLess + 'px',
       }
     };
     return styles;
@@ -143,9 +143,9 @@ var FlatButton = React.createClass({
   _handleKeyboardFocus: function(e, keyboardFocused) {
 
     if (keyboardFocused && !this.props.disabled) {
-      this.getDOMNode().style.backgroundColor = ColorManipulator.fade(ColorManipulator.lighten(this.getStyles().root.color, 0.4), 0.15);
+      React.findDOMNode(this).style.backgroundColor = ColorManipulator.fade(ColorManipulator.lighten(this._getColor(), 0.4), 0.15);
     } else {
-      this.getDOMNode().style.backgroundColor = 'transparent';
+      React.findDOMNode(this).style.backgroundColor = 'transparent';
     }
   }
 

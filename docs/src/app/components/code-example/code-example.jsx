@@ -6,7 +6,7 @@ var React = require('react'),
 class CodeExample extends React.Component {
 
   render() {
-    var borderColor = this.context.theme.palette.borderColor;
+    var borderColor = this.context.muiTheme.palette.borderColor;
     var style = {
       label: {
         color: borderColor
@@ -33,7 +33,7 @@ CodeExample.propTypes = {
 };
 
 CodeExample.contextTypes = {
-  theme: React.PropTypes.object
+  muiTheme: React.PropTypes.object
 }
 
 module.exports = CodeExample;

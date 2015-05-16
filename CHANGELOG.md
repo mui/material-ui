@@ -32,6 +32,19 @@
   - An example would be: `var SvgIcon = require('material-ui/lib/svg-icon);`
   - The `/lib` folder in Material-UI contains the file structure needed when referencing individual components. 
 
+## 0.7.5
+###### _Apr. 27, 2015_
+
+###### General
+- Removed deprecation warnings by replacing `this.getDOMNode()` with `React.findDOMNode()` (#558)
+- Replaced `process.NODE_ENV` with `process.env.NODE_ENV` (#573)
+
+###### Components
+- DropDownMenu
+  - Fixed `props is not defined` error when `onChange` is invoked (#556)
+- Floating Action Button
+  - Fixed alignment bug on Chrome when using FAB as a link (#574)
+
 ## 0.7.4
 ###### _Apr. 21, 2015_
 

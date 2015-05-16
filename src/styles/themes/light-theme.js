@@ -10,7 +10,7 @@ var ColorManipulator = require('../../utils/color-manipulator');
 
 var LightTheme = {
   spacing: Spacing,
-  fontFamily: 'Roboto, sans-serif',
+  contentFontFamily: 'Roboto, sans-serif',
   getPalette: function() {
     return {
       primary1Color: Colors.cyan500,
@@ -122,6 +122,14 @@ var LightTheme = {
         backgroundColor: '#323232',
         actionColor: palette.accent1Color
       },
+      timePicker: {
+        color: Colors.white,
+        textColor: Colors.grey600,
+        accentColor: palette.primary1Color,
+        clockColor: Colors.black,
+        selectColor: palette.primary2Color,
+        selectTextColor: Colors.white
+      },
       toggle: {
         thumbOnColor: palette.primary1Color,
         thumbOffColor: Colors.grey50,
@@ -153,6 +161,6 @@ var LightTheme = {
 
     return obj;
   }
-}
+};
 
 module.exports = LightTheme;

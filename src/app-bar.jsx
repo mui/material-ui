@@ -10,7 +10,7 @@ var AppBar = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -43,24 +43,27 @@ var AppBar = React.createClass({
   },
 
   getSpacing: function() {
-    return this.context.theme.spacing;
+    return this.context.muiTheme.spacing;
   },
 
   getThemeVariables: function() {
-    return this.context.theme.component.appBar;
+    return this.context.muiTheme.component.appBar;
   },
 
   getStyles: function(){
-    var iconButtonSize = this.context.theme.component.button.iconButtonSize;
+    var iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
     var styles = {
       root: {
         zIndex: 5,
         width: '100%',
         minHeight: this.getSpacing().desktopKeylineIncrement,
-        backgroundColor: this.getThemeVariables().color
+        backgroundColor: this.getThemeVariables().color,
+        paddingLeft: this.getSpacing().desktopGutter,
+        paddingRight: this.getSpacing().desktopGutter
       },
       title: {
         float: 'left',
+        margin: 0,
         paddingTop: 0,
         letterSpacing: 0,
         fontSize: '24px',
@@ -79,10 +82,6 @@ var AppBar = React.createClass({
           fill: this.getThemeVariables().textColor,
           color: this.getThemeVariables().textColor
         }
-      },
-      paper: {
-        paddingLeft: this.getSpacing().desktopGutter,
-        paddingRight: this.getSpacing().desktopGutter
       }
     };
     return styles;
@@ -152,8 +151,7 @@ var AppBar = React.createClass({
       <Paper 
         rounded={false} 
         className={this.props.className}  
-        style={this.mergeAndPrefix(styles.root, this.props.style)} 
-        innerStyle={this.mergeAndPrefix(styles.paper)} 
+        style={this.mergeAndPrefix(styles.root, this.props.style)}
         zDepth={this.props.zDepth}>
           {menuElementLeft}
           {title}

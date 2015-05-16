@@ -6,7 +6,7 @@ var LinkMenuItem = React.createClass({
   mixins: [StylePropable],
   
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -31,7 +31,7 @@ var LinkMenuItem = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.menuItem;
+    return this.context.muiTheme.component.menuItem;
   },
 
   getStyles: function() {
@@ -52,7 +52,7 @@ var LinkMenuItem = React.createClass({
       },
       rootWhenDisabled: {
         cursor: 'default',
-        color: this.context.theme.palette.disabledColor
+        color: this.context.muiTheme.palette.disabledColor
       }
     };
     return style;

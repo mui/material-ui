@@ -12,18 +12,19 @@ var LeftNav = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
+    className: React.PropTypes.string,
     docked: React.PropTypes.bool,
     header: React.PropTypes.element,
-    onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
-    selectedIndex: React.PropTypes.number,
-    className: React.PropTypes.string,
+    onChange: React.PropTypes.func,
     onNavOpen: React.PropTypes.func,
-    onNavClose: React.PropTypes.func
+    onNavClose: React.PropTypes.func,
+    openRight: React.PropTypes.bool,
+    selectedIndex: React.PropTypes.number
   },
 
   windowListeners: {
@@ -69,15 +70,15 @@ var LeftNav = React.createClass({
   },
 
   getThemePalette: function() {
-    return this.context.theme.palette;
+    return this.context.muiTheme.palette;
   },
 
   getTheme: function() {
-    return this.context.theme.component.leftNav;
+    return this.context.muiTheme.component.leftNav;
   },
 
   getStyles: function() {
-    var x = ((-1 * this.getTheme().width) - 10) + 'px';
+    var x = (this.props.openRight ? 1 : -1) * (this.getTheme().width + 10) + 'px';
     var styles = {
       root: {
         height: '100%',
@@ -96,11 +97,15 @@ var LeftNav = React.createClass({
         height: '100%'
       },
       menuItem: {
-        height: this.context.theme.spacing.desktopLeftNavMenuItemHeight,
-        lineDeight: this.context.theme.spacing.desktopLeftNavMenuItemHeight
+        height: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight,
+        lineDeight: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight
       },
       rootWhenNotOpen: {
         transform: 'translate3d(' + x + ', 0, 0)'
+      },
+      rootWhenOpenRight: {
+        left: 'auto',
+        right: '0'
       }
     };
     styles.menuItemLink = this.mergeAndPrefix(styles.menuItem, {
@@ -132,6 +137,7 @@ var LeftNav = React.createClass({
           rounded={false}
           style={this.mergeAndPrefix(
             styles.root, 
+            this.props.openRight && styles.rootWhenOpenRight,
             !this.state.open && styles.rootWhenNotOpen,
             this.props.style)}>
             {this.props.header}
@@ -152,8 +158,8 @@ var LeftNav = React.createClass({
   
   _updateMenuHeight: function() {
     if (this.props.header) {
-      var container = this.refs.clickAwayableElement.getDOMNode();
-      var menu = this.refs.menuItems.getDOMNode();
+      var container = React.findDOMNode(this.refs.clickAwayableElement);
+      var menu = React.findDOMNode(this.refs.menuItems);
       var menuHeight = container.clientHeight - menu.offsetTop;
       menu.style.height = menuHeight + 'px';
     }

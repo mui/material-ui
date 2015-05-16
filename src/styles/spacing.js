@@ -11,7 +11,7 @@ module.exports = {
   desktopLeftNavMenuItemHeight: 48,
   desktopSubheaderHeight: 48,
   desktopToolbarHeight: 56
-}
+};
 
 
 

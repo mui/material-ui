@@ -10,7 +10,7 @@ var Checkbox = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   propTypes: {
@@ -29,7 +29,7 @@ var Checkbox = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.theme.component.checkbox;
+    return this.context.muiTheme.component.checkbox;
   },
 
   getStyles: function() {
