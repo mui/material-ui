@@ -8,8 +8,6 @@ var TextField = require('../text-field');
 
 var DatePicker = React.createClass({
 
-  isActive: false,
-
   mixins: [StylePropable, WindowListenable],
 
   propTypes: {
@@ -111,7 +109,6 @@ var DatePicker = React.createClass({
   },
 
   _handleDialogDismiss: function() {
-    this.isActive = false;
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
