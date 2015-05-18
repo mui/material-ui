@@ -1,7 +1,7 @@
 (function () {
   var React = require('react/addons');
   var injectTapEventPlugin = require('react-tap-event-plugin');
-  var Theme = require('../../../src/js/styles/theme.js');
+  var Theme = require('../../../src/styles/theme-manager');
   var Main = require('./components/main.jsx'); // Our custom react component
 
   //Needed for React Developer Tools
@@ -14,11 +14,11 @@
   injectTapEventPlugin();
 
   //Override Theme Variables
-  Theme.set({
+  Theme().setComponentThemes({
     textColor: 'red'
   });
 
-  // Render the main app react component into the document body. 
+  // Render the main app react component into the document body.
   // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
   React.render(<Main />, document.body);
 

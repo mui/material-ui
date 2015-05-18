@@ -1,7 +1,7 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
 var React = require('react');
-var SvgIcon = require('../../../../src/js/svg-icons/svg-icon.jsx');
+var SvgIcon = require('../../../../src/svg-icon.jsx');
 
 var Main = React.createClass({
 
@@ -23,7 +23,7 @@ var Main = React.createClass({
       </div>
     );
   }
-  
+
 });
 
 module.exports = Main;
