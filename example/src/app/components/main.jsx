@@ -8,12 +8,12 @@ var ThemeManager = new mui.Styles.ThemeManager();
 var Main = React.createClass({
 
   childContextTypes: {
-    theme: React.PropTypes.object
+    muiTheme: React.PropTypes.object
   },
 
   getChildContext: function() {
     return {
-      theme: ThemeManager.getCurrentTheme()
+      muiTheme: ThemeManager.getCurrentTheme()
     };
   },
 
