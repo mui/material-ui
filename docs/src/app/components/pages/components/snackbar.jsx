@@ -106,7 +106,7 @@ class SnackbarPage extends React.Component {
 
   _handleAction() {
     //We can add more code here! In this example, we'll just include an alert.
-    alert("We removed the event from your calendar.");
+    window.alert("We removed the event from your calendar.");
   }
 
 }

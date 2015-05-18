@@ -124,7 +124,7 @@ var FlatButton = React.createClass({
           {label}
         </span>
       );
-    };
+    }
 
     return (
       <EnhancedButton

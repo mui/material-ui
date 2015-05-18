@@ -4,7 +4,7 @@ var mui = require('mui');
 var {MenuItem, LeftNav} = mui;
 var {Colors, Spacing, Typography} = mui.Styles;
 
-  menuItems = [
+var menuItems = [
     { route: 'get-started', text: 'Get Started' },
     { route: 'customization', text: 'Customization' },
     { route: 'components', text: 'Components' },

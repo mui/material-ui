@@ -29,7 +29,7 @@ var SlidersPage = React.createClass({
 
         if (self.state.completed > 100) {
           window.clearInterval(id);
-        };
+        }
       }, 1000);
   },
 

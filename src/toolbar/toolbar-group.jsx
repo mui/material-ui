@@ -96,7 +96,6 @@ var ToolbarGroup = React.createClass({
             styleControlBg: styles.dropDownMenu.controlBg,
             styleUnderline: styles.dropDownMenu.underline
           });
-          break;
         case 'DropDownIcon' :
           return React.cloneElement(currentChild, {
             style: {float: 'left'},

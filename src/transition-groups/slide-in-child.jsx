@@ -53,7 +53,7 @@ var SlideInChild = React.createClass({
       ...other
     } = this.props;
 
-    var styles = this.mergeAndPrefix({
+    styles = this.mergeAndPrefix({
       position: 'absolute',
       height: '100%',
       width: '100%',

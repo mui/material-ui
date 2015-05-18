@@ -16,7 +16,7 @@ var config       = require('../config').browserify;
 var buffer       = require('vinyl-buffer');
 var sourcemaps   = require('gulp-sourcemaps');
 
-gulp.task('browserify', function(callback) {
+gulp.task('browserify', ['jshint'], function(callback) {
 
   var bundleQueue = config.bundleConfigs.length;
 
@@ -29,9 +29,9 @@ gulp.task('browserify', function(callback) {
       entries: bundleConfig.entries,
       // Add file extentions to make optional in your requires
       extensions: config.extensions,
-      // Enable source maps, since they are only loaded on demand, no need to disable
-      debug: true
-    });
+      // Enable source maps!
+      debug: config.debug
+    }).transform('babelify', {stage: 1});
 
     var bundle = function() {
       // Log when bundling starts

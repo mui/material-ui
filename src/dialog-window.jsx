@@ -190,7 +190,7 @@ var DialogWindow = React.createClass({
           currentAction = this._getAction(currentAction, i);
         }
         actionObjects.push(currentAction);
-      };
+      }
 
       actionContainer = (
         <div style={actionStyle}>

@@ -145,8 +145,7 @@ var LightTheme = {
         titleFontSize: 20,
         iconColor: 'rgba(0, 0, 0, .40)',
         separatorColor: 'rgba(0, 0, 0, .175)',
-        menuHoverColor: 'rgba(0, 0, 0, .10)',
-        menuHoverColor: Colors.white
+        menuHoverColor: 'rgba(0, 0, 0, .10)'
       }
     };
     
