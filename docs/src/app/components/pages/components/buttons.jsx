@@ -1,7 +1,7 @@
 var React = require('react');
 var mui = require('mui');
 var ComponentDoc = require('../../component-doc.jsx');
-var Extend = mui.Utils.Extend;
+var extend = mui.Utils.Extend;
 var Typography = mui.Styles.Typography;
 var {ClearFix, FlatButton, FloatingActionButton, FontIcon, RaisedButton, Tab, Tabs} = mui;
 
@@ -273,7 +273,7 @@ class ButtonPage extends React.Component {
         color: Typography.textDarkBlack
       }
     };
-    styles.exampleButtonIcon = Extend(styles.exampleFlatButtonIcon, styles.exampleButtonIcon);
+    styles.exampleButtonIcon = extend(styles.exampleFlatButtonIcon, styles.exampleButtonIcon);
     return styles;
   }
 

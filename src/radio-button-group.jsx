@@ -74,7 +74,7 @@ var RadioButtonGroup = React.createClass({
 	},
 
   _updateRadioButtons: function(newSelection) {
-    if (this.state.numberCheckedRadioButtons == 0) {
+    if (this.state.numberCheckedRadioButtons === 0) {
       this.setState({selected: newSelection});
     } else if (process.env.NODE_ENV !== 'production') {
       var message = "Cannot select a different radio button while another radio button " +
@@ -87,7 +87,7 @@ var RadioButtonGroup = React.createClass({
     this._updateRadioButtons(newSelection);
 
     // Successful update
-    if (this.state.numberCheckedRadioButtons == 0) {
+    if (this.state.numberCheckedRadioButtons === 0) {
       if (this.props.onChange) this.props.onChange(e, newSelection);
     }
 	},

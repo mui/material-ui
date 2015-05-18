@@ -115,7 +115,7 @@ module.exports = {
   },
 
   darken: function(color, amount) {
-    var color = this._decomposeColor(color);
+    color = this._decomposeColor(color);
 
     if (color.type.indexOf('hsl') > -1) {
       color.values[2] += amount;
@@ -172,7 +172,7 @@ module.exports = {
 
     var ratio = this.contrastRatio(background, foreground);
 
-    for (level in levels) {
+    for (var level in levels) {
       var range = levels[level].range;
       if (ratio >= range[0] && ratio <= range[1]) return level;
     }

@@ -51,7 +51,7 @@ var CircularProgress = React.createClass({
     if (this.props.mode != "indeterminate") return;
 
 
-    if (step == 0) {
+    if (step === 0) {
 
       path.style.strokeDasharray = "1, 200";
       path.style.strokeDashoffset = 0;

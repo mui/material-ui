@@ -125,6 +125,6 @@ class InlineStyles extends React.Component {
 		);
 	}
 
-};
+}
 
 module.exports = InlineStyles;

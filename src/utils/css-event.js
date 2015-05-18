@@ -4,7 +4,6 @@ module.exports = {
 
   _testSupportedProps: function(props) {
     var i,
-      undefined,
       el = document.createElement('div');
 
     for (i in props) {

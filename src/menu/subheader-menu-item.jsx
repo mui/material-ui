@@ -34,7 +34,6 @@ var SubheaderMenuItem = React.createClass({
         fontSize: '13px',
         letterSpacing: 0,
         fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack,
         margin: 0,
         height: subheaderHeight + gutterMini,
         lineHeight: subheaderHeight + 'px',
