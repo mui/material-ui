@@ -1,10 +1,9 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var Transition = require('../styles/transitions');
 var DateTime = require('../utils/date-time');
 var EnhancedButton = require('../enhanced-button');
 
-var DayButton = React.createClass({
+var YearButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -13,19 +12,17 @@ var DayButton = React.createClass({
   },
 
   propTypes: {
-    date: React.PropTypes.object,
+    year: React.PropTypes.number,
     onTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool,
-    disabled: React.PropTypes.bool
+    selected: React.PropTypes.bool
   },
-  
+
   getDefaultProps: function() {
     return {
-      selected: false,
-      disabled: false
+      selected: false
     };
   },
-  
+
   getInitialState: function() {
     return {
       hover: false
@@ -38,7 +35,8 @@ var DayButton = React.createClass({
 
   render: function() {
     var {
-      date,
+      className,
+      year,
       onTouchTap,
       selected,
       ...other
@@ -47,15 +45,18 @@ var DayButton = React.createClass({
     var styles = {
       root: {
         boxSizing: 'border-box',
-        WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
         position: 'relative',
-        float: 'left',
+        display: 'block',
+        margin: '0 auto',
         width: 36,
-        padding: '4px 2px'
+        fontSize: '14px',
+        padding: '8px 2px'
       },
 
       label: {
         position: 'relative',
+        top: '-1px',
         color: this.context.muiTheme.palette.textColor
       },
 
@@ -66,65 +67,52 @@ var DayButton = React.createClass({
         opacity: 0,
         borderRadius: '50%',
         transform: 'scale(0)',
-        transition: Transition.easeOut(),
-        backgroundColor: this.getTheme().selectColor,
-      }
+        backgroundColor: this.getTheme().selectColor
+      },
     };
 
     if (this.state.hover) {
       styles.label.color = this.getTheme().selectTextColor;
       styles.buttonState.opacity = '0.6';
-      styles.buttonState.transform = 'scale(1)';
+      styles.buttonState.transform = 'scale(1.5)';
     }
 
-    if (this.props.selected) {
+    if (selected) {
       styles.label.color = this.getTheme().selectTextColor;
       styles.buttonState.opacity = 1;
-      styles.buttonState.transform = 'scale(1)';
-    }
-    else if (this.props.disabled) {
-      styles.root.opacity = '0.6';
+      styles.buttonState.transform = 'scale(1.5)';
     }
 
-    if (DateTime.isEqualDate(this.props.date, new Date()) && !this.props.selected) {
-        styles.label.color = this.getTheme().color;
+    if (year === new Date().getFullYear()) {
+      styles.root.color = this.getTheme().color;
     }
 
-    return this.props.date ? (
+    return (
       <EnhancedButton {...other}
         style={styles.root}
-        hoverStyle={styles.hover}
-        disabled={this.props.disabled}
         disableFocusRipple={true}
         disableTouchRipple={true}
         onMouseOver={this._handleMouseOver}
         onMouseOut={this._handleMouseOut}
-        onTouchTap={this._handleTouchTap}
-        onKeyboardFocus={this._handleKeyboardFocus}>
+        onTouchTap={this._handleTouchTap}>
         <div style={styles.buttonState} />
-        <span style={styles.label}>{this.props.date.getDate()}</span>
+        <span style={styles.label}>{year}</span>
       </EnhancedButton>
-    ) : (
-      <span style={styles.root} />
     );
   },
 
   _handleMouseOver: function() {
-    if (!this.props.disabled) this.setState({hover: true});
+    this.setState({hover: true});
   },
-  
+
   _handleMouseOut: function() {
-    if (!this.props.disabled) this.setState({hover: false});
+    this.setState({hover: false});
   },
 
   _handleTouchTap: function(e) {
-    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.date);
-  },
-
-  _handleKeyboardFocus: function(e, keyboardFocused) {
-    if (!this.props.disabled && this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
-  } 
+    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.year);
+  }
 
 });
 
-module.exports = DayButton;
+module.exports = YearButton;
