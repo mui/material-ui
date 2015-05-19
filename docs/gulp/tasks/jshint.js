@@ -3,5 +3,5 @@ var shell = require('gulp-shell');
 var handleErrors = require('../util/handleErrors');
 
 gulp.task('jshint', shell.task([
-  '../node_modules/.bin/jsxhint --harmony ../src/* ../src/**/* ../src/**/**/* ./src/app/* ./src/app/**/* ./src/app/**/**/* ./src/app/**/**/**/* --exclude ../src/utils/modernizr.custom.js'
+  '../node_modules/.bin/jsxhint --harmony "../src/**" "./src/app/**" --exclude ../src/utils/modernizr.custom.js'
 ])).on('error', handleErrors);
