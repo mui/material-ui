@@ -30,7 +30,6 @@
     "watchify": "^2.2.1"
   },
   "dependencies": {
-    "highlight.js": "^8.4.0",
-    "react-router": "^0.13.3"
+    "highlight.js": "^8.4.0"
   }
 }
