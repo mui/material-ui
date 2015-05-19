@@ -15,18 +15,23 @@ var DateDisplay = React.createClass({
 
   propTypes: {
     selectedDate: React.PropTypes.object.isRequired,
-    weekCount: React.PropTypes.number
+    weekCount: React.PropTypes.number,
+    yearSelectionAvailable: React.PropTypes.bool,
+    monthDaySelected: React.PropTypes.bool
   },
 
   getDefaultProps: function() {
     return {
-      weekCount: 4
+      weekCount: 4,
+      yearSelectionAvailable: true,
+      monthDaySelected: true
     };
   },
 
   getInitialState: function() {
     return {
-      transitionDirection: 'up'
+      transitionDirection: 'up',
+      selectedYear: !this.props.monthDaySelected
     };
   },
 
@@ -38,6 +43,10 @@ var DateDisplay = React.createClass({
       this.setState({
         transitionDirection: direction
       });
+    }
+
+    if (nextProps.monthDaySelected !== undefined) {
+      this.setState({selectedYear: !nextProps.monthDaySelected});
     }
   },
 
@@ -55,7 +64,7 @@ var DateDisplay = React.createClass({
     var month = DateTime.getShortMonth(this.props.selectedDate);
     var day = this.props.selectedDate.getDate();
     var year = this.props.selectedDate.getFullYear();
-    
+
     var isLandscape = this.props.mode === 'landscape';
     var dateYPosition = '0px';
     var dayYPosition = '30px';
@@ -94,7 +103,7 @@ var DateDisplay = React.createClass({
         backgroundColor: this.getTheme().selectColor,
         borderRadius: isLandscape ? '2px 0 0 0' : '2px 2px 0 0',
         paddingTop: '9px',
-        boxSizing: 'border-box',
+        boxSizing: 'border-box'
       },
 
       dow: {
@@ -105,42 +114,70 @@ var DateDisplay = React.createClass({
       },
 
       day: {
-        position: 'absolute',
-        lineHeight: isLandscape ? '76px' : '58px',
-        fontSize: isLandscape ? '76px' : '58px',
-        height: isLandscape ? '76px' : '58px',
-        width: '100%',
-        transition: Transitions.easeOut(),
-        transform: 'translate3d(0,' + dayYPosition + ',0)'
+        root: {
+          position: 'absolute',
+          lineHeight: isLandscape ? '76px' : '58px',
+          fontSize: isLandscape ? '76px' : '58px',
+          height: isLandscape ? '76px' : '58px',
+          width: '100%',
+          opacity: this.state.selectedYear ? '0.7' : '1.0',
+          transition: Transitions.easeOut(),
+          transform: 'translate3d(0,' + dayYPosition + ',0)'
+        },
+
+        title: {
+          width: '100px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          cursor: !this.state.selectedYear ? 'default' : 'pointer'
+        }
       },
 
       month: {
-        position: 'absolute',
-        top: isLandscape ? '0px' : '1px',
-        fontSize: isLandscape ? '26px' : '22px',
-        lineHeight: isLandscape ? '26px' : '22px',
-        height: isLandscape ? '26px' : '22px',
-        width: '100%',
-        textTransform: 'uppercase'
+        root: {
+          position: 'absolute',
+          top: isLandscape ? '0px' : '1px',
+          fontSize: isLandscape ? '26px' : '22px',
+          lineHeight: isLandscape ? '26px' : '22px',
+          height: isLandscape ? '26px' : '22px',
+          width: '100%',
+          textTransform: 'uppercase',
+          opacity: this.state.selectedYear ? '0.7' : '1.0'
+        },
+
+        title: {
+          width: '100px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          cursor: !this.state.selectedYear ? 'default' : 'pointer'
+        }
       },
 
       year: {
-        position: 'absolute',
-        margin: '0px',
-        fontSize: isLandscape ? '26px' : '22px',
-        lineHeight: isLandscape ? '26px' : '22px',
-        height: isLandscape ? '26px' : '22px',
-        width: '100%',
-        textTransform: 'uppercase',
-        opacity: '0.7',
-        transition: Transitions.easeOut(),
-        transform: 'translate3d(0,' + yearYPosition + ',0)'
+        root: {
+          position: 'absolute',
+          margin: '0px',
+          fontSize: isLandscape ? '26px' : '22px',
+          lineHeight: isLandscape ? '26px' : '22px',
+          height: isLandscape ? '26px' : '22px',
+          width: '100%',
+          textTransform: 'uppercase',
+          opacity: this.state.selectedYear ? '1.0' : '0.7',
+          transition: Transitions.easeOut(),
+          transform: 'translate3d(0,' + yearYPosition + ',0)'
+        },
+
+        title: {
+          width: '100px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          cursor: (!this.props.yearSelectionAvailable || this.state.selectedYear) ? 'default' : 'pointer'
+        }
       }
     };
 
     return (
       <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>
-
         <div style={styles.dowContainer}>
           <SlideInTransitionGroup
             style={styles.dow}
@@ -153,28 +190,44 @@ var DateDisplay = React.createClass({
           <div style={AutoPrefix.all(styles.date)}>
 
             <SlideInTransitionGroup
-              style={styles.month}
+              style={styles.month.root}
               direction={this.state.transitionDirection}>
-              <div key={month}>{month}</div>
+              <div key={month} style={styles.month.title} onClick={this._handleMonthDayClick}>{month}</div>
             </SlideInTransitionGroup>
 
             <SlideInTransitionGroup
-              style={styles.day}
+              style={styles.day.root}
               direction={this.state.transitionDirection}>
-              <div key={day}>{day}</div>
+              <div key={day} style={styles.day.title} onClick={this._handleMonthDayClick}>{day}</div>
             </SlideInTransitionGroup>
 
             <SlideInTransitionGroup
-              style={styles.year}
+              style={styles.year.root}
               direction={this.state.transitionDirection}>
-              <div key={year}>{year}</div>
+              <div key={year} style={styles.year.title} onClick={this._handleYearClick}>{year}</div>
             </SlideInTransitionGroup>
-
           </div>
+
         </div>
 
       </div>
     );
+  },
+
+  _handleMonthDayClick: function() {
+    if (this.props.handleMonthDayClick && this.state.selectedYear) {
+      this.props.handleMonthDayClick();
+    }
+
+    if (this.props.yearSelectionAvailable) this.setState({selectedYear: false});
+  },
+
+  _handleYearClick: function() {
+    if (this.props.handleYearClick && !this.state.selectedYear && this.props.yearSelectionAvailable) {
+      this.props.handleYearClick();
+    }
+
+    if (this.props.yearSelectionAvailable) this.setState({selectedYear: true});
   }
 
 });
