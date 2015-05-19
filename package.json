@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rm -rf lib",
-    "jshint": "./node_modules/.bin/jsxhint --harmony src/* src/**/* src/**/**/* --exclude src/utils/modernizr.custom.js",
+    "jshint": "./node_modules/.bin/jsxhint --harmony 'src/**' --exclude src/utils/modernizr.custom.js",
     "build": "npm run jshint && ./node_modules/.bin/babel --stage 1 ./src --out-dir ./lib",
     "prepublish": "npm run build"
   },
