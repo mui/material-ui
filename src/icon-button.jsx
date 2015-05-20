@@ -115,7 +115,7 @@ var IconButton = React.createClass({
     }
 
     if (this.props.iconClassName) {
-      var { iconHoverColor, ...iconStyle } = this.props.iconStyle;
+      var { iconHoverColor, ...iconStyle } = this.props.iconStyle || {};
 
       fonticon = (
         <FontIcon
