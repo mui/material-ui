@@ -30,6 +30,12 @@ var IconButton = React.createClass({
     };
   },
 
+  getDefaultProps: function () {
+    return {
+      iconStyle: {}
+    };
+  },
+
   componentDidMount: function() {
     if (this.props.tooltip) {
       this._positionTooltip();
@@ -117,7 +123,7 @@ var IconButton = React.createClass({
     }
 
     if (this.props.iconClassName) {
-      var { iconHoverColor, ...iconStyle } = this.props.iconStyle || {};
+      var { iconHoverColor, ...iconStyle } = this.props.iconStyle;
 
       fonticon = (
         <FontIcon
