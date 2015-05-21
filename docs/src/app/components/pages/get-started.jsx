@@ -3,17 +3,19 @@ var mui = require('mui');
 var CodeBlock = require('../code-example/code-block.jsx');
 var FullWidthSection = require('../full-width-section.jsx');
 var Spacing = mui.Styles.Spacing;
+var Typography = mui.Styles;
 
 class GetStarted extends React.Component {
 
   getStyles() {
+    var canvasColor = this.context.muiTheme.palette.canvasColor;
     return {
       root: {
         paddingTop: Spacing.desktopKeylineIncrement
       },
       fullWidthSection: {
         maxWidth: '650px',
-        margin: '0 auto'      
+        margin: '0 auto'
       },
       headline: {
         fontSize: '24px',
@@ -139,6 +141,10 @@ class GetStarted extends React.Component {
     );
   }
 
+}
+
+GetStarted.contextTypes = {
+  muiTheme: React.PropTypes.object
 }
 
 module.exports = GetStarted;
