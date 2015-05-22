@@ -12,22 +12,15 @@
   "browser": {
     "mui": "../src/index.js"
   },
-  "browserify": {
-    "transform": [
-      [
-        "reactify",
-        {
-          "es6": true
-        }
-      ]
-    ]
-  },
   "devDependencies": {
+    "babelify": "^6.1.1",
     "browser-sync": "^1.8.1",
+    "browserify": "^10.2.0",
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^2.0.0",
     "gulp-less": "^3.0.0",
     "gulp-notify": "^2.1.0",
+    "gulp-shell": "^0.4.1",
     "gulp-sourcemaps": "^1.2.8",
     "gulp-util": "^3.0.1",
     "pretty-hrtime": "^0.2.2",

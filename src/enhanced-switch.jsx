@@ -63,7 +63,6 @@ var EnhancedSwitch = React.createClass({
   componentDidMount: function() {
     var inputNode = React.findDOMNode(this.refs.checkbox);
     if (!this.props.switched || 
-        this.props.switched == undefined ||
         inputNode.checked != this.props.switched) this.props.onParentShouldUpdate(inputNode.checked);
 
     window.addEventListener("resize", this._handleResize);
@@ -94,7 +93,7 @@ var EnhancedSwitch = React.createClass({
       newState.switched = nextProps.defaultSwitched;
     }
 
-    if (newState.switched != undefined && (newState.switched != this.props.switched)) this.props.onParentShouldUpdate(newState.switched);
+    if (newState.switched !== undefined && (newState.switched != this.props.switched)) this.props.onParentShouldUpdate(newState.switched);
   },
 
   getTheme: function() {
@@ -297,7 +296,7 @@ var EnhancedSwitch = React.createClass({
 
   // no callback here because there is no event
   setSwitched: function(newSwitchedValue) {
-    if (!this.props.hasOwnProperty('checked') || this.props.checked == false) {
+    if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
       this.props.onParentShouldUpdate(newSwitchedValue);  
       React.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
     } else if (process.env.NODE_ENV !== 'production') {

@@ -91,7 +91,7 @@ var ClockPointer = React.createClass({
 
     if(!this.state.inner ){
       styles.root.height = "40%"; 
-  	};
+    }
 
     if(this.props.hasSelected){
       styles.mark.display = "none";

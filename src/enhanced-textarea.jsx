@@ -95,7 +95,6 @@ var EnhancedTextarea = React.createClass({
         <textarea
           {...other}
           ref="input"
-          style={inputStyles}
           rows={this.props.rows}
           style={AutoPrefix.all(inputStyles)}
           onChange={this._handleChange} />

@@ -123,7 +123,7 @@ var MenuItem = React.createClass({
     var iconRight;
     var attribute;
     var number;
-    var toggle;
+    var toggleElement;
 
     var styles = this.getStyles();
 
@@ -145,7 +145,7 @@ var MenuItem = React.createClass({
         style,
         ...other
       } = this.props;
-      toggle = <Toggle {...other} onToggle={this._handleToggle} style={styles.toggle}/>;
+      toggleElement = <Toggle {...other} onToggle={this._handleToggle} style={styles.toggle}/>;
     }
 
     return (
@@ -168,7 +168,7 @@ var MenuItem = React.createClass({
         {data}
         {attribute}
         {number}
-        {toggle}
+        {toggleElement}
         {iconRight}
         
       </div>

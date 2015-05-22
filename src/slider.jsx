@@ -296,10 +296,6 @@ var Slider = React.createClass({
     this.setValue(0);
   },
 
-  _handleWindowKeydown: function(e) {
-    if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
-  },
-
   _onClick: function (e) {
     this._tabPressed = false;
     // let draggable handle the slider

@@ -255,7 +255,7 @@ var Menu = React.createClass({
       isSelected = i === this.props.selectedIndex;
       isDisabled = (menuItem.disabled === undefined) ? false : menuItem.disabled;
 
-      var {
+      let {
         icon,
         data,
         attribute,
@@ -288,13 +288,13 @@ var Menu = React.createClass({
               index={i}
               className={this.props.menuItemClassNameSubheader}
               style={this.mergeAndPrefix(styles.subheader)}
-              firstChild={i == 0}
+              firstChild={i === 0}
               text={menuItem.text} />
           );
           break;
 
         case MenuItem.Types.NESTED:
-          var {
+          let {
             ref,
             key,
             index,

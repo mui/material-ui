@@ -135,9 +135,9 @@ var RaisedButton = React.createClass({
 
     var styles = this.getStyles();
 
-    var icon;
+    var iconElement;
     if (this.props.iconClassName) {
-      icon = 
+      iconElement =
         <FontIcon 
           className={this.props.iconClassName} 
           style={this.mergeAndPrefix(
@@ -175,7 +175,7 @@ var RaisedButton = React.createClass({
                 styles.overlay,
                 (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
               )}>
-                {icon}
+                {iconElement}
                 {this.props.children}
             </div>
         </EnhancedButton>
