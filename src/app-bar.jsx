@@ -21,7 +21,7 @@ var AppBar = React.createClass({
     iconClassNameRight: React.PropTypes.string,
     iconElementLeft: React.PropTypes.element,
     iconElementRight: React.PropTypes.element,
-    iconStyleRight: React.PropTypes.string,
+    iconStyleRight: React.PropTypes.object,
     title : React.PropTypes.node,
     zDepth: React.PropTypes.number,
   },
