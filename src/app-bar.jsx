@@ -34,7 +34,7 @@ var AppBar = React.createClass({
   },
 
   componentDidMount: function() {
-    if (process.env.NODE_ENV !== 'production' && 
+    if (process.env.NODE_ENV !== 'production' &&
        (this.props.iconElementLeft && this.props.iconClassNameLeft)) {
         var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
                       'defined. Please use one or the other.';
@@ -56,7 +56,7 @@ var AppBar = React.createClass({
       root: {
         zIndex: 5,
         width: '100%',
-        minHeight: this.getSpacing().desktopKeylineIncrement,
+        minHeight: this.getThemeVariables().height,
         backgroundColor: this.getThemeVariables().color,
         paddingLeft: this.getSpacing().desktopGutter,
         paddingRight: this.getSpacing().desktopGutter
@@ -69,7 +69,7 @@ var AppBar = React.createClass({
         fontSize: '24px',
         fontWeight: Typography.fontWeightNormal,
         color: this.getThemeVariables().textColor,
-        lineHeight: this.getSpacing().desktopKeylineIncrement + 'px'
+        lineHeight: this.getThemeVariables().height + 'px'
       },
       iconButton: {
         style: {
@@ -112,8 +112,8 @@ var AppBar = React.createClass({
     if (this.props.showMenuIconButton) {
       if (this.props.iconElementLeft) {
         menuElementLeft = (
-          <div style={styles.iconButton.style}> 
-            {this.props.iconElementLeft} 
+          <div style={styles.iconButton.style}>
+            {this.props.iconElementLeft}
           </div>
         );
       } else {
@@ -131,8 +131,8 @@ var AppBar = React.createClass({
 
       if (this.props.iconElementRight) {
         menuElementRight = (
-          <div style={iconRightStyle}> 
-            {this.props.iconElementRight} 
+          <div style={iconRightStyle}>
+            {this.props.iconElementRight}
           </div>
         );
       } else if (this.props.iconClassNameRight) {
@@ -148,9 +148,9 @@ var AppBar = React.createClass({
     }
 
     return (
-      <Paper 
-        rounded={false} 
-        className={this.props.className}  
+      <Paper
+        rounded={false}
+        className={this.props.className}
         style={this.mergeAndPrefix(styles.root, this.props.style)}
         zDepth={this.props.zDepth}>
           {menuElementLeft}
