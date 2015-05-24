@@ -10,6 +10,10 @@ var Tabs = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
   propTypes: {
     initialSelectedIndex: React.PropTypes.number,
     onActive: React.PropTypes.func,
