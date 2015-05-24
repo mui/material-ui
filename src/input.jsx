@@ -56,26 +56,26 @@ var Input = React.createClass({
     });
     var inputElement = this.props.multiline ?
       this.props.valueLink ?
-        <textarea {...this.props} ref="input" 
-          className={textareaClassName} 
+        <textarea {...this.props} ref="input"
+          className={textareaClassName}
           placeholder={placeholder}
           rows={this.state.rows} /> :
-        <textarea {...this.props} ref="input" 
-          value={this.state.value} 
+        <textarea {...this.props} ref="input"
+          value={this.state.value}
           className={textareaClassName}
-          placeholder={placeholder} 
-          rows={this.state.rows} 
+          placeholder={placeholder}
+          rows={this.state.rows}
           onChange={this._onTextAreaChange} /> :
         this.props.valueLink ?
-          <input {...this.props} ref="input" 
-            className={inputClassName} 
+          <input {...this.props} ref="input"
+            className={inputClassName}
             placeholder={placeholder} /> :
           <input {...this.props} ref="input"
-            className={inputClassName} 
-            value={this.state.value} 
+            className={inputClassName}
+            value={this.state.value}
             placeholder={placeholder}
             onChange={this._onInputChange} />;
-    var placeholderSpan = this.props.inlinePlaceholder ? null : 
+    var placeholderSpan = this.props.inlinePlaceholder ? null :
       <span className="mui-input-placeholder" onClick={this._onPlaceholderClick}>
         {this.props.placeholder}
       </span>;
@@ -107,7 +107,7 @@ var Input = React.createClass({
   blur: function() {
     if(this.isMounted()) React.findDOMNode(this.refs.input).blur();
   },
-  
+
   focus: function() {
     if (this.isMounted()) React.findDOMNode(this.refs.input).focus();
   },
@@ -118,7 +118,7 @@ var Input = React.createClass({
     if (this.props.onChange) this.props.onChange(e, value);
   },
 
-  _onPlaceholderClick: function(e) {
+  _onPlaceholderClick: function() {
     this.focus();
   },
 

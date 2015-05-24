@@ -21,10 +21,10 @@ var Toggle = React.createClass({
 
   getInitialState: function() {
     return {
-      switched: 
+      switched:
         this.props.toggled ||
-        this.props.defaultToggled || 
-        (this.props.valueLink && this.props.valueLink.value) || 
+        this.props.defaultToggled ||
+        (this.props.valueLink && this.props.valueLink.value) ||
         false,
     }
   },
@@ -60,7 +60,7 @@ var Toggle = React.createClass({
       },
       trackWhenSwitched: {
         backgroundColor: this.getTheme().trackOnColor
-      },      
+      },
       thumbWhenSwitched: {
         backgroundColor: this.getTheme().thumbOnColor,
         left: 18
@@ -107,7 +107,7 @@ var Toggle = React.createClass({
       left: '-10'
     };
 
-    var rippleColor =  this.state.switched ? 
+    var rippleColor =  this.state.switched ?
       this.getTheme().thumbOnColor : this.context.muiTheme.component.textColor;
 
     var enhancedSwitchProps = {
@@ -129,7 +129,7 @@ var Toggle = React.createClass({
     if (this.props.hasOwnProperty('toggled')) enhancedSwitchProps.checked = this.props.toggled;
 
     return (
-      <EnhancedSwitch 
+      <EnhancedSwitch
         {...other}
         {...enhancedSwitchProps}/>
     );

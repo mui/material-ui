@@ -96,7 +96,7 @@ var TextField = React.createClass({
         lineHeight: '48px',
         opacity: 1,
         color: this._getDisabledTextColor(),
-        transition: Transitions.easeOut()            
+        transition: Transitions.easeOut()
       },
       input: {
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',

@@ -68,13 +68,13 @@ var RadioButton = React.createClass({
     } = this.props;
 
     var styles = this.getStyles();
-    var onStyles = 
+    var onStyles =
       this.mergeAndPrefix(
         styles.target,
         this.props.checked && styles.targetWhenChecked,
         this.props.iconStyle,
         this.props.disabled && styles.targetWhenDisabled);
-    var offStyles = 
+    var offStyles =
       this.mergeAndPrefix(
         styles.fill,
         this.props.checked && styles.fillWhenChecked,
@@ -103,7 +103,7 @@ var RadioButton = React.createClass({
     };
 
     return (
-      <EnhancedSwitch 
+      <EnhancedSwitch
         {...other}
         {...enhancedSwitchProps}/>
     );
@@ -114,19 +114,19 @@ var RadioButton = React.createClass({
     if (this.props.onCheck) this.props.onCheck(e, this.props.value);
   },
 
-  _handleStateChange: function(newSwitched) {
+  _handleStateChange: function() {
   },
 
   isChecked: function() {
     return this.refs.enhancedSwitch.isSwitched();
   },
 
-  // Use RadioButtonGroup.setSelectedValue(newSelectionValue) to set a 
+  // Use RadioButtonGroup.setSelectedValue(newSelectionValue) to set a
   // RadioButton's checked value.
   setChecked: function(newCheckedValue) {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
   },
-  
+
   getValue: function() {
     return this.refs.enhancedSwitch.getValue();
   }

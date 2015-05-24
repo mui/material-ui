@@ -3,7 +3,6 @@ var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var ClickAwayable = require('./mixins/click-awayable');
 var DropDownArrow = require('./svg-icons/drop-down-arrow');
-var KeyLine = require('./utils/key-line');
 var Paper = require('./paper');
 var Menu = require('./menu/menu');
 var ClearFix = require('./clearfix');
@@ -15,9 +14,9 @@ var DropDownMenu = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  // The nested styles for drop-down-menu are modified by toolbar and possibly 
-  // other user components, so it will give full access to its js styles rather 
-  // than just the parent. 
+  // The nested styles for drop-down-menu are modified by toolbar and possibly
+  // other user components, so it will give full access to its js styles rather
+  // than just the parent.
   propTypes: {
     className: React.PropTypes.string,
     autoWidth: React.PropTypes.bool,
@@ -85,7 +84,7 @@ var DropDownMenu = React.createClass({
         backgroundColor: backgroundColor,
         height: '100%',
         width: '100%',
-        opacity: (this.state.open) ? 0 : 
+        opacity: (this.state.open) ? 0 :
                  (this.state.isHovered) ? 1 : 0
       },
       icon: {
@@ -108,8 +107,8 @@ var DropDownMenu = React.createClass({
         margin: '0 ' + this.getSpacing().desktopGutter + 'px'
       },
       menuItem: {
-        paddingRight: this.getSpacing().iconSize + 
-                      this.getSpacing().desktopGutterLess + 
+        paddingRight: this.getSpacing().iconSize +
+                      this.getSpacing().desktopGutterLess +
                       this.getSpacing().desktopGutterMini,
         height: this.getSpacing().desktopDropDownMenuItemHeight,
         lineHeight: this.getSpacing().desktopDropDownMenuItemHeight + 'px',
@@ -128,19 +127,19 @@ var DropDownMenu = React.createClass({
 
   render: function() {
     var styles = this.getStyles();
-    
+
     if (process.env.NODE_ENV !== 'production') {
       console.assert(!!this.props.menuItems[this.state.selectedIndex], 'SelectedIndex of ' + this.state.selectedIndex + ' does not exist in menuItems.');
     }
 
     return (
-      <div 
+      <div
         ref="root"
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
         className={this.props.className}
         style={this.mergeAndPrefix(
-          styles.root, 
+          styles.root,
           this.state.open && styles.rootWhenOpen,
           this.props.style)} >
 
@@ -184,7 +183,7 @@ var DropDownMenu = React.createClass({
     this.setState({selectedIndex: (selectedIndex > -1) ? selectedIndex : 0});
   },
 
-  _onControlClick: function(e) {
+  _onControlClick: function() {
     this.setState({ open: !this.state.open });
   },
 
@@ -196,11 +195,11 @@ var DropDownMenu = React.createClass({
     });
   },
 
-  _handleMouseOver: function(e) {
+  _handleMouseOver: function() {
     this.setState({isHovered: true});
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut: function() {
     this.setState({isHovered: false});
   }
 

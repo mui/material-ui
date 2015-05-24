@@ -1,10 +1,8 @@
 var React = require('react');
-var Paper = require('./paper');
 var StylePropable = require('./mixins/style-propable');
 var Draggable = require('react-draggable2');
 var Transitions = require('./styles/transitions.js');
 var FocusRipple = require('./ripples/focus-ripple');
-var Paper = require('./paper');
 
 var Slider = React.createClass({
 
@@ -80,11 +78,11 @@ var Slider = React.createClass({
         marginBottom: 48
       },
       track: {
-        position: 'absolute', 
+        position: 'absolute',
         top: (this.getTheme().handleSizeActive - this.getTheme(). trackSize) / 2,
         left: 0,
         width: '100%',
-        height: this.getTheme().trackSize      
+        height: this.getTheme().trackSize
       },
       filledAndRemaining: {
         position: 'absolute',
@@ -92,7 +90,7 @@ var Slider = React.createClass({
         height: '100%',
         transition: Transitions.easeOut(null, 'margin'),
       },
-      percentZeroRemaining: { 
+      percentZeroRemaining: {
         left: 1,
         marginLeft: gutter
       },
@@ -104,7 +102,7 @@ var Slider = React.createClass({
         top: ((this.getTheme().handleSizeActive - this.getTheme().trackSize) / 2) + 'px',
         left: '0%',
         zIndex: 1,
-        margin: (this.getTheme().trackSize / 2) + 'px 0 0 0',   
+        margin: (this.getTheme().trackSize / 2) + 'px 0 0 0',
         width: this.getTheme().handleSize,
         height: this.getTheme().handleSize,
         backgroundColor: this.getTheme().selectionColor,
@@ -116,7 +114,7 @@ var Slider = React.createClass({
           Transitions.easeOut('450ms', 'border') + ',' +
           Transitions.easeOut('450ms', 'width') + ',' +
           Transitions.easeOut('450ms', 'height'),
-        overflow: 'visible'      
+        overflow: 'visible'
       },
       handleWhenDisabled: {
         boxSizing: 'content-box',
@@ -158,8 +156,8 @@ var Slider = React.createClass({
     };
     styles.filled = this.mergeAndPrefix(styles.filledAndRemaining, {
       left: 0,
-      backgroundColor: (this.props.disabled) ? 
-        this.getTheme().trackColor : 
+      backgroundColor: (this.props.disabled) ?
+        this.getTheme().trackColor :
         this.getTheme().selectionColor,
       marginRight: fillGutter,
       width: (this.state.percent * 100) + (this.props.disabled ? -1 : 0) + '%'
@@ -210,7 +208,7 @@ var Slider = React.createClass({
       remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
     }
 
-    if (percent === 0) filledStyles.marginRight = gutter;    
+    if (percent === 0) filledStyles.marginRight = gutter;
     if (this.state.percent === 0 && this.state.active) remainingStyles.marginLeft = fillGutter;
 
     var rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active && this.state.percent !== 0;
@@ -218,11 +216,11 @@ var Slider = React.createClass({
     var focusRipple;
     if (!this.props.disabled && !this.props.disableFocusRipple) {
       focusRipple = (
-        <FocusRipple 
-          ref="focusRipple" 
+        <FocusRipple
+          ref="focusRipple"
           key="focusRipple"
           style={rippleStyle}
-          innerStyle={styles.ripples} 
+          innerStyle={styles.ripples}
           show={rippleShowCondition}
           color={rippleColor}/>
       );
@@ -234,13 +232,13 @@ var Slider = React.createClass({
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
         <span className="mui-input-error">{this.props.error}</span>
-        <div style={sliderStyles} 
+        <div style={sliderStyles}
           onClick={this._onClick}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
-          onMouseOver={this._onMouseOver} 
-          onMouseOut={this._onMouseOut} 
-          onMouseUp={this._onMouseUp} >    
+          onMouseOver={this._onMouseOver}
+          onMouseOut={this._onMouseOut}
+          onMouseUp={this._onMouseUp} >
             <div ref="track" style={trackStyles}>
               <div style={filledStyles}></div>
               <div style={remainingStyles}></div>
@@ -300,14 +298,13 @@ var Slider = React.createClass({
     this._tabPressed = false;
     // let draggable handle the slider
     if (this.state.dragging || this.props.disabled) return;
-    var value = this.state.value;
     var node = React.findDOMNode(this.refs.track);
     var boundingClientRect = node.getBoundingClientRect();
     var offset = e.clientX - boundingClientRect.left;
     this._updateWithChangeEvent(e, offset / node.clientWidth);
   },
 
-  _onFocus: function (e) {    
+  _onFocus: function (e) {
     this.setState({focused: true});
     if (this.props.onFocus) this.props.onFocus(e);
   },
@@ -317,19 +314,19 @@ var Slider = React.createClass({
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
-  _onMouseOver: function (e) {
+  _onMouseOver: function () {
     this.setState({hovered: true});
   },
 
-  _onMouseOut: function (e) {
+  _onMouseOut: function () {
     this.setState({hovered: false});
   },
 
-  _onMouseUp: function (e) {
+  _onMouseUp: function () {
     if (!this.props.disabled) this.setState({active: false});
   },
 
-  _onMouseDown: function (e) {
+  _onMouseDown: function () {
     if (!this.props.disabled) this.setState({active: true});
   },
 

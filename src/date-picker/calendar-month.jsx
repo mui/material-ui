@@ -1,5 +1,4 @@
 var React = require('react');
-var Colors = require('../styles/colors');
 var DateTime = require('../utils/date-time');
 var DayButton = require('./day-button');
 var ClearFix = require('../clearfix');

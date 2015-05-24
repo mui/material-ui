@@ -1,7 +1,6 @@
 var React = require('react');
 var Transitions = require('./styles/transitions');
 var StylePropable = require('./mixins/style-propable');
-var Colors = require('./styles/colors')
 var InkBar = React.createClass({
 
   contextTypes: {
@@ -11,7 +10,7 @@ var InkBar = React.createClass({
   propTypes: {
     position: React.PropTypes.string
   },
-  
+
   mixins: [StylePropable],
 
   getTheme: function() {

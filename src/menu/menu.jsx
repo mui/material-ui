@@ -31,7 +31,7 @@ var NestedMenuItem = React.createClass({
     onItemTap: React.PropTypes.func,
     menuItemStyle: React.PropTypes.object,
   },
-  
+
   getDefaultProps: function() {
     return {
       disabled: false
@@ -50,7 +50,7 @@ var NestedMenuItem = React.createClass({
     this._positionNestedMenu();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate: function() {
     this._positionNestedMenu();
   },
 
@@ -76,12 +76,12 @@ var NestedMenuItem = React.createClass({
 
     return (
       <div ref="root" style={styles} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
-        <MenuItem 
+        <MenuItem
           index={index}
           style={menuItemStyle}
-          disabled={this.props.disabled} 
-          iconRightStyle={iconCustomArrowDropRight} 
-          iconRightClassName="muidocs-icon-custom-arrow-drop-right" 
+          disabled={this.props.disabled}
+          iconRightStyle={iconCustomArrowDropRight}
+          iconRightClassName="muidocs-icon-custom-arrow-drop-right"
           onClick={this._onParentItemClick}>
             {this.props.text}
         </MenuItem>
@@ -103,15 +103,15 @@ var NestedMenuItem = React.createClass({
 
     nestedMenu.style.left = el.offsetWidth + 'px';
   },
-  
+
   _openNestedMenu: function() {
     if (!this.props.disabled) this.setState({ open: true });
   },
-  
+
   _closeNestedMenu: function() {
     this.setState({ open: false });
   },
-  
+
   _toggleNestedMenu: function() {
     if (!this.props.disabled) this.setState({ open: !this.state.open });
   },
@@ -124,7 +124,7 @@ var NestedMenuItem = React.createClass({
     if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
     this._closeNestedMenu();
   },
-  
+
   _onMenuItemTap: function(e, index, menuItem) {
     if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
     this._closeNestedMenu();
@@ -188,7 +188,7 @@ var Menu = React.createClass({
     this._renderVisibility();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate: function(prevProps) {
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
   },
 
@@ -226,9 +226,9 @@ var Menu = React.createClass({
   render: function() {
     var styles = this.getStyles();
     return (
-      <Paper 
-        ref="paperContainer" 
-        zDepth={this.props.zDepth} 
+      <Paper
+        ref="paperContainer"
+        zDepth={this.props.zDepth}
         style={this.mergeAndPrefix(
           styles.root,
           this.props.hideable && styles.hideable,
@@ -269,11 +269,11 @@ var Menu = React.createClass({
 
         case MenuItem.Types.LINK:
           itemComponent = (
-            <LinkMenuItem 
+            <LinkMenuItem
               key={i}
               index={i}
               text={menuItem.text}
-              disabled={isDisabled} 
+              disabled={isDisabled}
               className={this.props.menuItemClassNameLink}
               style={this.props.menuItemStyleLink}
               payload={menuItem.payload}
@@ -283,7 +283,7 @@ var Menu = React.createClass({
 
         case MenuItem.Types.SUBHEADER:
           itemComponent = (
-            <SubheaderMenuItem 
+            <SubheaderMenuItem
               key={i}
               index={i}
               className={this.props.menuItemClassNameSubheader}
@@ -361,10 +361,10 @@ var Menu = React.createClass({
   _renderVisibility: function() {
     var el;
 
-    if (this.props.hideable) {    
+    if (this.props.hideable) {
       el = React.findDOMNode(this);
       var container = React.findDOMNode(this.refs.paperContainer);
-      
+
       if (this.props.visible) {
         //Open the menu
         el.style.transition = Transitions.easeOut();

@@ -57,7 +57,7 @@ var EnhancedButton = React.createClass({
       document.body.appendChild(style);
       EnhancedButton.hasStyleBeenInjected = true;
     }
-  }, 
+  },
 
   getStyles: function() {
     var styles = {
@@ -104,7 +104,7 @@ var EnhancedButton = React.createClass({
       this.props.style
     );
     var buttonChildren = [];
-    
+
     // Create ripples if we need to
     buttonChildren.push((disabled || disableTouchRipple) ?
       this.props.children :
@@ -142,8 +142,8 @@ var EnhancedButton = React.createClass({
 
     if (disabled && linkButton) {
       return (
-        <span {...other} 
-          className={this.props.className} 
+        <span {...other}
+          className={this.props.className}
           disabled={disabled}>
           {this.props.children}
         </span>
@@ -202,7 +202,7 @@ var EnhancedButton = React.createClass({
         if (this._tabPressed) {
           this.setState({
             isKeyboardFocused: true
-          });  
+          });
           if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, true);
         }
       }.bind(this), 150);
@@ -215,7 +215,7 @@ var EnhancedButton = React.createClass({
     React.findDOMNode(this).style.textDecoration = 'none';
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
-  
+
   _handleMouseOut: function(e) {
     if (this.props.onMouseOut) this.props.onMouseOut(e);
   },

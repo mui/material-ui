@@ -2,7 +2,6 @@ var React = require('react/addons');
 var TabTemplate = require('./tabTemplate');
 var InkBar = require('../ink-bar');
 var StylePropable = require('../mixins/style-propable.js');
-var Colors = require('../styles/colors.js');
 var Events = require('../utils/events');
 
 
