@@ -1,11 +1,11 @@
-## 0.8.0 (Pre-release)
-###### _TBD_
+## 0.8.0
+###### _May 24, 2015_
 
 ##### Breaking Changes
 - Refactored all CSS into Javascript (#30, #316)
   - All Material-UI components now have their styles defined inline. This solves 
     many problems with CSS as mentions in [@vjeux's presentation](https://speakerdeck.com/vjeux/react-css-in-js) 
-    such polluting the global namespace with classes that really should be 
+    such as polluting the global namespace with classes that really should be 
     component specific. In addition to the benefits mentioned in the 
     presentation, inline styles allow Material-UI to become CSS preprocessor 
     agnostic and make Themeing much more dynamic and simple.
@@ -25,12 +25,25 @@
       and can be accessed like so `var FILENAME = require('material-ui').Styles.FILENAME;`.
       Material-UI has moved away from being a CSS Framework to being simply a 
       set of React components.
+- Paper component no longer generates nested divs (#601)
+  - This allowed us to simplify styling of paper containers. As a result, styling the inner div is no longer necessary.
 
 ##### General
 - Themes have been added (#202)
 - Requiring individual components is now supported (#363)
   - An example would be: `var SvgIcon = require('material-ui/lib/svg-icon);`
   - The `/lib` folder in Material-UI contains the file structure needed when referencing individual components. 
+
+###### Components
+- Date Picker
+  - Added AutoOK Prop (#658)
+  - Added ability to specify min and max dates (#658)
+  - Added Year Selector (#658)
+- Dialog now repositions on screen resize (#597)
+- Left Nav will now close with a swipe gesture (#614)
+- Linear and Circular Progress Indicators - NEW (#632)
+- TimePicker - NEW (#589)
+
 
 ## 0.7.5
 ###### _Apr. 27, 2015_
