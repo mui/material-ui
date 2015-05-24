@@ -43,24 +43,18 @@ var AppBar = React.createClass({
     }
   },
 
-  getSpacing: function() {
-    return this.context.muiTheme.spacing;
-  },
-
-  getThemeVariables: function() {
-    return this.context.muiTheme.component.appBar;
-  },
-
-  getStyles: function(){
+  getStyles: function() {
+    var spacing = this.context.muiTheme.spacing;
+    var themeVariables = this.context.muiTheme.component.appBar;
     var iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
     var styles = {
       root: {
         zIndex: 5,
         width: '100%',
-        minHeight: this.getThemeVariables().height,
-        backgroundColor: this.getThemeVariables().color,
-        paddingLeft: this.getSpacing().desktopGutter,
-        paddingRight: this.getSpacing().desktopGutter
+        minHeight: themeVariables.height,
+        backgroundColor: themeVariables.color,
+        paddingLeft: spacing.desktopGutter,
+        paddingRight: spacing.desktopGutter
       },
       title: {
         float: 'left',
@@ -69,19 +63,19 @@ var AppBar = React.createClass({
         letterSpacing: 0,
         fontSize: '24px',
         fontWeight: Typography.fontWeightNormal,
-        color: this.getThemeVariables().textColor,
-        lineHeight: this.getThemeVariables().height + 'px'
+        color: themeVariables.textColor,
+        lineHeight: themeVariables.height + 'px'
       },
       iconButton: {
         style: {
-          marginTop: (this.getThemeVariables().height - iconButtonSize) / 2,
+          marginTop: (themeVariables.height - iconButtonSize) / 2,
           float: 'left',
           marginRight: 8,
           marginLeft: -16
         },
         iconStyle: {
-          fill: this.getThemeVariables().textColor,
-          color: this.getThemeVariables().textColor
+          fill: themeVariables.textColor,
+          color: themeVariables.textColor
         }
       }
     };
