@@ -4,7 +4,7 @@ var ColorManipulator = require('../../utils/color-manipulator');
 
 /**
  *  Light Theme is the default theme used in material-ui. It is guaranteed to
- *  have all theme variables needed for every component. Variables not defined 
+ *  have all theme variables needed for every component. Variables not defined
  *  in a custom theme will default to these values.
  */
 
@@ -146,9 +146,12 @@ var LightTheme = {
         iconColor: 'rgba(0, 0, 0, .40)',
         separatorColor: 'rgba(0, 0, 0, .175)',
         menuHoverColor: 'rgba(0, 0, 0, .10)'
+      },
+      tabs: {
+        backgroundColor: palette.primary1Color,
       }
     };
-    
+
     // Properties based on previous properties
     obj.flatButton.disabledTextColor = ColorManipulator.fade(obj.flatButton.textColor, 0.3),
     obj.floatingActionButton.disabledColor = ColorManipulator.darken(Colors.white, 0.1),
