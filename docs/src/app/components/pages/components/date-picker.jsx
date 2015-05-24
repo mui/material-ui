@@ -7,6 +7,7 @@ var ComponentDoc = require('../../component-doc.jsx');
 
 class DatePickerPage extends React.Component {
   constructor() {
+    super();
     var minDate = new Date();
     var maxDate = new Date();
     minDate.setFullYear(minDate.getFullYear() -1);
