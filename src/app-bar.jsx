@@ -21,6 +21,7 @@ var AppBar = React.createClass({
     iconClassNameRight: React.PropTypes.string,
     iconElementLeft: React.PropTypes.element,
     iconElementRight: React.PropTypes.element,
+    iconStyleRight: React.PropTypes.object,
     title : React.PropTypes.node,
     zDepth: React.PropTypes.number,
   },
@@ -88,10 +89,6 @@ var AppBar = React.createClass({
   },
 
   render: function() {
-    var {
-      onTouchTap,
-      ...other
-    } = this.props;
     var styles = this.getStyles();
 
     var title, menuElementLeft, menuElementRight;
@@ -99,7 +96,7 @@ var AppBar = React.createClass({
       float: 'right',
       marginRight: -16,
       marginLeft: 8
-    });
+    }, this.props.iconStyleRight);
 
     if (this.props.title) {
       // If the title is a string, wrap in an h1 tag.
