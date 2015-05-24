@@ -30,6 +30,12 @@ var IconButton = React.createClass({
     };
   },
 
+  getDefaultProps: function () {
+    return {
+      iconStyle: {}
+    };
+  },
+
   componentDidMount: function() {
     if (this.props.tooltip) {
       this._positionTooltip();
