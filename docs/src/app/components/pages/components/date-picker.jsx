@@ -6,7 +6,9 @@ var Toggle = mui.Toggle;
 var ComponentDoc = require('../../component-doc.jsx');
 
 class DatePickerPage extends React.Component {
-  constructor() {
+  constructor(props) {
+    super(props);
+
     var minDate = new Date();
     var maxDate = new Date();
     minDate.setFullYear(minDate.getFullYear() -1);

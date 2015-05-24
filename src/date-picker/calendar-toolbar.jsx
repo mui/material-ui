@@ -28,7 +28,7 @@ var CalendarToolbar = React.createClass({
       prevYear: true,
       nextYear: true,
       prevMonth: true,
-      nextYear: true,
+      nextMonth: true,
       hideYearChangeButtons: false
     };
   },
