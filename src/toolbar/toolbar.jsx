@@ -30,11 +30,12 @@ var Toolbar = React.createClass({
 
   render: function() {
 
-    var firstChild = this.props.children[0];
-    var lastChild = this.props.children[this.props.children.length - 1];
-    if (firstChild.type.displayName === 'ToolbarGroup') firstChild = React.cloneElement(firstChild, {firstChild: true});
-    if (lastChild.type.displayName === 'ToolbarGroup') lastChild = React.cloneElement(lastChild, {lastChild: true});
-
+    if (React.Children.count > 0) {
+      var firstChild = this.props.children[0];
+      var lastChild = this.props.children[this.props.children.length - 1];
+      if (firstChild.type.displayName === 'ToolbarGroup') firstChild = React.cloneElement(firstChild, {firstChild: true});
+      if (lastChild.type.displayName === 'ToolbarGroup') lastChild = React.cloneElement(lastChild, {lastChild: true});
+    }
     return (
       <div className={this.props.className} style={this.getStyles()}>
         {this.props.children}
