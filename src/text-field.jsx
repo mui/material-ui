@@ -30,7 +30,8 @@ var TextField = React.createClass({
 
   getDefaultProps: function() {
     return {
-      type: 'text'
+      type: 'text',
+      rows: 1
     };
   },
 
