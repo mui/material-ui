@@ -77,7 +77,7 @@ var TextField = React.createClass({
         fontSize: '16px',
         lineHeight: '24px',
         width: (64 * 4),
-        height: (this.props.floatingLabelText) ? 72 : 48,
+        height: (this.props.rows - 1) * 24 + (this.props.floatingLabelText ? 72 : 48),
         display: 'inline-block',
         position: 'relative',
         fontFamily: this.context.muiTheme.contentFontFamily,
