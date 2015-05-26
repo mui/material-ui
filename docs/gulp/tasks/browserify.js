@@ -15,6 +15,7 @@ var source       = require('vinyl-source-stream');
 var config       = require('../config').browserify;
 var buffer       = require('vinyl-buffer');
 var sourcemaps   = require('gulp-sourcemaps');
+var babelify     = require('babelify');
 
 gulp.task('browserify', ['jshint'], function(callback) {
 
@@ -29,9 +30,9 @@ gulp.task('browserify', ['jshint'], function(callback) {
       entries: bundleConfig.entries,
       // Add file extentions to make optional in your requires
       extensions: config.extensions,
-      // Enable source maps!
-      debug: config.debug
-    }).transform('babelify', {stage: 1});
+      // Enable source maps, since they are only loaded on demand there is no need to disable
+      debug: true
+    }).transform(babelify.configure({stage: 1}));
 
     var bundle = function() {
       // Log when bundling starts
@@ -45,9 +46,8 @@ gulp.task('browserify', ['jshint'], function(callback) {
         // stream gulp compatible. Specifiy the
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
-        // Create independent source map file in the build directory
-        // Note: Using sourcmaps v1.1.0 due to bug RangeError in newer version
         .pipe(buffer())
+        // Create independent source map file in the build directory
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(sourcemaps.write('./'))
         // Specify the output destination

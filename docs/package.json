@@ -21,7 +21,7 @@
     "gulp-less": "^3.0.0",
     "gulp-notify": "^2.1.0",
     "gulp-shell": "^0.4.1",
-    "gulp-sourcemaps": "1.1.0",
+    "gulp-sourcemaps": "1.5.2",
     "gulp-util": "^3.0.1",
     "pretty-hrtime": "^0.2.2",
     "require-dir": "^0.1.0",
