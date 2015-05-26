@@ -65,5 +65,6 @@ module.exports = {
     ColorManipulator: require('./utils/color-manipulator'),
     Extend: require('./utils/extend'),
     UniqueId: require('./utils/unique-id')
-  }
+  },
+  ListItem: require('./list/list-item')
 };
