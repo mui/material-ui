@@ -1,53 +1,77 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var StylePropable = require('../mixins/style-propable');
 
 var TableFooter = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
 
   propTypes: {
-    footerItems: React.PropTypes.array.isRequired
+    columns: React.PropTypes.array.isRequired
   },
 
   getDefaultProps: function() {
     return {};
   },
 
+  getTheme: function() {
+    return this.context.muiTheme.component.tableFooter;
+  },
+
+  getStyles: function() {
+    var styles = {
+      cell: {
+        borderTop: '1px solid ' + this.getTheme().borderColor,
+        verticalAlign: 'bottom',
+        padding: 20,
+        textAlign: 'left',
+        whiteSpace: 'nowrap'
+      }
+    };
+
+    return styles;
+  },
+
   render: function() {
-    var classes = this.getClasses('mui-table-footer');
+    var className = 'mui-table-footer';
 
     return (
-      <tfoot className={classes}>
+      <tfoot className={className}>
         {this._getFooterRow()}
       </tfoot>
     );
   },
-  
+
   _getFooterRow: function() {
     return (
-      <tr className="mui-table-footer-row">
-        {this._getColumnHeaders(this.props.footerItems, 'f')}
+      <tr className='mui-table-footer-row'>
+        {this._getColumnHeaders(this.props.columns, 'f')}
       </tr>
     );
   },
-  
+
   _getColumnHeaders: function(footerData, keyPrefix) {
     var footers = [];
-    
+    var styles = this.getStyles();
+
     for (var index = 0; index < footerData.length; index++) {
       var {
-        displayName,
+        content,
         ...props
       } = footerData[index];
       var key = keyPrefix + index
-      
+      props.style = (props.style !== undefined) ? this.mergeAndPrefix(props.style, styles.cell) : styles.cell;
+
       footers.push(
-        <td key={key} className="mui-table-footer-column" {...props}>
-          {displayName}
+        <td key={key} className='mui-table-footer-column' {...props}>
+          {content}
         </td>
       );
     }
-    
+
     return footers;
   }
 

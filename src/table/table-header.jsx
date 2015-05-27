@@ -1,77 +1,135 @@
 var React = require('react');
-var Classable = require('../mixins/classable');
+var Checkbox = require('../checkbox');
+var StylePropable = require('../mixins/style-propable');
+var TableHeaderColumn = require('./table-header-column');
 
 var TableHeader = React.createClass({
 
-  mixins: [Classable],
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
 
   propTypes: {
-    headerItems: React.PropTypes.array.isRequired,
-    superHeaderItems: React.PropTypes.array,
+    columns: React.PropTypes.array.isRequired,
+    superHeaderColumns: React.PropTypes.array,
+    onSelectAll: React.PropTypes.func,
+    displaySelectAll: React.PropTypes.bool,
+    enableSelectAll: React.PropTypes.bool,
     fixed: React.PropTypes.bool
   },
 
   getDefaultProps: function() {
     return {
+      displaySelectAll: true,
+      enableSelectAll: true,
       fixed: true
     };
   },
 
+  getTheme: function() {
+    return this.context.muiTheme.component.tableHeader;
+  },
+
+  getStyles: function() {
+    var styles = {
+      root:  {
+        borderBottom: '1px solid ' + this.getTheme().borderColor,
+      },
+      selectAll: {
+        padding: 20
+      }
+    };
+
+    return styles;
+  },
+
   render: function() {
-    var classes = this.getClasses('mui-table-header');
+    var className = 'mui-table-header';
 
     return (
-      <thead className={classes}>
+      <thead className={className} style={this.getStyles().root}>
         {this._getSuperHeaderRow()}
         {this._getHeaderRow()}
       </thead>
     );
   },
-  
+
   getSuperHeaderRow: function() {
     return this.refs.superHeader;
   },
-  
+
   getHeaderRow: function() {
     return this.refs.header;
   },
-  
+
   _getSuperHeaderRow: function() {
-    if (this.props.superHeaderItems !== undefined) {
+    if (this.props.superHeaderColumns !== undefined) {
       return (
-        <tr className="mui-table-super-header-row" ref="superHeader">
-          {this._getColumnHeaders(this.props.superHeaderItems, 'sh')}
+        <tr className='mui-table-super-header-row' ref='superHeader'>
+          {this._getColumnHeaders(this.props.superHeaderColumns, 'sh')}
         </tr>
       );
     }
   },
-  
+
   _getHeaderRow: function() {
+    var columns = this.props.columns;
+    if (this.props.displaySelectAll) {
+      columns.splice(0, 0, this._getSelectAllCheckbox());
+    }
+
     return (
-      <tr className="mui-table-header-row" ref="header">
-        {this._getColumnHeaders(this.props.headerItems, 'h')}
+      <tr className='mui-table-header-row' ref='header'>
+        {this._getHeaderColumns(columns, 'h')}
       </tr>
     );
   },
-  
-  _getColumnHeaders: function(headerData, keyPrefix) {
+
+  _getHeaderColumns: function(headerData, keyPrefix) {
+    var styles = this.getStyles();
     var headers = [];
-    
+
     for (var index = 0; index < headerData.length; index++) {
       var {
-        displayName,
+        content,
+        tooltip,
+        style,
         ...props
       } = headerData[index];
-      var key = keyPrefix + index
-      
+      var key = keyPrefix + index;
+
       headers.push(
-        <th key={key} className="mui-table-header-column" {...props}>
-          {displayName}
-        </th>
+        <TableHeaderColumn key={key} style={style} tooltip={tooltip} columnNumber={index} {...props}>
+          {content}
+        </TableHeaderColumn>
       );
     }
-    
+
     return headers;
+  },
+
+  _getSelectAllCheckbox: function() {
+    var checkbox =
+      <Checkbox
+        ref='rowSelectCB'
+        name='selectallcb'
+        value='selected'
+        disabled={!this.props.enableSelectAll}
+        onCheck={this._onSelectAll} />;
+
+    return {
+      content: checkbox
+    };
+  },
+
+  _onSelectAll: function() {
+    if (this.props.onSelectAll) this.props.onSelectAll();
+  },
+
+  _onColumnClick: function(e, columnNumber) {
+    if (this.props.onColumnClick) this.props.onColumnClick(e, columnNumber);
   }
 
 });

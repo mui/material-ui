@@ -20,10 +20,10 @@ var Checkbox = React.createClass({
 
   getInitialState: function() {
     return {
-      switched: 
+      switched:
         this.props.checked ||
-        this.props.defaultChecked || 
-        (this.props.valueLink && this.props.valueLink.value) || 
+        this.props.defaultChecked ||
+        (this.props.valueLink && this.props.valueLink.value) ||
         false,
     }
   },
@@ -41,23 +41,23 @@ var Checkbox = React.createClass({
       },
       check: {
           position: 'absolute',
-          opacity: 0, 
+          opacity: 0,
           transform: 'scale(0)',
           transitionOrigin: '50% 50%',
-          transition: Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' + 
+          transition: Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' +
                       Transitions.easeOut('0ms', 'transform', '450ms'),
-          fill: this.getTheme().checkedColor   
+          fill: this.getTheme().checkedColor
       },
       box: {
           position: 'absolute',
           opacity: 1,
-          fill: this.getTheme().boxColor,          
-          transition: Transitions.easeOut('2s', null, '200ms') 
+          fill: this.getTheme().boxColor,
+          transition: Transitions.easeOut('2s', null, '200ms')
       },
       checkWhenSwitched: {
         opacity: 1,
         transform: 'scale(1)',
-        transition: Transitions.easeOut('0ms', 'opacity', '0ms') + ', ' + 
+        transition: Transitions.easeOut('0ms', 'opacity', '0ms') + ', ' +
                     Transitions.easeOut('800ms', 'transform', '0ms')
       },
       boxWhenSwitched: {
@@ -81,13 +81,13 @@ var Checkbox = React.createClass({
     } = this.props;
 
     var styles = this.getStyles();
-    var boxStyles = 
+    var boxStyles =
       this.mergeAndPrefix(
         styles.box,
         this.state.switched && styles.boxWhenSwitched,
         this.props.iconStyle,
         this.props.disabled && styles.boxWhenDisabled);
-    var checkStyles = 
+    var checkStyles =
       this.mergeAndPrefix(
         styles.check,
         this.state.switched && styles.checkWhenSwitched,
@@ -117,7 +117,7 @@ var Checkbox = React.createClass({
     };
 
     return (
-      <EnhancedSwitch 
+      <EnhancedSwitch
         {...other}
         {...enhancedSwitchProps}/>
     );

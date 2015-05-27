@@ -11,7 +11,7 @@ var Toggle = mui.Toggle;
 var TablePage = React.createClass({
 
   mixins: [Router.Navigation, Router.State],
-  
+
   getInitialState: function() {
     var rowData = [
       {id: {content: '1'}, name: {content: 'John Smith'}, status: {content: 'Employed'}},
@@ -23,14 +23,18 @@ var TablePage = React.createClass({
       {id: {content: '7'}, name: {content: 'Adam Moore'}, status: {content: 'Employed'}},
       {id: {content: '8'}, name: {content: 'Robert Brown'}, status: {content: 'Employed'}},
       {id: {content: '9'}, name: {content: 'Elizabeth Stevenson'}, status: {content: 'Employed'}},
-      {id: {content: '10'}, name: {content: 'Zachary Dobb'}, status: {content: 'Employed'}}
+      {id: {content: '10'}, name: {content: 'Zachary Dobb'}, status: {content: 'Employed'}},
+      {id: {content: '11'}, name: {content: 'Zachary Dobb'}, status: {content: 'Employed'}}
     ];
-    
+
     return {
+      fixedHeader: true,
+      fixedFooter: true,
       stripedRows: false,
       showRowHover: false,
-      selectEnabled: false,
-      multiSelectEnabled: false,
+      selectable: false,
+      multiSelectable: false,
+      canSelectAll: false,
       height: '300px',
       rowData: rowData
     };
@@ -54,10 +58,10 @@ var TablePage = React.createClass({
         ]
       }
     ];
-    
-    var headerCols = {id: {displayName: 'ID'}, name: {displayName: 'Name'}, status: {displayName: 'Status'}};
+
+    var headerCols = {id: {content: 'ID', tooltip: 'The ID'}, name: {content: 'Name', tooltip: 'The name'}, status: {content: 'Status', tooltip: 'Ths status'}};
     var colOrder = ['id', 'name', 'status'];
-    var footerCols = {id: {displayName: 'ID'}, name: {displayName: 'Name'}, status: {displayName: 'Status'}};
+    var footerCols = {id: {content: 'ID'}, name: {content: 'Name'}, status: {content: 'Status'}};
 
     var propContainerStyle = {
       width: '200px',
@@ -73,54 +77,75 @@ var TablePage = React.createClass({
         componentInfo={componentInfo}>
 
         <div className='table-examples'>
-          <Table 
+          <Table
             headerColumns={headerCols}
             footerColumns={footerCols}
-            columnOrder={colOrder} 
-            rowData={this.state.rowData} 
-            height={this.state.height} 
+            columnOrder={colOrder}
+            rowData={this.state.rowData}
+            height={this.state.height}
+            fixedHeader={this.state.fixedHeader}
+            fixedFooter={this.state.fixedFooter}
             stripedRows={this.state.stripedRows}
             showRowHover={this.state.showRowHover}
-            selectEnabled={this.state.selectEnabled}
-            multiSelectEnabled={this.state.multiSelectEnabled}/>
-            
+            selectable={this.state.selectable}
+            multiSelectable={this.state.multiSelectable}
+            canSelectAll={this.state.canSelectAll} />
+
           <div style={propContainerStyle}>
             <h3>Table Properties</h3>
-            <TextField 
+            <TextField
               floatingLabelText='Table Body Height'
               defaultValue={this.state.height}
               onChange={this._onChange} />
-            
+
+            <Toggle
+              name='fixedHeader'
+              label='Fixed Header'
+              onToggle={this._onToggle}
+              defaultToggled={this.state.fixedHeader} />
+
+            <Toggle
+              name='Fixed Footer'
+              label='Fixed Footer'
+              onToggle={this._onToggle}
+              defaultToggled={this.state.fixedFooter} />
+
             <Toggle
               name='stripedRows'
               label='Stripe Rows'
               onToggle={this._onToggle}
               defaultToggled={this.state.stripedRows} />
-            
+
             <Toggle
               name='showRowHover'
               label='Show Row Hover'
               onToggle={this._onToggle}
               defaultToggled={this.state.showRowHover} />
-            
+
             <Toggle
-              name='selectEnabled'
+              name='selectable'
               label='Selectable'
               onToggle={this._onToggle}
-              defaultToggled={this.state.selectEnabled} />
-            
+              defaultToggled={this.state.selectable} />
+
             <Toggle
-              name='multiSelectEnabled'
+              name='multiSelectable'
               label='Multi-Selectable'
               onToggle={this._onToggle}
-              defaultToggled={this.state.multiSelectEnabled} />
-            </div>
-        </div>
+              defaultToggled={this.state.multiSelectable} />
 
+            <Toggle
+              name='canSelectAll'
+              label='Can Select All'
+              onToggle={this._onToggle}
+              defaultToggled={this.state.canSelectAll} />
+
+          </div>
+        </div>
       </ComponentDoc>
     );
   },
-  
+
   _onChange: function(e) {
     var rowData = [
       {id: {content: '1'}, name: {content: 'John Smith'}, status: {content: 'Employed'}},
@@ -134,10 +159,10 @@ var TablePage = React.createClass({
       {id: {content: '9'}, name: {content: 'Elizabeth Stevenson'}, status: {content: 'Employed'}},
       {id: {content: '10'}, name: {content: 'Zachary Dobb'}, status: {content: 'Employed'}}
     ];
-    
+
     this.setState({height: e.target.value, rowData: rowData});
   },
-  
+
   _onToggle: function(e, toggled) {
     var state = {};
     state[e.target.name] = toggled;

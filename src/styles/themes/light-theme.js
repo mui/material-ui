@@ -4,7 +4,7 @@ var ColorManipulator = require('../../utils/color-manipulator');
 
 /**
  *  Light Theme is the default theme used in material-ui. It is guaranteed to
- *  have all theme variables needed for every component. Variables not defined 
+ *  have all theme variables needed for every component. Variables not defined
  *  in a custom theme will default to these values.
  */
 
@@ -122,6 +122,26 @@ var LightTheme = {
         backgroundColor: '#323232',
         actionColor: palette.accent1Color
       },
+      table: {
+        backgroundColor: Colors.white
+      },
+      tableHeader: {
+        borderColor: palette.borderColor
+      },
+      tableHeaderColumn: {
+        textColor: Colors.lightBlack
+      },
+      tableFooter: {
+        borderColor: palette.borderColor,
+        textColor: Colors.lightBlack
+      },
+      tableRow: {
+        hoverColor: Colors.grey200,
+        stripeColor: ColorManipulator.lighten(palette.primary1Color, 0.55),
+        selectedColor: Colors.grey300,
+        textColor: Colors.darkBlack,
+        borderColor: palette.borderColor,
+      },
       timePicker: {
         color: Colors.white,
         textColor: Colors.grey600,
@@ -149,7 +169,7 @@ var LightTheme = {
         menuHoverColor: Colors.white
       }
     };
-    
+
     // Properties based on previous properties
     obj.flatButton.disabledTextColor = ColorManipulator.fade(obj.flatButton.textColor, 0.3),
     obj.floatingActionButton.disabledColor = ColorManipulator.darken(Colors.white, 0.1),

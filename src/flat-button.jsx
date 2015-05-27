@@ -52,7 +52,7 @@ var FlatButton = React.createClass({
         fontSize: Typography.fontStyleButtonFontSize,
         letterSpacing: 0,
         textTransform: 'uppercase',
-        fontWeight: Typography.fontWeightMedium, 
+        fontWeight: Typography.fontWeightMedium,
         borderRadius: 2,
         userSelect: 'none',
         position: 'relative',
@@ -60,7 +60,7 @@ var FlatButton = React.createClass({
         backgroundColor: this.getTheme().color,
         lineHeight: this.getThemeButton().height + 'px',
         minWidth: this.getThemeButton().minWidth,
-        padding: 0, 
+        padding: 0,
         margin: 0,
         //This is need so that ripples do not bleed past border radius.
         //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
@@ -108,19 +108,19 @@ var FlatButton = React.createClass({
         </span>
       );
     };
-    
+
     var rippleColor = ColorManipulator.fade(styles.root.color, 0.8);
 
     return (
       <EnhancedButton {...other}
-        ref="enhancedButton"
+        ref='enhancedButton'
         style={this.mergeAndPrefix(
           styles.root,
           (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,
           this.props.style
         )}
-        onMouseOver={this._handleMouseOver} 
-        onMouseOut={this._handleMouseOut} 
+        onMouseOver={this._handleMouseOver}
+        onMouseOut={this._handleMouseOut}
         focusRippleColor={rippleColor}
         touchRippleColor={rippleColor}
         onKeyboardFocus={this._handleKeyboardFocus}>
