@@ -12,8 +12,8 @@ var GetStarted = require('./components/pages/get-started.jsx');
 
 var Customization = require('./components/pages/customization.jsx');
 var Colors = require('./components/pages/customization/colors.jsx');
-var Themes = require('./components/pages/customization/themes.jsx'); 
-var InlineStyles = require('./components/pages/customization/inline-styles.jsx'); 
+var Themes = require('./components/pages/customization/themes.jsx');
+var InlineStyles = require('./components/pages/customization/inline-styles.jsx');
 
 var Components = require('./components/pages/components.jsx');
 var AppBar = require('./components/pages/components/app-bar.jsx');
@@ -34,14 +34,14 @@ var Tabs = require('./components/pages/components/tabs.jsx');
 var TextFields = require('./components/pages/components/text-fields.jsx');
 var TimePicker = require('./components/pages/components/time-picker.jsx');
 var Toolbars = require('./components/pages/components/toolbars.jsx');
-
+var Lists = require('./components/pages/components/lists.jsx');
 
 /** Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
-  * 
+  *
   * Routes are used to declare your view hierarchy.
   *
   * Say you go to http://material-ui.com/#/components/paper
-  * The react router will search for a route named 'paper' and will recursively render its 
+  * The react router will search for a route named 'paper' and will recursively render its
   * handler and its parent handler like so: Paper > Components > Master
   */
 
@@ -75,6 +75,7 @@ var AppRoutes = (
       <Route name="text-fields" handler={TextFields} />
       <Route name="time-picker" handler={TimePicker} />
       <Route name="toolbars" handler={Toolbars} />
+      <Route name="lists" handler={Lists} />
       <Redirect from="/components" to="appbar" />
     </Route>
 
