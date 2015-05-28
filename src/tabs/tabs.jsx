@@ -97,10 +97,19 @@ var Tabs = React.createClass({
           tabContent.push(React.createElement(TabTemplate, {
             key: index,
             selected: this.state.selectedIndex === index,
-            tabIndex: index,
-            width: width,
-            handleTouchTap: this.handleTouchTap
-          })
+            tabIndex: index
+          }, tab.props.children));
+        } else {
+          tabContent.push(undefined)
+        }
+
+        return React.addons.cloneWithProps(tab, {
+          key: index,
+          selected: this.state.selectedIndex === index,
+          tabIndex: index,
+          width: width,
+          handleTouchTap: this.handleTouchTap
+        });
       } else {
         var type = tab.type.displayName || tab.type;
         throw 'Tabs only accepts Tab Components as children. Found ' +
