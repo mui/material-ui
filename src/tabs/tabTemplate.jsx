@@ -5,14 +5,16 @@ var TabTemplate = React.createClass({
   render: function(){
 
     var styles = {
-      'display': 'block',
+      'display': 'none',
       'width': '100%',
       'position': 'relative',
-      'text-align': 'initial'
+      'textAlign': 'initial'
     };
 
+    if(this.props.selected) styles.display = 'block';
+
     return (
-      <div styles={styles}>
+      <div style={styles}>
         {this.props.children}
       </div>
     );

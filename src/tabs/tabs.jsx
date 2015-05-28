@@ -83,17 +83,18 @@ var Tabs = React.createClass({
   render: function(){
     var styles = this.getStyles();
 
+    var tabContent = []
     var width = this.state.fixedWidth ?
       100 / this.props.children.length +'%' :
       this.props.tabWidth + 'px';
 
     var left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
 
-    var currentTemplate;
-    var tabs = React.Children.map(this.props.children, function(tab, index) {
-      if (tab.type.displayName === "Tab") {
-        if (this.state.selectedIndex === index) currentTemplate = tab.props.children;
-         return React.addons.cloneWithProps(tab, {
+    var tabs = React.Children.map(this.props.children, function(tab, index){
+      if(tab.type.displayName === "Tab") {
+
+        if(tab.props.children) {
+          tabContent.push(React.createElement(TabTemplate, {
             key: index,
             selected: this.state.selectedIndex === index,
             tabIndex: index,
@@ -106,16 +107,15 @@ var Tabs = React.createClass({
               type + ' as child number ' + (index + 1) + ' of Tabs';
       }
     }, this);
-
     return (
       <div style={this.mergeAndPrefix(styles.root, this.props.style)}>
         <div style={this.mergeAndPrefix(styles.tabItemContainer, this.props.tabItemContainerStyle)}>
           {tabs}
         </div>
-        <InkBar left={left} width={width}/>
-        <TabTemplate>
-          {currentTemplate}
-        </TabTemplate>
+        <InkBar left={left} width={width} />
+        <div className='mui-tab-template-container'>
+          {tabContent}
+        </div>
       </div>
     )
   },
