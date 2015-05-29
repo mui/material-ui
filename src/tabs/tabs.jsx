@@ -96,8 +96,7 @@ var Tabs = React.createClass({
         if(tab.props.children) {
           tabContent.push(React.createElement(TabTemplate, {
             key: index,
-            selected: this.state.selectedIndex === index,
-            tabIndex: index
+            selected: this.state.selectedIndex === index
           }, tab.props.children));
         } else {
           tabContent.push(undefined)
@@ -122,7 +121,7 @@ var Tabs = React.createClass({
           {tabs}
         </div>
         <InkBar left={left} width={width} />
-        <div className='mui-tab-template-container'>
+        <div>
           {tabContent}
         </div>
       </div>

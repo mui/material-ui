@@ -5,13 +5,17 @@ var TabTemplate = React.createClass({
   render: function(){
 
     var styles = {
-      'display': 'none',
+      'height': '0px',
+      'overflow': 'hidden',
       'width': '100%',
       'position': 'relative',
       'textAlign': 'initial'
     };
 
-    if(this.props.selected) styles.display = 'block';
+    if(this.props.selected) {
+      delete styles.height
+      delete styles.overflow
+    }
 
     return (
       <div style={styles}>
