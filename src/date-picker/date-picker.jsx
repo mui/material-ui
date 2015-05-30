@@ -46,6 +46,10 @@ var DatePicker = React.createClass({
     };
   },
 
+  componentWillReceiveProps: function (nextProps) {
+    this.setDate(nextProps.defaultDate);
+  },
+
   render: function() {
     var {
       formatDate,
