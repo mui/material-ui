@@ -61,7 +61,7 @@ var AppBar = React.createClass({
         margin: 0,
         paddingTop: 0,
         letterSpacing: 0,
-        fontSize: '24px',
+        fontSize: 24,
         fontWeight: Typography.fontWeightNormal,
         color: themeVariables.textColor,
         lineHeight: themeVariables.height + 'px'
@@ -85,7 +85,9 @@ var AppBar = React.createClass({
   render: function() {
     var styles = this.getStyles();
 
-    var title, menuElementLeft, menuElementRight;
+    var title;
+    var menuElementLeft;
+    var menuElementRight;
     var iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
       float: 'right',
       marginRight: -16,
@@ -147,16 +149,21 @@ var AppBar = React.createClass({
           {menuElementLeft}
           {title}
           {menuElementRight}
+          {this.props.children}
       </Paper>
     );
   },
 
-  _onLeftIconButtonTouchTap: function(e) {
-    if (this.props.onLeftIconButtonTouchTap) this.props.onLeftIconButtonTouchTap(e);
+  _onLeftIconButtonTouchTap: function(event) {
+    if (this.props.onLeftIconButtonTouchTap) {
+      this.props.onLeftIconButtonTouchTap(event);
+    }
   },
 
-  _onRightIconButtonTouchTap: function(e) {
-    if (this.props.onRightIconButtonTouchTap) this.props.onRightIconButtonTouchTap(e);
+  _onRightIconButtonTouchTap: function(event) {
+    if (this.props.onRightIconButtonTouchTap) {
+      this.props.onRightIconButtonTouchTap(event);
+    }
   }
 
 });
