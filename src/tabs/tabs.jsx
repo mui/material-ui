@@ -65,9 +65,6 @@ var Tabs = React.createClass({
     var themeVariables = this.context.muiTheme.component.tabs;
 
     return {
-      root: {
-        position: 'relative'
-      },
       tabItemContainer: {
         margin: '0',
         padding: '0',
@@ -108,7 +105,7 @@ var Tabs = React.createClass({
     }, this);
 
     return (
-      <div style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div style={this.mergeAndPrefix(this.props.style)}>
         <div style={this.mergeAndPrefix(styles.tabItemContainer, this.props.tabItemContainerStyle)}>
           {tabs}
         </div>
