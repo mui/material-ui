@@ -108,7 +108,7 @@ var LeftNav = React.createClass({
       },
       menuItem: {
         height: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight,
-        lineDeight: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight
+        lineHeight: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight + 'px'
       },
       rootWhenOpenRight: {
         left: 'auto',
