@@ -320,7 +320,7 @@ class ButtonPage extends React.Component {
           <Tab label="Raised Buttons">
             <ComponentDoc
               name=""
-              code={this.codeFlatButton}
+              code={this.codeRaisedButton}
               desc={this.desc}
               componentInfo={this.componentInfo.slice(1,2)}>
               <div style={styles.group}>
@@ -354,7 +354,7 @@ class ButtonPage extends React.Component {
           <Tab label="Floating Action Buttons">
             <ComponentDoc
               name=""
-              code={this.codeFlatButton}
+              code={this.codeFloatingActionButton}
               desc={this.desc}
               componentInfo={this.componentInfo.slice(2)}>
               <div style={styles.groupFloatingAction}>
