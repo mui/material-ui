@@ -26,6 +26,7 @@ var TextField = React.createClass({
     onKeyDown: React.PropTypes.func,
     onEnterKeyDown: React.PropTypes.func,
     type: React.PropTypes.string,
+    rows: React.PropTypes.number
   },
 
   getDefaultProps: function() {
@@ -197,6 +198,7 @@ var TextField = React.createClass({
       onChange,
       onFocus,
       type,
+      rows,
       ...other
     } = this.props;
 
@@ -240,6 +242,7 @@ var TextField = React.createClass({
       <EnhancedTextarea
         {...other}
         {...inputProps}
+        rows={this.props.rows}
         onHeightChange={this._handleTextAreaHeightChange}
         textareaStyle={this.mergeAndPrefix(styles.textarea)} />
     ) : (
