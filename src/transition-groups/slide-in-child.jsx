@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var ReactTransitionGroup = React.addons.TransitionGroup;
 var StylePropable = require('../mixins/style-propable');
 var AutoPrefix = require('../styles/auto-prefix');
 var Transitions = require('../styles/transitions');

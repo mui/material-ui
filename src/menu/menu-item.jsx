@@ -34,7 +34,7 @@ var MenuItem = React.createClass({
     onToggle: React.PropTypes.func,
     selected: React.PropTypes.bool
   },
-  
+
   statics: {
     Types: Types
   },
@@ -132,7 +132,7 @@ var MenuItem = React.createClass({
     if (this.props.data) data = <span style={this.mergeAndPrefix(styles.data)}>{this.props.data}</span>;
     if (this.props.number !== undefined) number = <span style={this.mergeAndPrefix(styles.number)}>{this.props.number}</span>;
     if (this.props.attribute !== undefined) attribute = <span style={this.mergeAndPrefix(styles.style)}>{this.props.attribute}</span>;
-    
+
     if (this.props.toggle) {
       var {
         toggle,
@@ -151,13 +151,13 @@ var MenuItem = React.createClass({
     return (
       <div
         key={this.props.index}
-        className={this.props.className} 
+        className={this.props.className}
         onTouchTap={this._handleTouchTap}
         onClick={this._handleOnClick}
         onMouseOver={this._handleMouseOver}
         onMouseOut={this._handleMouseOut}
         style={this.mergeAndPrefix(
-          styles.root, 
+          styles.root,
           this.props.selected && styles.rootWhenSelected,
           (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,
           this.props.style,
@@ -170,7 +170,7 @@ var MenuItem = React.createClass({
         {number}
         {toggleElement}
         {iconRight}
-        
+
       </div>
     );
   },

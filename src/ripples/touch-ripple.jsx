@@ -124,11 +124,11 @@ var TouchRipple = React.createClass({
     if (e.button === 0) this.start(e, false);
   },
 
-  _handleMouseUp: function(e) {
+  _handleMouseUp: function() {
     this.end();
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut: function() {
     this.end();
   },
 
@@ -136,7 +136,7 @@ var TouchRipple = React.createClass({
     this.start(e, true);
   },
 
-  _handleTouchEnd: function(e) {
+  _handleTouchEnd: function() {
     this.end();
   },
 

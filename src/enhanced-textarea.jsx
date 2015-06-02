@@ -51,7 +51,7 @@ var EnhancedTextarea = React.createClass({
       style,
       textareaStyle,
       valueLink,
-      ...other,
+      ...other
     } = this.props;
 
     var styles = this.getStyles().root;
@@ -71,7 +71,7 @@ var EnhancedTextarea = React.createClass({
     inputStyles = this.mergeAndPrefix(inputStyles, textareaStyle);
 
 
-    // Overflow also needed to here to remove the extra row 
+    // Overflow also needed to here to remove the extra row
     // added to textareas in Firefox.
     var shadowStyles = this.mergeAndPrefix(textAreaStyles, {
       position: 'absolute',
@@ -113,7 +113,7 @@ var EnhancedTextarea = React.createClass({
 
     if (newValue !== undefined) shadow.value = newValue;
     newHeight = shadow.scrollHeight;
-    
+
     if (currentHeight !== newHeight) {
       this.setState({height: newHeight});
       if (this.props.onHeightChange) this.props.onHeightChange(e, newHeight);
@@ -129,7 +129,7 @@ var EnhancedTextarea = React.createClass({
 
     if (this.props.onChange) this.props.onChange(e);
   },
-  
+
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.value != this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
