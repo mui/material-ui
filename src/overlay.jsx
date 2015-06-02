@@ -12,15 +12,15 @@ var Overlay = React.createClass({
     autoLockScrolling: React.PropTypes.bool,
     transitionEnabled: React.PropTypes.bool
   },
-  
+
   getDefaultProps: function() {
     return {
       autoLockScrolling: true,
       transitionEnabled: true
     };
   },
-  
-  componentDidUpdate: function(prevProps, prevState) {
+
+  componentDidUpdate: function() {
     if (this.props.autoLockScrolling) (this.props.show) ? this._preventScrolling() : this._allowScrolling();
   },
 
@@ -77,20 +77,20 @@ var Overlay = React.createClass({
       <div {...other} style={styles} />
     );
   },
-  
+
   preventScrolling: function() {
     if (!this.props.autoLockScrolling) this._preventScrolling();
   },
-  
+
   allowScrolling: function() {
     if (!this.props.autoLockScrolling) this._allowScrolling();
   },
-  
+
   _preventScrolling: function() {
     var body = document.getElementsByTagName('body')[0];
     body.style.overflow = 'hidden';
   },
-  
+
   _allowScrolling: function() {
     var body = document.getElementsByTagName('body')[0];
     body.style.overflow = '';

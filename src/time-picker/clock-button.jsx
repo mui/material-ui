@@ -14,14 +14,14 @@ var ClockButton = React.createClass({
   propTypes: {
       position: React.PropTypes.oneOf(['left', 'right'])
   },
-  
+
   getDefaultProps: function () {
       return {
-          position: "left"  
+          position: "left"
       };
   },
   _handleTouchTap: function(){
-    
+
     this.setState({
       selected: true
     })
@@ -31,17 +31,17 @@ var ClockButton = React.createClass({
     return this.context.muiTheme.component.timePicker;
   },
   render: function() {
-    
+
     var {
       className,
       ...other} = this.props;
-    
+
     var styles = {
       root: {
         position: "absolute",
         bottom: "65px",
         pointerEvents: "auto",
-        height: "50px", 
+        height: "50px",
         width: "50px",
         borderRadius: "100%"
       },
@@ -77,18 +77,18 @@ var ClockButton = React.createClass({
     }else{
       styles.root.left = "5px";
     }
-      
+
 
 
     return (
         <EnhancedButton {...other}
           style={this.mergeAndPrefix(styles.root)}
-          disableFocusRipple={true} 
-          disableTouchRipple={true} 
-          onTouchTap={this._handleTouchTap}> 
+          disableFocusRipple={true}
+          disableTouchRipple={true}
+          onTouchTap={this._handleTouchTap}>
           <span  style={this.mergeAndPrefix(styles.select)} />
           <span  style={this.mergeAndPrefix(styles.label)} >{this.props.children}</span>
-        </EnhancedButton> 
+        </EnhancedButton>
     );
   }
 });

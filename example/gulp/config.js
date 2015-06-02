@@ -13,14 +13,6 @@ module.exports = {
       dest + '/**'
     ]
   },
-  less: {
-    src: src + '/less/main.less',
-    watch: [
-      src + '/less/**',
-      mui + '/less/**'
-    ],
-    dest: dest
-  },
   markup: {
     src: src + "/www/**",
     dest: dest

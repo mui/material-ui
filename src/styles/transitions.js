@@ -6,11 +6,20 @@ module.exports = {
   easeInOutFunction: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',
 
   easeOut: function(duration, property, delay, easeFunction) {
+
+    easeFunction = easeFunction || this.easeOutFunction;
+
+    return this.create(duration, property, delay, easeFunction);
+
+  },
+
+  create: function(duration, property, delay, easeFunction){
+    
     duration = duration || '450ms';
     property = property || 'all';
     delay = delay || '0ms';
-    easeFunction = easeFunction || this.easeOutFunction;
-
+    easeFunction = easeFunction || "linear";
+    
     return AutoPrefix.singleHyphened(property) + ' ' +
       duration + ' ' +
       easeFunction + ' ' +

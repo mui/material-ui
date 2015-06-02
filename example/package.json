@@ -1,6 +1,6 @@
 {
   "name": "material-ui-example",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Sample project that uses material-ui",
   "repository": {
     "type": "git",
@@ -23,10 +23,7 @@
     "browser-sync": "^1.8.1",
     "browserify": "^7.0.3",
     "gulp": "^3.8.10",
-    "gulp-autoprefixer": "^2.0.0",
-    "gulp-less": "^3.0.0",
     "gulp-notify": "^2.1.0",
-    "gulp-sourcemaps": "^1.2.8",
     "gulp-util": "^3.0.1",
     "pretty-hrtime": "^0.2.2",
     "reactify": "^0.17.1",
@@ -36,8 +33,8 @@
     "watchify": "^2.2.1"
   },
   "dependencies": {
-    "material-ui": "^0.7.0",
-    "react": "^0.12.2",
+    "material-ui": ">=0.8",
+    "react": ">=0.13",
     "react-tap-event-plugin": "^0.1.3"
   }
 }

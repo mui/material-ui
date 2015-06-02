@@ -2,7 +2,7 @@ var React = require('react');
 var BeforeAfterWrapper = require('./before-after-wrapper');
 
 var ClearFix = React.createClass({
-  
+
   render: function() {
 
     var {
@@ -10,7 +10,7 @@ var ClearFix = React.createClass({
       ...other
     } = this.props;
 
-    var before = function() { 
+    var before = function() {
       return {
         content: "' '",
         display: 'table'
@@ -21,10 +21,10 @@ var ClearFix = React.createClass({
     after.clear = 'both';
 
     return (
-      <BeforeAfterWrapper 
-        {...other} 
-        beforeStyle={before()} 
-        afterStyle={after} 
+      <BeforeAfterWrapper
+        {...other}
+        beforeStyle={before()}
+        afterStyle={after}
         style={this.props.style}>
           {this.props.children}
       </BeforeAfterWrapper>

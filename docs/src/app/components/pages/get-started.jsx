@@ -2,7 +2,7 @@ var React = require('react');
 var mui = require('mui');
 var CodeBlock = require('../code-example/code-block.jsx');
 var FullWidthSection = require('../full-width-section.jsx');
-var Spacing = mui.Styles.Spacing;
+var {Spacing, Typography} = mui.Styles;
 
 class GetStarted extends React.Component {
 
@@ -34,7 +34,7 @@ class GetStarted extends React.Component {
         color: '#f00'//Typography.textDarkBlack
       },
       codeExample: {
-        backgroundColor: canvasColor,
+        backgroundColor: this.context.muiTheme.palette.canvasColor,
         marginBottom: '32px'
       }
     };
@@ -140,5 +140,9 @@ class GetStarted extends React.Component {
   }
 
 }
+
+GetStarted.contextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 module.exports = GetStarted;

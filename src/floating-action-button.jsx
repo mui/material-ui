@@ -67,7 +67,7 @@ var RaisedButton = React.createClass({
   _getBackgroundColor: function() {
     return  this.props.disabled ? this.getTheme().disabledColor :
             this.props.secondary ? this.getTheme().secondaryColor :
-            this.getTheme().color; 
+            this.getTheme().color;
   },
 
 
@@ -135,11 +135,11 @@ var RaisedButton = React.createClass({
 
     var styles = this.getStyles();
 
-    var icon;
+    var iconElement;
     if (this.props.iconClassName) {
-      icon = 
-        <FontIcon 
-          className={this.props.iconClassName} 
+      iconElement =
+        <FontIcon
+          className={this.props.iconClassName}
           style={this.mergeAndPrefix(
             styles.icon,
             this.props.mini && styles.iconWhenMini,
@@ -157,7 +157,7 @@ var RaisedButton = React.createClass({
         <EnhancedButton {...other}
           ref="container"
           style={this.mergeAndPrefix(
-            styles.container, 
+            styles.container,
             this.props.mini && styles.containerWhenMini
           )}
           onMouseDown={this._handleMouseDown}
@@ -169,13 +169,13 @@ var RaisedButton = React.createClass({
           focusRippleColor={rippleColor}
           touchRippleColor={rippleColor}
           onKeyboardFocus={this._handleKeyboardFocus}>
-            <div 
-              ref="overlay" 
+            <div
+              ref="overlay"
               style={this.mergeAndPrefix(
                 styles.overlay,
                 (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
               )}>
-                {icon}
+                {iconElement}
                 {this.props.children}
             </div>
         </EnhancedButton>

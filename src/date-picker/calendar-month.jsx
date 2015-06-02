@@ -1,20 +1,17 @@
 var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var Colors = require('../styles/colors');
 var DateTime = require('../utils/date-time');
 var DayButton = require('./day-button');
 var ClearFix = require('../clearfix');
 
 var CalendarMonth = React.createClass({
 
-  mixins: [StylePropable],
-
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
     onDayTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
-    maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
+    maxDate: React.PropTypes.object,
+    shouldDisableDate: React.PropTypes.func,
     autoOk: React.PropTypes.bool
   },
 
@@ -32,48 +29,58 @@ var CalendarMonth = React.createClass({
     );
   },
 
+  isSelectedDateDisabled: function() {
+    return this._selectedDateDisabled;
+  },
+
   _getWeekElements: function() {
     var weekArray = DateTime.getWeekArray(this.props.displayDate);
 
     return weekArray.map(function(week, i) {
       return (
         <ClearFix key={i}>
-          {this._getDayElements(week)}
+          {this._getDayElements(week, i)}
         </ClearFix>
       );
     }, this);
   },
-  _isDisabled: function(day){
-    var minDate = this.props.minDate;
-    var maxDate = this.props.maxDate;
 
-    if(minDate != null && day < minDate){
-      return true;
-    }
+  _getDayElements: function(week, i) {
+    return week.map(function(day, j) {
+      var isSameDate = DateTime.isEqualDate(this.props.selectedDate, day);
+      var disabled = this._shouldDisableDate(day);
+      var selected = !disabled && isSameDate;
 
-    if(maxDate != null && day > maxDate){
-      return true;
-    }
+      if (isSameDate) {
+        if (disabled) {
+          this._selectedDateDisabled = true;
+        }
+        else {
+          this._selectedDateDisabled = false;
+        }
+      }
 
-    return false;
-  },
-  _getDayElements: function(week) {
-    return week.map(function(day, i) {
-      var selected = DateTime.isEqualDate(this.props.selectedDate, day);
-      var disabled = this._isDisabled(day);
       return (
         <DayButton
-          key={i}
+          key={'db' + i + j}
           date={day}
-          disabled={disabled}
           onTouchTap={this._handleDayTouchTap}
-          selected={selected} />
+          selected={selected}
+          disabled={disabled} />
       );
     }, this);
   },
 
   _handleDayTouchTap: function(e, date) {
     if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
+  },
+
+  _shouldDisableDate: function(day) {
+    if (day === null) return false;
+    var disabled = !DateTime.isBetweenDates(day, this.props.minDate, this.props.maxDate);
+    if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
+
+    return disabled;
   }
 
 });

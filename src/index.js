@@ -3,6 +3,7 @@ module.exports = {
   AppCanvas: require('./app-canvas'),
   BeforeAfterWrapper: require('./before-after-wrapper'),
   Checkbox: require('./checkbox'),
+  CircularProgress: require('./circular-progress'),
   ClearFix: require('./clearfix'),
   DatePicker: require('./date-picker/date-picker'),
   Dialog: require('./dialog'),
@@ -15,6 +16,7 @@ module.exports = {
   FontIcon: require('./font-icon'),
   IconButton: require('./icon-button'),
   LeftNav: require('./left-nav'),
+  LinearProgress: require('./linear-progress'),
   Menu: require('./menu/menu'),
   MenuItem: require('./menu/menu-item'),
   Mixins: {

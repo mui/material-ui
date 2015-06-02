@@ -13,6 +13,10 @@ module.exports = {
       dest + '/**'
     ]
   },
+  css: {
+    src: src + "/css/*.css",
+    dest: dest
+  },
   markup: {
     src: src + "/www/**",
     dest: dest

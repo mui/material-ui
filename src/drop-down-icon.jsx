@@ -3,8 +3,6 @@ var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var Spacing = require('./styles/spacing');
 var ClickAwayable = require('./mixins/click-awayable');
-var KeyLine = require('./utils/key-line');
-var Paper = require('./paper');
 var FontIcon = require('./font-icon');
 var Menu = require('./menu/menu');
 
@@ -25,7 +23,7 @@ var DropDownIcon = React.createClass({
       open: false,
     }
   },
-  
+
   getDefaultProps: function() {
     return {
       closeOnMenuItemClick: true
@@ -59,7 +57,7 @@ var DropDownIcon = React.createClass({
         lineHeight: Spacing.desktopDropDownMenuItemHeight + 'px'
       }
     };
-    return styles;   
+    return styles;
   },
 
   render: function() {
@@ -74,34 +72,34 @@ var DropDownIcon = React.createClass({
     } = this.props;
 
     var styles = this.getStyles();
-    
+
     return (
       <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>
           <div onClick={this._onControlClick}>
-              <FontIcon 
-                className={iconClassName} 
+              <FontIcon
+                className={iconClassName}
                 style={iconStyle}/>
               {this.props.children}
           </div>
-          <Menu 
-            ref="menuItems" 
-            style={this.mergeAndPrefix(styles.menu)} 
+          <Menu
+            ref="menuItems"
+            style={this.mergeAndPrefix(styles.menu)}
             menuItems={menuItems}
             menuItemStyle={styles.menuItem}
-            hideable={true} 
-            visible={this.state.open} 
+            hideable={true}
+            visible={this.state.open}
             onItemClick={this._onMenuItemClick} />
         </div>
     );
   },
 
-  _onControlClick: function(e) {
+  _onControlClick: function() {
     this.setState({ open: !this.state.open });
   },
 
   _onMenuItemClick: function(e, key, payload) {
     if (this.props.onChange) this.props.onChange(e, key, payload);
-    
+
     if (this.props.closeOnMenuItemClick) {
       this.setState({ open: false });
     }

@@ -15,7 +15,21 @@ var DayButton = React.createClass({
   propTypes: {
     date: React.PropTypes.object,
     onTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool
+    selected: React.PropTypes.bool,
+    disabled: React.PropTypes.bool
+  },
+  
+  getDefaultProps: function() {
+    return {
+      selected: false,
+      disabled: false
+    };
+  },
+  
+  getInitialState: function() {
+    return {
+      hover: false
+    };
   },
 
   getTheme: function() {
@@ -24,7 +38,6 @@ var DayButton = React.createClass({
 
   render: function() {
     var {
-      className,
       date,
       onTouchTap,
       selected,
@@ -38,7 +51,7 @@ var DayButton = React.createClass({
         position: 'relative',
         float: 'left',
         width: 36,
-        padding: '4px 2px',
+        padding: '4px 2px'
       },
 
       label: {
@@ -46,7 +59,7 @@ var DayButton = React.createClass({
         color: this.context.muiTheme.palette.textColor
       },
 
-      select: {
+      buttonState: {
         position: 'absolute',
         height: 32,
         width: 32,
@@ -55,13 +68,22 @@ var DayButton = React.createClass({
         transform: 'scale(0)',
         transition: Transition.easeOut(),
         backgroundColor: this.getTheme().selectColor,
-      },
+      }
     };
+
+    if (this.state.hover) {
+      styles.label.color = this.getTheme().selectTextColor;
+      styles.buttonState.opacity = '0.6';
+      styles.buttonState.transform = 'scale(1)';
+    }
 
     if (this.props.selected) {
       styles.label.color = this.getTheme().selectTextColor;
-      styles.select.opacity = 1;
-      styles.select.transform = 'scale(1)';
+      styles.buttonState.opacity = 1;
+      styles.buttonState.transform = 'scale(1)';
+    }
+    else if (this.props.disabled) {
+      styles.root.opacity = '0.6';
     }
 
     if (DateTime.isEqualDate(this.props.date, new Date()) && !this.props.selected) {
@@ -71,11 +93,15 @@ var DayButton = React.createClass({
     return this.props.date ? (
       <EnhancedButton {...other}
         style={styles.root}
+        hoverStyle={styles.hover}
+        disabled={this.props.disabled}
         disableFocusRipple={true}
         disableTouchRipple={true}
+        onMouseOver={this._handleMouseOver}
+        onMouseOut={this._handleMouseOut}
         onTouchTap={this._handleTouchTap}
         onKeyboardFocus={this._handleKeyboardFocus}>
-        <div style={styles.select}/>
+        <div style={styles.buttonState} />
         <span style={styles.label}>{this.props.date.getDate()}</span>
       </EnhancedButton>
     ) : (
@@ -83,12 +109,20 @@ var DayButton = React.createClass({
     );
   },
 
+  _handleMouseOver: function() {
+    if (!this.props.disabled) this.setState({hover: true});
+  },
+  
+  _handleMouseOut: function() {
+    if (!this.props.disabled) this.setState({hover: false});
+  },
+
   _handleTouchTap: function(e) {
-    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.date);
+    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.date);
   },
 
   _handleKeyboardFocus: function(e, keyboardFocused) {
-    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
+    if (!this.props.disabled && this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
   } 
 
 });

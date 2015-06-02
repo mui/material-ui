@@ -12,14 +12,12 @@ var ToolbarGroup = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
-    float: React.PropTypes.string,
-    firstChild: React.PropTypes.bool,
-    lastChild: React.PropTypes.bool,
+    float: React.PropTypes.string
   },
 
   getDefaultProps: function() {
     return {
-      float: 'left',
+      float: 'left'
     };
   },
   
@@ -82,7 +80,6 @@ var ToolbarGroup = React.createClass({
   },
 
   render: function() {
-
     var styles = this.getStyles();
 
     if (this.props.firstChild) styles.marginLeft = -24;
@@ -96,7 +93,6 @@ var ToolbarGroup = React.createClass({
             styleControlBg: styles.dropDownMenu.controlBg,
             styleUnderline: styles.dropDownMenu.underline
           });
-          break;
         case 'DropDownIcon' :
           return React.cloneElement(currentChild, {
             style: {float: 'left'},
