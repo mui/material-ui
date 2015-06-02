@@ -113,6 +113,10 @@ class GetStarted extends React.Component {
           <mui.Paper style={styles.codeExample}>
             <CodeBlock>{usageCode}</CodeBlock>
           </mui.Paper>
+          <h3 style={styles.title}>Theme</h3>
+          <p>
+            Please note that since v0.8.0, you also need to <a href="#/customization/themes">define a theme</a> for components to start working.
+          </p>
 
           <h2 style={styles.headline}>Customization</h2>
           <p>Material-UI components have their styles defined inline. There are two approaches to overriding these styles:</p>
