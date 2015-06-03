@@ -127,22 +127,24 @@ var ToolbarGroup = React.createClass({
   },
 
   _handleMouseOverDropDownMenu: function(e) {
+    this.zIndexBackup = e.target.style.zIndex;
     e.target.style.zIndex = this.getStyles().icon.hover.zIndex;
     e.target.style.color = this.getStyles().icon.hover.color;
   },
 
   _handleMouseOutDropDownMenu: function(e) {
-    e.target.style.zIndex = 'auto';
+    e.target.style.zIndex = this.zIndexBackup || 'auto';
     e.target.style.color = this.getStyles().icon.root.color;
   },
 
   _handleMouseOverFontIcon: function(e) {
+    this.zIndexBackup = e.target.style.zIndex;
     e.target.style.zIndex = this.getStyles().icon.hover.zIndex;
     e.target.style.color = this.getStyles().icon.hover.color;
   },
 
   _handleMouseOutFontIcon: function(e) {
-    e.target.style.zIndex = 'auto';
+    e.target.style.zIndex = this.zIndexBackup || 'auto';
     e.target.style.color = this.getStyles().icon.root.color;
   },
 });
