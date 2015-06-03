@@ -60,6 +60,11 @@ var MyAwesomeReactComponent = React.createClass({
 module.exports = MyAwesomeReactComponent;
 ```
 
+### Theme
+
+Please note that since v0.8.0, you also need to define a theme for components to start working.
+
+
 ## Customization
 
 Material-UI components have their styles defined inline. There are two approaches to overriding these styles:
