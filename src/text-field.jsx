@@ -26,11 +26,13 @@ var TextField = React.createClass({
     onKeyDown: React.PropTypes.func,
     onEnterKeyDown: React.PropTypes.func,
     type: React.PropTypes.string,
+    rows: React.PropTypes.number
   },
 
   getDefaultProps: function() {
     return {
-      type: 'text'
+      type: 'text',
+      rows: 1
     };
   },
 
@@ -77,7 +79,7 @@ var TextField = React.createClass({
         fontSize: '16px',
         lineHeight: '24px',
         width: (64 * 4),
-        height: (this.props.floatingLabelText) ? 72 : 48,
+        height: (this.props.rows - 1) * 24 + (this.props.floatingLabelText ? 72 : 48),
         display: 'inline-block',
         position: 'relative',
         fontFamily: this.context.muiTheme.contentFontFamily,
@@ -196,6 +198,7 @@ var TextField = React.createClass({
       onChange,
       onFocus,
       type,
+      rows,
       ...other
     } = this.props;
 
@@ -239,6 +242,7 @@ var TextField = React.createClass({
       <EnhancedTextarea
         {...other}
         {...inputProps}
+        rows={this.props.rows}
         onHeightChange={this._handleTextAreaHeightChange}
         textareaStyle={this.mergeAndPrefix(styles.textarea)} />
     ) : (
