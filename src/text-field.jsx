@@ -156,13 +156,13 @@ var TextField = React.createClass({
 
     if (this.state.isFocused) {
       styles.floatingLabel.color = this.getTheme().primary1Color;
-      styles.floatingLabel.transform = 'scale(0.75) translate3d(0, -18px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
     if (this.state.hasValue) {
       styles.floatingLabel.color = ColorManipulator.fade(this.getTheme().textColor, 0.5);
-      styles.floatingLabel.transform = 'scale(0.75) translate3d(0, -18px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
       styles.hint.opacity = 0;
     }
 
