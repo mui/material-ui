@@ -27,11 +27,10 @@ var TextFieldsPage = React.createClass({
       group: {
         width: '100%',
         float: 'left',
-        marginBottom: '32px'
+        marginBottom: 32
       },
       textfield: {
-        marginTop: '24px',
-        width: '100%'
+        marginTop: 24
       }
     };
 
