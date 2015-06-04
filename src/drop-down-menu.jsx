@@ -143,7 +143,7 @@ var DropDownMenu = React.createClass({
           this.state.open && styles.rootWhenOpen,
           this.props.style)} >
 
-          <ClearFix style={this.mergeAndPrefix(styles.control)} onClick={this._onControlClick}>
+          <ClearFix style={this.mergeAndPrefix(styles.control)} onTouchTap={this._onControlClick}>
             <Paper style={this.mergeAndPrefix(styles.controlBg)} zDepth={0} />
             <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen)}>
               {this.props.menuItems[this.state.selectedIndex].text}
@@ -160,7 +160,7 @@ var DropDownMenu = React.createClass({
             menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.menuItemStyle)}
             hideable={true}
             visible={this.state.open}
-            onItemClick={this._onMenuItemClick} />
+            onItemTap={this._onMenuItemClick} />
       </div>
     );
   },

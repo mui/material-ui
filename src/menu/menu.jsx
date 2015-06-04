@@ -82,7 +82,7 @@ var NestedMenuItem = React.createClass({
           disabled={this.props.disabled}
           iconRightStyle={iconCustomArrowDropRight}
           iconRightClassName="muidocs-icon-custom-arrow-drop-right"
-          onClick={this._onParentItemClick}>
+          onTouchTap={this._onParentItemClick}>
             {this.props.text}
         </MenuItem>
         <Menu {...other}
