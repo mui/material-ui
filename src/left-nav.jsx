@@ -162,7 +162,7 @@ var LeftNav = React.createClass({
               menuItemStyleLink={this.mergeAndPrefix(styles.menuItemLink)}
               menuItemStyleSubheader={this.mergeAndPrefix(styles.menuItemSubheader)}
               selectedIndex={selectedIndex}
-              onItemClick={this._onMenuItemClick} />
+              onItemTap={this._onMenuItemClick} />
         </Paper>
       </div>
     );
