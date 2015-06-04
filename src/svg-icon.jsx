@@ -9,6 +9,16 @@ var SvgIcon = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
+  propTypes: {
+    viewBox: React.PropTypes.string
+  },
+
+  getDefaultProps: function() {
+    return {
+      viewBox: '0 0 24 24'
+    };
+  },
+
   getTheme: function() {
     return this.context.muiTheme.palette;
   },
@@ -34,7 +44,7 @@ var SvgIcon = React.createClass({
     return (
       <svg
         {...other}
-        viewBox="0 0 24 24"
+        viewBox={this.props.viewBox}
         style={this.mergeAndPrefix(
           this.getStyles(), 
           this.props.style)}>
