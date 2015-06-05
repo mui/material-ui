@@ -264,7 +264,7 @@ class MenusPage extends React.Component {
       "   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
       "   { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
       "];\n\n" +
-      "//You can also pass an onItemTap or onItemClick callback prop.\n"
+      "//You can also pass an onItemClick callback prop.\n"
       "<Menu menuItems={labelMenuItems} autoWidth={false}/>";
 
     return (
@@ -366,7 +366,7 @@ class MenusPage extends React.Component {
     return (
       <CodeExample code={code}>
         <div style={this.getStyles().exampleMenuNested}>
-          <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} onItemTap={this._onItemTap} autoWidth={false}/>
+          <mui.Menu menuItems={nestedMenuItems} onItemClick={this._onItemClick} autoWidth={false}/>
         </div>
       </CodeExample>
     );
@@ -378,10 +378,6 @@ class MenusPage extends React.Component {
 
   _onItemClick(e, key, menuItem) {
     console.log("Menu Item Click: ", menuItem);
-  }
-
-  _onItemTap(e, key, menuItem) {
-    console.log("Menu Item Tap: ", menuItem);
   }
 
 }
