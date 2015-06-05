@@ -131,20 +131,20 @@ var TextField = React.createClass({
       }
     };
 
-    styles.floatingLabel = this.mergeAndPrefix(styles.hint, {
+    styles.floatingLabel = this.mergeStyles(styles.hint, {
       top: 24,
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top'
     });
 
-    styles.textarea = this.mergeAndPrefix(styles.input, {
+    styles.textarea = this.mergeStyles(styles.input, {
       paddingTop: this.props.floatingLabelText ? 36 : 12,
       boxSizing: 'border-box',
       font: 'inherit'
     });
 
-    styles.focusUnderline= this.mergeAndPrefix(styles.underline, {
+    styles.focusUnderline= this.mergeStyles(styles.underline, {
       borderBottom: 'solid 2px ' + this.getTheme().primary1Color,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut(),
