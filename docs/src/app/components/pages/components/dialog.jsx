@@ -25,7 +25,7 @@ class DialogPage extends React.Component {
       '//Standard Actions\n' +
       'var standardActions = [\n' +
       '  { text: \'Cancel\' },\n' +
-      '  { text: \'Submit\', onClick: this._onDialogSubmit, ref: \'submit\' }\n' +
+      '  { text: \'Submit\', onTouchTap: this._onDialogSubmit, ref: \'submit\' }\n' +
       '];\n\n' +
       '<Dialog\n' +
       '  title="Dialog With Standard Actions"\n' +
@@ -147,7 +147,7 @@ class DialogPage extends React.Component {
 
     var standardActions = [
       { text: 'Cancel' },
-      { text: 'Submit', onClick: this._onDialogSubmit, ref: 'submit' }
+      { text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit' }
     ];
 
     var customActions = [
@@ -200,6 +200,10 @@ class DialogPage extends React.Component {
       </ComponentDoc>
     );
 
+  }
+
+  _onDialogSubmit() {
+    console.log('Submitting');
   }
 
   _handleCustomDialogCancel() {
