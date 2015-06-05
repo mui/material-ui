@@ -1,4 +1,4 @@
-# [Material-UI](http://callemall.github.io/material-ui/)
+#[Material-UI](http://callemall.github.io/material-ui/)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -16,8 +16,7 @@ Material-UI is available as an [npm package](https://www.npmjs.org/package/mater
 ```sh
 npm install material-ui
 ```
-
-Use [browserify](http://browserify.org/) and [reactify](https://github.com/andreypopp/reactify) for dependency management and JSX transformation. 
+Material-UI will now do the JSX transform for you and store the '.js' files in /node_modules/material-ui/lib after intsalling dependencies.
 
 ### React-Tap-Event-Plugin
 Some components use [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
