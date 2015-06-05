@@ -192,19 +192,19 @@ var DateDisplay = React.createClass({
             <SlideInTransitionGroup
               style={styles.month.root}
               direction={this.state.transitionDirection}>
-              <div key={month} style={styles.month.title} onClick={this._handleMonthDayClick}>{month}</div>
+              <div key={month} style={styles.month.title} onTouchTap={this._handleMonthDayClick}>{month}</div>
             </SlideInTransitionGroup>
 
             <SlideInTransitionGroup
               style={styles.day.root}
               direction={this.state.transitionDirection}>
-              <div key={day} style={styles.day.title} onClick={this._handleMonthDayClick}>{day}</div>
+              <div key={day} style={styles.day.title} onTouchTap={this._handleMonthDayClick}>{day}</div>
             </SlideInTransitionGroup>
 
             <SlideInTransitionGroup
               style={styles.year.root}
               direction={this.state.transitionDirection}>
-              <div key={year} style={styles.year.title} onClick={this._handleYearClick}>{year}</div>
+              <div key={year} style={styles.year.title} onTouchTap={this._handleYearClick}>{year}</div>
             </SlideInTransitionGroup>
           </div>
 

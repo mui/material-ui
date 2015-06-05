@@ -75,7 +75,7 @@ var DropDownIcon = React.createClass({
 
     return (
       <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>
-          <div onClick={this._onControlClick}>
+          <div onTouchTap={this._onControlClick}>
               <FontIcon
                 className={iconClassName}
                 style={iconStyle}/>
@@ -88,7 +88,7 @@ var DropDownIcon = React.createClass({
             menuItemStyle={styles.menuItem}
             hideable={true}
             visible={this.state.open}
-            onItemClick={this._onMenuItemClick} />
+            onItemTap={this._onMenuItemClick} />
         </div>
     );
   },
