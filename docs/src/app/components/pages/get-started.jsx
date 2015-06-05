@@ -86,8 +86,7 @@ class GetStarted extends React.Component {
           <h2 style={styles.headline}>Installation</h2>
           <p>
             Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>.
-            Use <a href="http://browserify.org/">browserify</a> and <a href="https://github.com/andreypopp/reactify">reactify</a> for
-            dependency management and JSX transformation. 
+            Material-UI will now do the JSX transform for you and store the '.js' files in /node_modules/material-ui/lib after intsalling dependencies.
           </p>
 
           <h3 style={styles.title}>React-Tap-Event-Plugin</h3>
