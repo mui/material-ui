@@ -26,11 +26,16 @@ module.exports = {
   },
 
   _bindClickAway: function() {
-    Events.on(document, 'click', this._checkClickAway);
+    // On touch-enabled devices, both events fire, and the handler is called twice,
+    // but it's fine since all operations for which the mixin is used
+    // are idempotent.
+    Events.on(document, 'mouseup', this._checkClickAway);
+    Events.on(document, 'touchend', this._checkClickAway);
   },
 
   _unbindClickAway: function() {
-    Events.off(document, 'click', this._checkClickAway);
+    Events.off(document, 'mouseup', this._checkClickAway);
+    Events.off(document, 'touchend', this._checkClickAway);
   }
 
 };
