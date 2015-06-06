@@ -142,7 +142,8 @@ var TextField = React.createClass({
     });
 
     styles.focusUnderline= this.mergeStyles(styles.underline, {
-      borderBottom: 'solid 2px ' + palette.primary1Color,
+      borderBottom: 'solid 2px',
+      borderColor: palette.primary1Color,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut(),
     });
