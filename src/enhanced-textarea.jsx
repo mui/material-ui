@@ -64,7 +64,7 @@ var EnhancedTextarea = React.createClass({
       padding: 0,
     };
 
-    var inputStyles = this.mergeAndPrefix(styles,{
+    var inputStyles = this.mergeAndPrefix(styles, {
       height: this.state.height + 'px',
     });
 

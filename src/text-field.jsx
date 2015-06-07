@@ -44,6 +44,10 @@ var TextField = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    this._mui_uid = UniqueId.generate();
+  },
+
   componentWillReceiveProps: function(nextProps) {
     var hasErrorProp = nextProps.hasOwnProperty('errorText');
     var hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
@@ -136,7 +140,8 @@ var TextField = React.createClass({
     });
 
     styles.textarea = this.mergeStyles(styles.input, {
-      paddingTop: this.props.floatingLabelText ? 36 : 12,
+      marginTop: this.props.floatingLabelText ? 36 : 12,
+      marginBottom: this.props.floatingLabelText ? -36 : -12,
       boxSizing: 'border-box',
       font: 'inherit'
     });
@@ -196,7 +201,7 @@ var TextField = React.createClass({
 
     var styles = this.getStyles();
 
-    var inputId = this.props.id || UniqueId.generate();
+    var inputId = this.props.id || this._mui_uid;
 
     var errorTextElement = this.state.errorText ? (
       <div style={this.mergeAndPrefix(styles.error)}>{this.state.errorText}</div>
