@@ -41,5 +41,8 @@
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "react-tap-event-plugin": "^0.1.6"
+  },
+  "system": {
+    "main": "lib/index.js"
   }
 }
