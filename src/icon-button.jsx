@@ -109,7 +109,7 @@ var IconButton = React.createClass({
 
     var styles = this.getStyles();
 
-    if (this.props.tooltip) {
+    if (tooltip) {
       tooltipElement = (
         <Tooltip
           ref="tooltip"
