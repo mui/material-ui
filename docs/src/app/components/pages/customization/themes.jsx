@@ -468,7 +468,7 @@ var ThemesPage = React.createClass({
     //Standard Actions
     var standardActions = [
       { text: 'Cancel' },
-      { text: 'Submit', onClick: this._onDialogSubmit }
+      { text: 'Submit', onTouchTap: this._onDialogSubmit }
     ];
 
     var menuItemsNav = [
@@ -683,6 +683,10 @@ var ThemesPage = React.createClass({
 
   handleTouchTapDialog: function(e) {
     this.refs.dialog.show();
+  },
+
+  _onDialogSubmit: function () {
+    console.log('Submitting');
   }
 });
 
