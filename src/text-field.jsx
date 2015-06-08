@@ -48,7 +48,7 @@ var TextField = React.createClass({
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    this._mui_uid = UniqueId.generate();
+    this._uniqueId = UniqueId.generate();
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -211,7 +211,7 @@ var TextField = React.createClass({
 
     var styles = this.getStyles();
 
-    var inputId = this.props.id || this._mui_uid;
+    var inputId = this.props.id || this._uniqueId;
 
     var errorTextElement = this.state.errorText ? (
       <div style={this.mergeAndPrefix(styles.error)}>{this.state.errorText}</div>
