@@ -93,7 +93,7 @@ var RadioButton = React.createClass({
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "radio",
-      switched: this.props.checked,
+      switched: this.props.checked || false,
       switchElement: radioButtonElement,
       rippleColor: rippleColor,
       iconStyle: styles.icon,
