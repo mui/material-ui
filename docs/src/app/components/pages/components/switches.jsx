@@ -343,10 +343,7 @@ class SwitchesPage extends React.Component {
         minHeight: '24px'
       },
       group: {
-        float: 'left',
-        width: '30%',
-        padding: '0 50px',
-        boxSizing: 'border-box'
+        width: 300
       },
       headline: {
         //mui-font-style-headline
@@ -365,7 +362,7 @@ class SwitchesPage extends React.Component {
 
     return (
       <div>
-      <h2 styles={this.getStyles().headline}>Switches</h2>
+      <h2 style={this.getStyles().headline}>Switches</h2>
       <Tabs>
         <Tab label="Checkbox">
           <ComponentDoc
@@ -471,21 +468,22 @@ class SwitchesPage extends React.Component {
     var styles = this.getStyles();
     return (
       <div style={styles.group}>
-        <RadioButtonGroup
-          name="shipSpeed"
-          defaultSelected="not_light">
+        <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
             <RadioButton
               id="radioButtonId1"
               value="light"
-              label="prepare for light speed"/>
+              label="prepare for light speed"
+              style={{marginBottom:16}} />
             <RadioButton
               id="radioButtonId2"
               value="not_light"
-              label="light speed too slow"/>
+              label="light speed too slow"
+              style={{marginBottom:16}}/>
             <RadioButton
               id="radioButtonId3"
               value="ludicrous"
               label="go to ludicrous speed"
+              style={{marginBottom:16}}
               disabled={true}/>
         </RadioButtonGroup>
       </div>

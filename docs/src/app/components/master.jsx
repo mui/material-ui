@@ -62,7 +62,7 @@ class Master extends React.Component {
     );
 
     return (
-      <AppCanvas predefinedLayout={1}>
+      <AppCanvas>
 
         <AppBar
           onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}

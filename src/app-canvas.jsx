@@ -6,10 +6,6 @@ var AppCanvas = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  propTypes: {
-    predefinedLayout: React.PropTypes.number
-  },
-
   render: function() {
 
     var styles = {

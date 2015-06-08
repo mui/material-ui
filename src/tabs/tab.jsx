@@ -28,7 +28,7 @@ var Tab = React.createClass({
       'height': '48px',
       'color': Colors.white,
       'opacity': '.6',
-      'fontSize': '14sp',
+      'fontSize': '14px',
       'fontWeight': '500',
       'whiteSpace': 'initial',
       'fontFamily': this.context.muiTheme.contentFontFamily,

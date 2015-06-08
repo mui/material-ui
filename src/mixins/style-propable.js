@@ -22,22 +22,12 @@ module.exports = {
     return base;
   },
 
-
   /** 
-   * m loops through all properties defined in the first argument, so overrides
+   * loops through all properties defined in the first argument, so overrides
    * of undefined properties will not take place.
    */
   mergeAndPrefix: function() {
-    var args = Array.prototype.slice.call(arguments, 0);
-
-    var base = args[0];
-    for (var i = 1; i < args.length; i++) {
-      if (args[i]) base = Extend(base, args[i]);
-    }
-
-    return AutoPrefix.all(base);
-    // return function(args){
-    //   return AutoPrefix.all()
-    // }.bind()
+    var mergedStyles = this.mergeStyles.apply(this, arguments);
+    return AutoPrefix.all(mergedStyles);
 	},
 }

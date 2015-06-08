@@ -4,56 +4,45 @@ var LinearProgress = mui.LinearProgress;
 var CircularProgress = mui.CircularProgress;
 var ComponentDoc = require('../../component-doc.jsx');
  
-var SlidersPage = React.createClass({
-
-  handleMouseDown(e){
-    console.log('hmd', e);
-  },
+var ProgressPage = React.createClass({
 
   getInitialState () {
-      return {
-        completed: 0         
-      };
+    return {
+      completed: 0         
+    };
   },
 
   componentDidMount: function () {
-    
-     var self = this;
+    var self = this;
 
-      var id = window.setInterval(function () {
-        var diff = Math.random() * 10;
+    var id = window.setInterval(function () {
 
-        self.setState({
-          completed: self.state.completed + diff
-        });
+      var diff = Math.random() * 10;
 
-        if (self.state.completed > 100) {
-          window.clearInterval(id);
-        }
-      }, 1000);
+      self.setState({
+        completed: self.state.completed + diff
+      });
+
+      if (self.state.completed > 100) {
+        window.clearInterval(id);
+      }
+    }, 1000);
   },
 
   render() {
 
     var code =
-
-        '//Linear\n\n' + 
-        '//determinate\n' +
-        '<LinearProgress mode="determinate" value={60} />\n' +
-        '//indeterminate\n' +      
-        '<LinearProgress mode="indeterminate"  />\n\n' +
-        '//Circular\n\n'  +
-        '//determinate\n' +
-        '<CircularProgress mode="determinate" value={60} />\n' +
-        '<CircularProgress mode="determinate" value={60} size={1.5} />\n' +
-        '<CircularProgress mode="determinate" value={60} size={2} />\n' +
-        '//indeterminate\n' +      
-        '<CircularProgress mode="indeterminate" />\n' +
-        '<CircularProgress mode="indeterminate" size={1.5} />\n' +
-        '<CircularProgress mode="indeterminate" size={2} />';
+      '//Linear\n' + 
+      '<LinearProgress mode="determinate" value={60} />\n' +   
+      '<LinearProgress mode="indeterminate"  />\n\n' +
+      '//Circular\n'  +
+      '<CircularProgress mode="determinate" value={60} />\n' +
+      '<CircularProgress mode="determinate" value={60} size={1.5} />\n' +
+      '<CircularProgress mode="determinate" value={60} size={2} />\n' +    
+      '<CircularProgress mode="indeterminate" />\n' +
+      '<CircularProgress mode="indeterminate" size={1.5} />\n' +
+      '<CircularProgress mode="indeterminate" size={2} />';
         
-         
-
     var componentInfo = [
       {
         name: 'Props',
@@ -89,10 +78,10 @@ var SlidersPage = React.createClass({
 
     return (
       <ComponentDoc
-        name="Sliders"
+        name="Progress"
         code={code}
         componentInfo={componentInfo}>
-        <h2 className='mui-font-style-headline'>Linear Progress</h2>
+        <h2>Linear Progress</h2>
         <p>
           Determinate
         </p>  
@@ -101,7 +90,9 @@ var SlidersPage = React.createClass({
           Indeterminate
         </p>
         <LinearProgress mode="indeterminate"  />
-        <h2 className='mui-font-style-headline'>Circular Progress</h2>
+
+        <br/><br/>
+        <h2>Circular Progress</h2>
         <p>
           Determinate
         </p>  
@@ -120,4 +111,4 @@ var SlidersPage = React.createClass({
 
 });
 
-module.exports = SlidersPage;
+module.exports = ProgressPage;

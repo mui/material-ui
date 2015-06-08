@@ -150,7 +150,7 @@ class TabsPage extends React.Component {
                   This is an example of a tab template!
                 </p>
                 <p>
-                  You can put any sort of HTML or react component in here. It even keeps the componet state!
+                  You can put any sort of HTML or react component in here. It even keeps the component state!
                 </p>
                 <Slider name="slider0" defaultValue={0.5} />
               </div>

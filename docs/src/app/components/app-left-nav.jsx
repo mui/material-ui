@@ -41,7 +41,7 @@ class AppLeftNav extends React.Component {
 
   render() {
     var header = (
-      <div style={this.getStyles()} onClick={this._onHeaderClick}>
+      <div style={this.getStyles()} onTouchTap={this._onHeaderClick}>
         material ui
       </div>
     );
