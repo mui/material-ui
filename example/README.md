@@ -13,3 +13,24 @@ Now you can run your local server:
 ```
 npm start
 ```
+
+*npm start will first go to the package.json and find the 
+```
+"scripts": {"start": "gulp"}
+```	
+This will then run the "gulp" command. Gulp will lookup gulpfile.js and run its code, which in this case will change the directory of tasks to ./gulp/tasks, add all the dependencies and then run default.js 
+
+#Description of [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) Plugins
+
+
+##[browserify](https://github.com/substack/node-browserify#usage) 
+Browsers do not allow us to use the require method from Node.js. With browserify, we can implement dependency management on the browser. It also will bundle the code into one file in an efficient way to not repeat dependiencies that are used more than once. 
+
+##[browserSync](http://www.browsersync.io/)
+When developing and testing the website, browserSync is a powerful tool that will rebuild and refresh the webpage so you can see the changes you make as you are working. 
+
+##markup.js
+Pipes CSS files required for build from the /src/www to the build folder. 
+
+##[gulp_starter](https://github.com/greypants/gulp-starter)
+A useful repository that explains how a lot of gulp's features work and contains an example project to get familiar with it. 
