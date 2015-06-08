@@ -35,30 +35,40 @@ var TextField = React.createClass({
   },
 
   getInitialState: function() {
+    var props = this.props;
+    if (props.children)
+      props = props.children.props;
     return {
       errorText: this.props.errorText,
-      hasValue: this.props.value || this.props.defaultValue ||
-        (this.props.valueLink && this.props.valueLink.value)
+      hasValue: props.value || props.defaultValue ||
+        (props.valueLink && props.valueLink.value)
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
     var hasErrorProp = nextProps.hasOwnProperty('errorText');
+    var newState = {};
+    
+    if (hasErrorProp) newState.errorText = nextProps.errorText;
+    if (nextProps.children && nextProps.children.props)
+    {
+      nextProps = nextProps.children.props;
+    }
+    
     var hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
     var hasValueProp = nextProps.hasOwnProperty('value');
     var hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
-    var newState = {};
 
-    if (hasValueProp) {
-      newState.hasValue = nextProps.value;
-    } else if (hasValueLinkProp) {
+    if (hasValueLinkProp) {
       newState.hasValue = nextProps.valueLink.value;
+    } else if (hasValueProp) {
+      newState.hasValue = nextProps.value;
     } else if (hasNewDefaultValue) {
       newState.hasValue = nextProps.defaultValue;
     }
-
-    if (hasErrorProp) newState.errorText = nextProps.errorText;
     if (newState) this.setState(newState);
+
+
   },
 
   errorColor: Colors.red500,
@@ -234,19 +244,24 @@ var TextField = React.createClass({
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
     }
-
-    inputElement = this.props.multiLine ? (
-      <EnhancedTextarea
-        {...other}
-        {...inputProps}
-        onHeightChange={this._handleTextAreaHeightChange}
-        textareaStyle={this.mergeAndPrefix(styles.textarea)} />
-    ) : (
-      <input
-        {...other}
-        {...inputProps}
-        type={this.props.type} />
-    );
+    if (this.props.children) {
+      inputElement = this.props.children;
+      inputElement.props = {...inputProps, ...inputElement.props}
+    }
+    else {
+      inputElement = this.props.multiLine ? (
+        <EnhancedTextarea
+          {...other}
+          {...inputProps}
+          onHeightChange={this._handleTextAreaHeightChange}
+          textareaStyle={this.mergeAndPrefix(styles.textarea)} />
+      ) : (
+        <input
+          {...other}
+          {...inputProps}
+          type={this.props.type} />
+      );
+    }
 
     var underlineElement = this.props.disabled ? (
       <div style={this.mergeAndPrefix(styles.underlineAfter)}>
@@ -308,7 +323,7 @@ var TextField = React.createClass({
   },
 
   _getInputNode: function() {
-    return this.props.multiLine ?
+    return (this.props.children || this.props.multiLine) ?
       this.refs[this._getRef()].getInputNode() : React.findDOMNode(this.refs[this._getRef()]);
   },
 
