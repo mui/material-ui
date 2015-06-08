@@ -13,7 +13,7 @@ class GetStarted extends React.Component {
       },
       fullWidthSection: {
         maxWidth: '650px',
-        margin: '0 auto'      
+        margin: '0 auto'
       },
       headline: {
         fontSize: '24px',
@@ -47,6 +47,14 @@ class GetStarted extends React.Component {
           '  mui = require(\'material-ui\'),\n' +
           '  RaisedButton = mui.RaisedButton;\n\n' +
           'var SomeAwesomeComponent = React.createClass({\n\n' +
+          '  childContextTypes: {\n' +
+          '    muiTheme: React.PropTypes.object\n' +
+          '  },\n\n' +
+          '  getChildContext() {\n' +
+          '    return {\n' +
+          '      muiTheme: ThemeManager.getCurrentTheme()\n' +
+          '    };\n' +
+          '  },\n\n' +
           '  render: function() {\n' +
           '    return (\n' +
           '        <RaisedButton label="Default" />\n' +
