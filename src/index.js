@@ -48,6 +48,7 @@ module.exports = {
   Snackbar: require('./snackbar'),
   Tab: require('./tabs/tab'),
   Tabs: require('./tabs/tabs'),
+  Theme: require('./theme'),
   Toggle: require('./toggle'),
   TimePicker: require('./time-picker'),
   TextField: require('./text-field'),
