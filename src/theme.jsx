@@ -9,12 +9,14 @@ var Theme = React.createClass({
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object.isRequired
+    muiTheme: React.PropTypes.object.isRequired,
+    themeManager: React.PropTypes.object.isRequired
   },
 
   getChildContext: function() {
     return {
       muiTheme: this.themeManager.getCurrentTheme()
+      themeManager: this.themeManager
     };
   },
 
@@ -27,7 +29,10 @@ var Theme = React.createClass({
   },
 
   render: function() {
-    return this.props.children({themeManager: this.themeManager});
+    return this.props.children({
+      muiTheme: this.themeManager.getCurrentTheme(),
+      themeManager: this.themeManager
+    });
   }
 });
 
@@ -36,7 +41,7 @@ function getDisplayName(Component) {
   return Component.displayName || Component.name || 'Component';
 }
 
-function theme(obj) {
+function theme(customTheme) {
   return function(Component) {
     return React.createClass({
 
@@ -44,7 +49,7 @@ function theme(obj) {
 
       render: function() {
         return (
-          <Theme theme={obj}>
+          <Theme theme={customTheme}>
             {
               function(props) {
                 return (<Component {...this.props} {...props}/>);
