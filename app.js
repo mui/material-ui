@@ -16842,9 +16842,8 @@ var HomePage = React.createClass({
       content: {
         maxWidth: '700px',
         padding: 0,
-        margin: 0,
+        margin: '0 auto',
         fontWeight: Typography.fontWeightLight,
-        //.mui-font-style-title
         fontSize: '20px',
         lineHeight: '28px',
         paddingTop: '19px',
@@ -16899,7 +16898,8 @@ var HomePage = React.createClass({
       h3: {
         margin: '0',
         padding: '0',
-        fontWeight: Typography.fontWeightLight
+        fontWeight: Typography.fontWeightLight,
+        fontSize: '22'
       },
       button: {
         marginTop: 32
