@@ -15,7 +15,7 @@ var Theme = React.createClass({
 
   getChildContext: function() {
     return {
-      muiTheme: this.themeManager.getCurrentTheme()
+      muiTheme: this.themeManager.getCurrentTheme(),
       themeManager: this.themeManager
     };
   },
