@@ -48,7 +48,7 @@ function theme(obj) {
             {
               function(props) {
                 return (<Component {...this.props} {...props}/>);
-              }
+              }.bind(this)
             }
           </Theme>
         );
