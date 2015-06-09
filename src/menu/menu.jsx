@@ -87,6 +87,7 @@ var NestedMenuItem = React.createClass({
         <Menu {...other}
           ref="nestedMenu"
           menuItems={this.props.menuItems}
+          menuItemStyle={menuItemStyle}
           onItemTap={this._onMenuItemTap}
           hideable={true}
           visible={this.state.open}
