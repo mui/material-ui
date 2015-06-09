@@ -10,13 +10,13 @@ var Theme = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object.isRequired,
-    themeManager: React.PropTypes.object.isRequired
+    muiThemeManager: React.PropTypes.object.isRequired
   },
 
   getChildContext: function() {
     return {
       muiTheme: this.themeManager.getCurrentTheme(),
-      themeManager: this.themeManager
+      muiThemeManager: this.themeManager
     };
   },
 
@@ -31,7 +31,7 @@ var Theme = React.createClass({
   render: function() {
     return this.props.children({
       muiTheme: this.themeManager.getCurrentTheme(),
-      themeManager: this.themeManager
+      muiThemeManager: this.themeManager
     });
   }
 });
