@@ -14,7 +14,7 @@ Array.prototype.diff = function(a) {
 var extend = function(object, overrides) {
   var mergeObject = {};
 
-  function isNull(value) { return value === '' || value === null; }
+  function isValidOverride(value) { return value || value === '' || value === null || value === 0; }
 
   Object.keys(object).forEach(function(currentKey) {
 
@@ -25,7 +25,7 @@ var extend = function(object, overrides) {
     if (typeof(object[currentKey]) === 'object' && overridesIsValidObject) {
       mergeObject[currentKey] = extend(object[currentKey], overrides[currentKey]);
     } else {
-      if (overrides && (overrides[currentKey] || isNull(overrides[currentKey]))) {
+      if (overrides && isValidOverride(overrides[currentKey])) {
         mergeObject[currentKey] = overrides[currentKey];
       } else {
         mergeObject[currentKey] = object[currentKey];
