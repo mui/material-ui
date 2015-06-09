@@ -78,7 +78,7 @@ var DropDownIcon = React.createClass({
           <div onTouchTap={this._onControlClick}>
               <FontIcon
                 className={iconClassName}
-                style={iconStyle}/>
+                style={iconStyle}>{this.props.icon}</FontIcon>
               {this.props.children}
           </div>
           <Menu
