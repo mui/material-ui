@@ -1,11 +1,13 @@
 var React = require('react/addons');
 var mui = require('mui');
+var ClearFix = mui.ClearFix;
 var TextField = mui.TextField;
+var StyleResizable = mui.Mixins.StyleResizable;
 var ComponentDoc = require('../../component-doc.jsx');
 
 var TextFieldsPage = React.createClass({
 
-  mixins: [React.addons.LinkedStateMixin],
+  mixins: [StyleResizable, React.addons.LinkedStateMixin],
 
   getInitialState: function() {
     return {
@@ -18,6 +20,25 @@ var TextFieldsPage = React.createClass({
       valueLinkValue: 'Value Link',
       floatingValueLinkValue: 'Value Link'
     };
+  },
+
+  getStyles: function() {
+    var styles = {
+      group: {
+        width: '100%',
+        float: 'left',
+        marginBottom: 32
+      },
+      textfield: {
+        marginTop: 24
+      }
+    };
+
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
+      styles.group.width = '50%';
+    }
+
+    return styles;
   },
 
   render: function() {
@@ -128,6 +149,18 @@ var TextFieldsPage = React.createClass({
             type: 'bool',
             header: 'default: false',
             desc: 'If true, a textarea element will be rendered. The textarea also grows and shrinks according to the number of lines.'
+          },
+          {
+            name: 'onEnterKeyDown',
+            type: 'function',
+            header: 'optional',
+            desc: 'The function to call when the user presses the Enter key.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the TextField\'s root element.'
           }
         ]
       },
@@ -165,8 +198,33 @@ var TextFieldsPage = React.createClass({
             desc: 'Sets the value of the input element.'
           }
         ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
+          {
+            name: 'onBlur',
+            header: 'function(e)',
+            desc: 'Callback function that is fired when the textfield loses' +
+                  'focus.'
+          },
+          {
+            name: 'onChange',
+            header: 'function(e)',
+            desc: 'Callback function that is fired when the textfield\'s value ' +
+                  'changes.'
+          },
+          {
+            name: 'onFocus',
+            header: 'function(e)',
+            desc: 'Callback function that is fired when the textfield gains ' +
+                  'focus.'
+          },
+        ]
       }
     ];
+
+    var styles = this.getStyles();
 
     return (
       <ComponentDoc
@@ -175,42 +233,50 @@ var TextFieldsPage = React.createClass({
         desc={desc}
         componentInfo={componentInfo}>
 
-        <div className="text-field-example">
-          <div className="text-field-example-group text-field-example-single-line">
+        <ClearFix>
+          <div style={styles.group}>
             <TextField
+              style={styles.textfield}
               hintText="Hint Text" /><br/>
             <TextField
+              style={styles.textfield}
               hintText="Hint Text"
               defaultValue="Default Value" /><br/>
             <TextField
+              style={styles.textfield}
               hintText="Hint Text"
               value={this.state.propValue}
               onChange={this._handleInputChange} /><br/>
             <TextField
+              style={styles.textfield}
               hintText="Hint Text"
               valueLink={this.linkState('valueLinkValue')} /><br/>
             <TextField
+              style={styles.textfield}
               hintText="Hint Text (MultiLine)"
               multiLine={true} /><br/>
             <TextField
+              style={styles.textfield}
               hintText="Hint Text"
               errorText={this.state.errorText}
               onChange={this._handleErrorInputChange} /><br/>
             <TextField
+              style={styles.textfield}
               hintText="Hint Text"
               errorText={this.state.error2Text}
               onChange={this._handleError2InputChange}
               defaultValue="abc" /><br/>
             <TextField
+              style={styles.textfield}
               hintText="Disabled Hint Text"
               disabled={true} /><br/>
             <TextField
+              style={styles.textfield}
               hintText="Disabled Hint Text"
               disabled={true}
               defaultValue="Disabled With Value" /><br/>
           </div>
-
-          <div className="text-field-example-group">
+          <div style={styles.group}>
             <TextField
               hintText="Hint Text"
               floatingLabelText="Floating Label Text" /><br/>
@@ -252,7 +318,7 @@ var TextFieldsPage = React.createClass({
               defaultValue="Disabled With Value"
               floatingLabelText="Floating Label Text" /><br/>
           </div>
-        </div>
+        </ClearFix>
       </ComponentDoc>
     );
   },

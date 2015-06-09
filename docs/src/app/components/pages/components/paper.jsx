@@ -1,9 +1,39 @@
 var React = require('react');
 var mui = require('mui');
 var Paper = mui.Paper;
+var ClearFix = mui.ClearFix;
+var StyleResizable = mui.Mixins.StyleResizable;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var PaperPage = React.createClass({
+var PaperPage = React.createClass ({
+
+  mixins: [StyleResizable],
+
+  getStyles: function() {
+    var styles = {
+      root: {
+        height: '100px',
+        width: '100px',
+        margin: '0 auto',
+        marginBottom: '64px',
+        textAlign: 'center'
+      },
+      group: {
+        float: 'left',
+        width: '100%'
+      },
+      p: {
+        lineHeight: '80px',
+        height: '100%'
+      }
+    };
+
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
+      styles.group.width = '33%';
+    }
+
+    return styles;
+  },
 
   render: function() {
 
@@ -69,14 +99,6 @@ var PaperPage = React.createClass({
             desc: 'Set to true to generate a circlular paper container.'
           },
           {
-            name: 'innerClassName',
-            type: 'string',
-            header: 'optional',
-            desc: 'The paper container consists of 2 nested divs. It\'s ' +
-              'sometimes helpful to assign an className to the inner div ' +
-              'for styling. This property is the className for the inner div.'
-          },
-          {
             name: 'rounded',
             type: 'bool',
             header: 'default: true',
@@ -84,24 +106,28 @@ var PaperPage = React.createClass({
               'Set this to false to generate a container with sharp corners.'
           },
           {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of Paper\'s root element.'
+          },
+          {
             name: 'zDepth',
             type: 'number (0-5)',
             header: 'default: 1',
             desc: 'This number represents the zDepth of the paper shadow.'
-          }
-        ]
-      },
-      {
-        name: 'Methods',
-        infoArray: [
+          },
           {
-            name: 'getInnerContainer',
-            header: 'Paper.getInnerContainer()',
-            desc: 'Returns a reference to the inner container div.'
+            name: 'transitionEnabled',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'Set to false to disable CSS transitions for the paper element.'
           }
         ]
       }
     ];
+
+    var groupStyle = this.getStyles().group;
 
     return (
       <ComponentDoc
@@ -109,64 +135,59 @@ var PaperPage = React.createClass({
         code={code}
         componentInfo={componentInfo}>
 
-        <div className="paper-examples">
-          <div className="paper-examples-group">
-	    <Paper zDepth={1}>
-	      <p>zDepth=1</p>
-	    </Paper>
-	    <Paper zDepth={2}>
-	      <p>zDepth=2</p>
-	    </Paper>
-	    <Paper zDepth={3}>
-	      <p>zDepth=3</p>
-	    </Paper>
-	    <Paper zDepth={4}>
-	      <p>zDepth=4</p>
-	    </Paper>
-	    <Paper zDepth={5}>
-	      <p>zDepth=5</p>
-	    </Paper>
-          </div>
-
-          <div className="paper-examples-group">
-	    <Paper zDepth={1} rounded={false}>
-	      <p>rounded=false</p>
-	    </Paper>
-	    <Paper zDepth={2} rounded={false}>
-	      <p>rounded=false</p>
-	    </Paper>
-	    <Paper zDepth={3} rounded={false}>
-	      <p>rounded=false</p>
-	    </Paper>
-	    <Paper zDepth={4} rounded={false}>
-	      <p>rounded=false</p>
-	    </Paper>
-	    <Paper zDepth={5} rounded={false}>
-	      <p>rounded=false</p>
-	    </Paper>
-          </div>
-
-          <div className="paper-examples-group">
-	    <Paper zDepth={1} circle={true}>
-	      <p>circle=true</p>
-	    </Paper>
-	    <Paper zDepth={2} circle={true}>
-	      <p>circle=true</p>
-	    </Paper>
-	    <Paper zDepth={3} circle={true}>
-	      <p>circle=true</p>
-	    </Paper>
-	    <Paper zDepth={4} circle={true}>
-	      <p>circle=true</p>
-	    </Paper>
-	    <Paper zDepth={5} circle={true}>
-	      <p>circle=true</p>
-	    </Paper>
-          </div>
+        <div>
+          <ClearFix style={groupStyle}>
+      	    {this._getGroupDefault()}
+          </ClearFix>
+          <ClearFix style={groupStyle}>
+      	    {this._getGroupRounded()}
+          </ClearFix>
+          <ClearFix style={groupStyle}>
+      	    {this._getGroupCircle()}
+          </ClearFix>
         </div>
 
       </ComponentDoc>
     );
+  },
+
+  _createParagraphElement: function(text) {
+    return <p style={this.getStyles().p}>{text}</p>;
+  },
+
+  _createPaperElement: function(zDepth, text) {
+    var styles = this.getStyles();
+    return (
+      <Paper 
+        style={styles.root}
+        zDepth={zDepth}>
+        {this._createParagraphElement(text)}
+      </Paper>
+    );
+  },
+
+  _getGroupDefault: function() {
+    var elements = [];
+    for (var i = 1; i <= 5; i++) {
+      elements.push(this._createPaperElement(i, "zDepth="+i));
+    }
+    return elements;
+  },
+
+  _getGroupRounded: function() {
+    var elements = [];
+    for (var i = 1; i <= 5; i++) {
+      elements.push(React.cloneElement(this._createPaperElement(i, "rounded=false"), {rounded: false}));
+    }
+    return elements;
+  },
+
+  _getGroupCircle: function() {
+    var elements = [];
+    for (var i = 1; i <= 5; i++) {
+      elements.push(React.cloneElement(this._createPaperElement(i, "circle=true"), {circle: true}));
+    }
+    return elements;
   }
 
 });

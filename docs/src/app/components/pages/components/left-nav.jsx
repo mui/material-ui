@@ -5,19 +5,22 @@ var LeftNav = mui.LeftNav;
 var RaisedButton = mui.RaisedButton;
 var ComponentDoc = require('../../component-doc.jsx');
 
-var LeftNavPage = React.createClass({
+class LeftNavPage extends React.Component {
 
-  getInitialState: function() {
-    return {
+  constructor() {
+    super();
+    this._showLeftNavClick = this._showLeftNavClick.bind(this);
+    this._toggleDockedLeftNavClick = this._toggleDockedLeftNavClick.bind(this);
+
+    this.state = {
       isDocked: false
     };
-  },
+  }
 
-  render: function() {
-
+  render() {
     var menuItems = [
       { route: 'get-started', text: 'Get Started' },
-      { route: 'css-framework', text: 'CSS Framework' },
+      { route: 'customization', text: 'Customization' },
       { route: 'components', text: 'Components' },
       { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
       { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
@@ -28,7 +31,7 @@ var LeftNavPage = React.createClass({
     var code =
       'menuItems = [\n' +
       '  { route: \'get-started\', text: \'Get Started\' },\n' +
-      '  { route: \'css-framework\', text: \'CSS Framework\' },\n' +
+      '  { route: \'customization\', text: \'Customization\' },\n' +
       '  { route: \'components\', text: \'Components\' },\n' +
       '  { type: MenuItem.Types.SUBHEADER, text: \'Resources\' },\n' +
       '  { \n' +
@@ -57,12 +60,6 @@ var LeftNavPage = React.createClass({
         name: 'Props',
         infoArray: [
           {
-            name: 'menuItems',
-            type: 'array',
-            header: 'required',
-            desc: 'JSON data representing all menu items to render.'
-          },
-          {
             name: 'docked',
             type: 'bool',
             header: 'default: true',
@@ -77,11 +74,29 @@ var LeftNavPage = React.createClass({
               'Usually, this is used for a logo or a profile image.'
           },
           {
+            name: 'menuItems',
+            type: 'array',
+            header: 'required',
+            desc: 'JSON data representing all menu items to render.'
+          },
+          {
+            name: 'openRight',
+            type: 'boole',
+            header: 'default: false',
+            desc: 'Positions the LeftNav to open from the right side.'
+          },
+          {
             name: 'selectedIndex',
             type: 'number',
             header: 'optional',
             desc: 'Indicates the particular item in the menuItems array that is ' +
               'currently selected.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of LeftNav\'s root element.'
           }
         ]
       },
@@ -129,7 +144,7 @@ var LeftNavPage = React.createClass({
         code={code}
         componentInfo={componentInfo}>
 
-        <div className="left-nav-example">
+        <div>
           <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
           <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
           <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />
@@ -138,20 +153,19 @@ var LeftNavPage = React.createClass({
 
       </ComponentDoc>
     );
+  }
 
-  },
-
-  _showLeftNavClick: function() {
+  _showLeftNavClick() {
     this.refs.leftNav.toggle();
-  },
+  }
 
-  _toggleDockedLeftNavClick: function() {
+  _toggleDockedLeftNavClick() {
     this.refs.dockedLeftNav.toggle();
     this.setState({
       isDocked: !this.state.isDocked
     });
   }
 
-});
+}
 
 module.exports = LeftNavPage;

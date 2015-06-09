@@ -1,62 +1,102 @@
 var React = require('react');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
-var mui = require('mui');
-var AppBar = mui.AppBar;
-var AppCanvas = mui.AppCanvas;
-var Menu = mui.Menu;
-var IconButton = mui.IconButton;
 var AppLeftNav = require('./app-left-nav.jsx');
+var FullWidthSection = require('./full-width-section.jsx');
+var mui = require('mui');
 
-var Master = React.createClass({
+var Colors = mui.Styles.Colors;
+var Typography = mui.Styles.Typography;
+var ThemeManager = new mui.Styles.ThemeManager();
 
-  mixins: [Router.State],
+var { AppBar, AppCanvas, Menu, IconButton } = mui;
 
-  render: function() {
+class Master extends React.Component {
 
-    var title = 
+  constructor() {
+    super();
+    this._onLeftIconButtonTouchTap = this._onLeftIconButtonTouchTap.bind(this);
+  }
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    }
+  }
+
+  getStyles() {
+    var darkWhite = Colors.darkWhite;
+    return {
+      footer: {
+        backgroundColor: Colors.grey900,
+        textAlign: 'center'
+      },
+      a: {
+        color: darkWhite
+      },
+      p: {
+        margin: '0 auto',
+        padding: '0',
+        color: Colors.lightWhite,
+        maxWidth: '335px'
+      },
+      iconButton: {
+        color: darkWhite
+      }
+    };
+  }
+
+  render() {
+    var styles = this.getStyles();
+    var title =
       this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('css-framework') ? 'Css Framework' :
+      this.context.router.isActive('customization') ? 'Customization' :
       this.context.router.isActive('components') ? 'Components' : '';
+
     var githubButton = (
       <IconButton
-        className="github-icon-button"
+        iconStyle={styles.iconButton}
         iconClassName="muidocs-icon-custom-github"
         href="https://github.com/callemall/material-ui"
         linkButton={true} />
     );
 
     return (
-      <AppCanvas predefinedLayout={1}>
+      <AppCanvas>
 
         <AppBar
-          className="mui-dark-theme"
-          onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}
+          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
           title={title}
-          zDepth={0}>
-          {githubButton}
-        </AppBar>
+          zDepth={0}
+          iconElementRight={githubButton}/>
 
         <AppLeftNav ref="leftNav" />
 
         <RouteHandler />
 
-        <div className="footer full-width-section mui-dark-theme">
-          <p>
-            Hand crafted with love by the engineers at <a href="http://call-em-all.com">Call-Em-All</a> and our 
-            awesome <a href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
+        <FullWidthSection style={styles.footer}>
+          <p style={styles.p}>
+            Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
+            awesome <a style={styles.a} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
           </p>
           {githubButton}
-        </div>
+        </FullWidthSection>
 
       </AppCanvas>
     );
-  },
+  }
 
-  _onMenuIconButtonTouchTap: function() {
+  _onLeftIconButtonTouchTap() {
     this.refs.leftNav.toggle();
   }
-  
-});
+}
+
+Master.contextTypes = {
+  router: React.PropTypes.func
+};
+
+Master.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 module.exports = Master;

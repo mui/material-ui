@@ -1,8 +1,8 @@
-# [Material-UI](http://callemall.github.io/material-ui/)
+#[Material-UI](http://callemall.github.io/material-ui/)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Material-UI is a CSS framework and a set of [React](http://facebook.github.io/react/) components that implement [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html) specification.
+Material-UI is a set of [React](http://facebook.github.io/react/) components that implement [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html) specification.
 
 Check out our [documentation site](http://www.material-ui.com/) for live examples. It's still a work in progress, but hopefully you can see where we're headed.
 
@@ -16,9 +16,7 @@ Material-UI is available as an [npm package](https://www.npmjs.org/package/mater
 ```sh
 npm install material-ui
 ```
-
-Use [browserify](http://browserify.org/) and [reactify](https://github.com/andreypopp/reactify) for dependency management and JSX transformation. The CSS framework is written in [Less](http://lesscss.org/), so you'll need to compile that as well. For [Sass](http://www.sass-lang.com) users, [material-ui-sass](https://github.com/gpbl/material-ui-sass) contains the .scss version of the Less framework. People working with [Stylus](http://learnboost.github.io/stylus/) can use [material-ui-stylus](https://github.com/Autarc/material-ui-stylus) to import
-the proper .styl version of the files.
+After npm install, you'll find all the .jsx files in the /src folder and their compiled versions in the /lib folder.
 
 ### React-Tap-Event-Plugin
 Some components use [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
@@ -61,21 +59,19 @@ var MyAwesomeReactComponent = React.createClass({
 module.exports = MyAwesomeReactComponent;
 ```
 
+### Theme
+
+Please note that since v0.8.0, you also need to define a theme for components to start working.
+
+
 ## Customization
 
-The styles are separated into 2 less files:
-* src/less/scaffolding.less
-* src/less/components.less
+Material-UI components have their styles defined inline. There are two approaches to overriding these styles:
 
-This allows you to override any variables defined in [custom-variables.less](https://github.com/callemall/material-ui/blob/master/src/less/variables/custom-variables.less) without having to modify material-ui source files directly. For example, your main.less file could look something like this:
-```less
-@import "node_modules/material-ui/src/less/scaffolding.less";
+* Override individual component styles via the `style` prop
+* Define a Theme to apply overarching style changes
 
-//Define a custom less file to override any variables defined in scaffolding.less
-@import "my-custom-overrides.less";
-
-@import "node_modules/material-ui/src/less/components.less";
-```
+This allows you to override variables used by components without having to modify material-ui source files directly.
 
 ## Examples
 There are 2 projects that you can look at to help you get started. The first project can be found in the [example folder](https://github.com/callemall/material-ui/tree/master/example). This is a basic project that shows how you can consume material-ui components in your own project.
