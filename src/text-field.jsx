@@ -26,7 +26,9 @@ var TextField = React.createClass({
     onKeyDown: React.PropTypes.func,
     onEnterKeyDown: React.PropTypes.func,
     type: React.PropTypes.string,
-    rows: React.PropTypes.number
+    rows: React.PropTypes.number,
+    inputStyle: React.PropTypes.object,
+    floatingLabelStyle: React.PropTypes.object
   },
 
   getDefaultProps: function() {
@@ -213,7 +215,7 @@ var TextField = React.createClass({
 
     var floatingLabelTextElement = this.props.floatingLabelText ? (
       <label
-        style={this.mergeAndPrefix(styles.floatingLabel)}
+        style={this.mergeAndPrefix(styles.floatingLabel, this.props.floatingLabelStyle)}
         htmlFor={inputId}>
         {this.props.floatingLabelText}
       </label>
@@ -225,7 +227,7 @@ var TextField = React.createClass({
     inputProps = {
       id: inputId,
       ref: this._getRef(),
-      style: this.mergeAndPrefix(styles.input),
+      style: this.mergeAndPrefix(styles.input, this.props.inputStyle),
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
       onKeyDown: this._handleInputKeyDown
