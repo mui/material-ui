@@ -183,8 +183,6 @@ var EnhancedSwitch = React.createClass({
 
     var styles = this.getStyles();
 
-    styles.root.cursor = styles.root.input = this.props.disabled ? 'default' : 'pointer';
-
     var wrapStyles = this.mergeAndPrefix(styles.wrap, this.props.iconStyle);
     var rippleStyle = this.mergeAndPrefix(styles.ripple, this.props.rippleStyle);
     var rippleColor = this.props.hasOwnProperty('rippleColor') ? this.props.rippleColor :
