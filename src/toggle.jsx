@@ -85,12 +85,14 @@ var Toggle = React.createClass({
 
     var trackStyles = this.mergeAndPrefix(
       styles.track,
+      this.props.trackStyle,
       this.state.switched && styles.trackWhenSwitched,
       this.props.disabled && styles.trackWhenDisabled
     );
 
     var thumbStyles = this.mergeAndPrefix(
       styles.thumb,
+      this.props.thumbStyle,
       this.state.switched && styles.thumbWhenSwitched,
       this.props.disabled && styles.thumbWhenDisabled
     );
@@ -110,13 +112,18 @@ var Toggle = React.createClass({
     var rippleColor =  this.state.switched ?
       this.getTheme().thumbOnColor : this.context.muiTheme.component.textColor;
 
+    var iconStyle = this.mergeAndPrefix(
+      styles.icon,
+      this.props.iconStyle
+    );
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switchElement: toggleElement,
       rippleStyle: customRippleStyle,
       rippleColor: rippleColor,
-      iconStyle: styles.icon,
+      iconStyle: iconStyle,
       trackStyle: trackStyles,
       thumbStyle: thumbStyles,
       switched: this.state.switched,
