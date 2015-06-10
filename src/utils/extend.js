@@ -1,6 +1,6 @@
 // http://stackoverflow.com/questions/1187518/javascript-array-difference
-Array.prototype.diff = function(a) {
-    return this.filter(function(i) {return a.indexOf(i) < 0;});
+var arrayDiff = function(a, b) {
+  return a.filter(function(i) {return b.indexOf(i) < 0;});
 };
 
 /** 
@@ -36,7 +36,7 @@ var extend = function(object, overrides) {
 
   // Overrides not defined in object are immediately added.
   if (overrides && typeof(overrides) === 'object' && !Array.isArray(overrides)) {
-    Object.keys(overrides).diff(Object.keys(object)).forEach(function(currentDiff) {
+    arrayDiff(Object.keys(overrides), Object.keys(object)).forEach(function(currentDiff) {
       mergeObject[currentDiff] = overrides[currentDiff];
     });
   }
