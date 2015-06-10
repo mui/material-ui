@@ -106,7 +106,7 @@ var ToolbarGroup = React.createClass({
           });
         case 'FontIcon' : 
           return React.cloneElement(currentChild, {
-            style: styles.icon.root,
+            style: this.mergeStyles(styles.icon.root, currentChild.props.style),
             onMouseOver: this._handleMouseOverFontIcon,
             onMouseOut: this._handleMouseOutFontIcon
           });
