@@ -26,7 +26,8 @@ var RadioButtonGroup = React.createClass({
   componentWillMount: function() {
     var cnt = 0;
 
-    this.props.children.forEach(function(option) {
+    (Array.isArray(this.props.children) ? this.props.children : [this.props.children])
+    .forEach(function(option) {
       if (this._hasCheckAttribute(option)) cnt++;
     }, this);
 
@@ -41,7 +42,8 @@ var RadioButtonGroup = React.createClass({
 
 	render: function() {
 
-    var options = this.props.children.map(function(option) {
+    var options = (Array.isArray(this.props.children) ? this.props.children : [this.props.children])
+      .map(function(option) {
 
       var {
         name,
