@@ -117,7 +117,7 @@ var TextFieldsPage = React.createClass({
       '  hintText="Disabled Hint Text"\n' +
       '  disabled={true}\n' +
       '  defaultValue="Disabled With Value"\n' +
-      '  floatingLabelText="Floating Label Text" />'; 
+      '  floatingLabelText="Floating Label Text" />';
 
     var desc = 'This component extends the current input element and will support all of its props and events. It supports ' +
       'valueLink and can be controlled or uncontrolled.' ;
@@ -137,6 +137,12 @@ var TextFieldsPage = React.createClass({
             type: 'string',
             header: 'optional',
             desc: 'The text string to use for the floating label element.'
+          },
+          {
+            name: 'fullWidth',
+            type: 'bool',
+            header: 'optional',
+            desc: 'If true, the field receives the property width 100%.'
           },
           {
             name: 'hintText',
@@ -325,7 +331,7 @@ var TextFieldsPage = React.createClass({
 
   _handleErrorInputChange: function(e) {
     this.setState({
-      errorText: e.target.value ? '' : 'This field is required.' 
+      errorText: e.target.value ? '' : 'This field is required.'
     });
   },
 
@@ -333,13 +339,13 @@ var TextFieldsPage = React.createClass({
     var value = e.target.value;
     var isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
     this.setState({
-      error2Text: isNumeric ? '' : 'This field must be numeric.' 
+      error2Text: isNumeric ? '' : 'This field must be numeric.'
     });
   },
 
   _handleFloatingErrorInputChange: function(e) {
     this.setState({
-      floatingErrorText: e.target.value ? '' : 'This field is required.' 
+      floatingErrorText: e.target.value ? '' : 'This field is required.'
     });
   },
 
@@ -347,7 +353,7 @@ var TextFieldsPage = React.createClass({
     var value = e.target.value;
     var isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
     this.setState({
-      floatingError2Text: isNumeric ? '' : 'This field must be numeric.' 
+      floatingError2Text: isNumeric ? '' : 'This field must be numeric.'
     });
   },
 

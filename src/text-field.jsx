@@ -17,6 +17,7 @@ var TextField = React.createClass({
   propTypes: {
     errorText: React.PropTypes.string,
     floatingLabelText: React.PropTypes.string,
+    fullWidth: React.PropTypes.bool,
     hintText: React.PropTypes.string,
     id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
@@ -31,8 +32,9 @@ var TextField = React.createClass({
 
   getDefaultProps: function() {
     return {
+      fullWidth: false,
       type: 'text',
-      rows: 1
+      rows: 1,
     };
   },
 
@@ -72,13 +74,14 @@ var TextField = React.createClass({
   getStyles: function() {
     var palette = this.context.muiTheme.palette;
     var disabledTextColor = palette.disabledColor;
+    var props = this.props;
 
     var styles = {
       root: {
-        fontSize: '16px',
+        fontSize: 16,
         lineHeight: '24px',
-        width: 64 * 4,
-        height: (this.props.rows - 1) * 24 + (this.props.floatingLabelText ? 72 : 48),
+        width: props.fullWidth ? '100%' : 256,
+        height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
         display: 'inline-block',
         position: 'relative',
         fontFamily: this.context.muiTheme.contentFontFamily,
@@ -87,7 +90,7 @@ var TextField = React.createClass({
       error: {
         position: 'absolute',
         bottom: -10,
-        fontSize: '12px',
+        fontSize: 12,
         lineHeight: '12px',
         color: this.errorColor,
         transition: Transitions.easeOut(),
@@ -107,7 +110,7 @@ var TextField = React.createClass({
         border: 'none',
         outline: 'none',
         backgroundColor: 'transparent',
-        color: this.props.disabled ? disabledTextColor : palette.textColor,
+        color: props.disabled ? disabledTextColor : palette.textColor,
         font: 'inherit'
       },
       underline: {
@@ -140,8 +143,8 @@ var TextField = React.createClass({
     });
 
     styles.textarea = this.mergeStyles(styles.input, {
-      marginTop: this.props.floatingLabelText ? 36 : 12,
-      marginBottom: this.props.floatingLabelText ? -36 : -12,
+      marginTop: props.floatingLabelText ? 36 : 12,
+      marginBottom: props.floatingLabelText ? -36 : -12,
       boxSizing: 'border-box',
       font: 'inherit'
     });
@@ -165,17 +168,17 @@ var TextField = React.createClass({
       styles.hint.opacity = 0;
     }
 
-    if (this.props.floatingLabelText) {
+    if (props.floatingLabelText) {
       styles.hint.top = 24;
       styles.hint.opacity = 0;
       styles.input.boxSizing = 'border-box';
       if (this.state.isFocused && !this.state.hasValue) styles.hint.opacity = 1;
     }
 
-    if (this.props.errorText && this.state.isFocused) styles.floatingLabel.color = this.errorColor;
-    if (this.props.floatingLabelText && !this.props.multiLine) styles.input.paddingTop = 26;
+    if (props.errorText && this.state.isFocused) styles.floatingLabel.color = this.errorColor;
+    if (props.floatingLabelText && !props.multiLine) styles.input.paddingTop = 26;
 
-    if (this.props.errorText) {
+    if (props.errorText) {
       styles.focusUnderline.borderColor = this.errorColor;
       styles.focusUnderline.transform = 'scaleX(1)';
     }
@@ -188,6 +191,7 @@ var TextField = React.createClass({
       className,
       errorText,
       floatingLabelText,
+      fullWidth,
       hintText,
       id,
       multiLine,
