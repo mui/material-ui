@@ -63,6 +63,12 @@ class ButtonPage extends React.Component {
         name: 'Flat Button',
         infoArray: [
           {
+            name: 'disabled',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Disables the button if set to true.'
+          },
+          {
             name: 'label or children',
             type: 'string (label) or HTML/React elements (children)',
             header: 'required',
@@ -119,6 +125,12 @@ class ButtonPage extends React.Component {
         name: 'Raised Button',
         infoArray: [
           {
+            name: 'disabled',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Disables the button if set to true.'
+          },
+          {
             name: 'label or children',
             type: 'string (label) or HTML/React elements (children)',
             header: 'required',
@@ -162,6 +174,12 @@ class ButtonPage extends React.Component {
       {
         name: 'Floating Action Button',
         infoArray: [
+          {
+            name: 'disabled',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Disables the button if set to true.'
+          },
           {
             name: 'iconClassName',
             type: 'string',
