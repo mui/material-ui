@@ -26,16 +26,15 @@ var List = React.createClass({
     } = this.props;
 
     var mergedStyles = this.mergeAndPrefix({
-      margin: 0,
       padding: '8px 0'
     }, style);
 
     return (
-      <ul
+      <div
         {...other}
         style={mergedStyles}>
         {this.props.children}
-      </ul>
+      </div>
     );
   }
 });
