@@ -16,6 +16,7 @@ var ListItem = React.createClass({
 
   propTypes: {
     disableTouchTap: React.PropTypes.bool,
+    insetChildren: React.PropTypes.bool,
     leftAvatar: React.PropTypes.element,
     leftIcon: React.PropTypes.element,
     onMouseOut: React.PropTypes.func,
@@ -41,6 +42,7 @@ var ListItem = React.createClass({
 
     var {
       disableTouchTap,
+      insetChildren,
       leftAvatar,
       leftIcon,
       onMouseOut,
@@ -70,7 +72,7 @@ var ListItem = React.createClass({
       //This inner div is need so that ripples will span the entire container
       innerDiv: {
         padding: leftAvatar || secondaryText ? '20px 16px' : 16,
-        paddingLeft: leftIcon || leftAvatar ? 72 : 16
+        paddingLeft: leftIcon || leftAvatar || insetChildren ? 72 : 16
       },
 
       icons: {
@@ -78,20 +80,20 @@ var ListItem = React.createClass({
         width: 24,
         display: 'block',
         position: 'absolute',
-        top: secondaryText ? 8 : 0,
-        padding: leftAvatar ? 16 : '12px 16px'
+        top: secondaryText ? 12 : leftAvatar ? 4 : 0,
+        padding: 12
       },
 
       leftIcon: { 
         color: Colors.grey600,
         fill: Colors.grey600,
-        left: 0
+        left: 4
       },
 
       rightIcon: {
         color: Colors.grey400,
         fill: Colors.grey400,
-        right: 0
+        right: 4
       },
 
       leftAvatar: {

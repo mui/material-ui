@@ -10,7 +10,9 @@ var MobileTearSheet = require('../../mobile-tear-sheet.jsx');
 var ActionAssignment = require('../../svg-icons/action-assignment.jsx');
 var ActionGrade = require('../../svg-icons/action-grade.jsx');
 var ActionInfo = require('../../svg-icons/action-info.jsx');
+var CommunicationCall = require('../../svg-icons/communication-call.jsx');
 var CommunicationChatBubble = require('../../svg-icons/communication-chat-bubble.jsx');
+var CommunicationEmail = require('../../svg-icons/communication-email.jsx');
 var ContentDrafts = require('../../svg-icons/content-drafts.jsx');
 var ContentInbox = require('../../svg-icons/content-inbox.jsx');
 var ContentSend = require('../../svg-icons/content-send.jsx');
@@ -198,6 +200,35 @@ class SnackbarPage extends React.Component {
               leftIcon={<Checkbox />}
               secondaryText="Hangouts video call">
               Video sounds
+            </ListItem>
+          </List>
+        </MobileTearSheet>
+
+        <MobileTearSheet>
+          <List showBottomDivider={true} insetBottomDivider={true}>
+            <ListItem
+              leftIcon={<CommunicationCall style={{fill: Colors.indigo500}} />}
+              rightIcon={<CommunicationChatBubble />}
+              secondaryText="Mobile">
+              (650) 555 - 1234
+            </ListItem>
+            <ListItem
+              insetChildren={true}
+              rightIcon={<CommunicationChatBubble />}
+              secondaryText="Work">
+              (323) 555-6789
+            </ListItem>
+          </List>
+          <List>
+            <ListItem
+              leftIcon={<CommunicationEmail style={{fill: Colors.indigo500}} />}
+              secondaryText="Personal">
+              aliconnors@example.com
+            </ListItem>
+            <ListItem
+              insetChildren={true}
+              secondaryText="Work">
+              ali_connors@example.com
             </ListItem>
           </List>
         </MobileTearSheet>

@@ -11,6 +11,7 @@ var List = React.createClass({
   },
 
   propTypes: {
+    bottomDividerStyle: React.PropTypes.object,
     insetBottomDivider: React.PropTypes.bool,
     insetSubheader: React.PropTypes.bool,
     showBottomDivider: React.PropTypes.bool,
@@ -26,6 +27,7 @@ var List = React.createClass({
   render: function() {
 
     var {
+      bottomDividerStyle,
       insetBottomDivider,
       insetSubheader,
       showBottomDivider,
@@ -38,25 +40,37 @@ var List = React.createClass({
     var styles = {
       root: {
         padding: 0,
-        paddingBottom: showBottomDivider ? 7 : 8,
-        paddingTop: subheader ? 0 : 8,
-        borderBottom: showBottomDivider ?
-          'solid 1px ' + this.context.muiTheme.palette.borderColor : null
+        paddingBottom: showBottomDivider ? 0 : 8,
+        paddingTop: subheader ? 0 : 8
       },
+
       subheader: {
         color: Typography.textLightBlack,
         fontSize: 14,
         fontWeight: Typography.fontWeightMedium,
         lineHeight: '48px',
         paddingLeft: insetSubheader ? 72 : 16
+      },
+
+      bottomDivider: {
+        margin: 0,
+        marginTop: 7,
+        marginLeft: insetBottomDivider ? 72 : 0,
+        height: 1,
+        border: 'none',
+        backgroundColor: this.context.muiTheme.palette.borderColor
       }
     };
 
     var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
     var mergedSubheaderStyles = this.mergeAndPrefix(styles.subheader, subheaderStyle);
+    var mergedBottomDividerStyles = this.mergeAndPrefix(styles.bottomDivider, bottomDividerStyle);
 
     var subheaderElement = subheader ? (
       <div style={mergedSubheaderStyles}>{subheader}</div>
+    ) : null;
+    var bottomDividerElement = showBottomDivider ? (
+      <hr style={mergedBottomDividerStyles} />
     ) : null;
 
     return (
@@ -65,6 +79,7 @@ var List = React.createClass({
         style={mergedRootStyles}>
         {subheaderElement}
         {this.props.children}
+        {bottomDividerElement}
       </div>
     );
   }
