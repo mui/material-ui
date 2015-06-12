@@ -79,13 +79,13 @@ class SnackbarPage extends React.Component {
         componentInfo={componentInfo}>
 
         <div style={containerStyle}>
-          <List padTop={true} showBottomDivider={true}>
+          <List showBottomDivider={true}>
             <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
             <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
             <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
             <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
           </List>
-          <List padTop={true}>
+          <List>
             <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
             <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
             <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
@@ -93,16 +93,16 @@ class SnackbarPage extends React.Component {
           </List>
         </div>
         <div style={containerStyle}>
-          <List>
+          <List subheader="Recent chats" showBottomDivider={true}>
+            <ListItem leftAvatar={<ImageAvatar src="images/ok-128.jpg" />}>Brendan Lim</ListItem>
+            <ListItem leftAvatar={<ImageAvatar src="images/kolage-128.jpg" />}>Eric Hoffman</ListItem>
+            <ListItem leftAvatar={<ImageAvatar src="images/uxceo-128.jpg" />}>Grace Ng</ListItem>
             <ListItem leftAvatar={<ImageAvatar src="images/kerem-128.jpg" />}>Kerem Suer</ListItem>
             <ListItem leftAvatar={<ImageAvatar src="images/raquelromanp-128.jpg" />}>Raquel Parrado</ListItem>
-            <ListItem leftAvatar={<ImageAvatar src="images/kolage-128.jpg" />}>Eric Hoffman</ListItem>
-            <ListItem leftAvatar={<ImageAvatar src="images/ok-128.jpg" />}>Brendan Lim</ListItem>
-            <ListItem leftAvatar={<ImageAvatar src="images/uxceo-128.jpg" />}>Grace Ng</ListItem>
-            <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
-            <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
-            <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
-            <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
+          </List>
+          <List subheader="Previous chats">
+            <ListItem leftAvatar={<ImageAvatar src="images/chexee-128.jpg" />}>Chelsea Otakan</ListItem>
+            <ListItem leftAvatar={<ImageAvatar src="images/jsa-128.jpg" />}>James Anderson</ListItem>
           </List>
         </div>
 

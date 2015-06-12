@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var StylePropable = require('../mixins/style-propable');
+var Typography = require('../styles/typography');
 
 var List = React.createClass({
 
@@ -11,8 +12,9 @@ var List = React.createClass({
 
   propTypes: {
     insetBottomDivider: React.PropTypes.bool,
-    padTop: React.PropTypes.bool,
-    showBottomDivider: React.PropTypes.bool
+    showBottomDivider: React.PropTypes.bool,
+    subheader: React.PropTypes.string,
+    subheaderStyle: React.PropTypes.object
   },
 
   getDefaultProps: function() {
@@ -24,24 +26,42 @@ var List = React.createClass({
 
     var {
       insetBottomDivider,
-      padTop,
       showBottomDivider,
       style,
+      subheader,
+      subheaderStyle,
       ...other
     } = this.props;
 
-    var mergedStyles = this.mergeAndPrefix({
-      padding: 0,
-      paddingBottom: showBottomDivider ? 7 : 8,
-      paddingTop: padTop ? 8 : 0,
-      borderBottom: showBottomDivider ?
-        'solid 1px ' + this.context.muiTheme.palette.borderColor : null
-    }, style);
+    var styles = {
+      root: {
+        padding: 0,
+        paddingBottom: showBottomDivider ? 7 : 8,
+        paddingTop: subheader ? 0 : 8,
+        borderBottom: showBottomDivider ?
+          'solid 1px ' + this.context.muiTheme.palette.borderColor : null
+      },
+      subheader: {
+        color: Typography.textLightBlack,
+        fontSize: 14,
+        fontWeight: Typography.fontWeightMedium,
+        lineHeight: '48px',
+        paddingLeft: 16
+      }
+    };
+
+    var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    var mergedSubheaderStyles = this.mergeAndPrefix(styles.subheader, subheaderStyle);
+
+    var subheaderElement = subheader ? (
+      <div style={mergedSubheaderStyles}>{subheader}</div>
+    ) : null;
 
     return (
       <div
         {...other}
-        style={mergedStyles}>
+        style={mergedRootStyles}>
+        {subheaderElement}
         {this.props.children}
       </div>
     );
