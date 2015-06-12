@@ -135,29 +135,34 @@ class SnackbarPage extends React.Component {
           <List subheader="Folders" showBottomDivider={true} insetSubheader={true}>
             <ListItem
               leftAvatar={<Avatar icon={<FileFolder />} />}
-              rightIcon={<ActionInfo />}>
+              rightIcon={<ActionInfo />}
+              secondaryText="Jan 9, 2014">
               Photos
             </ListItem>
             <ListItem
               leftAvatar={<Avatar icon={<FileFolder />} />}
-              rightIcon={<ActionInfo />}>
+              rightIcon={<ActionInfo />}
+              secondaryText="Jan 17, 2014">
               Recipes
             </ListItem>
             <ListItem
               leftAvatar={<Avatar icon={<FileFolder />} />}
-              rightIcon={<ActionInfo />}>
+              rightIcon={<ActionInfo />}
+              secondaryText="Jan 28, 2014">
               Work
             </ListItem>
           </List>
           <List subheader="Files" insetSubheader={true}>
             <ListItem
               leftAvatar={<Avatar icon={<ActionAssignment />} iconBgColor={Colors.blue500} />}
-              rightIcon={<ActionInfo />}>
+              rightIcon={<ActionInfo />}
+              secondaryText="Jan 20, 2014">
               Vacation itinerary
             </ListItem>
             <ListItem
               leftAvatar={<Avatar icon={<EditorInsertChart />} iconBgColor={Colors.yellow600} />}
-              rightIcon={<ActionInfo />}>
+              rightIcon={<ActionInfo />}
+              secondaryText="Jan 10, 2014">
               Kitchen remodel
             </ListItem>
           </List>
