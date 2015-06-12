@@ -1,6 +1,7 @@
 var React = require('react');
 var mui = require('mui');
 var Avatar = mui.Avatar;
+var Checkbox = mui.Checkbox;
 var Colors = mui.Styles.Colors;
 var List = mui.List;
 var ListItem = mui.ListItem;
@@ -164,6 +165,39 @@ class SnackbarPage extends React.Component {
               rightIcon={<ActionInfo />}
               secondaryText="Jan 10, 2014">
               Kitchen remodel
+            </ListItem>
+          </List>
+        </MobileTearSheet>
+
+        <MobileTearSheet>
+          <List subheader="General" showBottomDivider={true}>
+            <ListItem
+              secondaryText="Change your Google+ profile photo">
+              Profile photo
+            </ListItem>
+            <ListItem
+              secondaryText="Your status is visible to everyone you use with">
+              Show your status
+            </ListItem>
+          </List>
+          <List subheader="Hangout notifications">
+            <ListItem
+              disableTouchTap={true}
+              leftIcon={<Checkbox />}
+              secondaryText="Allow notifications">
+              Notifications
+            </ListItem>
+            <ListItem
+              disableTouchTap={true}
+              leftIcon={<Checkbox />}
+              secondaryText="Hangouts message">
+              Sounds
+            </ListItem>
+            <ListItem
+              disableTouchTap={true}
+              leftIcon={<Checkbox />}
+              secondaryText="Hangouts video call">
+              Video sounds
             </ListItem>
           </List>
         </MobileTearSheet>

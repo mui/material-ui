@@ -15,6 +15,7 @@ var ListItem = React.createClass({
   },
 
   propTypes: {
+    disableTouchTap: React.PropTypes.bool,
     leftAvatar: React.PropTypes.element,
     leftIcon: React.PropTypes.element,
     onMouseOut: React.PropTypes.func,
@@ -39,6 +40,7 @@ var ListItem = React.createClass({
   render: function() {
 
     var {
+      disableTouchTap,
       leftAvatar,
       leftIcon,
       onMouseOut,
@@ -67,11 +69,13 @@ var ListItem = React.createClass({
 
       //This inner div is need so that ripples will span the entire container
       innerDiv: {
-        padding: leftAvatar ? 20 : 16,
+        padding: leftAvatar || secondaryText ? '20px 16px' : 16,
         paddingLeft: leftIcon || leftAvatar ? 72 : 16
       },
 
       icons: {
+        height: 24,
+        width: 24,
         display: 'block',
         position: 'absolute',
         top: secondaryText ? 8 : 0,
@@ -107,6 +111,7 @@ var ListItem = React.createClass({
     var secondaryTextIsAnElement = React.isValidElement(secondaryText);
 
     var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    var mergedDivStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, style);
     var mergedLeftIconStyles = leftIcon ? 
       this.mergeStyles(styles.icons, styles.leftIcon, leftIcon.props.style) : null;
     var mergedRightIconStyles = rightIcon ? 
@@ -131,7 +136,15 @@ var ListItem = React.createClass({
       <div style={styles.secondaryText}>{secondaryText}</div>
     ) : null;
 
-    return (
+    return disableTouchTap ? (
+      <div style={mergedDivStyles}>
+        {leftIconElement}
+        {rightIconElement}
+        {leftAvatarElement}
+        {this.props.children}
+        {secondaryTextElement}
+      </div>
+    ) : (
       <EnhancedButton
         {...other}
         linkButton={true}
