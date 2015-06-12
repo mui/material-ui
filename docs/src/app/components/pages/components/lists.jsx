@@ -1,5 +1,6 @@
 var React = require('react');
 var mui = require('mui');
+var ImageAvatar = mui.ImageAvatar;
 var List = mui.List;
 var ListDivider = mui.ListDivider;
 var ListItem = mui.ListItem;
@@ -66,7 +67,10 @@ class SnackbarPage extends React.Component {
 
     var listStyle = {
       border: 'solid 1px #ddd',
-      maxWidth: 360
+      float: 'left',
+      width: 360,
+      marginBottom: 24,
+      marginRight: 24
     };
 
     return (
@@ -86,6 +90,20 @@ class SnackbarPage extends React.Component {
           <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
           <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
         </List>
+
+        <List style={listStyle}>
+          <ListItem leftAvatar={<ImageAvatar src="images/kerem-128.jpg" />}>Kerem Suer</ListItem>
+          <ListItem leftAvatar={<ImageAvatar src="images/raquelromanp-128.jpg" />}>Raquel Parrado</ListItem>
+          <ListItem leftAvatar={<ImageAvatar src="images/kolage-128.jpg" />}>Eric Hoffman</ListItem>
+          <ListItem leftAvatar={<ImageAvatar src="images/ok-128.jpg" />}>Brendan Lim</ListItem>
+          <ListItem leftAvatar={<ImageAvatar src="images/uxceo-128.jpg" />}>Grace Ng</ListItem>
+          <ListDivider />
+          <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
+          <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
+          <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
+          <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
+        </List>
+
 
       </ComponentDoc>
     );

@@ -13,6 +13,7 @@ var ListItem = React.createClass({
   },
 
   propTypes: {
+    leftAvatar: React.PropTypes.element,
     leftIcon: React.PropTypes.element,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
@@ -34,6 +35,7 @@ var ListItem = React.createClass({
   render: function() {
 
     var {
+      leftAvatar,
       leftIcon,
       onMouseOut,
       onMouseOver,
@@ -59,8 +61,8 @@ var ListItem = React.createClass({
 
       //This inner div is need so that ripples will span the entire container
       innerDiv: {
-        padding: 16,
-        paddingLeft: leftIcon ? 72 : 16
+        padding: leftAvatar ? 20 : 16,
+        paddingLeft: leftIcon || leftAvatar ? 72 : 16
       },
 
       icons: {
@@ -77,6 +79,12 @@ var ListItem = React.createClass({
 
       rightIcon: {
         right: 0
+      },
+
+      leftAvatar: {
+        position: 'absolute',
+        top: 8,
+        left: 16
       }
     };
 
@@ -85,13 +93,17 @@ var ListItem = React.createClass({
       this.mergeStyles(styles.icons, styles.leftIcon, leftIcon.props.style) : null;
     var mergedRightIconStyles = rightIcon ? 
       this.mergeStyles(styles.icons, styles.rightIcon, rightIcon.props.style) : null;
-
+    var mergedLeftAvatarStyles = leftAvatar ? 
+      this.mergeStyles(styles.leftAvatar, leftAvatar.props.style) : null;
+    
     var leftIconElement = leftIcon ? React.cloneElement(leftIcon, {
       style: mergedLeftIconStyles
     }) : null;
-
     var rightIconElement = rightIcon ? React.cloneElement(rightIcon, {
       style: mergedRightIconStyles
+    }) : null;
+    var leftAvatarElement = leftAvatar ? React.cloneElement(leftAvatar, {
+      style: mergedLeftAvatarStyles
     }) : null;
 
     return (
@@ -102,9 +114,10 @@ var ListItem = React.createClass({
         onMouseOver={this._handleMouseOver}
         style={mergedRootStyles}>
         <div style={styles.innerDiv}>
-          {this.props.children}
           {leftIconElement}
           {rightIconElement}
+          {leftAvatarElement}
+          {this.props.children}
         </div>
       </EnhancedButton>
     );

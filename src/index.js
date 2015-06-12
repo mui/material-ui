@@ -15,6 +15,7 @@ module.exports = {
   FloatingActionButton: require('./floating-action-button'),
   FontIcon: require('./font-icon'),
   IconButton: require('./icon-button'),
+  ImageAvatar: require('./image-avatar'),
   LeftNav: require('./left-nav'),
   LinearProgress: require('./linear-progress'),
   List: require('./lists/list'),
