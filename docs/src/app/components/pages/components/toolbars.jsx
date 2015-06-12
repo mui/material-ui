@@ -37,7 +37,7 @@ class ToolbarPage extends React.Component {
 
     var desc = 'Toolbars are collections of components stacked horizontally ' +
                'against each other. Toolbars provide greater versatility than ' +
-               'appBars. AppBars are a subset of toolbars. The following ' + 
+               'appBars. AppBars are a subset of toolbars. The following ' +
                'toolbar components can help organize your layout. Note that ' +
                'every component listed here (including Toolbar) have a style ' +
                'prop which overrides the inline-styles of their root element.'

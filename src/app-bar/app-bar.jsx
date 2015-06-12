@@ -1,8 +1,7 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
 var Typography = require('../styles/typography');
-var IconButton = require('../icon-button');
-var NavigationMenu = require('../svg-icons/navigation-menu');
+
 var Paper = require('../paper');
 
 var AppBar = React.createClass({
@@ -25,16 +24,21 @@ var AppBar = React.createClass({
     }
   },
 
+  getSpacing: function() {
+    return this.context.muiTheme.spacing;
+  },
+
+  getTheme: function () {
+    return this.context.muiTheme.component.appBar;
+  },
+
   getStyles: function() {
-    var spacing = this.context.muiTheme.spacing;
-    var themeVariables = this.context.muiTheme.component.appBar;
     var styles = {
       zIndex: 5,
       width: '100%',
-      minHeight: themeVariables.height,
-      backgroundColor: themeVariables.color,
-      paddingLeft: spacing.desktopGutter,
-      paddingRight: spacing.desktopGutter
+      minHeight: this.getTheme().height,
+      backgroundColor: this.getTheme().color,
+      padding: this.props.noGutter ? 0 : '0px ' + this.context.muiTheme.spacing.desktopGutter + 'px'
     };
     return styles;
   },
@@ -52,7 +56,7 @@ var AppBar = React.createClass({
       </Paper>
     );
   }
-  
+
 });
 
 module.exports = AppBar;

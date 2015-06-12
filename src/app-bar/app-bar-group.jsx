@@ -1,5 +1,6 @@
 var React = require('react');
 var Colors = require('../styles/colors');
+var Typography = require('../styles/typography');
 var StylePropable = require('../mixins/style-propable');
 
 var AppBarGroup = React.createClass({
@@ -21,11 +22,17 @@ var AppBarGroup = React.createClass({
     };
   },
 
+  getSpacing: function() {
+    return this.context.muiTheme.spacing;
+  },
+
+  getTheme: function () {
+    return this.context.muiTheme.component.appBar;
+  },
+
   getStyles: function() {
-    var spacing = this.context.muiTheme.spacing;
-    var themeVariables = this.context.muiTheme.component.appBar;
     var iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
-    var marginVertical = (themeVariables.height - this.context.muiTheme.component.button.height) / 2;
+    var marginVertical = (this.getTheme().height - this.context.muiTheme.component.button.height) / 2;
     var styles = {
       root: {
         position: 'relative',
@@ -35,7 +42,7 @@ var AppBarGroup = React.createClass({
         root: {
           backgroundColor: 'transparent',
           float: 'left',
-          color: themeVariables.textColor,
+          height: this.getTheme().height,
           display: 'inline-block'
         },
         controlBg: {
@@ -43,6 +50,23 @@ var AppBarGroup = React.createClass({
         },
         underline: {
           display: 'none'
+        },
+        label: {
+          lineHeight: this.getTheme().height + 'px',
+          fontSize: 24,
+          fontWeight: Typography.fontWeightNormal,
+          color: this.getTheme().textColor
+        },
+        menuItem: {
+          fontSize: 24,
+          height: this.getTheme().height,
+          lineHeight: this.getTheme().height + 'px'
+        },
+        icon: {
+          top: (this.getTheme().height - 24) / 2
+        },
+        labelWhenOpen: {
+          top: this.getTheme().height / 2
         }
       },
       button: {
@@ -52,14 +76,14 @@ var AppBarGroup = React.createClass({
       },
       iconButton: {
         style: {
-          marginTop: (themeVariables.height - iconButtonSize) / 2,
+          marginTop: (this.getTheme().height - iconButtonSize) / 2,
           float: 'left',
           marginRight: 8,
-          marginLeft: -16
+          marginLeft: 8,
         },
         iconStyle: {
-          fill: themeVariables.textColor,
-          color: themeVariables.textColor
+          fill: this.getTheme().textColor,
+          color: this.getTheme().textColor
         }
       },
       span: {
@@ -80,8 +104,12 @@ var AppBarGroup = React.createClass({
         case 'DropDownMenu' :
           return React.cloneElement(currentChild, {
             style: styles.dropDownMenu.root,
-            styleControlBg: styles.dropDownMenu.controlBg,
-            styleUnderline: styles.dropDownMenu.underline
+            controlBgStyle: styles.dropDownMenu.controlBg,
+            underlineStyle: styles.dropDownMenu.underline,
+            labelStyle: styles.dropDownMenu.label,
+            menuItemStyle: styles.dropDownMenu.menuItem,
+            labelWhenOpenStyle: styles.dropDownMenu.labelWhenOpen,
+            iconStyle: styles.dropDownMenu.icon
           });
         case 'DropDownIcon' :
           return React.cloneElement(currentChild, {
@@ -90,11 +118,16 @@ var AppBarGroup = React.createClass({
             onMouseOver: this._handleMouseOverDropDownMenu,
             onMouseOut: this._handleMouseOutDropDownMenu
           });
+        case 'IconButton':
+          return React.cloneElement(currentChild, {
+            style: styles.iconButton.style,
+            iconStyle: styles.iconButton.iconStyle
+          });
         case 'RaisedButton' : case 'FlatButton' :
           return React.cloneElement(currentChild, {
             style: styles.button
           });
-        case 'ToolbarSeparator' : case 'ToolbarTitle' :
+        case 'AppBarTitle' :
           return React.cloneElement(currentChild, {
             style: this.mergeStyles(styles.span, currentChild.props.style)
           });

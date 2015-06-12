@@ -9,7 +9,7 @@ var Colors = mui.Styles.Colors;
 var Typography = mui.Styles.Typography;
 var ThemeManager = new mui.Styles.ThemeManager();
 
-var { AppBar, AppBarGroup, AppBarTitle, AppCanvas, Menu, IconButton } = mui;
+var { AppBar, AppBarGroup, AppBarTitle, AppCanvas, Menu, IconButton, SvgIcon } = mui;
 
 class Master extends React.Component {
 
@@ -53,20 +53,31 @@ class Master extends React.Component {
       this.context.router.isActive('customization') ? 'Customization' :
       this.context.router.isActive('components') ? 'Components' : '';
 
+    var githubButton = (
+      <IconButton
+        iconStyle={styles.iconButton}
+        iconClassName="muidocs-icon-custom-github"
+        href="https://github.com/callemall/material-ui"
+        linkButton={true} />
+    );
+
     return (
       <AppCanvas>
-        <AppBar onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
-                title={title}
-                zDepth={1}
-                iconElementRight={githubButton}>
-      	  <AppBarGroup style={{ float: 'left' }}>
+        <AppBar zDepth={1} noGutter={true}>
+      	  <AppBarGroup key={0} style={{ float: 'left' }}>
+            <IconButton onTouchTap={this._onLeftIconButtonTouchTap}>
+              <SvgIcon>
+                <path fill="rgba(255, 255, 255, 0.87)" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+              </SvgIcon>
+            </IconButton>
+            <AppBarTitle text={title}/>
       	  </AppBarGroup>
-          <AppBarGroup style={{ float: 'right' }}>
+          <AppBarGroup key={1} style={{ float: 'right' }}>
+            {githubButton}
       	  </AppBarGroup>
       	</AppBar>
 
         <AppLeftNav ref="leftNav" />
-
         <RouteHandler />
 
         <FullWidthSection style={styles.footer}>

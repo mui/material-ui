@@ -144,12 +144,14 @@ var DropDownMenu = React.createClass({
           this.props.style)} >
 
           <ClearFix style={this.mergeAndPrefix(styles.control)} onTouchTap={this._onControlClick}>
-            <Paper style={this.mergeAndPrefix(styles.controlBg)} zDepth={0} />
-            <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen)}>
+            <Paper style={this.mergeAndPrefix(styles.controlBg, this.props.controlBgStyle)} zDepth={0} />
+            <div style={this.mergeAndPrefix(styles.label, this.props.labelStyle,
+                                            this.state.open && styles.labelWhenOpen,
+                                            this.state.open && this.props.labelWhenOpenStyle)}>
               {this.props.menuItems[this.state.selectedIndex].text}
             </div>
-            <DropDownArrow style={this.mergeAndPrefix(styles.icon)}/>
-            <div style={this.mergeAndPrefix(styles.underline)}/>
+            <DropDownArrow style={this.mergeAndPrefix(styles.icon, this.props.iconStyle)}/>
+            <div style={this.mergeAndPrefix(styles.underline, this.props.underlineStyle)}/>
           </ClearFix>
 
           <Menu

@@ -2,14 +2,14 @@ var React = require('react');
 var mui = require('mui');
 var ComponentDoc = require('../../component-doc.jsx');
 
-var {AppBar, DropDownMenu} = mui;
+var {AppBar, AppBarGroup, AppBarTitle, DropDownMenu, FontIcon, IconButton, RaisedButton } = mui;
 
 class AppBarPage extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.code = 
+    this.code =
           '<AppBar title=\'Title\' iconClassNameRight="muidocs-icon-navigation-expand-more"/>';
 
     this.desc = 'App bars are a collection of components placed as a static ' +
@@ -82,7 +82,7 @@ class AppBarPage extends React.Component {
             desc: 'The zDepth of the app bar. The shadow of the app bar is also ' +
                   'dependent on this property.'
           }
-        ] 
+        ]
       },
       {
         name: 'Events',
@@ -92,7 +92,7 @@ class AppBarPage extends React.Component {
             header: 'AppBar.onLeftIconButtonTouchTap(e)',
             desc: 'Callback function for when the left icon is selected via ' +
                   'a touch tap.'
-          }, 
+          },
           {
             name: 'onRightIconButtonTouchTap',
             header: 'AppBar.onRightIconButtonTouchTap(e)',
@@ -105,13 +105,38 @@ class AppBarPage extends React.Component {
   }
 
   render() {
+    var filterOptions = [
+      { payload: '1', text: 'All Broadcasts' },
+      { payload: '2', text: 'All Voice' },
+      { payload: '3', text: 'All Text' },
+      { payload: '4', text: 'Complete Voice' },
+      { payload: '5', text: 'Complete Text' },
+      { payload: '6', text: 'Active Voice' },
+      { payload: '7', text: 'Active Text' },
+    ];
+    var iconMenuItems = [
+      { payload: '1', text: 'Download' },
+      { payload: '2', text: 'More Info' }
+    ];
+
     return (
       <ComponentDoc
         name="AppBar"
         code={this.code}
         desc={this.desc}
         componentInfo={this.componentInfo}>
-          <AppBar title='Title' iconClassNameRight="muidocs-icon-navigation-expand-more"/>
+          <AppBar noGutter={true}>
+            <AppBarGroup key={0} float="left">
+              <DropDownMenu menuItems={filterOptions} />
+            </AppBarGroup>
+            <AppBarGroup key={1} float="right">
+              <AppBarTitle text="Options" />
+              <IconButton>
+                <FontIcon className="muidocs-icon-custom-sort" />
+              </IconButton>
+              <RaisedButton label="Create Broadcast" primary={true} />
+            </AppBarGroup>
+          </AppBar>
       </ComponentDoc>
     );
   }

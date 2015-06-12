@@ -1,4 +1,5 @@
 var React = require('react');
+var Typography = require('../styles/typography');
 var StylePropable = require('../mixins/style-propable');
 
 var AppBarTitle = React.createClass({
@@ -14,7 +15,7 @@ var AppBarTitle = React.createClass({
   },
 
   getTheme: function() {
-    return this.context.muiTheme.component.toolbar;
+    return this.context.muiTheme.component.appBar;
   },
 
   render: function() {
@@ -25,11 +26,14 @@ var AppBarTitle = React.createClass({
     } = this.props;
 
     var styles = this.mergeAndPrefix({
-      paddingRight: this.context.muiTheme.spacing.desktopGutterLess,
-      lineHeight: this.getTheme().height + 'px',
-      fontSize: this.getTheme().titleFontSize + 'px',
-      display: 'inline-block',
-      position: 'relative',
+      float: 'left',
+      margin: 0,
+      paddingTop: 0,
+      letterSpacing: 0,
+      fontSize: 24,
+      fontWeight: Typography.fontWeightNormal,
+      color: this.getTheme().textColor,
+      lineHeight: this.getTheme().height + 'px'
     }, style);
 
     return (
