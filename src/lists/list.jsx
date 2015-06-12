@@ -12,6 +12,7 @@ var List = React.createClass({
 
   propTypes: {
     insetBottomDivider: React.PropTypes.bool,
+    insetSubheader: React.PropTypes.bool,
     showBottomDivider: React.PropTypes.bool,
     subheader: React.PropTypes.string,
     subheaderStyle: React.PropTypes.object
@@ -26,6 +27,7 @@ var List = React.createClass({
 
     var {
       insetBottomDivider,
+      insetSubheader,
       showBottomDivider,
       style,
       subheader,
@@ -46,7 +48,7 @@ var List = React.createClass({
         fontSize: 14,
         fontWeight: Typography.fontWeightMedium,
         lineHeight: '48px',
-        paddingLeft: 16
+        paddingLeft: insetSubheader ? 72 : 16
       }
     };
 

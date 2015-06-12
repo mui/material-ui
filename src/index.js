@@ -1,6 +1,7 @@
 module.exports = {
   AppBar: require('./app-bar'),
   AppCanvas: require('./app-canvas'),
+  Avatar: require('./avatar'),
   BeforeAfterWrapper: require('./before-after-wrapper'),
   Checkbox: require('./checkbox'),
   CircularProgress: require('./circular-progress'),
@@ -15,7 +16,6 @@ module.exports = {
   FloatingActionButton: require('./floating-action-button'),
   FontIcon: require('./font-icon'),
   IconButton: require('./icon-button'),
-  ImageAvatar: require('./image-avatar'),
   LeftNav: require('./left-nav'),
   LinearProgress: require('./linear-progress'),
   List: require('./lists/list'),
