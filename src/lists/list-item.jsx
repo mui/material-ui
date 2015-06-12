@@ -69,7 +69,7 @@ var ListItem = React.createClass({
         display: 'block',
         position: 'absolute',
         top: 0,
-        padding: '12px 16px',
+        padding: leftAvatar ? 16 : '12px 16px',
         opacity: 0.6
       },
 

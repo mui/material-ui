@@ -6,6 +6,7 @@ var ListItem = mui.ListItem;
 var ComponentDoc = require('../../component-doc.jsx');
 var ActionGrade = require('../../svg-icons/action-grade.jsx');
 var ActionInfo = require('../../svg-icons/action-info.jsx');
+var CommunicationChatBubble = require('../../svg-icons/communication-chat-bubble.jsx');
 var ContentDrafts = require('../../svg-icons/content-drafts.jsx');
 var ContentInbox = require('../../svg-icons/content-inbox.jsx');
 var ContentSend = require('../../svg-icons/content-send.jsx');
@@ -94,15 +95,41 @@ class SnackbarPage extends React.Component {
         </div>
         <div style={containerStyle}>
           <List subheader="Recent chats" showBottomDivider={true}>
-            <ListItem leftAvatar={<ImageAvatar src="images/ok-128.jpg" />}>Brendan Lim</ListItem>
-            <ListItem leftAvatar={<ImageAvatar src="images/kolage-128.jpg" />}>Eric Hoffman</ListItem>
-            <ListItem leftAvatar={<ImageAvatar src="images/uxceo-128.jpg" />}>Grace Ng</ListItem>
-            <ListItem leftAvatar={<ImageAvatar src="images/kerem-128.jpg" />}>Kerem Suer</ListItem>
-            <ListItem leftAvatar={<ImageAvatar src="images/raquelromanp-128.jpg" />}>Raquel Parrado</ListItem>
+            <ListItem
+              leftAvatar={<ImageAvatar src="images/ok-128.jpg" />}
+              rightIcon={<CommunicationChatBubble />}>
+              Brendan Lim
+            </ListItem>
+            <ListItem
+              leftAvatar={<ImageAvatar src="images/kolage-128.jpg" />}
+              rightIcon={<CommunicationChatBubble />}>
+              Eric Hoffman
+            </ListItem>
+            <ListItem
+              leftAvatar={<ImageAvatar src="images/uxceo-128.jpg" />}
+              rightIcon={<CommunicationChatBubble />}>
+              Grace Ng
+            </ListItem>
+            <ListItem
+              leftAvatar={<ImageAvatar src="images/kerem-128.jpg" />}
+              rightIcon={<CommunicationChatBubble />}>
+              Kerem Suer
+            </ListItem>
+            <ListItem
+              leftAvatar={<ImageAvatar src="images/raquelromanp-128.jpg" />}
+              rightIcon={<CommunicationChatBubble />}>
+              Raquel Parrado
+            </ListItem>
           </List>
           <List subheader="Previous chats">
-            <ListItem leftAvatar={<ImageAvatar src="images/chexee-128.jpg" />}>Chelsea Otakan</ListItem>
-            <ListItem leftAvatar={<ImageAvatar src="images/jsa-128.jpg" />}>James Anderson</ListItem>
+            <ListItem
+              leftAvatar={<ImageAvatar src="images/chexee-128.jpg" />}>
+              Chelsea Otakan
+            </ListItem>
+            <ListItem
+              leftAvatar={<ImageAvatar src="images/jsa-128.jpg" />}>
+              James Anderson
+            </ListItem>
           </List>
         </div>
 
