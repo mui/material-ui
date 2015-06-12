@@ -10,7 +10,9 @@ var List = React.createClass({
   },
 
   propTypes: {
-    secondaryText: React.PropTypes.node
+    insetBottomDivider: React.PropTypes.bool,
+    padTop: React.PropTypes.bool,
+    showBottomDivider: React.PropTypes.bool
   },
 
   getDefaultProps: function() {
@@ -21,12 +23,19 @@ var List = React.createClass({
   render: function() {
 
     var {
+      insetBottomDivider,
+      padTop,
+      showBottomDivider,
       style,
       ...other
     } = this.props;
 
     var mergedStyles = this.mergeAndPrefix({
-      padding: '8px 0'
+      padding: 0,
+      paddingBottom: showBottomDivider ? 7 : 8,
+      paddingTop: padTop ? 8 : 0,
+      borderBottom: showBottomDivider ?
+        'solid 1px ' + this.context.muiTheme.palette.borderColor : null
     }, style);
 
     return (

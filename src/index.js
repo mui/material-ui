@@ -19,7 +19,6 @@ module.exports = {
   LeftNav: require('./left-nav'),
   LinearProgress: require('./linear-progress'),
   List: require('./lists/list'),
-  ListDivider: require('./lists/list-divider'),
   ListItem: require('./lists/list-item'),
   Menu: require('./menu/menu'),
   MenuItem: require('./menu/menu-item'),

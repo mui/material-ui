@@ -2,7 +2,6 @@ var React = require('react');
 var mui = require('mui');
 var ImageAvatar = mui.ImageAvatar;
 var List = mui.List;
-var ListDivider = mui.ListDivider;
 var ListItem = mui.ListItem;
 var ComponentDoc = require('../../component-doc.jsx');
 var ActionGrade = require('../../svg-icons/action-grade.jsx');
@@ -65,10 +64,10 @@ class SnackbarPage extends React.Component {
       }
     ];
 
-    var listStyle = {
+    var containerStyle = {
       border: 'solid 1px #ddd',
       float: 'left',
-      width: 360,
+      width: 358,
       marginBottom: 24,
       marginRight: 24
     };
@@ -79,31 +78,33 @@ class SnackbarPage extends React.Component {
         code={code}
         componentInfo={componentInfo}>
 
-        <List style={listStyle}>
-          <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
-          <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
-          <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
-          <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
-          <ListDivider />
-          <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
-          <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
-          <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
-          <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
-        </List>
-
-        <List style={listStyle}>
-          <ListItem leftAvatar={<ImageAvatar src="images/kerem-128.jpg" />}>Kerem Suer</ListItem>
-          <ListItem leftAvatar={<ImageAvatar src="images/raquelromanp-128.jpg" />}>Raquel Parrado</ListItem>
-          <ListItem leftAvatar={<ImageAvatar src="images/kolage-128.jpg" />}>Eric Hoffman</ListItem>
-          <ListItem leftAvatar={<ImageAvatar src="images/ok-128.jpg" />}>Brendan Lim</ListItem>
-          <ListItem leftAvatar={<ImageAvatar src="images/uxceo-128.jpg" />}>Grace Ng</ListItem>
-          <ListDivider />
-          <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
-          <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
-          <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
-          <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
-        </List>
-
+        <div style={containerStyle}>
+          <List padTop={true} showBottomDivider={true}>
+            <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
+            <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
+            <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
+            <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+          </List>
+          <List padTop={true}>
+            <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
+            <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
+            <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
+            <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
+          </List>
+        </div>
+        <div style={containerStyle}>
+          <List>
+            <ListItem leftAvatar={<ImageAvatar src="images/kerem-128.jpg" />}>Kerem Suer</ListItem>
+            <ListItem leftAvatar={<ImageAvatar src="images/raquelromanp-128.jpg" />}>Raquel Parrado</ListItem>
+            <ListItem leftAvatar={<ImageAvatar src="images/kolage-128.jpg" />}>Eric Hoffman</ListItem>
+            <ListItem leftAvatar={<ImageAvatar src="images/ok-128.jpg" />}>Brendan Lim</ListItem>
+            <ListItem leftAvatar={<ImageAvatar src="images/uxceo-128.jpg" />}>Grace Ng</ListItem>
+            <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
+            <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
+            <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
+            <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
+          </List>
+        </div>
 
       </ComponentDoc>
     );
