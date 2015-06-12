@@ -4,6 +4,7 @@ var ImageAvatar = mui.ImageAvatar;
 var List = mui.List;
 var ListItem = mui.ListItem;
 var ComponentDoc = require('../../component-doc.jsx');
+var MobileTearSheet = require('../../mobile-tear-sheet.jsx');
 var ActionGrade = require('../../svg-icons/action-grade.jsx');
 var ActionInfo = require('../../svg-icons/action-info.jsx');
 var CommunicationChatBubble = require('../../svg-icons/communication-chat-bubble.jsx');
@@ -65,21 +66,13 @@ class SnackbarPage extends React.Component {
       }
     ];
 
-    var containerStyle = {
-      border: 'solid 1px #ddd',
-      float: 'left',
-      width: 358,
-      marginBottom: 24,
-      marginRight: 24
-    };
-
     return (
       <ComponentDoc
         name="Lists"
         code={code}
         componentInfo={componentInfo}>
 
-        <div style={containerStyle}>
+        <MobileTearSheet>
           <List showBottomDivider={true}>
             <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
             <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
@@ -92,8 +85,9 @@ class SnackbarPage extends React.Component {
             <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
             <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
           </List>
-        </div>
-        <div style={containerStyle}>
+        </MobileTearSheet>
+
+        <MobileTearSheet>
           <List subheader="Recent chats" showBottomDivider={true}>
             <ListItem
               leftAvatar={<ImageAvatar src="images/ok-128.jpg" />}
@@ -131,7 +125,7 @@ class SnackbarPage extends React.Component {
               James Anderson
             </ListItem>
           </List>
-        </div>
+        </MobileTearSheet>
 
       </ComponentDoc>
     );
