@@ -5,6 +5,7 @@ var ListDivider = mui.ListDivider;
 var ListItem = mui.ListItem;
 var ComponentDoc = require('../../component-doc.jsx');
 var ActionGrade = require('../../svg-icons/action-grade.jsx');
+var ActionInfo = require('../../svg-icons/action-info.jsx');
 var ContentDrafts = require('../../svg-icons/content-drafts.jsx');
 var ContentInbox = require('../../svg-icons/content-inbox.jsx');
 var ContentSend = require('../../svg-icons/content-send.jsx');
@@ -80,10 +81,10 @@ class SnackbarPage extends React.Component {
           <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
           <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
           <ListDivider />
-          <ListItem>All mail</ListItem>
-          <ListItem>Trash</ListItem>
-          <ListItem>Spam</ListItem>
-          <ListItem>Follow up</ListItem>
+          <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
+          <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
+          <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
+          <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
         </List>
 
       </ComponentDoc>

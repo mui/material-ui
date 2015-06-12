@@ -16,6 +16,7 @@ var ListItem = React.createClass({
     leftIcon: React.PropTypes.element,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
+    rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node
   },
 
@@ -36,6 +37,7 @@ var ListItem = React.createClass({
       leftIcon,
       onMouseOut,
       onMouseOver,
+      rightIcon,
       style,
       ...other
     } = this.props;
@@ -61,23 +63,35 @@ var ListItem = React.createClass({
         paddingLeft: leftIcon ? 72 : 16
       },
 
-      leftIcon: {
+      icons: {
         display: 'block',
-        width: 24,
-        height: 24,
         position: 'absolute',
         top: 0,
-        left: 0,
         padding: '12px 16px',
         opacity: 0.6
+      },
+
+      leftIcon: { 
+        left: 0
+      },
+
+      rightIcon: {
+        right: 0
       }
     };
 
     var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
-    var mergedLeftIconStyles = leftIcon ? this.mergeStyles(styles.leftIcon, leftIcon.props.style) : null;
+    var mergedLeftIconStyles = leftIcon ? 
+      this.mergeStyles(styles.icons, styles.leftIcon, leftIcon.props.style) : null;
+    var mergedRightIconStyles = rightIcon ? 
+      this.mergeStyles(styles.icons, styles.rightIcon, rightIcon.props.style) : null;
 
     var leftIconElement = leftIcon ? React.cloneElement(leftIcon, {
       style: mergedLeftIconStyles
+    }) : null;
+
+    var rightIconElement = rightIcon ? React.cloneElement(rightIcon, {
+      style: mergedRightIconStyles
     }) : null;
 
     return (
@@ -88,8 +102,9 @@ var ListItem = React.createClass({
         onMouseOver={this._handleMouseOver}
         style={mergedRootStyles}>
         <div style={styles.innerDiv}>
-          {leftIconElement}
           {this.props.children}
+          {leftIconElement}
+          {rightIconElement}
         </div>
       </EnhancedButton>
     );
