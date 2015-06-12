@@ -4,6 +4,10 @@ var List = mui.List;
 var ListDivider = mui.ListDivider;
 var ListItem = mui.ListItem;
 var ComponentDoc = require('../../component-doc.jsx');
+var ActionGrade = require('../../svg-icons/action-grade.jsx');
+var ContentDrafts = require('../../svg-icons/content-drafts.jsx');
+var ContentInbox = require('../../svg-icons/content-inbox.jsx');
+var ContentSend = require('../../svg-icons/content-send.jsx');
 
 class SnackbarPage extends React.Component {
 
@@ -23,6 +27,12 @@ class SnackbarPage extends React.Component {
       {
         name: 'Props',
         infoArray: [
+          {
+            name: 'leftIcon',
+            type: 'element',
+            header: 'optional',
+            desc: 'Can be an SvgIcon or a FontIcon element.'
+          },
           {
             name: 'secondaryText',
             type: 'node',
@@ -55,7 +65,7 @@ class SnackbarPage extends React.Component {
 
     var listStyle = {
       border: 'solid 1px #ddd',
-      width: 360
+      maxWidth: 360
     };
 
     return (
@@ -65,10 +75,10 @@ class SnackbarPage extends React.Component {
         componentInfo={componentInfo}>
 
         <List style={listStyle}>
-          <ListItem>Inbox</ListItem>
-          <ListItem>Starred</ListItem>
-          <ListItem>Sent mail</ListItem>
-          <ListItem>Drafts</ListItem>
+          <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
+          <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
+          <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
+          <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
           <ListDivider />
           <ListItem>All mail</ListItem>
           <ListItem>Trash</ListItem>

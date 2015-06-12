@@ -13,6 +13,7 @@ var ListItem = React.createClass({
   },
 
   propTypes: {
+    leftIcon: React.PropTypes.element,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
     secondaryText: React.PropTypes.node
@@ -32,6 +33,7 @@ var ListItem = React.createClass({
   render: function() {
 
     var {
+      leftIcon,
       onMouseOut,
       onMouseOver,
       style,
@@ -39,23 +41,44 @@ var ListItem = React.createClass({
     } = this.props;
 
     var textColor = this.context.muiTheme.palette.textColor;
-    var hoverColor = ColorManipulator.fade(textColor, 0.05);
+    var hoverColor = ColorManipulator.fade(textColor, 0.03);
 
-    var mergedStyles = this.mergeAndPrefix({
-      backgroundColor: this.state.hovered ? hoverColor : null,
-      color: textColor,
-      display: 'block',
-      fontSize: 16,
-      lineHeight: '16px',
-      overflow: 'hidden',
-      position: 'relative',
-      transition: Transitions.easeOut()
-    }, style);
+    var styles = {
+      root: {
+        backgroundColor: this.state.hovered ? hoverColor : null,
+        color: textColor,
+        display: 'block',
+        fontSize: 16,
+        lineHeight: '16px',
+        overflow: 'hidden',
+        position: 'relative',
+        transition: Transitions.easeOut()
+      },
 
-    //This inner div is need so that ripples will span the entire container
-    var innerDivStyle = {
-      padding: 16
+      //This inner div is need so that ripples will span the entire container
+      innerDiv: {
+        padding: 16,
+        paddingLeft: leftIcon ? 72 : 16
+      },
+
+      leftIcon: {
+        display: 'block',
+        width: 24,
+        height: 24,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        padding: '12px 16px',
+        opacity: 0.6
+      }
     };
+
+    var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    var mergedLeftIconStyles = leftIcon ? this.mergeStyles(styles.leftIcon, leftIcon.props.style) : null;
+
+    var leftIconElement = leftIcon ? React.cloneElement(leftIcon, {
+      style: mergedLeftIconStyles
+    }) : null;
 
     return (
       <EnhancedButton
@@ -63,8 +86,9 @@ var ListItem = React.createClass({
         linkButton={true}
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
-        style={mergedStyles}>
-        <div style={innerDivStyle}>
+        style={mergedRootStyles}>
+        <div style={styles.innerDiv}>
+          {leftIconElement}
           {this.props.children}
         </div>
       </EnhancedButton>
