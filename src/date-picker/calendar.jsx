@@ -212,7 +212,8 @@ var Calendar = React.createClass({
   },
 
   _addSelectedMonths: function(months) {
-    this._setSelectedDate(DateTime.addMonths(this.state.selectedDate, months));
+    var isNavigation = true;
+    this._setSelectedDate(DateTime.addMonths(this.state.selectedDate, months), null, isNavigation);
   },
 
   _addSelectedYears: function(years) {
@@ -232,7 +233,7 @@ var Calendar = React.createClass({
     }
   },
 
-  _setSelectedDate: function(date, e) {
+  _setSelectedDate: function(date, e, isNavigation) {
     var adjustedDate = date;
     if (DateTime.isBeforeDate(date, this.props.minDate)) {
       adjustedDate = this.props.minDate;
@@ -249,7 +250,7 @@ var Calendar = React.createClass({
         selectedDate: adjustedDate
       });
     }
-    if(this.props.onSelectedDate) this.props.onSelectedDate(e, date);
+    if(this.props.onSelectedDate) this.props.onSelectedDate(e, date, isNavigation);
   },
 
   _handleDayTouchTap: function(e, date) {
