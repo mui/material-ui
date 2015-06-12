@@ -73,8 +73,8 @@ var ClockMinutes = React.createClass({
      var ne = e.nativeEvent;
 
      var pos = {
-        x: ne.offsetX==undefined ? ne.layerX : ne.offsetX,
-        y: ne.offsetY==undefined ? ne.layerY : ne.offsetY
+        x: ne.offsetX === undefined ? ne.layerX : ne.offsetX,
+        y: ne.offsetY === undefined ? ne.layerY : ne.offsetY
      };
   
      var minutes = this.getMinutes(pos.x, pos.y)
