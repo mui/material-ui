@@ -10,6 +10,7 @@ var Typography = mui.Styles.Typography;
 var ThemeManager = new mui.Styles.ThemeManager();
 
 var { AppBar, AppBarGroup, AppBarTitle, AppCanvas, Menu, IconButton } = mui;
+var { DropDownMenu, RaisedButton } = mui
 
 class Master extends React.Component {
 
@@ -53,6 +54,26 @@ class Master extends React.Component {
       this.context.router.isActive('customization') ? 'Customization' :
       this.context.router.isActive('components') ? 'Components' : '';
 
+    var githubButton = (
+      <IconButton
+        iconStyle={styles.iconButton}
+        iconClassName="muidocs-icon-custom-github"
+        href="https://github.com/callemall/material-ui"
+        linkButton={true} />
+    );
+
+  	var filterOptions = [
+  	  { payload: '1', text: 'All Broadcasts' },
+  	  { payload: '2', text: 'All Voice' },
+  	  { payload: '3', text: 'All Text' },
+  	  { payload: '4', text: 'Complete Voice' },
+  	  { payload: '5', text: 'Complete Text' },
+  	  { payload: '6', text: 'Active Voice' },
+  	  { payload: '7', text: 'Active Text' },
+  	];
+
+    console.log(AppBarGroup)
+
     return (
       <AppCanvas>
         <AppBar onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
@@ -60,8 +81,10 @@ class Master extends React.Component {
                 zDepth={1}
                 iconElementRight={githubButton}>
       	  <AppBarGroup style={{ float: 'left' }}>
+      	    <DropDownMenu menuItems={filterOptions} />
       	  </AppBarGroup>
           <AppBarGroup style={{ float: 'right' }}>
+            <RaisedButton label="Create Broadcast" primary={true} />
       	  </AppBarGroup>
       	</AppBar>
 
