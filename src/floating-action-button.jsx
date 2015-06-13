@@ -23,6 +23,7 @@ var RaisedButton = React.createClass({
   },
 
   propTypes: {
+    disabled: React.PropTypes.bool,
     iconClassName: React.PropTypes.string,
     iconStyle: React.PropTypes.object,
     mini: React.PropTypes.bool,

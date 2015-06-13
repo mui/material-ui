@@ -16,6 +16,7 @@ var RaisedButton = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
+    disabled: React.PropTypes.bool,
     label: function(props, propName, componentName){
       if (!props.children && !props.label) {
         return new Error('Warning: Required prop `label` or `children` was not specified in `'+ componentName + '`.')
