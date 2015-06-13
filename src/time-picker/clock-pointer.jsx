@@ -72,8 +72,10 @@ var ClockPointer = React.createClass({
         left: 'calc(50% - 1px)',
         position: "absolute",
         bottom: "50%",
+        WebkitTransformOrigin: "bottom",
         transformOrigin: "bottom",
         pointerEvents: "none",
+        WebkitTransform: "rotateZ(" + angle + "deg)",
         transform: "rotateZ(" + angle + "deg)"
       },
       mark: {
