@@ -78,8 +78,7 @@ var AppBarGroup = React.createClass({
         style: {
           marginTop: (this.getTheme().height - iconButtonSize) / 2,
           float: 'left',
-          marginRight: 8,
-          marginLeft: 8,
+          marginRight: 8
         },
         iconStyle: {
           fill: this.getTheme().textColor,

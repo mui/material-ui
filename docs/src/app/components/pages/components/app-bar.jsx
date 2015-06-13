@@ -125,7 +125,7 @@ class AppBarPage extends React.Component {
         code={this.code}
         desc={this.desc}
         componentInfo={this.componentInfo}>
-          <AppBar noGutter={true}>
+          <AppBar>
             <AppBarGroup key={0} float="left">
               <DropDownMenu menuItems={filterOptions} />
             </AppBarGroup>

@@ -63,7 +63,7 @@ class Master extends React.Component {
 
     return (
       <AppCanvas>
-        <AppBar zDepth={1} noGutter={true}>
+        <AppBar zDepth={1}>
       	  <AppBarGroup key={0} style={{ float: 'left' }}>
             <IconButton onTouchTap={this._onLeftIconButtonTouchTap}>
               <SvgIcon>
