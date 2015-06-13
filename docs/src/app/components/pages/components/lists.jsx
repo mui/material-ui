@@ -28,20 +28,91 @@ class SnackbarPage extends React.Component {
   }
 
   render() {
-    var code =
-      '<List>\n' +
-      '  <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>\n' +
-      '  <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>\n' +
-      '  <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>\n' +
-      '  <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>\n' +
-      '</List>\n' +
-      '<ListDivider />\n' +
-      '<List>\n' +
-      '  <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>\n' +
-      '  <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>\n' +
-      '  <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>\n' +
-      '  <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>\n' +
-      '</List>';
+   
+    var code = `
+      //First Example
+      <List>
+        <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
+        <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
+        <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
+        <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+      </List>
+      <ListDivider />
+      <List>
+        <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
+        <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
+        <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
+        <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
+      </List>
+
+      //Last Example
+      <List subheader="Today">
+        <ListItem
+          leftAvatar={<Avatar src="images/ok-128.jpg" />}
+          rightIcon={<ToggleStarBorder />}
+          secondaryText={
+            <p>
+              <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>
+              I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
+            </p>
+          }
+          secondaryTextLines={2}>
+          Brendan Lim
+        </ListItem>
+        <ListDivider inset={true} />
+        <ListItem
+          leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+          rightIcon={<ToggleStarBorder />}
+          secondaryText={
+            <p>
+              <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>
+              Wish I could come, but I&apos;m out of town this weekend.
+            </p>
+          }
+          secondaryTextLines={2}>
+          me, Scott, Jennifer
+        </ListItem>
+        <ListDivider inset={true} />
+        <ListItem
+          leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+          rightIcon={<ToggleStarBorder />}
+          secondaryText={
+            <p>
+              <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>
+              Do you have any Paris recs? Have you ever been?
+            </p>
+          }
+          secondaryTextLines={2}>
+          Grace Ng
+        </ListItem>
+        <ListDivider inset={true} />
+        <ListItem
+          leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+          rightIcon={<ToggleStarBorder />}
+          secondaryText={
+            <p>
+              <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>
+              Do you have any ideas what we can get Heidi for her birthday? How about a pony?
+            </p>
+          }
+          secondaryTextLines={2}>
+          Kerem Suer
+        </ListItem>
+        <ListDivider inset={true} />
+        <ListItem
+          leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+          rightIcon={<ToggleStarBorder />}
+          secondaryText={
+            <p>
+              <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>
+              We should eat this: grated squash. Corn and tomatillo tacos.
+            </p>
+          }
+          secondaryTextLines={2}>
+          Raquel Parrado
+        </ListItem>
+      </List>
+    `;
 
     var componentInfo = [
       {
@@ -285,37 +356,67 @@ class SnackbarPage extends React.Component {
           <List subheader="Today">
             <ListItem
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Brendan Lim</span> -- I&apos;ll be in your neighborhood this weekend.</p>}>
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Brendan Lim</span> -- 
+                  I&apos;ll be in your neighborhood this weekend.
+                </p>
+              }>
               Brunch this weekend?
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> -- Wish I could but I can</p>}>
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> -- 
+                  Wish I could but I can
+                </p>
+              }>
               Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span>
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Grace Ng</span> -- Do you have Paris recommendations?</p>}>
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Grace Ng</span> -- 
+                  Do you have Paris recommendations?
+                </p>
+              }>
               Oui oui
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Kerem Suer</span> -- Do you have any ideas on what I</p>}>
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Kerem Suer</span> -- 
+                  Do you have any ideas on what I
+                </p>
+              }>
               Birthday gift
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Raquel Parrado</span> -- We should eat this: grated cheese</p>}>
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> -- 
+                  We should eat this: grated cheese
+                </p>
+              }>
               Recipe to try
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/chexee-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Chelsea Otakan</span> -- Any interest in seeing the Giants</p>}>
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Chelsea Otakan</span> -- 
+                  Any interest in seeing the Giants
+                </p>
+              }>
               Giants game
             </ListItem>
           </List>
@@ -325,35 +426,60 @@ class SnackbarPage extends React.Component {
           <List subheader="Today">
             <ListItem
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Brendan Lim</span> -- I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>}
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Brendan Lim</span> -- 
+                  I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
+                </p>
+              }
               secondaryTextLines={2}>
               Brunch this weekend?
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> -- Wish I could come, but I&apos;m out of town this weekend.</p>}
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> -- 
+                  Wish I could come, but I&apos;m out of town this weekend.
+                </p>
+              }
               secondaryTextLines={2}>
               Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span>
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Grace Ng</span> -- Do you have Paris recommendations? Have you ever been?</p>}
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Grace Ng</span> -- 
+                  Do you have Paris recommendations? Have you ever been?
+                </p>
+              }
               secondaryTextLines={2}>
               Oui oui
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Kerem Suer</span> -- Do you have any ideas what we can get Heidi for her birthday? How about a pony?</p>}
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Kerem Suer</span> -- 
+                  Do you have any ideas what we can get Heidi for her birthday? How about a pony?
+                </p>
+              }
               secondaryTextLines={2}>
               Birthday gift
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Raquel Parrado</span> -- We should eat this: grated squash. Corn and tomatillo tacos.</p>}
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> -- 
+                  We should eat this: grated squash. Corn and tomatillo tacos.
+                </p>
+              }
               secondaryTextLines={2}>
               Recipe to try
             </ListItem>
@@ -365,7 +491,12 @@ class SnackbarPage extends React.Component {
             <ListItem
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
               rightIcon={<ToggleStarBorder />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>}
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>
+                  I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
+                </p>
+              }
               secondaryTextLines={2}>
               Brendan Lim
             </ListItem>
@@ -373,7 +504,12 @@ class SnackbarPage extends React.Component {
             <ListItem
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
               rightIcon={<ToggleStarBorder />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>Wish I could come, but I&apos;m out of town this weekend.</p>}
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>
+                  Wish I could come, but I&apos;m out of town this weekend.
+                </p>
+              }
               secondaryTextLines={2}>
               me, Scott, Jennifer
             </ListItem>
@@ -381,7 +517,12 @@ class SnackbarPage extends React.Component {
             <ListItem
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
               rightIcon={<ToggleStarBorder />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Oui oui</span><br/>Do you have any Paris recs? Have you ever been?</p>}
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>
+                  Do you have any Paris recs? Have you ever been?
+                </p>
+              }
               secondaryTextLines={2}>
               Grace Ng
             </ListItem>
@@ -389,7 +530,12 @@ class SnackbarPage extends React.Component {
             <ListItem
               leftAvatar={<Avatar src="images/kerem-128.jpg" />}
               rightIcon={<ToggleStarBorder />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>Do you have any ideas what we can get Heidi for her birthday? How about a pony?</p>}
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>
+                  Do you have any ideas what we can get Heidi for her birthday? How about a pony?
+                </p>
+              }
               secondaryTextLines={2}>
               Kerem Suer
             </ListItem>
@@ -397,7 +543,12 @@ class SnackbarPage extends React.Component {
             <ListItem
               leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
               rightIcon={<ToggleStarBorder />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>We should eat this: grated squash. Corn and tomatillo tacos.</p>}
+              secondaryText={
+                <p>
+                  <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>
+                  We should eat this: grated squash. Corn and tomatillo tacos.
+                </p>
+              }
               secondaryTextLines={2}>
               Raquel Parrado
             </ListItem>
