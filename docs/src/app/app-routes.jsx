@@ -24,6 +24,7 @@ var DropDownMenu = require('./components/pages/components/drop-down-menu.jsx');
 var Icons = require('./components/pages/components/icons.jsx');
 var IconButtons = require('./components/pages/components/icon-buttons.jsx');
 var LeftNav = require('./components/pages/components/left-nav.jsx');
+var Lists = require('./components/pages/components/lists.jsx');
 var Menus = require('./components/pages/components/menus.jsx');
 var Paper = require('./components/pages/components/paper.jsx');
 var Progress = require('./components/pages/components/progress.jsx');
@@ -65,6 +66,7 @@ var AppRoutes = (
       <Route name="icons" handler={Icons} />
       <Route name="icon-buttons" handler={IconButtons} />
       <Route name="left-nav" handler={LeftNav} />
+      <Route name="lists" handler={Lists} />
       <Route name="menus" handler={Menus} />
       <Route name="paper" handler={Paper} />
       <Route name="progress" handler={Progress} />
