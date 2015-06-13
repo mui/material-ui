@@ -19,6 +19,7 @@ var ContentInbox = require('../../svg-icons/content-inbox.jsx');
 var ContentSend = require('../../svg-icons/content-send.jsx');
 var EditorInsertChart = require('../../svg-icons/editor-insert-chart.jsx');
 var FileFolder = require('../../svg-icons/file-folder.jsx');
+var ToggleStarBorder = require('../../svg-icons/toggle-star-border.jsx');
 
 class SnackbarPage extends React.Component {
 
@@ -249,13 +250,13 @@ class SnackbarPage extends React.Component {
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>to Alex, Scott, Jennifer</span> -- Wish I could but I can</p>}>
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> -- Wish I could but I can</p>}>
               Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span>
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-              secondaryText={<p><span style={{color: Colors.darkBlack}}>Grace Ng</span> -- Do you have Paris reconciliation</p>}>
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Grace Ng</span> -- Do you have Paris recommendations?</p>}>
               Oui oui
             </ListItem>
             <ListDivider inset={true} />
@@ -275,6 +276,89 @@ class SnackbarPage extends React.Component {
               leftAvatar={<Avatar src="images/chexee-128.jpg" />}
               secondaryText={<p><span style={{color: Colors.darkBlack}}>Chelsea Otakan</span> -- Any interest in seeing the Giants</p>}>
               Giants game
+            </ListItem>
+          </List>
+        </MobileTearSheet>
+
+        <MobileTearSheet>
+          <List subheader="Today">
+            <ListItem
+              leftAvatar={<Avatar src="images/ok-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Brendan Lim</span> -- I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>}
+              secondaryTextLines={2}>
+              Brunch this weekend?
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> -- Wish I could come, but I&apos;m out of town this weekend.</p>}
+              secondaryTextLines={2}>
+              Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span>
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Grace Ng</span> -- Do you have Paris recommendations? Have you ever been?</p>}
+              secondaryTextLines={2}>
+              Oui oui
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Kerem Suer</span> -- Do you have any ideas what we can get Heidi for her birthday? How about a pony?</p>}
+              secondaryTextLines={2}>
+              Birthday gift
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Raquel Parrado</span> -- We should eat this: grated squash. Corn and tomatillo tacos.</p>}
+              secondaryTextLines={2}>
+              Recipe to try
+            </ListItem>
+          </List>
+        </MobileTearSheet>
+
+        <MobileTearSheet>
+          <List subheader="Today">
+            <ListItem
+              leftAvatar={<Avatar src="images/ok-128.jpg" />}
+              rightIcon={<ToggleStarBorder />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>}
+              secondaryTextLines={2}>
+              Brendan Lim
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+              rightIcon={<ToggleStarBorder />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>Wish I could come, but I&apos;m out of town this weekend.</p>}
+              secondaryTextLines={2}>
+              me, Scott, Jennifer
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+              rightIcon={<ToggleStarBorder />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Oui oui</span><br/>Do you have any Paris recs? Have you ever been?</p>}
+              secondaryTextLines={2}>
+              Grace Ng
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+              rightIcon={<ToggleStarBorder />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>Do you have any ideas what we can get Heidi for her birthday? How about a pony?</p>}
+              secondaryTextLines={2}>
+              Kerem Suer
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+              rightIcon={<ToggleStarBorder />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>We should eat this: grated squash. Corn and tomatillo tacos.</p>}
+              secondaryTextLines={2}>
+              Raquel Parrado
             </ListItem>
           </List>
         </MobileTearSheet>

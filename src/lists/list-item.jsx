@@ -58,6 +58,10 @@ var ListItem = React.createClass({
 
     var textColor = this.context.muiTheme.palette.textColor;
     var hoverColor = ColorManipulator.fade(textColor, 0.03);
+    var singleAvatar = !secondaryText && leftAvatar;
+    var singleNoAvatar = !secondaryText && !leftAvatar;
+    var twoLine = secondaryText && secondaryTextLines === 1;
+    var threeLine = secondaryText && secondaryTextLines > 1;
 
     var styles = {
       root: {
@@ -73,9 +77,10 @@ var ListItem = React.createClass({
 
       //This inner div is need so that ripples will span the entire container
       innerDiv: {
-        padding: leftAvatar || secondaryText ? '20px 16px' : 16,
         paddingLeft: leftIcon || leftAvatar || insetChildren ? 72 : 16,
-        paddingBottom: secondaryText ? 18 : 20
+        paddingRight: rightIcon ? 56 : 16,
+        paddingBottom: singleAvatar ? 20 : 16,
+        paddingTop: singleNoAvatar || threeLine ? 16 : 20
       },
 
       icons: {
@@ -83,7 +88,7 @@ var ListItem = React.createClass({
         width: 24,
         display: 'block',
         position: 'absolute',
-        top: secondaryText ? 12 : leftAvatar ? 4 : 0,
+        top: twoLine ? 12 : singleAvatar ? 4 : 0,
         padding: 12
       },
 
@@ -101,19 +106,25 @@ var ListItem = React.createClass({
 
       leftAvatar: {
         position: 'absolute',
-        top: secondaryText ? 16 : 8,
+        top: singleAvatar ? 8 : 16,
         left: 16
       },
 
       secondaryText: {
         fontSize: 14,
-        lineHeight: '14px',
-        padding: '2px 0px',
+        lineHeight: threeLine ? '18px' : '16px',
+        height: threeLine ? 36 : 16,
         margin: 0,
+        marginTop: 4,
         color: Typography.textLightBlack,
+
+        //needed for 2 and 3 line ellipsis
         overflow: 'hidden',
         textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap'
+        whiteSpace: threeLine ? null : 'nowrap',
+        display: threeLine ? '-webkit-box' : null,
+        WebkitLineClamp: threeLine ? 2 : null,
+        WebkitBoxOrient: threeLine ? 'vertical' : null
       }
     };
 
