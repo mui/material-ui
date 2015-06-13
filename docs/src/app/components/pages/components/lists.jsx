@@ -4,6 +4,7 @@ var Avatar = mui.Avatar;
 var Checkbox = mui.Checkbox;
 var Colors = mui.Styles.Colors;
 var List = mui.List;
+var ListDivider = mui.ListDivider;
 var ListItem = mui.ListItem;
 var ComponentDoc = require('../../component-doc.jsx');
 var MobileTearSheet = require('../../mobile-tear-sheet.jsx');
@@ -80,12 +81,13 @@ class SnackbarPage extends React.Component {
         componentInfo={componentInfo}>
 
         <MobileTearSheet>
-          <List showBottomDivider={true}>
+          <List>
             <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
             <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
             <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
             <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
           </List>
+          <ListDivider />
           <List>
             <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
             <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
@@ -95,7 +97,7 @@ class SnackbarPage extends React.Component {
         </MobileTearSheet>
 
         <MobileTearSheet>
-          <List subheader="Recent chats" showBottomDivider={true}>
+          <List subheader="Recent chats">
             <ListItem
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
               rightIcon={<CommunicationChatBubble />}>
@@ -122,6 +124,7 @@ class SnackbarPage extends React.Component {
               Raquel Parrado
             </ListItem>
           </List>
+          <ListDivider />
           <List subheader="Previous chats">
             <ListItem
               leftAvatar={<Avatar src="images/chexee-128.jpg" />}>
@@ -135,7 +138,7 @@ class SnackbarPage extends React.Component {
         </MobileTearSheet>
 
         <MobileTearSheet>
-          <List subheader="Folders" showBottomDivider={true} insetSubheader={true}>
+          <List subheader="Folders" insetSubheader={true}>
             <ListItem
               leftAvatar={<Avatar icon={<FileFolder />} />}
               rightIcon={<ActionInfo />}
@@ -155,6 +158,7 @@ class SnackbarPage extends React.Component {
               Work
             </ListItem>
           </List>
+          <ListDivider inset={true} />
           <List subheader="Files" insetSubheader={true}>
             <ListItem
               leftAvatar={<Avatar icon={<ActionAssignment />} iconBgColor={Colors.blue500} />}
@@ -172,7 +176,7 @@ class SnackbarPage extends React.Component {
         </MobileTearSheet>
 
         <MobileTearSheet>
-          <List subheader="General" showBottomDivider={true}>
+          <List subheader="General">
             <ListItem
               secondaryText="Change your Google+ profile photo">
               Profile photo
@@ -182,6 +186,7 @@ class SnackbarPage extends React.Component {
               Show your status
             </ListItem>
           </List>
+          <ListDivider />
           <List subheader="Hangout notifications">
             <ListItem
               disableTouchTap={true}
@@ -205,7 +210,7 @@ class SnackbarPage extends React.Component {
         </MobileTearSheet>
 
         <MobileTearSheet>
-          <List showBottomDivider={true} insetBottomDivider={true}>
+          <List>
             <ListItem
               leftIcon={<CommunicationCall style={{fill: Colors.indigo500}} />}
               rightIcon={<CommunicationChatBubble />}
@@ -219,6 +224,7 @@ class SnackbarPage extends React.Component {
               (323) 555-6789
             </ListItem>
           </List>
+          <ListDivider inset={true} />
           <List>
             <ListItem
               leftIcon={<CommunicationEmail style={{fill: Colors.indigo500}} />}
@@ -229,6 +235,46 @@ class SnackbarPage extends React.Component {
               insetChildren={true}
               secondaryText="Work">
               ali_connors@example.com
+            </ListItem>
+          </List>
+        </MobileTearSheet>
+
+        <MobileTearSheet>
+          <List subheader="Today">
+            <ListItem
+              leftAvatar={<Avatar src="images/ok-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Brendan Lim</span> -- I&apos;ll be in your neighborhood this weekend.</p>}>
+              Brunch this weekend?
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>to Alex, Scott, Jennifer</span> -- Wish I could but I can</p>}>
+              Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span>
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Grace Ng</span> -- Do you have Paris reconciliation</p>}>
+              Oui oui
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Kerem Suer</span> -- Do you have any ideas on what I</p>}>
+              Birthday gift
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Raquel Parrado</span> -- We should eat this: grated cheese</p>}>
+              Recipe to try
+            </ListItem>
+            <ListDivider inset={true} />
+            <ListItem
+              leftAvatar={<Avatar src="images/chexee-128.jpg" />}
+              secondaryText={<p><span style={{color: Colors.darkBlack}}>Chelsea Otakan</span> -- Any interest in seeing the Giants</p>}>
+              Giants game
             </ListItem>
           </List>
         </MobileTearSheet>

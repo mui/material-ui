@@ -24,6 +24,7 @@ var ListItem = React.createClass({
     rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2]),
+    showBottomDivider: React.PropTypes.bool
   },
 
   getDefaultProps: function() {
@@ -50,6 +51,7 @@ var ListItem = React.createClass({
       rightIcon,
       secondaryText,
       secondaryTextLines,
+      showBottomDivider,
       style,
       ...other
     } = this.props;
@@ -72,7 +74,8 @@ var ListItem = React.createClass({
       //This inner div is need so that ripples will span the entire container
       innerDiv: {
         padding: leftAvatar || secondaryText ? '20px 16px' : 16,
-        paddingLeft: leftIcon || leftAvatar || insetChildren ? 72 : 16
+        paddingLeft: leftIcon || leftAvatar || insetChildren ? 72 : 16,
+        paddingBottom: secondaryText ? 18 : 20
       },
 
       icons: {
@@ -105,8 +108,12 @@ var ListItem = React.createClass({
       secondaryText: {
         fontSize: 14,
         lineHeight: '14px',
-        paddingTop: 2,
-        color: Typography.textLightBlack
+        padding: '2px 0px',
+        margin: 0,
+        color: Typography.textLightBlack,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap'
       }
     };
 
