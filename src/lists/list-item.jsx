@@ -23,8 +23,7 @@ var ListItem = React.createClass({
     onMouseOver: React.PropTypes.func,
     rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
-    secondaryTextLines: React.PropTypes.oneOf([1, 2]),
-    showBottomDivider: React.PropTypes.bool
+    secondaryTextLines: React.PropTypes.oneOf([1, 2])
   },
 
   getDefaultProps: function() {
@@ -51,7 +50,6 @@ var ListItem = React.createClass({
       rightIcon,
       secondaryText,
       secondaryTextLines,
-      showBottomDivider,
       style,
       ...other
     } = this.props;

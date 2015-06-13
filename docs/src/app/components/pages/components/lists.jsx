@@ -30,46 +30,87 @@ class SnackbarPage extends React.Component {
   render() {
     var code =
       '<List>\n' +
-      '  <ListItem>Single Line</ListItem>\n' +
-      '  <ListItem>Single Line</ListItem>\n' +
-      '  <ListItem>Single Line</ListItem>\n' +
+      '  <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>\n' +
+      '  <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>\n' +
+      '  <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>\n' +
+      '  <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>\n' +
+      '</List>\n' +
+      '<ListDivider />\n' +
+      '<List>\n' +
+      '  <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>\n' +
+      '  <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>\n' +
+      '  <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>\n' +
+      '  <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>\n' +
       '</List>';
 
     var componentInfo = [
       {
-        name: 'Props',
+        name: 'List Props',
         infoArray: [
+          {
+            name: 'insetSubheader',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the subheader will be indented by 72px.'
+          },
+          {
+            name: 'subheader',
+            type: 'string',
+            header: 'optional',
+            desc: 'The subheader string that will be displayed at the top of the list.'
+          },
+          {
+            name: 'subheaderStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'The style object to override subheader styles.'
+          }
+        ]
+      },
+      {
+        name: 'ListItem Props',
+        infoArray: [
+          {
+            name: 'disableTouchTap',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the list-item will not be clickable and will not display hover affects.'
+          },
+          {
+            name: 'insetChildren',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the children will be indented by 72px. Only needed if there is no left avatar or left icon.'
+          },
+          {
+            name: 'leftAvatar',
+            type: 'element',
+            header: 'optional',
+            desc: 'This is the avatar element to be displayed on the left side.'
+          },
           {
             name: 'leftIcon',
             type: 'element',
             header: 'optional',
-            desc: 'Can be an SvgIcon or a FontIcon element.'
+            desc: 'This is the SvgIcon or FontIcon to be displayed on the left side.'
+          },
+          {
+            name: 'rightIcon',
+            type: 'element',
+            header: 'optional',
+            desc: 'This is the SvgIcon or FontIcon to be displayed on the right side.'
           },
           {
             name: 'secondaryText',
             type: 'node',
             header: 'optional',
-            desc: 'Secondary text can be a string or element that contains the text that is displayed below the primary text.'
-          }
-        ]
-      },
-      {
-        name: 'Methods',
-        infoArray: [
+            desc: 'This is the block element that contains the secondary text. If a string is passed in, a paragraph tag will be rendered.'
+          },
           {
-            name: 'dismiss',
-            header: 'Snackbar.dismiss()',
-            desc: 'Hides the snackbar.'
-          }
-        ]
-      },
-      {
-        name: 'Events',
-        infoArray: [
-          {
-            name: 'onActionTouchTap',
-            header: 'function(e)',
-            desc: 'Fired when the action button is touchtapped.'
+            name: 'secondaryTextLines',
+            type: 'oneOf [1,2]',
+            header: 'default: 1',
+            desc: 'Can be 1 or 2. This is the number of secondary text lines before ellipsis will show.'
           }
         ]
       }
