@@ -23,7 +23,8 @@ class DropDownMenuPage extends React.Component {
       "   { payload: '4', text: 'Weekends' },\n" +
       "   { payload: '5', text: 'Weekly' },\n" +
       "];\n\n" +
-      "<DropDownMenu menuItems={menuItems} />";
+      "<DropDownMenu menuItems={menuItems} /> \n\n" +
+      "<DropDownMenu menuItems={menuItems} isMultiple={true} />";
 
     var componentInfo = [
       {
@@ -61,6 +62,12 @@ class DropDownMenuPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Overrides the inline-styles of DropDownMenu\'s root element.'
+          },
+          {
+            name: 'isMultiple',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Make drop-down multi-selectable'
           }
         ]
       },
@@ -84,6 +91,12 @@ class DropDownMenuPage extends React.Component {
         componentInfo={componentInfo}>
 
         <DropDownMenu menuItems={menuItems} />
+
+        <br/>
+        <br/>
+
+        <DropDownMenu menuItems={menuItems} isMultiple={true}/>
+
 
       </ComponentDoc>
     );

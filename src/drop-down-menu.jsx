@@ -23,12 +23,14 @@ var DropDownMenu = React.createClass({
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     menuItemStyle: React.PropTypes.object,
-    selectedIndex: React.PropTypes.number
+    selectedIndex: React.PropTypes.number,
+    isMultiple: React.PropTypes.bool
   },
 
   getDefaultProps: function() {
     return {
-      autoWidth: true
+      autoWidth: true,
+      isMultiple: false
     };
   },
 
@@ -36,7 +38,8 @@ var DropDownMenu = React.createClass({
     return {
       open: false,
       isHovered: false,
-      selectedIndex: this.props.selectedIndex || 0
+      selectedIndex: this.props.selectedIndex || 0,
+      selectedItems: []
     }
   },
 
@@ -99,8 +102,13 @@ var DropDownMenu = React.createClass({
         position: 'absolute',
         paddingLeft: this.getSpacing().desktopGutter,
         top: 0,
+        left: 0,
+        right: this.getSpacing().desktopGutterLess + 12,
         opacity: 1,
-        color: this.getTextColor()
+        color: this.getTextColor(),
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap'
       },
       underline: {
         borderTop: 'solid 1px ' + accentColor,
@@ -146,7 +154,7 @@ var DropDownMenu = React.createClass({
           <ClearFix style={this.mergeAndPrefix(styles.control)} onTouchTap={this._onControlClick}>
             <Paper style={this.mergeAndPrefix(styles.controlBg)} zDepth={0} />
             <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen)}>
-              {this.props.menuItems[this.state.selectedIndex].text}
+              {this.props.isMultiple ? this._renderMultipleItems() : this.props.menuItems[this.state.selectedIndex].text}
             </div>
             <DropDownArrow style={this.mergeAndPrefix(styles.icon)}/>
             <div style={this.mergeAndPrefix(styles.underline)}/>
@@ -155,7 +163,8 @@ var DropDownMenu = React.createClass({
           <Menu
             ref="menuItems"
             autoWidth={this.props.autoWidth}
-            selectedIndex={this.state.selectedIndex}
+            selectedIndex={this.props.isMultiple ? -1 : this.state.selectedIndex}
+            selectedItems={this.state.selectedItems}
             menuItems={this.props.menuItems}
             menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.menuItemStyle)}
             hideable={true}
@@ -187,12 +196,33 @@ var DropDownMenu = React.createClass({
     this.setState({ open: !this.state.open });
   },
 
-  _onMenuItemClick: function(e, key, payload) {
+  _onMenuItemClick: function (e, key, payload) {
     if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
+    this.props.isMultiple ? this._handleMultipleSelect(key) : this._handleSingleSelect(key);
+  },
+
+  _handleSingleSelect: function (key) {
     this.setState({
       selectedIndex: key,
       open: false
     });
+  },
+
+  _handleMultipleSelect: function (key) {
+    var selectedItems = this.state.selectedItems;
+    var item = this.props.menuItems[key];
+    var index = selectedItems.indexOf(item);
+
+    ~index ? selectedItems.splice(index, 1) : selectedItems.push(item);
+
+    this.setState({
+      selectedItems: selectedItems,
+      open: true
+    });
+  },
+
+  _renderMultipleItems: function () {
+    return this.state.selectedItems.map(function (item) {return item.text;}).join(', ')
   },
 
   _handleMouseOver: function() {
