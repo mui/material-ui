@@ -41,10 +41,13 @@ var TextField = React.createClass({
   },
 
   getInitialState: function() {
+    var props = this.props;
+    if (props.children)
+      props = props.children.props;
     return {
       errorText: this.props.errorText,
-      hasValue: this.props.value || this.props.defaultValue ||
-        (this.props.valueLink && this.props.valueLink.value)
+      hasValue: props.value || props.defaultValue ||
+        (props.valueLink && props.valueLink.value)
     };
   },
 
@@ -54,20 +57,26 @@ var TextField = React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
     var hasErrorProp = nextProps.hasOwnProperty('errorText');
+    var newState = {};
+
+    if (hasErrorProp) newState.errorText = nextProps.errorText;
+    if (nextProps.children && nextProps.children.props)
+    {
+      nextProps = nextProps.children.props;
+    }
+
     var hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
     var hasValueProp = nextProps.hasOwnProperty('value');
     var hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
-    var newState = {};
 
-    if (hasValueProp) {
-      newState.hasValue = nextProps.value;
-    } else if (hasValueLinkProp) {
+    if (hasValueLinkProp) {
       newState.hasValue = nextProps.valueLink.value;
+    } else if (hasValueProp) {
+      newState.hasValue = nextProps.value;
     } else if (hasNewDefaultValue) {
       newState.hasValue = nextProps.defaultValue;
     }
 
-    if (hasErrorProp) newState.errorText = nextProps.errorText;
     if (newState) this.setState(newState);
   },
 
@@ -234,26 +243,31 @@ var TextField = React.createClass({
       style: this.mergeAndPrefix(styles.input, this.props.inputStyle),
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
+      disabled: this.props.disabled,
       onKeyDown: this._handleInputKeyDown
     };
 
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
     }
-
-    inputElement = this.props.multiLine ? (
-      <EnhancedTextarea
-        {...other}
-        {...inputProps}
+    if (this.props.children) {
+      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props})
+    }
+    else {
+      inputElement = this.props.multiLine ? (
+        <EnhancedTextarea
+          {...other}
+          {...inputProps}
         rows={this.props.rows}
-        onHeightChange={this._handleTextAreaHeightChange}
-        textareaStyle={this.mergeAndPrefix(styles.textarea)} />
-    ) : (
-      <input
-        {...other}
-        {...inputProps}
-        type={this.props.type} />
-    );
+          onHeightChange={this._handleTextAreaHeightChange}
+          textareaStyle={this.mergeAndPrefix(styles.textarea)} />
+      ) : (
+        <input
+          {...other}
+          {...inputProps}
+          type={this.props.type} />
+      );
+    }
 
     var underlineElement = this.props.disabled ? (
       <div style={this.mergeAndPrefix(styles.underlineAfter)}>
@@ -314,7 +328,7 @@ var TextField = React.createClass({
   },
 
   _getInputNode: function() {
-    return this.props.multiLine ?
+    return (this.props.children || this.props.multiLine) ?
       this.refs[this._getRef()].getInputNode() : React.findDOMNode(this.refs[this._getRef()]);
   },
 
@@ -329,6 +343,8 @@ var TextField = React.createClass({
   },
 
   _handleInputFocus: function(e) {
+    if (this.props.disabled)
+      return
     this.setState({isFocused: true});
     if (this.props.onFocus) this.props.onFocus(e);
   },
