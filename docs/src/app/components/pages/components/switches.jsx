@@ -2,64 +2,87 @@ var React = require('react');
 var mui = require('mui');
 var CodeExample = require('../../code-example/code-example.jsx');
 var ComponentDoc = require('../../component-doc.jsx');
+var ToggleStar = require('../../svg-icons/toggle-star.jsx');
+var ToggleStarBorder = require('../../svg-icons/toggle-star-border.jsx');
 var Typography = mui.Styles.Typography;
-var {Checkbox, ClearFix, RadioButton, RadioButtonGroup, Tab, Tabs, Toggle, RaisedButton} = mui;
+var {
+  Checkbox,
+  ClearFix,
+  RadioButton,
+  RadioButtonGroup,
+  Tab,
+  Tabs,
+  Toggle,
+  RaisedButton
+} = mui;
 
 class SwitchesPage extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.codeCheckbox =
-      '//Checkboxes\n' +
-      '<Checkbox\n' +
-      '  name="checkboxName1"\n' +
-      '  value="checkboxValue1"\n' +
-      '  label="went for a run today" />\n' +
-      '<Checkbox\n' +
-      '  name="checkboxName2"\n' +
-      '  value="checkboxValue2"\n' +
-      '  label="fed the dog"\n' +
-      '  defaultChecked={true} />\n' +
-      '<Checkbox\n' +
-      '  name="checkboxName3"\n' +
-      '  value="checkboxValue3"\n' +
-      '  label="built a house on the moon"\n' +
-      '  disabled={true} />';
+    this.codeCheckbox = `
+      <Checkbox
+        name="checkboxName1"
+        value="checkboxValue1"
+        label="went for a run today"/>
 
-    this.codeRadioButton =
-      '//Radio Buttons\n' +
-      '<RadioButtonGroup \n' +
-      '  name="shipSpeed"\n' +
-      '  defaultSelected="not_light">\n' +
-      '    <RadioButton\n' +
-      '      value="light"\n' +
-      '      label="prepare for light speed" />\n' +
-      '    <RadioButton\n' +
-      '      value="not_light"\n' +
-      '      label="light speed too slow" />\n' +
-      '   <RadioButton\n' +
-      '      value="ludicrous"\n' +
-      '      label="go to ludicous speed"\n'+
-      '      disabled={true}/>\n' +
-      '</RadioButtonGroup>';
+      <Checkbox
+        name="checkboxName2"
+        value="checkboxValue2"
+        label="fed the dog"
+        defaultChecked={true}/>
 
-    this.codeToggle =
-      '//Toggle\n' +
-      '<Toggle\n' +
-      '  name="toggleName1"\n' +
-      '  value="toggleValue1"\n' +
-      '  label="activate thrusters" />\n' +
-      '<Toggle\n' +
-      '  name="toggleName2"\n' +
-      '  value="toggleValue2"\n' +
-      '  label="auto-pilot"\n' +
-      '  defaultToggled={true} />\n' +
-      '<Toggle\n' +
-      '  name="toggleName3"\n' +
-      '  value="toggleValue3"\n' +
-      '  label="initiate self-destruct sequence"\n' +
-      '  disabled={true} />\n\n';
+      <Checkbox
+        name="checkboxName3"
+        value="checkboxValue3"
+        label="built a house on the moon"
+        disabled={true}/>
+
+      <Checkbox
+        name="checkboxName4"
+        value="checkboxValue4"
+        checkedIcon={<ToggleStar />}
+        unCheckedIcon={<ToggleStarBorder />}
+        label="custom icon" />
+    `;
+
+    this.codeRadioButton = `
+      <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+        <RadioButton
+          value="light"
+          label="prepare for light speed"
+          style={{marginBottom:16}} />
+        <RadioButton
+          value="not_light"
+          label="light speed too slow"
+          style={{marginBottom:16}}/>
+        <RadioButton
+          value="ludicrous"
+          label="go to ludicrous speed"
+          style={{marginBottom:16}}
+          disabled={true}/>
+      </RadioButtonGroup>
+    `;
+
+    this.codeToggle = `
+      <Toggle
+        name="toggleName1"
+        value="toggleValue1"
+        label="activate thrusters"/>
+
+      <Toggle
+        name="toggleName2"
+        value="toggleValue2"
+        label="auto-pilot"
+        defaultToggled={true}/>
+
+      <Toggle
+        name="toggleName3"
+        value="toggleValue3"
+        label="initiate self-destruct sequence"
+        disabled={true}/>
+    `;
 
     this.desc = 'These components extend their current input elements (checkbox and radio) and ' +
                'will support all of its props and events. Checkboxes and Toggles support ' +
@@ -70,16 +93,16 @@ class SwitchesPage extends React.Component {
       name: 'Checkbox Props',
       infoArray: [
         {
+          name: 'checkedIcon',
+          type: 'element',
+          header: 'optional',
+          desc: 'The SvgIcon to use for the checked state. This is useful to create icon toggles.'
+        },
+        {
           name: 'defaultChecked',
           type: 'boolean',
           header: 'default:false',
           desc: 'The default state of our checkbox component.'
-        },
-        {
-          name: 'name',
-          type: 'string',
-          header: 'optional',
-          desc: 'This is the name of the checkbox.'
         },
         {
           name: 'iconStyle',
@@ -101,16 +124,16 @@ class SwitchesPage extends React.Component {
                 '"left" and "right" (case-sensitive). Default option is "left".'
         },
         {
-          name: 'value',
-          type: 'string',
-          header: 'optional',
-          desc: 'The value of our checkbox component.'
-        },
-        {
           name: 'style',
           type: 'object',
           header: 'optional',
           desc: 'Override the inline-styles of the Checkbox\'s root element.'
+        },
+        {
+          name: 'unCheckedIcon',
+          type: 'element',
+          header: 'optional',
+          desc: 'The SvgIcon to use for the unchecked state. This is useful to create icon toggles.'
         }
       ]
     },
@@ -429,6 +452,14 @@ class SwitchesPage extends React.Component {
             label="built a house on the moon"
             disabled={true}/>
         </div>
+        <div style={styles.container}>
+          <Checkbox
+            name="checkboxName4"
+            value="checkboxValue4"
+            checkedIcon={<ToggleStar />}
+            unCheckedIcon={<ToggleStarBorder />}
+            label="custom icon" />
+        </div>
       </div>
     );
   }
@@ -469,22 +500,22 @@ class SwitchesPage extends React.Component {
     return (
       <div style={styles.group}>
         <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
-            <RadioButton
-              id="radioButtonId1"
-              value="light"
-              label="prepare for light speed"
-              style={{marginBottom:16}} />
-            <RadioButton
-              id="radioButtonId2"
-              value="not_light"
-              label="light speed too slow"
-              style={{marginBottom:16}}/>
-            <RadioButton
-              id="radioButtonId3"
-              value="ludicrous"
-              label="go to ludicrous speed"
-              style={{marginBottom:16}}
-              disabled={true}/>
+          <RadioButton
+            id="radioButtonId1"
+            value="light"
+            label="prepare for light speed"
+            style={{marginBottom:16}} />
+          <RadioButton
+            id="radioButtonId2"
+            value="not_light"
+            label="light speed too slow"
+            style={{marginBottom:16}}/>
+          <RadioButton
+            id="radioButtonId3"
+            value="ludicrous"
+            label="go to ludicrous speed"
+            style={{marginBottom:16}}
+            disabled={true}/>
         </RadioButtonGroup>
       </div>
     );
