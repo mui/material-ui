@@ -24,7 +24,7 @@ var DropDownMenu = React.createClass({
     menuItems: React.PropTypes.array.isRequired,
     menuItemStyle: React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
-    isMultiple: React.PropTypes.array
+    isMultiple: React.PropTypes.bool
   },
 
   getDefaultProps: function() {
@@ -195,7 +195,7 @@ var DropDownMenu = React.createClass({
     this.setState({ open: !this.state.open });
   },
 
-  _onMenuItemClick: function _onMenuItemClick(e, key, payload) {
+  _onMenuItemClick: function (e, key, payload) {
     if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
     this.props.isMultiple ? this._handleMultipleSelect(key) : this._handleSingleSelect(key);
   },

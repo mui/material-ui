@@ -24,7 +24,7 @@ class DropDownMenuPage extends React.Component {
       "   { payload: '5', text: 'Weekly' },\n" +
       "];\n\n" +
       "<DropDownMenu menuItems={menuItems} /> \n\n" +
-      "<DropDownMenu menuItems={menuItems} isMulti={true} />";
+      "<DropDownMenu menuItems={menuItems} isMultiple={true} />";
 
     var componentInfo = [
       {
