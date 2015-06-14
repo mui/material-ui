@@ -21,7 +21,7 @@ var EditorInsertChart = require('../../svg-icons/editor-insert-chart.jsx');
 var FileFolder = require('../../svg-icons/file-folder.jsx');
 var ToggleStarBorder = require('../../svg-icons/toggle-star-border.jsx');
 
-class SnackbarPage extends React.Component {
+class ListsPage extends React.Component {
 
   constructor() {
     super();
@@ -145,7 +145,7 @@ class SnackbarPage extends React.Component {
             name: 'disableTouchTap',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the list-item will not be clickable and will not display hover affects.'
+            desc: 'If true, the list-item will not be clickable and will not display hover affects. This is automatically disabled if leftCheckbox is set.'
           },
           {
             name: 'insetChildren',
@@ -302,7 +302,6 @@ class SnackbarPage extends React.Component {
               Angel Ceballos
             </ListItem>
           </List>
-          
         </MobileTearSheet>
 
         <MobileTearSheet>
@@ -357,20 +356,17 @@ class SnackbarPage extends React.Component {
           <ListDivider />
           <List subheader="Hangout notifications">
             <ListItem
-              disableTouchTap={true}
-              leftIcon={<Checkbox />}
+              leftCheckbox={<Checkbox />}
               secondaryText="Allow notifications">
               Notifications
             </ListItem>
             <ListItem
-              disableTouchTap={true}
-              leftIcon={<Checkbox />}
+              leftCheckbox={<Checkbox />}
               secondaryText="Hangouts message">
               Sounds
             </ListItem>
             <ListItem
-              disableTouchTap={true}
-              leftIcon={<Checkbox />}
+              leftCheckbox={<Checkbox />}
               secondaryText="Hangouts video call">
               Video sounds
             </ListItem>
@@ -616,4 +612,4 @@ class SnackbarPage extends React.Component {
 
 }
 
-module.exports = SnackbarPage;
+module.exports = ListsPage;

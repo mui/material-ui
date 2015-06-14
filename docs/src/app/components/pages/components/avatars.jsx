@@ -8,7 +8,7 @@ var ListItem = mui.ListItem;
 var ComponentDoc = require('../../component-doc.jsx');
 var FileFolder = require('../../svg-icons/file-folder.jsx');
 
-class IconButtonsPage extends React.Component {
+class AvatarsPage extends React.Component {
 
   render() {
 
@@ -114,4 +114,4 @@ class IconButtonsPage extends React.Component {
 
 }
 
-module.exports = IconButtonsPage;
+module.exports = AvatarsPage;
