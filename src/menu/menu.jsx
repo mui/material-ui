@@ -29,6 +29,7 @@ var NestedMenuItem = React.createClass({
     disabled: React.PropTypes.bool,
     onItemTap: React.PropTypes.func,
     menuItemStyle: React.PropTypes.object,
+    selectedItems: React.PropTypes.array
   },
 
   getDefaultProps: function() {
@@ -144,6 +145,7 @@ var Menu = React.createClass({
     onToggle: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
+    selectedItems: React.PropTypes.array,
     hideable: React.PropTypes.bool,
     visible: React.PropTypes.bool,
     zDepth: React.PropTypes.number,
@@ -245,7 +247,7 @@ var Menu = React.createClass({
 
     for (var i=0; i < this.props.menuItems.length; i++) {
       menuItem = this.props.menuItems[i];
-      isSelected = i === this.props.selectedIndex;
+      isSelected = i === this.props.selectedIndex || (this.props.selectedItems && ~this.props.selectedItems.indexOf(menuItem));
       isDisabled = (menuItem.disabled === undefined) ? false : menuItem.disabled;
 
       let {
