@@ -21,6 +21,7 @@ var ListItem = React.createClass({
     leftIcon: React.PropTypes.element,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
+    rightAvatar: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2])
@@ -47,6 +48,7 @@ var ListItem = React.createClass({
       leftIcon,
       onMouseOut,
       onMouseOver,
+      rightAvatar,
       rightIcon,
       secondaryText,
       secondaryTextLines,
@@ -56,8 +58,8 @@ var ListItem = React.createClass({
 
     var textColor = this.context.muiTheme.palette.textColor;
     var hoverColor = ColorManipulator.fade(textColor, 0.03);
-    var singleAvatar = !secondaryText && leftAvatar;
-    var singleNoAvatar = !secondaryText && !leftAvatar;
+    var singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
+    var singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
     var twoLine = secondaryText && secondaryTextLines === 1;
     var threeLine = secondaryText && secondaryTextLines > 1;
 
@@ -102,10 +104,17 @@ var ListItem = React.createClass({
         right: 4
       },
 
-      leftAvatar: {
+      avatars: {
         position: 'absolute',
         top: singleAvatar ? 8 : 16,
+      },
+
+      leftAvatar: {
         left: 16
+      },
+
+      rightAvatar: {
+        right: 16
       },
 
       secondaryText: {
@@ -135,7 +144,9 @@ var ListItem = React.createClass({
     var mergedRightIconStyles = rightIcon ? 
       this.mergeStyles(styles.icons, styles.rightIcon, rightIcon.props.style) : null;
     var mergedLeftAvatarStyles = leftAvatar ? 
-      this.mergeStyles(styles.leftAvatar, leftAvatar.props.style) : null;
+      this.mergeStyles(styles.avatars, styles.leftAvatar, leftAvatar.props.style) : null;
+    var mergedRightAvatarStyles = rightAvatar ? 
+      this.mergeStyles(styles.avatars, styles.rightAvatar, rightAvatar.props.style) : null;
     var mergedSecondaryTextStyles = secondaryTextIsAnElement ? 
       this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
 
@@ -148,6 +159,9 @@ var ListItem = React.createClass({
     var leftAvatarElement = leftAvatar ? React.cloneElement(leftAvatar, {
       style: mergedLeftAvatarStyles
     }) : null;
+    var rightAvatarElement = rightAvatar ? React.cloneElement(rightAvatar, {
+      style: mergedRightAvatarStyles
+    }) : null;
     var secondaryTextElement = React.isValidElement(secondaryText) ? React.cloneElement(secondaryText, {
       style: mergedSecondaryTextStyles
     }) : secondaryText ? (
@@ -159,6 +173,7 @@ var ListItem = React.createClass({
         {leftIconElement}
         {rightIconElement}
         {leftAvatarElement}
+        {rightAvatarElement}
         {this.props.children}
         {secondaryTextElement}
       </div>
@@ -173,6 +188,7 @@ var ListItem = React.createClass({
           {leftIconElement}
           {rightIconElement}
           {leftAvatarElement}
+          {rightAvatarElement}
           {this.props.children}
           {secondaryTextElement}
         </div>

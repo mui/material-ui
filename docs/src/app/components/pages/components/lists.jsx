@@ -166,6 +166,12 @@ class SnackbarPage extends React.Component {
             desc: 'This is the SvgIcon or FontIcon to be displayed on the left side.'
           },
           {
+            name: 'rightAvatar',
+            type: 'element',
+            header: 'optional',
+            desc: 'This is the avatar element to be displayed on the right side.'
+          },
+          {
             name: 'rightIcon',
             type: 'element',
             header: 'optional',
@@ -248,6 +254,55 @@ class SnackbarPage extends React.Component {
               James Anderson
             </ListItem>
           </List>
+        </MobileTearSheet>
+
+        <MobileTearSheet>
+          <List>
+            <ListItem
+              leftIcon={<ActionGrade style={{fill: Colors.pinkA200}} />}
+              rightAvatar={<Avatar src="images/chexee-128.jpg" />}>
+              Chelsea Otakan
+            </ListItem>
+            <ListItem
+              insetChildren={true}
+              rightAvatar={<Avatar src="images/kolage-128.jpg" />}>
+              Eric Hoffman
+            </ListItem>
+            <ListItem
+              insetChildren={true}
+              rightAvatar={<Avatar src="images/jsa-128.jpg" />}>
+              James Anderson
+            </ListItem>
+            <ListItem
+              insetChildren={true}
+              rightAvatar={<Avatar src="images/kerem-128.jpg" />}>
+              Kerem Suer
+            </ListItem>
+          </List>
+          <ListDivider inset={true} />
+          <List>
+            <ListItem
+              leftAvatar={<Avatar color={Colors.pinkA200} backgroundColor={Colors.transparent} style={{left:8}}>A</Avatar>}
+              rightAvatar={<Avatar src="images/adellecharles-128.jpg" />}>
+              Adelle Charles
+            </ListItem>
+            <ListItem
+              insetChildren={true}
+              rightAvatar={<Avatar src="images/adhamdannaway-128.jpg" />}>
+              Adham Dannaway
+            </ListItem>
+            <ListItem
+              insetChildren={true}
+              rightAvatar={<Avatar src="images/allisongrayce-128.jpg" />}>
+              Allison Grayce
+            </ListItem>
+            <ListItem
+              insetChildren={true}
+              rightAvatar={<Avatar src="images/angelceballos-128.jpg" />}>
+              Angel Ceballos
+            </ListItem>
+          </List>
+          
         </MobileTearSheet>
 
         <MobileTearSheet>

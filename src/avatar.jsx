@@ -50,7 +50,6 @@ var SvgIcon = React.createClass({
         textAlign: 'center',
         lineHeight: '40px',
         fontSize: 24,
-        fontWeight: Typography.fontWeightLight,
         color: color
       },
 
