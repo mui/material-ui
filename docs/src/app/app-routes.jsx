@@ -17,6 +17,7 @@ var InlineStyles = require('./components/pages/customization/inline-styles.jsx')
 
 var Components = require('./components/pages/components.jsx');
 var AppBar = require('./components/pages/components/app-bar.jsx');
+var Avatars = require('./components/pages/components/avatars.jsx');
 var Buttons = require('./components/pages/components/buttons.jsx');
 var DatePicker = require('./components/pages/components/date-picker.jsx');
 var Dialog = require('./components/pages/components/dialog.jsx');
@@ -59,6 +60,7 @@ var AppRoutes = (
 
     <Route name="components" handler={Components}>
       <Route name="appbar" handler={AppBar} />
+      <Route name="avatars" handler={Avatars} />
       <Route name="buttons" handler={Buttons} />
       <Route name="date-picker" handler={DatePicker} />
       <Route name="dialog" handler={Dialog} />

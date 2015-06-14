@@ -274,13 +274,13 @@ class SnackbarPage extends React.Component {
           <ListDivider inset={true} />
           <List subheader="Files" insetSubheader={true}>
             <ListItem
-              leftAvatar={<Avatar icon={<ActionAssignment />} iconBgColor={Colors.blue500} />}
+              leftAvatar={<Avatar icon={<ActionAssignment />} color={Colors.blue500} />}
               rightIcon={<ActionInfo />}
               secondaryText="Jan 20, 2014">
               Vacation itinerary
             </ListItem>
             <ListItem
-              leftAvatar={<Avatar icon={<EditorInsertChart />} iconBgColor={Colors.yellow600} />}
+              leftAvatar={<Avatar icon={<EditorInsertChart />} color={Colors.yellow600} />}
               rightIcon={<ActionInfo />}
               secondaryText="Jan 10, 2014">
               Kitchen remodel
