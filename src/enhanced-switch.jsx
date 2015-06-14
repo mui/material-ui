@@ -29,6 +29,7 @@ var EnhancedSwitch = React.createClass({
       iconStyle: React.PropTypes.object,
       thumbStyle: React.PropTypes.object,
       trackStyle: React.PropTypes.object,
+      labelStyle: React.PropTypes.object,
       name: React.PropTypes.string,
       value: React.PropTypes.string,
       label: React.PropTypes.string,
@@ -183,8 +184,6 @@ var EnhancedSwitch = React.createClass({
 
     var styles = this.getStyles();
 
-    styles.root.cursor = styles.root.input = this.props.disabled ? 'default' : 'pointer';
-
     var wrapStyles = this.mergeAndPrefix(styles.wrap, this.props.iconStyle);
     var rippleStyle = this.mergeAndPrefix(styles.ripple, this.props.rippleStyle);
     var rippleColor = this.props.hasOwnProperty('rippleColor') ? this.props.rippleColor :
@@ -197,8 +196,10 @@ var EnhancedSwitch = React.createClass({
 
     var inputId = this.props.id || UniqueId.generate();
 
+    var labelStyle = this.mergeAndPrefix(styles.label, this.props.labelStyle);
+
     var labelElement = this.props.label ? (
-      <label style={this.mergeAndPrefix(styles.label)} htmlFor={inputId}>
+      <label style={labelStyle} htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;

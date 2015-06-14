@@ -73,7 +73,7 @@ var TimePicker = React.createClass({
 
     var defaultInputValue;
 
-    if (this.props.defaultDate) {
+    if (this.props.defaultTime) {
       defaultInputValue = this.formatTime(this.props.defaultTime);
     }
 

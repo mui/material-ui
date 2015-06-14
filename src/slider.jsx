@@ -233,7 +233,6 @@ var Slider = React.createClass({
         <span className="mui-input-description">{this.props.description}</span>
         <span className="mui-input-error">{this.props.error}</span>
         <div style={sliderStyles}
-          onTouchTap={this._onClick}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           onMouseOver={this._onMouseOver}
@@ -292,16 +291,6 @@ var Slider = React.createClass({
 
   clearValue: function() {
     this.setValue(0);
-  },
-
-  _onClick: function (e) {
-    this._tabPressed = false;
-    // let draggable handle the slider
-    if (this.state.dragging || this.props.disabled) return;
-    var node = React.findDOMNode(this.refs.track);
-    var boundingClientRect = node.getBoundingClientRect();
-    var offset = e.clientX - boundingClientRect.left;
-    this._updateWithChangeEvent(e, offset / node.clientWidth);
   },
 
   _onFocus: function (e) {

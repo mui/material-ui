@@ -103,13 +103,18 @@ var Checkbox = React.createClass({
 
     var rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
 
+    var iconStyle = this.mergeAndPrefix(
+      styles.icon,
+      this.props.iconStyle
+    );
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switched: this.state.switched,
       switchElement: checkboxElement,
       rippleColor: rippleColor,
-      iconStyle: styles.icon,
+      iconStyle: iconStyle,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,

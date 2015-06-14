@@ -17,6 +17,7 @@ var InlineStyles = require('./components/pages/customization/inline-styles.jsx')
 
 var Components = require('./components/pages/components.jsx');
 var AppBar = require('./components/pages/components/app-bar.jsx');
+var Avatars = require('./components/pages/components/avatars.jsx');
 var Buttons = require('./components/pages/components/buttons.jsx');
 var DatePicker = require('./components/pages/components/date-picker.jsx');
 var Dialog = require('./components/pages/components/dialog.jsx');
@@ -24,6 +25,7 @@ var DropDownMenu = require('./components/pages/components/drop-down-menu.jsx');
 var Icons = require('./components/pages/components/icons.jsx');
 var IconButtons = require('./components/pages/components/icon-buttons.jsx');
 var LeftNav = require('./components/pages/components/left-nav.jsx');
+var Lists = require('./components/pages/components/lists.jsx');
 var Menus = require('./components/pages/components/menus.jsx');
 var Paper = require('./components/pages/components/paper.jsx');
 var Progress = require('./components/pages/components/progress.jsx');
@@ -58,6 +60,7 @@ var AppRoutes = (
 
     <Route name="components" handler={Components}>
       <Route name="appbar" handler={AppBar} />
+      <Route name="avatars" handler={Avatars} />
       <Route name="buttons" handler={Buttons} />
       <Route name="date-picker" handler={DatePicker} />
       <Route name="dialog" handler={Dialog} />
@@ -65,6 +68,7 @@ var AppRoutes = (
       <Route name="icons" handler={Icons} />
       <Route name="icon-buttons" handler={IconButtons} />
       <Route name="left-nav" handler={LeftNav} />
+      <Route name="lists" handler={Lists} />
       <Route name="menus" handler={Menus} />
       <Route name="paper" handler={Paper} />
       <Route name="progress" handler={Progress} />

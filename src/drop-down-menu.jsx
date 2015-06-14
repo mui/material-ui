@@ -104,7 +104,7 @@ var DropDownMenu = React.createClass({
       },
       underline: {
         borderTop: 'solid 1px ' + accentColor,
-        margin: '0 ' + this.getSpacing().desktopGutter + 'px'
+        margin: '-1px ' + this.getSpacing().desktopGutter + 'px'
       },
       menuItem: {
         paddingRight: this.getSpacing().iconSize +

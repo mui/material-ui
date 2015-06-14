@@ -19,7 +19,7 @@ class IconButtonsPage extends React.Component {
         '  <ActionGrade/>\n' +
         '</IconButton>\n\n' +
         '//Method 3: Manually creating a mui.FontIcon component within ' +
-        'IconButton\n' +
+        'IconButtona\n' +
         '<IconButton tooltip="Sort" disabled={true}>\n' +
         '  <FontIcon className="muidocs-icon-custom-sort"/>\n' +
         '</IconButton>';

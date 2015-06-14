@@ -44,25 +44,36 @@ Once material-ui is included in your project, you can use the components this wa
 
 var React = require('react'),
   mui = require('material-ui'),
+  ThemeManager = new mui.Styles.ThemeManager(),
   RaisedButton = mui.RaisedButton;
 
-var MyAwesomeReactComponent = React.createClass({
+var SomeAwesomeComponent = React.createClass({
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    };
+  },
 
   render: function() {
     return (
-      <RaisedButton label="Default" />
+        <RaisedButton label="Default" />
     );
   }
 
 });
 
 module.exports = MyAwesomeReactComponent;
+
 ```
 
 ### Theme
 
-Please note that since v0.8.0, you also need to define a theme for components to start working.
-
+**Please note that since v0.8.0, you also need to define a theme for components to start working.** For instrucitons on implementing and using themes, visit our [documentation](http://material-ui.com/#/customization/themes).
 
 ## Customization
 

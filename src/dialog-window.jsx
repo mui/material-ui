@@ -53,9 +53,7 @@ var DialogWindow = React.createClass({
   componentDidMount: function() {
     this._positionDialog();
     if (this.props.openImmediately) {
-      this.refs.dialogOverlay.preventScrolling();
-      this._onShow();
-      this._focusOnAction();
+      this.show();
     }
   },
 
