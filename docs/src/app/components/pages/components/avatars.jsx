@@ -22,8 +22,8 @@ class IconButtonsPage extends React.Component {
       //SvgIcon avatar with custom colors
       <Avatar
         icon={<FileFolder />}
-        iconColor={Colors.orange200}
-        color={Colors.pink400} />
+        color={Colors.orange200}
+        backgroundColor={Colors.pink400} />
 
       //FontIcon avatar
       <Avatar
@@ -34,16 +34,16 @@ class IconButtonsPage extends React.Component {
       //FontIcon avatar with custom colors
       <Avatar
         icon={<FontIcon className="muidocs-icon-communication-voicemail" />}
-        iconColor={Colors.blue300}
-        color={Colors.indigo900} />
+        color={Colors.blue300}
+        backgroundColor={Colors.indigo900} />
 
       //Letter avatar
       <Avatar>A</Avatar>
 
       //Letter avatar with custom colors
       <Avatar
-        iconColor={Colors.deepOrange300}
-        color={Colors.purple500}>
+        color={Colors.deepOrange300}
+        backgroundColor={Colors.purple500}>
         A
       </Avatar>
     `;
@@ -61,13 +61,13 @@ class IconButtonsPage extends React.Component {
             desc: 'This is the SvgIcon or FontIcon to be used inside the avatar.'
           },
           {
-            name: 'color',
+            name: 'backgroundColor',
             type: 'string',
             header: 'default: grey400',
-            desc: 'The color of the avatar. Does not apply to image avatars.'
+            desc: 'The backgroundColor of the avatar. Does not apply to image avatars.'
           },
           {
-            name: 'iconColor',
+            name: 'color',
             type: 'string',
             header: 'default: white',
             desc: 'The icon or letter color.'
@@ -84,11 +84,11 @@ class IconButtonsPage extends React.Component {
 
     var imageAvatar = <Avatar src="images/uxceo-128.jpg" />;
     var svgAvatar = <Avatar icon={<FileFolder />} />;
-    var customSvgAvatar = <Avatar icon={<FileFolder />} iconColor={Colors.orange200} color={Colors.pink400} />;
+    var customSvgAvatar = <Avatar icon={<FileFolder />} color={Colors.orange200} backgroundColor={Colors.pink400} />;
     var fontAvatar = <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} />;
-    var customFontAvatar = <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} iconColor={Colors.blue300} color={Colors.indigo900} />;
+    var customFontAvatar = <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} color={Colors.blue300} backgroundColor={Colors.indigo900} />;
     var letterAvatar = <Avatar>A</Avatar>;
-    var customLetterAvatar = <Avatar iconColor={Colors.deepOrange300} color={Colors.purple500}>A</Avatar>;
+    var customLetterAvatar = <Avatar color={Colors.deepOrange300} backgroundColor={Colors.purple500}>A</Avatar>;
 
     return (
       <ComponentDoc

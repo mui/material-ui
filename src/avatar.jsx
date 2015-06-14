@@ -13,15 +13,15 @@ var SvgIcon = React.createClass({
 
   propTypes: {
     icon: React.PropTypes.element,
+    backgroundColor: React.PropTypes.string,
     color: React.PropTypes.string,
-    iconColor: React.PropTypes.string,
     src: React.PropTypes.string
   },
 
   getDefaultProps: function() {
     return {
-      color: Colors.grey400,
-      iconColor: Colors.white
+      backgroundColor: Colors.grey400,
+      color: Colors.white
     };
   },
 
@@ -29,8 +29,8 @@ var SvgIcon = React.createClass({
 
     var {
       icon,
+      backgroundColor,
       color,
-      iconColor,
       src,
       style,
       ...other
@@ -41,7 +41,7 @@ var SvgIcon = React.createClass({
         height: src ? 38 : 40,
         width: src ? 38 : 40,
         userSelect: 'none',
-        backgroundColor: color,
+        backgroundColor: backgroundColor,
         borderRadius: '50%',
         border: src ? 'solid 1px' : 'none',
         borderColor: this.context.muiTheme.palette.borderColor,
@@ -51,12 +51,12 @@ var SvgIcon = React.createClass({
         lineHeight: '40px',
         fontSize: 24,
         fontWeight: Typography.fontWeightLight,
-        color: iconColor
+        color: color
       },
 
       iconStyles: {
-        color: iconColor,
-        fill: iconColor,
+        color: color,
+        fill: color,
         margin: 8
       }
     };
