@@ -150,16 +150,12 @@ var EnhancedButton = React.createClass({
       );
     }
 
-    return linkButton ? (
-      <a {...other} {...buttonProps}>
-        {buttonChildren}
-      </a>
-    ) : (
-
-      <button {...other} {...buttonProps}>
-        {buttonChildren}
-      </button>
+    return React.createElement(
+      linkButton ? 'a' : 'button',
+      { ...other, ...buttonProps },
+      buttonChildren
     );
+    
   },
 
   isKeyboardFocused: function() {
