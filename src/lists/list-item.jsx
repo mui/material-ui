@@ -24,6 +24,7 @@ var ListItem = React.createClass({
     onMouseOver: React.PropTypes.func,
     rightAvatar: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
+    rightToggle: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2])
   },
@@ -52,6 +53,7 @@ var ListItem = React.createClass({
       onMouseOver,
       rightAvatar,
       rightIcon,
+      rightToggle,
       secondaryText,
       secondaryTextLines,
       style,
@@ -64,7 +66,7 @@ var ListItem = React.createClass({
     var singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
     var twoLine = secondaryText && secondaryTextLines === 1;
     var threeLine = secondaryText && secondaryTextLines > 1;
-    var hasCheckbox = leftCheckbox;
+    var hasCheckbox = leftCheckbox || rightToggle;
 
     var styles = {
       root: {
@@ -81,7 +83,7 @@ var ListItem = React.createClass({
       //This inner div is need so that ripples will span the entire container
       innerDiv: {
         paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
-        paddingRight: rightIcon || rightAvatar ? 56 : 16,
+        paddingRight: rightIcon || rightAvatar ? 56 : rightToggle ? 72 : 16,
         paddingBottom: singleAvatar ? 20 : 16,
         paddingTop: singleNoAvatar || threeLine ? 16 : 20
       },
@@ -124,6 +126,18 @@ var ListItem = React.createClass({
         right: 16
       },
 
+      leftCheckbox: {
+        left: 4
+      },
+
+      rightToggle: {
+        position: 'absolute',
+        display: 'block',
+        width: 54,
+        top: twoLine ? 25 : singleAvatar ? 17 : 13,
+        right: 8
+      },
+
       secondaryText: {
         fontSize: 14,
         lineHeight: threeLine ? '18px' : '16px',
@@ -156,7 +170,8 @@ var ListItem = React.createClass({
     this._pushElement(contentChildren, rightIcon, this.mergeStyles(styles.icons, styles.rightIcon));
     this._pushElement(contentChildren, leftAvatar, this.mergeStyles(styles.avatars, styles.leftAvatar));
     this._pushElement(contentChildren, rightAvatar, this.mergeStyles(styles.avatars, styles.rightAvatar));
-    this._pushElement(contentChildren, leftCheckbox, this.mergeStyles(styles.icons, styles.leftIcon));
+    this._pushElement(contentChildren, leftCheckbox, this.mergeStyles(styles.icons, styles.leftCheckbox));
+    this._pushElement(contentChildren, rightToggle, this.mergeStyles(styles.rightToggle));
 
     if (this.props.children) contentChildren.push(this.props.children);
     if (secondaryText) contentChildren.push(

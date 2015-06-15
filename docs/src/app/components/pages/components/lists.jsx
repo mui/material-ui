@@ -2,6 +2,7 @@ var React = require('react');
 var mui = require('mui');
 var Avatar = mui.Avatar;
 var Checkbox = mui.Checkbox;
+var Toggle = mui.Toggle;
 var Colors = mui.Styles.Colors;
 var List = mui.List;
 var ListDivider = mui.ListDivider;
@@ -53,7 +54,8 @@ class ListsPage extends React.Component {
           secondaryText={
             <p>
               <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>
-              I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
+              I&apos;ll be in your neighborhood doing errands this weekend.
+              Do you want to grab brunch?
             </p>
           }
           secondaryTextLines={2}>
@@ -145,7 +147,7 @@ class ListsPage extends React.Component {
             name: 'disableTouchTap',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the list-item will not be clickable and will not display hover affects. This is automatically disabled if leftCheckbox is set.'
+            desc: 'If true, the list-item will not be clickable and will not display hover affects. This is automatically disabled if leftCheckbox or rightToggle is set.'
           },
           {
             name: 'insetChildren',
@@ -157,7 +159,13 @@ class ListsPage extends React.Component {
             name: 'leftAvatar',
             type: 'element',
             header: 'optional',
-            desc: 'This is the avatar element to be displayed on the left side.'
+            desc: 'This is the Avatar element to be displayed on the left side.'
+          },
+          {
+            name: 'leftCheckbox',
+            type: 'element',
+            header: 'optional',
+            desc: 'This is the Checkbox element to be displayed on the left side.'
           },
           {
             name: 'leftIcon',
@@ -176,6 +184,12 @@ class ListsPage extends React.Component {
             type: 'element',
             header: 'optional',
             desc: 'This is the SvgIcon or FontIcon to be displayed on the right side.'
+          },
+          {
+            name: 'rightToggle',
+            type: 'element',
+            header: 'optional',
+            desc: 'This is the Toggle element to display on the right side.'
           },
           {
             name: 'secondaryText',
@@ -369,6 +383,27 @@ class ListsPage extends React.Component {
               leftCheckbox={<Checkbox />}
               secondaryText="Hangouts video call">
               Video sounds
+            </ListItem>
+          </List>
+        </MobileTearSheet>
+
+        <MobileTearSheet>
+          <List>
+            <ListItem
+              secondaryText="Always interrupt">
+              When calls and notifications arrive
+            </ListItem>
+          </List>
+          <ListDivider />
+          <List subheader="Priority interruptions">
+            <ListItem rightToggle={<Toggle />}>
+              Events and reminders
+            </ListItem>
+            <ListItem rightToggle={<Toggle />}>
+              Calls
+            </ListItem>
+            <ListItem rightToggle={<Toggle />}>
+              Messages
             </ListItem>
           </List>
         </MobileTearSheet>
