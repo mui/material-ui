@@ -1,3 +1,25 @@
+## 0.9.1
+###### _Jun 14, 2015_
+
+##### General
+The following components have been modified to allow for style overrides:
+Radio Button Group, Radio Button, Enchanced Switch Label, Text Field, Toogle, Checkbox (#807)
+
+##### New Components
+- List, ListItem, ListDivder, Avatar (#836)
+
+##### Components
+- Checkbox - Added checkedIcon and unCheckedIcon props. This is useful to create icon toggles.
+- Dialog - Fixed a bug with the open immediately flag (#810)
+- DropDownIcon - Added support for icon ligature (#806)
+- Menu - Fixed a style problem (#843)
+- RadioButtonGroup - Fixed a bug with mapping Radio children (#820)
+- Slider - Fixed a glitch that happened when click on the slider handle (#833)
+- TextField - Added fullWidth prop (#827)
+- TimePicker
+  - Fixed a bug with the defaultTime setting (#822)
+  - Fixed clock handles on Firefox (#825)
+
 ## 0.9.0
 ###### _Jun 9, 2015_
 
