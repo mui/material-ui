@@ -12,51 +12,46 @@ var FontIcon = React.createClass({
   },
 
   propTypes: {
-    className: React.PropTypes.string,
-    hoverColor: React.PropTypes.string
+    color: React.PropTypes.string,
+    hoverColor: React.PropTypes.string,
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func
   },
 
   getInitialState: function() {
     return {
-      hovered: false,
+      hovered: false
     };
-  },
-
-  getStyles: function() {
-    var theme = this.context.muiTheme.palette;
-    var styles = {
-      position: 'relative',
-      fontSize: Spacing.iconSize + 'px',
-      display: 'inline-block',
-      userSelect: 'none',
-      transition: Transitions.easeOut()
-    };
-
-    if (!styles.color && !this.props.className) {
-      styles.color = theme.textColor;
-    }
-
-    return styles;
   },
 
   render: function() {
     var {
+      color,
+      hoverColor,
       onMouseOut,
       onMouseOver,
       style,
       ...other
     } = this.props;
-    var hoverStyle = this.props.hoverColor ? {color: this.props.hoverColor} : {};
+
+    var offColor = color ? color: this.context.muiTheme.palette.textColor;
+    var onColor = hoverColor ? hoverColor : offColor;
+
+    var mergedStyles = this.mergeAndPrefix({
+      position: 'relative',
+      fontSize: Spacing.iconSize,
+      display: 'inline-block',
+      userSelect: 'none',
+      transition: Transitions.easeOut(),
+      color: this.state.hovered ? onColor : offColor
+    }, style);
 
     return (
       <span
         {...other}
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
-        style={this.mergeAndPrefix(
-          this.getStyles(),
-          this.props.style,
-          this.state.hovered && hoverStyle)} />
+        style={mergedStyles} />
     );
   },
 

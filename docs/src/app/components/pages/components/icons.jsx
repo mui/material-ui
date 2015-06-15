@@ -1,5 +1,6 @@
 var React = require('react');
 var mui = require('mui');
+var Colors = mui.Styles.Colors;
 var ComponentDoc = require('../../component-doc.jsx');
 var ActionHome = require('../../svg-icons/action-home.jsx');
 
@@ -22,8 +23,21 @@ class FontIconPage extends React.Component {
   }
 
 	render() {
-    var fontIconCode =
-      '<FontIcon className="muidocs-icon-action-home"/>';
+    var fontIconCode = `
+<FontIcon className="muidocs-icon-action-home" />
+<FontIcon className="muidocs-icon-action-home" color={Colors.red500} />
+<FontIcon className="muidocs-icon-action-home" color={Colors.yellow500} />
+<FontIcon className="muidocs-icon-action-home" color={Colors.blue500} />
+
+<FontIcon className="muidocs-icon-action-home"
+  hoverColor={Colors.greenA200} />
+<FontIcon className="muidocs-icon-action-home" color={Colors.red500}
+  hoverColor={Colors.greenA200} />
+<FontIcon className="muidocs-icon-action-home" color={Colors.yellow500}
+  hoverColor={Colors.greenA200} />
+<FontIcon className="muidocs-icon-action-home" color={Colors.blue500}
+  hoverColor={Colors.greenA200} />
+    `;
 
     var svgIconCode =
       '/** action-home.jsx */\n' +
@@ -74,31 +88,44 @@ class FontIconPage extends React.Component {
         name: 'Properties',
         infoArray: [
           {
-            name: 'className',
+            name: 'color',
             type: 'string',
             header: 'optional',
-            desc: 'If you are using a stylesheet for your icons, enter the ' +
-                  'class name for the icon to be used here.'
-          },
-          {
-            name: 'style',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of the icon\'s root element.'
+            desc: 'This is the font color of the font icon. If not specified, ' +
+              'this component will default to muiTheme.palette.textColor.'
           },
           {
             name: 'hoverColor',
             type: 'string',
             header: 'optional',
-            desc: 'Override the inline hover color of the icons\'s root element.'
+            desc: 'This is the icon color when the mouse hovers over the icon.'
           }
         ]
       },
       {
         name: 'Properties',
-        infoArray: [],
+        infoArray: [
+          {
+            name: 'color',
+            type: 'string',
+            header: 'optional',
+            desc: 'This is the fill color of the svg icon. If not specified, ' +
+              'this component will default to muiTheme.palette.textColor.'
+          },
+          ,
+          {
+            name: 'hoverColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'This is the icon color when the mouse hovers over the icon.'
+          }
+        ],
       }
     ];
+
+    var iconStyles = {
+      marginRight: 24
+    };
 
     return (
       <div>
@@ -107,14 +134,30 @@ class FontIconPage extends React.Component {
           code={fontIconCode}
           desc={fontIconDesc}
           componentInfo={componentInfo.slice(0,1)}>
-            <FontIcon className="muidocs-icon-action-home"/>
+          <FontIcon className="muidocs-icon-action-home" style={iconStyles} />
+          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.red500} />
+          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.yellow500} />
+          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.blue500} />
+          <br/><br/>
+          <FontIcon className="muidocs-icon-action-home" style={iconStyles} hoverColor={Colors.greenA200} />
+          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
+          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.yellow500} hoverColor={Colors.greenA200} />
+          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.blue500} hoverColor={Colors.greenA200} />
         </ComponentDoc>
         <ComponentDoc
           name="SVG Icons"
           code={svgIconCode}
           desc={svgIconDesc}
           componentInfo={componentInfo.slice(1,2)}>
-            <ActionHome/>
+          <ActionHome style={iconStyles} />
+          <ActionHome style={iconStyles} color={Colors.red500} />
+          <ActionHome style={iconStyles} color={Colors.yellow500} />
+          <ActionHome style={iconStyles} color={Colors.blue500} />
+          <br/><br/>
+          <ActionHome style={iconStyles} hoverColor={Colors.greenA200} />
+          <ActionHome style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
+          <ActionHome style={iconStyles} color={Colors.yellow500} hoverColor={Colors.greenA200} />
+          <ActionHome style={iconStyles} color={Colors.blue500} hoverColor={Colors.greenA200} />
         </ComponentDoc>
       </div>
 		);
