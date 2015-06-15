@@ -37,7 +37,7 @@ var DropDownMenu = React.createClass({
       open: false,
       isHovered: false,
       selectedIndex: this.props.selectedIndex || 0
-    }
+    };
   },
 
   componentClickAway: function() {

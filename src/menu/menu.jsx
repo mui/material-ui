@@ -353,7 +353,7 @@ var Menu = React.createClass({
     var totalItens = Math.max(1, this.props.menuItems.length);
     var newHeight = this._initialMenuItemHeight * totalItens;
 
-    return newHeight + KeyLine.Desktop.GUTTER_LESS;
+    return newHeight;
   },
 
   _renderVisibility: function() {
