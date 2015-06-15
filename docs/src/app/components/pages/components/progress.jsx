@@ -57,19 +57,25 @@ var ProgressPage = React.createClass({
             name: 'value',
             type: 'number',
             header: 'default: 0',
-            desc: 'The value of progress, only works in determinate mode ' 
+            desc: 'The value of progress, only works in determinate mode. ' 
           },
           {
             name: 'max',
             type: 'number',
             header: 'default: 100',
-            desc: 'The max value of progress, only works in determinate mode ' 
+            desc: 'The max value of progress, only works in determinate mode. ' 
           },
           {
             name: 'min',
             type: 'number',
             header: 'default: 0',
-            desc: 'The min value of progress, only works in determinate mode ' 
+            desc: 'The min value of progress, only works in determinate mode. ' 
+          },
+          {
+            name: 'size',
+            type: 'number',
+            header: 'default: 1',
+            desc: 'The size of the progress.' 
           }
         ]
       },
