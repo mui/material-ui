@@ -53,7 +53,7 @@ var SomeAwesomeComponent = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  getChildContext() {
+  getChildContext: function() {
     return {
       muiTheme: ThemeManager.getCurrentTheme()
     };

@@ -50,7 +50,7 @@ class GetStarted extends React.Component {
           '  childContextTypes: {\n' +
           '    muiTheme: React.PropTypes.object\n' +
           '  },\n\n' +
-          '  getChildContext() {\n' +
+          '  getChildContext: function() {\n' +
           '    return {\n' +
           '      muiTheme: ThemeManager.getCurrentTheme()\n' +
           '    };\n' +
