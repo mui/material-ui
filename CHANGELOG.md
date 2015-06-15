@@ -3,10 +3,10 @@
 
 ##### General
 The following components have been modified to allow for style overrides:
-Radio Button Group, Radio Button, Enchanced Switch Label, Text Field, Toogle, Checkbox (#807)
+Radio Button Group, Radio Button, Enhanced Switch Label, Text Field, Toggle, Checkbox (#807)
 
 ##### New Components
-- List, ListItem, ListDivder, Avatar (#836)
+- List, ListItem, ListDivider, Avatar (#836)
 
 ##### Components
 - Checkbox - Added checkedIcon and unCheckedIcon props. This is useful to create icon toggles.
