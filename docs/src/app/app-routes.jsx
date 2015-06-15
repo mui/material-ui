@@ -19,6 +19,7 @@ var Components = require('./components/pages/components.jsx');
 var AppBar = require('./components/pages/components/app-bar.jsx');
 var Avatars = require('./components/pages/components/avatars.jsx');
 var Buttons = require('./components/pages/components/buttons.jsx');
+var Cards = require('./components/pages/components/cards.jsx');
 var DatePicker = require('./components/pages/components/date-picker.jsx');
 var Dialog = require('./components/pages/components/dialog.jsx');
 var DropDownMenu = require('./components/pages/components/drop-down-menu.jsx');
@@ -62,6 +63,7 @@ var AppRoutes = (
       <Route name="appbar" handler={AppBar} />
       <Route name="avatars" handler={Avatars} />
       <Route name="buttons" handler={Buttons} />
+      <Route name="cards" handler={Cards} />
       <Route name="date-picker" handler={DatePicker} />
       <Route name="dialog" handler={Dialog} />
       <Route name="dropdown-menu" handler={DropDownMenu} />

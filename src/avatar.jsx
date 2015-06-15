@@ -45,6 +45,7 @@ var SvgIcon = React.createClass({
         borderRadius: '50%',
         border: src ? 'solid 1px' : 'none',
         borderColor: this.context.muiTheme.palette.borderColor,
+        display:'inline-block',
 
         //Needed for letter avatars
         textAlign: 'center',
