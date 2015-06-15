@@ -112,7 +112,6 @@ class FontIconPage extends React.Component {
             desc: 'This is the fill color of the svg icon. If not specified, ' +
               'this component will default to muiTheme.palette.textColor.'
           },
-          ,
           {
             name: 'hoverColor',
             type: 'string',
