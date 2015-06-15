@@ -20,7 +20,7 @@ var ToolbarGroup = React.createClass({
       float: 'left'
     };
   },
-  
+
   getTheme: function() {
     return this.context.muiTheme.component.toolbar;
   },
@@ -44,7 +44,7 @@ var ToolbarGroup = React.createClass({
           display: 'inline-block',
           marginRight: this.getSpacing()
         },
-        controlBg: {  
+        controlBg: {
           backgroundColor: this.getTheme().menuHoverColor,
           borderRadius: 0
         },
@@ -86,8 +86,11 @@ var ToolbarGroup = React.createClass({
     if (this.props.lastChild) styles.marginRight = -24;
 
     var newChildren = React.Children.map(this.props.children, function(currentChild) {
+      if(!currentChild) {
+        return null;
+      }
       switch (currentChild.type.displayName) {
-        case 'DropDownMenu' : 
+        case 'DropDownMenu' :
           return React.cloneElement(currentChild, {
             style: styles.dropDownMenu.root,
             styleControlBg: styles.dropDownMenu.controlBg,
@@ -104,13 +107,13 @@ var ToolbarGroup = React.createClass({
           return React.cloneElement(currentChild, {
             style: styles.button
           });
-        case 'FontIcon' : 
+        case 'FontIcon' :
           return React.cloneElement(currentChild, {
             style: styles.icon.root,
             onMouseOver: this._handleMouseOverFontIcon,
             onMouseOut: this._handleMouseOutFontIcon
           });
-        case 'ToolbarSeparator' : case 'ToolbarTitle' : 
+        case 'ToolbarSeparator' : case 'ToolbarTitle' :
           return React.cloneElement(currentChild, {
             style: this.mergeStyles(styles.span, currentChild.props.style)
           });
