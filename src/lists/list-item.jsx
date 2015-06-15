@@ -127,7 +127,11 @@ var ListItem = React.createClass({
       },
 
       leftCheckbox: {
-        left: 4
+        position: 'absolute',
+        display: 'block',
+        width: 24,
+        top: twoLine ? 24 : singleAvatar ? 16 : 12,
+        left: 16
       },
 
       rightToggle: {
@@ -170,7 +174,7 @@ var ListItem = React.createClass({
     this._pushElement(contentChildren, rightIcon, this.mergeStyles(styles.icons, styles.rightIcon));
     this._pushElement(contentChildren, leftAvatar, this.mergeStyles(styles.avatars, styles.leftAvatar));
     this._pushElement(contentChildren, rightAvatar, this.mergeStyles(styles.avatars, styles.rightAvatar));
-    this._pushElement(contentChildren, leftCheckbox, this.mergeStyles(styles.icons, styles.leftCheckbox));
+    this._pushElement(contentChildren, leftCheckbox, this.mergeStyles(styles.leftCheckbox));
     this._pushElement(contentChildren, rightToggle, this.mergeStyles(styles.rightToggle));
 
     if (this.props.children) contentChildren.push(this.props.children);

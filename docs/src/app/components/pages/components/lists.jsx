@@ -406,6 +406,21 @@ class ListsPage extends React.Component {
               Messages
             </ListItem>
           </List>
+          <ListDivider />
+          <List subheader="Hangout notifications">
+            <ListItem
+              leftCheckbox={<Checkbox />}>
+              Notifications
+            </ListItem>
+            <ListItem
+              leftCheckbox={<Checkbox />}>
+              Sounds
+            </ListItem>
+            <ListItem
+              leftCheckbox={<Checkbox />}>
+              Video sounds
+            </ListItem>
+          </List>
         </MobileTearSheet>
 
         <MobileTearSheet>
