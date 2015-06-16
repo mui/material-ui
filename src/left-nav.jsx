@@ -8,6 +8,8 @@ var Overlay = require('./overlay');
 var Paper = require('./paper');
 var Menu = require('./menu/menu');
 
+var openNavEventHandler = null;
+
 var LeftNav = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
@@ -211,6 +213,9 @@ var LeftNav = React.createClass({
   _enableSwipeHandling: function() {
     if (!this.props.docked) {
       document.body.addEventListener('touchstart', this._onBodyTouchStart);
+      if (!openNavEventHandler) {
+        openNavEventHandler = this._onBodyTouchStart;
+      }
     } else {
       this._disableSwipeHandling();
     }
@@ -218,9 +223,16 @@ var LeftNav = React.createClass({
 
   _disableSwipeHandling: function() {
     document.body.removeEventListener('touchstart', this._onBodyTouchStart);
+    if (openNavEventHandler === this._onBodyTouchStart) {
+      openNavEventHandler = null;
+    }
   },
 
   _onBodyTouchStart: function(e) {
+    if (!this.state.open && openNavEventHandler !== this._onBodyTouchStart) {
+      return;
+    }
+
     var touchStartX = e.touches[0].pageX;
     var touchStartY = e.touches[0].pageY;
     this.setState({
