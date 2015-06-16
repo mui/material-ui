@@ -149,6 +149,16 @@ var LightTheme = {
       },
       tabs: {
         backgroundColor: palette.primary1Color,
+      },
+      textField: {
+        textColor: palette.textColor,
+        hintColor: palette.disabledColor,
+        floatingLabelColor: palette.textColor,
+        disabledTextColor: palette.disabledColor,
+        errorColor: Colors.red500,
+        focusColor: palette.primary1Color,
+        backgroundColor: 'transparent',
+        borderColor: palette.borderColor
       }
     };
 

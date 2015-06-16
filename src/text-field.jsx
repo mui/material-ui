@@ -1,6 +1,5 @@
 var React = require('react');
 var ColorManipulator = require('./utils/color-manipulator');
-var Colors = require('./styles/colors');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var UniqueId = require('./utils/unique-id');
@@ -48,6 +47,10 @@ var TextField = React.createClass({
     };
   },
 
+  getTheme: function() {
+    return this.context.muiTheme.component.textField;
+  },
+
   componentDidMount: function() {
     this._uniqueId = UniqueId.generate();
   },
@@ -71,12 +74,9 @@ var TextField = React.createClass({
     if (newState) this.setState(newState);
   },
 
-  errorColor: Colors.red500,
-
   getStyles: function() {
-    var palette = this.context.muiTheme.palette;
-    var disabledTextColor = palette.disabledColor;
     var props = this.props;
+    var theme = this.getTheme();
 
     var styles = {
       root: {
@@ -94,14 +94,14 @@ var TextField = React.createClass({
         bottom: -10,
         fontSize: 12,
         lineHeight: '12px',
-        color: this.errorColor,
+        color: theme.errorColor,
         transition: Transitions.easeOut(),
       },
       hint: {
         position: 'absolute',
         lineHeight: '48px',
         opacity: 1,
-        color: disabledTextColor,
+        color: theme.hintColor,
         transition: Transitions.easeOut()
       },
       input: {
@@ -111,13 +111,13 @@ var TextField = React.createClass({
         height: '100%',
         border: 'none',
         outline: 'none',
-        backgroundColor: 'transparent',
-        color: props.disabled ? disabledTextColor : palette.textColor,
+        backgroundColor: theme.backgroundColor,
+        color: props.disabled ? theme.disabledTextColor : theme.textColor,
         font: 'inherit'
       },
       underline: {
         border: 'none',
-        borderBottom: 'solid 1px ' + palette.borderColor,
+        borderBottom: 'solid 1px ' + theme.borderColor,
         position: 'absolute',
         width: '100%',
         bottom: 8,
@@ -132,8 +132,8 @@ var TextField = React.createClass({
         overflow: 'hidden',
         userSelect: 'none',
         cursor: 'default',
-        bottom: 0,
-        color: disabledTextColor
+        bottom: 8,
+        borderBottom: 'dotted 2px ' + theme.disabledTextColor
       }
     };
 
@@ -153,19 +153,19 @@ var TextField = React.createClass({
 
     styles.focusUnderline= this.mergeStyles(styles.underline, {
       borderBottom: 'solid 2px',
-      borderColor: palette.primary1Color,
+      borderColor: theme.focusColor,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut(),
     });
 
     if (this.state.isFocused) {
-      styles.floatingLabel.color = palette.primary1Color;
+      styles.floatingLabel.color = theme.focusColor;
       styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
     if (this.state.hasValue) {
-      styles.floatingLabel.color = ColorManipulator.fade(palette.textColor, 0.5);
+      styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? theme.disabledTextColor : theme.floatingLabelColor, 0.5);
       styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
       styles.hint.opacity = 0;
     }
@@ -177,11 +177,15 @@ var TextField = React.createClass({
       if (this.state.isFocused && !this.state.hasValue) styles.hint.opacity = 1;
     }
 
-    if (props.errorText && this.state.isFocused) styles.floatingLabel.color = this.errorColor;
+    if (props.style && props.style.height) {
+      styles.hint.lineHeight = props.style.height;
+    }
+
+    if (this.state.errorText && this.state.isFocused) styles.floatingLabel.color = theme.errorColor;
     if (props.floatingLabelText && !props.multiLine) styles.input.paddingTop = 26;
 
-    if (props.errorText) {
-      styles.focusUnderline.borderColor = this.errorColor;
+    if (this.state.errorText) {
+      styles.focusUnderline.borderColor = theme.errorColor;
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
@@ -256,9 +260,7 @@ var TextField = React.createClass({
     );
 
     var underlineElement = this.props.disabled ? (
-      <div style={this.mergeAndPrefix(styles.underlineAfter)}>
-        ....................................................................................
-      </div>
+      <div style={this.mergeAndPrefix(styles.underlineAfter)}></div>
     ) : (
       <hr style={this.mergeAndPrefix(styles.underline)}/>
     );
@@ -304,7 +306,14 @@ var TextField = React.createClass({
     if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
       console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
     } else if (this.isMounted()) {
-      this._getInputNode().value = newValue;
+
+      if (this.props.multiLine) {
+        this.refs[this._getRef()].changeInputNodeValue(newValue);
+
+      } else {
+        this._getInputNode().value = newValue;
+      }
+
       this.setState({hasValue: newValue});
     }
   },
