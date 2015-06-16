@@ -33,6 +33,7 @@ var Slider = React.createClass({
       required: true,
       disabled: false,
       defaultValue: 0,
+      step: 0.01,
       min: 0,
       max: 1,
       dragging: false
@@ -244,6 +245,7 @@ var Slider = React.createClass({
               <Draggable axis="x" bound="point"
                 cancel={this.props.disabled ? '*' : null}
                 start={{x: (percent * 100) + '%'}}
+                constrain={this._constrain()}
                 onStart={this._onDragStart}
                 onStop={this._onDragStop}
                 onDrag={this._onDragUpdate}
@@ -285,12 +287,48 @@ var Slider = React.createClass({
   },
 
   setPercent: function (percent) {
-    var value = this._percentToValue(percent);
+    var value = this._alignValue(this._percentToValue(percent));
     this.setState({value: value, percent: percent});
   },
 
   clearValue: function() {
     this.setValue(0);
+  },
+
+  _alignValue: function (val) {
+    var { step, min } = this.props;
+
+    var valModStep = (val - min) % step;
+    var alignValue = val - valModStep;
+
+    if (Math.abs(valModStep) * 2 >= step) {
+      alignValue += (valModStep > 0) ? step : (-step);
+    }
+
+    return parseFloat(alignValue.toFixed(5));
+  },
+
+  _constrain: function () {
+    var { min, max, step } = this.props;
+    return (pos) => {
+      var pixelMax = React.findDOMNode(this.refs.track).clientWidth;
+      var pixelStep = pixelMax / ((max - min) / step);
+
+      var cursor = min;
+      var i;
+      for (i = 0; i < (max - min) / step; i++) {
+        var distance = (pos.left - cursor);
+        var nextDistance = (cursor + pixelStep) - pos.left
+        if (Math.abs(distance) > Math.abs(nextDistance)) {
+          cursor += pixelStep;
+        } else {
+          break;
+        }
+      }
+      return {
+        left: cursor
+      };
+    };
   },
 
   _onFocus: function (e) {
@@ -349,7 +387,7 @@ var Slider = React.createClass({
   _updateWithChangeEvent: function(e, percent) {
     if (this.state.percent === percent) return;
     this.setPercent(percent);
-    var value = this._percentToValue(percent);
+    var value = this._alignValue(this._percentToValue(percent));
     if (this.props.onChange) this.props.onChange(e, value);
   },
 
