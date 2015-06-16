@@ -187,6 +187,14 @@ class ListsPage extends React.Component {
             desc: 'This is the SvgIcon or FontIcon to be displayed on the right side.'
           },
           {
+            name: 'rightIconButton',
+            type: 'element',
+            header: 'optional',
+            desc: 'This is the IconButton to be displayed on the right side. Hovering over this button will ' +
+              'remove the ListItem hover. Also, clicking on this button will not trigger a ListItem ripple. The ' +
+              'event will be stopped and prevented from bubbling up to cause a ListItem click.'
+          },
+          {
             name: 'rightToggle',
             type: 'element',
             header: 'optional',
