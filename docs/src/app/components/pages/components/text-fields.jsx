@@ -2,6 +2,7 @@ var React = require('react/addons');
 var mui = require('mui');
 var ClearFix = mui.ClearFix;
 var TextField = mui.TextField;
+var SelectField = mui.SelectField;
 var StyleResizable = mui.Mixins.StyleResizable;
 var ComponentDoc = require('../../component-doc.jsx');
 
@@ -18,6 +19,8 @@ var TextFieldsPage = React.createClass({
       propValue: 'Prop Value',
       floatingPropValue: 'Prop Value',
       valueLinkValue: 'Value Link',
+      selectValue: undefined,
+      selectValueLinkValue: 4,
       floatingValueLinkValue: 'Value Link'
     };
   },
@@ -76,6 +79,17 @@ var TextFieldsPage = React.createClass({
       '  hintText="Disabled Hint Text"\n' +
       '  disabled={true}\n' +
       '  defaultValue="Disabled With Value" />\n\n' +
+      '<SelectField\n'+
+        'value={this.state.selectValue}\n'+
+        'onChange={this._handleSelectValueChange}\n'+
+        'floatingLabelText="Select Field"\n'+
+        'menuItems={menuItems} />\n'+
+      '<SelectField\n'+
+        'valueLink={this.linkState("selectValueLinkValue")}\n'+
+        'floatingLabelText="Select Field"\n'+
+        'valueMember="id"\n'+
+        'displayMember="name"\n'+
+        'menuItems={arbitraryArrayMenuItems} />\n'+
 
       '//Floating Hint Text Labels\n' +
       '<TextField\n' +
@@ -117,7 +131,20 @@ var TextFieldsPage = React.createClass({
       '  hintText="Disabled Hint Text"\n' +
       '  disabled={true}\n' +
       '  defaultValue="Disabled With Value"\n' +
-      '  floatingLabelText="Floating Label Text" />';
+      '  floatingLabelText="Floating Label Text" />\n'+
+      '<TextField\n' +
+      '  hintText="Custom Child input (e.g. password)"\n' +
+      '  defaultValue="Custom Child input (e.g. password)"\n' +
+      '  floatingLabelText="Custom Child input (e.g. password)">\n' +
+      '    <input type="password" />\n' +
+      '</TextField>\n'+
+      '<TextField\n' +
+      '  hintText="Disabled Child input (e.g. password)"\n' +
+      '  disabled={true}\n' +
+      '  defaultValue="Custom Child input (e.g. password)"\n' +
+      '  floatingLabelText="Custom Child input (e.g. password)">\n' +
+      '    <input type="password" />\n' +
+      '</TextField>';
 
     var desc = 'This component extends the current input element and will support all of its props and events. It supports ' +
       'valueLink and can be controlled or uncontrolled.' ;
@@ -231,6 +258,20 @@ var TextFieldsPage = React.createClass({
     ];
 
     var styles = this.getStyles();
+    var menuItems = [
+      { payload: '1', text: 'Never' },
+      { payload: '2', text: 'Every Night' },
+      { payload: '3', text: 'Weeknights' },
+      { payload: '4', text: 'Weekends' },
+      { payload: '5', text: 'Weekly' },
+    ];
+    var arbitraryArrayMenuItems = [
+     {id:1, name:'Never'},
+     {id:2, name:'Every Night'},
+     {id:3, name:'Weeknights'},
+     {id:4, name:'Weekends'},
+     {id:5, name:'Weekly'}
+    ];
 
     return (
       <ComponentDoc
@@ -281,6 +322,17 @@ var TextFieldsPage = React.createClass({
               hintText="Disabled Hint Text"
               disabled={true}
               defaultValue="Disabled With Value" /><br/>
+            <SelectField
+              value={this.state.selectValue}
+              onChange={this._handleSelectValueChange}
+              floatingLabelText="Select Field"
+              menuItems={menuItems} />
+            <SelectField
+              valueLink={this.linkState('selectValueLinkValue')}
+              floatingLabelText="Select Field"
+              valueMember="id"
+              displayMember="name"
+              menuItems={arbitraryArrayMenuItems} />
           </div>
           <div style={styles.group}>
             <TextField
@@ -323,6 +375,19 @@ var TextFieldsPage = React.createClass({
               disabled={true}
               defaultValue="Disabled With Value"
               floatingLabelText="Floating Label Text" /><br/>
+            <TextField
+              hintText="Custom Child input (e.g. password)"
+              defaultValue="Custom Child input (e.g. password)"
+              floatingLabelText="Custom Child input (e.g. password)">
+                <input type="password" />
+            </TextField>
+            <TextField
+              hintText="Disabled Child input (e.g. password)"
+              disabled={true}
+              defaultValue="Custom Child input (e.g. password)"
+              floatingLabelText="Custom Child input (e.g. password)">
+                <input type="password" />
+            </TextField>
           </div>
         </ClearFix>
       </ComponentDoc>
@@ -360,6 +425,12 @@ var TextFieldsPage = React.createClass({
   _handleInputChange: function(e) {
     this.setState({
       propValue: e.target.value
+    });
+  },
+
+  _handleSelectValueChange: function(e) {
+    this.setState({
+      selectValue: e.target.value
     });
   },
 
