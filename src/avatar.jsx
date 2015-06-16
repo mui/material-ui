@@ -54,17 +54,16 @@ var SvgIcon = React.createClass({
       },
 
       iconStyles: {
-        color: color,
-        fill: color,
         margin: 8
       }
     };
 
     var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
-    var mergedIconStyles = icon ? 
+    var mergedIconStyles = icon ?
       this.mergeStyles(styles.iconStyles, icon.props.style) : null;
 
     var iconElement = icon ? React.cloneElement(icon, {
+      color: color,
       style: mergedIconStyles
     }) : null;
 

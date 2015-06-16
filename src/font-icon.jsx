@@ -34,8 +34,14 @@ var FontIcon = React.createClass({
       ...other
     } = this.props;
 
-    var offColor = color ? color: this.context.muiTheme.palette.textColor;
+    var offColor = color ? color :
+      style && style.color ? style.color :
+      this.context.muiTheme.palette.textColor;
     var onColor = hoverColor ? hoverColor : offColor;
+
+    //remove the color prop so that it doesn't override our computed
+    //colors from above
+    if (style) delete style.color;
 
     var mergedStyles = this.mergeAndPrefix({
       position: 'relative',

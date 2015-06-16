@@ -37,7 +37,7 @@ var ListItem = React.createClass({
 
   getInitialState: function() {
     return {
-      hovered: false 
+      hovered: false
     };
   },
 
@@ -101,7 +101,7 @@ var ListItem = React.createClass({
         padding: 12
       },
 
-      leftIcon: { 
+      leftIcon: {
         color: Colors.grey600,
         fill: Colors.grey600,
         left: 4

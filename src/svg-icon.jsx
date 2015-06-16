@@ -40,8 +40,13 @@ var SvgIcon = React.createClass({
       ...other
     } = this.props;
 
-    var offColor = color ? color: this.context.muiTheme.palette.textColor;
+    var offColor = color ? color :
+      style && style.fill ? style.fill : this.context.muiTheme.palette.textColor;
     var onColor = hoverColor ? hoverColor : offColor;
+
+    //remove the fill prop so that it doesn't override our computed
+    //fill from above
+    if (style) delete style.fill;
 
     var mergedStyles = this.mergeAndPrefix({
       display: 'inline-block',

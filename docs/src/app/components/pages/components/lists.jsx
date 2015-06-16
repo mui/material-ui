@@ -29,7 +29,7 @@ class ListsPage extends React.Component {
   }
 
   render() {
-   
+
     var code = `
       //First Example
       <List>
@@ -273,7 +273,7 @@ class ListsPage extends React.Component {
         <MobileTearSheet>
           <List>
             <ListItem
-              leftIcon={<ActionGrade style={{fill: Colors.pinkA200}} />}
+              leftIcon={<ActionGrade color={Colors.pinkA200} />}
               rightAvatar={<Avatar src="images/chexee-128.jpg" />}>
               Chelsea Otakan
             </ListItem>
@@ -426,7 +426,7 @@ class ListsPage extends React.Component {
         <MobileTearSheet>
           <List>
             <ListItem
-              leftIcon={<CommunicationCall style={{fill: Colors.indigo500}} />}
+              leftIcon={<CommunicationCall color={Colors.indigo500} />}
               rightIcon={<CommunicationChatBubble />}
               secondaryText="Mobile">
               (650) 555 - 1234
@@ -441,7 +441,7 @@ class ListsPage extends React.Component {
           <ListDivider inset={true} />
           <List>
             <ListItem
-              leftIcon={<CommunicationEmail style={{fill: Colors.indigo500}} />}
+              leftIcon={<CommunicationEmail color={Colors.indigo500} />}
               secondaryText="Personal">
               aliconnors@example.com
             </ListItem>
@@ -459,7 +459,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>Brendan Lim</span> -- 
+                  <span style={{color: Colors.darkBlack}}>Brendan Lim</span> --
                   I&apos;ll be in your neighborhood this weekend.
                 </p>
               }>
@@ -470,7 +470,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> -- 
+                  <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> --
                   Wish I could but I can
                 </p>
               }>
@@ -481,7 +481,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>Grace Ng</span> -- 
+                  <span style={{color: Colors.darkBlack}}>Grace Ng</span> --
                   Do you have Paris recommendations?
                 </p>
               }>
@@ -492,7 +492,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/kerem-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>Kerem Suer</span> -- 
+                  <span style={{color: Colors.darkBlack}}>Kerem Suer</span> --
                   Do you have any ideas on what I
                 </p>
               }>
@@ -503,7 +503,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> -- 
+                  <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> --
                   We should eat this: grated cheese
                 </p>
               }>
@@ -514,7 +514,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/chexee-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>Chelsea Otakan</span> -- 
+                  <span style={{color: Colors.darkBlack}}>Chelsea Otakan</span> --
                   Any interest in seeing the Giants
                 </p>
               }>
@@ -529,7 +529,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>Brendan Lim</span> -- 
+                  <span style={{color: Colors.darkBlack}}>Brendan Lim</span> --
                   I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
                 </p>
               }
@@ -541,7 +541,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> -- 
+                  <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> --
                   Wish I could come, but I&apos;m out of town this weekend.
                 </p>
               }
@@ -553,7 +553,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>Grace Ng</span> -- 
+                  <span style={{color: Colors.darkBlack}}>Grace Ng</span> --
                   Do you have Paris recommendations? Have you ever been?
                 </p>
               }
@@ -565,7 +565,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/kerem-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>Kerem Suer</span> -- 
+                  <span style={{color: Colors.darkBlack}}>Kerem Suer</span> --
                   Do you have any ideas what we can get Heidi for her birthday? How about a pony?
                 </p>
               }
@@ -577,7 +577,7 @@ class ListsPage extends React.Component {
               leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> -- 
+                  <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> --
                   We should eat this: grated squash. Corn and tomatillo tacos.
                 </p>
               }
