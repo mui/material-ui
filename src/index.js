@@ -1,5 +1,7 @@
 module.exports = {
-  AppBar: require('./app-bar'),
+  AppBar: require('./app-bar/app-bar'),
+  AppBarGroup: require('./app-bar/app-bar-group'),
+  AppBarTitle: require('./app-bar/app-bar-title'),
   AppCanvas: require('./app-canvas'),
   Avatar: require('./avatar'),
   BeforeAfterWrapper: require('./before-after-wrapper'),
