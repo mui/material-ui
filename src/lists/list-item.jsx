@@ -24,6 +24,7 @@ var ListItem = React.createClass({
     onMouseOver: React.PropTypes.func,
     rightAvatar: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
+    rightIconButton: React.PropTypes.element,
     rightToggle: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2])
@@ -37,7 +38,8 @@ var ListItem = React.createClass({
 
   getInitialState: function() {
     return {
-      hovered: false
+      hovered: false,
+      rightIconButtonHovered: false
     };
   },
 
@@ -53,6 +55,7 @@ var ListItem = React.createClass({
       onMouseOver,
       rightAvatar,
       rightIcon,
+      rightIconButton,
       rightToggle,
       secondaryText,
       secondaryTextLines,
@@ -70,7 +73,7 @@ var ListItem = React.createClass({
 
     var styles = {
       root: {
-        backgroundColor: this.state.hovered ? hoverColor : null,
+        backgroundColor: this.state.hovered && !this.state.rightIconButtonHovered ? hoverColor : null,
         color: textColor,
         display: 'block',
         fontSize: 16,
@@ -83,7 +86,7 @@ var ListItem = React.createClass({
       //This inner div is need so that ripples will span the entire container
       innerDiv: {
         paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
-        paddingRight: rightIcon || rightAvatar ? 56 : rightToggle ? 72 : 16,
+        paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,
         paddingBottom: singleAvatar ? 20 : 16,
         paddingTop: singleNoAvatar || threeLine ? 16 : 20
       },
@@ -134,6 +137,13 @@ var ListItem = React.createClass({
         left: 16
       },
 
+      rightIconButton: {
+        position: 'absolute',
+        display: 'block',
+        top: twoLine ? 12 : singleAvatar ? 4 : 0,
+        right: 4
+      },
+
       rightToggle: {
         position: 'absolute',
         display: 'block',
@@ -175,6 +185,13 @@ var ListItem = React.createClass({
     this._pushElement(contentChildren, leftAvatar, this.mergeStyles(styles.avatars, styles.leftAvatar));
     this._pushElement(contentChildren, rightAvatar, this.mergeStyles(styles.avatars, styles.rightAvatar));
     this._pushElement(contentChildren, leftCheckbox, this.mergeStyles(styles.leftCheckbox));
+    this._pushElement(contentChildren, rightIconButton, this.mergeStyles(styles.rightIconButton), {
+      onMouseOver: this._handleRightIconButtonMouseOver,
+      onMouseOut: this._handleRightIconButtonMouseOut,
+      onTouchTap: this._handleRightIconButtonTouchTap,
+      onMouseDown: this._handleRightIconButtonMouseUp,
+      onMouseUp: this._handleRightIconButtonMouseUp
+    });
     this._pushElement(contentChildren, rightToggle, this.mergeStyles(styles.rightToggle));
 
     if (this.props.children) contentChildren.push(this.props.children);
@@ -204,16 +221,49 @@ var ListItem = React.createClass({
 
   },
 
-  _pushElement: function(children, element, baseStyles) {
+  _pushElement: function(children, element, baseStyles, additionalProps) {
     if (element) {
       var styles = this.mergeStyles(baseStyles, element.props.style);
       children.push(
         React.cloneElement(element, {
           key: children.length,
-          style: styles
+          style: styles,
+          ...additionalProps
         })
       );
     }
+  },
+
+  _handleRightIconButtonMouseDown: function(e) {
+    var iconButton = this.props.rightIconButton;
+    e.stopPropagation();
+    if (iconButton.onMouseDown) iconButton.onDown(e);
+  },
+
+  _handleRightIconButtonMouseOut: function(e) {
+    var iconButton = this.props.rightIconButton;
+    this.setState({rightIconButtonHovered: false});
+    if (iconButton.onMouseOut) iconButton.onMouseOut(e);
+  },
+
+  _handleRightIconButtonMouseOver: function(e) {
+    var iconButton = this.props.rightIconButton;
+    this.setState({rightIconButtonHovered: true});
+    if (iconButton.onMouseOver) iconButton.onMouseOver(e);
+  },
+
+  _handleRightIconButtonMouseUp: function(e) {
+    var iconButton = this.props.rightIconButton;
+    e.stopPropagation();
+    if (iconButton.onMouseUp) iconButton.onUp(e);
+  },
+
+  _handleRightIconButtonTouchTap: function(e) {
+    var iconButton = this.props.rightIconButton;
+
+    //Stop the event from bubbling up to the list-item
+    e.stopPropagation();
+    if (iconButton.onTouchTap) iconButton.onTouchTap(e);
   },
 
   _handleMouseOver: function(e) {
