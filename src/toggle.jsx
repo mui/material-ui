@@ -38,11 +38,15 @@ var Toggle = React.createClass({
     var toggleTrackWidth = 36;
     var styles = {
       icon: {
+        width: 36,
         padding: '4px 0px 6px 2px'
+      },
+      toggleElemet: {
+        width: toggleTrackWidth
       },
       track: {
           transition: Transitions.easeOut(),
-          width: toggleTrackWidth,
+          width: '100%',
           height: 14,
           borderRadius: 30,
           backgroundColor: this.getTheme().trackOffColor
@@ -51,7 +55,7 @@ var Toggle = React.createClass({
         transition: Transitions.easeOut(),
         position: 'absolute',
         top: 1,
-        left: 2,
+        left: 0,
         width: toggleSize,
         height: toggleSize,
         lineHeight: '24px',
@@ -63,7 +67,7 @@ var Toggle = React.createClass({
       },
       thumbWhenSwitched: {
         backgroundColor: this.getTheme().thumbOnColor,
-        left: 18
+        left: '100%'
       },
       trackWhenDisabled: {
         backgroundColor: this.getTheme().trackDisabledColor
@@ -97,17 +101,23 @@ var Toggle = React.createClass({
       this.props.disabled && styles.thumbWhenDisabled
     );
 
+    if (this.state.switched) {
+      thumbStyles.marginLeft = '-' + thumbStyles.width;
+    }
+    
+    var toggleElemetStyles = this.mergeAndPrefix(styles.toggleElemet, this.props.elementStyle);
+
     var toggleElement = (
-      <div style={this.mergeAndPrefix(this.props.elementStyle)}>
+      <div style={toggleElemetStyles}>
         <div style={trackStyles} />
         <Paper style={thumbStyles} circle={true} zDepth={1} />
       </div>
     );
 
-    var customRippleStyle = {
+    var customRippleStyle = this.mergeAndPrefix({
       top: '-10',
       left: '-10'
-    };
+    }, this.props.rippleStyle);
 
     var rippleColor =  this.state.switched ?
       this.getTheme().thumbOnColor : this.context.muiTheme.component.textColor;
