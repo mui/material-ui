@@ -22,6 +22,9 @@ var IconButton = React.createClass({
     onFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
     touch: React.PropTypes.bool,
+    tooltipPosition: React.PropTypes.oneOf(['bottom-center',
+    'bottom-left','bottom-right','top-center', 'top-left',
+    'top-right'])
   },
 
   getInitialState: function() {
@@ -32,7 +35,8 @@ var IconButton = React.createClass({
 
   getDefaultProps: function () {
     return {
-      iconStyle: {}
+      iconStyle: {},
+      tooltipPosition: 'bottom-center',
     };
   },
 
@@ -53,6 +57,7 @@ var IconButton = React.createClass({
   getStyles: function() {
     var spacing = this.context.muiTheme.spacing;
     var palette = this.context.muiTheme.palette;
+    var touchMarginOffset = this.props.touch ? 10: 0;
 
     var styles = {
       root: {
@@ -65,7 +70,8 @@ var IconButton = React.createClass({
       },
       tooltip: {
         boxSizing: 'border-box',
-        marginTop: this.context.muiTheme.component.button.iconButtonSize + 4
+        marginTop: this.context.muiTheme.component.button.iconButtonSize +
+                   2 + touchMarginOffset
       },
       icon: {
         color: palette.textColor,
@@ -97,13 +103,29 @@ var IconButton = React.createClass({
 
     var styles = this.getStyles();
 
+    var tooltipPosition = this.props.tooltipPosition;
+    var tooltipPositionTop = (tooltipPosition === 'top-left' || 
+                              tooltipPosition === 'top-right' || 
+                              tooltipPosition === 'top-center');
+    var verticalDirection = tooltipPositionTop ? 'up' : 'down';
+
+    var rippleStart = tooltipPosition === 'top-left' || 
+                      tooltipPosition==='bottom-left' ?
+                        rippleStart = 'right':
+                      tooltipPosition === 'top-center' || 
+                      tooltipPosition==='bottom-center' ?
+                        rippleStart = 'center':
+                        rippleStart = 'left';
     var tooltipElement = tooltip ? (
       <Tooltip
         ref="tooltip"
         label={tooltip}
         show={this.state.tooltipShown}
         touch={touch}
-        style={this.mergeStyles(styles.tooltip)}/>
+        style={this.mergeStyles(styles.tooltip)}
+        verticalDirection = {verticalDirection}
+        ripplePosition = {rippleStart}
+        iconButtonTouch = {this.props.touch}/>
     ) : null;
 
     if (iconClassName) {
@@ -167,8 +189,30 @@ var IconButton = React.createClass({
     var tooltip = React.findDOMNode(this.refs.tooltip);
     var tooltipWidth = tooltip.offsetWidth;
     var buttonWidth = 48;
+    var touchMarginOffset = (this.props.touch) ? 10: 0;
 
-    tooltip.style.left = (tooltipWidth - buttonWidth) / 2 * -1 + 'px';
+    switch(this.props.tooltipPosition){
+      case 'bottom-left':
+        tooltip.style.right = 12 + 'px';
+        break;
+      case 'bottom-right':
+        tooltip.style.left = 12 + 'px';
+        break;
+      case 'top-left':
+        tooltip.style.right = 12 + 'px';
+        tooltip.style.marginTop = (tooltip.offsetHeight+2+touchMarginOffset)*-1 + 'px';
+        break;
+      case 'top-right':
+        tooltip.style.left = 12 + 'px';
+        tooltip.style.marginTop = (tooltip.offsetHeight+2+touchMarginOffset)*-1 + 'px';
+        break;
+      case 'top-center':
+        tooltip.style.left = (tooltipWidth - buttonWidth) / 2 * -1 + 'px';
+        tooltip.style.marginTop = (tooltip.offsetHeight+2+touchMarginOffset)*-1 + 'px';
+        break;
+      case 'bottom-center':
+        tooltip.style.left = (tooltipWidth - buttonWidth) / 2 * -1 + 'px';
+    }
   },
 
   _showTooltip: function() {
