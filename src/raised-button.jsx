@@ -121,6 +121,7 @@ var RaisedButton = React.createClass({
 
   render: function() {
     var {
+      disabled,
       label,
       primary,
       secondary,
@@ -140,24 +141,30 @@ var RaisedButton = React.createClass({
     var rippleColor = styles.label.color;
     var rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
 
+    var buttonEventHandlers = disabled ? null : {
+      onMouseDown: this._handleMouseDown,
+      onMouseUp: this._handleMouseUp,
+      onMouseOut: this._handleMouseOut,
+      onMouseOver: this._handleMouseOver,
+      onTouchStart: this._handleTouchStart,
+      onTouchEnd: this._handleTouchEnd,
+      onKeyboardFocus: this._handleKeyboardFocus
+    };
+
     return (
       <Paper 
         style={this.mergeAndPrefix(styles.root, this.props.style)}
         zDepth={this.state.zDepth}>
-          <EnhancedButton {...other}
+          <EnhancedButton
+            {...other}
+            {...buttonEventHandlers}
             ref="container"
+            disabled={disabled}
             style={this.mergeAndPrefix(styles.container)}
-            onMouseUp={this._handleMouseUp}
-            onMouseDown={this._handleMouseDown}
-            onMouseOut={this._handleMouseOut}
-            onMouseOver={this._handleMouseOver}
-            onTouchStart={this._handleTouchStart}
-            onTouchEnd={this._handleTouchEnd}
             focusRippleColor={rippleColor}
             touchRippleColor={rippleColor}
             focusRippleOpacity={rippleOpacity}
-            touchRippleOpacity={rippleOpacity}
-            onKeyboardFocus={this._handleKeyboardFocus}>
+            touchRippleOpacity={rippleOpacity}>
               <div ref="overlay" style={this.mergeAndPrefix(
                   styles.overlay,
                   (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered

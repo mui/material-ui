@@ -161,8 +161,9 @@ var EnhancedButton = React.createClass({
 
     if (disabled && linkButton) {
       return (
-        <span {...other}
-          disabled={disabled}>
+        <span
+          {...other}
+          style={mergedStyles}>
           {this.props.children}
         </span>
       );
