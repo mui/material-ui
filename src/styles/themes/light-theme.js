@@ -137,7 +137,9 @@ var LightTheme = {
         thumbRequiredColor: palette.primary1Color,
         trackOnColor: ColorManipulator.fade(palette.primary1Color, 0.5),
         trackOffColor: Colors.minBlack,
-        trackDisabledColor: Colors.faintBlack
+        trackDisabledColor: Colors.faintBlack,
+        labelColor: palette.textColor,
+        labelDisabledColor: palette.disabledColor
       },
       toolbar: {
         backgroundColor: ColorManipulator.darken('#eeeeee', 0.05),
