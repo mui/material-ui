@@ -99,6 +99,8 @@ var LightTheme = {
         requiredColor: palette.primary1Color,
         disabledColor: palette.disabledColor,
         size: 24,
+        labelColor: palette.textColor,
+        labelDisabledColor: palette.disabledColor
       },
       raisedButton: {
         color: Colors.white,

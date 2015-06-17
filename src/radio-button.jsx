@@ -57,6 +57,9 @@ var RadioButton = React.createClass({
       fillWhenDisabled: {
         fill: this.getTheme().disabledColor
       },
+      label: {
+        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
+      }
     };
     return styles;
   },
@@ -95,6 +98,11 @@ var RadioButton = React.createClass({
       this.props.iconStyle
     );
 
+    var labelStyle = this.mergeAndPrefix(
+      styles.label,
+      this.props.labelStyle
+    );
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "radio",
@@ -102,6 +110,7 @@ var RadioButton = React.createClass({
       switchElement: radioButtonElement,
       rippleColor: rippleColor,
       iconStyle: iconStyle,
+      labelStyle: labelStyle,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"
