@@ -41,7 +41,9 @@ var LightTheme = {
         boxColor: palette.textColor,
         checkedColor: palette.primary1Color,
         requiredColor: palette.primary1Color,
-        disabledColor: palette.disabledColor
+        disabledColor: palette.disabledColor,
+        labelColor: palette.textColor,
+        labelDisabledColor: palette.disabledColor
       },
       datePicker: {
         color: palette.primary1Color,
