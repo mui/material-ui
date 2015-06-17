@@ -71,7 +71,7 @@ var ComponentDoc = React.createClass({
 
     var componentInfo = this.props.componentInfo.map(function(info, i) {
       var infoStyle = styles.componentInfo;
-      if (i == 0) infoStyle = this.mergeStyles(infoStyle, styles.componentInfoWhenFirstChild);
+      if (i === 0) infoStyle = this.mergeStyles(infoStyle, styles.componentInfoWhenFirstChild);
       return (
         <ComponentInfo
           key={i}

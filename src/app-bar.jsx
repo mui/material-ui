@@ -21,6 +21,7 @@ var AppBar = React.createClass({
     iconClassNameRight: React.PropTypes.string,
     iconElementLeft: React.PropTypes.element,
     iconElementRight: React.PropTypes.element,
+    iconStyleRight: React.PropTypes.object,
     title : React.PropTypes.node,
     zDepth: React.PropTypes.number,
   },
@@ -34,7 +35,7 @@ var AppBar = React.createClass({
   },
 
   componentDidMount: function() {
-    if (process.env.NODE_ENV !== 'production' && 
+    if (process.env.NODE_ENV !== 'production' &&
        (this.props.iconElementLeft && this.props.iconClassNameLeft)) {
         var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
                       'defined. Please use one or the other.';
@@ -42,45 +43,39 @@ var AppBar = React.createClass({
     }
   },
 
-  getSpacing: function() {
-    return this.context.muiTheme.spacing;
-  },
-
-  getThemeVariables: function() {
-    return this.context.muiTheme.component.appBar;
-  },
-
-  getStyles: function(){
+  getStyles: function() {
+    var spacing = this.context.muiTheme.spacing;
+    var themeVariables = this.context.muiTheme.component.appBar;
     var iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
     var styles = {
       root: {
         zIndex: 5,
         width: '100%',
-        minHeight: this.getSpacing().desktopKeylineIncrement,
-        backgroundColor: this.getThemeVariables().color,
-        paddingLeft: this.getSpacing().desktopGutter,
-        paddingRight: this.getSpacing().desktopGutter
+        minHeight: themeVariables.height,
+        backgroundColor: themeVariables.color,
+        paddingLeft: spacing.desktopGutter,
+        paddingRight: spacing.desktopGutter
       },
       title: {
         float: 'left',
         margin: 0,
         paddingTop: 0,
         letterSpacing: 0,
-        fontSize: '24px',
+        fontSize: 24,
         fontWeight: Typography.fontWeightNormal,
-        color: this.getThemeVariables().textColor,
-        lineHeight: this.getSpacing().desktopKeylineIncrement + 'px'
+        color: themeVariables.textColor,
+        lineHeight: themeVariables.height + 'px'
       },
       iconButton: {
         style: {
-          marginTop: (this.getThemeVariables().height - iconButtonSize) / 2,
+          marginTop: (themeVariables.height - iconButtonSize) / 2,
           float: 'left',
           marginRight: 8,
           marginLeft: -16
         },
         iconStyle: {
-          fill: this.getThemeVariables().textColor,
-          color: this.getThemeVariables().textColor
+          fill: themeVariables.textColor,
+          color: themeVariables.textColor
         }
       }
     };
@@ -88,18 +83,16 @@ var AppBar = React.createClass({
   },
 
   render: function() {
-    var {
-      onTouchTap,
-      ...other
-    } = this.props;
     var styles = this.getStyles();
 
-    var title, menuElementLeft, menuElementRight;
+    var title;
+    var menuElementLeft;
+    var menuElementRight;
     var iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
       float: 'right',
       marginRight: -16,
       marginLeft: 8
-    });
+    }, this.props.iconStyleRight);
 
     if (this.props.title) {
       // If the title is a string, wrap in an h1 tag.
@@ -112,8 +105,8 @@ var AppBar = React.createClass({
     if (this.props.showMenuIconButton) {
       if (this.props.iconElementLeft) {
         menuElementLeft = (
-          <div style={styles.iconButton.style}> 
-            {this.props.iconElementLeft} 
+          <div style={styles.iconButton.style}>
+            {this.props.iconElementLeft}
           </div>
         );
       } else {
@@ -131,8 +124,8 @@ var AppBar = React.createClass({
 
       if (this.props.iconElementRight) {
         menuElementRight = (
-          <div style={iconRightStyle}> 
-            {this.props.iconElementRight} 
+          <div style={iconRightStyle}>
+            {this.props.iconElementRight}
           </div>
         );
       } else if (this.props.iconClassNameRight) {
@@ -148,24 +141,29 @@ var AppBar = React.createClass({
     }
 
     return (
-      <Paper 
-        rounded={false} 
-        className={this.props.className}  
+      <Paper
+        rounded={false}
+        className={this.props.className}
         style={this.mergeAndPrefix(styles.root, this.props.style)}
         zDepth={this.props.zDepth}>
           {menuElementLeft}
           {title}
           {menuElementRight}
+          {this.props.children}
       </Paper>
     );
   },
 
-  _onLeftIconButtonTouchTap: function(e) {
-    if (this.props.onLeftIconButtonTouchTap) this.props.onLeftIconButtonTouchTap(e);
+  _onLeftIconButtonTouchTap: function(event) {
+    if (this.props.onLeftIconButtonTouchTap) {
+      this.props.onLeftIconButtonTouchTap(event);
+    }
   },
 
-  _onRightIconButtonTouchTap: function(e) {
-    if (this.props.onRightIconButtonTouchTap) this.props.onRightIconButtonTouchTap(e);
+  _onRightIconButtonTouchTap: function(event) {
+    if (this.props.onRightIconButtonTouchTap) {
+      this.props.onRightIconButtonTouchTap(event);
+    }
   }
 
 });

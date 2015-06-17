@@ -15,7 +15,9 @@ var Checkbox = React.createClass({
 
   propTypes: {
     iconStyle: React.PropTypes.object,
-    onCheck: React.PropTypes.func
+    onCheck: React.PropTypes.func,
+    checkedIcon: React.PropTypes.element,
+    unCheckedIcon: React.PropTypes.element
   },
 
   getInitialState: function() {
@@ -76,7 +78,10 @@ var Checkbox = React.createClass({
 
   render: function() {
     var {
+      iconStyle,
       onCheck,
+      checkedIcon,
+      unCheckedIcon,
       ...other
     } = this.props;
 
@@ -85,23 +90,36 @@ var Checkbox = React.createClass({
       this.mergeAndPrefix(
         styles.box,
         this.state.switched && styles.boxWhenSwitched,
-        this.props.iconStyle,
+        iconStyle,
         this.props.disabled && styles.boxWhenDisabled);
     var checkStyles =
       this.mergeAndPrefix(
         styles.check,
         this.state.switched && styles.checkWhenSwitched,
-        this.props.iconStyle,
+        iconStyle,
         this.props.disabled && styles.checkWhenDisabled);
+
+    var checkedElement = checkedIcon ? React.cloneElement(checkedIcon, {
+      style: this.mergeAndPrefix(checkStyles, checkedIcon.props.style)
+    }) : React.createElement(CheckboxChecked, {
+      style: checkStyles
+    });
+
+    var unCheckedElement = unCheckedIcon ? React.cloneElement(unCheckedIcon, {
+      style: this.mergeAndPrefix(boxStyles, unCheckedIcon.props.style)
+    }) : React.createElement(CheckboxOutline, {
+      style: boxStyles
+    });
 
     var checkboxElement = (
       <div>
-        <CheckboxOutline style={boxStyles} />
-        <CheckboxChecked style={checkStyles} />
+        {unCheckedElement}
+        {checkedElement}
       </div>
     );
 
     var rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
+    var mergedIconStyle = this.mergeAndPrefix(styles.icon, iconStyle);
 
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
@@ -109,7 +127,7 @@ var Checkbox = React.createClass({
       switched: this.state.switched,
       switchElement: checkboxElement,
       rippleColor: rippleColor,
-      iconStyle: styles.icon,
+      iconStyle: mergedIconStyle,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,

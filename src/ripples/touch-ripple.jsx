@@ -56,13 +56,13 @@ var TouchRipple = React.createClass({
     //Do nothing if we're starting a click-event-generated ripple
     //while having touch-generated ripples
     if (!isRippleTouchGenerated) {
-      for (var i = 0; i < ripples.length; i++) {
+      for (let i = 0; i < ripples.length; i++) {
         if (ripples[i].touchGenerated) return;
       }
     }
 
     //Start the next unstarted ripple
-    for (var i = 0; i < ripples.length; i++) {
+    for (let i = 0; i < ripples.length; i++) {
       ripple = ripples[i];
       if (!ripple.started) {
         ripple.started = true;
@@ -70,7 +70,7 @@ var TouchRipple = React.createClass({
         ripple.style = style;
         break;
       }
-    };
+    }
 
     //Add an unstarted ripple at the end
     ripples.push({
@@ -98,7 +98,7 @@ var TouchRipple = React.createClass({
         endingRipple = ripple;
         break;
       }
-    };
+    }
 
     //Only update if a ripple was found
     if (endingRipple) {
@@ -124,11 +124,11 @@ var TouchRipple = React.createClass({
     if (e.button === 0) this.start(e, false);
   },
 
-  _handleMouseUp: function(e) {
+  _handleMouseUp: function() {
     this.end();
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut: function() {
     this.end();
   },
 
@@ -136,7 +136,7 @@ var TouchRipple = React.createClass({
     this.start(e, true);
   },
 
-  _handleTouchEnd: function(e) {
+  _handleTouchEnd: function() {
     this.end();
   },
 

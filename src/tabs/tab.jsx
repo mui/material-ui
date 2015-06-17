@@ -1,5 +1,4 @@
 var React = require('react');
-var TabTemplate = require('./tabTemplate');
 var StylePropable = require('../mixins/style-propable.js');
 var Colors = require('../styles/colors.js')
 var Tab = React.createClass({
@@ -23,14 +22,13 @@ var Tab = React.createClass({
   render: function(){
     var styles = this.mergeAndPrefix({
       'display': 'table-cell',
-      'height': '100%',
       'cursor': 'pointer',
       'textAlign': 'center',
       'verticalAlign': 'middle',
       'height': '48px',
       'color': Colors.white,
       'opacity': '.6',
-      'fontSize': '14sp',
+      'fontSize': '14px',
       'fontWeight': '500',
       'whiteSpace': 'initial',
       'fontFamily': this.context.muiTheme.contentFontFamily,

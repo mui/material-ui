@@ -73,7 +73,7 @@ var PageWithNav = React.createClass({
             zDepth={0} 
             menuItems={this.props.menuItems} 
             selectedIndex={this._getSelectedIndex()} 
-            onItemClick={this._onMenuItemClick} />
+            onItemTap={this._onMenuItemClick} />
         </div>
       </div>
     );

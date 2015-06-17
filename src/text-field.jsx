@@ -17,6 +17,7 @@ var TextField = React.createClass({
   propTypes: {
     errorText: React.PropTypes.string,
     floatingLabelText: React.PropTypes.string,
+    fullWidth: React.PropTypes.bool,
     hintText: React.PropTypes.string,
     id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
@@ -26,58 +27,72 @@ var TextField = React.createClass({
     onKeyDown: React.PropTypes.func,
     onEnterKeyDown: React.PropTypes.func,
     type: React.PropTypes.string,
+    rows: React.PropTypes.number,
+    inputStyle: React.PropTypes.object,
+    floatingLabelStyle: React.PropTypes.object
   },
 
   getDefaultProps: function() {
     return {
-      type: 'text'
+      fullWidth: false,
+      type: 'text',
+      rows: 1,
     };
   },
 
   getInitialState: function() {
+    var props = this.props;
+    if (props.children)
+      props = props.children.props;
     return {
       errorText: this.props.errorText,
-      hasValue: this.props.value || this.props.defaultValue ||
-        (this.props.valueLink && this.props.valueLink.value)
+      hasValue: props.value || props.defaultValue ||
+        (props.valueLink && props.valueLink.value)
     };
+  },
+
+  componentDidMount: function() {
+    this._uniqueId = UniqueId.generate();
   },
 
   componentWillReceiveProps: function(nextProps) {
     var hasErrorProp = nextProps.hasOwnProperty('errorText');
+    var newState = {};
+
+    if (hasErrorProp) newState.errorText = nextProps.errorText;
+    if (nextProps.children && nextProps.children.props)
+    {
+      nextProps = nextProps.children.props;
+    }
+
     var hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
     var hasValueProp = nextProps.hasOwnProperty('value');
     var hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
-    var newState = {};
 
-    if (hasValueProp) {
-      newState.hasValue = nextProps.value;
-    } else if (hasValueLinkProp) {
+    if (hasValueLinkProp) {
       newState.hasValue = nextProps.valueLink.value;
+    } else if (hasValueProp) {
+      newState.hasValue = nextProps.value;
     } else if (hasNewDefaultValue) {
       newState.hasValue = nextProps.defaultValue;
     }
 
-    if (hasErrorProp) newState.errorText = nextProps.errorText;
     if (newState) this.setState(newState);
   },
 
   errorColor: Colors.red500,
 
-  _getDisabledTextColor: function() {
-    return this.getTheme().disabledColor;
-  },
-
-  getTheme: function() {
-    return this.context.muiTheme.palette;
-  },
-
   getStyles: function() {
+    var palette = this.context.muiTheme.palette;
+    var disabledTextColor = palette.disabledColor;
+    var props = this.props;
+
     var styles = {
       root: {
-        fontSize: '16px',
+        fontSize: 16,
         lineHeight: '24px',
-        width: (64 * 4),
-        height: (this.props.floatingLabelText) ? 72 : 48,
+        width: props.fullWidth ? '100%' : 256,
+        height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
         display: 'inline-block',
         position: 'relative',
         fontFamily: this.context.muiTheme.contentFontFamily,
@@ -86,7 +101,7 @@ var TextField = React.createClass({
       error: {
         position: 'absolute',
         bottom: -10,
-        fontSize: '12px',
+        fontSize: 12,
         lineHeight: '12px',
         color: this.errorColor,
         transition: Transitions.easeOut(),
@@ -95,8 +110,8 @@ var TextField = React.createClass({
         position: 'absolute',
         lineHeight: '48px',
         opacity: 1,
-        color: this._getDisabledTextColor(),
-        transition: Transitions.easeOut()            
+        color: disabledTextColor,
+        transition: Transitions.easeOut()
       },
       input: {
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -106,12 +121,12 @@ var TextField = React.createClass({
         border: 'none',
         outline: 'none',
         backgroundColor: 'transparent',
-        color: this.getTheme().textColor,
+        color: props.disabled ? disabledTextColor : palette.textColor,
         font: 'inherit'
       },
       underline: {
         border: 'none',
-        borderBottom: 'solid 1px ' + this.getTheme().borderColor,
+        borderBottom: 'solid 1px ' + palette.borderColor,
         position: 'absolute',
         width: '100%',
         bottom: 8,
@@ -122,61 +137,59 @@ var TextField = React.createClass({
       },
       underlineAfter: {
         position: 'absolute',
+        width: '100%',
+        overflow: 'hidden',
         userSelect: 'none',
         cursor: 'default',
         bottom: 0,
-        color: this._getDisabledTextColor()
+        color: disabledTextColor
       }
     };
 
-    styles.floatingLabel = this.mergeAndPrefix(styles.hint, {
+    styles.floatingLabel = this.mergeStyles(styles.hint, {
       top: 24,
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top'
     });
 
-    styles.textarea = this.mergeAndPrefix(styles.input, {
-      paddingTop: this.props.floatingLabelText ? 36 : 12,
+    styles.textarea = this.mergeStyles(styles.input, {
+      marginTop: props.floatingLabelText ? 36 : 12,
+      marginBottom: props.floatingLabelText ? -36 : -12,
       boxSizing: 'border-box',
       font: 'inherit'
     });
 
-    styles.focusUnderline= this.mergeAndPrefix(styles.underline, {
-      borderBottom: 'solid 2px ' + this.getTheme().primary1Color,
+    styles.focusUnderline= this.mergeStyles(styles.underline, {
+      borderBottom: 'solid 2px',
+      borderColor: palette.primary1Color,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut(),
     });
 
-
-    if (this.props.disabled) {
-      styles.hint.color = this._getDisabledTextColor();
-      styles.input.color = this._getDisabledTextColor();
-    }
-
     if (this.state.isFocused) {
-      styles.floatingLabel.color = this.getTheme().primary1Color;
-      styles.floatingLabel.transform = 'scale(0.75) translate3d(0, -18px, 0)';
+      styles.floatingLabel.color = palette.primary1Color;
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
     if (this.state.hasValue) {
-      styles.floatingLabel.color = ColorManipulator.fade(this.getTheme().textColor, 0.5);
-      styles.floatingLabel.transform = 'scale(0.75) translate3d(0, -18px, 0)';
+      styles.floatingLabel.color = ColorManipulator.fade(palette.textColor, 0.5);
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
       styles.hint.opacity = 0;
     }
 
-    if (this.props.floatingLabelText) {
+    if (props.floatingLabelText) {
       styles.hint.top = 24;
       styles.hint.opacity = 0;
       styles.input.boxSizing = 'border-box';
       if (this.state.isFocused && !this.state.hasValue) styles.hint.opacity = 1;
     }
 
-    if (this.props.errorText && this.state.isFocused) styles.floatingLabel.color = this.errorColor;
-    if (this.props.floatingLabelText && !this.props.multiLine) styles.input.paddingTop = 26;
+    if (props.errorText && this.state.isFocused) styles.floatingLabel.color = this.errorColor;
+    if (props.floatingLabelText && !props.multiLine) styles.input.paddingTop = 26;
 
-    if (this.props.errorText) {
+    if (props.errorText) {
       styles.focusUnderline.borderColor = this.errorColor;
       styles.focusUnderline.transform = 'scaleX(1)';
     }
@@ -189,6 +202,7 @@ var TextField = React.createClass({
       className,
       errorText,
       floatingLabelText,
+      fullWidth,
       hintText,
       id,
       multiLine,
@@ -196,12 +210,13 @@ var TextField = React.createClass({
       onChange,
       onFocus,
       type,
+      rows,
       ...other
     } = this.props;
 
     var styles = this.getStyles();
 
-    var inputId = this.props.id || UniqueId.generate();
+    var inputId = this.props.id || this._uniqueId;
 
     var errorTextElement = this.state.errorText ? (
       <div style={this.mergeAndPrefix(styles.error)}>{this.state.errorText}</div>
@@ -213,7 +228,7 @@ var TextField = React.createClass({
 
     var floatingLabelTextElement = this.props.floatingLabelText ? (
       <label
-        style={this.mergeAndPrefix(styles.floatingLabel)}
+        style={this.mergeAndPrefix(styles.floatingLabel, this.props.floatingLabelStyle)}
         htmlFor={inputId}>
         {this.props.floatingLabelText}
       </label>
@@ -225,38 +240,43 @@ var TextField = React.createClass({
     inputProps = {
       id: inputId,
       ref: this._getRef(),
-      style: this.mergeAndPrefix(styles.input),
+      style: this.mergeAndPrefix(styles.input, this.props.inputStyle),
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
+      disabled: this.props.disabled,
       onKeyDown: this._handleInputKeyDown
     };
 
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
     }
-
-    inputElement = this.props.multiLine ? (
-      <EnhancedTextarea
-        {...other}
-        {...inputProps}
-        onHeightChange={this._handleTextAreaHeightChange}
-        textareaStyle={this.mergeAndPrefix(styles.textarea)} />
-    ) : (
-      <input
-        {...other}
-        {...inputProps}
-        type={this.props.type} />
-    );
+    if (this.props.children) {
+      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props})
+    }
+    else {
+      inputElement = this.props.multiLine ? (
+        <EnhancedTextarea
+          {...other}
+          {...inputProps}
+        rows={this.props.rows}
+          onHeightChange={this._handleTextAreaHeightChange}
+          textareaStyle={this.mergeAndPrefix(styles.textarea)} />
+      ) : (
+        <input
+          {...other}
+          {...inputProps}
+          type={this.props.type} />
+      );
+    }
 
     var underlineElement = this.props.disabled ? (
       <div style={this.mergeAndPrefix(styles.underlineAfter)}>
-        .............................................................
+        ....................................................................................
       </div>
     ) : (
       <hr style={this.mergeAndPrefix(styles.underline)}/>
     );
     var focusUnderlineElement = <hr style={this.mergeAndPrefix(styles.focusUnderline)} />;
-
 
     return (
       <div className={this.props.className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
@@ -308,8 +328,8 @@ var TextField = React.createClass({
   },
 
   _getInputNode: function() {
-    return this.props.multiLine ?
-      this.refs[this._getRef()].getInputNode() : React.findDOMNode(this._getRef());
+    return (this.props.children || this.props.multiLine) ?
+      this.refs[this._getRef()].getInputNode() : React.findDOMNode(this.refs[this._getRef()]);
   },
 
   _handleInputBlur: function(e) {
@@ -323,6 +343,8 @@ var TextField = React.createClass({
   },
 
   _handleInputFocus: function(e) {
+    if (this.props.disabled)
+      return
     this.setState({isFocused: true});
     if (this.props.onFocus) this.props.onFocus(e);
   },

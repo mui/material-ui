@@ -1,7 +1,7 @@
 var React = require('react');
 var mui = require('mui');
 var ComponentDoc = require('../../component-doc.jsx');
-var Extend = mui.Utils.Extend;
+var extend = mui.Utils.Extend;
 var Typography = mui.Styles.Typography;
 var {ClearFix, FlatButton, FloatingActionButton, FontIcon, RaisedButton, Tab, Tabs} = mui;
 
@@ -10,7 +10,7 @@ class ButtonPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.codeFlatButton = 
+    this.codeFlatButton =
       '//Flat Buttons\n' +
       '<FlatButton label="Default" />\n' +
       '<FlatButton label="Primary" primary={true} />\n' +
@@ -27,7 +27,7 @@ class ButtonPage extends React.Component {
       '</div>\n' +
       '<FlatButton label="Disabled" disabled={true} />';
 
-    this.codeRaisedButton =     
+    this.codeRaisedButton =
       '//Raised Buttons\n' +
       '<RaisedButton label="Default" />\n' +
       '<RaisedButton label="Primary" primary={true} />\n' +
@@ -44,7 +44,7 @@ class ButtonPage extends React.Component {
       '</div>\n' +
       '<RaisedButton label="Disabled" disabled={true} />';
 
-    this.codeFloatingActionButton = 
+    this.codeFloatingActionButton =
       '//Floating Action Buttons\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />\n' +
@@ -52,8 +52,8 @@ class ButtonPage extends React.Component {
       '<FloatingActionButton iconClassName="muidocs-icon-custom-github" linkButton={true} href="https://github.com/callemall/material-ui" mini={true} secondary={true}/>' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />\n' +
-      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />';          
-  
+      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />';
+
     this.desc = 'This component generates a button element and all props except for ' +
                 'the custom props below will be passed down to the button element. Also, ' +
                 'focus styles will happen on tab but not on click.';
@@ -62,6 +62,12 @@ class ButtonPage extends React.Component {
       {
         name: 'Flat Button',
         infoArray: [
+          {
+            name: 'disabled',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Disables the button if set to true.'
+          },
           {
             name: 'label or children',
             type: 'string (label) or HTML/React elements (children)',
@@ -100,12 +106,30 @@ class ButtonPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of the button\'s root element.'
+          },
+          {
+            name: 'hoverColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the inline hover color of the button\'s root element.'
+          },
+          {
+            name: 'rippleColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the inline color of the button\'s ripple element.'
           }
         ]
       },
       {
         name: 'Raised Button',
         infoArray: [
+          {
+            name: 'disabled',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Disables the button if set to true.'
+          },
           {
             name: 'label or children',
             type: 'string (label) or HTML/React elements (children)',
@@ -150,6 +174,12 @@ class ButtonPage extends React.Component {
       {
         name: 'Floating Action Button',
         infoArray: [
+          {
+            name: 'disabled',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Disables the button if set to true.'
+          },
           {
             name: 'iconClassName',
             type: 'string',
@@ -196,7 +226,7 @@ class ButtonPage extends React.Component {
   }
 
   getStyles() {
-    var styles = { 
+    var styles = {
       container: {
         textAlign: 'center',
         marginBottom: '16px'
@@ -213,7 +243,7 @@ class ButtonPage extends React.Component {
         padding: '0px 16px 0px 8px'
       },
       exampleIconButtonLabel: {
-        padding: '0px 8px' 
+        padding: '0px 8px'
       },
       exampleImageButton: {
         whiteSpace: 'pre',
@@ -238,7 +268,7 @@ class ButtonPage extends React.Component {
         left: '0',
         width: '100%',
         opacity: '0'
-      },    
+      },
       exampleFlatButtonIcon: {
         height: '100%',
         display: 'inline-block',
@@ -261,7 +291,7 @@ class ButtonPage extends React.Component {
         color: Typography.textDarkBlack
       }
     };
-    styles.exampleButtonIcon = Extend(styles.exampleFlatButtonIcon, styles.exampleButtonIcon);
+    styles.exampleButtonIcon = extend(styles.exampleFlatButtonIcon, styles.exampleButtonIcon);
     return styles;
   }
 
@@ -308,7 +338,7 @@ class ButtonPage extends React.Component {
           <Tab label="Raised Buttons">
             <ComponentDoc
               name=""
-              code={this.codeFlatButton}
+              code={this.codeRaisedButton}
               desc={this.desc}
               componentInfo={this.componentInfo.slice(1,2)}>
               <div style={styles.group}>
@@ -342,7 +372,7 @@ class ButtonPage extends React.Component {
           <Tab label="Floating Action Buttons">
             <ComponentDoc
               name=""
-              code={this.codeFlatButton}
+              code={this.codeFloatingActionButton}
               desc={this.desc}
               componentInfo={this.componentInfo.slice(2)}>
               <div style={styles.groupFloatingAction}>
@@ -368,7 +398,7 @@ class ButtonPage extends React.Component {
                 <div style={styles.container}>
                   <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />
                 </div>
-              </div>              
+              </div>
             </ComponentDoc>
           </Tab>
         </Tabs>

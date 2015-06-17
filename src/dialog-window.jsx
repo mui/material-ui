@@ -10,8 +10,10 @@ var Paper = require('./paper');
 
 var DialogWindow = React.createClass({
 
+  closeable: false,
+
   mixins: [WindowListenable, StylePropable],
-  
+
   contextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -51,9 +53,7 @@ var DialogWindow = React.createClass({
   componentDidMount: function() {
     this._positionDialog();
     if (this.props.openImmediately) {
-      this.refs.dialogOverlay.preventScrolling();
-      this._onShow();
-      this._focusOnAction();
+      this.show();
     }
   },
 
@@ -133,15 +133,20 @@ var DialogWindow = React.createClass({
   },
 
   dismiss: function() {
-    CssEvent.onTransitionEnd(React.findDOMNode(this), function() {
-      this.refs.dialogOverlay.allowScrolling();
-    }.bind(this));
+    if (this.closeable) {
+      CssEvent.onTransitionEnd(React.findDOMNode(this), function() {
+        this.refs.dialogOverlay.allowScrolling();
+      }.bind(this));
 
-    this.setState({ open: false });
-    this._onDismiss();
+      this.setState({ open: false });
+      this._onDismiss();
+    }
   },
 
   show: function() {
+    // prevent rapid show/hide
+    setTimeout(function(){this.closeable = true;}.bind(this), 250);
+
     this.refs.dialogOverlay.preventScrolling();
     this._focusOnAction();
     this.setState({ open: true });
@@ -149,12 +154,19 @@ var DialogWindow = React.createClass({
   },
 
   _getAction: function(actionJSON, key) {
-    var onClickHandler = actionJSON.onClick ? actionJSON.onClick : this.dismiss;
     var styles = {marginRight: 8};
     var props = {
       key: key,
       secondary: true,
-      onClick: onClickHandler,
+      onClick: actionJSON.onClick,
+      onTouchTap: () => {
+        if (actionJSON.onTouchTap) {
+          actionJSON.onTouchTap.call(undefined);
+        }
+        if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
+          this.dismiss();
+        }
+      },
       label: actionJSON.text,
       style: styles
     };
@@ -162,7 +174,7 @@ var DialogWindow = React.createClass({
       props.ref = actionJSON.ref;
       props.keyboardFocused = actionJSON.ref === this.props.actionFocus;
     }
-    
+
     return (
       <FlatButton
         {...props} />
@@ -190,7 +202,7 @@ var DialogWindow = React.createClass({
           currentAction = this._getAction(currentAction, i);
         }
         actionObjects.push(currentAction);
-      };
+      }
 
       actionContainer = (
         <div style={actionStyle}>
@@ -203,7 +215,6 @@ var DialogWindow = React.createClass({
   },
 
   _positionDialog: function() {
-
     var container = React.findDOMNode(this);
     var dialogWindow = React.findDOMNode(this.refs.dialogWindow);
     var containerHeight = container.offsetHeight;
@@ -221,13 +232,13 @@ var DialogWindow = React.createClass({
     }
 
   },
-  
+
   _focusOnAction: function() {
     if (this.props.actionFocus) {
       React.findDOMNode(this.refs[this.props.actionFocus]).focus();
     }
   },
-  
+
   _onShow: function() {
     if (this.props.onShow) this.props.onShow();
   },
@@ -237,7 +248,7 @@ var DialogWindow = React.createClass({
   },
 
   _handleOverlayTouchTap: function() {
-    if (!this.props.modal) {
+    if (!this.props.modal && this.closeable) {
       this.dismiss();
       if (this.props.onClickAway) this.props.onClickAway();
     }

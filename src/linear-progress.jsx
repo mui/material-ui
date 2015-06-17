@@ -59,7 +59,7 @@ var LinearProgress = React.createClass({
     if (!this.isMounted()) return;
     if (this.props.mode != "indeterminate") return;
 
-    if (step == 0) {
+    if (step === 0) {
       barElement.style.left = stepValues[0][0] + "%";
       barElement.style.right = stepValues[0][1] + "%";
     } else if (step == 1) {

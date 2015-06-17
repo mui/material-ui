@@ -22,7 +22,7 @@ var Tooltip = React.createClass({
     this._setRippleSize();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate: function() {
     this._setRippleSize();
   },
 
@@ -66,7 +66,7 @@ var Tooltip = React.createClass({
         opacity: 1,
         transform: 'translate3d(0px, 16px, 0px)',
         transition:
-          Transitions.easeOut('0ms', 'top', '0ms') + ',' + 
+          Transitions.easeOut('0ms', 'top', '0ms') + ',' +
           Transitions.easeOut('450ms', 'transform', '0ms') + ',' +
           Transitions.easeOut('450ms', 'opacity', '0ms'),
       },
@@ -97,10 +97,10 @@ var Tooltip = React.createClass({
             styles.root,
             this.props.show && styles.rootWhenShown,
             this.props.touch && styles.rootWhenTouched,
-            this.props.style 
+            this.props.style
           )}>
-        <div 
-          ref="ripple" 
+        <div
+          ref="ripple"
           style={this.mergeAndPrefix(
             styles.ripple,
             this.props.show && styles.rippleWhenShown)} />
@@ -115,7 +115,7 @@ var Tooltip = React.createClass({
     var tooltipWidth = parseInt(tooltip.getPropertyValue("width"), 10);
     var tooltipHeight = parseInt(tooltip.getPropertyValue("height"), 10);
 
-    var rippleDiameter = (Math.sqrt(Math.pow(tooltipHeight, 2) + 
+    var rippleDiameter = (Math.sqrt(Math.pow(tooltipHeight, 2) +
                                     Math.pow((tooltipWidth / 2.0), 2) ) * 2);
 
     if (this.props.show) {

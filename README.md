@@ -1,4 +1,4 @@
-# [Material-UI](http://callemall.github.io/material-ui/)
+#[Material-UI](http://callemall.github.io/material-ui/)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -16,8 +16,7 @@ Material-UI is available as an [npm package](https://www.npmjs.org/package/mater
 ```sh
 npm install material-ui
 ```
-
-Use [browserify](http://browserify.org/) and [reactify](https://github.com/andreypopp/reactify) for dependency management and JSX transformation. 
+After npm install, you'll find all the .jsx files in the /src folder and their compiled versions in the /lib folder.
 
 ### React-Tap-Event-Plugin
 Some components use [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
@@ -45,20 +44,36 @@ Once material-ui is included in your project, you can use the components this wa
 
 var React = require('react'),
   mui = require('material-ui'),
+  ThemeManager = new mui.Styles.ThemeManager(),
   RaisedButton = mui.RaisedButton;
 
-var MyAwesomeReactComponent = React.createClass({
+var SomeAwesomeComponent = React.createClass({
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  getChildContext: function() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    };
+  },
 
   render: function() {
     return (
-      <RaisedButton label="Default" />
+        <RaisedButton label="Default" />
     );
   }
 
 });
 
 module.exports = MyAwesomeReactComponent;
+
 ```
+
+### Theme
+
+**Please note that since v0.8.0, you also need to define a theme for components to start working.** For instrucitons on implementing and using themes, visit our [documentation](http://material-ui.com/#/customization/themes).
 
 ## Customization
 

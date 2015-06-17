@@ -6,6 +6,7 @@ class Components extends React.Component {
   render() {
     var menuItems = [
       { route: 'appbar', text: 'AppBar'},
+      { route: 'avatars', text: 'Avatars'},
       { route: 'buttons', text: 'Buttons'},
       { route: 'date-picker', text: 'Date Picker'},
       { route: 'dialog', text: 'Dialog'},
@@ -13,6 +14,7 @@ class Components extends React.Component {
       { route: 'icons', text: 'Icons'},
       { route: 'icon-buttons', text: 'Icon Buttons'},
       { route: 'left-nav', text: 'Left Nav'},
+      { route: 'lists', text: 'Lists'},
       { route: 'menus', text: 'Menus'},
       { route: 'paper', text: 'Paper'},
       { route: 'progress', text: 'Progress'},

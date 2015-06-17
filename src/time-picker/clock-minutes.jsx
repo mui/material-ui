@@ -66,19 +66,16 @@ var ClockMinutes = React.createClass({
     this.setClock(e, false);
   },
   setClock: function(e, finish){
+     var ne = e.nativeEvent;
 
-     e.preventDefault();
-     if(this.isMousePressed(e) != 1 ) return;
-     
      var pos = {
-        x: e.nativeEvent.offsetX,
-        y: e.nativeEvent.offsetY
+        x: ne.offsetX === undefined ? ne.layerX : ne.offsetX,
+        y: ne.offsetY === undefined ? ne.layerY : ne.offsetY
      };
-  
+
      var minutes = this.getMinutes(pos.x, pos.y)
- 
+
      this.props.onChange(minutes, finish);
-   
   },
   getMinutes: function(x, y){
 

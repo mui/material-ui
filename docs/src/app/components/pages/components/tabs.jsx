@@ -5,7 +5,7 @@ var Router = require('react-router');
 var ComponentDoc = require('../../component-doc.jsx');
 var RouteHandler = Router.RouteHandler;
 
-var {Tabs, Tab} = mui;
+var {Tabs, Tab, Slider} = mui;
 var Typography = mui.Styles.Typography;
 
 class TabsPage extends React.Component {
@@ -150,8 +150,9 @@ class TabsPage extends React.Component {
                   This is an example of a tab template!
                 </p>
                 <p>
-                  You can put any sort of HTML or react component in here.
+                  You can put any sort of HTML or react component in here. It even keeps the component state!
                 </p>
+                <Slider name="slider0" defaultValue={0.5} />
               </div>
             </Tab>
             <Tab label='Item Two' >

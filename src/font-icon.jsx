@@ -1,6 +1,7 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Spacing = require('./styles/spacing');
+var Transitions = require('./styles/transitions');
 
 var FontIcon = React.createClass({
 
@@ -10,41 +11,68 @@ var FontIcon = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
+  propTypes: {
+    color: React.PropTypes.string,
+    hoverColor: React.PropTypes.string,
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func
+  },
+
   getInitialState: function() {
     return {
-      isHovered: false,
+      hovered: false
     };
-  },
-
-  getTheme: function() {
-    return this.context.muiTheme.palette;
-  },
-
-  getStyles: function() {
-    var styles = {
-      position: 'relative',
-      fontSize: Spacing.iconSize + 'px',
-      display: 'inline-block',
-      userSelect: 'none'  
-    };
-    if (!styles.color && !this.props.className) {
-      styles.color = this.getTheme().textColor;
-    }
-    return styles;
   },
 
   render: function() {
     var {
+      color,
+      hoverColor,
+      onMouseOut,
+      onMouseOver,
       style,
       ...other
     } = this.props;
 
+    var offColor = color ? color :
+      style && style.color ? style.color :
+      this.context.muiTheme.palette.textColor;
+    var onColor = hoverColor ? hoverColor : offColor;
+
+    //remove the color prop so that it doesn't override our computed
+    //colors from above
+    if (style) delete style.color;
+
+    var mergedStyles = this.mergeAndPrefix({
+      position: 'relative',
+      fontSize: Spacing.iconSize,
+      display: 'inline-block',
+      userSelect: 'none',
+      transition: Transitions.easeOut(),
+      color: this.state.hovered ? onColor : offColor
+    }, style);
+
     return (
-      <span {...other} 
-        style={this.mergeAndPrefix(
-          this.getStyles(),
-          this.props.style)} />
+      <span
+        {...other}
+        onMouseOut={this._handleMouseOut}
+        onMouseOver={this._handleMouseOver}
+        style={mergedStyles} />
     );
+  },
+
+  _handleMouseOut: function(e) {
+    this.setState({hovered: false});
+    if (this.props.onMouseOut) {
+      this.props.onMouseOut(e);
+    }
+  },
+
+  _handleMouseOver: function(e) {
+    this.setState({hovered: true});
+    if (this.props.onMouseOver) {
+      this.props.onMouseOver(e);
+    }
   }
 });
 

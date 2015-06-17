@@ -12,17 +12,15 @@ var ToolbarGroup = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
-    float: React.PropTypes.string,
-    firstChild: React.PropTypes.bool,
-    lastChild: React.PropTypes.bool,
+    float: React.PropTypes.string
   },
 
   getDefaultProps: function() {
     return {
-      float: 'left',
+      float: 'left'
     };
   },
-  
+
   getTheme: function() {
     return this.context.muiTheme.component.toolbar;
   },
@@ -46,7 +44,7 @@ var ToolbarGroup = React.createClass({
           display: 'inline-block',
           marginRight: this.getSpacing()
         },
-        controlBg: {  
+        controlBg: {
           backgroundColor: this.getTheme().menuHoverColor,
           borderRadius: 0
         },
@@ -82,21 +80,22 @@ var ToolbarGroup = React.createClass({
   },
 
   render: function() {
-
     var styles = this.getStyles();
 
     if (this.props.firstChild) styles.marginLeft = -24;
     if (this.props.lastChild) styles.marginRight = -24;
 
     var newChildren = React.Children.map(this.props.children, function(currentChild) {
+      if(!currentChild) {
+        return null;
+      }
       switch (currentChild.type.displayName) {
-        case 'DropDownMenu' : 
+        case 'DropDownMenu' :
           return React.cloneElement(currentChild, {
             style: styles.dropDownMenu.root,
             styleControlBg: styles.dropDownMenu.controlBg,
             styleUnderline: styles.dropDownMenu.underline
           });
-          break;
         case 'DropDownIcon' :
           return React.cloneElement(currentChild, {
             style: {float: 'left'},
@@ -108,13 +107,13 @@ var ToolbarGroup = React.createClass({
           return React.cloneElement(currentChild, {
             style: styles.button
           });
-        case 'FontIcon' : 
+        case 'FontIcon' :
           return React.cloneElement(currentChild, {
             style: styles.icon.root,
             onMouseOver: this._handleMouseOverFontIcon,
             onMouseOut: this._handleMouseOutFontIcon
           });
-        case 'ToolbarSeparator' : case 'ToolbarTitle' : 
+        case 'ToolbarSeparator' : case 'ToolbarTitle' :
           return React.cloneElement(currentChild, {
             style: this.mergeStyles(styles.span, currentChild.props.style)
           });

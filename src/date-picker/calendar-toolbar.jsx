@@ -1,25 +1,36 @@
 var React = require('react');
 var DateTime = require('../utils/date-time');
 var IconButton = require('../icon-button');
+var Toolbar = require('../toolbar/toolbar');
+var ToolbarGroup = require('../toolbar/toolbar-group');
+var DropDownMenu = require('../drop-down-menu');
 var NavigationChevronLeft = require('../svg-icons/navigation-chevron-left');
+var NavigationChevronLeftDouble = require('../svg-icons/navigation-chevron-left-double');
 var NavigationChevronRight = require('../svg-icons/navigation-chevron-right');
+var NavigationChevronRightDouble = require('../svg-icons/navigation-chevron-right-double');
 var SlideInTransitionGroup = require('../transition-groups/slide-in');
 
 var CalendarToolbar = React.createClass({
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
-    onLeftTouchTap: React.PropTypes.func,
-    onRightTouchTap: React.PropTypes.func,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object
+    onMonthChange: React.PropTypes.func,
+    onYearChange: React.PropTypes.func,
+    prevYear: React.PropTypes.bool,
+    nextYear: React.PropTypes.bool,
+    prevMonth: React.PropTypes.bool,
+    nextMonth: React.PropTypes.bool,
+    hideYearChangeButtons: React.PropTypes.bool
   },
 
-  getDefaultProps: function () {
-      return {
-        maxDate: null,
-        minDate: null
-      };
+  getDefaultProps: function() {
+    return {
+      prevYear: true,
+      nextYear: true,
+      prevMonth: true,
+      nextMonth: true,
+      hideYearChangeButtons: false
+    };
   },
 
   getInitialState: function() {
@@ -38,45 +49,13 @@ var CalendarToolbar = React.createClass({
       });
     }
   },
-  _isDisabled: function(direction){
-    
-    var date = this.props.displayDate;
-    var minDate = this.props.minDate;
-    var maxDate = this.props.maxDate;
 
-    if(direction == "left" && minDate){      
-      if(date.getFullYear() < minDate.getFullYear()) return true;
-      if(date.getFullYear() == minDate.getFullYear()){
-        return date.getMonth() <= minDate.getMonth();
-      }
-    }else if(direction == "right" && maxDate){
-      if(date.getFullYear() > maxDate.getFullYear()) return true;
-      if(date.getFullYear() == maxDate.getFullYear()){
-        return date.getMonth() >= maxDate.getMonth();
-      }
-    }
-
-    return false;
-  },
-  render: function() {
-    var month = DateTime.getFullMonth(this.props.displayDate);
-    var year = this.props.displayDate.getFullYear();
-    var styles = {
+  _styles: function() {
+    return {
       root: {
-        height: '48px',
-        position: 'relative'
-      },
-
-      buttonLeft: {
-        position: 'absolute',
-        left: '0px',
-        top: '0px'
-      },
-
-      buttonRight: {
-        position: 'absolute',
-        right: '0px',
-        top: '0px'
+        position: 'relative',
+        padding: 0,
+        backgroundColor: 'inherit'
       },
 
       title: {
@@ -88,36 +67,93 @@ var CalendarToolbar = React.createClass({
         width: '100%',
         fontWeight: '500',
         textAlign: 'center',
+        zIndex: -1
       }
     };
-    var disableLeft = this._isDisabled("left");
-    var disableRight = this._isDisabled("right");
+  },
+
+  render: function() {
+    var month = DateTime.getFullMonth(this.props.displayDate);
+    var year = this.props.displayDate.getFullYear();
+    var prevYearChangeButton = this._getPrevYearChangeButton();
+    var nextYearChangeButton = this._getNextYearChangeButton();
+    var styles = this._styles();
 
     return (
-      <div style={styles.root}>
+      <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root} noGutter={true}>
+        <ToolbarGroup key={0} float="left">
+          {prevYearChangeButton}
+
+          <IconButton
+            disabled={!this.props.prevMonth}
+            onTouchTap={this._prevMonthTouchTap}>
+              <NavigationChevronLeft />
+          </IconButton>
+        </ToolbarGroup>
+
+        <ToolbarGroup key={1} float="right">
+          <IconButton
+            disabled={!this.props.nextMonth}
+            onTouchTap={this._nextMonthTouchTap}>
+              <NavigationChevronRight />
+          </IconButton>
+
+          {nextYearChangeButton}
+        </ToolbarGroup>
 
         <SlideInTransitionGroup
           style={styles.title}
           direction={this.state.transitionDirection}>
           <div key={month + '_' + year}>{month} {year}</div>
         </SlideInTransitionGroup>
-
-        <IconButton
-          style={styles.buttonLeft}
-          disabled={disableLeft}
-          onTouchTap={this.props.onLeftTouchTap}>
-            <NavigationChevronLeft/>
-        </IconButton>
-
-        <IconButton
-          style={styles.buttonRight}
-          disabled={disableRight}
-          onTouchTap={this.props.onRightTouchTap}>
-            <NavigationChevronRight/>
-        </IconButton>
-
-      </div>
+      </Toolbar>
     );
+  },
+
+  _getPrevYearChangeButton: function() {
+    var style = {
+      display: this.props.hideYearChangeButtons ? 'none' : ''
+    };
+
+    return (
+      <IconButton
+        style={style}
+        disabled={!this.props.prevYear}
+        onTouchTap={this._prevYearTouchTap}>
+          <NavigationChevronLeftDouble />
+      </IconButton>
+    );
+  },
+
+  _getNextYearChangeButton: function() {
+    var style = {
+      display: this.props.hideYearChangeButtons ? 'none' : ''
+    };
+
+    return (
+      <IconButton
+        style={style}
+        disabled={!this.props.nextYear}
+        onTouchTap={this._nextYearTouchTap}>
+          <NavigationChevronRightDouble />
+      </IconButton>
+    );
+  },
+
+  _prevYearTouchTap: function() {
+    if (this.props.onYearChange && this.props.prevYear) this.props.onYearChange(-1);
+  },
+
+  _nextYearTouchTap: function() {
+    if (this.props.onYearChange && this.props.nextYear) this.props.onYearChange(1);
+  },
+
+  _prevMonthTouchTap: function() {
+    if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
+  },
+
+  _nextMonthTouchTap: function() {
+    if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
   }
 
 });

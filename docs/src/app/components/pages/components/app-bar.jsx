@@ -33,7 +33,7 @@ class AppBarPage extends React.Component {
             name: 'iconClassNameRight',
             type: 'string',
             header: 'optional',
-            desc: 'Similiar to the iconClassNameLeft prop except that is applies ' +
+            desc: 'Similiar to the iconClassNameLeft prop except that it applies ' +
                   'to the icon displayed on the right of the app bar.'
           },
           {
@@ -49,7 +49,13 @@ class AppBarPage extends React.Component {
             header: 'optional',
             desc: 'Similiar to the iconElementLeft prop except that this element ' +
                   'is displayed on the right of the app bar.'
-          },        
+          },
+          {
+            name: 'iconStyleRight',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the inline-styles of the element displayed on the right side of the app bar.'
+          },
           {
             name: 'style',
             type: 'object',

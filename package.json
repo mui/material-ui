@@ -1,15 +1,14 @@
 {
   "name": "material-ui",
   "author": "Call-em-all Engineering Team",
-  "version": "0.8.0",
+  "version": "0.9.1",
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rm -rf lib",
-    "build:js": "./node_modules/.bin/jsx --harmony ./src ./lib",
-    "build:jsx": "./node_modules/.bin/jsx --harmony -x jsx ./src ./lib",
-    "build": "npm run build:js && npm run build:jsx",
+    "jshint": "jsxhint --harmony src/** --exclude src/utils/modernizr.custom.js",
+    "build": "npm run jshint && babel --stage 1 ./src --out-dir ./lib",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -37,9 +36,10 @@
     "react-tap-event-plugin": ">=0.1.3"
   },
   "devDependencies": {
-    "react-tools": "^0.13",
-    "browserify": "^7.0.3",
-    "reactify": "^1.1.0",
-    "react-router": "^0.13"
+    "babel": "^5.4.3",
+    "jsxhint": "^0.15.0",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "react-tap-event-plugin": "^0.1.6"
   }
 }

@@ -14,12 +14,14 @@ var LinkMenuItem = React.createClass({
     payload: React.PropTypes.string.isRequired,
     text: React.PropTypes.string.isRequired,
     target: React.PropTypes.string,
+    active: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     className: React.PropTypes.string,
   },
   
   getDefaultProps: function() {
     return {
+      active:false,
       disabled: false
     };
   },
@@ -71,7 +73,8 @@ var LinkMenuItem = React.createClass({
       this.mergeAndPrefix(
         styles.root, 
         this.props.selected && styles.rootWhenSelected,
-        (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,
+        this.props.selected && styles.rootWhenSelected,
+        (this.props.active && !this.props.disabled) && styles.rootWhenHovered,
         this.props.style,
         this.props.disabled && styles.rootWhenDisabled);
 

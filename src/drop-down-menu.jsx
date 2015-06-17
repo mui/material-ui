@@ -2,8 +2,8 @@ var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var ClickAwayable = require('./mixins/click-awayable');
+var KeyCode = require('./utils/key-code');
 var DropDownArrow = require('./svg-icons/drop-down-arrow');
-var KeyLine = require('./utils/key-line');
 var Paper = require('./paper');
 var Menu = require('./menu/menu');
 var ClearFix = require('./clearfix');
@@ -15,21 +15,28 @@ var DropDownMenu = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  // The nested styles for drop-down-menu are modified by toolbar and possibly 
-  // other user components, so it will give full access to its js styles rather 
-  // than just the parent. 
+  // The nested styles for drop-down-menu are modified by toolbar and possibly
+  // other user components, so it will give full access to its js styles rather
+  // than just the parent.
   propTypes: {
     className: React.PropTypes.string,
+    displayMember: React.PropTypes.string,
+    valueMember: React.PropTypes.string,
     autoWidth: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     menuItemStyle: React.PropTypes.object,
+    underlineStyle:React.PropTypes.object,
+    iconStyle:React.PropTypes.object,
+    labelStyle:React.PropTypes.object,
     selectedIndex: React.PropTypes.number
   },
 
   getDefaultProps: function() {
     return {
-      autoWidth: true
+      autoWidth: true,
+      valueMember:'payload',
+      displayMember:'text'
     };
   },
 
@@ -37,12 +44,12 @@ var DropDownMenu = React.createClass({
     return {
       open: false,
       isHovered: false,
-      selectedIndex: this.props.selectedIndex || 0
-    }
+      selectedIndex: (this.props.hasOwnProperty('value') || this.props.hasOwnProperty('valueLink')) ? null :(this.props.selectedIndex || 0),
+    };
   },
 
   componentClickAway: function() {
-    this.setState({ open: false });
+    this.setState({open:false});
   },
 
   componentDidMount: function() {
@@ -51,7 +58,9 @@ var DropDownMenu = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (nextProps.hasOwnProperty('selectedIndex')) {
+    if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
+      return;
+    } else if (nextProps.hasOwnProperty('selectedIndex')) {
       this._setSelectedIndex(nextProps);
     }
  },
@@ -73,7 +82,8 @@ var DropDownMenu = React.createClass({
         position: 'relative',
         display: 'inline-block',
         height: this.getSpacing().desktopToolbarHeight,
-        fontSize: this.getSpacing().desktopDropDownMenuFontSize
+        fontSize: this.getSpacing().desktopDropDownMenuFontSize,
+        outline:'none'
       },
       control: {
         cursor: 'pointer',
@@ -85,8 +95,7 @@ var DropDownMenu = React.createClass({
         backgroundColor: backgroundColor,
         height: '100%',
         width: '100%',
-        opacity: (this.state.open) ? 0 : 
-                 (this.state.isHovered) ? 1 : 0
+        opacity:0
       },
       icon: {
         position: 'absolute',
@@ -105,11 +114,11 @@ var DropDownMenu = React.createClass({
       },
       underline: {
         borderTop: 'solid 1px ' + accentColor,
-        margin: '0 ' + this.getSpacing().desktopGutter + 'px'
+        margin: '-1px ' + this.getSpacing().desktopGutter + 'px'
       },
       menuItem: {
-        paddingRight: this.getSpacing().iconSize + 
-                      this.getSpacing().desktopGutterLess + 
+        paddingRight: this.getSpacing().iconSize +
+                      this.getSpacing().desktopGutterLess +
                       this.getSpacing().desktopGutterMini,
         height: this.getSpacing().desktopDropDownMenuItemHeight,
         lineHeight: this.getSpacing().desktopDropDownMenuItemHeight + 'px',
@@ -126,37 +135,77 @@ var DropDownMenu = React.createClass({
     return styles;
   },
 
+  getInputNode: function() {
+    var root = this.refs.root;
+    var item = this.props.menuItems[this.state.selectedIndex];
+    if (item)
+      root.value = item[this.props.displayMember];
+    return root;
+  },
+
   render: function() {
+    var _this = this;
     var styles = this.getStyles();
+    var selectedIndex = this.state.selectedIndex;
+    var displayValue = "";
+    if (selectedIndex) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.assert(!!this.props.menuItems[selectedIndex], 'SelectedIndex of ' + selectedIndex + ' does not exist in menuItems.');
+      }
+    }
+    else {
+      if (this.props.valueMember && (this.props.valueLink || this.props.value))
+      {
+        var value = this.props.value || this.props.valueLink.value;
+        for (var i in this.props.menuItems)
+          if (this.props.menuItems[i][this.props.valueMember] === value)
+            selectedIndex = i;
+      }
+    }
+
+    var selectedItem = this.props.menuItems[selectedIndex];
+    if (selectedItem)
+      displayValue = selectedItem[this.props.displayMember];
+
+    var menuItems = this.props.menuItems.map(function(item){
+      item.text = item[_this.props.displayMember];
+      item.payload = item[_this.props.valueMember];
+      return item;
+    });
+
     return (
-      <div 
+      <div
         ref="root"
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
+        onKeyDown={this._onKeyDown}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
         className={this.props.className}
         style={this.mergeAndPrefix(
-          styles.root, 
+          styles.root,
           this.state.open && styles.rootWhenOpen,
           this.props.style)} >
 
-          <ClearFix style={this.mergeAndPrefix(styles.control)} onClick={this._onControlClick}>
+          <ClearFix style={this.mergeAndPrefix(styles.control)} onTouchTap={this._onControlClick}>
             <Paper style={this.mergeAndPrefix(styles.controlBg)} zDepth={0} />
-            <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen)}>
-              {this.props.menuItems[this.state.selectedIndex].text}
+            <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen, this.props.labelStyle)}>
+              {displayValue}
             </div>
-            <DropDownArrow style={this.mergeAndPrefix(styles.icon)}/>
-            <div style={this.mergeAndPrefix(styles.underline)}/>
+            <DropDownArrow style={this.mergeAndPrefix(styles.icon, this.props.iconStyle)}/>
+            <div style={this.mergeAndPrefix(styles.underline, this.props.underlineStyle)}/>
           </ClearFix>
 
           <Menu
             ref="menuItems"
             autoWidth={this.props.autoWidth}
-            selectedIndex={this.state.selectedIndex}
-            menuItems={this.props.menuItems}
+            selectedIndex={selectedIndex}
+            menuItems={menuItems}
             menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.menuItemStyle)}
             hideable={true}
             visible={this.state.open}
-            onItemClick={this._onMenuItemClick} />
+            onRequestClose={this._onMenuRequestClose}
+            onItemTap={this._onMenuItemClick} />
       </div>
     );
   },
@@ -179,24 +228,74 @@ var DropDownMenu = React.createClass({
     this.setState({selectedIndex: (selectedIndex > -1) ? selectedIndex : 0});
   },
 
-  _onControlClick: function(e) {
+  _onControlClick: function() {
     this.setState({ open: !this.state.open });
   },
 
+  _onKeyDown: function(e) {
+    switch(e.which) {
+      case KeyCode.UP:
+        if (!this.state.open)
+          this._selectPreviousItem();
+        else
+          if (e.altKey)
+            this.setState({open:false});
+        break;
+      case KeyCode.DOWN:
+        if (!this.state.open)
+          if (e.altKey)
+            this.setState({open:true});
+          else
+            this._selectNextItem();
+        break;
+      case KeyCode.ENTER:
+      case KeyCode.SPACE:
+        this.setState({open:true});
+        break;
+      default:
+        return; //important
+    }
+    e.preventDefault();
+  },
+
   _onMenuItemClick: function(e, key, payload) {
-    if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
+    if (this.props.onChange && this.state.selectedIndex !== key) {
+      var selectedItem = this.props.menuItems[key];
+      if (selectedItem)
+        e.target.value = selectedItem[this.props.valueMember];
+
+      if (this.props.valueLink)
+        this.props.valueLink.requestChange(e.target.value)
+      else
+        this.props.onChange(e, key, payload);
+    }
+
     this.setState({
       selectedIndex: key,
-      open: false
+      value:e.target.value,
+      open: false,
+      isHovered:false
     });
   },
 
-  _handleMouseOver: function(e) {
+  _onMenuRequestClose: function() {
+    this.setState({open:false});
+  },
+
+  _handleMouseOver: function() {
     this.setState({isHovered: true});
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut: function() {
     this.setState({isHovered: false});
+  },
+
+  _selectPreviousItem: function() {
+    this.setState({selectedIndex: Math.max(this.state.selectedIndex - 1, 0)});
+  },
+
+  _selectNextItem: function() {
+    this.setState({selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1)});
   }
 
 });

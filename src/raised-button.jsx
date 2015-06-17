@@ -16,6 +16,7 @@ var RaisedButton = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
+    disabled: React.PropTypes.bool,
     label: function(props, propName, componentName){
       if (!props.children && !props.label) {
         return new Error('Warning: Required prop `label` or `children` was not specified in `'+ componentName + '`.')
@@ -46,7 +47,6 @@ var RaisedButton = React.createClass({
       zDepth: zDepth,
       initialZDepth: zDepth,
     });
-    this.styles = this.getStyles();
   },
 
   _getBackgroundColor: function() {
@@ -126,29 +126,27 @@ var RaisedButton = React.createClass({
       secondary,
       ...other } = this.props;
 
-    if (!this.hasOwnProperty('styles')) this.styles = this.getStyles();
+    var styles = this.getStyles();
 
     var labelElement;
     if (label) {
       labelElement = (
-        <span style={this.mergeAndPrefix(this.styles.label, this.props.labelStyle)}>
+        <span style={this.mergeAndPrefix(styles.label, this.props.labelStyle)}>
           {label}
         </span>
       );
     }
 
-    var rippleColor = this.styles.label.color;
+    var rippleColor = styles.label.color;
     var rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
-
-    if (!this.hasOwnProperty('styles')) this.styles = this.getStyles();
 
     return (
       <Paper 
-        style={this.mergeAndPrefix(this.styles.root, this.props.style)}
+        style={this.mergeAndPrefix(styles.root, this.props.style)}
         zDepth={this.state.zDepth}>
           <EnhancedButton {...other}
             ref="container"
-            style={this.mergeAndPrefix(this.styles.container)}
+            style={this.mergeAndPrefix(styles.container)}
             onMouseUp={this._handleMouseUp}
             onMouseDown={this._handleMouseDown}
             onMouseOut={this._handleMouseOut}
@@ -161,8 +159,8 @@ var RaisedButton = React.createClass({
             touchRippleOpacity={rippleOpacity}
             onKeyboardFocus={this._handleKeyboardFocus}>
               <div ref="overlay" style={this.mergeAndPrefix(
-                  this.styles.overlay,
-                  (this.state.hovered && !this.props.disabled) && this.styles.overlayWhenHovered
+                  styles.overlay,
+                  (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
                 )}>
                   {labelElement}
                   {this.props.children}
@@ -209,7 +207,7 @@ var RaisedButton = React.createClass({
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
       var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.mergeAndPrefix(this.styles.label, this.props.labelStyle).color, amount);
+      React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.mergeAndPrefix(this.getStyles().label, this.props.labelStyle).color, amount);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
       React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';

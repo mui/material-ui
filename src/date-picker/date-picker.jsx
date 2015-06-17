@@ -2,7 +2,6 @@ var React = require('react');
 var StylePropable = require('../mixins/style-propable');
 var WindowListenable = require('../mixins/window-listenable');
 var DateTime = require('../utils/date-time');
-var KeyCode = require('../utils/key-code');
 var DatePickerDialog = require('./date-picker-dialog');
 var TextField = require('../text-field');
 
@@ -21,7 +20,10 @@ var DatePicker = React.createClass({
     onDismiss: React.PropTypes.func,
     minDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
+    shouldDisableDate: React.PropTypes.func,
+    hideToolbarYearChange: React.PropTypes.bool,
     autoOk: React.PropTypes.bool,
+    showYearSelector: React.PropTypes.bool
   },
 
   windowListeners: {
@@ -31,9 +33,8 @@ var DatePicker = React.createClass({
   getDefaultProps: function() {
     return {
       formatDate: DateTime.format,
-      minDate: null,
-      maxDate: null,
-      autoOk: false
+      autoOk: false,
+      showYearSelector: false
     };
   },
 
@@ -42,6 +43,12 @@ var DatePicker = React.createClass({
       date: this.props.defaultDate,
       dialogDate: new Date()
     };
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    if (this.props.defaultDate !== nextProps.defaultDate) {
+      this.setDate(nextProps.defaultDate);
+    }
   },
 
   render: function() {
@@ -55,6 +62,7 @@ var DatePicker = React.createClass({
       minDate,
       maxDate,
       autoOk,
+      showYearSelector,
       ...other
     } = this.props;
     var defaultInputValue;
@@ -72,15 +80,18 @@ var DatePicker = React.createClass({
           onFocus={this._handleInputFocus}
           onTouchTap={this._handleInputTouchTap}/>
         <DatePickerDialog
-          minDate={minDate} 
-          maxDate={maxDate} 
-          autoOk={autoOk}
           ref="dialogWindow"
           mode={this.props.mode}
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
-          onDismiss={onDismiss} />
+          onDismiss={this._handleDialogDismiss}
+          minDate={minDate}
+          maxDate={maxDate}
+          autoOk={autoOk}
+          showYearSelector={showYearSelector}
+          shouldDisableDate={this.props.shouldDisableDate}
+          hideToolbarYearChange={this.props.hideToolbarYearChange} />
       </div>
 
     );
@@ -102,6 +113,10 @@ var DatePicker = React.createClass({
     if (this.props.onChange) this.props.onChange(null, d);
   },
 
+  _handleDialogDismiss: function() {
+    if (this.props.onDismiss) this.props.onDismiss();
+  },
+
   _handleInputFocus: function(e) {
     e.target.blur();
     if (this.props.onFocus) this.props.onFocus(e);
@@ -116,7 +131,7 @@ var DatePicker = React.createClass({
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   },
 
-  _handleWindowKeyUp: function(e) {
+  _handleWindowKeyUp: function() {
     //TO DO: open the dialog if input has focus
   }
 

@@ -68,13 +68,13 @@ var RadioButton = React.createClass({
     } = this.props;
 
     var styles = this.getStyles();
-    var onStyles = 
+    var onStyles =
       this.mergeAndPrefix(
         styles.target,
         this.props.checked && styles.targetWhenChecked,
         this.props.iconStyle,
         this.props.disabled && styles.targetWhenDisabled);
-    var offStyles = 
+    var offStyles =
       this.mergeAndPrefix(
         styles.fill,
         this.props.checked && styles.fillWhenChecked,
@@ -90,20 +90,25 @@ var RadioButton = React.createClass({
 
     var rippleColor = this.props.checked ? this.getTheme().checkedColor : this.getTheme().borderColor;
 
+    var iconStyle = this.mergeAndPrefix(
+      styles.icon,
+      this.props.iconStyle
+    );
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "radio",
-      switched: this.props.checked,
+      switched: this.props.checked || false,
       switchElement: radioButtonElement,
       rippleColor: rippleColor,
-      iconStyle: styles.icon,
+      iconStyle: iconStyle,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"
     };
 
     return (
-      <EnhancedSwitch 
+      <EnhancedSwitch
         {...other}
         {...enhancedSwitchProps}/>
     );
@@ -114,19 +119,19 @@ var RadioButton = React.createClass({
     if (this.props.onCheck) this.props.onCheck(e, this.props.value);
   },
 
-  _handleStateChange: function(newSwitched) {
+  _handleStateChange: function() {
   },
 
   isChecked: function() {
     return this.refs.enhancedSwitch.isSwitched();
   },
 
-  // Use RadioButtonGroup.setSelectedValue(newSelectionValue) to set a 
+  // Use RadioButtonGroup.setSelectedValue(newSelectionValue) to set a
   // RadioButton's checked value.
   setChecked: function(newCheckedValue) {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
   },
-  
+
   getValue: function() {
     return this.refs.enhancedSwitch.getValue();
   }

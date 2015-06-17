@@ -25,7 +25,7 @@ class DialogPage extends React.Component {
       '//Standard Actions\n' +
       'var standardActions = [\n' +
       '  { text: \'Cancel\' },\n' +
-      '  { text: \'Submit\', onClick: this._onDialogSubmit, ref: \'submit\' }\n' +
+      '  { text: \'Submit\', onTouchTap: this._onDialogSubmit, ref: \'submit\' }\n' +
       '];\n\n' +
       '<Dialog\n' +
       '  title="Dialog With Standard Actions"\n' +
@@ -72,12 +72,18 @@ class DialogPage extends React.Component {
             name: 'contentClassName',
             type: 'string',
             header: 'optional',
-            desc: 'The className to add to the dialog window content container. This is the Paper ' + 
+            desc: 'The className to add to the dialog window content container. This is the Paper ' +
                   'element that is seen when the dialog is shown.'
           },
           {
+            name: 'contentInnerStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the dialog container under the title.'
+          },
+          {
             name: 'contentStyle',
-            type: 'string',
+            type: 'object',
             header: 'optional',
             desc: 'Overrides the inline-styles of the dialog window content container.'
           },
@@ -141,7 +147,7 @@ class DialogPage extends React.Component {
 
     var standardActions = [
       { text: 'Cancel' },
-      { text: 'Submit', onClick: this._onDialogSubmit, ref: 'submit' }
+      { text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit' }
     ];
 
     var customActions = [
@@ -183,9 +189,9 @@ class DialogPage extends React.Component {
           modal={this.state.modal}>
           The actions in this window were passed in as an array of react objects.
         </Dialog>
-        
+
         <div style={{width: '300px', margin: '0 auto', paddingTop: '20px'}}>
-          <Toggle 
+          <Toggle
             label="Is Modal"
             onToggle={this._handleToggleChange}
             defaultToggled={this.state.modal}/>
@@ -196,6 +202,10 @@ class DialogPage extends React.Component {
 
   }
 
+  _onDialogSubmit() {
+    console.log('Submitting');
+  }
+
   _handleCustomDialogCancel() {
     this.refs.customDialog.dismiss();
   }
@@ -203,7 +213,7 @@ class DialogPage extends React.Component {
   _handleCustomDialogSubmit() {
     this.refs.customDialog.dismiss();
   }
-  
+
   _handleToggleChange(e, toggled) {
     this.setState({modal: toggled});
   }

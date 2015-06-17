@@ -2,8 +2,7 @@
 @import "font-icons/style.css";
 
 /* hightlight.js for syntax highlighting */
-//@import (less) "monokai_sublime.css";
-@import (less) "github.css";
+@import "github.css";
 
 a {
   color: #ff4081; //pinkA200
@@ -27,7 +26,7 @@ body {
   line-height: 20px;
 }
 
-// Used in our inline-styles.jsx as an example 
+/* Used in our inline-styles.jsx as an example */
 .muidocs-checkbox-example { 
   border: 2px solid #FF9800;
   background-color: #4CAF50;

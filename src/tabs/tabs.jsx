@@ -1,16 +1,17 @@
 var React = require('react/addons');
-var Tab = require('./tab');
 var TabTemplate = require('./tabTemplate');
 var InkBar = require('../ink-bar');
-var Transitions = require('../styles/transitions.js');
 var StylePropable = require('../mixins/style-propable.js');
-var Colors = require('../styles/colors.js');
 var Events = require('../utils/events');
 
 
 var Tabs = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
 
   propTypes: {
     initialSelectedIndex: React.PropTypes.number,
@@ -60,69 +61,76 @@ var Tabs = React.createClass({
   },
 
   getStyles: function() {
+    var themeVariables = this.context.muiTheme.component.tabs;
+
     return {
-      root: {
-        position: 'relative'
-      },
       tabItemContainer: {
         margin: '0',
         padding: '0',
         width: '100%',
         height: '48px',
-        backgroundColor: Colors.cyan500,
+        backgroundColor: themeVariables.backgroundColor,
         whiteSpace: 'nowrap',
         display: 'table'
       }
     };
   },
 
-  render: function(){    
+  render: function(){
     var styles = this.getStyles();
 
+    var tabContent = []
     var width = this.state.fixedWidth ?
       100 / this.props.children.length +'%' :
       this.props.tabWidth + 'px';
 
     var left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
 
-    var currentTemplate;
-    var tabs = React.Children.map(this.props.children, function(tab, index) {
-      if (tab.type.displayName === "Tab") {
-        if (this.state.selectedIndex === index) currentTemplate = tab.props.children;
-         return React.addons.cloneWithProps(tab, {
+    var tabs = React.Children.map(this.props.children, function(tab, index){
+      if(tab.type.displayName === "Tab") {
+
+        if(tab.props.children) {
+          tabContent.push(React.createElement(TabTemplate, {
             key: index,
-            selected: this.state.selectedIndex === index,
-            tabIndex: index,
-            width: width,
-            handleTouchTap: this.handleTouchTap
-          })
+            selected: this.state.selectedIndex === index
+          }, tab.props.children));
+        } else {
+          tabContent.push(undefined)
+        }
+
+        return React.addons.cloneWithProps(tab, {
+          key: index,
+          selected: this.state.selectedIndex === index,
+          tabIndex: index,
+          width: width,
+          handleTouchTap: this.handleTouchTap
+        });
       } else {
         var type = tab.type.displayName || tab.type;
-        throw 'Tabs only accepts Tab Components as children. Found ' + 
+        throw 'Tabs only accepts Tab Components as children. Found ' +
               type + ' as child number ' + (index + 1) + ' of Tabs';
       }
     }, this);
-
     return (
-      <div style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div style={this.mergeAndPrefix(this.props.style)}>
         <div style={this.mergeAndPrefix(styles.tabItemContainer, this.props.tabItemContainerStyle)}>
           {tabs}
         </div>
-        <InkBar left={left} width={width}/>
-        <TabTemplate>
-          {currentTemplate}
-        </TabTemplate>
+        <InkBar left={left} width={width} />
+        <div>
+          {tabContent}
+        </div>
       </div>
     )
   },
 
   _tabWidthPropIsValid: function() {
-    return this.props.tabWidth && 
+    return this.props.tabWidth &&
       (this.props.tabWidth * this.props.children.length <= this.getEvenWidth());
   },
 
-  // Validates that the tabWidth can fit all tabs on the tab bar. If not, the 
-  // tabWidth is recalculated and fixed. 
+  // Validates that the tabWidth can fit all tabs on the tab bar. If not, the
+  // tabWidth is recalculated and fixed.
   _updateTabWidth: function() {
     if(this._tabWidthPropIsValid()) {
       this.setState({

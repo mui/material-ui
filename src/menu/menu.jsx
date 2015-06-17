@@ -2,6 +2,7 @@ var React = require('react');
 var CssEvent = require('../utils/css-event');
 var Dom = require('../utils/dom');
 var KeyLine = require('../utils/key-line');
+var KeyCode = require('../utils/key-code');
 var StylePropable = require('../mixins/style-propable');
 var Transitions = require('../styles/transitions');
 var ClickAwayable = require('../mixins/click-awayable');
@@ -9,6 +10,7 @@ var Paper = require('../paper');
 var MenuItem = require('./menu-item');
 var LinkMenuItem = require('./link-menu-item');
 var SubheaderMenuItem = require('./subheader-menu-item');
+var WindowListenable = require('../mixins/window-listenable');
 
 /***********************
 * Nested Menu Component
@@ -27,11 +29,11 @@ var NestedMenuItem = React.createClass({
     menuItems: React.PropTypes.array.isRequired,
     zDepth: React.PropTypes.number,
     disabled: React.PropTypes.bool,
-    onItemClick: React.PropTypes.func,
+    active: React.PropTypes.bool,
     onItemTap: React.PropTypes.func,
     menuItemStyle: React.PropTypes.object,
   },
-  
+
   getDefaultProps: function() {
     return {
       disabled: false
@@ -39,7 +41,10 @@ var NestedMenuItem = React.createClass({
   },
 
   getInitialState: function() {
-    return { open: false }
+    return {
+      open: false ,
+      activeIndex:0
+    }
   },
 
   componentClickAway: function() {
@@ -48,9 +53,11 @@ var NestedMenuItem = React.createClass({
 
   componentDidMount: function() {
     this._positionNestedMenu();
+    var el = this.getDOMNode();
+    el.focus();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate: function() {
     this._positionNestedMenu();
   },
 
@@ -58,8 +65,47 @@ var NestedMenuItem = React.createClass({
     return this.context.muiTheme.spacing;
   },
 
+  getStyles: function() {
+    var styles = {
+      root: {
+        userSelect: 'none',
+        cursor: 'pointer',
+        lineHeight: this.getTheme().height + 'px',
+        color: this.context.muiTheme.palette.textColor
+      },
+      icon: {
+        float: 'left',
+        lineHeight: this.getTheme().height + 'px',
+        marginRight: this.getSpacing().desktopGutter
+      },
+      toggle: {
+        marginTop: ((this.getTheme().height - this.context.muiTheme.component.radioButton.size) / 2),
+        float: 'right',
+        width: 42
+      },
+      rootWhenHovered: {
+        backgroundColor: this.getTheme().hoverColor
+      },
+      rootWhenSelected: {
+        color: this.getTheme().selectedTextColor
+      },
+      rootWhenDisabled: {
+        cursor: 'default',
+        color: this.context.muiTheme.palette.disabledColor
+      }
+    };
+    return styles;
+  },
+
+  getTheme: function() {
+    return this.context.muiTheme.component.menuItem;
+  },
+
   render: function() {
-    var styles = this.mergeAndPrefix({
+
+    var styles = this.getStyles();
+    styles = this.mergeAndPrefix(styles.root,
+      (this.props.active && !this.props.disabled) && styles.rootWhenHovered, {
       position: 'relative'
     }, this.props.style);
 
@@ -75,59 +121,72 @@ var NestedMenuItem = React.createClass({
     } = this.props;
 
     return (
-      <div ref="root" style={styles} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
-        <MenuItem 
+      <div
+          ref="root"
+          style={styles}
+          onMouseEnter={this._openNestedMenu}
+          onMouseLeave={this._closeNestedMenu}
+          onMouseOver={this._handleMouseOver}
+          onMouseOut={this._handleMouseOut}>
+        <MenuItem
           index={index}
           style={menuItemStyle}
-          disabled={this.props.disabled} 
-          iconRightStyle={iconCustomArrowDropRight} 
-          iconRightClassName="muidocs-icon-custom-arrow-drop-right" 
-          onClick={this._onParentItemClick}>
+          disabled={this.props.disabled}
+          iconRightStyle={iconCustomArrowDropRight}
+          iconRightClassName="muidocs-icon-custom-arrow-drop-right"
+          onTouchTap={this._onParentItemTap}>
             {this.props.text}
         </MenuItem>
         <Menu {...other}
           ref="nestedMenu"
           menuItems={this.props.menuItems}
-          onItemClick={this._onMenuItemClick}
+          menuItemStyle={menuItemStyle}
           onItemTap={this._onMenuItemTap}
           hideable={true}
           visible={this.state.open}
+          onRequestClose={this._closeNestedMenu}
           zDepth={this.props.zDepth + 1} />
       </div>
     );
   },
 
-  _positionNestedMenu: function() {
-    var el = React.findDOMNode(this);
-    var nestedMenu = React.findDOMNode(this.refs.nestedMenu);
-
-    nestedMenu.style.left = el.offsetWidth + 'px';
-  },
-  
-  _openNestedMenu: function() {
-    if (!this.props.disabled) this.setState({ open: true });
-  },
-  
-  _closeNestedMenu: function() {
-    this.setState({ open: false });
-  },
-  
-  _toggleNestedMenu: function() {
+  toggleNestedMenu: function() {
     if (!this.props.disabled) this.setState({ open: !this.state.open });
   },
 
-  _onParentItemClick: function() {
-    this._toggleNestedMenu();
+  isOpen: function() {
+    return this.state.open;
   },
 
-  _onMenuItemClick: function(e, index, menuItem) {
-    if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
-    this._closeNestedMenu();
+  _positionNestedMenu: function() {
+    var el = React.findDOMNode(this);
+    var nestedMenu = React.findDOMNode(this.refs.nestedMenu);
+    nestedMenu.style.left = el.offsetWidth + 'px';
   },
-  
+
+  _openNestedMenu: function() {
+    if (!this.props.disabled) this.setState({ open: true });
+  },
+
+  _closeNestedMenu: function() {
+    this.setState({ open: false });
+    React.findDOMNode(this).focus();
+  },
+
+  _onParentItemTap: function() {
+    this.toggleNestedMenu();
+  },
+
   _onMenuItemTap: function(e, index, menuItem) {
     if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
     this._closeNestedMenu();
+  },
+  _handleMouseOver: function(e) {
+    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e, this.props.index);
+  },
+
+  _handleMouseOut: function(e) {
+    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e,this.props.index);
   }
 
 });
@@ -147,8 +206,8 @@ var Menu = React.createClass({
   propTypes: {
     autoWidth: React.PropTypes.bool,
     onItemTap: React.PropTypes.func,
-    onItemClick: React.PropTypes.func,
     onToggle: React.PropTypes.func,
+    onRequestClose: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
     hideable: React.PropTypes.bool,
@@ -163,7 +222,10 @@ var Menu = React.createClass({
   },
 
   getInitialState: function() {
-    return { nestedMenuShown: false }
+    return {
+      nestedMenuShown: false,
+      activeIndex:0
+    }
   },
 
   getDefaultProps: function() {
@@ -172,6 +234,7 @@ var Menu = React.createClass({
       hideable: false,
       visible: true,
       zDepth: 1,
+      onRequestClose: function() {}
     };
   },
 
@@ -181,14 +244,14 @@ var Menu = React.createClass({
     //Set the menu width
     this._setKeyWidth(el);
 
-    //Save the initial menu height for later
-    this._initialMenuHeight = el.offsetHeight;
+    //Save the initial menu item height for later
+    this._initialMenuItemHeight = el.offsetHeight / Math.max(1, this.props.menuItems.length);
 
     //Show or Hide the menu according to visibility
     this._renderVisibility();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate: function(prevProps) {
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
   },
 
@@ -206,7 +269,8 @@ var Menu = React.createClass({
         backgroundColor: this.getTheme().containerBackgroundColor,
         paddingTop: this.getSpacing().desktopGutterMini,
         paddingBottom: this.getSpacing().desktopGutterMini,
-        transition: Transitions.easeOut(null, 'height')
+        transition: Transitions.easeOut(null, 'height'),
+        outline:'none !important'
       },
       subheader: {
         paddingLeft: this.context.muiTheme.component.menuSubheader.padding,
@@ -226,9 +290,11 @@ var Menu = React.createClass({
   render: function() {
     var styles = this.getStyles();
     return (
-      <Paper 
-        ref="paperContainer" 
-        zDepth={this.props.zDepth} 
+      <Paper
+        ref="paperContainer"
+        tabIndex='0'
+        onKeyDown={this._onKeyDown}
+        zDepth={this.props.zDepth}
         style={this.mergeAndPrefix(
           styles.root,
           this.props.hideable && styles.hideable,
@@ -239,14 +305,14 @@ var Menu = React.createClass({
   },
 
   _getChildren: function() {
-    var children = [],
-      menuItem,
+    var  menuItem,
       itemComponent,
       isSelected,
       isDisabled;
 
     var styles = this.getStyles();
 
+    this._children = [];
     //This array is used to keep track of all nested menu refs
     this._nestedChildren = [];
 
@@ -255,13 +321,13 @@ var Menu = React.createClass({
       isSelected = i === this.props.selectedIndex;
       isDisabled = (menuItem.disabled === undefined) ? false : menuItem.disabled;
 
-      var {
+      let {
         icon,
         data,
         attribute,
         number,
         toggle,
-        onClick,
+        onTouchTap,
         ...other
       } = menuItem;
 
@@ -269,11 +335,12 @@ var Menu = React.createClass({
 
         case MenuItem.Types.LINK:
           itemComponent = (
-            <LinkMenuItem 
+            <LinkMenuItem
               key={i}
               index={i}
+              active={this.state.activeIndex == i}
               text={menuItem.text}
-              disabled={isDisabled} 
+              disabled={isDisabled}
               className={this.props.menuItemClassNameLink}
               style={this.props.menuItemStyleLink}
               payload={menuItem.payload}
@@ -283,18 +350,18 @@ var Menu = React.createClass({
 
         case MenuItem.Types.SUBHEADER:
           itemComponent = (
-            <SubheaderMenuItem 
+            <SubheaderMenuItem
               key={i}
               index={i}
               className={this.props.menuItemClassNameSubheader}
               style={this.mergeAndPrefix(styles.subheader)}
-              firstChild={i == 0}
+              firstChild={i === 0}
               text={menuItem.text} />
           );
           break;
 
         case MenuItem.Types.NESTED:
-          var {
+          let {
             ref,
             key,
             index,
@@ -308,13 +375,16 @@ var Menu = React.createClass({
               ref={i}
               key={i}
               index={i}
+              nested={true}
+              active={this.state.activeIndex == i}
               text={menuItem.text}
               disabled={isDisabled}
               menuItems={menuItem.items}
               menuItemStyle={this.props.menuItemStyle}
               zDepth={this.props.zDepth}
-              onItemClick={this._onNestedItemClick}
-              onItemTap={this._onNestedItemClick} />
+              onMouseOver={this._onItemActivated}
+              onMouseOut={this._onItemDeactivated}
+              onItemTap={this._onNestedItemTap} />
           );
           this._nestedChildren.push(i);
           break;
@@ -326,6 +396,7 @@ var Menu = React.createClass({
               selected={isSelected}
               key={i}
               index={i}
+              active={this.state.activeIndex == i}
               icon={menuItem.icon}
               data={menuItem.data}
               className={this.props.menuItemClassName}
@@ -335,16 +406,18 @@ var Menu = React.createClass({
               toggle={menuItem.toggle}
               onToggle={this.props.onToggle}
               disabled={isDisabled}
-              onClick={this._onItemClick}
-              onTouchTap={this._onItemTap}>
+              onTouchTap={this._onItemTap}
+              onMouseOver={this._onItemActivated}
+              onMouseOut={this._onItemDeactivated}
+              >
               {menuItem.text}
             </MenuItem>
           );
       }
-      children.push(itemComponent);
+      this._children.push(itemComponent);
     }
 
-    return children;
+    return this._children;
   },
 
   _setKeyWidth: function(el) {
@@ -358,17 +431,24 @@ var Menu = React.createClass({
     });
   },
 
+  _getCurrentHeight: function() {
+    var totalItens = Math.max(1, this.props.menuItems.length);
+    var newHeight = this._initialMenuItemHeight * totalItens;
+
+    return newHeight;
+  },
+
   _renderVisibility: function() {
     var el;
 
-    if (this.props.hideable) {    
+    if (this.props.hideable) {
       el = React.findDOMNode(this);
       var container = React.findDOMNode(this.refs.paperContainer);
-      
+
       if (this.props.visible) {
         //Open the menu
         el.style.transition = Transitions.easeOut();
-        el.style.height = this._initialMenuHeight + 'px';
+        el.style.height = this._getCurrentHeight() + 'px';
 
         //Set the overflow to visible after the animation is done so
         //that other nested menus can be shown
@@ -376,6 +456,7 @@ var Menu = React.createClass({
           //Make sure the menu is open before setting the overflow.
           //This is to accout for fast clicks
           if (this.props.visible) container.style.overflow = 'visible';
+          el.focus();
         }.bind(this));
 
       } else {
@@ -389,16 +470,8 @@ var Menu = React.createClass({
     }
   },
 
-  _onNestedItemClick: function(e, index, menuItem) {
-    if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
-  },
-
   _onNestedItemTap: function(e, index, menuItem) {
     if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
-  },
-
-  _onItemClick: function(e, index) {
-    if (this.props.onItemClick) this.props.onItemClick(e, index, this.props.menuItems[index]);
   },
 
   _onItemTap: function(e, index) {
@@ -407,7 +480,81 @@ var Menu = React.createClass({
 
   _onItemToggle: function(e, index, toggled) {
     if (this.props.onItemToggle) this.props.onItemToggle(e, index, this.props.menuItems[index], toggled);
-  }
+  },
+  _onItemActivated: function(e, index) {
+    this.setState({activeIndex:index})
+  },
+  _onItemDeactivated: function(e, index) {
+    if (this.state.activeKey == index)
+      this.setState({activeIndex:0})
+  },
+
+  _onKeyDown: function(e) {
+    if (!(this.state.open || this.props.visible))
+      return;
+
+    var nested = this._children[this.state.activeIndex];
+    if (nested && nested.props.nested && this.refs[this.state.activeIndex].isOpen())
+      return;
+
+    switch(e.which) {
+      case KeyCode.UP:
+        this._activatePreviousItem();
+        break;
+      case KeyCode.DOWN:
+        this._activateNextItem();
+        break;
+      case KeyCode.RIGHT:
+        this._tryToggleNested(this.state.activeIndex);
+        break;
+      case KeyCode.LEFT:
+        this._close();
+        break;
+      case KeyCode.ESC:
+        this._close();
+        break;
+      case KeyCode.TAB:
+        this._close();
+        return; // so the tab key can propagate
+      case KeyCode.ENTER:
+      case KeyCode.SPACE:
+        e.stopPropagation(); // needs called before the close
+        this._triggerSelection(e);
+        break;
+      default:
+        return; //important
+    }
+    e.preventDefault();
+    e.stopPropagation();
+  },
+
+  _activatePreviousItem:function() {
+    var active = this.state.activeIndex || 0;
+    active = Math.max(active - 1, 0);
+    this.setState({activeIndex:active});
+  },
+
+  _activateNextItem: function() {
+    var active = this.state.activeIndex || 0;
+    active = Math.min(active+1, this._children.length -1);
+    this.setState({activeIndex:active});
+  },
+
+  _triggerSelection: function(e) {
+    var index = this.state.activeIndex || 0;
+    this._onItemTap(e, index)
+  },
+
+  _close: function() {
+    this.props.onRequestClose();
+  },
+
+  _tryToggleNested: function(index) {
+    var item = this.refs[index];
+    var toggleMenu = item.toggleNestedMenu;
+    if (item && item.toggleNestedMenu)
+      item.toggleNestedMenu();
+  },
 
 });
 

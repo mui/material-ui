@@ -30,11 +30,11 @@ var MenuItem = React.createClass({
     toggle: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     onTouchTap: React.PropTypes.func,
-    onClick: React.PropTypes.func,
     onToggle: React.PropTypes.func,
-    selected: React.PropTypes.bool
+    selected: React.PropTypes.bool,
+    active: React.PropTypes.bool
   },
-  
+
   statics: {
     Types: Types
   },
@@ -42,14 +42,9 @@ var MenuItem = React.createClass({
   getDefaultProps: function() {
     return {
       toggle: false,
-      disabled: false
+      disabled: false,
+      active:false
     };
-  },
-
-  getInitialState: function() {
-    return {
-      hovered: false
-    }
   },
 
   getTheme: function() {
@@ -123,7 +118,7 @@ var MenuItem = React.createClass({
     var iconRight;
     var attribute;
     var number;
-    var toggle;
+    var toggleElement;
 
     var styles = this.getStyles();
 
@@ -132,11 +127,11 @@ var MenuItem = React.createClass({
     if (this.props.data) data = <span style={this.mergeAndPrefix(styles.data)}>{this.props.data}</span>;
     if (this.props.number !== undefined) number = <span style={this.mergeAndPrefix(styles.number)}>{this.props.number}</span>;
     if (this.props.attribute !== undefined) attribute = <span style={this.mergeAndPrefix(styles.style)}>{this.props.attribute}</span>;
-    
+
     if (this.props.toggle) {
       var {
         toggle,
-        onClick,
+        onTouchTap,
         onToggle,
         onMouseOver,
         onMouseOut,
@@ -145,21 +140,20 @@ var MenuItem = React.createClass({
         style,
         ...other
       } = this.props;
-      toggle = <Toggle {...other} onToggle={this._handleToggle} style={styles.toggle}/>;
+      toggleElement = <Toggle {...other} onToggle={this._handleToggle} style={styles.toggle}/>;
     }
 
     return (
       <div
         key={this.props.index}
-        className={this.props.className} 
+        className={this.props.className}
         onTouchTap={this._handleTouchTap}
-        onClick={this._handleOnClick}
         onMouseOver={this._handleMouseOver}
-        onMouseOut={this._handleMouseOut}
+        onMouseOut={this._handleMouseOut}f
         style={this.mergeAndPrefix(
-          styles.root, 
+          styles.root,
           this.props.selected && styles.rootWhenSelected,
-          (this.state.hovered && !this.props.disabled) && styles.rootWhenHovered,
+          (this.props.active && !this.props.disabled) && styles.rootWhenHovered,
           this.props.style,
           this.props.disabled && styles.rootWhenDisabled)}>
 
@@ -168,9 +162,9 @@ var MenuItem = React.createClass({
         {data}
         {attribute}
         {number}
-        {toggle}
+        {toggleElement}
         {iconRight}
-        
+
       </div>
     );
   },
@@ -179,24 +173,17 @@ var MenuItem = React.createClass({
     if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
   },
 
-  _handleOnClick: function(e) {
-    if (!this.props.disabled && this.props.onClick) this.props.onClick(e, this.props.index);
-  },
-
   _handleToggle: function(e, toggled) {
     if (!this.props.disabled && this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
   },
 
   _handleMouseOver: function(e) {
-    this.setState({hovered: true});
-    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e);
+    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e, this.props.index);
   },
 
   _handleMouseOut: function(e) {
-    this.setState({hovered: false});
-    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e);
+    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e,this.props.index);
   }
-
 });
 
 module.exports = MenuItem;

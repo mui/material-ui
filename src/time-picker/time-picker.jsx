@@ -2,8 +2,6 @@ var React = require('react');
 var StylePropable = require('../mixins/style-propable');
 
 var WindowListenable = require('../mixins/window-listenable');
-var DateTime = require('../utils/date-time');
-var KeyCode = require('../utils/key-code');
 var TimePickerDialog = require('./time-picker-dialog');
 var TextField = require('../text-field');
 
@@ -16,7 +14,7 @@ var TimePicker = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   propTypes: {
-    defaultTime: React.PropTypes.object, 
+    defaultTime: React.PropTypes.object,
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
@@ -60,7 +58,7 @@ var TimePicker = React.createClass({
 
     if(hours.length < 2) hours = "0" + hours;
     if(mins.length < 2) mins = "0" + mins;
-    
+
     return  hours + ":" + mins + aditional;
   },
   render: function() {
@@ -75,7 +73,7 @@ var TimePicker = React.createClass({
 
     var defaultInputValue;
 
-    if (this.props.defaultDate) {
+    if (this.props.defaultTime) {
       defaultInputValue = this.formatTime(this.props.defaultTime);
     }
 
@@ -105,7 +103,7 @@ var TimePicker = React.createClass({
 
   setTime: function(t) {
     this.setState({
-      time: t 
+      time: t
     });
     this.refs.input.setValue(this.formatTime(t));
   },
@@ -125,10 +123,10 @@ var TimePicker = React.createClass({
     this.setState({
       dialogTime: this.getTime()
     });
-   
+
     this.refs.dialogWindow.show();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
-  } 
+  }
 
 });
 
