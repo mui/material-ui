@@ -5,6 +5,10 @@ var StylePropable = require('../mixins/style-propable');
 var Card = React.createClass({
   mixins:[StylePropable],
 
+  propTypes: {
+    style: React.PropTypes.object
+  },
+
   render: function () {
     var lastElement = React.Children.count(this.props.children) > 1 ? 
       this.props.children[this.props.children.length - 1] 

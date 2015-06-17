@@ -1,10 +1,20 @@
 var React = require('react');
 var Styles = require('../styles');
+var StylePropable = require('../mixins/style-propable');
 
 var CardMedia = React.createClass({
+
+  mixins:[StylePropable],
+
   propTypes: {
-    overlay: React.PropTypes.node
+    overlay: React.PropTypes.node,
+    style: React.PropTypes.object,
+    overlayStyle: React.PropTypes.object,
+    overlayContainerStyle: React.PropTypes.object,
+    overlayContentStyle: React.PropTypes.object,
+    mediaStyle: React.PropTypes.object
   },
+
   getStyles: function () {
     return {
       root: {
@@ -31,8 +41,15 @@ var CardMedia = React.createClass({
       }
     };
   },
+
   render: function () {
     var styles = this.getStyles();
+    var rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
+    var mediaStyle = this.mergeAndPrefix(styles.media, this.props.mediaStyle);
+    var overlayContainerStyle = this.mergeAndPrefix(styles.overlayContainer, this.props.overlayContainerStyle);
+    var overlayContentStyle = this.mergeAndPrefix(styles.overlayContent, this.props.overlayContentStyle);
+    var overlayStyle = this.mergeAndPrefix(styles.overlay, this.props.overlayStyle);
+
 
     var children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
@@ -61,14 +78,14 @@ var CardMedia = React.createClass({
     });
 
     return (
-      <div style={styles.root}>
-        <div style={styles.media}>
+      <div {...this.props} style={rootStyle}>
+        <div style={mediaStyle}>
           {children}
         </div>
         {(this.props.overlay) ?
-          <div style={styles.overlayContainer}>
-            <div style={styles.overlay}>
-              <div style={styles.overlayContent}>
+          <div style={overlayContainerStyle}>
+            <div style={overlayStyle}>
+              <div style={overlayContentStyle}>
                 {overlayChildren}
               </div>
             </div>

@@ -19,7 +19,7 @@ var CardActions = React.createClass({
     });
 
     return (
-      <div style={styles.root}>
+      <div {...this.props} style={styles.root}>
         {children}
       </div>
     );

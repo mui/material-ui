@@ -8,11 +8,13 @@ var CardHeader = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-    avatar: React.PropTypes.any,
     title: React.PropTypes.string,
     titleColor: React.PropTypes.string,
+    titleStyle: React.PropTypes.object,
     subtitle: React.PropTypes.string,
-    subtitleColor: React.PropTypes.string
+    subtitleColor: React.PropTypes.string,
+    subtitleStyle: React.PropTypes.object,
+    textStyle: React.PropTypes.object
   },
 
   getDefaultProps: function () {
@@ -52,6 +54,11 @@ var CardHeader = React.createClass({
 
   render: function () {
     var styles = this.getStyles();
+    var rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
+    var textStyle = this.mergeAndPrefix(styles.text, this.props.textStyle);
+    var titleStyle = this.mergeAndPrefix(styles.title, this.props.titleStyle);
+    var subtitleStyle = this.mergeAndPrefix(styles.subtitle, this.props.subtitleStyle);
+
     var avatar = this.props.avatar;
     if (React.isValidElement(this.props.avatar)) {
       var avatarMergedStyle = this.mergeStyles(styles.avatar, avatar.props.style);
@@ -60,14 +67,12 @@ var CardHeader = React.createClass({
     else 
       avatar = <Avatar src={this.props.avatar} style={styles.avatar}/>
 
-
-
     return (
-      <div style={styles.root}>
+      <div {...this.props} style={rootStyle}>
         {avatar}
-        <div style={styles.text}>
-          <span style={styles.title}>{this.props.title}</span>
-          <span style={styles.subtitle}>{this.props.subtitle}</span>
+        <div style={textStyle}>
+          <span style={titleStyle}>{this.props.title}</span>
+          <span style={subtitleStyle}>{this.props.subtitle}</span>
         </div>
       </div>
     );

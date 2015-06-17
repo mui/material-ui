@@ -1,15 +1,22 @@
 var React = require('react');
 var Styles = require('../styles');
+var StylePropable = require('../mixins/style-propable');
 
 var CardText = React.createClass({
+
+  mixins:[StylePropable],
+
   propTypes: {
-    color: React.PropTypes.string
+    color: React.PropTypes.string,
+    style: React.PropTypes.object
   },
+
   getDefaultProps: function () {
     return {
       color: Styles.Colors.ck
     }
   },
+
   getStyles: function () {
     return {
       root: {
@@ -19,11 +26,13 @@ var CardText = React.createClass({
       }
     }
   },
+
   render: function () {
     var styles = this.getStyles();
+    var rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
 
     return (
-      <div style={styles.root}>
+      <div {...this.props} style={rootStyle}>
         {this.props.children}
       </div>
     );
