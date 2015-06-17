@@ -2,6 +2,7 @@ var React = require('react');
 var mui = require('mui');
 var ComponentDoc = require('../../component-doc.jsx');
 var extend = mui.Utils.Extend;
+var Colors = mui.Styles.Colors;
 var Typography = mui.Styles.Typography;
 var {ClearFix, FlatButton, FloatingActionButton, FontIcon, RaisedButton, Tab, Tabs} = mui;
 
@@ -275,7 +276,8 @@ class ButtonPage extends React.Component {
         verticalAlign: 'middle',
         float: 'left',
         paddingLeft: '12px',
-        lineHeight: '36px'
+        lineHeight: '36px',
+        color: Colors.cyan500
       },
       exampleButtonIcon: {
         color: Typography.textFullWhite
