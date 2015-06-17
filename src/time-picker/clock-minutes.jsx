@@ -8,6 +8,18 @@ function rad2deg(rad){
   return rad * 57.29577951308232
 }
 
+function getTouchEventOffsetValues(e) {
+  var el = e.target;
+  var boundingRect = el.getBoundingClientRect();
+
+  var offset = {
+    offsetX: e.clientX - boundingRect.left,
+    offsetY: e.clientY - boundingRect.top
+  };
+
+  return offset;
+}
+
 var ClockMinutes = React.createClass({
 
   mixins: [StylePropable],
@@ -54,26 +66,26 @@ var ClockMinutes = React.createClass({
   },
   handleUp: function(e){
     e.preventDefault(); 
-    this.setClock(e, true);
+    this.setClock(e.nativeEvent, true);
   },
   handleMove: function(e){
     e.preventDefault();
     if(this.isMousePressed(e) != 1 ) return;
-    this.setClock(e, false);
+    this.setClock(e.nativeEvent, false);
   },
   handleTouch: function(e){
     e.preventDefault(); 
-    this.setClock(e, false);
+    this.setClock(e.changedTouches[0], false);
   },
   setClock: function(e, finish){
-     var ne = e.nativeEvent;
+    if (typeof e.offsetX === 'undefined') {
+      var offset = getTouchEventOffsetValues(e);
 
-     var pos = {
-        x: ne.offsetX === undefined ? ne.layerX : ne.offsetX,
-        y: ne.offsetY === undefined ? ne.layerY : ne.offsetY
-     };
+      e.offsetX = offset.offsetX;
+      e.offsetY = offset.offsetY;
+    }
 
-     var minutes = this.getMinutes(pos.x, pos.y)
+     var minutes = this.getMinutes(e.offsetX, e.offsetY);
 
      this.props.onChange(minutes, finish);
   },
@@ -148,7 +160,7 @@ var ClockMinutes = React.createClass({
       <div ref="clock" style={this.mergeAndPrefix(styles.root)} >
         <ClockPointer value={minutes.selected}  type="minute" />
         {minutes.numbers}        
-        <div ref="mask"  style={this.mergeAndPrefix(styles.hitMask)} hasSelected={minutes.hasSelected}  onTouchMove={this.handleTouch} onTouchEnd={this.handleUp} onMouseUp={this.handleUp} onMouseMove={this.handleMove} />
+        <div ref="mask"  style={this.mergeAndPrefix(styles.hitMask)} hasSelected={minutes.hasSelected} onTouchMove={this.handleTouch} onTouchEnd={this.handleTouch} onMouseUp={this.handleUp} onMouseMove={this.handleMove} />
       </div>
     );
   }

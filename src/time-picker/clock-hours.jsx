@@ -7,6 +7,18 @@ function rad2deg(rad){
   return rad * 57.29577951308232
 }
 
+function getTouchEventOffsetValues(e) {
+  var el = e.target;
+  var boundingRect = el.getBoundingClientRect();
+
+  var offset = {
+    offsetX: e.clientX - boundingRect.left,
+    offsetY: e.clientY - boundingRect.top
+  };
+
+  return offset;
+}
+
 var ClockHours = React.createClass({
 
   mixins: [StylePropable],
@@ -51,29 +63,32 @@ var ClockHours = React.createClass({
   },
   handleUp: function(e){
     e.preventDefault(); 
-    this.setClock(e, true);
+    this.setClock(e.nativeEvent, true);
   },
   handleMove: function(e){
-     e.preventDefault();
+    e.preventDefault();
     if(this.isMousePressed(e) != 1 ) return;
-    this.setClock(e, false);
+    this.setClock(e.nativeEvent, false);
   },
-  handleTouch: function(e){
+  handleTouchMove: function(e){
     e.preventDefault(); 
-    this.setClock(e, false);
+    this.setClock(e.changedTouches[0], false);
+  },
+  handleTouchEnd: function(e){
+    e.preventDefault(); 
+    this.setClock(e.changedTouches[0], true);
   },
   setClock: function(e, finish){
-    var ne = e.nativeEvent;
-     
-    var pos = {
-      x: ne.offsetX === undefined ? ne.layerX : ne.offsetX,
-      y: ne.offsetY === undefined ? ne.layerY : ne.offsetY
-    };
+    if (typeof e.offsetX === 'undefined') {
+      var offset = getTouchEventOffsetValues(e);
+
+      e.offsetX = offset.offsetX;
+      e.offsetY = offset.offsetY;
+    }
   
-    var hours = this.getHours(pos.x, pos.y);
+    var hours = this.getHours(e.offsetX, e.offsetY);
  
     this.props.onChange(hours, finish);
-
   },
   getHours: function(x, y){
 
@@ -168,7 +183,7 @@ var ClockHours = React.createClass({
       <div ref="clock" style={this.mergeAndPrefix(styles.root)} >
         <ClockPointer hasSelected={true} value={hours} type="hour" />
         {numbers}        
-        <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} onTouchMove={this.handleTouch} onTouchEnd={this.handleUp} onMouseUp={this.handleUp} onMouseMove={this.handleMove}/>
+        <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} onTouchMove={this.handleTouchMove} onTouchEnd={this.handleTouchEnd} onMouseUp={this.handleUp} onMouseMove={this.handleMove}/>
       </div>
     );
   }
