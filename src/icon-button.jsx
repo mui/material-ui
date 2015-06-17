@@ -22,6 +22,7 @@ var IconButton = React.createClass({
     onFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
     touch: React.PropTypes.bool,
+    tooltipAlignment: React.PropTypes.string,
   },
 
   getInitialState: function() {
@@ -166,9 +167,29 @@ var IconButton = React.createClass({
   _positionTooltip: function() {
     var tooltip = React.findDOMNode(this.refs.tooltip);
     var tooltipWidth = tooltip.offsetWidth;
-    var buttonWidth = 48;
-
-    tooltip.style.left = (tooltipWidth - buttonWidth) / 2 * -1 + 'px';
+    var button = React.findDOMNode(this.refs.button);
+    var buttonWidth = button.offsetWidth;
+    switch(this.props.tooltipAlignment){
+      case 'bottom-right':
+        tooltip.style.right = '0px';
+        break;
+      case 'bottom-left':
+        tooltip.style.left = '0px';
+        break;
+      case 'top-center':
+        tooltip.style.marginTop = (this.context.muiTheme.component.button.iconButtonSize-4)*-1 +'px';
+        tooltip.style.left = (tooltipWidth - buttonWidth) / 2 * -1 + 'px';
+        break;
+      case 'top-left':
+        tooltip.style.marginTop = (this.context.muiTheme.component.button.iconButtonSize-4)*-1 +'px';
+        break;
+      case 'top-right': 
+        tooltip.style.marginTop = (this.context.muiTheme.component.button.iconButtonSize-4)*-1 +'px';
+        tooltip.style.right = '0px';
+        break;  
+      default:
+        tooltip.style.left = (tooltipWidth - buttonWidth) / 2 * -1 + 'px';
+    }
   },
 
   _showTooltip: function() {
