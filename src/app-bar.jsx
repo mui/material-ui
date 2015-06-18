@@ -51,13 +51,16 @@ var AppBar = React.createClass({
       root: {
         zIndex: 5,
         width: '100%',
+        display: '-webkit-box; display: flex',
         minHeight: themeVariables.height,
         backgroundColor: themeVariables.color,
         paddingLeft: spacing.desktopGutter,
         paddingRight: spacing.desktopGutter
       },
       title: {
-        float: 'left',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
         margin: 0,
         paddingTop: 0,
         letterSpacing: 0,
@@ -66,10 +69,13 @@ var AppBar = React.createClass({
         color: themeVariables.textColor,
         lineHeight: themeVariables.height + 'px'
       },
+      mainElement: {
+        boxFlex: 1,
+        flex: '1'
+      },
       iconButton: {
         style: {
           marginTop: (themeVariables.height - iconButtonSize) / 2,
-          float: 'left',
           marginRight: 8,
           marginLeft: -16
         },
@@ -89,7 +95,6 @@ var AppBar = React.createClass({
     var menuElementLeft;
     var menuElementRight;
     var iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
-      float: 'right',
       marginRight: -16,
       marginLeft: 8
     }, this.props.iconStyleRight);
@@ -98,8 +103,8 @@ var AppBar = React.createClass({
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
       title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
-        <h1 style={this.mergeAndPrefix(styles.title)}>{this.props.title}</h1> :
-        this.props.title;
+        <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement)}>{this.props.title}</h1> :
+        <div style={this.mergeAndPrefix(styles.mainElement)}>{this.props.title}</div>;
     }
 
     if (this.props.showMenuIconButton) {
