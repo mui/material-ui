@@ -77,10 +77,10 @@ var ThemesPage = React.createClass({
         height: '100px',
         width: '100px',
         margin: '0 auto',
-        marginBottom: '64px',
+        marginBottom: '64px'
       },
       textfield: {
-        width: '100%',
+        width: '100%'
       },
       slider: {
         marginTop: '0px',
@@ -166,6 +166,12 @@ var ThemesPage = React.createClass({
         name: 'ThemeManager Props',
         infoArray: [
           {
+            name: 'spacing',
+            type: 'object',
+            desc: 'The spacing object is a set of variables used by all ' +
+            'Material-UI components. It should not be modified directly.'
+          },
+          {
             name: 'palette',
             type: 'object',
             desc: 'The palette object is a set of color variables used by all ' +
@@ -207,6 +213,12 @@ var ThemesPage = React.createClass({
                   'made before '
           },
           {
+            name: 'setSpacing',
+            header: 'ThemeManager.setSpacing(newSpacing)',
+            desc: 'Updates the spacing object of the current theme to use the ' +
+            'properties defined in newSpacing.'
+          },
+          {
             name: 'setPalette',
             header: 'ThemeManager.setPalette(newPalette)',
             desc: 'Updates the palette object of the current theme to use the ' +
@@ -219,7 +231,7 @@ var ThemesPage = React.createClass({
             header: 'ThemeManager.setComponentThemes(overrides)',
             desc: 'Updates the component object of the current theme to use the ' +
                   'properties defined in overrides.'            
-          },
+          }
         ]
       }
     ];
@@ -490,7 +502,7 @@ var ThemesPage = React.createClass({
          payload: 'https://www.google.com', 
          text: 'Disabled Link', 
          disabled: true 
-      },
+      }
     ];
 
     var styles = this.getStyles();
@@ -500,7 +512,7 @@ var ThemesPage = React.createClass({
        { payload: '2', text: 'Every Night' },
        { payload: '3', text: 'Weeknights' },
        { payload: '4', text: 'Weekends' },
-       { payload: '5', text: 'Weekly' },
+       { payload: '5', text: 'Weekly' }
     ];
 
     return (
