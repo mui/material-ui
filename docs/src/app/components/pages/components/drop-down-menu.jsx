@@ -47,7 +47,7 @@ class DropDownMenuPage extends React.Component {
             name: 'menuItemStyle',
             type: 'array',
             header: 'required',
-            desc: 'Overrides the inline-styles of the MenuItems when the ' + 
+            desc: 'Overrides the inline-styles of the MenuItems when the ' +
                   'DropDownMenu is expanded.'
           },
           {
@@ -61,6 +61,12 @@ class DropDownMenuPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Overrides the inline-styles of DropDownMenu\'s root element.'
+          },
+          {
+            name: 'floatingLabelText',
+            type: 'string',
+            header: 'optional',
+            desc: 'The text string to use for the floating label element'
           }
         ]
       },

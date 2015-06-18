@@ -19,6 +19,8 @@ var DropDownMenu = React.createClass({
   // other user components, so it will give full access to its js styles rather
   // than just the parent.
   propTypes: {
+    floatingLabelText: React.PropTypes.string,
+    floatingLabelStyle: React.PropTypes.object,
     className: React.PropTypes.string,
     displayMember: React.PropTypes.string,
     valueMember: React.PropTypes.string,
@@ -130,6 +132,16 @@ var DropDownMenu = React.createClass({
       labelWhenOpen: {
         opacity: 0,
         top: this.getSpacing().desktopToolbarHeight / 2
+      },
+      floatingLabel: {
+        position: 'absolute',
+        marginLeft: 24,
+        fontSize: 12,
+        opacity: 1,
+        color: this.context.muiTheme.component.dropDownMenu.floatingLabelColor,
+        transition: Transitions.easeOut(),
+        transform: 'scale(1) translate3d(0, 0, 0)',
+        transformOrigin: 'left top'
       }
     };
     return styles;
@@ -173,6 +185,16 @@ var DropDownMenu = React.createClass({
       return item;
     });
 
+    var inputId = this.props.id || this._uniqueId;
+
+    var floatingLabelTextElement = this.props.floatingLabelText ? (
+      <label
+        style={this.mergeAndPrefix(styles.floatingLabel, this.props.floatingLabelStyle)}
+        htmlFor={inputId}>
+        {this.props.floatingLabelText}
+      </label>
+    ) : null;
+
     return (
       <div
         ref="root"
@@ -186,6 +208,8 @@ var DropDownMenu = React.createClass({
           styles.root,
           this.state.open && styles.rootWhenOpen,
           this.props.style)} >
+
+          {floatingLabelTextElement}
 
           <ClearFix style={this.mergeAndPrefix(styles.control)} onTouchTap={this._onControlClick}>
             <Paper style={this.mergeAndPrefix(styles.controlBg)} zDepth={0} />
