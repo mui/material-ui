@@ -98,7 +98,7 @@ var ClockPointer = React.createClass({
     }
 
     return (
-        <div style={styles.root} >
+        <div style={this.mergeAndPrefix(styles.root)} >
           <div style={styles.mark} />
         </div>        
     );
