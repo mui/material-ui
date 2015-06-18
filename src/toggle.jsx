@@ -14,6 +14,7 @@ var Toggle = React.createClass({
 
   propTypes: {
     elementStyle: React.PropTypes.object,
+    labelStyle: React.PropTypes.object,
     onToggle: React.PropTypes.func,
     toggled: React.PropTypes.bool,
     defaultToggled: React.PropTypes.bool
@@ -74,6 +75,9 @@ var Toggle = React.createClass({
       },
       thumbWhenDisabled: {
         backgroundColor: this.getTheme().thumbDisabledColor
+      },
+      label: {
+        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
       }
     };
     return styles;
@@ -127,6 +131,11 @@ var Toggle = React.createClass({
       this.props.iconStyle
     );
 
+    var labelStyle = this.mergeAndPrefix(
+      styles.label,
+      this.props.labelStyle
+    );
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
@@ -136,6 +145,7 @@ var Toggle = React.createClass({
       iconStyle: iconStyle,
       trackStyle: trackStyles,
       thumbStyle: thumbStyles,
+      labelStyle: labelStyle,
       switched: this.state.switched,
       onSwitch: this._handleToggle,
       onParentShouldUpdate: this._handleStateChange,
