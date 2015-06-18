@@ -103,13 +103,12 @@ var ClockNumber = React.createClass({
 
     var [x, y] = transformPos;
 
-    styles.root.WebkitTransform = "translate(" + x + "px, " + y + "px)";
     styles.root.transform = "translate(" + x + "px, " + y + "px)";
 
  
 
     return (
-        <span style={styles.root}>{this.props.value}</span>       
+        <span style={this.mergeAndPrefix(styles.root)}>{this.props.value}</span>       
     );
   }
 });
