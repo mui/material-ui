@@ -22,6 +22,7 @@ var IconButton = React.createClass({
     onFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
     touch: React.PropTypes.bool,
+    rippleColor: React.PropTypes.string
   },
 
   getInitialState: function() {
@@ -138,7 +139,9 @@ var IconButton = React.createClass({
         onFocus={this._handleFocus}
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
-        onKeyboardFocus={this._handleKeyboardFocus}>
+        onKeyboardFocus={this._handleKeyboardFocus}
+        focusRippleColor={this.props.rippleColor}
+        touchRippleColor={this.props.rippleColor}>
 
         {tooltipElement}
         {fonticon}

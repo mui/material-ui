@@ -87,6 +87,12 @@ class IconButtonsPage extends React.Component {
             type: 'bool',
             header: 'default: false',
             desc: 'If true, this component will render the touch sized tooltip.'
+          },
+          {
+            name: 'rippleColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the default ripple color.'
           }
         ]
       },
