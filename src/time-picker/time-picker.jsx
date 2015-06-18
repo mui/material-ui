@@ -120,6 +120,8 @@ var TimePicker = React.createClass({
   },
 
   _handleInputTouchTap: function(e) {
+    e.preventDefault();
+
     this.setState({
       dialogTime: this.getTime()
     });
