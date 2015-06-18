@@ -308,7 +308,7 @@ var TextField = React.createClass({
     } else if (this.isMounted()) {
 
       if (this.props.multiLine) {
-        this.refs[this._getRef()].changeInputNodeValue(newValue);
+        this.refs[this._getRef()].setValue(newValue);
 
       } else {
         this._getInputNode().value = newValue;

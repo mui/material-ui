@@ -106,7 +106,7 @@ var EnhancedTextarea = React.createClass({
     return React.findDOMNode(this.refs.input);
   },
 
-  changeInputNodeValue: function (value) {
+  setValue: function (value) {
     this.refs.input.value = value;
     this._syncHeightWithShadow(value);
   },
