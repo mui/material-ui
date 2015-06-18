@@ -14,6 +14,7 @@ var Toggle = React.createClass({
 
   propTypes: {
     elementStyle: React.PropTypes.object,
+    labelStyle: React.PropTypes.object,
     onToggle: React.PropTypes.func,
     toggled: React.PropTypes.bool,
     defaultToggled: React.PropTypes.bool

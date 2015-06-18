@@ -15,6 +15,7 @@ var Checkbox = React.createClass({
 
   propTypes: {
     iconStyle: React.PropTypes.object,
+    labelStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func,
     checkedIcon: React.PropTypes.element,
     unCheckedIcon: React.PropTypes.element
