@@ -35,7 +35,7 @@ var Tab = React.createClass({
       'whiteSpace': theme.whiteSpace,
       'fontFamily': this.context.muiTheme.contentFontFamily,
       'boxSizing': theme.boxSizing,
-      'width': theme.width
+      'width': this.props.width
     }, this.props.style);
 
     if (this.props.selected) styles.opacity = '1';
