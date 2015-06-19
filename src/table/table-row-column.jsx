@@ -1,7 +1,7 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
-var TableRowColumn = React.createClass({
+let TableRowColumn = React.createClass({
 
   mixins: [StylePropable],
 
@@ -17,21 +17,28 @@ var TableRowColumn = React.createClass({
     hoverable: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       hoverable: false
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       hovered: false
     };
   },
 
-  getStyles: function() {
-    var styles = {
-      padding: 20,
+  getTheme() {
+    return this.context.muiTheme.component.tableRowColumn;
+  },
+
+  getStyles() {
+    let theme = this.getTheme();
+    let styles = {
+      paddingLeft: theme.spacing,
+      paddingRight: theme.spacing,
+      height: theme.height,
       textAlign: 'left',
       fontSize: 13,
       overflow: 'hidden',
@@ -46,11 +53,11 @@ var TableRowColumn = React.createClass({
     return styles;
   },
 
-  render: function() {
-    var className = 'mui-table-row-column';
-    var styles = this.getStyles();
-    var handlers = {
-      onClick: this._onColumnClick,
+  render() {
+    let className = 'mui-table-row-column';
+    let styles = this.getStyles();
+    let handlers = {
+      onClick: this._onClick,
       onMouseOver: this._onMouseOver,
       onMouseOut: this._onMouseOut
     };
@@ -66,19 +73,18 @@ var TableRowColumn = React.createClass({
     );
   },
 
-  _onColumnClick: function(e) {
-    if (this.props.onColumnClick) this.props.onColumnClick(e, this.props.columnNumber);
+  _onClick(e) {
+    if (this.props.onClick) this.props.onClick(e, this.props.columnNumber);
   },
 
-  _onMouseOver: function(e) {
+  _onMouseOver(e) {
     if (this.props.hoverable) {
-      console.log('hovered: ' + this.state.hovered);
       this.setState({hovered: true});
       if (this.props.onHover) this.props.onHover(e, this.props.columnNumber);
     }
   },
 
-  _onMouseOut: function(e) {
+  _onMouseOut(e) {
     if (this.props.hoverable) {
       this.setState({hovered: false});
       if (this.props.onHoverExit) this.props.onHoverExit(e, this.props.columnNumber);

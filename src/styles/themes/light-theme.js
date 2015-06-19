@@ -129,7 +129,9 @@ var LightTheme = {
         borderColor: palette.borderColor
       },
       tableHeaderColumn: {
-        textColor: Colors.lightBlack
+        textColor: Colors.lightBlack,
+        height: 56,
+        spacing: 28
       },
       tableFooter: {
         borderColor: palette.borderColor,
@@ -140,7 +142,11 @@ var LightTheme = {
         stripeColor: ColorManipulator.lighten(palette.primary1Color, 0.55),
         selectedColor: Colors.grey300,
         textColor: Colors.darkBlack,
-        borderColor: palette.borderColor,
+        borderColor: palette.borderColor
+      },
+      tableRowColumn: {
+        height: 48,
+        spacing: 28
       },
       timePicker: {
         color: Colors.white,

@@ -1,13 +1,13 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var ClickAwayable = require('../mixins/click-awayable');
-var TableHeader = require('./table-header');
-var TableRow = require('./table-row');
-var TableFooter = require('./table-footer');
-var DOM = require('../utils/dom');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let ClickAwayable = require('../mixins/click-awayable');
+let TableHeader = require('./table-header');
+let TableRow = require('./table-row');
+let TableFooter = require('./table-footer');
+let DOM = require('../utils/dom');
 
-// Consider making ClickAwayable to undo row selection
-var Table = React.createClass({
+
+let Table = React.createClass({
 
   mixins: [StylePropable, ClickAwayable],
 
@@ -16,23 +16,23 @@ var Table = React.createClass({
   },
 
   propTypes: {
+    rowData: React.PropTypes.array.isRequired,
     columnOrder: React.PropTypes.array,
     headerColumns: React.PropTypes.object,
-    rowData: React.PropTypes.array.isRequired,
     footerColumns: React.PropTypes.object,
-    header: React.PropTypes.instanceOf(TableHeader),
-    footer: React.PropTypes.instanceOf(TableFooter),
+    header: React.PropTypes.element,
+    footer: React.PropTypes.element,
+    height: React.PropTypes.string,
+    defaultColumnWidth: React.PropTypes.string,
     fixedHeader: React.PropTypes.bool,
     fixedFooter: React.PropTypes.bool,
     stripedRows: React.PropTypes.bool,
     showRowHover: React.PropTypes.bool,
     selectable: React.PropTypes.bool,
-    showRowSelectCheckbox: React.PropTypes.bool,
     multiSelectable: React.PropTypes.bool,
+    showRowSelectCheckbox: React.PropTypes.bool,
     canSelectAll: React.PropTypes.bool,
     displaySelectAll: React.PropTypes.bool,
-    height: React.PropTypes.string,
-    defaultColumnWidth: React.PropTypes.string,
     onRowSelection: React.PropTypes.func,
     onCellClick: React.PropTypes.func,
     onRowHover: React.PropTypes.func,
@@ -41,11 +41,8 @@ var Table = React.createClass({
     onCellHoverExit: React.PropTypes.func
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
-      columnOrder: [],
-      headerColumns: [],
-      footerColumns: [],
       fixedHeader: true,
       fixedFooter: true,
       height: 'inherit',
@@ -60,18 +57,18 @@ var Table = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       selectedRows: []
     };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.table;
   },
 
-  getStyles: function() {
-    var styles = {
+  getStyles() {
+    let styles = {
       root: {
         backgroundColor: this.getTheme().backgroundColor,
         padding: '0 ' + this.context.muiTheme.spacing.desktopGutter + 'px',
@@ -94,36 +91,47 @@ var Table = React.createClass({
     return styles;
   },
 
-  componentClickAway: function() {
+  componentClickAway() {
     if (this.state.selectedRows.length) this.setState({ selectedRows: [] });
   },
 
-  render: function() {
-    var className = 'mui-table';
-    var styles = this.getStyles();
+  render() {
+    let className = 'mui-table';
+    let styles = this.getStyles();
 
-    var tHead = this._getHeader();
-    var tBody = this._getBody();
-    var tFoot = this._getFooter();
+    let tHead = this._getHeader();
+    let tBody = this._getBody();
+    let tFoot = this._getFooter();
 
-    var headerTable, footerTable;
+    let headerTable, footerTable;
+    let inlineHeader, inlineFooter;
     if (tHead !== undefined) {
-      headerTable = (
-        <div className='mui-header-table'>
-          <table ref='headerTable' className={className} style={styles.root}>
-            {tHead}
-          </table>
-        </div>
-      );
+      if(this.props.fixedHeader) {
+        headerTable = (
+          <div className='mui-header-table'>
+            <table ref='headerTable' className={className} style={styles.root}>
+              {tHead}
+            </table>
+          </div>
+        );
+      }
+      else {
+        inlineHeader = tHead;
+      }
     }
     if (tFoot !== undefined) {
-      footerTable = (
-        <div className='mui-footer-table'>
-          <table ref='footerTable' className={className} style={styles.root}>
-            {tFoot}
-          </table>
-        </div>
-      );
+      if (this.props.fixedFooter) {
+        footerTable = (
+          <div className='mui-footer-table'>
+            <table ref='footerTable' className={className} style={styles.root}>
+              {tFoot}
+            </table>
+          </div>
+        );
+      }
+      else {
+        inlineFooter = tFoot;
+      }
     }
 
     return (
@@ -131,6 +139,8 @@ var Table = React.createClass({
         {headerTable}
         <div className='mui-body-table' style={styles.bodyTable}>
           <table ref='bodyTable' className={className} style={styles.root}>
+            {inlineHeader}
+            {inlineFooter}
             {tBody}
           </table>
         </div>
@@ -139,11 +149,11 @@ var Table = React.createClass({
     );
   },
 
-  _getHeader: function() {
+  _getHeader() {
     if(this.props.header) return this.props.header;
 
-    if (this.props.headerColumns) {
-      var orderedHeaderColumns = this._orderColumnBasedData(this.props.headerColumns);
+    if (this.props.headerColumns !== undefined) {
+      let orderedHeaderColumns = this._orderColumnBasedData(this.props.headerColumns);
       return (
         <TableHeader
           columns={orderedHeaderColumns}
@@ -154,11 +164,11 @@ var Table = React.createClass({
     }
   },
 
-  _getFooter: function() {
+  _getFooter() {
     if (this.props.footer) return this.props.footer;
 
-    if (this.props.footerColumns) {
-      var orderedFooterColumns = this._orderColumnBasedData(this.props.footerColumns);
+    if (this.props.footerColumns !== undefined) {
+      let orderedFooterColumns = this._orderColumnBasedData(this.props.footerColumns);
       if (this.props.displaySelectAll) {
         orderedFooterColumns.splice(0, 0, {content: ''});
       }
@@ -169,16 +179,16 @@ var Table = React.createClass({
     }
   },
 
-  _getBody: function() {
-    var body = this._orderColumnBasedData(this.props.rowData, function(rowData, rowNumber) {
-      var selected = this._isRowSelected(rowNumber);
-      var striped = this.props.stripedRows && (rowNumber % 2 === 0);
-      var border = true;
+  _getBody() {
+    let body = this._orderColumnBasedData(this.props.rowData, function(rowData, rowNumber) {
+      let selected = this._isRowSelected(rowNumber);
+      let striped = this.props.stripedRows && (rowNumber % 2 === 0);
+      let border = true;
       if (rowNumber === this.props.rowData.length - 1) {
         border = false;
       }
 
-      var row = (
+      let row = (
         <TableRow
           key={'r-' + rowNumber}
           rowNumber={rowNumber}
@@ -189,8 +199,11 @@ var Table = React.createClass({
           displayBorder={border}
           selectable={this.props.selectable}
           onRowClick={this._handleRowClick}
-          onColumnClick={this._handleCellClick}
-          onRowHover={this._handleRowHover} />
+          onCellClick={this._handleCellClick}
+          onRowHover={this._handleRowHover}
+          onRowHoverExit={this._handleRowHoverExit}
+          onCellHover={this._handleCellHover}
+          onCellHoverExit={this._handleCellHoverExit} />
       );
 
       return row;
@@ -203,17 +216,20 @@ var Table = React.createClass({
     );
   },
 
-  _orderColumnBasedData: function(columnBasedData, cb) {
-    var data = (Object.prototype.toString.call(columnBasedData) !== '[object Array]') ? [columnBasedData] : columnBasedData;
-    var orderedData = [];
+  _orderColumnBasedData(columnBasedData, cb) {
+    // If we do not have a columnOrder, return.
+    if (this.props.columnOrder === undefined) return;
 
-    for (var rowIdx = 0; rowIdx < data.length; rowIdx++) {
-      var rowData = data[rowIdx];
-      var orderedRowData = [];
+    let data = (Object.prototype.toString.call(columnBasedData) !== '[object Array]') ? [columnBasedData] : columnBasedData;
+    let orderedData = [];
 
-      for (var colIdx = 0; colIdx < this.props.columnOrder.length; colIdx++) {
-        var columnId = this.props.columnOrder[colIdx];
-        var columnData = rowData[columnId] || {};
+    for (let rowIdx = 0; rowIdx < data.length; rowIdx++) {
+      let rowData = data[rowIdx];
+      let orderedRowData = [];
+
+      for (let colIdx = 0; colIdx < this.props.columnOrder.length; colIdx++) {
+        let columnId = this.props.columnOrder[colIdx];
+        let columnData = rowData[columnId] || {};
 
         orderedRowData.push(columnData);
       }
@@ -233,7 +249,7 @@ var Table = React.createClass({
     return (data.length === 1) ? orderedData[0] : orderedData;
   },
 
-  _setColumnWidths: function(columnData) {
+  _setColumnWidths(columnData) {
     columnData.forEach(function(column) {
       if (column.style === undefined) {
         column.style = {
@@ -250,13 +266,13 @@ var Table = React.createClass({
     return columnData;
   },
 
-  _isRowSelected: function(rowNumber) {
+  _isRowSelected(rowNumber) {
     if (this.state.allRowsSelected) {
       return true;
     }
 
-    for (var i = 0; i < this.state.selectedRows.length; i++) {
-      var selection = this.state.selectedRows[i];
+    for (let i = 0; i < this.state.selectedRows.length; i++) {
+      let selection = this.state.selectedRows[i];
 
       if (typeof selection === 'object') {
         if (this._isValueInRange(rowNumber, selection)) return true;
@@ -269,7 +285,7 @@ var Table = React.createClass({
     return false;
   },
 
-  _isValueInRange: function(value, range) {
+  _isValueInRange(value, range) {
     if ((range.start <= value && value <= range.end) || (range.end <= value && value <= range.start)) {
       return true;
     }
@@ -277,7 +293,7 @@ var Table = React.createClass({
     return false;
   },
 
-  _handleRowClick: function(e, rowNumber) {
+  _handleRowClick(e, rowNumber) {
     // Prevent text selection while selecting rows.
     window.getSelection().removeAllRanges();
 
@@ -286,12 +302,12 @@ var Table = React.createClass({
     }
   },
 
-  _processRowSelection: function(e, rowNumber) {
-    var selectedRows = this.state.selectedRows;
+  _processRowSelection(e, rowNumber) {
+    let selectedRows = this.state.selectedRows;
 
     if (e.shiftKey && this.props.multiSelectable && selectedRows.length) {
-      var lastSelection = selectedRows[selectedRows.length - 1];
-      var start, end, direction;
+      let lastSelection = selectedRows[selectedRows.length - 1];
+      let start, end, direction;
 
       if (typeof lastSelection === 'object') {
         lastSelection.end = rowNumber;
@@ -301,7 +317,7 @@ var Table = React.createClass({
       }
     }
     else if (((e.ctrlKey && !e.metaKey) || (e.metaKey && !e.ctrlKey)) && this.props.multiSelectable) {
-      var idx = selectedRows.indexOf(rowNumber);
+      let idx = selectedRows.indexOf(rowNumber);
       if (idx < 0) {
         selectedRows.push(rowNumber);
       }
@@ -322,22 +338,39 @@ var Table = React.createClass({
     if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
   },
 
-  _handleCellClick: function(e, rowNumber, columnNumber) {
-    if (this.props.onCellClick) this.props.onCellClick(rowNumber, columnNumber);
+  _handleCellClick(e, rowNumber, columnNumber) {
+    if (this.props.onCellClick) this.props.onCellClick(rowNumber, this._getColumnId(columnNumber));
     this._handleRowClick(e, rowNumber);
   },
 
-  _handleRowHover: function(e, rowNumber) {
+  _handleRowHover(e, rowNumber) {
     if (this.props.onRowHover) this.props.onRowHover(rowNumber);
   },
 
-  _handleCellHover: function(e, rowNumber, columnNumber) {
-    if (this.props.onCellHover) this.props.onCellHover(rowNumber, columnNumber);
+  _handleRowHoverExit(e, rowNumber) {
+    if (this.props.onRowHoverExit) this.props.onRowHoverExit(rowNumber);
+  },
+
+  _handleCellHover(e, rowNumber, columnNumber) {
+    if (this.props.onCellHover) this.props.onCellHover(rowNumber, this._getColumnId(columnNumber));
     this._handleRowHover(e, rowNumber);
   },
 
-  _onSelectAll: function() {
+  _handleCellHoverExit(e, rowNumber, columnNumber) {
+    if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, this._getColumnId(columnNumber));
+    this._handleRowHoverExit(e, rowNumber);
+  },
+
+  _onSelectAll() {
     this.setState({allRowsSelected: !this.state.allRowsSelected});
+  },
+
+  _getColumnId(columnIndex) {
+    let columnId = columnNumber;
+    if (this.props.displayRowCheckbox) columnId--;
+    columnId = (this.props.columnOrder.length) ? this.props.columnOrder[columnId] : columnId;
+
+    return columnId;
   }
 
 

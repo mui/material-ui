@@ -1,9 +1,9 @@
-var React = require('react');
-var Checkbox = require('../checkbox');
-var StylePropable = require('../mixins/style-propable');
-var Tooltip = require('../tooltip');
+let React = require('react');
+let Checkbox = require('../checkbox');
+let StylePropable = require('../mixins/style-propable');
+let Tooltip = require('../tooltip');
 
-var TableHeaderColumn = React.createClass({
+let TableHeaderColumn = React.createClass({
 
   mixins: [StylePropable],
 
@@ -17,49 +17,56 @@ var TableHeaderColumn = React.createClass({
     onClick: React.PropTypes.func
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
-      showToolip: false
+      hovered: false
     };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.tableHeaderColumn;
   },
 
-  getStyles: function() {
-    var styles = {
+  getStyles() {
+    let theme = this.getTheme();
+    let styles = {
       root:  {
-        verticalAlign: 'bottom',
         fontWeight: 'normal',
         fontSize: 12,
-        padding: 20,
+        paddingLeft: theme.spacing,
+        paddingRight: theme.spacing,
+        height: theme.height,
         textAlign: 'left',
         whiteSpace: 'nowrap',
         textOverflow: 'ellipsis',
         color: this.getTheme().textColor,
         position: 'relative'
+      },
+      tooltip: {
+        boxSizing: 'border-box',
+        marginTop: theme.height
       }
     };
 
     return styles;
   },
 
-  render: function() {
-    var className = 'mui-table-header-column';
-    var handlers = {
-      onMouseOver: this._onHover,
-      onMouseExit: this._onHoverExit,
+  render() {
+    let className = 'mui-table-header-column';
+    let styles = this.getStyles();
+    let handlers = {
+      onMouseOver: this._onMouseOver,
+      onMouseOut: this._onMouseOut,
       onClick: this._onClick
     };
-    var tooltip;
+    let tooltip;
 
     if (this.props.tooltip !== undefined) {
       tooltip = (
         <Tooltip
-          ref='tooltip'
           label={this.props.tooltip}
-          show={this.state.showTooltip} />
+          show={this.state.hovered}
+          style={this.mergeStyles(styles.tooltip)} />
       );
     }
 
@@ -67,7 +74,7 @@ var TableHeaderColumn = React.createClass({
       <th
         key={this.props.key}
         className={className}
-        style={this.mergeAndPrefix(this.getStyles().root, this.props.style)}
+        style={this.mergeAndPrefix(styles.root, this.props.style)}
         {...handlers}>
         {tooltip}
         {this.props.children}
@@ -75,15 +82,15 @@ var TableHeaderColumn = React.createClass({
     );
   },
 
-  _onMouseOver: function() {
-    if (this.props.tooltip !== undefined) this.setState({showTooltip: true});
+  _onMouseOver() {
+    if (this.props.tooltip !== undefined) this.setState({hovered: true});
   },
 
-  _onMouseExit: function() {
-    if (this.props.tooltip !== undefined) this.setState({showTooltip: false});
+  _onMouseOut() {
+    if (this.props.tooltip !== undefined) this.setState({hovered: false});
   },
 
-  _onClick: function(e) {
+  _onClick(e) {
     if (this.props.onClick) this.props.onClick(e, this.props.columnNumber);
   }
 

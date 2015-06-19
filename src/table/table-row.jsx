@@ -1,9 +1,11 @@
-var React = require('react');
-var Checkbox = require('../checkbox');
-var StylePropable = require('../mixins/style-propable');
-var TableRowColumn = require('./table-row-column');
+let React = require('react');
+let Checkbox = require('../checkbox');
+let StylePropable = require('../mixins/style-propable');
+let TableRowColumn = require('./table-row-column');
+let Tooltip = require('../tooltip');
 
-var TableRow = React.createClass({
+
+let TableRow = React.createClass({
 
   mixins: [StylePropable],
 
@@ -28,29 +30,30 @@ var TableRow = React.createClass({
     displayRowCheckbox: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       selected: false,
       selectable: true,
+      striped: false,
       hoverable: false,
       displayBorder: true,
       displayRowCheckbox: true
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       hovered: false
     };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.tableRow;
   },
 
-  getStyles: function() {
-    var theme = this.getTheme();
-    var cellBgColor = 'inherit';
+  getStyles() {
+    let theme = this.getTheme();
+    let cellBgColor = 'inherit';
     if (this.state.hovered) {
       cellBgColor = theme.hoverColor;
     }
@@ -61,7 +64,7 @@ var TableRow = React.createClass({
       cellBgColor = theme.stripeColor;
     }
 
-    var styles = {
+    let styles = {
       root: {
         borderBottom: '1px solid ' + this.getTheme().borderColor,
       },
@@ -78,9 +81,9 @@ var TableRow = React.createClass({
     return styles;
   },
 
-  render: function() {
-    var className = 'mui-table-row';
-    var columns = this.props.columns;
+  render() {
+    let className = 'mui-table-row';
+    let columns = this.props.columns.slice();
     if (this.props.displayRowCheckbox) {
       columns.splice(0, 0, this._getRowCheckbox());
     }
@@ -92,21 +95,23 @@ var TableRow = React.createClass({
     );
   },
 
-  _getColumns: function(columns) {
-    var rowColumns = [];
-    var styles = this.getStyles();
+  _getColumns(columns) {
+    let rowColumns = [];
+    let styles = this.getStyles();
 
-    for (var index = 0; index < this.props.columns.length; index++) {
-      var key = this.props.rowNumber + '-' + index;
-      var {
-        content
+    for (let index = 0; index < columns.length; index++) {
+      let key = this.props.rowNumber + '-' + index;
+      let {
+        content,
+        style
       } = columns[index];
+      if (content === undefined) content = columns[index];
 
-      var columnComponent = (
+      let columnComponent = (
         <TableRowColumn
           key={key}
           columnNumber={index}
-          style={styles.cell}
+          style={this.mergeStyles(styles.cell, style)}
           hoverable={this.props.hoverable}
           onClick={this._onCellClick}
           onHover={this._onCellHover}
@@ -121,9 +126,9 @@ var TableRow = React.createClass({
     return rowColumns;
   },
 
-  _getRowCheckbox: function() {
-    var key = this.props.rowNumber + '-cb';
-    var checkbox =
+  _getRowCheckbox() {
+    let key = this.props.rowNumber + '-cb';
+    let checkbox =
       <Checkbox
         ref='rowSelectCB'
         name={key}
@@ -133,29 +138,33 @@ var TableRow = React.createClass({
         onCheck={this._onCheck} />;
 
     return {
-      content: checkbox
+      content: checkbox,
+      style: {
+        paddingLeft: 24,
+        paddingRight: 24
+      }
     };
   },
 
-  _onRowClick: function(e) {
+  _onRowClick(e) {
     if (this.props.onRowClick) this.props.onRowClick(e, this.props.rowNumber);
   },
 
-  _onRowHover: function(e) {
+  _onRowHover(e) {
     if (this.props.onRowHover) this.props.onRowHover(e, this.props.rowNumber);
   },
 
-  _onRowHoverExit: function(e) {
+  _onRowHoverExit(e) {
     if (this.props.onRowHoverExit) this.props.onRowHoverExit(e, this.props.rowNumber);
   },
 
-  _onCellClick: function(e, columnIndex) {
+  _onCellClick(e, columnIndex) {
     if (this.props.selectable && this.props.onCellClick) this.props.onCellClick(e, this.props.rowNumber, columnIndex);
     if (this.refs.rowSelectCB !== undefined) this.refs.rowSelectCB.setChecked(!this.refs.rowSelectCB.isChecked());
     this._onRowClick(e);
   },
 
-  _onCellHover: function(e, columnIndex) {
+  _onCellHover(e, columnIndex) {
     if (this.props.hoverable) {
       this.setState({hovered: true});
       if (this.props.onCellHover) this.props.onCellHover(e, this.props.rowNumber, columnIndex);
@@ -163,7 +172,7 @@ var TableRow = React.createClass({
     }
   },
 
-  _onCellHoverExit: function(e) {
+  _onCellHoverExit(e, columnIndex) {
     if (this.props.hoverable) {
       this.setState({hovered: false});
       if (this.props.onCellHoverExit) this.props.onCellHoverExit(e, this.props.rowNumber, columnIndex);
@@ -171,10 +180,10 @@ var TableRow = React.createClass({
     }
   },
 
-  _onCheck: function(e) {
+  _onCheck(e) {
     e.ctrlKey = true;
     this._onCellClick(e, 0);
-  },
+  }
 
 });
 

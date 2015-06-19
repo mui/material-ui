@@ -1,9 +1,9 @@
-var React = require('react');
-var Checkbox = require('../checkbox');
-var StylePropable = require('../mixins/style-propable');
-var TableHeaderColumn = require('./table-header-column');
+let React = require('react');
+let Checkbox = require('../checkbox');
+let StylePropable = require('../mixins/style-propable');
+let TableHeaderColumn = require('./table-header-column');
 
-var TableHeader = React.createClass({
+let TableHeader = React.createClass({
 
   mixins: [StylePropable],
 
@@ -20,7 +20,7 @@ var TableHeader = React.createClass({
     fixed: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       displaySelectAll: true,
       enableSelectAll: true,
@@ -28,25 +28,22 @@ var TableHeader = React.createClass({
     };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.tableHeader;
   },
 
-  getStyles: function() {
-    var styles = {
+  getStyles() {
+    let styles = {
       root:  {
-        borderBottom: '1px solid ' + this.getTheme().borderColor,
-      },
-      selectAll: {
-        padding: 20
+        borderBottom: '1px solid ' + this.getTheme().borderColor
       }
     };
 
     return styles;
   },
 
-  render: function() {
-    var className = 'mui-table-header';
+  render() {
+    let className = 'mui-table-header';
 
     return (
       <thead className={className} style={this.getStyles().root}>
@@ -56,15 +53,15 @@ var TableHeader = React.createClass({
     );
   },
 
-  getSuperHeaderRow: function() {
+  getSuperHeaderRow() {
     return this.refs.superHeader;
   },
 
-  getHeaderRow: function() {
+  getHeaderRow() {
     return this.refs.header;
   },
 
-  _getSuperHeaderRow: function() {
+  _getSuperHeaderRow() {
     if (this.props.superHeaderColumns !== undefined) {
       return (
         <tr className='mui-table-super-header-row' ref='superHeader'>
@@ -74,8 +71,8 @@ var TableHeader = React.createClass({
     }
   },
 
-  _getHeaderRow: function() {
-    var columns = this.props.columns;
+  _getHeaderRow() {
+    let columns = this.props.columns.slice();
     if (this.props.displaySelectAll) {
       columns.splice(0, 0, this._getSelectAllCheckbox());
     }
@@ -87,18 +84,18 @@ var TableHeader = React.createClass({
     );
   },
 
-  _getHeaderColumns: function(headerData, keyPrefix) {
-    var styles = this.getStyles();
-    var headers = [];
+  _getHeaderColumns(headerData, keyPrefix) {
+    let styles = this.getStyles();
+    let headers = [];
 
-    for (var index = 0; index < headerData.length; index++) {
-      var {
+    for (let index = 0; index < headerData.length; index++) {
+      let {
         content,
         tooltip,
         style,
         ...props
       } = headerData[index];
-      var key = keyPrefix + index;
+      let key = keyPrefix + index;
 
       headers.push(
         <TableHeaderColumn key={key} style={style} tooltip={tooltip} columnNumber={index} {...props}>
@@ -110,25 +107,28 @@ var TableHeader = React.createClass({
     return headers;
   },
 
-  _getSelectAllCheckbox: function() {
-    var checkbox =
+  _getSelectAllCheckbox() {
+    let checkbox =
       <Checkbox
-        ref='rowSelectCB'
         name='selectallcb'
         value='selected'
         disabled={!this.props.enableSelectAll}
         onCheck={this._onSelectAll} />;
 
     return {
-      content: checkbox
+      content: checkbox,
+      style: {
+        paddingLeft: 24,
+        paddingRight: 24
+      }
     };
   },
 
-  _onSelectAll: function() {
+  _onSelectAll() {
     if (this.props.onSelectAll) this.props.onSelectAll();
   },
 
-  _onColumnClick: function(e, columnNumber) {
+  _onColumnClick(e, columnNumber) {
     if (this.props.onColumnClick) this.props.onColumnClick(e, columnNumber);
   }
 

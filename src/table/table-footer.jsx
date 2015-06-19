@@ -1,7 +1,8 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
-var TableFooter = React.createClass({
+
+let TableFooter = React.createClass({
 
   mixins: [StylePropable],
 
@@ -13,16 +14,17 @@ var TableFooter = React.createClass({
     columns: React.PropTypes.array.isRequired
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {};
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.tableFooter;
   },
 
-  getStyles: function() {
-    var styles = {
+  getStyles() {
+
+   let styles = {
       cell: {
         borderTop: '1px solid ' + this.getTheme().borderColor,
         verticalAlign: 'bottom',
@@ -35,8 +37,8 @@ var TableFooter = React.createClass({
     return styles;
   },
 
-  render: function() {
-    var className = 'mui-table-footer';
+  render() {
+    let className = 'mui-table-footer';
 
     return (
       <tfoot className={className}>
@@ -45,7 +47,7 @@ var TableFooter = React.createClass({
     );
   },
 
-  _getFooterRow: function() {
+  _getFooterRow() {
     return (
       <tr className='mui-table-footer-row'>
         {this._getColumnHeaders(this.props.columns, 'f')}
@@ -53,16 +55,17 @@ var TableFooter = React.createClass({
     );
   },
 
-  _getColumnHeaders: function(footerData, keyPrefix) {
-    var footers = [];
-    var styles = this.getStyles();
+  _getColumnHeaders(footerData, keyPrefix) {
+    let footers = [];
+    let styles = this.getStyles();
 
-    for (var index = 0; index < footerData.length; index++) {
-      var {
+    for (let index = 0; index < footerData.length; index++) {
+      let {
         content,
         ...props
       } = footerData[index];
-      var key = keyPrefix + index
+      if (content === undefined) content = footerData[index];
+      let key = keyPrefix + index
       props.style = (props.style !== undefined) ? this.mergeAndPrefix(props.style, styles.cell) : styles.cell;
 
       footers.push(
