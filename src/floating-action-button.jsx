@@ -129,6 +129,7 @@ var RaisedButton = React.createClass({
 
   render: function() {
     var {
+      disabled,
       icon,
       mini,
       secondary,
@@ -143,11 +144,21 @@ var RaisedButton = React.createClass({
           className={this.props.iconClassName}
           style={this.mergeAndPrefix(
             styles.icon,
-            this.props.mini && styles.iconWhenMini,
+            mini && styles.iconWhenMini,
             this.props.iconStyle)}/>
     }
 
     var rippleColor = styles.icon.color;
+
+    var buttonEventHandlers = disabled ? null : {
+      onMouseDown: this._handleMouseDown,
+      onMouseUp: this._handleMouseUp,
+      onMouseOut: this._handleMouseOut,
+      onMouseOver: this._handleMouseOver,
+      onTouchStart: this._handleTouchStart,
+      onTouchEnd: this._handleTouchEnd,
+      onKeyboardFocus: this._handleKeyboardFocus
+    };
 
     return (
       <Paper
@@ -155,21 +166,17 @@ var RaisedButton = React.createClass({
         zDepth={this.state.zDepth}
         circle={true}>
 
-        <EnhancedButton {...other}
+        <EnhancedButton
+          {...other}
+          {...buttonEventHandlers}
           ref="container"
+          disabled={disabled}
           style={this.mergeAndPrefix(
             styles.container,
             this.props.mini && styles.containerWhenMini
           )}
-          onMouseDown={this._handleMouseDown}
-          onMouseUp={this._handleMouseUp}
-          onMouseOut={this._handleMouseOut}
-          onMouseOver={this._handleMouseOver}
-          onTouchStart={this._handleTouchStart}
-          onTouchEnd={this._handleTouchEnd}
           focusRippleColor={rippleColor}
-          touchRippleColor={rippleColor}
-          onKeyboardFocus={this._handleKeyboardFocus}>
+          touchRippleColor={rippleColor}>
             <div
               ref="overlay"
               style={this.mergeAndPrefix(

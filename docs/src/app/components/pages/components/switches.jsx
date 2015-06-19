@@ -117,6 +117,12 @@ class SwitchesPage extends React.Component {
           desc: 'The text that is displayed to the right of the checkbox.'
         },
         {
+          name: 'labelStyle',
+          type: 'object',
+          header: 'optional',
+          desc: 'Overrides the inline-styles of the Checkbox element label.'
+        },
+        {
           name: 'labelPosition',
           type: 'string',
           header: 'default:"right"',
@@ -184,6 +190,12 @@ class SwitchesPage extends React.Component {
           type: 'string',
           header: 'optional',
           desc: 'The text that is displayed to the right of the radio button.'
+        },
+        {
+          name: 'labelStyle',
+          type: 'object',
+          header: 'optional',
+          desc: 'Overrides the inline-styles of the RadioButton element label.'
         },
         {
           name: 'labelPosition',
@@ -300,6 +312,12 @@ class SwitchesPage extends React.Component {
           type: 'string',
           header: 'optional',
           desc: 'The text that is displayed to the right of the toggle switch.'
+        },
+        {
+          name: 'labelStyle',
+          type: 'object',
+          header: 'optional',
+          desc: 'Overrides the inline-styles of the Toggle element label.'
         },
         {
           name: 'labelPosition',

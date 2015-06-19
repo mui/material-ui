@@ -15,6 +15,7 @@ var Checkbox = React.createClass({
 
   propTypes: {
     iconStyle: React.PropTypes.object,
+    labelStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func,
     checkedIcon: React.PropTypes.element,
     unCheckedIcon: React.PropTypes.element
@@ -71,6 +72,9 @@ var Checkbox = React.createClass({
       },
       boxWhenDisabled: {
         fill: this.getTheme().disabledColor
+      },
+      label: {
+        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
       }
     };
     return styles;
@@ -121,6 +125,11 @@ var Checkbox = React.createClass({
     var rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
     var mergedIconStyle = this.mergeAndPrefix(styles.icon, iconStyle);
 
+    var labelStyle = this.mergeAndPrefix(
+      styles.label,
+      this.props.labelStyle
+    );
+
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
@@ -129,6 +138,7 @@ var Checkbox = React.createClass({
       rippleColor: rippleColor,
       iconStyle: mergedIconStyle,
       onSwitch: this._handleCheck,
+      labelStyle: labelStyle,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"

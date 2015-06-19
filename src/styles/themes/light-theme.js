@@ -41,7 +41,9 @@ var LightTheme = {
         boxColor: palette.textColor,
         checkedColor: palette.primary1Color,
         requiredColor: palette.primary1Color,
-        disabledColor: palette.disabledColor
+        disabledColor: palette.disabledColor,
+        labelColor: palette.textColor,
+        labelDisabledColor: palette.disabledColor
       },
       datePicker: {
         color: palette.primary1Color,
@@ -97,6 +99,8 @@ var LightTheme = {
         requiredColor: palette.primary1Color,
         disabledColor: palette.disabledColor,
         size: 24,
+        labelColor: palette.textColor,
+        labelDisabledColor: palette.disabledColor
       },
       raisedButton: {
         color: Colors.white,
@@ -163,7 +167,9 @@ var LightTheme = {
         thumbRequiredColor: palette.primary1Color,
         trackOnColor: ColorManipulator.fade(palette.primary1Color, 0.5),
         trackOffColor: Colors.minBlack,
-        trackDisabledColor: Colors.faintBlack
+        trackDisabledColor: Colors.faintBlack,
+        labelColor: palette.textColor,
+        labelDisabledColor: palette.disabledColor
       },
       toolbar: {
         backgroundColor: ColorManipulator.darken('#eeeeee', 0.05),
@@ -175,6 +181,16 @@ var LightTheme = {
       },
       tabs: {
         backgroundColor: palette.primary1Color,
+      },
+      textField: {
+        textColor: palette.textColor,
+        hintColor: palette.disabledColor,
+        floatingLabelColor: palette.textColor,
+        disabledTextColor: palette.disabledColor,
+        errorColor: Colors.red500,
+        focusColor: palette.primary1Color,
+        backgroundColor: 'transparent',
+        borderColor: palette.borderColor
       }
     };
 

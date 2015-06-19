@@ -8,6 +8,7 @@ class Components extends React.Component {
       { route: 'appbar', text: 'AppBar'},
       { route: 'avatars', text: 'Avatars'},
       { route: 'buttons', text: 'Buttons'},
+      { route: 'cards', text: 'Cards'},
       { route: 'date-picker', text: 'Date Picker'},
       { route: 'dialog', text: 'Dialog'},
       { route: 'dropdown-menu', text: 'Dropdown Menu'},

@@ -2,6 +2,7 @@ var React = require('react');
 var mui = require('mui');
 var ComponentDoc = require('../../component-doc.jsx');
 var extend = mui.Utils.Extend;
+var Colors = mui.Styles.Colors;
 var Typography = mui.Styles.Typography;
 var {ClearFix, FlatButton, FloatingActionButton, FontIcon, RaisedButton, Tab, Tabs} = mui;
 
@@ -63,10 +64,24 @@ class ButtonPage extends React.Component {
         name: 'Flat Button',
         infoArray: [
           {
+            name: 'containerElement',
+            type: 'oneOfType [string, element]',
+            header: 'default: button',
+            desc: 'This component will render a button element by default and an anchor element if linkButton is set to true. ' +
+              'However, you can override this behavior by passing in a string or another react element into this prop. This is ' +
+              'useful for generating link buttons with the react router link element.'
+          },
+          {
             name: 'disabled',
             type: 'bool',
             header: 'optional',
             desc: 'Disables the button if set to true.'
+          },
+          {
+            name: 'hoverColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the inline hover color of the button\'s root element.'
           },
           {
             name: 'label or children',
@@ -102,28 +117,30 @@ class ButtonPage extends React.Component {
             desc: 'If true, the button will use the secondary button colors.'
           },
           {
-            name: 'style',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of the button\'s root element.'
-          },
-          {
-            name: 'hoverColor',
-            type: 'string',
-            header: 'optional',
-            desc: 'Override the inline hover color of the button\'s root element.'
-          },
-          {
             name: 'rippleColor',
             type: 'string',
             header: 'optional',
             desc: 'Override the inline color of the button\'s ripple element.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the button\'s root element.'
           }
         ]
       },
       {
         name: 'Raised Button',
         infoArray: [
+          {
+            name: 'containerElement',
+            type: 'oneOfType [string, element]',
+            header: 'default: button',
+            desc: 'This component will render a button element by default and an anchor element if linkButton is set to true. ' +
+              'However, you can override this behavior by passing in a string or another react element into this prop. This is ' +
+              'useful for generating link buttons with the react router link element.'
+          },
           {
             name: 'disabled',
             type: 'bool',
@@ -174,6 +191,14 @@ class ButtonPage extends React.Component {
       {
         name: 'Floating Action Button',
         infoArray: [
+          {
+            name: 'containerElement',
+            type: 'oneOfType [string, element]',
+            header: 'default: button',
+            desc: 'This component will render a button element by default and an anchor element if linkButton is set to true. ' +
+              'However, you can override this behavior by passing in a string or another react element into this prop. This is ' +
+              'useful for generating link buttons with the react router link element.'
+          },
           {
             name: 'disabled',
             type: 'bool',
@@ -275,7 +300,8 @@ class ButtonPage extends React.Component {
         verticalAlign: 'middle',
         float: 'left',
         paddingLeft: '12px',
-        lineHeight: '36px'
+        lineHeight: '36px',
+        color: Colors.cyan500
       },
       exampleButtonIcon: {
         color: Typography.textFullWhite

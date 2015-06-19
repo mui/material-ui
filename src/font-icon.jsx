@@ -39,18 +39,15 @@ var FontIcon = React.createClass({
       this.context.muiTheme.palette.textColor;
     var onColor = hoverColor ? hoverColor : offColor;
 
-    //remove the color prop so that it doesn't override our computed
-    //colors from above
-    if (style) delete style.color;
-
     var mergedStyles = this.mergeAndPrefix({
       position: 'relative',
       fontSize: Spacing.iconSize,
       display: 'inline-block',
       userSelect: 'none',
-      transition: Transitions.easeOut(),
+      transition: Transitions.easeOut()
+    }, style, {
       color: this.state.hovered ? onColor : offColor
-    }, style);
+    });
 
     return (
       <span

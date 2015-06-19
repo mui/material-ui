@@ -50,50 +50,37 @@ var IconButton = React.createClass({
     }
   },
 
-  getTheme: function() {
-    return this.context.muiTheme.palette;
-  },
-
-  getSpacing: function() {
-    return this.context.muiTheme.spacing;
-  },
-
-  getDisabledColor: function() {
-    return this.context.muiTheme.palette.disabledColor;
-  },
-
   getStyles: function() {
+    var spacing = this.context.muiTheme.spacing;
+    var palette = this.context.muiTheme.palette;
+
     var styles = {
       root: {
         position: 'relative',
         boxSizing: 'border-box',
         transition: Transitions.easeOut(),
-        padding: (this.getSpacing().iconSize / 2),
-        width: this.getSpacing().iconSize*2,
-        height: this.getSpacing().iconSize*2
+        padding: spacing.iconSize / 2,
+        width: spacing.iconSize*2,
+        height: spacing.iconSize*2
       },
       tooltip: {
         boxSizing: 'border-box',
         marginTop: this.context.muiTheme.component.button.iconButtonSize + 4
       },
       icon: {
-        color: this.getTheme().textColor,
-        fill: this.getTheme().textColor
+        color: palette.textColor,
+        fill: palette.textColor
       },
       overlay: {
         position: 'relative',
         top: 0,
         width: '100%',
         height: '100%',
-        background: this.getDisabledColor()
+        background: palette.disabledColor
       },
-      rootWhenDisabled: {
-        color: this.getDisabledColor(),
-        fill: this.getDisabledColor()
-      },
-      iconWhenDisabled: {
-        color: this.getDisabledColor(),
-        fill: this.getDisabledColor()
+      disabled: {
+        color: palette.disabledColor,
+        fill: palette.disabledColor
       }
     };
     return styles;
@@ -101,53 +88,51 @@ var IconButton = React.createClass({
 
   render: function() {
     var {
+      disabled,
+      iconClassName,
       tooltip,
       touch,
       ...other } = this.props;
-    var tooltipElement;
     var fonticon;
 
     var styles = this.getStyles();
 
-    if (tooltip) {
-      tooltipElement = (
-        <Tooltip
-          ref="tooltip"
-          label={tooltip}
-          show={this.state.tooltipShown}
-          touch={touch}
-          style={this.mergeStyles(styles.tooltip)}/>
-      );
-    }
+    var tooltipElement = tooltip ? (
+      <Tooltip
+        ref="tooltip"
+        label={tooltip}
+        show={this.state.tooltipShown}
+        touch={touch}
+        style={this.mergeStyles(styles.tooltip)}/>
+    ) : null;
 
-    if (this.props.iconClassName) {
-      var { iconHoverColor, ...iconStyle } = this.props.iconStyle;
+    if (iconClassName) {
+      var {
+        iconHoverColor,
+        ...iconStyle
+      } = this.props.iconStyle;
 
       fonticon = (
         <FontIcon
-          className={this.props.iconClassName}
-          hoverColor={iconHoverColor}
+          className={iconClassName}
+          hoverColor={disabled ? null : iconHoverColor}
           style={this.mergeStyles(
             styles.icon,
-            this.props.disabled && styles.iconWhenDisabled,
+            disabled ? styles.disabled : {},
             iconStyle
           )}/>
       );
     }
 
-    if (this.props.children && this.props.disabled) {
-      React.Children.forEach(this.props.children, function(child) {
-        child.props.style = {
-          color: this.getDisabledColor(),
-          fill: this.getDisabledColor(),
-        }
-      }, this);
-    }
+    var children = disabled ?
+      this._addStylesToChildren(styles.disabled) :
+      this.props.children;
 
     return (
       <EnhancedButton {...other}
         ref="button"
         centerRipple={true}
+        disabled={disabled}
         style={this.mergeStyles(styles.root, this.props.style)}
         onBlur={this._handleBlur}
         onFocus={this._handleFocus}
@@ -157,10 +142,25 @@ var IconButton = React.createClass({
 
         {tooltipElement}
         {fonticon}
-        {this.props.children}
+        {children}
 
       </EnhancedButton>
     );
+  },
+
+  _addStylesToChildren: function(styles) {
+    var children = [];
+
+    React.Children.forEach(this.props.children, function(child) {
+      children.push(
+        React.cloneElement(child, {
+          key: child.props.key ? child.props.key : children.length,
+          style: styles
+        })
+      );
+    });
+
+    return children;
   },
 
   _positionTooltip: function() {

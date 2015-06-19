@@ -351,7 +351,9 @@ var ThemesPage = React.createClass({
       '        boxColor: String,\n' +
       '        checkedColor: String,\n' +
       '        requiredColor: String,\n' +
-      '        disabledColor: String\n' +
+      '        disabledColor: String,\n' +
+      '        labelColor: String,\n' +
+      '        labelDisabledColor: String\n' +
       '      },\n' +
       '      datePicker: {\n' +
       '        color: String,\n' +
@@ -410,6 +412,8 @@ var ThemesPage = React.createClass({
       '        requiredColor: String,\n' +
       '        disabledColor: String,\n' +
       '        size: Number,\n' +
+      '        labelColor: String,\n' +
+      '        labelDisabledColor: String\n' +
       '      },\n' +
       '      raisedButton: {\n' +
       '        color: String,\n' +
@@ -446,7 +450,9 @@ var ThemesPage = React.createClass({
       '        trackOnColor: String,\n' +
       '        trackOffColor: String,\n' +
       '        trackDisabledColor: String,\n' +
-      '        trackRequiredColor: String\n' +
+      '        trackRequiredColor: String,\n' +
+      '        labelColor: String,\n' +
+      '        labelDisabledColor: String\n' +
       '      },\n' +
       '      toolbar: {\n' +
       '        backgroundColor: String,\n' +

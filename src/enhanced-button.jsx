@@ -15,7 +15,10 @@ var EnhancedButton = React.createClass({
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
-    className: React.PropTypes.string,
+    containerElement: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.element
+    ]),
     disabled: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
@@ -33,6 +36,12 @@ var EnhancedButton = React.createClass({
     onKeyboardFocus: React.PropTypes.func,
   },
 
+  getDefaultProps: function() {
+    return {
+      containerElement: 'button'
+    };
+  },
+
   windowListeners: {
     'keydown': '_handleWindowKeydown',
     'keyup': '_handleWindowKeyup'
@@ -43,7 +52,6 @@ var EnhancedButton = React.createClass({
       isKeyboardFocused: !this.props.disabled && this.props.keyboardFocused
     };
   },
-
 
   // Remove inner padding and border in Firefox 4+.
   componentDidMount: function() {
@@ -86,23 +94,44 @@ var EnhancedButton = React.createClass({
   render: function() {
     var {
       centerRipple,
+      containerElement,
       disabled,
       disableFocusRipple,
       disableTouchRipple,
+      focusRippleColor,
+      focusRippleOpacity,
       linkButton,
       touchRippleColor,
+      touchRippleOpacity,
       onBlur,
       onFocus,
       onMouseOver,
       onMouseOut,
       onTouchTap,
-      ...other } = this.props;
-    var styles = this.mergeAndPrefix(
-      this.getStyles().root,
-      this.props.linkButton && this.getStyles().rootWhenLinkButton,
-      this.props.disabled && this.getStyles().rootWhenDisabled,
-      this.props.style
+      style,
+      ...other
+    } = this.props;
+
+    var styles = this.getStyles();
+
+    var mergedStyles = this.mergeAndPrefix(
+      styles.root,
+      linkButton && styles.rootWhenLinkButton,
+      disabled && styles.rootWhenDisabled,
+      style
     );
+
+    var buttonProps = {
+      ...other,
+      style: mergedStyles,
+      disabled: disabled,
+      onBlur: this._handleBlur,
+      onFocus: this._handleFocus,
+      onMouseOver: this._handleMouseOver,
+      onMouseOut: this._handleMouseOut,
+      onTouchTap: this._handleTouchTap
+    };
+
     var buttonChildren = [];
 
     // Create ripples if we need to
@@ -113,8 +142,8 @@ var EnhancedButton = React.createClass({
           ref="touchRipple"
           key="touchRipple"
           centerRipple={centerRipple}
-          color={this.props.touchRippleColor}
-          opacity={this.props.touchRippleOpacity}>
+          color={touchRippleColor}
+          opacity={touchRippleOpacity}>
             {this.props.children}
         </TouchRipple>
       )
@@ -124,37 +153,25 @@ var EnhancedButton = React.createClass({
       (
         <FocusRipple
           key="focusRipple"
-          color={this.props.focusRippleColor}
-          opacity={this.props.focusRippleOpacity}
+          color={focusRippleColor}
+          opacity={focusRippleOpacity}
           show={this.state.isKeyboardFocused} />
       )
     );
 
-    var buttonProps = {
-      style: styles,
-      disabled: disabled,
-      onBlur: this._handleBlur,
-      onFocus: this._handleFocus,
-      onMouseOver: this._handleMouseOver,
-      onMouseOut: this._handleMouseOut,
-      onTouchTap: this._handleTouchTap,
-    };
-
     if (disabled && linkButton) {
       return (
-        <span {...other}
-          className={this.props.className}
-          disabled={disabled}>
+        <span
+          {...other}
+          style={mergedStyles}>
           {this.props.children}
         </span>
       );
     }
 
-    return React.createElement(
-      linkButton ? 'a' : 'button',
-      { ...other, ...buttonProps },
-      buttonChildren
-    );
+    return React.isValidElement(containerElement) ?
+      React.cloneElement(containerElement, buttonProps, buttonChildren) :
+      React.createElement(linkButton ? 'a' : containerElement, buttonProps, buttonChildren);
     
   },
 
