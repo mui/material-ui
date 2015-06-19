@@ -20,26 +20,24 @@ var Tab = React.createClass({
   },
 
   render: function(){
-    var themeVariables = this.context.muiTheme.component.tab;
+    var theme = this.context.muiTheme.component.tab;
 
     var styles = this.mergeAndPrefix({
-      'display': 'table-cell',
-      'cursor': 'pointer',
-      'textAlign': 'center',
-      'verticalAlign': 'middle',
-      'height': '48px',
-      'color': Colors.white,
-      'opacity': '.6',
-      'fontSize': '14px',
-      'fontWeight': '500',
-      'whiteSpace': 'initial',
+      'display': theme.display,
+      'cursor': theme.cursor,
+      'textAlign': theme.textAlign,
+      'verticalAlign': theme.verticalAlign,
+      'height': theme.height,
+      'color': theme.color,
+      'opacity': theme.opacity,
+      'fontSize': theme.fontSize,
+      'fontWeight': theme.fontWeight,
+      'whiteSpace': theme.whiteSpace,
       'fontFamily': this.context.muiTheme.contentFontFamily,
-      'boxSizing': 'border-box',
-      'width': this.props.width
-    }, themeVariables);
+      'boxSizing': theme.boxSizing,
+      'width': theme.width
+    }, this.props.style);
 
-    styles = this.mergeAndPrefix(styles, this.props.style);
-    
     if (this.props.selected) styles.opacity = '1';
 
     return (
