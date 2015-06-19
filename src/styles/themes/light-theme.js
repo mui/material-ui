@@ -153,6 +153,9 @@ var LightTheme = {
         separatorColor: 'rgba(0, 0, 0, .175)',
         menuHoverColor: 'rgba(0, 0, 0, .10)'
       },
+      tab: {
+        'color': Colors.white,
+      },
       tabs: {
         backgroundColor: palette.primary1Color,
       },
