@@ -149,6 +149,9 @@ var LightTheme = {
       },
       tabs: {
         backgroundColor: palette.primary1Color,
+      },
+      tab: {
+        
       }
     };
 

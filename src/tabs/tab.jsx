@@ -20,6 +20,8 @@ var Tab = React.createClass({
   },
 
   render: function(){
+    var themeVariables = this.context.muiTheme.component.tab;
+    
     var styles = this.mergeAndPrefix({
       'display': 'table-cell',
       'cursor': 'pointer',
@@ -34,7 +36,8 @@ var Tab = React.createClass({
       'fontFamily': this.context.muiTheme.contentFontFamily,
       'boxSizing': 'border-box',
       'width': this.props.width
-    }, this.props.style);
+    }, themeVariables);
+    styles = this.mergeAndPrefix(styles, this.props.style);
 
     if (this.props.selected) styles.opacity = '1';
 
