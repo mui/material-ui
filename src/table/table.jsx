@@ -365,7 +365,7 @@ let Table = React.createClass({
     this.setState({allRowsSelected: !this.state.allRowsSelected});
   },
 
-  _getColumnId(columnIndex) {
+  _getColumnId(columnNumber) {
     let columnId = columnNumber;
     if (this.props.displayRowCheckbox) columnId--;
     columnId = (this.props.columnOrder.length) ? this.props.columnOrder[columnId] : columnId;
