@@ -58,6 +58,7 @@ module.exports = {
   },
   Snackbar: require('./snackbar'),
   Tab: require('./tabs/tab'),
+  Table: require('./table/table'),
   Tabs: require('./tabs/tabs'),
   Theme: require('./theme'),
   Toggle: require('./toggle'),

@@ -127,6 +127,32 @@ var LightTheme = {
         backgroundColor: '#323232',
         actionColor: palette.accent1Color
       },
+      table: {
+        backgroundColor: Colors.white
+      },
+      tableHeader: {
+        borderColor: palette.borderColor
+      },
+      tableHeaderColumn: {
+        textColor: Colors.lightBlack,
+        height: 56,
+        spacing: 28
+      },
+      tableFooter: {
+        borderColor: palette.borderColor,
+        textColor: Colors.lightBlack
+      },
+      tableRow: {
+        hoverColor: Colors.grey200,
+        stripeColor: ColorManipulator.lighten(palette.primary1Color, 0.55),
+        selectedColor: Colors.grey300,
+        textColor: Colors.darkBlack,
+        borderColor: palette.borderColor
+      },
+      tableRowColumn: {
+        height: 48,
+        spacing: 28
+      },
       timePicker: {
         color: Colors.white,
         textColor: Colors.grey600,

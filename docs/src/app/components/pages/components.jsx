@@ -22,6 +22,7 @@ class Components extends React.Component {
       { route: 'sliders', text: 'Sliders'},
       { route: 'switches', text: 'Switches'},
       { route: 'snackbar', text: 'Snackbar'},
+      { route: 'table', text: 'Table'},
       { route: 'tabs', text: 'Tabs'},
       { route: 'text-fields', text: 'Text Fields'},
       { route: 'time-picker', text: 'Time Picker'},
