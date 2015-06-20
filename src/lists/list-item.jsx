@@ -15,7 +15,8 @@ var ListItem = React.createClass({
   },
 
   propTypes: {
-    disableTouchTap: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
+    disableKeyboardFocus: React.PropTypes.bool,
     insetChildren: React.PropTypes.bool,
     leftAvatar: React.PropTypes.element,
     leftCheckbox: React.PropTypes.element,
@@ -43,6 +44,7 @@ var ListItem = React.createClass({
       hovered: false,
       isKeyboardFocused: false,
       rightIconButtonHovered: false,
+      rightIconButtonKeyboardFocused: false,
       touch: false
     };
   },
@@ -50,7 +52,8 @@ var ListItem = React.createClass({
   render: function() {
 
     var {
-      disableTouchTap,
+      disabled,
+      disableKeyboardFocus,
       insetChildren,
       leftAvatar,
       leftCheckbox,
@@ -80,7 +83,8 @@ var ListItem = React.createClass({
     var styles = {
       root: {
         backgroundColor: (this.state.isKeyboardFocused || this.state.hovered) && 
-          !this.state.rightIconButtonHovered ? hoverColor : null,
+          !this.state.rightIconButtonHovered &&
+          !this.state.rightIconButtonKeyboardFocused ? hoverColor : null,
         color: textColor,
         display: 'block',
         fontSize: 16,
@@ -193,6 +197,7 @@ var ListItem = React.createClass({
     this._pushElement(contentChildren, rightAvatar, this.mergeStyles(styles.avatars, styles.rightAvatar));
     this._pushElement(contentChildren, leftCheckbox, this.mergeStyles(styles.leftCheckbox));
     this._pushElement(contentChildren, rightIconButton, this.mergeStyles(styles.rightIconButton), {
+      onKeyboardFocus: this._handleRightIconButtonKeyboardFocus,
       onMouseOver: this._handleRightIconButtonMouseOver,
       onMouseOut: this._handleRightIconButtonMouseOut,
       onTouchTap: this._handleRightIconButtonTouchTap,
@@ -208,7 +213,7 @@ var ListItem = React.createClass({
         <div key="secondaryText" style={styles.secondaryText}>{secondaryText}</div>
     );
 
-    return hasCheckbox || disableTouchTap ?
+    return hasCheckbox || disabled ?
       React.createElement(
         hasCheckbox ? 'label' : 'div',
         { style: hasCheckbox ? mergedLabelStyles : mergedDivStyles },
@@ -216,6 +221,8 @@ var ListItem = React.createClass({
       ) : (
       <EnhancedButton
         {...other}
+        disabled={disabled}
+        disableKeyboardFocus={disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused}
         linkButton={true}
         onKeyboardFocus={this._handleKeyboardFocus}
         onMouseOut={this._handleMouseOut}
@@ -256,6 +263,17 @@ var ListItem = React.createClass({
   _handleMouseOut: function(e) {
     this.setState({hovered: false});
     if (this.props.onMouseOut) this.props.onMouseOut(e);
+  },
+
+  _handleRightIconButtonKeyboardFocus: function(e, isKeyboardFocused) {
+    var iconButton = this.props.rightIconButton;
+    var newState = {};
+
+    newState.rightIconButtonKeyboardFocused = isKeyboardFocused;
+    if (isKeyboardFocused) newState.isKeyboardFocused = false;
+    this.setState(newState);
+
+    if (iconButton.onKeyboardFocus) iconButton.onKeyboardFocus(e, isKeyboardFocused);
   },
 
   _handleRightIconButtonMouseDown: function(e) {

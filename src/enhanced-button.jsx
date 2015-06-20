@@ -22,6 +22,7 @@ var EnhancedButton = React.createClass({
     ]),
     disabled: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
+    disableKeyboardFocus: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
     keyboardFocused: React.PropTypes.bool,
     linkButton: React.PropTypes.bool,
@@ -50,8 +51,17 @@ var EnhancedButton = React.createClass({
 
   getInitialState: function() {
     return {
-      isKeyboardFocused: !this.props.disabled && this.props.keyboardFocused
+      isKeyboardFocused: !this.props.disabled &&
+        this.props.keyboardFocused &&
+        !this.props.disableKeyboardFocus
     };
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.disabled || nextProps.disableKeyboardFocus && this.state.isKeyboardFocused) {
+      this.setState({isKeyboardFocused: false});
+      if (nextProps.onKeyboardFocus) nextProps.onKeyboardFocus(null, false);
+    }
   },
 
   // Remove inner padding and border in Firefox 4+.
@@ -74,6 +84,7 @@ var EnhancedButton = React.createClass({
       containerElement,
       disabled,
       disableFocusRipple,
+      disableKeyboardFocus,
       disableTouchRipple,
       focusRippleColor,
       focusRippleOpacity,
@@ -129,7 +140,7 @@ var EnhancedButton = React.createClass({
       buttonChildren.push(this.props.children);
     }
     
-    if (!disabled && !disableFocusRipple) {
+    if (!disabled && !disableFocusRipple && !disableKeyboardFocus) {
       buttonChildren.push(
         <FocusRipple
           key="focusRipple"
@@ -161,7 +172,7 @@ var EnhancedButton = React.createClass({
   },
 
   _handleWindowKeydown: function(e) {
-    if (!this.props.disabled) {
+    if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       if (e.keyCode === KeyCode.TAB) this._tabPressed = true;
       if (e.keyCode === KeyCode.ENTER && this.state.isKeyboardFocused) {
         this._handleTouchTap(e);
@@ -177,25 +188,23 @@ var EnhancedButton = React.createClass({
 
   _handleBlur: function(e) {
     this._cancelFocusTimeout();
-    if (!this.props.disabled) {
-      this.setState({
-        isKeyboardFocused: false
-      });
+
+    if (!this.props.disabled && this.state.isKeyboardFocused) {
+      this.setState({isKeyboardFocused: false});
       if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
-      if (this.props.onBlur) this.props.onBlur(e);
     }
+
+    if (this.props.onBlur) this.props.onBlur(e);
   },
 
   _handleFocus: function(e) {
-    if (!this.props.disabled) {
+    if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       //setTimeout is needed because the focus event fires first
       //Wait so that we can capture if this was a keyboard focus
       //or touch focus
       this._focusTimeout = setTimeout(function() {
-        if (this._tabPressed) {
-          this.setState({
-            isKeyboardFocused: true
-          });
+        if (this._tabPressed && !this.state.isKeyboardFocused) {
+          this.setState({isKeyboardFocused: true});
           if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, true);
         }
       }.bind(this), 150);
@@ -208,10 +217,12 @@ var EnhancedButton = React.createClass({
     this._cancelFocusTimeout();
     if (!this.props.disabled) {
       this._tabPressed = false;
-      this.setState({
-        isKeyboardFocused: false
-      });
-      if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
+
+      if (this.state.isKeyboardFocused) {
+        this.setState({isKeyboardFocused: false});
+        if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
+      }
+
       if (this.props.onTouchTap) this.props.onTouchTap(e);
     }
   },

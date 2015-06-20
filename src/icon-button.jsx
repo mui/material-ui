@@ -20,6 +20,7 @@ var IconButton = React.createClass({
     iconStyle: React.PropTypes.object,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
+    onKeyboardFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
     touch: React.PropTypes.bool,
   },
@@ -209,6 +210,7 @@ var IconButton = React.createClass({
       this._hideTooltip();
       if (this.props.onBlur) this.props.onBlur(e);
     }
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused);
   }
 
 });

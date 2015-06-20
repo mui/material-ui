@@ -145,7 +145,7 @@ class ListsPage extends React.Component {
         name: 'ListItem Props',
         infoArray: [
           {
-            name: 'disableTouchTap',
+            name: 'disabled',
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the list-item will not be clickable and will not display hover affects. This is automatically disabled if leftCheckbox or rightToggle is set.'
