@@ -9,6 +9,10 @@ var DropDownIcon = React.createClass({
 
   mixins: [StylePropable, ClickAwayable],
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
   propTypes: {
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
