@@ -12,10 +12,19 @@ var Tooltip = React.createClass({
   },
 
   propTypes: {
-    className: React.PropTypes.string,
     label: React.PropTypes.string.isRequired,
     show: React.PropTypes.bool,
-    touch: React.PropTypes.bool
+    touch: React.PropTypes.bool,
+    verticalDirection: React.PropTypes.oneOf(['up','down']),
+    ripplePosition: React.PropTypes.oneOf(['left', 'right', 'center']),
+    iconButtonTouch: React.PropTypes.bool
+  },
+
+  getDefaultProps: function(){
+    return {
+      verticalDirection: 'down',
+      ripplePosition: 'center'
+    };
   },
 
   componentDidMount: function() {
@@ -27,11 +36,14 @@ var Tooltip = React.createClass({
   },
 
   getStyles: function(){
+    var verticalDirection = this.props.verticalDirection;
+    var ripplePosition = this.props.ripplePosition;
+    var touchOffset = (this.props.iconButtonTouch) ? 30:20;
     var styles = {
       root: {
         position: 'absolute',
-        fontFamily: this.context.muiTheme.contentFontFamily,
-        fontSize: '10px',
+        fontFamily: this.context.muiTheme.contentFontFamily, 
+        fontSize: 10,
         lineHeight: '22px',
         padding: '0 8px',
         color: Colors.white,
@@ -51,8 +63,9 @@ var Tooltip = React.createClass({
       },
       ripple: {
         position: 'absolute',
-        left: '50%',
-        top: 0,
+        left: ripplePosition==='center' ? '50%' :
+              ripplePosition==='right' ? '100%' : '0%',
+        top: verticalDirection === 'down' ? 0 : (touchOffset)+'px',
         transform: 'translate(-50%, -50%)',
         borderRadius: '50%',
         backgroundColor: 'transparent',
@@ -62,16 +75,18 @@ var Tooltip = React.createClass({
           Transitions.easeOut('450ms', 'backgroundColor', '0ms')
       },
       rootWhenShown: {
-        top: -16,
+        top: verticalDirection === 'down' ? -16 : 16,
         opacity: 1,
-        transform: 'translate3d(0px, 16px, 0px)',
+        transform: verticalDirection === 'down' ?
+          'translate3d(0px, 16px, 0px)' :
+          'translate3d(0px, -16px, 0px)',
         transition:
           Transitions.easeOut('0ms', 'top', '0ms') + ',' +
           Transitions.easeOut('450ms', 'transform', '0ms') + ',' +
           Transitions.easeOut('450ms', 'opacity', '0ms'),
       },
       rootWhenTouched: {
-        fontSize: '14px',
+        fontSize: 14,
         lineHeight: '44px',
         padding: '0 16px'
       },
@@ -87,24 +102,35 @@ var Tooltip = React.createClass({
   },
 
   render: function() {
+
     var {
       label,
-      ...other } = this.props;
+      show, 
+      touch,
+      style,
+      verticalDirection,
+      ...other
+    } = this.props;
+
     var styles = this.getStyles();
+    var mergedRootStyles = this.mergeAndPrefix(
+      styles.root,
+      show && styles.rootWhenShown,
+      touch && styles.rootWhenTouched,
+      style
+    );
+    var mergedInnerStyles = this.mergeAndPrefix(
+      styles.ripple,
+      show && styles.rippleWhenShown
+    );
+
     return (
       <div {...other}
-        style={this.mergeAndPrefix(
-            styles.root,
-            this.props.show && styles.rootWhenShown,
-            this.props.touch && styles.rootWhenTouched,
-            this.props.style
-          )}>
+        style={mergedRootStyles}>
         <div
           ref="ripple"
-          style={this.mergeAndPrefix(
-            styles.ripple,
-            this.props.show && styles.rippleWhenShown)} />
-        <span style={this.mergeAndPrefix(styles.label)}>{this.props.label}</span>
+          style={mergedInnerStyles} />
+        <span style={this.mergeAndPrefix(styles.label)}>{label}</span>
       </div>
     );
   },
@@ -115,9 +141,13 @@ var Tooltip = React.createClass({
     var tooltipWidth = parseInt(tooltip.getPropertyValue("width"), 10);
     var tooltipHeight = parseInt(tooltip.getPropertyValue("height"), 10);
 
-    var rippleDiameter = (Math.sqrt(Math.pow(tooltipHeight, 2) +
-                                    Math.pow((tooltipWidth / 2.0), 2) ) * 2);
-
+    var rippleDiameter; 
+    if(this.props.ripplePosition === 'center')
+      rippleDiameter = (Math.sqrt(Math.pow(tooltipHeight, 2) +
+                          Math.pow((tooltipWidth / 2.0), 2) ) * 2);
+    else
+      rippleDiameter = (Math.sqrt(Math.pow(tooltipHeight, 2) +
+                          Math.pow((tooltipWidth), 2) ) * 2);
     if (this.props.show) {
       ripple.style.height = rippleDiameter + 'px';
       ripple.style.width = rippleDiameter + 'px';
