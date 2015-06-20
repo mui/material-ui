@@ -1,14 +1,14 @@
-var React = require('react');
-var WindowListenable = require('./mixins/window-listenable');
-var CssEvent = require('./utils/css-event');
-var KeyCode = require('./utils/key-code');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var FlatButton = require('./flat-button');
-var Overlay = require('./overlay');
-var Paper = require('./paper');
+let React = require('react');
+let WindowListenable = require('./mixins/window-listenable');
+let CssEvent = require('./utils/css-event');
+let KeyCode = require('./utils/key-code');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let FlatButton = require('./flat-button');
+let Overlay = require('./overlay');
+let Paper = require('./paper');
 
-var DialogWindow = React.createClass({
+let DialogWindow = React.createClass({
 
   closeable: false,
 
@@ -71,7 +71,7 @@ var DialogWindow = React.createClass({
   },
 
   getStyles: function() {
-    var styles = {
+    let styles = {
       root: {
         position: 'fixed',
         boxSizing: 'border-box',
@@ -110,8 +110,8 @@ var DialogWindow = React.createClass({
   },
 
   render: function() {
-    var actions = this._getActionsContainer(this.props.actions);
-    var styles = this.getStyles();
+    let actions = this._getActionsContainer(this.props.actions);
+    let styles = this.getStyles();
 
     return (
       <div ref="container" style={this.mergeAndPrefix(styles.root, this.props.style, this.state.open && styles.rootWhenOpen)}>
@@ -154,8 +154,8 @@ var DialogWindow = React.createClass({
   },
 
   _getAction: function(actionJSON, key) {
-    var styles = {marginRight: 8};
-    var props = {
+    let styles = {marginRight: 8};
+    let props = {
       key: key,
       secondary: true,
       onClick: actionJSON.onClick,
@@ -182,9 +182,9 @@ var DialogWindow = React.createClass({
   },
 
   _getActionsContainer: function(actions) { //json w/ refs
-    var actionContainer;
-    var actionObjects = [];
-    var actionStyle = {
+    let actionContainer;
+    let actionObjects = [];
+    let actionStyle = {
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(s0,0,0,0)',
       padding: 8,
@@ -194,8 +194,8 @@ var DialogWindow = React.createClass({
     };
 
     if (actions.length) {
-      for (var i = 0; i < actions.length; i++) {
-        var currentAction = actions[i];
+      for (let i = 0; i < actions.length; i++) {
+        let currentAction = actions[i];
 
         //if the current action isn't a react object, create one
         if (!React.isValidElement(currentAction)) {
@@ -215,15 +215,15 @@ var DialogWindow = React.createClass({
   },
 
   _positionDialog: function() {
-    var container = React.findDOMNode(this);
-    var dialogWindow = React.findDOMNode(this.refs.dialogWindow);
-    var containerHeight = container.offsetHeight;
-    var dialogWindowHeight = dialogWindow.offsetHeight;
+    let container = React.findDOMNode(this);
+    let dialogWindow = React.findDOMNode(this.refs.dialogWindow);
+    let containerHeight = container.offsetHeight;
+    let dialogWindowHeight = dialogWindow.offsetHeight;
 
     //Reset the height in case the window was resized.
     dialogWindow.style.height = '';
 
-    var paddingTop = Math.max(((containerHeight - dialogWindowHeight) / 2) - 64, 0);
+    let paddingTop = Math.max(((containerHeight - dialogWindowHeight) / 2) - 64, 0);
 
     //Vertically center the dialog window, but make sure it doesn't
     //transition to that position.

@@ -1,12 +1,12 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
-var TimeDisplay = require("./time-display");
-var ClockButton = require("./clock-button");
-var ClockHours = require("./clock-hours");
-var ClockMinutes = require("./clock-minutes");
+let TimeDisplay = require("./time-display");
+let ClockButton = require("./clock-button");
+let ClockHours = require("./clock-hours");
+let ClockMinutes = require("./clock-minutes");
 
-var Clock = React.createClass({
+let Clock = React.createClass({
 
   mixins: [StylePropable],
 
@@ -57,7 +57,7 @@ var Clock = React.createClass({
 
     if(affix == this._getAffix()) return;
 
-    var hours = this.state.selectedTime.getHours();
+    let hours = this.state.selectedTime.getHours();
 
     if(affix == "am"){
       this.handleChangeHours(hours - 12);
@@ -71,7 +71,7 @@ var Clock = React.createClass({
 
     if(this.props.format != "ampm") return "";
 
-    var hours = this.state.selectedTime.getHours();
+    let hours = this.state.selectedTime.getHours();
     if(hours < 12){
       return "am";
     }
@@ -81,8 +81,8 @@ var Clock = React.createClass({
   },
 
   _getButtons: function(){
-    var buttons = [];
-    var isAM = this._getIsAM();
+    let buttons = [];
+    let isAM = this._getIsAM();
 
     if(this.props.format == 'ampm'){
       buttons = [
@@ -101,10 +101,10 @@ var Clock = React.createClass({
 
   render: function() {
 
-    var clock = null;
-    var buttons = this._getButtons();
+    let clock = null;
+    let buttons = this._getButtons();
 
-    var styles = {
+    let styles = {
       root: {},
 
       container: {
@@ -149,7 +149,7 @@ var Clock = React.createClass({
     );
   },
   handleChangeHours: function(hours, finished){
-    var time = new Date(this.state.selectedTime);
+    let time = new Date(this.state.selectedTime);
 
     time.setHours(hours);
     this.setState({
@@ -165,7 +165,7 @@ var Clock = React.createClass({
     }
   },
   handleChangeMinutes: function(minutes){
-    var time = new Date(this.state.selectedTime);
+    let time = new Date(this.state.selectedTime);
     time.setMinutes(minutes);
     this.setState({
       selectedTime: time

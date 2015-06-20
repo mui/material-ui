@@ -1,6 +1,6 @@
-var Colors = require('./colors');
+let Colors = require('./colors');
 
-var Typography = function () {
+let Typography = function () {
 
   // text colors
   this.textFullBlack = Colors.fullBlack;

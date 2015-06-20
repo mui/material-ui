@@ -1,15 +1,15 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
-var WindowListenable = require('../mixins/window-listenable');
-var TimePickerDialog = require('./time-picker-dialog');
-var TextField = require('../text-field');
+let WindowListenable = require('../mixins/window-listenable');
+let TimePickerDialog = require('./time-picker-dialog');
+let TextField = require('../text-field');
 
-var emptyTime = new Date();
+let emptyTime = new Date();
 emptyTime.setHours(0);
 emptyTime.setMinutes(0);
 
-var TimePicker = React.createClass({
+let TimePicker = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
@@ -42,12 +42,12 @@ var TimePicker = React.createClass({
   },
   formatTime: function(date){
 
-    var hours = date.getHours();
-    var mins = date.getMinutes();
-    var aditional = "";
+    let hours = date.getHours();
+    let mins = date.getMinutes();
+    let aditional = "";
 
     if(this.props.format == "ampm"){
-      var isAM = hours < 12;
+      let isAM = hours < 12;
       hours = hours % 12;
       aditional +=  isAM ? " am" : " pm";
       hours = hours || 12;
@@ -62,7 +62,7 @@ var TimePicker = React.createClass({
     return  hours + ":" + mins + aditional;
   },
   render: function() {
-    var {
+    let {
       format,
       onFocus,
       onTouchTap,
@@ -71,7 +71,7 @@ var TimePicker = React.createClass({
       ...other
     } = this.props;
 
-    var defaultInputValue;
+    let defaultInputValue;
 
     if (this.props.defaultTime) {
       defaultInputValue = this.formatTime(this.props.defaultTime);

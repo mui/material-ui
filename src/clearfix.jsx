@@ -1,23 +1,23 @@
-var React = require('react');
-var BeforeAfterWrapper = require('./before-after-wrapper');
+let React = require('react');
+let BeforeAfterWrapper = require('./before-after-wrapper');
 
-var ClearFix = React.createClass({
+let ClearFix = React.createClass({
 
   render: function() {
 
-    var {
+    let {
       style,
       ...other
     } = this.props;
 
-    var before = function() {
+    let before = function() {
       return {
         content: "' '",
         display: 'table'
       }
     }
 
-    var after = before();
+    let after = before();
     after.clear = 'both';
 
     return (

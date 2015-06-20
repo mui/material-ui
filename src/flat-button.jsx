@@ -1,11 +1,11 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var ColorManipulator = require('./utils/color-manipulator');
-var Typography = require('./styles/typography');
-var EnhancedButton = require('./enhanced-button');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let ColorManipulator = require('./utils/color-manipulator');
+let Typography = require('./styles/typography');
+let EnhancedButton = require('./enhanced-button');
 
-var FlatButton = React.createClass({
+let FlatButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -50,8 +50,8 @@ var FlatButton = React.createClass({
   },
 
   _getColor: function(){
-    var theme = this.getTheme();
-    var color = this.props.disabled ? theme.disabledTextColor :
+    let theme = this.getTheme();
+    let color = this.props.disabled ? theme.disabledTextColor :
                 this.props.primary ? theme.primaryTextColor :
                 this.props.secondary ? theme.secondaryTextColor :
                 theme.textColor;
@@ -64,8 +64,8 @@ var FlatButton = React.createClass({
   },
 
   getStyles: function() {
-    var color = this._getColor();
-    var styles = {
+    let color = this._getColor();
+    let styles = {
       root: {
         color: color.default,
         transition: Transitions.easeOut(),
@@ -100,7 +100,7 @@ var FlatButton = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
         children,
         hoverColor,
         label,
@@ -115,9 +115,9 @@ var FlatButton = React.createClass({
         ...other
       } = this.props;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var labelElement;
+    let labelElement;
     if (label) {
       labelElement = (
         <span style={this.mergeAndPrefix(styles.label, this.props.labelStyle)}>

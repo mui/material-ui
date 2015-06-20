@@ -1,15 +1,25 @@
-var React = require('react');
-var mui = require('mui');
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react');
+let mui = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
 
-var {DropDownIcon, DropDownMenu, FontIcon, RaisedButton, Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} = mui;
+let {
+  DropDownIcon,
+  DropDownMenu,
+  FontIcon,
+  RaisedButton,
+  Toolbar,
+  ToolbarGroup,
+  ToolbarSeparator,
+  ToolbarTitle
+} = mui;
+
 
 class ToolbarPage extends React.Component {
 
   render() {
 
-    var code =
-      'var filterOptions = [\n' +
+    let code =
+      'let filterOptions = [\n' +
       '  { payload: \'1\', text: \'All Broadcasts\' },\n' +
       '  { payload: \'2\', text: \'All Voice\' },\n' +
       '  { payload: \'3\', text: \'All Text\' },\n' +
@@ -18,7 +28,7 @@ class ToolbarPage extends React.Component {
       '  { payload: \'6\', text: \'Active Voice\' },\n' +
       '  { payload: \'7\', text: \'Active Text\' },\n' +
       '];\n' +
-      'var iconMenuItems = [\n' +
+      'let iconMenuItems = [\n' +
       '  { payload: \'1\', text: \'Download\' },\n' +
       '  { payload: \'2\', text: \'More Info\' }\n' +
       '];\n\n' +
@@ -35,14 +45,14 @@ class ToolbarPage extends React.Component {
       '  </ToolbarGroup>\n' +
       '</Toolbar>';
 
-    var desc = 'Toolbars are collections of components stacked horizontally ' +
+    let desc = 'Toolbars are collections of components stacked horizontally ' +
                'against each other. Toolbars provide greater versatility than ' +
-               'appBars. AppBars are a subset of toolbars. The following ' + 
+               'appBars. AppBars are a subset of toolbars. The following ' +
                'toolbar components can help organize your layout. Note that ' +
                'every component listed here (including Toolbar) have a style ' +
                'prop which overrides the inline-styles of their root element.'
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'ToolbarGroup',
           infoArray: [
@@ -87,7 +97,7 @@ class ToolbarPage extends React.Component {
       },
     ];
 
-    var filterOptions = [
+    let filterOptions = [
       { payload: '1', text: 'All Broadcasts' },
       { payload: '2', text: 'All Voice' },
       { payload: '3', text: 'All Text' },
@@ -96,7 +106,7 @@ class ToolbarPage extends React.Component {
       { payload: '6', text: 'Active Voice' },
       { payload: '7', text: 'Active Text' },
     ];
-    var iconMenuItems = [
+    let iconMenuItems = [
       { payload: '1', text: 'Download' },
       { payload: '2', text: 'More Info' }
     ];

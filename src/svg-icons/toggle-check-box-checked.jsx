@@ -1,7 +1,7 @@
-var React = require('react');
-var SvgIcon = require('../svg-icon');
+let React = require('react');
+let SvgIcon = require('../svg-icon');
 
-var ToggleCheckBoxChecked = React.createClass({
+let ToggleCheckBoxChecked = React.createClass({
 
   render: function() {
     return (

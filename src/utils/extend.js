@@ -2,23 +2,23 @@ function isObject(obj) {
   return typeof(obj) === 'object' && obj !== null;
 }
 
-/** 
-*  A recursive merge between two objects. 
-* 
+/**
+*  A recursive merge between two objects.
+*
 *  @param base     - the object whose properties are to be overwritten. It
 *                    should be either the root level or some nested level.
-*  @param override - an object containing properties to be overwritten. It 
+*  @param override - an object containing properties to be overwritten. It
 *                    should have the same structure as the object object.
 */
-var extend = function(base, override) {
+let extend = function(base, override) {
 
-  var mergedObject = {};
+  let mergedObject = {};
 
   //Loop through each key in the base object
   Object.keys(base).forEach(function(key) {
 
-    var baseProp = base[key];
-    var overrideProp;
+    let baseProp = base[key];
+    let overrideProp;
 
     if (isObject(override)) overrideProp = override[key];
 
@@ -28,13 +28,13 @@ var extend = function(base, override) {
 
   });
 
-  //Loop through each override key and override the props in the 
+  //Loop through each override key and override the props in the
   //base object
   if (isObject(override)) {
 
     Object.keys(override).forEach(function(overrideKey) {
 
-      var overrideProp = override[overrideKey];
+      let overrideProp = override[overrideKey];
 
       //Only copy over props that are not objects
       if (!isObject(overrideProp) || Array.isArray(overrideProp)) {

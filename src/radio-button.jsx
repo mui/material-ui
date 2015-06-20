@@ -1,11 +1,11 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var EnhancedSwitch = require('./enhanced-switch');
-var RadioButtonOff = require('./svg-icons/toggle-radio-button-off');
-var RadioButtonOn = require('./svg-icons/toggle-radio-button-on');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let EnhancedSwitch = require('./enhanced-switch');
+let RadioButtonOff = require('./svg-icons/toggle-radio-button-off');
+let RadioButtonOn = require('./svg-icons/toggle-radio-button-on');
 
-var RadioButton = React.createClass({
+let RadioButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -24,7 +24,7 @@ var RadioButton = React.createClass({
   },
 
   getStyles: function() {
-    var styles = {
+    let styles = {
       icon: {
           height: this.getTheme().size,
           width: this.getTheme().size
@@ -66,45 +66,45 @@ var RadioButton = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       onCheck,
       ...other
     } = this.props;
 
-    var styles = this.getStyles();
-    var onStyles =
+    let styles = this.getStyles();
+    let onStyles =
       this.mergeAndPrefix(
         styles.target,
         this.props.checked && styles.targetWhenChecked,
         this.props.iconStyle,
         this.props.disabled && styles.targetWhenDisabled);
-    var offStyles =
+    let offStyles =
       this.mergeAndPrefix(
         styles.fill,
         this.props.checked && styles.fillWhenChecked,
         this.props.iconStyle,
         this.props.disabled && styles.fillWhenDisabled);
 
-    var radioButtonElement = (
+    let radioButtonElement = (
       <div>
           <RadioButtonOff style={onStyles} />
           <RadioButtonOn style={offStyles} />
       </div>
     );
 
-    var rippleColor = this.props.checked ? this.getTheme().checkedColor : this.getTheme().borderColor;
+    let rippleColor = this.props.checked ? this.getTheme().checkedColor : this.getTheme().borderColor;
 
-    var iconStyle = this.mergeAndPrefix(
+    let iconStyle = this.mergeAndPrefix(
       styles.icon,
       this.props.iconStyle
     );
 
-    var labelStyle = this.mergeAndPrefix(
+    let labelStyle = this.mergeAndPrefix(
       styles.label,
       this.props.labelStyle
     );
 
-    var enhancedSwitchProps = {
+    let enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "radio",
       switched: this.props.checked || false,

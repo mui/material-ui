@@ -1,10 +1,21 @@
-var React = require('react');
-var mui = require('mui');
-var ComponentDoc = require('../../component-doc.jsx');
-var extend = mui.Utils.Extend;
-var Colors = mui.Styles.Colors;
-var Typography = mui.Styles.Typography;
-var {ClearFix, FlatButton, FloatingActionButton, FontIcon, RaisedButton, Tab, Tabs} = mui;
+let React = require('react');
+let ComponentDoc = require('../../component-doc.jsx');
+let mui = require('mui');
+
+let {
+  ClearFix,
+  FlatButton,
+  FloatingActionButton,
+  FontIcon,
+  RaisedButton,
+  Styles,
+  Tab,
+  Tabs,
+  Utils
+} = mui;
+let extend = Utils.Extend;
+let { Colors, Typography } = Styles;
+
 
 class ButtonPage extends React.Component {
 
@@ -251,7 +262,7 @@ class ButtonPage extends React.Component {
   }
 
   getStyles() {
-    var styles = {
+    let styles = {
       container: {
         textAlign: 'center',
         marginBottom: '16px'
@@ -322,7 +333,7 @@ class ButtonPage extends React.Component {
   }
 
   render() {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
     return (
       <div>
         <h2 style={styles.headline}>Buttons</h2>

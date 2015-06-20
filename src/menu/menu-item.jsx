@@ -1,15 +1,15 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var FontIcon = require('../font-icon');
-var Toggle = require('../toggle');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let FontIcon = require('../font-icon');
+let Toggle = require('../toggle');
 
-var Types = {
+let Types = {
   LINK: 'LINK',
   SUBHEADER: 'SUBHEADER',
   NESTED: 'NESTED'
 };
 
-var MenuItem = React.createClass({
+let MenuItem = React.createClass({
 
   mixins: [StylePropable],
 
@@ -56,7 +56,7 @@ var MenuItem = React.createClass({
   },
 
   getStyles: function() {
-    var styles = {
+    let styles = {
       root: {
         userSelect: 'none',
         cursor: 'pointer',
@@ -113,14 +113,14 @@ var MenuItem = React.createClass({
   },
 
   render: function() {
-    var icon;
-    var data;
-    var iconRight;
-    var attribute;
-    var number;
-    var toggleElement;
+    let icon;
+    let data;
+    let iconRight;
+    let attribute;
+    let number;
+    let toggleElement;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
     if (this.props.iconClassName) icon = <FontIcon style={this.mergeAndPrefix(styles.icon, this.props.iconStyle)} className={this.props.iconClassName} />;
     if (this.props.iconRightClassName) iconRight = <FontIcon style={this.mergeAndPrefix(styles.iconRight, this.props.iconRightStyle)} className={this.props.iconRightClassName} />;
@@ -129,7 +129,7 @@ var MenuItem = React.createClass({
     if (this.props.attribute !== undefined) attribute = <span style={this.mergeAndPrefix(styles.style)}>{this.props.attribute}</span>;
 
     if (this.props.toggle) {
-      var {
+      let {
         toggle,
         onTouchTap,
         onToggle,

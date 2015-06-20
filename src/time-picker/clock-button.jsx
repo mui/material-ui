@@ -1,9 +1,9 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var EnhancedButton = require('../enhanced-button');
-var Transitions = require('../styles/transitions');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let EnhancedButton = require('../enhanced-button');
+let Transitions = require('../styles/transitions');
 
-var ClockButton = React.createClass({
+let ClockButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -32,11 +32,11 @@ var ClockButton = React.createClass({
   },
   render: function() {
 
-    var {
+    let {
       className,
       ...other} = this.props;
 
-    var styles = {
+    let styles = {
       root: {
         position: "absolute",
         bottom: "65px",

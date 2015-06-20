@@ -1,6 +1,6 @@
-var React = require('react');
+let React = require('react');
 
-var AppCanvas = React.createClass({
+let AppCanvas = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object
@@ -8,13 +8,13 @@ var AppCanvas = React.createClass({
 
   render: function() {
 
-    var styles = {
+    let styles = {
       height: '100%',
       backgroundColor: this.context.muiTheme.palette.canvasColor,
       WebkitFontSmoothing: 'antialiased'
     };
 
-    var newChildren = React.Children.map(this.props.children, function(currentChild) {
+    let newChildren = React.Children.map(this.props.children, function(currentChild) {
       if (!currentChild) { // If undefined, skip it
         return;
       }

@@ -1,16 +1,16 @@
-var React = require('react');
-var mui = require('mui');
-var Paper = mui.Paper;
-var ClearFix = mui.ClearFix;
-var StyleResizable = mui.Mixins.StyleResizable;
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react');
+let { ClearFix, Mixins, Paper } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
 
-var PaperPage = React.createClass ({
+let { StyleResizable } = Mixins;
+
+
+let PaperPage = React.createClass ({
 
   mixins: [StyleResizable],
 
   getStyles: function() {
-    var styles = {
+    let styles = {
       root: {
         height: '100px',
         width: '100px',
@@ -37,7 +37,7 @@ var PaperPage = React.createClass ({
 
   render: function() {
 
-    var code = [
+    let code = [
       '//Rounded Corners',
       '<Paper zDepth={1}>',
       '  <p>zDepth=1</p>',
@@ -88,7 +88,7 @@ var PaperPage = React.createClass ({
       '</Paper>'
       ].join('\n');
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [
@@ -127,7 +127,7 @@ var PaperPage = React.createClass ({
       }
     ];
 
-    var groupStyle = this.getStyles().group;
+    let groupStyle = this.getStyles().group;
 
     return (
       <ComponentDoc
@@ -137,13 +137,13 @@ var PaperPage = React.createClass ({
 
         <div>
           <ClearFix style={groupStyle}>
-      	    {this._getGroupDefault()}
+            {this._getGroupDefault()}
           </ClearFix>
           <ClearFix style={groupStyle}>
-      	    {this._getGroupRounded()}
+            {this._getGroupRounded()}
           </ClearFix>
           <ClearFix style={groupStyle}>
-      	    {this._getGroupCircle()}
+            {this._getGroupCircle()}
           </ClearFix>
         </div>
 
@@ -156,9 +156,9 @@ var PaperPage = React.createClass ({
   },
 
   _createPaperElement: function(zDepth, text) {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
     return (
-      <Paper 
+      <Paper
         style={styles.root}
         zDepth={zDepth}>
         {this._createParagraphElement(text)}
@@ -167,24 +167,24 @@ var PaperPage = React.createClass ({
   },
 
   _getGroupDefault: function() {
-    var elements = [];
-    for (var i = 1; i <= 5; i++) {
+    let elements = [];
+    for (let i = 1; i <= 5; i++) {
       elements.push(this._createPaperElement(i, "zDepth="+i));
     }
     return elements;
   },
 
   _getGroupRounded: function() {
-    var elements = [];
-    for (var i = 1; i <= 5; i++) {
+    let elements = [];
+    for (let i = 1; i <= 5; i++) {
       elements.push(React.cloneElement(this._createPaperElement(i, "rounded=false"), {rounded: false}));
     }
     return elements;
   },
 
   _getGroupCircle: function() {
-    var elements = [];
-    for (var i = 1; i <= 5; i++) {
+    let elements = [];
+    for (let i = 1; i <= 5; i++) {
       elements.push(React.cloneElement(this._createPaperElement(i, "circle=true"), {circle: true}));
     }
     return elements;

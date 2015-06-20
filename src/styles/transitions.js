@@ -1,4 +1,4 @@
-var AutoPrefix = require('./auto-prefix');
+let AutoPrefix = require('./auto-prefix');
 
 module.exports = {
 
@@ -14,12 +14,12 @@ module.exports = {
   },
 
   create: function(duration, property, delay, easeFunction){
-    
+
     duration = duration || '450ms';
     property = property || 'all';
     delay = delay || '0ms';
     easeFunction = easeFunction || "linear";
-    
+
     return AutoPrefix.singleHyphened(property) + ' ' +
       duration + ' ' +
       easeFunction + ' ' +

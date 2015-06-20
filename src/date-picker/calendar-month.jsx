@@ -1,9 +1,9 @@
-var React = require('react');
-var DateTime = require('../utils/date-time');
-var DayButton = require('./day-button');
-var ClearFix = require('../clearfix');
+let React = require('react');
+let DateTime = require('../utils/date-time');
+let DayButton = require('./day-button');
+let ClearFix = require('../clearfix');
 
-var CalendarMonth = React.createClass({
+let CalendarMonth = React.createClass({
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
@@ -16,7 +16,7 @@ var CalendarMonth = React.createClass({
   },
 
   render: function() {
-    var styles = {
+    let styles = {
       lineHeight: '32px',
       textAlign: 'center',
       padding: '8px 14px 0 14px',
@@ -34,7 +34,7 @@ var CalendarMonth = React.createClass({
   },
 
   _getWeekElements: function() {
-    var weekArray = DateTime.getWeekArray(this.props.displayDate);
+    let weekArray = DateTime.getWeekArray(this.props.displayDate);
 
     return weekArray.map(function(week, i) {
       return (
@@ -47,9 +47,9 @@ var CalendarMonth = React.createClass({
 
   _getDayElements: function(week, i) {
     return week.map(function(day, j) {
-      var isSameDate = DateTime.isEqualDate(this.props.selectedDate, day);
-      var disabled = this._shouldDisableDate(day);
-      var selected = !disabled && isSameDate;
+      let isSameDate = DateTime.isEqualDate(this.props.selectedDate, day);
+      let disabled = this._shouldDisableDate(day);
+      let selected = !disabled && isSameDate;
 
       if (isSameDate) {
         if (disabled) {
@@ -77,7 +77,7 @@ var CalendarMonth = React.createClass({
 
   _shouldDisableDate: function(day) {
     if (day === null) return false;
-    var disabled = !DateTime.isBetweenDates(day, this.props.minDate, this.props.maxDate);
+    let disabled = !DateTime.isBetweenDates(day, this.props.minDate, this.props.maxDate);
     if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
 
     return disabled;

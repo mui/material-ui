@@ -1,13 +1,13 @@
-var React = require('react');
-var Router = require('react-router');
-var Link = Router.Link;
-var mui = require('mui');
-var Paper = mui.Paper;
+let React = require('react');
+let Router = require('react-router');
+let { Paper, Mixins, Styles } = require('mui');
 
-var {StylePropable, StyleResizable} = mui.Mixins;
-var {Colors, Spacing, Transitions, Typography} = mui.Styles;
+let Link = Router.Link;
+let { StylePropable, StyleResizable } = Mixins;
+let { Colors, Spacing, Transitions, Typography } = Styles;
 
-var HomeFeature = React.createClass({
+
+let HomeFeature = React.createClass({
 
   mixins: [StylePropable, StyleResizable],
 
@@ -33,9 +33,9 @@ var HomeFeature = React.createClass({
   },
 
   getStyles: function() {
-    var desktopGutter = Spacing.desktopGutter;
-    var desktopKeylineIncrement = Spacing.desktopKeylineIncrement;
-    var styles = {
+    let desktopGutter = Spacing.desktopGutter;
+    let desktopKeylineIncrement = Spacing.desktopKeylineIncrement;
+    let styles = {
       root: {
         transition: Transitions.easeOut(),
         maxWidth: '300px',
@@ -63,7 +63,7 @@ var HomeFeature = React.createClass({
         textAlign: 'center',
         margin: '0px',
         padding: '0px',
-        lineHeight: desktopKeylineIncrement + 'px'        
+        lineHeight: desktopKeylineIncrement + 'px'
       },
       rootWhenLastChild: {
         marginBottom: '0px'
@@ -77,7 +77,7 @@ var HomeFeature = React.createClass({
       }
     };
 
-    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) || 
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
         this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
       styles.root = this.mergeAndPrefix(
         styles.root,
@@ -91,12 +91,12 @@ var HomeFeature = React.createClass({
   },
 
   render: function() {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
     return (
-      <Paper 
+      <Paper
         zDepth={this.state.zDepth}
-        onMouseOver={this._onMouseOver} 
+        onMouseOver={this._onMouseOver}
         onMouseOut={this._onMouseOut}
         style={this.mergeAndPrefix(
           styles.root,

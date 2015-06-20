@@ -1,13 +1,13 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var WindowListenable = require('../mixins/window-listenable');
-var CssEvent = require('../utils/css-event');
-var KeyCode = require('../utils/key-code');
-var Calendar = require('./calendar');
-var DialogWindow = require('../dialog-window');
-var FlatButton = require('../flat-button');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let WindowListenable = require('../mixins/window-listenable');
+let CssEvent = require('../utils/css-event');
+let KeyCode = require('../utils/key-code');
+let Calendar = require('./calendar');
+let DialogWindow = require('../dialog-window');
+let FlatButton = require('../flat-button');
 
-var DatePickerDialog = React.createClass({
+let DatePickerDialog = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
@@ -40,14 +40,14 @@ var DatePickerDialog = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       initialDate,
       onAccept,
       style,
       ...other
     } = this.props;
 
-    var styles = {
+    let styles = {
       root: {
         fontSize: '14px',
         color: this.context.muiTheme.component.datePicker.calendarTextColor
@@ -62,7 +62,7 @@ var DatePickerDialog = React.createClass({
       }
     };
 
-    var actions = [
+    let actions = [
       <FlatButton
         key={0}
         label="Cancel"

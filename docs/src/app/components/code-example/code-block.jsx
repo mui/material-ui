@@ -1,7 +1,8 @@
-var React = require('react');
-var hljs = require('highlight.js');
-var mui = require('mui');
-var Spacing = mui.Styles.Spacing;
+let React = require('react');
+let hljs = require('highlight.js');
+let { Styles } = require('mui');
+let { Spacing } = Styles;
+
 
 class CodeBlock extends React.Component {
 
@@ -20,7 +21,7 @@ class CodeBlock extends React.Component {
   }
 
   getStyles() {
-    var borderColor = this.context.muiTheme.palette.borderColor;
+    let borderColor = this.context.muiTheme.palette.borderColor;
     return {
       padding: Spacing.desktopGutter,
       margin: '0',

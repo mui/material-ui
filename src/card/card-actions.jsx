@@ -1,7 +1,7 @@
-var React = require('react');
-var Styles = require('../styles');
+let React = require('react');
+let Styles = require('../styles');
 
-var CardActions = React.createClass({
+let CardActions = React.createClass({
   getStyles: function () {
     return {
       root: {
@@ -10,9 +10,9 @@ var CardActions = React.createClass({
     }
   },
   render: function () {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var children = React.Children.map(this.props.children, function (child) {
+    let children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
         style: {marginRight: 8}
       });

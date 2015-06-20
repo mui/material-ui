@@ -1,6 +1,6 @@
 // To include this file in your project:
-// var mui = require('mui');
-// var Colors = mui.Styles.Colors;
+// let mui = require('mui');
+// let Colors = mui.Styles.Colors;
 
 module.exports = {
 

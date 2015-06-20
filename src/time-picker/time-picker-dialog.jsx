@@ -1,15 +1,15 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var WindowListenable = require('../mixins/window-listenable');
-var KeyCode = require('../utils/key-code');
-var Clock = require('./clock');
-var DialogWindow = require('../dialog-window');
-var FlatButton = require('../flat-button');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let WindowListenable = require('../mixins/window-listenable');
+let KeyCode = require('../utils/key-code');
+let Clock = require('./clock');
+let DialogWindow = require('../dialog-window');
+let FlatButton = require('../flat-button');
 
-var TimePickerDialog = React.createClass({
+let TimePickerDialog = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
-  
+
   contextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -25,19 +25,19 @@ var TimePickerDialog = React.createClass({
     'keyup': '_handleWindowKeyUp'
   },
 
- 
+
   getTheme: function() {
     return this.context.muiTheme.component.timePicker;
   },
   render: function() {
-    var {
+    let {
       initialTime,
       onAccept,
       format,
       ...other
     } = this.props;
-   
-    var styles = {
+
+    let styles = {
       root: {
         fontSize: "14px",
         color: this.getTheme().clockColor,
@@ -46,8 +46,8 @@ var TimePickerDialog = React.createClass({
         width: "280px",
       }
     };
-   
-    var actions = [
+
+    let actions = [
       <FlatButton
         key={0}
         label="Cancel"
@@ -105,7 +105,7 @@ var TimePickerDialog = React.createClass({
   },
 
   _handleDialogDismiss: function() {
-   
+
 
     if(this.props.onDismiss) {
       this.props.onDismiss();
@@ -119,7 +119,7 @@ var TimePickerDialog = React.createClass({
           this._handleOKTouchTap();
           break;
       }
-    } 
+    }
   }
 
 });

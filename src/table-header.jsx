@@ -1,7 +1,7 @@
-var React = require('react'),
+let React = require('react'),
   Classable = require('./mixins/classable');
 
-var TableHeader = React.createClass({
+let TableHeader = React.createClass({
 
   mixins: [Classable],
 
@@ -15,7 +15,7 @@ var TableHeader = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-table-header');
+    let classes = this.getClasses('mui-table-header');
 
     return (
       <div className={classes}>
@@ -28,11 +28,11 @@ var TableHeader = React.createClass({
   },
 
   _getChildren: function() {
-    var children = [],
+    let children = [],
       headerItem,
       itemComponent
 
-    for (var i=0; i < this.props.headerItems.length; i++) {
+    for (let i=0; i < this.props.headerItems.length; i++) {
       headerItem = this.props.headerItems[i];
 
       itemComponent = (

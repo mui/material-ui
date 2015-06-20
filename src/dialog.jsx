@@ -1,9 +1,9 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Spacing = require('./styles/spacing');
-var DialogWindow = require('./dialog-window');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Spacing = require('./styles/spacing');
+let DialogWindow = require('./dialog-window');
 
-var Dialog = React.createClass({
+let Dialog = React.createClass({
 
   mixins: [StylePropable],
 
@@ -17,8 +17,8 @@ var Dialog = React.createClass({
   },
 
   getStyles: function() {
-    var gutter = Spacing.desktopGutter + 'px ';
-    var styles = {
+    let gutter = Spacing.desktopGutter + 'px ';
+    let styles = {
       title: {
         margin: 0,
         padding: gutter + gutter + '0 ' + gutter,
@@ -35,15 +35,15 @@ var Dialog = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       className,
       contentInnerStyle,
       ...other
     } = this.props;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var title;
+    let title;
     if (this.props.title) {
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.

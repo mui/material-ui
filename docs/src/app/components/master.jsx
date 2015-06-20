@@ -1,15 +1,13 @@
-var React = require('react');
-var Router = require('react-router');
-var RouteHandler = Router.RouteHandler;
-var AppLeftNav = require('./app-left-nav.jsx');
-var FullWidthSection = require('./full-width-section.jsx');
-var mui = require('mui');
+let React = require('react');
+let Router = require('react-router');
+let AppLeftNav = require('./app-left-nav.jsx');
+let FullWidthSection = require('./full-width-section.jsx');
+let { AppBar, AppCanvas, IconButton, Menu, Styles } = require('mui');
 
-var Colors = mui.Styles.Colors;
-var Typography = mui.Styles.Typography;
-var ThemeManager = new mui.Styles.ThemeManager();
+let RouteHandler = Router.RouteHandler;
+let { Colors, Typography } = Styles;
+let ThemeManager = new Styles.ThemeManager();
 
-var { AppBar, AppCanvas, Menu, IconButton } = mui;
 
 class Master extends React.Component {
 
@@ -25,7 +23,7 @@ class Master extends React.Component {
   }
 
   getStyles() {
-    var darkWhite = Colors.darkWhite;
+    let darkWhite = Colors.darkWhite;
     return {
       footer: {
         backgroundColor: Colors.grey900,
@@ -47,13 +45,13 @@ class Master extends React.Component {
   }
 
   render() {
-    var styles = this.getStyles();
-    var title =
+    let styles = this.getStyles();
+    let title =
       this.context.router.isActive('get-started') ? 'Get Started' :
       this.context.router.isActive('customization') ? 'Customization' :
       this.context.router.isActive('components') ? 'Components' : '';
 
-    var githubButton = (
+    let githubButton = (
       <IconButton
         iconStyle={styles.iconButton}
         iconClassName="muidocs-icon-custom-github"

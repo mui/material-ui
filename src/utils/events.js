@@ -1,13 +1,13 @@
 module.exports = {
 
   once: function(el, type, callback) {
-    var typeArray = type.split(' ');
-    var recursiveFunction = function(e){
+    let typeArray = type.split(' ');
+    let recursiveFunction = function(e){
       e.target.removeEventListener(e.type, recursiveFunction);
       return callback(e);
     };
 
-    for (var i = typeArray.length - 1; i >= 0; i--) {
+    for (let i = typeArray.length - 1; i >= 0; i--) {
       this.on(el, typeArray[i], recursiveFunction);
     }
   },

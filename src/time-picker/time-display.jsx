@@ -1,7 +1,7 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
-var TimeDisplay = React.createClass({
+let TimeDisplay = React.createClass({
 
   mixins: [StylePropable],
 
@@ -28,7 +28,7 @@ var TimeDisplay = React.createClass({
       };
   },
   componentWillReceiveProps: function(nextProps) {
-    var direction;
+    let direction;
 
     if (nextProps.selectedTime !== this.props.selectedTime) {
       direction = nextProps.selectedTime > this.props.selectedTime ? 'up' : 'down';
@@ -38,8 +38,8 @@ var TimeDisplay = React.createClass({
     }
   },
   sanitizeTime: function() {
-    var hour = this.props.selectedTime.getHours();
-    var min = this.props.selectedTime.getMinutes().toString();
+    let hour = this.props.selectedTime.getHours();
+    let min = this.props.selectedTime.getMinutes().toString();
 
     if(this.props.format == "ampm"){
 
@@ -58,41 +58,41 @@ var TimeDisplay = React.createClass({
   },
   render: function() {
 
-		var {
-			selectedTime,
-			mode,
-			...other
-		} = this.props;
+    let {
+      selectedTime,
+      mode,
+      ...other
+    } = this.props;
 
-		var styles = {
-			root: {
-				textAlign: "center",
-				position: "relative",
-				width: "280px",
-				height: "100%",
-			},
+    let styles = {
+      root: {
+        textAlign: "center",
+        position: "relative",
+        width: "280px",
+        height: "100%",
+      },
 
-			time: {
-				margin: "6px 0",
-				lineHeight: "58px",
-				height: "58px",
-				fontSize: "58px",
-			},
+      time: {
+        margin: "6px 0",
+        lineHeight: "58px",
+        height: "58px",
+        fontSize: "58px",
+      },
 
-			box: {
-				padding: "16px 0",
-		    backgroundColor: this.getTheme().color,
-		    color: this.getTheme().textColor,
-			},
-
-
-			hour: {},
-
-			minute: {}
-		}
+      box: {
+        padding: "16px 0",
+        backgroundColor: this.getTheme().color,
+        color: this.getTheme().textColor,
+      },
 
 
-    var [hour, min] =  this.sanitizeTime();
+      hour: {},
+
+      minute: {}
+    }
+
+
+    let [hour, min] =  this.sanitizeTime();
 
     styles[mode].color = this.getTheme().accentColor;
 

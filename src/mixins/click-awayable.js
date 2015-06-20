@@ -1,6 +1,6 @@
-var React = require('react');
-var Events = require('../utils/events');
-var Dom = require('../utils/dom');
+let React = require('react');
+let Events = require('../utils/events');
+let Dom = require('../utils/dom');
 
 module.exports = {
 
@@ -15,8 +15,8 @@ module.exports = {
   },
 
   _checkClickAway: function(e) {
-    var el = React.findDOMNode(this); 
-    
+    let el = React.findDOMNode(this);
+
     // Check if the target is inside the current component
     if (e.target != el &&
         !Dom.isDescendant(el, e.target) &&

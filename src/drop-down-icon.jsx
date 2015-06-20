@@ -1,12 +1,12 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var Spacing = require('./styles/spacing');
-var ClickAwayable = require('./mixins/click-awayable');
-var FontIcon = require('./font-icon');
-var Menu = require('./menu/menu');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let Spacing = require('./styles/spacing');
+let ClickAwayable = require('./mixins/click-awayable');
+let FontIcon = require('./font-icon');
+let Menu = require('./menu/menu');
 
-var DropDownIcon = React.createClass({
+let DropDownIcon = React.createClass({
 
   mixins: [StylePropable, ClickAwayable],
 
@@ -36,8 +36,8 @@ var DropDownIcon = React.createClass({
   },
 
   getStyles: function() {
-    var iconWidth = 48;
-    var styles = {
+    let iconWidth = 48;
+    let styles = {
       root: {
         display: 'inline-block',
         width: iconWidth + 'px !important',
@@ -62,7 +62,7 @@ var DropDownIcon = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       style,
       children,
       menuItems,
@@ -72,7 +72,7 @@ var DropDownIcon = React.createClass({
       ...other
     } = this.props;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
     return (
       <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>

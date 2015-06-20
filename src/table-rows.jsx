@@ -1,8 +1,8 @@
-var React = require('react'),
+let React = require('react'),
   Classable = require('./mixins/classable'),
   TableRowsItem = require('./table-rows-item');
 
-var TableRow = React.createClass({
+let TableRow = React.createClass({
 
   mixins: [Classable],
 
@@ -16,7 +16,7 @@ var TableRow = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-table-rows');
+    let classes = this.getClasses('mui-table-rows');
 
     return (
       <div className={classes}>
@@ -26,15 +26,15 @@ var TableRow = React.createClass({
   },
 
   _getChildren: function() {
-    var children = [],
+    let children = [],
       rowItem,
       itemComponent
 
-    for (var i=0; i < this.props.rowItems.length; i++) {
+    for (let i=0; i < this.props.rowItems.length; i++) {
       rowItem = this.props.rowItems[i];
 
       /*
-      for(var prop in rowItem) {
+      for(let prop in rowItem) {
         if(rowItem.hasOwnProperty(prop)) {
           console.log(prop);
         }

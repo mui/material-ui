@@ -1,8 +1,10 @@
-var React = require('react');
-var mui = require('mui');
-var CodeBlock = require('../code-example/code-block.jsx');
-var FullWidthSection = require('../full-width-section.jsx');
-var {Spacing, Typography} = mui.Styles;
+let React = require('react');
+let { Paper, Styles } = require('mui');
+let CodeBlock = require('../code-example/code-block.jsx');
+let FullWidthSection = require('../full-width-section.jsx');
+
+let { Spacing, Typography } = Styles;
+
 
 class GetStarted extends React.Component {
 
@@ -41,12 +43,12 @@ class GetStarted extends React.Component {
   }
 
   render() {
-    var usageCode =
+    let usageCode =
           '/** MyAwesomeReactComponent.jsx */\n\n' +
-          'var React = require(\'react\'),\n' +
+          'let React = require(\'react\'),\n' +
           '  mui = require(\'material-ui\'),\n' +
           '  RaisedButton = mui.RaisedButton;\n\n' +
-          'var SomeAwesomeComponent = React.createClass({\n\n' +
+          'let SomeAwesomeComponent = React.createClass({\n\n' +
           '  childContextTypes: {\n' +
           '    muiTheme: React.PropTypes.object\n' +
           '  },\n\n' +
@@ -70,14 +72,14 @@ class GetStarted extends React.Component {
         '@import "node_modules/material-ui/src/less/components.less";',
 
       usageNotesCode =
-        'var injectTapEventPlugin = require("react-tap-event-plugin");\n\n' +
+        'let injectTapEventPlugin = require("react-tap-event-plugin");\n\n' +
         '//Needed for onTouchTap\n' +
         '//Can go away when react 1.0 release\n' +
         '//Check this repo:\n' +
         '//https://github.com/zilverline/react-tap-event-plugin\n' +
         'injectTapEventPlugin();\n';
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
     return (
       <div style={styles.root}>
@@ -103,9 +105,9 @@ class GetStarted extends React.Component {
             listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
             sure to inject this plugin at the start of your app.
           </p>
-          <mui.Paper style={styles.codeExample}>
+          <Paper style={styles.codeExample}>
             <CodeBlock>{usageNotesCode}</CodeBlock>
-          </mui.Paper>
+          </Paper>
 
           <h3 style={styles.title}>Roboto Font</h3>
           <p>
@@ -117,9 +119,9 @@ class GetStarted extends React.Component {
           <p>
             Once material-ui is included in your project, you can use the components this way:
           </p>
-          <mui.Paper style={styles.codeExample}>
+          <Paper style={styles.codeExample}>
             <CodeBlock>{usageCode}</CodeBlock>
-          </mui.Paper>
+          </Paper>
           <h3 style={styles.title}>Theme</h3>
           <p>
             Please note that since v0.8.0, you also need to <a href="#/customization/themes">define a theme</a> for components to start working.

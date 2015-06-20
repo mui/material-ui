@@ -1,10 +1,10 @@
-var React = require('react');
+let React = require('react');
 
-var TabTemplate = React.createClass({
+let TabTemplate = React.createClass({
 
   render: function(){
 
-    var styles = {
+    let styles = {
       'height': '0px',
       'overflow': 'hidden',
       'width': '100%',

@@ -1,7 +1,7 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable.js');
-var Colors = require('../styles/colors.js')
-var Tab = React.createClass({
+let React = require('react');
+let StylePropable = require('../mixins/style-propable.js');
+let Colors = require('../styles/colors.js')
+let Tab = React.createClass({
 
   mixins: [StylePropable],
 
@@ -20,7 +20,7 @@ var Tab = React.createClass({
   },
 
   render: function(){
-    var styles = this.mergeAndPrefix({
+    let styles = this.mergeAndPrefix({
       'display': 'table-cell',
       'cursor': 'pointer',
       'textAlign': 'center',

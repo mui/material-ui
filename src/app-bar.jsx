@@ -1,11 +1,11 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Typography = require('./styles/typography');
-var IconButton = require('./icon-button');
-var NavigationMenu = require('./svg-icons/navigation-menu');
-var Paper = require('./paper');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Typography = require('./styles/typography');
+let IconButton = require('./icon-button');
+let NavigationMenu = require('./svg-icons/navigation-menu');
+let Paper = require('./paper');
 
-var AppBar = React.createClass({
+let AppBar = React.createClass({
 
   mixins: [StylePropable],
 
@@ -37,17 +37,17 @@ var AppBar = React.createClass({
   componentDidMount: function() {
     if (process.env.NODE_ENV !== 'production' &&
        (this.props.iconElementLeft && this.props.iconClassNameLeft)) {
-        var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
+        let warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
                       'defined. Please use one or the other.';
         console.warn(warning);
     }
   },
 
   getStyles: function() {
-    var spacing = this.context.muiTheme.spacing;
-    var themeVariables = this.context.muiTheme.component.appBar;
-    var iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
-    var styles = {
+    let spacing = this.context.muiTheme.spacing;
+    let themeVariables = this.context.muiTheme.component.appBar;
+    let iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
+    let styles = {
       root: {
         zIndex: 5,
         width: '100%',
@@ -89,12 +89,12 @@ var AppBar = React.createClass({
   },
 
   render: function() {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var title;
-    var menuElementLeft;
-    var menuElementRight;
-    var iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
+    let title;
+    let menuElementLeft;
+    let menuElementRight;
+    let iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
       marginRight: -16,
       marginLeft: 8
     }, this.props.iconStyleRight);
@@ -115,7 +115,7 @@ var AppBar = React.createClass({
           </div>
         );
       } else {
-        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
+        let child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
             style={this.mergeAndPrefix(styles.iconButton.style)}

@@ -1,7 +1,7 @@
-var React = require('react'),
+let React = require('react'),
   Classable = require('./mixins/classable');
 
-var TableRowItem = React.createClass({
+let TableRowItem = React.createClass({
 
   mixins: [Classable],
 
@@ -14,7 +14,7 @@ var TableRowItem = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('mui-table-rows-item');
+    let classes = this.getClasses('mui-table-rows-item');
 
     return (
       <div className={classes}>

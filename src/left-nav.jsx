@@ -1,14 +1,14 @@
-var React = require('react');
-var KeyCode = require('./utils/key-code');
-var StylePropable = require('./mixins/style-propable');
-var AutoPrefix = require('./styles/auto-prefix');
-var Transitions = require('./styles/transitions');
-var WindowListenable = require('./mixins/window-listenable');
-var Overlay = require('./overlay');
-var Paper = require('./paper');
-var Menu = require('./menu/menu');
+let React = require('react');
+let KeyCode = require('./utils/key-code');
+let StylePropable = require('./mixins/style-propable');
+let AutoPrefix = require('./styles/auto-prefix');
+let Transitions = require('./styles/transitions');
+let WindowListenable = require('./mixins/window-listenable');
+let Overlay = require('./overlay');
+let Paper = require('./paper');
+let Menu = require('./menu/menu');
 
-var LeftNav = React.createClass({
+let LeftNav = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
@@ -46,12 +46,12 @@ var LeftNav = React.createClass({
       swiping: false
     };
   },
-  
+
   componentDidMount: function() {
     this._updateMenuHeight();
     this._enableSwipeHandling();
   },
-  
+
   componentDidUpdate: function(prevProps, prevState) {
     this._updateMenuHeight();
     this._enableSwipeHandling();
@@ -87,8 +87,8 @@ var LeftNav = React.createClass({
   },
 
   getStyles: function() {
-    var x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX()) + 'px';
-    var styles = {
+    let x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX()) + 'px';
+    let styles = {
       root: {
         height: '100%',
         width: this.getTheme().width,
@@ -128,10 +128,10 @@ var LeftNav = React.createClass({
   },
 
   render: function() {
-    var selectedIndex = this.props.selectedIndex;
-    var overlay;
+    let selectedIndex = this.props.selectedIndex;
+    let overlay;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
     if (!this.props.docked) {
       overlay = <Overlay ref="overlay"
                          show={this.state.open}
@@ -149,7 +149,7 @@ var LeftNav = React.createClass({
           rounded={false}
           transitionEnabled={!this.state.swiping}
           style={this.mergeAndPrefix(
-            styles.root, 
+            styles.root,
             this.props.openRight && styles.rootWhenOpenRight,
             this.props.style)}>
             {this.props.header}
@@ -158,7 +158,7 @@ var LeftNav = React.createClass({
               style={this.mergeAndPrefix(styles.menu)}
               zDepth={0}
               menuItems={this.props.menuItems}
-              menuItemStyle={this.mergeAndPrefix(styles.menuItem)} 
+              menuItemStyle={this.mergeAndPrefix(styles.menuItem)}
               menuItemStyleLink={this.mergeAndPrefix(styles.menuItemLink)}
               menuItemStyleSubheader={this.mergeAndPrefix(styles.menuItemSubheader)}
               selectedIndex={selectedIndex}
@@ -167,12 +167,12 @@ var LeftNav = React.createClass({
       </div>
     );
   },
-  
+
   _updateMenuHeight: function() {
     if (this.props.header) {
-      var container = React.findDOMNode(this.refs.clickAwayableElement);
-      var menu = React.findDOMNode(this.refs.menuItems);
-      var menuHeight = container.clientHeight - menu.offsetTop;
+      let container = React.findDOMNode(this.refs.clickAwayableElement);
+      let menu = React.findDOMNode(this.refs.menuItems);
+      let menuHeight = container.clientHeight - menu.offsetTop;
       menu.style.height = menuHeight + 'px';
     }
   },
@@ -195,7 +195,7 @@ var LeftNav = React.createClass({
       this.close();
     }
   },
-  
+
   _onWindowResize: function(e) {
     this._updateMenuHeight();
   },
@@ -221,8 +221,8 @@ var LeftNav = React.createClass({
   },
 
   _onBodyTouchStart: function(e) {
-    var touchStartX = e.touches[0].pageX;
-    var touchStartY = e.touches[0].pageY;
+    let touchStartX = e.touches[0].pageX;
+    let touchStartY = e.touches[0].pageY;
     this.setState({
       maybeSwiping: true,
       touchStartX: touchStartX,
@@ -235,12 +235,12 @@ var LeftNav = React.createClass({
   },
 
   _onBodyTouchMove: function(e) {
-    var currentX = e.touches[0].pageX;
-    var currentY = e.touches[0].pageY;
+    let currentX = e.touches[0].pageX;
+    let currentY = e.touches[0].pageY;
 
     if (this.state.swiping) {
       e.preventDefault();
-      var translateX = Math.min(
+      let translateX = Math.min(
                          Math.max(
                            this._getTranslateMultiplier() * (currentX - this.state.swipeStartX),
                            0
@@ -248,17 +248,17 @@ var LeftNav = React.createClass({
                          this._getMaxTranslateX()
                        );
 
-      var leftNav = React.findDOMNode(this.refs.clickAwayableElement);
+      let leftNav = React.findDOMNode(this.refs.clickAwayableElement);
       leftNav.style[AutoPrefix.single('transform')] =
         'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
       this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
     } else if (this.state.maybeSwiping) {
-      var dXAbs = Math.abs(currentX - this.state.touchStartX);
-      var dYAbs = Math.abs(currentY - this.state.touchStartY);
+      let dXAbs = Math.abs(currentX - this.state.touchStartX);
+      let dYAbs = Math.abs(currentY - this.state.touchStartY);
       // If the user has moved his thumb ten pixels in either direction,
       // we can safely make an assumption about whether he was intending
       // to swipe or scroll.
-      var threshold = 10;
+      let threshold = 10;
 
       if (dXAbs > threshold && dYAbs <= threshold) {
         this.setState({
@@ -272,7 +272,7 @@ var LeftNav = React.createClass({
   },
 
   _onBodyTouchEnd: function() {
-    var shouldClose = false;
+    let shouldClose = false;
 
     if (this.state.swiping) shouldClose = true;
 
@@ -289,7 +289,7 @@ var LeftNav = React.createClass({
     document.body.removeEventListener('touchend', this._onBodyTouchEnd);
     document.body.removeEventListener('touchcancel', this._onBodyTouchEnd);
   }
-  
+
 });
 
 module.exports = LeftNav;

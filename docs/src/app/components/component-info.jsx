@@ -1,10 +1,11 @@
-var React = require('react');
-var mui = require('mui');
+let React = require('react');
+let { Mixins, Styles } = require('mui');
 
-var {Typography, Spacing, Colors} = mui.Styles;
-var {StyleResizable, StylePropable} = mui.Mixins;
+let { StyleResizable, StylePropable } = Mixins;
+let { Typography, Spacing, Colors } = Styles;
 
-var ComponentInfo = React.createClass({
+
+let ComponentInfo = React.createClass({
 
   mixins: [StyleResizable, StylePropable],
 
@@ -18,9 +19,9 @@ var ComponentInfo = React.createClass({
   },
 
   getStyles: function() {
-    var desktopGutter = Spacing.desktopGutter;
-    var borderColor = this.context.muiTheme.palette.borderColor;
-    var styles = {
+    let desktopGutter = Spacing.desktopGutter;
+    let borderColor = this.context.muiTheme.palette.borderColor;
+    let styles = {
       root: {
         //.mui-font-style-subhead-1
         fontSize: '15px',
@@ -95,7 +96,7 @@ var ComponentInfo = React.createClass({
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
       styles.name = this.mergeStyles(styles.name, styles.nameWhenMedium);
       styles.desc = this.mergeStyles(styles.desc, styles.descWhenMedium);
-    } 
+    }
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
       styles.td = this.mergeStyles(styles.td, styles.tdWhenLarge);
@@ -115,10 +116,10 @@ var ComponentInfo = React.createClass({
   },
 
   render: function() {
-    var propElements = [],
+    let propElements = [],
       typesSpan;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
     this.props.infoArray.forEach(function(info, i) {
 
       if (info.type) typesSpan = <span style={styles.type}>{info.type}</span>;
