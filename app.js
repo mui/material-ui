@@ -11065,6 +11065,7 @@ var Components = require('./components/pages/components.jsx');
 var AppBar = require('./components/pages/components/app-bar.jsx');
 var Avatars = require('./components/pages/components/avatars.jsx');
 var Buttons = require('./components/pages/components/buttons.jsx');
+var Cards = require('./components/pages/components/cards.jsx');
 var DatePicker = require('./components/pages/components/date-picker.jsx');
 var Dialog = require('./components/pages/components/dialog.jsx');
 var DropDownMenu = require('./components/pages/components/drop-down-menu.jsx');
@@ -11078,6 +11079,7 @@ var Progress = require('./components/pages/components/progress.jsx');
 var Sliders = require('./components/pages/components/sliders.jsx');
 var Snackbar = require('./components/pages/components/snackbar.jsx');
 var Switches = require('./components/pages/components/switches.jsx');
+var Table = require('./components/pages/components/table.jsx');
 var Tabs = require('./components/pages/components/tabs.jsx');
 var TextFields = require('./components/pages/components/text-fields.jsx');
 var TimePicker = require('./components/pages/components/time-picker.jsx');
@@ -11111,6 +11113,7 @@ var AppRoutes = React.createElement(
     React.createElement(Route, { name: 'appbar', handler: AppBar }),
     React.createElement(Route, { name: 'avatars', handler: Avatars }),
     React.createElement(Route, { name: 'buttons', handler: Buttons }),
+    React.createElement(Route, { name: 'cards', handler: Cards }),
     React.createElement(Route, { name: 'date-picker', handler: DatePicker }),
     React.createElement(Route, { name: 'dialog', handler: Dialog }),
     React.createElement(Route, { name: 'dropdown-menu', handler: DropDownMenu }),
@@ -11124,6 +11127,7 @@ var AppRoutes = React.createElement(
     React.createElement(Route, { name: 'sliders', handler: Sliders }),
     React.createElement(Route, { name: 'switches', handler: Switches }),
     React.createElement(Route, { name: 'snackbar', handler: Snackbar }),
+    React.createElement(Route, { name: 'table', handler: Table }),
     React.createElement(Route, { name: 'tabs', handler: Tabs }),
     React.createElement(Route, { name: 'text-fields', handler: TextFields }),
     React.createElement(Route, { name: 'time-picker', handler: TimePicker }),
@@ -11135,7 +11139,7 @@ var AppRoutes = React.createElement(
 
 module.exports = AppRoutes;
 
-},{"./components/master.jsx":137,"./components/pages/components.jsx":139,"./components/pages/components/app-bar.jsx":140,"./components/pages/components/avatars.jsx":141,"./components/pages/components/buttons.jsx":142,"./components/pages/components/date-picker.jsx":143,"./components/pages/components/dialog.jsx":144,"./components/pages/components/drop-down-menu.jsx":145,"./components/pages/components/icon-buttons.jsx":146,"./components/pages/components/icons.jsx":147,"./components/pages/components/left-nav.jsx":148,"./components/pages/components/lists.jsx":149,"./components/pages/components/menus.jsx":150,"./components/pages/components/paper.jsx":151,"./components/pages/components/progress.jsx":152,"./components/pages/components/sliders.jsx":153,"./components/pages/components/snackbar.jsx":154,"./components/pages/components/switches.jsx":155,"./components/pages/components/tabs.jsx":156,"./components/pages/components/text-fields.jsx":157,"./components/pages/components/time-picker.jsx":158,"./components/pages/components/toolbars.jsx":159,"./components/pages/customization.jsx":160,"./components/pages/customization/colors.jsx":161,"./components/pages/customization/inline-styles.jsx":162,"./components/pages/customization/themes.jsx":163,"./components/pages/get-started.jsx":164,"./components/pages/home.jsx":166,"react":399,"react-router":208}],130:[function(require,module,exports){
+},{"./components/master.jsx":137,"./components/pages/components.jsx":139,"./components/pages/components/app-bar.jsx":140,"./components/pages/components/avatars.jsx":141,"./components/pages/components/buttons.jsx":142,"./components/pages/components/cards.jsx":143,"./components/pages/components/date-picker.jsx":144,"./components/pages/components/dialog.jsx":145,"./components/pages/components/drop-down-menu.jsx":146,"./components/pages/components/icon-buttons.jsx":147,"./components/pages/components/icons.jsx":148,"./components/pages/components/left-nav.jsx":149,"./components/pages/components/lists.jsx":150,"./components/pages/components/menus.jsx":151,"./components/pages/components/paper.jsx":152,"./components/pages/components/progress.jsx":153,"./components/pages/components/sliders.jsx":154,"./components/pages/components/snackbar.jsx":155,"./components/pages/components/switches.jsx":156,"./components/pages/components/table.jsx":157,"./components/pages/components/tabs.jsx":158,"./components/pages/components/text-fields.jsx":159,"./components/pages/components/time-picker.jsx":160,"./components/pages/components/toolbars.jsx":161,"./components/pages/customization.jsx":162,"./components/pages/customization/colors.jsx":163,"./components/pages/customization/inline-styles.jsx":164,"./components/pages/customization/themes.jsx":165,"./components/pages/get-started.jsx":166,"./components/pages/home.jsx":168,"react":401,"react-router":210}],130:[function(require,module,exports){
 'use strict';
 
 (function () {
@@ -11171,7 +11175,7 @@ module.exports = AppRoutes;
   });
 })();
 
-},{"./app-routes.jsx":129,"react":399,"react-router":208,"react-tap-event-plugin":226}],131:[function(require,module,exports){
+},{"./app-routes.jsx":129,"react":401,"react-router":210,"react-tap-event-plugin":228}],131:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -11278,7 +11282,7 @@ AppLeftNav.contextTypes = {
 
 module.exports = AppLeftNav;
 
-},{"mui":427,"react":399,"react-router":208}],132:[function(require,module,exports){
+},{"mui":435,"react":401,"react-router":210}],132:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -11350,7 +11354,7 @@ CodeBlock.contextTypes = {
 
 module.exports = CodeBlock;
 
-},{"highlight.js":3,"mui":427,"react":399}],133:[function(require,module,exports){
+},{"highlight.js":3,"mui":435,"react":401}],133:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -11448,7 +11452,7 @@ CodeExample.contextTypes = {
 
 module.exports = CodeExample;
 
-},{"./code-block.jsx":132,"mui":427,"react":399}],134:[function(require,module,exports){
+},{"./code-block.jsx":132,"mui":435,"react":401}],134:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -11579,7 +11583,7 @@ var ComponentDoc = React.createClass({
 
 module.exports = ComponentDoc;
 
-},{"./code-example/code-example.jsx":133,"./component-info.jsx":135,"mui":427,"react":399}],135:[function(require,module,exports){
+},{"./code-example/code-example.jsx":133,"./component-info.jsx":135,"mui":435,"react":401}],135:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -11770,7 +11774,7 @@ var ComponentInfo = React.createClass({
 
 module.exports = ComponentInfo;
 
-},{"mui":427,"react":399}],136:[function(require,module,exports){
+},{"mui":435,"react":401}],136:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -11852,7 +11856,7 @@ var FullWidthSection = React.createClass({
 
 module.exports = FullWidthSection;
 
-},{"mui":427,"react":399}],137:[function(require,module,exports){
+},{"mui":435,"react":401}],137:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -11985,7 +11989,7 @@ Master.childContextTypes = {
 
 module.exports = Master;
 
-},{"./app-left-nav.jsx":131,"./full-width-section.jsx":136,"mui":427,"react":399,"react-router":208}],138:[function(require,module,exports){
+},{"./app-left-nav.jsx":131,"./full-width-section.jsx":136,"mui":435,"react":401,"react-router":210}],138:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -12047,7 +12051,7 @@ var MobileTearSheet = React.createClass({
 
 module.exports = MobileTearSheet;
 
-},{"mui":427,"react":399}],139:[function(require,module,exports){
+},{"mui":435,"react":401}],139:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -12073,7 +12077,7 @@ var Components = (function (_React$Component) {
   _createClass(Components, [{
     key: 'render',
     value: function render() {
-      var menuItems = [{ route: 'appbar', text: 'AppBar' }, { route: 'avatars', text: 'Avatars' }, { route: 'buttons', text: 'Buttons' }, { route: 'date-picker', text: 'Date Picker' }, { route: 'dialog', text: 'Dialog' }, { route: 'dropdown-menu', text: 'Dropdown Menu' }, { route: 'icons', text: 'Icons' }, { route: 'icon-buttons', text: 'Icon Buttons' }, { route: 'left-nav', text: 'Left Nav' }, { route: 'lists', text: 'Lists' }, { route: 'menus', text: 'Menus' }, { route: 'paper', text: 'Paper' }, { route: 'progress', text: 'Progress' }, { route: 'sliders', text: 'Sliders' }, { route: 'switches', text: 'Switches' }, { route: 'snackbar', text: 'Snackbar' }, { route: 'tabs', text: 'Tabs' }, { route: 'text-fields', text: 'Text Fields' }, { route: 'time-picker', text: 'Time Picker' }, { route: 'toolbars', text: 'Toolbars' }];
+      var menuItems = [{ route: 'appbar', text: 'AppBar' }, { route: 'avatars', text: 'Avatars' }, { route: 'buttons', text: 'Buttons' }, { route: 'cards', text: 'Cards' }, { route: 'date-picker', text: 'Date Picker' }, { route: 'dialog', text: 'Dialog' }, { route: 'dropdown-menu', text: 'Dropdown Menu' }, { route: 'icons', text: 'Icons' }, { route: 'icon-buttons', text: 'Icon Buttons' }, { route: 'left-nav', text: 'Left Nav' }, { route: 'lists', text: 'Lists' }, { route: 'menus', text: 'Menus' }, { route: 'paper', text: 'Paper' }, { route: 'progress', text: 'Progress' }, { route: 'sliders', text: 'Sliders' }, { route: 'switches', text: 'Switches' }, { route: 'snackbar', text: 'Snackbar' }, { route: 'table', text: 'Table' }, { route: 'tabs', text: 'Tabs' }, { route: 'text-fields', text: 'Text Fields' }, { route: 'time-picker', text: 'Time Picker' }, { route: 'toolbars', text: 'Toolbars' }];
 
       return React.createElement(PageWithNav, { menuItems: menuItems });
     }
@@ -12084,7 +12088,7 @@ var Components = (function (_React$Component) {
 
 module.exports = Components;
 
-},{"./page-with-nav.jsx":167,"react":399}],140:[function(require,module,exports){
+},{"./page-with-nav.jsx":169,"react":401}],140:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -12151,9 +12155,9 @@ var AppBarPage = (function (_React$Component) {
         desc: 'Determines whether or not to display the Menu icon next to ' + 'the title. Setting this prop to false will hide the icon.'
       }, {
         name: 'title',
-        type: 'string',
+        type: 'node',
         header: 'optional',
-        desc: 'A string of text that is displayed on the app bar.'
+        desc: 'The title to display on the app bar. Could be number, string, element or an array containing these types.'
       }, {
         name: 'zDepth',
         type: 'number',
@@ -12196,7 +12200,7 @@ var AppBarPage = (function (_React$Component) {
 
 module.exports = AppBarPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],141:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],141:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -12330,7 +12334,7 @@ var AvatarsPage = (function (_React$Component) {
 
 module.exports = AvatarsPage;
 
-},{"../../component-doc.jsx":134,"../../svg-icons/file-folder.jsx":179,"mui":427,"react":399}],142:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"../../svg-icons/file-folder.jsx":181,"mui":435,"react":401}],142:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -12345,6 +12349,7 @@ var React = require('react');
 var mui = require('mui');
 var ComponentDoc = require('../../component-doc.jsx');
 var extend = mui.Utils.Extend;
+var Colors = mui.Styles.Colors;
 var Typography = mui.Styles.Typography;
 var ClearFix = mui.ClearFix;
 var FlatButton = mui.FlatButton;
@@ -12371,10 +12376,20 @@ var ButtonPage = (function (_React$Component) {
     this.componentInfo = [{
       name: 'Flat Button',
       infoArray: [{
+        name: 'containerElement',
+        type: 'oneOfType [string, element]',
+        header: 'default: button',
+        desc: 'This component will render a button element by default and an anchor element if linkButton is set to true. ' + 'However, you can override this behavior by passing in a string or another react element into this prop. This is ' + 'useful for generating link buttons with the react router link element.'
+      }, {
         name: 'disabled',
         type: 'bool',
         header: 'optional',
         desc: 'Disables the button if set to true.'
+      }, {
+        name: 'hoverColor',
+        type: 'string',
+        header: 'optional',
+        desc: 'Override the inline hover color of the button\'s root element.'
       }, {
         name: 'label or children',
         type: 'string (label) or HTML/React elements (children)',
@@ -12401,24 +12416,24 @@ var ButtonPage = (function (_React$Component) {
         header: 'default: false',
         desc: 'If true, the button will use the secondary button colors.'
       }, {
-        name: 'style',
-        type: 'object',
-        header: 'optional',
-        desc: 'Override the inline-styles of the button\'s root element.'
-      }, {
-        name: 'hoverColor',
-        type: 'string',
-        header: 'optional',
-        desc: 'Override the inline hover color of the button\'s root element.'
-      }, {
         name: 'rippleColor',
         type: 'string',
         header: 'optional',
         desc: 'Override the inline color of the button\'s ripple element.'
+      }, {
+        name: 'style',
+        type: 'object',
+        header: 'optional',
+        desc: 'Override the inline-styles of the button\'s root element.'
       }]
     }, {
       name: 'Raised Button',
       infoArray: [{
+        name: 'containerElement',
+        type: 'oneOfType [string, element]',
+        header: 'default: button',
+        desc: 'This component will render a button element by default and an anchor element if linkButton is set to true. ' + 'However, you can override this behavior by passing in a string or another react element into this prop. This is ' + 'useful for generating link buttons with the react router link element.'
+      }, {
         name: 'disabled',
         type: 'bool',
         header: 'optional',
@@ -12457,6 +12472,11 @@ var ButtonPage = (function (_React$Component) {
     }, {
       name: 'Floating Action Button',
       infoArray: [{
+        name: 'containerElement',
+        type: 'oneOfType [string, element]',
+        header: 'default: button',
+        desc: 'This component will render a button element by default and an anchor element if linkButton is set to true. ' + 'However, you can override this behavior by passing in a string or another react element into this prop. This is ' + 'useful for generating link buttons with the react router link element.'
+      }, {
         name: 'disabled',
         type: 'bool',
         header: 'optional',
@@ -12549,7 +12569,8 @@ var ButtonPage = (function (_React$Component) {
           verticalAlign: 'middle',
           float: 'left',
           paddingLeft: '12px',
-          lineHeight: '36px'
+          lineHeight: '36px',
+          color: Colors.cyan500
         },
         exampleButtonIcon: {
           color: Typography.textFullWhite
@@ -12763,7 +12784,97 @@ var ButtonPage = (function (_React$Component) {
 
 module.exports = ButtonPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],143:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],143:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+var React = require('react');
+var mui = require('mui');
+var ComponentDoc = require('../../component-doc.jsx');
+var Card = mui.Card;
+var CardMedia = mui.CardMedia;
+var CardTitle = mui.CardTitle;
+var CardActions = mui.CardActions;
+var CardText = mui.CardText;
+var CardHeader = mui.CardHeader;
+var FlatButton = mui.FlatButton;
+var Avatar = mui.Avatar;
+
+var CardPage = (function (_React$Component) {
+  function CardPage(props) {
+    _classCallCheck(this, CardPage);
+
+    _get(Object.getPrototypeOf(CardPage.prototype), 'constructor', this).call(this, props);
+
+    this.code = '\n       <Card>\n          <CardHeader\n            title="Title"\n            subtitle="Subtitle"\n            avatar={<Avatar>A</Avatar>}/>\n          <CardHeader\n            title="Demo Url Based Avatar"\n            subtitle="Subtitle"\n            avatar="http://lorempixel.com/100/100/nature/"/>\n          <CardMedia overlay={<CardTitle title="Title" subtitle="Subtitle"/>}>\n            <img src="http://lorempixel.com/600/337/nature/"/>\n          </CardMedia>\n          <CardTitle title="Title" subtitle="Subtitle"/>\n          <CardActions>\n            <FlatButton label="Action1"/>\n            <FlatButton label="Action2"/>\n          </CardActions>\n          <CardText>\n            Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.\n            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.\n            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.\n          </CardText>\n        </Card>';
+
+    this.desc = 'A card is a piece of paper with unique related data that serves as an ' + 'entry point to more detailed information. For example, a card could ' + 'contain a photo, text, and a link about a single subject.' + '\n\n' + 'Cards have a constant width and variable height. The maximum height is ' + 'limited to the height of the available space on a platform, ' + 'but it can temporarily expand (for example, to display a comment field). ' + 'Cards do not flip over to reveal information on the back.';
+
+    this.componentInfo = [];
+  }
+
+  _inherits(CardPage, _React$Component);
+
+  _createClass(CardPage, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        ComponentDoc,
+        {
+          name: 'Card',
+          code: this.code,
+          desc: this.desc,
+          componentInfo: this.componentInfo },
+        React.createElement(
+          Card,
+          null,
+          React.createElement(CardHeader, {
+            title: 'Title',
+            subtitle: 'Subtitle',
+            avatar: React.createElement(
+              Avatar,
+              { style: { color: 'red' } },
+              'A'
+            ) }),
+          React.createElement(CardHeader, {
+            title: 'Demo Url Based Avatar',
+            subtitle: 'Subtitle',
+            avatar: 'http://lorempixel.com/100/100/nature/' }),
+          React.createElement(
+            CardMedia,
+            { overlay: React.createElement(CardTitle, { title: 'Title', subtitle: 'Subtitle' }) },
+            React.createElement('img', { src: 'http://lorempixel.com/600/337/nature/' })
+          ),
+          React.createElement(CardTitle, { title: 'Title', subtitle: 'Subtitle' }),
+          React.createElement(
+            CardActions,
+            null,
+            React.createElement(FlatButton, { label: 'Action1' }),
+            React.createElement(FlatButton, { label: 'Action2' })
+          ),
+          React.createElement(
+            CardText,
+            null,
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi. Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque. Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.'
+          )
+        )
+      );
+    }
+  }]);
+
+  return CardPage;
+})(React.Component);
+
+module.exports = CardPage;
+
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],144:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -12952,7 +13063,7 @@ var DatePickerPage = (function (_React$Component) {
 
 module.exports = DatePickerPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],144:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],145:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -13153,7 +13264,7 @@ var DialogPage = (function (_React$Component) {
 
 module.exports = DialogPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],145:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],146:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -13239,7 +13350,7 @@ var DropDownMenuPage = (function (_React$Component) {
 
 module.exports = DropDownMenuPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],146:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],147:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -13380,7 +13491,7 @@ var IconButtonsPage = (function (_React$Component) {
 
 module.exports = IconButtonsPage;
 
-},{"../../component-doc.jsx":134,"../../svg-icons/action-grade.jsx":169,"../../svg-icons/action-home.jsx":170,"mui":427,"react":399}],147:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"../../svg-icons/action-grade.jsx":171,"../../svg-icons/action-home.jsx":172,"mui":435,"react":401}],148:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -13391,6 +13502,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 
 var React = require('react');
 var mui = require('mui');
+var Colors = mui.Styles.Colors;
 var ComponentDoc = require('../../component-doc.jsx');
 var ActionHome = require('../../svg-icons/action-home.jsx');
 
@@ -13426,7 +13538,7 @@ var FontIconPage = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var fontIconCode = '<FontIcon className="muidocs-icon-action-home"/>';
+      var fontIconCode = '\n<FontIcon className="muidocs-icon-action-home" />\n<FontIcon className="muidocs-icon-action-home" color={Colors.red500} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.yellow500} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.blue500} />\n\n<FontIcon className="muidocs-icon-action-home"\n  hoverColor={Colors.greenA200} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.red500}\n  hoverColor={Colors.greenA200} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.yellow500}\n  hoverColor={Colors.greenA200} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.blue500}\n  hoverColor={Colors.greenA200} />\n    ';
 
       var svgIconCode = '/** action-home.jsx */\n' + 'var React = require(\'react\');\n' + 'var mui = require(\'mui\');\n' + 'var SvgIcon = mui.SvgIcon;\n\n' + 'var ActionHome = React.createClass({\n' + '  render: function() {\n' + '    return (\n' + '      <SvgIcon {...this.props}>\n' + '        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>\n' + '      </SvgIcon>\n' + '    );\n' + '  }\n' + '});\n\n' + 'module.exports = ActionHome;\n\n\n' + '/** Some other component. */\n' + 'var ActionHome = require(\'./path/to/action-home.jsx\');\n' + '...\n' + '<ActionHome/>\n' + '...';
 
@@ -13465,25 +13577,34 @@ var FontIconPage = (function (_React$Component) {
       var componentInfo = [{
         name: 'Properties',
         infoArray: [{
-          name: 'className',
+          name: 'color',
           type: 'string',
           header: 'optional',
-          desc: 'If you are using a stylesheet for your icons, enter the ' + 'class name for the icon to be used here.'
-        }, {
-          name: 'style',
-          type: 'object',
-          header: 'optional',
-          desc: 'Override the inline-styles of the icon\'s root element.'
+          desc: 'This is the font color of the font icon. If not specified, ' + 'this component will default to muiTheme.palette.textColor.'
         }, {
           name: 'hoverColor',
           type: 'string',
           header: 'optional',
-          desc: 'Override the inline hover color of the icons\'s root element.'
+          desc: 'This is the icon color when the mouse hovers over the icon.'
         }]
       }, {
         name: 'Properties',
-        infoArray: []
+        infoArray: [{
+          name: 'color',
+          type: 'string',
+          header: 'optional',
+          desc: 'This is the fill color of the svg icon. If not specified, ' + 'this component will default to muiTheme.palette.textColor.'
+        }, {
+          name: 'hoverColor',
+          type: 'string',
+          header: 'optional',
+          desc: 'This is the icon color when the mouse hovers over the icon.'
+        }]
       }];
+
+      var iconStyles = {
+        marginRight: 24
+      };
 
       return React.createElement(
         'div',
@@ -13495,7 +13616,16 @@ var FontIconPage = (function (_React$Component) {
             code: fontIconCode,
             desc: fontIconDesc,
             componentInfo: componentInfo.slice(0, 1) },
-          React.createElement(FontIcon, { className: 'muidocs-icon-action-home' })
+          React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles }),
+          React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, color: Colors.red500 }),
+          React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, color: Colors.yellow500 }),
+          React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, color: Colors.blue500 }),
+          React.createElement('br', null),
+          React.createElement('br', null),
+          React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, hoverColor: Colors.greenA200 }),
+          React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, color: Colors.red500, hoverColor: Colors.greenA200 }),
+          React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, color: Colors.yellow500, hoverColor: Colors.greenA200 }),
+          React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, color: Colors.blue500, hoverColor: Colors.greenA200 })
         ),
         React.createElement(
           ComponentDoc,
@@ -13504,7 +13634,16 @@ var FontIconPage = (function (_React$Component) {
             code: svgIconCode,
             desc: svgIconDesc,
             componentInfo: componentInfo.slice(1, 2) },
-          React.createElement(ActionHome, null)
+          React.createElement(ActionHome, { style: iconStyles }),
+          React.createElement(ActionHome, { style: iconStyles, color: Colors.red500 }),
+          React.createElement(ActionHome, { style: iconStyles, color: Colors.yellow500 }),
+          React.createElement(ActionHome, { style: iconStyles, color: Colors.blue500 }),
+          React.createElement('br', null),
+          React.createElement('br', null),
+          React.createElement(ActionHome, { style: iconStyles, hoverColor: Colors.greenA200 }),
+          React.createElement(ActionHome, { style: iconStyles, color: Colors.red500, hoverColor: Colors.greenA200 }),
+          React.createElement(ActionHome, { style: iconStyles, color: Colors.yellow500, hoverColor: Colors.greenA200 }),
+          React.createElement(ActionHome, { style: iconStyles, color: Colors.blue500, hoverColor: Colors.greenA200 })
         )
       );
     }
@@ -13515,7 +13654,7 @@ var FontIconPage = (function (_React$Component) {
 
 module.exports = FontIconPage;
 
-},{"../../component-doc.jsx":134,"../../svg-icons/action-home.jsx":170,"mui":427,"react":399}],148:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"../../svg-icons/action-home.jsx":172,"mui":435,"react":401}],149:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -13654,7 +13793,7 @@ var LeftNavPage = (function (_React$Component) {
 
 module.exports = LeftNavPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],149:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],150:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -13669,11 +13808,12 @@ var React = require('react');
 var mui = require('mui');
 var Avatar = mui.Avatar;
 var Checkbox = mui.Checkbox;
-var Toggle = mui.Toggle;
 var Colors = mui.Styles.Colors;
+var IconButton = mui.IconButton;
 var List = mui.List;
 var ListDivider = mui.ListDivider;
 var ListItem = mui.ListItem;
+var Toggle = mui.Toggle;
 var ComponentDoc = require('../../component-doc.jsx');
 var MobileTearSheet = require('../../mobile-tear-sheet.jsx');
 var ActionAssignment = require('../../svg-icons/action-assignment.jsx');
@@ -13702,7 +13842,7 @@ var ListsPage = (function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      var code = '\n      //First Example\n      <List>\n        <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>\n        <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>\n        <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>\n        <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>\n      </List>\n      <ListDivider />\n      <List>\n        <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>\n        <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>\n        <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>\n        <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>\n      </List>\n\n      //Last Example\n      <List subheader="Today">\n        <ListItem\n          leftAvatar={<Avatar src="images/ok-128.jpg" />}\n          rightIcon={<ToggleStarBorder />}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>\n              I&apos;ll be in your neighborhood doing errands this weekend.\n              Do you want to grab brunch?\n            </p>\n          }\n          secondaryTextLines={2}>\n          Brendan Lim\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/kolage-128.jpg" />}\n          rightIcon={<ToggleStarBorder />}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>\n              Wish I could come, but I&apos;m out of town this weekend.\n            </p>\n          }\n          secondaryTextLines={2}>\n          me, Scott, Jennifer\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/uxceo-128.jpg" />}\n          rightIcon={<ToggleStarBorder />}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>\n              Do you have any Paris recs? Have you ever been?\n            </p>\n          }\n          secondaryTextLines={2}>\n          Grace Ng\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/kerem-128.jpg" />}\n          rightIcon={<ToggleStarBorder />}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>\n              Do you have any ideas what we can get Heidi for her birthday? How about a pony?\n            </p>\n          }\n          secondaryTextLines={2}>\n          Kerem Suer\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}\n          rightIcon={<ToggleStarBorder />}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>\n              We should eat this: grated squash. Corn and tomatillo tacos.\n            </p>\n          }\n          secondaryTextLines={2}>\n          Raquel Parrado\n        </ListItem>\n      </List>\n    ';
+      var code = '\n      //First Example\n      <List>\n        <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>\n        <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>\n        <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>\n        <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>\n      </List>\n      <ListDivider />\n      <List>\n        <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>\n        <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>\n        <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>\n        <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>\n      </List>\n\n      //Last Example\n      <List subheader="Today">\n        <ListItem\n          leftAvatar={<Avatar src="images/ok-128.jpg" />}\n          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>\n              I&apos;ll be in your neighborhood doing errands this weekend.\n              Do you want to grab brunch?\n            </p>\n          }\n          secondaryTextLines={2}>\n          Brendan Lim\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/kolage-128.jpg" />}\n          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>\n              Wish I could come, but I&apos;m out of town this weekend.\n            </p>\n          }\n          secondaryTextLines={2}>\n          me, Scott, Jennifer\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/uxceo-128.jpg" />}\n          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>\n              Do you have any Paris recs? Have you ever been?\n            </p>\n          }\n          secondaryTextLines={2}>\n          Grace Ng\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/kerem-128.jpg" />}\n          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>\n              Do you have any ideas what we can get Heidi for her birthday? How about a pony?\n            </p>\n          }\n          secondaryTextLines={2}>\n          Kerem Suer\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}\n          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>\n              We should eat this: grated squash. Corn and tomatillo tacos.\n            </p>\n          }\n          secondaryTextLines={2}>\n          Raquel Parrado\n        </ListItem>\n      </List>\n    ';
 
       var componentInfo = [{
         name: 'List Props',
@@ -13759,6 +13899,11 @@ var ListsPage = (function (_React$Component) {
           type: 'element',
           header: 'optional',
           desc: 'This is the SvgIcon or FontIcon to be displayed on the right side.'
+        }, {
+          name: 'rightIconButton',
+          type: 'element',
+          header: 'optional',
+          desc: 'This is the IconButton to be displayed on the right side. Hovering over this button will ' + 'remove the ListItem hover. Also, clicking on this button will not trigger a ListItem ripple. The ' + 'event will be stopped and prevented from bubbling up to cause a ListItem click.'
         }, {
           name: 'rightToggle',
           type: 'element',
@@ -13905,7 +14050,7 @@ var ListsPage = (function (_React$Component) {
             React.createElement(
               ListItem,
               {
-                leftIcon: React.createElement(ActionGrade, { style: { fill: Colors.pinkA200 } }),
+                leftIcon: React.createElement(ActionGrade, { color: Colors.pinkA200 }),
                 rightAvatar: React.createElement(Avatar, { src: 'images/chexee-128.jpg' }) },
               'Chelsea Otakan'
             ),
@@ -14100,6 +14245,29 @@ var ListsPage = (function (_React$Component) {
               { rightToggle: React.createElement(Toggle, null) },
               'Messages'
             )
+          ),
+          React.createElement(ListDivider, null),
+          React.createElement(
+            List,
+            { subheader: 'Hangout notifications' },
+            React.createElement(
+              ListItem,
+              {
+                leftCheckbox: React.createElement(Checkbox, null) },
+              'Notifications'
+            ),
+            React.createElement(
+              ListItem,
+              {
+                leftCheckbox: React.createElement(Checkbox, null) },
+              'Sounds'
+            ),
+            React.createElement(
+              ListItem,
+              {
+                leftCheckbox: React.createElement(Checkbox, null) },
+              'Video sounds'
+            )
           )
         ),
         React.createElement(
@@ -14111,7 +14279,7 @@ var ListsPage = (function (_React$Component) {
             React.createElement(
               ListItem,
               {
-                leftIcon: React.createElement(CommunicationCall, { style: { fill: Colors.indigo500 } }),
+                leftIcon: React.createElement(CommunicationCall, { color: Colors.indigo500 }),
                 rightIcon: React.createElement(CommunicationChatBubble, null),
                 secondaryText: 'Mobile' },
               '(650) 555 - 1234'
@@ -14132,7 +14300,7 @@ var ListsPage = (function (_React$Component) {
             React.createElement(
               ListItem,
               {
-                leftIcon: React.createElement(CommunicationEmail, { style: { fill: Colors.indigo500 } }),
+                leftIcon: React.createElement(CommunicationEmail, { color: Colors.indigo500 }),
                 secondaryText: 'Personal' },
               'aliconnors@example.com'
             ),
@@ -14371,7 +14539,11 @@ var ListsPage = (function (_React$Component) {
               ListItem,
               {
                 leftAvatar: React.createElement(Avatar, { src: 'images/ok-128.jpg' }),
-                rightIcon: React.createElement(ToggleStarBorder, null),
+                rightIconButton: React.createElement(
+                  IconButton,
+                  null,
+                  React.createElement(ToggleStarBorder, { color: Colors.grey400 })
+                ),
                 secondaryText: React.createElement(
                   'p',
                   null,
@@ -14391,7 +14563,11 @@ var ListsPage = (function (_React$Component) {
               ListItem,
               {
                 leftAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }),
-                rightIcon: React.createElement(ToggleStarBorder, null),
+                rightIconButton: React.createElement(
+                  IconButton,
+                  null,
+                  React.createElement(ToggleStarBorder, { color: Colors.grey400 })
+                ),
                 secondaryText: React.createElement(
                   'p',
                   null,
@@ -14411,7 +14587,11 @@ var ListsPage = (function (_React$Component) {
               ListItem,
               {
                 leftAvatar: React.createElement(Avatar, { src: 'images/uxceo-128.jpg' }),
-                rightIcon: React.createElement(ToggleStarBorder, null),
+                rightIconButton: React.createElement(
+                  IconButton,
+                  null,
+                  React.createElement(ToggleStarBorder, { color: Colors.grey400 })
+                ),
                 secondaryText: React.createElement(
                   'p',
                   null,
@@ -14431,7 +14611,11 @@ var ListsPage = (function (_React$Component) {
               ListItem,
               {
                 leftAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }),
-                rightIcon: React.createElement(ToggleStarBorder, null),
+                rightIconButton: React.createElement(
+                  IconButton,
+                  null,
+                  React.createElement(ToggleStarBorder, { color: Colors.grey400 })
+                ),
                 secondaryText: React.createElement(
                   'p',
                   null,
@@ -14451,7 +14635,11 @@ var ListsPage = (function (_React$Component) {
               ListItem,
               {
                 leftAvatar: React.createElement(Avatar, { src: 'images/raquelromanp-128.jpg' }),
-                rightIcon: React.createElement(ToggleStarBorder, null),
+                rightIconButton: React.createElement(
+                  IconButton,
+                  null,
+                  React.createElement(ToggleStarBorder, { color: Colors.grey400 })
+                ),
                 secondaryText: React.createElement(
                   'p',
                   null,
@@ -14477,7 +14665,7 @@ var ListsPage = (function (_React$Component) {
 
 module.exports = ListsPage;
 
-},{"../../component-doc.jsx":134,"../../mobile-tear-sheet.jsx":138,"../../svg-icons/action-assignment.jsx":168,"../../svg-icons/action-grade.jsx":169,"../../svg-icons/action-info.jsx":171,"../../svg-icons/communication-call.jsx":172,"../../svg-icons/communication-chat-bubble.jsx":173,"../../svg-icons/communication-email.jsx":174,"../../svg-icons/content-drafts.jsx":175,"../../svg-icons/content-inbox.jsx":176,"../../svg-icons/content-send.jsx":177,"../../svg-icons/editor-insert-chart.jsx":178,"../../svg-icons/file-folder.jsx":179,"../../svg-icons/toggle-star-border.jsx":180,"mui":427,"react":399}],150:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"../../mobile-tear-sheet.jsx":138,"../../svg-icons/action-assignment.jsx":170,"../../svg-icons/action-grade.jsx":171,"../../svg-icons/action-info.jsx":173,"../../svg-icons/communication-call.jsx":174,"../../svg-icons/communication-chat-bubble.jsx":175,"../../svg-icons/communication-email.jsx":176,"../../svg-icons/content-drafts.jsx":177,"../../svg-icons/content-inbox.jsx":178,"../../svg-icons/content-send.jsx":179,"../../svg-icons/editor-insert-chart.jsx":180,"../../svg-icons/file-folder.jsx":181,"../../svg-icons/toggle-star-border.jsx":182,"mui":435,"react":401}],151:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -14796,7 +14984,7 @@ MenusPage.childContextTypes = {
 
 module.exports = MenusPage;
 
-},{"../../code-example/code-example.jsx":133,"../../component-info.jsx":135,"mui":427,"react":399}],151:[function(require,module,exports){
+},{"../../code-example/code-example.jsx":133,"../../component-info.jsx":135,"mui":435,"react":401}],152:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -14948,7 +15136,7 @@ var PaperPage = React.createClass({
 
 module.exports = PaperPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],152:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],153:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -14998,17 +15186,22 @@ var ProgressPage = React.createClass({
         name: 'value',
         type: 'number',
         header: 'default: 0',
-        desc: 'The value of progress, only works in determinate mode '
+        desc: 'The value of progress, only works in determinate mode. '
       }, {
         name: 'max',
         type: 'number',
         header: 'default: 100',
-        desc: 'The max value of progress, only works in determinate mode '
+        desc: 'The max value of progress, only works in determinate mode. '
       }, {
         name: 'min',
         type: 'number',
         header: 'default: 0',
-        desc: 'The min value of progress, only works in determinate mode '
+        desc: 'The min value of progress, only works in determinate mode. '
+      }, {
+        name: 'size',
+        type: 'number',
+        header: 'default: 1',
+        desc: 'The size of the progress.'
       }]
     }];
 
@@ -15065,7 +15258,7 @@ var ProgressPage = React.createClass({
 
 module.exports = ProgressPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],153:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],154:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -15099,7 +15292,7 @@ var SlidersPage = (function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      var code = '// Default\n' + '<Slider name="slider1" />\n\n' + '// With starting value\n' + '<Slider name="slider2" defaultValue={0.5} />\n' + '<Slider name="slider3" defaultValue={1} />\n\n' + '// Disabled with fixed value\n' + '<Slider name="slider1" disabled={true} />\n' + '<Slider name="slider2" disabled={true} value={0.5} />\n' + '<Slider name="slider3" disabled={true} value={1} />';
+      var code = '// Default\n' + '<Slider name="slider1" />\n\n' + '// With starting value\n' + '<Slider name="slider2" defaultValue={0.5} step={0.10} />\n' + '<Slider name="slider3" defaultValue={1} />\n\n' + '// Disabled with fixed value\n' + '<Slider name="slider1" disabled={true} />\n' + '<Slider name="slider2" disabled={true} value={0.5} />\n' + '<Slider name="slider3" disabled={true} value={1} />';
 
       var componentInfo = [{
         name: 'Props',
@@ -15113,6 +15306,11 @@ var SlidersPage = (function (_React$Component) {
           type: 'number',
           header: 'default: 0',
           desc: 'The minimum value the slider can slide to on a scale from ' + '0 to 1 inclusive.'
+        }, {
+          name: 'step',
+          type: 'number',
+          header: 'default: 0.01',
+          desc: 'The granularity the slider can step through values.'
         }, {
           name: 'style',
           type: 'object',
@@ -15136,7 +15334,7 @@ var SlidersPage = (function (_React$Component) {
           code: code,
           componentInfo: componentInfo },
         React.createElement(Slider, { name: 'slider1' }),
-        React.createElement(Slider, { onMouseDown: this.handleMouseDown, name: 'slider2', value: 0.5 }),
+        React.createElement(Slider, { name: 'slider2', value: 0.5, step: 0.1 }),
         React.createElement(Slider, { name: 'slider3', value: 1 }),
         React.createElement(Slider, { name: 'slider1', disabled: true }),
         React.createElement(Slider, { name: 'slider2', disabled: true, value: 0.5 }),
@@ -15150,7 +15348,7 @@ var SlidersPage = (function (_React$Component) {
 
 module.exports = SlidersPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],154:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],155:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -15259,7 +15457,7 @@ var SnackbarPage = (function (_React$Component) {
 
 module.exports = SnackbarPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],155:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],156:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -15323,6 +15521,11 @@ var SwitchesPage = (function (_React$Component) {
         header: 'optional',
         desc: 'The text that is displayed to the right of the checkbox.'
       }, {
+        name: 'labelStyle',
+        type: 'object',
+        header: 'optional',
+        desc: 'Overrides the inline-styles of the Checkbox element label.'
+      }, {
         name: 'labelPosition',
         type: 'string',
         header: 'default:"right"',
@@ -15374,6 +15577,11 @@ var SwitchesPage = (function (_React$Component) {
         type: 'string',
         header: 'optional',
         desc: 'The text that is displayed to the right of the radio button.'
+      }, {
+        name: 'labelStyle',
+        type: 'object',
+        header: 'optional',
+        desc: 'Overrides the inline-styles of the RadioButton element label.'
       }, {
         name: 'labelPosition',
         type: 'string',
@@ -15458,6 +15666,11 @@ var SwitchesPage = (function (_React$Component) {
         type: 'string',
         header: 'optional',
         desc: 'The text that is displayed to the right of the toggle switch.'
+      }, {
+        name: 'labelStyle',
+        type: 'object',
+        header: 'optional',
+        desc: 'Overrides the inline-styles of the Toggle element label.'
       }, {
         name: 'labelPosition',
         type: 'string',
@@ -15733,7 +15946,293 @@ var SwitchesPage = (function (_React$Component) {
 
 module.exports = SwitchesPage;
 
-},{"../../code-example/code-example.jsx":133,"../../component-doc.jsx":134,"../../svg-icons/toggle-star-border.jsx":180,"../../svg-icons/toggle-star.jsx":181,"mui":427,"react":399}],156:[function(require,module,exports){
+},{"../../code-example/code-example.jsx":133,"../../component-doc.jsx":134,"../../svg-icons/toggle-star-border.jsx":182,"../../svg-icons/toggle-star.jsx":183,"mui":435,"react":401}],157:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+var React = require('react');
+var CodeExample = require('../../code-example/code-example');
+
+var _require = require('mui');
+
+var Table = _require.Table;
+var TextField = _require.TextField;
+var Toggle = _require.Toggle;
+
+var Router = require('react-router');
+var ComponentDoc = require('../../component-doc');
+
+var TablePage = (function (_React$Component) {
+  function TablePage() {
+    _classCallCheck(this, TablePage);
+
+    _get(Object.getPrototypeOf(TablePage.prototype), 'constructor', this).call(this);
+
+    this._onToggle = this._onToggle.bind(this);
+    this.onChange = this._onChange.bind(this);
+
+    this.state = {
+      fixedHeader: true,
+      fixedFooter: true,
+      stripedRows: false,
+      showRowHover: false,
+      selectable: true,
+      multiSelectable: false,
+      canSelectAll: false,
+      height: '300px',
+      rowData: this._getRowData()
+    };
+  }
+
+  _inherits(TablePage, _React$Component);
+
+  _createClass(TablePage, [{
+    key: '_getRowData',
+    value: function _getRowData() {
+      var rowData = [{ id: { content: '1' }, name: { content: 'John Smith' }, status: { content: 'Employed' } }, { id: { content: '2' }, name: { content: 'Randal White' }, status: { content: 'Unemployed' } }, { id: { content: '3' }, name: { content: 'Stephanie Sanders' }, status: { content: 'Employed' } }, { id: { content: '4' }, name: { content: 'Steve Brown' }, status: { content: 'Employed' } }, { id: { content: '5' }, name: { content: 'Joyce Whitten' }, status: { content: 'Employed' } }, { id: { content: '6' }, name: { content: 'Samuel Roberts' }, status: { content: 'Unemployed' } }, { id: { content: '7' }, name: { content: 'Adam Moore' }, status: { content: 'Employed' } }, { id: { content: '8' }, name: { content: 'Robert Brown' }, status: { content: 'Employed' } }, { id: { content: '9' }, name: { content: 'Elizabeth Stevenson' }, status: { content: 'Employed' } }, { id: { content: '10' }, name: { content: 'Zachary Dobb' }, status: { content: 'Employed' } }, { id: { content: '11' }, name: { content: 'Zachary Dobb' }, status: { content: 'Employed' } }];
+
+      return rowData;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var code = '\n// Row data\nlet rowData = [\n  {id: {content: \'1\'}, name: {content: \'John Smith\'}, status: {content: \'Employed\'}},\n  {id: {content: \'2\'}, name: {content: \'Randal White\'}, status: {content: \'Unemployed\'}},\n  {id: {content: \'3\'}, name: {content: \'Stephanie Sanders\'}, status: {content: \'Employed\'}},\n  {id: {content: \'4\'}, name: {content: \'Steve Brown\'}, status: {content: \'Employed\'}},\n  {id: {content: \'5\'}, name: {content: \'Joyce Whitten\'}, status: {content: \'Employed\'}},\n  {id: {content: \'6\'}, name: {content: \'Samuel Roberts\'}, status: {content: \'Unemployed\'}},\n  {id: {content: \'7\'}, name: {content: \'Adam Moore\'}, status: {content: \'Employed\'}},\n  {id: {content: \'8\'}, name: {content: \'Robert Brown\'}, status: {content: \'Employed\'}},\n  {id: {content: \'9\'}, name: {content: \'Elizabeth Stevenson\'}, status: {content: \'Employed\'}},\n  {id: {content: \'10\'}, name: {content: \'Zachary Dobb\'}, status: {content: \'Employed\'}},\n  {id: {content: \'11\'}, name: {content: \'Zachary Dobb\'}, status: {content: \'Employed\'}}\n];\n\n// State\nthis.state = {\n  fixedHeader: true,\n  fixedFooter: true,\n  stripedRows: false,\n  showRowHover: false,\n  selectable: true,\n  multiSelectable: false,\n  canSelectAll: false,\n  height: \'300px\',\n  rowData: rowData\n};\n\n// Column configuration\nlet headerCols = {\n  id: {\n    content: \'ID\',\n    tooltip: \'The ID\'\n  },\n  name: {\n    content: \'Name\',\n    tooltip: \'The name\'\n  },\n  status: {\n    content: \'Status\',\n    tooltip: \'The status\'\n  }\n};\nlet colOrder = [\'id\', \'name\', \'status\'];\n// Footer column content can also be specified as [ \'ID\', \'Name\', \'Status\'].\nlet footerCols = {id: {content: \'ID\'}, name: {content: \'Name\'}, status: {content: \'Status\'}};\n\n// Table component\n<Table\n  headerColumns={headerCols}\n  footerColumns={footerCols}\n  columnOrder={colOrder}\n  rowData={this.state.rowData}\n  height={this.state.height}\n  fixedHeader={this.state.fixedHeader}\n  fixedFooter={this.state.fixedFooter}\n  stripedRows={this.state.stripedRows}\n  showRowHover={this.state.showRowHover}\n  selectable={this.state.selectable}\n  multiSelectable={this.state.multiSelectable}\n  canSelectAll={this.state.canSelectAll} />\n    ';
+
+      var desc = 'Data table component.';
+
+      var componentInfo = [{
+        name: 'Table Props',
+        infoArray: [{
+          name: 'rowData',
+          type: 'array',
+          header: 'required',
+          desc: 'Specify the row data. If the row data is specified as an array of objects, columnOrder must be provided. If an array of arrays is provided the order is determined by index position. Column data within a row can be represented two ways. The first, as an object with a content key and optionally a style key ({content: \'some data\', style: myStyleObj}). Secondly, if only content is provided simply provide the content with putting it in an object.'
+        }, {
+          name: 'columnOrder',
+          type: 'array',
+          header: 'optional',
+          desc: 'An array indicating the order that the columns should appear. If this field is provided the data must be objects consisting of these keys so that the data can be displayed in the correct order.'
+        }, {
+          name: 'headerColumns',
+          type: 'object',
+          header: 'optional',
+          desc: 'An array or object containing the header column information.'
+        }, {
+          name: 'footerColumns',
+          type: 'object',
+          header: 'optional',
+          desc: 'An array or object containing the footer column information.'
+        }, {
+          name: 'header',
+          type: 'element',
+          header: 'optional',
+          desc: 'If customization of the header is required a table-header element can be provided. If this field is provided headerColumns will be ignored.'
+        }, {
+          name: 'footer',
+          type: 'element',
+          header: 'optional',
+          desc: 'If customization of the footer is required a table-footer elemet can be provided. If this field is provided footerColumns will be ignored.'
+        }, {
+          name: 'height',
+          type: 'string',
+          header: 'optional',
+          desc: 'The height of the table.'
+        }, {
+          name: 'defaultColumnWidth',
+          type: 'string',
+          header: 'optional',
+          desc: 'The default value of a table column. The initial value is 50px.'
+        }, {
+          name: 'fixedHeader',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'If true, the header will appear fixed above the table. The default value is true.'
+        }, {
+          name: 'fixedFooter',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'If true, the footer will appear fixed below the table. The default value is true.'
+        }, {
+          name: 'stripedRows',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'If true, every other table row starting with the first row will be striped. The default value is false.'
+        }, {
+          name: 'showRowHover',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'If true, table rows will be highlighted when the cursor is hovering over the row. The default value is false.'
+        }, {
+          name: 'selectable',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'If true, table rows can be selected. If multiple row selection is desired, enable multiSelectable. The default value is true.'
+        }, {
+          name: 'multiSelectable',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'If true, multiple table rows can be selected. CTRL/CMD+Click and SHIFT+Click are valid actions. The default value is false.'
+        }, {
+          name: 'showRowSelectCheckbox',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'Controls the display of the row checkbox. The default value is true.'
+        }, {
+          name: 'canSelectAll',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'Controls whether or not the user can select all of the rows in the table. The default value is false.'
+        }, {
+          name: 'displaySelectAll',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'Controls whether or not the select all checkbox is displayed. The default value is true.'
+        }, {
+          name: 'onRowSelection',
+          type: 'function(selectedRows)',
+          header: 'optional',
+          desc: 'Called when a row is selected. selectedRows is an array of all row selections.'
+        }, {
+          name: 'onCellClick',
+          type: 'function(rowNumber, columnId)',
+          header: 'optional',
+          desc: 'Called when a row cell is clicked. rowNumber is the row number and columnId is the column number or the column key.'
+        }, {
+          name: 'onRowHover',
+          type: 'function(rowNumber)',
+          header: 'optional',
+          desc: 'Called when a table row is hovered. rowNumber is the row number of the hovered row.'
+        }, {
+          name: 'onRowHoverExit',
+          type: 'function(rowNumber)',
+          header: 'optional',
+          desc: 'Called when a table row is no longer hovered. rowNumber is the row number of the row that is no longer hovered.'
+        }, {
+          name: 'onCellHover',
+          type: 'function(rowNumber, columnId)',
+          header: 'optional',
+          desc: 'Called when a table cell is hovered. rowNumber is the row number of the hovered row and columnId is the column number or the column key of the cell.'
+        }, {
+          name: 'onCellHoverExit',
+          type: 'function(rowNumber, columnId)',
+          header: 'optional',
+          desc: 'Called when a table cell is no longer hovered. rowNumber is the row number of the row and columnId is the column number or the column key of the cell.'
+        }]
+      }];
+
+      var headerCols = { id: { content: 'ID', tooltip: 'The ID' }, name: { content: 'Name', tooltip: 'The name' }, status: { content: 'Status', tooltip: 'The status' } };
+      var colOrder = ['id', 'name', 'status'];
+      var footerCols = { id: { content: 'ID' }, name: { content: 'Name' }, status: { content: 'Status' } };
+
+      var propContainerStyle = {
+        width: '200px',
+        overflow: 'hidden',
+        margin: '20px auto 0 auto'
+      };
+
+      return React.createElement(
+        ComponentDoc,
+        {
+          name: 'Table',
+          code: code,
+          desc: desc,
+          componentInfo: componentInfo },
+        React.createElement(
+          'div',
+          { className: 'table-examples' },
+          React.createElement(Table, {
+            headerColumns: headerCols,
+            footerColumns: footerCols,
+            columnOrder: colOrder,
+            rowData: this.state.rowData,
+            height: this.state.height,
+            fixedHeader: this.state.fixedHeader,
+            fixedFooter: this.state.fixedFooter,
+            stripedRows: this.state.stripedRows,
+            showRowHover: this.state.showRowHover,
+            selectable: this.state.selectable,
+            multiSelectable: this.state.multiSelectable,
+            canSelectAll: this.state.canSelectAll }),
+          React.createElement(
+            'div',
+            { style: propContainerStyle },
+            React.createElement(
+              'h3',
+              null,
+              'Table Properties'
+            ),
+            React.createElement(TextField, {
+              floatingLabelText: 'Table Body Height',
+              defaultValue: this.state.height,
+              onChange: this._onChange }),
+            React.createElement(Toggle, {
+              name: 'fixedHeader',
+              label: 'Fixed Header',
+              onToggle: this._onToggle,
+              defaultToggled: this.state.fixedHeader }),
+            React.createElement(Toggle, {
+              name: 'fixedFooter',
+              label: 'Fixed Footer',
+              onToggle: this._onToggle,
+              defaultToggled: this.state.fixedFooter }),
+            React.createElement(Toggle, {
+              name: 'stripedRows',
+              label: 'Stripe Rows',
+              onToggle: this._onToggle,
+              defaultToggled: this.state.stripedRows }),
+            React.createElement(Toggle, {
+              name: 'showRowHover',
+              label: 'Show Row Hover',
+              onToggle: this._onToggle,
+              defaultToggled: this.state.showRowHover }),
+            React.createElement(Toggle, {
+              name: 'selectable',
+              label: 'Selectable',
+              onToggle: this._onToggle,
+              defaultToggled: this.state.selectable }),
+            React.createElement(Toggle, {
+              name: 'multiSelectable',
+              label: 'Multi-Selectable',
+              onToggle: this._onToggle,
+              defaultToggled: this.state.multiSelectable }),
+            React.createElement(Toggle, {
+              name: 'canSelectAll',
+              label: 'Can Select All',
+              onToggle: this._onToggle,
+              defaultToggled: this.state.canSelectAll })
+          )
+        )
+      );
+    }
+  }, {
+    key: '_onChange',
+    value: function _onChange(e) {
+      var rowData = [{ id: { content: '1' }, name: { content: 'John Smith' }, status: { content: 'Employed' } }, { id: { content: '2' }, name: { content: 'Randal White' }, status: { content: 'Unemployed' } }, { id: { content: '3' }, name: { content: 'Stephanie Sandersaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' }, status: { content: 'Employed' } }, { id: { content: '4' }, name: { content: 'Steve Brown' }, status: { content: 'Employed' } }, { id: { content: '5' }, name: { content: 'Joyce Whitten' }, status: { content: 'Employed' } }, { id: { content: '6' }, name: { content: 'Samuel Roberts' }, status: { content: 'Unemployed' } }, { id: { content: '7' }, name: { content: 'Adam Moore' }, status: { content: 'Employed' } }, { id: { content: '8' }, name: { content: 'Robert Brown' }, status: { content: 'Employed' } }, { id: { content: '9' }, name: { content: 'Elizabeth Stevenson' }, status: { content: 'Employed' } }, { id: { content: '10' }, name: { content: 'Zachary Dobb' }, status: { content: 'Employed' } }];
+
+      this.setState({ height: e.target.value, rowData: rowData });
+    }
+  }, {
+    key: '_onToggle',
+    value: function _onToggle(e, toggled) {
+      var state = {};
+      state[e.target.name] = toggled;
+      this.setState(state);
+    }
+  }]);
+
+  return TablePage;
+})(React.Component);
+
+module.exports = TablePage;
+
+},{"../../code-example/code-example":133,"../../component-doc":134,"mui":435,"react":401,"react-router":210}],158:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -15801,6 +16300,11 @@ var TabsPage = (function (_React$Component) {
           type: 'object',
           header: 'optional',
           desc: 'Override the inline-styles of the Tabs\' root element.'
+        }, {
+          name: 'tabItemContainerStyle',
+          type: 'object',
+          header: 'optional',
+          desc: 'Override the inline-styles of the tabs container.'
         }, {
           name: 'tabWidth',
           type: 'number',
@@ -15922,13 +16426,14 @@ TabsPage.contextTypes = {
 
 module.exports = TabsPage;
 
-},{"../../code-example/code-example.jsx":133,"../../component-doc.jsx":134,"mui":427,"react":399,"react-router":208}],157:[function(require,module,exports){
+},{"../../code-example/code-example.jsx":133,"../../component-doc.jsx":134,"mui":435,"react":401,"react-router":210}],159:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
 var mui = require('mui');
 var ClearFix = mui.ClearFix;
 var TextField = mui.TextField;
+var SelectField = mui.SelectField;
 var StyleResizable = mui.Mixins.StyleResizable;
 var ComponentDoc = require('../../component-doc.jsx');
 
@@ -15946,6 +16451,8 @@ var TextFieldsPage = React.createClass({
       propValue: 'Prop Value',
       floatingPropValue: 'Prop Value',
       valueLinkValue: 'Value Link',
+      selectValue: undefined,
+      selectValueLinkValue: 4,
       floatingValueLinkValue: 'Value Link'
     };
   },
@@ -15971,7 +16478,7 @@ var TextFieldsPage = React.createClass({
 
   render: function render() {
 
-    var code = '//In Line Hint Text\n' + '<TextField\n' + '  hintText="Hint Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  defaultValue="Default Value" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  value={this.state.propValue}\n' + '  onChange={this._handleInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  valueLink={this.linkState(\'valueLinkValue\')} />\n' + '<TextField\n' + '  hintText="Hint Text (MultiLine)"\n' + '  multiLine={true} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.errorText}\n' + '  onChange={this._handleErrorInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.error2Text}\n' + '  onChange={this._handleError2InputChange}\n' + '  defaultValue="abc" />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true} />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  defaultValue="Disabled With Value" />\n\n' + '//Floating Hint Text Labels\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  defaultValue="Default Value"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text"\n' + '  value={this.state.floatingPropValue}\n' + '  onChange={this._handleFloatingInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text"\n' + '  valueLink={this.linkState(\'floatingValueLinkValue\')} />\n' + '<TextField\n' + '  hintText="Hint Text (MultiLine)"\n' + '  floatingLabelText="Floating Label Text"\n' + '  multiLine={true} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.floatingErrorText}\n' + '  floatingLabelText="Floating Label Text"\n' + '  onChange={this._handleFloatingErrorInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.floatingError2Text}\n' + '  defaultValue="abc"\n' + '  floatingLabelText="Floating Label Text"\n' + '  onChange={this._handleFloating2ErrorInputChange} />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  defaultValue="Disabled With Value"\n' + '  floatingLabelText="Floating Label Text" />';
+    var code = '//In Line Hint Text\n' + '<TextField\n' + '  hintText="Hint Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  defaultValue="Default Value" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  value={this.state.propValue}\n' + '  onChange={this._handleInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  valueLink={this.linkState(\'valueLinkValue\')} />\n' + '<TextField\n' + '  hintText="Hint Text (MultiLine)"\n' + '  multiLine={true} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.errorText}\n' + '  onChange={this._handleErrorInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.error2Text}\n' + '  onChange={this._handleError2InputChange}\n' + '  defaultValue="abc" />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true} />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  defaultValue="Disabled With Value" />\n\n' + '<SelectField\n' + 'value={this.state.selectValue}\n' + 'onChange={this._handleSelectValueChange}\n' + 'floatingLabelText="Select Field"\n' + 'menuItems={menuItems} />\n' + '<SelectField\n' + 'valueLink={this.linkState("selectValueLinkValue")}\n' + 'floatingLabelText="Select Field"\n' + 'valueMember="id"\n' + 'displayMember="name"\n' + 'menuItems={arbitraryArrayMenuItems} />\n' + '//Floating Hint Text Labels\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  defaultValue="Default Value"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text"\n' + '  value={this.state.floatingPropValue}\n' + '  onChange={this._handleFloatingInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text"\n' + '  valueLink={this.linkState(\'floatingValueLinkValue\')} />\n' + '<TextField\n' + '  hintText="Hint Text (MultiLine)"\n' + '  floatingLabelText="Floating Label Text"\n' + '  multiLine={true} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.floatingErrorText}\n' + '  floatingLabelText="Floating Label Text"\n' + '  onChange={this._handleFloatingErrorInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.floatingError2Text}\n' + '  defaultValue="abc"\n' + '  floatingLabelText="Floating Label Text"\n' + '  onChange={this._handleFloating2ErrorInputChange} />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  defaultValue="Disabled With Value"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Custom Child input (e.g. password)"\n' + '  defaultValue="Custom Child input (e.g. password)"\n' + '  floatingLabelText="Custom Child input (e.g. password)">\n' + '    <input type="password" />\n' + '</TextField>\n' + '<TextField\n' + '  hintText="Disabled Child input (e.g. password)"\n' + '  disabled={true}\n' + '  defaultValue="Custom Child input (e.g. password)"\n' + '  floatingLabelText="Custom Child input (e.g. password)">\n' + '    <input type="password" />\n' + '</TextField>';
 
     var desc = 'This component extends the current input element and will support all of its props and events. It supports ' + 'valueLink and can be controlled or uncontrolled.';
 
@@ -16058,6 +16565,8 @@ var TextFieldsPage = React.createClass({
     }];
 
     var styles = this.getStyles();
+    var menuItems = [{ payload: '1', text: 'Never' }, { payload: '2', text: 'Every Night' }, { payload: '3', text: 'Weeknights' }, { payload: '4', text: 'Weekends' }, { payload: '5', text: 'Weekly' }];
+    var arbitraryArrayMenuItems = [{ id: 1, name: 'Never' }, { id: 2, name: 'Every Night' }, { id: 3, name: 'Weeknights' }, { id: 4, name: 'Weekends' }, { id: 5, name: 'Weekly' }];
 
     return React.createElement(
       ComponentDoc,
@@ -16120,7 +16629,18 @@ var TextFieldsPage = React.createClass({
             hintText: 'Disabled Hint Text',
             disabled: true,
             defaultValue: 'Disabled With Value' }),
-          React.createElement('br', null)
+          React.createElement('br', null),
+          React.createElement(SelectField, {
+            value: this.state.selectValue,
+            onChange: this._handleSelectValueChange,
+            floatingLabelText: 'Select Field',
+            menuItems: menuItems }),
+          React.createElement(SelectField, {
+            valueLink: this.linkState('selectValueLinkValue'),
+            floatingLabelText: 'Select Field',
+            valueMember: 'id',
+            displayMember: 'name',
+            menuItems: arbitraryArrayMenuItems })
         ),
         React.createElement(
           'div',
@@ -16173,7 +16693,24 @@ var TextFieldsPage = React.createClass({
             disabled: true,
             defaultValue: 'Disabled With Value',
             floatingLabelText: 'Floating Label Text' }),
-          React.createElement('br', null)
+          React.createElement('br', null),
+          React.createElement(
+            TextField,
+            {
+              hintText: 'Custom Child input (e.g. password)',
+              defaultValue: 'Custom Child input (e.g. password)',
+              floatingLabelText: 'Custom Child input (e.g. password)' },
+            React.createElement('input', { type: 'password' })
+          ),
+          React.createElement(
+            TextField,
+            {
+              hintText: 'Disabled Child input (e.g. password)',
+              disabled: true,
+              defaultValue: 'Custom Child input (e.g. password)',
+              floatingLabelText: 'Custom Child input (e.g. password)' },
+            React.createElement('input', { type: 'password' })
+          )
         )
       )
     );
@@ -16213,6 +16750,12 @@ var TextFieldsPage = React.createClass({
     });
   },
 
+  _handleSelectValueChange: function _handleSelectValueChange(e) {
+    this.setState({
+      selectValue: e.target.value
+    });
+  },
+
   _handleFloatingInputChange: function _handleFloatingInputChange(e) {
     this.setState({
       floatingPropValue: e.target.value
@@ -16223,7 +16766,7 @@ var TextFieldsPage = React.createClass({
 
 module.exports = TextFieldsPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react/addons":227}],158:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react/addons":229}],160:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -16293,7 +16836,7 @@ var TimePickerPage = React.createClass({
 
 module.exports = TimePickerPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],159:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],161:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -16401,7 +16944,7 @@ var ToolbarPage = (function (_React$Component) {
 
 module.exports = ToolbarPage;
 
-},{"../../component-doc.jsx":134,"mui":427,"react":399}],160:[function(require,module,exports){
+},{"../../component-doc.jsx":134,"mui":435,"react":401}],162:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -16438,7 +16981,7 @@ var Customization = (function (_React$Component) {
 
 module.exports = Customization;
 
-},{"./page-with-nav.jsx":167,"react":399}],161:[function(require,module,exports){
+},{"./page-with-nav.jsx":169,"react":401}],163:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -16623,7 +17166,7 @@ module.exports = ColorsPage;
 
 //null
 
-},{"mui":427,"react":399}],162:[function(require,module,exports){
+},{"mui":435,"react":401}],164:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -16783,7 +17326,7 @@ var InlineStyles = (function (_React$Component) {
 
 module.exports = InlineStyles;
 
-},{"../../code-example/code-block.jsx":132,"../../code-example/code-example.jsx":133,"mui":427,"react":399}],163:[function(require,module,exports){
+},{"../../code-example/code-block.jsx":132,"../../code-example/code-example.jsx":133,"mui":435,"react":401}],165:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -16912,6 +17455,10 @@ var ThemesPage = React.createClass({
     var info = [{
       name: 'ThemeManager Props',
       infoArray: [{
+        name: 'spacing',
+        type: 'object',
+        desc: 'The spacing object is a set of variables used by all ' + 'Material-UI components. It should not be modified directly.'
+      }, {
         name: 'palette',
         type: 'object',
         desc: 'The palette object is a set of color variables used by all ' + 'Material-UI components. It should not be modified directly.'
@@ -16934,6 +17481,10 @@ var ThemesPage = React.createClass({
         name: 'setTheme',
         header: 'ThemeManager.setTheme(newTheme)',
         desc: 'Sets the properties of the current theme with those defined ' + 'from the overrides object argument. Overriding properties of ' + 'ThemeManager.palette (your primary and accent colors) will signal ' + 'all component to update their theme variables in order to ' + 'use the new changes. Thus, overrides to component properties ' + 'made before '
+      }, {
+        name: 'setSpacing',
+        header: 'ThemeManager.setSpacing(newSpacing)',
+        desc: 'Updates the spacing object of the current theme to use the ' + 'properties defined in newSpacing.'
       }, {
         name: 'setPalette',
         header: 'ThemeManager.setPalette(newPalette)',
@@ -17110,8 +17661,8 @@ var ThemesPage = React.createClass({
   },
 
   getThemeStructure: function getThemeStructure() {
-    var text = 'var CustomTheme = {\n' + '  getPalette: function() {\n' + '    return {\n' + '      primary1Color: String,\n' + '      primary2Color: String,\n' + '      primary3Color: String,\n' + '      accent1Color: String,\n' + '      accent2Color: String,\n' + '      accent3Color: String,\n' + '      textColor: String,\n' + '      canvasColor: String,\n' + '      borderColor: String,\n' + '      disabledColor: String\n' + '    };\n' + '  },\n' + '  getComponentThemes: function(palette) {\n' + '    return {\n' + '      appBar: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        height: Number\n' + '      },\n' + '      button: {\n' + '        height: Number,\n' + '        minWidth: Number,\n' + '        iconButtonSize: Number\n' + '      },\n' + '      checkbox: {\n' + '        boxColor: String,\n' + '        checkedColor: String,\n' + '        requiredColor: String,\n' + '        disabledColor: String\n' + '      },\n' + '      datePicker: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        calendarTextColor: String,\n' + '        selectColor: String,\n' + '        selectTextColor: String,\n' + '      },\n' + '      dropDownMenu: {\n' + '        accentColor: String,\n' + '      },\n' + '      flatButton: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        primaryTextColor: String,\n' + '        secondaryTextColor: String,\n' + '        disabledColor: String\n' + '      },\n' + '      floatingActionButton: {\n' + '        buttonSize: Number,\n' + '        miniSize: Number,\n' + '        color: String,\n' + '        iconColor: String,\n' + '        secondaryColor: String,\n' + '        secondaryIconColor: String,\n' + '        disabledColor: String,\n' + '        disabledTextColor: String\n' + '      },\n' + '      leftNav: {\n' + '        width: Number,\n' + '        color: String,\n' + '      },\n' + '      menu: {\n' + '        backgroundColor: String,\n' + '        containerBackgroundColor: String,\n' + '      },\n' + '      menuItem: {\n' + '        dataHeight: Number,\n' + '        height: Number,\n' + '        hoverColor: String,\n' + '        padding: Number,\n' + '        selectedTextColor: String,\n' + '      },\n' + '      menuSubheader: {\n' + '        padding: Number,\n' + '        borderColor: String,\n' + '        textColor: String,\n' + '      },\n' + '      paper: {\n' + '        backgroundColor: String,\n' + '      },\n' + '      radioButton: {\n' + '        borderColor: String,\n' + '        backgroundColor: String,\n' + '        checkedColor: String,\n' + '        requiredColor: String,\n' + '        disabledColor: String,\n' + '        size: Number,\n' + '      },\n' + '      raisedButton: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        primaryColor: String,\n' + '        primaryTextColor: String,\n' + '        secondaryColor: String,\n' + '        secondaryTextColor: String,\n' + '        disabledColor: String,\n' + '        disabledTextColor: String\n';
-    '      },\n' + '      slider: {\n' + '        trackSize: Number,\n' + '        trackColor: String,\n' + '        trackColorSelected: String,\n' + '        handleSize: Number,\n' + '        handleSizeActive: Number,\n' + '        handleSizeDisabled: Number,\n' + '        handleColorZero: String,\n' + '        handleFillColor: String,\n' + '        selectionColor: String,\n' + '        rippleColor: String,\n' + '      },\n' + '      snackbar: {\n' + '        textColor: String,\n' + '        backgroundColor: String,\n' + '        actionColor: String,\n' + '      },\n' + '      toggle: {\n' + '        thumbOnColor: String,\n' + '        thumbOffColor: String,\n' + '        thumbDisabledColor: String,\n' + '        thumbRequiredColor: String,\n' + '        trackOnColor: String,\n' + '        trackOffColor: String,\n' + '        trackDisabledColor: String,\n' + '        trackRequiredColor: String\n' + '      },\n' + '      toolbar: {\n' + '        backgroundColor: String,\n' + '        height: Number,\n' + '        titleFontSize: Number,\n' + '        iconColor: String,\n' + '        separatorColor: String,\n' + '        menuHoverColor: String,\n' + '        menuHoverColor: String,\n' + '      }\n' + '    };\n' + '  }\n' + '}\n\n' + 'module.exports = CustomTheme;';
+    var text = 'var CustomTheme = {\n' + '  getPalette: function() {\n' + '    return {\n' + '      primary1Color: String,\n' + '      primary2Color: String,\n' + '      primary3Color: String,\n' + '      accent1Color: String,\n' + '      accent2Color: String,\n' + '      accent3Color: String,\n' + '      textColor: String,\n' + '      canvasColor: String,\n' + '      borderColor: String,\n' + '      disabledColor: String\n' + '    };\n' + '  },\n' + '  getComponentThemes: function(palette) {\n' + '    return {\n' + '      appBar: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        height: Number\n' + '      },\n' + '      button: {\n' + '        height: Number,\n' + '        minWidth: Number,\n' + '        iconButtonSize: Number\n' + '      },\n' + '      checkbox: {\n' + '        boxColor: String,\n' + '        checkedColor: String,\n' + '        requiredColor: String,\n' + '        disabledColor: String,\n' + '        labelColor: String,\n' + '        labelDisabledColor: String\n' + '      },\n' + '      datePicker: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        calendarTextColor: String,\n' + '        selectColor: String,\n' + '        selectTextColor: String,\n' + '      },\n' + '      dropDownMenu: {\n' + '        accentColor: String,\n' + '      },\n' + '      flatButton: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        primaryTextColor: String,\n' + '        secondaryTextColor: String,\n' + '        disabledColor: String\n' + '      },\n' + '      floatingActionButton: {\n' + '        buttonSize: Number,\n' + '        miniSize: Number,\n' + '        color: String,\n' + '        iconColor: String,\n' + '        secondaryColor: String,\n' + '        secondaryIconColor: String,\n' + '        disabledColor: String,\n' + '        disabledTextColor: String\n' + '      },\n' + '      leftNav: {\n' + '        width: Number,\n' + '        color: String,\n' + '      },\n' + '      menu: {\n' + '        backgroundColor: String,\n' + '        containerBackgroundColor: String,\n' + '      },\n' + '      menuItem: {\n' + '        dataHeight: Number,\n' + '        height: Number,\n' + '        hoverColor: String,\n' + '        padding: Number,\n' + '        selectedTextColor: String,\n' + '      },\n' + '      menuSubheader: {\n' + '        padding: Number,\n' + '        borderColor: String,\n' + '        textColor: String,\n' + '      },\n' + '      paper: {\n' + '        backgroundColor: String,\n' + '      },\n' + '      radioButton: {\n' + '        borderColor: String,\n' + '        backgroundColor: String,\n' + '        checkedColor: String,\n' + '        requiredColor: String,\n' + '        disabledColor: String,\n' + '        size: Number,\n' + '        labelColor: String,\n' + '        labelDisabledColor: String\n' + '      },\n' + '      raisedButton: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        primaryColor: String,\n' + '        primaryTextColor: String,\n' + '        secondaryColor: String,\n' + '        secondaryTextColor: String,\n' + '        disabledColor: String,\n' + '        disabledTextColor: String\n';
+    '      },\n' + '      slider: {\n' + '        trackSize: Number,\n' + '        trackColor: String,\n' + '        trackColorSelected: String,\n' + '        handleSize: Number,\n' + '        handleSizeActive: Number,\n' + '        handleSizeDisabled: Number,\n' + '        handleColorZero: String,\n' + '        handleFillColor: String,\n' + '        selectionColor: String,\n' + '        rippleColor: String,\n' + '      },\n' + '      snackbar: {\n' + '        textColor: String,\n' + '        backgroundColor: String,\n' + '        actionColor: String,\n' + '      },\n' + '      toggle: {\n' + '        thumbOnColor: String,\n' + '        thumbOffColor: String,\n' + '        thumbDisabledColor: String,\n' + '        thumbRequiredColor: String,\n' + '        trackOnColor: String,\n' + '        trackOffColor: String,\n' + '        trackDisabledColor: String,\n' + '        trackRequiredColor: String,\n' + '        labelColor: String,\n' + '        labelDisabledColor: String\n' + '      },\n' + '      toolbar: {\n' + '        backgroundColor: String,\n' + '        height: Number,\n' + '        titleFontSize: Number,\n' + '        iconColor: String,\n' + '        separatorColor: String,\n' + '        menuHoverColor: String,\n' + '        menuHoverColor: String,\n' + '      }\n' + '    };\n' + '  }\n' + '}\n\n' + 'module.exports = CustomTheme;';
     return text;
   },
 
@@ -17344,7 +17895,7 @@ var ThemesPage = React.createClass({
 
 module.exports = ThemesPage;
 
-},{"../../code-example/code-block.jsx":132,"../../component-doc.jsx":134,"../../component-info.jsx":135,"mui":427,"react":399}],164:[function(require,module,exports){
+},{"../../code-example/code-block.jsx":132,"../../component-doc.jsx":134,"../../component-info.jsx":135,"mui":435,"react":401}],166:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -17410,7 +17961,7 @@ var GetStarted = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var usageCode = '/** MyAwesomeReactComponent.jsx */\n\n' + 'var React = require(\'react\'),\n' + '  mui = require(\'material-ui\'),\n' + '  RaisedButton = mui.RaisedButton;\n\n' + 'var SomeAwesomeComponent = React.createClass({\n\n' + '  childContextTypes: {\n' + '    muiTheme: React.PropTypes.object\n' + '  },\n\n' + '  getChildContext() {\n' + '    return {\n' + '      muiTheme: ThemeManager.getCurrentTheme()\n' + '    };\n' + '  },\n\n' + '  render: function() {\n' + '    return (\n' + '        <RaisedButton label="Default" />\n' + '    );\n' + '  }\n\n' + '});\n\n' + 'module.exports = MyAwesomeReactComponent;\n\n\n',
+      var usageCode = '/** MyAwesomeReactComponent.jsx */\n\n' + 'var React = require(\'react\'),\n' + '  mui = require(\'material-ui\'),\n' + '  RaisedButton = mui.RaisedButton;\n\n' + 'var SomeAwesomeComponent = React.createClass({\n\n' + '  childContextTypes: {\n' + '    muiTheme: React.PropTypes.object\n' + '  },\n\n' + '  getChildContext: function() {\n' + '    return {\n' + '      muiTheme: ThemeManager.getCurrentTheme()\n' + '    };\n' + '  },\n\n' + '  render: function() {\n' + '    return (\n' + '        <RaisedButton label="Default" />\n' + '    );\n' + '  }\n\n' + '});\n\n' + 'module.exports = MyAwesomeReactComponent;\n\n\n',
           customizationCode = '@import "node_modules/material-ui/src/less/scaffolding.less";\n\n' + '//Define a custom less file to override\n//any variables defined in scaffolding.less\n' + '@import "my-custom-overrides.less";\n\n' + '@import "node_modules/material-ui/src/less/components.less";',
           usageNotesCode = 'var injectTapEventPlugin = require("react-tap-event-plugin");\n\n' + '//Needed for onTouchTap\n' + '//Can go away when react 1.0 release\n' + '//Check this repo:\n' + '//https://github.com/zilverline/react-tap-event-plugin\n' + 'injectTapEventPlugin();\n';
 
@@ -17610,7 +18161,7 @@ GetStarted.contextTypes = {
 
 module.exports = GetStarted;
 
-},{"../code-example/code-block.jsx":132,"../full-width-section.jsx":136,"mui":427,"react":399}],165:[function(require,module,exports){
+},{"../code-example/code-block.jsx":132,"../full-width-section.jsx":136,"mui":435,"react":401}],167:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -17745,7 +18296,7 @@ var HomeFeature = React.createClass({
 
 module.exports = HomeFeature;
 
-},{"mui":427,"react":399,"react-router":208}],166:[function(require,module,exports){
+},{"mui":435,"react":401,"react-router":210}],168:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -17998,7 +18549,7 @@ var HomePage = React.createClass({
 
 module.exports = HomePage;
 
-},{"../full-width-section.jsx":136,"./home-feature.jsx":165,"mui":427,"react":399,"react-router":208}],167:[function(require,module,exports){
+},{"../full-width-section.jsx":136,"./home-feature.jsx":167,"mui":435,"react":401,"react-router":210}],169:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18108,7 +18659,7 @@ var PageWithNav = React.createClass({
 
 module.exports = PageWithNav;
 
-},{"mui":427,"react":399,"react-router":208}],168:[function(require,module,exports){
+},{"mui":435,"react":401,"react-router":210}],170:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18130,7 +18681,7 @@ var ActionAssignment = React.createClass({
 
 module.exports = ActionAssignment;
 
-},{"mui":427,"react":399}],169:[function(require,module,exports){
+},{"mui":435,"react":401}],171:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18152,7 +18703,7 @@ var ActionGrade = React.createClass({
 
 module.exports = ActionGrade;
 
-},{"mui":427,"react":399}],170:[function(require,module,exports){
+},{"mui":435,"react":401}],172:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18174,7 +18725,7 @@ var ActionHome = React.createClass({
 
 module.exports = ActionHome;
 
-},{"mui":427,"react":399}],171:[function(require,module,exports){
+},{"mui":435,"react":401}],173:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18196,7 +18747,7 @@ var ActionInfo = React.createClass({
 
 module.exports = ActionInfo;
 
-},{"mui":427,"react":399}],172:[function(require,module,exports){
+},{"mui":435,"react":401}],174:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18218,7 +18769,7 @@ var CommunicationCall = React.createClass({
 
 module.exports = CommunicationCall;
 
-},{"mui":427,"react":399}],173:[function(require,module,exports){
+},{"mui":435,"react":401}],175:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18240,7 +18791,7 @@ var CommunicationChatBubble = React.createClass({
 
 module.exports = CommunicationChatBubble;
 
-},{"mui":427,"react":399}],174:[function(require,module,exports){
+},{"mui":435,"react":401}],176:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18262,7 +18813,7 @@ var CommunicationEmail = React.createClass({
 
 module.exports = CommunicationEmail;
 
-},{"mui":427,"react":399}],175:[function(require,module,exports){
+},{"mui":435,"react":401}],177:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18284,7 +18835,7 @@ var ContentDrafts = React.createClass({
 
 module.exports = ContentDrafts;
 
-},{"mui":427,"react":399}],176:[function(require,module,exports){
+},{"mui":435,"react":401}],178:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18306,7 +18857,7 @@ var ContentInbox = React.createClass({
 
 module.exports = ContentInbox;
 
-},{"mui":427,"react":399}],177:[function(require,module,exports){
+},{"mui":435,"react":401}],179:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18328,7 +18879,7 @@ var ContentSend = React.createClass({
 
 module.exports = ContentSend;
 
-},{"mui":427,"react":399}],178:[function(require,module,exports){
+},{"mui":435,"react":401}],180:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18350,7 +18901,7 @@ var EditorInsertChart = React.createClass({
 
 module.exports = EditorInsertChart;
 
-},{"mui":427,"react":399}],179:[function(require,module,exports){
+},{"mui":435,"react":401}],181:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18372,7 +18923,7 @@ var FileFolder = React.createClass({
 
 module.exports = FileFolder;
 
-},{"mui":427,"react":399}],180:[function(require,module,exports){
+},{"mui":435,"react":401}],182:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18394,7 +18945,7 @@ var ToggleStarBorder = React.createClass({
 
 module.exports = ToggleStarBorder;
 
-},{"mui":427,"react":399}],181:[function(require,module,exports){
+},{"mui":435,"react":401}],183:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -18416,7 +18967,7 @@ var ToggleStar = React.createClass({
 
 module.exports = ToggleStar;
 
-},{"mui":427,"react":399}],182:[function(require,module,exports){
+},{"mui":435,"react":401}],184:[function(require,module,exports){
 /*!
   Copyright (c) 2015 Jed Watson.
   Licensed under the MIT License (MIT), see
@@ -18461,7 +19012,7 @@ if (typeof define !== 'undefined' && define.amd) {
 	});
 }
 
-},{}],183:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -19132,7 +19683,7 @@ module.exports = React.createClass({
 
 });
 
-},{"react/addons":227}],184:[function(require,module,exports){
+},{"react/addons":229}],186:[function(require,module,exports){
 /**
  * Represents a cancellation caused by navigating away
  * before the previous transition has fully resolved.
@@ -19142,7 +19693,7 @@ module.exports = React.createClass({
 function Cancellation() {}
 
 module.exports = Cancellation;
-},{}],185:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -19173,7 +19724,7 @@ var History = {
 };
 
 module.exports = History;
-},{"react/lib/ExecutionEnvironment":248,"react/lib/invariant":377}],186:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":250,"react/lib/invariant":379}],188:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -19249,7 +19800,7 @@ var Match = (function () {
 })();
 
 module.exports = Match;
-},{"./PathUtils":188}],187:[function(require,module,exports){
+},{"./PathUtils":190}],189:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -19320,7 +19871,7 @@ var Navigation = {
 };
 
 module.exports = Navigation;
-},{"./PropTypes":189}],188:[function(require,module,exports){
+},{"./PropTypes":191}],190:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -19474,7 +20025,7 @@ var PathUtils = {
 };
 
 module.exports = PathUtils;
-},{"object-assign":217,"qs":218,"react/lib/invariant":377}],189:[function(require,module,exports){
+},{"object-assign":219,"qs":220,"react/lib/invariant":379}],191:[function(require,module,exports){
 'use strict';
 
 var assign = require('react/lib/Object.assign');
@@ -19506,7 +20057,7 @@ var PropTypes = assign({}, ReactPropTypes, {
 });
 
 module.exports = PropTypes;
-},{"./Route":191,"react":399,"react/lib/Object.assign":255}],190:[function(require,module,exports){
+},{"./Route":193,"react":401,"react/lib/Object.assign":257}],192:[function(require,module,exports){
 /**
  * Encapsulates a redirect to the given route.
  */
@@ -19519,7 +20070,7 @@ function Redirect(to, params, query) {
 }
 
 module.exports = Redirect;
-},{}],191:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -19720,7 +20271,7 @@ var Route = (function () {
 })();
 
 module.exports = Route;
-},{"./PathUtils":188,"react/lib/Object.assign":255,"react/lib/invariant":377,"react/lib/warning":398}],192:[function(require,module,exports){
+},{"./PathUtils":190,"react/lib/Object.assign":257,"react/lib/invariant":379,"react/lib/warning":400}],194:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -19796,7 +20347,7 @@ var ScrollHistory = {
 };
 
 module.exports = ScrollHistory;
-},{"./getWindowScrollPosition":207,"react/lib/ExecutionEnvironment":248,"react/lib/invariant":377}],193:[function(require,module,exports){
+},{"./getWindowScrollPosition":209,"react/lib/ExecutionEnvironment":250,"react/lib/invariant":379}],195:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -19871,7 +20422,7 @@ var State = {
 };
 
 module.exports = State;
-},{"./PropTypes":189}],194:[function(require,module,exports){
+},{"./PropTypes":191}],196:[function(require,module,exports){
 /* jshint -W058 */
 
 'use strict';
@@ -19947,7 +20498,7 @@ Transition.to = function (transition, routes, params, query, callback) {
 };
 
 module.exports = Transition;
-},{"./Cancellation":184,"./Redirect":190}],195:[function(require,module,exports){
+},{"./Cancellation":186,"./Redirect":192}],197:[function(require,module,exports){
 /**
  * Actions that modify the URL.
  */
@@ -19973,7 +20524,7 @@ var LocationActions = {
 };
 
 module.exports = LocationActions;
-},{}],196:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -20003,7 +20554,7 @@ var ImitateBrowserBehavior = {
 };
 
 module.exports = ImitateBrowserBehavior;
-},{"../actions/LocationActions":195}],197:[function(require,module,exports){
+},{"../actions/LocationActions":197}],199:[function(require,module,exports){
 /**
  * A scroll behavior that always scrolls to the top of the page
  * after a transition.
@@ -20019,7 +20570,7 @@ var ScrollToTopBehavior = {
 };
 
 module.exports = ScrollToTopBehavior;
-},{}],198:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20058,7 +20609,7 @@ var ContextWrapper = (function (_React$Component) {
 })(React.Component);
 
 module.exports = ContextWrapper;
-},{"react":399}],199:[function(require,module,exports){
+},{"react":401}],201:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20106,7 +20657,7 @@ DefaultRoute.defaultProps = {
 };
 
 module.exports = DefaultRoute;
-},{"../PropTypes":189,"./Route":203,"./RouteHandler":204}],200:[function(require,module,exports){
+},{"../PropTypes":191,"./Route":205,"./RouteHandler":206}],202:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20242,7 +20793,7 @@ Link.defaultProps = {
 };
 
 module.exports = Link;
-},{"../PropTypes":189,"react":399,"react/lib/Object.assign":255}],201:[function(require,module,exports){
+},{"../PropTypes":191,"react":401,"react/lib/Object.assign":257}],203:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20291,7 +20842,7 @@ NotFoundRoute.defaultProps = {
 };
 
 module.exports = NotFoundRoute;
-},{"../PropTypes":189,"./Route":203,"./RouteHandler":204}],202:[function(require,module,exports){
+},{"../PropTypes":191,"./Route":205,"./RouteHandler":206}],204:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20335,7 +20886,7 @@ Redirect.propTypes = {
 Redirect.defaultProps = {};
 
 module.exports = Redirect;
-},{"../PropTypes":189,"./Route":203}],203:[function(require,module,exports){
+},{"../PropTypes":191,"./Route":205}],205:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20427,7 +20978,7 @@ Route.defaultProps = {
 };
 
 module.exports = Route;
-},{"../PropTypes":189,"./RouteHandler":204,"react":399,"react/lib/invariant":377}],204:[function(require,module,exports){
+},{"../PropTypes":191,"./RouteHandler":206,"react":401,"react/lib/invariant":379}],206:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20536,7 +21087,7 @@ RouteHandler.childContextTypes = {
 };
 
 module.exports = RouteHandler;
-},{"../PropTypes":189,"./ContextWrapper":198,"react":399,"react/lib/Object.assign":255}],205:[function(require,module,exports){
+},{"../PropTypes":191,"./ContextWrapper":200,"react":401,"react/lib/Object.assign":257}],207:[function(require,module,exports){
 (function (process){
 /* jshint -W058 */
 'use strict';
@@ -21054,7 +21605,7 @@ function createRouter(options) {
 module.exports = createRouter;
 }).call(this,require('_process'))
 
-},{"./Cancellation":184,"./History":185,"./Match":186,"./PathUtils":188,"./PropTypes":189,"./Redirect":190,"./Route":191,"./ScrollHistory":192,"./Transition":194,"./actions/LocationActions":195,"./behaviors/ImitateBrowserBehavior":196,"./createRoutesFromReactChildren":206,"./isReactChildren":209,"./locations/HashLocation":210,"./locations/HistoryLocation":211,"./locations/RefreshLocation":212,"./locations/StaticLocation":213,"./supportsHistory":216,"_process":1,"react":399,"react/lib/ExecutionEnvironment":248,"react/lib/invariant":377,"react/lib/warning":398}],206:[function(require,module,exports){
+},{"./Cancellation":186,"./History":187,"./Match":188,"./PathUtils":190,"./PropTypes":191,"./Redirect":192,"./Route":193,"./ScrollHistory":194,"./Transition":196,"./actions/LocationActions":197,"./behaviors/ImitateBrowserBehavior":198,"./createRoutesFromReactChildren":208,"./isReactChildren":211,"./locations/HashLocation":212,"./locations/HistoryLocation":213,"./locations/RefreshLocation":214,"./locations/StaticLocation":215,"./supportsHistory":218,"_process":1,"react":401,"react/lib/ExecutionEnvironment":250,"react/lib/invariant":379,"react/lib/warning":400}],208:[function(require,module,exports){
 /* jshint -W084 */
 'use strict';
 
@@ -21136,7 +21687,7 @@ function createRoutesFromReactChildren(children) {
 }
 
 module.exports = createRoutesFromReactChildren;
-},{"./Route":191,"./components/DefaultRoute":199,"./components/NotFoundRoute":201,"./components/Redirect":202,"react":399,"react/lib/Object.assign":255,"react/lib/warning":398}],207:[function(require,module,exports){
+},{"./Route":193,"./components/DefaultRoute":201,"./components/NotFoundRoute":203,"./components/Redirect":204,"react":401,"react/lib/Object.assign":257,"react/lib/warning":400}],209:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -21155,7 +21706,7 @@ function getWindowScrollPosition() {
 }
 
 module.exports = getWindowScrollPosition;
-},{"react/lib/ExecutionEnvironment":248,"react/lib/invariant":377}],208:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":250,"react/lib/invariant":379}],210:[function(require,module,exports){
 'use strict';
 
 exports.DefaultRoute = require('./components/DefaultRoute');
@@ -21187,7 +21738,7 @@ exports.createRoutesFromReactChildren = require('./createRoutesFromReactChildren
 
 exports.create = require('./createRouter');
 exports.run = require('./runRouter');
-},{"./History":185,"./Navigation":187,"./Route":191,"./State":193,"./behaviors/ImitateBrowserBehavior":196,"./behaviors/ScrollToTopBehavior":197,"./components/DefaultRoute":199,"./components/Link":200,"./components/NotFoundRoute":201,"./components/Redirect":202,"./components/Route":203,"./components/RouteHandler":204,"./createRouter":205,"./createRoutesFromReactChildren":206,"./locations/HashLocation":210,"./locations/HistoryLocation":211,"./locations/RefreshLocation":212,"./locations/StaticLocation":213,"./locations/TestLocation":214,"./runRouter":215}],209:[function(require,module,exports){
+},{"./History":187,"./Navigation":189,"./Route":193,"./State":195,"./behaviors/ImitateBrowserBehavior":198,"./behaviors/ScrollToTopBehavior":199,"./components/DefaultRoute":201,"./components/Link":202,"./components/NotFoundRoute":203,"./components/Redirect":204,"./components/Route":205,"./components/RouteHandler":206,"./createRouter":207,"./createRoutesFromReactChildren":208,"./locations/HashLocation":212,"./locations/HistoryLocation":213,"./locations/RefreshLocation":214,"./locations/StaticLocation":215,"./locations/TestLocation":216,"./runRouter":217}],211:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21201,7 +21752,7 @@ function isReactChildren(object) {
 }
 
 module.exports = isReactChildren;
-},{"react":399}],210:[function(require,module,exports){
+},{"react":401}],212:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -21313,7 +21864,7 @@ var HashLocation = {
 };
 
 module.exports = HashLocation;
-},{"../History":185,"../actions/LocationActions":195}],211:[function(require,module,exports){
+},{"../History":187,"../actions/LocationActions":197}],213:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -21400,7 +21951,7 @@ var HistoryLocation = {
 };
 
 module.exports = HistoryLocation;
-},{"../History":185,"../actions/LocationActions":195}],212:[function(require,module,exports){
+},{"../History":187,"../actions/LocationActions":197}],214:[function(require,module,exports){
 'use strict';
 
 var HistoryLocation = require('./HistoryLocation');
@@ -21432,7 +21983,7 @@ var RefreshLocation = {
 };
 
 module.exports = RefreshLocation;
-},{"../History":185,"./HistoryLocation":211}],213:[function(require,module,exports){
+},{"../History":187,"./HistoryLocation":213}],215:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -21482,7 +22033,7 @@ StaticLocation.prototype.replace = throwCannotModify;
 StaticLocation.prototype.pop = throwCannotModify;
 
 module.exports = StaticLocation;
-},{"react/lib/invariant":377}],214:[function(require,module,exports){
+},{"react/lib/invariant":379}],216:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -21577,7 +22128,7 @@ var TestLocation = (function () {
 })();
 
 module.exports = TestLocation;
-},{"../History":185,"../actions/LocationActions":195,"react/lib/invariant":377}],215:[function(require,module,exports){
+},{"../History":187,"../actions/LocationActions":197,"react/lib/invariant":379}],217:[function(require,module,exports){
 'use strict';
 
 var createRouter = require('./createRouter');
@@ -21628,7 +22179,7 @@ function runRouter(routes, location, callback) {
 }
 
 module.exports = runRouter;
-},{"./createRouter":205}],216:[function(require,module,exports){
+},{"./createRouter":207}],218:[function(require,module,exports){
 'use strict';
 
 function supportsHistory() {
@@ -21645,7 +22196,7 @@ function supportsHistory() {
 }
 
 module.exports = supportsHistory;
-},{}],217:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 'use strict';
 
 function ToObject(val) {
@@ -21673,10 +22224,10 @@ module.exports = Object.assign || function (target, source) {
 	return to;
 };
 
-},{}],218:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 module.exports = require('./lib/');
 
-},{"./lib/":219}],219:[function(require,module,exports){
+},{"./lib/":221}],221:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -21693,7 +22244,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":220,"./stringify":221}],220:[function(require,module,exports){
+},{"./parse":222,"./stringify":223}],222:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -21856,7 +22407,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":222}],221:[function(require,module,exports){
+},{"./utils":224}],223:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -21955,7 +22506,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":222}],222:[function(require,module,exports){
+},{"./utils":224}],224:[function(require,module,exports){
 // Load modules
 
 
@@ -22089,7 +22640,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],223:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22400,7 +22951,7 @@ var ResponderEventPlugin = {
 
 module.exports = ResponderEventPlugin;
 
-},{"react/lib/EventConstants":242,"react/lib/EventPluginUtils":246,"react/lib/EventPropagators":247,"react/lib/SyntheticEvent":335,"react/lib/accumulateInto":345,"react/lib/keyOf":384}],224:[function(require,module,exports){
+},{"react/lib/EventConstants":244,"react/lib/EventPluginUtils":248,"react/lib/EventPropagators":249,"react/lib/SyntheticEvent":337,"react/lib/accumulateInto":347,"react/lib/keyOf":386}],226:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -22568,7 +23119,7 @@ var TapEventPlugin = {
 
 module.exports = TapEventPlugin;
 
-},{"./TouchEventUtils":225,"react/lib/EventConstants":242,"react/lib/EventPluginUtils":246,"react/lib/EventPropagators":247,"react/lib/SyntheticUIEvent":341,"react/lib/ViewportMetrics":344,"react/lib/keyOf":384}],225:[function(require,module,exports){
+},{"./TouchEventUtils":227,"react/lib/EventConstants":244,"react/lib/EventPluginUtils":248,"react/lib/EventPropagators":249,"react/lib/SyntheticUIEvent":343,"react/lib/ViewportMetrics":346,"react/lib/keyOf":386}],227:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -22612,7 +23163,7 @@ var TouchEventUtils = {
 
 module.exports = TouchEventUtils;
 
-},{}],226:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 module.exports = function injectTapEventPlugin () {
   var React = require("react");
   React.initializeTouchEvents(true);
@@ -22623,10 +23174,10 @@ module.exports = function injectTapEventPlugin () {
   });
 };
 
-},{"./ResponderEventPlugin.js":223,"./TapEventPlugin.js":224,"react":399,"react/lib/EventPluginHub":244}],227:[function(require,module,exports){
+},{"./ResponderEventPlugin.js":225,"./TapEventPlugin.js":226,"react":401,"react/lib/EventPluginHub":246}],229:[function(require,module,exports){
 module.exports = require('./lib/ReactWithAddons');
 
-},{"./lib/ReactWithAddons":327}],228:[function(require,module,exports){
+},{"./lib/ReactWithAddons":329}],230:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -22653,7 +23204,7 @@ var AutoFocusMixin = {
 
 module.exports = AutoFocusMixin;
 
-},{"./focusNode":361}],229:[function(require,module,exports){
+},{"./focusNode":363}],231:[function(require,module,exports){
 /**
  * Copyright 2013-2015 Facebook, Inc.
  * All rights reserved.
@@ -23148,7 +23699,7 @@ var BeforeInputEventPlugin = {
 
 module.exports = BeforeInputEventPlugin;
 
-},{"./EventConstants":242,"./EventPropagators":247,"./ExecutionEnvironment":248,"./FallbackCompositionState":249,"./SyntheticCompositionEvent":333,"./SyntheticInputEvent":337,"./keyOf":384}],230:[function(require,module,exports){
+},{"./EventConstants":244,"./EventPropagators":249,"./ExecutionEnvironment":250,"./FallbackCompositionState":251,"./SyntheticCompositionEvent":335,"./SyntheticInputEvent":339,"./keyOf":386}],232:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -23261,7 +23812,7 @@ module.exports = CSSCore;
 
 }).call(this,require('_process'))
 
-},{"./invariant":377,"_process":1}],231:[function(require,module,exports){
+},{"./invariant":379,"_process":1}],233:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -23386,7 +23937,7 @@ var CSSProperty = {
 
 module.exports = CSSProperty;
 
-},{}],232:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -23569,7 +24120,7 @@ module.exports = CSSPropertyOperations;
 
 }).call(this,require('_process'))
 
-},{"./CSSProperty":231,"./ExecutionEnvironment":248,"./camelizeStyleName":348,"./dangerousStyleValue":355,"./hyphenateStyleName":375,"./memoizeStringOnly":386,"./warning":398,"_process":1}],233:[function(require,module,exports){
+},{"./CSSProperty":233,"./ExecutionEnvironment":250,"./camelizeStyleName":350,"./dangerousStyleValue":357,"./hyphenateStyleName":377,"./memoizeStringOnly":388,"./warning":400,"_process":1}],235:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -23670,7 +24221,7 @@ module.exports = CallbackQueue;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":255,"./PooledClass":256,"./invariant":377,"_process":1}],234:[function(require,module,exports){
+},{"./Object.assign":257,"./PooledClass":258,"./invariant":379,"_process":1}],236:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -24052,7 +24603,7 @@ var ChangeEventPlugin = {
 
 module.exports = ChangeEventPlugin;
 
-},{"./EventConstants":242,"./EventPluginHub":244,"./EventPropagators":247,"./ExecutionEnvironment":248,"./ReactUpdates":326,"./SyntheticEvent":335,"./isEventSupported":378,"./isTextInputElement":380,"./keyOf":384}],235:[function(require,module,exports){
+},{"./EventConstants":244,"./EventPluginHub":246,"./EventPropagators":249,"./ExecutionEnvironment":250,"./ReactUpdates":328,"./SyntheticEvent":337,"./isEventSupported":380,"./isTextInputElement":382,"./keyOf":386}],237:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -24077,7 +24628,7 @@ var ClientReactRootIndex = {
 
 module.exports = ClientReactRootIndex;
 
-},{}],236:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -24216,7 +24767,7 @@ module.exports = DOMChildrenOperations;
 
 }).call(this,require('_process'))
 
-},{"./Danger":239,"./ReactMultiChildUpdateTypes":305,"./invariant":377,"./setTextContent":392,"_process":1}],237:[function(require,module,exports){
+},{"./Danger":241,"./ReactMultiChildUpdateTypes":307,"./invariant":379,"./setTextContent":394,"_process":1}],239:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -24516,7 +25067,7 @@ module.exports = DOMProperty;
 
 }).call(this,require('_process'))
 
-},{"./invariant":377,"_process":1}],238:[function(require,module,exports){
+},{"./invariant":379,"_process":1}],240:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -24709,7 +25260,7 @@ module.exports = DOMPropertyOperations;
 
 }).call(this,require('_process'))
 
-},{"./DOMProperty":237,"./quoteAttributeValueForBrowser":390,"./warning":398,"_process":1}],239:[function(require,module,exports){
+},{"./DOMProperty":239,"./quoteAttributeValueForBrowser":392,"./warning":400,"_process":1}],241:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -24897,7 +25448,7 @@ module.exports = Danger;
 
 }).call(this,require('_process'))
 
-},{"./ExecutionEnvironment":248,"./createNodesFromMarkup":353,"./emptyFunction":356,"./getMarkupWrap":369,"./invariant":377,"_process":1}],240:[function(require,module,exports){
+},{"./ExecutionEnvironment":250,"./createNodesFromMarkup":355,"./emptyFunction":358,"./getMarkupWrap":371,"./invariant":379,"_process":1}],242:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -24936,7 +25487,7 @@ var DefaultEventPluginOrder = [
 
 module.exports = DefaultEventPluginOrder;
 
-},{"./keyOf":384}],241:[function(require,module,exports){
+},{"./keyOf":386}],243:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -25076,7 +25627,7 @@ var EnterLeaveEventPlugin = {
 
 module.exports = EnterLeaveEventPlugin;
 
-},{"./EventConstants":242,"./EventPropagators":247,"./ReactMount":303,"./SyntheticMouseEvent":339,"./keyOf":384}],242:[function(require,module,exports){
+},{"./EventConstants":244,"./EventPropagators":249,"./ReactMount":305,"./SyntheticMouseEvent":341,"./keyOf":386}],244:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -25148,7 +25699,7 @@ var EventConstants = {
 
 module.exports = EventConstants;
 
-},{"./keyMirror":383}],243:[function(require,module,exports){
+},{"./keyMirror":385}],245:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -25239,7 +25790,7 @@ module.exports = EventListener;
 
 }).call(this,require('_process'))
 
-},{"./emptyFunction":356,"_process":1}],244:[function(require,module,exports){
+},{"./emptyFunction":358,"_process":1}],246:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -25518,7 +26069,7 @@ module.exports = EventPluginHub;
 
 }).call(this,require('_process'))
 
-},{"./EventPluginRegistry":245,"./EventPluginUtils":246,"./accumulateInto":345,"./forEachAccumulated":362,"./invariant":377,"_process":1}],245:[function(require,module,exports){
+},{"./EventPluginRegistry":247,"./EventPluginUtils":248,"./accumulateInto":347,"./forEachAccumulated":364,"./invariant":379,"_process":1}],247:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -25799,7 +26350,7 @@ module.exports = EventPluginRegistry;
 
 }).call(this,require('_process'))
 
-},{"./invariant":377,"_process":1}],246:[function(require,module,exports){
+},{"./invariant":379,"_process":1}],248:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -26021,7 +26572,7 @@ module.exports = EventPluginUtils;
 
 }).call(this,require('_process'))
 
-},{"./EventConstants":242,"./invariant":377,"_process":1}],247:[function(require,module,exports){
+},{"./EventConstants":244,"./invariant":379,"_process":1}],249:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -26164,7 +26715,7 @@ module.exports = EventPropagators;
 
 }).call(this,require('_process'))
 
-},{"./EventConstants":242,"./EventPluginHub":244,"./accumulateInto":345,"./forEachAccumulated":362,"_process":1}],248:[function(require,module,exports){
+},{"./EventConstants":244,"./EventPluginHub":246,"./accumulateInto":347,"./forEachAccumulated":364,"_process":1}],250:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -26208,7 +26759,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],249:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -26299,7 +26850,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 
 module.exports = FallbackCompositionState;
 
-},{"./Object.assign":255,"./PooledClass":256,"./getTextContentAccessor":372}],250:[function(require,module,exports){
+},{"./Object.assign":257,"./PooledClass":258,"./getTextContentAccessor":374}],252:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -26510,7 +27061,7 @@ var HTMLDOMPropertyConfig = {
 
 module.exports = HTMLDOMPropertyConfig;
 
-},{"./DOMProperty":237,"./ExecutionEnvironment":248}],251:[function(require,module,exports){
+},{"./DOMProperty":239,"./ExecutionEnvironment":250}],253:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -26551,7 +27102,7 @@ var LinkedStateMixin = {
 
 module.exports = LinkedStateMixin;
 
-},{"./ReactLink":301,"./ReactStateSetters":320}],252:[function(require,module,exports){
+},{"./ReactLink":303,"./ReactStateSetters":322}],254:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -26708,7 +27259,7 @@ module.exports = LinkedValueUtils;
 
 }).call(this,require('_process'))
 
-},{"./ReactPropTypes":312,"./invariant":377,"_process":1}],253:[function(require,module,exports){
+},{"./ReactPropTypes":314,"./invariant":379,"_process":1}],255:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -26766,7 +27317,7 @@ module.exports = LocalEventTrapMixin;
 
 }).call(this,require('_process'))
 
-},{"./ReactBrowserEventEmitter":259,"./accumulateInto":345,"./forEachAccumulated":362,"./invariant":377,"_process":1}],254:[function(require,module,exports){
+},{"./ReactBrowserEventEmitter":261,"./accumulateInto":347,"./forEachAccumulated":364,"./invariant":379,"_process":1}],256:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -26824,7 +27375,7 @@ var MobileSafariClickEventPlugin = {
 
 module.exports = MobileSafariClickEventPlugin;
 
-},{"./EventConstants":242,"./emptyFunction":356}],255:[function(require,module,exports){
+},{"./EventConstants":244,"./emptyFunction":358}],257:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -26873,7 +27424,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],256:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -26990,7 +27541,7 @@ module.exports = PooledClass;
 
 }).call(this,require('_process'))
 
-},{"./invariant":377,"_process":1}],257:[function(require,module,exports){
+},{"./invariant":379,"_process":1}],259:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -27143,7 +27694,7 @@ module.exports = React;
 
 }).call(this,require('_process'))
 
-},{"./EventPluginUtils":246,"./ExecutionEnvironment":248,"./Object.assign":255,"./ReactChildren":263,"./ReactClass":264,"./ReactComponent":265,"./ReactContext":270,"./ReactCurrentOwner":271,"./ReactDOM":272,"./ReactDOMTextComponent":283,"./ReactDefaultInjection":286,"./ReactElement":289,"./ReactElementValidator":290,"./ReactInstanceHandles":298,"./ReactMount":303,"./ReactPerf":308,"./ReactPropTypes":312,"./ReactReconciler":315,"./ReactServerRendering":318,"./findDOMNode":359,"./onlyChild":387,"_process":1}],258:[function(require,module,exports){
+},{"./EventPluginUtils":248,"./ExecutionEnvironment":250,"./Object.assign":257,"./ReactChildren":265,"./ReactClass":266,"./ReactComponent":267,"./ReactContext":272,"./ReactCurrentOwner":273,"./ReactDOM":274,"./ReactDOMTextComponent":285,"./ReactDefaultInjection":288,"./ReactElement":291,"./ReactElementValidator":292,"./ReactInstanceHandles":300,"./ReactMount":305,"./ReactPerf":310,"./ReactPropTypes":314,"./ReactReconciler":317,"./ReactServerRendering":320,"./findDOMNode":361,"./onlyChild":389,"_process":1}],260:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -27174,7 +27725,7 @@ var ReactBrowserComponentMixin = {
 
 module.exports = ReactBrowserComponentMixin;
 
-},{"./findDOMNode":359}],259:[function(require,module,exports){
+},{"./findDOMNode":361}],261:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -27527,7 +28078,7 @@ var ReactBrowserEventEmitter = assign({}, ReactEventEmitterMixin, {
 
 module.exports = ReactBrowserEventEmitter;
 
-},{"./EventConstants":242,"./EventPluginHub":244,"./EventPluginRegistry":245,"./Object.assign":255,"./ReactEventEmitterMixin":293,"./ViewportMetrics":344,"./isEventSupported":378}],260:[function(require,module,exports){
+},{"./EventConstants":244,"./EventPluginHub":246,"./EventPluginRegistry":247,"./Object.assign":257,"./ReactEventEmitterMixin":295,"./ViewportMetrics":346,"./isEventSupported":380}],262:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -27597,7 +28148,7 @@ var ReactCSSTransitionGroup = React.createClass({
 
 module.exports = ReactCSSTransitionGroup;
 
-},{"./Object.assign":255,"./React":257,"./ReactCSSTransitionGroupChild":261,"./ReactTransitionGroup":324}],261:[function(require,module,exports){
+},{"./Object.assign":257,"./React":259,"./ReactCSSTransitionGroupChild":263,"./ReactTransitionGroup":326}],263:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -27746,7 +28297,7 @@ module.exports = ReactCSSTransitionGroupChild;
 
 }).call(this,require('_process'))
 
-},{"./CSSCore":230,"./React":257,"./ReactTransitionEvents":323,"./onlyChild":387,"./warning":398,"_process":1}],262:[function(require,module,exports){
+},{"./CSSCore":232,"./React":259,"./ReactTransitionEvents":325,"./onlyChild":389,"./warning":400,"_process":1}],264:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -27873,7 +28424,7 @@ var ReactChildReconciler = {
 
 module.exports = ReactChildReconciler;
 
-},{"./ReactReconciler":315,"./flattenChildren":360,"./instantiateReactComponent":376,"./shouldUpdateReactComponent":394}],263:[function(require,module,exports){
+},{"./ReactReconciler":317,"./flattenChildren":362,"./instantiateReactComponent":378,"./shouldUpdateReactComponent":396}],265:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -28027,7 +28578,7 @@ module.exports = ReactChildren;
 
 }).call(this,require('_process'))
 
-},{"./PooledClass":256,"./ReactFragment":295,"./traverseAllChildren":396,"./warning":398,"_process":1}],264:[function(require,module,exports){
+},{"./PooledClass":258,"./ReactFragment":297,"./traverseAllChildren":398,"./warning":400,"_process":1}],266:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -28974,7 +29525,7 @@ module.exports = ReactClass;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":255,"./ReactComponent":265,"./ReactCurrentOwner":271,"./ReactElement":289,"./ReactErrorUtils":292,"./ReactInstanceMap":299,"./ReactLifeCycle":300,"./ReactPropTypeLocationNames":310,"./ReactPropTypeLocations":311,"./ReactUpdateQueue":325,"./invariant":377,"./keyMirror":383,"./keyOf":384,"./warning":398,"_process":1}],265:[function(require,module,exports){
+},{"./Object.assign":257,"./ReactComponent":267,"./ReactCurrentOwner":273,"./ReactElement":291,"./ReactErrorUtils":294,"./ReactInstanceMap":301,"./ReactLifeCycle":302,"./ReactPropTypeLocationNames":312,"./ReactPropTypeLocations":313,"./ReactUpdateQueue":327,"./invariant":379,"./keyMirror":385,"./keyOf":386,"./warning":400,"_process":1}],267:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -29129,7 +29680,7 @@ module.exports = ReactComponent;
 
 }).call(this,require('_process'))
 
-},{"./ReactUpdateQueue":325,"./invariant":377,"./warning":398,"_process":1}],266:[function(require,module,exports){
+},{"./ReactUpdateQueue":327,"./invariant":379,"./warning":400,"_process":1}],268:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -29176,7 +29727,7 @@ var ReactComponentBrowserEnvironment = {
 
 module.exports = ReactComponentBrowserEnvironment;
 
-},{"./ReactDOMIDOperations":276,"./ReactMount":303}],267:[function(require,module,exports){
+},{"./ReactDOMIDOperations":278,"./ReactMount":305}],269:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -29238,7 +29789,7 @@ module.exports = ReactComponentEnvironment;
 
 }).call(this,require('_process'))
 
-},{"./invariant":377,"_process":1}],268:[function(require,module,exports){
+},{"./invariant":379,"_process":1}],270:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -29287,7 +29838,7 @@ var ReactComponentWithPureRenderMixin = {
 
 module.exports = ReactComponentWithPureRenderMixin;
 
-},{"./shallowEqual":393}],269:[function(require,module,exports){
+},{"./shallowEqual":395}],271:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -30201,7 +30752,7 @@ module.exports = ReactCompositeComponent;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":255,"./ReactComponentEnvironment":267,"./ReactContext":270,"./ReactCurrentOwner":271,"./ReactElement":289,"./ReactElementValidator":290,"./ReactInstanceMap":299,"./ReactLifeCycle":300,"./ReactNativeComponent":306,"./ReactPerf":308,"./ReactPropTypeLocationNames":310,"./ReactPropTypeLocations":311,"./ReactReconciler":315,"./ReactUpdates":326,"./emptyObject":357,"./invariant":377,"./shouldUpdateReactComponent":394,"./warning":398,"_process":1}],270:[function(require,module,exports){
+},{"./Object.assign":257,"./ReactComponentEnvironment":269,"./ReactContext":272,"./ReactCurrentOwner":273,"./ReactElement":291,"./ReactElementValidator":292,"./ReactInstanceMap":301,"./ReactLifeCycle":302,"./ReactNativeComponent":308,"./ReactPerf":310,"./ReactPropTypeLocationNames":312,"./ReactPropTypeLocations":313,"./ReactReconciler":317,"./ReactUpdates":328,"./emptyObject":359,"./invariant":379,"./shouldUpdateReactComponent":396,"./warning":400,"_process":1}],272:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -30280,7 +30831,7 @@ module.exports = ReactContext;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":255,"./emptyObject":357,"./warning":398,"_process":1}],271:[function(require,module,exports){
+},{"./Object.assign":257,"./emptyObject":359,"./warning":400,"_process":1}],273:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -30314,7 +30865,7 @@ var ReactCurrentOwner = {
 
 module.exports = ReactCurrentOwner;
 
-},{}],272:[function(require,module,exports){
+},{}],274:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -30494,7 +31045,7 @@ module.exports = ReactDOM;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":289,"./ReactElementValidator":290,"./mapObject":385,"_process":1}],273:[function(require,module,exports){
+},{"./ReactElement":291,"./ReactElementValidator":292,"./mapObject":387,"_process":1}],275:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -30558,7 +31109,7 @@ var ReactDOMButton = ReactClass.createClass({
 
 module.exports = ReactDOMButton;
 
-},{"./AutoFocusMixin":228,"./ReactBrowserComponentMixin":258,"./ReactClass":264,"./ReactElement":289,"./keyMirror":383}],274:[function(require,module,exports){
+},{"./AutoFocusMixin":230,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291,"./keyMirror":385}],276:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -31069,7 +31620,7 @@ module.exports = ReactDOMComponent;
 
 }).call(this,require('_process'))
 
-},{"./CSSPropertyOperations":232,"./DOMProperty":237,"./DOMPropertyOperations":238,"./Object.assign":255,"./ReactBrowserEventEmitter":259,"./ReactComponentBrowserEnvironment":266,"./ReactMount":303,"./ReactMultiChild":304,"./ReactPerf":308,"./escapeTextContentForBrowser":358,"./invariant":377,"./isEventSupported":378,"./keyOf":384,"./warning":398,"_process":1}],275:[function(require,module,exports){
+},{"./CSSPropertyOperations":234,"./DOMProperty":239,"./DOMPropertyOperations":240,"./Object.assign":257,"./ReactBrowserEventEmitter":261,"./ReactComponentBrowserEnvironment":268,"./ReactMount":305,"./ReactMultiChild":306,"./ReactPerf":310,"./escapeTextContentForBrowser":360,"./invariant":379,"./isEventSupported":380,"./keyOf":386,"./warning":400,"_process":1}],277:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -31118,7 +31669,7 @@ var ReactDOMForm = ReactClass.createClass({
 
 module.exports = ReactDOMForm;
 
-},{"./EventConstants":242,"./LocalEventTrapMixin":253,"./ReactBrowserComponentMixin":258,"./ReactClass":264,"./ReactElement":289}],276:[function(require,module,exports){
+},{"./EventConstants":244,"./LocalEventTrapMixin":255,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291}],278:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -31287,7 +31838,7 @@ module.exports = ReactDOMIDOperations;
 
 }).call(this,require('_process'))
 
-},{"./CSSPropertyOperations":232,"./DOMChildrenOperations":236,"./DOMPropertyOperations":238,"./ReactMount":303,"./ReactPerf":308,"./invariant":377,"./setInnerHTML":391,"_process":1}],277:[function(require,module,exports){
+},{"./CSSPropertyOperations":234,"./DOMChildrenOperations":238,"./DOMPropertyOperations":240,"./ReactMount":305,"./ReactPerf":310,"./invariant":379,"./setInnerHTML":393,"_process":1}],279:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -31332,7 +31883,7 @@ var ReactDOMIframe = ReactClass.createClass({
 
 module.exports = ReactDOMIframe;
 
-},{"./EventConstants":242,"./LocalEventTrapMixin":253,"./ReactBrowserComponentMixin":258,"./ReactClass":264,"./ReactElement":289}],278:[function(require,module,exports){
+},{"./EventConstants":244,"./LocalEventTrapMixin":255,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291}],280:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -31378,7 +31929,7 @@ var ReactDOMImg = ReactClass.createClass({
 
 module.exports = ReactDOMImg;
 
-},{"./EventConstants":242,"./LocalEventTrapMixin":253,"./ReactBrowserComponentMixin":258,"./ReactClass":264,"./ReactElement":289}],279:[function(require,module,exports){
+},{"./EventConstants":244,"./LocalEventTrapMixin":255,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291}],281:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -31556,7 +32107,7 @@ module.exports = ReactDOMInput;
 
 }).call(this,require('_process'))
 
-},{"./AutoFocusMixin":228,"./DOMPropertyOperations":238,"./LinkedValueUtils":252,"./Object.assign":255,"./ReactBrowserComponentMixin":258,"./ReactClass":264,"./ReactElement":289,"./ReactMount":303,"./ReactUpdates":326,"./invariant":377,"_process":1}],280:[function(require,module,exports){
+},{"./AutoFocusMixin":230,"./DOMPropertyOperations":240,"./LinkedValueUtils":254,"./Object.assign":257,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291,"./ReactMount":305,"./ReactUpdates":328,"./invariant":379,"_process":1}],282:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -31609,7 +32160,7 @@ module.exports = ReactDOMOption;
 
 }).call(this,require('_process'))
 
-},{"./ReactBrowserComponentMixin":258,"./ReactClass":264,"./ReactElement":289,"./warning":398,"_process":1}],281:[function(require,module,exports){
+},{"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291,"./warning":400,"_process":1}],283:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -31787,7 +32338,7 @@ var ReactDOMSelect = ReactClass.createClass({
 
 module.exports = ReactDOMSelect;
 
-},{"./AutoFocusMixin":228,"./LinkedValueUtils":252,"./Object.assign":255,"./ReactBrowserComponentMixin":258,"./ReactClass":264,"./ReactElement":289,"./ReactUpdates":326}],282:[function(require,module,exports){
+},{"./AutoFocusMixin":230,"./LinkedValueUtils":254,"./Object.assign":257,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291,"./ReactUpdates":328}],284:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32000,7 +32551,7 @@ var ReactDOMSelection = {
 
 module.exports = ReactDOMSelection;
 
-},{"./ExecutionEnvironment":248,"./getNodeForCharacterOffset":370,"./getTextContentAccessor":372}],283:[function(require,module,exports){
+},{"./ExecutionEnvironment":250,"./getNodeForCharacterOffset":372,"./getTextContentAccessor":374}],285:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32117,7 +32668,7 @@ assign(ReactDOMTextComponent.prototype, {
 
 module.exports = ReactDOMTextComponent;
 
-},{"./DOMPropertyOperations":238,"./Object.assign":255,"./ReactComponentBrowserEnvironment":266,"./ReactDOMComponent":274,"./escapeTextContentForBrowser":358}],284:[function(require,module,exports){
+},{"./DOMPropertyOperations":240,"./Object.assign":257,"./ReactComponentBrowserEnvironment":268,"./ReactDOMComponent":276,"./escapeTextContentForBrowser":360}],286:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -32258,7 +32809,7 @@ module.exports = ReactDOMTextarea;
 
 }).call(this,require('_process'))
 
-},{"./AutoFocusMixin":228,"./DOMPropertyOperations":238,"./LinkedValueUtils":252,"./Object.assign":255,"./ReactBrowserComponentMixin":258,"./ReactClass":264,"./ReactElement":289,"./ReactUpdates":326,"./invariant":377,"./warning":398,"_process":1}],285:[function(require,module,exports){
+},{"./AutoFocusMixin":230,"./DOMPropertyOperations":240,"./LinkedValueUtils":254,"./Object.assign":257,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291,"./ReactUpdates":328,"./invariant":379,"./warning":400,"_process":1}],287:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32331,7 +32882,7 @@ var ReactDefaultBatchingStrategy = {
 
 module.exports = ReactDefaultBatchingStrategy;
 
-},{"./Object.assign":255,"./ReactUpdates":326,"./Transaction":343,"./emptyFunction":356}],286:[function(require,module,exports){
+},{"./Object.assign":257,"./ReactUpdates":328,"./Transaction":345,"./emptyFunction":358}],288:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -32491,7 +33042,7 @@ module.exports = {
 
 }).call(this,require('_process'))
 
-},{"./BeforeInputEventPlugin":229,"./ChangeEventPlugin":234,"./ClientReactRootIndex":235,"./DefaultEventPluginOrder":240,"./EnterLeaveEventPlugin":241,"./ExecutionEnvironment":248,"./HTMLDOMPropertyConfig":250,"./MobileSafariClickEventPlugin":254,"./ReactBrowserComponentMixin":258,"./ReactClass":264,"./ReactComponentBrowserEnvironment":266,"./ReactDOMButton":273,"./ReactDOMComponent":274,"./ReactDOMForm":275,"./ReactDOMIDOperations":276,"./ReactDOMIframe":277,"./ReactDOMImg":278,"./ReactDOMInput":279,"./ReactDOMOption":280,"./ReactDOMSelect":281,"./ReactDOMTextComponent":283,"./ReactDOMTextarea":284,"./ReactDefaultBatchingStrategy":285,"./ReactDefaultPerf":287,"./ReactElement":289,"./ReactEventListener":294,"./ReactInjection":296,"./ReactInstanceHandles":298,"./ReactMount":303,"./ReactReconcileTransaction":314,"./SVGDOMPropertyConfig":328,"./SelectEventPlugin":329,"./ServerReactRootIndex":330,"./SimpleEventPlugin":331,"./createFullPageComponent":352,"_process":1}],287:[function(require,module,exports){
+},{"./BeforeInputEventPlugin":231,"./ChangeEventPlugin":236,"./ClientReactRootIndex":237,"./DefaultEventPluginOrder":242,"./EnterLeaveEventPlugin":243,"./ExecutionEnvironment":250,"./HTMLDOMPropertyConfig":252,"./MobileSafariClickEventPlugin":256,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactComponentBrowserEnvironment":268,"./ReactDOMButton":275,"./ReactDOMComponent":276,"./ReactDOMForm":277,"./ReactDOMIDOperations":278,"./ReactDOMIframe":279,"./ReactDOMImg":280,"./ReactDOMInput":281,"./ReactDOMOption":282,"./ReactDOMSelect":283,"./ReactDOMTextComponent":285,"./ReactDOMTextarea":286,"./ReactDefaultBatchingStrategy":287,"./ReactDefaultPerf":289,"./ReactElement":291,"./ReactEventListener":296,"./ReactInjection":298,"./ReactInstanceHandles":300,"./ReactMount":305,"./ReactReconcileTransaction":316,"./SVGDOMPropertyConfig":330,"./SelectEventPlugin":331,"./ServerReactRootIndex":332,"./SimpleEventPlugin":333,"./createFullPageComponent":354,"_process":1}],289:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32757,7 +33308,7 @@ var ReactDefaultPerf = {
 
 module.exports = ReactDefaultPerf;
 
-},{"./DOMProperty":237,"./ReactDefaultPerfAnalysis":288,"./ReactMount":303,"./ReactPerf":308,"./performanceNow":389}],288:[function(require,module,exports){
+},{"./DOMProperty":239,"./ReactDefaultPerfAnalysis":290,"./ReactMount":305,"./ReactPerf":310,"./performanceNow":391}],290:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32963,7 +33514,7 @@ var ReactDefaultPerfAnalysis = {
 
 module.exports = ReactDefaultPerfAnalysis;
 
-},{"./Object.assign":255}],289:[function(require,module,exports){
+},{"./Object.assign":257}],291:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -33272,7 +33823,7 @@ module.exports = ReactElement;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":255,"./ReactContext":270,"./ReactCurrentOwner":271,"./warning":398,"_process":1}],290:[function(require,module,exports){
+},{"./Object.assign":257,"./ReactContext":272,"./ReactCurrentOwner":273,"./warning":400,"_process":1}],292:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -33738,7 +34289,7 @@ module.exports = ReactElementValidator;
 
 }).call(this,require('_process'))
 
-},{"./ReactCurrentOwner":271,"./ReactElement":289,"./ReactFragment":295,"./ReactNativeComponent":306,"./ReactPropTypeLocationNames":310,"./ReactPropTypeLocations":311,"./getIteratorFn":368,"./invariant":377,"./warning":398,"_process":1}],291:[function(require,module,exports){
+},{"./ReactCurrentOwner":273,"./ReactElement":291,"./ReactFragment":297,"./ReactNativeComponent":308,"./ReactPropTypeLocationNames":312,"./ReactPropTypeLocations":313,"./getIteratorFn":370,"./invariant":379,"./warning":400,"_process":1}],293:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -33834,7 +34385,7 @@ module.exports = ReactEmptyComponent;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":289,"./ReactInstanceMap":299,"./invariant":377,"_process":1}],292:[function(require,module,exports){
+},{"./ReactElement":291,"./ReactInstanceMap":301,"./invariant":379,"_process":1}],294:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -33866,7 +34417,7 @@ var ReactErrorUtils = {
 
 module.exports = ReactErrorUtils;
 
-},{}],293:[function(require,module,exports){
+},{}],295:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -33916,7 +34467,7 @@ var ReactEventEmitterMixin = {
 
 module.exports = ReactEventEmitterMixin;
 
-},{"./EventPluginHub":244}],294:[function(require,module,exports){
+},{"./EventPluginHub":246}],296:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34099,7 +34650,7 @@ var ReactEventListener = {
 
 module.exports = ReactEventListener;
 
-},{"./EventListener":243,"./ExecutionEnvironment":248,"./Object.assign":255,"./PooledClass":256,"./ReactInstanceHandles":298,"./ReactMount":303,"./ReactUpdates":326,"./getEventTarget":367,"./getUnboundedScrollPosition":373}],295:[function(require,module,exports){
+},{"./EventListener":245,"./ExecutionEnvironment":250,"./Object.assign":257,"./PooledClass":258,"./ReactInstanceHandles":300,"./ReactMount":305,"./ReactUpdates":328,"./getEventTarget":369,"./getUnboundedScrollPosition":375}],297:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015, Facebook, Inc.
@@ -34285,7 +34836,7 @@ module.exports = ReactFragment;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":289,"./warning":398,"_process":1}],296:[function(require,module,exports){
+},{"./ReactElement":291,"./warning":400,"_process":1}],298:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34327,7 +34878,7 @@ var ReactInjection = {
 
 module.exports = ReactInjection;
 
-},{"./DOMProperty":237,"./EventPluginHub":244,"./ReactBrowserEventEmitter":259,"./ReactClass":264,"./ReactComponentEnvironment":267,"./ReactDOMComponent":274,"./ReactEmptyComponent":291,"./ReactNativeComponent":306,"./ReactPerf":308,"./ReactRootIndex":317,"./ReactUpdates":326}],297:[function(require,module,exports){
+},{"./DOMProperty":239,"./EventPluginHub":246,"./ReactBrowserEventEmitter":261,"./ReactClass":266,"./ReactComponentEnvironment":269,"./ReactDOMComponent":276,"./ReactEmptyComponent":293,"./ReactNativeComponent":308,"./ReactPerf":310,"./ReactRootIndex":319,"./ReactUpdates":328}],299:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34462,7 +35013,7 @@ var ReactInputSelection = {
 
 module.exports = ReactInputSelection;
 
-},{"./ReactDOMSelection":282,"./containsNode":350,"./focusNode":361,"./getActiveElement":363}],298:[function(require,module,exports){
+},{"./ReactDOMSelection":284,"./containsNode":352,"./focusNode":363,"./getActiveElement":365}],300:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -34799,7 +35350,7 @@ module.exports = ReactInstanceHandles;
 
 }).call(this,require('_process'))
 
-},{"./ReactRootIndex":317,"./invariant":377,"_process":1}],299:[function(require,module,exports){
+},{"./ReactRootIndex":319,"./invariant":379,"_process":1}],301:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34848,7 +35399,7 @@ var ReactInstanceMap = {
 
 module.exports = ReactInstanceMap;
 
-},{}],300:[function(require,module,exports){
+},{}],302:[function(require,module,exports){
 /**
  * Copyright 2015, Facebook, Inc.
  * All rights reserved.
@@ -34885,7 +35436,7 @@ var ReactLifeCycle = {
 
 module.exports = ReactLifeCycle;
 
-},{}],301:[function(require,module,exports){
+},{}],303:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34958,7 +35509,7 @@ ReactLink.PropTypes = {
 
 module.exports = ReactLink;
 
-},{"./React":257}],302:[function(require,module,exports){
+},{"./React":259}],304:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -35006,7 +35557,7 @@ var ReactMarkupChecksum = {
 
 module.exports = ReactMarkupChecksum;
 
-},{"./adler32":346}],303:[function(require,module,exports){
+},{"./adler32":348}],305:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -35898,7 +36449,7 @@ module.exports = ReactMount;
 
 }).call(this,require('_process'))
 
-},{"./DOMProperty":237,"./ReactBrowserEventEmitter":259,"./ReactCurrentOwner":271,"./ReactElement":289,"./ReactElementValidator":290,"./ReactEmptyComponent":291,"./ReactInstanceHandles":298,"./ReactInstanceMap":299,"./ReactMarkupChecksum":302,"./ReactPerf":308,"./ReactReconciler":315,"./ReactUpdateQueue":325,"./ReactUpdates":326,"./containsNode":350,"./emptyObject":357,"./getReactRootElementInContainer":371,"./instantiateReactComponent":376,"./invariant":377,"./setInnerHTML":391,"./shouldUpdateReactComponent":394,"./warning":398,"_process":1}],304:[function(require,module,exports){
+},{"./DOMProperty":239,"./ReactBrowserEventEmitter":261,"./ReactCurrentOwner":273,"./ReactElement":291,"./ReactElementValidator":292,"./ReactEmptyComponent":293,"./ReactInstanceHandles":300,"./ReactInstanceMap":301,"./ReactMarkupChecksum":304,"./ReactPerf":310,"./ReactReconciler":317,"./ReactUpdateQueue":327,"./ReactUpdates":328,"./containsNode":352,"./emptyObject":359,"./getReactRootElementInContainer":373,"./instantiateReactComponent":378,"./invariant":379,"./setInnerHTML":393,"./shouldUpdateReactComponent":396,"./warning":400,"_process":1}],306:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -36328,7 +36879,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 
-},{"./ReactChildReconciler":262,"./ReactComponentEnvironment":267,"./ReactMultiChildUpdateTypes":305,"./ReactReconciler":315}],305:[function(require,module,exports){
+},{"./ReactChildReconciler":264,"./ReactComponentEnvironment":269,"./ReactMultiChildUpdateTypes":307,"./ReactReconciler":317}],307:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -36361,7 +36912,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 
 module.exports = ReactMultiChildUpdateTypes;
 
-},{"./keyMirror":383}],306:[function(require,module,exports){
+},{"./keyMirror":385}],308:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -36469,7 +37020,7 @@ module.exports = ReactNativeComponent;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":255,"./invariant":377,"_process":1}],307:[function(require,module,exports){
+},{"./Object.assign":257,"./invariant":379,"_process":1}],309:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -36582,7 +37133,7 @@ module.exports = ReactOwner;
 
 }).call(this,require('_process'))
 
-},{"./invariant":377,"_process":1}],308:[function(require,module,exports){
+},{"./invariant":379,"_process":1}],310:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -36687,7 +37238,7 @@ module.exports = ReactPerf;
 
 }).call(this,require('_process'))
 
-},{"_process":1}],309:[function(require,module,exports){
+},{"_process":1}],311:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -36797,7 +37348,7 @@ var ReactPropTransferer = {
 
 module.exports = ReactPropTransferer;
 
-},{"./Object.assign":255,"./emptyFunction":356,"./joinClasses":382}],310:[function(require,module,exports){
+},{"./Object.assign":257,"./emptyFunction":358,"./joinClasses":384}],312:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -36826,7 +37377,7 @@ module.exports = ReactPropTypeLocationNames;
 
 }).call(this,require('_process'))
 
-},{"_process":1}],311:[function(require,module,exports){
+},{"_process":1}],313:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -36850,7 +37401,7 @@ var ReactPropTypeLocations = keyMirror({
 
 module.exports = ReactPropTypeLocations;
 
-},{"./keyMirror":383}],312:[function(require,module,exports){
+},{"./keyMirror":385}],314:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37199,7 +37750,7 @@ function getPreciseType(propValue) {
 
 module.exports = ReactPropTypes;
 
-},{"./ReactElement":289,"./ReactFragment":295,"./ReactPropTypeLocationNames":310,"./emptyFunction":356}],313:[function(require,module,exports){
+},{"./ReactElement":291,"./ReactFragment":297,"./ReactPropTypeLocationNames":312,"./emptyFunction":358}],315:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37255,7 +37806,7 @@ PooledClass.addPoolingTo(ReactPutListenerQueue);
 
 module.exports = ReactPutListenerQueue;
 
-},{"./Object.assign":255,"./PooledClass":256,"./ReactBrowserEventEmitter":259}],314:[function(require,module,exports){
+},{"./Object.assign":257,"./PooledClass":258,"./ReactBrowserEventEmitter":261}],316:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37431,7 +37982,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 
-},{"./CallbackQueue":233,"./Object.assign":255,"./PooledClass":256,"./ReactBrowserEventEmitter":259,"./ReactInputSelection":297,"./ReactPutListenerQueue":313,"./Transaction":343}],315:[function(require,module,exports){
+},{"./CallbackQueue":235,"./Object.assign":257,"./PooledClass":258,"./ReactBrowserEventEmitter":261,"./ReactInputSelection":299,"./ReactPutListenerQueue":315,"./Transaction":345}],317:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -37556,7 +38107,7 @@ module.exports = ReactReconciler;
 
 }).call(this,require('_process'))
 
-},{"./ReactElementValidator":290,"./ReactRef":316,"_process":1}],316:[function(require,module,exports){
+},{"./ReactElementValidator":292,"./ReactRef":318,"_process":1}],318:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37627,7 +38178,7 @@ ReactRef.detachRefs = function(instance, element) {
 
 module.exports = ReactRef;
 
-},{"./ReactOwner":307}],317:[function(require,module,exports){
+},{"./ReactOwner":309}],319:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37658,7 +38209,7 @@ var ReactRootIndex = {
 
 module.exports = ReactRootIndex;
 
-},{}],318:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -37741,7 +38292,7 @@ module.exports = {
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":289,"./ReactInstanceHandles":298,"./ReactMarkupChecksum":302,"./ReactServerRenderingTransaction":319,"./emptyObject":357,"./instantiateReactComponent":376,"./invariant":377,"_process":1}],319:[function(require,module,exports){
+},{"./ReactElement":291,"./ReactInstanceHandles":300,"./ReactMarkupChecksum":304,"./ReactServerRenderingTransaction":321,"./emptyObject":359,"./instantiateReactComponent":378,"./invariant":379,"_process":1}],321:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -37854,7 +38405,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
 
-},{"./CallbackQueue":233,"./Object.assign":255,"./PooledClass":256,"./ReactPutListenerQueue":313,"./Transaction":343,"./emptyFunction":356}],320:[function(require,module,exports){
+},{"./CallbackQueue":235,"./Object.assign":257,"./PooledClass":258,"./ReactPutListenerQueue":315,"./Transaction":345,"./emptyFunction":358}],322:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37960,7 +38511,7 @@ ReactStateSetters.Mixin = {
 
 module.exports = ReactStateSetters;
 
-},{}],321:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -38474,7 +39025,7 @@ for (eventType in topLevelTypes) {
 
 module.exports = ReactTestUtils;
 
-},{"./EventConstants":242,"./EventPluginHub":244,"./EventPropagators":247,"./Object.assign":255,"./React":257,"./ReactBrowserEventEmitter":259,"./ReactCompositeComponent":269,"./ReactElement":289,"./ReactEmptyComponent":291,"./ReactInstanceHandles":298,"./ReactInstanceMap":299,"./ReactMount":303,"./ReactUpdates":326,"./SyntheticEvent":335,"./emptyObject":357}],322:[function(require,module,exports){
+},{"./EventConstants":244,"./EventPluginHub":246,"./EventPropagators":249,"./Object.assign":257,"./React":259,"./ReactBrowserEventEmitter":261,"./ReactCompositeComponent":271,"./ReactElement":291,"./ReactEmptyComponent":293,"./ReactInstanceHandles":300,"./ReactInstanceMap":301,"./ReactMount":305,"./ReactUpdates":328,"./SyntheticEvent":337,"./emptyObject":359}],324:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -38579,7 +39130,7 @@ var ReactTransitionChildMapping = {
 
 module.exports = ReactTransitionChildMapping;
 
-},{"./ReactChildren":263,"./ReactFragment":295}],323:[function(require,module,exports){
+},{"./ReactChildren":265,"./ReactFragment":297}],325:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -38690,7 +39241,7 @@ var ReactTransitionEvents = {
 
 module.exports = ReactTransitionEvents;
 
-},{"./ExecutionEnvironment":248}],324:[function(require,module,exports){
+},{"./ExecutionEnvironment":250}],326:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -38920,7 +39471,7 @@ var ReactTransitionGroup = React.createClass({
 
 module.exports = ReactTransitionGroup;
 
-},{"./Object.assign":255,"./React":257,"./ReactTransitionChildMapping":322,"./cloneWithProps":349,"./emptyFunction":356}],325:[function(require,module,exports){
+},{"./Object.assign":257,"./React":259,"./ReactTransitionChildMapping":324,"./cloneWithProps":351,"./emptyFunction":358}],327:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015, Facebook, Inc.
@@ -39220,7 +39771,7 @@ module.exports = ReactUpdateQueue;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":255,"./ReactCurrentOwner":271,"./ReactElement":289,"./ReactInstanceMap":299,"./ReactLifeCycle":300,"./ReactUpdates":326,"./invariant":377,"./warning":398,"_process":1}],326:[function(require,module,exports){
+},{"./Object.assign":257,"./ReactCurrentOwner":273,"./ReactElement":291,"./ReactInstanceMap":301,"./ReactLifeCycle":302,"./ReactUpdates":328,"./invariant":379,"./warning":400,"_process":1}],328:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -39503,7 +40054,7 @@ module.exports = ReactUpdates;
 
 }).call(this,require('_process'))
 
-},{"./CallbackQueue":233,"./Object.assign":255,"./PooledClass":256,"./ReactCurrentOwner":271,"./ReactPerf":308,"./ReactReconciler":315,"./Transaction":343,"./invariant":377,"./warning":398,"_process":1}],327:[function(require,module,exports){
+},{"./CallbackQueue":235,"./Object.assign":257,"./PooledClass":258,"./ReactCurrentOwner":273,"./ReactPerf":310,"./ReactReconciler":317,"./Transaction":345,"./invariant":379,"./warning":400,"_process":1}],329:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -39560,7 +40111,7 @@ module.exports = React;
 
 }).call(this,require('_process'))
 
-},{"./LinkedStateMixin":251,"./React":257,"./ReactCSSTransitionGroup":260,"./ReactComponentWithPureRenderMixin":268,"./ReactDefaultPerf":287,"./ReactFragment":295,"./ReactTestUtils":321,"./ReactTransitionGroup":324,"./ReactUpdates":326,"./cloneWithProps":349,"./cx":354,"./update":397,"_process":1}],328:[function(require,module,exports){
+},{"./LinkedStateMixin":253,"./React":259,"./ReactCSSTransitionGroup":262,"./ReactComponentWithPureRenderMixin":270,"./ReactDefaultPerf":289,"./ReactFragment":297,"./ReactTestUtils":323,"./ReactTransitionGroup":326,"./ReactUpdates":328,"./cloneWithProps":351,"./cx":356,"./update":399,"_process":1}],330:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39654,7 +40205,7 @@ var SVGDOMPropertyConfig = {
 
 module.exports = SVGDOMPropertyConfig;
 
-},{"./DOMProperty":237}],329:[function(require,module,exports){
+},{"./DOMProperty":239}],331:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39849,7 +40400,7 @@ var SelectEventPlugin = {
 
 module.exports = SelectEventPlugin;
 
-},{"./EventConstants":242,"./EventPropagators":247,"./ReactInputSelection":297,"./SyntheticEvent":335,"./getActiveElement":363,"./isTextInputElement":380,"./keyOf":384,"./shallowEqual":393}],330:[function(require,module,exports){
+},{"./EventConstants":244,"./EventPropagators":249,"./ReactInputSelection":299,"./SyntheticEvent":337,"./getActiveElement":365,"./isTextInputElement":382,"./keyOf":386,"./shallowEqual":395}],332:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39880,7 +40431,7 @@ var ServerReactRootIndex = {
 
 module.exports = ServerReactRootIndex;
 
-},{}],331:[function(require,module,exports){
+},{}],333:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -40309,7 +40860,7 @@ module.exports = SimpleEventPlugin;
 
 }).call(this,require('_process'))
 
-},{"./EventConstants":242,"./EventPluginUtils":246,"./EventPropagators":247,"./SyntheticClipboardEvent":332,"./SyntheticDragEvent":334,"./SyntheticEvent":335,"./SyntheticFocusEvent":336,"./SyntheticKeyboardEvent":338,"./SyntheticMouseEvent":339,"./SyntheticTouchEvent":340,"./SyntheticUIEvent":341,"./SyntheticWheelEvent":342,"./getEventCharCode":364,"./invariant":377,"./keyOf":384,"./warning":398,"_process":1}],332:[function(require,module,exports){
+},{"./EventConstants":244,"./EventPluginUtils":248,"./EventPropagators":249,"./SyntheticClipboardEvent":334,"./SyntheticDragEvent":336,"./SyntheticEvent":337,"./SyntheticFocusEvent":338,"./SyntheticKeyboardEvent":340,"./SyntheticMouseEvent":341,"./SyntheticTouchEvent":342,"./SyntheticUIEvent":343,"./SyntheticWheelEvent":344,"./getEventCharCode":366,"./invariant":379,"./keyOf":386,"./warning":400,"_process":1}],334:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40354,7 +40905,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 
 module.exports = SyntheticClipboardEvent;
 
-},{"./SyntheticEvent":335}],333:[function(require,module,exports){
+},{"./SyntheticEvent":337}],335:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40399,7 +40950,7 @@ SyntheticEvent.augmentClass(
 
 module.exports = SyntheticCompositionEvent;
 
-},{"./SyntheticEvent":335}],334:[function(require,module,exports){
+},{"./SyntheticEvent":337}],336:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40438,7 +40989,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
 
-},{"./SyntheticMouseEvent":339}],335:[function(require,module,exports){
+},{"./SyntheticMouseEvent":341}],337:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40604,7 +41155,7 @@ PooledClass.addPoolingTo(SyntheticEvent, PooledClass.threeArgumentPooler);
 
 module.exports = SyntheticEvent;
 
-},{"./Object.assign":255,"./PooledClass":256,"./emptyFunction":356,"./getEventTarget":367}],336:[function(require,module,exports){
+},{"./Object.assign":257,"./PooledClass":258,"./emptyFunction":358,"./getEventTarget":369}],338:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40643,7 +41194,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
 
-},{"./SyntheticUIEvent":341}],337:[function(require,module,exports){
+},{"./SyntheticUIEvent":343}],339:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40689,7 +41240,7 @@ SyntheticEvent.augmentClass(
 
 module.exports = SyntheticInputEvent;
 
-},{"./SyntheticEvent":335}],338:[function(require,module,exports){
+},{"./SyntheticEvent":337}],340:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40776,7 +41327,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
 
-},{"./SyntheticUIEvent":341,"./getEventCharCode":364,"./getEventKey":365,"./getEventModifierState":366}],339:[function(require,module,exports){
+},{"./SyntheticUIEvent":343,"./getEventCharCode":366,"./getEventKey":367,"./getEventModifierState":368}],341:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40857,7 +41408,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
 
-},{"./SyntheticUIEvent":341,"./ViewportMetrics":344,"./getEventModifierState":366}],340:[function(require,module,exports){
+},{"./SyntheticUIEvent":343,"./ViewportMetrics":346,"./getEventModifierState":368}],342:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40905,7 +41456,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
 
-},{"./SyntheticUIEvent":341,"./getEventModifierState":366}],341:[function(require,module,exports){
+},{"./SyntheticUIEvent":343,"./getEventModifierState":368}],343:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40967,7 +41518,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
 
-},{"./SyntheticEvent":335,"./getEventTarget":367}],342:[function(require,module,exports){
+},{"./SyntheticEvent":337,"./getEventTarget":369}],344:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41028,7 +41579,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
 
-},{"./SyntheticMouseEvent":339}],343:[function(require,module,exports){
+},{"./SyntheticMouseEvent":341}],345:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -41270,7 +41821,7 @@ module.exports = Transaction;
 
 }).call(this,require('_process'))
 
-},{"./invariant":377,"_process":1}],344:[function(require,module,exports){
+},{"./invariant":379,"_process":1}],346:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41299,7 +41850,7 @@ var ViewportMetrics = {
 
 module.exports = ViewportMetrics;
 
-},{}],345:[function(require,module,exports){
+},{}],347:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -41366,7 +41917,7 @@ module.exports = accumulateInto;
 
 }).call(this,require('_process'))
 
-},{"./invariant":377,"_process":1}],346:[function(require,module,exports){
+},{"./invariant":379,"_process":1}],348:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41400,7 +41951,7 @@ function adler32(data) {
 
 module.exports = adler32;
 
-},{}],347:[function(require,module,exports){
+},{}],349:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41432,7 +41983,7 @@ function camelize(string) {
 
 module.exports = camelize;
 
-},{}],348:[function(require,module,exports){
+},{}],350:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -41474,7 +42025,7 @@ function camelizeStyleName(string) {
 
 module.exports = camelizeStyleName;
 
-},{"./camelize":347}],349:[function(require,module,exports){
+},{"./camelize":349}],351:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -41534,7 +42085,7 @@ module.exports = cloneWithProps;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":289,"./ReactPropTransferer":309,"./keyOf":384,"./warning":398,"_process":1}],350:[function(require,module,exports){
+},{"./ReactElement":291,"./ReactPropTransferer":311,"./keyOf":386,"./warning":400,"_process":1}],352:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41578,7 +42129,7 @@ function containsNode(outerNode, innerNode) {
 
 module.exports = containsNode;
 
-},{"./isTextNode":381}],351:[function(require,module,exports){
+},{"./isTextNode":383}],353:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41664,7 +42215,7 @@ function createArrayFromMixed(obj) {
 
 module.exports = createArrayFromMixed;
 
-},{"./toArray":395}],352:[function(require,module,exports){
+},{"./toArray":397}],354:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -41727,7 +42278,7 @@ module.exports = createFullPageComponent;
 
 }).call(this,require('_process'))
 
-},{"./ReactClass":264,"./ReactElement":289,"./invariant":377,"_process":1}],353:[function(require,module,exports){
+},{"./ReactClass":266,"./ReactElement":291,"./invariant":379,"_process":1}],355:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -41818,7 +42369,7 @@ module.exports = createNodesFromMarkup;
 
 }).call(this,require('_process'))
 
-},{"./ExecutionEnvironment":248,"./createArrayFromMixed":351,"./getMarkupWrap":369,"./invariant":377,"_process":1}],354:[function(require,module,exports){
+},{"./ExecutionEnvironment":250,"./createArrayFromMixed":353,"./getMarkupWrap":371,"./invariant":379,"_process":1}],356:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -41875,7 +42426,7 @@ module.exports = cx;
 
 }).call(this,require('_process'))
 
-},{"./warning":398,"_process":1}],355:[function(require,module,exports){
+},{"./warning":400,"_process":1}],357:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41933,7 +42484,7 @@ function dangerousStyleValue(name, value) {
 
 module.exports = dangerousStyleValue;
 
-},{"./CSSProperty":231}],356:[function(require,module,exports){
+},{"./CSSProperty":233}],358:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41967,7 +42518,7 @@ emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{}],357:[function(require,module,exports){
+},{}],359:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -41992,7 +42543,7 @@ module.exports = emptyObject;
 
 }).call(this,require('_process'))
 
-},{"_process":1}],358:[function(require,module,exports){
+},{"_process":1}],360:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42032,7 +42583,7 @@ function escapeTextContentForBrowser(text) {
 
 module.exports = escapeTextContentForBrowser;
 
-},{}],359:[function(require,module,exports){
+},{}],361:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42106,7 +42657,7 @@ module.exports = findDOMNode;
 
 }).call(this,require('_process'))
 
-},{"./ReactCurrentOwner":271,"./ReactInstanceMap":299,"./ReactMount":303,"./invariant":377,"./isNode":379,"./warning":398,"_process":1}],360:[function(require,module,exports){
+},{"./ReactCurrentOwner":273,"./ReactInstanceMap":301,"./ReactMount":305,"./invariant":379,"./isNode":381,"./warning":400,"_process":1}],362:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42165,7 +42716,7 @@ module.exports = flattenChildren;
 
 }).call(this,require('_process'))
 
-},{"./traverseAllChildren":396,"./warning":398,"_process":1}],361:[function(require,module,exports){
+},{"./traverseAllChildren":398,"./warning":400,"_process":1}],363:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -42194,7 +42745,7 @@ function focusNode(node) {
 
 module.exports = focusNode;
 
-},{}],362:[function(require,module,exports){
+},{}],364:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42225,7 +42776,7 @@ var forEachAccumulated = function(arr, cb, scope) {
 
 module.exports = forEachAccumulated;
 
-},{}],363:[function(require,module,exports){
+},{}],365:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42254,7 +42805,7 @@ function getActiveElement() /*?DOMElement*/ {
 
 module.exports = getActiveElement;
 
-},{}],364:[function(require,module,exports){
+},{}],366:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42306,7 +42857,7 @@ function getEventCharCode(nativeEvent) {
 
 module.exports = getEventCharCode;
 
-},{}],365:[function(require,module,exports){
+},{}],367:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42411,7 +42962,7 @@ function getEventKey(nativeEvent) {
 
 module.exports = getEventKey;
 
-},{"./getEventCharCode":364}],366:[function(require,module,exports){
+},{"./getEventCharCode":366}],368:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42458,7 +43009,7 @@ function getEventModifierState(nativeEvent) {
 
 module.exports = getEventModifierState;
 
-},{}],367:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42489,7 +43040,7 @@ function getEventTarget(nativeEvent) {
 
 module.exports = getEventTarget;
 
-},{}],368:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42533,7 +43084,7 @@ function getIteratorFn(maybeIterable) {
 
 module.exports = getIteratorFn;
 
-},{}],369:[function(require,module,exports){
+},{}],371:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42653,7 +43204,7 @@ module.exports = getMarkupWrap;
 
 }).call(this,require('_process'))
 
-},{"./ExecutionEnvironment":248,"./invariant":377,"_process":1}],370:[function(require,module,exports){
+},{"./ExecutionEnvironment":250,"./invariant":379,"_process":1}],372:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42728,7 +43279,7 @@ function getNodeForCharacterOffset(root, offset) {
 
 module.exports = getNodeForCharacterOffset;
 
-},{}],371:[function(require,module,exports){
+},{}],373:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42763,7 +43314,7 @@ function getReactRootElementInContainer(container) {
 
 module.exports = getReactRootElementInContainer;
 
-},{}],372:[function(require,module,exports){
+},{}],374:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42800,7 +43351,7 @@ function getTextContentAccessor() {
 
 module.exports = getTextContentAccessor;
 
-},{"./ExecutionEnvironment":248}],373:[function(require,module,exports){
+},{"./ExecutionEnvironment":250}],375:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42840,7 +43391,7 @@ function getUnboundedScrollPosition(scrollable) {
 
 module.exports = getUnboundedScrollPosition;
 
-},{}],374:[function(require,module,exports){
+},{}],376:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42873,7 +43424,7 @@ function hyphenate(string) {
 
 module.exports = hyphenate;
 
-},{}],375:[function(require,module,exports){
+},{}],377:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42914,7 +43465,7 @@ function hyphenateStyleName(string) {
 
 module.exports = hyphenateStyleName;
 
-},{"./hyphenate":374}],376:[function(require,module,exports){
+},{"./hyphenate":376}],378:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43053,7 +43604,7 @@ module.exports = instantiateReactComponent;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":255,"./ReactCompositeComponent":269,"./ReactEmptyComponent":291,"./ReactNativeComponent":306,"./invariant":377,"./warning":398,"_process":1}],377:[function(require,module,exports){
+},{"./Object.assign":257,"./ReactCompositeComponent":271,"./ReactEmptyComponent":293,"./ReactNativeComponent":308,"./invariant":379,"./warning":400,"_process":1}],379:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43111,7 +43662,7 @@ module.exports = invariant;
 
 }).call(this,require('_process'))
 
-},{"_process":1}],378:[function(require,module,exports){
+},{"_process":1}],380:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43176,7 +43727,7 @@ function isEventSupported(eventNameSuffix, capture) {
 
 module.exports = isEventSupported;
 
-},{"./ExecutionEnvironment":248}],379:[function(require,module,exports){
+},{"./ExecutionEnvironment":250}],381:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43203,7 +43754,7 @@ function isNode(object) {
 
 module.exports = isNode;
 
-},{}],380:[function(require,module,exports){
+},{}],382:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43246,7 +43797,7 @@ function isTextInputElement(elem) {
 
 module.exports = isTextInputElement;
 
-},{}],381:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43271,7 +43822,7 @@ function isTextNode(object) {
 
 module.exports = isTextNode;
 
-},{"./isNode":379}],382:[function(require,module,exports){
+},{"./isNode":381}],384:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43312,7 +43863,7 @@ function joinClasses(className/*, ... */) {
 
 module.exports = joinClasses;
 
-},{}],383:[function(require,module,exports){
+},{}],385:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43368,7 +43919,7 @@ module.exports = keyMirror;
 
 }).call(this,require('_process'))
 
-},{"./invariant":377,"_process":1}],384:[function(require,module,exports){
+},{"./invariant":379,"_process":1}],386:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43404,7 +43955,7 @@ var keyOf = function(oneKeyObj) {
 
 module.exports = keyOf;
 
-},{}],385:[function(require,module,exports){
+},{}],387:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43457,7 +44008,7 @@ function mapObject(object, callback, context) {
 
 module.exports = mapObject;
 
-},{}],386:[function(require,module,exports){
+},{}],388:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43490,7 +44041,7 @@ function memoizeStringOnly(callback) {
 
 module.exports = memoizeStringOnly;
 
-},{}],387:[function(require,module,exports){
+},{}],389:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43531,7 +44082,7 @@ module.exports = onlyChild;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":289,"./invariant":377,"_process":1}],388:[function(require,module,exports){
+},{"./ReactElement":291,"./invariant":379,"_process":1}],390:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43559,7 +44110,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = performance || {};
 
-},{"./ExecutionEnvironment":248}],389:[function(require,module,exports){
+},{"./ExecutionEnvironment":250}],391:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43587,7 +44138,7 @@ var performanceNow = performance.now.bind(performance);
 
 module.exports = performanceNow;
 
-},{"./performance":388}],390:[function(require,module,exports){
+},{"./performance":390}],392:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43615,7 +44166,7 @@ function quoteAttributeValueForBrowser(value) {
 
 module.exports = quoteAttributeValueForBrowser;
 
-},{"./escapeTextContentForBrowser":358}],391:[function(require,module,exports){
+},{"./escapeTextContentForBrowser":360}],393:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43704,7 +44255,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = setInnerHTML;
 
-},{"./ExecutionEnvironment":248}],392:[function(require,module,exports){
+},{"./ExecutionEnvironment":250}],394:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43746,7 +44297,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = setTextContent;
 
-},{"./ExecutionEnvironment":248,"./escapeTextContentForBrowser":358,"./setInnerHTML":391}],393:[function(require,module,exports){
+},{"./ExecutionEnvironment":250,"./escapeTextContentForBrowser":360,"./setInnerHTML":393}],395:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43790,7 +44341,7 @@ function shallowEqual(objA, objB) {
 
 module.exports = shallowEqual;
 
-},{}],394:[function(require,module,exports){
+},{}],396:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43895,7 +44446,7 @@ module.exports = shouldUpdateReactComponent;
 
 }).call(this,require('_process'))
 
-},{"./warning":398,"_process":1}],395:[function(require,module,exports){
+},{"./warning":400,"_process":1}],397:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -43968,7 +44519,7 @@ module.exports = toArray;
 
 }).call(this,require('_process'))
 
-},{"./invariant":377,"_process":1}],396:[function(require,module,exports){
+},{"./invariant":379,"_process":1}],398:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -44222,7 +44773,7 @@ module.exports = traverseAllChildren;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":289,"./ReactFragment":295,"./ReactInstanceHandles":298,"./getIteratorFn":368,"./invariant":377,"./warning":398,"_process":1}],397:[function(require,module,exports){
+},{"./ReactElement":291,"./ReactFragment":297,"./ReactInstanceHandles":300,"./getIteratorFn":370,"./invariant":379,"./warning":400,"_process":1}],399:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -44394,7 +44945,7 @@ module.exports = update;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":255,"./invariant":377,"./keyOf":384,"_process":1}],398:[function(require,module,exports){
+},{"./Object.assign":257,"./invariant":379,"./keyOf":386,"_process":1}],400:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -44458,10 +45009,10 @@ module.exports = warning;
 
 }).call(this,require('_process'))
 
-},{"./emptyFunction":356,"_process":1}],399:[function(require,module,exports){
+},{"./emptyFunction":358,"_process":1}],401:[function(require,module,exports){
 module.exports = require('./lib/React');
 
-},{"./lib/React":257}],400:[function(require,module,exports){
+},{"./lib/React":259}],402:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -44503,9 +45054,9 @@ var AppBar = React.createClass({
   },
 
   componentDidMount: function componentDidMount() {
-    if (process.env.NODE_ENV !== 'production' && (this.props.iconElementLeft && this.props.iconClassNameLeft)) {
-      var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' + 'defined. Please use one or the other.';
-      console.warn(warning);
+    if (process.env.NODE_ENV !== 'production' && this.props.iconElementLeft && this.props.iconClassNameLeft) {
+
+      console.warn('Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' + 'defined. Please use one or the other.');
     }
   },
 
@@ -44517,13 +45068,16 @@ var AppBar = React.createClass({
       root: {
         zIndex: 5,
         width: '100%',
+        display: '-webkit-box; display: flex',
         minHeight: themeVariables.height,
         backgroundColor: themeVariables.color,
         paddingLeft: spacing.desktopGutter,
         paddingRight: spacing.desktopGutter
       },
       title: {
-        float: 'left',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
         margin: 0,
         paddingTop: 0,
         letterSpacing: 0,
@@ -44532,10 +45086,13 @@ var AppBar = React.createClass({
         color: themeVariables.textColor,
         lineHeight: themeVariables.height + 'px'
       },
+      mainElement: {
+        boxFlex: 1,
+        flex: '1'
+      },
       iconButton: {
         style: {
           marginTop: (themeVariables.height - iconButtonSize) / 2,
-          float: 'left',
           marginRight: 8,
           marginLeft: -16
         },
@@ -44551,23 +45108,29 @@ var AppBar = React.createClass({
   render: function render() {
     var styles = this.getStyles();
 
-    var title;
-    var menuElementLeft;
-    var menuElementRight;
     var iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
-      float: 'right',
       marginRight: -16,
-      marginLeft: 8
+      marginLeft: 'auto'
     }, this.props.iconStyleRight);
 
-    if (this.props.title) {
+    var title = this.props.title;
+
+    var titleElement;
+    var menuElementLeft;
+    var menuElementRight;
+
+    if (title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
-      title = Object.prototype.toString.call(this.props.title) === '[object String]' ? React.createElement(
+      titleElement = typeof title === 'string' || title instanceof String ? React.createElement(
         'h1',
-        { style: this.mergeAndPrefix(styles.title) },
-        this.props.title
-      ) : this.props.title;
+        { style: this.mergeAndPrefix(styles.title, styles.mainElement) },
+        title
+      ) : React.createElement(
+        'div',
+        { style: this.mergeAndPrefix(styles.mainElement) },
+        title
+      );
     }
 
     if (this.props.showMenuIconButton) {
@@ -44613,7 +45176,7 @@ var AppBar = React.createClass({
         style: this.mergeAndPrefix(styles.root, this.props.style),
         zDepth: this.props.zDepth },
       menuElementLeft,
-      title,
+      titleElement,
       menuElementRight,
       this.props.children
     );
@@ -44637,7 +45200,7 @@ module.exports = AppBar;
 
 }).call(this,require('_process'))
 
-},{"./icon-button":426,"./mixins/style-propable":440,"./paper":444,"./styles/typography":460,"./svg-icons/navigation-menu":467,"_process":1,"react":399}],401:[function(require,module,exports){
+},{"./icon-button":434,"./mixins/style-propable":448,"./paper":452,"./styles/typography":470,"./svg-icons/navigation-menu":477,"_process":1,"react":401}],403:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -44686,7 +45249,7 @@ var AppCanvas = React.createClass({
 
 module.exports = AppCanvas;
 
-},{"react":399}],402:[function(require,module,exports){
+},{"react":401}],404:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -44740,6 +45303,7 @@ var SvgIcon = React.createClass({
         borderRadius: '50%',
         border: src ? 'solid 1px' : 'none',
         borderColor: this.context.muiTheme.palette.borderColor,
+        display: 'inline-block',
 
         //Needed for letter avatars
         textAlign: 'center',
@@ -44749,8 +45313,6 @@ var SvgIcon = React.createClass({
       },
 
       iconStyles: {
-        color: color,
-        fill: color,
         margin: 8
       }
     };
@@ -44759,6 +45321,7 @@ var SvgIcon = React.createClass({
     var mergedIconStyles = icon ? this.mergeStyles(styles.iconStyles, icon.props.style) : null;
 
     var iconElement = icon ? React.cloneElement(icon, {
+      color: color,
       style: mergedIconStyles
     }) : null;
 
@@ -44773,7 +45336,7 @@ var SvgIcon = React.createClass({
 
 module.exports = SvgIcon;
 
-},{"./mixins/style-propable":440,"./styles/colors":454,"./styles/typography":460,"react/addons":227}],403:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/colors":463,"./styles/typography":470,"react/addons":229}],405:[function(require,module,exports){
 'use strict';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -44869,7 +45432,422 @@ var BeforeAfterWrapper = React.createClass({
 
 module.exports = BeforeAfterWrapper;
 
-},{"./mixins/style-propable":440,"./styles/auto-prefix":453,"react":399}],404:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/auto-prefix":462,"react":401}],406:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var React = require('react');
+var Styles = require('../styles');
+
+var CardActions = React.createClass({
+  displayName: 'CardActions',
+
+  getStyles: function getStyles() {
+    return {
+      root: {
+        padding: 8
+      }
+    };
+  },
+  render: function render() {
+    var styles = this.getStyles();
+
+    var children = React.Children.map(this.props.children, function (child) {
+      return React.cloneElement(child, {
+        style: { marginRight: 8 }
+      });
+    });
+
+    return React.createElement(
+      'div',
+      _extends({}, this.props, { style: styles.root }),
+      children
+    );
+  }
+});
+
+module.exports = CardActions;
+
+},{"../styles":464,"react":401}],407:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var React = require('react');
+var Styles = require('../styles');
+var Avatar = require('../avatar');
+var StylePropable = require('../mixins/style-propable');
+
+var CardHeader = React.createClass({
+  displayName: 'CardHeader',
+
+  mixins: [StylePropable],
+
+  propTypes: {
+    title: React.PropTypes.string,
+    titleColor: React.PropTypes.string,
+    titleStyle: React.PropTypes.object,
+    subtitle: React.PropTypes.string,
+    subtitleColor: React.PropTypes.string,
+    subtitleStyle: React.PropTypes.object,
+    textStyle: React.PropTypes.object
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      titleColor: Styles.Colors.darkBlack,
+      subtitleColor: Styles.Colors.lightBlack
+    };
+  },
+
+  getStyles: function getStyles() {
+    return {
+      root: {
+        height: 72,
+        padding: 16,
+        fontWeight: Styles.Typography.fontWeightMedium,
+        boxSizing: 'border-box'
+      },
+      text: {
+        display: 'inline-block',
+        verticalAlign: 'top'
+      },
+      avatar: {
+        marginRight: 16
+      },
+      title: {
+        color: this.props.titleColor,
+        display: 'block',
+        fontSize: 15
+      },
+      subtitle: {
+        color: this.props.subtitleColor,
+        display: 'block',
+        fontSize: 14
+      }
+    };
+  },
+
+  render: function render() {
+    var styles = this.getStyles();
+    var rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
+    var textStyle = this.mergeAndPrefix(styles.text, this.props.textStyle);
+    var titleStyle = this.mergeAndPrefix(styles.title, this.props.titleStyle);
+    var subtitleStyle = this.mergeAndPrefix(styles.subtitle, this.props.subtitleStyle);
+
+    var avatar = this.props.avatar;
+    if (React.isValidElement(this.props.avatar)) {
+      var avatarMergedStyle = this.mergeStyles(styles.avatar, avatar.props.style);
+      avatar = React.cloneElement(avatar, { style: avatarMergedStyle });
+    } else avatar = React.createElement(Avatar, { src: this.props.avatar, style: styles.avatar });
+
+    return React.createElement(
+      'div',
+      _extends({}, this.props, { style: rootStyle }),
+      avatar,
+      React.createElement(
+        'div',
+        { style: textStyle },
+        React.createElement(
+          'span',
+          { style: titleStyle },
+          this.props.title
+        ),
+        React.createElement(
+          'span',
+          { style: subtitleStyle },
+          this.props.subtitle
+        )
+      )
+    );
+  }
+});
+
+module.exports = CardHeader;
+
+},{"../avatar":404,"../mixins/style-propable":448,"../styles":464,"react":401}],408:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var React = require('react');
+var Styles = require('../styles');
+var StylePropable = require('../mixins/style-propable');
+
+var CardMedia = React.createClass({
+  displayName: 'CardMedia',
+
+  mixins: [StylePropable],
+
+  propTypes: {
+    overlay: React.PropTypes.node,
+    style: React.PropTypes.object,
+    overlayStyle: React.PropTypes.object,
+    overlayContainerStyle: React.PropTypes.object,
+    overlayContentStyle: React.PropTypes.object,
+    mediaStyle: React.PropTypes.object
+  },
+
+  getStyles: function getStyles() {
+    return {
+      root: {
+        position: 'relative'
+      },
+      overlayContainer: {
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0
+      },
+      overlay: {
+        height: '100%',
+        position: 'relative'
+      },
+      overlayContent: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        left: 0,
+        paddingTop: 8,
+        background: Styles.Colors.lightBlack
+      }
+    };
+  },
+
+  render: function render() {
+    var styles = this.getStyles();
+    var rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
+    var mediaStyle = this.mergeAndPrefix(styles.media, this.props.mediaStyle);
+    var overlayContainerStyle = this.mergeAndPrefix(styles.overlayContainer, this.props.overlayContainerStyle);
+    var overlayContentStyle = this.mergeAndPrefix(styles.overlayContent, this.props.overlayContentStyle);
+    var overlayStyle = this.mergeAndPrefix(styles.overlay, this.props.overlayStyle);
+
+    var children = React.Children.map(this.props.children, function (child) {
+      return React.cloneElement(child, {
+        style: {
+          verticalAlign: 'top',
+          maxWidth: '100%',
+          minWidth: '100%'
+        }
+      });
+    });
+
+    var overlayChildren = React.Children.map(this.props.overlay, function (child) {
+      if (child.type.displayName === 'CardHeader' || child.type.displayName === 'CardTitle') {
+        return React.cloneElement(child, {
+          titleColor: Styles.Colors.darkWhite,
+          subtitleColor: Styles.Colors.lightWhite
+        });
+      } else if (child.type.displayName === 'CardText') {
+        return React.cloneElement(child, {
+          color: Styles.Colors.darkWhite
+        });
+      } else {
+        return child;
+      }
+    });
+
+    return React.createElement(
+      'div',
+      _extends({}, this.props, { style: rootStyle }),
+      React.createElement(
+        'div',
+        { style: mediaStyle },
+        children
+      ),
+      this.props.overlay ? React.createElement(
+        'div',
+        { style: overlayContainerStyle },
+        React.createElement(
+          'div',
+          { style: overlayStyle },
+          React.createElement(
+            'div',
+            { style: overlayContentStyle },
+            overlayChildren
+          )
+        )
+      ) : ''
+    );
+  }
+});
+
+module.exports = CardMedia;
+
+},{"../mixins/style-propable":448,"../styles":464,"react":401}],409:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var React = require('react');
+var Styles = require('../styles');
+var StylePropable = require('../mixins/style-propable');
+
+var CardText = React.createClass({
+  displayName: 'CardText',
+
+  mixins: [StylePropable],
+
+  propTypes: {
+    color: React.PropTypes.string,
+    style: React.PropTypes.object
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      color: Styles.Colors.ck
+    };
+  },
+
+  getStyles: function getStyles() {
+    return {
+      root: {
+        padding: 16,
+        fontSize: '14px',
+        color: this.props.color
+      }
+    };
+  },
+
+  render: function render() {
+    var styles = this.getStyles();
+    var rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
+
+    return React.createElement(
+      'div',
+      _extends({}, this.props, { style: rootStyle }),
+      this.props.children
+    );
+  }
+});
+
+module.exports = CardText;
+
+},{"../mixins/style-propable":448,"../styles":464,"react":401}],410:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var React = require('react');
+var Styles = require('../styles');
+var StylePropable = require('../mixins/style-propable');
+
+var CardTitle = React.createClass({
+  displayName: 'CardTitle',
+
+  mixins: [StylePropable],
+
+  propTypes: {
+    title: React.PropTypes.string,
+    titleColor: React.PropTypes.string,
+    titleStyle: React.PropTypes.object,
+    subtitle: React.PropTypes.string,
+    subtitleColor: React.PropTypes.string,
+    subtitleStyle: React.PropTypes.object
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      titleColor: Styles.Colors.darkBlack,
+      subtitleColor: Styles.Colors.lightBlack
+    };
+  },
+  getStyles: function getStyles() {
+    return {
+      root: {
+        padding: 16
+      },
+      title: {
+        fontSize: 24,
+        color: this.props.titleColor,
+        display: 'block',
+        lineHeight: '36px'
+      },
+      subtitle: {
+        fontSize: 14,
+        color: this.props.subtitleColor,
+        display: 'block'
+      }
+    };
+  },
+  render: function render() {
+    var styles = this.getStyles();
+    var rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
+    var titleStyle = this.mergeAndPrefix(styles.title, this.props.titleStyle);
+    var subtitleStyle = this.mergeAndPrefix(styles.subtitle, this.props.subtitleStyle);
+
+    return React.createElement(
+      'div',
+      _extends({}, this.props, { style: rootStyle }),
+      React.createElement(
+        'span',
+        { style: titleStyle },
+        this.props.title
+      ),
+      React.createElement(
+        'span',
+        { style: subtitleStyle },
+        this.props.subtitle
+      )
+    );
+  }
+});
+
+module.exports = CardTitle;
+
+},{"../mixins/style-propable":448,"../styles":464,"react":401}],411:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var React = require('react');
+var Paper = require('../paper');
+var StylePropable = require('../mixins/style-propable');
+
+var Card = React.createClass({
+  displayName: 'Card',
+
+  mixins: [StylePropable],
+
+  propTypes: {
+    style: React.PropTypes.object
+  },
+
+  render: function render() {
+    var lastElement = React.Children.count(this.props.children) > 1 ? this.props.children[this.props.children.length - 1] : this.props.children;
+
+    // If the last element is text or a title we should add
+    // 8px padding to the bottom of the card
+    var addBottomPadding = lastElement.type.displayName === 'CardText' || lastElement.type.displayName === 'CardTitle';
+    var _props = this.props;
+    var style = _props.style;
+
+    var other = _objectWithoutProperties(_props, ['style']);
+
+    var mergedStyles = this.mergeAndPrefix({
+      overflow: 'hidden',
+      zIndex: 1
+    }, style);
+
+    return React.createElement(
+      Paper,
+      _extends({}, other, { style: mergedStyles }),
+      React.createElement(
+        'div',
+        { style: { paddingBottom: addBottomPadding ? 8 : 0 } },
+        this.props.children
+      )
+    );
+  }
+});
+
+module.exports = Card;
+
+},{"../mixins/style-propable":448,"../paper":452,"react":401}],412:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -44894,6 +45872,7 @@ var Checkbox = React.createClass({
 
   propTypes: {
     iconStyle: React.PropTypes.object,
+    labelStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func,
     checkedIcon: React.PropTypes.element,
     unCheckedIcon: React.PropTypes.element
@@ -44944,6 +45923,9 @@ var Checkbox = React.createClass({
       },
       boxWhenDisabled: {
         fill: this.getTheme().disabledColor
+      },
+      label: {
+        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
       }
     };
     return styles;
@@ -44984,6 +45966,8 @@ var Checkbox = React.createClass({
     var rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
     var mergedIconStyle = this.mergeAndPrefix(styles.icon, iconStyle);
 
+    var labelStyle = this.mergeAndPrefix(styles.label, this.props.labelStyle);
+
     var enhancedSwitchProps = {
       ref: 'enhancedSwitch',
       inputType: 'checkbox',
@@ -44992,6 +45976,7 @@ var Checkbox = React.createClass({
       rippleColor: rippleColor,
       iconStyle: mergedIconStyle,
       onSwitch: this._handleCheck,
+      labelStyle: labelStyle,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,
       labelPosition: this.props.labelPosition ? this.props.labelPosition : 'right'
@@ -45020,7 +46005,7 @@ var Checkbox = React.createClass({
 
 module.exports = Checkbox;
 
-},{"./enhanced-switch":421,"./mixins/style-propable":440,"./styles/transitions":459,"./svg-icons/toggle-check-box-checked":468,"./svg-icons/toggle-check-box-outline-blank":469,"react":399}],405:[function(require,module,exports){
+},{"./enhanced-switch":429,"./mixins/style-propable":448,"./styles/transitions":469,"./svg-icons/toggle-check-box-checked":478,"./svg-icons/toggle-check-box-outline-blank":479,"react":401}],413:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45200,7 +46185,7 @@ var CircularProgress = React.createClass({
 
 module.exports = CircularProgress;
 
-},{"./mixins/style-propable":440,"./styles/transitions":459,"react":399}],406:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],414:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45242,7 +46227,7 @@ var ClearFix = React.createClass({
 
 module.exports = ClearFix;
 
-},{"./before-after-wrapper":403,"react":399}],407:[function(require,module,exports){
+},{"./before-after-wrapper":405,"react":401}],415:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -45332,7 +46317,7 @@ var CalendarMonth = React.createClass({
 
 module.exports = CalendarMonth;
 
-},{"../clearfix":406,"../utils/date-time":497,"./day-button":414,"react":399}],408:[function(require,module,exports){
+},{"../clearfix":414,"../utils/date-time":513,"./day-button":422,"react":401}],416:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -45510,7 +46495,7 @@ var CalendarToolbar = React.createClass({
 
 module.exports = CalendarToolbar;
 
-},{"../drop-down-menu":419,"../icon-button":426,"../svg-icons/navigation-chevron-left":464,"../svg-icons/navigation-chevron-left-double":463,"../svg-icons/navigation-chevron-right":466,"../svg-icons/navigation-chevron-right-double":465,"../toolbar/toolbar":491,"../toolbar/toolbar-group":488,"../transition-groups/slide-in":494,"../utils/date-time":497,"react":399}],409:[function(require,module,exports){
+},{"../drop-down-menu":427,"../icon-button":434,"../svg-icons/navigation-chevron-left":474,"../svg-icons/navigation-chevron-left-double":473,"../svg-icons/navigation-chevron-right":476,"../svg-icons/navigation-chevron-right-double":475,"../toolbar/toolbar":507,"../toolbar/toolbar-group":504,"../transition-groups/slide-in":510,"../utils/date-time":513,"react":401}],417:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45611,7 +46596,7 @@ var CalendarYear = React.createClass({
 
 module.exports = CalendarYear;
 
-},{"../mixins/style-propable":440,"../styles/colors":454,"../utils/date-time":497,"./year-button":415,"react":399}],410:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../styles/colors":463,"../utils/date-time":513,"./year-button":423,"react":401}],418:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -45976,7 +46961,7 @@ var Calendar = React.createClass({
 
 module.exports = Calendar;
 
-},{"../clearfix":406,"../mixins/style-propable":440,"../mixins/window-listenable":442,"../styles/transitions":459,"../transition-groups/slide-in":494,"../utils/date-time":497,"../utils/key-code":501,"./calendar-month":407,"./calendar-toolbar":408,"./calendar-year":409,"./date-display":411,"react":399}],411:[function(require,module,exports){
+},{"../clearfix":414,"../mixins/style-propable":448,"../mixins/window-listenable":450,"../styles/transitions":469,"../transition-groups/slide-in":510,"../utils/date-time":513,"../utils/key-code":517,"./calendar-month":415,"./calendar-toolbar":416,"./calendar-year":417,"./date-display":419,"react":401}],419:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -46244,7 +47229,7 @@ var DateDisplay = React.createClass({
 
 module.exports = DateDisplay;
 
-},{"../mixins/style-propable":440,"../styles/auto-prefix":453,"../styles/transitions":459,"../transition-groups/slide-in":494,"../utils/date-time":497,"react":399}],412:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../styles/auto-prefix":462,"../styles/transitions":469,"../transition-groups/slide-in":510,"../utils/date-time":513,"react":401}],420:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -46429,7 +47414,7 @@ var DatePickerDialog = React.createClass({
 
 module.exports = DatePickerDialog;
 
-},{"../dialog-window":416,"../flat-button":423,"../mixins/style-propable":440,"../mixins/window-listenable":442,"../utils/css-event":496,"../utils/key-code":501,"./calendar":410,"react":399}],413:[function(require,module,exports){
+},{"../dialog-window":424,"../flat-button":431,"../mixins/style-propable":448,"../mixins/window-listenable":450,"../utils/css-event":512,"../utils/key-code":517,"./calendar":418,"react":401}],421:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -46577,7 +47562,7 @@ module.exports = DatePicker;
 
 //TO DO: open the dialog if input has focus
 
-},{"../mixins/style-propable":440,"../mixins/window-listenable":442,"../text-field":475,"../utils/date-time":497,"./date-picker-dialog":412,"react":399}],414:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../mixins/window-listenable":450,"../text-field":491,"../utils/date-time":513,"./date-picker-dialog":420,"react":401}],422:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -46717,7 +47702,7 @@ var DayButton = React.createClass({
 
 module.exports = DayButton;
 
-},{"../enhanced-button":420,"../mixins/style-propable":440,"../styles/transitions":459,"../utils/date-time":497,"react":399}],415:[function(require,module,exports){
+},{"../enhanced-button":428,"../mixins/style-propable":448,"../styles/transitions":469,"../utils/date-time":513,"react":401}],423:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -46848,7 +47833,7 @@ var YearButton = React.createClass({
 
 module.exports = YearButton;
 
-},{"../enhanced-button":420,"../mixins/style-propable":440,"../utils/date-time":497,"react":399}],416:[function(require,module,exports){
+},{"../enhanced-button":428,"../mixins/style-propable":448,"../utils/date-time":513,"react":401}],424:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -47121,7 +48106,7 @@ var DialogWindow = React.createClass({
 
 module.exports = DialogWindow;
 
-},{"./flat-button":423,"./mixins/style-propable":440,"./mixins/window-listenable":442,"./overlay":443,"./paper":444,"./styles/transitions":459,"./utils/css-event":496,"./utils/key-code":501,"react":399}],417:[function(require,module,exports){
+},{"./flat-button":431,"./mixins/style-propable":448,"./mixins/window-listenable":450,"./overlay":451,"./paper":452,"./styles/transitions":469,"./utils/css-event":512,"./utils/key-code":517,"react":401}],425:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47130,7 +48115,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Spacing = require('./styles/spacing');
 var DialogWindow = require('./dialog-window');
 
 var Dialog = React.createClass({
@@ -47148,7 +48132,8 @@ var Dialog = React.createClass({
   },
 
   getStyles: function getStyles() {
-    var gutter = Spacing.desktopGutter + 'px ';
+    var spacing = this.context.muiTheme.spacing;
+    var gutter = spacing.desktopGutter + 'px ';
     var styles = {
       title: {
         margin: 0,
@@ -47159,7 +48144,7 @@ var Dialog = React.createClass({
         fontWeight: '400'
       },
       content: {
-        padding: Spacing.desktopGutter
+        padding: spacing.desktopGutter
       }
     };
     return styles;
@@ -47212,7 +48197,7 @@ var Dialog = React.createClass({
 
 module.exports = Dialog;
 
-},{"./dialog-window":416,"./mixins/style-propable":440,"./styles/spacing":455,"react":399}],418:[function(require,module,exports){
+},{"./dialog-window":424,"./mixins/style-propable":448,"react":401}],426:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47222,7 +48207,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
-var Spacing = require('./styles/spacing');
 var ClickAwayable = require('./mixins/click-awayable');
 var FontIcon = require('./font-icon');
 var Menu = require('./menu/menu');
@@ -47231,6 +48215,10 @@ var DropDownIcon = React.createClass({
   displayName: 'DropDownIcon',
 
   mixins: [StylePropable, ClickAwayable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
 
   propTypes: {
     onChange: React.PropTypes.func,
@@ -47258,14 +48246,15 @@ var DropDownIcon = React.createClass({
   },
 
   getStyles: function getStyles() {
+    var spacing = this.context.muiTheme.spacing;
     var iconWidth = 48;
     var styles = {
       root: {
         display: 'inline-block',
         width: iconWidth + 'px !important',
         position: 'relative',
-        height: Spacing.desktopToolbarHeight,
-        fontSize: Spacing.desktopDropDownMenuFontSize,
+        height: spacing.desktopToolbarHeight,
+        fontSize: spacing.desktopDropDownMenuFontSize,
         cursor: 'pointer'
       },
       menu: {
@@ -47275,9 +48264,9 @@ var DropDownIcon = React.createClass({
         opacity: this.state.open ? 1 : 0
       },
       menuItem: { // similair to drop down menu's menu item styles
-        paddingRight: Spacing.iconSize + Spacing.desktopGutterLess * 2,
-        height: Spacing.desktopDropDownMenuItemHeight,
-        lineHeight: Spacing.desktopDropDownMenuItemHeight + 'px'
+        paddingRight: spacing.iconSize + spacing.desktopGutterLess * 2,
+        height: spacing.desktopDropDownMenuItemHeight,
+        lineHeight: spacing.desktopDropDownMenuItemHeight + 'px'
       }
     };
     return styles;
@@ -47337,7 +48326,7 @@ var DropDownIcon = React.createClass({
 
 module.exports = DropDownIcon;
 
-},{"./font-icon":425,"./menu/menu":436,"./mixins/click-awayable":439,"./mixins/style-propable":440,"./styles/spacing":455,"./styles/transitions":459,"react":399}],419:[function(require,module,exports){
+},{"./font-icon":433,"./menu/menu":444,"./mixins/click-awayable":447,"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],427:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -47345,6 +48334,7 @@ var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var ClickAwayable = require('./mixins/click-awayable');
+var KeyCode = require('./utils/key-code');
 var DropDownArrow = require('./svg-icons/drop-down-arrow');
 var Paper = require('./paper');
 var Menu = require('./menu/menu');
@@ -47363,16 +48353,23 @@ var DropDownMenu = React.createClass({
   // than just the parent.
   propTypes: {
     className: React.PropTypes.string,
+    displayMember: React.PropTypes.string,
+    valueMember: React.PropTypes.string,
     autoWidth: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     menuItemStyle: React.PropTypes.object,
+    underlineStyle: React.PropTypes.object,
+    iconStyle: React.PropTypes.object,
+    labelStyle: React.PropTypes.object,
     selectedIndex: React.PropTypes.number
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
-      autoWidth: true
+      autoWidth: true,
+      valueMember: 'payload',
+      displayMember: 'text'
     };
   },
 
@@ -47380,7 +48377,7 @@ var DropDownMenu = React.createClass({
     return {
       open: false,
       isHovered: false,
-      selectedIndex: this.props.selectedIndex || 0
+      selectedIndex: this.props.hasOwnProperty('value') || this.props.hasOwnProperty('valueLink') ? null : this.props.selectedIndex || 0
     };
   },
 
@@ -47394,7 +48391,9 @@ var DropDownMenu = React.createClass({
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    if (nextProps.hasOwnProperty('selectedIndex')) {
+    if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
+      return;
+    } else if (nextProps.hasOwnProperty('selectedIndex')) {
       this._setSelectedIndex(nextProps);
     }
   },
@@ -47416,7 +48415,8 @@ var DropDownMenu = React.createClass({
         position: 'relative',
         display: 'inline-block',
         height: this.getSpacing().desktopToolbarHeight,
-        fontSize: this.getSpacing().desktopDropDownMenuFontSize
+        fontSize: this.getSpacing().desktopDropDownMenuFontSize,
+        outline: 'none'
       },
       control: {
         cursor: 'pointer',
@@ -47428,7 +48428,7 @@ var DropDownMenu = React.createClass({
         backgroundColor: backgroundColor,
         height: '100%',
         width: '100%',
-        opacity: this.state.open ? 0 : this.state.isHovered ? 1 : 0
+        opacity: 0
       },
       icon: {
         position: 'absolute',
@@ -47466,12 +48466,37 @@ var DropDownMenu = React.createClass({
     return styles;
   },
 
-  render: function render() {
-    var styles = this.getStyles();
+  getInputNode: function getInputNode() {
+    var root = this.refs.root;
+    var item = this.props.menuItems[this.state.selectedIndex];
+    if (item) root.value = item[this.props.displayMember];
+    return root;
+  },
 
-    if (process.env.NODE_ENV !== 'production') {
-      console.assert(!!this.props.menuItems[this.state.selectedIndex], 'SelectedIndex of ' + this.state.selectedIndex + ' does not exist in menuItems.');
+  render: function render() {
+    var _this = this;
+    var styles = this.getStyles();
+    var selectedIndex = this.state.selectedIndex;
+    var displayValue = '';
+    if (selectedIndex) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.assert(!!this.props.menuItems[selectedIndex], 'SelectedIndex of ' + selectedIndex + ' does not exist in menuItems.');
+      }
+    } else {
+      if (this.props.valueMember && (this.props.valueLink || this.props.value)) {
+        var value = this.props.value || this.props.valueLink.value;
+        for (var i in this.props.menuItems) if (this.props.menuItems[i][this.props.valueMember] === value) selectedIndex = i;
+      }
     }
+
+    var selectedItem = this.props.menuItems[selectedIndex];
+    if (selectedItem) displayValue = selectedItem[this.props.displayMember];
+
+    var menuItems = this.props.menuItems.map(function (item) {
+      item.text = item[_this.props.displayMember];
+      item.payload = item[_this.props.valueMember];
+      return item;
+    });
 
     return React.createElement(
       'div',
@@ -47479,6 +48504,9 @@ var DropDownMenu = React.createClass({
         ref: 'root',
         onMouseOut: this._handleMouseOut,
         onMouseOver: this._handleMouseOver,
+        onKeyDown: this._onKeyDown,
+        onFocus: this.props.onFocus,
+        onBlur: this.props.onBlur,
         className: this.props.className,
         style: this.mergeAndPrefix(styles.root, this.state.open && styles.rootWhenOpen, this.props.style) },
       React.createElement(
@@ -47487,20 +48515,21 @@ var DropDownMenu = React.createClass({
         React.createElement(Paper, { style: this.mergeAndPrefix(styles.controlBg), zDepth: 0 }),
         React.createElement(
           'div',
-          { style: this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen) },
-          this.props.menuItems[this.state.selectedIndex].text
+          { style: this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen, this.props.labelStyle) },
+          displayValue
         ),
-        React.createElement(DropDownArrow, { style: this.mergeAndPrefix(styles.icon) }),
-        React.createElement('div', { style: this.mergeAndPrefix(styles.underline) })
+        React.createElement(DropDownArrow, { style: this.mergeAndPrefix(styles.icon, this.props.iconStyle) }),
+        React.createElement('div', { style: this.mergeAndPrefix(styles.underline, this.props.underlineStyle) })
       ),
       React.createElement(Menu, {
         ref: 'menuItems',
         autoWidth: this.props.autoWidth,
-        selectedIndex: this.state.selectedIndex,
-        menuItems: this.props.menuItems,
+        selectedIndex: selectedIndex,
+        menuItems: menuItems,
         menuItemStyle: this.mergeAndPrefix(styles.menuItem, this.props.menuItemStyle),
         hideable: true,
         visible: this.state.open,
+        onRequestClose: this._onMenuRequestClose,
         onItemTap: this._onMenuItemClick })
     );
   },
@@ -47527,12 +48556,42 @@ var DropDownMenu = React.createClass({
     this.setState({ open: !this.state.open });
   },
 
+  _onKeyDown: function _onKeyDown(e) {
+    switch (e.which) {
+      case KeyCode.UP:
+        if (!this.state.open) this._selectPreviousItem();else if (e.altKey) this.setState({ open: false });
+        break;
+      case KeyCode.DOWN:
+        if (!this.state.open) if (e.altKey) this.setState({ open: true });else this._selectNextItem();
+        break;
+      case KeyCode.ENTER:
+      case KeyCode.SPACE:
+        this.setState({ open: true });
+        break;
+      default:
+        return; //important
+    }
+    e.preventDefault();
+  },
+
   _onMenuItemClick: function _onMenuItemClick(e, key, payload) {
-    if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
+    if (this.props.onChange && this.state.selectedIndex !== key) {
+      var selectedItem = this.props.menuItems[key];
+      if (selectedItem) e.target.value = selectedItem[this.props.valueMember];
+
+      if (this.props.valueLink) this.props.valueLink.requestChange(e.target.value);else this.props.onChange(e, key, payload);
+    }
+
     this.setState({
       selectedIndex: key,
-      open: false
+      value: e.target.value,
+      open: false,
+      isHovered: false
     });
+  },
+
+  _onMenuRequestClose: function _onMenuRequestClose() {
+    this.setState({ open: false });
   },
 
   _handleMouseOver: function _handleMouseOver() {
@@ -47541,6 +48600,14 @@ var DropDownMenu = React.createClass({
 
   _handleMouseOut: function _handleMouseOut() {
     this.setState({ isHovered: false });
+  },
+
+  _selectPreviousItem: function _selectPreviousItem() {
+    this.setState({ selectedIndex: Math.max(this.state.selectedIndex - 1, 0) });
+  },
+
+  _selectNextItem: function _selectNextItem() {
+    this.setState({ selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1) });
   }
 
 });
@@ -47549,7 +48616,7 @@ module.exports = DropDownMenu;
 
 }).call(this,require('_process'))
 
-},{"./clearfix":406,"./menu/menu":436,"./mixins/click-awayable":439,"./mixins/style-propable":440,"./paper":444,"./styles/transitions":459,"./svg-icons/drop-down-arrow":462,"_process":1,"react":399}],420:[function(require,module,exports){
+},{"./clearfix":414,"./menu/menu":444,"./mixins/click-awayable":447,"./mixins/style-propable":448,"./paper":452,"./styles/transitions":469,"./svg-icons/drop-down-arrow":472,"./utils/key-code":517,"_process":1,"react":401}],428:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47574,7 +48641,7 @@ var EnhancedButton = React.createClass({
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
-    className: React.PropTypes.string,
+    containerElement: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.element]),
     disabled: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
@@ -47590,6 +48657,12 @@ var EnhancedButton = React.createClass({
     onMouseOver: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      containerElement: 'button'
+    };
   },
 
   windowListeners: {
@@ -47640,20 +48713,38 @@ var EnhancedButton = React.createClass({
   render: function render() {
     var _props = this.props;
     var centerRipple = _props.centerRipple;
+    var containerElement = _props.containerElement;
     var disabled = _props.disabled;
     var disableFocusRipple = _props.disableFocusRipple;
     var disableTouchRipple = _props.disableTouchRipple;
+    var focusRippleColor = _props.focusRippleColor;
+    var focusRippleOpacity = _props.focusRippleOpacity;
     var linkButton = _props.linkButton;
     var touchRippleColor = _props.touchRippleColor;
+    var touchRippleOpacity = _props.touchRippleOpacity;
     var onBlur = _props.onBlur;
     var onFocus = _props.onFocus;
     var onMouseOver = _props.onMouseOver;
     var onMouseOut = _props.onMouseOut;
     var onTouchTap = _props.onTouchTap;
+    var style = _props.style;
 
-    var other = _objectWithoutProperties(_props, ['centerRipple', 'disabled', 'disableFocusRipple', 'disableTouchRipple', 'linkButton', 'touchRippleColor', 'onBlur', 'onFocus', 'onMouseOver', 'onMouseOut', 'onTouchTap']);
+    var other = _objectWithoutProperties(_props, ['centerRipple', 'containerElement', 'disabled', 'disableFocusRipple', 'disableTouchRipple', 'focusRippleColor', 'focusRippleOpacity', 'linkButton', 'touchRippleColor', 'touchRippleOpacity', 'onBlur', 'onFocus', 'onMouseOver', 'onMouseOut', 'onTouchTap', 'style']);
 
-    var styles = this.mergeAndPrefix(this.getStyles().root, this.props.linkButton && this.getStyles().rootWhenLinkButton, this.props.disabled && this.getStyles().rootWhenDisabled, this.props.style);
+    var styles = this.getStyles();
+
+    var mergedStyles = this.mergeAndPrefix(styles.root, linkButton && styles.rootWhenLinkButton, disabled && styles.rootWhenDisabled, style);
+
+    var buttonProps = _extends({}, other, {
+      style: mergedStyles,
+      disabled: disabled,
+      onBlur: this._handleBlur,
+      onFocus: this._handleFocus,
+      onMouseOver: this._handleMouseOver,
+      onMouseOut: this._handleMouseOut,
+      onTouchTap: this._handleTouchTap
+    });
+
     var buttonChildren = [];
 
     // Create ripples if we need to
@@ -47663,37 +48754,26 @@ var EnhancedButton = React.createClass({
         ref: 'touchRipple',
         key: 'touchRipple',
         centerRipple: centerRipple,
-        color: this.props.touchRippleColor,
-        opacity: this.props.touchRippleOpacity },
+        color: touchRippleColor,
+        opacity: touchRippleOpacity },
       this.props.children
     ));
     buttonChildren.push(disabled || disableFocusRipple ? null : React.createElement(FocusRipple, {
       key: 'focusRipple',
-      color: this.props.focusRippleColor,
-      opacity: this.props.focusRippleOpacity,
+      color: focusRippleColor,
+      opacity: focusRippleOpacity,
       show: this.state.isKeyboardFocused }));
-
-    var buttonProps = {
-      style: styles,
-      disabled: disabled,
-      onBlur: this._handleBlur,
-      onFocus: this._handleFocus,
-      onMouseOver: this._handleMouseOver,
-      onMouseOut: this._handleMouseOut,
-      onTouchTap: this._handleTouchTap
-    };
 
     if (disabled && linkButton) {
       return React.createElement(
         'span',
         _extends({}, other, {
-          className: this.props.className,
-          disabled: disabled }),
+          style: mergedStyles }),
         this.props.children
       );
     }
 
-    return React.createElement(linkButton ? 'a' : 'button', _extends({}, other, buttonProps), buttonChildren);
+    return React.isValidElement(containerElement) ? React.cloneElement(containerElement, buttonProps, buttonChildren) : React.createElement(linkButton ? 'a' : containerElement, buttonProps, buttonChildren);
   },
 
   isKeyboardFocused: function isKeyboardFocused() {
@@ -47779,7 +48859,7 @@ EnhancedButton.hasStyleBeenInjected = false;
 
 module.exports = EnhancedButton;
 
-},{"./mixins/style-propable":440,"./mixins/window-listenable":442,"./ripples/focus-ripple":449,"./ripples/touch-ripple":450,"./utils/key-code":501,"react":399}],421:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./mixins/window-listenable":450,"./ripples/focus-ripple":457,"./ripples/touch-ripple":458,"./utils/key-code":517,"react":401}],429:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -47793,7 +48873,6 @@ var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var UniqueId = require('./utils/unique-id');
 var WindowListenable = require('./mixins/window-listenable');
-var Spacing = require('./styles/spacing');
 var ClearFix = require('./clearfix');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
@@ -47886,7 +48965,8 @@ var EnhancedSwitch = React.createClass({
   },
 
   getStyles: function getStyles() {
-    var switchWidth = 60 - Spacing.desktopGutterLess;
+    var spacing = this.context.muiTheme.spacing;
+    var switchWidth = 60 - spacing.desktopGutterLess;
     var labelWidth = 'calc(100% - 60px)';
 
     var styles = {
@@ -47918,7 +48998,7 @@ var EnhancedSwitch = React.createClass({
       label: {
         float: 'left',
         position: 'relative',
-        display: 'table-column',
+        display: 'block',
         width: labelWidth,
         lineHeight: '24px',
         color: this.getTheme().textColor
@@ -47927,10 +49007,10 @@ var EnhancedSwitch = React.createClass({
         transition: Transitions.easeOut(),
         float: 'left',
         position: 'relative',
-        display: 'table-column',
+        display: 'block',
         width: switchWidth,
-        marginRight: this.props.labelPosition == 'right' ? Spacing.desktopGutterLess : 0,
-        marginLeft: this.props.labelPosition == 'left' ? Spacing.desktopGutterLess : 0
+        marginRight: this.props.labelPosition == 'right' ? spacing.desktopGutterLess : 0,
+        marginLeft: this.props.labelPosition == 'left' ? spacing.desktopGutterLess : 0
       },
       ripple: {
         height: '200%',
@@ -48179,7 +49259,7 @@ module.exports = EnhancedSwitch;
 
 }).call(this,require('_process'))
 
-},{"./clearfix":406,"./mixins/style-propable":440,"./mixins/window-listenable":442,"./paper":444,"./ripples/focus-ripple":449,"./ripples/touch-ripple":450,"./styles/spacing":455,"./styles/transitions":459,"./utils/key-code":501,"./utils/unique-id":504,"_process":1,"react":399}],422:[function(require,module,exports){
+},{"./clearfix":414,"./mixins/style-propable":448,"./mixins/window-listenable":450,"./paper":452,"./ripples/focus-ripple":457,"./ripples/touch-ripple":458,"./styles/transitions":469,"./utils/key-code":517,"./utils/unique-id":520,"_process":1,"react":401}],430:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -48292,6 +49372,11 @@ var EnhancedTextarea = React.createClass({
     return React.findDOMNode(this.refs.input);
   },
 
+  setValue: function setValue(value) {
+    this.refs.input.value = value;
+    this._syncHeightWithShadow(value);
+  },
+
   _syncHeightWithShadow: function _syncHeightWithShadow(newValue, e) {
     var shadow = React.findDOMNode(this.refs.shadow);
     var currentHeight = this.state.height;
@@ -48325,7 +49410,7 @@ var EnhancedTextarea = React.createClass({
 
 module.exports = EnhancedTextarea;
 
-},{"./mixins/style-propable":440,"./styles/auto-prefix":453,"react":399}],423:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/auto-prefix":462,"react":401}],431:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -48501,7 +49586,7 @@ var FlatButton = React.createClass({
 
 module.exports = FlatButton;
 
-},{"./enhanced-button":420,"./mixins/style-propable":440,"./styles/transitions":459,"./styles/typography":460,"./utils/color-manipulator":495,"react":399}],424:[function(require,module,exports){
+},{"./enhanced-button":428,"./mixins/style-propable":448,"./styles/transitions":469,"./styles/typography":470,"./utils/color-manipulator":511,"react":401}],432:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -48634,11 +49719,12 @@ var RaisedButton = React.createClass({
 
   render: function render() {
     var _props = this.props;
+    var disabled = _props.disabled;
     var icon = _props.icon;
     var mini = _props.mini;
     var secondary = _props.secondary;
 
-    var other = _objectWithoutProperties(_props, ['icon', 'mini', 'secondary']);
+    var other = _objectWithoutProperties(_props, ['disabled', 'icon', 'mini', 'secondary']);
 
     var styles = this.getStyles();
 
@@ -48646,10 +49732,20 @@ var RaisedButton = React.createClass({
     if (this.props.iconClassName) {
       iconElement = React.createElement(FontIcon, {
         className: this.props.iconClassName,
-        style: this.mergeAndPrefix(styles.icon, this.props.mini && styles.iconWhenMini, this.props.iconStyle) });
+        style: this.mergeAndPrefix(styles.icon, mini && styles.iconWhenMini, this.props.iconStyle) });
     }
 
     var rippleColor = styles.icon.color;
+
+    var buttonEventHandlers = disabled ? null : {
+      onMouseDown: this._handleMouseDown,
+      onMouseUp: this._handleMouseUp,
+      onMouseOut: this._handleMouseOut,
+      onMouseOver: this._handleMouseOver,
+      onTouchStart: this._handleTouchStart,
+      onTouchEnd: this._handleTouchEnd,
+      onKeyboardFocus: this._handleKeyboardFocus
+    };
 
     return React.createElement(
       Paper,
@@ -48659,18 +49755,12 @@ var RaisedButton = React.createClass({
         circle: true },
       React.createElement(
         EnhancedButton,
-        _extends({}, other, {
+        _extends({}, other, buttonEventHandlers, {
           ref: 'container',
+          disabled: disabled,
           style: this.mergeAndPrefix(styles.container, this.props.mini && styles.containerWhenMini),
-          onMouseDown: this._handleMouseDown,
-          onMouseUp: this._handleMouseUp,
-          onMouseOut: this._handleMouseOut,
-          onMouseOver: this._handleMouseOver,
-          onTouchStart: this._handleTouchStart,
-          onTouchEnd: this._handleTouchEnd,
           focusRippleColor: rippleColor,
-          touchRippleColor: rippleColor,
-          onKeyboardFocus: this._handleKeyboardFocus }),
+          touchRippleColor: rippleColor }),
         React.createElement(
           'div',
           {
@@ -48732,7 +49822,7 @@ module.exports = RaisedButton;
 
 }).call(this,require('_process'))
 
-},{"./enhanced-button":420,"./font-icon":425,"./mixins/style-propable":440,"./paper":444,"./styles/transitions":459,"./utils/color-manipulator":495,"_process":1,"react":399}],425:[function(require,module,exports){
+},{"./enhanced-button":428,"./font-icon":433,"./mixins/style-propable":448,"./paper":452,"./styles/transitions":469,"./utils/color-manipulator":511,"_process":1,"react":401}],433:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -48741,7 +49831,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Spacing = require('./styles/spacing');
 var Transitions = require('./styles/transitions');
 
 var FontIcon = React.createClass({
@@ -48754,8 +49843,10 @@ var FontIcon = React.createClass({
   },
 
   propTypes: {
-    className: React.PropTypes.string,
-    hoverColor: React.PropTypes.string
+    color: React.PropTypes.string,
+    hoverColor: React.PropTypes.string,
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func
   },
 
   getInitialState: function getInitialState() {
@@ -48764,37 +49855,34 @@ var FontIcon = React.createClass({
     };
   },
 
-  getStyles: function getStyles() {
-    var theme = this.context.muiTheme.palette;
-    var styles = {
-      position: 'relative',
-      fontSize: Spacing.iconSize + 'px',
-      display: 'inline-block',
-      userSelect: 'none',
-      transition: Transitions.easeOut()
-    };
-
-    if (!styles.color && !this.props.className) {
-      styles.color = theme.textColor;
-    }
-
-    return styles;
-  },
-
   render: function render() {
     var _props = this.props;
+    var color = _props.color;
+    var hoverColor = _props.hoverColor;
     var onMouseOut = _props.onMouseOut;
     var onMouseOver = _props.onMouseOver;
     var style = _props.style;
 
-    var other = _objectWithoutProperties(_props, ['onMouseOut', 'onMouseOver', 'style']);
+    var other = _objectWithoutProperties(_props, ['color', 'hoverColor', 'onMouseOut', 'onMouseOver', 'style']);
 
-    var hoverStyle = this.props.hoverColor ? { color: this.props.hoverColor } : {};
+    var spacing = this.context.muiTheme.spacing;
+    var offColor = color ? color : style && style.color ? style.color : this.context.muiTheme.palette.textColor;
+    var onColor = hoverColor ? hoverColor : offColor;
+
+    var mergedStyles = this.mergeAndPrefix({
+      position: 'relative',
+      fontSize: spacing.iconSize,
+      display: 'inline-block',
+      userSelect: 'none',
+      transition: Transitions.easeOut()
+    }, style, {
+      color: this.state.hovered ? onColor : offColor
+    });
 
     return React.createElement('span', _extends({}, other, {
       onMouseOut: this._handleMouseOut,
       onMouseOver: this._handleMouseOver,
-      style: this.mergeAndPrefix(this.getStyles(), this.props.style, this.state.hovered && hoverStyle) }));
+      style: mergedStyles }));
   },
 
   _handleMouseOut: function _handleMouseOut(e) {
@@ -48814,7 +49902,7 @@ var FontIcon = React.createClass({
 
 module.exports = FontIcon;
 
-},{"./mixins/style-propable":440,"./styles/spacing":455,"./styles/transitions":459,"react":399}],426:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],434:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -48873,50 +49961,37 @@ var IconButton = React.createClass({
     }
   },
 
-  getTheme: function getTheme() {
-    return this.context.muiTheme.palette;
-  },
-
-  getSpacing: function getSpacing() {
-    return this.context.muiTheme.spacing;
-  },
-
-  getDisabledColor: function getDisabledColor() {
-    return this.context.muiTheme.palette.disabledColor;
-  },
-
   getStyles: function getStyles() {
+    var spacing = this.context.muiTheme.spacing;
+    var palette = this.context.muiTheme.palette;
+
     var styles = {
       root: {
         position: 'relative',
         boxSizing: 'border-box',
         transition: Transitions.easeOut(),
-        padding: this.getSpacing().iconSize / 2,
-        width: this.getSpacing().iconSize * 2,
-        height: this.getSpacing().iconSize * 2
+        padding: spacing.iconSize / 2,
+        width: spacing.iconSize * 2,
+        height: spacing.iconSize * 2
       },
       tooltip: {
         boxSizing: 'border-box',
         marginTop: this.context.muiTheme.component.button.iconButtonSize + 4
       },
       icon: {
-        color: this.getTheme().textColor,
-        fill: this.getTheme().textColor
+        color: palette.textColor,
+        fill: palette.textColor
       },
       overlay: {
         position: 'relative',
         top: 0,
         width: '100%',
         height: '100%',
-        background: this.getDisabledColor()
+        background: palette.disabledColor
       },
-      rootWhenDisabled: {
-        color: this.getDisabledColor(),
-        fill: this.getDisabledColor()
-      },
-      iconWhenDisabled: {
-        color: this.getDisabledColor(),
-        fill: this.getDisabledColor()
+      disabled: {
+        color: palette.disabledColor,
+        fill: palette.disabledColor
       }
     };
     return styles;
@@ -48924,51 +49999,44 @@ var IconButton = React.createClass({
 
   render: function render() {
     var _props = this.props;
+    var disabled = _props.disabled;
+    var iconClassName = _props.iconClassName;
     var tooltip = _props.tooltip;
     var touch = _props.touch;
 
-    var other = _objectWithoutProperties(_props, ['tooltip', 'touch']);
+    var other = _objectWithoutProperties(_props, ['disabled', 'iconClassName', 'tooltip', 'touch']);
 
-    var tooltipElement;
     var fonticon;
 
     var styles = this.getStyles();
 
-    if (tooltip) {
-      tooltipElement = React.createElement(Tooltip, {
-        ref: 'tooltip',
-        label: tooltip,
-        show: this.state.tooltipShown,
-        touch: touch,
-        style: this.mergeStyles(styles.tooltip) });
-    }
+    var tooltipElement = tooltip ? React.createElement(Tooltip, {
+      ref: 'tooltip',
+      label: tooltip,
+      show: this.state.tooltipShown,
+      touch: touch,
+      style: this.mergeStyles(styles.tooltip) }) : null;
 
-    if (this.props.iconClassName) {
+    if (iconClassName) {
       var _props$iconStyle = this.props.iconStyle;
       var iconHoverColor = _props$iconStyle.iconHoverColor;
 
       var iconStyle = _objectWithoutProperties(_props$iconStyle, ['iconHoverColor']);
 
       fonticon = React.createElement(FontIcon, {
-        className: this.props.iconClassName,
-        hoverColor: iconHoverColor,
-        style: this.mergeStyles(styles.icon, this.props.disabled && styles.iconWhenDisabled, iconStyle) });
+        className: iconClassName,
+        hoverColor: disabled ? null : iconHoverColor,
+        style: this.mergeStyles(styles.icon, disabled ? styles.disabled : {}, iconStyle) });
     }
 
-    if (this.props.children && this.props.disabled) {
-      React.Children.forEach(this.props.children, function (child) {
-        child.props.style = {
-          color: this.getDisabledColor(),
-          fill: this.getDisabledColor()
-        };
-      }, this);
-    }
+    var children = disabled ? this._addStylesToChildren(styles.disabled) : this.props.children;
 
     return React.createElement(
       EnhancedButton,
       _extends({}, other, {
         ref: 'button',
         centerRipple: true,
+        disabled: disabled,
         style: this.mergeStyles(styles.root, this.props.style),
         onBlur: this._handleBlur,
         onFocus: this._handleFocus,
@@ -48977,8 +50045,21 @@ var IconButton = React.createClass({
         onKeyboardFocus: this._handleKeyboardFocus }),
       tooltipElement,
       fonticon,
-      this.props.children
+      children
     );
+  },
+
+  _addStylesToChildren: function _addStylesToChildren(styles) {
+    var children = [];
+
+    React.Children.forEach(this.props.children, function (child) {
+      children.push(React.cloneElement(child, {
+        key: child.props.key ? child.props.key : children.length,
+        style: styles
+      }));
+    });
+
+    return children;
   },
 
   _positionTooltip: function _positionTooltip() {
@@ -49035,7 +50116,7 @@ module.exports = IconButton;
 
 }).call(this,require('_process'))
 
-},{"./enhanced-button":420,"./font-icon":425,"./mixins/style-propable":440,"./styles/transitions":459,"./tooltip":492,"_process":1,"react":399}],427:[function(require,module,exports){
+},{"./enhanced-button":428,"./font-icon":433,"./mixins/style-propable":448,"./styles/transitions":469,"./tooltip":508,"_process":1,"react":401}],435:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -49043,6 +50124,12 @@ module.exports = {
   AppCanvas: require('./app-canvas'),
   Avatar: require('./avatar'),
   BeforeAfterWrapper: require('./before-after-wrapper'),
+  Card: require('./card/card'),
+  CardActions: require('./card/card-actions'),
+  CardHeader: require('./card/card-header'),
+  CardMedia: require('./card/card-media'),
+  CardText: require('./card/card-text'),
+  CardTitle: require('./card/card-title'),
   Checkbox: require('./checkbox'),
   CircularProgress: require('./circular-progress'),
   ClearFix: require('./clearfix'),
@@ -49074,6 +50161,7 @@ module.exports = {
   RadioButton: require('./radio-button'),
   RadioButtonGroup: require('./radio-button-group'),
   RaisedButton: require('./raised-button'),
+  SelectField: require('./select-field'),
   Slider: require('./slider'),
   SvgIcon: require('./svg-icon'),
   Icons: {
@@ -49091,6 +50179,7 @@ module.exports = {
   },
   Snackbar: require('./snackbar'),
   Tab: require('./tabs/tab'),
+  Table: require('./table/table'),
   Tabs: require('./tabs/tabs'),
   Theme: require('./theme'),
   Toggle: require('./toggle'),
@@ -49113,7 +50202,7 @@ module.exports = {
   }
 };
 
-},{"./app-bar":400,"./app-canvas":401,"./avatar":402,"./before-after-wrapper":403,"./checkbox":404,"./circular-progress":405,"./clearfix":406,"./date-picker/date-picker":413,"./dialog":417,"./dialog-window":416,"./drop-down-icon":418,"./drop-down-menu":419,"./enhanced-button":420,"./flat-button":423,"./floating-action-button":424,"./font-icon":425,"./icon-button":426,"./left-nav":429,"./linear-progress":430,"./lists/list":433,"./lists/list-divider":431,"./lists/list-item":432,"./menu/menu":436,"./menu/menu-item":435,"./mixins/classable":438,"./mixins/click-awayable":439,"./mixins/style-propable":440,"./mixins/style-resizable":441,"./mixins/window-listenable":442,"./paper":444,"./radio-button":446,"./radio-button-group":445,"./raised-button":447,"./slider":451,"./snackbar":452,"./styles/auto-prefix":453,"./styles/colors":454,"./styles/spacing":455,"./styles/theme-manager":456,"./styles/transitions":459,"./styles/typography":460,"./svg-icon":461,"./svg-icons/navigation-chevron-left":464,"./svg-icons/navigation-chevron-right":466,"./svg-icons/navigation-menu":467,"./tabs/tab":472,"./tabs/tabs":474,"./text-field":475,"./theme":476,"./time-picker":483,"./toggle":487,"./toolbar/toolbar":491,"./toolbar/toolbar-group":488,"./toolbar/toolbar-separator":489,"./toolbar/toolbar-title":490,"./tooltip":492,"./utils/color-manipulator":495,"./utils/css-event":496,"./utils/dom":498,"./utils/events":499,"./utils/extend":500,"./utils/key-code":501,"./utils/key-line":502,"./utils/unique-id":504}],428:[function(require,module,exports){
+},{"./app-bar":402,"./app-canvas":403,"./avatar":404,"./before-after-wrapper":405,"./card/card":411,"./card/card-actions":406,"./card/card-header":407,"./card/card-media":408,"./card/card-text":409,"./card/card-title":410,"./checkbox":412,"./circular-progress":413,"./clearfix":414,"./date-picker/date-picker":421,"./dialog":425,"./dialog-window":424,"./drop-down-icon":426,"./drop-down-menu":427,"./enhanced-button":428,"./flat-button":431,"./floating-action-button":432,"./font-icon":433,"./icon-button":434,"./left-nav":437,"./linear-progress":438,"./lists/list":441,"./lists/list-divider":439,"./lists/list-item":440,"./menu/menu":444,"./menu/menu-item":443,"./mixins/classable":446,"./mixins/click-awayable":447,"./mixins/style-propable":448,"./mixins/style-resizable":449,"./mixins/window-listenable":450,"./paper":452,"./radio-button":454,"./radio-button-group":453,"./raised-button":455,"./select-field":459,"./slider":460,"./snackbar":461,"./styles/auto-prefix":462,"./styles/colors":463,"./styles/spacing":465,"./styles/theme-manager":466,"./styles/transitions":469,"./styles/typography":470,"./svg-icon":471,"./svg-icons/navigation-chevron-left":474,"./svg-icons/navigation-chevron-right":476,"./svg-icons/navigation-menu":477,"./table/table":487,"./tabs/tab":488,"./tabs/tabs":490,"./text-field":491,"./theme":492,"./time-picker":499,"./toggle":503,"./toolbar/toolbar":507,"./toolbar/toolbar-group":504,"./toolbar/toolbar-separator":505,"./toolbar/toolbar-title":506,"./tooltip":508,"./utils/color-manipulator":511,"./utils/css-event":512,"./utils/dom":514,"./utils/events":515,"./utils/extend":516,"./utils/key-code":517,"./utils/key-line":518,"./utils/unique-id":520}],436:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49160,7 +50249,7 @@ var InkBar = React.createClass({
 
 module.exports = InkBar;
 
-},{"./mixins/style-propable":440,"./styles/transitions":459,"react":399}],429:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],437:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49449,7 +50538,7 @@ var LeftNav = React.createClass({
 
 module.exports = LeftNav;
 
-},{"./menu/menu":436,"./mixins/style-propable":440,"./mixins/window-listenable":442,"./overlay":443,"./paper":444,"./styles/auto-prefix":453,"./styles/transitions":459,"./utils/key-code":501,"react":399}],430:[function(require,module,exports){
+},{"./menu/menu":444,"./mixins/style-propable":448,"./mixins/window-listenable":450,"./overlay":451,"./paper":452,"./styles/auto-prefix":462,"./styles/transitions":469,"./utils/key-code":517,"react":401}],438:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49605,7 +50694,7 @@ var LinearProgress = React.createClass({
 
 module.exports = LinearProgress;
 
-},{"./mixins/style-propable":440,"./styles/transitions":459,"react":399}],431:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],439:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49650,7 +50739,7 @@ var ListDivider = React.createClass({
 
 module.exports = ListDivider;
 
-},{"../mixins/style-propable":440,"react/addons":227}],432:[function(require,module,exports){
+},{"../mixins/style-propable":448,"react/addons":229}],440:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49684,6 +50773,7 @@ var ListItem = React.createClass({
     onMouseOver: React.PropTypes.func,
     rightAvatar: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
+    rightIconButton: React.PropTypes.element,
     rightToggle: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2])
@@ -49697,7 +50787,8 @@ var ListItem = React.createClass({
 
   getInitialState: function getInitialState() {
     return {
-      hovered: false
+      hovered: false,
+      rightIconButtonHovered: false
     };
   },
 
@@ -49712,12 +50803,13 @@ var ListItem = React.createClass({
     var onMouseOver = _props.onMouseOver;
     var rightAvatar = _props.rightAvatar;
     var rightIcon = _props.rightIcon;
+    var rightIconButton = _props.rightIconButton;
     var rightToggle = _props.rightToggle;
     var secondaryText = _props.secondaryText;
     var secondaryTextLines = _props.secondaryTextLines;
     var style = _props.style;
 
-    var other = _objectWithoutProperties(_props, ['disableTouchTap', 'insetChildren', 'leftAvatar', 'leftCheckbox', 'leftIcon', 'onMouseOut', 'onMouseOver', 'rightAvatar', 'rightIcon', 'rightToggle', 'secondaryText', 'secondaryTextLines', 'style']);
+    var other = _objectWithoutProperties(_props, ['disableTouchTap', 'insetChildren', 'leftAvatar', 'leftCheckbox', 'leftIcon', 'onMouseOut', 'onMouseOver', 'rightAvatar', 'rightIcon', 'rightIconButton', 'rightToggle', 'secondaryText', 'secondaryTextLines', 'style']);
 
     var textColor = this.context.muiTheme.palette.textColor;
     var hoverColor = ColorManipulator.fade(textColor, 0.03);
@@ -49729,7 +50821,7 @@ var ListItem = React.createClass({
 
     var styles = {
       root: {
-        backgroundColor: this.state.hovered ? hoverColor : null,
+        backgroundColor: this.state.hovered && !this.state.rightIconButtonHovered ? hoverColor : null,
         color: textColor,
         display: 'block',
         fontSize: 16,
@@ -49742,7 +50834,7 @@ var ListItem = React.createClass({
       //This inner div is need so that ripples will span the entire container
       innerDiv: {
         paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
-        paddingRight: rightIcon || rightAvatar ? 56 : rightToggle ? 72 : 16,
+        paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,
         paddingBottom: singleAvatar ? 20 : 16,
         paddingTop: singleNoAvatar || threeLine ? 16 : 20
       },
@@ -49786,7 +50878,18 @@ var ListItem = React.createClass({
       },
 
       leftCheckbox: {
-        left: 4
+        position: 'absolute',
+        display: 'block',
+        width: 24,
+        top: twoLine ? 24 : singleAvatar ? 16 : 12,
+        left: 16
+      },
+
+      rightIconButton: {
+        position: 'absolute',
+        display: 'block',
+        top: twoLine ? 12 : singleAvatar ? 4 : 0,
+        right: 4
       },
 
       rightToggle: {
@@ -49828,7 +50931,14 @@ var ListItem = React.createClass({
     this._pushElement(contentChildren, rightIcon, this.mergeStyles(styles.icons, styles.rightIcon));
     this._pushElement(contentChildren, leftAvatar, this.mergeStyles(styles.avatars, styles.leftAvatar));
     this._pushElement(contentChildren, rightAvatar, this.mergeStyles(styles.avatars, styles.rightAvatar));
-    this._pushElement(contentChildren, leftCheckbox, this.mergeStyles(styles.icons, styles.leftCheckbox));
+    this._pushElement(contentChildren, leftCheckbox, this.mergeStyles(styles.leftCheckbox));
+    this._pushElement(contentChildren, rightIconButton, this.mergeStyles(styles.rightIconButton), {
+      onMouseOver: this._handleRightIconButtonMouseOver,
+      onMouseOut: this._handleRightIconButtonMouseOut,
+      onTouchTap: this._handleRightIconButtonTouchTap,
+      onMouseDown: this._handleRightIconButtonMouseUp,
+      onMouseUp: this._handleRightIconButtonMouseUp
+    });
     this._pushElement(contentChildren, rightToggle, this.mergeStyles(styles.rightToggle));
 
     if (this.props.children) contentChildren.push(this.props.children);
@@ -49853,14 +50963,46 @@ var ListItem = React.createClass({
     );
   },
 
-  _pushElement: function _pushElement(children, element, baseStyles) {
+  _pushElement: function _pushElement(children, element, baseStyles, additionalProps) {
     if (element) {
       var styles = this.mergeStyles(baseStyles, element.props.style);
-      children.push(React.cloneElement(element, {
+      children.push(React.cloneElement(element, _extends({
         key: children.length,
         style: styles
-      }));
+      }, additionalProps)));
     }
+  },
+
+  _handleRightIconButtonMouseDown: function _handleRightIconButtonMouseDown(e) {
+    var iconButton = this.props.rightIconButton;
+    e.stopPropagation();
+    if (iconButton.onMouseDown) iconButton.onDown(e);
+  },
+
+  _handleRightIconButtonMouseOut: function _handleRightIconButtonMouseOut(e) {
+    var iconButton = this.props.rightIconButton;
+    this.setState({ rightIconButtonHovered: false });
+    if (iconButton.onMouseOut) iconButton.onMouseOut(e);
+  },
+
+  _handleRightIconButtonMouseOver: function _handleRightIconButtonMouseOver(e) {
+    var iconButton = this.props.rightIconButton;
+    this.setState({ rightIconButtonHovered: true });
+    if (iconButton.onMouseOver) iconButton.onMouseOver(e);
+  },
+
+  _handleRightIconButtonMouseUp: function _handleRightIconButtonMouseUp(e) {
+    var iconButton = this.props.rightIconButton;
+    e.stopPropagation();
+    if (iconButton.onMouseUp) iconButton.onUp(e);
+  },
+
+  _handleRightIconButtonTouchTap: function _handleRightIconButtonTouchTap(e) {
+    var iconButton = this.props.rightIconButton;
+
+    //Stop the event from bubbling up to the list-item
+    e.stopPropagation();
+    if (iconButton.onTouchTap) iconButton.onTouchTap(e);
   },
 
   _handleMouseOver: function _handleMouseOver(e) {
@@ -49881,7 +51023,7 @@ var ListItem = React.createClass({
 
 module.exports = ListItem;
 
-},{"../enhanced-button":420,"../mixins/style-propable":440,"../styles/colors":454,"../styles/transitions":459,"../styles/typography":460,"../utils/color-manipulator":495,"react/addons":227}],433:[function(require,module,exports){
+},{"../enhanced-button":428,"../mixins/style-propable":448,"../styles/colors":463,"../styles/transitions":469,"../styles/typography":470,"../utils/color-manipulator":511,"react/addons":229}],441:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49957,7 +51099,7 @@ var List = React.createClass({
 
 module.exports = List;
 
-},{"../mixins/style-propable":440,"../styles/typography":460,"react/addons":227}],434:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../styles/typography":470,"react/addons":229}],442:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49979,12 +51121,14 @@ var LinkMenuItem = React.createClass({
     payload: React.PropTypes.string.isRequired,
     text: React.PropTypes.string.isRequired,
     target: React.PropTypes.string,
+    active: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     className: React.PropTypes.string
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
+      active: false,
       disabled: false
     };
   },
@@ -50032,7 +51176,7 @@ var LinkMenuItem = React.createClass({
 
     var styles = this.getStyles();
 
-    var linkStyles = this.mergeAndPrefix(styles.root, this.props.selected && styles.rootWhenSelected, this.state.hovered && !this.props.disabled && styles.rootWhenHovered, this.props.style, this.props.disabled && styles.rootWhenDisabled);
+    var linkStyles = this.mergeAndPrefix(styles.root, this.props.selected && styles.rootWhenSelected, this.props.selected && styles.rootWhenSelected, this.props.active && !this.props.disabled && styles.rootWhenHovered, this.props.style, this.props.disabled && styles.rootWhenDisabled);
 
     return React.createElement(
       'a',
@@ -50065,7 +51209,7 @@ var LinkMenuItem = React.createClass({
 
 module.exports = LinkMenuItem;
 
-},{"../mixins/style-propable":440,"react":399}],435:[function(require,module,exports){
+},{"../mixins/style-propable":448,"react":401}],443:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -50106,7 +51250,8 @@ var MenuItem = React.createClass({
     disabled: React.PropTypes.bool,
     onTouchTap: React.PropTypes.func,
     onToggle: React.PropTypes.func,
-    selected: React.PropTypes.bool
+    selected: React.PropTypes.bool,
+    active: React.PropTypes.bool
   },
 
   statics: {
@@ -50116,13 +51261,8 @@ var MenuItem = React.createClass({
   getDefaultProps: function getDefaultProps() {
     return {
       toggle: false,
-      disabled: false
-    };
-  },
-
-  getInitialState: function getInitialState() {
-    return {
-      hovered: false
+      disabled: false,
+      active: false
     };
   },
 
@@ -50242,8 +51382,8 @@ var MenuItem = React.createClass({
         className: this.props.className,
         onTouchTap: this._handleTouchTap,
         onMouseOver: this._handleMouseOver,
-        onMouseOut: this._handleMouseOut,
-        style: this.mergeAndPrefix(styles.root, this.props.selected && styles.rootWhenSelected, this.state.hovered && !this.props.disabled && styles.rootWhenHovered, this.props.style, this.props.disabled && styles.rootWhenDisabled) },
+        onMouseOut: this._handleMouseOut, f: true,
+        style: this.mergeAndPrefix(styles.root, this.props.selected && styles.rootWhenSelected, this.props.active && !this.props.disabled && styles.rootWhenHovered, this.props.style, this.props.disabled && styles.rootWhenDisabled) },
       icon,
       this.props.children,
       data,
@@ -50263,20 +51403,17 @@ var MenuItem = React.createClass({
   },
 
   _handleMouseOver: function _handleMouseOver(e) {
-    this.setState({ hovered: true });
-    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e);
+    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e, this.props.index);
   },
 
   _handleMouseOut: function _handleMouseOut(e) {
-    this.setState({ hovered: false });
-    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e);
+    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e, this.props.index);
   }
-
 });
 
 module.exports = MenuItem;
 
-},{"../font-icon":425,"../mixins/style-propable":440,"../toggle":487,"react":399}],436:[function(require,module,exports){
+},{"../font-icon":433,"../mixins/style-propable":448,"../toggle":503,"react":401}],444:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -50287,6 +51424,7 @@ var React = require('react');
 var CssEvent = require('../utils/css-event');
 var Dom = require('../utils/dom');
 var KeyLine = require('../utils/key-line');
+var KeyCode = require('../utils/key-code');
 var StylePropable = require('../mixins/style-propable');
 var Transitions = require('../styles/transitions');
 var ClickAwayable = require('../mixins/click-awayable');
@@ -50294,6 +51432,7 @@ var Paper = require('../paper');
 var MenuItem = require('./menu-item');
 var LinkMenuItem = require('./link-menu-item');
 var SubheaderMenuItem = require('./subheader-menu-item');
+var WindowListenable = require('../mixins/window-listenable');
 
 /***********************
 * Nested Menu Component
@@ -50313,6 +51452,7 @@ var NestedMenuItem = React.createClass({
     menuItems: React.PropTypes.array.isRequired,
     zDepth: React.PropTypes.number,
     disabled: React.PropTypes.bool,
+    active: React.PropTypes.bool,
     onItemTap: React.PropTypes.func,
     menuItemStyle: React.PropTypes.object
   },
@@ -50324,7 +51464,10 @@ var NestedMenuItem = React.createClass({
   },
 
   getInitialState: function getInitialState() {
-    return { open: false };
+    return {
+      open: false,
+      activeIndex: 0
+    };
   },
 
   componentClickAway: function componentClickAway() {
@@ -50333,6 +51476,8 @@ var NestedMenuItem = React.createClass({
 
   componentDidMount: function componentDidMount() {
     this._positionNestedMenu();
+    var el = this.getDOMNode();
+    el.focus();
   },
 
   componentDidUpdate: function componentDidUpdate() {
@@ -50343,8 +51488,46 @@ var NestedMenuItem = React.createClass({
     return this.context.muiTheme.spacing;
   },
 
+  getStyles: function getStyles() {
+    var styles = {
+      root: {
+        userSelect: 'none',
+        cursor: 'pointer',
+        lineHeight: this.getTheme().height + 'px',
+        color: this.context.muiTheme.palette.textColor
+      },
+      icon: {
+        float: 'left',
+        lineHeight: this.getTheme().height + 'px',
+        marginRight: this.getSpacing().desktopGutter
+      },
+      toggle: {
+        marginTop: (this.getTheme().height - this.context.muiTheme.component.radioButton.size) / 2,
+        float: 'right',
+        width: 42
+      },
+      rootWhenHovered: {
+        backgroundColor: this.getTheme().hoverColor
+      },
+      rootWhenSelected: {
+        color: this.getTheme().selectedTextColor
+      },
+      rootWhenDisabled: {
+        cursor: 'default',
+        color: this.context.muiTheme.palette.disabledColor
+      }
+    };
+    return styles;
+  },
+
+  getTheme: function getTheme() {
+    return this.context.muiTheme.component.menuItem;
+  },
+
   render: function render() {
-    var styles = this.mergeAndPrefix({
+
+    var styles = this.getStyles();
+    styles = this.mergeAndPrefix(styles.root, this.props.active && !this.props.disabled && styles.rootWhenHovered, {
       position: 'relative'
     }, this.props.style);
 
@@ -50361,7 +51544,13 @@ var NestedMenuItem = React.createClass({
 
     return React.createElement(
       'div',
-      { ref: 'root', style: styles, onMouseEnter: this._openNestedMenu, onMouseLeave: this._closeNestedMenu },
+      {
+        ref: 'root',
+        style: styles,
+        onMouseEnter: this._openNestedMenu,
+        onMouseLeave: this._closeNestedMenu,
+        onMouseOver: this._handleMouseOver,
+        onMouseOut: this._handleMouseOut },
       React.createElement(
         MenuItem,
         {
@@ -50380,14 +51569,22 @@ var NestedMenuItem = React.createClass({
         onItemTap: this._onMenuItemTap,
         hideable: true,
         visible: this.state.open,
+        onRequestClose: this._closeNestedMenu,
         zDepth: this.props.zDepth + 1 }))
     );
+  },
+
+  toggleNestedMenu: function toggleNestedMenu() {
+    if (!this.props.disabled) this.setState({ open: !this.state.open });
+  },
+
+  isOpen: function isOpen() {
+    return this.state.open;
   },
 
   _positionNestedMenu: function _positionNestedMenu() {
     var el = React.findDOMNode(this);
     var nestedMenu = React.findDOMNode(this.refs.nestedMenu);
-
     nestedMenu.style.left = el.offsetWidth + 'px';
   },
 
@@ -50397,19 +51594,23 @@ var NestedMenuItem = React.createClass({
 
   _closeNestedMenu: function _closeNestedMenu() {
     this.setState({ open: false });
-  },
-
-  _toggleNestedMenu: function _toggleNestedMenu() {
-    if (!this.props.disabled) this.setState({ open: !this.state.open });
+    React.findDOMNode(this).focus();
   },
 
   _onParentItemTap: function _onParentItemTap() {
-    this._toggleNestedMenu();
+    this.toggleNestedMenu();
   },
 
   _onMenuItemTap: function _onMenuItemTap(e, index, menuItem) {
     if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
     this._closeNestedMenu();
+  },
+  _handleMouseOver: function _handleMouseOver(e) {
+    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e, this.props.index);
+  },
+
+  _handleMouseOut: function _handleMouseOut(e) {
+    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e, this.props.index);
   }
 
 });
@@ -50430,6 +51631,7 @@ var Menu = React.createClass({
     autoWidth: React.PropTypes.bool,
     onItemTap: React.PropTypes.func,
     onToggle: React.PropTypes.func,
+    onRequestClose: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
     hideable: React.PropTypes.bool,
@@ -50444,7 +51646,10 @@ var Menu = React.createClass({
   },
 
   getInitialState: function getInitialState() {
-    return { nestedMenuShown: false };
+    return {
+      nestedMenuShown: false,
+      activeIndex: 0
+    };
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -50452,7 +51657,8 @@ var Menu = React.createClass({
       autoWidth: true,
       hideable: false,
       visible: true,
-      zDepth: 1
+      zDepth: 1,
+      onRequestClose: function onRequestClose() {}
     };
   },
 
@@ -50487,7 +51693,8 @@ var Menu = React.createClass({
         backgroundColor: this.getTheme().containerBackgroundColor,
         paddingTop: this.getSpacing().desktopGutterMini,
         paddingBottom: this.getSpacing().desktopGutterMini,
-        transition: Transitions.easeOut(null, 'height')
+        transition: Transitions.easeOut(null, 'height'),
+        outline: 'none !important'
       },
       subheader: {
         paddingLeft: this.context.muiTheme.component.menuSubheader.padding,
@@ -50510,6 +51717,8 @@ var Menu = React.createClass({
       Paper,
       {
         ref: 'paperContainer',
+        tabIndex: '0',
+        onKeyDown: this._onKeyDown,
         zDepth: this.props.zDepth,
         style: this.mergeAndPrefix(styles.root, this.props.hideable && styles.hideable, this.props.style) },
       this._getChildren()
@@ -50517,14 +51726,11 @@ var Menu = React.createClass({
   },
 
   _getChildren: function _getChildren() {
-    var children = [],
-        menuItem,
-        itemComponent,
-        isSelected,
-        isDisabled;
+    var menuItem, itemComponent, isSelected, isDisabled;
 
     var styles = this.getStyles();
 
+    this._children = [];
     //This array is used to keep track of all nested menu refs
     this._nestedChildren = [];
 
@@ -50548,6 +51754,7 @@ var Menu = React.createClass({
           itemComponent = React.createElement(LinkMenuItem, {
             key: i,
             index: i,
+            active: this.state.activeIndex == i,
             text: menuItem.text,
             disabled: isDisabled,
             className: this.props.menuItemClassNameLink,
@@ -50578,11 +51785,15 @@ var Menu = React.createClass({
             ref: i,
             key: i,
             index: i,
+            nested: true,
+            active: this.state.activeIndex == i,
             text: menuItem.text,
             disabled: isDisabled,
             menuItems: menuItem.items,
             menuItemStyle: this.props.menuItemStyle,
             zDepth: this.props.zDepth,
+            onMouseOver: this._onItemActivated,
+            onMouseOut: this._onItemDeactivated,
             onItemTap: this._onNestedItemTap }));
           this._nestedChildren.push(i);
           break;
@@ -50594,6 +51805,7 @@ var Menu = React.createClass({
               selected: isSelected,
               key: i,
               index: i,
+              active: this.state.activeIndex == i,
               icon: menuItem.icon,
               data: menuItem.data,
               className: this.props.menuItemClassName,
@@ -50603,14 +51815,17 @@ var Menu = React.createClass({
               toggle: menuItem.toggle,
               onToggle: this.props.onToggle,
               disabled: isDisabled,
-              onTouchTap: this._onItemTap }),
+              onTouchTap: this._onItemTap,
+              onMouseOver: this._onItemActivated,
+              onMouseOut: this._onItemDeactivated
+            }),
             menuItem.text
           );
       }
-      children.push(itemComponent);
+      this._children.push(itemComponent);
     }
 
-    return children;
+    return this._children;
   },
 
   _setKeyWidth: function _setKeyWidth(el) {
@@ -50647,6 +51862,7 @@ var Menu = React.createClass({
           //Make sure the menu is open before setting the overflow.
           //This is to accout for fast clicks
           if (this.props.visible) container.style.overflow = 'visible';
+          el.focus();
         }).bind(this));
       } else {
 
@@ -50669,13 +51885,83 @@ var Menu = React.createClass({
 
   _onItemToggle: function _onItemToggle(e, index, toggled) {
     if (this.props.onItemToggle) this.props.onItemToggle(e, index, this.props.menuItems[index], toggled);
+  },
+  _onItemActivated: function _onItemActivated(e, index) {
+    this.setState({ activeIndex: index });
+  },
+  _onItemDeactivated: function _onItemDeactivated(e, index) {
+    if (this.state.activeKey == index) this.setState({ activeIndex: 0 });
+  },
+
+  _onKeyDown: function _onKeyDown(e) {
+    if (!(this.state.open || this.props.visible)) return;
+
+    var nested = this._children[this.state.activeIndex];
+    if (nested && nested.props.nested && this.refs[this.state.activeIndex].isOpen()) return;
+
+    switch (e.which) {
+      case KeyCode.UP:
+        this._activatePreviousItem();
+        break;
+      case KeyCode.DOWN:
+        this._activateNextItem();
+        break;
+      case KeyCode.RIGHT:
+        this._tryToggleNested(this.state.activeIndex);
+        break;
+      case KeyCode.LEFT:
+        this._close();
+        break;
+      case KeyCode.ESC:
+        this._close();
+        break;
+      case KeyCode.TAB:
+        this._close();
+        return; // so the tab key can propagate
+      case KeyCode.ENTER:
+      case KeyCode.SPACE:
+        e.stopPropagation(); // needs called before the close
+        this._triggerSelection(e);
+        break;
+      default:
+        return; //important
+    }
+    e.preventDefault();
+    e.stopPropagation();
+  },
+
+  _activatePreviousItem: function _activatePreviousItem() {
+    var active = this.state.activeIndex || 0;
+    active = Math.max(active - 1, 0);
+    this.setState({ activeIndex: active });
+  },
+
+  _activateNextItem: function _activateNextItem() {
+    var active = this.state.activeIndex || 0;
+    active = Math.min(active + 1, this._children.length - 1);
+    this.setState({ activeIndex: active });
+  },
+
+  _triggerSelection: function _triggerSelection(e) {
+    var index = this.state.activeIndex || 0;
+    this._onItemTap(e, index);
+  },
+
+  _close: function _close() {
+    this.props.onRequestClose();
+  },
+
+  _tryToggleNested: function _tryToggleNested(index) {
+    var item = this.refs[index];
+    var toggleMenu = item.toggleNestedMenu;
+    if (item && item.toggleNestedMenu) item.toggleNestedMenu();
   }
 
 });
 
 module.exports = Menu;
 
-},{"../mixins/click-awayable":439,"../mixins/style-propable":440,"../paper":444,"../styles/transitions":459,"../utils/css-event":496,"../utils/dom":498,"../utils/key-line":502,"./link-menu-item":434,"./menu-item":435,"./subheader-menu-item":437,"react":399}],437:[function(require,module,exports){
+},{"../mixins/click-awayable":447,"../mixins/style-propable":448,"../mixins/window-listenable":450,"../paper":452,"../styles/transitions":469,"../utils/css-event":512,"../utils/dom":514,"../utils/key-code":517,"../utils/key-line":518,"./link-menu-item":442,"./menu-item":443,"./subheader-menu-item":445,"react":401}],445:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50748,7 +52034,7 @@ var SubheaderMenuItem = React.createClass({
 
 module.exports = SubheaderMenuItem;
 
-},{"../mixins/style-propable":440,"../styles/typography":460,"react":399}],438:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../styles/typography":470,"react":401}],446:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50800,7 +52086,7 @@ module.exports = {
 
 };
 
-},{"classnames":182,"react":399}],439:[function(require,module,exports){
+},{"classnames":184,"react":401}],447:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50843,7 +52129,7 @@ module.exports = {
 
 };
 
-},{"../utils/dom":498,"../utils/events":499,"react":399}],440:[function(require,module,exports){
+},{"../utils/dom":514,"../utils/events":515,"react":401}],448:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -50880,7 +52166,7 @@ module.exports = {
   }
 };
 
-},{"../styles/auto-prefix":453,"../utils/extend":500,"react/addons":227}],441:[function(require,module,exports){
+},{"../styles/auto-prefix":462,"../utils/extend":516,"react/addons":229}],449:[function(require,module,exports){
 'use strict';
 
 var Events = require('../utils/events');
@@ -50930,7 +52216,7 @@ module.exports = {
   }
 };
 
-},{"../utils/events":499}],442:[function(require,module,exports){
+},{"../utils/events":515}],450:[function(require,module,exports){
 'use strict';
 
 var Events = require('../utils/events');
@@ -50957,7 +52243,7 @@ module.exports = {
 
 };
 
-},{"../utils/events":499}],443:[function(require,module,exports){
+},{"../utils/events":515}],451:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -51058,7 +52344,7 @@ var Overlay = React.createClass({
 
 module.exports = Overlay;
 
-},{"./mixins/style-propable":440,"./styles/colors":454,"./styles/transitions":459,"react":399}],444:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/colors":463,"./styles/transitions":469,"react":401}],452:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -51135,7 +52421,7 @@ var Paper = React.createClass({
 
 module.exports = Paper;
 
-},{"./mixins/style-propable":440,"./styles/transitions":459,"react":399}],445:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],453:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -51251,7 +52537,7 @@ module.exports = RadioButtonGroup;
 
 }).call(this,require('_process'))
 
-},{"./radio-button":446,"_process":1,"react":399}],446:[function(require,module,exports){
+},{"./radio-button":454,"_process":1,"react":401}],454:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -51276,6 +52562,7 @@ var RadioButton = React.createClass({
 
   propTypes: {
     iconStyle: React.PropTypes.object,
+    labelStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func
   },
 
@@ -51317,6 +52604,9 @@ var RadioButton = React.createClass({
       },
       fillWhenDisabled: {
         fill: this.getTheme().disabledColor
+      },
+      label: {
+        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
       }
     };
     return styles;
@@ -51343,6 +52633,8 @@ var RadioButton = React.createClass({
 
     var iconStyle = this.mergeAndPrefix(styles.icon, this.props.iconStyle);
 
+    var labelStyle = this.mergeAndPrefix(styles.label, this.props.labelStyle);
+
     var enhancedSwitchProps = {
       ref: 'enhancedSwitch',
       inputType: 'radio',
@@ -51350,6 +52642,7 @@ var RadioButton = React.createClass({
       switchElement: radioButtonElement,
       rippleColor: rippleColor,
       iconStyle: iconStyle,
+      labelStyle: labelStyle,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
       labelPosition: this.props.labelPosition ? this.props.labelPosition : 'right'
@@ -51383,7 +52676,7 @@ var RadioButton = React.createClass({
 
 module.exports = RadioButton;
 
-},{"./enhanced-switch":421,"./mixins/style-propable":440,"./styles/transitions":459,"./svg-icons/toggle-radio-button-off":470,"./svg-icons/toggle-radio-button-on":471,"react":399}],447:[function(require,module,exports){
+},{"./enhanced-switch":429,"./mixins/style-propable":448,"./styles/transitions":469,"./svg-icons/toggle-radio-button-off":480,"./svg-icons/toggle-radio-button-on":481,"react":401}],455:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -51508,11 +52801,12 @@ var RaisedButton = React.createClass({
 
   render: function render() {
     var _props = this.props;
+    var disabled = _props.disabled;
     var label = _props.label;
     var primary = _props.primary;
     var secondary = _props.secondary;
 
-    var other = _objectWithoutProperties(_props, ['label', 'primary', 'secondary']);
+    var other = _objectWithoutProperties(_props, ['disabled', 'label', 'primary', 'secondary']);
 
     var styles = this.getStyles();
 
@@ -51528,6 +52822,16 @@ var RaisedButton = React.createClass({
     var rippleColor = styles.label.color;
     var rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
 
+    var buttonEventHandlers = disabled ? null : {
+      onMouseDown: this._handleMouseDown,
+      onMouseUp: this._handleMouseUp,
+      onMouseOut: this._handleMouseOut,
+      onMouseOver: this._handleMouseOver,
+      onTouchStart: this._handleTouchStart,
+      onTouchEnd: this._handleTouchEnd,
+      onKeyboardFocus: this._handleKeyboardFocus
+    };
+
     return React.createElement(
       Paper,
       {
@@ -51535,20 +52839,14 @@ var RaisedButton = React.createClass({
         zDepth: this.state.zDepth },
       React.createElement(
         EnhancedButton,
-        _extends({}, other, {
+        _extends({}, other, buttonEventHandlers, {
           ref: 'container',
+          disabled: disabled,
           style: this.mergeAndPrefix(styles.container),
-          onMouseUp: this._handleMouseUp,
-          onMouseDown: this._handleMouseDown,
-          onMouseOut: this._handleMouseOut,
-          onMouseOver: this._handleMouseOver,
-          onTouchStart: this._handleTouchStart,
-          onTouchEnd: this._handleTouchEnd,
           focusRippleColor: rippleColor,
           touchRippleColor: rippleColor,
           focusRippleOpacity: rippleOpacity,
-          touchRippleOpacity: rippleOpacity,
-          onKeyboardFocus: this._handleKeyboardFocus }),
+          touchRippleOpacity: rippleOpacity }),
         React.createElement(
           'div',
           { ref: 'overlay', style: this.mergeAndPrefix(styles.overlay, this.state.hovered && !this.props.disabled && styles.overlayWhenHovered) },
@@ -51606,7 +52904,7 @@ var RaisedButton = React.createClass({
 
 module.exports = RaisedButton;
 
-},{"./enhanced-button":420,"./mixins/style-propable":440,"./paper":444,"./styles/transitions":459,"./styles/typography":460,"./utils/color-manipulator":495,"react":399}],448:[function(require,module,exports){
+},{"./enhanced-button":428,"./mixins/style-propable":448,"./paper":452,"./styles/transitions":469,"./styles/typography":470,"./utils/color-manipulator":511,"react":401}],456:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -51665,7 +52963,7 @@ var RippleCircle = React.createClass({
 
 module.exports = RippleCircle;
 
-},{"../mixins/style-propable":440,"../styles/colors":454,"../styles/transitions":459,"react":399}],449:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../styles/colors":463,"../styles/transitions":469,"react":401}],457:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -51759,7 +53057,7 @@ var FocusRipple = React.createClass({
 
 module.exports = FocusRipple;
 
-},{"../mixins/style-propable":440,"../styles/auto-prefix":453,"../styles/colors":454,"../styles/transitions":459,"react":399}],450:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../styles/auto-prefix":462,"../styles/colors":463,"../styles/transitions":469,"react":401}],458:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -51955,7 +53253,101 @@ var TouchRipple = React.createClass({
 
 module.exports = TouchRipple;
 
-},{"../mixins/style-propable":440,"../utils/dom":498,"./circle":448,"react":399}],451:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../utils/dom":514,"./circle":456,"react":401}],459:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var React = require('react');
+var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/transitions');
+var TextField = require('./text-field');
+var DropDownMenu = require('./drop-down-menu');
+
+var SelectField = React.createClass({
+  displayName: 'SelectField',
+
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  propTypes: {
+    errorText: React.PropTypes.string,
+    floatingLabelText: React.PropTypes.string,
+    hintText: React.PropTypes.string,
+    id: React.PropTypes.string,
+    multiLine: React.PropTypes.bool,
+    onBlur: React.PropTypes.func,
+    onChange: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func,
+    onEnterKeyDown: React.PropTypes.func,
+    type: React.PropTypes.string,
+    rows: React.PropTypes.number,
+    inputStyle: React.PropTypes.object,
+    floatingLabelStyle: React.PropTypes.object,
+    autoWidth: React.PropTypes.bool,
+    menuItems: React.PropTypes.array.isRequired,
+    menuItemStyle: React.PropTypes.object,
+    selectedIndex: React.PropTypes.number
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {};
+  },
+
+  getStyles: function getStyles() {
+    var styles = {
+      selectfield: {
+        root: {
+          height: 'auto',
+          position: 'relative',
+          width: '100%'
+        },
+        label: {
+          paddingLeft: 0,
+          top: 4,
+          width: '100%'
+        },
+        icon: {
+          top: 20,
+          right: 0
+        },
+        underline: {
+          borderTop: 'none'
+        }
+      }
+    };
+    return styles;
+  },
+
+  onChange: function onChange(e, index, payload) {
+    e.target.value = payload;
+    if (this.props.onChange) this.props.onChange(e);
+  },
+
+  render: function render() {
+    var styles = this.getStyles();
+    return React.createElement(
+      TextField,
+      this.props,
+      React.createElement(DropDownMenu, _extends({}, this.props, {
+        onChange: this.onChange,
+        style: styles.selectfield.root,
+        labelStyle: styles.selectfield.label,
+        iconStyle: styles.selectfield.icon,
+        underlineStyle: styles.selectfield.underline,
+        autoWidth: false
+      }))
+    );
+  }
+});
+
+module.exports = SelectField;
+
+},{"./drop-down-menu":427,"./mixins/style-propable":448,"./styles/transitions":469,"./text-field":491,"react":401}],460:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -51994,6 +53386,7 @@ var Slider = React.createClass({
       required: true,
       disabled: false,
       defaultValue: 0,
+      step: 0.01,
       min: 0,
       max: 1,
       dragging: false
@@ -52195,6 +53588,7 @@ var Slider = React.createClass({
             { axis: 'x', bound: 'point',
               cancel: this.props.disabled ? '*' : null,
               start: { x: percent * 100 + '%' },
+              constrain: this._constrain(),
               onStart: this._onDragStart,
               onStop: this._onDragStop,
               onDrag: this._onDragUpdate,
@@ -52237,12 +53631,56 @@ var Slider = React.createClass({
   },
 
   setPercent: function setPercent(percent) {
-    var value = this._percentToValue(percent);
+    var value = this._alignValue(this._percentToValue(percent));
     this.setState({ value: value, percent: percent });
   },
 
   clearValue: function clearValue() {
     this.setValue(0);
+  },
+
+  _alignValue: function _alignValue(val) {
+    var _props = this.props;
+    var step = _props.step;
+    var min = _props.min;
+
+    var valModStep = (val - min) % step;
+    var alignValue = val - valModStep;
+
+    if (Math.abs(valModStep) * 2 >= step) {
+      alignValue += valModStep > 0 ? step : -step;
+    }
+
+    return parseFloat(alignValue.toFixed(5));
+  },
+
+  _constrain: function _constrain() {
+    var _this = this;
+
+    var _props2 = this.props;
+    var min = _props2.min;
+    var max = _props2.max;
+    var step = _props2.step;
+
+    return function (pos) {
+      var pixelMax = React.findDOMNode(_this.refs.track).clientWidth;
+      var pixelStep = pixelMax / ((max - min) / step);
+
+      var cursor = min;
+      var i;
+      for (i = 0; i < (max - min) / step; i++) {
+        var distance = pos.left - cursor;
+        var nextDistance = cursor + pixelStep - pos.left;
+        if (Math.abs(distance) > Math.abs(nextDistance)) {
+          cursor += pixelStep;
+        } else {
+          break;
+        }
+      }
+      return {
+        left: cursor
+      };
+    };
   },
 
   _onFocus: function _onFocus(e) {
@@ -52301,7 +53739,7 @@ var Slider = React.createClass({
   _updateWithChangeEvent: function _updateWithChangeEvent(e, percent) {
     if (this.state.percent === percent) return;
     this.setPercent(percent);
-    var value = this._percentToValue(percent);
+    var value = this._alignValue(this._percentToValue(percent));
     if (this.props.onChange) this.props.onChange(e, value);
   },
 
@@ -52313,7 +53751,7 @@ var Slider = React.createClass({
 
 module.exports = Slider;
 
-},{"./mixins/style-propable":440,"./ripples/focus-ripple":449,"./styles/transitions.js":459,"react":399,"react-draggable2":183}],452:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./ripples/focus-ripple":457,"./styles/transitions.js":469,"react":401,"react-draggable2":185}],461:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -52451,7 +53889,7 @@ var Snackbar = React.createClass({
 
 module.exports = Snackbar;
 
-},{"./flat-button":423,"./mixins/click-awayable":439,"./mixins/style-propable":440,"./styles/transitions":459,"./utils/css-event":496,"react":399}],453:[function(require,module,exports){
+},{"./flat-button":431,"./mixins/click-awayable":447,"./mixins/style-propable":448,"./styles/transitions":469,"./utils/css-event":512,"react":401}],462:[function(require,module,exports){
 'use strict';
 
 var isBrowser = typeof window !== 'undefined';
@@ -52485,7 +53923,7 @@ module.exports = {
 
 };
 
-},{"../utils/modernizr.custom":503}],454:[function(require,module,exports){
+},{"../utils/modernizr.custom":519}],463:[function(require,module,exports){
 // To include this file in your project:
 // var mui = require('mui');
 // var Colors = mui.Styles.Colors;
@@ -52782,7 +54220,19 @@ module.exports = {
 
 };
 
-},{}],455:[function(require,module,exports){
+},{}],464:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+  AutoPrefix: require('./auto-prefix'),
+  Colors: require('./colors'),
+  Spacing: require('./spacing'),
+  ThemeManager: require('./theme-manager'),
+  Transitions: require('./transitions'),
+  Typography: require('./typography')
+};
+
+},{"./auto-prefix":462,"./colors":463,"./spacing":465,"./theme-manager":466,"./transitions":469,"./typography":470}],465:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -52800,10 +54250,9 @@ module.exports = {
   desktopToolbarHeight: 56
 };
 
-},{}],456:[function(require,module,exports){
+},{}],466:[function(require,module,exports){
 'use strict';
 
-var Spacing = require('./spacing');
 var Extend = require('../utils/extend');
 
 var Types = {
@@ -52816,7 +54265,7 @@ var ThemeManager = function ThemeManager() {
     types: Types,
     template: Types.LIGHT,
 
-    spacing: Spacing,
+    spacing: Types.LIGHT.spacing,
     contentFontFamily: 'Roboto, sans-serif',
 
     palette: Types.LIGHT.getPalette(),
@@ -52828,8 +54277,14 @@ var ThemeManager = function ThemeManager() {
 
     // Component gets updated to reflect palette changes.
     setTheme: function setTheme(newTheme) {
+      this.setSpacing(newTheme.spacing);
       this.setPalette(newTheme.getPalette());
       this.setComponentThemes(newTheme.getComponentThemes(newTheme.getPalette()));
+    },
+
+    setSpacing: function setSpacing(newSpacing) {
+      this.spacing = Extend(this.spacing, newSpacing);
+      this.component = Extend(this.component, this.template.getComponentThemes(this.palette, this.spacing));
     },
 
     setPalette: function setPalette(newPalette) {
@@ -52845,7 +54300,7 @@ var ThemeManager = function ThemeManager() {
 
 module.exports = ThemeManager;
 
-},{"../utils/extend":500,"./spacing":455,"./themes/dark-theme":457,"./themes/light-theme":458}],457:[function(require,module,exports){
+},{"../utils/extend":516,"./themes/dark-theme":467,"./themes/light-theme":468}],467:[function(require,module,exports){
 'use strict';
 
 var Colors = require('../colors');
@@ -52906,7 +54361,7 @@ var DarkTheme = {
 
 module.exports = DarkTheme;
 
-},{"../../utils/color-manipulator":495,"../colors":454}],458:[function(require,module,exports){
+},{"../../utils/color-manipulator":511,"../colors":463}],468:[function(require,module,exports){
 'use strict';
 
 var Colors = require('../colors');
@@ -52936,23 +54391,26 @@ var LightTheme = {
       disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
     };
   },
-  getComponentThemes: function getComponentThemes(palette) {
+  getComponentThemes: function getComponentThemes(palette, spacing) {
+    spacing = spacing || Spacing;
     var obj = {
       appBar: {
         color: palette.primary1Color,
         textColor: Colors.darkWhite,
-        height: Spacing.desktopKeylineIncrement
+        height: spacing.desktopKeylineIncrement
       },
       button: {
         height: 36,
         minWidth: 88,
-        iconButtonSize: Spacing.iconSize * 2
+        iconButtonSize: spacing.iconSize * 2
       },
       checkbox: {
         boxColor: palette.textColor,
         checkedColor: palette.primary1Color,
         requiredColor: palette.primary1Color,
-        disabledColor: palette.disabledColor
+        disabledColor: palette.disabledColor,
+        labelColor: palette.textColor,
+        labelDisabledColor: palette.disabledColor
       },
       datePicker: {
         color: palette.primary1Color,
@@ -52979,7 +54437,7 @@ var LightTheme = {
         secondaryIconColor: Colors.white
       },
       leftNav: {
-        width: Spacing.desktopKeylineIncrement * 4,
+        width: spacing.desktopKeylineIncrement * 4,
         color: Colors.white
       },
       menu: {
@@ -52990,11 +54448,11 @@ var LightTheme = {
         dataHeight: 32,
         height: 48,
         hoverColor: 'rgba(0, 0, 0, .035)',
-        padding: Spacing.desktopGutter,
+        padding: spacing.desktopGutter,
         selectedTextColor: palette.accent1Color
       },
       menuSubheader: {
-        padding: Spacing.desktopGutter,
+        padding: spacing.desktopGutter,
         borderColor: palette.borderColor,
         textColor: palette.primary1Color
       },
@@ -53007,7 +54465,9 @@ var LightTheme = {
         checkedColor: palette.primary1Color,
         requiredColor: palette.primary1Color,
         disabledColor: palette.disabledColor,
-        size: 24
+        size: 24,
+        labelColor: palette.textColor,
+        labelDisabledColor: palette.disabledColor
       },
       raisedButton: {
         color: Colors.white,
@@ -53033,6 +54493,32 @@ var LightTheme = {
         backgroundColor: '#323232',
         actionColor: palette.accent1Color
       },
+      table: {
+        backgroundColor: Colors.white
+      },
+      tableHeader: {
+        borderColor: palette.borderColor
+      },
+      tableHeaderColumn: {
+        textColor: Colors.lightBlack,
+        height: 56,
+        spacing: 28
+      },
+      tableFooter: {
+        borderColor: palette.borderColor,
+        textColor: Colors.lightBlack
+      },
+      tableRow: {
+        hoverColor: Colors.grey200,
+        stripeColor: ColorManipulator.lighten(palette.primary1Color, 0.55),
+        selectedColor: Colors.grey300,
+        textColor: Colors.darkBlack,
+        borderColor: palette.borderColor
+      },
+      tableRowColumn: {
+        height: 48,
+        spacing: 28
+      },
       timePicker: {
         color: Colors.white,
         textColor: Colors.grey600,
@@ -53048,7 +54534,9 @@ var LightTheme = {
         thumbRequiredColor: palette.primary1Color,
         trackOnColor: ColorManipulator.fade(palette.primary1Color, 0.5),
         trackOffColor: Colors.minBlack,
-        trackDisabledColor: Colors.faintBlack
+        trackDisabledColor: Colors.faintBlack,
+        labelColor: palette.textColor,
+        labelDisabledColor: palette.disabledColor
       },
       toolbar: {
         backgroundColor: ColorManipulator.darken('#eeeeee', 0.05),
@@ -53060,6 +54548,16 @@ var LightTheme = {
       },
       tabs: {
         backgroundColor: palette.primary1Color
+      },
+      textField: {
+        textColor: palette.textColor,
+        hintColor: palette.disabledColor,
+        floatingLabelColor: palette.textColor,
+        disabledTextColor: palette.disabledColor,
+        errorColor: Colors.red500,
+        focusColor: palette.primary1Color,
+        backgroundColor: 'transparent',
+        borderColor: palette.borderColor
       }
     };
 
@@ -53075,7 +54573,7 @@ var LightTheme = {
 
 module.exports = LightTheme;
 
-},{"../../utils/color-manipulator":495,"../colors":454,"../spacing":455}],459:[function(require,module,exports){
+},{"../../utils/color-manipulator":511,"../colors":463,"../spacing":465}],469:[function(require,module,exports){
 'use strict';
 
 var AutoPrefix = require('./auto-prefix');
@@ -53103,7 +54601,7 @@ module.exports = {
   }
 };
 
-},{"./auto-prefix":453}],460:[function(require,module,exports){
+},{"./auto-prefix":462}],470:[function(require,module,exports){
 'use strict';
 
 var Colors = require('./colors');
@@ -53129,7 +54627,7 @@ var Typography = function Typography() {
 
 module.exports = new Typography();
 
-},{"./colors":454}],461:[function(require,module,exports){
+},{"./colors":463}],471:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -53138,6 +54636,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react/addons');
 var StylePropable = require('./mixins/style-propable');
+var Transitions = require('./styles/transitions');
 
 var SvgIcon = React.createClass({
   displayName: 'SvgIcon',
@@ -53149,7 +54648,17 @@ var SvgIcon = React.createClass({
   },
 
   propTypes: {
+    color: React.PropTypes.string,
+    hoverColor: React.PropTypes.string,
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func,
     viewBox: React.PropTypes.string
+  },
+
+  getInitialState: function getInitialState() {
+    return {
+      hovered: false
+    };
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -53160,32 +54669,58 @@ var SvgIcon = React.createClass({
 
   render: function render() {
     var _props = this.props;
+    var color = _props.color;
+    var hoverColor = _props.hoverColor;
     var viewBox = _props.viewBox;
     var style = _props.style;
 
-    var other = _objectWithoutProperties(_props, ['viewBox', 'style']);
+    var other = _objectWithoutProperties(_props, ['color', 'hoverColor', 'viewBox', 'style']);
+
+    var offColor = color ? color : style && style.fill ? style.fill : this.context.muiTheme.palette.textColor;
+    var onColor = hoverColor ? hoverColor : offColor;
+
+    //remove the fill prop so that it doesn't override our computed
+    //fill from above
+    if (style) delete style.fill;
 
     var mergedStyles = this.mergeAndPrefix({
       display: 'inline-block',
-      height: '24px',
-      width: '24px',
+      height: 24,
+      width: 24,
       userSelect: 'none',
-      fill: this.context.muiTheme.palette.textColor
+      transition: Transitions.easeOut(),
+      fill: this.state.hovered ? onColor : offColor
     }, style);
 
     return React.createElement(
       'svg',
       _extends({}, other, {
-        viewBox: viewBox,
-        style: mergedStyles }),
+        onMouseOut: this._handleMouseOut,
+        onMouseOver: this._handleMouseOver,
+        style: mergedStyles,
+        viewBox: viewBox }),
       this.props.children
     );
+  },
+
+  _handleMouseOut: function _handleMouseOut(e) {
+    this.setState({ hovered: false });
+    if (this.props.onMouseOut) {
+      this.props.onMouseOut(e);
+    }
+  },
+
+  _handleMouseOver: function _handleMouseOver(e) {
+    this.setState({ hovered: true });
+    if (this.props.onMouseOver) {
+      this.props.onMouseOver(e);
+    }
   }
 });
 
 module.exports = SvgIcon;
 
-},{"./mixins/style-propable":440,"react/addons":227}],462:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/transitions":469,"react/addons":229}],472:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53206,7 +54741,7 @@ var DropDownArrow = React.createClass({
 
 module.exports = DropDownArrow;
 
-},{"../svg-icon":461,"react":399}],463:[function(require,module,exports){
+},{"../svg-icon":471,"react":401}],473:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53228,7 +54763,7 @@ var NavigationChevronLeftDouble = React.createClass({
 
 module.exports = NavigationChevronLeftDouble;
 
-},{"../svg-icon":461,"react":399}],464:[function(require,module,exports){
+},{"../svg-icon":471,"react":401}],474:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53249,7 +54784,7 @@ var NavigationChevronLeft = React.createClass({
 
 module.exports = NavigationChevronLeft;
 
-},{"../svg-icon":461,"react":399}],465:[function(require,module,exports){
+},{"../svg-icon":471,"react":401}],475:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53271,7 +54806,7 @@ var NavigationChevronRightDouble = React.createClass({
 
 module.exports = NavigationChevronRightDouble;
 
-},{"../svg-icon":461,"react":399}],466:[function(require,module,exports){
+},{"../svg-icon":471,"react":401}],476:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53292,7 +54827,7 @@ var NavigationChevronLeft = React.createClass({
 
 module.exports = NavigationChevronLeft;
 
-},{"../svg-icon":461,"react":399}],467:[function(require,module,exports){
+},{"../svg-icon":471,"react":401}],477:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53313,7 +54848,7 @@ var NavigationMenu = React.createClass({
 
 module.exports = NavigationMenu;
 
-},{"../svg-icon":461,"react":399}],468:[function(require,module,exports){
+},{"../svg-icon":471,"react":401}],478:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53334,7 +54869,7 @@ var ToggleCheckBoxChecked = React.createClass({
 
 module.exports = ToggleCheckBoxChecked;
 
-},{"../svg-icon":461,"react":399}],469:[function(require,module,exports){
+},{"../svg-icon":471,"react":401}],479:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53355,7 +54890,7 @@ var ToggleCheckBoxOutlineBlank = React.createClass({
 
 module.exports = ToggleCheckBoxOutlineBlank;
 
-},{"../svg-icon":461,"react":399}],470:[function(require,module,exports){
+},{"../svg-icon":471,"react":401}],480:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53376,7 +54911,7 @@ var RadioButtonOff = React.createClass({
 
 module.exports = RadioButtonOff;
 
-},{"../svg-icon":461,"react":399}],471:[function(require,module,exports){
+},{"../svg-icon":471,"react":401}],481:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53397,7 +54932,1022 @@ var RadioButtonOn = React.createClass({
 
 module.exports = RadioButtonOn;
 
-},{"../svg-icon":461,"react":399}],472:[function(require,module,exports){
+},{"../svg-icon":471,"react":401}],482:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var React = require('react');
+var StylePropable = require('../mixins/style-propable');
+
+var TableFooter = React.createClass({
+  displayName: 'TableFooter',
+
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  propTypes: {
+    columns: React.PropTypes.array.isRequired
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {};
+  },
+
+  getTheme: function getTheme() {
+    return this.context.muiTheme.component.tableFooter;
+  },
+
+  getStyles: function getStyles() {
+
+    var styles = {
+      cell: {
+        borderTop: '1px solid ' + this.getTheme().borderColor,
+        verticalAlign: 'bottom',
+        padding: 20,
+        textAlign: 'left',
+        whiteSpace: 'nowrap'
+      }
+    };
+
+    return styles;
+  },
+
+  render: function render() {
+    var className = 'mui-table-footer';
+
+    return React.createElement(
+      'tfoot',
+      { className: className },
+      this._getFooterRow()
+    );
+  },
+
+  _getFooterRow: function _getFooterRow() {
+    return React.createElement(
+      'tr',
+      { className: 'mui-table-footer-row' },
+      this._getColumnHeaders(this.props.columns, 'f')
+    );
+  },
+
+  _getColumnHeaders: function _getColumnHeaders(footerData, keyPrefix) {
+    var footers = [];
+    var styles = this.getStyles();
+
+    for (var index = 0; index < footerData.length; index++) {
+      var _footerData$index = footerData[index];
+      var content = _footerData$index.content;
+
+      var props = _objectWithoutProperties(_footerData$index, ['content']);
+
+      if (content === undefined) content = footerData[index];
+      var key = keyPrefix + index;
+      props.style = props.style !== undefined ? this.mergeAndPrefix(props.style, styles.cell) : styles.cell;
+
+      footers.push(React.createElement(
+        'td',
+        _extends({ key: key, className: 'mui-table-footer-column' }, props),
+        content
+      ));
+    }
+
+    return footers;
+  }
+
+});
+
+module.exports = TableFooter;
+
+},{"../mixins/style-propable":448,"react":401}],483:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var React = require('react');
+var Checkbox = require('../checkbox');
+var StylePropable = require('../mixins/style-propable');
+var Tooltip = require('../tooltip');
+
+var TableHeaderColumn = React.createClass({
+  displayName: 'TableHeaderColumn',
+
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  propTypes: {
+    tooltip: React.PropTypes.string,
+    columnNumber: React.PropTypes.number.isRequired,
+    onClick: React.PropTypes.func
+  },
+
+  getInitialState: function getInitialState() {
+    return {
+      hovered: false
+    };
+  },
+
+  getTheme: function getTheme() {
+    return this.context.muiTheme.component.tableHeaderColumn;
+  },
+
+  getStyles: function getStyles() {
+    var theme = this.getTheme();
+    var styles = {
+      root: {
+        fontWeight: 'normal',
+        fontSize: 12,
+        paddingLeft: theme.spacing,
+        paddingRight: theme.spacing,
+        height: theme.height,
+        textAlign: 'left',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        color: this.getTheme().textColor,
+        position: 'relative'
+      },
+      tooltip: {
+        boxSizing: 'border-box',
+        marginTop: theme.height
+      }
+    };
+
+    return styles;
+  },
+
+  render: function render() {
+    var className = 'mui-table-header-column';
+    var styles = this.getStyles();
+    var handlers = {
+      onMouseOver: this._onMouseOver,
+      onMouseOut: this._onMouseOut,
+      onClick: this._onClick
+    };
+    var tooltip = undefined;
+
+    if (this.props.tooltip !== undefined) {
+      tooltip = React.createElement(Tooltip, {
+        label: this.props.tooltip,
+        show: this.state.hovered,
+        style: this.mergeStyles(styles.tooltip) });
+    }
+
+    return React.createElement(
+      'th',
+      _extends({
+        key: this.props.key,
+        className: className,
+        style: this.mergeAndPrefix(styles.root, this.props.style)
+      }, handlers),
+      tooltip,
+      this.props.children
+    );
+  },
+
+  _onMouseOver: function _onMouseOver() {
+    if (this.props.tooltip !== undefined) this.setState({ hovered: true });
+  },
+
+  _onMouseOut: function _onMouseOut() {
+    if (this.props.tooltip !== undefined) this.setState({ hovered: false });
+  },
+
+  _onClick: function _onClick(e) {
+    if (this.props.onClick) this.props.onClick(e, this.props.columnNumber);
+  }
+
+});
+
+module.exports = TableHeaderColumn;
+
+},{"../checkbox":412,"../mixins/style-propable":448,"../tooltip":508,"react":401}],484:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var React = require('react');
+var Checkbox = require('../checkbox');
+var StylePropable = require('../mixins/style-propable');
+var TableHeaderColumn = require('./table-header-column');
+
+var TableHeader = React.createClass({
+  displayName: 'TableHeader',
+
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  propTypes: {
+    columns: React.PropTypes.array.isRequired,
+    superHeaderColumns: React.PropTypes.array,
+    onSelectAll: React.PropTypes.func,
+    displaySelectAll: React.PropTypes.bool,
+    enableSelectAll: React.PropTypes.bool,
+    fixed: React.PropTypes.bool
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      displaySelectAll: true,
+      enableSelectAll: true,
+      fixed: true
+    };
+  },
+
+  getTheme: function getTheme() {
+    return this.context.muiTheme.component.tableHeader;
+  },
+
+  getStyles: function getStyles() {
+    var styles = {
+      root: {
+        borderBottom: '1px solid ' + this.getTheme().borderColor
+      }
+    };
+
+    return styles;
+  },
+
+  render: function render() {
+    var className = 'mui-table-header';
+
+    return React.createElement(
+      'thead',
+      { className: className, style: this.getStyles().root },
+      this._getSuperHeaderRow(),
+      this._getHeaderRow()
+    );
+  },
+
+  getSuperHeaderRow: function getSuperHeaderRow() {
+    return this.refs.superHeader;
+  },
+
+  getHeaderRow: function getHeaderRow() {
+    return this.refs.header;
+  },
+
+  _getSuperHeaderRow: function _getSuperHeaderRow() {
+    if (this.props.superHeaderColumns !== undefined) {
+      return React.createElement(
+        'tr',
+        { className: 'mui-table-super-header-row', ref: 'superHeader' },
+        this._getColumnHeaders(this.props.superHeaderColumns, 'sh')
+      );
+    }
+  },
+
+  _getHeaderRow: function _getHeaderRow() {
+    var columns = this.props.columns.slice();
+    if (this.props.displaySelectAll) {
+      columns.splice(0, 0, this._getSelectAllCheckbox());
+    }
+
+    return React.createElement(
+      'tr',
+      { className: 'mui-table-header-row', ref: 'header' },
+      this._getHeaderColumns(columns, 'h')
+    );
+  },
+
+  _getHeaderColumns: function _getHeaderColumns(headerData, keyPrefix) {
+    var styles = this.getStyles();
+    var headers = [];
+
+    for (var index = 0; index < headerData.length; index++) {
+      var _headerData$index = headerData[index];
+      var content = _headerData$index.content;
+      var tooltip = _headerData$index.tooltip;
+      var style = _headerData$index.style;
+
+      var props = _objectWithoutProperties(_headerData$index, ['content', 'tooltip', 'style']);
+
+      var key = keyPrefix + index;
+
+      headers.push(React.createElement(
+        TableHeaderColumn,
+        _extends({ key: key, style: style, tooltip: tooltip, columnNumber: index }, props),
+        content
+      ));
+    }
+
+    return headers;
+  },
+
+  _getSelectAllCheckbox: function _getSelectAllCheckbox() {
+    var checkbox = React.createElement(Checkbox, {
+      name: 'selectallcb',
+      value: 'selected',
+      disabled: !this.props.enableSelectAll,
+      onCheck: this._onSelectAll });
+
+    return {
+      content: checkbox,
+      style: {
+        paddingLeft: 24,
+        paddingRight: 24
+      }
+    };
+  },
+
+  _onSelectAll: function _onSelectAll() {
+    if (this.props.onSelectAll) this.props.onSelectAll();
+  },
+
+  _onColumnClick: function _onColumnClick(e, columnNumber) {
+    if (this.props.onColumnClick) this.props.onColumnClick(e, columnNumber);
+  }
+
+});
+
+module.exports = TableHeader;
+
+},{"../checkbox":412,"../mixins/style-propable":448,"./table-header-column":483,"react":401}],485:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var React = require('react');
+var StylePropable = require('../mixins/style-propable');
+
+var TableRowColumn = React.createClass({
+  displayName: 'TableRowColumn',
+
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  propTypes: {
+    columnNumber: React.PropTypes.number.isRequired,
+    onClick: React.PropTypes.func,
+    onHover: React.PropTypes.func,
+    onHoverExit: React.PropTypes.func,
+    hoverable: React.PropTypes.bool
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      hoverable: false
+    };
+  },
+
+  getInitialState: function getInitialState() {
+    return {
+      hovered: false
+    };
+  },
+
+  getTheme: function getTheme() {
+    return this.context.muiTheme.component.tableRowColumn;
+  },
+
+  getStyles: function getStyles() {
+    var theme = this.getTheme();
+    var styles = {
+      paddingLeft: theme.spacing,
+      paddingRight: theme.spacing,
+      height: theme.height,
+      textAlign: 'left',
+      fontSize: 13,
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis'
+    };
+
+    if (React.Children.count(this.props.children) === 1 && !isNaN(this.props.children)) {
+      styles.textAlign = 'right';
+    }
+
+    return styles;
+  },
+
+  render: function render() {
+    var className = 'mui-table-row-column';
+    var styles = this.getStyles();
+    var handlers = {
+      onClick: this._onClick,
+      onMouseOver: this._onMouseOver,
+      onMouseOut: this._onMouseOut
+    };
+
+    return React.createElement(
+      'td',
+      _extends({
+        key: this.props.key,
+        className: className,
+        style: this.mergeAndPrefix(styles, this.props.style)
+      }, handlers),
+      this.props.children
+    );
+  },
+
+  _onClick: function _onClick(e) {
+    if (this.props.onClick) this.props.onClick(e, this.props.columnNumber);
+  },
+
+  _onMouseOver: function _onMouseOver(e) {
+    if (this.props.hoverable) {
+      this.setState({ hovered: true });
+      if (this.props.onHover) this.props.onHover(e, this.props.columnNumber);
+    }
+  },
+
+  _onMouseOut: function _onMouseOut(e) {
+    if (this.props.hoverable) {
+      this.setState({ hovered: false });
+      if (this.props.onHoverExit) this.props.onHoverExit(e, this.props.columnNumber);
+    }
+  }
+
+});
+
+module.exports = TableRowColumn;
+
+},{"../mixins/style-propable":448,"react":401}],486:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Checkbox = require('../checkbox');
+var StylePropable = require('../mixins/style-propable');
+var TableRowColumn = require('./table-row-column');
+var Tooltip = require('../tooltip');
+
+var TableRow = React.createClass({
+  displayName: 'TableRow',
+
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  propTypes: {
+    rowNumber: React.PropTypes.number.isRequired,
+    columns: React.PropTypes.array.isRequired,
+    onRowClick: React.PropTypes.func,
+    onCellClick: React.PropTypes.func,
+    onRowHover: React.PropTypes.func,
+    onRowHoverExit: React.PropTypes.func,
+    onCellHover: React.PropTypes.func,
+    onCellHoverExit: React.PropTypes.func,
+    selected: React.PropTypes.bool,
+    selectable: React.PropTypes.bool,
+    striped: React.PropTypes.bool,
+    hoverable: React.PropTypes.bool,
+    displayBorder: React.PropTypes.bool,
+    displayRowCheckbox: React.PropTypes.bool
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      selected: false,
+      selectable: true,
+      striped: false,
+      hoverable: false,
+      displayBorder: true,
+      displayRowCheckbox: true
+    };
+  },
+
+  getInitialState: function getInitialState() {
+    return {
+      hovered: false
+    };
+  },
+
+  getTheme: function getTheme() {
+    return this.context.muiTheme.component.tableRow;
+  },
+
+  getStyles: function getStyles() {
+    var theme = this.getTheme();
+    var cellBgColor = 'inherit';
+    if (this.state.hovered) {
+      cellBgColor = theme.hoverColor;
+    } else if (this.props.selected) {
+      cellBgColor = theme.selectedColor;
+    } else if (this.props.striped) {
+      cellBgColor = theme.stripeColor;
+    }
+
+    var styles = {
+      root: {
+        borderBottom: '1px solid ' + this.getTheme().borderColor
+      },
+      cell: {
+        backgroundColor: cellBgColor,
+        color: this.getTheme().textColor
+      }
+    };
+
+    if (!this.props.displayBorder) {
+      styles.root.borderBottom = '';
+    }
+
+    return styles;
+  },
+
+  render: function render() {
+    var className = 'mui-table-row';
+    var columns = this.props.columns.slice();
+    if (this.props.displayRowCheckbox) {
+      columns.splice(0, 0, this._getRowCheckbox());
+    }
+
+    return React.createElement(
+      'tr',
+      { className: className, onClick: this._onRowClick, style: this.getStyles().root },
+      this._getColumns(columns)
+    );
+  },
+
+  _getColumns: function _getColumns(columns) {
+    var rowColumns = [];
+    var styles = this.getStyles();
+
+    for (var index = 0; index < columns.length; index++) {
+      var key = this.props.rowNumber + '-' + index;
+      var _columns$index = columns[index];
+      var content = _columns$index.content;
+      var style = _columns$index.style;
+
+      if (content === undefined) content = columns[index];
+
+      var columnComponent = React.createElement(
+        TableRowColumn,
+        {
+          key: key,
+          columnNumber: index,
+          style: this.mergeStyles(styles.cell, style),
+          hoverable: this.props.hoverable,
+          onClick: this._onCellClick,
+          onHover: this._onCellHover,
+          onHoverExit: this._onCellHoverExit },
+        content
+      );
+
+      rowColumns.push(columnComponent);
+    }
+
+    return rowColumns;
+  },
+
+  _getRowCheckbox: function _getRowCheckbox() {
+    var key = this.props.rowNumber + '-cb';
+    var checkbox = React.createElement(Checkbox, {
+      ref: 'rowSelectCB',
+      name: key,
+      value: 'selected',
+      disabled: !this.props.selectable,
+      defaultChecked: this.props.selected,
+      onCheck: this._onCheck });
+
+    return {
+      content: checkbox,
+      style: {
+        paddingLeft: 24,
+        paddingRight: 24
+      }
+    };
+  },
+
+  _onRowClick: function _onRowClick(e) {
+    if (this.props.onRowClick) this.props.onRowClick(e, this.props.rowNumber);
+  },
+
+  _onRowHover: function _onRowHover(e) {
+    if (this.props.onRowHover) this.props.onRowHover(e, this.props.rowNumber);
+  },
+
+  _onRowHoverExit: function _onRowHoverExit(e) {
+    if (this.props.onRowHoverExit) this.props.onRowHoverExit(e, this.props.rowNumber);
+  },
+
+  _onCellClick: function _onCellClick(e, columnIndex) {
+    if (this.props.selectable && this.props.onCellClick) this.props.onCellClick(e, this.props.rowNumber, columnIndex);
+    if (this.refs.rowSelectCB !== undefined) this.refs.rowSelectCB.setChecked(!this.refs.rowSelectCB.isChecked());
+    this._onRowClick(e);
+  },
+
+  _onCellHover: function _onCellHover(e, columnIndex) {
+    if (this.props.hoverable) {
+      this.setState({ hovered: true });
+      if (this.props.onCellHover) this.props.onCellHover(e, this.props.rowNumber, columnIndex);
+      this._onRowHover(e);
+    }
+  },
+
+  _onCellHoverExit: function _onCellHoverExit(e, columnIndex) {
+    if (this.props.hoverable) {
+      this.setState({ hovered: false });
+      if (this.props.onCellHoverExit) this.props.onCellHoverExit(e, this.props.rowNumber, columnIndex);
+      this._onRowHoverExit(e);
+    }
+  },
+
+  _onCheck: function _onCheck(e) {
+    e.ctrlKey = true;
+    this._onCellClick(e, 0);
+  }
+
+});
+
+module.exports = TableRow;
+
+},{"../checkbox":412,"../mixins/style-propable":448,"../tooltip":508,"./table-row-column":485,"react":401}],487:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var StylePropable = require('../mixins/style-propable');
+var ClickAwayable = require('../mixins/click-awayable');
+var TableHeader = require('./table-header');
+var TableRow = require('./table-row');
+var TableFooter = require('./table-footer');
+var DOM = require('../utils/dom');
+
+var Table = React.createClass({
+  displayName: 'Table',
+
+  mixins: [StylePropable, ClickAwayable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  propTypes: {
+    rowData: React.PropTypes.array.isRequired,
+    columnOrder: React.PropTypes.array,
+    headerColumns: React.PropTypes.object,
+    footerColumns: React.PropTypes.object,
+    header: React.PropTypes.element,
+    footer: React.PropTypes.element,
+    height: React.PropTypes.string,
+    defaultColumnWidth: React.PropTypes.string,
+    fixedHeader: React.PropTypes.bool,
+    fixedFooter: React.PropTypes.bool,
+    stripedRows: React.PropTypes.bool,
+    showRowHover: React.PropTypes.bool,
+    selectable: React.PropTypes.bool,
+    multiSelectable: React.PropTypes.bool,
+    showRowSelectCheckbox: React.PropTypes.bool,
+    canSelectAll: React.PropTypes.bool,
+    displaySelectAll: React.PropTypes.bool,
+    onRowSelection: React.PropTypes.func,
+    onCellClick: React.PropTypes.func,
+    onRowHover: React.PropTypes.func,
+    onRowHoverExit: React.PropTypes.func,
+    onCellHover: React.PropTypes.func,
+    onCellHoverExit: React.PropTypes.func
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      fixedHeader: true,
+      fixedFooter: true,
+      height: 'inherit',
+      defaultColumnWidth: '50px',
+      stripedRows: false,
+      showRowHover: false,
+      selectable: true,
+      showRowSelectCheckbox: true,
+      multiSelectable: false,
+      canSelectAll: false,
+      displaySelectAll: true
+    };
+  },
+
+  getInitialState: function getInitialState() {
+    return {
+      selectedRows: []
+    };
+  },
+
+  getTheme: function getTheme() {
+    return this.context.muiTheme.component.table;
+  },
+
+  getStyles: function getStyles() {
+    var styles = {
+      root: {
+        backgroundColor: this.getTheme().backgroundColor,
+        padding: '0 ' + this.context.muiTheme.spacing.desktopGutter + 'px',
+        width: '100%',
+        borderCollapse: 'collapse',
+        borderSpacing: 0,
+        tableLayout: 'fixed'
+      },
+      bodyTable: {
+        height: this.props.fixedHeader || this.props.fixedFooter ? this.props.height : 'auto',
+        overflowX: 'hidden',
+        overflowY: 'auto'
+      },
+      tableWrapper: {
+        height: this.props.fixedHeader || this.props.fixedFooter ? 'auto' : this.props.height,
+        overflow: 'auto'
+      }
+    };
+
+    return styles;
+  },
+
+  componentClickAway: function componentClickAway() {
+    if (this.state.selectedRows.length) this.setState({ selectedRows: [] });
+  },
+
+  render: function render() {
+    var className = 'mui-table';
+    var styles = this.getStyles();
+
+    var tHead = this._getHeader();
+    var tBody = this._getBody();
+    var tFoot = this._getFooter();
+
+    var headerTable = undefined,
+        footerTable = undefined;
+    var inlineHeader = undefined,
+        inlineFooter = undefined;
+    if (tHead !== undefined) {
+      if (this.props.fixedHeader) {
+        headerTable = React.createElement(
+          'div',
+          { className: 'mui-header-table' },
+          React.createElement(
+            'table',
+            { ref: 'headerTable', className: className, style: styles.root },
+            tHead
+          )
+        );
+      } else {
+        inlineHeader = tHead;
+      }
+    }
+    if (tFoot !== undefined) {
+      if (this.props.fixedFooter) {
+        footerTable = React.createElement(
+          'div',
+          { className: 'mui-footer-table' },
+          React.createElement(
+            'table',
+            { ref: 'footerTable', className: className, style: styles.root },
+            tFoot
+          )
+        );
+      } else {
+        inlineFooter = tFoot;
+      }
+    }
+
+    return React.createElement(
+      'div',
+      { className: 'mui-table-wrapper', style: styles.tableWrapper },
+      headerTable,
+      React.createElement(
+        'div',
+        { className: 'mui-body-table', style: styles.bodyTable },
+        React.createElement(
+          'table',
+          { ref: 'bodyTable', className: className, style: styles.root },
+          inlineHeader,
+          inlineFooter,
+          tBody
+        )
+      ),
+      footerTable
+    );
+  },
+
+  _getHeader: function _getHeader() {
+    if (this.props.header) return this.props.header;
+
+    if (this.props.headerColumns !== undefined) {
+      var orderedHeaderColumns = this._orderColumnBasedData(this.props.headerColumns);
+      return React.createElement(TableHeader, {
+        columns: orderedHeaderColumns,
+        enableSelectAll: this.props.canSelectAll && this.props.selectable,
+        displaySelectAll: this.props.displaySelectAll,
+        onSelectAll: this._onSelectAll });
+    }
+  },
+
+  _getFooter: function _getFooter() {
+    if (this.props.footer) return this.props.footer;
+
+    if (this.props.footerColumns !== undefined) {
+      var orderedFooterColumns = this._orderColumnBasedData(this.props.footerColumns);
+      if (this.props.displaySelectAll) {
+        orderedFooterColumns.splice(0, 0, { content: '' });
+      }
+
+      return React.createElement(TableFooter, { columns: orderedFooterColumns });
+    }
+  },
+
+  _getBody: function _getBody() {
+    var body = this._orderColumnBasedData(this.props.rowData, (function (rowData, rowNumber) {
+      var selected = this._isRowSelected(rowNumber);
+      var striped = this.props.stripedRows && rowNumber % 2 === 0;
+      var border = true;
+      if (rowNumber === this.props.rowData.length - 1) {
+        border = false;
+      }
+
+      var row = React.createElement(TableRow, {
+        key: 'r-' + rowNumber,
+        rowNumber: rowNumber,
+        columns: rowData,
+        selected: selected,
+        striped: striped,
+        hoverable: this.props.showRowHover,
+        displayBorder: border,
+        selectable: this.props.selectable,
+        onRowClick: this._handleRowClick,
+        onCellClick: this._handleCellClick,
+        onRowHover: this._handleRowHover,
+        onRowHoverExit: this._handleRowHoverExit,
+        onCellHover: this._handleCellHover,
+        onCellHoverExit: this._handleCellHoverExit });
+
+      return row;
+    }).bind(this));
+
+    return React.createElement(
+      'tbody',
+      { style: { height: this.props.height } },
+      body
+    );
+  },
+
+  _orderColumnBasedData: function _orderColumnBasedData(columnBasedData, cb) {
+    // If we do not have a columnOrder, return.
+    if (this.props.columnOrder === undefined) return;
+
+    var data = Object.prototype.toString.call(columnBasedData) !== '[object Array]' ? [columnBasedData] : columnBasedData;
+    var orderedData = [];
+
+    for (var rowIdx = 0; rowIdx < data.length; rowIdx++) {
+      var rowData = data[rowIdx];
+      var orderedRowData = [];
+
+      for (var colIdx = 0; colIdx < this.props.columnOrder.length; colIdx++) {
+        var columnId = this.props.columnOrder[colIdx];
+        var columnData = rowData[columnId] || {};
+
+        orderedRowData.push(columnData);
+      }
+
+      if (orderedRowData.length) {
+        rowData = orderedRowData;
+      }
+
+      // Fixed table layout only requires widths on first row.
+      if (rowIdx === 1 && data.length > 1) {
+        rowData = this._setColumnWidths(rowData);
+      }
+
+      orderedData.push(cb !== undefined ? cb(rowData, rowIdx) : rowData);
+    }
+
+    return data.length === 1 ? orderedData[0] : orderedData;
+  },
+
+  _setColumnWidths: function _setColumnWidths(columnData) {
+    columnData.forEach((function (column) {
+      if (column.style === undefined) {
+        column.style = {
+          width: this.props.defaultColumnWidth,
+          maxWidth: this.props.defaultColumnWidth
+        };
+      } else {
+        if (column.style.width === undefined) column.style.width = this.props.defaultColumnWidth;
+        if (column.style.maxWidth === undefined) column.style.maxWidth = this.props.defaultColumnWidth;
+      }
+    }).bind(this));
+
+    return columnData;
+  },
+
+  _isRowSelected: function _isRowSelected(rowNumber) {
+    if (this.state.allRowsSelected) {
+      return true;
+    }
+
+    for (var i = 0; i < this.state.selectedRows.length; i++) {
+      var selection = this.state.selectedRows[i];
+
+      if (typeof selection === 'object') {
+        if (this._isValueInRange(rowNumber, selection)) return true;
+      } else {
+        if (selection === rowNumber) return true;
+      }
+    }
+
+    return false;
+  },
+
+  _isValueInRange: function _isValueInRange(value, range) {
+    if (range.start <= value && value <= range.end || range.end <= value && value <= range.start) {
+      return true;
+    }
+
+    return false;
+  },
+
+  _handleRowClick: function _handleRowClick(e, rowNumber) {
+    // Prevent text selection while selecting rows.
+    window.getSelection().removeAllRanges();
+
+    if (this.props.selectable) {
+      this._processRowSelection(e, rowNumber);
+    }
+  },
+
+  _processRowSelection: function _processRowSelection(e, rowNumber) {
+    var selectedRows = this.state.selectedRows;
+
+    if (e.shiftKey && this.props.multiSelectable && selectedRows.length) {
+      var lastSelection = selectedRows[selectedRows.length - 1];
+      var start = undefined,
+          end = undefined,
+          direction = undefined;
+
+      if (typeof lastSelection === 'object') {
+        lastSelection.end = rowNumber;
+      } else {
+        selectedRows.push({ start: lastSelection, end: rowNumber });
+      }
+    } else if ((e.ctrlKey && !e.metaKey || e.metaKey && !e.ctrlKey) && this.props.multiSelectable) {
+      var idx = selectedRows.indexOf(rowNumber);
+      if (idx < 0) {
+        selectedRows.push(rowNumber);
+      } else {
+        selectedRows.splice(idx, 1);
+      }
+    } else {
+      if (selectedRows.length === 1 && selectedRows[0] === rowNumber) {
+        selectedRows = [];
+      } else {
+        selectedRows = [rowNumber];
+      }
+    }
+
+    this.setState({ selectedRows: selectedRows });
+    if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
+  },
+
+  _handleCellClick: function _handleCellClick(e, rowNumber, columnNumber) {
+    if (this.props.onCellClick) this.props.onCellClick(rowNumber, this._getColumnId(columnNumber));
+    this._handleRowClick(e, rowNumber);
+  },
+
+  _handleRowHover: function _handleRowHover(e, rowNumber) {
+    if (this.props.onRowHover) this.props.onRowHover(rowNumber);
+  },
+
+  _handleRowHoverExit: function _handleRowHoverExit(e, rowNumber) {
+    if (this.props.onRowHoverExit) this.props.onRowHoverExit(rowNumber);
+  },
+
+  _handleCellHover: function _handleCellHover(e, rowNumber, columnNumber) {
+    if (this.props.onCellHover) this.props.onCellHover(rowNumber, this._getColumnId(columnNumber));
+    this._handleRowHover(e, rowNumber);
+  },
+
+  _handleCellHoverExit: function _handleCellHoverExit(e, rowNumber, columnNumber) {
+    if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, this._getColumnId(columnNumber));
+    this._handleRowHoverExit(e, rowNumber);
+  },
+
+  _onSelectAll: function _onSelectAll() {
+    this.setState({ allRowsSelected: !this.state.allRowsSelected });
+  },
+
+  _getColumnId: function _getColumnId(columnNumber) {
+    var columnId = columnNumber;
+    if (this.props.displayRowCheckbox) columnId--;
+    columnId = this.props.columnOrder.length ? this.props.columnOrder[columnId] : columnId;
+
+    return columnId;
+  }
+
+});
+
+module.exports = Table;
+
+},{"../mixins/click-awayable":447,"../mixins/style-propable":448,"../utils/dom":514,"./table-footer":482,"./table-header":484,"./table-row":486,"react":401}],488:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53452,7 +56002,7 @@ var Tab = React.createClass({
 
 module.exports = Tab;
 
-},{"../mixins/style-propable.js":440,"../styles/colors.js":454,"react":399}],473:[function(require,module,exports){
+},{"../mixins/style-propable.js":448,"../styles/colors.js":463,"react":401}],489:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53485,7 +56035,7 @@ var TabTemplate = React.createClass({
 
 module.exports = TabTemplate;
 
-},{"react":399}],474:[function(require,module,exports){
+},{"react":401}],490:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -53506,7 +56056,8 @@ var Tabs = React.createClass({
   propTypes: {
     initialSelectedIndex: React.PropTypes.number,
     onActive: React.PropTypes.func,
-    tabWidth: React.PropTypes.number
+    tabWidth: React.PropTypes.number,
+    tabItemContainerStyle: React.PropTypes.object
   },
 
   getInitialState: function getInitialState() {
@@ -53633,7 +56184,7 @@ var Tabs = React.createClass({
 
 module.exports = Tabs;
 
-},{"../ink-bar":428,"../mixins/style-propable.js":440,"../utils/events":499,"./tabTemplate":473,"react/addons":227}],475:[function(require,module,exports){
+},{"../ink-bar":436,"../mixins/style-propable.js":448,"../utils/events":515,"./tabTemplate":489,"react/addons":229}],491:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -53643,7 +56194,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react');
 var ColorManipulator = require('./utils/color-manipulator');
-var Colors = require('./styles/colors');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var UniqueId = require('./utils/unique-id');
@@ -53685,10 +56235,16 @@ var TextField = React.createClass({
   },
 
   getInitialState: function getInitialState() {
+    var props = this.props;
+    if (props.children) props = props.children.props;
     return {
       errorText: this.props.errorText,
-      hasValue: this.props.value || this.props.defaultValue || this.props.valueLink && this.props.valueLink.value
+      hasValue: props.value || props.defaultValue || props.valueLink && props.valueLink.value
     };
+  },
+
+  getTheme: function getTheme() {
+    return this.context.muiTheme.component.textField;
   },
 
   componentDidMount: function componentDidMount() {
@@ -53697,29 +56253,31 @@ var TextField = React.createClass({
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
     var hasErrorProp = nextProps.hasOwnProperty('errorText');
+    var newState = {};
+
+    if (hasErrorProp) newState.errorText = nextProps.errorText;
+    if (nextProps.children && nextProps.children.props) {
+      nextProps = nextProps.children.props;
+    }
+
     var hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
     var hasValueProp = nextProps.hasOwnProperty('value');
     var hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
-    var newState = {};
 
-    if (hasValueProp) {
-      newState.hasValue = nextProps.value;
-    } else if (hasValueLinkProp) {
+    if (hasValueLinkProp) {
       newState.hasValue = nextProps.valueLink.value;
+    } else if (hasValueProp) {
+      newState.hasValue = nextProps.value;
     } else if (hasNewDefaultValue) {
       newState.hasValue = nextProps.defaultValue;
     }
 
-    if (hasErrorProp) newState.errorText = nextProps.errorText;
     if (newState) this.setState(newState);
   },
 
-  errorColor: Colors.red500,
-
   getStyles: function getStyles() {
-    var palette = this.context.muiTheme.palette;
-    var disabledTextColor = palette.disabledColor;
     var props = this.props;
+    var theme = this.getTheme();
 
     var styles = {
       root: {
@@ -53737,14 +56295,14 @@ var TextField = React.createClass({
         bottom: -10,
         fontSize: 12,
         lineHeight: '12px',
-        color: this.errorColor,
+        color: theme.errorColor,
         transition: Transitions.easeOut()
       },
       hint: {
         position: 'absolute',
         lineHeight: '48px',
         opacity: 1,
-        color: disabledTextColor,
+        color: theme.hintColor,
         transition: Transitions.easeOut()
       },
       input: {
@@ -53754,13 +56312,13 @@ var TextField = React.createClass({
         height: '100%',
         border: 'none',
         outline: 'none',
-        backgroundColor: 'transparent',
-        color: props.disabled ? disabledTextColor : palette.textColor,
+        backgroundColor: theme.backgroundColor,
+        color: props.disabled ? theme.disabledTextColor : theme.textColor,
         font: 'inherit'
       },
       underline: {
         border: 'none',
-        borderBottom: 'solid 1px ' + palette.borderColor,
+        borderBottom: 'solid 1px ' + theme.borderColor,
         position: 'absolute',
         width: '100%',
         bottom: 8,
@@ -53775,8 +56333,8 @@ var TextField = React.createClass({
         overflow: 'hidden',
         userSelect: 'none',
         cursor: 'default',
-        bottom: 0,
-        color: disabledTextColor
+        bottom: 8,
+        borderBottom: 'dotted 2px ' + theme.disabledTextColor
       }
     };
 
@@ -53796,19 +56354,19 @@ var TextField = React.createClass({
 
     styles.focusUnderline = this.mergeStyles(styles.underline, {
       borderBottom: 'solid 2px',
-      borderColor: palette.primary1Color,
+      borderColor: theme.focusColor,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut()
     });
 
     if (this.state.isFocused) {
-      styles.floatingLabel.color = palette.primary1Color;
+      styles.floatingLabel.color = theme.focusColor;
       styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
     if (this.state.hasValue) {
-      styles.floatingLabel.color = ColorManipulator.fade(palette.textColor, 0.5);
+      styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? theme.disabledTextColor : theme.floatingLabelColor, 0.5);
       styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
       styles.hint.opacity = 0;
     }
@@ -53820,11 +56378,15 @@ var TextField = React.createClass({
       if (this.state.isFocused && !this.state.hasValue) styles.hint.opacity = 1;
     }
 
-    if (props.errorText && this.state.isFocused) styles.floatingLabel.color = this.errorColor;
+    if (props.style && props.style.height) {
+      styles.hint.lineHeight = props.style.height;
+    }
+
+    if (this.state.errorText && this.state.isFocused) styles.floatingLabel.color = theme.errorColor;
     if (props.floatingLabelText && !props.multiLine) styles.input.paddingTop = 26;
 
-    if (props.errorText) {
-      styles.focusUnderline.borderColor = this.errorColor;
+    if (this.state.errorText) {
+      styles.focusUnderline.borderColor = theme.errorColor;
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
@@ -53881,24 +56443,24 @@ var TextField = React.createClass({
       style: this.mergeAndPrefix(styles.input, this.props.inputStyle),
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
+      disabled: this.props.disabled,
       onKeyDown: this._handleInputKeyDown
     };
 
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
     }
+    if (this.props.children) {
+      inputElement = React.cloneElement(this.props.children, _extends({}, inputProps, this.props.children.props));
+    } else {
+      inputElement = this.props.multiLine ? React.createElement(EnhancedTextarea, _extends({}, other, inputProps, {
+        rows: this.props.rows,
+        onHeightChange: this._handleTextAreaHeightChange,
+        textareaStyle: this.mergeAndPrefix(styles.textarea) })) : React.createElement('input', _extends({}, other, inputProps, {
+        type: this.props.type }));
+    }
 
-    inputElement = this.props.multiLine ? React.createElement(EnhancedTextarea, _extends({}, other, inputProps, {
-      rows: this.props.rows,
-      onHeightChange: this._handleTextAreaHeightChange,
-      textareaStyle: this.mergeAndPrefix(styles.textarea) })) : React.createElement('input', _extends({}, other, inputProps, {
-      type: this.props.type }));
-
-    var underlineElement = this.props.disabled ? React.createElement(
-      'div',
-      { style: this.mergeAndPrefix(styles.underlineAfter) },
-      '....................................................................................'
-    ) : React.createElement('hr', { style: this.mergeAndPrefix(styles.underline) });
+    var underlineElement = this.props.disabled ? React.createElement('div', { style: this.mergeAndPrefix(styles.underlineAfter) }) : React.createElement('hr', { style: this.mergeAndPrefix(styles.underline) });
     var focusUnderlineElement = React.createElement('hr', { style: this.mergeAndPrefix(styles.focusUnderline) });
 
     return React.createElement(
@@ -53941,7 +56503,13 @@ var TextField = React.createClass({
     if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
       console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
     } else if (this.isMounted()) {
-      this._getInputNode().value = newValue;
+
+      if (this.props.multiLine) {
+        this.refs[this._getRef()].setValue(newValue);
+      } else {
+        this._getInputNode().value = newValue;
+      }
+
       this.setState({ hasValue: newValue });
     }
   },
@@ -53951,7 +56519,7 @@ var TextField = React.createClass({
   },
 
   _getInputNode: function _getInputNode() {
-    return this.props.multiLine ? this.refs[this._getRef()].getInputNode() : React.findDOMNode(this.refs[this._getRef()]);
+    return this.props.children || this.props.multiLine ? this.refs[this._getRef()].getInputNode() : React.findDOMNode(this.refs[this._getRef()]);
   },
 
   _handleInputBlur: function _handleInputBlur(e) {
@@ -53965,6 +56533,7 @@ var TextField = React.createClass({
   },
 
   _handleInputFocus: function _handleInputFocus(e) {
+    if (this.props.disabled) return;
     this.setState({ isFocused: true });
     if (this.props.onFocus) this.props.onFocus(e);
   },
@@ -53990,7 +56559,7 @@ module.exports = TextField;
 
 }).call(this,require('_process'))
 
-},{"./enhanced-textarea":422,"./mixins/style-propable":440,"./styles/colors":454,"./styles/transitions":459,"./utils/color-manipulator":495,"./utils/unique-id":504,"_process":1,"react":399}],476:[function(require,module,exports){
+},{"./enhanced-textarea":430,"./mixins/style-propable":448,"./styles/transitions":469,"./utils/color-manipulator":511,"./utils/unique-id":520,"_process":1,"react":401}],492:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -54059,7 +56628,7 @@ function theme(customTheme) {
 module.exports = Theme;
 module.exports.theme = theme;
 
-},{"./styles/theme-manager":456,"react":399}],477:[function(require,module,exports){
+},{"./styles/theme-manager":466,"react":401}],493:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -54166,7 +56735,7 @@ var ClockButton = React.createClass({
 
 module.exports = ClockButton;
 
-},{"../enhanced-button":420,"../mixins/style-propable":440,"../styles/transitions":459,"react":399}],478:[function(require,module,exports){
+},{"../enhanced-button":428,"../mixins/style-propable":448,"../styles/transitions":469,"react":401}],494:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -54176,6 +56745,18 @@ var ClockPointer = require('./clock-pointer');
 
 function rad2deg(rad) {
   return rad * 57.29577951308232;
+}
+
+function getTouchEventOffsetValues(e) {
+  var el = e.target;
+  var boundingRect = el.getBoundingClientRect();
+
+  var offset = {
+    offsetX: e.clientX - boundingRect.left,
+    offsetY: e.clientY - boundingRect.top
+  };
+
+  return offset;
 }
 
 var ClockHours = React.createClass({
@@ -54222,26 +56803,30 @@ var ClockHours = React.createClass({
   },
   handleUp: function handleUp(e) {
     e.preventDefault();
-    this.setClock(e, true);
+    this.setClock(e.nativeEvent, true);
   },
   handleMove: function handleMove(e) {
     e.preventDefault();
     if (this.isMousePressed(e) != 1) return;
-    this.setClock(e, false);
+    this.setClock(e.nativeEvent, false);
   },
-  handleTouch: function handleTouch(e) {
+  handleTouchMove: function handleTouchMove(e) {
     e.preventDefault();
-    this.setClock(e, false);
+    this.setClock(e.changedTouches[0], false);
+  },
+  handleTouchEnd: function handleTouchEnd(e) {
+    e.preventDefault();
+    this.setClock(e.changedTouches[0], true);
   },
   setClock: function setClock(e, finish) {
-    var ne = e.nativeEvent;
+    if (typeof e.offsetX === 'undefined') {
+      var offset = getTouchEventOffsetValues(e);
 
-    var pos = {
-      x: ne.offsetX === undefined ? ne.layerX : ne.offsetX,
-      y: ne.offsetY === undefined ? ne.layerY : ne.offsetY
-    };
+      e.offsetX = offset.offsetX;
+      e.offsetY = offset.offsetY;
+    }
 
-    var hours = this.getHours(pos.x, pos.y);
+    var hours = this.getHours(e.offsetX, e.offsetY);
 
     this.props.onChange(hours, finish);
   },
@@ -54335,14 +56920,14 @@ var ClockHours = React.createClass({
       { ref: 'clock', style: this.mergeAndPrefix(styles.root) },
       React.createElement(ClockPointer, { hasSelected: true, value: hours, type: 'hour' }),
       numbers,
-      React.createElement('div', { ref: 'mask', style: this.mergeAndPrefix(styles.hitMask), onTouchMove: this.handleTouch, onTouchEnd: this.handleUp, onMouseUp: this.handleUp, onMouseMove: this.handleMove })
+      React.createElement('div', { ref: 'mask', style: this.mergeAndPrefix(styles.hitMask), onTouchMove: this.handleTouchMove, onTouchEnd: this.handleTouchEnd, onMouseUp: this.handleUp, onMouseMove: this.handleMove })
     );
   }
 });
 
 module.exports = ClockHours;
 
-},{"../mixins/style-propable":440,"./clock-number":480,"./clock-pointer":481,"react":399}],479:[function(require,module,exports){
+},{"../mixins/style-propable":448,"./clock-number":496,"./clock-pointer":497,"react":401}],495:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -54353,6 +56938,18 @@ var ClockPointer = require('./clock-pointer');
 
 function rad2deg(rad) {
   return rad * 57.29577951308232;
+}
+
+function getTouchEventOffsetValues(e) {
+  var el = e.target;
+  var boundingRect = el.getBoundingClientRect();
+
+  var offset = {
+    offsetX: e.clientX - boundingRect.left,
+    offsetY: e.clientY - boundingRect.top
+  };
+
+  return offset;
 }
 
 var ClockMinutes = React.createClass({
@@ -54400,30 +56997,26 @@ var ClockMinutes = React.createClass({
   },
   handleUp: function handleUp(e) {
     e.preventDefault();
-    this.setClock(e, true);
+    this.setClock(e.nativeEvent, true);
   },
   handleMove: function handleMove(e) {
     e.preventDefault();
     if (this.isMousePressed(e) != 1) return;
-    this.setClock(e, false);
+    this.setClock(e.nativeEvent, false);
   },
   handleTouch: function handleTouch(e) {
     e.preventDefault();
-    this.setClock(e, false);
+    this.setClock(e.changedTouches[0], false);
   },
   setClock: function setClock(e, finish) {
+    if (typeof e.offsetX === 'undefined') {
+      var offset = getTouchEventOffsetValues(e);
 
-    e.preventDefault();
-    if (this.isMousePressed(e) != 1) return;
+      e.offsetX = offset.offsetX;
+      e.offsetY = offset.offsetY;
+    }
 
-    var ne = e.nativeEvent;
-
-    var pos = {
-      x: ne.offsetX === undefined ? ne.layerX : ne.offsetX,
-      y: ne.offsetY === undefined ? ne.layerY : ne.offsetY
-    };
-
-    var minutes = this.getMinutes(pos.x, pos.y);
+    var minutes = this.getMinutes(e.offsetX, e.offsetY);
 
     this.props.onChange(minutes, finish);
   },
@@ -54494,14 +57087,14 @@ var ClockMinutes = React.createClass({
       { ref: 'clock', style: this.mergeAndPrefix(styles.root) },
       React.createElement(ClockPointer, { value: minutes.selected, type: 'minute' }),
       minutes.numbers,
-      React.createElement('div', { ref: 'mask', style: this.mergeAndPrefix(styles.hitMask), hasSelected: minutes.hasSelected, onTouchMove: this.handleTouch, onTouchEnd: this.handleUp, onMouseUp: this.handleUp, onMouseMove: this.handleMove })
+      React.createElement('div', { ref: 'mask', style: this.mergeAndPrefix(styles.hitMask), hasSelected: minutes.hasSelected, onTouchMove: this.handleTouch, onTouchEnd: this.handleTouch, onMouseUp: this.handleUp, onMouseMove: this.handleMove })
     );
   }
 });
 
 module.exports = ClockMinutes;
 
-},{"../mixins/style-propable":440,"./clock-number":480,"./clock-pointer":481,"react":399}],480:[function(require,module,exports){
+},{"../mixins/style-propable":448,"./clock-number":496,"./clock-pointer":497,"react":401}],496:[function(require,module,exports){
 'use strict';
 
 function _slicedToArray(arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }
@@ -54593,7 +57186,7 @@ var ClockNumber = React.createClass({
 
     return React.createElement(
       'span',
-      { style: styles.root },
+      { style: this.mergeAndPrefix(styles.root) },
       this.props.value
     );
   }
@@ -54601,7 +57194,7 @@ var ClockNumber = React.createClass({
 
 module.exports = ClockNumber;
 
-},{"../mixins/style-propable":440,"react":399}],481:[function(require,module,exports){
+},{"../mixins/style-propable":448,"react":401}],497:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -54703,7 +57296,7 @@ var ClockPointer = React.createClass({
 
     return React.createElement(
       'div',
-      { style: styles.root },
+      { style: this.mergeAndPrefix(styles.root) },
       React.createElement('div', { style: styles.mark })
     );
   }
@@ -54711,7 +57304,7 @@ var ClockPointer = React.createClass({
 
 module.exports = ClockPointer;
 
-},{"../mixins/style-propable":440,"react":399}],482:[function(require,module,exports){
+},{"../mixins/style-propable":448,"react":401}],498:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -54893,12 +57486,12 @@ var Clock = React.createClass({
 
 module.exports = Clock;
 
-},{"../mixins/style-propable":440,"./clock-button":477,"./clock-hours":478,"./clock-minutes":479,"./time-display":484,"react":399}],483:[function(require,module,exports){
+},{"../mixins/style-propable":448,"./clock-button":493,"./clock-hours":494,"./clock-minutes":495,"./time-display":500,"react":401}],499:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./time-picker');
 
-},{"./time-picker":486}],484:[function(require,module,exports){
+},{"./time-picker":502}],500:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -55046,7 +57639,7 @@ var TimeDisplay = React.createClass({
 
 module.exports = TimeDisplay;
 
-},{"../mixins/style-propable":440,"react":399}],485:[function(require,module,exports){
+},{"../mixins/style-propable":448,"react":401}],501:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -55177,7 +57770,7 @@ var TimePickerDialog = React.createClass({
 
 module.exports = TimePickerDialog;
 
-},{"../dialog-window":416,"../flat-button":423,"../mixins/style-propable":440,"../mixins/window-listenable":442,"../utils/key-code":501,"./clock":482,"react":399}],486:[function(require,module,exports){
+},{"../dialog-window":424,"../flat-button":431,"../mixins/style-propable":448,"../mixins/window-listenable":450,"../utils/key-code":517,"./clock":498,"react":401}],502:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -55305,6 +57898,8 @@ var TimePicker = React.createClass({
   },
 
   _handleInputTouchTap: function _handleInputTouchTap(e) {
+    e.preventDefault();
+
     this.setState({
       dialogTime: this.getTime()
     });
@@ -55317,7 +57912,7 @@ var TimePicker = React.createClass({
 
 module.exports = TimePicker;
 
-},{"../mixins/style-propable":440,"../mixins/window-listenable":442,"../text-field":475,"./time-picker-dialog":485,"react":399}],487:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../mixins/window-listenable":450,"../text-field":491,"./time-picker-dialog":501,"react":401}],503:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -55341,6 +57936,7 @@ var Toggle = React.createClass({
 
   propTypes: {
     elementStyle: React.PropTypes.object,
+    labelStyle: React.PropTypes.object,
     onToggle: React.PropTypes.func,
     toggled: React.PropTypes.bool,
     defaultToggled: React.PropTypes.bool
@@ -55361,11 +57957,15 @@ var Toggle = React.createClass({
     var toggleTrackWidth = 36;
     var styles = {
       icon: {
+        width: 36,
         padding: '4px 0px 6px 2px'
+      },
+      toggleElemet: {
+        width: toggleTrackWidth
       },
       track: {
         transition: Transitions.easeOut(),
-        width: toggleTrackWidth,
+        width: '100%',
         height: 14,
         borderRadius: 30,
         backgroundColor: this.getTheme().trackOffColor
@@ -55374,7 +57974,7 @@ var Toggle = React.createClass({
         transition: Transitions.easeOut(),
         position: 'absolute',
         top: 1,
-        left: 2,
+        left: 0,
         width: toggleSize,
         height: toggleSize,
         lineHeight: '24px',
@@ -55386,13 +57986,16 @@ var Toggle = React.createClass({
       },
       thumbWhenSwitched: {
         backgroundColor: this.getTheme().thumbOnColor,
-        left: 18
+        left: '100%'
       },
       trackWhenDisabled: {
         backgroundColor: this.getTheme().trackDisabledColor
       },
       thumbWhenDisabled: {
         backgroundColor: this.getTheme().thumbDisabledColor
+      },
+      label: {
+        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
       }
     };
     return styles;
@@ -55410,21 +58013,29 @@ var Toggle = React.createClass({
 
     var thumbStyles = this.mergeAndPrefix(styles.thumb, this.props.thumbStyle, this.state.switched && styles.thumbWhenSwitched, this.props.disabled && styles.thumbWhenDisabled);
 
+    if (this.state.switched) {
+      thumbStyles.marginLeft = '-' + thumbStyles.width;
+    }
+
+    var toggleElemetStyles = this.mergeAndPrefix(styles.toggleElemet, this.props.elementStyle);
+
     var toggleElement = React.createElement(
       'div',
-      { style: this.mergeAndPrefix(this.props.elementStyle) },
+      { style: toggleElemetStyles },
       React.createElement('div', { style: trackStyles }),
       React.createElement(Paper, { style: thumbStyles, circle: true, zDepth: 1 })
     );
 
-    var customRippleStyle = {
+    var customRippleStyle = this.mergeAndPrefix({
       top: '-10',
       left: '-10'
-    };
+    }, this.props.rippleStyle);
 
     var rippleColor = this.state.switched ? this.getTheme().thumbOnColor : this.context.muiTheme.component.textColor;
 
     var iconStyle = this.mergeAndPrefix(styles.icon, this.props.iconStyle);
+
+    var labelStyle = this.mergeAndPrefix(styles.label, this.props.labelStyle);
 
     var enhancedSwitchProps = {
       ref: 'enhancedSwitch',
@@ -55435,6 +58046,7 @@ var Toggle = React.createClass({
       iconStyle: iconStyle,
       trackStyle: trackStyles,
       thumbStyle: thumbStyles,
+      labelStyle: labelStyle,
       switched: this.state.switched,
       onSwitch: this._handleToggle,
       onParentShouldUpdate: this._handleStateChange,
@@ -55467,7 +58079,7 @@ var Toggle = React.createClass({
 
 module.exports = Toggle;
 
-},{"./enhanced-switch":421,"./mixins/style-propable":440,"./paper":444,"./styles/transitions":459,"react":399}],488:[function(require,module,exports){
+},{"./enhanced-switch":429,"./mixins/style-propable":448,"./paper":452,"./styles/transitions":469,"react":401}],504:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -55559,6 +58171,9 @@ var ToolbarGroup = React.createClass({
     if (this.props.lastChild) styles.marginRight = -24;
 
     var newChildren = React.Children.map(this.props.children, function (currentChild) {
+      if (!currentChild) {
+        return null;
+      }
       switch (currentChild.type.displayName) {
         case 'DropDownMenu':
           return React.cloneElement(currentChild, {
@@ -55622,7 +58237,7 @@ var ToolbarGroup = React.createClass({
 
 module.exports = ToolbarGroup;
 
-},{"../mixins/style-propable":440,"../styles/colors":454,"react":399}],489:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../styles/colors":463,"react":401}],505:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -55664,7 +58279,7 @@ var ToolbarSeparator = React.createClass({
 
 module.exports = ToolbarSeparator;
 
-},{"../mixins/style-propable":440,"react":399}],490:[function(require,module,exports){
+},{"../mixins/style-propable":448,"react":401}],506:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -55717,7 +58332,7 @@ var ToolbarTitle = React.createClass({
 
 module.exports = ToolbarTitle;
 
-},{"../mixins/style-propable":440,"react":399}],491:[function(require,module,exports){
+},{"../mixins/style-propable":448,"react":401}],507:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -55764,7 +58379,7 @@ var Toolbar = React.createClass({
 
 module.exports = Toolbar;
 
-},{"../mixins/style-propable":440,"react":399}],492:[function(require,module,exports){
+},{"../mixins/style-propable":448,"react":401}],508:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -55891,7 +58506,7 @@ var Tooltip = React.createClass({
 
 module.exports = Tooltip;
 
-},{"./mixins/style-propable":440,"./styles/colors":454,"./styles/transitions":459,"react":399}],493:[function(require,module,exports){
+},{"./mixins/style-propable":448,"./styles/colors":463,"./styles/transitions":469,"react":401}],509:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -55970,7 +58585,7 @@ var SlideInChild = React.createClass({
 
 module.exports = SlideInChild;
 
-},{"../mixins/style-propable":440,"../styles/auto-prefix":453,"../styles/transitions":459,"react/addons":227}],494:[function(require,module,exports){
+},{"../mixins/style-propable":448,"../styles/auto-prefix":462,"../styles/transitions":469,"react/addons":229}],510:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -56039,7 +58654,7 @@ var SlideIn = React.createClass({
 
 module.exports = SlideIn;
 
-},{"../mixins/style-propable":440,"./slide-in-child":493,"react/addons":227}],495:[function(require,module,exports){
+},{"../mixins/style-propable":448,"./slide-in-child":509,"react/addons":229}],511:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -56216,7 +58831,7 @@ module.exports = {
 
 };
 
-},{}],496:[function(require,module,exports){
+},{}],512:[function(require,module,exports){
 'use strict';
 
 var Events = require('./events');
@@ -56271,7 +58886,7 @@ module.exports = {
 
 };
 
-},{"./events":499}],497:[function(require,module,exports){
+},{"./events":515}],513:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -56469,7 +59084,7 @@ module.exports = {
 
 };
 
-},{}],498:[function(require,module,exports){
+},{}],514:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -56532,7 +59147,7 @@ module.exports = {
 
 };
 
-},{}],499:[function(require,module,exports){
+},{}],515:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -56570,7 +59185,7 @@ module.exports = {
   }
 };
 
-},{}],500:[function(require,module,exports){
+},{}],516:[function(require,module,exports){
 'use strict';
 
 function isObject(obj) {
@@ -56621,7 +59236,7 @@ var extend = function extend(base, override) {
 
 module.exports = extend;
 
-},{}],501:[function(require,module,exports){
+},{}],517:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -56635,7 +59250,7 @@ module.exports = {
   UP: 38
 };
 
-},{}],502:[function(require,module,exports){
+},{}],518:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -56652,7 +59267,7 @@ module.exports = {
   }
 };
 
-},{}],503:[function(require,module,exports){
+},{}],519:[function(require,module,exports){
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-borderradius-boxshadow-opacity-csstransforms-csstransforms3d-csstransitions-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes
  */
@@ -56919,7 +59534,7 @@ module.exports = (function (window, document, undefined) {
 })(window, window.document);
 ;
 
-},{}],504:[function(require,module,exports){
+},{}],520:[function(require,module,exports){
 "use strict";
 
 var index = 0;
