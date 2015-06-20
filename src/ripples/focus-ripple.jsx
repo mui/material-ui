@@ -59,7 +59,7 @@ var FocusRipple = React.createClass({
   },
 
   _pulsate: function() {
-    if (!this.isMounted() || !this.props.show) return;
+    if (!this.isMounted()) return;
 
     var startScale = 'scale(0.75)';
     var endScale = 'scale(0.85)';
