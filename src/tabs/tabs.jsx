@@ -16,7 +16,8 @@ let Tabs = React.createClass({
   propTypes: {
     initialSelectedIndex: React.PropTypes.number,
     onActive: React.PropTypes.func,
-    tabWidth: React.PropTypes.number
+    tabWidth: React.PropTypes.number,
+    tabItemContainerStyle: React.PropTypes.object
   },
 
   getInitialState: function(){
@@ -79,7 +80,7 @@ let Tabs = React.createClass({
   render: function(){
     let styles = this.getStyles();
 
-    let tabContent = []
+    let tabContent = [];
     let width = this.state.fixedWidth ?
       100 / this.props.children.length +'%' :
       this.props.tabWidth + 'px';
