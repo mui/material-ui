@@ -36,10 +36,13 @@ var AppBar = React.createClass({
 
   componentDidMount: function() {
     if (process.env.NODE_ENV !== 'production' &&
-       (this.props.iconElementLeft && this.props.iconClassNameLeft)) {
-        var warning = 'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
-                      'defined. Please use one or the other.';
-        console.warn(warning);
+      this.props.iconElementLeft &&
+      this.props.iconClassNameLeft) {
+
+      console.warn(
+        'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
+        'defined. Please use one or the other.'
+      );
     }
   },
 
@@ -91,20 +94,23 @@ var AppBar = React.createClass({
   render: function() {
     var styles = this.getStyles();
 
-    var title;
-    var menuElementLeft;
-    var menuElementRight;
     var iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
       marginRight: -16,
-      marginLeft: 8
+      marginLeft: 'auto'
     }, this.props.iconStyleRight);
 
-    if (this.props.title) {
+    var title = this.props.title;
+
+    var titleElement;
+    var menuElementLeft;
+    var menuElementRight;
+
+    if (title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
-      title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
-        <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement)}>{this.props.title}</h1> :
-        <div style={this.mergeAndPrefix(styles.mainElement)}>{this.props.title}</div>;
+      titleElement = typeof title === 'string' || title instanceof String ?
+        <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement)}>{title}</h1> :
+        <div style={this.mergeAndPrefix(styles.mainElement)}>{title}</div>;
     }
 
     if (this.props.showMenuIconButton) {
@@ -152,7 +158,7 @@ var AppBar = React.createClass({
         style={this.mergeAndPrefix(styles.root, this.props.style)}
         zDepth={this.props.zDepth}>
           {menuElementLeft}
-          {title}
+          {titleElement}
           {menuElementRight}
           {this.props.children}
       </Paper>
