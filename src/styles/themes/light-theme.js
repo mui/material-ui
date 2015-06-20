@@ -25,17 +25,18 @@ var LightTheme = {
       disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
     };
   },
-  getComponentThemes: function(palette) {
+  getComponentThemes: function(palette, spacing) {
+    spacing = spacing || Spacing;
     var obj = {
       appBar: {
         color: palette.primary1Color,
         textColor: Colors.darkWhite,
-        height: Spacing.desktopKeylineIncrement
+        height: spacing.desktopKeylineIncrement
       },
       button: {
         height: 36,
         minWidth: 88,
-        iconButtonSize: Spacing.iconSize * 2
+        iconButtonSize: spacing.iconSize * 2
       },
       checkbox: {
         boxColor: palette.textColor,
@@ -70,7 +71,7 @@ var LightTheme = {
         secondaryIconColor: Colors.white,
       },
       leftNav: {
-        width: Spacing.desktopKeylineIncrement * 4,
+        width: spacing.desktopKeylineIncrement * 4,
         color: Colors.white
       },
       menu: {
@@ -81,11 +82,11 @@ var LightTheme = {
         dataHeight: 32,
         height: 48,
         hoverColor: 'rgba(0, 0, 0, .035)',
-        padding: Spacing.desktopGutter,
+        padding: spacing.desktopGutter,
         selectedTextColor: palette.accent1Color,
       },
       menuSubheader: {
-        padding: Spacing.desktopGutter,
+        padding: spacing.desktopGutter,
         borderColor: palette.borderColor,
         textColor: palette.primary1Color
       },

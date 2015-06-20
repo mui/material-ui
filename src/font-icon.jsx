@@ -1,6 +1,5 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Spacing = require('./styles/spacing');
 var Transitions = require('./styles/transitions');
 
 var FontIcon = React.createClass({
@@ -34,6 +33,7 @@ var FontIcon = React.createClass({
       ...other
     } = this.props;
 
+    var spacing = this.context.muiTheme.spacing;
     var offColor = color ? color :
       style && style.color ? style.color :
       this.context.muiTheme.palette.textColor;
@@ -41,7 +41,7 @@ var FontIcon = React.createClass({
 
     var mergedStyles = this.mergeAndPrefix({
       position: 'relative',
-      fontSize: Spacing.iconSize,
+      fontSize: spacing.iconSize,
       display: 'inline-block',
       userSelect: 'none',
       transition: Transitions.easeOut()

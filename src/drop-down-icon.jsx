@@ -1,7 +1,6 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
-var Spacing = require('./styles/spacing');
 var ClickAwayable = require('./mixins/click-awayable');
 var FontIcon = require('./font-icon');
 var Menu = require('./menu/menu');
@@ -36,14 +35,15 @@ var DropDownIcon = React.createClass({
   },
 
   getStyles: function() {
+    var spacing = this.context.muiTheme.spacing;
     var iconWidth = 48;
     var styles = {
       root: {
         display: 'inline-block',
         width: iconWidth + 'px !important',
         position: 'relative',
-        height: Spacing.desktopToolbarHeight,
-        fontSize: Spacing.desktopDropDownMenuFontSize,
+        height: spacing.desktopToolbarHeight,
+        fontSize: spacing.desktopDropDownMenuFontSize,
         cursor: 'pointer'
        },
       menu: {
@@ -53,9 +53,9 @@ var DropDownIcon = React.createClass({
         opacity: (this.state.open) ? 1 : 0
       },
       menuItem: { // similair to drop down menu's menu item styles
-        paddingRight: (Spacing.iconSize + (Spacing.desktopGutterLess*2)),
-        height: Spacing.desktopDropDownMenuItemHeight,
-        lineHeight: Spacing.desktopDropDownMenuItemHeight + 'px'
+        paddingRight: (spacing.iconSize + (spacing.desktopGutterLess*2)),
+        height: spacing.desktopDropDownMenuItemHeight,
+        lineHeight: spacing.desktopDropDownMenuItemHeight + 'px'
       }
     };
     return styles;

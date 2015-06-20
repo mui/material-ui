@@ -4,7 +4,6 @@ var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var UniqueId = require('./utils/unique-id');
 var WindowListenable = require('./mixins/window-listenable');
-var Spacing = require('./styles/spacing');
 var ClearFix = require('./clearfix');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
@@ -103,7 +102,8 @@ var EnhancedSwitch = React.createClass({
   },
 
   getStyles: function() {
-    var switchWidth = 60 - Spacing.desktopGutterLess;
+    var spacing = this.context.muiTheme.spacing;
+    var switchWidth = 60 - spacing.desktopGutterLess;
     var labelWidth = 'calc(100% - 60px)';
 
     var styles = {
@@ -147,9 +147,9 @@ var EnhancedSwitch = React.createClass({
         display: 'block',
         width: switchWidth,
         marginRight: (this.props.labelPosition == 'right') ?
-          Spacing.desktopGutterLess : 0,
+          spacing.desktopGutterLess : 0,
         marginLeft: (this.props.labelPosition == 'left') ?
-          Spacing.desktopGutterLess : 0
+          spacing.desktopGutterLess : 0
       },
       ripple: {
         height: '200%',

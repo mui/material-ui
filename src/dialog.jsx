@@ -1,6 +1,5 @@
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Spacing = require('./styles/spacing');
 var DialogWindow = require('./dialog-window');
 
 var Dialog = React.createClass({
@@ -13,11 +12,12 @@ var Dialog = React.createClass({
 
   propTypes: {
     title: React.PropTypes.node,
-    contentInnerStyle: React.PropTypes.object,
+    contentInnerStyle: React.PropTypes.object
   },
 
   getStyles: function() {
-    var gutter = Spacing.desktopGutter + 'px ';
+    var spacing = this.context.muiTheme.spacing;
+    var gutter = spacing.desktopGutter + 'px ';
     var styles = {
       title: {
         margin: 0,
@@ -25,10 +25,10 @@ var Dialog = React.createClass({
         color: this.context.muiTheme.palette.textColor,
         fontSize: '24px',
         lineHeight: '32px',
-        fontWeight: '400',
+        fontWeight: '400'
       },
       content: {
-        padding: Spacing.desktopGutter
+        padding: spacing.desktopGutter
       }
     };
     return styles;

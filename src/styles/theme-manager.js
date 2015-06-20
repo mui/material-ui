@@ -1,4 +1,3 @@
-var Spacing = require('./spacing');
 var Extend = require('../utils/extend');
 
 var Types = {
@@ -11,7 +10,7 @@ var ThemeManager = function() {
     types: Types,
     template: Types.LIGHT,
 
-    spacing: Spacing,
+    spacing: Types.LIGHT.spacing,
     contentFontFamily: 'Roboto, sans-serif',
 
     palette: Types.LIGHT.getPalette(),
@@ -23,8 +22,14 @@ var ThemeManager = function() {
 
     // Component gets updated to reflect palette changes.
     setTheme: function(newTheme) {
+      this.setSpacing(newTheme.spacing);
       this.setPalette(newTheme.getPalette());
       this.setComponentThemes(newTheme.getComponentThemes(newTheme.getPalette()));
+    },
+
+    setSpacing: function setSpacing(newSpacing) {
+      this.spacing = Extend(this.spacing, newSpacing);
+      this.component = Extend(this.component, this.template.getComponentThemes(this.palette, this.spacing));
     },
 
     setPalette: function(newPalette) {
