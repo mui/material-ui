@@ -253,18 +253,16 @@ var LeftNav = React.createClass({
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
   },
 
-  _calculateAndSetPosition: function(currentX) {
-    var translateX = Math.min(
-                       Math.max(
-                         this.state.swiping === 'closing' ?
-                           this._getTranslateMultiplier() * (currentX - this.state.swipeStartX) :
-                           this._getMaxTranslateX() - this._getTranslateMultiplier() * (this.state.swipeStartX - currentX),
-                         0
-                       ),
-                       this._getMaxTranslateX()
-                     );
-
-    this._setPosition(translateX);
+  _getTranslateX: function(currentX) {
+    return Math.min(
+             Math.max(
+               this.state.swiping === 'closing' ?
+                 this._getTranslateMultiplier() * (currentX - this.state.swipeStartX) :
+                 this._getMaxTranslateX() - this._getTranslateMultiplier() * (this.state.swipeStartX - currentX),
+               0
+             ),
+             this._getMaxTranslateX()
+           );
   },
 
   _onBodyTouchMove: function(e) {
@@ -273,7 +271,7 @@ var LeftNav = React.createClass({
 
     if (this.state.swiping) {
       e.preventDefault();
-      this._calculateAndSetPosition(currentX);
+      this._setPosition(this._getTranslateX(currentX));
     } else if (this.state.maybeSwiping) {
       var dXAbs = Math.abs(currentX - this.state.touchStartX);
       var dYAbs = Math.abs(currentY - this.state.touchStartY);
@@ -288,15 +286,16 @@ var LeftNav = React.createClass({
           open: true,
           swipeStartX: currentX
         });
-        this._calculateAndSetPosition(currentX);
+        this._setPosition(this._getTranslateX(currentX));
       } else if (dXAbs <= threshold && dYAbs > threshold) {
         this._onBodyTouchEnd();
       }
     }
   },
 
-  _onBodyTouchEnd: function() {
-    var swipeDirection = this.state.swiping;
+  _onBodyTouchEnd: function(e) {
+    var currentX = e.changedTouches[0].pageX;
+    var translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
 
     this.setState({
       maybeSwiping: false,
@@ -305,9 +304,9 @@ var LeftNav = React.createClass({
 
     // We have to open or close after setting swiping to null,
     // because only then CSS transition is enabled.
-    if (swipeDirection === 'closing') {
+    if (translateRatio > 0.5) {
       this.close();
-    } else if (swipeDirection === 'opening') {
+    } else {
       this._setPosition(0);
     }
 
