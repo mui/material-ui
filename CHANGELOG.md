@@ -1,3 +1,37 @@
+## 0.9.2
+###### _Jun 20, 2015_
+
+##### New Components
+- SelectField (#846)
+- Card, CardActions, CardHeader, CardMedia, CardText, CardTitle (#857)
+- Table (#890)
+
+##### Components
+- AppBar - Long AppBar titles now render ellipses (#875)
+- Buttons
+  - Added containerElement prop (#850)
+  - Fixed styling for disabled link buttons
+- DropDownMenu - Added keyboard functionality (#846)
+- FontIcon - Added color and hoverColor props
+- ListItem
+  - Fixed display problem with Single line checkboxes (#854)
+  - Added rightIconButton prop
+- Slider - Added step functionality (#860)
+- Switches - Added labelStyle prop (#871)
+- SvgIcon - Added color and hoverColor props
+- TextField - Made element styles overridable (#864)
+- TimePicker
+  - Fixed clock functionality for various browsers (#840)
+  - Fixed clock numbers positioning for Safari (#870)
+  - Fixed clock handles on Android Chrome (#873)
+- Toggle
+  - Made element styles overridable (#855)
+  - Fixed style bug on IE 10, 11 (#885)
+- Toolbar - Fixed error when a child element is null (#847)
+
+##### Theming
+- Theme spacing can now be overriden (#879)
+
 ## 0.9.1
 ###### _Jun 14, 2015_
 
