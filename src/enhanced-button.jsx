@@ -1,6 +1,7 @@
 var React = require('react');
 var KeyCode = require('./utils/key-code');
 var StylePropable = require('./mixins/style-propable');
+var Colors = require('./styles/colors');
 var WindowListenable = require('./mixins/window-listenable');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
@@ -30,8 +31,6 @@ var EnhancedButton = React.createClass({
     touchRippleOpacity: React.PropTypes.number,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
   },
@@ -58,37 +57,13 @@ var EnhancedButton = React.createClass({
     if (!EnhancedButton.hasStyleBeenInjected) {
       var style = document.createElement("style");
       style.innerHTML = 'button::-moz-focus-inner,' +
-                        'input::-moz-focus-inner {' +
-                        ' border: 0;' +
-                        ' padding: 0;' +
-                        ' }';
+        'input::-moz-focus-inner {' +
+        ' border: 0;' +
+        ' padding: 0;' +
+        ' }';
       document.body.appendChild(style);
       EnhancedButton.hasStyleBeenInjected = true;
     }
-  },
-
-  getStyles: function() {
-    var styles = {
-      root: {
-        border: 10,
-        background: 'none',
-        boxSizing: 'border-box',
-        font: 'inherit',
-        fontFamily: this.context.muiTheme.contentFontFamily,
-        WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-        WebkitAppearance: !this.props.linkButton && 'button',
-        cursor: 'pointer'
-      },
-      rootWhenLinkButton: {
-        display: 'inline-block',
-        cursor: (this.props.disabled) ? 'default' : 'pointer',
-        textDecoration: 'none'
-      },
-      rootWhenDisabled: {
-        cursor: 'default'
-      }
-    };
-    return styles;
   },
 
   render: function() {
@@ -105,21 +80,23 @@ var EnhancedButton = React.createClass({
       touchRippleOpacity,
       onBlur,
       onFocus,
-      onMouseOver,
-      onMouseOut,
       onTouchTap,
       style,
       ...other
     } = this.props;
 
-    var styles = this.getStyles();
-
-    var mergedStyles = this.mergeAndPrefix(
-      styles.root,
-      linkButton && styles.rootWhenLinkButton,
-      disabled && styles.rootWhenDisabled,
-      style
-    );
+    var mergedStyles = this.mergeAndPrefix({
+      border: 10,
+      background: 'none',
+      boxSizing: 'border-box',
+      display: 'inline-block',
+      font: 'inherit',
+      fontFamily: this.context.muiTheme.contentFontFamily,
+      WebkitTapHighlightColor: Colors.transparent,
+      WebkitAppearance: !this.props.linkButton && 'button',
+      cursor: disabled ? 'default' : 'pointer',
+      textDecoration: 'none'
+    }, style);
 
     var buttonProps = {
       ...other,
@@ -127,37 +104,36 @@ var EnhancedButton = React.createClass({
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
-      onMouseOver: this._handleMouseOver,
-      onMouseOut: this._handleMouseOut,
       onTouchTap: this._handleTouchTap
     };
 
     var buttonChildren = [];
 
     // Create ripples if we need to
-    buttonChildren.push((disabled || disableTouchRipple) ?
-      this.props.children :
-      (
+    if (!disabled && !disableTouchRipple) {
+      buttonChildren.push(
         <TouchRipple
-          ref="touchRipple"
           key="touchRipple"
           centerRipple={centerRipple}
           color={touchRippleColor}
           opacity={touchRippleOpacity}>
             {this.props.children}
         </TouchRipple>
-      )
-    );
-    buttonChildren.push((disabled || disableFocusRipple) ?
-      null :
-      (
+      );
+    } else {
+      buttonChildren.push(this.props.children);
+    }
+    
+    if (!disabled && !disableFocusRipple) {
+      buttonChildren.push(
         <FocusRipple
           key="focusRipple"
           color={focusRippleColor}
           opacity={focusRippleOpacity}
-          show={this.state.isKeyboardFocused} />
-      )
-    );
+          show={this.state.isKeyboardFocused}
+        />
+      );
+    }
 
     if (disabled && linkButton) {
       return (
@@ -222,15 +198,6 @@ var EnhancedButton = React.createClass({
 
       if (this.props.onFocus) this.props.onFocus(e);
     }
-  },
-
-  _handleMouseOver: function(e) {
-    React.findDOMNode(this).style.textDecoration = 'none';
-    if (this.props.onMouseOver) this.props.onMouseOver(e);
-  },
-
-  _handleMouseOut: function(e) {
-    if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleTouchTap: function(e) {

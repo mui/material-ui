@@ -6,6 +6,13 @@ var Typography = require('./styles/typography');
 var EnhancedButton = require('./enhanced-button');
 var Paper = require('./paper');
 
+function validateLabel (props, propName, componentName) {
+  if (!props.children && !props.label) {
+    return new Error('Required prop label or children was not ' +
+      'specified in ' + componentName + '.');
+  }
+}
+
 var RaisedButton = React.createClass({
 
   mixins: [StylePropable],
@@ -17,11 +24,7 @@ var RaisedButton = React.createClass({
   propTypes: {
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
-    label: function(props, propName, componentName){
-      if (!props.children && !props.label) {
-        return new Error('Warning: Required prop `label` or `children` was not specified in `'+ componentName + '`.')
-      }
-    },
+    label: validateLabel,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
     onMouseOut: React.PropTypes.func,
@@ -35,9 +38,10 @@ var RaisedButton = React.createClass({
   getInitialState: function() {
     var zDepth = this.props.disabled ? 0 : 1;
     return {
-      zDepth: zDepth,
+      hovered: false,
+      touched: false,
       initialZDepth: zDepth,
-      hovered: false
+      zDepth: zDepth
     };
   },
 
@@ -45,22 +49,22 @@ var RaisedButton = React.createClass({
     var zDepth = nextProps.disabled ? 0 : 1;
     this.setState({
       zDepth: zDepth,
-      initialZDepth: zDepth,
+      initialZDepth: zDepth
     });
   },
 
   _getBackgroundColor: function() {
     return  this.props.disabled ? this.getTheme().disabledColor :
-            this.props.primary ? this.getTheme().primaryColor :
-            this.props.secondary ? this.getTheme().secondaryColor :
-            this.getTheme().color; 
+      this.props.primary ? this.getTheme().primaryColor :
+      this.props.secondary ? this.getTheme().secondaryColor :
+      this.getTheme().color; 
   },
 
   _getLabelColor: function() {
     return  this.props.disabled ? this.getTheme().disabledTextColor :
-            this.props.primary ? this.getTheme().primaryTextColor :
-            this.props.secondary ? this.getTheme().secondaryTextColor :
-            this.getTheme().textColor;
+      this.props.primary ? this.getTheme().primaryTextColor :
+      this.props.secondary ? this.getTheme().secondaryTextColor :
+      this.getTheme().textColor;
   },
 
   getThemeButton: function() {
@@ -196,12 +200,17 @@ var RaisedButton = React.createClass({
   },
 
   _handleMouseOver: function(e) {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({hovered: true});
+    if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
+      this.setState({hovered: true});
+    }
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
   _handleTouchStart: function(e) {
-    this.setState({ zDepth: this.state.initialZDepth + 1 });
+    this.setState({
+      touch: true,
+      zDepth: this.state.initialZDepth + 1
+    });
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
 

@@ -38,9 +38,10 @@ var RaisedButton = React.createClass({
   getInitialState: function() {
     var zDepth = this.props.disabled ? 0 : 2;
     return {
-      zDepth: zDepth,
-      initialZDepth: zDepth,
       hovered: false,
+      initialZDepth: zDepth,
+      touch: false,
+      zDepth: zDepth
     };
   },
 
@@ -58,8 +59,8 @@ var RaisedButton = React.createClass({
     if (process.env.NODE_ENV !== 'production') {
       if (this.props.iconClassName && this.props.children) {
         var warning = 'You have set both an iconClassName and a child icon. ' +
-                      'It is recommended you use only one method when adding ' +
-                      'icons to FloatingActionButtons.';
+          'It is recommended you use only one method when adding ' +
+          'icons to FloatingActionButtons.';
         console.warn(warning);
       }
     }
@@ -67,8 +68,8 @@ var RaisedButton = React.createClass({
 
   _getBackgroundColor: function() {
     return  this.props.disabled ? this.getTheme().disabledColor :
-            this.props.secondary ? this.getTheme().secondaryColor :
-            this.getTheme().color;
+      this.props.secondary ? this.getTheme().secondaryColor :
+      this.getTheme().color;
   },
 
 
@@ -78,8 +79,8 @@ var RaisedButton = React.createClass({
 
   _getIconColor: function() {
     return  this.props.disabled ? this.getTheme().disabledTextColor :
-            this.props.secondary ? this.getTheme().secondaryIconColor :
-            this.getTheme().iconColor;
+      this.props.secondary ? this.getTheme().secondaryIconColor :
+      this.getTheme().iconColor;
   },
 
   getStyles: function() {
@@ -210,12 +211,17 @@ var RaisedButton = React.createClass({
   },
 
   _handleMouseOver: function(e) {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({hovered: true});
+    if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
+      this.setState({hovered: true});
+    }
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
   _handleTouchStart: function(e) {
-    this.setState({ zDepth: this.state.initialZDepth + 1 });
+    this.setState({
+      touch: true,
+      zDepth: this.state.initialZDepth + 1
+    });
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
 
