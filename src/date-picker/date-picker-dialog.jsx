@@ -116,8 +116,8 @@ var DatePickerDialog = React.createClass({
     this.refs.dialogWindow.dismiss();
   },
 
-  _onSelectedDate: function(e) {
-    if(this.props.autoOk) {
+  _onSelectedDate: function(e, date, isNavigation) {
+    if(this.props.autoOk && !isNavigation) {
       setTimeout(this._handleOKTouchTap, 300);
     }
   },
