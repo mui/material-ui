@@ -33,11 +33,13 @@ var EnhancedButton = React.createClass({
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
+    tabIndex: React.PropTypes.number
   },
 
   getDefaultProps: function() {
     return {
-      containerElement: 'button'
+      containerElement: 'button',
+      tabIndex: 0
     };
   },
 
@@ -82,6 +84,7 @@ var EnhancedButton = React.createClass({
       onFocus,
       onTouchTap,
       style,
+      tabIndex,
       ...other
     } = this.props;
 
@@ -95,7 +98,8 @@ var EnhancedButton = React.createClass({
       WebkitTapHighlightColor: Colors.transparent,
       WebkitAppearance: !this.props.linkButton && 'button',
       cursor: disabled ? 'default' : 'pointer',
-      textDecoration: 'none'
+      textDecoration: 'none',
+      outline: 'none'
     }, style);
 
     var buttonProps = {
@@ -104,7 +108,8 @@ var EnhancedButton = React.createClass({
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
-      onTouchTap: this._handleTouchTap
+      onTouchTap: this._handleTouchTap,
+      tabIndex: tabIndex
     };
 
     var buttonChildren = [];
@@ -157,15 +162,15 @@ var EnhancedButton = React.createClass({
 
   _handleWindowKeydown: function(e) {
     if (!this.props.disabled) {
-      if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
-      if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {
+      if (e.keyCode === KeyCode.TAB) this._tabPressed = true;
+      if (e.keyCode === KeyCode.ENTER && this.state.isKeyboardFocused) {
         this._handleTouchTap(e);
       }
     }
   },
 
   _handleWindowKeyup: function(e) {
-    if (!this.props.disabled && e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
+    if (!this.props.disabled && e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
       this._handleTouchTap(e);
     }
   },
@@ -182,7 +187,6 @@ var EnhancedButton = React.createClass({
   },
 
   _handleFocus: function(e) {
-    React.findDOMNode(this).style.outline = 'none';
     if (!this.props.disabled) {
       //setTimeout is needed because the focus event fires first
       //Wait so that we can capture if this was a keyboard focus

@@ -20,6 +20,7 @@ var ListItem = React.createClass({
     leftAvatar: React.PropTypes.element,
     leftCheckbox: React.PropTypes.element,
     leftIcon: React.PropTypes.element,
+    onKeyboardFocus: React.PropTypes.func,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
@@ -40,6 +41,7 @@ var ListItem = React.createClass({
   getInitialState: function() {
     return {
       hovered: false,
+      isKeyboardFocused: false,
       rightIconButtonHovered: false,
       touch: false
     };
@@ -53,6 +55,7 @@ var ListItem = React.createClass({
       leftAvatar,
       leftCheckbox,
       leftIcon,
+      onKeyboardFocus,
       onMouseOut,
       onMouseOver,
       onTouchStart,
@@ -67,7 +70,7 @@ var ListItem = React.createClass({
     } = this.props;
 
     var textColor = this.context.muiTheme.palette.textColor;
-    var hoverColor = ColorManipulator.fade(textColor, 0.03);
+    var hoverColor = ColorManipulator.fade(textColor, 0.1);
     var singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
     var singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
     var twoLine = secondaryText && secondaryTextLines === 1;
@@ -76,7 +79,8 @@ var ListItem = React.createClass({
 
     var styles = {
       root: {
-        backgroundColor: this.state.hovered && !this.state.rightIconButtonHovered ? hoverColor : null,
+        backgroundColor: (this.state.isKeyboardFocused || this.state.hovered) && 
+          !this.state.rightIconButtonHovered ? hoverColor : null,
         color: textColor,
         display: 'block',
         fontSize: 16,
@@ -213,6 +217,7 @@ var ListItem = React.createClass({
       <EnhancedButton
         {...other}
         linkButton={true}
+        onKeyboardFocus={this._handleKeyboardFocus}
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
         onTouchStart={this._handleTouchStart}
@@ -236,6 +241,21 @@ var ListItem = React.createClass({
         })
       );
     }
+  },
+
+  _handleKeyboardFocus: function(e, isKeyboardFocused) {
+    this.setState({isKeyboardFocused: isKeyboardFocused});
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, isKeyboardFocused);
+  },
+
+  _handleMouseOver: function(e) {
+    if (!this.state.touch) this.setState({hovered: true});
+    if (this.props.onMouseOver) this.props.onMouseOver(e);
+  },
+
+  _handleMouseOut: function(e) {
+    this.setState({hovered: false});
+    if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleRightIconButtonMouseDown: function(e) {
@@ -268,16 +288,6 @@ var ListItem = React.createClass({
     //Stop the event from bubbling up to the list-item
     e.stopPropagation();
     if (iconButton.onTouchTap) iconButton.onTouchTap(e);
-  },
-
-  _handleMouseOver: function(e) {
-    if (!this.state.touch) this.setState({hovered: true});
-    if (this.props.onMouseOver) this.props.onMouseOver(e);
-  },
-
-  _handleMouseOut: function(e) {
-    this.setState({hovered: false});
-    if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleTouchStart: function(e) {

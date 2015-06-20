@@ -25,6 +25,7 @@ var FlatButton = React.createClass({
     hoverColor: React.PropTypes.string,
     label: validateLabel,
     labelStyle: React.PropTypes.object,
+    onKeyboardFocus: React.PropTypes.func,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
@@ -53,6 +54,7 @@ var FlatButton = React.createClass({
       hoverColor,
       label,
       labelStyle,
+      onKeyboardFocus,
       onMouseOut,
       onMouseOver,
       onTouchStart,
@@ -124,7 +126,8 @@ var FlatButton = React.createClass({
   },
 
   _handleKeyboardFocus: function(e, isKeyboardFocused) {
-    this.setState({isKeyboardFocused});
+    this.setState({isKeyboardFocused: isKeyboardFocused});
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, isKeyboardFocused);
   },
 
   _handleMouseOver: function(e) {
