@@ -22,6 +22,7 @@ var ListItem = React.createClass({
     leftIcon: React.PropTypes.element,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
+    onTouchStart: React.PropTypes.func,
     rightAvatar: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
     rightIconButton: React.PropTypes.element,
@@ -39,7 +40,8 @@ var ListItem = React.createClass({
   getInitialState: function() {
     return {
       hovered: false,
-      rightIconButtonHovered: false
+      rightIconButtonHovered: false,
+      touch: false
     };
   },
 
@@ -53,6 +55,7 @@ var ListItem = React.createClass({
       leftIcon,
       onMouseOut,
       onMouseOver,
+      onTouchStart,
       rightAvatar,
       rightIcon,
       rightIconButton,
@@ -212,6 +215,7 @@ var ListItem = React.createClass({
         linkButton={true}
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
+        onTouchStart={this._handleTouchStart}
         style={mergedRootStyles}>
         <div style={styles.innerDiv}>
           {contentChildren}
@@ -267,17 +271,18 @@ var ListItem = React.createClass({
   },
 
   _handleMouseOver: function(e) {
-    this.setState({hovered: true});
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
-    }
+    if (!this.state.touch) this.setState({hovered: true});
+    if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
   _handleMouseOut: function(e) {
     this.setState({hovered: false});
-    if (this.props.onMouseOut) {
-      this.props.onMouseOut(e);
-    }
+    if (this.props.onMouseOut) this.props.onMouseOut(e);
+  },
+
+  _handleTouchStart: function(e) {
+    this.setState({touch: true});
+    if (this.props.onTouchStart) this.props.onTouchStart(e);
   }
 
 });
