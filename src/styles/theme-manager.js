@@ -33,7 +33,10 @@ var ThemeManager = function() {
 
     setPalette: function(newPalette) {
       this.palette = Extend(this.palette, newPalette);
-      this.component = Extend(this.component, this.template.getComponentThemes(this.palette));
+      this.component = Extend(
+        this.component,
+        this.template.getComponentThemes(this.palette, this.spacing)
+      );
     },
 
     setComponentThemes: function(overrides) {
