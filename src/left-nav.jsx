@@ -133,12 +133,15 @@ var LeftNav = React.createClass({
 
     var styles = this.getStyles();
     if (!this.props.docked) {
-      overlay = <Overlay ref="overlay"
-                         show={this.state.open}
-                         transitionEnabled={!this.state.swiping}
-                         onTouchTap={this._onOverlayTouchTap} />;
+      overlay = (
+        <Overlay
+          ref="overlay"
+          show={this.state.open}
+          transitionEnabled={!this.state.swiping}
+          onTouchTap={this._onOverlayTouchTap}
+        />
+      );
     }
-
 
     return (
       <div className={this.props.className}>

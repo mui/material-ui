@@ -149,7 +149,7 @@ var MenuItem = React.createClass({
         className={this.props.className}
         onTouchTap={this._handleTouchTap}
         onMouseOver={this._handleMouseOver}
-        onMouseOut={this._handleMouseOut}f
+        onMouseOut={this._handleMouseOut}
         style={this.mergeAndPrefix(
           styles.root,
           this.props.selected && styles.rootWhenSelected,
