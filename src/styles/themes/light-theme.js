@@ -26,6 +26,7 @@ var LightTheme = {
     };
   },
   getComponentThemes: function(palette, spacing) {
+    spacing = spacing || Spacing;
     var obj = {
       appBar: {
         color: palette.primary1Color,
