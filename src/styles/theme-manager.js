@@ -29,14 +29,12 @@ var ThemeManager = function() {
 
     setSpacing: function setSpacing(newSpacing) {
       this.spacing = Extend(this.spacing, newSpacing);
+      this.component = Extend(this.component, this.template.getComponentThemes(this.palette, this.spacing));
     },
 
     setPalette: function(newPalette) {
       this.palette = Extend(this.palette, newPalette);
-      this.component = Extend(
-        this.component,
-        this.template.getComponentThemes(this.palette, this.spacing)
-      );
+      this.component = Extend(this.component, this.template.getComponentThemes(this.palette));
     },
 
     setComponentThemes: function(overrides) {
