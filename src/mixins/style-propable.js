@@ -17,7 +17,9 @@ module.exports = {
     let args = Array.prototype.slice.call(arguments, 0);
     let base = args[0];
     for (let i = 1; i < args.length; i++) {
-      if (args[i]) base = Extend(base, args[i]);
+      if (args[i]) {
+        base = Extend(base, args[i]);
+      }
     }
     return base;
   },
@@ -30,4 +32,4 @@ module.exports = {
     let mergedStyles = this.mergeStyles.apply(this, arguments);
     return AutoPrefix.all(mergedStyles);
   },
-}
+};
