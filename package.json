@@ -38,7 +38,6 @@
   "devDependencies": {
     "babel": "^5.4.3",
     "jsxhint": "^0.15.0",
-    "react": "^0.13.3",
     "react-router": "^0.13.3",
     "react-tap-event-plugin": "^0.1.6"
   }
