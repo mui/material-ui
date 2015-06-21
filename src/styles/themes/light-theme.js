@@ -180,6 +180,19 @@ var LightTheme = {
         separatorColor: 'rgba(0, 0, 0, .175)',
         menuHoverColor: 'rgba(0, 0, 0, .10)'
       },
+      tab: {
+        display: 'table-cell',
+      	cursor: 'pointer',
+      	textAlign: 'center',
+        verticalAlign: 'middle',
+        height': '48px',
+        color': Colors.white,
+        opacity': '.6',
+        fontSize': '14px',
+        fontWeight': '500',
+        whiteSpace': 'initial',
+        boxSizing': 'border-box'
+      },
       tabs: {
         backgroundColor: palette.primary1Color,
       },
