@@ -1,10 +1,10 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var TextField = require('./text-field');
-var DropDownMenu = require('./drop-down-menu');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let TextField = require('./text-field');
+let DropDownMenu = require('./drop-down-menu');
 
-var SelectField = React.createClass({
+let SelectField = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
@@ -37,7 +37,7 @@ var SelectField = React.createClass({
   },
 
   getStyles: function() {
-    var styles = {
+    let styles = {
       selectfield:{
         root: {
           height:'auto',
@@ -68,7 +68,7 @@ var SelectField = React.createClass({
   },
 
   render: function() {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
     return (
       <TextField {...this.props}>
         <DropDownMenu {...this.props}

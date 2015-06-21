@@ -1,17 +1,15 @@
-var React = require('react');
-var mui = require('mui');
-var IconButton = mui.IconButton;
-var NavigationMenu = mui.Icons.NavigationMenu;
-var ComponentDoc = require('../../component-doc.jsx');
-var ActionGrade = require('../../svg-icons/action-grade.jsx');
-var ActionHome = require('../../svg-icons/action-home.jsx');
-var FontIcon = mui.FontIcon;
+let React = require('react');
+let { FontIcon, IconButton, NavigationMenu } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
+let ActionGrade = require('../../svg-icons/action-grade.jsx');
+let ActionHome = require('../../svg-icons/action-home.jsx');
+
 
 class IconButtonsPage extends React.Component {
 
   render() {
 
-    var code =
+    let code =
         '//Method 1: muidocs-icon-github is defined in a style sheet.\n' +
         '<IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>\n\n' +
         '//Method 2: ActionGrade is a component created using mui.SvgIcon.\n' +
@@ -24,7 +22,7 @@ class IconButtonsPage extends React.Component {
         '  <FontIcon className="muidocs-icon-custom-sort"/>\n' +
         '</IconButton>';
 
-    var desc = (
+    let desc = (
       <p>
         This component generates a button element and all props.
         Also, focus styles will happen on tab but not on click.
@@ -53,7 +51,7 @@ class IconButtonsPage extends React.Component {
       </p>
     );
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [

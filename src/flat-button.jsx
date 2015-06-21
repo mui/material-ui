@@ -1,9 +1,10 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var ColorManipulator = require('./utils/color-manipulator');
-var Typography = require('./styles/typography');
-var EnhancedButton = require('./enhanced-button');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let ColorManipulator = require('./utils/color-manipulator');
+let Typography = require('./styles/typography');
+let EnhancedButton = require('./enhanced-button');
+
 
 function validateLabel (props, propName, componentName) {
   if (!props.children && !props.label) {
@@ -12,7 +13,8 @@ function validateLabel (props, propName, componentName) {
   }
 }
 
-var FlatButton = React.createClass({
+
+let FlatButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -49,7 +51,7 @@ var FlatButton = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       disabled,
       hoverColor,
       label,
@@ -65,22 +67,22 @@ var FlatButton = React.createClass({
       ...other
       } = this.props;
 
-    var theme = this.context.muiTheme;
-    var buttonTheme = theme.component.button;
-    var flatButtonTheme = theme.component.flatButton;
+    let theme = this.context.muiTheme;
+    let buttonTheme = theme.component.button;
+    let flatButtonTheme = theme.component.flatButton;
 
-    var defaultColor = disabled ? flatButtonTheme.disabledTextColor :
+    let defaultColor = disabled ? flatButtonTheme.disabledTextColor :
       primary ? flatButtonTheme.primaryTextColor :
       secondary ? flatButtonTheme.secondaryTextColor :
       flatButtonTheme.textColor;
 
-    var defaultHoverColor = ColorManipulator.fade(ColorManipulator.lighten(defaultColor, 0.4), 0.15);
-    var defaultRippleColor = ColorManipulator.fade(defaultColor, 0.8);
-    var buttonHoverColor = hoverColor || defaultHoverColor;
-    var buttonRippleColor = rippleColor || defaultRippleColor;
-    var hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
+    let defaultHoverColor = ColorManipulator.fade(ColorManipulator.lighten(defaultColor, 0.4), 0.15);
+    let defaultRippleColor = ColorManipulator.fade(defaultColor, 0.8);
+    let buttonHoverColor = hoverColor || defaultHoverColor;
+    let buttonRippleColor = rippleColor || defaultRippleColor;
+    let hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
 
-    var mergedRootStyles = this.mergeStyles({
+    let mergedRootStyles = this.mergeStyles({
       color: defaultColor,
       transition: Transitions.easeOut(),
       fontSize: Typography.fontStyleButtonFontSize,
@@ -101,12 +103,12 @@ var FlatButton = React.createClass({
       transform: 'translate3d(0, 0, 0)'
     }, this.props.style);
 
-    var mergedLabelStyles = this.mergeAndPrefix({
+    let mergedLabelStyles = this.mergeAndPrefix({
       position: 'relative',
       padding: '0 ' + theme.spacing.desktopGutterLess + 'px'
     }, labelStyle);
 
-    var labelElement = label ? <span style={mergedLabelStyles}>{label}</span> : null;
+    let labelElement = label ? <span style={mergedLabelStyles}>{label}</span> : null;
 
     return (
       <EnhancedButton

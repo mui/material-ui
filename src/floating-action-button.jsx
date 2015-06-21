@@ -1,20 +1,20 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var ColorManipulator = require('./utils/color-manipulator');
-var EnhancedButton = require('./enhanced-button');
-var FontIcon = require('./font-icon');
-var Paper = require('./paper');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let ColorManipulator = require('./utils/color-manipulator');
+let EnhancedButton = require('./enhanced-button');
+let FontIcon = require('./font-icon');
+let Paper = require('./paper');
 
-var getZDepth = function(disabled) {
-  var zDepth = disabled ? 0 : 2;
+let getZDepth = function(disabled) {
+  let zDepth = disabled ? 0 : 2;
   return {
     zDepth: zDepth,
     initialZDepth: zDepth
   };
 };
 
-var RaisedButton = React.createClass({
+let RaisedButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -36,7 +36,7 @@ var RaisedButton = React.createClass({
   },
 
   getInitialState: function() {
-    var zDepth = this.props.disabled ? 0 : 2;
+    let zDepth = this.props.disabled ? 0 : 2;
     return {
       hovered: false,
       initialZDepth: zDepth,
@@ -50,7 +50,7 @@ var RaisedButton = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps) {
-    if(newProps.disabled !== this.props.disabled){
+    if (newProps.disabled !== this.props.disabled){
       this.setState(getZDepth(newProps.disabled));
     }
   },
@@ -58,7 +58,7 @@ var RaisedButton = React.createClass({
   componentDidMount: function() {
     if (process.env.NODE_ENV !== 'production') {
       if (this.props.iconClassName && this.props.children) {
-        var warning = 'You have set both an iconClassName and a child icon. ' +
+        let warning = 'You have set both an iconClassName and a child icon. ' +
           'It is recommended you use only one method when adding ' +
           'icons to FloatingActionButtons.';
         console.warn(warning);
@@ -84,7 +84,7 @@ var RaisedButton = React.createClass({
   },
 
   getStyles: function() {
-    var styles = {
+    let styles = {
       root: {
         transition: Transitions.easeOut(),
         display: 'inline-block'
@@ -129,16 +129,16 @@ var RaisedButton = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       disabled,
       icon,
       mini,
       secondary,
       ...other } = this.props;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var iconElement;
+    let iconElement;
     if (this.props.iconClassName) {
       iconElement =
         <FontIcon
@@ -149,9 +149,9 @@ var RaisedButton = React.createClass({
             this.props.iconStyle)}/>
     }
 
-    var rippleColor = styles.icon.color;
+    let rippleColor = styles.icon.color;
 
-    var buttonEventHandlers = disabled ? null : {
+    let buttonEventHandlers = disabled ? null : {
       onMouseDown: this._handleMouseDown,
       onMouseUp: this._handleMouseUp,
       onMouseOut: this._handleMouseOut,

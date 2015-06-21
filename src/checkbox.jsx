@@ -1,11 +1,11 @@
-var React = require('react');
-var EnhancedSwitch = require('./enhanced-switch');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank');
-var CheckboxChecked = require('./svg-icons/toggle-check-box-checked');
+let React = require('react');
+let EnhancedSwitch = require('./enhanced-switch');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank');
+let CheckboxChecked = require('./svg-icons/toggle-check-box-checked');
 
-var Checkbox = React.createClass({
+let Checkbox = React.createClass({
 
   mixins: [StylePropable],
 
@@ -36,8 +36,8 @@ var Checkbox = React.createClass({
   },
 
   getStyles: function() {
-    var checkboxSize = 24;
-    var styles = {
+    let checkboxSize = 24;
+    let styles = {
       icon: {
           height: checkboxSize,
           width: checkboxSize,
@@ -81,7 +81,7 @@ var Checkbox = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       iconStyle,
       onCheck,
       checkedIcon,
@@ -89,48 +89,48 @@ var Checkbox = React.createClass({
       ...other
     } = this.props;
 
-    var styles = this.getStyles();
-    var boxStyles =
+    let styles = this.getStyles();
+    let boxStyles =
       this.mergeAndPrefix(
         styles.box,
         this.state.switched && styles.boxWhenSwitched,
         iconStyle,
         this.props.disabled && styles.boxWhenDisabled);
-    var checkStyles =
+    let checkStyles =
       this.mergeAndPrefix(
         styles.check,
         this.state.switched && styles.checkWhenSwitched,
         iconStyle,
         this.props.disabled && styles.checkWhenDisabled);
 
-    var checkedElement = checkedIcon ? React.cloneElement(checkedIcon, {
+    let checkedElement = checkedIcon ? React.cloneElement(checkedIcon, {
       style: this.mergeAndPrefix(checkStyles, checkedIcon.props.style)
     }) : React.createElement(CheckboxChecked, {
       style: checkStyles
     });
 
-    var unCheckedElement = unCheckedIcon ? React.cloneElement(unCheckedIcon, {
+    let unCheckedElement = unCheckedIcon ? React.cloneElement(unCheckedIcon, {
       style: this.mergeAndPrefix(boxStyles, unCheckedIcon.props.style)
     }) : React.createElement(CheckboxOutline, {
       style: boxStyles
     });
 
-    var checkboxElement = (
+    let checkboxElement = (
       <div>
         {unCheckedElement}
         {checkedElement}
       </div>
     );
 
-    var rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
-    var mergedIconStyle = this.mergeAndPrefix(styles.icon, iconStyle);
+    let rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
+    let mergedIconStyle = this.mergeAndPrefix(styles.icon, iconStyle);
 
-    var labelStyle = this.mergeAndPrefix(
+    let labelStyle = this.mergeAndPrefix(
       styles.label,
       this.props.labelStyle
     );
 
-    var enhancedSwitchProps = {
+    let enhancedSwitchProps = {
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switched: this.state.switched,

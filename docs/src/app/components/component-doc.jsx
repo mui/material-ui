@@ -1,13 +1,11 @@
-var React = require('react');
-var mui = require('mui');
-var Classable = mui.Mixins.Classable;
-var CodeExample = require('./code-example/code-example.jsx');
-var ComponentInfo = require('./component-info.jsx');
-var Typography = mui.Styles.Typography;
-var StylePropable = mui.Mixins.StylePropable;
-var ClearFix = mui.ClearFix;
+let React = require('react');
+let { ClearFix, Mixins, Styles } = require('mui');
+let CodeExample = require('./code-example/code-example.jsx');
+let ComponentInfo = require('./component-info.jsx');
+let Typography = Styles.Typography;
+let { Classable, StylePropable } = Mixins;
 
-var ComponentDoc = React.createClass({
+let ComponentDoc = React.createClass({
 
   mixins: [StylePropable],
 
@@ -26,7 +24,7 @@ var ComponentDoc = React.createClass({
   },
 
   getStyles: function() {
-    var borderColor = this.context.muiTheme.palette.borderColor;
+    let borderColor = this.context.muiTheme.palette.borderColor;
     return {
       desc: {
         borderBottom: 'solid 1px ' + borderColor,
@@ -67,10 +65,10 @@ var ComponentDoc = React.createClass({
   },
 
   render: function() {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var componentInfo = this.props.componentInfo.map(function(info, i) {
-      var infoStyle = styles.componentInfo;
+    let componentInfo = this.props.componentInfo.map(function(info, i) {
+      let infoStyle = styles.componentInfo;
       if (i === 0) infoStyle = this.mergeStyles(infoStyle, styles.componentInfoWhenFirstChild);
       return (
         <ComponentInfo
@@ -81,7 +79,7 @@ var ComponentDoc = React.createClass({
       );
     }, this);
 
-    var desc = null;
+    let desc = null;
 
     if (this.props.desc) {
       if ((typeof this.props.desc) == "string") {
@@ -91,14 +89,14 @@ var ComponentDoc = React.createClass({
       }
     }
 
-    var header;
+    let header;
     if (this.props.name.length > 0) {
       header = <h2 style={styles.headline}>{this.props.name}</h2>
     }
 
     return (
       <ClearFix>
-        
+
         {header}
 
         <CodeExample code={this.props.code}>

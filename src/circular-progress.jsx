@@ -1,8 +1,8 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require("./styles/transitions");
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require("./styles/transitions");
 
-var CircularProgress = React.createClass({
+let CircularProgress = React.createClass({
 
   mixins: [StylePropable],
 
@@ -19,20 +19,20 @@ var CircularProgress = React.createClass({
   },
 
   _getRelativeValue: function(){
-    var value = this.props.value;
-    var min = this.props.min;
-    var max = this.props.max;
+    let value = this.props.value;
+    let min = this.props.min;
+    let max = this.props.max;
 
-    var clampedValue = Math.min(Math.max(min, value), max);
-    var rangeValue = max - min;
-    var relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
+    let clampedValue = Math.min(Math.max(min, value), max);
+    let rangeValue = max - min;
+    let relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
     return relValue * 100;
   },
 
   componentDidMount: function () {
 
-    var wrapper = React.findDOMNode(this.refs.wrapper);
-    var path = React.findDOMNode(this.refs.path);
+    let wrapper = React.findDOMNode(this.refs.wrapper);
+    let path = React.findDOMNode(this.refs.path);
 
     this._scalePath(path);
     this._rotateWrapper(wrapper);
@@ -74,8 +74,8 @@ var CircularProgress = React.createClass({
 
     setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
 
-    if(!this.isMounted()) return;
-    if(this.props.mode != "indeterminate") return;
+    if (!this.isMounted()) return;
+    if (this.props.mode != "indeterminate") return;
 
     wrapper.style.transform = null;
     wrapper.style.transform = "rotate(0deg)";
@@ -103,13 +103,13 @@ var CircularProgress = React.createClass({
 
   getStyles: function(zoom) {
     zoom *= 1.4;
-    var size = "50px";
+    let size = "50px";
 
-    var margin = Math.round( ((50 * zoom) - 50) / 2 );
+    let margin = Math.round( ((50 * zoom) - 50) / 2 );
 
-    if(margin < 0) margin = 0;
+    if (margin < 0) margin = 0;
 
-    var styles = {
+    let styles = {
       root: {
         position: "relative",
         margin: margin + "px",
@@ -141,8 +141,8 @@ var CircularProgress = React.createClass({
       }
     };
 
-    if(this.props.mode == "determinate"){
-      var relVal = this._getRelativeValue();
+    if (this.props.mode == "determinate"){
+      let relVal = this._getRelativeValue();
       styles.path.transition = Transitions.create("all", "0.3s", null, "linear")
       styles.path.strokeDasharray = Math.round(relVal * 1.25) + ",200";
     }else{
@@ -153,14 +153,14 @@ var CircularProgress = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       style,
       size,
       ...other
     } = this.props;
 
 
-    var styles = this.getStyles(size || 1);
+    let styles = this.getStyles(size || 1);
 
     return (
       <div  {...other} style={this.mergeAndPrefix(styles.root, style)} >

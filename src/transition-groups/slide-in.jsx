@@ -1,9 +1,10 @@
-var React = require('react/addons');
-var ReactTransitionGroup = React.addons.TransitionGroup;
-var StylePropable = require('../mixins/style-propable');
-var SlideInChild = require('./slide-in-child');
+let React = require('react/addons');
+let ReactTransitionGroup = React.addons.TransitionGroup;
+let StylePropable = require('../mixins/style-propable');
+let SlideInChild = require('./slide-in-child');
 
-var SlideIn = React.createClass({
+
+let SlideIn = React.createClass({
 
   mixins: [StylePropable],
 
@@ -18,12 +19,12 @@ var SlideIn = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       direction,
       ...other
     } = this.props;
 
-    var styles = this.mergeAndPrefix({
+    let styles = this.mergeAndPrefix({
       position: 'relative',
       overflow: 'hidden',
       height: '100%'

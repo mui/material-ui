@@ -1,12 +1,10 @@
-var React = require('react');
-var CodeExample = require('../../code-example/code-example.jsx');
-var mui = require('mui');
-var Router = require('react-router');
-var ComponentDoc = require('../../component-doc.jsx');
-var RouteHandler = Router.RouteHandler;
+let React = require('react');
+let CodeExample = require('../../code-example/code-example.jsx');
+let { Slider, Styles, Tab, Tabs } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
 
-var {Tabs, Tab, Slider} = mui;
-var Typography = mui.Styles.Typography;
+let { Typography } = Styles;
+
 
 class TabsPage extends React.Component {
 
@@ -30,7 +28,7 @@ class TabsPage extends React.Component {
   }
 
   render(){
-    var code =  '<Tabs> \n' +
+    let code =  '<Tabs> \n' +
                 '  <Tab label="Item One" > \n' +
                 '    <div> \n' +
                 '      <h2 style={this.getStyles().headline}>Tab One Template Example</h2> \n' +
@@ -63,13 +61,13 @@ class TabsPage extends React.Component {
                 '  this.context.router.transitionTo(tab.props.route); \n' +
                 '}';
 
-    var desc = 'Refs cannot be set on individual Tab components as cloneWithProps is being ' +
+    let desc = 'Refs cannot be set on individual Tab components as cloneWithProps is being ' +
       'used to extend the individual tab components under the hood. However, ' +
       'refs can be passed to the Tabs container and to any element or component within the template. ' +
       'If you need to access a tab directly - you can do so with the first argument of onActive or ' +
       'by accessing the props.children array by passing refs to the Tabs container.';
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Tabs Props',
         infoArray: [

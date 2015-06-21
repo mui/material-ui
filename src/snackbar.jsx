@@ -1,11 +1,11 @@
-var React = require('react');
-var CssEvent = require('./utils/css-event');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var ClickAwayable = require('./mixins/click-awayable');
-var FlatButton = require('./flat-button');
+let React = require('react');
+let CssEvent = require('./utils/css-event');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let ClickAwayable = require('./mixins/click-awayable');
+let FlatButton = require('./flat-button');
 
-var Snackbar = React.createClass({
+let Snackbar = React.createClass({
 
   mixins: [StylePropable, ClickAwayable],
 
@@ -54,7 +54,7 @@ var Snackbar = React.createClass({
   },
 
   getStyles: function() {
-    var styles = {
+    let styles = {
       root: {
         color: this.getTheme().textColor,
         backgroundColor: this.getTheme().backgroundColor,
@@ -93,7 +93,7 @@ var Snackbar = React.createClass({
         transition:
           Transitions.easeOut('0ms', 'left', '0ms') + ',' +
           Transitions.easeOut('400ms', 'opacity', '0ms') + ',' +
-          Transitions.easeOut('400ms', 'transform', '0ms')   
+          Transitions.easeOut('400ms', 'transform', '0ms')
       }
     };
     return styles;
@@ -101,9 +101,9 @@ var Snackbar = React.createClass({
 
   render: function() {
 
-    var styles = this.getStyles(); 
+    let styles = this.getStyles();
 
-    var action;
+    let action;
     if (this.props.action) {
       action = (
         <FlatButton
@@ -113,9 +113,9 @@ var Snackbar = React.createClass({
       );
     }
 
-    var rootStyles = styles.root;
+    let rootStyles = styles.root;
     if (this.state.open) rootStyles = this.mergeStyles(styles.root, styles.rootWhenOpen, this.props.style);
-    
+
     return (
       <span style={rootStyles}>
           <span>{this.props.message}</span>
@@ -127,7 +127,7 @@ var Snackbar = React.createClass({
   show: function() {
     this.setState({ open: true });
   },
-  
+
   dismiss: function() {
     this.setState({ open: false });
   }

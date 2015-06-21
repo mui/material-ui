@@ -1,12 +1,12 @@
-var React = require('react/addons');
-var ColorManipulator = require('../utils/color-manipulator');
-var StylePropable = require('../mixins/style-propable');
-var Colors = require('../styles/colors');
-var Transitions = require('../styles/transitions');
-var Typography = require('../styles/typography');
-var EnhancedButton = require('../enhanced-button');
+let React = require('react/addons');
+let ColorManipulator = require('../utils/color-manipulator');
+let StylePropable = require('../mixins/style-propable');
+let Colors = require('../styles/colors');
+let Transitions = require('../styles/transitions');
+let Typography = require('../styles/typography');
+let EnhancedButton = require('../enhanced-button');
 
-var ListItem = React.createClass({
+let ListItem = React.createClass({
 
   mixins: [StylePropable],
 
@@ -51,7 +51,7 @@ var ListItem = React.createClass({
 
   render: function() {
 
-    var {
+    let {
       disabled,
       disableKeyboardFocus,
       insetChildren,
@@ -72,17 +72,17 @@ var ListItem = React.createClass({
       ...other
     } = this.props;
 
-    var textColor = this.context.muiTheme.palette.textColor;
-    var hoverColor = ColorManipulator.fade(textColor, 0.1);
-    var singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
-    var singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
-    var twoLine = secondaryText && secondaryTextLines === 1;
-    var threeLine = secondaryText && secondaryTextLines > 1;
-    var hasCheckbox = leftCheckbox || rightToggle;
+    let textColor = this.context.muiTheme.palette.textColor;
+    let hoverColor = ColorManipulator.fade(textColor, 0.1);
+    let singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
+    let singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
+    let twoLine = secondaryText && secondaryTextLines === 1;
+    let threeLine = secondaryText && secondaryTextLines > 1;
+    let hasCheckbox = leftCheckbox || rightToggle;
 
-    var styles = {
+    let styles = {
       root: {
-        backgroundColor: (this.state.isKeyboardFocused || this.state.hovered) && 
+        backgroundColor: (this.state.isKeyboardFocused || this.state.hovered) &&
           !this.state.rightIconButtonHovered &&
           !this.state.rightIconButtonKeyboardFocused ? hoverColor : null,
         color: textColor,
@@ -181,15 +181,15 @@ var ListItem = React.createClass({
       }
     };
 
-    var secondaryTextIsAnElement = React.isValidElement(secondaryText);
+    let secondaryTextIsAnElement = React.isValidElement(secondaryText);
 
-    var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
-    var mergedDivStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, style);
-    var mergedLabelStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, styles.label, style);
-    var mergedSecondaryTextStyles = secondaryTextIsAnElement ?
+    let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    let mergedDivStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, style);
+    let mergedLabelStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, styles.label, style);
+    let mergedSecondaryTextStyles = secondaryTextIsAnElement ?
       this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
 
-    var contentChildren = [];
+    let contentChildren = [];
 
     this._pushElement(contentChildren, leftIcon, this.mergeStyles(styles.icons, styles.leftIcon));
     this._pushElement(contentChildren, rightIcon, this.mergeStyles(styles.icons, styles.rightIcon));
@@ -239,7 +239,7 @@ var ListItem = React.createClass({
 
   _pushElement: function(children, element, baseStyles, additionalProps) {
     if (element) {
-      var styles = this.mergeStyles(baseStyles, element.props.style);
+      let styles = this.mergeStyles(baseStyles, element.props.style);
       children.push(
         React.cloneElement(element, {
           key: children.length,
@@ -266,8 +266,8 @@ var ListItem = React.createClass({
   },
 
   _handleRightIconButtonKeyboardFocus: function(e, isKeyboardFocused) {
-    var iconButton = this.props.rightIconButton;
-    var newState = {};
+    let iconButton = this.props.rightIconButton;
+    let newState = {};
 
     newState.rightIconButtonKeyboardFocused = isKeyboardFocused;
     if (isKeyboardFocused) newState.isKeyboardFocused = false;
@@ -277,31 +277,31 @@ var ListItem = React.createClass({
   },
 
   _handleRightIconButtonMouseDown: function(e) {
-    var iconButton = this.props.rightIconButton;
+    let iconButton = this.props.rightIconButton;
     e.stopPropagation();
     if (iconButton.onMouseDown) iconButton.onDown(e);
   },
 
   _handleRightIconButtonMouseOut: function(e) {
-    var iconButton = this.props.rightIconButton;
+    let iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: false});
     if (iconButton.onMouseOut) iconButton.onMouseOut(e);
   },
 
   _handleRightIconButtonMouseOver: function(e) {
-    var iconButton = this.props.rightIconButton;
+    let iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: true});
     if (iconButton.onMouseOver) iconButton.onMouseOver(e);
   },
 
   _handleRightIconButtonMouseUp: function(e) {
-    var iconButton = this.props.rightIconButton;
+    let iconButton = this.props.rightIconButton;
     e.stopPropagation();
     if (iconButton.onMouseUp) iconButton.onUp(e);
   },
 
   _handleRightIconButtonTouchTap: function(e) {
-    var iconButton = this.props.rightIconButton;
+    let iconButton = this.props.rightIconButton;
 
     //Stop the event from bubbling up to the list-item
     e.stopPropagation();

@@ -1,10 +1,10 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Draggable = require('react-draggable2');
-var Transitions = require('./styles/transitions.js');
-var FocusRipple = require('./ripples/focus-ripple');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Draggable = require('react-draggable2');
+let Transitions = require('./styles/transitions.js');
+let FocusRipple = require('./ripples/focus-ripple');
 
-var Slider = React.createClass({
+let Slider = React.createClass({
 
   mixins: [StylePropable],
 
@@ -41,9 +41,9 @@ var Slider = React.createClass({
   },
 
   getInitialState: function() {
-    var value = this.props.value;
+    let value = this.props.value;
     if (value == null) value = this.props.defaultValue;
-    var percent = (value - this.props.min) / (this.props.max - this.props.min);
+    let percent = (value - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
     return {
       value: value,
@@ -65,10 +65,10 @@ var Slider = React.createClass({
   },
 
   getStyles: function() {
-    var size = this.getTheme().handleSize + this.getTheme().trackSize;
-    var gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
-    var fillGutter = this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
-    var styles = {
+    let size = this.getTheme().handleSize + this.getTheme().trackSize;
+    let gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
+    let fillGutter = this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
+    let styles = {
       root: {
         touchCallout: 'none',
         userSelect: 'none',
@@ -176,20 +176,20 @@ var Slider = React.createClass({
   },
 
   render: function() {
-    var percent = this.state.percent;
+    let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
-    var gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
-    var fillGutter = this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
+    let gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
+    let fillGutter = this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
 
-    var styles = this.getStyles();
-    var sliderStyles = this.mergeAndPrefix(styles.root, this.props.style);
-    var trackStyles = styles.track;
-    var filledStyles = styles.filled;
-    var remainingStyles = this.mergeAndPrefix(
+    let styles = this.getStyles();
+    let sliderStyles = this.mergeAndPrefix(styles.root, this.props.style);
+    let trackStyles = styles.track;
+    let filledStyles = styles.filled;
+    let remainingStyles = this.mergeAndPrefix(
       styles.remaining,
       percent === 0 && styles.percentZeroRemaining
     );
-    var handleStyles = percent === 0 ? this.mergeAndPrefix(
+    let handleStyles = percent === 0 ? this.mergeAndPrefix(
       styles.handle,
       styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
@@ -203,7 +203,7 @@ var Slider = React.createClass({
       this.props.disabled && styles.handleWhenDisabled
     );
 
-    var rippleStyle = {height: '12px', width: '12px'};
+    let rippleStyle = {height: '12px', width: '12px'};
 
     if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
       remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
@@ -212,9 +212,9 @@ var Slider = React.createClass({
     if (percent === 0) filledStyles.marginRight = gutter;
     if (this.state.percent === 0 && this.state.active) remainingStyles.marginLeft = fillGutter;
 
-    var rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active && this.state.percent !== 0;
-    var rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
-    var focusRipple;
+    let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active && this.state.percent !== 0;
+    let rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
+    let focusRipple;
     if (!this.props.disabled && !this.props.disableFocusRipple) {
       focusRipple = (
         <FocusRipple
@@ -273,7 +273,7 @@ var Slider = React.createClass({
 
   setValue: function(i) {
     // calculate percentage
-    var percent = (i - this.props.min) / (this.props.max - this.props.min);
+    let percent = (i - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
     // update state
     this.setState({
@@ -287,7 +287,7 @@ var Slider = React.createClass({
   },
 
   setPercent: function (percent) {
-    var value = this._alignValue(this._percentToValue(percent));
+    let value = this._alignValue(this._percentToValue(percent));
     this.setState({value: value, percent: percent});
   },
 
@@ -296,10 +296,10 @@ var Slider = React.createClass({
   },
 
   _alignValue: function (val) {
-    var { step, min } = this.props;
+    let { step, min } = this.props;
 
-    var valModStep = (val - min) % step;
-    var alignValue = val - valModStep;
+    let valModStep = (val - min) % step;
+    let alignValue = val - valModStep;
 
     if (Math.abs(valModStep) * 2 >= step) {
       alignValue += (valModStep > 0) ? step : (-step);
@@ -309,16 +309,16 @@ var Slider = React.createClass({
   },
 
   _constrain: function () {
-    var { min, max, step } = this.props;
+    let { min, max, step } = this.props;
     return (pos) => {
-      var pixelMax = React.findDOMNode(this.refs.track).clientWidth;
-      var pixelStep = pixelMax / ((max - min) / step);
+      let pixelMax = React.findDOMNode(this.refs.track).clientWidth;
+      let pixelStep = pixelMax / ((max - min) / step);
 
-      var cursor = min;
-      var i;
+      let cursor = min;
+      let i;
       for (i = 0; i < (max - min) / step; i++) {
-        var distance = (pos.left - cursor);
-        var nextDistance = (cursor + pixelStep) - pos.left
+        let distance = (pos.left - cursor);
+        let nextDistance = (cursor + pixelStep) - pos.left
         if (Math.abs(distance) > Math.abs(nextDistance)) {
           cursor += pixelStep;
         } else {
@@ -379,7 +379,7 @@ var Slider = React.createClass({
   },
 
   _dragX: function(e, pos) {
-    var max = React.findDOMNode(this.refs.track).clientWidth;
+    let max = React.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
     this._updateWithChangeEvent(e, pos / max);
   },
@@ -387,7 +387,7 @@ var Slider = React.createClass({
   _updateWithChangeEvent: function(e, percent) {
     if (this.state.percent === percent) return;
     this.setPercent(percent);
-    var value = this._alignValue(this._percentToValue(percent));
+    let value = this._alignValue(this._percentToValue(percent));
     if (this.props.onChange) this.props.onChange(e, value);
   },
 

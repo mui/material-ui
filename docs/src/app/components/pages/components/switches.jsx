@@ -1,20 +1,23 @@
-var React = require('react');
-var mui = require('mui');
-var CodeExample = require('../../code-example/code-example.jsx');
-var ComponentDoc = require('../../component-doc.jsx');
-var ToggleStar = require('../../svg-icons/toggle-star.jsx');
-var ToggleStarBorder = require('../../svg-icons/toggle-star-border.jsx');
-var Typography = mui.Styles.Typography;
-var {
+let React = require('react');
+let mui = require('mui');
+let CodeExample = require('../../code-example/code-example.jsx');
+let ComponentDoc = require('../../component-doc.jsx');
+let ToggleStar = require('../../svg-icons/toggle-star.jsx');
+let ToggleStarBorder = require('../../svg-icons/toggle-star-border.jsx');
+
+let {
   Checkbox,
   ClearFix,
   RadioButton,
   RadioButtonGroup,
+  RaisedButton,
+  Styles,
   Tab,
   Tabs,
-  Toggle,
-  RaisedButton
+  Toggle
 } = mui;
+let { Typography } = Styles;
+
 
 class SwitchesPage extends React.Component {
 
@@ -444,7 +447,7 @@ class SwitchesPage extends React.Component {
   }
 
   _getCheckboxExample() {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
     return (
       <div style={styles.group}>
         <div style={styles.container}>
@@ -483,7 +486,7 @@ class SwitchesPage extends React.Component {
   }
 
   _getToggleExample() {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
     return (
       <div style={styles.group}>
         <div style={styles.container}>
@@ -514,7 +517,7 @@ class SwitchesPage extends React.Component {
   }
 
   _getRadioButtonExample() {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
     return (
       <div style={styles.group}>
         <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">

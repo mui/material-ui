@@ -1,16 +1,14 @@
-var React = require('react');
-var mui = require('mui');
-var DatePicker = mui.DatePicker;
-var TextField = mui.TextField;
-var Toggle = mui.Toggle;
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react');
+let { DatePicker, TextField, Toggle } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
+
 
 class DatePickerPage extends React.Component {
   constructor(props) {
     super(props);
 
-    var minDate = new Date();
-    var maxDate = new Date();
+    let minDate = new Date();
+    let maxDate = new Date();
     minDate.setFullYear(minDate.getFullYear() -1);
     minDate.setHours(0,0,0,0);
     maxDate.setFullYear(maxDate.getFullYear() +1);
@@ -26,7 +24,7 @@ class DatePickerPage extends React.Component {
 
   render() {
 
-    var code =
+    let code =
       '//Portrait Dialog\n' +
       '<DatePicker\n' +
       '  hintText="Portrait Dialog"\n\n' +
@@ -42,7 +40,7 @@ class DatePickerPage extends React.Component {
       '  maxDate={this.state.maxDate}\n' +
       '  showYearSelector={this.state.showYearSelector} />';
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [
@@ -131,7 +129,7 @@ class DatePickerPage extends React.Component {
       }
     ];
 
-    var optionsStyle = {
+    let optionsStyle = {
       width: '300px',
       margin: '0 auto'
     };
@@ -198,7 +196,7 @@ class DatePickerPage extends React.Component {
   }
 
   _handleToggle(e, toggled) {
-    var state = {};
+    let state = {};
     state[e.target.name] = toggled;
     this.setState(state);
   }

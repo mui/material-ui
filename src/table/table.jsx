@@ -106,7 +106,7 @@ let Table = React.createClass({
     let headerTable, footerTable;
     let inlineHeader, inlineFooter;
     if (tHead !== undefined) {
-      if(this.props.fixedHeader) {
+      if (this.props.fixedHeader) {
         headerTable = (
           <div className='mui-header-table'>
             <table ref='headerTable' className={className} style={styles.root}>
@@ -150,7 +150,7 @@ let Table = React.createClass({
   },
 
   _getHeader() {
-    if(this.props.header) return this.props.header;
+    if (this.props.header) return this.props.header;
 
     if (this.props.headerColumns !== undefined) {
       let orderedHeaderColumns = this._orderColumnBasedData(this.props.headerColumns);

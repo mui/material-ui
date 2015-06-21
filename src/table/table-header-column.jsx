@@ -3,6 +3,7 @@ let Checkbox = require('../checkbox');
 let StylePropable = require('../mixins/style-propable');
 let Tooltip = require('../tooltip');
 
+
 let TableHeaderColumn = React.createClass({
 
   mixins: [StylePropable],

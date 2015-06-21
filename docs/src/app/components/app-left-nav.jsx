@@ -1,10 +1,9 @@
-var React = require('react');
-var Router = require('react-router');
-var mui = require('mui');
-var {MenuItem, LeftNav} = mui;
-var {Colors, Spacing, Typography} = mui.Styles;
+let React = require('react');
+let Router = require('react-router');
+let { MenuItem, LeftNav, Styles } = require('mui');
+let { Colors, Spacing, Typography } = Styles;
 
-var menuItems = [
+let menuItems = [
     { route: 'get-started', text: 'Get Started' },
     { route: 'customization', text: 'Customization' },
     { route: 'components', text: 'Components' },
@@ -13,6 +12,7 @@ var menuItems = [
     { type: MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
     { type: MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
   ];
+
 
 class AppLeftNav extends React.Component {
 
@@ -40,14 +40,14 @@ class AppLeftNav extends React.Component {
   }
 
   render() {
-    var header = (
+    let header = (
       <div style={this.getStyles()} onTouchTap={this._onHeaderClick}>
         material ui
       </div>
     );
 
     return (
-      <LeftNav 
+      <LeftNav
         ref="leftNav"
         docked={false}
         isInitiallyOpen={false}
@@ -63,9 +63,9 @@ class AppLeftNav extends React.Component {
   }
 
   _getSelectedIndex() {
-    var currentItem;
+    let currentItem;
 
-    for (var i = menuItems.length - 1; i >= 0; i--) {
+    for (let i = menuItems.length - 1; i >= 0; i--) {
       currentItem = menuItems[i];
       if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
     }

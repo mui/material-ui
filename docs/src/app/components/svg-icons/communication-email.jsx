@@ -1,8 +1,8 @@
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
+let React = require('react');
+let { SvgIcon } = require('mui');
 
-var CommunicationEmail = React.createClass({
+
+let CommunicationEmail = React.createClass({
 
   render: function() {
     return (

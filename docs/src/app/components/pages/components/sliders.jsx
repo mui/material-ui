@@ -1,17 +1,17 @@
-var React = require('react');
-var mui = require('mui');
-var Slider = mui.Slider;
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react');
+let { Slider } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
+
 
 class SlidersPage extends React.Component {
 
-  handleMouseDown(e){
+  handleMouseDown(e) {
     console.log('hmd', e);
   }
 
   render() {
 
-    var code =
+    let code =
       '// Default\n' +
       '<Slider name="slider1" />\n\n' +
       '// With starting value\n' +
@@ -22,7 +22,7 @@ class SlidersPage extends React.Component {
       '<Slider name="slider2" disabled={true} value={0.5} />\n' +
       '<Slider name="slider3" disabled={true} value={1} />';
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [

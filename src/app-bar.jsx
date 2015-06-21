@@ -1,11 +1,12 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Typography = require('./styles/typography');
-var IconButton = require('./icon-button');
-var NavigationMenu = require('./svg-icons/navigation-menu');
-var Paper = require('./paper');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Typography = require('./styles/typography');
+let IconButton = require('./icon-button');
+let NavigationMenu = require('./svg-icons/navigation-menu');
+let Paper = require('./paper');
 
-var AppBar = React.createClass({
+
+let AppBar = React.createClass({
 
   mixins: [StylePropable],
 
@@ -47,10 +48,10 @@ var AppBar = React.createClass({
   },
 
   getStyles: function() {
-    var spacing = this.context.muiTheme.spacing;
-    var themeVariables = this.context.muiTheme.component.appBar;
-    var iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
-    var styles = {
+    let spacing = this.context.muiTheme.spacing;
+    let themeVariables = this.context.muiTheme.component.appBar;
+    let iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
+    let styles = {
       root: {
         zIndex: 5,
         width: '100%',
@@ -92,18 +93,15 @@ var AppBar = React.createClass({
   },
 
   render: function() {
-    var styles = this.getStyles();
-
-    var iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
+    let title;
+    let menuElementLeft;
+    let menuElementRight;
+    let styles = this.getStyles();
+    let title = this.props.title;
+    let iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
       marginRight: -16,
       marginLeft: 'auto'
     }, this.props.iconStyleRight);
-
-    var title = this.props.title;
-
-    var titleElement;
-    var menuElementLeft;
-    var menuElementRight;
 
     if (title) {
       // If the title is a string, wrap in an h1 tag.
@@ -121,7 +119,7 @@ var AppBar = React.createClass({
           </div>
         );
       } else {
-        var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
+        let child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
             style={this.mergeAndPrefix(styles.iconButton.style)}

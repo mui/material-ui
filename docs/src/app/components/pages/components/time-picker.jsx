@@ -1,13 +1,13 @@
-var React = require('react');
-var mui = require('mui');
-var TimePicker = mui.TimePicker;
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react');
+let { TimePicker } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
 
-var TimePickerPage = React.createClass({
+
+let TimePickerPage = React.createClass({
 
   render: function() {
 
-    var code =
+    let code =
       '//The 12hr format \n' +
       '<TimePicker\n' +
       '  format="ampm" \n' +
@@ -15,9 +15,9 @@ var TimePickerPage = React.createClass({
       '//The 24hr format \n' +
       '<TimePicker\n' +
       '  format="24hr" \n' +
-      '  hintText="24hr Format" /> '; 
+      '  hintText="24hr Format" /> ';
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [
@@ -60,8 +60,8 @@ var TimePickerPage = React.createClass({
 
         <TimePicker
           ref="picker12hr"
-          format="ampm" 
-          hintText="12hr Format" 
+          format="ampm"
+          hintText="12hr Format"
           onChange={this._changeTimePicker24} />
 
         <TimePicker

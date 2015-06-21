@@ -1,11 +1,12 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var EnhancedButton = require('./enhanced-button');
-var FontIcon = require('./font-icon');
-var Tooltip = require('./tooltip');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let EnhancedButton = require('./enhanced-button');
+let FontIcon = require('./font-icon');
+let Tooltip = require('./tooltip');
 
-var IconButton = React.createClass({
+
+let IconButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -43,7 +44,7 @@ var IconButton = React.createClass({
     }
     if (process.env.NODE_ENV !== 'production') {
       if (this.props.iconClassName && this.props.children) {
-        var warning = 'You have set both an iconClassName and a child icon. ' +
+        let warning = 'You have set both an iconClassName and a child icon. ' +
                       'It is recommended you use only one method when adding ' +
                       'icons to IconButtons.';
         console.warn(warning);
@@ -52,10 +53,10 @@ var IconButton = React.createClass({
   },
 
   getStyles: function() {
-    var spacing = this.context.muiTheme.spacing;
-    var palette = this.context.muiTheme.palette;
+    let spacing = this.context.muiTheme.spacing;
+    let palette = this.context.muiTheme.palette;
 
-    var styles = {
+    let styles = {
       root: {
         position: 'relative',
         boxSizing: 'border-box',
@@ -88,17 +89,17 @@ var IconButton = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       disabled,
       iconClassName,
       tooltip,
       touch,
       ...other } = this.props;
-    var fonticon;
+    let fonticon;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var tooltipElement = tooltip ? (
+    let tooltipElement = tooltip ? (
       <Tooltip
         ref="tooltip"
         label={tooltip}
@@ -108,7 +109,7 @@ var IconButton = React.createClass({
     ) : null;
 
     if (iconClassName) {
-      var {
+      let {
         iconHoverColor,
         ...iconStyle
       } = this.props.iconStyle;
@@ -125,7 +126,7 @@ var IconButton = React.createClass({
       );
     }
 
-    var children = disabled ?
+    let children = disabled ?
       this._addStylesToChildren(styles.disabled) :
       this.props.children;
 
@@ -150,7 +151,7 @@ var IconButton = React.createClass({
   },
 
   _addStylesToChildren: function(styles) {
-    var children = [];
+    let children = [];
 
     React.Children.forEach(this.props.children, function(child) {
       children.push(
@@ -165,9 +166,9 @@ var IconButton = React.createClass({
   },
 
   _positionTooltip: function() {
-    var tooltip = React.findDOMNode(this.refs.tooltip);
-    var tooltipWidth = tooltip.offsetWidth;
-    var buttonWidth = 48;
+    let tooltip = React.findDOMNode(this.refs.tooltip);
+    let tooltipWidth = tooltip.offsetWidth;
+    let buttonWidth = 48;
 
     tooltip.style.left = (tooltipWidth - buttonWidth) / 2 * -1 + 'px';
   },

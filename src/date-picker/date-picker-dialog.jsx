@@ -1,13 +1,13 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var WindowListenable = require('../mixins/window-listenable');
-var CssEvent = require('../utils/css-event');
-var KeyCode = require('../utils/key-code');
-var Calendar = require('./calendar');
-var DialogWindow = require('../dialog-window');
-var FlatButton = require('../flat-button');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let WindowListenable = require('../mixins/window-listenable');
+let CssEvent = require('../utils/css-event');
+let KeyCode = require('../utils/key-code');
+let Calendar = require('./calendar');
+let DialogWindow = require('../dialog-window');
+let FlatButton = require('../flat-button');
 
-var DatePickerDialog = React.createClass({
+let DatePickerDialog = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
@@ -40,14 +40,14 @@ var DatePickerDialog = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       initialDate,
       onAccept,
       style,
       ...other
     } = this.props;
 
-    var styles = {
+    let styles = {
       root: {
         fontSize: '14px',
         color: this.context.muiTheme.component.datePicker.calendarTextColor
@@ -62,7 +62,7 @@ var DatePickerDialog = React.createClass({
       }
     };
 
-    var actions = [
+    let actions = [
       <FlatButton
         key={0}
         label="Cancel"
@@ -78,7 +78,7 @@ var DatePickerDialog = React.createClass({
         onTouchTap={this._handleOKTouchTap} />
     ];
 
-    if(this.props.autoOk){
+    if (this.props.autoOk){
       actions = actions.slice(0, 1);
     }
 
@@ -117,7 +117,7 @@ var DatePickerDialog = React.createClass({
   },
 
   _onSelectedDate: function(e) {
-    if(this.props.autoOk) {
+    if (this.props.autoOk) {
       setTimeout(this._handleOKTouchTap, 300);
     }
   },
@@ -139,7 +139,7 @@ var DatePickerDialog = React.createClass({
       isCalendarActive: true
     });
 
-    if(this.props.onShow) this.props.onShow();
+    if (this.props.onShow) this.props.onShow();
   },
 
   _handleDialogDismiss: function() {
@@ -150,7 +150,7 @@ var DatePickerDialog = React.createClass({
       });
     }.bind(this));
 
-    if(this.props.onDismiss) this.props.onDismiss();
+    if (this.props.onDismiss) this.props.onDismiss();
   },
 
   _handleDialogClickAway: function() {

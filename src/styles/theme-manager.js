@@ -1,11 +1,12 @@
-var Extend = require('../utils/extend');
+let Extend = require('../utils/extend');
 
-var Types = {
+
+let Types = {
   LIGHT: require('./themes/light-theme'),
   DARK: require('./themes/dark-theme')
 };
 
-var ThemeManager = function() {
+let ThemeManager = function() {
   return {
     types: Types,
     template: Types.LIGHT,

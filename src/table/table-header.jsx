@@ -3,6 +3,7 @@ let Checkbox = require('../checkbox');
 let StylePropable = require('../mixins/style-propable');
 let TableHeaderColumn = require('./table-header-column');
 
+
 let TableHeader = React.createClass({
 
   mixins: [StylePropable],

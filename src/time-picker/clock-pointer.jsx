@@ -1,24 +1,26 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
-var ClockPointer = React.createClass({
+
+let ClockPointer = React.createClass({
 
   mixins: [StylePropable],
-  
+
   contextTypes: {
     muiTheme: React.PropTypes.object
   },
-  
+
   propTypes: {
     value: React.PropTypes.number,
     type: React.PropTypes.oneOf(['hour', 'minute'])
   },
 
-  getInitialState: function () {
+  getInitialState: function() {
      return {
         inner: this.isInner(this.props.value)
     };
   },
+
   getDefaultProps: function() {
     return {
       value: null,
@@ -26,45 +28,47 @@ var ClockPointer = React.createClass({
       hasSelected: false
     };
   },
-  componentWillReceiveProps: function (nextProps) {
-      
-  	this.setState({
+
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({
         inner: this.isInner(nextProps.value)
-  	});
+    });
   },
-  isInner: function(value){
-	if(this.props.type != "hour" ) {
-		return false;
-	}
-	return value < 1 || value > 12 ;
-  },
-  getAngle: function(){
 
-  	if(this.props.type == "hour"){
-  		return this.calcAngle(this.props.value, 12);
-  	}
-  	
-  	return this.calcAngle(this.props.value, 60);
-
+  isInner: function(value) {
+    if (this.props.type != "hour" ) {
+      return false;
+    }
+    return value < 1 || value > 12 ;
   },
-  calcAngle: function(value, base){  	
-  	value %= base;
-  	var angle = 360 / base * value;
-  	return angle;
 
+  getAngle: function() {
+
+    if (this.props.type === "hour") {
+      return this.calcAngle(this.props.value, 12);
+    }
+
+    return this.calcAngle(this.props.value, 60);
   },
+
+  calcAngle: function(value, base) {
+    value %= base;
+    let angle = 360 / base * value;
+    return angle;
+  },
+
   getTheme: function() {
     return this.context.muiTheme.component.timePicker;
   },
+
   render: function() {
+    if (this.props.value == null) {
+      return <span />;
+    }
 
-  	if(this.props.value == null){
-  		return <span />;
-  	}
+    let angle = this.getAngle();
 
-  	var angle = this.getAngle();
-
-    var styles = {
+    let styles = {
       root: {
         height: "30%",
         background: this.getTheme().accentColor,
@@ -84,23 +88,22 @@ var ClockPointer = React.createClass({
         position: "absolute",
         top: "-5px",
         left: "-6px",
-        borderRadius: "100%",
+        borderRadius: "100%"
       }
     };
 
-
-    if(!this.state.inner ){
-      styles.root.height = "40%"; 
+    if (!this.state.inner) {
+      styles.root.height = "40%";
     }
 
-    if(this.props.hasSelected){
+    if (this.props.hasSelected) {
       styles.mark.display = "none";
     }
 
     return (
         <div style={this.mergeAndPrefix(styles.root)} >
           <div style={styles.mark} />
-        </div>        
+        </div>
     );
   }
 });

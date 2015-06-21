@@ -1,8 +1,8 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require("./styles/transitions");
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require("./styles/transitions");
 
-var LinearProgress = React.createClass({
+let LinearProgress = React.createClass({
 
   mixins: [StylePropable],
 
@@ -18,37 +18,37 @@ var LinearProgress = React.createClass({
   },
 
   _getRelativeValue: function(){
-    var value = this.props.value;
-    var min = this.props.min;
-    var max = this.props.max;
+    let value = this.props.value;
+    let min = this.props.min;
+    let max = this.props.max;
 
-    var clampedValue = Math.min(Math.max(min, value), max);
-    var rangeValue = max - min;
-    var relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
+    let clampedValue = Math.min(Math.max(min, value), max);
+    let rangeValue = max - min;
+    let relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
     return relValue * 100;
   },
 
   componentDidMount: function () {
-    
 
-    var bar1 = React.findDOMNode(this.refs.bar1);
-    var bar2 = React.findDOMNode(this.refs.bar2);
+
+    let bar1 = React.findDOMNode(this.refs.bar1);
+    let bar2 = React.findDOMNode(this.refs.bar2);
 
     this._barUpdate(0, bar1, [
       [-35, 100],
-      [100, -90] 
+      [100, -90]
     ]);
 
     setTimeout(function(){
 
       this._barUpdate(0, bar2, [
         [-200, 100],
-        [107, -8] 
+        [107, -8]
       ]);
 
     }.bind(this), 850);
 
- 
+
 
   },
 
@@ -83,17 +83,17 @@ var LinearProgress = React.createClass({
           mode: "indeterminate",
           value: 0,
           min: 0,
-          max: 100  
+          max: 100
       };
   },
-  
+
   getTheme: function() {
     return this.context.muiTheme.palette;
   },
 
   getStyles: function() {
-    
-    var styles = {
+
+    let styles = {
       root: {
           position: "relative",
           height: "4px",
@@ -111,7 +111,7 @@ var LinearProgress = React.createClass({
       barFragment2: {}
     };
 
-    if(this.props.mode == "indeterminate"){
+    if (this.props.mode == "indeterminate"){
       styles.barFragment1 = {
         position: "absolute",
         backgroundColor: this.getTheme().primary1Color,
@@ -134,17 +134,17 @@ var LinearProgress = React.createClass({
       styles.bar.transition = Transitions.create("width", ".3s", null, "linear");
       styles.bar.width = this._getRelativeValue() + "%";
     }
-    
+
     return styles;
   },
 
   render: function() {
-    var {
+    let {
       style,
       ...other
     } = this.props;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
     return (
       <div {...other} style={this.mergeAndPrefix(styles.root, style)}>

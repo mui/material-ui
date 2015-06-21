@@ -1,15 +1,16 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var WindowListenable = require('../mixins/window-listenable');
-var KeyCode = require('../utils/key-code');
-var Clock = require('./clock');
-var DialogWindow = require('../dialog-window');
-var FlatButton = require('../flat-button');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let WindowListenable = require('../mixins/window-listenable');
+let KeyCode = require('../utils/key-code');
+let Clock = require('./clock');
+let DialogWindow = require('../dialog-window');
+let FlatButton = require('../flat-button');
 
-var TimePickerDialog = React.createClass({
+
+let TimePickerDialog = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
-  
+
   contextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -18,36 +19,37 @@ var TimePickerDialog = React.createClass({
     initialTime: React.PropTypes.object,
     onAccept: React.PropTypes.func,
     onShow: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
+    onDismiss: React.PropTypes.func
   },
 
   windowListeners: {
     'keyup': '_handleWindowKeyUp'
   },
 
- 
+
   getTheme: function() {
     return this.context.muiTheme.component.timePicker;
   },
+
   render: function() {
-    var {
+    let {
       initialTime,
       onAccept,
       format,
       ...other
     } = this.props;
-   
-    var styles = {
+
+    let styles = {
       root: {
         fontSize: "14px",
-        color: this.getTheme().clockColor,
+        color: this.getTheme().clockColor
       },
       dialogContent: {
-        width: "280px",
+        width: "280px"
       }
     };
-   
-    var actions = [
+
+    let actions = [
       <FlatButton
         key={0}
         label="Cancel"
@@ -72,7 +74,7 @@ var TimePickerDialog = React.createClass({
         <Clock
           ref="clock"
           format={format}
-          initialTime={initialTime}  />
+          initialTime={initialTime} />
       </DialogWindow>
     );
   },
@@ -98,16 +100,13 @@ var TimePickerDialog = React.createClass({
   },
 
   _handleDialogShow: function() {
-
-    if(this.props.onShow) {
+    if (this.props.onShow) {
       this.props.onShow();
     }
   },
 
   _handleDialogDismiss: function() {
-   
-
-    if(this.props.onDismiss) {
+    if (this.props.onDismiss) {
       this.props.onDismiss();
     }
   },
@@ -119,7 +118,7 @@ var TimePickerDialog = React.createClass({
           this._handleOKTouchTap();
           break;
       }
-    } 
+    }
   }
 
 });

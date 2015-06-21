@@ -1,17 +1,17 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var WindowListenable = require('../mixins/window-listenable');
-var DateTime = require('../utils/date-time');
-var KeyCode = require('../utils/key-code');
-var Transitions = require('../styles/transitions');
-var CalendarMonth = require('./calendar-month');
-var CalendarYear = require('./calendar-year');
-var CalendarToolbar = require('./calendar-toolbar');
-var DateDisplay = require('./date-display');
-var SlideInTransitionGroup = require('../transition-groups/slide-in');
-var ClearFix = require('../clearfix');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let WindowListenable = require('../mixins/window-listenable');
+let DateTime = require('../utils/date-time');
+let KeyCode = require('../utils/key-code');
+let Transitions = require('../styles/transitions');
+let CalendarMonth = require('./calendar-month');
+let CalendarYear = require('./calendar-year');
+let CalendarToolbar = require('./calendar-toolbar');
+let DateDisplay = require('./date-display');
+let SlideInTransitionGroup = require('../transition-groups/slide-in');
+let ClearFix = require('../clearfix');
 
-var Calendar = React.createClass({
+let Calendar = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
@@ -60,7 +60,7 @@ var Calendar = React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.initialDate !== this.props.initialDate) {
-      var d = nextProps.initialDate || new Date();
+      let d = nextProps.initialDate || new Date();
       this.setState({
         displayDate: DateTime.getFirstDayOfMonth(d),
         selectedDate: d
@@ -73,13 +73,13 @@ var Calendar = React.createClass({
   },
 
   render: function() {
-    var yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
-    var weekCount = DateTime.getWeekArray(this.state.displayDate).length;
-    var toolbarInteractions = this._getToolbarInteractions();
-    var hideYearChangeButtons = this.props.hideToolbarYearChange || !this.props.showYearSelector;
-    var isMultiYearRange = yearCount > 2; // Want a year range greater than 1. Ex. [2014,2016] has a count of 3
-    var isLandscape = this.props.mode === 'landscape';
-    var styles = {
+    let yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
+    let weekCount = DateTime.getWeekArray(this.state.displayDate).length;
+    let toolbarInteractions = this._getToolbarInteractions();
+    let hideYearChangeButtons = this.props.hideToolbarYearChange || !this.props.showYearSelector;
+    let isMultiYearRange = yearCount > 2; // Want a year range greater than 1. Ex. [2014,2016] has a count of 3
+    let isLandscape = this.props.mode === 'landscape';
+    let styles = {
       root: {
         fontSize: '12px'
       },
@@ -220,8 +220,8 @@ var Calendar = React.createClass({
   },
 
   _setDisplayDate: function(d, newSelectedDate) {
-    var newDisplayDate = DateTime.getFirstDayOfMonth(d);
-    var direction = newDisplayDate > this.state.displayDate ? 'left' : 'right';
+    let newDisplayDate = DateTime.getFirstDayOfMonth(d);
+    let direction = newDisplayDate > this.state.displayDate ? 'left' : 'right';
 
     if (newDisplayDate !== this.state.displayDate) {
       this.setState({
@@ -233,7 +233,7 @@ var Calendar = React.createClass({
   },
 
   _setSelectedDate: function(date, e) {
-    var adjustedDate = date;
+    let adjustedDate = date;
     if (DateTime.isBeforeDate(date, this.props.minDate)) {
       adjustedDate = this.props.minDate;
     }
@@ -241,7 +241,7 @@ var Calendar = React.createClass({
       adjustedDate = this.props.maxDate;
     }
 
-    var newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
+    let newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
     if (newDisplayDate !== this.state.displayDate) {
       this._setDisplayDate(newDisplayDate, adjustedDate);
     } else {
@@ -249,7 +249,7 @@ var Calendar = React.createClass({
         selectedDate: adjustedDate
       });
     }
-    if(this.props.onSelectedDate) this.props.onSelectedDate(e, date);
+    if (this.props.onSelectedDate) this.props.onSelectedDate(e, date);
   },
 
   _handleDayTouchTap: function(e, date) {
@@ -265,7 +265,7 @@ var Calendar = React.createClass({
   },
 
   _handleYearTouchTap: function(e, year) {
-    var date = DateTime.clone(this.state.selectedDate);
+    let date = DateTime.clone(this.state.selectedDate);
     date.setFullYear(year);
     this._setSelectedDate(date, e);
   },

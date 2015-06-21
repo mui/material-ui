@@ -1,9 +1,10 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var Colors = require('./styles/colors');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let Colors = require('./styles/colors');
 
-var Tooltip = React.createClass({
+
+let Tooltip = React.createClass({
 
   mixins: [StylePropable],
 
@@ -27,7 +28,7 @@ var Tooltip = React.createClass({
   },
 
   getStyles: function(){
-    var styles = {
+    let styles = {
       root: {
         position: 'absolute',
         fontFamily: this.context.muiTheme.contentFontFamily,
@@ -87,10 +88,10 @@ var Tooltip = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       label,
       ...other } = this.props;
-    var styles = this.getStyles();
+    let styles = this.getStyles();
     return (
       <div {...other}
         style={this.mergeAndPrefix(
@@ -110,12 +111,12 @@ var Tooltip = React.createClass({
   },
 
   _setRippleSize: function() {
-    var ripple = React.findDOMNode(this.refs.ripple);
-    var tooltip = window.getComputedStyle(React.findDOMNode(this));
-    var tooltipWidth = parseInt(tooltip.getPropertyValue("width"), 10);
-    var tooltipHeight = parseInt(tooltip.getPropertyValue("height"), 10);
+    let ripple = React.findDOMNode(this.refs.ripple);
+    let tooltip = window.getComputedStyle(React.findDOMNode(this));
+    let tooltipWidth = parseInt(tooltip.getPropertyValue("width"), 10);
+    let tooltipHeight = parseInt(tooltip.getPropertyValue("height"), 10);
 
-    var rippleDiameter = (Math.sqrt(Math.pow(tooltipHeight, 2) +
+    let rippleDiameter = (Math.sqrt(Math.pow(tooltipHeight, 2) +
                                     Math.pow((tooltipWidth / 2.0), 2) ) * 2);
 
     if (this.props.show) {

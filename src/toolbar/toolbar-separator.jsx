@@ -1,7 +1,8 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
-var ToolbarSeparator = React.createClass({
+
+let ToolbarSeparator = React.createClass({
 
   mixins: [StylePropable],
 
@@ -19,7 +20,7 @@ var ToolbarSeparator = React.createClass({
 
   render: function() {
 
-    var styles = this.mergeAndPrefix({
+    let styles = this.mergeAndPrefix({
       backgroundColor: this.getTheme().separatorColor,
       display: 'inline-block',
       height: this.getSpacing().desktopGutterMore,

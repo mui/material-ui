@@ -1,15 +1,15 @@
-var React = require('react');
-var Router = require('react-router');
-var mui = require('mui');
-var RaisedButton = mui.RaisedButton;
-var HomeFeature = require('./home-feature.jsx');
-var FullWidthSection = require('../full-width-section.jsx');
-var ThemeManager = new mui.Styles.ThemeManager().getCurrentTheme();
+let React = require('react');
+let Router = require('react-router');
+let { Mixins, RaisedButton, Styles } = require('mui');
+let HomeFeature = require('./home-feature.jsx');
+let FullWidthSection = require('../full-width-section.jsx');
 
-var {StylePropable, StyleResizable} = mui.Mixins;
-var {Colors, Spacing, Typography} = mui.Styles;
+let { StylePropable, StyleResizable } = Mixins;
+let { Colors, Spacing, Typography } = Styles;
+let ThemeManager = new Styles.ThemeManager().getCurrentTheme();
 
-var HomePage = React.createClass({
+
+let HomePage = React.createClass({
 
   mixins: [StylePropable, StyleResizable],
 
@@ -18,7 +18,7 @@ var HomePage = React.createClass({
   },
 
   render: function() {
-    var style = {
+    let style = {
       paddingTop: Spacing.desktopKeylineIncrement
     };
 
@@ -33,7 +33,7 @@ var HomePage = React.createClass({
   },
 
   _getHomePageHero: function() {
-    var styles = {
+    let styles = {
       root: {
         backgroundColor: Colors.cyan500,
         overflow: 'hidden'
@@ -104,19 +104,19 @@ var HomePage = React.createClass({
               that Implement</span> <span style={styles.nowrap}>
               Google&apos;s Material Design</span>
             </h2>
-            <RaisedButton 
-              className="demo-button" 
-              label="Demo" 
+            <RaisedButton
+              className="demo-button"
+              label="Demo"
               onTouchTap={this._onDemoClick}
-              linkButton={true} 
-              style={styles.demoStyle} 
+              linkButton={true}
+              style={styles.demoStyle}
               labelStyle={styles.label}/>
-            <RaisedButton 
-              className="github-button" 
-              label="GitHub" 
-              linkButton={true} 
-              href="https://github.com/callemall/material-ui" 
-              style={styles.githubStyle} 
+            <RaisedButton
+              className="github-button"
+              label="GitHub"
+              linkButton={true}
+              href="https://github.com/callemall/material-ui"
+              style={styles.githubStyle}
               labelStyle={styles.label}/>
           </div>
       </FullWidthSection>
@@ -124,7 +124,7 @@ var HomePage = React.createClass({
   },
 
   _getHomePurpose: function() {
-    var styles = {
+    let styles = {
       root: {
         backgroundColor: Colors.grey200
       },
@@ -149,14 +149,14 @@ var HomePage = React.createClass({
         <a href="https://www.google.com/design/spec/material-design/introduction.html">
           Google's Material Design
         </a>. We're currently using it on a project at&nbsp;
-        <a href="https://www.call-em-all.com/">Call-Em-All</a> and plan on adding to it 
+        <a href="https://www.call-em-all.com/">Call-Em-All</a> and plan on adding to it
         and making it better in the coming months.
       </FullWidthSection>
     );
   },
 
   _getHomeFeatures: function() {
-    var styles = {maxWidth: '906px'};
+    let styles = {maxWidth: '906px'};
     return (
       <FullWidthSection useContent={true} contentStyle={styles}>
         <HomeFeature heading="Get Started" route="get-started" img="images/get-started.svg" firstChild={true}/>
@@ -167,7 +167,7 @@ var HomePage = React.createClass({
   },
 
   _getHomeContribute: function() {
-    var styles = {
+    let styles = {
       root: {
         backgroundColor: Colors.grey200,
         textAlign: 'center'

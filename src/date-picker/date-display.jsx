@@ -1,11 +1,11 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var DateTime = require('../utils/date-time');
-var Transitions = require('../styles/transitions');
-var AutoPrefix = require('../styles/auto-prefix');
-var SlideInTransitionGroup = require('../transition-groups/slide-in');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let DateTime = require('../utils/date-time');
+let Transitions = require('../styles/transitions');
+let AutoPrefix = require('../styles/auto-prefix');
+let SlideInTransitionGroup = require('../transition-groups/slide-in');
 
-var DateDisplay = React.createClass({
+let DateDisplay = React.createClass({
 
   mixins: [StylePropable],
 
@@ -36,7 +36,7 @@ var DateDisplay = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    var direction;
+    let direction;
 
     if (nextProps.selectedDate !== this.props.selectedDate) {
       direction = nextProps.selectedDate > this.props.selectedDate ? 'up' : 'down';
@@ -55,20 +55,20 @@ var DateDisplay = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       selectedDate,
       style,
       ...other
     } = this.props;
-    var dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
-    var month = DateTime.getShortMonth(this.props.selectedDate);
-    var day = this.props.selectedDate.getDate();
-    var year = this.props.selectedDate.getFullYear();
+    let dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
+    let month = DateTime.getShortMonth(this.props.selectedDate);
+    let day = this.props.selectedDate.getDate();
+    let year = this.props.selectedDate.getFullYear();
 
-    var isLandscape = this.props.mode === 'landscape';
-    var dateYPosition = '0px';
-    var dayYPosition = '30px';
-    var yearYPosition = '95px';
+    let isLandscape = this.props.mode === 'landscape';
+    let dateYPosition = '0px';
+    let dayYPosition = '30px';
+    let yearYPosition = '95px';
 
     if (isLandscape) {
       dateYPosition = this.props.weekCount === 5 ? '14px' :
@@ -77,7 +77,7 @@ var DateDisplay = React.createClass({
       if (this.props.weekCount > 4) dayYPosition = '50px';
     }
 
-    var styles = {
+    let styles = {
       root: {
         textAlign: 'center',
         position: 'relative'

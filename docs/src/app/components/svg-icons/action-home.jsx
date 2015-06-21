@@ -1,8 +1,8 @@
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
+let React = require('react');
+let { SvgIcon } = require('mui');
 
-var ActionHome = React.createClass({
+
+let ActionHome = React.createClass({
 
   render: function() {
     return (

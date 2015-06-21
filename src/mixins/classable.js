@@ -1,5 +1,5 @@
-var React = require('react');
-var classNames = require('classnames');
+let React = require('react');
+let classNames = require('classnames');
 
 module.exports = {
 
@@ -14,7 +14,7 @@ module.exports = {
   },
 
   getClasses: function(initialClasses, additionalClassObj) {
-    var classString = '';
+    let classString = '';
 
     //Initialize the classString with the classNames that were passed in
     if (this.props.className.length) classString += ' ' + this.props.className;
@@ -34,7 +34,7 @@ module.exports = {
   },
 
   getClassSet: function(classString) {
-    var classObj = {};
+    let classObj = {};
 
     if (classString) {
       classString.split(' ').forEach(function(className) {

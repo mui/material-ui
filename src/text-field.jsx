@@ -1,11 +1,11 @@
-var React = require('react');
-var ColorManipulator = require('./utils/color-manipulator');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var UniqueId = require('./utils/unique-id');
-var EnhancedTextarea = require('./enhanced-textarea');
+let React = require('react');
+let ColorManipulator = require('./utils/color-manipulator');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let UniqueId = require('./utils/unique-id');
+let EnhancedTextarea = require('./enhanced-textarea');
 
-var TextField = React.createClass({
+let TextField = React.createClass({
 
   mixins: [StylePropable],
 
@@ -40,7 +40,7 @@ var TextField = React.createClass({
   },
 
   getInitialState: function() {
-    var props = this.props;
+    let props = this.props;
     if (props.children)
       props = props.children.props;
     return {
@@ -59,8 +59,8 @@ var TextField = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    var hasErrorProp = nextProps.hasOwnProperty('errorText');
-    var newState = {};
+    let hasErrorProp = nextProps.hasOwnProperty('errorText');
+    let newState = {};
 
     if (hasErrorProp) newState.errorText = nextProps.errorText;
     if (nextProps.children && nextProps.children.props)
@@ -68,9 +68,9 @@ var TextField = React.createClass({
       nextProps = nextProps.children.props;
     }
 
-    var hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
-    var hasValueProp = nextProps.hasOwnProperty('value');
-    var hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
+    let hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
+    let hasValueProp = nextProps.hasOwnProperty('value');
+    let hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
 
     if (hasValueLinkProp) {
       newState.hasValue = nextProps.valueLink.value;
@@ -84,10 +84,10 @@ var TextField = React.createClass({
   },
 
   getStyles: function() {
-    var props = this.props;
-    var theme = this.getTheme();
+    let props = this.props;
+    let theme = this.getTheme();
 
-    var styles = {
+    let styles = {
       root: {
         fontSize: 16,
         lineHeight: '24px',
@@ -202,7 +202,7 @@ var TextField = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       className,
       errorText,
       floatingLabelText,
@@ -218,19 +218,19 @@ var TextField = React.createClass({
       ...other
     } = this.props;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var inputId = this.props.id || this._uniqueId;
+    let inputId = this.props.id || this._uniqueId;
 
-    var errorTextElement = this.state.errorText ? (
+    let errorTextElement = this.state.errorText ? (
       <div style={this.mergeAndPrefix(styles.error)}>{this.state.errorText}</div>
     ) : null;
 
-    var hintTextElement = this.props.hintText ? (
+    let hintTextElement = this.props.hintText ? (
       <div style={this.mergeAndPrefix(styles.hint)}>{this.props.hintText}</div>
     ) : null;
 
-    var floatingLabelTextElement = this.props.floatingLabelText ? (
+    let floatingLabelTextElement = this.props.floatingLabelText ? (
       <label
         style={this.mergeAndPrefix(styles.floatingLabel, this.props.floatingLabelStyle)}
         htmlFor={inputId}>
@@ -238,8 +238,8 @@ var TextField = React.createClass({
       </label>
     ) : null;
 
-    var inputProps;
-    var inputElement;
+    let inputProps;
+    let inputElement;
 
     inputProps = {
       id: inputId,
@@ -273,12 +273,12 @@ var TextField = React.createClass({
       );
     }
 
-    var underlineElement = this.props.disabled ? (
+    let underlineElement = this.props.disabled ? (
       <div style={this.mergeAndPrefix(styles.underlineAfter)}></div>
     ) : (
       <hr style={this.mergeAndPrefix(styles.underline)}/>
     );
-    var focusUnderlineElement = <hr style={this.mergeAndPrefix(styles.focusUnderline)} />;
+    let focusUnderlineElement = <hr style={this.mergeAndPrefix(styles.focusUnderline)} />;
 
     return (
       <div className={this.props.className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
@@ -364,7 +364,7 @@ var TextField = React.createClass({
   },
 
   _handleTextAreaHeightChange: function(e, height) {
-    var newHeight = height + 24;
+    let newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
     React.findDOMNode(this).style.height = newHeight + 'px';
   },

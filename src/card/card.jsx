@@ -1,8 +1,8 @@
-var React = require('react');
-var Paper = require('../paper');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let Paper = require('../paper');
+let StylePropable = require('../mixins/style-propable');
 
-var Card = React.createClass({
+let Card = React.createClass({
   mixins:[StylePropable],
 
   propTypes: {
@@ -10,20 +10,20 @@ var Card = React.createClass({
   },
 
   render: function () {
-    var lastElement = React.Children.count(this.props.children) > 1 ? 
-      this.props.children[this.props.children.length - 1] 
+    let lastElement = React.Children.count(this.props.children) > 1 ?
+      this.props.children[this.props.children.length - 1]
       : this.props.children;
 
     // If the last element is text or a title we should add
     // 8px padding to the bottom of the card
-    var addBottomPadding = (lastElement.type.displayName === "CardText" || 
+    let addBottomPadding = (lastElement.type.displayName === "CardText" ||
       lastElement.type.displayName === "CardTitle");
-    var {
+    let {
       style,
       ...other
     } = this.props;
 
-    var mergedStyles = this.mergeAndPrefix({
+    let mergedStyles = this.mergeAndPrefix({
       overflow: 'hidden',
       zIndex: 1
     }, style);

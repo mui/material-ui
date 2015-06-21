@@ -1,10 +1,10 @@
-var React = require('react');
-var Styles = require('../styles');
-var Avatar = require('../avatar');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let Styles = require('../styles');
+let Avatar = require('../avatar');
+let StylePropable = require('../mixins/style-propable');
 
-var CardHeader = React.createClass({
-  
+let CardHeader = React.createClass({
+
   mixins: [StylePropable],
 
   propTypes: {
@@ -53,18 +53,18 @@ var CardHeader = React.createClass({
   },
 
   render: function () {
-    var styles = this.getStyles();
-    var rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
-    var textStyle = this.mergeAndPrefix(styles.text, this.props.textStyle);
-    var titleStyle = this.mergeAndPrefix(styles.title, this.props.titleStyle);
-    var subtitleStyle = this.mergeAndPrefix(styles.subtitle, this.props.subtitleStyle);
+    let styles = this.getStyles();
+    let rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
+    let textStyle = this.mergeAndPrefix(styles.text, this.props.textStyle);
+    let titleStyle = this.mergeAndPrefix(styles.title, this.props.titleStyle);
+    let subtitleStyle = this.mergeAndPrefix(styles.subtitle, this.props.subtitleStyle);
 
-    var avatar = this.props.avatar;
+    let avatar = this.props.avatar;
     if (React.isValidElement(this.props.avatar)) {
-      var avatarMergedStyle = this.mergeStyles(styles.avatar, avatar.props.style);
+      let avatarMergedStyle = this.mergeStyles(styles.avatar, avatar.props.style);
       avatar = React.cloneElement(avatar, {style:avatarMergedStyle})
     }
-    else 
+    else
       avatar = <Avatar src={this.props.avatar} style={styles.avatar}/>
 
     return (

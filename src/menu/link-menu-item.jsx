@@ -1,10 +1,10 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
-var LinkMenuItem = React.createClass({
+let LinkMenuItem = React.createClass({
 
   mixins: [StylePropable],
-  
+
   contextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -18,7 +18,7 @@ var LinkMenuItem = React.createClass({
     disabled: React.PropTypes.bool,
     className: React.PropTypes.string,
   },
-  
+
   getDefaultProps: function() {
     return {
       active:false,
@@ -37,7 +37,7 @@ var LinkMenuItem = React.createClass({
   },
 
   getStyles: function() {
-    var style = {
+    let style = {
       root: {
         userSelect: 'none',
         cursor: 'pointer',
@@ -61,17 +61,17 @@ var LinkMenuItem = React.createClass({
   },
 
   render: function() {
-    var onClickHandler = (this.props.disabled) ? this._stopLink : undefined;
+    let onClickHandler = (this.props.disabled) ? this._stopLink : undefined;
     // Prevent context menu 'Open In New Tab/Window'
-    var linkAttribute = (this.props.disabled) ? 'data-href' : 'href';
-    var link = {};
+    let linkAttribute = (this.props.disabled) ? 'data-href' : 'href';
+    let link = {};
     link[linkAttribute] = this.props.payload
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var linkStyles = 
+    let linkStyles =
       this.mergeAndPrefix(
-        styles.root, 
+        styles.root,
         this.props.selected && styles.rootWhenSelected,
         this.props.selected && styles.rootWhenSelected,
         (this.props.active && !this.props.disabled) && styles.rootWhenHovered,
@@ -79,11 +79,11 @@ var LinkMenuItem = React.createClass({
         this.props.disabled && styles.rootWhenDisabled);
 
     return (
-      <a 
-        key={this.props.index} 
-        target={this.props.target} 
-        style={linkStyles} {...link} 
-        className={this.props.className} 
+      <a
+        key={this.props.index}
+        target={this.props.target}
+        style={linkStyles} {...link}
+        className={this.props.className}
         onClick={onClickHandler}
         onMouseOver={this._handleMouseOver}
         onMouseOut={this._handleMouseOut}>
@@ -91,7 +91,7 @@ var LinkMenuItem = React.createClass({
       </a>
     );
   },
-  
+
   _stopLink: function(event) {
     event.preventDefault();
   },

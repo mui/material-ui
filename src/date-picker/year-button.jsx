@@ -1,9 +1,9 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var DateTime = require('../utils/date-time');
-var EnhancedButton = require('../enhanced-button');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let DateTime = require('../utils/date-time');
+let EnhancedButton = require('../enhanced-button');
 
-var YearButton = React.createClass({
+let YearButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -34,7 +34,7 @@ var YearButton = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       className,
       year,
       onTouchTap,
@@ -42,7 +42,7 @@ var YearButton = React.createClass({
       ...other
     } = this.props;
 
-    var styles = {
+    let styles = {
       root: {
         boxSizing: 'border-box',
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',

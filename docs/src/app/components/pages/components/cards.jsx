@@ -1,7 +1,18 @@
-var React = require('react');
-var mui = require('mui');
-var ComponentDoc = require('../../component-doc.jsx');
-var {Card, CardMedia, CardTitle, CardActions, CardText, CardHeader, FlatButton, Avatar} = mui;
+let React = require('react');
+let mui = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
+
+let {
+  Avatar,
+  Card,
+  CardActions,
+  CardHeader,
+  CardMedia,
+  CardText,
+  CardTitle,
+  FlatButton
+} = mui;
+
 
 class CardPage extends React.Component {
 

@@ -1,7 +1,7 @@
 module.exports = {
 
   isDescendant: function(parent, child) {
-    var node = child.parentNode;
+    let node = child.parentNode;
 
     while (node != null) {
       if (node == parent) return true;
@@ -12,7 +12,7 @@ module.exports = {
   },
 
   offset: function(el) {
-    var rect = el.getBoundingClientRect();
+    let rect = el.getBoundingClientRect();
     return {
       top: rect.top + document.body.scrollTop,
       left: rect.left + document.body.scrollLeft
@@ -48,7 +48,7 @@ module.exports = {
   },
 
   forceRedraw: function(el) {
-    var originalDisplay = el.style.display;
+    let originalDisplay = el.style.display;
 
     el.style.display = 'none';
     el.offsetHeight;
@@ -58,7 +58,7 @@ module.exports = {
   withoutTransition: function(el, callback) {
     //turn off transition
     el.style.transition = 'none';
-    
+
     callback();
 
     //force a redraw
@@ -67,5 +67,5 @@ module.exports = {
     //put the transition back
     el.style.transition = '';
   }
-  
+
 }

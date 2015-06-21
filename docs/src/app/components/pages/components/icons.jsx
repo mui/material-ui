@@ -1,11 +1,10 @@
-var React = require('react');
-var mui = require('mui');
-var Colors = mui.Styles.Colors;
-var ComponentDoc = require('../../component-doc.jsx');
-var ActionHome = require('../../svg-icons/action-home.jsx');
+let React = require('react');
+let { ClearFix, FontIcon, Styles } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
+let ActionHome = require('../../svg-icons/action-home.jsx');
 
-var Typography = mui.Styles.Typography;
-var {ClearFix, FontIcon} = mui;
+let { Colors, Typography } = Styles;
+
 
 class FontIconPage extends React.Component {
 
@@ -22,8 +21,8 @@ class FontIconPage extends React.Component {
     };
   }
 
-	render() {
-    var fontIconCode = `
+  render() {
+    let fontIconCode = `
 <FontIcon className="muidocs-icon-action-home" />
 <FontIcon className="muidocs-icon-action-home" color={Colors.red500} />
 <FontIcon className="muidocs-icon-action-home" color={Colors.yellow500} />
@@ -39,12 +38,12 @@ class FontIconPage extends React.Component {
   hoverColor={Colors.greenA200} />
     `;
 
-    var svgIconCode =
+    let svgIconCode =
       '/** action-home.jsx */\n' +
-      'var React = require(\'react\');\n' +
-      'var mui = require(\'mui\');\n' +
-      'var SvgIcon = mui.SvgIcon;\n\n' +
-      'var ActionHome = React.createClass({\n' +
+      'let React = require(\'react\');\n' +
+      'let mui = require(\'mui\');\n' +
+      'let SvgIcon = mui.SvgIcon;\n\n' +
+      'let ActionHome = React.createClass({\n' +
       '  render: function() {\n' +
       '    return (\n' +
       '      <SvgIcon {...this.props}>\n' +
@@ -55,12 +54,12 @@ class FontIconPage extends React.Component {
       '});\n\n' +
       'module.exports = ActionHome;\n\n\n' +
       '/** Some other component. */\n' +
-      'var ActionHome = require(\'./path/to/action-home.jsx\');\n' +
+      'let ActionHome = require(\'./path/to/action-home.jsx\');\n' +
       '...\n' +
       '<ActionHome/>\n' +
       '...';
 
-    var fontIconDesc = (
+    let fontIconDesc = (
       <p style={this.getStyles()}>
         This component will render any icon defined in any style sheets included in your
         project. We are using <a title="Google's Material Design Icons GitHub"
@@ -72,7 +71,7 @@ class FontIconPage extends React.Component {
       </p>
     );
 
-    var svgIconDesc = (
+    let svgIconDesc = (
       <p style={this.getStyles()}>
         Alternatively, it is possible to include svg icons using mui.SvgIcon to
         create a custom svg component. Here we are creating the ActionHome
@@ -83,7 +82,7 @@ class FontIconPage extends React.Component {
       </p>
     );
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Properties',
         infoArray: [
@@ -122,7 +121,7 @@ class FontIconPage extends React.Component {
       }
     ];
 
-    var iconStyles = {
+    let iconStyles = {
       marginRight: 24
     };
 
@@ -159,8 +158,8 @@ class FontIconPage extends React.Component {
           <ActionHome style={iconStyles} color={Colors.blue500} hoverColor={Colors.greenA200} />
         </ComponentDoc>
       </div>
-		);
-	}
+    );
+  }
 
 }
 

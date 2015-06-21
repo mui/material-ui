@@ -1,18 +1,16 @@
-var React = require('react');
-var mui = require('mui');
-var Colors = mui.Styles.Colors;
-var Avatar = mui.Avatar;
-var FontIcon = mui.FontIcon;
-var List = mui.List;
-var ListItem = mui.ListItem;
-var ComponentDoc = require('../../component-doc.jsx');
-var FileFolder = require('../../svg-icons/file-folder.jsx');
+let React = require('react');
+let { Avatar, FontIcon, List, ListItem, Styles } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
+let FileFolder = require('../../svg-icons/file-folder.jsx');
+
+let { Colors } = Styles;
+
 
 class AvatarsPage extends React.Component {
 
   render() {
 
-    var code = `
+    let code = `
       //image avatar
       <Avatar src="images/uxceo-128.jpg" />
 
@@ -48,9 +46,9 @@ class AvatarsPage extends React.Component {
       </Avatar>
     `;
 
-    var desc = null;
+    let desc = null;
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [
@@ -82,13 +80,13 @@ class AvatarsPage extends React.Component {
       }
     ];
 
-    var imageAvatar = <Avatar src="images/uxceo-128.jpg" />;
-    var svgAvatar = <Avatar icon={<FileFolder />} />;
-    var customSvgAvatar = <Avatar icon={<FileFolder />} color={Colors.orange200} backgroundColor={Colors.pink400} />;
-    var fontAvatar = <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} />;
-    var customFontAvatar = <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} color={Colors.blue300} backgroundColor={Colors.indigo900} />;
-    var letterAvatar = <Avatar>A</Avatar>;
-    var customLetterAvatar = <Avatar color={Colors.deepOrange300} backgroundColor={Colors.purple500}>A</Avatar>;
+    let imageAvatar = <Avatar src="images/uxceo-128.jpg" />;
+    let svgAvatar = <Avatar icon={<FileFolder />} />;
+    let customSvgAvatar = <Avatar icon={<FileFolder />} color={Colors.orange200} backgroundColor={Colors.pink400} />;
+    let fontAvatar = <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} />;
+    let customFontAvatar = <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} color={Colors.blue300} backgroundColor={Colors.indigo900} />;
+    let letterAvatar = <Avatar>A</Avatar>;
+    let customLetterAvatar = <Avatar color={Colors.deepOrange300} backgroundColor={Colors.purple500}>A</Avatar>;
 
     return (
       <ComponentDoc
