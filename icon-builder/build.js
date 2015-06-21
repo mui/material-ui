@@ -18,17 +18,17 @@ rimraf(jsxFolder, function() {
 function processFolder(folderName) {
   try {
 
-    var newIconFolder = jsxFolder + '/' + folderName;
-    var svgIconFolder = iconRootPath + '/' + folderName + '/svg/production';
+    var newIconFolderPath = jsxFolder + '/' + folderName;
+    var svgIconFolderPath = iconRootPath + '/' + folderName + '/svg/production';
 
-    var files = fs.readdirSync(svgIconFolder);
+    var files = fs.readdirSync(svgIconFolderPath);
 
-    rimraf(newIconFolder, function() {
+    rimraf(newIconFolderPath, function() {
       console.log('\n ' + folderName);
-      fs.mkdirSync(newIconFolder);
+      fs.mkdirSync(newIconFolderPath);
 
-      files.forEach(function(file) {
-        processFile(file, newIconFolder, svgIconFolder);
+      files.forEach(function(fileName) {
+        processFile(folderName, fileName, newIconFolderPath, svgIconFolderPath);
       });
     });
 
@@ -37,37 +37,38 @@ function processFolder(folderName) {
   }
 }
 
-function processFile(file, folder, svgFolder) {
+function processFile(folderName, fileName, folderPath, svgFolderPath) {
   //Only process 24px files
-  var svgFile = svgFolder + '/' + file;
+  var svgFilePath = svgFolderPath + '/' + fileName;
   var suffix = '_24px.svg';
   var newFilename;
   var newFile;
 
-  if (file.indexOf(suffix, file.length - suffix.length) !== -1) {
-    newFilename = file.replace(suffix, '.jsx');
+  if (fileName.indexOf(suffix, fileName.length - suffix.length) !== -1) {
+    newFilename = fileName.replace(suffix, '.jsx');
     newFilename = newFilename.slice(3);
     newFilename = newFilename.replace(/_/g, '-');
     if (newFilename.indexOf('3d') === 0) {
       newFilename = 'three-d' + newFilename.slice(2);
     }
-    newFile = folder + '/' + newFilename;
+    newFile = folderPath + '/' + newFilename;
 
     //console.log('writing ' + newFile);
-    getJsxString(newFilename, svgFile, function(fileString) {
+    getJsxString(folderName, newFilename, svgFilePath, function(fileString) {
       fs.writeFileSync(newFile, fileString);
     });
   }
 }
 
-function getJsxString(newFilename, svgFile, callback) {
+function getJsxString(folderName, newFilename, svgFilePath, callback) {
   var className = newFilename.replace('.jsx', '');
+  className = folderName + '-' + className;
   className = pascalCase(className);
   
   console.log('  ' + className);
 
   //var parser = new xml2js.Parser();
-  fs.readFile(svgFile, {encoding: 'utf8'}, function(err, data) {
+  fs.readFile(svgFilePath, {encoding: 'utf8'}, function(err, data) {
 
     //Extract the paths from the svg string
     var paths = data.slice(data.indexOf('>') + 1);
