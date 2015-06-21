@@ -1,0 +1,34 @@
+{
+  "name": "material-ui-icons",
+  "version": "0.1.2",
+  "description": "Material Design Svg Icons converted to React components.",
+  "scripts": {
+    "prebuild": "rm -rf js",
+    "createJsx": "node build.js",
+    "build": "npm run createJsx && babel --stage 1 ./jsx --out-dir ./js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Material",
+    "Design",
+    "Material-UI",
+    "Icons",
+    "React",
+    "react-component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/callemall/material-ui-icons.git"
+  },
+  "author": "Hai Nguyen",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "peerDependencies": {
+  },
+  "devDependencies": {
+    "babel": "^5.6.1",
+    "material-design-icons": "^2.0.0",
+    "rimraf": "^2.4.0"
+  }
+}

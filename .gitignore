@@ -2,8 +2,7 @@ node_modules
 npm-debug.log
 build
 
-# jsx Transform Disk Cache
-.module-cache
-
 # Exclude compiled files
 lib
+icon-builder/js
+icon-builder/jsx
