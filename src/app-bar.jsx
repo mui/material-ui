@@ -93,7 +93,6 @@ let AppBar = React.createClass({
   },
 
   render: function() {
-    let title;
     let menuElementLeft;
     let menuElementRight;
     let styles = this.getStyles();
@@ -102,6 +101,7 @@ let AppBar = React.createClass({
       marginRight: -16,
       marginLeft: 'auto'
     }, this.props.iconStyleRight);
+    let titleElement;
 
     if (title) {
       // If the title is a string, wrap in an h1 tag.
