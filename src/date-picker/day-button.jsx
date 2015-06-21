@@ -1,10 +1,10 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var Transition = require('../styles/transitions');
-var DateTime = require('../utils/date-time');
-var EnhancedButton = require('../enhanced-button');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let Transition = require('../styles/transitions');
+let DateTime = require('../utils/date-time');
+let EnhancedButton = require('../enhanced-button');
 
-var DayButton = React.createClass({
+let DayButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -18,14 +18,14 @@ var DayButton = React.createClass({
     selected: React.PropTypes.bool,
     disabled: React.PropTypes.bool
   },
-  
+
   getDefaultProps: function() {
     return {
       selected: false,
       disabled: false
     };
   },
-  
+
   getInitialState: function() {
     return {
       hover: false
@@ -37,17 +37,17 @@ var DayButton = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       date,
       onTouchTap,
       selected,
       ...other
     } = this.props;
 
-    var styles = {
+    let styles = {
       root: {
         boxSizing: 'border-box',
-        WebkitTapHighlightColor: 'rgba(0,0,0,0)', 
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
         position: 'relative',
         float: 'left',
         width: 36,
@@ -112,7 +112,7 @@ var DayButton = React.createClass({
   _handleMouseOver: function() {
     if (!this.props.disabled) this.setState({hover: true});
   },
-  
+
   _handleMouseOut: function() {
     if (!this.props.disabled) this.setState({hover: false});
   },
@@ -123,7 +123,7 @@ var DayButton = React.createClass({
 
   _handleKeyboardFocus: function(e, keyboardFocused) {
     if (!this.props.disabled && this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
-  } 
+  }
 
 });
 

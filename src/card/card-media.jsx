@@ -1,8 +1,8 @@
-var React = require('react');
-var Styles = require('../styles');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let Styles = require('../styles');
+let StylePropable = require('../mixins/style-propable');
 
-var CardMedia = React.createClass({
+let CardMedia = React.createClass({
 
   mixins:[StylePropable],
 
@@ -43,15 +43,15 @@ var CardMedia = React.createClass({
   },
 
   render: function () {
-    var styles = this.getStyles();
-    var rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
-    var mediaStyle = this.mergeAndPrefix(styles.media, this.props.mediaStyle);
-    var overlayContainerStyle = this.mergeAndPrefix(styles.overlayContainer, this.props.overlayContainerStyle);
-    var overlayContentStyle = this.mergeAndPrefix(styles.overlayContent, this.props.overlayContentStyle);
-    var overlayStyle = this.mergeAndPrefix(styles.overlay, this.props.overlayStyle);
+    let styles = this.getStyles();
+    let rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
+    let mediaStyle = this.mergeAndPrefix(styles.media, this.props.mediaStyle);
+    let overlayContainerStyle = this.mergeAndPrefix(styles.overlayContainer, this.props.overlayContainerStyle);
+    let overlayContentStyle = this.mergeAndPrefix(styles.overlayContent, this.props.overlayContentStyle);
+    let overlayStyle = this.mergeAndPrefix(styles.overlay, this.props.overlayStyle);
 
 
-    var children = React.Children.map(this.props.children, function (child) {
+    let children = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
         style: {
           verticalAlign: 'top',
@@ -61,7 +61,7 @@ var CardMedia = React.createClass({
       });
     });
 
-    var overlayChildren = React.Children.map(this.props.overlay, function (child) {
+    let overlayChildren = React.Children.map(this.props.overlay, function (child) {
       if (child.type.displayName === 'CardHeader' || child.type.displayName === 'CardTitle'
       ) {
         return React.cloneElement(child, {

@@ -1,10 +1,7 @@
-var React = require('react');
-var mui = require('mui');
-var Dialog = mui.Dialog;
-var FlatButton = mui.FlatButton;
-var RaisedButton = mui.RaisedButton;
-var Toggle = mui.Toggle;
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react');
+let { Dialog, FlatButton, RaisedButton, Toggle } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
+
 
 class DialogPage extends React.Component {
 
@@ -21,9 +18,9 @@ class DialogPage extends React.Component {
   }
 
   render() {
-    var code =
+    let code =
       '//Standard Actions\n' +
-      'var standardActions = [\n' +
+      'let standardActions = [\n' +
       '  { text: \'Cancel\' },\n' +
       '  { text: \'Submit\', onTouchTap: this._onDialogSubmit, ref: \'submit\' }\n' +
       '];\n\n' +
@@ -35,7 +32,7 @@ class DialogPage extends React.Component {
       '  The actions in this window are created from the json that\'s passed in. \n' +
       '</Dialog>\n\n' +
       '//Custom Actions\n' +
-      'var customActions = [\n' +
+      'let customActions = [\n' +
       '  <FlatButton\n' +
       '    label="Cancel"\n' +
       '    secondary={true}\n' +
@@ -52,7 +49,7 @@ class DialogPage extends React.Component {
       '  The actions in this window were passed in as an array of react objects.\n' +
       '</Dialog>\n';
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [
@@ -145,12 +142,12 @@ class DialogPage extends React.Component {
       }
     ];
 
-    var standardActions = [
+    let standardActions = [
       { text: 'Cancel' },
       { text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit' }
     ];
 
-    var customActions = [
+    let customActions = [
       <FlatButton
         key={1}
         label="Cancel"

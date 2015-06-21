@@ -1,9 +1,9 @@
-var React = require('react/addons');
-var StylePropable = require('./mixins/style-propable');
-var Colors = require('./styles/colors');
-var Typography = require('./styles/typography');
+let React = require('react/addons');
+let StylePropable = require('./mixins/style-propable');
+let Colors = require('./styles/colors');
+let Typography = require('./styles/typography');
 
-var SvgIcon = React.createClass({
+let SvgIcon = React.createClass({
 
   mixins: [StylePropable],
 
@@ -27,7 +27,7 @@ var SvgIcon = React.createClass({
 
   render: function() {
 
-    var {
+    let {
       icon,
       backgroundColor,
       color,
@@ -36,7 +36,7 @@ var SvgIcon = React.createClass({
       ...other
     } = this.props;
 
-    var styles = {
+    let styles = {
       root: {
         height: src ? 38 : 40,
         width: src ? 38 : 40,
@@ -59,11 +59,11 @@ var SvgIcon = React.createClass({
       }
     };
 
-    var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
-    var mergedIconStyles = icon ?
+    let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    let mergedIconStyles = icon ?
       this.mergeStyles(styles.iconStyles, icon.props.style) : null;
 
-    var iconElement = icon ? React.cloneElement(icon, {
+    let iconElement = icon ? React.cloneElement(icon, {
       color: color,
       style: mergedIconStyles
     }) : null;

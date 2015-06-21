@@ -1,12 +1,12 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var Transitions = require('../styles/transitions');
-var Colors = require('../styles/colors');
-var AutoPrefix = require('../styles/auto-prefix');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let Transitions = require('../styles/transitions');
+let Colors = require('../styles/colors');
+let AutoPrefix = require('../styles/auto-prefix');
 
-var pulsateDuration = 750;
+const pulsateDuration = 750;
 
-var FocusRipple = React.createClass({
+let FocusRipple = React.createClass({
 
   mixins: [StylePropable],
 
@@ -30,7 +30,7 @@ var FocusRipple = React.createClass({
 
   render: function() {
 
-    var outerStyles = this.mergeAndPrefix({
+    let outerStyles = this.mergeAndPrefix({
       height: '100%',
       width: '100%',
       position: 'absolute',
@@ -41,7 +41,7 @@ var FocusRipple = React.createClass({
       opacity: this.props.show ? 1 : 0
     }, this.props.style);
 
-    var innerStyles = this.mergeAndPrefix({
+    let innerStyles = this.mergeAndPrefix({
       position: 'absolute',
       height: '100%',
       width: '100%',
@@ -61,11 +61,11 @@ var FocusRipple = React.createClass({
   _pulsate: function() {
     if (!this.isMounted()) return;
 
-    var startScale = 'scale(0.75)';
-    var endScale = 'scale(0.85)';
-    var innerCircle = React.findDOMNode(this.refs.innerCircle);
-    var currentScale = innerCircle.style[AutoPrefix.single('transform')];
-    var nextScale;
+    let startScale = 'scale(0.75)';
+    let endScale = 'scale(0.85)';
+    let innerCircle = React.findDOMNode(this.refs.innerCircle);
+    let currentScale = innerCircle.style[AutoPrefix.single('transform')];
+    let nextScale;
 
     currentScale = currentScale || startScale;
     nextScale = currentScale === startScale ?
@@ -76,10 +76,10 @@ var FocusRipple = React.createClass({
   },
 
   _setRippleSize: function() {
-    var el = React.findDOMNode(this);
-    var height = el.offsetHeight;
-    var width = el.offsetWidth;
-    var size = Math.max(height, width);
+    let el = React.findDOMNode(this);
+    let height = el.offsetHeight;
+    let width = el.offsetWidth;
+    let size = Math.max(height, width);
 
     el.style.height = size + 'px';
     el.style.top = (size / 2 * -1) + (height / 2) + 'px';

@@ -1,6 +1,6 @@
-var Events = require('../utils/events');
+let Events = require('../utils/events');
 
-var Sizes = {
+let Sizes = {
   SMALL: 1,
   MEDIUM: 2,
   LARGE: 3
@@ -12,11 +12,11 @@ module.exports = {
     Sizes: Sizes
   },
 
-	getInitialState: function() {
-		return {
-			deviceSize: Sizes.SMALL
-		};
-	},
+  getInitialState: function() {
+    return {
+      deviceSize: Sizes.SMALL
+    };
+  },
 
   componentDidMount: function() {
     this._updateDeviceSize();
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   _updateDeviceSize: function() {
-    var width = window.innerWidth;
+    let width = window.innerWidth;
     if (width >= 992) this.setState({deviceSize: Sizes.LARGE});
     else if (width >= 768) this.setState({deviceSize: Sizes.MEDIUM});
     else this.setState({deviceSize: Sizes.SMALL}); // width >= 375

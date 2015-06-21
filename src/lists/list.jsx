@@ -1,8 +1,8 @@
-var React = require('react/addons');
-var StylePropable = require('../mixins/style-propable');
-var Typography = require('../styles/typography');
+let React = require('react/addons');
+let StylePropable = require('../mixins/style-propable');
+let Typography = require('../styles/typography');
 
-var List = React.createClass({
+let List = React.createClass({
 
   mixins: [StylePropable],
 
@@ -23,7 +23,7 @@ var List = React.createClass({
 
   render: function() {
 
-    var {
+    let {
       insetSubheader,
       style,
       subheader,
@@ -31,7 +31,7 @@ var List = React.createClass({
       ...other
     } = this.props;
 
-    var styles = {
+    let styles = {
       root: {
         padding: 0,
         paddingBottom: 8,
@@ -47,10 +47,10 @@ var List = React.createClass({
       }
     };
 
-    var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
-    var mergedSubheaderStyles = this.mergeAndPrefix(styles.subheader, subheaderStyle);
+    let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    let mergedSubheaderStyles = this.mergeAndPrefix(styles.subheader, subheaderStyle);
 
-    var subheaderElement = subheader ? (
+    let subheaderElement = subheader ? (
       <div style={mergedSubheaderStyles}>{subheader}</div>
     ) : null;
 

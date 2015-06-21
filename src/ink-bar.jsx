@@ -1,8 +1,9 @@
-var React = require('react');
-var Transitions = require('./styles/transitions');
-var StylePropable = require('./mixins/style-propable');
+let React = require('react');
+let Transitions = require('./styles/transitions');
+let StylePropable = require('./mixins/style-propable');
 
-var InkBar = React.createClass({
+
+let InkBar = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object
@@ -16,9 +17,9 @@ var InkBar = React.createClass({
   mixins: [StylePropable],
 
   render: function() {
-    var palette = this.context.muiTheme.palette;
+    let palette = this.context.muiTheme.palette;
 
-    var styles = this.mergeAndPrefix({
+    let styles = this.mergeAndPrefix({
       left: this.props.left,
       width: this.props.width,
       bottom: 0,

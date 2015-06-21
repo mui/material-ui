@@ -1,36 +1,38 @@
-var React = require('react');
-var mui = require('mui');
-var CodeBlock = require('../../code-example/code-block.jsx');
-var ComponentDoc = require('../../component-doc.jsx');
-var ComponentInfo = require('../../component-info.jsx');
+let React = require('react');
+let mui = require('mui');
+let CodeBlock = require('../../code-example/code-block.jsx');
+let ComponentDoc = require('../../component-doc.jsx');
+let ComponentInfo = require('../../component-info.jsx');
 
-var {
+let {
   Checkbox,
   ClearFix,
-  DatePicker, 
+  DatePicker,
   Dialog,
   DropDownMenu,
   FlatButton,
   FloatingActionButton,
-  LeftNav, 
+  LeftNav,
   MenuItem,
-  Paper, 
+  Mixins,
+  Paper,
   RadioButton,
   RadioButtonGroup,
   RaisedButton,
-  Snackbar, 
+  Snackbar,
   Slider,
-  Tabs, 
+  Styles,
+  Tabs,
   Tab,
   TextField,
-  Toggle} = mui;
+  Toggle
+} = mui;
+let { StylePropable, StyleResizable } = Mixins;
+let { Typography } = Styles;
+let ThemeManager = new Styles.ThemeManager();
 
-var {StylePropable, StyleResizable} = mui.Mixins;
 
-var Typography = mui.Styles.Typography;
-var ThemeManager = new mui.Styles.ThemeManager();
-
-var ThemesPage = React.createClass({
+let ThemesPage = React.createClass({
 
   mixins: [StylePropable, StyleResizable],
 
@@ -52,8 +54,8 @@ var ThemesPage = React.createClass({
 
 
   getStyles: function() {
-    var canvasColor = ThemeManager.getCurrentTheme().palette.canvasColor;
-    var styles = {
+    let canvasColor = ThemeManager.getCurrentTheme().palette.canvasColor;
+    let styles = {
       group: {
         float: 'left',
         width: '100%',
@@ -111,12 +113,12 @@ var ThemesPage = React.createClass({
     return styles;
   },
 
-	render: function() {
+  render: function() {
 
-    var usageCodeES6 = 
-          'var React = require(\'react\');\n' +
-          'var mui = require(\'mui\');\n' +
-          'var ThemeManager = new mui.Styles.ThemeManager();\n\n' +
+    let usageCodeES6 =
+          'let React = require(\'react\');\n' +
+          'let mui = require(\'mui\');\n' +
+          'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
           'class OuterMostParentComponent extends React.Component {\n' +
           '  // Important!\n' +
           '  getChildContext() { \n' +
@@ -131,11 +133,11 @@ var ThemesPage = React.createClass({
           '};\n\n' +
           'module.exports = OuterMostParentComponent;';
 
-    var usageCodeES5 = 
-          'var React = require(\'react\');\n' +
-          'var mui = require(\'mui\');\n' +
-          'var ThemeManager = new mui.Styles.ThemeManager();\n\n' +
-          'var OuterMostParentComponent = React.createClass ({\n' +
+    let usageCodeES5 =
+          'let React = require(\'react\');\n' +
+          'let mui = require(\'mui\');\n' +
+          'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
+          'let OuterMostParentComponent = React.createClass ({\n' +
           '  // Important!\n' +
           '  childContextTypes: {\n' +
           '    muiTheme: React.PropTypes.object\n' +
@@ -149,19 +151,19 @@ var ThemesPage = React.createClass({
           '});\n\n' +
           'module.exports = OuterMostParentComponent;';
 
-    var customComponentCode = 
+    let customComponentCode =
           'CustomReactComponent.contextTypes = {\n' +
           '  muiTheme: React.PropTypes.object\n' +
           '}';
 
-    var desc = 'ThemeManager allows you to manipulate the current theme of your website. Themes are ' +
+    let desc = 'ThemeManager allows you to manipulate the current theme of your website. Themes are ' +
                'Javascript objects made up of two getter functions: getPalette() and ' +
                'getComponentThemes(palette). ThemeManager is composed of two objects: palette and ' +
                'component. Each contain a collection of variables used by Material-UI components. ' +
                'Themes give you further customization across your entire website or for specific ' +
                'pages.';
-        
-    var info = [
+
+    let info = [
       {
         name: 'ThemeManager Props',
         infoArray: [
@@ -175,7 +177,7 @@ var ThemesPage = React.createClass({
             name: 'palette',
             type: 'object',
             desc: 'The palette object is a set of color variables used by all ' +
-                  'Material-UI components. It should not be modified directly.'          
+                  'Material-UI components. It should not be modified directly.'
           },
           {
             name: 'component',
@@ -183,7 +185,7 @@ var ThemesPage = React.createClass({
             desc: 'The component object is a collection of nested objects for ' +
                   'each Material-UI component that use theme variables. Inside ' +
                   'each nested object is a set of variables utilized only by ' +
-                  'a specific component. It should not be modified directly.'    
+                  'a specific component. It should not be modified directly.'
           },
           {
             name: 'types',
@@ -200,14 +202,14 @@ var ThemesPage = React.createClass({
           {
             name: 'getCurrentTheme',
             header: 'ThemeManager.getCurrentTheme()',
-            desc: 'Returns the current theme being used by the context.'           
+            desc: 'Returns the current theme being used by the context.'
           },
           {
             name: 'setTheme',
             header: 'ThemeManager.setTheme(newTheme)',
             desc: 'Sets the properties of the current theme with those defined ' +
                   'from the overrides object argument. Overriding properties of ' +
-                  'ThemeManager.palette (your primary and accent colors) will signal ' + 
+                  'ThemeManager.palette (your primary and accent colors) will signal ' +
                   'all component to update their theme variables in order to ' +
                   'use the new changes. Thus, overrides to component properties ' +
                   'made before '
@@ -230,13 +232,13 @@ var ThemesPage = React.createClass({
             name: 'setComponentThemes',
             header: 'ThemeManager.setComponentThemes(overrides)',
             desc: 'Updates the component object of the current theme to use the ' +
-                  'properties defined in overrides.'            
+                  'properties defined in overrides.'
           }
         ]
       }
     ];
 
-    var code = 
+    let code =
       '// Toggles between light and dark themes\n' +
       '// This function is passed as the \'onChange\' prop for Tabs\n' +
       'onTabChange(tabIndex, tab) {\n' +
@@ -248,10 +250,10 @@ var ThemesPage = React.createClass({
       '  this.setState({isThemeDark: !this.state.isThemeDark});\n' +
       '}';
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-		return (
-			<div>
+    return (
+      <div>
 
         <ComponentDoc
           name="Themes"
@@ -266,9 +268,9 @@ var ThemesPage = React.createClass({
         <p>
           Material-UI&#39;s <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme-manager.js">
           ThemeManager component</a> uses React&#39;s <a href="https://facebook.github.io/react/blog/2014/03/28/the-road-to-1.0.html#context">
-          context</a> feature to manage Theme objects. Contexts in React propogates values down from one 
-          component down to all of its children and grandchildren. Insert the following code in your 
-          outermost component, so that all Material-UI components used through-out the site have 
+          context</a> feature to manage Theme objects. Contexts in React propogates values down from one
+          component down to all of its children and grandchildren. Insert the following code in your
+          outermost component, so that all Material-UI components used through-out the site have
           access to the theme.
         </p>
         <Paper style={styles.codeExample}>
@@ -282,9 +284,9 @@ var ThemesPage = React.createClass({
           </Tabs>
         </Paper>
         <p>
-          <b>Important:</b> The code above is <u>required</u> when using Material-UI. Without it, 
-          Material-UI components will not have access to the default theme and will not render as 
-          a result. Keep in mind that the user is responsible for updating CSS classes to be in 
+          <b>Important:</b> The code above is <u>required</u> when using Material-UI. Without it,
+          Material-UI components will not have access to the default theme and will not render as
+          a result. Keep in mind that the user is responsible for updating CSS classes to be in
           sync with theme properties, because Material-UI components only use inline-styles.
         </p>
 
@@ -292,9 +294,9 @@ var ThemesPage = React.createClass({
         <h3 style={styles.title}>Overriding Theme Variables</h3>
 
         <p>
-          If you would like to make changes to the Theme for a specific pages, include the code 
-          below in said page. All components defined on this page along with there children will 
-          use your Theme overrides. The toggle buttons in the <a href="#/components/menus">Menus 
+          If you would like to make changes to the Theme for a specific pages, include the code
+          below in said page. All components defined on this page along with there children will
+          use your Theme overrides. The toggle buttons in the <a href="#/components/menus">Menus
           page</a> is an example of this. Notice how these changes do not bleed over on to sibling
           pages such as the <a href="#/components/switches">Switches page</a>.
         </p>
@@ -305,10 +307,10 @@ var ThemesPage = React.createClass({
 
         <h3 style={styles.title}>Giving Custom React Components Access to Theme</h3>
         <p>
-          If you would only like to create a React component with access to Theme, include the code 
-          below at the end of your component&#39;s class definition. This is valid because the usage 
+          If you would only like to create a React component with access to Theme, include the code
+          below at the end of your component&#39;s class definition. This is valid because the usage
           code mentioned earlier had been inserted in the outer most component. <a href='https://github.com/callemall/material-ui/blob/master/docs/src/app/components/code-example/code-example.jsx'>
-          CodeExample</a> is an example of a custom component using ThemeManager. 
+          CodeExample</a> is an example of a custom component using ThemeManager.
         </p>
         <Paper style={styles.codeExample}>
           <CodeBlock>{customComponentCode}</CodeBlock>
@@ -318,8 +320,8 @@ var ThemesPage = React.createClass({
         <h3 style={styles.title}>Custom Themes</h3>
         <p>
           To see an example containing all theme variables, checkout our <a href="https://github.com/callemall/material-ui/blob/master/src/styles/themes/light-theme.js">
-          light-theme</a>. The code-block below defines the structure needed to have a valid custom 
-          theme. Note that if a property is not defined in the custom theme, the default will be 
+          light-theme</a>. The code-block below defines the structure needed to have a valid custom
+          theme. Note that if a property is not defined in the custom theme, the default will be
           what is defined in our light theme.
         </p>
         <Paper style={styles.codeExample}>
@@ -327,12 +329,12 @@ var ThemesPage = React.createClass({
         </Paper>
 
       </div>
-		);
-	},
+    );
+  },
 
   getThemeStructure: function() {
-    var text =
-      'var CustomTheme = {\n' +
+    let text =
+      'let CustomTheme = {\n' +
       '  getPalette: function() {\n' +
       '    return {\n' +
       '      primary1Color: String,\n' +
@@ -484,36 +486,36 @@ var ThemesPage = React.createClass({
 
   getComponentGroup: function() {
     //Standard Actions
-    var standardActions = [
+    let standardActions = [
       { text: 'Cancel' },
       { text: 'Submit', onTouchTap: this._onDialogSubmit }
     ];
 
-    var menuItemsNav = [
+    let menuItemsNav = [
       { route: 'get-started', text: 'Get Started' },
       { route: 'customization', text: 'Customization' },
       { route: 'component', text: 'Component' },
       { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
-      { 
-         type: MenuItem.Types.LINK, 
-         payload: 'https://github.com/callemall/material-ui', 
-         text: 'GitHub' 
+      {
+         type: MenuItem.Types.LINK,
+         payload: 'https://github.com/callemall/material-ui',
+         text: 'GitHub'
       },
-      { 
-         text: 'Disabled', 
-         disabled: true 
+      {
+         text: 'Disabled',
+         disabled: true
       },
-      { 
-         type: MenuItem.Types.LINK, 
-         payload: 'https://www.google.com', 
-         text: 'Disabled Link', 
-         disabled: true 
+      {
+         type: MenuItem.Types.LINK,
+         payload: 'https://www.google.com',
+         text: 'Disabled Link',
+         disabled: true
       }
     ];
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var menuItems = [
+    let menuItems = [
        { payload: '1', text: 'Never' },
        { payload: '2', text: 'Every Night' },
        { payload: '3', text: 'Weeknights' },
@@ -552,7 +554,7 @@ var ThemesPage = React.createClass({
                 disabled={true} />
             </div>
             <div style={styles.container}>
-              <RadioButtonGroup 
+              <RadioButtonGroup
                 name="shipSpeed"
                 defaultSelected="usd">
                   <RadioButton
@@ -607,7 +609,7 @@ var ThemesPage = React.createClass({
             <div style={styles.containerCentered}>
               <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
               <Dialog ref="dialog" title="Dialog With Standard Actions" actions={standardActions}>
-                The actions in this window are created from the json that&#39;s passed in. 
+                The actions in this window are created from the json that&#39;s passed in.
               </Dialog>
             </div>
           </div>
@@ -620,7 +622,7 @@ var ThemesPage = React.createClass({
               <LeftNav ref="leftNav" docked={false} menuItems={menuItemsNav} />
             </div>
           </div>
-          
+
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton
@@ -631,7 +633,7 @@ var ThemesPage = React.createClass({
                 message="This is a snackbar"
                 action="Got It!"
                 onActionTouchTap={this.handleAction}/>
-            </div>            
+            </div>
           </div>
       </ClearFix>
     );
@@ -652,9 +654,9 @@ var ThemesPage = React.createClass({
 
   getOverrideExamplePage: function() {
     return (
-      'var React = require(\'react\');\n' +
-      'var mui = require(\'mui\');\n' +
-      'var ThemeManager = new mui.Styles.ThemeManager();\n\n' +
+      'let React = require(\'react\');\n' +
+      'let mui = require(\'mui\');\n' +
+      'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
       'class MenusPage extends React.Component {\n\n' +
       '  getChildContext() { \n' +
       '    return {\n' +

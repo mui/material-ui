@@ -1,8 +1,9 @@
-var React = require('react');
-var Colors = require('../styles/colors');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let Colors = require('../styles/colors');
+let StylePropable = require('../mixins/style-propable');
 
-var ToolbarGroup = React.createClass({
+
+let ToolbarGroup = React.createClass({
 
   mixins: [StylePropable],
 
@@ -30,9 +31,9 @@ var ToolbarGroup = React.createClass({
   },
 
   getStyles: function() {
-    var marginHorizontal = this.getSpacing();
-    var marginVertical = (this.getTheme().height - this.context.muiTheme.component.button.height) / 2;
-    var styles = {
+    let marginHorizontal = this.getSpacing();
+    let marginVertical = (this.getTheme().height - this.context.muiTheme.component.button.height) / 2;
+    let styles = {
       root: {
         position: 'relative',
         float: this.props.float
@@ -80,13 +81,13 @@ var ToolbarGroup = React.createClass({
   },
 
   render: function() {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
     if (this.props.firstChild) styles.marginLeft = -24;
     if (this.props.lastChild) styles.marginRight = -24;
 
-    var newChildren = React.Children.map(this.props.children, function(currentChild) {
-      if(!currentChild) {
+    let newChildren = React.Children.map(this.props.children, function(currentChild) {
+      if (!currentChild) {
         return null;
       }
       switch (currentChild.type.displayName) {
@@ -147,7 +148,7 @@ var ToolbarGroup = React.createClass({
   _handleMouseOutFontIcon: function(e) {
     e.target.style.zIndex = 'auto';
     e.target.style.color = this.getStyles().icon.root.color;
-  },
+  }
 });
 
 module.exports = ToolbarGroup;

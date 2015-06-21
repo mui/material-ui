@@ -1,7 +1,7 @@
-var Colors = require('../colors');
-var ColorManipulator = require('../../utils/color-manipulator');
+let Colors = require('../colors');
+let ColorManipulator = require('../../utils/color-manipulator');
 
-var DarkTheme = {
+let DarkTheme = {
   getPalette: function() {
     return {
       textColor: Colors.fullWhite,
@@ -11,7 +11,7 @@ var DarkTheme = {
     };
   },
   getComponentThemes: function(palette) {
-    var cardColor = Colors.grey800;
+    let cardColor = Colors.grey800;
     return {
       floatingActionButton: {
         disabledColor: ColorManipulator.fade(palette.textColor, 0.12),
@@ -25,7 +25,7 @@ var DarkTheme = {
       },
       menuItem: {
         hoverColor: 'rgba(255, 255, 255, .03)',
-      },      
+      },
       menuSubheader: {
         borderColor: 'rgba(255, 255, 255, 0.3)',
       },

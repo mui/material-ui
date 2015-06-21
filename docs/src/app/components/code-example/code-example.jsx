@@ -1,15 +1,15 @@
-var React = require('react');
-var mui = require('mui');
-var CodeBlock = require('./code-block.jsx');
+let React = require('react');
+let { ClearFix, Paper, Styles } = require('mui');
+let CodeBlock = require('./code-block.jsx');
 
-var {ClearFix, Paper} = mui;
-var {Colors, Spacing, Typography} = mui.Styles;
+let { Colors, Spacing, Typography } = Styles;
+
 
 class CodeExample extends React.Component {
 
   getStyles() {
-    var borderColor = this.context.muiTheme.palette.borderColor;
-    var canvasColor = this.context.muiTheme.palette.canvasColor;
+    let borderColor = this.context.muiTheme.palette.borderColor;
+    let canvasColor = this.context.muiTheme.palette.canvasColor;
     return {
       root: {
         backgroundColor: canvasColor,
@@ -35,15 +35,15 @@ class CodeExample extends React.Component {
   }
 
   render() {
-    var styles = this.getStyles();
+    let styles = this.getStyles();
     return (
-      <mui.Paper style={styles.root}>
+      <Paper style={styles.root}>
           <div style={styles.exampleLabel}>example</div>
           <ClearFix style={styles.exampleBlock}>
             {this.props.children}
           </ClearFix>
           <CodeBlock>{this.props.code}</CodeBlock>
-      </mui.Paper>
+      </Paper>
     );
   }
 }
@@ -54,6 +54,6 @@ CodeExample.propTypes = {
 
 CodeExample.contextTypes = {
   muiTheme: React.PropTypes.object
-}
+};
 
 module.exports = CodeExample;

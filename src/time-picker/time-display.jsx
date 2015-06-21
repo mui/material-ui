@@ -1,7 +1,8 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
-var TimeDisplay = React.createClass({
+
+let TimeDisplay = React.createClass({
 
   mixins: [StylePropable],
 
@@ -21,97 +22,94 @@ var TimeDisplay = React.createClass({
       transitionDirection: 'up'
     };
   },
-  getDefaultProps: function () {
-      return {
-          mode: 'hour' ,
-          affix: ''
-      };
+
+  getDefaultProps: function() {
+    return {
+        mode: 'hour' ,
+        affix: ''
+    };
   },
+
   componentWillReceiveProps: function(nextProps) {
-    var direction;
+    let direction;
 
     if (nextProps.selectedTime !== this.props.selectedTime) {
       direction = nextProps.selectedTime > this.props.selectedTime ? 'up' : 'down';
+
       this.setState({
         transitionDirection: direction
       });
     }
   },
+
   sanitizeTime: function() {
-    var hour = this.props.selectedTime.getHours();
-    var min = this.props.selectedTime.getMinutes().toString();
+    let hour = this.props.selectedTime.getHours();
+    let min = this.props.selectedTime.getMinutes().toString();
 
-    if(this.props.format == "ampm"){
-
+    if (this.props.format == "ampm"){
       hour %= 12;
       hour = hour || 12;
     }
 
     hour = hour.toString();
-    if(hour.length < 2 ) hour = "0" + hour;
-    if(min.length < 2 ) min = "0" + min;
+    if (hour.length < 2 ) hour = "0" + hour;
+    if (min.length < 2 ) min = "0" + min;
 
     return [hour, min];
   },
+
   getTheme: function() {
     return this.context.muiTheme.component.timePicker;
   },
+
   render: function() {
+    let {
+      selectedTime,
+      mode,
+      ...other
+    } = this.props;
 
-		var {
-			selectedTime,
-			mode,
-			...other
-		} = this.props;
+    let styles = {
+      root: {
+        textAlign: "center",
+        position: "relative",
+        width: "280px",
+        height: "100%"
+      },
 
-		var styles = {
-			root: {
-				textAlign: "center",
-				position: "relative",
-				width: "280px",
-				height: "100%",
-			},
+      time: {
+        margin: "6px 0",
+        lineHeight: "58px",
+        height: "58px",
+        fontSize: "58px"
+      },
 
-			time: {
-				margin: "6px 0",
-				lineHeight: "58px",
-				height: "58px",
-				fontSize: "58px",
-			},
+      box: {
+        padding: "16px 0",
+        backgroundColor: this.getTheme().color,
+        color: this.getTheme().textColor
+      },
 
-			box: {
-				padding: "16px 0",
-		    backgroundColor: this.getTheme().color,
-		    color: this.getTheme().textColor,
-			},
+      hour: {},
 
+      minute: {}
+    }
 
-			hour: {},
-
-			minute: {}
-		}
-
-
-    var [hour, min] =  this.sanitizeTime();
+    let [hour, min] = this.sanitizeTime();
 
     styles[mode].color = this.getTheme().accentColor;
 
     return (
-      <div {...other} style={this.mergeAndPrefix(styles.root)} >
-
-        <div style={this.mergeAndPrefix(styles.box)} >
-
-
-          <div style={this.mergeAndPrefix(styles.time)} >
+      <div {...other} style={this.mergeAndPrefix(styles.root)}>
+        <div style={this.mergeAndPrefix(styles.box)}>
+          <div style={this.mergeAndPrefix(styles.time)}>
             <span style={this.mergeAndPrefix(styles.hour)} onTouchTap={this.props.onSelectHour}>{hour}</span>
             <span>:</span>
             <span style={this.mergeAndPrefix(styles.minute)} onTouchTap={this.props.onSelectMin}>{min}</span>
           </div>
+
          <span key={"affix"}>{this.props.affix.toUpperCase()}</span>
-
-
         </div>
-
       </div>
     );
   }
@@ -119,6 +117,3 @@ var TimeDisplay = React.createClass({
 });
 
 module.exports = TimeDisplay;
-
-
-

@@ -1,11 +1,11 @@
-var isBrowser = typeof window !== 'undefined';
-var Modernizr = isBrowser ? require('../utils/modernizr.custom') : undefined;
+let isBrowser = typeof window !== 'undefined';
+let Modernizr = isBrowser ? require('../utils/modernizr.custom') : undefined;
 
 module.exports = {
 
   all: function(styles) {
-    var prefixedStyle = {};
-    for (var key in styles) {
+    let prefixedStyle = {};
+    for (let key in styles) {
       prefixedStyle[this.single(key)] = styles[key];
     }
     return prefixedStyle;
@@ -20,7 +20,7 @@ module.exports = {
   },
 
   singleHyphened: function(key) {
-    var str = this.single(key);
+    let str = this.single(key);
 
     return !str ? key : str.replace(/([A-Z])/g, function(str,m1){
       return '-' + m1.toLowerCase();

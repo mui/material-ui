@@ -1,7 +1,8 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
-var Toolbar = React.createClass({
+
+let Toolbar = React.createClass({
 
   mixins: [StylePropable],
 

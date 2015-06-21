@@ -1,8 +1,9 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
 
-var FontIcon = React.createClass({
+
+let FontIcon = React.createClass({
 
   mixins: [StylePropable],
 
@@ -24,7 +25,7 @@ var FontIcon = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       color,
       hoverColor,
       onMouseOut,
@@ -33,13 +34,13 @@ var FontIcon = React.createClass({
       ...other
     } = this.props;
 
-    var spacing = this.context.muiTheme.spacing;
-    var offColor = color ? color :
+    let spacing = this.context.muiTheme.spacing;
+    let offColor = color ? color :
       style && style.color ? style.color :
       this.context.muiTheme.palette.textColor;
-    var onColor = hoverColor ? hoverColor : offColor;
+    let onColor = hoverColor ? hoverColor : offColor;
 
-    var mergedStyles = this.mergeAndPrefix({
+    let mergedStyles = this.mergeAndPrefix({
       position: 'relative',
       fontSize: spacing.iconSize,
       display: 'inline-block',

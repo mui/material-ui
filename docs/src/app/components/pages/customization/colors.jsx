@@ -1,17 +1,17 @@
-var React = require('react');
-var mui = require('mui');
-var ClearFix = mui.ClearFix;
-var ColorManipulator = mui.Utils.ColorManipulator;
+let React = require('react');
+let { ClearFix, Mixins, Styles, Utils } = require('mui');
 
-var {Colors, Typography} = mui.Styles;
-var {StyleResizable, StylePropable} = mui.Mixins;
+let { ColorManipulator } = Utils;
+let { StyleResizable, StylePropable } = Mixins;
+let { Colors, Typography } = Styles;
 
-var ColorsPage = React.createClass({
+
+let ColorsPage = React.createClass({
 
   mixins: [StyleResizable, StylePropable],
 
   getStyles: function() {
-    var styles = {
+    let styles = {
       root: {
         //null
       },
@@ -36,7 +36,7 @@ var ColorsPage = React.createClass({
         marginBottom: '12px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack        
+        color: Typography.textDarkBlack
       },
       colorGroupWhenSmall: {
         width: '50%'
@@ -54,15 +54,15 @@ var ColorsPage = React.createClass({
     } else if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
       styles.colorGroup = this.mergeStyles(styles.colorGroup, styles.colorGroupWhenMedium);
     } else {
-      styles.colorGroup = this.mergeStyles(styles.colorGroup, styles.colorGroupWhenSmall);   
+      styles.colorGroup = this.mergeStyles(styles.colorGroup, styles.colorGroupWhenSmall);
     }
 
     return styles;
   },
 
   render: function() {
-    var mainColors = [
-        'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue', 
+    let mainColors = [
+        'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue',
         'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange'
       ],
       neutralColors = ['Brown', 'Blue Grey', 'Grey'],
@@ -77,16 +77,16 @@ var ColorsPage = React.createClass({
       neutralGroups.push(this._getColorGroup(color, false));
     }, this);
 
-    var googleLink = "https://www.google.com/design/spec/style/color.html#color-ui-color-palette";
-    var githubLink = "https://github.com/callemall/material-ui/blob/css-in-js/src/js/styles/colors.js";
+    let googleLink = "https://www.google.com/design/spec/style/color.html#color-ui-color-palette";
+    let githubLink = "https://github.com/callemall/material-ui/blob/css-in-js/src/js/styles/colors.js";
 
     return (
       <div>
         <h2 style={this.getStyles().headline}>UI Color Palette</h2>
         <p>
-          We&#39;ve created javascript variables for every color used in 
-          the <a href={googleLink}>UI Color Palette</a>. They are stored 
-          in <a href={githubLink}>styles/colors.js</a>. 
+          We&#39;ve created javascript variables for every color used in
+          the <a href={googleLink}>UI Color Palette</a>. They are stored
+          in <a href={githubLink}>styles/colors.js</a>.
         </p>
 
         <ClearFix>
@@ -101,11 +101,11 @@ var ColorsPage = React.createClass({
   },
 
   _getColorGroup: function(color, showAltPalette) {
-    var mainPalette = [50,100,200,300,400,500,600,700,800,900];
-    var altPalette = ['A100','A200','A400','A700'];
-    var cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
-    var colors = [];
-    var colorGroupStyle = this.getStyles().colorGroup;
+    let mainPalette = [50,100,200,300,400,500,600,700,800,900];
+    let altPalette = ['A100','A200','A400','A700'];
+    let cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
+    let colors = [];
+    let colorGroupStyle = this.getStyles().colorGroup;
 
     mainPalette.forEach(function(mainValue) {
       colors.push(this._getColorBlock(cssColor, mainValue));
@@ -126,23 +126,21 @@ var ColorsPage = React.createClass({
   },
 
   _getColorBlock: function(colorName, colorValue, colorTitle) {
-    var bgColorText = colorName + colorValue;
-    var bgColor = Colors[bgColorText];
-    var fgColor = Colors.fullBlack;
-    var contrastRatio = ColorManipulator.contrastRatio(bgColor, fgColor);
-    var blockTitle;
+    let bgColorText = colorName + colorValue;
+    let bgColor = Colors[bgColorText];
+    let fgColor = Colors.fullBlack;
+    let contrastRatio = ColorManipulator.contrastRatio(bgColor, fgColor);
+    let blockTitle;
 
     if (contrastRatio < 7) fgColor = Colors.fullWhite;
     if (colorTitle) blockTitle = <span style={this.getStyles().name}>{colorTitle}</span>;
 
-    var styles = {
+    let styles = {
       backgroundColor: bgColor,
       color: fgColor,
       listStyle: 'none',
       padding: '15px'
     };
-
-    // if (colorValue === 900) styles.paddingBottom = '16px';
 
     return (
       <li style={styles}>{blockTitle}{bgColorText}</li>

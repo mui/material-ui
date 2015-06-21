@@ -1,6 +1,7 @@
 let React = require('react');
 let StylePropable = require('../mixins/style-propable');
 
+
 let TableRowColumn = React.createClass({
 
   mixins: [StylePropable],

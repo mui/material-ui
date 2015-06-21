@@ -1,8 +1,8 @@
-var React = require('react');
-var ThemeManager = require('./styles/theme-manager');
+let React = require('react');
+let ThemeManager = require('./styles/theme-manager');
 
 
-var Theme = React.createClass({
+let Theme = React.createClass({
 
   propTypes: {
     theme: React.PropTypes.object

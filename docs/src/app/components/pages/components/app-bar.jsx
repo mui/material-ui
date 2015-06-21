@@ -1,15 +1,14 @@
-var React = require('react');
-var mui = require('mui');
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react');
+let { AppBar, DropDownMenu } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
 
-var {AppBar, DropDownMenu} = mui;
 
 class AppBarPage extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.code = 
+    this.code =
           '<AppBar title=\'Title\' iconClassNameRight="muidocs-icon-navigation-expand-more"/>';
 
     this.desc = 'App bars are a collection of components placed as a static ' +
@@ -82,7 +81,7 @@ class AppBarPage extends React.Component {
             desc: 'The zDepth of the app bar. The shadow of the app bar is also ' +
                   'dependent on this property.'
           }
-        ] 
+        ]
       },
       {
         name: 'Events',
@@ -92,7 +91,7 @@ class AppBarPage extends React.Component {
             header: 'AppBar.onLeftIconButtonTouchTap(e)',
             desc: 'Callback function for when the left icon is selected via ' +
                   'a touch tap.'
-          }, 
+          },
           {
             name: 'onRightIconButtonTouchTap',
             header: 'AppBar.onRightIconButtonTouchTap(e)',

@@ -1,13 +1,15 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var ClickAwayable = require('./mixins/click-awayable');
-var KeyCode = require('./utils/key-code');
-var DropDownArrow = require('./svg-icons/drop-down-arrow');
-var Paper = require('./paper');
-var Menu = require('./menu/menu');
-var ClearFix = require('./clearfix');
-var DropDownMenu = React.createClass({
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let ClickAwayable = require('./mixins/click-awayable');
+let KeyCode = require('./utils/key-code');
+let DropDownArrow = require('./svg-icons/drop-down-arrow');
+let Paper = require('./paper');
+let Menu = require('./menu/menu');
+let ClearFix = require('./clearfix');
+
+
+let DropDownMenu = React.createClass({
 
   mixins: [StylePropable, ClickAwayable],
 
@@ -74,9 +76,9 @@ var DropDownMenu = React.createClass({
   },
 
   getStyles: function(){
-    var accentColor = this.context.muiTheme.component.dropDownMenu.accentColor;
-    var backgroundColor = this.context.muiTheme.component.menu.backgroundColor;
-    var styles = {
+    let accentColor = this.context.muiTheme.component.dropDownMenu.accentColor;
+    let backgroundColor = this.context.muiTheme.component.menu.backgroundColor;
+    let styles = {
       root: {
         transition: Transitions.easeOut(),
         position: 'relative',
@@ -136,18 +138,18 @@ var DropDownMenu = React.createClass({
   },
 
   getInputNode: function() {
-    var root = this.refs.root;
-    var item = this.props.menuItems[this.state.selectedIndex];
+    let root = this.refs.root;
+    let item = this.props.menuItems[this.state.selectedIndex];
     if (item)
       root.value = item[this.props.displayMember];
     return root;
   },
 
   render: function() {
-    var _this = this;
-    var styles = this.getStyles();
-    var selectedIndex = this.state.selectedIndex;
-    var displayValue = "";
+    let _this = this;
+    let styles = this.getStyles();
+    let selectedIndex = this.state.selectedIndex;
+    let displayValue = "";
     if (selectedIndex) {
       if (process.env.NODE_ENV !== 'production') {
         console.assert(!!this.props.menuItems[selectedIndex], 'SelectedIndex of ' + selectedIndex + ' does not exist in menuItems.');
@@ -156,18 +158,18 @@ var DropDownMenu = React.createClass({
     else {
       if (this.props.valueMember && (this.props.valueLink || this.props.value))
       {
-        var value = this.props.value || this.props.valueLink.value;
-        for (var i in this.props.menuItems)
+        let value = this.props.value || this.props.valueLink.value;
+        for (let i in this.props.menuItems)
           if (this.props.menuItems[i][this.props.valueMember] === value)
             selectedIndex = i;
       }
     }
 
-    var selectedItem = this.props.menuItems[selectedIndex];
+    let selectedItem = this.props.menuItems[selectedIndex];
     if (selectedItem)
       displayValue = selectedItem[this.props.displayMember];
 
-    var menuItems = this.props.menuItems.map(function(item){
+    let menuItems = this.props.menuItems.map(function(item){
       item.text = item[_this.props.displayMember];
       item.payload = item[_this.props.valueMember];
       return item;
@@ -211,15 +213,15 @@ var DropDownMenu = React.createClass({
   },
 
   _setWidth: function() {
-    var el = React.findDOMNode(this);
-    var menuItemsDom = React.findDOMNode(this.refs.menuItems);
+    let el = React.findDOMNode(this);
+    let menuItemsDom = React.findDOMNode(this.refs.menuItems);
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
       el.style.width = menuItemsDom.offsetWidth + 'px';
     }
   },
 
   _setSelectedIndex: function(props) {
-    var selectedIndex = props.selectedIndex;
+    let selectedIndex = props.selectedIndex;
 
     if (process.env.NODE_ENV !== 'production' && selectedIndex < 0) {
       console.warn('Cannot set selectedIndex to a negative index.', selectedIndex);
@@ -260,7 +262,7 @@ var DropDownMenu = React.createClass({
 
   _onMenuItemClick: function(e, key, payload) {
     if (this.props.onChange && this.state.selectedIndex !== key) {
-      var selectedItem = this.props.menuItems[key];
+      let selectedItem = this.props.menuItems[key];
       if (selectedItem)
         e.target.value = selectedItem[this.props.valueMember];
 

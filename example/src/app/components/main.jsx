@@ -1,12 +1,12 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
-var React = require('react');
-var mui = require('material-ui');
-var RaisedButton = mui.RaisedButton;
-var ThemeManager = new mui.Styles.ThemeManager();
-var Colors = mui.Styles.Colors;
+let React = require('react');
+let mui = require('material-ui');
+let RaisedButton = mui.RaisedButton;
+let ThemeManager = new mui.Styles.ThemeManager();
+let Colors = mui.Styles.Colors;
 
-var Main = React.createClass({
+let Main = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object
@@ -26,7 +26,7 @@ var Main = React.createClass({
 
   render: function() {
 
-    var containerStyle = {
+    let containerStyle = {
       textAlign: 'center',
       paddingTop: '200px'
     };
@@ -46,7 +46,7 @@ var Main = React.createClass({
   _handleTouchTap: function() {
     alert('1-2-3-4-5');
   }
-  
+
 });
 
 module.exports = Main;

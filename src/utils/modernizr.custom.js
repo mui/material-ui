@@ -7,7 +7,7 @@
 
 module.exports = (function( window, document, undefined ) {
 
-    var version = '2.8.3',
+    let version = '2.8.3',
 
     Modernizr = {},
 
@@ -42,12 +42,12 @@ module.exports = (function( window, document, undefined ) {
 
     slice = classes.slice,
 
-    featureName, 
+    featureName,
 
 
     injectElementWithStyles = function( rule, callback, nodes, testnames ) {
 
-      var style, ret, node, docOverflow,
+      let style, ret, node, docOverflow,
           div = document.createElement('div'),
                 body = document.body,
                 fakeBody = body || document.createElement('body');
@@ -91,7 +91,7 @@ module.exports = (function( window, document, undefined ) {
       };
     }
     else {
-      hasOwnProp = function (object, property) { 
+      hasOwnProp = function (object, property) {
         return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
       };
     }
@@ -100,22 +100,22 @@ module.exports = (function( window, document, undefined ) {
     if (!Function.prototype.bind) {
       Function.prototype.bind = function bind(that) {
 
-        var target = this;
+        let target = this;
 
         if (typeof target != "function") {
             throw new TypeError();
         }
 
-        var args = slice.call(arguments, 1),
+        let args = slice.call(arguments, 1),
             bound = function () {
 
             if (this instanceof bound) {
 
-              var F = function(){};
+              let F = function(){};
               F.prototype = target.prototype;
-              var self = new F();
+              let self = new F();
 
-              var result = target.apply(
+              let result = target.apply(
                   self,
                   args.concat(slice.call(arguments))
               );
@@ -156,8 +156,8 @@ module.exports = (function( window, document, undefined ) {
     }
 
     function testProps( props, prefixed ) {
-        for ( var i in props ) {
-            var prop = props[i];
+        for ( let i in props ) {
+            let prop = props[i];
             if ( !contains(prop, "-") && mStyle[prop] !== undefined ) {
                 return prefixed == 'pfx' ? prop : true;
             }
@@ -166,8 +166,8 @@ module.exports = (function( window, document, undefined ) {
     }
 
     function testDOMProps( props, obj, elem ) {
-        for ( var i in props ) {
-            var item = obj[props[i]];
+        for ( let i in props ) {
+            let item = obj[props[i]];
             if ( item !== undefined) {
 
                             if (elem === false) return props[i];
@@ -184,7 +184,7 @@ module.exports = (function( window, document, undefined ) {
 
     function testPropsAll( prop, prefixed, elem ) {
 
-        var ucProp  = prop.charAt(0).toUpperCase() + prop.slice(1),
+        let ucProp  = prop.charAt(0).toUpperCase() + prop.slice(1),
             props   = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
 
             if(is(prefixed, "string") || is(prefixed, "undefined")) {
@@ -220,7 +220,7 @@ module.exports = (function( window, document, undefined ) {
 
     tests['csstransforms3d'] = function() {
 
-        var ret = !!testPropsAll('perspective');
+        let ret = !!testPropsAll('perspective');
 
                         if ( ret && 'webkitPerspective' in docElement.style ) {
 
@@ -238,7 +238,7 @@ module.exports = (function( window, document, undefined ) {
 
 
 
-    for ( var feature in tests ) {
+    for ( let feature in tests ) {
         if ( hasOwnProp(tests, feature) ) {
                                     featureName  = feature.toLowerCase();
             Modernizr[featureName] = tests[feature]();
@@ -251,7 +251,7 @@ module.exports = (function( window, document, undefined ) {
 
      Modernizr.addTest = function ( feature, test ) {
        if ( typeof feature == 'object' ) {
-         for ( var key in feature ) {
+         for ( let key in feature ) {
            if ( hasOwnProp( feature, key ) ) {
              Modernizr.addTest( key, feature[ key ] );
            }
@@ -273,7 +273,7 @@ module.exports = (function( window, document, undefined ) {
 
        }
 
-       return Modernizr; 
+       return Modernizr;
      };
 
 

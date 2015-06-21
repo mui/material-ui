@@ -1,11 +1,11 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var WindowListenable = require('../mixins/window-listenable');
-var DateTime = require('../utils/date-time');
-var DatePickerDialog = require('./date-picker-dialog');
-var TextField = require('../text-field');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let WindowListenable = require('../mixins/window-listenable');
+let DateTime = require('../utils/date-time');
+let DatePickerDialog = require('./date-picker-dialog');
+let TextField = require('../text-field');
 
-var DatePicker = React.createClass({
+let DatePicker = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
@@ -52,7 +52,7 @@ var DatePicker = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       formatDate,
       mode,
       onFocus,
@@ -65,7 +65,7 @@ var DatePicker = React.createClass({
       showYearSelector,
       ...other
     } = this.props;
-    var defaultInputValue;
+    let defaultInputValue;
 
     if (this.props.defaultDate) {
       defaultInputValue = this.props.formatDate(this.props.defaultDate);

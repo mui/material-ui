@@ -1,10 +1,11 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
-var ColorManipulator = require('./utils/color-manipulator');
-var Typography = require('./styles/typography');
-var EnhancedButton = require('./enhanced-button');
-var Paper = require('./paper');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let Transitions = require('./styles/transitions');
+let ColorManipulator = require('./utils/color-manipulator');
+let Typography = require('./styles/typography');
+let EnhancedButton = require('./enhanced-button');
+let Paper = require('./paper');
+
 
 function validateLabel (props, propName, componentName) {
   if (!props.children && !props.label) {
@@ -13,7 +14,7 @@ function validateLabel (props, propName, componentName) {
   }
 }
 
-var RaisedButton = React.createClass({
+let RaisedButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -36,7 +37,7 @@ var RaisedButton = React.createClass({
   },
 
   getInitialState: function() {
-    var zDepth = this.props.disabled ? 0 : 1;
+    let zDepth = this.props.disabled ? 0 : 1;
     return {
       hovered: false,
       touched: false,
@@ -46,7 +47,7 @@ var RaisedButton = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    var zDepth = nextProps.disabled ? 0 : 1;
+    let zDepth = nextProps.disabled ? 0 : 1;
     this.setState({
       zDepth: zDepth,
       initialZDepth: zDepth
@@ -57,7 +58,7 @@ var RaisedButton = React.createClass({
     return  this.props.disabled ? this.getTheme().disabledColor :
       this.props.primary ? this.getTheme().primaryColor :
       this.props.secondary ? this.getTheme().secondaryColor :
-      this.getTheme().color; 
+      this.getTheme().color;
   },
 
   _getLabelColor: function() {
@@ -76,8 +77,8 @@ var RaisedButton = React.createClass({
   },
 
   getStyles: function() {
-    var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-    var styles = {
+    let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
+    let styles = {
       root: {
         display: 'inline-block',
         minWidth: this.getThemeButton().minWidth,
@@ -124,16 +125,16 @@ var RaisedButton = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       disabled,
       label,
       primary,
       secondary,
       ...other } = this.props;
 
-    var styles = this.getStyles();
+    let styles = this.getStyles();
 
-    var labelElement;
+    let labelElement;
     if (label) {
       labelElement = (
         <span style={this.mergeAndPrefix(styles.label, this.props.labelStyle)}>
@@ -142,10 +143,10 @@ var RaisedButton = React.createClass({
       );
     }
 
-    var rippleColor = styles.label.color;
-    var rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
+    let rippleColor = styles.label.color;
+    let rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
 
-    var buttonEventHandlers = disabled ? null : {
+    let buttonEventHandlers = disabled ? null : {
       onMouseDown: this._handleMouseDown,
       onMouseUp: this._handleMouseUp,
       onMouseOut: this._handleMouseOut,
@@ -156,7 +157,7 @@ var RaisedButton = React.createClass({
     };
 
     return (
-      <Paper 
+      <Paper
         style={this.mergeAndPrefix(styles.root, this.props.style)}
         zDepth={this.state.zDepth}>
           <EnhancedButton
@@ -222,7 +223,7 @@ var RaisedButton = React.createClass({
   _handleKeyboardFocus: function(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
-      var amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
+      let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
       React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.mergeAndPrefix(this.getStyles().label, this.props.labelStyle).color, amount);
     } else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });

@@ -1,9 +1,7 @@
-var React = require('react');
-var mui = require('mui');
-var MenuItem = mui.MenuItem;
-var LeftNav = mui.LeftNav;
-var RaisedButton = mui.RaisedButton;
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react');
+let { LeftNav, MenuItem, RaisedButton } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
+
 
 class LeftNavPage extends React.Component {
 
@@ -18,7 +16,7 @@ class LeftNavPage extends React.Component {
   }
 
   render() {
-    var menuItems = [
+    let menuItems = [
       { route: 'get-started', text: 'Get Started' },
       { route: 'customization', text: 'Customization' },
       { route: 'components', text: 'Components' },
@@ -28,7 +26,7 @@ class LeftNavPage extends React.Component {
       { type: MenuItem.Types.LINK, payload: 'https://www.google.com', text: 'Disabled Link', disabled: true }
     ];
 
-    var code =
+    let code =
       'menuItems = [\n' +
       '  { route: \'get-started\', text: \'Get Started\' },\n' +
       '  { route: \'customization\', text: \'Customization\' },\n' +
@@ -55,7 +53,7 @@ class LeftNavPage extends React.Component {
       '//Hideable Left Nav\n' +
       '<LeftNav docked={false} menuItems={menuItems} />\n\n';
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [

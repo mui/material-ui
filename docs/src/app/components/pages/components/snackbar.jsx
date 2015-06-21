@@ -1,8 +1,7 @@
-var React = require('react');
-var mui = require('mui');
-var RaisedButton = mui.RaisedButton;
-var Snackbar = mui.Snackbar;
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react');
+let { RaisedButton, Snackbar } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
+
 
 class SnackbarPage extends React.Component {
 
@@ -12,7 +11,7 @@ class SnackbarPage extends React.Component {
   }
 
   render() {
-    var code =
+    let code =
       '<Snackbar\n' +
       '  message="Event added to your calendar"\n' +
       '  action="undo"\n' +
@@ -23,7 +22,7 @@ class SnackbarPage extends React.Component {
       '  alert("We removed the event from your calendar.");\n' +
       '}';
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [

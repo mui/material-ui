@@ -1,54 +1,51 @@
-var React = require('react');
-var mui = require('mui');
-var CodeExample = require('../../code-example/code-example.jsx');
-var ComponentInfo = require('../../component-info.jsx');
+let React = require('react');
+let { Menu, MenuItem, Styles, Tab, Tabs } = require('mui');
+let CodeExample = require('../../code-example/code-example.jsx');
+let ComponentInfo = require('../../component-info.jsx');
 
-var Typography = mui.Styles.Typography;
-var {Tab, Tabs} = mui;
+let Typography = Styles.Typography;
+let ThemeManager = new Styles.ThemeManager();
 
-
-var ThemeManager = new mui.Styles.ThemeManager();
-
-var labelMenuItems = [
+let labelMenuItems = [
   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },
   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },
   { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }
 ];
 
-var numberMenuItems = [
+let numberMenuItems = [
   { payload: '1', text: 'All', number: '22'},
   { payload: '3', text: 'Uncategorized', number: '6'},
   { payload: '4', text: 'Trash', number: '11' }
 ];
 
-var iconMenuItems = [
+let iconMenuItems = [
   { payload: '1', text: 'Live Answer', iconClassName: 'muidocs-icon-communication-phone', number: '10' },
   { payload: '2', text: 'Voicemail', iconClassName: 'muidocs-icon-communication-voicemail',  number: '5' },
   { payload: '3', text: 'Starred', iconClassName: 'muidocs-icon-action-stars', number: '3' },
   { payload: '4', text: 'Shared', iconClassName: 'muidocs-icon-action-thumb-up',  number: '12' }
 ];
 
-var filterMenuItems = [
+let filterMenuItems = [
   { payload: '1', text: 'Text Opt-In', toggle: true},
   { payload: '2', text: 'Text Opt-Out', toggle: true, defaultToggled: true},
   { payload: '3', text: 'Voice Opt-Out', toggle: true, disabled: true}
 ];
 
-var nestedMenuItems = [
-  { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [
+let nestedMenuItems = [
+  { type: MenuItem.Types.NESTED, text: 'Reports', items: [
     { payload: '1', text: 'Nested Item 1' },
-    { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
+    { type: MenuItem.Types.NESTED, text: 'Nested Item 2', items: [
       { payload: '1', text: 'Nested Item 2.1' },
-      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2.2', items: [
+      { type: MenuItem.Types.NESTED, text: 'Nested Item 2.2', items: [
         { payload: '1', text: 'Nested Item 2.2.1' },
         { payload: '3', text: 'Nested Item 2.2.2' }
       ] },
       { payload: '3', text: 'Nested Item 2.3' }
     ] },
     { payload: '3', text: 'Nested Item 3' },
-    { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
+    { type: MenuItem.Types.NESTED, text: 'Nested Item 4', items: [
       { payload: '1', text: 'Nested Item 4.1' },
-      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4.2', items: [
+      { type: MenuItem.Types.NESTED, text: 'Nested Item 4.2', items: [
         { payload: '1', text: 'Nested Item 4.2.1', disabled: true },
         { payload: '3', text: 'Nested Item 4.2.2' }
       ] },
@@ -61,7 +58,7 @@ var nestedMenuItems = [
   { payload: '3', text: 'Logout', disabled: true}
 ];
 
-var componentInfo = [
+let componentInfo = [
   {
     name: 'Props',
     infoArray: [
@@ -83,7 +80,7 @@ var componentInfo = [
         name: 'menuItems',
         type: 'Array',
         header: 'required',
-        desc: 'An array of objects describing the properties of a MenuItem. ' + 
+        desc: 'An array of objects describing the properties of a MenuItem. ' +
               'If your MenuItem includes a Toggle element and you would like ' +
               'to pass down Toggle properties, include those properties in ' +
               'the same object used to describe the MenuItem.'
@@ -213,7 +210,7 @@ class MenusPage extends React.Component {
   render() {
 
     // Copied from component-doc
-    var info = componentInfo.map(function(info, i) {
+    let info = componentInfo.map(function(info, i) {
       return (
         <ComponentInfo
           key={i}
@@ -250,8 +247,8 @@ class MenusPage extends React.Component {
   }
 
   _getLabelMenuExample() {
-    var code =
-      "var labelMenuItems = [\n" +
+    let code =
+      "let labelMenuItems = [\n" +
       "   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },\n" +
       "   { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' },\n" +
       "   { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }\n" +
@@ -262,15 +259,15 @@ class MenusPage extends React.Component {
     return (
       <CodeExample code={code}>
         <div style={this.getStyles().exampleMenu}>
-          <mui.Menu menuItems={labelMenuItems} onItemTap={this._onItemTap} autoWidth={false}/>
+          <Menu menuItems={labelMenuItems} onItemTap={this._onItemTap} autoWidth={false}/>
         </div>
       </CodeExample>
     );
   }
 
   _getNumberMenuExample() {
-    var code =
-      "var numberMenuItems = [\n" +
+    let code =
+      "let numberMenuItems = [\n" +
       "   { payload: '1', text: 'All', number: '22' },\n" +
       "   { payload: '3', text: 'Uncategorized', number: '6'},\n" +
       "   { payload: '4', text: 'Trash', number: '11' }\n" +
@@ -280,15 +277,15 @@ class MenusPage extends React.Component {
     return (
       <CodeExample code={code}>
         <div style={this.getStyles().exampleMenu}>
-          <mui.Menu menuItems={numberMenuItems} onItemTap={this._onItemTap} autoWidth={false}/>
+          <Menu menuItems={numberMenuItems} onItemTap={this._onItemTap} autoWidth={false}/>
         </div>
       </CodeExample>
     );
   }
 
   _getIconMenuExample() {
-    var code =
-      "//iconClassName is the classname for our icon that will get passed into mui.FontIcon\n" +
+    let code =
+      "//iconClassName is the classname for our icon that will get passed into FontIcon\n" +
       "iconMenuItems = [\n" +
       "   { payload: '1', text: 'Live Answer', iconClassName: 'muidocs-icon-communication-phone', number: '10' },\n" +
       "   { payload: '2', text: 'Voicemail', iconClassName: 'muidocs-icon-communication-voicemail',  number: '5' },\n" +
@@ -300,14 +297,14 @@ class MenusPage extends React.Component {
     return (
       <CodeExample code={code}>
         <div style={this.getStyles().exampleMenu}>
-          <mui.Menu menuItems={iconMenuItems} onItemTap={this._onItemTap} autoWidth={false}/>
+          <Menu menuItems={iconMenuItems} onItemTap={this._onItemTap} autoWidth={false}/>
         </div>
       </CodeExample>
     );
   }
 
   _getFilterMenuExample() {
-    var code =
+    let code =
       "// Include toggle properties as keys so that they are passed into the toggle component\n" +
       "filterMenuItems = [\n" +
       "   { payload: '1', text: 'Text Opt-In', toggle: true},\n" +
@@ -319,29 +316,29 @@ class MenusPage extends React.Component {
     return (
       <CodeExample code={code}>
         <div style={this.getStyles().exampleMenu}>
-          <mui.Menu menuItems={filterMenuItems} onItemToggle={this._onFilterMenuToggle}  onItemTap={this._onItemTap} autoWidth={false}/>
+          <Menu menuItems={filterMenuItems} onItemToggle={this._onFilterMenuToggle}  onItemTap={this._onItemTap} autoWidth={false}/>
         </div>
       </CodeExample>
     );
   }
 
   _getNestedMenuExample() {
-    var code =
+    let code =
       "nestedMenuItems = [\n" +
-      "    { type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [\n" +
+      "    { type: MenuItem.Types.NESTED, text: 'Reports', items: [\n" +
       "      { payload: '1', text: 'Nested Item 1' },\n" +
-      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
+      "      { type: MenuItem.Types.NESTED, text: 'Nested Item 2', items: [\n" +
       "        { payload: '1', text: 'Nested Item 2.1' },\n" +
-      "        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2.2', items: [\n" +
+      "        { type: MenuItem.Types.NESTED, text: 'Nested Item 2.2', items: [\n" +
       "          { payload: '1', text: 'Nested Item 2.2.1' },\n" +
       "          { payload: '3', text: 'Nested Item 2.2.2' }\n" +
       "        ] },\n" +
       "        { payload: '3', text: 'Nested Item 2.3' }\n" +
       "      ] },\n" +
       "      { payload: '3', text: 'Nested Item 3' },\n" +
-      "      { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
+      "      { type: MenuItem.Types.NESTED, text: 'Nested Item 4', items: [\n" +
       "        { payload: '1', text: 'Nested Item 4.1' },\n" +
-      "        { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4.2', items: [\n" +
+      "        { type: MenuItem.Types.NESTED, text: 'Nested Item 4.2', items: [\n" +
       "          { payload: '1', text: 'Nested Item 4.2.1', disabled: true },\n" +
       "          { payload: '3', text: 'Nested Item 4.2.2' }\n" +
       "        ] },\n" +
@@ -358,7 +355,7 @@ class MenusPage extends React.Component {
     return (
       <CodeExample code={code}>
         <div style={this.getStyles().exampleMenuNested}>
-          <mui.Menu menuItems={nestedMenuItems} onItemTap={this._onItemTap} autoWidth={false}/>
+          <Menu menuItems={nestedMenuItems} onItemTap={this._onItemTap} autoWidth={false}/>
         </div>
       </CodeExample>
     );

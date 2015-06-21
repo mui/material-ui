@@ -1,8 +1,8 @@
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var AutoPrefix = require('./styles/auto-prefix');
+let React = require('react');
+let StylePropable = require('./mixins/style-propable');
+let AutoPrefix = require('./styles/auto-prefix');
 
-var EnhancedTextarea = React.createClass({
+let EnhancedTextarea = React.createClass({
 
   mixins: [StylePropable],
 
@@ -30,7 +30,7 @@ var EnhancedTextarea = React.createClass({
   },
 
   getStyles: function() {
-    var styles = {
+    let styles = {
       root: {
         width: '100%',
         resize: 'none',
@@ -44,7 +44,7 @@ var EnhancedTextarea = React.createClass({
 
   render: function() {
 
-    var {
+    let {
       onChange,
       onHeightChange,
       rows,
@@ -54,9 +54,9 @@ var EnhancedTextarea = React.createClass({
       ...other
     } = this.props;
 
-    var styles = this.getStyles().root;
+    let styles = this.getStyles().root;
 
-    var textAreaStyles = {
+    let textAreaStyles = {
       width: '100%',
       resize: 'none',
       overflow: 'hidden',
@@ -64,7 +64,7 @@ var EnhancedTextarea = React.createClass({
       padding: 0,
     };
 
-    var inputStyles = this.mergeAndPrefix(styles, {
+    let inputStyles = this.mergeAndPrefix(styles, {
       height: this.state.height + 'px',
     });
 
@@ -73,7 +73,7 @@ var EnhancedTextarea = React.createClass({
 
     // Overflow also needed to here to remove the extra row
     // added to textareas in Firefox.
-    var shadowStyles = this.mergeAndPrefix(textAreaStyles, {
+    let shadowStyles = this.mergeAndPrefix(textAreaStyles, {
       position: 'absolute',
       opacity: 0
     });
@@ -112,9 +112,9 @@ var EnhancedTextarea = React.createClass({
   },
 
   _syncHeightWithShadow: function(newValue, e) {
-    var shadow = React.findDOMNode(this.refs.shadow);
-    var currentHeight = this.state.height;
-    var newHeight;
+    let shadow = React.findDOMNode(this.refs.shadow);
+    let currentHeight = this.state.height;
+    let newHeight;
 
     if (newValue !== undefined) shadow.value = newValue;
     newHeight = shadow.scrollHeight;

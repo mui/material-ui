@@ -48,7 +48,7 @@ gulp.task('browserify', function(callback) {
         .on('end', reportFinished);
     };
 
-    if(global.isWatching) {
+    if (global.isWatching) {
       // Wrap with watchify and rebundle on changes
       bundler = watchify(bundler);
       // Rebundle on update
@@ -59,9 +59,9 @@ gulp.task('browserify', function(callback) {
       // Log when bundling completes
       bundleLogger.end(bundleConfig.outputName);
 
-      if(bundleQueue) {
+      if (bundleQueue) {
         bundleQueue--;
-        if(bundleQueue === 0) {
+        if (bundleQueue === 0) {
           // If queue is empty, tell gulp the task is complete.
           // https://github.com/gulpjs/gulp/blob/master/docs/API.md#accept-a-callback
           callback();

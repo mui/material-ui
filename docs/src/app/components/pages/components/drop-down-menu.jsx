@@ -1,13 +1,13 @@
-var React = require('react');
-var mui = require('mui');
-var DropDownMenu = mui.DropDownMenu;
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react');
+let { DropDownMenu } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
+
 
 class DropDownMenuPage extends React.Component {
 
   render() {
 
-    var menuItems = [
+    let menuItems = [
       { payload: '1', text: 'Never' },
       { payload: '2', text: 'Every Night' },
       { payload: '3', text: 'Weeknights' },
@@ -15,8 +15,8 @@ class DropDownMenuPage extends React.Component {
       { payload: '5', text: 'Weekly' },
     ];
 
-    var code =
-      "var menuItems = [\n" +
+    let code =
+      "let menuItems = [\n" +
       "   { payload: '1', text: 'Never' },\n" +
       "   { payload: '2', text: 'Every Night' },\n" +
       "   { payload: '3', text: 'Weeknights' },\n" +
@@ -25,7 +25,7 @@ class DropDownMenuPage extends React.Component {
       "];\n\n" +
       "<DropDownMenu menuItems={menuItems} />";
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [
@@ -47,7 +47,7 @@ class DropDownMenuPage extends React.Component {
             name: 'menuItemStyle',
             type: 'array',
             header: 'required',
-            desc: 'Overrides the inline-styles of the MenuItems when the ' + 
+            desc: 'Overrides the inline-styles of the MenuItems when the ' +
                   'DropDownMenu is expanded.'
           },
           {

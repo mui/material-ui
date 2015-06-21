@@ -1,10 +1,10 @@
-var React = require('react');
-var PageWithNav = require('./page-with-nav.jsx');
+let React = require('react');
+let PageWithNav = require('./page-with-nav.jsx');
 
 class Components extends React.Component {
 
   render() {
-    var menuItems = [
+    let menuItems = [
       { route: 'appbar', text: 'AppBar'},
       { route: 'avatars', text: 'Avatars'},
       { route: 'buttons', text: 'Buttons'},

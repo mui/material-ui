@@ -1,10 +1,10 @@
-var React = require('react');
-var StylePropable = require('../mixins/style-propable');
-var Colors = require('../styles/colors');
-var DateTime = require('../utils/date-time');
-var YearButton = require('./year-button');
+let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+let Colors = require('../styles/colors');
+let DateTime = require('../utils/date-time');
+let YearButton = require('./year-button');
 
-var CalendarYear = React.createClass({
+let CalendarYear = React.createClass({
 
   mixins: [StylePropable],
 
@@ -15,18 +15,18 @@ var CalendarYear = React.createClass({
     minDate: React.PropTypes.object,
     maxDate: React.PropTypes.object
   },
-  
+
   componentDidMount: function() {
     this._scrollToSelectedYear();
   },
-  
+
   componentDidUpdate: function(prevProps, prevState) {
     this._scrollToSelectedYear();
   },
 
   render: function() {
-    var years = this._getYears();
-    var styles = {
+    let years = this._getYears();
+    let styles = {
       position: 'relative',
       height: 'inherit',
       lineHeight: '36px',
@@ -45,21 +45,21 @@ var CalendarYear = React.createClass({
   },
 
   _getYears: function() {
-    var minYear = this.props.minDate.getFullYear();
-    var maxYear = this.props.maxDate.getFullYear();
-    
-    var years = [];
-    var dateCheck = DateTime.clone(this.props.selectedDate);
-    for (var year = minYear; year <= maxYear; year++) {
+    let minYear = this.props.minDate.getFullYear();
+    let maxYear = this.props.maxDate.getFullYear();
+
+    let years = [];
+    let dateCheck = DateTime.clone(this.props.selectedDate);
+    for (let year = minYear; year <= maxYear; year++) {
       dateCheck.setFullYear(year);
       if (!DateTime.isBetweenDates(dateCheck, this.props.minDate, this.props.maxDate)) continue;
-      var selected = this.props.selectedDate.getFullYear() === year;
-      var selectedProps = {};
+      let selected = this.props.selectedDate.getFullYear() === year;
+      let selectedProps = {};
       if (selected) {
         selectedProps = {ref: 'selectedYearButton'}
       }
-      
-      var yearButton = (
+
+      let yearButton = (
         <YearButton
           key={'yb' + year}
           year={year}
@@ -67,23 +67,23 @@ var CalendarYear = React.createClass({
           selected={selected}
           {...selectedProps} />
       )
-      
+
       years.push(yearButton);
     }
-    
+
     return years;
   },
-  
+
   _scrollToSelectedYear: function() {
     if (this.refs.selectedYearButton === undefined) return;
-    
-    var container = this.getDOMNode();
-    var yearButtonNode = this.refs.selectedYearButton.getDOMNode();
 
-    var containerHeight = container.clientHeight;
-    var yearButtonNodeHeight = yearButtonNode.clientHeight || 32;
-    
-    var scrollYOffset = (yearButtonNode.offsetTop + yearButtonNodeHeight / 2) - containerHeight / 2;
+    let container = this.getDOMNode();
+    let yearButtonNode = this.refs.selectedYearButton.getDOMNode();
+
+    let containerHeight = container.clientHeight;
+    let yearButtonNodeHeight = yearButtonNode.clientHeight || 32;
+
+    let scrollYOffset = (yearButtonNode.offsetTop + yearButtonNodeHeight / 2) - containerHeight / 2;
     container.scrollTop = scrollYOffset;
   },
 

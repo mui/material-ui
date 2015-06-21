@@ -1,12 +1,13 @@
-var React = require('react');
-var KeyCode = require('./utils/key-code');
-var StylePropable = require('./mixins/style-propable');
-var Colors = require('./styles/colors');
-var WindowListenable = require('./mixins/window-listenable');
-var FocusRipple = require('./ripples/focus-ripple');
-var TouchRipple = require('./ripples/touch-ripple');
+let React = require('react');
+let KeyCode = require('./utils/key-code');
+let Colors = require('./styles/colors');
+let StylePropable = require('./mixins/style-propable');
+let WindowListenable = require('./mixins/window-listenable');
+let FocusRipple = require('./ripples/focus-ripple');
+let TouchRipple = require('./ripples/touch-ripple');
 
-var EnhancedButton = React.createClass({
+
+let EnhancedButton = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
@@ -67,7 +68,7 @@ var EnhancedButton = React.createClass({
   // Remove inner padding and border in Firefox 4+.
   componentDidMount: function() {
     if (!EnhancedButton.hasStyleBeenInjected) {
-      var style = document.createElement("style");
+      let style = document.createElement("style");
       style.innerHTML = 'button::-moz-focus-inner,' +
         'input::-moz-focus-inner {' +
         ' border: 0;' +
@@ -79,7 +80,7 @@ var EnhancedButton = React.createClass({
   },
 
   render: function() {
-    var {
+    let {
       centerRipple,
       containerElement,
       disabled,
@@ -99,7 +100,7 @@ var EnhancedButton = React.createClass({
       ...other
     } = this.props;
 
-    var mergedStyles = this.mergeAndPrefix({
+    let mergedStyles = this.mergeAndPrefix({
       border: 10,
       background: 'none',
       boxSizing: 'border-box',
@@ -113,7 +114,7 @@ var EnhancedButton = React.createClass({
       outline: 'none'
     }, style);
 
-    var buttonProps = {
+    let buttonProps = {
       ...other,
       style: mergedStyles,
       disabled: disabled,
@@ -123,7 +124,7 @@ var EnhancedButton = React.createClass({
       tabIndex: tabIndex
     };
 
-    var buttonChildren = [];
+    let buttonChildren = [];
 
     // Create ripples if we need to
     if (!disabled && !disableTouchRipple) {
@@ -139,7 +140,7 @@ var EnhancedButton = React.createClass({
     } else {
       buttonChildren.push(this.props.children);
     }
-    
+
     if (!disabled && !disableFocusRipple && !disableKeyboardFocus) {
       buttonChildren.push(
         <FocusRipple
@@ -164,7 +165,7 @@ var EnhancedButton = React.createClass({
     return React.isValidElement(containerElement) ?
       React.cloneElement(containerElement, buttonProps, buttonChildren) :
       React.createElement(linkButton ? 'a' : containerElement, buttonProps, buttonChildren);
-    
+
   },
 
   isKeyboardFocused: function() {

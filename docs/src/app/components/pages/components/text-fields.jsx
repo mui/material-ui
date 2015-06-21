@@ -1,12 +1,11 @@
-var React = require('react/addons');
-var mui = require('mui');
-var ClearFix = mui.ClearFix;
-var TextField = mui.TextField;
-var SelectField = mui.SelectField;
-var StyleResizable = mui.Mixins.StyleResizable;
-var ComponentDoc = require('../../component-doc.jsx');
+let React = require('react/addons');
+let { ClearFix, Mixins, SelectField, TextField } = require('mui');
+let ComponentDoc = require('../../component-doc.jsx');
 
-var TextFieldsPage = React.createClass({
+let { StyleResizable } = Mixins;
+
+
+let TextFieldsPage = React.createClass({
 
   mixins: [StyleResizable, React.addons.LinkedStateMixin],
 
@@ -26,7 +25,7 @@ var TextFieldsPage = React.createClass({
   },
 
   getStyles: function() {
-    var styles = {
+    let styles = {
       group: {
         width: '100%',
         float: 'left',
@@ -46,7 +45,7 @@ var TextFieldsPage = React.createClass({
 
   render: function() {
 
-    var code =
+    let code =
       '//In Line Hint Text\n' +
       '<TextField\n' +
       '  hintText="Hint Text" />\n' +
@@ -146,10 +145,10 @@ var TextFieldsPage = React.createClass({
       '    <input type="password" />\n' +
       '</TextField>';
 
-    var desc = 'This component extends the current input element and will support all of its props and events. It supports ' +
+    let desc = 'This component extends the current input element and will support all of its props and events. It supports ' +
       'valueLink and can be controlled or uncontrolled.' ;
 
-    var componentInfo = [
+    let componentInfo = [
       {
         name: 'Props',
         infoArray: [
@@ -257,15 +256,15 @@ var TextFieldsPage = React.createClass({
       }
     ];
 
-    var styles = this.getStyles();
-    var menuItems = [
+    let styles = this.getStyles();
+    let menuItems = [
       { payload: '1', text: 'Never' },
       { payload: '2', text: 'Every Night' },
       { payload: '3', text: 'Weeknights' },
       { payload: '4', text: 'Weekends' },
       { payload: '5', text: 'Weekly' },
     ];
-    var arbitraryArrayMenuItems = [
+    let arbitraryArrayMenuItems = [
      {id:1, name:'Never'},
      {id:2, name:'Every Night'},
      {id:3, name:'Weeknights'},
@@ -401,8 +400,8 @@ var TextFieldsPage = React.createClass({
   },
 
   _handleError2InputChange: function(e) {
-    var value = e.target.value;
-    var isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
+    let value = e.target.value;
+    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
     this.setState({
       error2Text: isNumeric ? '' : 'This field must be numeric.'
     });
@@ -415,8 +414,8 @@ var TextFieldsPage = React.createClass({
   },
 
   _handleFloating2ErrorInputChange: function(e) {
-    var value = e.target.value;
-    var isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
+    let value = e.target.value;
+    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
     this.setState({
       floatingError2Text: isNumeric ? '' : 'This field must be numeric.'
     });

@@ -1,19 +1,19 @@
 module.exports = {
 
   addDays: function(d, days) {
-    var newDate = this.clone(d);
+    let newDate = this.clone(d);
     newDate.setDate(d.getDate() + days);
     return newDate;
   },
 
   addMonths: function(d, months) {
-    var newDate = this.clone(d);
+    let newDate = this.clone(d);
     newDate.setMonth(d.getMonth() + months);
     return newDate;
   },
-    
+
   addYears: function(d, years) {
-    var newDate = this.clone(d);
+    let newDate = this.clone(d);
     newDate.setFullYear(d.getFullYear() + years);
     return newDate;
   },
@@ -21,15 +21,15 @@ module.exports = {
   clone: function(d) {
     return new Date(d.getTime());
   },
-    
+
   cloneAsDate: function(d) {
-    var clonedDate = this.clone(d);
+    let clonedDate = this.clone(d);
     clonedDate.setHours(0,0,0,0);
     return clonedDate;
   },
 
   getDaysInMonth: function(d) {
-    var resultDate = this.getFirstDayOfMonth(d);
+    let resultDate = this.getFirstDayOfMonth(d);
 
     resultDate.setMonth(resultDate.getMonth() + 1);
     resultDate.setDate(resultDate.getDate() - 1);
@@ -42,7 +42,7 @@ module.exports = {
   },
 
   getFullMonth: function(d) {
-    var month = d.getMonth();
+    let month = d.getMonth();
     switch (month) {
       case 0: return 'January';
       case 1: return 'February';
@@ -60,7 +60,7 @@ module.exports = {
   },
 
   getShortMonth: function(d) {
-    var month = d.getMonth();
+    let month = d.getMonth();
     switch (month) {
       case 0: return 'Jan';
       case 1: return 'Feb';
@@ -78,7 +78,7 @@ module.exports = {
   },
 
   getDayOfWeek: function(d) {
-    var dow = d.getDay();
+    let dow = d.getDay();
     switch (dow) {
       case 0: return 'Sunday';
       case 1: return 'Monday';
@@ -91,13 +91,13 @@ module.exports = {
   },
 
   getWeekArray: function(d) {
-    var dayArray = [];
-    var daysInMonth = this.getDaysInMonth(d);
-    var daysInWeek;
-    var emptyDays;
-    var firstDayOfWeek;
-    var week;
-    var weekArray = [];
+    let dayArray = [];
+    let daysInMonth = this.getDaysInMonth(d);
+    let daysInWeek;
+    let emptyDays;
+    let firstDayOfWeek;
+    let week;
+    let weekArray = [];
 
     for (let i = 1; i <= daysInMonth; i++) {
       dayArray.push(new Date(d.getFullYear(), d.getMonth(), i));
@@ -120,9 +120,9 @@ module.exports = {
   },
 
   format: function(date) {
-    var m = date.getMonth() + 1;
-    var d = date.getDate();
-    var y = date.getFullYear();
+    let m = date.getMonth() + 1;
+    let d = date.getDate();
+    let y = date.getFullYear();
     return m + '/' + d + '/' + y;
   },
 
@@ -132,34 +132,34 @@ module.exports = {
       (d1.getMonth() === d2.getMonth()) &&
       (d1.getDate() === d2.getDate());
   },
-  
+
   isBeforeDate: function(d1, d2) {
-    var date1 = this.cloneAsDate(d1);
-    var date2 = this.cloneAsDate(d2);
+    let date1 = this.cloneAsDate(d1);
+    let date2 = this.cloneAsDate(d2);
 
     return (date1.getTime() < date2.getTime());
   },
-    
+
   isAfterDate: function(d1, d2) {
-    var date1 = this.cloneAsDate(d1);
-    var date2 = this.cloneAsDate(d2);
+    let date1 = this.cloneAsDate(d1);
+    let date2 = this.cloneAsDate(d2);
 
     return (date1.getTime() > date2.getTime());
   },
-    
+
   isBetweenDates: function(dateToCheck, startDate, endDate) {
     return (!(this.isBeforeDate(dateToCheck, startDate)) &&
             !(this.isAfterDate(dateToCheck, endDate)));
   },
 
   monthDiff: function(d1, d2) {
-    var m;
+    let m;
     m = (d1.getFullYear() - d2.getFullYear()) * 12;
     m += d1.getMonth();
     m -= d2.getMonth();
     return m;
   },
-    
+
   yearDiff: function(d1, d2) {
     return ~~(this.monthDiff(d1, d2) / 12);
   }

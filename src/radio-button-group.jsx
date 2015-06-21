@@ -1,15 +1,15 @@
-var React = require('react');
-var RadioButton = require('./radio-button');
+let React = require('react');
+let RadioButton = require('./radio-button');
 
-var RadioButtonGroup = React.createClass({
+let RadioButtonGroup = React.createClass({
 
-	propTypes: {
-		name: React.PropTypes.string.isRequired,
+  propTypes: {
+    name: React.PropTypes.string.isRequired,
     valueSelected: React.PropTypes.string,
     defaultSelected: React.PropTypes.string,
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
-		onChange: React.PropTypes.func
-	},
+    onChange: React.PropTypes.func
+  },
 
   _hasCheckAttribute: function(radioButton) {
     return radioButton.props.hasOwnProperty('checked') &&
@@ -24,7 +24,7 @@ var RadioButtonGroup = React.createClass({
   },
 
   componentWillMount: function() {
-    var cnt = 0;
+    let cnt = 0;
 
     React.Children.forEach(this.props.children, function(option) {
       if (this._hasCheckAttribute(option)) cnt++;
@@ -39,11 +39,11 @@ var RadioButtonGroup = React.createClass({
     }
   },
 
-	render: function() {
+  render: function() {
 
-    var options = React.Children.map(this.props.children, function(option) {
+    let options = React.Children.map(this.props.children, function(option) {
 
-      var {
+      let {
         name,
         value,
         label,
@@ -62,35 +62,35 @@ var RadioButtonGroup = React.createClass({
         onCheck={this._onChange}
         checked={option.props.value == this.state.selected}/>
 
-		}, this);
+    }, this);
 
-		return (
-			<div 
-        style={this.props.style} 
+    return (
+      <div
+        style={this.props.style}
         className={this.props.className || ''}>
-				{options}
-			</div>
-		);
-	},
+        {options}
+      </div>
+    );
+  },
 
   _updateRadioButtons: function(newSelection) {
     if (this.state.numberCheckedRadioButtons === 0) {
       this.setState({selected: newSelection});
     } else if (process.env.NODE_ENV !== 'production') {
-      var message = "Cannot select a different radio button while another radio button " +
+      let message = "Cannot select a different radio button while another radio button " +
                     "has the 'checked' property set to true.";
       console.error(message);
     }
   },
 
-	_onChange: function(e, newSelection) {
+  _onChange: function(e, newSelection) {
     this._updateRadioButtons(newSelection);
 
     // Successful update
     if (this.state.numberCheckedRadioButtons === 0) {
       if (this.props.onChange) this.props.onChange(e, newSelection);
     }
-	},
+  },
 
   getSelectedValue: function() {
     return this.state.selected;

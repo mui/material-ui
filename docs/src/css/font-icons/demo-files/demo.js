@@ -3,7 +3,7 @@ if (!('boxShadow' in document.body.style)) {
 }
 
 document.body.addEventListener("click", function(e) {
-	var target = e.target;
+	let target = e.target;
 	if (target.tagName === "INPUT" &&
 		target.getAttribute('class').indexOf('liga') === -1) {
 		target.select();
@@ -11,7 +11,7 @@ document.body.addEventListener("click", function(e) {
 });
 
 (function() {
-	var fontSize = document.getElementById('fontSize'),
+	let fontSize = document.getElementById('fontSize'),
 		testDrive = document.getElementById('testDrive'),
 		testText = document.getElementById('testText');
 	function updateTest() {

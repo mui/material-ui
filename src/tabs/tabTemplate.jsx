@@ -1,10 +1,10 @@
-var React = require('react');
+let React = require('react');
 
-var TabTemplate = React.createClass({
+let TabTemplate = React.createClass({
 
   render: function(){
 
-    var styles = {
+    let styles = {
       'height': '0px',
       'overflow': 'hidden',
       'width': '100%',
@@ -12,7 +12,7 @@ var TabTemplate = React.createClass({
       'textAlign': 'initial'
     };
 
-    if(this.props.selected) {
+    if (this.props.selected) {
       delete styles.height
       delete styles.overflow
     }
