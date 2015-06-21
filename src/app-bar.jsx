@@ -113,10 +113,15 @@ let AppBar = React.createClass({
 
     if (this.props.showMenuIconButton) {
       if (this.props.iconElementLeft) {
+        let child = (this.props.iconClassNameLeft) ? '' : <this.props.iconElementLeft style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
-          <div style={styles.iconButton.style}>
-            {this.props.iconElementLeft}
-          </div>
+          <IconButton
+            style={this.mergeAndPrefix(styles.iconButton.style)}
+            iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
+            iconClassName={this.props.iconClassNameLeft}
+            onTouchTap={this._onLeftIconButtonTouchTap}>
+              {child}
+          </IconButton>
         );
       } else {
         let child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
