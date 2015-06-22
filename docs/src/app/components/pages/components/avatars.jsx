@@ -94,13 +94,13 @@ class AvatarsPage extends React.Component {
         componentInfo={componentInfo}>
 
         <List>
-          <ListItem leftAvatar={imageAvatar} disableTouchTap={true}>Image Avatar</ListItem>
-          <ListItem leftAvatar={svgAvatar} disableTouchTap={true}>SvgIcon Avatar</ListItem>
-          <ListItem leftAvatar={customSvgAvatar} disableTouchTap={true}>SvgIcon Avatar with custom colors</ListItem>
-          <ListItem leftAvatar={fontAvatar} disableTouchTap={true}>FontIcon Avatar</ListItem>
-          <ListItem leftAvatar={customFontAvatar} disableTouchTap={true}>FontIcon Avatar with custom colors</ListItem>
-          <ListItem leftAvatar={letterAvatar} disableTouchTap={true}>Letter Avatar</ListItem>
-          <ListItem leftAvatar={customLetterAvatar} disableTouchTap={true}>Letter Avatar with custom colors</ListItem>
+          <ListItem leftAvatar={imageAvatar} disabled={true}>Image Avatar</ListItem>
+          <ListItem leftAvatar={svgAvatar} disabled={true}>SvgIcon Avatar</ListItem>
+          <ListItem leftAvatar={customSvgAvatar} disabled={true}>SvgIcon Avatar with custom colors</ListItem>
+          <ListItem leftAvatar={fontAvatar} disabled={true}>FontIcon Avatar</ListItem>
+          <ListItem leftAvatar={customFontAvatar} disabled={true}>FontIcon Avatar with custom colors</ListItem>
+          <ListItem leftAvatar={letterAvatar} disabled={true}>Letter Avatar</ListItem>
+          <ListItem leftAvatar={customLetterAvatar} disabled={true}>Letter Avatar with custom colors</ListItem>
         </List>
 
       </ComponentDoc>
