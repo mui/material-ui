@@ -1,6 +1,9 @@
 let React = require('react');
+let StylePropable = require('./mixins/style-propable');
 
 let AppCanvas = React.createClass({
+
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object
@@ -16,15 +19,15 @@ let AppCanvas = React.createClass({
 
     let newChildren = React.Children.map(this.props.children, function(currentChild) {
       if (!currentChild) { // If undefined, skip it
-        return;
+        return null;
       }
 
       switch (currentChild.type.displayName) {
         case 'AppBar' :
           return React.cloneElement(currentChild, {
-            style: {
+            style: this.mergeStyles({
               position: 'fixed',
-            }
+            }, currentChild.props.style)
           });
         default:
           return currentChild;
