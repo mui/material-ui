@@ -449,7 +449,9 @@ var Menu = React.createClass({
         //Open the menu
         el.style.transition = Transitions.easeOut();
         el.style.height = this._getCurrentHeight() + 'px';
-
+        el.style.paddingTop = this.getSpacing().desktopGutterMini + 'px';
+        el.style.paddingBottom = this.getSpacing().desktopGutterMini + 'px';
+        
         //Set the overflow to visible after the animation is done so
         //that other nested menus can be shown
         CssEvent.onTransitionEnd(el, function() {
@@ -463,6 +465,8 @@ var Menu = React.createClass({
 
         //Close the menu
         el.style.height = '0px';
+        el.style.paddingTop = '0px';
+        el.style.paddingBottom = '0px';
 
         //Set the overflow to hidden so that animation works properly
         container.style.overflow = 'hidden';
