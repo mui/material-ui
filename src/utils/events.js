@@ -1,8 +1,8 @@
 module.exports = {
 
-  once: function(el, type, callback) {
+  once(el, type, callback) {
     let typeArray = type.split(' ');
-    let recursiveFunction = function(e){
+    let recursiveFunction = (e) => {
       e.target.removeEventListener(e.type, recursiveFunction);
       return callback(e);
     };
@@ -13,21 +13,23 @@ module.exports = {
   },
 
   // IE8+ Support
-  on: function(el, type, callback) {
+  on(el, type, callback) {
     if (el.addEventListener) {
       el.addEventListener(type, callback);
-    } else {
-      el.attachEvent('on' + type, function() {
+    }
+    else {
+      el.attachEvent('on' + type, () => {
         callback.call(el);
       });
     }
   },
 
   // IE8+ Support
-  off: function(el, type, callback) {
+  off(el, type, callback) {
     if (el.removeEventListener) {
       el.removeEventListener(type, callback);
-    } else {
+    }
+    else {
       el.detachEvent('on' + type, callback);
     }
   }

@@ -1,10 +1,10 @@
 let React = require('react');
 let BeforeAfterWrapper = require('./before-after-wrapper');
 
+
 let ClearFix = React.createClass({
 
-  render: function() {
-
+  render() {
     let {
       style,
       ...other

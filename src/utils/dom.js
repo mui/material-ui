@@ -1,17 +1,17 @@
 module.exports = {
 
-  isDescendant: function(parent, child) {
+  isDescendant(parent, child) {
     let node = child.parentNode;
 
     while (node != null) {
-      if (node == parent) return true;
+      if (node === parent) return true;
       node = node.parentNode;
     }
 
     return false;
   },
 
-  offset: function(el) {
+  offset(el) {
     let rect = el.getBoundingClientRect();
     return {
       top: rect.top + document.body.scrollTop,
@@ -19,35 +19,35 @@ module.exports = {
     };
   },
 
-  addClass: function(el, className) {
+  addClass(el, className) {
     if (el.classList)
       el.classList.add(className);
     else
       el.className += ' ' + className;
   },
 
-  removeClass: function(el, className) {
+  removeClass(el, className) {
     if (el.classList)
       el.classList.remove(className);
     else
       el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
   },
 
-  hasClass: function(el, className) {
+  hasClass(el, className) {
     if (el.classList)
       return el.classList.contains(className);
     else
       return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
   },
 
-  toggleClass: function(el, className) {
+  toggleClass(el, className) {
     if (this.hasClass(el, className))
       this.removeClass(el, className);
     else
       this.addClass(el, className);
   },
 
-  forceRedraw: function(el) {
+  forceRedraw(el) {
     let originalDisplay = el.style.display;
 
     el.style.display = 'none';
@@ -55,7 +55,7 @@ module.exports = {
     el.style.display = originalDisplay;
   },
 
-  withoutTransition: function(el, callback) {
+  withoutTransition(el, callback) {
     //turn off transition
     el.style.transition = 'none';
 

@@ -2,6 +2,7 @@ let React = require('react');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require("./styles/transitions");
 
+
 let CircularProgress = React.createClass({
 
   mixins: [StylePropable],
@@ -18,7 +19,7 @@ let CircularProgress = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  _getRelativeValue: function(){
+  _getRelativeValue(){
     let value = this.props.value;
     let min = this.props.min;
     let max = this.props.max;
@@ -29,7 +30,7 @@ let CircularProgress = React.createClass({
     return relValue * 100;
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
 
     let wrapper = React.findDOMNode(this.refs.wrapper);
     let path = React.findDOMNode(this.refs.path);
@@ -38,7 +39,7 @@ let CircularProgress = React.createClass({
     this._rotateWrapper(wrapper);
 
   },
-  _scalePath: function(path, step){
+  _scalePath(path, step){
     step = step || 0;
     step %= 3;
 
@@ -70,7 +71,7 @@ let CircularProgress = React.createClass({
     }
 
   },
-  _rotateWrapper: function(wrapper){
+  _rotateWrapper(wrapper){
 
     setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
 
@@ -81,13 +82,13 @@ let CircularProgress = React.createClass({
     wrapper.style.transform = "rotate(0deg)";
       wrapper.style.transitionDuration = "0ms";
 
-    setTimeout(function(){
+    setTimeout(() => {
       wrapper.style.transform = "rotate(1800deg)";
       wrapper.style.transitionDuration = "10s";
     }, 50);
   },
 
-  getDefaultProps: function () {
+  getDefaultProps() {
       return {
           mode: "indeterminate",
           value: 0,
@@ -97,11 +98,11 @@ let CircularProgress = React.createClass({
       };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.palette;
   },
 
-  getStyles: function(zoom) {
+  getStyles(zoom) {
     zoom *= 1.4;
     let size = "50px";
 
@@ -152,7 +153,7 @@ let CircularProgress = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       style,
       size,

@@ -3,6 +3,7 @@ let StylePropable = require('../mixins/style-propable');
 let Transitions = require('../styles/transitions');
 let Colors = require('../styles/colors');
 
+
 let RippleCircle = React.createClass({
 
   mixins: [StylePropable],
@@ -14,13 +15,13 @@ let RippleCircle = React.createClass({
     ending: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       color: Colors.darkBlack
     };
   },
 
-  render: function() {
+  render() {
     let {
       color,
       started,

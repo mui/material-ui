@@ -17,7 +17,7 @@ class SnackbarPage extends React.Component {
       '  action="undo"\n' +
       '  onActionTouchTap={this._handleAction}/>\n\n' +
       '//Somewhere in our code\n' +
-      '_handleAction: function() {\n' +
+      '_handleAction() {\n' +
       '  //We can add more code to this function, but for now we\'ll just include an alert.\n' +
       '  alert("We removed the event from your calendar.");\n' +
       '}';

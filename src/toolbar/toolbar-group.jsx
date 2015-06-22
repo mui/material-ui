@@ -16,21 +16,21 @@ let ToolbarGroup = React.createClass({
     float: React.PropTypes.string
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       float: 'left'
     };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.toolbar;
   },
 
-  getSpacing: function() {
+  getSpacing() {
     return this.context.muiTheme.spacing.desktopGutter;
   },
 
-  getStyles: function() {
+  getStyles() {
     let marginHorizontal = this.getSpacing();
     let marginVertical = (this.getTheme().height - this.context.muiTheme.component.button.height) / 2;
     let styles = {
@@ -79,13 +79,13 @@ let ToolbarGroup = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let styles = this.getStyles();
 
     if (this.props.firstChild) styles.marginLeft = -24;
     if (this.props.lastChild) styles.marginRight = -24;
 
-    let newChildren = React.Children.map(this.props.children, function(currentChild) {
+    let newChildren = React.Children.map(this.props.children, (currentChild) => {
       if (!currentChild) {
         return null;
       }
@@ -129,22 +129,22 @@ let ToolbarGroup = React.createClass({
     );
   },
 
-  _handleMouseOverDropDownMenu: function(e) {
+  _handleMouseOverDropDownMenu(e) {
     e.target.style.zIndex = this.getStyles().icon.hover.zIndex;
     e.target.style.color = this.getStyles().icon.hover.color;
   },
 
-  _handleMouseOutDropDownMenu: function(e) {
+  _handleMouseOutDropDownMenu(e) {
     e.target.style.zIndex = 'auto';
     e.target.style.color = this.getStyles().icon.root.color;
   },
 
-  _handleMouseOverFontIcon: function(e) {
+  _handleMouseOverFontIcon(e) {
     e.target.style.zIndex = this.getStyles().icon.hover.zIndex;
     e.target.style.color = this.getStyles().icon.hover.color;
   },
 
-  _handleMouseOutFontIcon: function(e) {
+  _handleMouseOutFontIcon(e) {
     e.target.style.zIndex = 'auto';
     e.target.style.color = this.getStyles().icon.root.color;
   }

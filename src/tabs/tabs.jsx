@@ -20,7 +20,7 @@ let Tabs = React.createClass({
     tabItemContainerStyle: React.PropTypes.object
   },
 
-  getInitialState: function(){
+  getInitialState(){
     let selectedIndex = 0;
     if (this.props.initialSelectedIndex && this.props.initialSelectedIndex < this.props.children.length) {
       selectedIndex = this.props.initialSelectedIndex;
@@ -30,7 +30,7 @@ let Tabs = React.createClass({
     };
   },
 
-  getEvenWidth: function(){
+  getEvenWidth(){
     return (
       parseInt(window
         .getComputedStyle(React.findDOMNode(this))
@@ -38,20 +38,20 @@ let Tabs = React.createClass({
     );
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._updateTabWidth();
     Events.on(window, 'resize', this._updateTabWidth);
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     Events.off(window, 'resize', this._updateTabWidth);
   },
 
-  componentWillReceiveProps: function(newProps) {
+  componentWillReceiveProps(newProps) {
     if (newProps.hasOwnProperty('style')) this._updateTabWidth();
   },
 
-  handleTouchTap: function(tabIndex, tab){
+  handleTouchTap(tabIndex, tab){
     if (this.props.onChange && this.state.selectedIndex !== tabIndex) {
       this.props.onChange(tabIndex, tab);
     }
@@ -61,7 +61,7 @@ let Tabs = React.createClass({
     if (tab.props.onActive) tab.props.onActive(tab);
   },
 
-  getStyles: function() {
+  getStyles() {
     let themeVariables = this.context.muiTheme.component.tabs;
 
     return {
@@ -77,7 +77,7 @@ let Tabs = React.createClass({
     };
   },
 
-  render: function(){
+  render(){
     let styles = this.getStyles();
 
     let tabContent = [];
@@ -87,15 +87,15 @@ let Tabs = React.createClass({
 
     let left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
 
-    let tabs = React.Children.map(this.props.children, function(tab, index){
+    let tabs = React.Children.map(this.props.children, (tab, index) => {
       if (tab.type.displayName === "Tab") {
-
         if (tab.props.children) {
           tabContent.push(React.createElement(TabTemplate, {
             key: index,
             selected: this.state.selectedIndex === index
           }, tab.props.children));
-        } else {
+        }
+        else {
           tabContent.push(undefined)
         }
 
@@ -106,12 +106,14 @@ let Tabs = React.createClass({
           width: width,
           handleTouchTap: this.handleTouchTap
         });
-      } else {
+      }
+      else {
         let type = tab.type.displayName || tab.type;
         throw 'Tabs only accepts Tab Components as children. Found ' +
               type + ' as child number ' + (index + 1) + ' of Tabs';
       }
     }, this);
+
     return (
       <div style={this.mergeAndPrefix(this.props.style)}>
         <div style={this.mergeAndPrefix(styles.tabItemContainer, this.props.tabItemContainerStyle)}>
@@ -125,14 +127,14 @@ let Tabs = React.createClass({
     )
   },
 
-  _tabWidthPropIsValid: function() {
+  _tabWidthPropIsValid() {
     return this.props.tabWidth &&
       (this.props.tabWidth * this.props.children.length <= this.getEvenWidth());
   },
 
   // Validates that the tabWidth can fit all tabs on the tab bar. If not, the
   // tabWidth is recalculated and fixed.
-  _updateTabWidth: function() {
+  _updateTabWidth() {
     if (this._tabWidthPropIsValid()) {
       this.setState({
         fixedWidth: false

@@ -7,13 +7,13 @@ let MobileTearSheet = React.createClass({
     height: React.PropTypes.number
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       height: 500
     };
   },
 
-  render: function() {
+  render() {
 
     let styles = {
       root: {

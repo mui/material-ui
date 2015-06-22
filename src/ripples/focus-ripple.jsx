@@ -6,6 +6,7 @@ let AutoPrefix = require('../styles/auto-prefix');
 
 const pulsateDuration = 750;
 
+
 let FocusRipple = React.createClass({
 
   mixins: [StylePropable],
@@ -17,18 +18,18 @@ let FocusRipple = React.createClass({
     innerStyle: React.PropTypes.object
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       color: Colors.darkBlack
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._setRippleSize();
     this._pulsate();
   },
 
-  render: function() {
+  render() {
 
     let outerStyles = this.mergeAndPrefix({
       height: '100%',
@@ -58,7 +59,7 @@ let FocusRipple = React.createClass({
     );
   },
 
-  _pulsate: function() {
+  _pulsate() {
     if (!this.isMounted()) return;
 
     let startScale = 'scale(0.75)';
@@ -75,7 +76,7 @@ let FocusRipple = React.createClass({
     setTimeout(this._pulsate, pulsateDuration);
   },
 
-  _setRippleSize: function() {
+  _setRippleSize() {
     let el = React.findDOMNode(this);
     let height = el.offsetHeight;
     let width = el.offsetWidth;

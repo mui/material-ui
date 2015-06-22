@@ -21,22 +21,22 @@ let Tooltip = React.createClass({
     horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center'])
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._setRippleSize();
     this._setTooltipPosition();
   },
 
-  componentDidUpdate: function() {
+  componentDidUpdate() {
     this._setRippleSize();
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       offsetWidth: null,
     };
   },
 
-  getStyles: function(){
+  getStyles() {
     let verticalPosition = this.props.verticalPosition;
     let horizontalPosition = this.props.horizontalPosition;
     let touchMarginOffset = this.props.touch ? 10: 0;
@@ -108,7 +108,7 @@ let Tooltip = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       label,
       ...other } = this.props;
@@ -131,7 +131,7 @@ let Tooltip = React.createClass({
     );
   },
 
-  _setRippleSize: function() {
+  _setRippleSize() {
     let ripple = React.findDOMNode(this.refs.ripple);
     let tooltip = window.getComputedStyle(React.findDOMNode(this));
     let tooltipWidth = parseInt(tooltip.getPropertyValue("width"), 10) /
@@ -143,13 +143,14 @@ let Tooltip = React.createClass({
     if (this.props.show) {
       ripple.style.height = rippleDiameter + 'px';
       ripple.style.width = rippleDiameter + 'px';
-    } else {
+    }
+    else {
       ripple.style.width = '0px';
       ripple.style.height = '0px';
     }
   },
 
-  _setTooltipPosition: function() {
+  _setTooltipPosition() {
     let tooltip = React.findDOMNode(this);
     this.setState({offsetWidth: tooltip.offsetWidth});
   }

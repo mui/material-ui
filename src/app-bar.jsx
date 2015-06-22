@@ -28,7 +28,7 @@ let AppBar = React.createClass({
     zDepth: React.PropTypes.number,
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       showMenuIconButton: true,
       title: '',
@@ -36,7 +36,7 @@ let AppBar = React.createClass({
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     if (process.env.NODE_ENV !== 'production' &&
       this.props.iconElementLeft &&
       this.props.iconClassNameLeft) {
@@ -48,7 +48,7 @@ let AppBar = React.createClass({
     }
   },
 
-  getStyles: function() {
+  getStyles() {
     let spacing = this.context.muiTheme.spacing;
     let themeVariables = this.context.muiTheme.component.appBar;
     let iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
@@ -93,7 +93,7 @@ let AppBar = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let menuElementLeft;
     let menuElementRight;
     let styles = this.getStyles();
@@ -164,13 +164,13 @@ let AppBar = React.createClass({
     );
   },
 
-  _onLeftIconButtonTouchTap: function(event) {
+  _onLeftIconButtonTouchTap(event) {
     if (this.props.onLeftIconButtonTouchTap) {
       this.props.onLeftIconButtonTouchTap(event);
     }
   },
 
-  _onRightIconButtonTouchTap: function(event) {
+  _onRightIconButtonTouchTap(event) {
     if (this.props.onRightIconButtonTouchTap) {
       this.props.onRightIconButtonTouchTap(event);
     }

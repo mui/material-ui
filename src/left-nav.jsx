@@ -36,13 +36,13 @@ let LeftNav = React.createClass({
     'resize': '_onWindowResize'
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       docked: true
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       open: this.props.docked,
       maybeSwiping: false,
@@ -50,46 +50,46 @@ let LeftNav = React.createClass({
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._updateMenuHeight();
     this._enableSwipeHandling();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     this._updateMenuHeight();
     this._enableSwipeHandling();
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     this._disableSwipeHandling();
   },
 
-  toggle: function() {
+  toggle() {
     this.setState({ open: !this.state.open });
     return this;
   },
 
-  close: function() {
+  close() {
     this.setState({ open: false });
     if (this.props.onNavClose) this.props.onNavClose();
     return this;
   },
 
-  open: function() {
+  open() {
     this.setState({ open: true });
     if (this.props.onNavOpen) this.props.onNavOpen();
     return this;
   },
 
-  getThemePalette: function() {
+  getThemePalette() {
     return this.context.muiTheme.palette;
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.leftNav;
   },
 
-  getStyles: function() {
+  getStyles() {
     let x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX()) + 'px';
     let styles = {
       root: {
@@ -130,7 +130,7 @@ let LeftNav = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let selectedIndex = this.props.selectedIndex;
     let overlay;
 
@@ -174,7 +174,7 @@ let LeftNav = React.createClass({
     );
   },
 
-  _updateMenuHeight: function() {
+  _updateMenuHeight() {
     if (this.props.header) {
       let container = React.findDOMNode(this.refs.clickAwayableElement);
       let menu = React.findDOMNode(this.refs.menuItems);
@@ -183,18 +183,18 @@ let LeftNav = React.createClass({
     }
   },
 
-  _onMenuItemClick: function(e, key, payload) {
+  _onMenuItemClick(e, key, payload) {
     if (this.props.onChange && this.props.selectedIndex !== key) {
       this.props.onChange(e, key, payload);
     }
     if (!this.props.docked) this.close();
   },
 
-  _onOverlayTouchTap: function() {
+  _onOverlayTouchTap() {
     this.close();
   },
 
-  _onWindowKeyUp: function(e) {
+  _onWindowKeyUp(e) {
     if (e.keyCode == KeyCode.ESC &&
         !this.props.docked &&
         this.state.open) {
@@ -202,19 +202,19 @@ let LeftNav = React.createClass({
     }
   },
 
-  _onWindowResize: function(e) {
+  _onWindowResize(e) {
     this._updateMenuHeight();
   },
 
-  _getMaxTranslateX: function() {
+  _getMaxTranslateX() {
     return this.getTheme().width + 10;
   },
 
-  _getTranslateMultiplier: function() {
+  _getTranslateMultiplier() {
     return this.props.openRight ? 1 : -1;
   },
 
-  _enableSwipeHandling: function() {
+  _enableSwipeHandling() {
     if (!this.props.docked) {
       document.body.addEventListener('touchstart', this._onBodyTouchStart);
       if (!openNavEventHandler) {
@@ -225,14 +225,14 @@ let LeftNav = React.createClass({
     }
   },
 
-  _disableSwipeHandling: function() {
+  _disableSwipeHandling() {
     document.body.removeEventListener('touchstart', this._onBodyTouchStart);
     if (openNavEventHandler === this._onBodyTouchStart) {
       openNavEventHandler = null;
     }
   },
 
-  _onBodyTouchStart: function(e) {
+  _onBodyTouchStart(e) {
     if (!this.state.open && openNavEventHandler !== this._onBodyTouchStart) {
       return;
     }
@@ -250,14 +250,14 @@ let LeftNav = React.createClass({
     document.body.addEventListener('touchcancel', this._onBodyTouchEnd);
   },
 
-  _setPosition: function(translateX) {
+  _setPosition(translateX) {
     let leftNav = React.findDOMNode(this.refs.clickAwayableElement);
     leftNav.style[AutoPrefix.single('transform')] =
       'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
   },
 
-  _getTranslateX: function(currentX) {
+  _getTranslateX(currentX) {
     return Math.min(
              Math.max(
                this.state.swiping === 'closing' ?
@@ -269,7 +269,7 @@ let LeftNav = React.createClass({
            );
   },
 
-  _onBodyTouchMove: function(e) {
+  _onBodyTouchMove(e) {
     let currentX = e.touches[0].pageX;
     let currentY = e.touches[0].pageY;
 
@@ -299,7 +299,7 @@ let LeftNav = React.createClass({
     }
   },
 
-  _onBodyTouchEnd: function(e) {
+  _onBodyTouchEnd(e) {
     let currentX = e.changedTouches[0].pageX;
     let translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
 

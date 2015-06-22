@@ -2,6 +2,7 @@ let React = require('react');
 let Paper = require('../paper');
 let StylePropable = require('../mixins/style-propable');
 
+
 let Card = React.createClass({
   mixins:[StylePropable],
 
@@ -9,7 +10,7 @@ let Card = React.createClass({
     style: React.PropTypes.object
   },
 
-  render: function () {
+  render() {
     let lastElement = React.Children.count(this.props.children) > 1 ?
       this.props.children[this.props.children.length - 1]
       : this.props.children;

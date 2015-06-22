@@ -18,7 +18,7 @@ let ComponentInfo = React.createClass({
     infoArray: React.PropTypes.array.isRequired
   },
 
-  getStyles: function() {
+  getStyles() {
     let desktopGutter = Spacing.desktopGutter;
     let borderColor = this.context.muiTheme.palette.borderColor;
     let styles = {
@@ -115,7 +115,7 @@ let ComponentInfo = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let propElements = [],
       typesSpan;
 

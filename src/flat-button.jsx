@@ -36,13 +36,13 @@ let FlatButton = React.createClass({
     secondary: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       labelStyle: {}
     }
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       hovered: false,
       isKeyboardFocused: false,
@@ -50,7 +50,7 @@ let FlatButton = React.createClass({
     };
   },
 
-  render: function() {
+  render() {
     let {
       disabled,
       hoverColor,
@@ -127,23 +127,23 @@ let FlatButton = React.createClass({
     );
   },
 
-  _handleKeyboardFocus: function(e, isKeyboardFocused) {
+  _handleKeyboardFocus(e, isKeyboardFocused) {
     this.setState({isKeyboardFocused: isKeyboardFocused});
     if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, isKeyboardFocused);
   },
 
-  _handleMouseOver: function(e) {
+  _handleMouseOver(e) {
     //Cancel hover styles for touch devices
     if (!this.state.touch) this.setState({hovered: true});
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut(e) {
     this.setState({hovered: false});
     if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
-  _handleTouchStart: function(e) {
+  _handleTouchStart(e) {
      this.setState({touch: true});
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   }

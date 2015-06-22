@@ -11,10 +11,10 @@ let ProgressPage = React.createClass({
     };
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     let self = this;
 
-    let id = window.setInterval(function () {
+    let id = window.setInterval(() => {
 
       let diff = Math.random() * 10;
 

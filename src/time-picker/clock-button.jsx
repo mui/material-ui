@@ -16,24 +16,24 @@ let ClockButton = React.createClass({
     position: React.PropTypes.oneOf(['left', 'right'])
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
         position: "left"
     };
   },
 
-  _handleTouchTap: function() {
+  _handleTouchTap() {
     this.setState({
       selected: true
     })
     this.props.onTouchTap();
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.timePicker;
   },
 
-  render: function() {
+  render() {
     let {
       className,
       ...other} = this.props;

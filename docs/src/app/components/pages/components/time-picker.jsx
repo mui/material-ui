@@ -5,7 +5,7 @@ let ComponentDoc = require('../../component-doc');
 
 let TimePickerPage = React.createClass({
 
-  render: function() {
+  render() {
 
     let code =
       '//The 12hr format \n' +
@@ -73,10 +73,10 @@ let TimePickerPage = React.createClass({
       </ComponentDoc>
     );
   },
-  _changeTimePicker24: function(err, t){
+  _changeTimePicker24(err, t){
     this.refs.picker24hr.setTime(t);
   },
-  _changeTimePicker12: function(err, t){
+  _changeTimePicker12(err, t){
     this.refs.picker12hr.setTime(t);
   }
 

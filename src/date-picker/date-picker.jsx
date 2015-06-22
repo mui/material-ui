@@ -5,6 +5,7 @@ let DateTime = require('../utils/date-time');
 let DatePickerDialog = require('./date-picker-dialog');
 let TextField = require('../text-field');
 
+
 let DatePicker = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
@@ -30,7 +31,7 @@ let DatePicker = React.createClass({
     'keyup': '_handleWindowKeyUp'
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       formatDate: DateTime.format,
       autoOk: false,
@@ -38,20 +39,20 @@ let DatePicker = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       date: this.props.defaultDate,
       dialogDate: new Date()
     };
   },
 
-  componentWillReceiveProps: function (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.defaultDate !== nextProps.defaultDate) {
       this.setDate(nextProps.defaultDate);
     }
   },
 
-  render: function() {
+  render() {
     let {
       formatDate,
       mode,
@@ -97,32 +98,32 @@ let DatePicker = React.createClass({
     );
   },
 
-  getDate: function() {
+  getDate() {
     return this.state.date;
   },
 
-  setDate: function(d) {
+  setDate(d) {
     this.setState({
       date: d
     });
     this.refs.input.setValue(this.props.formatDate(d));
   },
 
-  _handleDialogAccept: function(d) {
+  _handleDialogAccept(d) {
     this.setDate(d);
     if (this.props.onChange) this.props.onChange(null, d);
   },
 
-  _handleDialogDismiss: function() {
+  _handleDialogDismiss() {
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
-  _handleInputFocus: function(e) {
+  _handleInputFocus(e) {
     e.target.blur();
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
-  _handleInputTouchTap: function(e) {
+  _handleInputTouchTap(e) {
     this.setState({
       dialogDate: this.getDate()
     });
@@ -131,7 +132,7 @@ let DatePicker = React.createClass({
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   },
 
-  _handleWindowKeyUp: function() {
+  _handleWindowKeyUp() {
     //TO DO: open the dialog if input has focus
   }
 

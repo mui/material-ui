@@ -2,6 +2,7 @@ let React = require('react');
 let StylePropable = require('./mixins/style-propable');
 let AutoPrefix = require('./styles/auto-prefix');
 
+
 let EnhancedTextarea = React.createClass({
 
   mixins: [StylePropable],
@@ -13,23 +14,23 @@ let EnhancedTextarea = React.createClass({
     rows: React.PropTypes.number
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       rows: 1
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       height: this.props.rows * 24
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._syncHeightWithShadow();
   },
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       root: {
         width: '100%',
@@ -42,7 +43,7 @@ let EnhancedTextarea = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
 
     let {
       onChange,
@@ -102,16 +103,16 @@ let EnhancedTextarea = React.createClass({
     );
   },
 
-  getInputNode: function() {
+  getInputNode() {
     return React.findDOMNode(this.refs.input);
   },
 
-  setValue: function (value) {
+  setValue(value) {
     this.refs.input.value = value;
     this._syncHeightWithShadow(value);
   },
 
-  _syncHeightWithShadow: function(newValue, e) {
+  _syncHeightWithShadow(newValue, e) {
     let shadow = React.findDOMNode(this.refs.shadow);
     let currentHeight = this.state.height;
     let newHeight;
@@ -125,7 +126,7 @@ let EnhancedTextarea = React.createClass({
     }
   },
 
-  _handleChange: function(e) {
+  _handleChange(e) {
     this._syncHeightWithShadow(e.target.value);
 
     if (this.props.hasOwnProperty('valueLink')) {
@@ -135,7 +136,7 @@ let EnhancedTextarea = React.createClass({
     if (this.props.onChange) this.props.onChange(e);
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value != this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
     }

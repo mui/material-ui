@@ -14,7 +14,7 @@ let SlideInChild = React.createClass({
     getLeaveDirection: React.PropTypes.func.isRequired
   },
 
-  componentWillEnter: function(callback) {
+  componentWillEnter(callback) {
     let style = React.findDOMNode(this).style;
     let x = this.props.direction === 'left' ? '100%' :
       this.props.direction === 'right' ? '-100%' : '0';
@@ -27,13 +27,13 @@ let SlideInChild = React.createClass({
     setTimeout(callback, 0);
   },
 
-  componentDidEnter: function() {
+  componentDidEnter() {
     let style = React.findDOMNode(this).style;
     style.opacity = '1';
     AutoPrefix.set(style, 'transform', 'translate3d(0,0,0)');
   },
 
-  componentWillLeave: function(callback) {
+  componentWillLeave(callback) {
     let style = React.findDOMNode(this).style;
     let direction = this.props.getLeaveDirection();
     let x = direction === 'left' ? '-100%' :
@@ -47,7 +47,7 @@ let SlideInChild = React.createClass({
     setTimeout(callback, 450);
   },
 
-  render: function() {
+  render() {
     let {
       styles,
       ...other

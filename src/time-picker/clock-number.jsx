@@ -17,7 +17,7 @@ let ClockNumber = React.createClass({
     isSelected: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       value: 0,
       type: 'minute',
@@ -25,11 +25,11 @@ let ClockNumber = React.createClass({
     };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.timePicker;
   },
 
-  render: function() {
+  render() {
     let pos = this.props.value;
     let inner = false;
 

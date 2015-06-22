@@ -18,13 +18,13 @@ let FontIcon = React.createClass({
     onMouseOver: React.PropTypes.func
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       hovered: false
     };
   },
 
-  render: function() {
+  render() {
     let {
       color,
       hoverColor,
@@ -59,14 +59,14 @@ let FontIcon = React.createClass({
     );
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut(e) {
     this.setState({hovered: false});
     if (this.props.onMouseOut) {
       this.props.onMouseOut(e);
     }
   },
 
-  _handleMouseOver: function(e) {
+  _handleMouseOver(e) {
     this.setState({hovered: true});
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);

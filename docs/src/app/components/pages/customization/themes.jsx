@@ -40,20 +40,20 @@ let ThemesPage = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  getChildContext: function() {
+  getChildContext() {
     return {
       muiTheme: ThemeManager.getCurrentTheme()
     }
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       isThemeDark: false
     };
   },
 
 
-  getStyles: function() {
+  getStyles() {
     let canvasColor = ThemeManager.getCurrentTheme().palette.canvasColor;
     let styles = {
       group: {
@@ -113,7 +113,7 @@ let ThemesPage = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
 
     let usageCodeES6 =
           'let React = require(\'react\');\n' +
@@ -143,7 +143,7 @@ let ThemesPage = React.createClass({
           '    muiTheme: React.PropTypes.object\n' +
           '  },\n\n' +
           '  // Important!\n' +
-          '  getChildContext: function() { \n' +
+          '  getChildContext() { \n' +
           '    return {\n' +
           '      muiTheme: ThemeManager.getCurrentTheme()\n' +
           '    };\n' +
@@ -332,10 +332,10 @@ let ThemesPage = React.createClass({
     );
   },
 
-  getThemeStructure: function() {
+  getThemeStructure() {
     let text =
       'let CustomTheme = {\n' +
-      '  getPalette: function() {\n' +
+      '  getPalette() {\n' +
       '    return {\n' +
       '      primary1Color: String,\n' +
       '      primary2Color: String,\n' +
@@ -349,7 +349,7 @@ let ThemesPage = React.createClass({
       '      disabledColor: String\n' +
       '    };\n' +
       '  },\n' +
-      '  getComponentThemes: function(palette) {\n' +
+      '  getComponentThemes(palette) {\n' +
       '    return {\n' +
       '      appBar: {\n' +
       '        color: String,\n' +
@@ -484,7 +484,7 @@ let ThemesPage = React.createClass({
       return text;
   },
 
-  getComponentGroup: function() {
+  getComponentGroup() {
     //Standard Actions
     let standardActions = [
       { text: 'Cancel' },
@@ -639,7 +639,7 @@ let ThemesPage = React.createClass({
     );
   },
 
-  getThemeExamples: function() {
+  getThemeExamples() {
     return (
       <Tabs onChange={this.onTabChange}>
         <Tab label='Light Theme (Default)'>
@@ -652,7 +652,7 @@ let ThemesPage = React.createClass({
     );
   },
 
-  getOverrideExamplePage: function() {
+  getOverrideExamplePage() {
     return (
       'let React = require(\'react\');\n' +
       'let mui = require(\'mui\');\n' +
@@ -680,7 +680,7 @@ let ThemesPage = React.createClass({
 
 
   // Toggles between light and dark themes
-  onTabChange: function(tabIndex, tab) {
+  onTabChange(tabIndex, tab) {
     if (this.state.isThemeDark) {
       ThemeManager.setTheme(ThemeManager.types.LIGHT);
     } else {
@@ -689,23 +689,23 @@ let ThemesPage = React.createClass({
     this.setState({isThemeDark: !this.state.isThemeDark});
   },
 
-  handleAction: function(e) {
+  handleAction(e) {
     this.refs.snackbar.dismiss();
   },
 
-  handleClickNav: function(e) {
+  handleClickNav(e) {
     this.refs.leftNav.toggle();
   },
 
-  handleClickSnackbar: function(e) {
+  handleClickSnackbar(e) {
     this.refs.snackbar.show();
   },
 
-  handleTouchTapDialog: function(e) {
+  handleTouchTapDialog(e) {
     this.refs.dialog.show();
   },
 
-  _onDialogSubmit: function () {
+  _onDialogSubmit() {
     console.log('Submitting');
   }
 });

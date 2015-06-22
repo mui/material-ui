@@ -34,7 +34,7 @@ let ClockHours = React.createClass({
   center: {x: 0, y: 0},
   basePoint: {x: 0, y: 0},
 
-  isMousePressed: function(e) {
+  isMousePressed(e) {
     if (typeof e.buttons == "undefined"){
       return e.nativeEvent.which;
     }
@@ -42,15 +42,15 @@ let ClockHours = React.createClass({
     return e.buttons;
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       initialHours: new Date().getHours(),
-      onChange: function(){},
+      onChange(){},
       format: 'ampm'
     };
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     let clockElement = React.findDOMNode(this.refs.mask);
 
     this.center = {
@@ -64,28 +64,28 @@ let ClockHours = React.createClass({
     };
   },
 
-  handleUp: function(e) {
+  handleUp(e) {
     e.preventDefault();
     this.setClock(e.nativeEvent, true);
   },
 
-  handleMove: function(e) {
+  handleMove(e) {
     e.preventDefault();
     if (this.isMousePressed(e) != 1 ) return;
     this.setClock(e.nativeEvent, false);
   },
 
-  handleTouchMove: function(e) {
+  handleTouchMove(e) {
     e.preventDefault();
     this.setClock(e.changedTouches[0], false);
   },
 
-  handleTouchEnd: function(e) {
+  handleTouchEnd(e) {
     e.preventDefault();
     this.setClock(e.changedTouches[0], true);
   },
 
-  setClock: function(e, finish) {
+  setClock(e, finish) {
     if (typeof e.offsetX === 'undefined') {
       let offset = getTouchEventOffsetValues(e);
 
@@ -98,7 +98,7 @@ let ClockHours = React.createClass({
     this.props.onChange(hours, finish);
   },
 
-  getHours: function(offsetX, offsetY) {
+  getHours(offsetX, offsetY) {
     let step = 30;
     let x = offsetX - this.center.x;
     let y = offsetY - this.center.y;
@@ -130,7 +130,7 @@ let ClockHours = React.createClass({
     return value;
   },
 
-  _getSelected: function() {
+  _getSelected() {
     let hour = this.props.initialHours;
 
     if (this.props.format == "ampm"){
@@ -141,7 +141,7 @@ let ClockHours = React.createClass({
     return hour;
   },
 
-  _getHourNumbers: function() {
+  _getHourNumbers() {
     let style = {
       pointerEvents: "none"
     };
@@ -152,13 +152,13 @@ let ClockHours = React.createClass({
       hours.push(i % 24);
     }
 
-    return hours.map(function(hour){
+    return hours.map((hour) => {
       let isSelected = this._getSelected() == hour;
       return <ClockNumber style={style}  isSelected={isSelected} type="hour" value={hour} />;
-    }.bind(this));
+    });
   },
 
-  render: function() {
+  render() {
     let styles = {
       root: {
         height: "100%",

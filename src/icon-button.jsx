@@ -29,20 +29,20 @@ let IconButton = React.createClass({
       'top-right'])
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       tooltipShown: false
     };
   },
 
-  getDefaultProps: function () {
+  getDefaultProps() {
     return {
       iconStyle: {},
       tooltipPosition: 'bottom-center'
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     if (process.env.NODE_ENV !== 'production') {
       if (this.props.iconClassName && this.props.children) {
         let warning = 'You have set both an iconClassName and a child icon. ' +
@@ -53,7 +53,7 @@ let IconButton = React.createClass({
     }
   },
 
-  getStyles: function() {
+  getStyles() {
     let spacing = this.context.muiTheme.spacing;
     let palette = this.context.muiTheme.palette;
 
@@ -88,7 +88,7 @@ let IconButton = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       disabled,
       iconClassName,
@@ -153,10 +153,10 @@ let IconButton = React.createClass({
     );
   },
 
-  _addStylesToChildren: function(styles) {
+  _addStylesToChildren(styles) {
     let children = [];
 
-    React.Children.forEach(this.props.children, function(child) {
+    React.Children.forEach(this.props.children, (child) => {
       children.push(
         React.cloneElement(child, {
           key: child.props.key ? child.props.key : children.length,
@@ -168,44 +168,46 @@ let IconButton = React.createClass({
     return children;
   },
 
-  _showTooltip: function() {
+  _showTooltip() {
     if (!this.props.disabled && this.props.tooltip) {
       this.setState({ tooltipShown: true });
     }
   },
 
-  _hideTooltip: function() {
+  _hideTooltip() {
     if (this.props.tooltip) this.setState({ tooltipShown: false });
   },
 
-  _handleBlur: function(e) {
+  _handleBlur(e) {
     this._hideTooltip();
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
-  _handleFocus: function(e) {
+  _handleFocus(e) {
     this._showTooltip();
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut(e) {
     if (!this.refs.button.isKeyboardFocused()) this._hideTooltip();
     if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
-  _handleMouseOver: function(e) {
+  _handleMouseOver(e) {
     this._showTooltip();
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
-  _handleKeyboardFocus: function(e, keyboardFocused) {
+  _handleKeyboardFocus(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this._showTooltip();
       if (this.props.onFocus) this.props.onFocus(e);
-    } else if (!this.state.hovered) {
+    }
+    else if (!this.state.hovered) {
       this._hideTooltip();
       if (this.props.onBlur) this.props.onBlur(e);
     }
+
     if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused);
   }
 

@@ -10,15 +10,15 @@ let ToolbarSeparator = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.toolbar;
   },
 
-  getSpacing: function() {
+  getSpacing() {
     return this.context.muiTheme.spacing;
   },
 
-  render: function() {
+  render() {
 
     let styles = this.mergeAndPrefix({
       backgroundColor: this.getTheme().separatorColor,

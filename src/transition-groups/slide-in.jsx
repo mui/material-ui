@@ -12,13 +12,13 @@ let SlideIn = React.createClass({
     direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down'])
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       direction: 'left'
     };
   },
 
-  render: function() {
+  render() {
     let {
       direction,
       ...other
@@ -39,8 +39,8 @@ let SlideIn = React.createClass({
     );
   },
 
-  _getSlideInChildren: function() {
-    return React.Children.map(this.props.children, function(child) {
+  _getSlideInChildren() {
+    return React.Children.map(this.props.children, (child) => {
       return (
         <SlideInChild
           key={child.key}
@@ -52,7 +52,7 @@ let SlideIn = React.createClass({
     }, this);
   },
 
-  _getLeaveDirection: function() {
+  _getLeaveDirection() {
     return this.props.direction;
   }
 

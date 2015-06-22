@@ -24,23 +24,23 @@ let DropDownIcon = React.createClass({
     iconLigature: React.PropTypes.string
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       open: false,
     }
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       closeOnMenuItemTouchTap: true
     }
   },
 
-  componentClickAway: function() {
+  componentClickAway() {
     this.setState({ open: false });
   },
 
-  getStyles: function() {
+  getStyles() {
     let spacing = this.context.muiTheme.spacing;
     let iconWidth = 48;
     let styles = {
@@ -67,7 +67,7 @@ let DropDownIcon = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       style,
       children,
@@ -100,11 +100,11 @@ let DropDownIcon = React.createClass({
     );
   },
 
-  _onControlClick: function() {
+  _onControlClick() {
     this.setState({ open: !this.state.open });
   },
 
-  _onMenuItemClick: function(e, key, payload) {
+  _onMenuItemClick(e, key, payload) {
     if (this.props.onChange) this.props.onChange(e, key, payload);
 
     if (this.props.closeOnMenuItemTouchTap) {

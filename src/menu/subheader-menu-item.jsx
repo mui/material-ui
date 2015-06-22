@@ -2,6 +2,7 @@ let React = require('react');
 let StylePropable = require('../mixins/style-propable');
 let Typography = require('../styles/typography');
 
+
 let SubheaderMenuItem = React.createClass({
 
   mixins: [StylePropable],
@@ -17,15 +18,15 @@ let SubheaderMenuItem = React.createClass({
       className: React.PropTypes.string,
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.menuSubheader;
   },
 
-  getSpacing: function() {
+  getSpacing() {
     return this.context.muiTheme.spacing;
   },
 
-  getStyles: function() {
+  getStyles() {
     let gutterMini = this.getSpacing().desktopGutterMini;
     let subheaderHeight = this.getSpacing().desktopSubheaderHeight;
     let styles = {
@@ -52,7 +53,7 @@ let SubheaderMenuItem = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     return (
         <div
           key={this.props.index}

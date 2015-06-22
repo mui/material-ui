@@ -18,14 +18,14 @@ let SvgIcon = React.createClass({
     src: React.PropTypes.string
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       backgroundColor: Colors.grey400,
       color: Colors.white
     };
   },
 
-  render: function() {
+  render() {
 
     let {
       icon,

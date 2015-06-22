@@ -15,13 +15,13 @@ let ClockPointer = React.createClass({
     type: React.PropTypes.oneOf(['hour', 'minute'])
   },
 
-  getInitialState: function() {
+  getInitialState() {
      return {
         inner: this.isInner(this.props.value)
     };
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       value: null,
       type: 'minute',
@@ -29,20 +29,20 @@ let ClockPointer = React.createClass({
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
         inner: this.isInner(nextProps.value)
     });
   },
 
-  isInner: function(value) {
+  isInner(value) {
     if (this.props.type != "hour" ) {
       return false;
     }
     return value < 1 || value > 12 ;
   },
 
-  getAngle: function() {
+  getAngle() {
 
     if (this.props.type === "hour") {
       return this.calcAngle(this.props.value, 12);
@@ -51,17 +51,17 @@ let ClockPointer = React.createClass({
     return this.calcAngle(this.props.value, 60);
   },
 
-  calcAngle: function(value, base) {
+  calcAngle(value, base) {
     value %= base;
     let angle = 360 / base * value;
     return angle;
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.timePicker;
   },
 
-  render: function() {
+  render() {
     if (this.props.value == null) {
       return <span />;
     }
