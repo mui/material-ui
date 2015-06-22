@@ -44,9 +44,9 @@ module.exports = {
   Slider: require('./slider'),
   SvgIcon: require('./svg-icon'),
   Icons: {
-    NavigationMenu: require('./svg-icons/navigation-menu'),
-    NavigationChevronLeft: require('./svg-icons/navigation-chevron-left'),
-    NavigationChevronRight: require('./svg-icons/navigation-chevron-right')
+    NavigationMenu: require('./svg-icons/navigation/menu'),
+    NavigationChevronLeft: require('./svg-icons/navigation/chevron-left'),
+    NavigationChevronRight: require('./svg-icons/navigation/chevron-right')
   },
   Styles: {
     AutoPrefix: require('./styles/auto-prefix'),

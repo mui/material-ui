@@ -2,8 +2,8 @@ let React = require('react');
 let EnhancedSwitch = require('./enhanced-switch');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
-let CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank');
-let CheckboxChecked = require('./svg-icons/toggle-check-box-checked');
+let CheckboxOutline = require('./svg-icons/toggle/check-box-outline-blank');
+let CheckboxChecked = require('./svg-icons/toggle/check-box');
 
 let Checkbox = React.createClass({
 

@@ -2,18 +2,18 @@ let React = require('react');
 let mui = require('mui');
 let ComponentDoc = require('../../component-doc.jsx');
 let MobileTearSheet = require('../../mobile-tear-sheet.jsx');
-let ActionAssignment = require('../../svg-icons/action-assignment.jsx');
-let ActionGrade = require('../../svg-icons/action-grade.jsx');
-let ActionInfo = require('../../svg-icons/action-info.jsx');
-let CommunicationCall = require('../../svg-icons/communication-call.jsx');
-let CommunicationChatBubble = require('../../svg-icons/communication-chat-bubble.jsx');
-let CommunicationEmail = require('../../svg-icons/communication-email.jsx');
-let ContentDrafts = require('../../svg-icons/content-drafts.jsx');
-let ContentInbox = require('../../svg-icons/content-inbox.jsx');
-let ContentSend = require('../../svg-icons/content-send.jsx');
-let EditorInsertChart = require('../../svg-icons/editor-insert-chart.jsx');
-let FileFolder = require('../../svg-icons/file-folder.jsx');
-let ToggleStarBorder = require('../../svg-icons/toggle-star-border.jsx');
+let ActionAssignment = require('svg-icons/action/assignment');
+let ActionGrade = require('svg-icons/action/grade');
+let ActionInfo = require('svg-icons/action/info');
+let CommunicationCall = require('svg-icons/communication/call');
+let CommunicationChatBubble = require('svg-icons/communication/chat-bubble');
+let CommunicationEmail = require('svg-icons/communication/email');
+let ContentDrafts = require('svg-icons/content/drafts');
+let ContentInbox = require('svg-icons/content/inbox');
+let ContentSend = require('svg-icons/content/send');
+let EditorInsertChart = require('svg-icons/editor/insert-chart');
+let FileFolder = require('svg-icons/file/folder');
+let ToggleStarBorder = require('svg-icons/toggle/star-border');
 
 let {
   Avatar,

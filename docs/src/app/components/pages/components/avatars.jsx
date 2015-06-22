@@ -1,10 +1,8 @@
 let React = require('react');
 let { Avatar, FontIcon, List, ListItem, Styles } = require('mui');
 let ComponentDoc = require('../../component-doc.jsx');
-let FileFolder = require('../../svg-icons/file-folder.jsx');
-
+let FileFolder = require('svg-icons/file/folder');
 let { Colors } = Styles;
-
 
 class AvatarsPage extends React.Component {
 

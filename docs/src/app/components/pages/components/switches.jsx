@@ -2,8 +2,8 @@ let React = require('react');
 let mui = require('mui');
 let CodeExample = require('../../code-example/code-example.jsx');
 let ComponentDoc = require('../../component-doc.jsx');
-let ToggleStar = require('../../svg-icons/toggle-star.jsx');
-let ToggleStarBorder = require('../../svg-icons/toggle-star-border.jsx');
+let ToggleStar = require('svg-icons/toggle/star');
+let ToggleStarBorder = require('svg-icons/toggle/star-border');
 
 let {
   Checkbox,
