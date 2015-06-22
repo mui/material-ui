@@ -59,7 +59,8 @@ let EnhancedButton = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (nextProps.disabled || nextProps.disableKeyboardFocus && this.state.isKeyboardFocused) {
+    if ((nextProps.disabled || nextProps.disableKeyboardFocus) &&
+      this.state.isKeyboardFocused) {
       this.setState({isKeyboardFocused: false});
       if (nextProps.onKeyboardFocus) nextProps.onKeyboardFocus(null, false);
     }
