@@ -1,5 +1,5 @@
 let React = require('react');
-let { Mixins, Styles } = require('mui');
+let { Mixins, Styles } = require('material-ui');
 
 let { StyleResizable, StylePropable } = Mixins;
 let { Typography, Spacing, Colors } = Styles;

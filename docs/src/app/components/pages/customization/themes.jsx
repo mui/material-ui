@@ -1,8 +1,8 @@
 let React = require('react');
-let mui = require('mui');
-let CodeBlock = require('../../code-example/code-block.jsx');
-let ComponentDoc = require('../../component-doc.jsx');
-let ComponentInfo = require('../../component-info.jsx');
+let mui = require('material-ui');
+let CodeBlock = require('../../code-example/code-block');
+let ComponentDoc = require('../../component-doc');
+let ComponentInfo = require('../../component-info');
 
 let {
   Checkbox,

@@ -1,6 +1,6 @@
 let React = require('react');
-let { CircularProgress, LinearProgress } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { CircularProgress, LinearProgress } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 
 let ProgressPage = React.createClass({

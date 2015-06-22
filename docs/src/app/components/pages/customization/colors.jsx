@@ -1,5 +1,5 @@
 let React = require('react');
-let { ClearFix, Mixins, Styles, Utils } = require('mui');
+let { ClearFix, Mixins, Styles, Utils } = require('material-ui');
 
 let { ColorManipulator } = Utils;
 let { StyleResizable, StylePropable } = Mixins;

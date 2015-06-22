@@ -1,6 +1,6 @@
 let React = require('react');
-let { ClearFix, Mixins, Paper } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { ClearFix, Mixins, Paper } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 let { StyleResizable } = Mixins;
 

@@ -1,5 +1,5 @@
 let React = require('react');
-let StylePropable = require('../mixins/style-propable.js');
+let StylePropable = require('../mixins/style-propable');
 let Colors = require('../styles/colors.js')
 let Tab = React.createClass({
 

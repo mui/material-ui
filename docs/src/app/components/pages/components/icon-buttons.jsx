@@ -1,6 +1,6 @@
 let React = require('react');
-let { FontIcon, IconButton, NavigationMenu } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { FontIcon, IconButton, NavigationMenu } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 let ActionGrade = require('svg-icons/action/grade');
 let ActionHome = require('svg-icons/action/home');
 

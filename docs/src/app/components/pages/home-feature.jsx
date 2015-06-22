@@ -1,6 +1,6 @@
 let React = require('react');
 let Router = require('react-router');
-let { Paper, Mixins, Styles } = require('mui');
+let { Paper, Mixins, Styles } = require('material-ui');
 
 let Link = Router.Link;
 let { StylePropable, StyleResizable } = Mixins;

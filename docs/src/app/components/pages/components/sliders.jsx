@@ -1,6 +1,6 @@
 let React = require('react');
-let { Slider } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { Slider } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 
 class SlidersPage extends React.Component {

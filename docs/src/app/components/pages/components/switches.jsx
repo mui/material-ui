@@ -1,7 +1,7 @@
 let React = require('react');
-let mui = require('mui');
-let CodeExample = require('../../code-example/code-example.jsx');
-let ComponentDoc = require('../../component-doc.jsx');
+let mui = require('material-ui');
+let CodeExample = require('../../code-example/code-example');
+let ComponentDoc = require('../../component-doc');
 let ToggleStar = require('svg-icons/toggle/star');
 let ToggleStarBorder = require('svg-icons/toggle/star-border');
 

@@ -1,7 +1,7 @@
 let React = require('react');
-let CodeExample = require('../../code-example/code-example.jsx');
-let { Slider, Styles, Tab, Tabs } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let CodeExample = require('../../code-example/code-example');
+let { Slider, Styles, Tab, Tabs } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 let { Typography } = Styles;
 

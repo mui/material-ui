@@ -1,6 +1,6 @@
 let React = require('react');
 let Router = require('react-router');
-let { MenuItem, LeftNav, Styles } = require('mui');
+let { MenuItem, LeftNav, Styles } = require('material-ui');
 let { Colors, Spacing, Typography } = Styles;
 
 let menuItems = [

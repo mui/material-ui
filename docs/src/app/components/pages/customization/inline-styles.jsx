@@ -1,7 +1,7 @@
 let React = require('react');
-let { Checkbox, Styles } = require('mui');
-let CodeBlock = require('../../code-example/code-block.jsx');
-let CodeExample = require('../../code-example/code-example.jsx');
+let { Checkbox, Styles } = require('material-ui');
+let CodeBlock = require('../../code-example/code-block');
+let CodeExample = require('../../code-example/code-example');
 
 let { Typography } = Styles;
 

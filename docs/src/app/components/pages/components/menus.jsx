@@ -1,7 +1,7 @@
 let React = require('react');
-let { Menu, MenuItem, Styles, Tab, Tabs } = require('mui');
-let CodeExample = require('../../code-example/code-example.jsx');
-let ComponentInfo = require('../../component-info.jsx');
+let { Menu, MenuItem, Styles, Tab, Tabs } = require('material-ui');
+let CodeExample = require('../../code-example/code-example');
+let ComponentInfo = require('../../component-info');
 
 let Typography = Styles.Typography;
 let ThemeManager = new Styles.ThemeManager();

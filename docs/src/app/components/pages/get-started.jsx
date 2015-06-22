@@ -1,7 +1,7 @@
 let React = require('react');
-let { Paper, Styles } = require('mui');
-let CodeBlock = require('../code-example/code-block.jsx');
-let FullWidthSection = require('../full-width-section.jsx');
+let { Paper, Styles } = require('material-ui');
+let CodeBlock = require('../code-example/code-block');
+let FullWidthSection = require('../full-width-section');
 
 let { Spacing, Typography } = Styles;
 

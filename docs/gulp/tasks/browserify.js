@@ -59,7 +59,7 @@ gulp.task('browserify', ['jshint'], function(callback) {
         .on('end', reportFinished);
     };
 
-    bundler.require('../src/index.js', {expose: 'mui'});
+    bundler.require('../src/index.js', {expose: 'material-ui'});
     bundler.transform(babelify.configure({stage: 1}));
 
     if (global.isWatching) {

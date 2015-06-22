@@ -1,7 +1,7 @@
 let React = require('react');
-let { ClearFix, Mixins, Styles } = require('mui');
-let CodeExample = require('./code-example/code-example.jsx');
-let ComponentInfo = require('./component-info.jsx');
+let { ClearFix, Mixins, Styles } = require('material-ui');
+let CodeExample = require('./code-example/code-example');
+let ComponentInfo = require('./component-info');
 let Typography = Styles.Typography;
 let { Classable, StylePropable } = Mixins;
 

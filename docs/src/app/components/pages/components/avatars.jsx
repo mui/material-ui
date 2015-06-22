@@ -1,6 +1,6 @@
 let React = require('react');
-let { Avatar, FontIcon, List, ListItem, Styles } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { Avatar, FontIcon, List, ListItem, Styles } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 let FileFolder = require('svg-icons/file/folder');
 let { Colors } = Styles;
 

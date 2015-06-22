@@ -1,5 +1,5 @@
 let React = require('react');
-let PageWithNav = require('./page-with-nav.jsx');
+let PageWithNav = require('./page-with-nav');
 
 class Components extends React.Component {
 

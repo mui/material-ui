@@ -1,6 +1,6 @@
 let React = require('react');
-let { Dialog, FlatButton, RaisedButton, Toggle } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { Dialog, FlatButton, RaisedButton, Toggle } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 
 class DialogPage extends React.Component {

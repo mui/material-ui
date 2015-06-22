@@ -1,6 +1,6 @@
 let React = require('react');
-let { ClearFix, FontIcon, Styles } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { ClearFix, FontIcon, Styles } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 let ActionHome = require('svg-icons/action/home');
 
 let { Colors, Typography } = Styles;

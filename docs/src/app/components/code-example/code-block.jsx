@@ -1,6 +1,6 @@
 let React = require('react');
 let hljs = require('highlight.js');
-let { Styles } = require('mui');
+let { Styles } = require('material-ui');
 let { Spacing } = Styles;
 
 
