@@ -2,8 +2,8 @@ let React = require('react');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
 let EnhancedSwitch = require('./enhanced-switch');
-let RadioButtonOff = require('./svg-icons/toggle-radio-button-off');
-let RadioButtonOn = require('./svg-icons/toggle-radio-button-on');
+let RadioButtonOff = require('./svg-icons/toggle/radio-button-unchecked');
+let RadioButtonOn = require('./svg-icons/toggle/radio-button-checked');
 
 let RadioButton = React.createClass({
 

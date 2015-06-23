@@ -1,7 +1,7 @@
 let React = require('react');
 let Router = require('react-router');
 let RouteHandler = Router.RouteHandler;
-let { Menu, Mixins, Styles } = require('mui');
+let { Menu, Mixins, Styles } = require('material-ui');
 
 let { Spacing, Colors } = Styles;
 let { StyleResizable, StylePropable } = Mixins;

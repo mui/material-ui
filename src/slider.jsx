@@ -1,7 +1,7 @@
 let React = require('react');
 let StylePropable = require('./mixins/style-propable');
 let Draggable = require('react-draggable2');
-let Transitions = require('./styles/transitions.js');
+let Transitions = require('./styles/transitions');
 let FocusRipple = require('./ripples/focus-ripple');
 
 let Slider = React.createClass({

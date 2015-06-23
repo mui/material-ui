@@ -1,6 +1,6 @@
 let React = require('react/addons');
-let { ClearFix, Mixins, SelectField, TextField } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { ClearFix, Mixins, SelectField, TextField } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 let { StyleResizable } = Mixins;
 

@@ -2,7 +2,7 @@ let React = require('react');
 let StylePropable = require('./mixins/style-propable');
 let Typography = require('./styles/typography');
 let IconButton = require('./icon-button');
-let NavigationMenu = require('./svg-icons/navigation-menu');
+let NavigationMenu = require('./svg-icons/navigation/menu');
 let Paper = require('./paper');
 
 
@@ -18,12 +18,13 @@ let AppBar = React.createClass({
     onLeftIconButtonTouchTap: React.PropTypes.func,
     onRightIconButtonTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
+    style: React.PropTypes.object,
     iconClassNameLeft: React.PropTypes.string,
     iconClassNameRight: React.PropTypes.string,
     iconElementLeft: React.PropTypes.element,
     iconElementRight: React.PropTypes.element,
     iconStyleRight: React.PropTypes.object,
-    title : React.PropTypes.node,
+    title: React.PropTypes.node,
     zDepth: React.PropTypes.number,
   },
 
@@ -32,7 +33,7 @@ let AppBar = React.createClass({
       showMenuIconButton: true,
       title: '',
       zDepth: 1
-    }
+    };
   },
 
   componentDidMount: function() {

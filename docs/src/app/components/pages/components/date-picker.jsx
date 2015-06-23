@@ -1,6 +1,6 @@
 let React = require('react');
-let { DatePicker, TextField, Toggle } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { DatePicker, TextField, Toggle } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 
 class DatePickerPage extends React.Component {

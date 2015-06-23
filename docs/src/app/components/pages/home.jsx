@@ -1,8 +1,8 @@
 let React = require('react');
 let Router = require('react-router');
-let { Mixins, RaisedButton, Styles } = require('mui');
-let HomeFeature = require('./home-feature.jsx');
-let FullWidthSection = require('../full-width-section.jsx');
+let { Mixins, RaisedButton, Styles } = require('material-ui');
+let HomeFeature = require('./home-feature');
+let FullWidthSection = require('../full-width-section');
 
 let { StylePropable, StyleResizable } = Mixins;
 let { Colors, Spacing, Typography } = Styles;

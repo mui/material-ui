@@ -24,6 +24,7 @@ gulp.task('browserify', ['jshint'], function(callback) {
   var browserifyThis = function(bundleConfig) {
 
     var bundler = browserify({
+
       // Required watchify args
       cache: {}, packageCache: {}, fullPaths: false,
       // Specify the entry point of your app
@@ -31,9 +32,11 @@ gulp.task('browserify', ['jshint'], function(callback) {
       // Add file extentions to make optional in your requires
       extensions: config.extensions,
       // Enable source maps, since they are only loaded on demand there is no need to disable
-      debug: true
-    }).transform(babelify.configure({stage: 1}));
+      debug: true,
+      // Material-UI Source path
+      paths: ['../src']
 
+    });
 
     var bundle = function() {
       // Log when bundling starts
@@ -55,6 +58,9 @@ gulp.task('browserify', ['jshint'], function(callback) {
         .pipe(gulp.dest(bundleConfig.dest))
         .on('end', reportFinished);
     };
+
+    bundler.require('../src/index.js', {expose: 'material-ui'});
+    bundler.transform(babelify.configure({stage: 1}));
 
     if (global.isWatching) {
       // Wrap with watchify and rebundle on changes

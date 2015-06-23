@@ -5,38 +5,38 @@ let Redirect = Router.Redirect;
 let DefaultRoute = Router.DefaultRoute;
 
 // Here we define all our material-ui ReactComponents.
-let Master = require('./components/master.jsx');
-let Home = require('./components/pages/home.jsx');
-let GetStarted = require('./components/pages/get-started.jsx');
+let Master = require('./components/master');
+let Home = require('./components/pages/home');
+let GetStarted = require('./components/pages/get-started');
 
-let Customization = require('./components/pages/customization.jsx');
-let Colors = require('./components/pages/customization/colors.jsx');
-let Themes = require('./components/pages/customization/themes.jsx');
-let InlineStyles = require('./components/pages/customization/inline-styles.jsx');
+let Customization = require('./components/pages/customization');
+let Colors = require('./components/pages/customization/colors');
+let Themes = require('./components/pages/customization/themes');
+let InlineStyles = require('./components/pages/customization/inline-styles');
 
-let Components = require('./components/pages/components.jsx');
-let AppBar = require('./components/pages/components/app-bar.jsx');
-let Avatars = require('./components/pages/components/avatars.jsx');
-let Buttons = require('./components/pages/components/buttons.jsx');
-let Cards = require('./components/pages/components/cards.jsx');
-let DatePicker = require('./components/pages/components/date-picker.jsx');
-let Dialog = require('./components/pages/components/dialog.jsx');
-let DropDownMenu = require('./components/pages/components/drop-down-menu.jsx');
-let Icons = require('./components/pages/components/icons.jsx');
-let IconButtons = require('./components/pages/components/icon-buttons.jsx');
-let LeftNav = require('./components/pages/components/left-nav.jsx');
-let Lists = require('./components/pages/components/lists.jsx');
-let Menus = require('./components/pages/components/menus.jsx');
-let Paper = require('./components/pages/components/paper.jsx');
-let Progress = require('./components/pages/components/progress.jsx');
-let Sliders = require('./components/pages/components/sliders.jsx');
-let Snackbar = require('./components/pages/components/snackbar.jsx');
-let Switches = require('./components/pages/components/switches.jsx');
-let Table = require('./components/pages/components/table.jsx');
-let Tabs = require('./components/pages/components/tabs.jsx');
-let TextFields = require('./components/pages/components/text-fields.jsx');
-let TimePicker = require('./components/pages/components/time-picker.jsx');
-let Toolbars = require('./components/pages/components/toolbars.jsx');
+let Components = require('./components/pages/components');
+let AppBar = require('./components/pages/components/app-bar');
+let Avatars = require('./components/pages/components/avatars');
+let Buttons = require('./components/pages/components/buttons');
+let Cards = require('./components/pages/components/cards');
+let DatePicker = require('./components/pages/components/date-picker');
+let Dialog = require('./components/pages/components/dialog');
+let DropDownMenu = require('./components/pages/components/drop-down-menu');
+let Icons = require('./components/pages/components/icons');
+let IconButtons = require('./components/pages/components/icon-buttons');
+let LeftNav = require('./components/pages/components/left-nav');
+let Lists = require('./components/pages/components/lists');
+let Menus = require('./components/pages/components/menus');
+let Paper = require('./components/pages/components/paper');
+let Progress = require('./components/pages/components/progress');
+let Sliders = require('./components/pages/components/sliders');
+let Snackbar = require('./components/pages/components/snackbar');
+let Switches = require('./components/pages/components/switches');
+let Table = require('./components/pages/components/table');
+let Tabs = require('./components/pages/components/tabs');
+let TextFields = require('./components/pages/components/text-fields');
+let TimePicker = require('./components/pages/components/time-picker');
+let Toolbars = require('./components/pages/components/toolbars');
 
 
 /** Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md

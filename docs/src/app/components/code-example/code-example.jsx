@@ -1,6 +1,6 @@
 let React = require('react');
-let { ClearFix, Paper, Styles } = require('mui');
-let CodeBlock = require('./code-block.jsx');
+let { ClearFix, Paper, Styles } = require('material-ui');
+let CodeBlock = require('./code-block');
 
 let { Colors, Spacing, Typography } = Styles;
 

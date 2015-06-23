@@ -1,6 +1,6 @@
 let React = require('react');
-let ComponentDoc = require('../../component-doc.jsx');
-let mui = require('mui');
+let ComponentDoc = require('../../component-doc');
+let mui = require('material-ui');
 
 let {
   ClearFix,

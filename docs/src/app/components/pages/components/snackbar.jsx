@@ -1,6 +1,6 @@
 let React = require('react');
-let { RaisedButton, Snackbar } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { RaisedButton, Snackbar } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 
 class SnackbarPage extends React.Component {

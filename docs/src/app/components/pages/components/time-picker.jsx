@@ -1,6 +1,6 @@
 let React = require('react');
-let { TimePicker } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { TimePicker } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 
 let TimePickerPage = React.createClass({

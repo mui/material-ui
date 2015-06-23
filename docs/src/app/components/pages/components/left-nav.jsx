@@ -1,6 +1,6 @@
 let React = require('react');
-let { LeftNav, MenuItem, RaisedButton } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { LeftNav, MenuItem, RaisedButton } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 
 class LeftNavPage extends React.Component {

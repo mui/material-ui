@@ -1,8 +1,8 @@
 let React = require('react');
 let Router = require('react-router');
-let AppLeftNav = require('./app-left-nav.jsx');
-let FullWidthSection = require('./full-width-section.jsx');
-let { AppBar, AppCanvas, IconButton, Menu, Styles } = require('mui');
+let AppLeftNav = require('./app-left-nav');
+let FullWidthSection = require('./full-width-section');
+let { AppBar, AppCanvas, IconButton, Menu, Styles } = require('material-ui');
 
 let RouteHandler = Router.RouteHandler;
 let { Colors, Typography } = Styles;

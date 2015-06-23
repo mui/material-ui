@@ -1,6 +1,6 @@
 let React = require('react');
-let { DropDownMenu } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { DropDownMenu } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 
 class DropDownMenuPage extends React.Component {

@@ -4,9 +4,9 @@ let IconButton = require('../icon-button');
 let Toolbar = require('../toolbar/toolbar');
 let ToolbarGroup = require('../toolbar/toolbar-group');
 let DropDownMenu = require('../drop-down-menu');
-let NavigationChevronLeft = require('../svg-icons/navigation-chevron-left');
+let NavigationChevronLeft = require('../svg-icons/navigation/chevron-left');
 let NavigationChevronLeftDouble = require('../svg-icons/navigation-chevron-left-double');
-let NavigationChevronRight = require('../svg-icons/navigation-chevron-right');
+let NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
 let NavigationChevronRightDouble = require('../svg-icons/navigation-chevron-right-double');
 let SlideInTransitionGroup = require('../transition-groups/slide-in');
 

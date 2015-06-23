@@ -1,6 +1,6 @@
 let React = require('react');
-let { AppBar, DropDownMenu } = require('mui');
-let ComponentDoc = require('../../component-doc.jsx');
+let { AppBar, DropDownMenu } = require('material-ui');
+let ComponentDoc = require('../../component-doc');
 
 
 class AppBarPage extends React.Component {

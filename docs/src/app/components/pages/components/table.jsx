@@ -1,6 +1,6 @@
 let React = require('react');
 let CodeExample = require('../../code-example/code-example');
-let { Table, TextField, Toggle } = require('mui');
+let { Table, TextField, Toggle } = require('material-ui');
 let Router = require('react-router');
 let ComponentDoc = require('../../component-doc');
 
