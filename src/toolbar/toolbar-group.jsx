@@ -67,7 +67,6 @@ let ToolbarGroup = React.createClass({
           paddingLeft: this.getSpacing()
         },
         hover: {
-          zIndex: 1,
           color: Colors.darkBlack
         }
       },
