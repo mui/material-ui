@@ -24,6 +24,9 @@ let IconButton = React.createClass({
     onKeyboardFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
     touch: React.PropTypes.bool,
+    tooltipPosition: React.PropTypes.oneOf(['bottom-center',
+      'bottom-left','bottom-right','top-center', 'top-left',
+      'top-right'])
   },
 
   getInitialState: function() {
@@ -34,14 +37,12 @@ let IconButton = React.createClass({
 
   getDefaultProps: function () {
     return {
-      iconStyle: {}
+      iconStyle: {},
+      tooltipPosition: 'bottom-center'
     };
   },
 
   componentDidMount: function() {
-    if (this.props.tooltip) {
-      this._positionTooltip();
-    }
     if (process.env.NODE_ENV !== 'production') {
       if (this.props.iconClassName && this.props.children) {
         let warning = 'You have set both an iconClassName and a child icon. ' +
@@ -67,7 +68,6 @@ let IconButton = React.createClass({
       },
       tooltip: {
         boxSizing: 'border-box',
-        marginTop: this.context.muiTheme.component.button.iconButtonSize + 4
       },
       icon: {
         color: palette.textColor,
@@ -98,6 +98,7 @@ let IconButton = React.createClass({
     let fonticon;
 
     let styles = this.getStyles();
+    let tooltipPosition = this.props.tooltipPosition.split('-');
 
     let tooltipElement = tooltip ? (
       <Tooltip
@@ -105,7 +106,9 @@ let IconButton = React.createClass({
         label={tooltip}
         show={this.state.tooltipShown}
         touch={touch}
-        style={this.mergeStyles(styles.tooltip)}/>
+        style={this.mergeStyles(styles.tooltip)}
+        verticalPosition={tooltipPosition[0]}
+        horizontalPosition={tooltipPosition[1]}/>
     ) : null;
 
     if (iconClassName) {
@@ -163,14 +166,6 @@ let IconButton = React.createClass({
     });
 
     return children;
-  },
-
-  _positionTooltip: function() {
-    let tooltip = React.findDOMNode(this.refs.tooltip);
-    let tooltipWidth = tooltip.offsetWidth;
-    let buttonWidth = 48;
-
-    tooltip.style.left = (tooltipWidth - buttonWidth) / 2 * -1 + 'px';
   },
 
   _showTooltip: function() {
