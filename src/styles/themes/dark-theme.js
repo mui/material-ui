@@ -7,7 +7,8 @@ let DarkTheme = {
       textColor: Colors.fullWhite,
       canvasColor: '#303030',
       borderColor:  ColorManipulator.fade(Colors.fullWhite, 0.3), //Colors.grey300
-      disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3)
+      disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
+      primary1Color: Colors.teal200
     };
   },
   getComponentThemes: function(palette) {
