@@ -23,6 +23,7 @@ let {
   List,
   ListDivider,
   ListItem,
+  ListItemNested,
   Styles,
   Toggle
 } = mui;
@@ -40,7 +41,6 @@ class ListsPage extends React.Component {
   }
 
   render() {
-
     let code = `
       //First Example
       <List>
@@ -125,6 +125,22 @@ class ListsPage extends React.Component {
           Raquel Parrado
         </ListItem>
       </List>
+
+      // Nested List Items
+      <MobileTearSheet>
+        <List subheader="Nested List Items">
+          <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
+          <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+          <ListItemNested>
+            <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
+            <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
+            <ListItemNested>
+              <ListItem leftIcon={<ContentSend />}>Sent Mail</ListItem>
+              <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+            </ListItemNested>
+          </ListItemNested>
+        </List>
+      </MobileTearSheet>
     `;
 
     let componentInfo = [
@@ -266,6 +282,14 @@ class ListsPage extends React.Component {
             <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
             <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
             <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+            <ListItemNested>
+              <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
+              <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
+              <ListItemNested>
+                <ListItem leftIcon={<ContentSend />}>Sent Mail</ListItem>
+                <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+              </ListItemNested>
+            </ListItemNested>
           </List>
           <ListDivider />
           <List>
@@ -400,6 +424,21 @@ class ListsPage extends React.Component {
               secondaryText="Jan 10, 2014">
               Kitchen remodel
             </ListItem>
+          </List>
+        </MobileTearSheet>
+
+        <MobileTearSheet>
+          <List subheader="Nested List Items">
+            <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
+            <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+            <ListItemNested>
+              <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
+              <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
+              <ListItemNested>
+                <ListItem leftIcon={<ContentSend />}>Sent Mail</ListItem>
+                <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+              </ListItemNested>
+            </ListItemNested>
           </List>
         </MobileTearSheet>
 

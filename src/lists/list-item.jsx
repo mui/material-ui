@@ -20,6 +20,7 @@ let ListItem = React.createClass({
     disableKeyboardFocus: React.PropTypes.bool,
     innerDivStyle: React.PropTypes.object,
     insetChildren: React.PropTypes.bool,
+    innerStyle: React.PropTypes.object,
     leftAvatar: React.PropTypes.element,
     leftCheckbox: React.PropTypes.element,
     leftIcon: React.PropTypes.element,
@@ -72,6 +73,7 @@ let ListItem = React.createClass({
       secondaryText,
       secondaryTextLines,
       style,
+      innerStyle,
       ...other
     } = this.props;
 
@@ -96,7 +98,7 @@ let ListItem = React.createClass({
         transition: Transitions.easeOut()
       },
 
-      //This inner div is need so that ripples will span the entire container
+      //This inner div is needed so that ripples will span the entire container
       innerDiv: {
         paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
         paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,

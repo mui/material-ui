@@ -26,7 +26,6 @@ let List = React.createClass({
   },
 
   render() {
-
     let {
       insetSubheader,
       style,
