@@ -20,7 +20,10 @@ class IconButtonsPage extends React.Component {
         'IconButton\n' +
         '<IconButton tooltip="Sort" disabled={true}>\n' +
         '  <FontIcon className="muidocs-icon-custom-sort"/>\n' +
-        '</IconButton>';
+        '</IconButton>\n\n' +
+        '//Adding tooltipPosition to Icon Button\n' +
+        '<IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-right"\n' +
+        '            tooltipPosition="bottom-right"/>\n';
 
     let desc = (
       <p>
@@ -81,6 +84,12 @@ class IconButtonsPage extends React.Component {
             desc: 'The tooltip text to show.'
           },
           {
+            name: 'tooltipPosition',
+            type: 'string',
+            header: 'default: bottom-center',
+            desc: 'Allows the tooltip to be viewed with different alignments: "bottom-center", "top-center", "bottom-right", "top-right", "bottom-left" and "top-left"'
+          },
+          {
             name: 'touch',
             type: 'bool',
             header: 'default: false',
@@ -112,16 +121,47 @@ class IconButtonsPage extends React.Component {
         desc={desc}
         componentInfo={componentInfo}>
 
-        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>
+        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-right"  tooltipPosition = "bottom-right" />
 
-      <IconButton tooltip="Star" touch={true}>
+        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-center" tooltipPosition = "bottom-center" />
+
+        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-left" tooltipPosition = "bottom-left" />
+
+        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-right" tooltipPosition = "top-right" />
+
+        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-center" tooltipPosition = "top-center" />
+
+        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-left" tooltipPosition = "top-left" />
+        <br/><br/><br/><br/>
+
+        <IconButton tooltip="bottom-right" touch={true} tooltipPosition="bottom-right">
           <ActionGrade/>
         </IconButton>
+
+        <IconButton tooltip="bottom-center" touch={true} tooltipPosition="bottom-center">
+          <ActionGrade/>
+        </IconButton>
+
+        <IconButton tooltip="bottom-left" touch={true} tooltipPosition="bottom-left">
+          <ActionGrade/>
+        </IconButton>
+
+        <IconButton tooltip="top-right" touch={true} tooltipPosition="top-right">
+          <ActionGrade/>
+        </IconButton>
+
+        <IconButton tooltip="top-center" touch={true} tooltipPosition="top-center">
+          <ActionGrade/>
+        </IconButton>
+
+        <IconButton tooltip="top-left" touch={true} tooltipPosition="top-left">
+          <ActionGrade/>
+        </IconButton>
+        <br/><br/><br/>
 
         <IconButton tooltip="Sort" disabled={true}>
           <FontIcon className="muidocs-icon-custom-sort"/>
         </IconButton>
-
       </ComponentDoc>
     );
 
