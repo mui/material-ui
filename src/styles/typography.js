@@ -20,6 +20,6 @@ class Typography {
 
     this.fontStyleButtonFontSize = 14;
   }
-};
+}
 
 module.exports = new Typography();
