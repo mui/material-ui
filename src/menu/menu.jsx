@@ -245,9 +245,6 @@ var Menu = React.createClass({
     //Set the menu width
     this._setKeyWidth(el);
 
-    //Save the initial menu item height for later
-    this._initialMenuItemHeight = el.offsetHeight / Math.max(1, this.props.menuItems.length);
-
     //Show or Hide the menu according to visibility
     this._renderVisibility();
   },
@@ -271,7 +268,8 @@ var Menu = React.createClass({
         paddingTop: this.getSpacing().desktopGutterMini,
         paddingBottom: this.getSpacing().desktopGutterMini,
         transition: Transitions.easeOut(null, 'height'),
-        outline:'none !important'
+        outline:'none !important',
+        height:34
       },
       subheader: {
         paddingLeft: this.context.muiTheme.component.menuSubheader.padding,
@@ -433,8 +431,9 @@ var Menu = React.createClass({
   },
 
   _getCurrentHeight() {
-    let totalItens = Math.max(1, this.props.menuItems.length);
-    let newHeight = this._initialMenuItemHeight * totalItens;
+    let totalItems = Math.max(1, this.props.menuItems.length);
+    let styles = this.getStyles();
+    let newHeight = styles.root.height * totalItems;
 
     return newHeight;
   },
