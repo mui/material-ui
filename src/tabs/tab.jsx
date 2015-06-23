@@ -1,13 +1,8 @@
 let React = require('react');
-<<<<<<< HEAD
 let StylePropable = require('../mixins/style-propable');
 let Colors = require('../styles/colors.js')
-=======
-let StylePropable = require('../mixins/style-propable.js');
-let Colors = require('../styles/colors.js');
 
 
->>>>>>> Converted xxx:function() to xxx() and utilized fat arrow functions for implicit this binding.
 let Tab = React.createClass({
 
   mixins: [StylePropable],
