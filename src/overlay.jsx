@@ -25,6 +25,11 @@ let Overlay = React.createClass({
     if (this.props.autoLockScrolling) (this.props.show) ? this._preventScrolling() : this._allowScrolling();
   },
 
+
+  componentWillUnmount() {
+    this.allowScrolling();
+  },
+
   setOpacity(opacity) {
     let overlay = React.findDOMNode(this);
     overlay.style.opacity = opacity;
