@@ -114,8 +114,9 @@ let Snackbar = React.createClass({
       );
     }
 
-    let rootStyles = styles.root;
-    if (this.state.open) rootStyles = this.mergeStyles(styles.root, styles.rootWhenOpen, this.props.style);
+    let rootStyles = this.state.open ?
+      this.mergeStyles(styles.root, styles.rootWhenOpen, this.props.style) :
+      this.mergeStyles(styles.root, this.props.style);
 
     return (
       <span style={rootStyles}>
