@@ -69,11 +69,23 @@ class AvatarsPage extends React.Component {
             desc: 'The icon or letter color.'
           },
           {
+            name: 'size',
+            type: 'number',
+            header: 'default: 40',
+            desc: 'This is the size of the avatar in pixels'
+          },
+          {
             name: 'src',
             type: 'string',
             header: 'optional',
             desc: 'If passed in, this component will render an img element. Otherwise, a div will be rendered.'
-          }
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the root element.'
+          },
         ]
       }
     ];
