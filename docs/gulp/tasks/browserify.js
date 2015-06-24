@@ -17,7 +17,7 @@ var buffer       = require('vinyl-buffer');
 var sourcemaps   = require('gulp-sourcemaps');
 var babelify     = require('babelify');
 
-gulp.task('browserify', ['jshint'], function(callback) {
+gulp.task('browserify', ['eslint'], function(callback) {
 
   var bundleQueue = config.bundleConfigs.length;
 
