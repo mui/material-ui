@@ -62,7 +62,7 @@ let TextField = React.createClass({
     let hasErrorProp = nextProps.hasOwnProperty('errorText');
     let newState = {};
 
-    if (hasErrorProp) newState.errorText = nextProps.errorText;
+    newState.errorText = nextProps.errorText;
     if (nextProps.children && nextProps.children.props) {
       nextProps = nextProps.children.props;
     }

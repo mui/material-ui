@@ -64,7 +64,9 @@ let SelectField = React.createClass({
   },
 
   onChange(e, index, payload) {
-    e.target.value = payload;
+    if (payload)
+      e.target.value = payload[this.props.valueMember] || payload;
+
     if (this.props.onChange)
       this.props.onChange(e)
   },

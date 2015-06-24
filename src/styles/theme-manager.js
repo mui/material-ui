@@ -29,7 +29,7 @@ let ThemeManager = () => {
       this.setComponentThemes(newTheme.getComponentThemes(newTheme.getPalette()));
     },
 
-    setSpacingsetSpacing(newSpacing) {
+    setSpacing(newSpacing) {
       this.spacing = Extend(this.spacing, newSpacing);
       this.component = Extend(this.component, this.template.getComponentThemes(this.palette, this.spacing));
     },

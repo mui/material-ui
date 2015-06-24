@@ -245,9 +245,6 @@ var Menu = React.createClass({
     //Set the menu width
     this._setKeyWidth(el);
 
-    //Save the initial menu item height for later
-    this._initialMenuItemHeight = el.offsetHeight / Math.max(1, this.props.menuItems.length);
-
     //Show or Hide the menu according to visibility
     this._renderVisibility();
   },
@@ -283,6 +280,9 @@ var Menu = React.createClass({
         position: 'absolute',
         top: 0,
         zIndex: 1
+      },
+      item: {
+        height:34
       }
     };
     return styles;
@@ -433,8 +433,10 @@ var Menu = React.createClass({
   },
 
   _getCurrentHeight() {
-    let totalItens = Math.max(1, this.props.menuItems.length);
-    let newHeight = this._initialMenuItemHeight * totalItens;
+    let totalItems = Math.max(1, this.props.menuItems.length);
+    let styles = this.getStyles();
+    debugger
+    let newHeight = styles.item.height * totalItems;
 
     return newHeight;
   },
@@ -452,7 +454,7 @@ var Menu = React.createClass({
         el.style.height = this._getCurrentHeight() + 'px';
         el.style.paddingTop = this.getSpacing().desktopGutterMini + 'px';
         el.style.paddingBottom = this.getSpacing().desktopGutterMini + 'px';
-        
+
         //Set the overflow to visible after the animation is done so
         //that other nested menus can be shown
         CssEvent.onTransitionEnd(el, () => {
