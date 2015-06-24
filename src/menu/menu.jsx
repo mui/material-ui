@@ -435,9 +435,7 @@ var Menu = React.createClass({
   _getCurrentHeight() {
     let totalItems = Math.max(1, this.props.menuItems.length);
     let styles = this.getStyles();
-    debugger
     let newHeight = styles.item.height * totalItems;
-
     return newHeight;
   },
 
