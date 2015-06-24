@@ -72,7 +72,7 @@ let Snackbar = React.createClass({
         bottom: this.getSpacing().desktopGutter,
         marginLeft: this.getSpacing().desktopGutter,
 
-        left: -10000,
+        left: 'initial',
         opacity: 0,
         transform: 'translate3d(0, 20px, 0)',
         transition:
