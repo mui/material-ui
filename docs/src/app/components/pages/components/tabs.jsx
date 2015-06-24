@@ -57,7 +57,7 @@ class TabsPage extends React.Component {
                 '    onActive={this._onActive} /> \n' +
                 '</Tabs> \n' +
                 '\n' +
-                '_onActive: function(tab){ \n' +
+                '_onActive(tab){ \n' +
                 '  this.context.router.transitionTo(tab.props.route); \n' +
                 '}';
 

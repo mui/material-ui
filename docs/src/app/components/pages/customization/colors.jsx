@@ -10,7 +10,7 @@ let ColorsPage = React.createClass({
 
   mixins: [StyleResizable, StylePropable],
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       root: {
         //null
@@ -60,7 +60,7 @@ let ColorsPage = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let mainColors = [
         'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue',
         'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange'
@@ -69,11 +69,11 @@ let ColorsPage = React.createClass({
       colorGroups = [],
       neutralGroups = [];
 
-    mainColors.forEach(function(color) {
+    mainColors.forEach((color) => {
       colorGroups.push(this._getColorGroup(color, true));
     }, this);
 
-    neutralColors.forEach(function(color) {
+    neutralColors.forEach((color) => {
       neutralGroups.push(this._getColorGroup(color, false));
     }, this);
 
@@ -100,19 +100,19 @@ let ColorsPage = React.createClass({
     );
   },
 
-  _getColorGroup: function(color, showAltPalette) {
+  _getColorGroup(color, showAltPalette) {
     let mainPalette = [50,100,200,300,400,500,600,700,800,900];
     let altPalette = ['A100','A200','A400','A700'];
     let cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
     let colors = [];
     let colorGroupStyle = this.getStyles().colorGroup;
 
-    mainPalette.forEach(function(mainValue) {
+    mainPalette.forEach((mainValue) => {
       colors.push(this._getColorBlock(cssColor, mainValue));
     }, this);
 
     if (showAltPalette) {
-      altPalette.forEach(function(altValue) {
+      altPalette.forEach((altValue) => {
         colors.push(this._getColorBlock(cssColor, altValue));
       }, this);
     }
@@ -125,7 +125,7 @@ let ColorsPage = React.createClass({
     );
   },
 
-  _getColorBlock: function(colorName, colorValue, colorTitle) {
+  _getColorBlock(colorName, colorValue, colorTitle) {
     let bgColorText = colorName + colorValue;
     let bgColor = Colors[bgColorText];
     let fgColor = Colors.fullBlack;

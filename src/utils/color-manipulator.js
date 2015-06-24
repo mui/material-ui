@@ -12,18 +12,19 @@ module.exports = {
    *
    * Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
    */
-  _luminance: function(color) {
+  _luminance(color) {
     color = this._decomposeColor(color);
 
     if (color.type.indexOf('rgb') > -1) {
-      let rgb = color.values.map(function(val) {
+      let rgb = color.values.map((val) => {
         val /= 255; // normalized
         return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
       });
 
       return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
 
-    } else {
+    }
+    else {
       let message = 'Calculating the relative luminance is not available for ' +
                     'HSL and HSLA.';
       console.error(message);
@@ -36,7 +37,7 @@ module.exports = {
    * additionalValue = An extra value that has been calculated but not included
    *                   with the original color object, such as an alpha value.
    */
-  _convertColorToString: function (color, additonalValue) {
+  _convertColorToString(color, additonalValue) {
     let str = color.type + '(' +
               parseInt(color.values[0]) + ',' +
               parseInt(color.values[1]) + ',' +
@@ -44,9 +45,11 @@ module.exports = {
 
     if (additonalValue !== undefined) {
       str += ',' + additonalValue + ')';
-    } else if (color.values.length == 4) {
+    }
+    else if (color.values.length === 4) {
       str += ',' + color.values[3] + ')';
-    } else {
+    }
+    else {
       str += ')';
     }
 
@@ -54,7 +57,7 @@ module.exports = {
   },
 
   // Converts a color from hex format to rgb format.
-  _convertHexToRGB: function(color) {
+  _convertHexToRGB(color) {
     if (color.length === 4) {
       let extendedColor = '#';
       for (let i = 1; i < color.length; i++) {
@@ -75,7 +78,7 @@ module.exports = {
   },
 
   // Returns the type and values of a color of any given type.
-  _decomposeColor: function(color) {
+  _decomposeColor(color) {
     if (color.charAt(0) === '#') {
       return this._decomposeColor(this._convertHexToRGB(color));
     }
@@ -89,20 +92,21 @@ module.exports = {
 
   // Set the absolute transparency of a color.
   // Any existing alpha values are overwritten.
-  fade: function(color, amount) {
+  fade(color, amount) {
     color = this._decomposeColor(color);
-    if (color.type == 'rgb' || color.type == 'hsl') color.type += 'a';
+    if (color.type === 'rgb' || color.type === 'hsl') color.type += 'a';
     return this._convertColorToString(color, amount)
   },
 
   // Desaturates rgb and sets opacity to 0.15
-  lighten: function(color, amount) {
+  lighten(color, amount) {
     color = this._decomposeColor(color);
 
     if (color.type.indexOf('hsl') > -1) {
       color.values[2] += amount;
       return  this._decomposeColor(this._convertColorToString(color));
-    } else if (color.type.indexOf('rgb') > -1) {
+    }
+    else if (color.type.indexOf('rgb') > -1) {
       for (let i = 0; i < 3; i++) {
         color.values[i] *= 1 + amount;
         if (color.values[i] > 255) color.values[i] = 255;
@@ -114,13 +118,14 @@ module.exports = {
     return  this._convertColorToString(color, '0.15');
   },
 
-  darken: function(color, amount) {
+  darken(color, amount) {
     color = this._decomposeColor(color);
 
     if (color.type.indexOf('hsl') > -1) {
       color.values[2] += amount;
       return  this._decomposeColor(this._convertColorToString(color));
-    } else if (color.type.indexOf('rgb') > -1) {
+    }
+    else if (color.type.indexOf('rgb') > -1) {
       for (let i = 0; i < 3; i++) {
         color.values[i] *= 1 - amount;
         if (color.values[i] < 0) color.values[i] = 0;
@@ -134,13 +139,14 @@ module.exports = {
   // Calculates the contrast ratio between two colors.
   //
   // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
-  contrastRatio: function(background, foreground) {
+  contrastRatio(background, foreground) {
     let lumA = this._luminance(background);
     let lumB = this._luminance(foreground);
 
     if (lumA >= lumB) {
       return ((lumA + 0.05) / (lumB + 0.05)).toFixed(2);
-    } else {
+    }
+    else {
       return ((lumB + 0.05) / (lumA + 0.05)).toFixed(2);
     }
   },
@@ -150,7 +156,7 @@ module.exports = {
    * Levels are defined from @LeaVerou:
    * https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/contrast-ratio.js
    */
-  contrastRatioLevel: function(background, foreground) {
+  contrastRatioLevel(background, foreground) {
     let levels = {
       'fail': {
         range: [0, 3],
@@ -176,7 +182,5 @@ module.exports = {
       let range = levels[level].range;
       if (ratio >= range[0] && ratio <= range[1]) return level;
     }
-
-  },
-
+  }
 };

@@ -17,20 +17,20 @@ let TimeDisplay = React.createClass({
     affix: React.PropTypes.oneOf(['', 'pm', 'am'])
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       transitionDirection: 'up'
     };
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
         mode: 'hour' ,
         affix: ''
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     let direction;
 
     if (nextProps.selectedTime !== this.props.selectedTime) {
@@ -42,11 +42,11 @@ let TimeDisplay = React.createClass({
     }
   },
 
-  sanitizeTime: function() {
+  sanitizeTime() {
     let hour = this.props.selectedTime.getHours();
     let min = this.props.selectedTime.getMinutes().toString();
 
-    if (this.props.format == "ampm"){
+    if (this.props.format === "ampm"){
       hour %= 12;
       hour = hour || 12;
     }
@@ -58,11 +58,11 @@ let TimeDisplay = React.createClass({
     return [hour, min];
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.timePicker;
   },
 
-  render: function() {
+  render() {
     let {
       selectedTime,
       mode,

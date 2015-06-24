@@ -4,6 +4,7 @@ let Transition = require('../styles/transitions');
 let DateTime = require('../utils/date-time');
 let EnhancedButton = require('../enhanced-button');
 
+
 let DayButton = React.createClass({
 
   mixins: [StylePropable],
@@ -19,24 +20,24 @@ let DayButton = React.createClass({
     disabled: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       selected: false,
       disabled: false
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       hover: false
     };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.datePicker;
   },
 
-  render: function() {
+  render() {
     let {
       date,
       onTouchTap,
@@ -109,19 +110,19 @@ let DayButton = React.createClass({
     );
   },
 
-  _handleMouseOver: function() {
+  _handleMouseOver() {
     if (!this.props.disabled) this.setState({hover: true});
   },
 
-  _handleMouseOut: function() {
+  _handleMouseOut() {
     if (!this.props.disabled) this.setState({hover: false});
   },
 
-  _handleTouchTap: function(e) {
+  _handleTouchTap(e) {
     if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.date);
   },
 
-  _handleKeyboardFocus: function(e, keyboardFocused) {
+  _handleKeyboardFocus(e, keyboardFocused) {
     if (!this.props.disabled && this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
   }
 

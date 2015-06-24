@@ -3,11 +3,12 @@ let StylePropable = require('../mixins/style-propable');
 let FontIcon = require('../font-icon');
 let Toggle = require('../toggle');
 
-let Types = {
+const Types = {
   LINK: 'LINK',
   SUBHEADER: 'SUBHEADER',
   NESTED: 'NESTED'
 };
+
 
 let MenuItem = React.createClass({
 
@@ -39,7 +40,7 @@ let MenuItem = React.createClass({
     Types: Types
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       toggle: false,
       disabled: false,
@@ -47,15 +48,15 @@ let MenuItem = React.createClass({
     };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.menuItem;
   },
 
-  getSpacing: function() {
+  getSpacing() {
     return this.context.muiTheme.spacing;
   },
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       root: {
         userSelect: 'none',
@@ -112,7 +113,7 @@ let MenuItem = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let icon;
     let data;
     let iconRight;
@@ -169,19 +170,19 @@ let MenuItem = React.createClass({
     );
   },
 
-  _handleTouchTap: function(e) {
+  _handleTouchTap(e) {
     if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
   },
 
-  _handleToggle: function(e, toggled) {
+  _handleToggle(e, toggled) {
     if (!this.props.disabled && this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
   },
 
-  _handleMouseOver: function(e) {
+  _handleMouseOver(e) {
     if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e, this.props.index);
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut(e) {
     if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e,this.props.index);
   }
 });

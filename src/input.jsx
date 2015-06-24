@@ -19,27 +19,27 @@ let Input = React.createClass({
 
   mixins: [Classable],
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       value: this.props.defaultValue,
       rows: this.props.rows
     };
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       multiline: false,
       type: "text"
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     if (process.env.NODE_ENV !== 'production') {
       console.warn('Input has been deprecated. Please use TextField instead. See http://material-ui.com/#/components/text-fields');
     }
   },
 
-  render: function() {
+  render() {
     let classes = this.getClasses('mui-input', {
       'mui-floating': this.props.inputStyle === 'floating',
       'mui-text': this.props.type === 'text',
@@ -93,42 +93,42 @@ let Input = React.createClass({
     );
   },
 
-  getValue: function() {
+  getValue() {
     return this.state.value;
   },
 
-  setValue: function(txt) {
+  setValue(txt) {
     this.setState({value: txt});
   },
 
-  clearValue: function() {
+  clearValue() {
     this.setValue('');
   },
 
-  blur: function() {
+  blur() {
     if (this.isMounted()) React.findDOMNode(this.refs.input).blur();
   },
 
-  focus: function() {
+  focus() {
     if (this.isMounted()) React.findDOMNode(this.refs.input).focus();
   },
 
-  _onInputChange: function(e) {
+  _onInputChange(e) {
     let value = e.target.value;
     this.setState({value: value});
     if (this.props.onChange) this.props.onChange(e, value);
   },
 
-  _onPlaceholderClick: function() {
+  _onPlaceholderClick() {
     this.focus();
   },
 
-  _onTextAreaChange: function(e) {
+  _onTextAreaChange(e) {
     this._onInputChange(e);
     this._onLineBreak(e);
   },
 
-  _onLineBreak: function(e) {
+  _onLineBreak(e) {
     let value = e.target.value;
     let lines = value.split('\n').length;
 

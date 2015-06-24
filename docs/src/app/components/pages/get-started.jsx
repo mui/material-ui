@@ -52,12 +52,12 @@ class GetStarted extends React.Component {
           '  childContextTypes: {\n' +
           '    muiTheme: React.PropTypes.object\n' +
           '  },\n\n' +
-          '  getChildContext: function() {\n' +
+          '  getChildContext() {\n' +
           '    return {\n' +
           '      muiTheme: ThemeManager.getCurrentTheme()\n' +
           '    };\n' +
           '  },\n\n' +
-          '  render: function() {\n' +
+          '  render() {\n' +
           '    return (\n' +
           '        <RaisedButton label="Default" />\n' +
           '    );\n' +

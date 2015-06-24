@@ -83,7 +83,7 @@ function getJsxString(folderName, newFilename, svgFilePath, callback) {
 
       "let " + className + " = React.createClass({\n\n" +
 
-      "  render: function() {\n" +
+      "  render() {\n" +
       "    return (\n" +
       "      <SvgIcon {...this.props}>\n" +
       "        " + paths + "\n" +

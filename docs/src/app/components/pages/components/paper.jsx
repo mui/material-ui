@@ -9,7 +9,7 @@ let PaperPage = React.createClass ({
 
   mixins: [StyleResizable],
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       root: {
         height: '100px',
@@ -35,7 +35,7 @@ let PaperPage = React.createClass ({
     return styles;
   },
 
-  render: function() {
+  render() {
 
     let code = [
       '//Rounded Corners',
@@ -151,11 +151,11 @@ let PaperPage = React.createClass ({
     );
   },
 
-  _createParagraphElement: function(text) {
+  _createParagraphElement(text) {
     return <p style={this.getStyles().p}>{text}</p>;
   },
 
-  _createPaperElement: function(zDepth, text) {
+  _createPaperElement(zDepth, text) {
     let styles = this.getStyles();
     return (
       <Paper
@@ -166,7 +166,7 @@ let PaperPage = React.createClass ({
     );
   },
 
-  _getGroupDefault: function() {
+  _getGroupDefault() {
     let elements = [];
     for (let i = 1; i <= 5; i++) {
       elements.push(this._createPaperElement(i, "zDepth="+i));
@@ -174,7 +174,7 @@ let PaperPage = React.createClass ({
     return elements;
   },
 
-  _getGroupRounded: function() {
+  _getGroupRounded() {
     let elements = [];
     for (let i = 1; i <= 5; i++) {
       elements.push(React.cloneElement(this._createPaperElement(i, "rounded=false"), {rounded: false}));
@@ -182,7 +182,7 @@ let PaperPage = React.createClass ({
     return elements;
   },
 
-  _getGroupCircle: function() {
+  _getGroupCircle() {
     let elements = [];
     for (let i = 1; i <= 5; i++) {
       elements.push(React.cloneElement(this._createPaperElement(i, "circle=true"), {circle: true}));

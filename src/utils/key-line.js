@@ -7,7 +7,7 @@ module.exports = {
     MENU_ITEM_HEIGHT: 32
   },
 
-  getIncrementalDim: function(dim) {
+  getIncrementalDim(dim) {
     return Math.ceil(dim / this.Desktop.INCREMENT) * this.Desktop.INCREMENT;
   }
 }

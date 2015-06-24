@@ -9,7 +9,7 @@ let AppCanvas = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  render: function() {
+  render() {
 
     let styles = {
       height: '100%',
@@ -17,7 +17,7 @@ let AppCanvas = React.createClass({
       WebkitFontSmoothing: 'antialiased'
     };
 
-    let newChildren = React.Children.map(this.props.children, function(currentChild) {
+    let newChildren = React.Children.map(this.props.children, (currentChild) => {
       if (!currentChild) { // If undefined, skip it
         return null;
       }

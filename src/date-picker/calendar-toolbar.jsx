@@ -10,6 +10,7 @@ let NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
 let NavigationChevronRightDouble = require('../svg-icons/navigation-chevron-right-double');
 let SlideInTransitionGroup = require('../transition-groups/slide-in');
 
+
 let CalendarToolbar = React.createClass({
 
   propTypes: {
@@ -23,7 +24,7 @@ let CalendarToolbar = React.createClass({
     hideYearChangeButtons: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       prevYear: true,
       nextYear: true,
@@ -33,13 +34,13 @@ let CalendarToolbar = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       transitionDirection: 'up'
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     let direction;
 
     if (nextProps.displayDate !== this.props.displayDate) {
@@ -50,7 +51,7 @@ let CalendarToolbar = React.createClass({
     }
   },
 
-  _styles: function() {
+  _styles() {
     return {
       root: {
         position: 'relative',
@@ -72,7 +73,7 @@ let CalendarToolbar = React.createClass({
     };
   },
 
-  render: function() {
+  render() {
     let month = DateTime.getFullMonth(this.props.displayDate);
     let year = this.props.displayDate.getFullYear();
     let prevYearChangeButton = this._getPrevYearChangeButton();
@@ -110,7 +111,7 @@ let CalendarToolbar = React.createClass({
     );
   },
 
-  _getPrevYearChangeButton: function() {
+  _getPrevYearChangeButton() {
     let style = {
       display: this.props.hideYearChangeButtons ? 'none' : ''
     };
@@ -125,7 +126,7 @@ let CalendarToolbar = React.createClass({
     );
   },
 
-  _getNextYearChangeButton: function() {
+  _getNextYearChangeButton() {
     let style = {
       display: this.props.hideYearChangeButtons ? 'none' : ''
     };
@@ -140,19 +141,19 @@ let CalendarToolbar = React.createClass({
     );
   },
 
-  _prevYearTouchTap: function() {
+  _prevYearTouchTap() {
     if (this.props.onYearChange && this.props.prevYear) this.props.onYearChange(-1);
   },
 
-  _nextYearTouchTap: function() {
+  _nextYearTouchTap() {
     if (this.props.onYearChange && this.props.nextYear) this.props.onYearChange(1);
   },
 
-  _prevMonthTouchTap: function() {
+  _prevMonthTouchTap() {
     if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
   },
 
-  _nextMonthTouchTap: function() {
+  _nextMonthTouchTap() {
     if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
   }
 

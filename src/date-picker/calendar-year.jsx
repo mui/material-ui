@@ -4,6 +4,7 @@ let Colors = require('../styles/colors');
 let DateTime = require('../utils/date-time');
 let YearButton = require('./year-button');
 
+
 let CalendarYear = React.createClass({
 
   mixins: [StylePropable],
@@ -16,15 +17,15 @@ let CalendarYear = React.createClass({
     maxDate: React.PropTypes.object
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._scrollToSelectedYear();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     this._scrollToSelectedYear();
   },
 
-  render: function() {
+  render() {
     let years = this._getYears();
     let styles = {
       position: 'relative',
@@ -44,7 +45,7 @@ let CalendarYear = React.createClass({
     );
   },
 
-  _getYears: function() {
+  _getYears() {
     let minYear = this.props.minDate.getFullYear();
     let maxYear = this.props.maxDate.getFullYear();
 
@@ -74,7 +75,7 @@ let CalendarYear = React.createClass({
     return years;
   },
 
-  _scrollToSelectedYear: function() {
+  _scrollToSelectedYear() {
     if (this.refs.selectedYearButton === undefined) return;
 
     let container = this.getDOMNode();
@@ -87,7 +88,7 @@ let CalendarYear = React.createClass({
     container.scrollTop = scrollYOffset;
   },
 
-  _handleYearTouchTap: function(e, year) {
+  _handleYearTouchTap(e, year) {
     if (this.props.onYearTouchTap) this.props.onYearTouchTap(e, year);
   }
 

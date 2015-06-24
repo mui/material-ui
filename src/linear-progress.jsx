@@ -2,6 +2,7 @@ let React = require('react');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require("./styles/transitions");
 
+
 let LinearProgress = React.createClass({
 
   mixins: [StylePropable],
@@ -17,7 +18,7 @@ let LinearProgress = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  _getRelativeValue: function(){
+  _getRelativeValue() {
     let value = this.props.value;
     let min = this.props.min;
     let max = this.props.max;
@@ -28,9 +29,7 @@ let LinearProgress = React.createClass({
     return relValue * 100;
   },
 
-  componentDidMount: function () {
-
-
+  componentDidMount() {
     let bar1 = React.findDOMNode(this.refs.bar1);
     let bar2 = React.findDOMNode(this.refs.bar2);
 
@@ -39,20 +38,15 @@ let LinearProgress = React.createClass({
       [100, -90]
     ]);
 
-    setTimeout(function(){
-
+    setTimeout(() => {
       this._barUpdate(0, bar2, [
         [-200, 100],
         [107, -8]
       ]);
-
-    }.bind(this), 850);
-
-
-
+    }, 850);
   },
 
-  _barUpdate: function(step, barElement, stepValues){
+  _barUpdate(step, barElement, stepValues) {
     step = step || 0;
     step %= 4;
     setTimeout(this._barUpdate.bind(this, step + 1, barElement, stepValues), 420);
@@ -62,23 +56,20 @@ let LinearProgress = React.createClass({
     if (step === 0) {
       barElement.style.left = stepValues[0][0] + "%";
       barElement.style.right = stepValues[0][1] + "%";
-    } else if (step == 1) {
-
+    }
+    else if (step == 1) {
       barElement.style.transitionDuration = "840ms";
-
-
-    } else if (step == 2) {
-
+    }
+    else if (step == 2) {
       barElement.style.left = stepValues[1][0] + "%";
       barElement.style.right = stepValues[1][1] + "%";
-    } else if (step == 3) {
+    }
+    else if (step == 3) {
       barElement.style.transitionDuration = "0ms";
     }
-
-
   },
 
-  getDefaultProps: function () {
+  getDefaultProps() {
       return {
           mode: "indeterminate",
           value: 0,
@@ -87,12 +78,11 @@ let LinearProgress = React.createClass({
       };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.palette;
   },
 
-  getStyles: function() {
-
+  getStyles() {
     let styles = {
       root: {
           position: "relative",
@@ -111,7 +101,7 @@ let LinearProgress = React.createClass({
       barFragment2: {}
     };
 
-    if (this.props.mode == "indeterminate"){
+    if (this.props.mode === "indeterminate") {
       styles.barFragment1 = {
         position: "absolute",
         backgroundColor: this.getTheme().primary1Color,
@@ -129,7 +119,8 @@ let LinearProgress = React.createClass({
         bottom: 0,
         transition: Transitions.create("all", "840ms", null, "cubic-bezier(0.165, 0.840, 0.440, 1.000)")
       };
-    }else{
+    }
+    else {
       styles.bar.backgroundColor= this.getTheme().primary1Color;
       styles.bar.transition = Transitions.create("width", ".3s", null, "linear");
       styles.bar.width = this._getRelativeValue() + "%";
@@ -138,7 +129,7 @@ let LinearProgress = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       style,
       ...other

@@ -2,6 +2,7 @@ let Colors = require('../colors');
 let Spacing = require('../spacing');
 let ColorManipulator = require('../../utils/color-manipulator');
 
+
 /**
  *  Light Theme is the default theme used in material-ui. It is guaranteed to
  *  have all theme variables needed for every component. Variables not defined
@@ -11,7 +12,7 @@ let ColorManipulator = require('../../utils/color-manipulator');
 let LightTheme = {
   spacing: Spacing,
   contentFontFamily: 'Roboto, sans-serif',
-  getPalette: function() {
+  getPalette() {
     return {
       primary1Color: Colors.cyan500,
       primary2Color: Colors.cyan700,
@@ -25,7 +26,7 @@ let LightTheme = {
       disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
     };
   },
-  getComponentThemes: function(palette, spacing) {
+  getComponentThemes(palette, spacing) {
     spacing = spacing || Spacing;
     let obj = {
       appBar: {

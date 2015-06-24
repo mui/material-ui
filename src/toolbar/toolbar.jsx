@@ -15,11 +15,11 @@ let Toolbar = React.createClass({
     style: React.PropTypes.object
   },
 
-  getTheme: function () {
+  getTheme() {
     return this.context.muiTheme.component.toolbar;
   },
 
-  getStyles: function() {
+  getStyles() {
     return this.mergeAndPrefix({
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -30,7 +30,7 @@ let Toolbar = React.createClass({
     }, this.props.style);
   },
 
-  render: function() {
+  render() {
     return (
       <div className={this.props.className} style={this.getStyles()}>
         {this.props.children}

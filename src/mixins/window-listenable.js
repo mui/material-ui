@@ -1,8 +1,9 @@
 let Events = require('../utils/events');
 
+
 module.exports = {
 
-  componentDidMount: function() {
+  componentDidMount() {
     let listeners = this.windowListeners;
 
     for (let eventName in listeners) {
@@ -11,7 +12,7 @@ module.exports = {
     }
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     let listeners = this.windowListeners;
 
     for (let eventName in listeners) {

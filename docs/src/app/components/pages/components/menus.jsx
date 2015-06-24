@@ -208,9 +208,8 @@ class MenusPage extends React.Component {
   }
 
   render() {
-
     // Copied from component-doc
-    let info = componentInfo.map(function(info, i) {
+    let info = componentInfo.map((info, i) => {
       return (
         <ComponentInfo
           key={i}

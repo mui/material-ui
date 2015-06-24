@@ -14,14 +14,14 @@ let FullWidthSection = React.createClass({
     contentStyle: React.PropTypes.object
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       useContent: false,
       contentType: 'div'
     };
   },
 
-  getStyles: function() {
+  getStyles() {
     return  {
       root: {
         padding: DesktopGutter + 'px',
@@ -42,7 +42,7 @@ let FullWidthSection = React.createClass({
     };
   },
 
-  render: function() {
+  render() {
     let {
       style,
       useContent,

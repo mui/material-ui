@@ -10,12 +10,12 @@ function isObject(obj) {
 *  @param override - an object containing properties to be overwritten. It
 *                    should have the same structure as the object object.
 */
-let extend = function(base, override) {
+let extend = (base, override) => {
 
   let mergedObject = {};
 
   //Loop through each key in the base object
-  Object.keys(base).forEach(function(key) {
+  Object.keys(base).forEach((key) => {
 
     let baseProp = base[key];
     let overrideProp;
@@ -32,7 +32,7 @@ let extend = function(base, override) {
   //base object
   if (isObject(override)) {
 
-    Object.keys(override).forEach(function(overrideKey) {
+    Object.keys(override).forEach((overrideKey) => {
 
       let overrideProp = override[overrideKey];
 

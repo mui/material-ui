@@ -2,6 +2,7 @@ let React = require('react/addons');
 let StylePropable = require('../mixins/style-propable');
 let Typography = require('../styles/typography');
 
+
 let List = React.createClass({
 
   mixins: [StylePropable],
@@ -16,12 +17,12 @@ let List = React.createClass({
     subheaderStyle: React.PropTypes.object
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
     };
   },
 
-  render: function() {
+  render() {
 
     let {
       insetSubheader,

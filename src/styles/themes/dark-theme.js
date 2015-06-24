@@ -1,8 +1,9 @@
 let Colors = require('../colors');
 let ColorManipulator = require('../../utils/color-manipulator');
 
+
 let DarkTheme = {
-  getPalette: function() {
+  getPalette() {
     return {
       textColor: Colors.fullWhite,
       canvasColor: '#303030',
@@ -11,7 +12,7 @@ let DarkTheme = {
       primary1Color: Colors.teal200
     };
   },
-  getComponentThemes: function(palette) {
+  getComponentThemes(palette) {
     let cardColor = Colors.grey800;
     return {
       floatingActionButton: {
@@ -50,7 +51,7 @@ let DarkTheme = {
         handleColorZero: cardColor,
         handleFillColor: cardColor,
         selectionColor: Colors.cyan200,
-      },
+      }
     };
   }
 };

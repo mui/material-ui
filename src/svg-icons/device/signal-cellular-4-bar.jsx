@@ -3,7 +3,7 @@ let SvgIcon = require('../../svg-icon');
 
 let DeviceSignalCellular4Bar = React.createClass({
 
-  render: function() {
+  render() {
     return (
       <SvgIcon {...this.props}>
         <path d="M2 22h20V2z"/>

@@ -2,6 +2,7 @@ let React = require('react/addons');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
 
+
 let SvgIcon = React.createClass({
 
   mixins: [StylePropable],
@@ -18,20 +19,19 @@ let SvgIcon = React.createClass({
     viewBox: React.PropTypes.string
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       hovered: false
     };
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       viewBox: '0 0 24 24'
     };
   },
 
-  render: function() {
-
+  render() {
     let {
       color,
       hoverColor,
@@ -69,14 +69,14 @@ let SvgIcon = React.createClass({
     );
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut(e) {
     this.setState({hovered: false});
     if (this.props.onMouseOut) {
       this.props.onMouseOut(e);
     }
   },
 
-  _handleMouseOver: function(e) {
+  _handleMouseOver(e) {
     this.setState({hovered: true});
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);

@@ -21,7 +21,7 @@ let Toggle = React.createClass({
     defaultToggled: React.PropTypes.bool
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       switched:
         this.props.toggled ||
@@ -31,11 +31,11 @@ let Toggle = React.createClass({
     }
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.toggle;
   },
 
-  getStyles: function() {
+  getStyles() {
     let toggleSize = 20;
     let toggleTrackWidth = 36;
     let styles = {
@@ -85,7 +85,7 @@ let Toggle = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       onToggle,
       ...other
@@ -164,19 +164,19 @@ let Toggle = React.createClass({
     );
   },
 
-  isToggled: function() {
+  isToggled() {
     return this.refs.enhancedSwitch.isSwitched();
   },
 
-  setToggled: function(newToggledValue) {
+  setToggled(newToggledValue) {
     this.refs.enhancedSwitch.setSwitched(newToggledValue);
   },
 
-  _handleToggle: function(e, isInputChecked) {
+  _handleToggle(e, isInputChecked) {
     if (this.props.onToggle) this.props.onToggle(e, isInputChecked);
   },
 
-  _handleStateChange: function(newSwitched) {
+  _handleStateChange(newSwitched) {
     this.setState({switched: newSwitched});
   }
 

@@ -12,19 +12,19 @@ let Main = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  getChildContext: function() {
+  getChildContext() {
     return {
       muiTheme: ThemeManager.getCurrentTheme()
     };
   },
 
-  componentWillMount: function() {
+  componentWillMount() {
     ThemeManager.setPalette({
       accent1Color: Colors.deepOrange500
     });
   },
 
-  render: function() {
+  render() {
 
     let containerStyle = {
       textAlign: 'center',
@@ -43,7 +43,7 @@ let Main = React.createClass({
     );
   },
 
-  _handleTouchTap: function() {
+  _handleTouchTap() {
     alert('1-2-3-4-5');
   }
 

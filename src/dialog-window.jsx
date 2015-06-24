@@ -8,6 +8,7 @@ let FlatButton = require('./flat-button');
 let Overlay = require('./overlay');
 let Paper = require('./paper');
 
+
 let DialogWindow = React.createClass({
 
   closeable: false,
@@ -36,7 +37,7 @@ let DialogWindow = React.createClass({
     'resize': '_positionDialog'
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       actions: [],
       repositionOnUpdate: true,
@@ -44,33 +45,33 @@ let DialogWindow = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       open: this.props.openImmediately || false
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._positionDialog();
     if (this.props.openImmediately) {
       this.show();
     }
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     this._positionDialog();
     this._focusOnAction();
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme;
   },
 
-  getSpacing: function() {
+  getSpacing() {
     return this.context.muiTheme.spacing;
   },
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       root: {
         position: 'fixed',
@@ -109,7 +110,7 @@ let DialogWindow = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let actions = this._getActionsContainer(this.props.actions);
     let styles = this.getStyles();
 
@@ -128,24 +129,24 @@ let DialogWindow = React.createClass({
     );
   },
 
-  isOpen: function() {
+  isOpen() {
     return this.state.open;
   },
 
-  dismiss: function() {
+  dismiss() {
     if (this.closeable) {
-      CssEvent.onTransitionEnd(React.findDOMNode(this), function() {
+      CssEvent.onTransitionEnd(React.findDOMNode(this), () => {
         this.refs.dialogOverlay.allowScrolling();
-      }.bind(this));
+      });
 
       this.setState({ open: false });
       this._onDismiss();
     }
   },
 
-  show: function() {
+  show() {
     // prevent rapid show/hide
-    setTimeout(function(){this.closeable = true;}.bind(this), 250);
+    setTimeout(() => {this.closeable = true;}, 250);
 
     this.refs.dialogOverlay.preventScrolling();
     this._focusOnAction();
@@ -153,7 +154,7 @@ let DialogWindow = React.createClass({
     this._onShow();
   },
 
-  _getAction: function(actionJSON, key) {
+  _getAction(actionJSON, key) {
     let styles = {marginRight: 8};
     let props = {
       key: key,
@@ -181,7 +182,7 @@ let DialogWindow = React.createClass({
     );
   },
 
-  _getActionsContainer: function(actions) { //json w/ refs
+  _getActionsContainer(actions) { //json w/ refs
     let actionContainer;
     let actionObjects = [];
     let actionStyle = {
@@ -214,7 +215,7 @@ let DialogWindow = React.createClass({
     return actionContainer;
   },
 
-  _positionDialog: function() {
+  _positionDialog() {
     let container = React.findDOMNode(this);
     let dialogWindow = React.findDOMNode(this.refs.dialogWindow);
     let containerHeight = container.offsetHeight;
@@ -233,28 +234,28 @@ let DialogWindow = React.createClass({
 
   },
 
-  _focusOnAction: function() {
+  _focusOnAction() {
     if (this.props.actionFocus) {
       React.findDOMNode(this.refs[this.props.actionFocus]).focus();
     }
   },
 
-  _onShow: function() {
+  _onShow() {
     if (this.props.onShow) this.props.onShow();
   },
 
-  _onDismiss: function() {
+  _onDismiss() {
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
-  _handleOverlayTouchTap: function() {
+  _handleOverlayTouchTap() {
     if (!this.props.modal && this.closeable) {
       this.dismiss();
       if (this.props.onClickAway) this.props.onClickAway();
     }
   },
 
-  _handleWindowKeyUp: function(e) {
+  _handleWindowKeyUp(e) {
     if (!this.props.modal && e.keyCode == KeyCode.ESC) {
       this.dismiss();
     }

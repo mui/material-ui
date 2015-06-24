@@ -2,6 +2,8 @@ let React = require('react');
 let StylePropable = require('../mixins/style-propable');
 let Dom = require('../utils/dom');
 let RippleCircle = require('./circle');
+
+
 let TouchRipple = React.createClass({
 
   mixins: [StylePropable],
@@ -12,7 +14,7 @@ let TouchRipple = React.createClass({
     opacity: React.PropTypes.number,
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       ripples: [{
         key: 0,
@@ -22,7 +24,7 @@ let TouchRipple = React.createClass({
     };
   },
 
-  render: function() {
+  render() {
 
     let styles = this.mergeAndPrefix({
       height: '100%',
@@ -47,7 +49,7 @@ let TouchRipple = React.createClass({
     );
   },
 
-  start: function(e, isRippleTouchGenerated) {
+  start(e, isRippleTouchGenerated) {
     let ripples = this.state.ripples;
     let nextKey = ripples[ripples.length-1].key + 1;
     let style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
@@ -85,7 +87,7 @@ let TouchRipple = React.createClass({
     });
   },
 
-  end: function() {
+  end() {
     let ripples = this.state.ripples;
     let ripple;
     let endingRipple;
@@ -108,39 +110,39 @@ let TouchRipple = React.createClass({
       });
 
       //Wait 2 seconds and remove the ripple from DOM
-      setTimeout(function() {
+      setTimeout(() => {
         ripples.shift();
         if (this.isMounted()) {
           this.setState({
             ripples: ripples
           });
         }
-      }.bind(this), 2000);
+      }, 2000);
     }
   },
 
-  _handleMouseDown: function(e) {
+  _handleMouseDown(e) {
     //only listen to left clicks
     if (e.button === 0) this.start(e, false);
   },
 
-  _handleMouseUp: function() {
+  _handleMouseUp() {
     this.end();
   },
 
-  _handleMouseOut: function() {
+  _handleMouseOut() {
     this.end();
   },
 
-  _handleTouchStart: function(e) {
+  _handleTouchStart(e) {
     this.start(e, true);
   },
 
-  _handleTouchEnd: function() {
+  _handleTouchEnd() {
     this.end();
   },
 
-  _getRippleStyle: function(e) {
+  _getRippleStyle(e) {
     let style = {};
     let el = React.findDOMNode(this);
     let elHeight = el.offsetHeight;
@@ -170,12 +172,12 @@ let TouchRipple = React.createClass({
     return style;
   },
 
-  _calcDiag: function(a, b) {
+  _calcDiag(a, b) {
     return Math.sqrt((a * a) + (b * b));
   },
 
-  _getRippleElements: function() {
-    return this.state.ripples.map(function(ripple) {
+  _getRippleElements() {
+    return this.state.ripples.map((ripple) => {
       return (
         <RippleCircle
           key={ripple.key}
@@ -185,7 +187,7 @@ let TouchRipple = React.createClass({
           color={this.props.color}
           opacity={this.props.opacity} />
       );
-    }.bind(this));
+    });
   }
 
 });

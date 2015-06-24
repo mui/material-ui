@@ -1,6 +1,5 @@
 let React = require('react');
 let StylePropable = require('../mixins/style-propable');
-
 let TimeDisplay = require("./time-display");
 let ClockButton = require("./clock-button");
 let ClockHours = require("./clock-hours");
@@ -18,40 +17,40 @@ let Clock = React.createClass({
     isActive: React.PropTypes.bool
   },
 
-  init: function() {
+  init() {
     this.setState({
       mode: 'hour'
     })
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       initialTime: new Date()
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       selectedTime: nextProps.initialTime
     });
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       selectedTime: this.props.initialTime,
       mode: 'hour'
     };
   },
 
-  _setMode: function(mode) {
-    setTimeout(function() {
+  _setMode(mode) {
+    setTimeout(() => {
         this.setState({
           mode: mode
         })
-    }.bind(this), 100);
+    }, 100);
   },
 
-  _setAffix: function(affix) {
+  _setAffix(affix) {
     if (affix === this._getAffix()) return;
 
     let hours = this.state.selectedTime.getHours();
@@ -64,7 +63,7 @@ let Clock = React.createClass({
     this.handleChangeHours(hours + 12);
   },
 
-  _getAffix: function() {
+  _getAffix() {
     if (this.props.format != "ampm") return "";
 
     let hours = this.state.selectedTime.getHours();
@@ -75,11 +74,11 @@ let Clock = React.createClass({
     return "pm";
   },
 
-  _getButtons: function() {
+  _getButtons() {
     let buttons = [];
     let isAM = this._getIsAM();
 
-    if (this.props.format == 'ampm'){
+    if (this.props.format === 'ampm'){
       buttons = [
         <ClockButton position="left" onTouchTap={this._setAffix.bind(this, "am")} selected={isAM} >{"AM"}</ClockButton>,
         <ClockButton position="right" onTouchTap={this._setAffix.bind(this, "pm")} selected={!isAM} >{"PM"}</ClockButton>
@@ -88,11 +87,11 @@ let Clock = React.createClass({
     return buttons;
   },
 
-  _getIsAM: function() {
+  _getIsAM() {
     return this._getAffix() === "am";
   },
 
-  render: function() {
+  render() {
     let clock = null;
     let buttons = this._getButtons();
 
@@ -136,7 +135,7 @@ let Clock = React.createClass({
     );
   },
 
-  handleChangeHours: function(hours, finished) {
+  handleChangeHours(hours, finished) {
     let time = new Date(this.state.selectedTime);
     time.setHours(hours);
     this.setState({
@@ -144,15 +143,15 @@ let Clock = React.createClass({
     });
 
     if (finished) {
-      setTimeout(function() {
+      setTimeout(() => {
         this.setState({
           mode: 'minute'
         })
-      }.bind(this), 100);
+      }, 100);
     }
   },
 
-  handleChangeMinutes: function(minutes) {
+  handleChangeMinutes(minutes) {
     let time = new Date(this.state.selectedTime);
     time.setMinutes(minutes);
     this.setState({
@@ -160,7 +159,7 @@ let Clock = React.createClass({
     });
   },
 
-  getSelectedTime: function() {
+  getSelectedTime() {
     return this.state.selectedTime;
   }
 });

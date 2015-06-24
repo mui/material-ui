@@ -1,6 +1,7 @@
 let React = require('react');
 let RadioButton = require('./radio-button');
 
+
 let RadioButtonGroup = React.createClass({
 
   propTypes: {
@@ -11,38 +12,36 @@ let RadioButtonGroup = React.createClass({
     onChange: React.PropTypes.func
   },
 
-  _hasCheckAttribute: function(radioButton) {
+  _hasCheckAttribute(radioButton) {
     return radioButton.props.hasOwnProperty('checked') &&
       radioButton.props.checked;
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       numberCheckedRadioButtons: 0,
       selected: this.props.valueSelected || this.props.defaultSelected || ''
     };
   },
 
-  componentWillMount: function() {
+  componentWillMount() {
     let cnt = 0;
 
-    React.Children.forEach(this.props.children, function(option) {
+    React.Children.forEach(this.props.children, (option) => {
       if (this._hasCheckAttribute(option)) cnt++;
     }, this);
 
     this.setState({numberCheckedRadioButtons: cnt});
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.hasOwnProperty('valueSelected')) {
       this.setState({selected: nextProps.valueSelected});
     }
   },
 
-  render: function() {
-
-    let options = React.Children.map(this.props.children, function(option) {
-
+  render() {
+    let options = React.Children.map(this.props.children, (option) => {
       let {
         name,
         value,
@@ -73,17 +72,18 @@ let RadioButtonGroup = React.createClass({
     );
   },
 
-  _updateRadioButtons: function(newSelection) {
+  _updateRadioButtons(newSelection) {
     if (this.state.numberCheckedRadioButtons === 0) {
       this.setState({selected: newSelection});
-    } else if (process.env.NODE_ENV !== 'production') {
+    }
+    else if (process.env.NODE_ENV !== 'production') {
       let message = "Cannot select a different radio button while another radio button " +
                     "has the 'checked' property set to true.";
       console.error(message);
     }
   },
 
-  _onChange: function(e, newSelection) {
+  _onChange(e, newSelection) {
     this._updateRadioButtons(newSelection);
 
     // Successful update
@@ -92,15 +92,15 @@ let RadioButtonGroup = React.createClass({
     }
   },
 
-  getSelectedValue: function() {
+  getSelectedValue() {
     return this.state.selected;
   },
 
-  setSelectedValue: function(newSelectionValue) {
+  setSelectedValue(newSelectionValue) {
     this._updateRadioButtons(newSelectionValue);
   },
 
-  clearValue: function() {
+  clearValue() {
     this.setSelectedValue('');
   }
 

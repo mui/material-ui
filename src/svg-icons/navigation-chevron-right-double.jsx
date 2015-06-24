@@ -3,7 +3,7 @@ let SvgIcon = require('../svg-icon');
 
 let NavigationChevronRightDouble = React.createClass({
 
-  render: function() {
+  render() {
     return (
       <SvgIcon {...this.props}>
         <path d="M6 6 L4.59  7.41 9.17 12 l-4.58 4.59 L6 18 l6 -6z"/>

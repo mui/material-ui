@@ -14,11 +14,11 @@ let ToolbarTitle = React.createClass({
     text: React.PropTypes.string,
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.toolbar;
   },
 
-  render: function() {
+  render() {
     let {
       style,
       text,

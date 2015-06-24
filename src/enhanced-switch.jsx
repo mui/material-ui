@@ -47,14 +47,14 @@ let EnhancedSwitch = React.createClass({
     'keyup': '_handleWindowKeyup'
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       isKeyboardFocused: false,
       parentWidth: 100,
     };
   },
 
-  getEvenWidth: function(){
+  getEvenWidth(){
     return (
       parseInt(window
         .getComputedStyle(React.findDOMNode(this.refs.root))
@@ -62,7 +62,7 @@ let EnhancedSwitch = React.createClass({
     );
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     let inputNode = React.findDOMNode(this.refs.checkbox);
     if (!this.props.switched ||
         inputNode.checked != this.props.switched) this.props.onParentShouldUpdate(inputNode.checked);
@@ -72,11 +72,11 @@ let EnhancedSwitch = React.createClass({
     this._handleResize();
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     window.removeEventListener("resize", this._handleResize);
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     let hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
     let hasCheckedProp = nextProps.hasOwnProperty('checked');
     let hasToggledProp = nextProps.hasOwnProperty('toggled');
@@ -98,11 +98,11 @@ let EnhancedSwitch = React.createClass({
     if (newState.switched !== undefined && (newState.switched != this.props.switched)) this.props.onParentShouldUpdate(newState.switched);
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.palette;
   },
 
-  getStyles: function() {
+  getStyles() {
     let spacing = this.context.muiTheme.spacing;
     let switchWidth = 60 - spacing.desktopGutterLess;
     let labelWidth = 'calc(100% - 60px)';
@@ -161,7 +161,7 @@ let EnhancedSwitch = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       type,
       name,
@@ -296,12 +296,12 @@ let EnhancedSwitch = React.createClass({
   },
 
 
-  isSwitched: function() {
+  isSwitched() {
     return React.findDOMNode(this.refs.checkbox).checked;
   },
 
   // no callback here because there is no event
-  setSwitched: function(newSwitchedValue) {
+  setSwitched(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
       this.props.onParentShouldUpdate(newSwitchedValue);
       React.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
@@ -311,15 +311,15 @@ let EnhancedSwitch = React.createClass({
     }
   },
 
-  getValue: function() {
+  getValue() {
     return React.findDOMNode(this.refs.checkbox).value;
   },
 
-  isKeyboardFocused: function() {
+  isKeyboardFocused() {
     return this.state.isKeyboardFocused;
   },
 
-  _handleChange: function(e) {
+  _handleChange(e) {
     this._tabPressed = false;
     this.setState({
       isKeyboardFocused: false
@@ -339,41 +339,41 @@ let EnhancedSwitch = React.createClass({
 
   // Checkbox inputs only use SPACE to change their state. Using ENTER will
   // update the ui but not the input.
-  _handleWindowKeydown: function(e) {
+  _handleWindowKeydown(e) {
     if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
     if (e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
       this._handleChange(e);
     }
   },
 
-  _handleWindowKeyup: function(e) {
+  _handleWindowKeyup(e) {
     if (e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
       this._handleChange(e);
     }
   },
 
-  _handleMouseDown: function(e) {
+  _handleMouseDown(e) {
     //only listen to left clicks
     if (e.button === 0) this.refs.touchRipple.start(e);
   },
 
-  _handleMouseUp: function() {
+  _handleMouseUp() {
     this.refs.touchRipple.end();
   },
 
-  _handleMouseOut: function() {
+  _handleMouseOut() {
     this.refs.touchRipple.end();
   },
 
-  _handleTouchStart: function(e) {
+  _handleTouchStart(e) {
     this.refs.touchRipple.start(e);
   },
 
-  _handleTouchEnd: function() {
+  _handleTouchEnd() {
     this.refs.touchRipple.end();
   },
 
-  _handleBlur: function(e) {
+  _handleBlur(e) {
     this.setState({
       isKeyboardFocused: false
     });
@@ -381,22 +381,22 @@ let EnhancedSwitch = React.createClass({
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
-  _handleFocus: function(e) {
+  _handleFocus(e) {
     //setTimeout is needed becuase the focus event fires first
     //Wait so that we can capture if this was a keyboard focus
     //or touch focus
-    setTimeout(function() {
+    setTimeout(() => {
       if (this._tabPressed) {
         this.setState({
           isKeyboardFocused: true
         });
       }
-    }.bind(this), 150);
+    }, 150);
 
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
-  _handleResize: function() {
+  _handleResize() {
     this.setState({parentWidth: this.getEvenWidth()});
   }
 

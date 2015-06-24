@@ -3,6 +3,7 @@ let Styles = require('../styles');
 let Avatar = require('../avatar');
 let StylePropable = require('../mixins/style-propable');
 
+
 let CardHeader = React.createClass({
 
   mixins: [StylePropable],
@@ -17,14 +18,14 @@ let CardHeader = React.createClass({
     textStyle: React.PropTypes.object
   },
 
-  getDefaultProps: function () {
+  getDefaultProps() {
     return {
       titleColor: Styles.Colors.darkBlack,
       subtitleColor: Styles.Colors.lightBlack
     };
   },
 
-  getStyles: function () {
+  getStyles() {
     return {
       root: {
         height: 72,
@@ -52,7 +53,7 @@ let CardHeader = React.createClass({
     }
   },
 
-  render: function () {
+  render() {
     let styles = this.getStyles();
     let rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
     let textStyle = this.mergeAndPrefix(styles.text, this.props.textStyle);
