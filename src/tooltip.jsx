@@ -41,7 +41,7 @@ let Tooltip = React.createClass({
     let horizontalPosition = this.props.horizontalPosition;
     let touchMarginOffset = this.props.touch ? 10: 0;
     let touchOffsetTop = this.props.touch ? -20 : -10;
-    let offset = verticalPosition === 'bottom' ? 
+    let offset = verticalPosition === 'bottom' ?
       14 + touchMarginOffset : -14 - touchMarginOffset;
 
     let styles = {
