@@ -3,7 +3,7 @@ let StylePropable = require('./mixins/style-propable');
 let Colors = require('./styles/colors');
 let Typography = require('./styles/typography');
 
-let SvgIcon = React.createClass({
+let Avatar = React.createClass({
 
   mixins: [StylePropable],
 
@@ -79,4 +79,4 @@ let SvgIcon = React.createClass({
   }
 });
 
-module.exports = SvgIcon;
+module.exports = Avatar;
