@@ -268,8 +268,7 @@ var Menu = React.createClass({
         paddingTop: this.getSpacing().desktopGutterMini,
         paddingBottom: this.getSpacing().desktopGutterMini,
         transition: Transitions.easeOut(null, 'height'),
-        outline:'none !important',
-        height:34
+        outline:'none !important'
       },
       subheader: {
         paddingLeft: this.context.muiTheme.component.menuSubheader.padding,
@@ -281,6 +280,9 @@ var Menu = React.createClass({
         position: 'absolute',
         top: 0,
         zIndex: 1
+      },
+      item: {
+        height:34
       }
     };
     return styles;
@@ -433,7 +435,8 @@ var Menu = React.createClass({
   _getCurrentHeight() {
     let totalItems = Math.max(1, this.props.menuItems.length);
     let styles = this.getStyles();
-    let newHeight = styles.root.height * totalItems;
+    debugger
+    let newHeight = styles.item.height * totalItems;
 
     return newHeight;
   },
@@ -451,7 +454,7 @@ var Menu = React.createClass({
         el.style.height = this._getCurrentHeight() + 'px';
         el.style.paddingTop = this.getSpacing().desktopGutterMini + 'px';
         el.style.paddingBottom = this.getSpacing().desktopGutterMini + 'px';
-        
+
         //Set the overflow to visible after the animation is done so
         //that other nested menus can be shown
         CssEvent.onTransitionEnd(el, () => {
