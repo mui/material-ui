@@ -111,7 +111,8 @@ let RaisedButton = React.createClass({
         margin: 0,
         padding: '0px ' + this.context.muiTheme.spacing.desktopGutterLess + 'px',
         userSelect: 'none',
-        lineHeight: this.getThemeButton().height + 'px',
+        lineHeight: this.props.style && this.props.style.height ?
+         this.props.style.height : this.getThemeButton().height + 'px',
         color:  this._getLabelColor(),
       },
       overlay: {
