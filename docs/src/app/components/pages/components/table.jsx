@@ -200,7 +200,7 @@ let footerCols = {id: {content: 'ID'}, name: {content: 'Name'}, status: {content
             desc: 'If true, multiple table rows can be selected. CTRL/CMD+Click and SHIFT+Click are valid actions. The default value is false.'
           },
           {
-            name: 'showRowSelectCheckbox',
+            name: 'displayRowCheckbox',
             type: 'boolean',
             header: 'optional',
             desc: 'Controls the display of the row checkbox. The default value is true.'
