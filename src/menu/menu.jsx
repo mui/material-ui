@@ -355,7 +355,7 @@ var Menu = React.createClass({
               key={i}
               index={i}
               className={this.props.menuItemClassNameSubheader}
-              style={this.mergeAndPrefix(styles.subheader)}
+              style={this.mergeAndPrefix(styles.subheader, this.props.menuItemStyleSubheader)}
               firstChild={i === 0}
               text={menuItem.text} />
           );
