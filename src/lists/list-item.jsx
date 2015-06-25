@@ -18,6 +18,7 @@ let ListItem = React.createClass({
   propTypes: {
     disabled: React.PropTypes.bool,
     disableKeyboardFocus: React.PropTypes.bool,
+    innerDivStyle: React.PropTypes.object,
     insetChildren: React.PropTypes.bool,
     leftAvatar: React.PropTypes.element,
     leftCheckbox: React.PropTypes.element,
@@ -55,6 +56,7 @@ let ListItem = React.createClass({
     let {
       disabled,
       disableKeyboardFocus,
+      innerDivStyle,
       insetChildren,
       leftAvatar,
       leftCheckbox,
@@ -185,8 +187,9 @@ let ListItem = React.createClass({
     let secondaryTextIsAnElement = React.isValidElement(secondaryText);
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
-    let mergedDivStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, style);
-    let mergedLabelStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, styles.label, style);
+    let mergedInnerDivStyles = this.mergeAndPrefix(styles.innerDiv, innerDivStyle);
+    let mergedDivStyles = this.mergeAndPrefix(styles.root, mergedInnerDivStyles, style);
+    let mergedLabelStyles = this.mergeAndPrefix(styles.root, mergedInnerDivStyles, styles.label, style);
     let mergedSecondaryTextStyles = secondaryTextIsAnElement ?
       this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
 
@@ -230,7 +233,7 @@ let ListItem = React.createClass({
         onMouseOver={this._handleMouseOver}
         onTouchStart={this._handleTouchStart}
         style={mergedRootStyles}>
-        <div style={styles.innerDiv}>
+        <div style={mergedInnerDivStyles}>
           {contentChildren}
         </div>
       </EnhancedButton>
