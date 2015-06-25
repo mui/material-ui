@@ -12,7 +12,9 @@ let CircularProgress = React.createClass({
       value: React.PropTypes.number,
       min:  React.PropTypes.number,
       max:  React.PropTypes.number,
-      size: React.PropTypes.number
+      size: React.PropTypes.number,
+      color: React.PropTypes.string,
+      innerStyle: React.PropTypes.object
   },
 
   contextTypes: {
@@ -136,7 +138,7 @@ let CircularProgress = React.createClass({
       path: {
         strokeDasharray: "89,200",
         strokeDashoffset: 0,
-        stroke: this.getTheme().primary1Color,
+        stroke: this.props.color || this.getTheme().primary1Color,
         strokeLinecap: "round",
         transition: Transitions.create("all", "1.5s", null, "ease-in-out")
       }
@@ -156,6 +158,7 @@ let CircularProgress = React.createClass({
   render() {
     let {
       style,
+      innerStyle,
       size,
       ...other
     } = this.props;
@@ -165,7 +168,7 @@ let CircularProgress = React.createClass({
 
     return (
       <div  {...other} style={this.mergeAndPrefix(styles.root, style)} >
-        <div ref="wrapper" style={this.mergeAndPrefix(styles.wrapper)} >
+        <div ref="wrapper" style={this.mergeAndPrefix(styles.wrapper, innerStyle)} >
           <svg style={this.mergeAndPrefix(styles.svg)} >
             <circle ref="path" style={this.mergeAndPrefix(styles.path)} cx="25" cy="25" r="20" fill="none" strokeWidth="2.5" strokeMiterlimit="10"/>
           </svg>
