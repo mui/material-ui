@@ -67,8 +67,10 @@ let Slider = React.createClass({
 
   getStyles() {
     let size = this.getTheme().handleSize + this.getTheme().trackSize;
-    let gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
-    let fillGutter = this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
+    let gutter =
+      (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
+    let fillGutter =
+      this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
     let styles = {
       root: {
         touchCallout: 'none',
@@ -81,7 +83,7 @@ let Slider = React.createClass({
       },
       track: {
         position: 'absolute',
-        top: (this.getTheme().handleSizeActive - this.getTheme(). trackSize) / 2,
+        top: (this.getTheme().handleSizeActive - this.getTheme().trackSize) / 2,
         left: 0,
         width: '100%',
         height: this.getTheme().trackSize
@@ -151,7 +153,8 @@ let Slider = React.createClass({
         height: (size /2) + 'px'
       },
       handleWhenPercentZeroAndHovered: {
-        border: this.getTheme().trackSize + 'px solid ' + this.getTheme().handleColorZero,
+        border: this.getTheme().trackSize + 'px solid ' +
+          this.getTheme().handleColorZero,
         width: size + 'px',
         height: size + 'px'
       },
@@ -177,6 +180,7 @@ let Slider = React.createClass({
   },
 
   render() {
+    let { ...others } = this.props;
     let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
     let gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
@@ -229,7 +233,7 @@ let Slider = React.createClass({
     }
 
     return (
-      <div style={this.props.style}>
+      <div {...others } style={this.props.style}>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
@@ -382,6 +386,9 @@ let Slider = React.createClass({
   _dragX(e, pos) {
     let max = React.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
+    if (pos === this.props.min) {
+      return this._updateWithChangeEvent(e, 0);
+    }
     this._updateWithChangeEvent(e, pos / max);
   },
 
