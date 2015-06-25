@@ -3,7 +3,7 @@ let SvgIcon = require('../../svg-icon');
 
 let AvStop = React.createClass({
 
-  render: function() {
+  render() {
     return (
       <SvgIcon {...this.props}>
         <path d="M6 6h12v12H6z"/>

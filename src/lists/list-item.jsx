@@ -6,6 +6,7 @@ let Transitions = require('../styles/transitions');
 let Typography = require('../styles/typography');
 let EnhancedButton = require('../enhanced-button');
 
+
 let ListItem = React.createClass({
 
   mixins: [StylePropable],
@@ -17,6 +18,7 @@ let ListItem = React.createClass({
   propTypes: {
     disabled: React.PropTypes.bool,
     disableKeyboardFocus: React.PropTypes.bool,
+    innerDivStyle: React.PropTypes.object,
     insetChildren: React.PropTypes.bool,
     leftAvatar: React.PropTypes.element,
     leftCheckbox: React.PropTypes.element,
@@ -33,13 +35,13 @@ let ListItem = React.createClass({
     secondaryTextLines: React.PropTypes.oneOf([1, 2])
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       secondaryTextLines: 1
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       hovered: false,
       isKeyboardFocused: false,
@@ -49,11 +51,12 @@ let ListItem = React.createClass({
     };
   },
 
-  render: function() {
+  render() {
 
     let {
       disabled,
       disableKeyboardFocus,
+      innerDivStyle,
       insetChildren,
       leftAvatar,
       leftCheckbox,
@@ -184,8 +187,9 @@ let ListItem = React.createClass({
     let secondaryTextIsAnElement = React.isValidElement(secondaryText);
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
-    let mergedDivStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, style);
-    let mergedLabelStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, styles.label, style);
+    let mergedInnerDivStyles = this.mergeAndPrefix(styles.innerDiv, innerDivStyle);
+    let mergedDivStyles = this.mergeAndPrefix(styles.root, mergedInnerDivStyles, style);
+    let mergedLabelStyles = this.mergeAndPrefix(styles.root, mergedInnerDivStyles, styles.label, style);
     let mergedSecondaryTextStyles = secondaryTextIsAnElement ?
       this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
 
@@ -229,7 +233,7 @@ let ListItem = React.createClass({
         onMouseOver={this._handleMouseOver}
         onTouchStart={this._handleTouchStart}
         style={mergedRootStyles}>
-        <div style={styles.innerDiv}>
+        <div style={mergedInnerDivStyles}>
           {contentChildren}
         </div>
       </EnhancedButton>
@@ -237,7 +241,7 @@ let ListItem = React.createClass({
 
   },
 
-  _pushElement: function(children, element, baseStyles, additionalProps) {
+  _pushElement(children, element, baseStyles, additionalProps) {
     if (element) {
       let styles = this.mergeStyles(baseStyles, element.props.style);
       children.push(
@@ -250,22 +254,22 @@ let ListItem = React.createClass({
     }
   },
 
-  _handleKeyboardFocus: function(e, isKeyboardFocused) {
+  _handleKeyboardFocus(e, isKeyboardFocused) {
     this.setState({isKeyboardFocused: isKeyboardFocused});
     if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, isKeyboardFocused);
   },
 
-  _handleMouseOver: function(e) {
+  _handleMouseOver(e) {
     if (!this.state.touch) this.setState({hovered: true});
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut(e) {
     this.setState({hovered: false});
     if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
-  _handleRightIconButtonKeyboardFocus: function(e, isKeyboardFocused) {
+  _handleRightIconButtonKeyboardFocus(e, isKeyboardFocused) {
     let iconButton = this.props.rightIconButton;
     let newState = {};
 
@@ -276,31 +280,31 @@ let ListItem = React.createClass({
     if (iconButton.onKeyboardFocus) iconButton.onKeyboardFocus(e, isKeyboardFocused);
   },
 
-  _handleRightIconButtonMouseDown: function(e) {
+  _handleRightIconButtonMouseDown(e) {
     let iconButton = this.props.rightIconButton;
     e.stopPropagation();
     if (iconButton.onMouseDown) iconButton.onDown(e);
   },
 
-  _handleRightIconButtonMouseOut: function(e) {
+  _handleRightIconButtonMouseOut(e) {
     let iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: false});
     if (iconButton.onMouseOut) iconButton.onMouseOut(e);
   },
 
-  _handleRightIconButtonMouseOver: function(e) {
+  _handleRightIconButtonMouseOver(e) {
     let iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: true});
     if (iconButton.onMouseOver) iconButton.onMouseOver(e);
   },
 
-  _handleRightIconButtonMouseUp: function(e) {
+  _handleRightIconButtonMouseUp(e) {
     let iconButton = this.props.rightIconButton;
     e.stopPropagation();
     if (iconButton.onMouseUp) iconButton.onUp(e);
   },
 
-  _handleRightIconButtonTouchTap: function(e) {
+  _handleRightIconButtonTouchTap(e) {
     let iconButton = this.props.rightIconButton;
 
     //Stop the event from bubbling up to the list-item
@@ -308,7 +312,7 @@ let ListItem = React.createClass({
     if (iconButton.onTouchTap) iconButton.onTouchTap(e);
   },
 
-  _handleTouchStart: function(e) {
+  _handleTouchStart(e) {
     this.setState({touch: true});
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   }

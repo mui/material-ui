@@ -1,6 +1,7 @@
 let React = require('react');
 let StylePropable = require('../mixins/style-propable');
 
+
 let LinkMenuItem = React.createClass({
 
   mixins: [StylePropable],
@@ -19,24 +20,24 @@ let LinkMenuItem = React.createClass({
     className: React.PropTypes.string,
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       active:false,
       disabled: false
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       hovered: false
     }
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.menuItem;
   },
 
-  getStyles: function() {
+  getStyles() {
     let style = {
       root: {
         userSelect: 'none',
@@ -60,7 +61,7 @@ let LinkMenuItem = React.createClass({
     return style;
   },
 
-  render: function() {
+  render() {
     let onClickHandler = (this.props.disabled) ? this._stopLink : undefined;
     // Prevent context menu 'Open In New Tab/Window'
     let linkAttribute = (this.props.disabled) ? 'data-href' : 'href';
@@ -92,16 +93,16 @@ let LinkMenuItem = React.createClass({
     );
   },
 
-  _stopLink: function(event) {
+  _stopLink(event) {
     event.preventDefault();
   },
 
-  _handleMouseOver: function(e) {
+  _handleMouseOver(e) {
     this.setState({hovered: true});
     if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut(e) {
     this.setState({hovered: false});
     if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e);
   }

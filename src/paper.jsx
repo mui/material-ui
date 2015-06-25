@@ -1,6 +1,8 @@
 let React = require('react');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
+
+
 let Paper = React.createClass({
 
   mixins: [StylePropable],
@@ -16,7 +18,7 @@ let Paper = React.createClass({
     transitionEnabled: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       rounded: true,
       zDepth: 1,
@@ -24,7 +26,7 @@ let Paper = React.createClass({
     };
   },
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       root: {
         backgroundColor: this.context.muiTheme.component.paper.backgroundColor,
@@ -40,7 +42,7 @@ let Paper = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       style,
       circle,
@@ -57,7 +59,7 @@ let Paper = React.createClass({
     );
   },
 
-  _getZDepthShadows: function(zDepth) {
+  _getZDepthShadows(zDepth) {
     let shadows = [
       '',
       '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)',

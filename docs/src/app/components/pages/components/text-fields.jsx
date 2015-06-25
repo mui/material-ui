@@ -9,7 +9,7 @@ let TextFieldsPage = React.createClass({
 
   mixins: [StyleResizable, React.addons.LinkedStateMixin],
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       errorText: 'This field is required.',
       error2Text: 'This field must be numeric.',
@@ -24,7 +24,7 @@ let TextFieldsPage = React.createClass({
     };
   },
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       group: {
         width: '100%',
@@ -43,7 +43,7 @@ let TextFieldsPage = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
 
     let code =
       '//In Line Hint Text\n' +
@@ -393,13 +393,13 @@ let TextFieldsPage = React.createClass({
     );
   },
 
-  _handleErrorInputChange: function(e) {
+  _handleErrorInputChange(e) {
     this.setState({
       errorText: e.target.value ? '' : 'This field is required.'
     });
   },
 
-  _handleError2InputChange: function(e) {
+  _handleError2InputChange(e) {
     let value = e.target.value;
     let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
     this.setState({
@@ -407,13 +407,13 @@ let TextFieldsPage = React.createClass({
     });
   },
 
-  _handleFloatingErrorInputChange: function(e) {
+  _handleFloatingErrorInputChange(e) {
     this.setState({
       floatingErrorText: e.target.value ? '' : 'This field is required.'
     });
   },
 
-  _handleFloating2ErrorInputChange: function(e) {
+  _handleFloating2ErrorInputChange(e) {
     let value = e.target.value;
     let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
     this.setState({
@@ -421,19 +421,19 @@ let TextFieldsPage = React.createClass({
     });
   },
 
-  _handleInputChange: function(e) {
+  _handleInputChange(e) {
     this.setState({
       propValue: e.target.value
     });
   },
 
-  _handleSelectValueChange: function(e) {
+  _handleSelectValueChange(e) {
     this.setState({
       selectValue: e.target.value
     });
   },
 
-  _handleFloatingInputChange: function(e) {
+  _handleFloatingInputChange(e) {
     this.setState({
       floatingPropValue: e.target.value
     });

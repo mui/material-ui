@@ -2,17 +2,18 @@ let React = require('react');
 let Styles = require('../styles');
 
 let CardActions = React.createClass({
-  getStyles: function () {
+  getStyles() {
     return {
       root: {
         padding: 8
       }
     }
   },
-  render: function () {
+
+  render() {
     let styles = this.getStyles();
 
-    let children = React.Children.map(this.props.children, function (child) {
+    let children = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, {
         style: {marginRight: 8}
       });

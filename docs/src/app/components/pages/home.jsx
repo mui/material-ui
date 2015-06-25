@@ -17,7 +17,7 @@ let HomePage = React.createClass({
     router: React.PropTypes.func
   },
 
-  render: function() {
+  render() {
     let style = {
       paddingTop: Spacing.desktopKeylineIncrement
     };
@@ -32,7 +32,7 @@ let HomePage = React.createClass({
     );
   },
 
-  _getHomePageHero: function() {
+  _getHomePageHero() {
     let styles = {
       root: {
         backgroundColor: Colors.cyan500,
@@ -123,7 +123,7 @@ let HomePage = React.createClass({
     );
   },
 
-  _getHomePurpose: function() {
+  _getHomePurpose() {
     let styles = {
       root: {
         backgroundColor: Colors.grey200
@@ -155,7 +155,7 @@ let HomePage = React.createClass({
     );
   },
 
-  _getHomeFeatures: function() {
+  _getHomeFeatures() {
     let styles = {maxWidth: '906px'};
     return (
       <FullWidthSection useContent={true} contentStyle={styles}>
@@ -166,7 +166,7 @@ let HomePage = React.createClass({
     );
   },
 
-  _getHomeContribute: function() {
+  _getHomeContribute() {
     let styles = {
       root: {
         backgroundColor: Colors.grey200,
@@ -193,7 +193,7 @@ let HomePage = React.createClass({
     );
   },
 
-  _onDemoClick: function() {
+  _onDemoClick() {
     this.context.router.transitionTo('components');
   }
 });

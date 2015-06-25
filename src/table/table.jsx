@@ -180,7 +180,7 @@ let Table = React.createClass({
   },
 
   _getBody() {
-    let body = this._orderColumnBasedData(this.props.rowData, function(rowData, rowNumber) {
+    let body = this._orderColumnBasedData(this.props.rowData, (rowData, rowNumber) => {
       let selected = this._isRowSelected(rowNumber);
       let striped = this.props.stripedRows && (rowNumber % 2 === 0);
       let border = true;
@@ -195,6 +195,7 @@ let Table = React.createClass({
           columns={rowData}
           selected={selected}
           striped={striped}
+          displayRowCheckbox={this.props.displayRowCheckbox}
           hoverable={this.props.showRowHover}
           displayBorder={border}
           selectable={this.props.selectable}
@@ -208,7 +209,7 @@ let Table = React.createClass({
       );
 
       return row;
-    }.bind(this));
+    });
 
     return (
       <tbody style={{height: this.props.height}}>
@@ -251,7 +252,7 @@ let Table = React.createClass({
   },
 
   _setColumnWidths(columnData) {
-    columnData.forEach(function(column) {
+    columnData.forEach((column) => {
       if (column.style === undefined) {
         column.style = {
           width: this.props.defaultColumnWidth,
@@ -262,7 +263,7 @@ let Table = React.createClass({
         if (column.style.width === undefined) column.style.width = this.props.defaultColumnWidth;
         if (column.style.maxWidth === undefined) column.style.maxWidth = this.props.defaultColumnWidth;
       }
-    }.bind(this));
+    });
 
     return columnData;
   },

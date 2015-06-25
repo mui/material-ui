@@ -23,7 +23,7 @@ let ComponentDoc = React.createClass({
     componentInfo: React.PropTypes.array.isRequired
   },
 
-  getStyles: function() {
+  getStyles() {
     let borderColor = this.context.muiTheme.palette.borderColor;
     return {
       desc: {
@@ -64,7 +64,7 @@ let ComponentDoc = React.createClass({
     };
   },
 
-  render: function() {
+  render() {
     let styles = this.getStyles();
 
     let componentInfo = this.props.componentInfo.map(function(info, i) {

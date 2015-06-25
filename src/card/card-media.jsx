@@ -2,6 +2,7 @@ let React = require('react');
 let Styles = require('../styles');
 let StylePropable = require('../mixins/style-propable');
 
+
 let CardMedia = React.createClass({
 
   mixins:[StylePropable],
@@ -15,7 +16,7 @@ let CardMedia = React.createClass({
     mediaStyle: React.PropTypes.object
   },
 
-  getStyles: function () {
+  getStyles() {
     return {
       root: {
         position: 'relative'
@@ -42,7 +43,7 @@ let CardMedia = React.createClass({
     };
   },
 
-  render: function () {
+  render() {
     let styles = this.getStyles();
     let rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
     let mediaStyle = this.mergeAndPrefix(styles.media, this.props.mediaStyle);
@@ -51,7 +52,7 @@ let CardMedia = React.createClass({
     let overlayStyle = this.mergeAndPrefix(styles.overlay, this.props.overlayStyle);
 
 
-    let children = React.Children.map(this.props.children, function (child) {
+    let children = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, {
         style: {
           verticalAlign: 'top',
@@ -61,7 +62,7 @@ let CardMedia = React.createClass({
       });
     });
 
-    let overlayChildren = React.Children.map(this.props.overlay, function (child) {
+    let overlayChildren = React.Children.map(this.props.overlay, (child) => {
       if (child.type.displayName === 'CardHeader' || child.type.displayName === 'CardTitle'
       ) {
         return React.cloneElement(child, {

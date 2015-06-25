@@ -4,6 +4,7 @@ let Draggable = require('react-draggable2');
 let Transitions = require('./styles/transitions');
 let FocusRipple = require('./ripples/focus-ripple');
 
+
 let Slider = React.createClass({
 
   mixins: [StylePropable],
@@ -28,7 +29,7 @@ let Slider = React.createClass({
     onDragStop: React.PropTypes.func
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       required: true,
       disabled: false,
@@ -40,7 +41,7 @@ let Slider = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     let value = this.props.value;
     if (value == null) value = this.props.defaultValue;
     let percent = (value - this.props.min) / (this.props.max - this.props.min);
@@ -54,20 +55,22 @@ let Slider = React.createClass({
     }
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value != null) {
       this.setValue(nextProps.value);
     }
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.slider;
   },
 
-  getStyles: function() {
+  getStyles() {
     let size = this.getTheme().handleSize + this.getTheme().trackSize;
-    let gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
-    let fillGutter = this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
+    let gutter =
+      (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
+    let fillGutter =
+      this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
     let styles = {
       root: {
         touchCallout: 'none',
@@ -80,7 +83,7 @@ let Slider = React.createClass({
       },
       track: {
         position: 'absolute',
-        top: (this.getTheme().handleSizeActive - this.getTheme(). trackSize) / 2,
+        top: (this.getTheme().handleSizeActive - this.getTheme().trackSize) / 2,
         left: 0,
         width: '100%',
         height: this.getTheme().trackSize
@@ -150,7 +153,8 @@ let Slider = React.createClass({
         height: (size /2) + 'px'
       },
       handleWhenPercentZeroAndHovered: {
-        border: this.getTheme().trackSize + 'px solid ' + this.getTheme().handleColorZero,
+        border: this.getTheme().trackSize + 'px solid ' +
+          this.getTheme().handleColorZero,
         width: size + 'px',
         height: size + 'px'
       },
@@ -175,7 +179,8 @@ let Slider = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
+    let { ...others } = this.props;
     let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
     let gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
@@ -228,7 +233,7 @@ let Slider = React.createClass({
     }
 
     return (
-      <div style={this.props.style}>
+      <div {...others } style={this.props.style}>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
@@ -267,11 +272,11 @@ let Slider = React.createClass({
     );
   },
 
-  getValue: function() {
+  getValue() {
     return this.state.value;
   },
 
-  setValue: function(i) {
+  setValue(i) {
     // calculate percentage
     let percent = (i - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
@@ -282,20 +287,20 @@ let Slider = React.createClass({
     });
   },
 
-  getPercent: function() {
+  getPercent() {
     return this.state.percent;
   },
 
-  setPercent: function (percent) {
+  setPercent(percent) {
     let value = this._alignValue(this._percentToValue(percent));
     this.setState({value: value, percent: percent});
   },
 
-  clearValue: function() {
+  clearValue() {
     this.setValue(0);
   },
 
-  _alignValue: function (val) {
+  _alignValue(val) {
     let { step, min } = this.props;
 
     let valModStep = (val - min) % step;
@@ -308,7 +313,7 @@ let Slider = React.createClass({
     return parseFloat(alignValue.toFixed(5));
   },
 
-  _constrain: function () {
+  _constrain() {
     let { min, max, step } = this.props;
     return (pos) => {
       let pixelMax = React.findDOMNode(this.refs.track).clientWidth;
@@ -331,33 +336,33 @@ let Slider = React.createClass({
     };
   },
 
-  _onFocus: function (e) {
+  _onFocus(e) {
     this.setState({focused: true});
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
-  _onBlur: function (e) {
+  _onBlur(e) {
     this.setState({focused: false, active: false});
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
-  _onMouseOver: function () {
+  _onMouseOver() {
     this.setState({hovered: true});
   },
 
-  _onMouseOut: function () {
+  _onMouseOut() {
     this.setState({hovered: false});
   },
 
-  _onMouseUp: function () {
+  _onMouseUp() {
     if (!this.props.disabled) this.setState({active: false});
   },
 
-  _onMouseDown: function () {
+  _onMouseDown() {
     if (!this.props.disabled) this.setState({active: true});
   },
 
-  _onDragStart: function(e, ui) {
+  _onDragStart(e, ui) {
     this.setState({
       dragging: true,
       active: true
@@ -365,7 +370,7 @@ let Slider = React.createClass({
     if (this.props.onDragStart) this.props.onDragStart(e, ui);
   },
 
-  _onDragStop: function(e, ui) {
+  _onDragStop(e, ui) {
     this.setState({
       dragging: false,
       active: false
@@ -373,25 +378,28 @@ let Slider = React.createClass({
     if (this.props.onDragStop) this.props.onDragStop(e, ui);
   },
 
-  _onDragUpdate: function(e, ui) {
+  _onDragUpdate(e, ui) {
     if (!this.state.dragging) return;
     if (!this.props.disabled) this._dragX(e, ui.position.left);
   },
 
-  _dragX: function(e, pos) {
+  _dragX(e, pos) {
     let max = React.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
+    if (pos === this.props.min) {
+      return this._updateWithChangeEvent(e, 0);
+    }
     this._updateWithChangeEvent(e, pos / max);
   },
 
-  _updateWithChangeEvent: function(e, percent) {
+  _updateWithChangeEvent(e, percent) {
     if (this.state.percent === percent) return;
     this.setPercent(percent);
     let value = this._alignValue(this._percentToValue(percent));
     if (this.props.onChange) this.props.onChange(e, value);
   },
 
-  _percentToValue: function(percent) {
+  _percentToValue(percent) {
     return percent * (this.props.max - this.props.min) + this.props.min;
   }
 

@@ -5,6 +5,7 @@ let Transitions = require('./styles/transitions');
 let ClickAwayable = require('./mixins/click-awayable');
 let FlatButton = require('./flat-button');
 
+
 let Snackbar = React.createClass({
 
   mixins: [StylePropable, ClickAwayable],
@@ -22,38 +23,39 @@ let Snackbar = React.createClass({
     onActionTouchTap: React.PropTypes.func
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       open: this.props.openOnMount || false
     };
   },
 
-  componentClickAway: function() {
+  componentClickAway() {
     this.dismiss();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.open != this.state.open) {
       if (this.state.open) {
         //Only Bind clickaway after transition finishes
-        CssEvent.onTransitionEnd(React.findDOMNode(this), function() {
+        CssEvent.onTransitionEnd(React.findDOMNode(this), () => {
           this._bindClickAway();
-        }.bind(this));
-      } else {
+        });
+      }
+      else {
         this._unbindClickAway();
       }
     }
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.snackbar;
   },
 
-  getSpacing: function() {
+  getSpacing() {
     return this.context.muiTheme.spacing;
   },
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       root: {
         color: this.getTheme().textColor,
@@ -99,8 +101,7 @@ let Snackbar = React.createClass({
     return styles;
   },
 
-  render: function() {
-
+  render() {
     let styles = this.getStyles();
 
     let action;
@@ -113,8 +114,9 @@ let Snackbar = React.createClass({
       );
     }
 
-    let rootStyles = styles.root;
-    if (this.state.open) rootStyles = this.mergeStyles(styles.root, styles.rootWhenOpen, this.props.style);
+    let rootStyles = this.state.open ?
+      this.mergeStyles(styles.root, styles.rootWhenOpen, this.props.style) :
+      this.mergeStyles(styles.root, this.props.style);
 
     return (
       <span style={rootStyles}>
@@ -124,11 +126,11 @@ let Snackbar = React.createClass({
     );
   },
 
-  show: function() {
+  show() {
     this.setState({ open: true });
   },
 
-  dismiss: function() {
+  dismiss() {
     this.setState({ open: false });
   }
 

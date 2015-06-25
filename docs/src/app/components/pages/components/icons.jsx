@@ -44,7 +44,7 @@ class FontIconPage extends React.Component {
       'let mui = require(\'mui\');\n' +
       'let SvgIcon = mui.SvgIcon;\n\n' +
       'let ActionHome = React.createClass({\n' +
-      '  render: function() {\n' +
+      '  render() {\n' +
       '    return (\n' +
       '      <SvgIcon {...this.props}>\n' +
       '        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>\n' +

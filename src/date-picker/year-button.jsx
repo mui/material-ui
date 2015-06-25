@@ -3,6 +3,7 @@ let StylePropable = require('../mixins/style-propable');
 let DateTime = require('../utils/date-time');
 let EnhancedButton = require('../enhanced-button');
 
+
 let YearButton = React.createClass({
 
   mixins: [StylePropable],
@@ -17,23 +18,23 @@ let YearButton = React.createClass({
     selected: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       selected: false
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       hover: false
     };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.datePicker;
   },
 
-  render: function() {
+  render() {
     let {
       className,
       year,
@@ -101,15 +102,15 @@ let YearButton = React.createClass({
     );
   },
 
-  _handleMouseOver: function() {
+  _handleMouseOver() {
     this.setState({hover: true});
   },
 
-  _handleMouseOut: function() {
+  _handleMouseOut() {
     this.setState({hover: false});
   },
 
-  _handleTouchTap: function(e) {
+  _handleTouchTap(e) {
     if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.year);
   }
 

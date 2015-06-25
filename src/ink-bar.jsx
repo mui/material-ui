@@ -16,7 +16,7 @@ let InkBar = React.createClass({
 
   mixins: [StylePropable],
 
-  render: function() {
+  render() {
     let palette = this.context.muiTheme.palette;
 
     let styles = this.mergeAndPrefix({

@@ -1,6 +1,8 @@
 let React = require('react/addons');
 let StylePropable = require('../mixins/style-propable');
 let Typography = require('../styles/typography');
+let Paper = require('../paper');
+
 
 let List = React.createClass({
 
@@ -16,12 +18,13 @@ let List = React.createClass({
     subheaderStyle: React.PropTypes.object
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
+      zDepth: 0
     };
   },
 
-  render: function() {
+  render() {
 
     let {
       insetSubheader,
@@ -55,12 +58,12 @@ let List = React.createClass({
     ) : null;
 
     return (
-      <div
+      <Paper
         {...other}
         style={mergedRootStyles}>
         {subheaderElement}
         {this.props.children}
-      </div>
+      </Paper>
     );
   }
 });

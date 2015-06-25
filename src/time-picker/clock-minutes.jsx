@@ -1,8 +1,8 @@
 let React = require('react');
 let StylePropable = require('../mixins/style-propable');
-
 let ClockNumber = require("./clock-number");
 let ClockPointer = require("./clock-pointer");
+
 
 function rad2deg(rad) {
   return rad * 57.29577951308232
@@ -20,6 +20,7 @@ function getTouchEventOffsetValues(e) {
   return offset;
 }
 
+
 let ClockMinutes = React.createClass({
 
   mixins: [StylePropable],
@@ -35,7 +36,7 @@ let ClockMinutes = React.createClass({
 
   center: {x: 0, y: 0},
   basePoint: {x: 0, y: 0},
-  isMousePressed: function(e) {
+  isMousePressed(e) {
 
     if (typeof e.buttons == "undefined") {
       return e.nativeEvent.which;
@@ -44,14 +45,14 @@ let ClockMinutes = React.createClass({
 
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       initialMinutes: new Date().getMinutes(),
-      onChange: function() {}
+      onChange() {}
     };
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     let clockElement = React.findDOMNode(this.refs.mask);
 
       this.center = {
@@ -66,23 +67,23 @@ let ClockMinutes = React.createClass({
 
   },
 
-  handleUp: function(e) {
+  handleUp(e) {
     e.preventDefault();
     this.setClock(e.nativeEvent, true);
   },
 
-  handleMove: function(e) {
+  handleMove(e) {
     e.preventDefault();
     if (this.isMousePressed(e) != 1 ) return;
     this.setClock(e.nativeEvent, false);
   },
 
-  handleTouch: function(e) {
+  handleTouch(e) {
     e.preventDefault();
     this.setClock(e.changedTouches[0], false);
   },
 
-  setClock: function(e, finish) {
+  setClock(e, finish) {
     if (typeof e.offsetX === 'undefined') {
       let offset = getTouchEventOffsetValues(e);
 
@@ -95,7 +96,7 @@ let ClockMinutes = React.createClass({
      this.props.onChange(minutes, finish);
   },
 
-  getMinutes: function(offsetX, offsetY) {
+  getMinutes(offsetX, offsetY) {
     let step = 6;
     let x = offsetX - this.center.x;
     let y = offsetY - this.center.y;
@@ -113,7 +114,7 @@ let ClockMinutes = React.createClass({
     return value;
   },
 
-  _getMinuteNumbers: function() {
+  _getMinuteNumbers() {
     let minutes = [];
     for(let i = 0; i < 12; i++) {
       minutes.push(i * 5);
@@ -121,11 +122,11 @@ let ClockMinutes = React.createClass({
     let selectedMinutes = this.props.initialMinutes;
     let hasSelected = false;
 
-    let numbers = minutes.map(function(minute) {
-      let isSelected = selectedMinutes == minute;
+    let numbers = minutes.map((minute) => {
+      let isSelected = selectedMinutes === minute;
       if (isSelected) hasSelected = true;
       return <ClockNumber isSelected={isSelected} type="minute" value={minute} />;
-    }.bind(this));
+    });
 
     return {
       numbers: numbers,
@@ -134,7 +135,7 @@ let ClockMinutes = React.createClass({
     };
   },
 
-  render: function() {
+  render() {
     let styles = {
       root: {
         height: "100%",

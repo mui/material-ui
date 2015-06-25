@@ -3,7 +3,7 @@ let SvgIcon = require('../../svg-icon');
 
 let ImageBrightness1 = React.createClass({
 
-  render: function() {
+  render() {
     return (
       <SvgIcon {...this.props}>
         <circle cx="12" cy="12" r="10"/>

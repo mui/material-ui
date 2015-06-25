@@ -17,7 +17,6 @@
     "gulp-notify": "^2.1.0",
     "gulp-util": "^3.0.1",
     "pretty-hrtime": "^0.2.2",
-    "reactify": "^0.17.1",
     "require-dir": "^0.1.0",
     "underscore": "^1.7.0",
     "vinyl-source-stream": "^1.0.0",

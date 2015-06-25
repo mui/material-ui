@@ -5,6 +5,7 @@ let Transitions = require('../styles/transitions');
 let AutoPrefix = require('../styles/auto-prefix');
 let SlideInTransitionGroup = require('../transition-groups/slide-in');
 
+
 let DateDisplay = React.createClass({
 
   mixins: [StylePropable],
@@ -20,7 +21,7 @@ let DateDisplay = React.createClass({
     monthDaySelected: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       weekCount: 4,
       yearSelectionAvailable: true,
@@ -28,14 +29,14 @@ let DateDisplay = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       transitionDirection: 'up',
       selectedYear: !this.props.monthDaySelected
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     let direction;
 
     if (nextProps.selectedDate !== this.props.selectedDate) {
@@ -50,11 +51,11 @@ let DateDisplay = React.createClass({
     }
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.datePicker;
   },
 
-  render: function() {
+  render() {
     let {
       selectedDate,
       style,
@@ -214,7 +215,7 @@ let DateDisplay = React.createClass({
     );
   },
 
-  _handleMonthDayClick: function() {
+  _handleMonthDayClick() {
     if (this.props.handleMonthDayClick && this.state.selectedYear) {
       this.props.handleMonthDayClick();
     }
@@ -222,7 +223,7 @@ let DateDisplay = React.createClass({
     if (this.props.yearSelectionAvailable) this.setState({selectedYear: false});
   },
 
-  _handleYearClick: function() {
+  _handleYearClick() {
     if (this.props.handleYearClick && !this.state.selectedYear && this.props.yearSelectionAvailable) {
       this.props.handleYearClick();
     }

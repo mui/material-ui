@@ -1,9 +1,6 @@
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-borderradius-boxshadow-opacity-csstransforms-csstransforms3d-csstransitions-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes
  */
-;
-
-
 
 module.exports = (function( window, document, undefined ) {
 
@@ -85,6 +82,10 @@ module.exports = (function( window, document, undefined ) {
     },
     _hasOwnProperty = ({}).hasOwnProperty, hasOwnProp;
 
+    function is( obj, type ) {
+        return typeof obj === type;
+    }
+
     if ( !is(_hasOwnProperty, 'undefined') && !is(_hasOwnProperty.call, 'undefined') ) {
       hasOwnProp = function (object, property) {
         return _hasOwnProperty.call(object, property);
@@ -147,10 +148,6 @@ module.exports = (function( window, document, undefined ) {
         return setCss(prefixes.join(str1 + ';') + ( str2 || '' ));
     }
 
-    function is( obj, type ) {
-        return typeof obj === type;
-    }
-
     function contains( str, substr ) {
         return !!~('' + str).indexOf(substr);
     }
@@ -198,27 +195,27 @@ module.exports = (function( window, document, undefined ) {
 
 
 
-    tests['borderradius'] = function() {
+    tests.borderradius = function() {
         return testPropsAll('borderRadius');
     };
 
-    tests['boxshadow'] = function() {
+    tests.boxshadow = function() {
         return testPropsAll('boxShadow');
     };
 
 
 
-    tests['opacity'] = function() {
+    tests.opacity = function() {
                 setCssAll('opacity:.55');
 
                     return (/^0.55$/).test(mStyle.opacity);
     };
-    tests['csstransforms'] = function() {
+    tests.csstransforms = function() {
         return !!testPropsAll('transform');
     };
 
 
-    tests['csstransforms3d'] = function() {
+    tests.csstransforms3d = function() {
 
         let ret = !!testPropsAll('perspective');
 
@@ -232,7 +229,7 @@ module.exports = (function( window, document, undefined ) {
     };
 
 
-    tests['csstransitions'] = function() {
+    tests.csstransitions = function() {
         return testPropsAll('transition');
     };
 
@@ -310,4 +307,3 @@ module.exports = (function( window, document, undefined ) {
     return Modernizr;
 
 })(window, window.document);
-;

@@ -3,6 +3,7 @@ let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
 let Colors = require('./styles/colors');
 
+
 let Overlay = React.createClass({
 
   mixins: [StylePropable],
@@ -13,15 +14,20 @@ let Overlay = React.createClass({
     transitionEnabled: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       autoLockScrolling: true,
       transitionEnabled: true
     };
   },
 
-  componentDidUpdate: function() {
+  componentDidUpdate() {
     if (this.props.autoLockScrolling) (this.props.show) ? this._preventScrolling() : this._allowScrolling();
+  },
+
+
+  componentWillUnmount() {
+    this.allowScrolling();
   },
 
   setOpacity(opacity) {
@@ -29,7 +35,7 @@ let Overlay = React.createClass({
     overlay.style.opacity = opacity;
   },
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       root: {
         position: 'fixed',
@@ -63,7 +69,7 @@ let Overlay = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
 
     let {
       show,
@@ -78,20 +84,20 @@ let Overlay = React.createClass({
     );
   },
 
-  preventScrolling: function() {
+  preventScrolling() {
     if (!this.props.autoLockScrolling) this._preventScrolling();
   },
 
-  allowScrolling: function() {
+  allowScrolling() {
     if (!this.props.autoLockScrolling) this._allowScrolling();
   },
 
-  _preventScrolling: function() {
+  _preventScrolling() {
     let body = document.getElementsByTagName('body')[0];
     body.style.overflow = 'hidden';
   },
 
-  _allowScrolling: function() {
+  _allowScrolling() {
     let body = document.getElementsByTagName('body')[0];
     body.style.overflow = '';
   }

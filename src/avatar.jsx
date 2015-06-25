@@ -3,7 +3,7 @@ let StylePropable = require('./mixins/style-propable');
 let Colors = require('./styles/colors');
 let Typography = require('./styles/typography');
 
-let SvgIcon = React.createClass({
+let Avatar = React.createClass({
 
   mixins: [StylePropable],
 
@@ -15,22 +15,26 @@ let SvgIcon = React.createClass({
     icon: React.PropTypes.element,
     backgroundColor: React.PropTypes.string,
     color: React.PropTypes.string,
-    src: React.PropTypes.string
+    size: React.PropTypes.number,
+    src: React.PropTypes.string,
+    style: React.PropTypes.object,
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       backgroundColor: Colors.grey400,
-      color: Colors.white
+      color: Colors.white,
+      size: 40,
     };
   },
 
-  render: function() {
+  render() {
 
     let {
       icon,
       backgroundColor,
       color,
+      size,
       src,
       style,
       ...other
@@ -38,19 +42,19 @@ let SvgIcon = React.createClass({
 
     let styles = {
       root: {
-        height: src ? 38 : 40,
-        width: src ? 38 : 40,
+        height: src ? size - 2 : size,
+        width: src ? size - 2 : size,
         userSelect: 'none',
         backgroundColor: backgroundColor,
         borderRadius: '50%',
         border: src ? 'solid 1px' : 'none',
         borderColor: this.context.muiTheme.palette.borderColor,
-        display:'inline-block',
+        display: 'inline-block',
 
         //Needed for letter avatars
         textAlign: 'center',
-        lineHeight: '40px',
-        fontSize: 24,
+        lineHeight: size + 'px',
+        fontSize: size / 2 + 4,
         color: color
       },
 
@@ -60,23 +64,21 @@ let SvgIcon = React.createClass({
     };
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
-    let mergedIconStyles = icon ?
-      this.mergeStyles(styles.iconStyles, icon.props.style) : null;
 
-    let iconElement = icon ? React.cloneElement(icon, {
-      color: color,
-      style: mergedIconStyles
-    }) : null;
+    if (src) {
+      return <img {...other} src={src} style={mergedRootStyles} />;
+    } else {
+      let iconElement = icon ? React.cloneElement(icon, {
+        color: color,
+        style: this.mergeStyles(styles.iconStyles, icon.props.style)
+      }) : null;
 
-    return src ? (
-      <img {...other} src={src} style={mergedRootStyles} />
-    ) : (
-      <div {...other} style={mergedRootStyles}>
+      return <div {...other} style={mergedRootStyles}>
         {iconElement}
         {this.props.children}
-      </div>
-    );
+      </div>;
+    }
   }
 });
 
-module.exports = SvgIcon;
+module.exports = Avatar;

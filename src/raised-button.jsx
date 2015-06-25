@@ -14,6 +14,7 @@ function validateLabel (props, propName, componentName) {
   }
 }
 
+
 let RaisedButton = React.createClass({
 
   mixins: [StylePropable],
@@ -36,7 +37,7 @@ let RaisedButton = React.createClass({
     labelStyle: React.PropTypes.object,
   },
 
-  getInitialState: function() {
+  getInitialState() {
     let zDepth = this.props.disabled ? 0 : 1;
     return {
       hovered: false,
@@ -46,7 +47,7 @@ let RaisedButton = React.createClass({
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     let zDepth = nextProps.disabled ? 0 : 1;
     this.setState({
       zDepth: zDepth,
@@ -54,29 +55,29 @@ let RaisedButton = React.createClass({
     });
   },
 
-  _getBackgroundColor: function() {
+  _getBackgroundColor() {
     return  this.props.disabled ? this.getTheme().disabledColor :
       this.props.primary ? this.getTheme().primaryColor :
       this.props.secondary ? this.getTheme().secondaryColor :
       this.getTheme().color;
   },
 
-  _getLabelColor: function() {
+  _getLabelColor() {
     return  this.props.disabled ? this.getTheme().disabledTextColor :
       this.props.primary ? this.getTheme().primaryTextColor :
       this.props.secondary ? this.getTheme().secondaryTextColor :
       this.getTheme().textColor;
   },
 
-  getThemeButton: function() {
+  getThemeButton() {
     return this.context.muiTheme.component.button;
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.raisedButton;
   },
 
-  getStyles: function() {
+  getStyles() {
     let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
     let styles = {
       root: {
@@ -124,7 +125,7 @@ let RaisedButton = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       disabled,
       label,
@@ -182,7 +183,7 @@ let RaisedButton = React.createClass({
     );
   },
 
-  _handleMouseDown: function(e) {
+  _handleMouseDown(e) {
     //only listen to left clicks
     if (e.button === 0) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
@@ -190,24 +191,24 @@ let RaisedButton = React.createClass({
     if (this.props.onMouseDown) this.props.onMouseDown(e);
   },
 
-  _handleMouseUp: function(e) {
+  _handleMouseUp(e) {
     this.setState({ zDepth: this.state.initialZDepth });
     if (this.props.onMouseUp) this.props.onMouseUp(e);
   },
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut(e) {
     if (!this.refs.container.isKeyboardFocused()) this.setState({ zDepth: this.state.initialZDepth, hovered: false });
     if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
-  _handleMouseOver: function(e) {
+  _handleMouseOver(e) {
     if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
       this.setState({hovered: true});
     }
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
-  _handleTouchStart: function(e) {
+  _handleTouchStart(e) {
     this.setState({
       touch: true,
       zDepth: this.state.initialZDepth + 1
@@ -215,12 +216,12 @@ let RaisedButton = React.createClass({
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
 
-  _handleTouchEnd: function(e) {
+  _handleTouchEnd(e) {
     this.setState({ zDepth: this.state.initialZDepth });
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   },
 
-  _handleKeyboardFocus: function(e, keyboardFocused) {
+  _handleKeyboardFocus(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
       let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
@@ -229,7 +230,7 @@ let RaisedButton = React.createClass({
       this.setState({ zDepth: this.state.initialZDepth });
       React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
-  },
+  }
 });
 
 module.exports = RaisedButton;

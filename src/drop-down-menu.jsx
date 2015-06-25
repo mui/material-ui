@@ -34,7 +34,7 @@ let DropDownMenu = React.createClass({
     selectedIndex: React.PropTypes.number
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       autoWidth: true,
       valueMember:'payload',
@@ -42,7 +42,7 @@ let DropDownMenu = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       open: false,
       isHovered: false,
@@ -50,16 +50,16 @@ let DropDownMenu = React.createClass({
     };
   },
 
-  componentClickAway: function() {
+  componentClickAway() {
     this.setState({open:false});
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     if (this.props.autoWidth) this._setWidth();
     if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(this.props);
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
       return;
     } else if (nextProps.hasOwnProperty('selectedIndex')) {
@@ -67,15 +67,15 @@ let DropDownMenu = React.createClass({
     }
  },
 
-  getSpacing: function() {
+  getSpacing() {
     return this.context.muiTheme.spacing;
   },
 
-  getTextColor: function() {
+  getTextColor() {
     return this.context.muiTheme.palette.textColor;
   },
 
-  getStyles: function(){
+  getStyles(){
     let accentColor = this.context.muiTheme.component.dropDownMenu.accentColor;
     let backgroundColor = this.context.muiTheme.component.menu.backgroundColor;
     let styles = {
@@ -137,7 +137,7 @@ let DropDownMenu = React.createClass({
     return styles;
   },
 
-  getInputNode: function() {
+  getInputNode() {
     let root = this.refs.root;
     let item = this.props.menuItems[this.state.selectedIndex];
     if (item)
@@ -145,7 +145,7 @@ let DropDownMenu = React.createClass({
     return root;
   },
 
-  render: function() {
+  render() {
     let _this = this;
     let styles = this.getStyles();
     let selectedIndex = this.state.selectedIndex;
@@ -169,7 +169,7 @@ let DropDownMenu = React.createClass({
     if (selectedItem)
       displayValue = selectedItem[this.props.displayMember];
 
-    let menuItems = this.props.menuItems.map(function(item){
+    let menuItems = this.props.menuItems.map((item) => {
       item.text = item[_this.props.displayMember];
       item.payload = item[_this.props.valueMember];
       return item;
@@ -212,7 +212,7 @@ let DropDownMenu = React.createClass({
     );
   },
 
-  _setWidth: function() {
+  _setWidth() {
     let el = React.findDOMNode(this);
     let menuItemsDom = React.findDOMNode(this.refs.menuItems);
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
@@ -220,7 +220,7 @@ let DropDownMenu = React.createClass({
     }
   },
 
-  _setSelectedIndex: function(props) {
+  _setSelectedIndex(props) {
     let selectedIndex = props.selectedIndex;
 
     if (process.env.NODE_ENV !== 'production' && selectedIndex < 0) {
@@ -230,11 +230,11 @@ let DropDownMenu = React.createClass({
     this.setState({selectedIndex: (selectedIndex > -1) ? selectedIndex : 0});
   },
 
-  _onControlClick: function() {
+  _onControlClick() {
     this.setState({ open: !this.state.open });
   },
 
-  _onKeyDown: function(e) {
+  _onKeyDown(e) {
     switch(e.which) {
       case KeyCode.UP:
         if (!this.state.open)
@@ -260,7 +260,7 @@ let DropDownMenu = React.createClass({
     e.preventDefault();
   },
 
-  _onMenuItemClick: function(e, key, payload) {
+  _onMenuItemClick(e, key, payload) {
     if (this.props.onChange && this.state.selectedIndex !== key) {
       let selectedItem = this.props.menuItems[key];
       if (selectedItem)
@@ -280,23 +280,23 @@ let DropDownMenu = React.createClass({
     });
   },
 
-  _onMenuRequestClose: function() {
+  _onMenuRequestClose() {
     this.setState({open:false});
   },
 
-  _handleMouseOver: function() {
+  _handleMouseOver() {
     this.setState({isHovered: true});
   },
 
-  _handleMouseOut: function() {
+  _handleMouseOut() {
     this.setState({isHovered: false});
   },
 
-  _selectPreviousItem: function() {
+  _selectPreviousItem() {
     this.setState({selectedIndex: Math.max(this.state.selectedIndex - 1, 0)});
   },
 
-  _selectNextItem: function() {
+  _selectNextItem() {
     this.setState({selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1)});
   }
 

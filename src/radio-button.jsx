@@ -5,6 +5,7 @@ let EnhancedSwitch = require('./enhanced-switch');
 let RadioButtonOff = require('./svg-icons/toggle/radio-button-unchecked');
 let RadioButtonOn = require('./svg-icons/toggle/radio-button-checked');
 
+
 let RadioButton = React.createClass({
 
   mixins: [StylePropable],
@@ -19,11 +20,11 @@ let RadioButton = React.createClass({
     onCheck: React.PropTypes.func
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.radioButton;
   },
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       icon: {
           height: this.getTheme().size,
@@ -65,7 +66,7 @@ let RadioButton = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       onCheck,
       ...other
@@ -125,24 +126,24 @@ let RadioButton = React.createClass({
   },
 
   // Only called when selected, not when unselected.
-  _handleCheck: function(e) {
+  _handleCheck(e) {
     if (this.props.onCheck) this.props.onCheck(e, this.props.value);
   },
 
-  _handleStateChange: function() {
+  _handleStateChange() {
   },
 
-  isChecked: function() {
+  isChecked() {
     return this.refs.enhancedSwitch.isSwitched();
   },
 
   // Use RadioButtonGroup.setSelectedValue(newSelectionValue) to set a
   // RadioButton's checked value.
-  setChecked: function(newCheckedValue) {
+  setChecked(newCheckedValue) {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
   },
 
-  getValue: function() {
+  getValue() {
     return this.refs.enhancedSwitch.getValue();
   }
 

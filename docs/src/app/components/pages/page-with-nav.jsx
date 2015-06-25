@@ -19,7 +19,7 @@ let PageWithNav = React.createClass({
     menuItems: React.PropTypes.array
   },
 
-  getStyles: function(){
+  getStyles(){
     let subNavWidth = Spacing.desktopKeylineIncrement * 3 + 'px';
     let styles = {
       root: {
@@ -60,7 +60,7 @@ let PageWithNav = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let styles = this.getStyles();
     return (
       <div style={styles.root}>
@@ -79,7 +79,7 @@ let PageWithNav = React.createClass({
     );
   },
 
-  _getSelectedIndex: function() {
+  _getSelectedIndex() {
     let menuItems = this.props.menuItems;
     let currentItem;
 
@@ -89,7 +89,7 @@ let PageWithNav = React.createClass({
     }
   },
 
-  _onMenuItemClick: function(e, index, item) {
+  _onMenuItemClick(e, index, item) {
     this.context.router.transitionTo(item.route);
   }
 

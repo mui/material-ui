@@ -1,9 +1,9 @@
 let React = require('react');
 
+
 let TabTemplate = React.createClass({
 
-  render: function(){
-
+  render() {
     let styles = {
       'height': '0px',
       'overflow': 'hidden',
@@ -22,7 +22,7 @@ let TabTemplate = React.createClass({
         {this.props.children}
       </div>
     );
-  },
+  }
 });
 
 module.exports = TabTemplate;

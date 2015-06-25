@@ -16,7 +16,7 @@ let Dialog = React.createClass({
     contentInnerStyle: React.PropTypes.object
   },
 
-  getStyles: function() {
+  getStyles() {
     let spacing = this.context.muiTheme.spacing;
     let gutter = spacing.desktopGutter + 'px ';
     let styles = {
@@ -35,7 +35,7 @@ let Dialog = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       className,
       contentInnerStyle,
@@ -70,11 +70,11 @@ let Dialog = React.createClass({
     );
   },
 
-  dismiss: function() {
+  dismiss() {
     this.refs.dialogWindow.dismiss();
   },
 
-  show: function() {
+  show() {
     this.refs.dialogWindow.show();
   }
 

@@ -2,19 +2,20 @@ let React = require('react');
 let Events = require('../utils/events');
 let Dom = require('../utils/dom');
 
+
 module.exports = {
 
   //When the component mounts, listen to click events and check if we need to
   //Call the componentClickAway function.
-  componentDidMount: function() {
+  componentDidMount() {
     if (!this.manuallyBindClickAway) this._bindClickAway();
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     this._unbindClickAway();
   },
 
-  _checkClickAway: function(e) {
+  _checkClickAway(e) {
     let el = React.findDOMNode(this);
 
     // Check if the target is inside the current component
@@ -25,7 +26,7 @@ module.exports = {
     }
   },
 
-  _bindClickAway: function() {
+  _bindClickAway() {
     // On touch-enabled devices, both events fire, and the handler is called twice,
     // but it's fine since all operations for which the mixin is used
     // are idempotent.
@@ -33,7 +34,7 @@ module.exports = {
     Events.on(document, 'touchend', this._checkClickAway);
   },
 
-  _unbindClickAway: function() {
+  _unbindClickAway() {
     Events.off(document, 'mouseup', this._checkClickAway);
     Events.off(document, 'touchend', this._checkClickAway);
   }

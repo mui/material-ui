@@ -19,20 +19,20 @@ let HomeFeature = React.createClass({
     lastChild: React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       firstChild: false,
       lastChild: false
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       zDepth: 0
     };
   },
 
-  getStyles: function() {
+  getStyles() {
     let desktopGutter = Spacing.desktopGutter;
     let desktopKeylineIncrement = Spacing.desktopKeylineIncrement;
     let styles = {
@@ -90,7 +90,7 @@ let HomeFeature = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let styles = this.getStyles();
 
     return (
@@ -109,13 +109,13 @@ let HomeFeature = React.createClass({
     );
   },
 
-  _onMouseOver: function() {
+  _onMouseOver() {
     this.setState({
       zDepth: 4
     });
   },
 
-  _onMouseOut: function() {
+  _onMouseOut() {
     this.setState({
       zDepth: 0
     });

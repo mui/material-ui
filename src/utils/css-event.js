@@ -1,8 +1,9 @@
 let Events = require('./events');
 
+
 module.exports = {
 
-  _testSupportedProps: function(props) {
+  _testSupportedProps(props) {
     let i,
       el = document.createElement('div');
 
@@ -14,7 +15,7 @@ module.exports = {
   },
 
   //Returns the correct event name to use
-  transitionEndEventName: function() {
+  transitionEndEventName() {
     return this._testSupportedProps({
       'transition':'transitionend',
       'OTransition':'otransitionend',
@@ -23,7 +24,7 @@ module.exports = {
     });
   },
 
-  animationEndEventName: function() {
+  animationEndEventName() {
     return this._testSupportedProps({
       'animation': 'animationend',
       '-o-animation': 'oAnimationEnd',
@@ -32,20 +33,19 @@ module.exports = {
     });
   },
 
-  onTransitionEnd: function (el, callback) {
+  onTransitionEnd(el, callback) {
     let transitionEnd = this.transitionEndEventName();
 
-    Events.once(el, transitionEnd, function() {
+    Events.once(el, transitionEnd, () => {
       return callback();
     });
   },
 
-  onAnimationEnd: function (el, callback) {
+  onAnimationEnd(el, callback) {
     let animationEnd = this.animationEndEventName();
 
-    Events.once(el, animationEnd, function() {
+    Events.once(el, animationEnd, () => {
       return callback();
     });
   }
-
 };

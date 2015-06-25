@@ -4,7 +4,9 @@ let Transitions = require('./styles/transitions');
 let TextField = require('./text-field');
 let DropDownMenu = require('./drop-down-menu');
 
+
 let SelectField = React.createClass({
+
   mixins: [StylePropable],
 
   contextTypes: {
@@ -32,11 +34,11 @@ let SelectField = React.createClass({
     selectedIndex: React.PropTypes.number
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {};
   },
 
-  getStyles: function() {
+  getStyles() {
     let styles = {
       selectfield:{
         root: {
@@ -61,13 +63,15 @@ let SelectField = React.createClass({
     return styles;
   },
 
-  onChange: function(e, index, payload) {
-    e.target.value = payload;
+  onChange(e, index, payload) {
+    if (payload)
+      e.target.value = payload[this.props.valueMember] || payload;
+
     if (this.props.onChange)
       this.props.onChange(e)
   },
 
-  render: function() {
+  render() {
     let styles = this.getStyles();
     return (
       <TextField {...this.props}>
@@ -81,7 +85,7 @@ let SelectField = React.createClass({
           />
       </TextField>
     );
-  },
+  }
 });
 
 module.exports = SelectField;

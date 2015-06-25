@@ -5,6 +5,7 @@ let Transitions = require('./styles/transitions');
 let UniqueId = require('./utils/unique-id');
 let EnhancedTextarea = require('./enhanced-textarea');
 
+
 let TextField = React.createClass({
 
   mixins: [StylePropable],
@@ -31,18 +32,17 @@ let TextField = React.createClass({
     floatingLabelStyle: React.PropTypes.object
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       fullWidth: false,
       type: 'text',
-      rows: 1,
+      rows: 1
     };
   },
 
-  getInitialState: function() {
-    let props = this.props;
-    if (props.children)
-      props = props.children.props;
+  getInitialState() {
+    let props = (this.props.children) ? this.props.children.props : this.props;
+
     return {
       errorText: this.props.errorText,
       hasValue: props.value || props.defaultValue ||
@@ -50,21 +50,20 @@ let TextField = React.createClass({
     };
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.textField;
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._uniqueId = UniqueId.generate();
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     let hasErrorProp = nextProps.hasOwnProperty('errorText');
     let newState = {};
 
-    if (hasErrorProp) newState.errorText = nextProps.errorText;
-    if (nextProps.children && nextProps.children.props)
-    {
+    newState.errorText = nextProps.errorText;
+    if (nextProps.children && nextProps.children.props) {
       nextProps = nextProps.children.props;
     }
 
@@ -74,16 +73,18 @@ let TextField = React.createClass({
 
     if (hasValueLinkProp) {
       newState.hasValue = nextProps.valueLink.value;
-    } else if (hasValueProp) {
+    }
+    else if (hasValueProp) {
       newState.hasValue = nextProps.value;
-    } else if (hasNewDefaultValue) {
+    }
+    else if (hasNewDefaultValue) {
       newState.hasValue = nextProps.defaultValue;
     }
 
     if (newState) this.setState(newState);
   },
 
-  getStyles: function() {
+  getStyles() {
     let props = this.props;
     let theme = this.getTheme();
 
@@ -201,7 +202,7 @@ let TextField = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       className,
       errorText,
@@ -292,39 +293,40 @@ let TextField = React.createClass({
     );
   },
 
-  blur: function() {
+  blur() {
     if (this.isMounted()) this._getInputNode().blur();
   },
 
-  clearValue: function() {
+  clearValue() {
     this.setValue('');
   },
 
-  focus: function() {
+  focus() {
     if (this.isMounted()) this._getInputNode().focus();
   },
 
-  getValue: function() {
+  getValue() {
     return this.isMounted() ? this._getInputNode().value : undefined;
   },
 
-  setErrorText: function(newErrorText) {
+  setErrorText(newErrorText) {
     if (process.env.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
       console.error('Cannot call TextField.setErrorText when errorText is defined as a property.');
-    } else if (this.isMounted()) {
+    }
+    else if (this.isMounted()) {
       this.setState({errorText: newErrorText});
     }
   },
 
-  setValue: function(newValue) {
+  setValue(newValue) {
     if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
       console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
-    } else if (this.isMounted()) {
-
+    }
+    else if (this.isMounted()) {
       if (this.props.multiLine) {
         this.refs[this._getRef()].setValue(newValue);
-
-      } else {
+      }
+      else {
         this._getInputNode().value = newValue;
       }
 
@@ -332,44 +334,44 @@ let TextField = React.createClass({
     }
   },
 
-  _getRef: function() {
+  _getRef() {
     return this.props.ref ? this.props.ref : 'input';
   },
 
-  _getInputNode: function() {
+  _getInputNode() {
     return (this.props.children || this.props.multiLine) ?
       this.refs[this._getRef()].getInputNode() : React.findDOMNode(this.refs[this._getRef()]);
   },
 
-  _handleInputBlur: function(e) {
+  _handleInputBlur(e) {
     this.setState({isFocused: false});
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
-  _handleInputChange: function(e) {
+  _handleInputChange(e) {
     this.setState({hasValue: e.target.value});
     if (this.props.onChange) this.props.onChange(e);
   },
 
-  _handleInputFocus: function(e) {
+  _handleInputFocus(e) {
     if (this.props.disabled)
       return
     this.setState({isFocused: true});
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
-  _handleInputKeyDown: function(e) {
+  _handleInputKeyDown(e) {
     if (e.keyCode === 13 && this.props.onEnterKeyDown) this.props.onEnterKeyDown(e);
     if (this.props.onKeyDown) this.props.onKeyDown(e);
   },
 
-  _handleTextAreaHeightChange: function(e, height) {
+  _handleTextAreaHeightChange(e, height) {
     let newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
     React.findDOMNode(this).style.height = newHeight + 'px';
   },
 
-  _isControlled: function() {
+  _isControlled() {
     return this.props.hasOwnProperty('value') ||
       this.props.hasOwnProperty('valueLink');
   }

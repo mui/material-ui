@@ -1,6 +1,7 @@
 let React = require('react/addons');
 let StylePropable = require('../mixins/style-propable');
 
+
 let ListDivider = React.createClass({
 
   mixins: [StylePropable],
@@ -13,8 +14,7 @@ let ListDivider = React.createClass({
     inset: React.PropTypes.bool
   },
 
-  render: function() {
-
+  render() {
     let {
       inset,
       style,

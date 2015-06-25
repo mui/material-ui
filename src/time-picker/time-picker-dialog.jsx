@@ -27,11 +27,11 @@ let TimePickerDialog = React.createClass({
   },
 
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.timePicker;
   },
 
-  render: function() {
+  render() {
     let {
       initialTime,
       onAccept,
@@ -79,39 +79,39 @@ let TimePickerDialog = React.createClass({
     );
   },
 
-  show: function() {
+  show() {
     this.refs.dialogWindow.show();
     this.refs.clock.init();
   },
 
-  dismiss: function() {
+  dismiss() {
     this.refs.dialogWindow.dismiss();
   },
 
-  _handleCancelTouchTap: function() {
+  _handleCancelTouchTap() {
     this.dismiss();
   },
 
-  _handleOKTouchTap: function() {
+  _handleOKTouchTap() {
     this.dismiss();
     if (this.props.onAccept) {
       this.props.onAccept(this.refs.clock.getSelectedTime());
     }
   },
 
-  _handleDialogShow: function() {
+  _handleDialogShow() {
     if (this.props.onShow) {
       this.props.onShow();
     }
   },
 
-  _handleDialogDismiss: function() {
+  _handleDialogDismiss() {
     if (this.props.onDismiss) {
       this.props.onDismiss();
     }
   },
 
-  _handleWindowKeyUp: function(e) {
+  _handleWindowKeyUp(e) {
     if (this.refs.dialogWindow.isOpen()) {
       switch (e.keyCode) {
         case KeyCode.ENTER:

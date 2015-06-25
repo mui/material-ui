@@ -5,6 +5,7 @@ let Transitions = require('./styles/transitions');
 let CheckboxOutline = require('./svg-icons/toggle/check-box-outline-blank');
 let CheckboxChecked = require('./svg-icons/toggle/check-box');
 
+
 let Checkbox = React.createClass({
 
   mixins: [StylePropable],
@@ -21,7 +22,7 @@ let Checkbox = React.createClass({
     unCheckedIcon: React.PropTypes.element
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       switched:
         this.props.checked ||
@@ -31,11 +32,11 @@ let Checkbox = React.createClass({
     }
   },
 
-  getTheme: function() {
+  getTheme() {
     return this.context.muiTheme.component.checkbox;
   },
 
-  getStyles: function() {
+  getStyles() {
     let checkboxSize = 24;
     let styles = {
       icon: {
@@ -80,7 +81,7 @@ let Checkbox = React.createClass({
     return styles;
   },
 
-  render: function() {
+  render() {
     let {
       iconStyle,
       onCheck,
@@ -151,19 +152,19 @@ let Checkbox = React.createClass({
     );
   },
 
-  isChecked: function() {
+  isChecked() {
     return this.refs.enhancedSwitch.isSwitched();
   },
 
-  setChecked: function(newCheckedValue) {
+  setChecked(newCheckedValue) {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
   },
 
-  _handleCheck: function(e, isInputChecked) {
+  _handleCheck(e, isInputChecked) {
     if (this.props.onCheck) this.props.onCheck(e, isInputChecked);
   },
 
-  _handleStateChange: function(newSwitched) {
+  _handleStateChange(newSwitched) {
     this.setState({switched: newSwitched});
   }
 

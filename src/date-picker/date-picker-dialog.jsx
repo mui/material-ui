@@ -7,6 +7,7 @@ let Calendar = require('./calendar');
 let DialogWindow = require('../dialog-window');
 let FlatButton = require('../flat-button');
 
+
 let DatePickerDialog = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
@@ -32,14 +33,14 @@ let DatePickerDialog = React.createClass({
     'keyup': '_handleWindowKeyUp'
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       isCalendarActive: false,
       showMonthDayPicker: true
     };
   },
 
-  render: function() {
+  render() {
     let {
       initialDate,
       onAccept,
@@ -108,25 +109,25 @@ let DatePickerDialog = React.createClass({
     );
   },
 
-  show: function() {
+  show() {
     this.refs.dialogWindow.show();
   },
 
-  dismiss: function() {
+  dismiss() {
     this.refs.dialogWindow.dismiss();
   },
 
-  _onSelectedDate: function(e) {
+  _onSelectedDate(e) {
     if (this.props.autoOk) {
       setTimeout(this._handleOKTouchTap, 300);
     }
   },
 
-  _handleCancelTouchTap: function() {
+  _handleCancelTouchTap() {
     this.dismiss();
   },
 
-  _handleOKTouchTap: function() {
+  _handleOKTouchTap() {
     if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
@@ -134,7 +135,7 @@ let DatePickerDialog = React.createClass({
     this.dismiss();
   },
 
-  _handleDialogShow: function() {
+  _handleDialogShow() {
     this.setState({
       isCalendarActive: true
     });
@@ -142,29 +143,29 @@ let DatePickerDialog = React.createClass({
     if (this.props.onShow) this.props.onShow();
   },
 
-  _handleDialogDismiss: function() {
-    CssEvent.onTransitionEnd(this.refs.dialogWindow.getDOMNode(), function() {
+  _handleDialogDismiss() {
+    CssEvent.onTransitionEnd(this.refs.dialogWindow.getDOMNode(), () => {
       this.setState({
         isCalendarActive: false,
         showMonthDayPicker: true
       });
-    }.bind(this));
+    });
 
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
-  _handleDialogClickAway: function() {
-    CssEvent.onTransitionEnd(this.refs.dialogWindow.getDOMNode(), function() {
+  _handleDialogClickAway() {
+    CssEvent.onTransitionEnd(this.refs.dialogWindow.getDOMNode(), () => {
       this.setState({
         isCalendarActive: false,
         showMonthDayPicker: true
       });
-    }.bind(this));
+    });
 
     if (this.props.onClickAway) this.props.onClickAway();
   },
 
-  _handleWindowKeyUp: function(e) {
+  _handleWindowKeyUp(e) {
     if (this.refs.dialogWindow.isOpen()) {
       switch (e.keyCode) {
         case KeyCode.ENTER:
