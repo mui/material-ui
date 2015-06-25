@@ -2,6 +2,7 @@ let React = require('react/addons');
 let ClickAwayable = require('../mixins/click-awayable');
 let StylePropable = require('../mixins/style-propable');
 let Transitions = require('../styles/transitions');
+let KeyCode = require('../utils/key-code');
 let Menu = require('../menus/menu');
 
 let IconMenu = React.createClass({
@@ -18,6 +19,7 @@ let IconMenu = React.createClass({
     menuPosition: React.PropTypes.oneOf(['bottom-left', 'bottom-right',
       'top-left', 'top-right']),
     menuStyle: React.PropTypes.object,
+    onKeyDown: React.PropTypes.func,
     width: React.PropTypes.number
   },
 
@@ -34,7 +36,7 @@ let IconMenu = React.createClass({
   },
 
   componentClickAway() {
-    this.setState({ open: false });
+    this.close();
   },
 
   render() {
@@ -58,7 +60,7 @@ let IconMenu = React.createClass({
         position: 'relative'
       },
 
-      //This is needed bacause the container scales x faster than 
+      //This is needed bacause the container scales x faster than
       //it scales y
       menuContainer: {
         transition: Transitions.easeOut('250ms', 'transform'),
@@ -109,24 +111,26 @@ let IconMenu = React.createClass({
       } else {
         childrenTransitionDelay -= childrenTransitionDelayIncrement;
       }
-      
+
       let mergedChildrenStyles = this.mergeStyles(styles.menuItem, {
         transitionDelay: open ? childrenTransitionDelay + 'ms' : '0ms'
       }, child.props.style);
 
-      return React.cloneElement(child, {
-        style: mergedChildrenStyles,
+      let clonedChild = React.cloneElement(child, {
         onTouchTap: (e) => {
           _this._handleChildTouchTap(e, this);
         }
       }, child.props.children);
+
+      return <div style={mergedChildrenStyles}>{clonedChild}</div>;
 
     });
 
     return (
       <div
         {...other}
-        style={mergedRootStyles}>
+        style={mergedRootStyles}
+        onKeyDown={this._handleKeyDown}>
 
         {iconButton}
 
@@ -143,14 +147,40 @@ let IconMenu = React.createClass({
     );
   },
 
+  close() {
+    if (!this.state.close) {
+      this.setState({
+        open: false
+      });
+    }
+  },
+
+  open() {
+    if (!this.state.open) {
+      this.setState({
+        open: true
+      });
+    }
+  },
+
   _handleIconButtonTouchTap(e, iconButton) {
-    this.setState({ open: true });
+    this.open();
     if (iconButton.props.onTouchTap) iconButton.props.onTouchTap(e);
+  },
+
+  _handleKeyDown(e) {
+    switch (e.which) {
+      case KeyCode.ESC:
+        this.close();
+      default:
+        return;
+    }
+    e.preventDefault();
   },
 
   _handleChildTouchTap(e, child) {
     setTimeout(() => {
-      this.setState({ open: false });
+      this.close();
       if (child.props.onTouchTap) child.props.onTouchTap(e);
     }, 200);
   }
