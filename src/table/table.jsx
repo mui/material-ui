@@ -199,7 +199,6 @@ let Table = React.createClass({
           hoverable={this.props.showRowHover}
           displayBorder={border}
           selectable={this.props.selectable}
-          displayRowCheckbox={this.props.displayRowCheckbox}
           onRowClick={this._handleRowClick}
           onCellClick={this._handleCellClick}
           onRowHover={this._handleRowHover}
@@ -297,6 +296,8 @@ let Table = React.createClass({
 
   _handleRowClick(e, rowNumber) {
     if (this.props.selectable) {
+      // Prevent text selection while selecting rows.
+      window.getSelection().removeAllRanges();
       this._processRowSelection(e, rowNumber);
     }
   },
