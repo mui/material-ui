@@ -180,12 +180,6 @@ class ListsPage extends React.Component {
             desc: 'This is the SvgIcon or FontIcon to be displayed on the left side.'
           },
           {
-            name: 'onTouchTap',
-            type: 'function(e)',
-            header: 'optional',
-            desc: 'Called when the ListItem is touched/tapped'
-          },
-          {
             name: 'rightAvatar',
             type: 'element',
             header: 'optional',
@@ -222,6 +216,17 @@ class ListsPage extends React.Component {
             type: 'oneOf [1,2]',
             header: 'default: 1',
             desc: 'Can be 1 or 2. This is the number of secondary text lines before ellipsis will show.'
+          }
+        ]
+      },
+      {
+        name: 'ListItem Events',
+        infoArray: [
+          {
+            name: 'onTouchTap',
+            type: 'function(e)',
+            header: 'optional',
+            desc: 'Called when the ListItem is touched/tapped.'
           }
         ]
       }
