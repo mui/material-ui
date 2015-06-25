@@ -36,6 +36,11 @@ class FontIconPage extends React.Component {
   hoverColor={Colors.greenA200} />
 <FontIcon className="muidocs-icon-action-home" color={Colors.blue500}
   hoverColor={Colors.greenA200} />
+
+<FontIcon className="material-icons">home</FontIcon>
+<FontIcon className="material-icons" color={Colors.red500}>home</FontIcon>
+<FontIcon className="material-icons" color={Colors.yellow500}>home</FontIcon>
+<FontIcon className="material-icons" color={Colors.blue500}>home</FontIcon> 
     `;
 
     let svgIconCode =
@@ -44,7 +49,7 @@ class FontIconPage extends React.Component {
       'let mui = require(\'mui\');\n' +
       'let SvgIcon = mui.SvgIcon;\n\n' +
       'let ActionHome = React.createClass({\n' +
-      '  render() {\n' +
+      '  render: function() {\n' +
       '    return (\n' +
       '      <SvgIcon {...this.props}>\n' +
       '        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>\n' +
@@ -67,7 +72,9 @@ class FontIconPage extends React.Component {
         Icons</a> for our documentation site along with some custom icons. You can use
         sites like <a title="Icomoon website" href="https://icomoon.io/">IcoMoon</a> for
         generating custom font files. To use FontIcons, add your stylesheet to your project
-        and reference the icon&#39;s className in the "className" prop.
+        and reference the icon&#39;s className in the "className" prop. We also support <a title="Google's 
+        Material Icons" href="https://google.github.io/material-design-icons">Google&#39;s 
+        Material Icons</a> as seen in the thrid block of code.
       </p>
     );
 
@@ -141,6 +148,11 @@ class FontIconPage extends React.Component {
           <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
           <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.yellow500} hoverColor={Colors.greenA200} />
           <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.blue500} hoverColor={Colors.greenA200} />
+          <br/><br/>
+          <FontIcon className="material-icons" style={iconStyles} >home</FontIcon>
+          <FontIcon className="material-icons" style={iconStyles} color={Colors.red500}>home</FontIcon>
+          <FontIcon className="material-icons" style={iconStyles} color={Colors.yellow500}>home</FontIcon>
+          <FontIcon className="material-icons" style={iconStyles} color={Colors.blue500}>home</FontIcon> 
         </ComponentDoc>
         <ComponentDoc
           name="SVG Icons"
