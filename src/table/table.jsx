@@ -341,7 +341,6 @@ let Table = React.createClass({
 
   _handleCellClick(e, rowNumber, columnNumber) {
     if (this.props.onCellClick) this.props.onCellClick(rowNumber, this._getColumnId(columnNumber));
-    this._handleRowClick(e, rowNumber);
   },
 
   _handleRowHover(e, rowNumber) {

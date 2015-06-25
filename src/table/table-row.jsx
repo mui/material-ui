@@ -161,7 +161,6 @@ let TableRow = React.createClass({
   _onCellClick(e, columnIndex) {
     if (this.props.selectable && this.props.onCellClick) this.props.onCellClick(e, this.props.rowNumber, columnIndex);
     if (this.refs.rowSelectCB !== undefined) this.refs.rowSelectCB.setChecked(!this.refs.rowSelectCB.isChecked());
-    this._onRowClick(e);
   },
 
   _onCellHover(e, columnIndex) {
@@ -182,7 +181,6 @@ let TableRow = React.createClass({
 
   _onCheck(e) {
     e.ctrlKey = true;
-    this._onCellClick(e, 0);
   }
 
 });
