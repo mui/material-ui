@@ -17,7 +17,8 @@ let Tabs = React.createClass({
     initialSelectedIndex: React.PropTypes.number,
     onActive: React.PropTypes.func,
     tabWidth: React.PropTypes.number,
-    tabItemContainerStyle: React.PropTypes.object
+    tabItemContainerStyle: React.PropTypes.object,
+    contentContainerStyle: React.PropTypes.object,
   },
 
   getInitialState(){
@@ -120,7 +121,7 @@ let Tabs = React.createClass({
           {tabs}
         </div>
         <InkBar left={left} width={width} />
-        <div>
+        <div style={this.mergeAndPrefix(this.props.contentContainerStyle)}>
           {tabContent}
         </div>
       </div>
