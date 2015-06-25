@@ -3,6 +3,7 @@
 let React = require('react');
 let mui = require('material-ui');
 let RaisedButton = mui.RaisedButton;
+let Dialog = mui.Dialog
 let ThemeManager = new mui.Styles.ThemeManager();
 let Colors = mui.Styles.Colors;
 
@@ -31,9 +32,19 @@ let Main = React.createClass({
       paddingTop: '200px'
     };
 
+    let standardActions = [
+      { text: 'Okay' }
+    ];
+
     return (
       <div style={containerStyle}>
-
+        <Dialog
+          title="Super Secret Password"
+          actions={standardActions}
+          ref="superSecretPasswordDialog">
+          1-2-3-4-5
+        </Dialog>
+        
         <h1>material-ui</h1>
         <h2>example project</h2>
 
@@ -44,7 +55,7 @@ let Main = React.createClass({
   },
 
   _handleTouchTap() {
-    alert('1-2-3-4-5');
+    this.refs.superSecretPasswordDialog.show();
   }
 
 });
