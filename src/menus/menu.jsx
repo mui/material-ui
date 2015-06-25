@@ -55,7 +55,7 @@ let Menu = React.createClass({
       }
     };
 
-    let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    let mergedRootStyles = this.mergeStyles(styles.root, style);
 
     let children = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, { desktop: desktop }, child.props.children);
@@ -82,9 +82,7 @@ let Menu = React.createClass({
 
     if (newWidth < minWidth) newWidth = minWidth;
 
-    Dom.withoutTransition(el, () => {
-      el.style.width = newWidth + 'px';
-    });
+    el.style.width = newWidth + 'px';
   }
 
 });

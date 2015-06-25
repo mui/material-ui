@@ -53,7 +53,8 @@ let MenuItem = React.createClass({
       root: {
         color: disabled ? disabledColor : textColor,
         lineHeight: desktop ? '32px' : '48px',
-        fontSize: desktop ? 15 : 16
+        fontSize: desktop ? 15 : 16,
+        whiteSpace: 'nowrap'
       },
 
       innerDivStyle: {

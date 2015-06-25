@@ -14,6 +14,7 @@ class Components extends React.Component {
       { route: 'dropdown-menu', text: 'Dropdown Menu'},
       { route: 'icons', text: 'Icons'},
       { route: 'icon-buttons', text: 'Icon Buttons'},
+      { route: 'icon-menus', text: 'Icon Menus'},
       { route: 'left-nav', text: 'Left Nav'},
       { route: 'lists', text: 'Lists'},
       { route: 'menus', text: 'Menus'},

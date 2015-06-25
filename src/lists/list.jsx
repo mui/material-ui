@@ -50,7 +50,7 @@ let List = React.createClass({
       }
     };
 
-    let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    let mergedRootStyles = this.mergeStyles(styles.root, style);
     let mergedSubheaderStyles = this.mergeAndPrefix(styles.subheader, subheaderStyle);
 
     let subheaderElement = subheader ? (
