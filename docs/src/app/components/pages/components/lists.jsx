@@ -218,6 +218,17 @@ class ListsPage extends React.Component {
             desc: 'Can be 1 or 2. This is the number of secondary text lines before ellipsis will show.'
           }
         ]
+      },
+      {
+        name: 'ListItem Events',
+        infoArray: [
+          {
+            name: 'onTouchTap',
+            type: 'function(e)',
+            header: 'optional',
+            desc: 'Called when the ListItem is touched/tapped.'
+          }
+        ]
       }
     ];
 
@@ -229,7 +240,7 @@ class ListsPage extends React.Component {
 
         <MobileTearSheet>
           <List>
-            <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
+          <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
             <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
             <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
             <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
