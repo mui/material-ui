@@ -79,7 +79,7 @@ class IconMenus extends React.Component {
 
         <IconMenu iconButtonElement={iconButtonElement}>
           <MenuItem>Refresh</MenuItem>
-          <MenuItem>Send Feedback More</MenuItem>
+          <MenuItem>Send Feedback</MenuItem>
           <MenuItem>Settings</MenuItem>
           <MenuItem>Help</MenuItem>
           <MenuItem>Sign out</MenuItem>
@@ -89,7 +89,7 @@ class IconMenus extends React.Component {
           iconButtonElement={iconButtonElement}
           menuPosition="bottom-right">
           <MenuItem>Refresh</MenuItem>
-          <MenuItem>Send Feedback More</MenuItem>
+          <MenuItem>Send Feedback</MenuItem>
           <MenuItem>Settings</MenuItem>
           <MenuItem>Help</MenuItem>
           <MenuItem>Sign out</MenuItem>
@@ -99,7 +99,7 @@ class IconMenus extends React.Component {
           iconButtonElement={iconButtonElement}
           menuPosition="top-left">
           <MenuItem>Refresh</MenuItem>
-          <MenuItem>Send Feedback More</MenuItem>
+          <MenuItem>Send Feedback</MenuItem>
           <MenuItem>Settings</MenuItem>
           <MenuItem>Help</MenuItem>
           <MenuItem>Sign out</MenuItem>
@@ -109,7 +109,7 @@ class IconMenus extends React.Component {
           iconButtonElement={iconButtonElement}
           menuPosition="top-right">
           <MenuItem>Refresh</MenuItem>
-          <MenuItem>Send Feedback More</MenuItem>
+          <MenuItem>Send Feedback</MenuItem>
           <MenuItem>Settings</MenuItem>
           <MenuItem>Help</MenuItem>
           <MenuItem>Sign out</MenuItem>
