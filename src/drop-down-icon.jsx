@@ -36,6 +36,12 @@ let DropDownIcon = React.createClass({
     }
   },
 
+  componentDidMount() {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('DropDownIcon has been deprecated. Use IconMenu instead.');
+    }
+  },
+
   componentClickAway() {
     this.setState({ open: false });
   },
