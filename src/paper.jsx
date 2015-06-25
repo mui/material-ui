@@ -61,7 +61,7 @@ let Paper = React.createClass({
 
   _getZDepthShadows(zDepth) {
     let shadows = [
-      '',
+      null,
       '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)',
       '0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23)',
       '0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23)',
