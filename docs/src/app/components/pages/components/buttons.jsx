@@ -192,6 +192,30 @@ class ButtonPage extends React.Component {
             desc: 'If true, the button will use the secondary button colors.'
           },
           {
+            name: 'backgroundColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the background color. Always takes precedence unless the button is disabled.'
+          },
+          {
+            name: 'labelColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the label color. Always takes precedence unless the button is disabled.'
+          },
+          {
+            name: 'disabledBackgroundColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the background color if the button is disabled.'
+          },
+          {
+            name: 'disabledLabelColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the label color if the button is disabled.'
+          },
+          {
             name: 'style',
             type: 'object',
             header: 'optional',
