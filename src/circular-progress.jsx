@@ -146,10 +146,8 @@ let CircularProgress = React.createClass({
 
     if (this.props.mode == "determinate"){
       let relVal = this._getRelativeValue();
-      styles.path.transition = Transitions.create("all", "0.3s", null, "linear")
+      styles.path.transition = Transitions.create("all", "0.3s", null, "linear");
       styles.path.strokeDasharray = Math.round(relVal * 1.25) + ",200";
-    }else{
-
     }
 
     return styles;

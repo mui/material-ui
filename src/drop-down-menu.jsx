@@ -267,7 +267,7 @@ let DropDownMenu = React.createClass({
         e.target.value = selectedItem[this.props.valueMember];
 
       if (this.props.valueLink)
-        this.props.valueLink.requestChange(e.target.value)
+        this.props.valueLink.requestChange(e.target.value);
       else
         this.props.onChange(e, key, payload);
     }

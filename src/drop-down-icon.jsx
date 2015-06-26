@@ -27,13 +27,13 @@ let DropDownIcon = React.createClass({
   getInitialState() {
     return {
       open: false,
-    }
+    };
   },
 
   getDefaultProps() {
     return {
       closeOnMenuItemTouchTap: true
-    }
+    };
   },
 
   componentDidMount() {

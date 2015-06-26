@@ -53,7 +53,7 @@ let BeforeAfterWrapper = React.createClass({
       beforeElementType: 'div',
       afterElementType: 'div',
       elementType: 'div',
-    }
+    };
   },
 
   render() {
