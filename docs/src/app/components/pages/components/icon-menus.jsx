@@ -39,24 +39,34 @@ class IconMenus extends React.Component {
             desc: 'This is the IconButton to render. This button will open the menu.'
           },
           {
-            name: 'menuPosition',
+            name: 'openDirection',
             type: 'oneOf [bottom-left, bottom-right, top-left, top-right]',
             header: 'default: bottom-left',
             desc: 'This is the placement of the menu relative to the IconButton.'
           },
           {
-            name: 'menuStyle',
+            name: 'menuListStyle',
             type: 'object',
             header: 'optional',
-            desc: 'The style object to use to override menu styles.'
+            desc: 'The style object to use to override underlying menu list style.'
           },
           {
             name: 'width',
-            type: 'number',
+            type: 'string or number',
             header: 'optional',
             desc: 'Sets the width of the menu. If not specified, the menu width ' +
               'will be dictated by its children. The rendered width will always be ' +
               'a keyline increment (64px for desktop, 56px otherwise).'
+          }
+        ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
+          {
+            name: 'onItemTouchTap',
+            header: 'function(e, item)',
+            desc: 'Fired when a menu item is touchTapped.'
           }
         ]
       }
@@ -87,7 +97,7 @@ class IconMenus extends React.Component {
 
         <IconMenu
           iconButtonElement={iconButtonElement}
-          menuPosition="bottom-right">
+          openDirection="bottom-right">
           <MenuItem>Refresh</MenuItem>
           <MenuItem>Send Feedback</MenuItem>
           <MenuItem>Settings</MenuItem>
@@ -97,7 +107,7 @@ class IconMenus extends React.Component {
 
         <IconMenu
           iconButtonElement={iconButtonElement}
-          menuPosition="top-left">
+          openDirection="top-left">
           <MenuItem>Refresh</MenuItem>
           <MenuItem>Send Feedback</MenuItem>
           <MenuItem>Settings</MenuItem>
@@ -107,7 +117,7 @@ class IconMenus extends React.Component {
 
         <IconMenu
           iconButtonElement={iconButtonElement}
-          menuPosition="top-right">
+          openDirection="top-right">
           <MenuItem>Refresh</MenuItem>
           <MenuItem>Send Feedback</MenuItem>
           <MenuItem>Settings</MenuItem>

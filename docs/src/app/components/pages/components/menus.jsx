@@ -55,8 +55,26 @@ class MenusPage extends React.Component {
             desc: 'Indicates if the menu should render with compact desktop styles.'
           },
           {
+            name: 'open',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'If true, the menu will be rendered open.'
+          },
+          {
+            name: 'openDirection',
+            type: 'oneOf [bottom-left, bottom-right, top-left, top-right]',
+            header: 'default: bottom-left',
+            desc: 'This is the placement of the menu relative to the IconButton.'
+          },
+          {
+            name: 'listStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'The style object to use to override underlying list style.'
+          },
+          {
             name: 'width',
-            type: 'number',
+            type: 'string or number',
             header: 'optional',
             desc: 'Sets the width of the menu. If not specified, the menu width will be dictated by its ' +
               'children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).'
@@ -116,6 +134,16 @@ class MenusPage extends React.Component {
               'div tag will be rendered.'
           }
         ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
+          {
+            name: 'onItemTouchTap',
+            header: 'function(e, item)',
+            desc: 'Fired when a menu item is touchTapped.'
+          }
+        ]
       }
     ];
 
@@ -123,7 +151,9 @@ class MenusPage extends React.Component {
       menu: {
         marginRight: 32,
         marginBottom: 32,
-        float: 'left'
+        float: 'left',
+        position: 'relative',
+        zIndex: 0
       },
 
       hr: {
