@@ -39,7 +39,7 @@ let FlatButton = React.createClass({
   getDefaultProps() {
     return {
       labelStyle: {}
-    }
+    };
   },
 
   getInitialState() {

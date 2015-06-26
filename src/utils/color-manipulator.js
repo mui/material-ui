@@ -95,7 +95,7 @@ module.exports = {
   fade(color, amount) {
     color = this._decomposeColor(color);
     if (color.type === 'rgb' || color.type === 'hsl') color.type += 'a';
-    return this._convertColorToString(color, amount)
+    return this._convertColorToString(color, amount);
   },
 
   // Desaturates rgb and sets opacity to 0.15

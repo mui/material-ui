@@ -28,7 +28,7 @@ let Toggle = React.createClass({
         this.props.defaultToggled ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false
-    }
+    };
   },
 
   getTheme() {

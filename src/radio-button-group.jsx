@@ -59,7 +59,7 @@ let RadioButtonGroup = React.createClass({
         label={option.props.label}
         labelPosition={this.props.labelPosition}
         onCheck={this._onChange}
-        checked={option.props.value == this.state.selected}/>
+        checked={option.props.value == this.state.selected}/>;
 
     }, this);
 

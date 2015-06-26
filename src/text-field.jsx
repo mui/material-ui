@@ -256,7 +256,7 @@ let TextField = React.createClass({
       inputProps.onChange = this._handleInputChange;
     }
     if (this.props.children) {
-      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props})
+      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props});
     }
     else {
       inputElement = this.props.multiLine ? (
@@ -355,7 +355,7 @@ let TextField = React.createClass({
 
   _handleInputFocus(e) {
     if (this.props.disabled)
-      return
+      return;
     this.setState({isFocused: true});
     if (this.props.onFocus) this.props.onFocus(e);
   },
