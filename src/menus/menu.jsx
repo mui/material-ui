@@ -1,5 +1,6 @@
 let React = require('react/addons');
 let StylePropable = require('../mixins/style-propable');
+let Children = require('../utils/children');
 let Dom = require('../utils/dom');
 let List = require('../lists/list');
 
@@ -57,8 +58,8 @@ let Menu = React.createClass({
 
     let mergedRootStyles = this.mergeStyles(styles.root, style);
 
-    let children = React.Children.map(this.props.children, (child) => {
-      return React.cloneElement(child, { desktop: desktop }, child.props.children);
+    let children = Children.extend(this.props.children, {
+      desktop: desktop
     });
 
     return (
