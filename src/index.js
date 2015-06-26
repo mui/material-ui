@@ -37,6 +37,7 @@ module.exports = {
     StylePropable: require('./mixins/style-propable'),
     StyleResizable: require('./mixins/style-resizable')
   },
+  Overlay: require('./overlay'),
   Paper: require('./paper'),
   RadioButton: require('./radio-button'),
   RadioButtonGroup: require('./radio-button-group'),
