@@ -212,6 +212,12 @@ let footerCols = {id: {content: 'ID'}, name: {content: 'Name'}, status: {content
             desc: 'Controls whether or not the user can select all of the rows in the table. The default value is false.'
           },
           {
+            name: 'deselectOnClickAway',
+            type: 'boolean',
+            header: 'optional',
+            desc: 'Controls whether or not deselect all selected checkbox after click outside the table. The default value is true.'
+          },
+          {
             name: 'displaySelectAll',
             type: 'boolean',
             header: 'optional',
