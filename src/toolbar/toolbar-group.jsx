@@ -92,24 +92,24 @@ let ToolbarGroup = React.createClass({
       switch (currentChild.type.displayName) {
         case 'DropDownMenu' :
           return React.cloneElement(currentChild, {
-            style: styles.dropDownMenu.root,
+            style: this.mergeStyles(styles.dropDownMenu.root, currentChild.props.style),
             styleControlBg: styles.dropDownMenu.controlBg,
             styleUnderline: styles.dropDownMenu.underline
           });
         case 'DropDownIcon' :
           return React.cloneElement(currentChild, {
-            style: {float: 'left'},
+            style: this.mergeStyles({float: 'left'}, currentChild.props.style),
             iconStyle: styles.icon.root,
             onMouseOver: this._handleMouseOverDropDownMenu,
             onMouseOut: this._handleMouseOutDropDownMenu
           });
         case 'RaisedButton' : case 'FlatButton' :
           return React.cloneElement(currentChild, {
-            style: styles.button
+            style: this.mergeStyles(styles.button, currentChild.props.style),
           });
         case 'FontIcon' :
           return React.cloneElement(currentChild, {
-            style: styles.icon.root,
+            style: this.mergeStyles(styles.icon.root, currentChild.props.style),
             onMouseOver: this._handleMouseOverFontIcon,
             onMouseOut: this._handleMouseOutFontIcon
           });
