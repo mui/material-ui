@@ -59,17 +59,17 @@ let RaisedButton = React.createClass({
 
   _getBackgroundColor() {
     return  this.props.disabled ? this.getTheme().disabledColor :
+      this.props.backgroundColor ? this.props.backgroundColor :
       this.props.primary ? this.getTheme().primaryColor :
       this.props.secondary ? this.getTheme().secondaryColor :
-      this.props.backgroundColor ? this.props.backgroundColor :
       this.getTheme().color;
   },
 
   _getLabelColor() {
     return  this.props.disabled ? this.getTheme().disabledTextColor :
+      this.props.labelColor ? this.props.labelColor :
       this.props.primary ? this.getTheme().primaryTextColor :
       this.props.secondary ? this.getTheme().secondaryTextColor :
-      this.props.labelColor ? this.props.labelColor :
       this.getTheme().textColor;
   },
 
