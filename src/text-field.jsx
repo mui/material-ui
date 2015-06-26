@@ -100,7 +100,7 @@ let TextField = React.createClass({
         transition: Transitions.easeOut('200ms', 'height')
       },
       error: {
-        position: 'absolute',
+        position: 'relative',
         bottom: -10,
         fontSize: 12,
         lineHeight: '12px',
@@ -109,10 +109,11 @@ let TextField = React.createClass({
       },
       hint: {
         position: 'absolute',
-        lineHeight: '48px',
+        lineHeight: '20px',
         opacity: 1,
         color: theme.hintColor,
-        transition: Transitions.easeOut()
+        transition: Transitions.easeOut(),
+        bottom:'10px'
       },
       input: {
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
