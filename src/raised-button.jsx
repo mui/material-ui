@@ -35,6 +35,8 @@ let RaisedButton = React.createClass({
     primary: React.PropTypes.bool,
     secondary: React.PropTypes.bool,
     labelStyle: React.PropTypes.object,
+    backgroundColor: React.PropTypes.string,
+    labelColor: React.PropTypes.string,
   },
 
   getInitialState() {
@@ -59,6 +61,7 @@ let RaisedButton = React.createClass({
     return  this.props.disabled ? this.getTheme().disabledColor :
       this.props.primary ? this.getTheme().primaryColor :
       this.props.secondary ? this.getTheme().secondaryColor :
+      this.props.backgroundColor ? this.props.backgroundColor :
       this.getTheme().color;
   },
 
@@ -66,6 +69,7 @@ let RaisedButton = React.createClass({
     return  this.props.disabled ? this.getTheme().disabledTextColor :
       this.props.primary ? this.getTheme().primaryTextColor :
       this.props.secondary ? this.getTheme().secondaryTextColor :
+      this.props.labelColor ? this.props.labelColor :
       this.getTheme().textColor;
   },
 
