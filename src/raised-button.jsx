@@ -35,6 +35,7 @@ let RaisedButton = React.createClass({
     primary: React.PropTypes.bool,
     secondary: React.PropTypes.bool,
     labelStyle: React.PropTypes.object,
+    fullWidth: React.PropTypes.bool
   },
 
   getInitialState() {
@@ -82,7 +83,7 @@ let RaisedButton = React.createClass({
     let styles = {
       root: {
         display: 'inline-block',
-        minWidth: this.getThemeButton().minWidth,
+        minWidth: this.props.fullWidth ? '100%' : this.getThemeButton().minWidth,
         height: this.getThemeButton().height,
         transition: Transitions.easeOut()
       },

@@ -159,6 +159,12 @@ class ButtonPage extends React.Component {
             desc: 'Disables the button if set to true.'
           },
           {
+            name: 'fullWidth',
+            type: 'bool',
+            header: 'optional',
+            desc: 'If true, will change the width of the button to span the full width of the parent.'
+          },
+          {
             name: 'label or children',
             type: 'string (label) or HTML/React elements (children)',
             header: 'required',
@@ -403,6 +409,9 @@ class ButtonPage extends React.Component {
                 <div style={styles.container}>
                   <RaisedButton label="Disabled" disabled={true} />
                 </div>
+              </div>
+              <div>
+                <RaisedButton label="Full Width Button" fullWidth={true} />
               </div>
             </ComponentDoc>
           </Tab>
