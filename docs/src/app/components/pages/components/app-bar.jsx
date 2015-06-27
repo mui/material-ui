@@ -1,5 +1,8 @@
 let React = require('react');
 let { AppBar, DropDownMenu } = require('material-ui');
+let IconButton = require('icon-button');
+let NavigationClose = require('svg-icons/navigation/close');
+let FlatButton = require('flat-button');
 let ComponentDoc = require('../../component-doc');
 
 
@@ -9,7 +12,14 @@ class AppBarPage extends React.Component {
     super(props);
 
     this.code =
-          '<AppBar title=\'Title\' iconClassNameRight="muidocs-icon-navigation-expand-more"/>';
+          '<AppBar\n' +
+          '  title="Title"\n' +
+          '  iconClassNameRight="muidocs-icon-navigation-expand-more" />\n' +
+          '\n' +
+          '<AppBar\n' +
+          '  title="Title"\n' +
+          '  iconElementLeft={<IconButton><NavigationClose /></IconButton>}\n' +
+          '  iconElementRight={<FlatButton label="Save" />} />';
 
     this.desc = 'App bars are a collection of components placed as a static ' +
                 'header for an application. It is used for navigation, search ' +
@@ -110,7 +120,14 @@ class AppBarPage extends React.Component {
         code={this.code}
         desc={this.desc}
         componentInfo={this.componentInfo}>
-          <AppBar title='Title' iconClassNameRight="muidocs-icon-navigation-expand-more"/>
+          <AppBar
+            title="Title"
+            iconClassNameRight="muidocs-icon-navigation-expand-more" />
+          <br />
+          <AppBar
+            title="Title"
+            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+            iconElementRight={<FlatButton label="Save" />} />
       </ComponentDoc>
     );
   }

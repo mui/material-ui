@@ -58,6 +58,7 @@ let AppBar = React.createClass({
     let spacing = this.context.muiTheme.spacing;
     let themeVariables = this.context.muiTheme.component.appBar;
     let iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
+    let flatButtonSize = 36;
     let styles = {
       root: {
         zIndex: 5,
@@ -94,7 +95,12 @@ let AppBar = React.createClass({
           fill: themeVariables.textColor,
           color: themeVariables.textColor
         }
-      }
+      },
+      flatButton: {
+        color: themeVariables.textColor,
+        backgroundColor: 'transparent',
+        marginTop: (iconButtonSize - flatButtonSize) / 2 + 2,
+      },
     };
     return styles;
   },
@@ -156,6 +162,12 @@ let AppBar = React.createClass({
           case 'IconButton':
             iconElementRight = React.cloneElement(iconElementRight, {
               iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle)
+            });
+            break;
+
+          case 'FlatButton':
+            iconElementRight = React.cloneElement(iconElementRight, {
+              style: this.mergeStyles(styles.flatButton, iconElementRight.props.style)
             });
             break;
         }
