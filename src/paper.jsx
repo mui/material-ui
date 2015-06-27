@@ -20,6 +20,7 @@ let Paper = React.createClass({
 
   getDefaultProps() {
     return {
+      circle: false,
       rounded: true,
       zDepth: 1,
       transitionEnabled: true
