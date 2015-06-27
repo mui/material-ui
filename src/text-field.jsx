@@ -148,7 +148,8 @@ let TextField = React.createClass({
     };
 
     styles.floatingLabel = this.mergeStyles(styles.hint, {
-      top: 24,
+      lineHeight: '20px',
+      top: 38,
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top'
@@ -170,13 +171,13 @@ let TextField = React.createClass({
 
     if (this.state.isFocused) {
       styles.floatingLabel.color = theme.focusColor;
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
     if (this.state.hasValue) {
       styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? theme.disabledTextColor : theme.floatingLabelColor, 0.5);
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
       styles.hint.opacity = 0;
     }
 

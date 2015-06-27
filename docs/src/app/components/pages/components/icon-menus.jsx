@@ -8,6 +8,20 @@ let ComponentDoc = require('../../component-doc');
 
 class IconMenus extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this._handleIconMenuChange = this._handleIconMenuChange.bind(this);
+    this._handleIconMenuMultiChange = this._handleIconMenuMultiChange.bind(this);
+    this._handleIconMenuValueLinkChange = this._handleIconMenuValueLinkChange.bind(this);
+
+    this.state = {
+      iconMenuValue: '1',
+      iconMenuMultiValue: ['2', '4'],
+      iconMenuValueLink: '1'
+    };
+  }
+
   render() {
 
     let code = `
@@ -51,6 +65,19 @@ class IconMenus extends React.Component {
             desc: 'The style object to use to override underlying menu list style.'
           },
           {
+            name: 'multiple',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the value can an array and allow the menu to be a multi-select.'
+          },
+          {
+            name: 'value',
+            type: 'string or array',
+            header: 'optional',
+            desc: 'The value of the selected menu item. If passed in, this will make the menu ' +
+              'a controlled component. This component also supports valueLink.'
+          },
+          {
             name: 'width',
             type: 'string or number',
             header: 'optional',
@@ -67,6 +94,12 @@ class IconMenus extends React.Component {
             name: 'onItemTouchTap',
             header: 'function(e, item)',
             desc: 'Fired when a menu item is touchTapped.'
+          },
+          {
+            name: 'onChange',
+            header: 'function(e, value)',
+            desc: 'Fired when a menu item is touchTapped and the menu item value ' +
+              'is not equal to the current menu value.'
           }
         ]
       }
@@ -77,6 +110,11 @@ class IconMenus extends React.Component {
         <MoreVertIcon />
       </IconButton>
     );
+
+    let iconMenuValueLink = {
+      value: this.state.iconMenuValueLink,
+      requestChange: this._handleIconMenuValueLinkChange
+    };
 
     return (
       <ComponentDoc
@@ -125,9 +163,70 @@ class IconMenus extends React.Component {
           <MenuItem>Sign out</MenuItem>
         </IconMenu>
 
+        <br/><br/>
+
+        <p>Menu with value
+          <IconMenu
+            iconButtonElement={iconButtonElement}
+            onChange={this._handleIconMenuChange}
+            openDirection="bottom-right"
+            value={this.state.iconMenuValue}>
+            <MenuItem value="1">Refresh</MenuItem>
+            <MenuItem value="2">Send Feedback</MenuItem>
+            <MenuItem value="3">Settings</MenuItem>
+            <MenuItem value="4">Help</MenuItem>
+            <MenuItem value="5">Sign out</MenuItem>
+          </IconMenu>
+        </p>
+
+        <p>Menu with valueLink
+          <IconMenu
+            iconButtonElement={iconButtonElement}
+            openDirection="bottom-right"
+            valueLink={iconMenuValueLink}>
+            <MenuItem value="1">Refresh</MenuItem>
+            <MenuItem value="2">Send Feedback</MenuItem>
+            <MenuItem value="3">Settings</MenuItem>
+            <MenuItem value="4">Help</MenuItem>
+            <MenuItem value="5">Sign out</MenuItem>
+          </IconMenu>
+        </p>
+
+        <p>Menu with multiple values
+          <IconMenu
+            iconButtonElement={iconButtonElement}
+            multiple={true}
+            onChange={this._handleIconMenuMultiChange}
+            openDirection="bottom-right"
+            value={this.state.iconMenuMultiValue}>
+            <MenuItem value="1">Refresh</MenuItem>
+            <MenuItem value="2">Send Feedback</MenuItem>
+            <MenuItem value="3">Settings</MenuItem>
+            <MenuItem value="4">Help</MenuItem>
+            <MenuItem value="5">Sign out</MenuItem>
+          </IconMenu>
+        </p>
       </ComponentDoc>
     );
 
+  }
+
+  _handleIconMenuChange(e, value) {
+    this.setState({
+      iconMenuValue: value
+    });
+  }
+
+  _handleIconMenuMultiChange(e, value) {
+    this.setState({
+      iconMenuMultiValue: value
+    });
+  }
+
+  _handleIconMenuValueLinkChange(e, value) {
+    this.setState({
+      iconMenuValueLink: value
+    });
   }
 
 }

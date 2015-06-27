@@ -1,6 +1,7 @@
 let React = require('react');
 let ComponentDoc = require('../../component-doc');
 let mui = require('material-ui');
+let ToggleStar = require('svg-icons/toggle/star');
 
 let {
   ClearFix,
@@ -58,13 +59,21 @@ class ButtonPage extends React.Component {
 
     this.codeFloatingActionButton =
       '//Floating Action Buttons\n' +
-      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" />\n' +
+      '<FloatingActionButton>\n' +
+      '  <ToggleStar />\n' +
+      '</FloatingActionButton>\n' +
       '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />\n' +
-      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />\n' +
-      '<FloatingActionButton iconClassName="muidocs-icon-custom-github" linkButton={true} href="https://github.com/callemall/material-ui" mini={true} secondary={true}/>' +
-      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />\n' +
-      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />\n' +
-      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />';
+      '\n' +
+      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true}>\n' +
+      '<FloatingActionButton secondary={true} mini={true} linkButton={true}\n' +
+      '  href="https://github.com/callemall/material-ui" />\n' +
+      '  <ToggleStar />\n' +
+      '</FloatingActionButton>\n' +
+      '\n' +
+      '<FloatingActionButton disabled={true}>\n' +
+      '  <FontIcon className="muidocs-icon-action-grade" />\n' +
+      '</FloatingActionButton>\n' +
+      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} mini={true} />\n';
 
     this.desc = 'This component generates a button element and all props except for ' +
                 'the custom props below will be passed down to the button element. Also, ' +
@@ -438,7 +447,9 @@ class ButtonPage extends React.Component {
               componentInfo={this.componentInfo.slice(2)}>
               <div style={styles.groupFloatingAction}>
                 <div style={styles.container}>
-                  <FloatingActionButton iconClassName="muidocs-icon-action-grade" />
+                  <FloatingActionButton>
+                    <ToggleStar />
+                  </FloatingActionButton>
                 </div>
                 <div style={styles.container}>
                   <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />
@@ -449,12 +460,16 @@ class ButtonPage extends React.Component {
                   <FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />
                 </div>
                 <div style={styles.container}>
-                  <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />
+                  <FloatingActionButton mini={true} secondary={true}>
+                    <ToggleStar />
+                  </FloatingActionButton>
                 </div>
               </div>
               <div style={styles.groupFloatingAction}>
                 <div style={styles.container}>
-                  <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />
+                  <FloatingActionButton disabled={true}>
+                    <FontIcon className="muidocs-icon-action-grade" />
+                  </FloatingActionButton>
                 </div>
                 <div style={styles.container}>
                   <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />

@@ -55,6 +55,12 @@ class MenusPage extends React.Component {
             desc: 'Indicates if the menu should render with compact desktop styles.'
           },
           {
+            name: 'multiple',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the value can an array and allow the menu to be a multi-select.'
+          },
+          {
             name: 'open',
             type: 'bool',
             header: 'default: true',
@@ -71,6 +77,13 @@ class MenusPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'The style object to use to override underlying list style.'
+          },
+          {
+            name: 'value',
+            type: 'string or array',
+            header: 'optional',
+            desc: 'The value of the selected menu item. If passed in, this will make the menu ' +
+              'a controlled component. This component also supports valueLink.'
           },
           {
             name: 'width',
@@ -132,6 +145,12 @@ class MenusPage extends React.Component {
             header: 'optional',
             desc: 'This is the block element that contains the secondary text. If a string is passed in, a ' +
               'div tag will be rendered.'
+          },
+          {
+            name: 'value',
+            type: 'string',
+            header: 'optional',
+            desc: 'The value of the menu item.'
           }
         ]
       },
@@ -142,6 +161,12 @@ class MenusPage extends React.Component {
             name: 'onItemTouchTap',
             header: 'function(e, item)',
             desc: 'Fired when a menu item is touchTapped.'
+          },
+          {
+            name: 'onChange',
+            header: 'function(e, value)',
+            desc: 'Fired when a menu item is touchTapped and the menu item value ' +
+              'is not equal to the current menu value.'
           }
         ]
       }

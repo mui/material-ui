@@ -1,4 +1,6 @@
 let React = require('react/addons');
+let update = React.addons.update;
+let Controllable = require('../mixins/controllable');
 let StylePropable = require('../mixins/style-propable');
 let Transitions = require('../styles/transitions');
 let Children = require('../utils/children');
@@ -8,7 +10,7 @@ let List = require('../lists/list');
 
 let Menu = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [StylePropable, Controllable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object
@@ -17,10 +19,16 @@ let Menu = React.createClass({
   propTypes: {
     desktop: React.PropTypes.bool,
     listStyle: React.PropTypes.object,
+    multiple: React.PropTypes.bool,
     onItemTouchTap: React.PropTypes.func,
     open: React.PropTypes.bool,
-    openDirection: React.PropTypes.oneOf(['bottom-left', 'bottom-right',
-      'top-left', 'top-right']),
+    openDirection: React.PropTypes.oneOf([
+      'bottom-left',
+      'bottom-right',
+      'top-left',
+      'top-right'
+    ]),
+    selectedMenuItemStyle: React.PropTypes.object,
     width: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.number
@@ -53,11 +61,16 @@ let Menu = React.createClass({
   render() {
 
     let {
+      children,
       desktop,
       listStyle,
+      multiple,
       open,
       openDirection,
+      selectedMenuItemStyle,
       style,
+      value,
+      valueLink,
       width,
       ...other
     } = this.props;
@@ -98,6 +111,10 @@ let Menu = React.createClass({
         transition: Transitions.easeOut(null, 'opacity'),
         transitionDelay: open ? '400ms' : '0ms',
         opacity: open ? 1 : 0
+      },
+
+      selectedMenuItem: {
+        color: this.context.muiTheme.palette.accent1Color
       }
     };
 
@@ -105,10 +122,9 @@ let Menu = React.createClass({
     let mergedListStyles = this.mergeStyles(styles.list, listStyle);
 
     //Cascade children opacity
-    //let _this = this;
     let childrenTransitionDelay = openDown ? 175 : 325;
     let childrenTransitionDelayIncrement = Math.ceil(150/React.Children.count(this.props.children));
-    let children = React.Children.map(this.props.children, (child) => {
+    let newChildren = React.Children.map(children, (child) => {
 
       if (openDown) {
         childrenTransitionDelay += childrenTransitionDelayIncrement;
@@ -116,19 +132,34 @@ let Menu = React.createClass({
         childrenTransitionDelay -= childrenTransitionDelayIncrement;
       }
 
-      let mergedChildrenStyles = this.mergeStyles(styles.menuItem, {
+      let childrenContainerStyles = this.mergeStyles(styles.menuItem, {
         transitionDelay: open ? childrenTransitionDelay + 'ms' : '0ms'
-      }, child.props.style);
+      });
+
+      let menuValue = this.getValueLink(this.props).value;
+      let childValue = child.props.value;
+      let selectedChildrenStyles = {};
+
+      if ((multiple && menuValue.length && menuValue.indexOf(childValue) !== -1) ||
+        (!multiple && menuValue && menuValue === childValue)) {
+        selectedChildrenStyles = this.mergeStyles(styles.selectedMenuItem, selectedMenuItemStyle);
+      }
+
+      let mergedChildrenStyles = this.mergeStyles(
+        child.props.style || {},
+        selectedChildrenStyles
+      );
 
       let clonedChild = React.cloneElement(child, {
         desktop: desktop,
         onTouchTap: (e) => {
-          this.props.onItemTouchTap(e, child);
+          this._handleMenuItemTouchTap(e, child);
           if (child.props.onTouchTap) child.props.onTouchTap(e);
-        }
-      }, child.props.children);
+        },
+        style: mergedChildrenStyles
+      });
 
-      return <div style={mergedChildrenStyles}>{clonedChild}</div>;
+      return <div style={childrenContainerStyles}>{clonedChild}</div>;
 
     }.bind(this));
 
@@ -138,10 +169,31 @@ let Menu = React.createClass({
           {...other}
           ref="list"
           style={mergedListStyles}>
-          {children}
+          {newChildren}
         </List>
       </div>
     );
+  },
+
+  _handleMenuItemTouchTap(e, item) {
+    let multiple = this.props.multiple;
+    let valueLink = this.getValueLink(this.props);
+    let menuValue = valueLink.value;
+    let itemValue = item.props.value;
+
+    if (multiple) {
+      let index = menuValue.indexOf(itemValue);
+      let newMenuValue = index === -1 ?
+        update(menuValue, {$push: [itemValue]}) :
+        update(menuValue, {$splice: [[index, 1]]});
+
+      valueLink.requestChange(e, newMenuValue);
+
+    } else if (!multiple && itemValue !== menuValue) {
+      valueLink.requestChange(e, itemValue);
+    }
+
+    this.props.onItemTouchTap(e, item);
   },
 
   _setWidth() {

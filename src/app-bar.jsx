@@ -37,14 +37,20 @@ let AppBar = React.createClass({
   },
 
   componentDidMount() {
-    if (process.env.NODE_ENV !== 'production' &&
-      this.props.iconElementLeft &&
-      this.props.iconClassNameLeft) {
+    if (process.env.NODE_ENV !== 'production') {
+      if (this.props.iconElementLeft && this.props.iconClassNameLeft) {
+        console.warn(
+          'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
+          'defined. Please use one or the other.'
+        );
+      }
 
-      console.warn(
-        'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
-        'defined. Please use one or the other.'
-      );
+      if (this.props.iconElementRight && this.props.iconClassNameRight) {
+        console.warn(
+          'Properties iconClassNameRight and iconElementRight cannot be simultaneously ' +
+          'defined. Please use one or the other.'
+        );
+      }
     }
   },
 
@@ -52,6 +58,7 @@ let AppBar = React.createClass({
     let spacing = this.context.muiTheme.spacing;
     let themeVariables = this.context.muiTheme.component.appBar;
     let iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
+    let flatButtonSize = 36;
     let styles = {
       root: {
         zIndex: 5,
@@ -88,20 +95,26 @@ let AppBar = React.createClass({
           fill: themeVariables.textColor,
           color: themeVariables.textColor
         }
-      }
+      },
+      flatButton: {
+        color: themeVariables.textColor,
+        backgroundColor: 'transparent',
+        marginTop: (iconButtonSize - flatButtonSize) / 2 + 2,
+      },
     };
     return styles;
   },
 
   render() {
+    let props = this.props;
     let menuElementLeft;
     let menuElementRight;
     let styles = this.getStyles();
-    let title = this.props.title;
+    let title = props.title;
     let iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
       marginRight: -16,
       marginLeft: 'auto'
-    }, this.props.iconStyleRight);
+    }, props.iconStyleRight);
     let titleElement;
 
     if (title) {
@@ -112,38 +125,64 @@ let AppBar = React.createClass({
         <div style={this.mergeAndPrefix(styles.mainElement)}>{title}</div>;
     }
 
-    if (this.props.showMenuIconButton) {
-      if (this.props.iconElementLeft) {
+    if (props.showMenuIconButton) {
+      let iconElementLeft = props.iconElementLeft;
+
+      if (iconElementLeft) {
+        switch (iconElementLeft.type.displayName) {
+          case 'IconButton':
+            iconElementLeft = React.cloneElement(iconElementLeft, {
+              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle)
+            });
+            break;
+        }
+
         menuElementLeft = (
           <div style={styles.iconButton.style}>
-            {this.props.iconElementLeft}
+            {iconElementLeft}
           </div>
         );
       } else {
-        let child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
+        let child = (props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
             style={this.mergeAndPrefix(styles.iconButton.style)}
             iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
-            iconClassName={this.props.iconClassNameLeft}
+            iconClassName={props.iconClassNameLeft}
             onTouchTap={this._onLeftIconButtonTouchTap}>
               {child}
           </IconButton>
         );
       }
 
-      if (this.props.iconElementRight) {
+      if (props.iconElementRight) {
+        let iconElementRight = props.iconElementRight;
+
+        switch (iconElementRight.type.displayName) {
+          case 'IconButton':
+            iconElementRight = React.cloneElement(iconElementRight, {
+              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle)
+            });
+            break;
+
+          case 'FlatButton':
+            iconElementRight = React.cloneElement(iconElementRight, {
+              style: this.mergeStyles(styles.flatButton, iconElementRight.props.style)
+            });
+            break;
+        }
+
         menuElementRight = (
           <div style={iconRightStyle}>
-            {this.props.iconElementRight}
+            {iconElementRight}
           </div>
         );
-      } else if (this.props.iconClassNameRight) {
+      } else if (props.iconClassNameRight) {
         menuElementRight = (
           <IconButton
             style={iconRightStyle}
             iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
-            iconClassName={this.props.iconClassNameRight}
+            iconClassName={props.iconClassNameRight}
             onTouchTap={this._onRightIconButtonTouchTap}>
           </IconButton>
         );
@@ -153,13 +192,13 @@ let AppBar = React.createClass({
     return (
       <Paper
         rounded={false}
-        className={this.props.className}
-        style={this.mergeAndPrefix(styles.root, this.props.style)}
-        zDepth={this.props.zDepth}>
+        className={props.className}
+        style={this.mergeAndPrefix(styles.root, props.style)}
+        zDepth={props.zDepth}>
           {menuElementLeft}
           {titleElement}
           {menuElementRight}
-          {this.props.children}
+          {props.children}
       </Paper>
     );
   },
