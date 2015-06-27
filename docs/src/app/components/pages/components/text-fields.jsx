@@ -78,17 +78,19 @@ let TextFieldsPage = React.createClass({
       '  hintText="Disabled Hint Text"\n' +
       '  disabled={true}\n' +
       '  defaultValue="Disabled With Value" />\n\n' +
+
+      '//Select Fields\n' +
       '<SelectField\n'+
-        'value={this.state.selectValue}\n'+
-        'onChange={this._handleSelectValueChange}\n'+
-        'floatingLabelText="Select Field"\n'+
-        'menuItems={menuItems} />\n'+
+      '  value={this.state.selectValue}\n'+
+      '  onChange={this._handleSelectValueChange}\n'+
+      '  hintText="Select Field"\n'+
+      '  menuItems={menuItems} />\n'+
       '<SelectField\n'+
-        'valueLink={this.linkState("selectValueLinkValue")}\n'+
-        'floatingLabelText="Select Field"\n'+
-        'valueMember="id"\n'+
-        'displayMember="name"\n'+
-        'menuItems={arbitraryArrayMenuItems} />\n'+
+      '  valueLink={this.linkState("selectValueLinkValue")}\n'+
+      '  floatingLabelText="Select Field"\n'+
+      '  valueMember="id"\n'+
+      '  displayMember="name"\n'+
+      '  menuItems={arbitraryArrayMenuItems} />\n\n'+
 
       '//Floating Hint Text Labels\n' +
       '<TextField\n' +
@@ -265,11 +267,11 @@ let TextFieldsPage = React.createClass({
       { payload: '5', text: 'Weekly' },
     ];
     let arbitraryArrayMenuItems = [
-     {id:1, name:'Never'},
-     {id:2, name:'Every Night'},
-     {id:3, name:'Weeknights'},
-     {id:4, name:'Weekends'},
-     {id:5, name:'Weekly'}
+      {id:1, name:'Never'},
+      {id:2, name:'Every Night'},
+      {id:3, name:'Weeknights'},
+      {id:4, name:'Weekends'},
+      {id:5, name:'Weekly'}
     ];
 
     return (
@@ -324,6 +326,7 @@ let TextFieldsPage = React.createClass({
             <SelectField
               value={this.state.selectValue}
               onChange={this._handleSelectValueChange}
+              hintText="Select Field"
               floatingLabelText="Select Field"
               menuItems={menuItems} />
             <SelectField
