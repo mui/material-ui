@@ -4,6 +4,7 @@ let Transitions = require('./styles/transitions');
 let EnhancedButton = require('./enhanced-button');
 let FontIcon = require('./font-icon');
 let Tooltip = require('./tooltip');
+let Children = require('./utils/children');
 
 
 let IconButton = React.createClass({
@@ -23,10 +24,15 @@ let IconButton = React.createClass({
     onFocus: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
+    tooltipPosition: React.PropTypes.oneOf([
+      'bottom-center',
+      'bottom-left',
+      'bottom-right',
+      'top-center',
+      'top-left',
+      'top-right'
+    ]),
     touch: React.PropTypes.bool,
-    tooltipPosition: React.PropTypes.oneOf(['bottom-center',
-      'bottom-left','bottom-right','top-center', 'top-left',
-      'top-right'])
   },
 
   getInitialState() {
@@ -94,6 +100,7 @@ let IconButton = React.createClass({
       iconClassName,
       tooltip,
       touch,
+      iconStyle,
       ...other } = this.props;
     let fonticon;
 
@@ -114,8 +121,8 @@ let IconButton = React.createClass({
     if (iconClassName) {
       let {
         iconHoverColor,
-        ...iconStyle
-      } = this.props.iconStyle;
+        ...iconStyleFontIcon
+      } = iconStyle;
 
       fonticon = (
         <FontIcon
@@ -124,14 +131,12 @@ let IconButton = React.createClass({
           style={this.mergeStyles(
             styles.icon,
             disabled ? styles.disabled : {},
-            iconStyle
+            iconStyleFontIcon
           )}/>
       );
     }
 
-    let children = disabled ?
-      this._addStylesToChildren(styles.disabled) :
-      this.props.children;
+    let childrenStyle = disabled ? this.mergeStyles(iconStyle, styles.disabled) : iconStyle;
 
     return (
       <EnhancedButton {...other}
@@ -147,25 +152,12 @@ let IconButton = React.createClass({
 
         {tooltipElement}
         {fonticon}
-        {children}
+        {Children.extend(this.props.children, {
+          style: childrenStyle
+        })}
 
       </EnhancedButton>
     );
-  },
-
-  _addStylesToChildren(styles) {
-    let children = [];
-
-    React.Children.forEach(this.props.children, (child) => {
-      children.push(
-        React.cloneElement(child, {
-          key: child.props.key ? child.props.key : children.length,
-          style: styles
-        })
-      );
-    });
-
-    return children;
   },
 
   _showTooltip() {
