@@ -131,14 +131,15 @@ let AppBar = React.createClass({
           </IconButton>
         );
       }
-
-      if (this.props.iconElementRight) {
+    }
+    
+    if (this.props.iconElementRight) {
         menuElementRight = (
           <div style={iconRightStyle}>
             {this.props.iconElementRight}
           </div>
         );
-      } else if (this.props.iconClassNameRight) {
+    } else if (this.props.iconClassNameRight) {
         menuElementRight = (
           <IconButton
             style={iconRightStyle}
@@ -147,7 +148,6 @@ let AppBar = React.createClass({
             onTouchTap={this._onRightIconButtonTouchTap}>
           </IconButton>
         );
-      }
     }
 
     return (
