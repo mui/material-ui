@@ -16,6 +16,10 @@ let SelectField = React.createClass({
   propTypes: {
     errorText: React.PropTypes.string,
     floatingLabelText: React.PropTypes.string,
+    selectFieldRoot: React.PropTypes.string,
+    underlineStyle: React.PropTypes.string,
+    labelStyle: React.PropTypes.string,
+    hintText: React.PropTypes.string,
     hintText: React.PropTypes.string,
     id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
@@ -27,6 +31,7 @@ let SelectField = React.createClass({
     type: React.PropTypes.string,
     rows: React.PropTypes.number,
     inputStyle: React.PropTypes.object,
+    iconStyle: React.PropTypes.object,
     floatingLabelStyle: React.PropTypes.object,
     autoWidth: React.PropTypes.bool,
     menuItems: React.PropTypes.array.isRequired,
@@ -40,11 +45,12 @@ let SelectField = React.createClass({
 
   getStyles() {
     let styles = {
-      selectfield:{
+      selectField:{
         root: {
-          height:'auto',
+          height:'48px',
           position:'relative',
-          width:'100%'
+          width:'100%',
+          top: '18px'
         },
         label: {
           paddingLeft:0,
@@ -77,12 +83,12 @@ let SelectField = React.createClass({
       <TextField {...this.props}>
         <DropDownMenu {...this.props}
           onChange={this.onChange}
-          style={styles.selectfield.root}
-          labelStyle={styles.selectfield.label}
-          iconStyle={styles.selectfield.icon}
-          underlineStyle={styles.selectfield.underline}
+          style={this.mergeAndPrefix(styles.selectField.root, this.props.selectFieldRoot)}
+          labelStyle={this.mergeAndPrefix(styles.selectField.label, this.props.labelStyle)}
+          iconStyle={this.mergeAndPrefix(styles.selectField.icon, this.props.iconStyle)}
+          underlineStyle={this.mergeAndPrefix(styles.selectField.underline, this.props.underlineStyle)}
           autoWidth={false}
-          />
+        />
       </TextField>
     );
   }
