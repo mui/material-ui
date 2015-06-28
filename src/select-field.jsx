@@ -20,7 +20,6 @@ let SelectField = React.createClass({
     underlineStyle: React.PropTypes.string,
     labelStyle: React.PropTypes.string,
     hintText: React.PropTypes.string,
-    hintText: React.PropTypes.string,
     id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
