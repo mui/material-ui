@@ -92,7 +92,6 @@ let ListItem = React.createClass({
         display: 'block',
         fontSize: 16,
         lineHeight: '16px',
-        overflow: 'hidden',
         position: 'relative',
         transition: Transitions.easeOut()
       },

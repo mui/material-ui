@@ -31,7 +31,8 @@ let TouchRipple = React.createClass({
       width: '100%',
       position: 'absolute',
       top: 0,
-      left: 0
+      left: 0,
+      overflow: 'hidden',
     }, this.props.style);
 
     return (
