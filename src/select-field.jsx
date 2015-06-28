@@ -20,7 +20,6 @@ let SelectField = React.createClass({
     underlineStyle: React.PropTypes.string,
     labelStyle: React.PropTypes.string,
     hintText: React.PropTypes.string,
-    hintText: React.PropTypes.string,
     id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
@@ -47,10 +46,10 @@ let SelectField = React.createClass({
     let styles = {
       selectField:{
         root: {
-          height:'48px',
+          height:'46px',
           position:'relative',
           width:'100%',
-          top: '18px'
+          top: '16px'
         },
         label: {
           paddingLeft:0,
@@ -66,15 +65,22 @@ let SelectField = React.createClass({
         }
       }
     };
+    if(this.props.hintText && !this.props.floatingLabelText) {
+      styles.selectField.root.top = '-5px'
+
+      styles.selectField.label.top = '1px'
+      styles.selectField.icon.top = '17px'
+    }
     return styles;
   },
 
   onChange(e, index, payload) {
-    if (payload)
+    if (payload) {
       e.target.value = payload[this.props.valueMember] || payload;
-
-    if (this.props.onChange)
+    }
+    if (this.props.onChange) {
       this.props.onChange(e);
+    }
   },
 
   render() {

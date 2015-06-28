@@ -19,6 +19,7 @@ let TextFieldsPage = React.createClass({
       floatingPropValue: 'Prop Value',
       valueLinkValue: 'Value Link',
       selectValue: undefined,
+      selectValue2: undefined,
       selectValueLinkValue: 4,
       floatingValueLinkValue: 'Value Link'
     };
@@ -79,15 +80,22 @@ let TextFieldsPage = React.createClass({
       '  disabled={true}\n' +
       '  defaultValue="Disabled With Value" />\n\n' +
 
-      '//Select Fields\n' +
+      '//Select Fields\n'+
       '<SelectField\n'+
       '  value={this.state.selectValue}\n'+
-      '  onChange={this._handleSelectValueChange}\n'+
-      '  hintText="Select Field"\n'+
+      '  onChange={this._handleSelectValueChange.bind(null, "selectValue")}\n'+
+      '  hintText="Hint Text"\n'+
       '  menuItems={menuItems} />\n'+
       '<SelectField\n'+
       '  valueLink={this.linkState("selectValueLinkValue")}\n'+
       '  floatingLabelText="Select Field"\n'+
+      '  valueMember="id"\n'+
+      '  displayMember="name"\n'+
+      '  menuItems={arbitraryArrayMenuItems} />\n'+
+      '<SelectField\n'+
+      '  value={this.state.selectValue2}\n'+
+      '  onChange={this._handleSelectValueChange.bind(null, "selectValue2")}\n'+
+      '  floatingLabelText="Float Label Text"\n'+
       '  valueMember="id"\n'+
       '  displayMember="name"\n'+
       '  menuItems={arbitraryArrayMenuItems} />\n\n'+
@@ -324,14 +332,21 @@ let TextFieldsPage = React.createClass({
               disabled={true}
               defaultValue="Disabled With Value" /><br/>
             <SelectField
+              style={styles.textfield}
               value={this.state.selectValue}
-              onChange={this._handleSelectValueChange}
-              hintText="Select Field"
-              floatingLabelText="Select Field"
+              onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
+              hintText="Hint Text"
               menuItems={menuItems} />
             <SelectField
               valueLink={this.linkState('selectValueLinkValue')}
-              floatingLabelText="Select Field"
+              floatingLabelText="Float Label Text"
+              valueMember="id"
+              displayMember="name"
+              menuItems={arbitraryArrayMenuItems} />
+            <SelectField
+              value={this.state.selectValue2}
+              onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
+              floatingLabelText="Float Label Text"
               valueMember="id"
               displayMember="name"
               menuItems={arbitraryArrayMenuItems} />
@@ -430,10 +445,10 @@ let TextFieldsPage = React.createClass({
     });
   },
 
-  _handleSelectValueChange(e) {
-    this.setState({
-      selectValue: e.target.value
-    });
+  _handleSelectValueChange(name, e) {
+    let change = {}
+    change[name] = e.target.value
+    this.setState(change);
   },
 
   _handleFloatingInputChange(e) {
