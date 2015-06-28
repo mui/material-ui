@@ -43,7 +43,7 @@ let Toggle = React.createClass({
         width: 36,
         padding: '4px 0px 6px 2px'
       },
-      toggleElemet: {
+      toggleElement: {
         width: toggleTrackWidth
       },
       track: {
@@ -111,10 +111,10 @@ let Toggle = React.createClass({
       thumbStyles.marginLeft = '-' + thumbStyles.width;
     }
 
-    let toggleElemetStyles = this.mergeAndPrefix(styles.toggleElemet, this.props.elementStyle);
+    let toggleElementStyles = this.mergeAndPrefix(styles.toggleElement, this.props.elementStyle);
 
     let toggleElement = (
-      <div style={toggleElemetStyles}>
+      <div style={toggleElementStyles}>
         <div style={trackStyles} />
         <Paper style={thumbStyles} circle={true} zDepth={1} />
       </div>
