@@ -55,6 +55,12 @@ class MenusPage extends React.Component {
             desc: 'Indicates if the menu should render with compact desktop styles.'
           },
           {
+            name: 'multiple',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the value can an array and allow the menu to be a multi-select.'
+          },
+          {
             name: 'open',
             type: 'bool',
             header: 'default: true',
@@ -74,7 +80,7 @@ class MenusPage extends React.Component {
           },
           {
             name: 'value',
-            type: 'string',
+            type: 'string or array',
             header: 'optional',
             desc: 'The value of the selected menu item. If passed in, this will make the menu ' +
               'a controlled component. This component also supports valueLink.'

@@ -18,6 +18,7 @@ let IconMenu = React.createClass({
   propTypes: {
     desktop: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
+    multiple: React.PropTypes.bool,
     openDirection: React.PropTypes.oneOf([
       'bottom-left',
       'bottom-right',
@@ -51,6 +52,7 @@ let IconMenu = React.createClass({
     let {
       desktop,
       iconButtonElement,
+      multiple,
       openDirection,
       onChange,
       onKeyDown,
@@ -92,6 +94,7 @@ let IconMenu = React.createClass({
         <Menu
           desktop={desktop}
           menuListStyle={menuListStyle}
+          multiple={multiple}
           onItemTouchTap={this._handleItemTouchTap}
           onChange={onChange}
           open={open}

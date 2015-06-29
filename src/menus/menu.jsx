@@ -1,4 +1,5 @@
 let React = require('react/addons');
+let update = React.addons.update;
 let Controllable = require('../mixins/controllable');
 let StylePropable = require('../mixins/style-propable');
 let Transitions = require('../styles/transitions');
@@ -18,6 +19,7 @@ let Menu = React.createClass({
   propTypes: {
     desktop: React.PropTypes.bool,
     listStyle: React.PropTypes.object,
+    multiple: React.PropTypes.bool,
     onItemTouchTap: React.PropTypes.func,
     open: React.PropTypes.bool,
     openDirection: React.PropTypes.oneOf([
@@ -62,6 +64,7 @@ let Menu = React.createClass({
       children,
       desktop,
       listStyle,
+      multiple,
       open,
       openDirection,
       selectedMenuItemStyle,
@@ -119,7 +122,6 @@ let Menu = React.createClass({
     let mergedListStyles = this.mergeStyles(styles.list, listStyle);
 
     //Cascade children opacity
-    //let _this = this;
     let childrenTransitionDelay = openDown ? 175 : 325;
     let childrenTransitionDelayIncrement = Math.ceil(150/React.Children.count(this.props.children));
     let newChildren = React.Children.map(children, (child) => {
@@ -135,10 +137,13 @@ let Menu = React.createClass({
       });
 
       let menuValue = this.getValueLink(this.props).value;
-      let selectedChildrenStyles =
-        menuValue && (menuValue === child.props.value) ?
-        this.mergeStyles(styles.selectedMenuItem, selectedMenuItemStyle) :
-        {};
+      let childValue = child.props.value;
+      let selectedChildrenStyles = {};
+
+      if ((multiple && menuValue.length && menuValue.indexOf(childValue) !== -1) ||
+        (!multiple && menuValue && menuValue === childValue)) {
+        selectedChildrenStyles = this.mergeStyles(styles.selectedMenuItem, selectedMenuItemStyle);
+      }
 
       let mergedChildrenStyles = this.mergeStyles(
         child.props.style || {},
@@ -171,11 +176,23 @@ let Menu = React.createClass({
   },
 
   _handleMenuItemTouchTap(e, item) {
+    let multiple = this.props.multiple;
     let valueLink = this.getValueLink(this.props);
+    let menuValue = valueLink.value;
+    let itemValue = item.props.value;
 
-    if (item.props.value !== valueLink.value) {
-      valueLink.requestChange(e, item.props.value);
+    if (multiple) {
+      let index = menuValue.indexOf(itemValue);
+      let newMenuValue = index === -1 ?
+        update(menuValue, {$push: [itemValue]}) :
+        update(menuValue, {$splice: [[index, 1]]});
+
+      valueLink.requestChange(e, newMenuValue);
+
+    } else if (!multiple && itemValue !== menuValue) {
+      valueLink.requestChange(e, itemValue);
     }
+
     this.props.onItemTouchTap(e, item);
   },
 
