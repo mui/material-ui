@@ -1,10 +1,11 @@
 let React = require('react/addons');
 let ClickAwayable = require('../mixins/click-awayable');
+let Controllable = require('../mixins/controllable');
 let StylePropable = require('../mixins/style-propable');
-let Transitions = require('../styles/transitions');
 let Children = require('../utils/children');
 let KeyCode = require('../utils/key-code');
 let Menu = require('../menus/menu');
+
 
 let IconMenu = React.createClass({
 
@@ -17,8 +18,12 @@ let IconMenu = React.createClass({
   propTypes: {
     desktop: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
-    openDirection: React.PropTypes.oneOf(['bottom-left', 'bottom-right',
-      'top-left', 'top-right']),
+    openDirection: React.PropTypes.oneOf([
+      'bottom-left',
+      'bottom-right',
+      'top-left',
+      'top-right'
+    ]),
     onItemTouchTap: React.PropTypes.func,
     menuListStyle: React.PropTypes.object,
     onKeyDown: React.PropTypes.func,
@@ -27,6 +32,7 @@ let IconMenu = React.createClass({
 
   getDefaultProps() {
     return {
+      onKeyDown: () => {},
       onItemTouchTap: () => {}
     };
   },
@@ -46,10 +52,14 @@ let IconMenu = React.createClass({
       desktop,
       iconButtonElement,
       openDirection,
+      onChange,
+      onKeyDown,
       onItemTouchTap,
       menuListStyle,
-      width,
       style,
+      value,
+      valueLink,
+      width,
       ...other
     } = this.props;
 
@@ -69,7 +79,7 @@ let IconMenu = React.createClass({
         this.open();
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
       }.bind(this)
-    }, iconButtonElement.props.children);
+    });
 
     return (
       <div
@@ -81,11 +91,14 @@ let IconMenu = React.createClass({
 
         <Menu
           desktop={desktop}
+          menuListStyle={menuListStyle}
+          onItemTouchTap={this._handleItemTouchTap}
+          onChange={onChange}
           open={open}
           openDirection={openDirection}
-          onItemTouchTap={this._handleItemTouchTap}
-          width={width}
-          menuListStyle={menuListStyle}>
+          value={value}
+          valueLink={valueLink}
+          width={width}>
           {this.props.children}
         </Menu>
 
@@ -110,6 +123,7 @@ let IconMenu = React.createClass({
   },
 
   _handleKeyDown(e) {
+    this.props.onKeyDown(e);
     switch (e.which) {
       case KeyCode.ESC:
         this.close();

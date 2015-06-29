@@ -73,6 +73,13 @@ class MenusPage extends React.Component {
             desc: 'The style object to use to override underlying list style.'
           },
           {
+            name: 'value',
+            type: 'string',
+            header: 'optional',
+            desc: 'The value of the selected menu item. If passed in, this will make the menu ' +
+              'a controlled component. This component also supports valueLink.'
+          },
+          {
             name: 'width',
             type: 'string or number',
             header: 'optional',
@@ -132,6 +139,12 @@ class MenusPage extends React.Component {
             header: 'optional',
             desc: 'This is the block element that contains the secondary text. If a string is passed in, a ' +
               'div tag will be rendered.'
+          },
+          {
+            name: 'value',
+            type: 'string',
+            header: 'optional',
+            desc: 'The value of the menu item.'
           }
         ]
       },
@@ -142,6 +155,12 @@ class MenusPage extends React.Component {
             name: 'onItemTouchTap',
             header: 'function(e, item)',
             desc: 'Fired when a menu item is touchTapped.'
+          },
+          {
+            name: 'onChange',
+            header: 'function(e, value)',
+            desc: 'Fired when a menu item is touchTapped and the menu item value ' +
+              'is not equal to the current menu value.'
           }
         ]
       }

@@ -21,7 +21,8 @@ let MenuItem = React.createClass({
     insetChildren: React.PropTypes.bool,
     leftIcon: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
-    secondaryText: React.PropTypes.node
+    secondaryText: React.PropTypes.node,
+    value: React.PropTypes.string
   },
 
   getDefaultProps() {
@@ -41,6 +42,7 @@ let MenuItem = React.createClass({
       rightIcon,
       secondaryText,
       style,
+      value,
       ...other
     } = this.props;
 
