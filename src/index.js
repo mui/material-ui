@@ -30,13 +30,7 @@ module.exports = {
   ListItem: require('./lists/list-item'),
   Menu: require('./menu/menu'),
   MenuItem: require('./menu/menu-item'),
-  Mixins: {
-    Classable: require('./mixins/classable'),
-    ClickAwayable: require('./mixins/click-awayable'),
-    WindowListenable: require('./mixins/window-listenable'),
-    StylePropable: require('./mixins/style-propable'),
-    StyleResizable: require('./mixins/style-resizable')
-  },
+  Mixins: require('./mixins/'),
   Overlay: require('./overlay'),
   Paper: require('./paper'),
   RadioButton: require('./radio-button'),
@@ -50,18 +44,14 @@ module.exports = {
     NavigationChevronLeft: require('./svg-icons/navigation/chevron-left'),
     NavigationChevronRight: require('./svg-icons/navigation/chevron-right')
   },
-  Styles: {
-    AutoPrefix: require('./styles/auto-prefix'),
-    Colors: require('./styles/colors'),
-    Spacing: require('./styles/spacing'),
-    ThemeManager: require('./styles/theme-manager'),
-    Transitions: require('./styles/transitions'),
-    Typography: require('./styles/typography')
-  },
+  Styles: require('./styles/'),
   Snackbar: require('./snackbar'),
   Tab: require('./tabs/tab'),
-  Table: require('./table/table'),
   Tabs: require('./tabs/tabs'),
+  Table: require('./table/table'),
+  TableFooter: require('./table/table-footer'),
+  TableHeader: require('./table/table-header'),
+  TableHeaderColumn: require('./table/table-header-column'),
   Theme: require('./theme'),
   Toggle: require('./toggle'),
   TimePicker: require('./time-picker'),
@@ -71,14 +61,5 @@ module.exports = {
   ToolbarSeparator: require('./toolbar/toolbar-separator'),
   ToolbarTitle: require('./toolbar/toolbar-title'),
   Tooltip: require('./tooltip'),
-  Utils: {
-    CssEvent: require('./utils/css-event'),
-    Dom: require('./utils/dom'),
-    Events: require('./utils/events'),
-    KeyCode: require('./utils/key-code'),
-    KeyLine: require('./utils/key-line'),
-    ColorManipulator: require('./utils/color-manipulator'),
-    Extend: require('./utils/extend'),
-    UniqueId: require('./utils/unique-id')
-  }
+  Utils: require('./utils/')
 };
