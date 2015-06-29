@@ -410,9 +410,6 @@ class ButtonPage extends React.Component {
                   <RaisedButton label="Disabled" disabled={true} />
                 </div>
               </div>
-              <div>
-                <RaisedButton label="Full Width Button" fullWidth={true} />
-              </div>
             </ComponentDoc>
           </Tab>
           <Tab label="Floating Action Buttons">
