@@ -87,6 +87,17 @@ let TextFieldsPage = React.createClass({
       '  menuItems={menuItems} />\n'+
       '<SelectField\n'+
       '  valueLink={this.linkState("selectValueLinkValue")}\n'+
+      '  valueMember="id"\n'+
+      '  displayMember="name"\n'+
+      '  menuItems={arbitraryArrayMenuItems} />\n'+
+      '<SelectField\n'+
+      '  value={this.state.selectValue}\n'+
+      '  onChange={this._handleSelectValueChange}\n'+
+      '  hintText="Select Field"\n'+
+      '  floatingLabelText="Select Field"\n'+
+      '  menuItems={menuItems} />\n'+
+      '<SelectField\n'+
+      '  valueLink={this.linkState("selectValueLinkValue")}\n'+
       '  floatingLabelText="Select Field"\n'+
       '  valueMember="id"\n'+
       '  displayMember="name"\n'+
@@ -324,17 +335,31 @@ let TextFieldsPage = React.createClass({
               disabled={true}
               defaultValue="Disabled With Value" /><br/>
             <SelectField
+              style={styles.textfield}
+              value={this.state.selectValue}
+              onChange={this._handleSelectValueChange}
+              hintText="Select Field"
+              menuItems={menuItems} /><br/>
+            <SelectField
+              style={styles.textfield}
+              valueLink={this.linkState('selectValueLinkValue')}
+              valueMember="id"
+              displayMember="name"
+              menuItems={arbitraryArrayMenuItems} /><br/>
+            <SelectField
+              style={styles.textfield}
               value={this.state.selectValue}
               onChange={this._handleSelectValueChange}
               hintText="Select Field"
               floatingLabelText="Select Field"
-              menuItems={menuItems} />
+              menuItems={menuItems} /><br/>
             <SelectField
+              style={styles.textfield}
               valueLink={this.linkState('selectValueLinkValue')}
               floatingLabelText="Select Field"
               valueMember="id"
               displayMember="name"
-              menuItems={arbitraryArrayMenuItems} />
+              menuItems={arbitraryArrayMenuItems} /><br/>
           </div>
           <div style={styles.group}>
             <TextField
