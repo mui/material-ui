@@ -35,7 +35,8 @@ let FloatingActionButton = React.createClass({
     onMouseOut: React.PropTypes.func,
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
-    secondary: React.PropTypes.bool
+    secondary: React.PropTypes.bool,
+    backgroundColor: React.PropTypes.string
   },
 
   getInitialState() {
@@ -70,7 +71,7 @@ let FloatingActionButton = React.createClass({
   },
 
   _getBackgroundColor() {
-    return  this.props.disabled ? this.getTheme().disabledColor :
+    return  this.props.backgroundColor ? this.props.backgroundColor: this.props.disabled ? this.getTheme().disabledColor :
       this.props.secondary ? this.getTheme().secondaryColor :
       this.getTheme().color;
   },
