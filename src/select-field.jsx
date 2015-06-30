@@ -44,32 +44,33 @@ let SelectField = React.createClass({
 
   getStyles() {
     let styles = {
-      selectField:{
-        root: {
-          height:'46px',
-          position:'relative',
-          width:'100%',
-          top: '16px'
-        },
-        label: {
-          paddingLeft:0,
-          top:4,
-          width:'100%'
-        },
-        icon: {
-          top:20,
-          right:0
-        },
-        underline: {
-          borderTop:'none'
-        }
-      }
+      root: {
+        height:'46px',
+        position:'relative',
+        width:'100%',
+        top: '16px'
+      },
+      label: {
+        paddingLeft:0,
+        top:4,
+        width:'100%'
+      },
+      icon: {
+        top:20,
+        right:0
+      },
+      underline: {
+        borderTop:'none'
+      },
+      input: {}
     };
     if(this.props.hintText && !this.props.floatingLabelText) {
-      styles.selectField.root.top = '-5px'
-
-      styles.selectField.label.top = '1px'
-      styles.selectField.icon.top = '17px'
+      styles.root.top = '-5px';
+      styles.label.top = '1px';
+      styles.icon.top = '17px';
+    }
+    if(!this.props.hintText && !this.props.floatingLabelText) {
+      styles.root.top = '-8px';
     }
     return styles;
   },
@@ -85,16 +86,39 @@ let SelectField = React.createClass({
 
   render() {
     let styles = this.getStyles();
+    let {
+      style,
+      labelStyle,
+      iconStyle,
+      underlineStyle,
+      selectFieldRoot,
+      onChange,
+      menuItems,
+      disabled,
+      floatingLabelText,
+      hintText,
+      ...other
+    } = this.props;
+
+    let textFieldProps = {
+      style: this.mergeAndPrefix(styles.input, style),
+      floatingLabelText: floatingLabelText,
+      hintText: (!hintText && !floatingLabelText) ? ' ' : hintText
+    };
+    let dropDownMenuProps = {
+      onChange: this.onChange,
+      menuItems: menuItems,
+      disabled: disabled,
+      style: this.mergeAndPrefix(styles.root, selectFieldRoot),
+      labelStyle: this.mergeAndPrefix(styles.label, labelStyle),
+      iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
+      underlineStyle: this.mergeAndPrefix(styles.underline),
+      autoWidth: false
+    };
+
     return (
-      <TextField {...this.props}>
-        <DropDownMenu {...this.props}
-          onChange={this.onChange}
-          style={this.mergeAndPrefix(styles.selectField.root, this.props.selectFieldRoot)}
-          labelStyle={this.mergeAndPrefix(styles.selectField.label, this.props.labelStyle)}
-          iconStyle={this.mergeAndPrefix(styles.selectField.icon, this.props.iconStyle)}
-          underlineStyle={this.mergeAndPrefix(styles.selectField.underline, this.props.underlineStyle)}
-          autoWidth={false}
-        />
+      <TextField {...textFieldProps}>
+        <DropDownMenu {...dropDownMenuProps} {...other} />
       </TextField>
     );
   }

@@ -343,12 +343,13 @@ let TextFieldsPage = React.createClass({
               valueMember="id"
               displayMember="name"
               menuItems={arbitraryArrayMenuItems} />
+            <p>
+              Without <code>hintText</code> or <code>floatingLabelText</code>
+            </p>
             <SelectField
+              style={styles.textfield}
               value={this.state.selectValue2}
               onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
-              floatingLabelText="Float Label Text"
-              valueMember="id"
-              displayMember="name"
               menuItems={arbitraryArrayMenuItems} />
           </div>
           <div style={styles.group}>
