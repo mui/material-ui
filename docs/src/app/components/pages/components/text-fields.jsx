@@ -95,9 +95,6 @@ let TextFieldsPage = React.createClass({
       '<SelectField\n'+
       '  value={this.state.selectValue2}\n'+
       '  onChange={this._handleSelectValueChange.bind(null, "selectValue2")}\n'+
-      '  floatingLabelText="Float Label Text"\n'+
-      '  valueMember="id"\n'+
-      '  displayMember="name"\n'+
       '  menuItems={arbitraryArrayMenuItems} />\n\n'+
 
       '//Floating Hint Text Labels\n' +
