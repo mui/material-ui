@@ -253,6 +253,11 @@ var Menu = React.createClass({
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
   },
 
+  componentWillReceiveProps(nextProps) {
+    //Set the menu width
+    this._setKeyWidth(React.findDOMNode(this));
+  },
+
   getTheme() {
     return this.context.muiTheme.component.menu;
   },
@@ -422,6 +427,8 @@ var Menu = React.createClass({
   },
 
   _setKeyWidth(el) {
+    el.style.width = 'auto';
+
     let menuWidth = this.props.autoWidth ?
       KeyLine.getIncrementalDim(el.offsetWidth) + 'px' :
       '100%';
