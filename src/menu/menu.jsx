@@ -45,7 +45,7 @@ var NestedMenuItem = React.createClass({
     return {
       open: false ,
       activeIndex:0
-    }
+    };
   },
 
   componentClickAway() {
@@ -226,7 +226,7 @@ var Menu = React.createClass({
     return {
       nestedMenuShown: false,
       activeIndex:0
-    }
+    };
   },
 
   getDefaultProps() {
@@ -254,7 +254,7 @@ var Menu = React.createClass({
   },
 
   getTheme() {
-    return this.context.muiTheme.component.menu
+    return this.context.muiTheme.component.menu;
   },
 
   getSpacing() {
@@ -432,13 +432,6 @@ var Menu = React.createClass({
     });
   },
 
-  _getCurrentHeight() {
-    let totalItems = Math.max(1, this.props.menuItems.length);
-    let styles = this.getStyles();
-    let newHeight = styles.item.height * totalItems;
-    return newHeight;
-  },
-
   _renderVisibility() {
     let el;
 
@@ -447,23 +440,42 @@ var Menu = React.createClass({
       let container = React.findDOMNode(this.refs.paperContainer);
 
       if (this.props.visible) {
-        //Open the menu
-        el.style.transition = Transitions.easeOut();
-        el.style.height = this._getCurrentHeight() + 'px';
-        el.style.paddingTop = this.getSpacing().desktopGutterMini + 'px';
-        el.style.paddingBottom = this.getSpacing().desktopGutterMini + 'px';
+        //Hide the element and allow the browser to automatically resize it.
+        el.style.transition = '';
+        el.style.visibility = 'hidden';
+        el.style.height = 'auto';
 
-        //Set the overflow to visible after the animation is done so
-        //that other nested menus can be shown
-        CssEvent.onTransitionEnd(el, () => {
-          //Make sure the menu is open before setting the overflow.
-          //This is to accout for fast clicks
-          if (this.props.visible) container.style.overflow = 'visible';
-          el.focus();
-        });
+        //Determine the height of the menu.
+        let padding = this.getSpacing().desktopGutterMini;
+        let height = el.offsetHeight +
+            //Add padding to the offset height, because it is not yet set in the style.
+            (padding * 2);
+
+        //Unhide the menu with the height set back to zero.
+        el.style.height = '0px';
+        el.style.visibility = 'visible';
+
+        //Add transition if it is not already defined.
+        el.style.transition = Transitions.easeOut();
+
+        //Open the menu
+        setTimeout(() => {
+          // Yeild to the DOM, then apply height and padding. This makes the transition smoother.
+          el.style.paddingTop = padding + 'px';
+          el.style.paddingBottom = padding + 'px';
+          el.style.height = height + 'px';
+
+          //Set the overflow to visible after the animation is done so
+          //that other nested menus can be shown
+          CssEvent.onTransitionEnd(el, () => {
+            //Make sure the menu is open before setting the overflow.
+            //This is to accout for fast clicks
+            if (this.props.visible) container.style.overflow = 'visible';
+            el.focus();
+          });
+        }, 0);
       }
       else {
-
         //Close the menu
         el.style.height = '0px';
         el.style.paddingTop = '0px';
@@ -487,11 +499,11 @@ var Menu = React.createClass({
     if (this.props.onItemToggle) this.props.onItemToggle(e, index, this.props.menuItems[index], toggled);
   },
   _onItemActivated(e, index) {
-    this.setState({activeIndex:index})
+    this.setState({activeIndex: index});
   },
   _onItemDeactivated(e, index) {
     if (this.state.activeKey == index)
-      this.setState({activeIndex:0})
+      this.setState({activeIndex: 0});
   },
 
   _onKeyDown(e) {
@@ -547,7 +559,7 @@ var Menu = React.createClass({
 
   _triggerSelection(e) {
     let index = this.state.activeIndex || 0;
-    this._onItemTap(e, index)
+    this._onItemTap(e, index);
   },
 
   _close() {
