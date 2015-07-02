@@ -33,6 +33,7 @@ let EnhancedButton = React.createClass({
     touchRippleOpacity: React.PropTypes.number,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
+    onKeyboardActivate: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
     onKeyUp: React.PropTypes.func,
@@ -45,6 +46,7 @@ let EnhancedButton = React.createClass({
       containerElement: 'button',
       onBlur: () => {},
       onFocus: () => {},
+      onKeyboardActivate: () => {},
       onKeyboardFocus: () => {},
       onKeyDown: () => {},
       onKeyUp: () => {},
@@ -202,6 +204,7 @@ let EnhancedButton = React.createClass({
       if (e.keyCode === KeyCode.TAB) _tabPressed = true;
       if (e.keyCode === KeyCode.ENTER && this.state.isKeyboardFocused) {
         this._handleTouchTap(e);
+        this.props.onKeyboardActivate(e);
       }
     }
     this.props.onKeyDown(e);
@@ -212,6 +215,7 @@ let EnhancedButton = React.createClass({
       e.keyCode === KeyCode.SPACE &&
       this.state.isKeyboardFocused) {
       this._handleTouchTap(e);
+      this.props.onKeyboardActivate(e);
     }
     this.props.onKeyUp(e);
   },
