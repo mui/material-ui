@@ -18,6 +18,7 @@ let Menu = React.createClass({
   },
 
   propTypes: {
+    autoWidth: React.PropTypes.bool,
     desktop: React.PropTypes.bool,
     listStyle: React.PropTypes.object,
     multiple: React.PropTypes.bool,
@@ -38,6 +39,7 @@ let Menu = React.createClass({
 
   getDefaultProps() {
     return {
+      autoWidth: true,
       onItemTouchTap: () => {},
       open: true,
       openDirection: 'bottom-left',
@@ -53,16 +55,17 @@ let Menu = React.createClass({
   },
 
   componentDidMount() {
-    this._setWidth();
+    if (this.props.autoWidth) this._setWidth();
   },
 
   componentDidUpdate() {
-    this._setWidth();
+    if (this.props.autoWidth) this._setWidth();
   },
 
   render() {
 
     let {
+      autoWidth,
       children,
       desktop,
       listStyle,

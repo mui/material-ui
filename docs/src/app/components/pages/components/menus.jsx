@@ -49,6 +49,13 @@ class MenusPage extends React.Component {
         name: 'Menu Props',
         infoArray: [
           {
+            name: 'autoWidth',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'If true, the width will automatically be set according to the items inside the menu using the ' +
+              'proper keyline increment.'
+          },
+          {
             name: 'desktop',
             type: 'bool',
             header: 'default: false',
