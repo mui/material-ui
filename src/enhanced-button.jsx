@@ -130,8 +130,7 @@ let EnhancedButton = React.createClass({
       onTouchTap: this._handleTouchTap,
       onKeyUp: this._handleKeyUp,
       onKeyDown: this._handleKeyDown,
-      tabIndex: tabIndex,
-      type: 'button'
+      tabIndex: tabIndex
     };
 
     let buttonChildren = [];
