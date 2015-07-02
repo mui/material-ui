@@ -49,17 +49,6 @@ let IconButton = React.createClass({
     };
   },
 
-  componentDidMount() {
-    if (process.env.NODE_ENV !== 'production') {
-      if (this.props.iconClassName && this.props.children) {
-        let warning = 'You have set both an iconClassName and a child icon. ' +
-                      'It is recommended you use only one method when adding ' +
-                      'icons to IconButtons.';
-        console.warn(warning);
-      }
-    }
-  },
-
   getStyles() {
     let spacing = this.context.muiTheme.spacing;
     let palette = this.context.muiTheme.palette;
@@ -71,7 +60,8 @@ let IconButton = React.createClass({
         transition: Transitions.easeOut(),
         padding: spacing.iconSize / 2,
         width: spacing.iconSize*2,
-        height: spacing.iconSize*2
+        height: spacing.iconSize*2,
+        fontSize: 0
       },
       tooltip: {
         boxSizing: 'border-box',
@@ -133,7 +123,8 @@ let IconButton = React.createClass({
             styles.icon,
             disabled ? styles.disabled : {},
             iconStyleFontIcon
-          )}/>
+          )}>
+          {this.props.children}</FontIcon>
       );
     }
 
