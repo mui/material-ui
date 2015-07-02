@@ -195,6 +195,12 @@ let TextFieldsPage = React.createClass({
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of the TextField\'s root element.'
+          },
+          {
+            name: 'type',
+            type: 'string',
+            header: 'optional',
+            desc: 'Specifies the type of input to display such as "password" or "text".'
           }
         ]
       },

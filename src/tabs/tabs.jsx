@@ -23,7 +23,7 @@ let Tabs = React.createClass({
 
   getInitialState(){
     let selectedIndex = 0;
-    if (this.props.initialSelectedIndex && this.props.initialSelectedIndex < this.props.children.length) {
+    if (this.props.initialSelectedIndex && this.props.initialSelectedIndex < this.getTabCount()) {
       selectedIndex = this.props.initialSelectedIndex;
     }
     return {
@@ -37,6 +37,10 @@ let Tabs = React.createClass({
         .getComputedStyle(React.findDOMNode(this))
         .getPropertyValue('width'), 10)
     );
+  },
+
+  getTabCount() {
+    return React.Children.count(this.props.children);
   },
 
   componentDidMount() {
@@ -83,7 +87,7 @@ let Tabs = React.createClass({
 
     let tabContent = [];
     let width = this.state.fixedWidth ?
-      100 / this.props.children.length +'%' :
+      100 / this.getTabCount() +'%' :
       this.props.tabWidth + 'px';
 
     let left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
@@ -97,7 +101,7 @@ let Tabs = React.createClass({
           }, tab.props.children));
         }
         else {
-          tabContent.push(undefined)
+          tabContent.push(undefined);
         }
 
         return React.addons.cloneWithProps(tab, {
@@ -125,12 +129,12 @@ let Tabs = React.createClass({
           {tabContent}
         </div>
       </div>
-    )
+    );
   },
 
   _tabWidthPropIsValid() {
     return this.props.tabWidth &&
-      (this.props.tabWidth * this.props.children.length <= this.getEvenWidth());
+      (this.props.tabWidth * this.getTabCount() <= this.getEvenWidth());
   },
 
   // Validates that the tabWidth can fit all tabs on the tab bar. If not, the

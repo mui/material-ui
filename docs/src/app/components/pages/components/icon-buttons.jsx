@@ -90,6 +90,12 @@ class IconButtonsPage extends React.Component {
             desc: 'Allows the tooltip to be viewed with different alignments: "bottom-center", "top-center", "bottom-right", "top-right", "bottom-left" and "top-left"'
           },
           {
+            name: 'tooltipStyles',
+            type: 'object',
+            header: 'optional',
+            desc: 'Allows modification of tooltip styles.'
+          },
+          {
             name: 'touch',
             type: 'bool',
             header: 'default: false',

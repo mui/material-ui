@@ -24,6 +24,7 @@ let IconButton = React.createClass({
     onFocus: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
+    tooltipStyles: React.PropTypes.object,
     tooltipPosition: React.PropTypes.oneOf([
       'bottom-center',
       'bottom-left',
@@ -113,7 +114,7 @@ let IconButton = React.createClass({
         label={tooltip}
         show={this.state.tooltipShown}
         touch={touch}
-        style={this.mergeStyles(styles.tooltip)}
+        style={this.mergeStyles(styles.tooltip, this.props.tooltipStyles)}
         verticalPosition={tooltipPosition[0]}
         horizontalPosition={tooltipPosition[1]}/>
     ) : null;
