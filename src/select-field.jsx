@@ -38,30 +38,27 @@ let SelectField = React.createClass({
     selectedIndex: React.PropTypes.number
   },
 
-  getDefaultProps() {
-    return {};
-  },
-
   getStyles() {
     let styles = {
-      selectField:{
+      selectField: {
         root: {
-          height:'48px',
-          position:'relative',
-          width:'100%',
-          top: '18px'
+          height: 48,
+          position: 'relative',
+          width: '100%',
+          top: this.props.floatingLabelText ? 16 : -8,
+          fontSize: 16,
         },
         label: {
-          paddingLeft:0,
-          top:4,
-          width:'100%'
+          paddingLeft: 0,
+          top: 4,
+          width: '100%'
         },
         icon: {
-          top:20,
-          right:0
+          top: 20,
+          right: 0
         },
         underline: {
-          borderTop:'none'
+          borderTop: 'none'
         }
       }
     };
@@ -78,6 +75,7 @@ let SelectField = React.createClass({
 
   render() {
     let styles = this.getStyles();
+
     return (
       <TextField {...this.props}>
         <DropDownMenu {...this.props}
