@@ -32,6 +32,7 @@ let Table = React.createClass({
     multiSelectable: React.PropTypes.bool,
     displayRowCheckbox: React.PropTypes.bool,
     canSelectAll: React.PropTypes.bool,
+    deselectOnClickAway: React.PropTypes.bool,
     displaySelectAll: React.PropTypes.bool,
     onRowSelection: React.PropTypes.func,
     onCellClick: React.PropTypes.func,
@@ -53,7 +54,8 @@ let Table = React.createClass({
       displayRowCheckbox: true,
       multiSelectable: false,
       canSelectAll: false,
-      displaySelectAll: true
+      displaySelectAll: true,
+      deselectOnClickAway: true
     };
   },
 
@@ -92,7 +94,9 @@ let Table = React.createClass({
   },
 
   componentClickAway() {
-    if (this.state.selectedRows.length) this.setState({ selectedRows: [] });
+    if (this.props.deselectOnClickAway && this.state.selectedRows.length) {
+      this.setState({selectedRows: []});
+    }
   },
 
   render() {
@@ -341,7 +345,6 @@ let Table = React.createClass({
 
   _handleCellClick(e, rowNumber, columnNumber) {
     if (this.props.onCellClick) this.props.onCellClick(rowNumber, this._getColumnId(columnNumber));
-    this._handleRowClick(e, rowNumber);
   },
 
   _handleRowHover(e, rowNumber) {
