@@ -231,6 +231,7 @@ let ListItem = React.createClass({
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
         onTouchStart={this._handleTouchStart}
+        ref="enhancedButton"
         style={mergedRootStyles}>
         <div style={mergedInnerDivStyles}>
           {contentChildren}
@@ -238,6 +239,14 @@ let ListItem = React.createClass({
       </EnhancedButton>
     );
 
+  },
+
+  setKeyboardFocus() {
+    let button = this.refs.enhancedButton;
+    if (button) {
+      button.setKeyboardFocus();
+      React.findDOMNode(button).focus();
+    }
   },
 
   _pushElement(children, element, baseStyles, additionalProps) {

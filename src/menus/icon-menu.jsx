@@ -77,6 +77,7 @@ let IconMenu = React.createClass({
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
 
     let iconButton = React.cloneElement(iconButtonElement, {
+      onKeyboardActivate: this._handleIconButtonKeyboardActivate,
       onTouchTap: (e) => {
         this.open();
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
@@ -99,6 +100,7 @@ let IconMenu = React.createClass({
           onChange={onChange}
           open={open}
           openDirection={openDirection}
+          ref="menu"
           value={value}
           valueLink={valueLink}
           width={width}>
@@ -125,15 +127,17 @@ let IconMenu = React.createClass({
     }
   },
 
+  _handleIconButtonKeyboardActivate(e) {
+    this.refs.menu.setKeyboardFocusIndex(0);
+  },
+
   _handleKeyDown(e) {
-    this.props.onKeyDown(e);
-    switch (e.which) {
+    switch (e.keyCode) {
       case KeyCode.ESC:
         this.close();
-      default:
-        return;
+        break;
     }
-    e.preventDefault();
+    this.props.onKeyDown(e);
   },
 
   _handleItemTouchTap(e, child) {

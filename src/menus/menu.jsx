@@ -5,6 +5,7 @@ let StylePropable = require('../mixins/style-propable');
 let Transitions = require('../styles/transitions');
 let Children = require('../utils/children');
 let Dom = require('../utils/dom');
+let KeyCode = require('../utils/key-code');
 let List = require('../lists/list');
 
 
@@ -46,6 +47,7 @@ let Menu = React.createClass({
 
   getInitialState() {
     return {
+      keyboardFocusIndex: -1,
       keyWidth: this.props.desktop ? 64 : 56
     };
   },
@@ -124,7 +126,8 @@ let Menu = React.createClass({
     //Cascade children opacity
     let childrenTransitionDelay = openDown ? 175 : 325;
     let childrenTransitionDelayIncrement = Math.ceil(150/React.Children.count(this.props.children));
-    let newChildren = React.Children.map(children, (child) => {
+
+    let newChildren = React.Children.map(children, (child, childIndex) => {
 
       if (openDown) {
         childrenTransitionDelay += childrenTransitionDelayIncrement;
@@ -152,6 +155,7 @@ let Menu = React.createClass({
 
       let clonedChild = React.cloneElement(child, {
         desktop: desktop,
+        keyboardFocused: open && childIndex === this.state.keyboardFocusIndex,
         onTouchTap: (e) => {
           this._handleMenuItemTouchTap(e, child);
           if (child.props.onTouchTap) child.props.onTouchTap(e);
@@ -165,7 +169,9 @@ let Menu = React.createClass({
     }.bind(this));
 
     return (
-      <div style={mergedRootStyles}>
+      <div
+        onKeyDown={this._handleKeyDown}
+        style={mergedRootStyles}>
         <List
           {...other}
           ref="list"
@@ -174,6 +180,53 @@ let Menu = React.createClass({
         </List>
       </div>
     );
+  },
+
+  setKeyboardFocusIndex(newIndex) {
+    this.setState({
+      keyboardFocusIndex: newIndex
+    });
+  },
+
+  _decrementKeyboardFocusIndex() {
+    let index = this.state.keyboardFocusIndex;
+
+    index--;
+    if (index < 0) index = 0;
+
+    this.setKeyboardFocusIndex(index);
+  },
+
+  _incrementKeyboardFocusIndex() {
+    let index = this.state.keyboardFocusIndex;
+    let maxIndex = React.Children.count(this.props.children) - 1;
+
+    index++;
+    if (index > maxIndex) index = maxIndex;
+
+    this.setKeyboardFocusIndex(index);
+  },
+
+  _handleKeyDown(e) {
+    if (this.props.open) {
+      switch (e.keyCode) {
+        case KeyCode.UP:
+          this._decrementKeyboardFocusIndex();
+          break;
+        case KeyCode.DOWN:
+          this._incrementKeyboardFocusIndex();
+          break;
+        case KeyCode.TAB:
+          if (e.shiftKey) {
+            this._decrementKeyboardFocusIndex();
+          } else {
+            this._incrementKeyboardFocusIndex();
+          }
+          break;
+      }
+
+      e.preventDefault();
+    }
   },
 
   _handleMenuItemTouchTap(e, item) {
