@@ -342,8 +342,8 @@ var Menu = React.createClass({
               active={this.state.activeIndex == i}
               text={menuItem.text}
               disabled={isDisabled}
-              className={this.props.menuItemClassNameLink}
-              style={this.props.menuItemStyleLink}
+              className={menuItem.className || this.props.menuItemClassNameLink}
+              style={menuItem.style || this.props.menuItemStyleLink}
               payload={menuItem.payload}
               target={menuItem.target}/>
           );
@@ -354,8 +354,8 @@ var Menu = React.createClass({
             <SubheaderMenuItem
               key={i}
               index={i}
-              className={this.props.menuItemClassNameSubheader}
-              style={this.mergeAndPrefix(styles.subheader, this.props.menuItemStyleSubheader)}
+              className={menuItem.className || this.props.menuItemClassNameSubheader}
+              style={this.mergeAndPrefix(styles.subheader, menuItem.style || this.props.menuItemStyleSubheader)}
               firstChild={i === 0}
               text={menuItem.text} />
           );
@@ -400,8 +400,8 @@ var Menu = React.createClass({
               active={this.state.activeIndex == i}
               icon={menuItem.icon}
               data={menuItem.data}
-              className={this.props.menuItemClassName}
-              style={this.props.menuItemStyle}
+              className={menuItem.className || this.props.menuItemClassName}
+              style={menuItem.style || this.props.menuItemStyle}
               attribute={menuItem.attribute}
               number={menuItem.number}
               toggle={menuItem.toggle}
