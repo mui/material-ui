@@ -156,7 +156,8 @@ let Menu = React.createClass({
           this._handleMenuItemTouchTap(e, child);
           if (child.props.onTouchTap) child.props.onTouchTap(e);
         },
-        style: mergedChildrenStyles
+        style: mergedChildrenStyles,
+        tabIndex: open ? child.props.tabIndex : -1
       });
 
       return <div style={childrenContainerStyles}>{clonedChild}</div>;
