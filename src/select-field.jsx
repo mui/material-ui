@@ -45,33 +45,37 @@ let SelectField = React.createClass({
   getStyles() {
     let styles = {
       root: {
-        height:'46px',
-        position:'relative',
-        width:'100%',
-        top: '16px'
+        height: 46,
+        position: 'relative',
+        width: '100%',
+        top: 16,
+        fontSize: 16,
       },
       label: {
-        paddingLeft:0,
-        top:4,
-        width:'100%'
+        paddingLeft: 0,
+        top: 4,
+        width: '100%'
       },
       icon: {
-        top:20,
-        right:0
+        top: 20,
+        right: 0
       },
       underline: {
-        borderTop:'none'
+        borderTop: 'none'
       },
       input: {}
     };
-    if(this.props.hintText && !this.props.floatingLabelText) {
-      styles.root.top = '-5px';
-      styles.label.top = '1px';
-      styles.icon.top = '17px';
+
+    if (!this.props.floatingLabelText) {
+      if(this.props.hintText) {
+        styles.root.top = -5;
+        styles.label.top = 1;
+        styles.icon.top = 17;
+      } else {
+        styles.root.top = -8;
+      }
     }
-    if(!this.props.hintText && !this.props.floatingLabelText) {
-      styles.root.top = '-8px';
-    }
+
     return styles;
   },
 

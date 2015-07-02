@@ -339,16 +339,13 @@ let TextFieldsPage = React.createClass({
               value={this.state.selectValue}
               onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
               hintText="Hint Text"
-              menuItems={menuItems} />
+              menuItems={menuItems} /><br/>
             <SelectField
               valueLink={this.linkState('selectValueLinkValue')}
               floatingLabelText="Float Label Text"
               valueMember="id"
               displayMember="name"
-              menuItems={arbitraryArrayMenuItems} />
-            <p>
-              Without <code>hintText</code> or <code>floatingLabelText</code>
-            </p>
+              menuItems={arbitraryArrayMenuItems} /><br/>
             <SelectField
               style={styles.textfield}
               value={this.state.selectValue2}
@@ -450,8 +447,8 @@ let TextFieldsPage = React.createClass({
   },
 
   _handleSelectValueChange(name, e) {
-    let change = {}
-    change[name] = e.target.value
+    let change = {};
+    change[name] = e.target.value;
     this.setState(change);
   },
 
