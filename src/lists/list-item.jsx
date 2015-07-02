@@ -20,6 +20,7 @@ let ListItem = React.createClass({
   },
 
   propTypes: {
+    autoGenerateNestedIndicator: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     disableKeyboardFocus: React.PropTypes.bool,
     innerDivStyle: React.PropTypes.object,
@@ -46,6 +47,7 @@ let ListItem = React.createClass({
 
   getDefaultProps() {
     return {
+      autoGenerateNestedIndicator: true,
       nestedLevel: 0,
       open: false,
       secondaryTextLines: 1,
@@ -67,6 +69,7 @@ let ListItem = React.createClass({
   render() {
 
     let {
+      autoGenerateNestedIndicator,
       disabled,
       disableKeyboardFocus,
       innerDivStyle,
@@ -222,8 +225,18 @@ let ListItem = React.createClass({
       }
     });
 
+    let rightIconButtonHandlers = {
+      onKeyboardFocus: this._handleRightIconButtonKeyboardFocus,
+      onMouseOver: this._handleRightIconButtonMouseOver,
+      onMouseOut: this._handleRightIconButtonMouseOut,
+      onTouchTap: this._handleRightIconButtonTouchTap,
+      onMouseDown: this._handleRightIconButtonMouseUp,
+      onMouseUp: this._handleRightIconButtonMouseUp
+    };
+
     // Create a nested list indicator icon if we don't have an icon on the right
     if (nestedListItems.length > 0 &&
+      autoGenerateNestedIndicator &&
       !useCustomNestedListHandler &&
       rightIcon === undefined &&
       rightAvatar === undefined &&
@@ -234,6 +247,8 @@ let ListItem = React.createClass({
       else {
         rightIconButton = <IconButton><CloseIcon /></IconButton>;
       }
+
+      rightIconButtonHandlers.onTouchTap = this._handleNestedListToggle;
     }
 
     this._pushElement(contentChildren, leftIcon, this.mergeStyles(styles.icons, styles.leftIcon));
@@ -241,14 +256,7 @@ let ListItem = React.createClass({
     this._pushElement(contentChildren, leftAvatar, this.mergeStyles(styles.avatars, styles.leftAvatar));
     this._pushElement(contentChildren, rightAvatar, this.mergeStyles(styles.avatars, styles.rightAvatar));
     this._pushElement(contentChildren, leftCheckbox, this.mergeStyles(styles.leftCheckbox));
-    this._pushElement(contentChildren, rightIconButton, this.mergeStyles(styles.rightIconButton), {
-      onKeyboardFocus: this._handleRightIconButtonKeyboardFocus,
-      onMouseOver: this._handleRightIconButtonMouseOver,
-      onMouseOut: this._handleRightIconButtonMouseOut,
-      onTouchTap: this._handleRightIconButtonTouchTap,
-      onMouseDown: this._handleRightIconButtonMouseDown,
-      onMouseUp: this._handleRightIconButtonMouseUp
-    });
+    this._pushElement(contentChildren, rightIconButton, this.mergeStyles(styles.rightIconButton), rightIconButtonHandlers);
     this._pushElement(contentChildren, rightToggle, this.mergeStyles(styles.rightToggle));
 
     if (nestedListItems.length) {
@@ -382,7 +390,6 @@ let ListItem = React.createClass({
     //Stop the event from bubbling up to the list-item
     e.stopPropagation();
     if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(e);
-    this._handleNestedListToggle(e);
   },
 
   _handleTouchStart(e) {
@@ -391,12 +398,10 @@ let ListItem = React.createClass({
   },
 
   _handleNestedListToggle(e) {
-    if (!this.props.useCustomNestedListHandler) {
-      e.stopPropagation();
-      this.setState({open : !this.state.open});
+    e.stopPropagation();
+    this.setState({open : !this.state.open});
 
-      if (this.props.onNestedListToggle) this.props.onNestedListToggle(this);
-    }
+    if (this.props.onNestedListToggle) this.props.onNestedListToggle(this);
   }
 
 });

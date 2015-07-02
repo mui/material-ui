@@ -122,6 +122,7 @@ class ListsPage extends React.Component {
           }
           secondaryTextLines={2}>
           Raquel Parrado
+          <ListItem>TESTING</ListItem>
         </ListItem>
       </List>
 
@@ -169,6 +170,12 @@ class ListsPage extends React.Component {
       {
         name: 'ListItem Props',
         infoArray: [
+          {
+            name: 'autoGenerateNestedIndicator',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'Generate a nested list indicator icon when nested list items are detected. Set to false if you do not want an indicator auto-generated. Note that an indicator will not be created if a rightIcon/Button has been specified.'
+          },
           {
             name: 'disabled',
             type: 'bool',
