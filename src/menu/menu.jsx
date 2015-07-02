@@ -505,6 +505,7 @@ var Menu = React.createClass({
     }
 
     this._nextAnimationFrame(function () {
+      //Set the overflow to hidden so that animation works properly
       container.style.overflow = 'hidden';
 
       //Close the menu
@@ -514,7 +515,6 @@ var Menu = React.createClass({
       el.style.paddingBottom = '0px';
 
       let end = () => {
-        //Set the overflow to hidden so that animation works properly
         el.style.transition = null;
       };
 
