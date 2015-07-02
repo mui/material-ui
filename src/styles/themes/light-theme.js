@@ -75,6 +75,9 @@ let LightTheme = {
         width: spacing.desktopKeylineIncrement * 4,
         color: Colors.white
       },
+      listItem: {
+        nestedLevelDepth: 18
+      },
       menu: {
         backgroundColor: Colors.white,
         containerBackgroundColor: Colors.white,
