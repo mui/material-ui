@@ -39,7 +39,8 @@ let CardMedia = React.createClass({
         left: 0,
         paddingTop: 8,
         background: Styles.Colors.lightBlack
-      }
+      },
+      media: {}
     };
   },
 
