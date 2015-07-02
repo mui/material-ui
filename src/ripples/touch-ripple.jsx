@@ -1,7 +1,7 @@
 let React = require('react');
 let StylePropable = require('../mixins/style-propable');
 let Dom = require('../utils/dom');
-let RippleCircle = require('./circle');
+let RippleCircle = require('./circle-ripple');
 
 
 let TouchRipple = React.createClass({
