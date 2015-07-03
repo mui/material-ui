@@ -59,7 +59,6 @@ let TextField = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    let hasErrorProp = nextProps.hasOwnProperty('errorText');
     let newState = {};
 
     newState.errorText = nextProps.errorText;

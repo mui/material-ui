@@ -1,6 +1,5 @@
 let React = require('react');
 let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
 let TextField = require('./text-field');
 let DropDownMenu = require('./drop-down-menu');
 
