@@ -41,8 +41,7 @@ let ListItem = React.createClass({
     rightIconButton: React.PropTypes.element,
     rightToggle: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
-    secondaryTextLines: React.PropTypes.oneOf([1, 2]),
-    useCustomNestedListHandler: React.PropTypes.bool
+    secondaryTextLines: React.PropTypes.oneOf([1, 2])
   },
 
   getDefaultProps() {
@@ -50,8 +49,7 @@ let ListItem = React.createClass({
       autoGenerateNestedIndicator: true,
       nestedLevel: 0,
       open: false,
-      secondaryTextLines: 1,
-      useCustomNestedListHandler: false
+      secondaryTextLines: 1
     };
   },
 
@@ -89,7 +87,6 @@ let ListItem = React.createClass({
       secondaryText,
       secondaryTextLines,
       style,
-      useCustomNestedListHandler,
       ...other
     } = this.props;
 
@@ -237,7 +234,6 @@ let ListItem = React.createClass({
     // Create a nested list indicator icon if we don't have an icon on the right
     if (nestedListItems.length > 0 &&
       autoGenerateNestedIndicator &&
-      !useCustomNestedListHandler &&
       rightIcon === undefined &&
       rightAvatar === undefined &&
       rightIconButton === undefined) {
@@ -267,11 +263,13 @@ let ListItem = React.createClass({
       );
     }
 
-    if (secondaryText) contentChildren.push(
-      React.isValidElement(secondaryText) ?
-        React.cloneElement(secondaryText, {key: 'secondaryText', style: mergedSecondaryTextStyles}) :
-        <div key="secondaryText" style={styles.secondaryText}>{secondaryText}</div>
-    );
+    if (secondaryText) {
+      contentChildren.push(
+        React.isValidElement(secondaryText) ?
+          React.cloneElement(secondaryText, {key: 'secondaryText', style: mergedSecondaryTextStyles}) :
+          <div key="secondaryText" style={styles.secondaryText}>{secondaryText}</div>
+      );
+    }
 
     return hasCheckbox || disabled ?
       React.createElement(
