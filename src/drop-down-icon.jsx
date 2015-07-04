@@ -17,6 +17,7 @@ let DropDownIcon = React.createClass({
   propTypes: {
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
+    menuItemStyle: React.PropTypes.object,
     closeOnMenuItemTouchTap: React.PropTypes.bool,
     iconStyle: React.PropTypes.object,
     iconClassName: React.PropTypes.string,
@@ -63,11 +64,11 @@ let DropDownIcon = React.createClass({
         top: '9px !important',
         opacity: (this.state.open) ? 1 : 0
       },
-      menuItem: { // similair to drop down menu's menu item styles
+      menuItem: this.mergeAndPrefix({ // similair to drop down menu's menu item styles
         paddingRight: (spacing.iconSize + (spacing.desktopGutterLess*2)),
         height: spacing.desktopDropDownMenuItemHeight,
         lineHeight: spacing.desktopDropDownMenuItemHeight + 'px'
-      }
+      }, this.props.menuItemStyle)
     };
     return styles;
   },
