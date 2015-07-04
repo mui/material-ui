@@ -15,11 +15,6 @@ module.exports = (function( window, document, undefined ) {
     modElem = document.createElement(mod),
     mStyle = modElem.style,
 
-    inputElem  ,
-
-
-    toString = {}.toString,
-
     prefixes = ' -webkit- -moz- -o- -ms- '.split(' '),
 
 
@@ -32,8 +27,6 @@ module.exports = (function( window, document, undefined ) {
 
 
     tests = {},
-    inputs = {},
-    attrs = {},
 
     classes = [],
 
@@ -221,7 +214,7 @@ module.exports = (function( window, document, undefined ) {
 
                         if ( ret && 'webkitPerspective' in docElement.style ) {
 
-                      injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function( node, rule ) {
+                      injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function(node) {
             ret = node.offsetLeft === 9 && node.offsetHeight === 3;
           });
         }
@@ -275,8 +268,6 @@ module.exports = (function( window, document, undefined ) {
 
 
     setCss('');
-    modElem = inputElem = null;
-
 
     Modernizr._version      = version;
 
