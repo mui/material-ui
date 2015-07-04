@@ -316,6 +316,14 @@ let TextFieldsPage = React.createClass({
               multiLine={true} /><br/>
             <TextField
               style={styles.textfield}
+              hintText="The hint text can be as long as you want, it will wrap."
+              multiLine={true} /><br/>
+            <TextField
+              style={styles.textfield}
+              hintText="Hint Text"
+              errorText="The error text can be as long as you want, it will wrap." /><br/>
+            <TextField
+              style={styles.textfield}
               hintText="Hint Text"
               errorText={this.state.errorText}
               onChange={this._handleErrorInputChange} /><br/>
