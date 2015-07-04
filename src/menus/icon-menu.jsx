@@ -25,6 +25,7 @@ let IconMenu = React.createClass({
       'top-left',
       'top-right'
     ]),
+    onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
     menuListStyle: React.PropTypes.object,
     onKeyDown: React.PropTypes.func,
@@ -34,12 +35,14 @@ let IconMenu = React.createClass({
   getDefaultProps() {
     return {
       onKeyDown: () => {},
+      onItemKeyboardActivate: () => {},
       onItemTouchTap: () => {}
     };
   },
 
   getInitialState() {
     return {
+      iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
       open: false
     }
   },
@@ -81,7 +84,8 @@ let IconMenu = React.createClass({
       onTouchTap: (e) => {
         this.open();
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
-      }.bind(this)
+      }.bind(this),
+      ref: this.state.iconButtonRef
     });
 
     return (
@@ -97,6 +101,7 @@ let IconMenu = React.createClass({
           menuListStyle={menuListStyle}
           multiple={multiple}
           onItemTouchTap={this._handleItemTouchTap}
+          onItemKeyboardActivate={this._handleItemKeyboardActivate}
           onChange={onChange}
           open={open}
           openDirection={openDirection}
@@ -112,10 +117,12 @@ let IconMenu = React.createClass({
   },
 
   close() {
-    if (!this.state.close) {
+    if (this.state.open) {
       this.setState({
         open: false
       });
+      //Set focus on the icon button when the menu closes
+      React.findDOMNode(this.refs[this.state.iconButtonRef]).focus();
     }
   },
 
@@ -128,7 +135,7 @@ let IconMenu = React.createClass({
   },
 
   _handleIconButtonKeyboardActivate(e) {
-    this.refs.menu.setKeyboardFocusIndex(0);
+    this.refs.menu.setKeyboardFocused(true);
   },
 
   _handleKeyDown(e) {
@@ -138,6 +145,12 @@ let IconMenu = React.createClass({
         break;
     }
     this.props.onKeyDown(e);
+  },
+
+  _handleItemKeyboardActivate(e, child) {
+    //The icon button receives keyboard focus when a
+    //menu item is keyboard activated
+    this.refs[this.state.iconButtonRef].setKeyboardFocus();
   },
 
   _handleItemTouchTap(e, child) {

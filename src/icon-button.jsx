@@ -152,6 +152,10 @@ let IconButton = React.createClass({
     );
   },
 
+  setKeyboardFocus() {
+    this.refs.button.setKeyboardFocus();
+  },
+
   _showTooltip() {
     if (!this.props.disabled && this.props.tooltip) {
       this.setState({ tooltipShown: true });

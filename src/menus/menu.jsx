@@ -22,6 +22,7 @@ let Menu = React.createClass({
     desktop: React.PropTypes.bool,
     listStyle: React.PropTypes.object,
     multiple: React.PropTypes.bool,
+    onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
     open: React.PropTypes.bool,
     openDirection: React.PropTypes.oneOf([
@@ -40,6 +41,7 @@ let Menu = React.createClass({
   getDefaultProps() {
     return {
       autoWidth: true,
+      onItemKeyboardActivate: () => {},
       onItemTouchTap: () => {},
       open: true,
       openDirection: 'bottom-left',
@@ -49,7 +51,8 @@ let Menu = React.createClass({
 
   getInitialState() {
     return {
-      keyboardFocusIndex: -1,
+      focusIndex: 0,
+      isKeyboardFocused: false,
       keyWidth: this.props.desktop ? 64 : 56
     };
   },
@@ -58,8 +61,18 @@ let Menu = React.createClass({
     if (this.props.autoWidth) this._setWidth();
   },
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     if (this.props.autoWidth) this._setWidth();
+  },
+
+  componentWillUpdate(nextProps, nextState) {
+    let openChanged = nextProps.open !== this.props.open;
+    if (openChanged && !nextProps.open) {
+      this.setState({
+        focusIndex: 0,
+        isKeyboardFocused: false
+      });
+    }
   },
 
   render() {
@@ -156,9 +169,19 @@ let Menu = React.createClass({
         selectedChildrenStyles
       );
 
+      let focusState = 'none';
+      if (open && childIndex === this.state.focusIndex) {
+        focusState = this.state.isKeyboardFocused ?
+          'keyboard-focused' : 'focused';
+      }
+
       let clonedChild = React.cloneElement(child, {
         desktop: desktop,
-        keyboardFocused: open && childIndex === this.state.keyboardFocusIndex,
+        focusState: focusState,
+        onKeyboardActivate: (e) => {
+          this.props.onItemKeyboardActivate(e, child);
+          if (child.props.onKeyboardActivate) child.props.onKeyboardActivate(e);
+        },
         onTouchTap: (e) => {
           this._handleMenuItemTouchTap(e, child);
           if (child.props.onTouchTap) child.props.onTouchTap(e);
@@ -185,29 +208,36 @@ let Menu = React.createClass({
     );
   },
 
-  setKeyboardFocusIndex(newIndex) {
+  setKeyboardFocused(keyboardFocused) {
     this.setState({
-      keyboardFocusIndex: newIndex
+      isKeyboardFocused: keyboardFocused
+    });
+  },
+
+  _setFocusIndex(newIndex, isKeyboardFocused) {
+    this.setState({
+      focusIndex: newIndex,
+      isKeyboardFocused: isKeyboardFocused
     });
   },
 
   _decrementKeyboardFocusIndex() {
-    let index = this.state.keyboardFocusIndex;
+    let index = this.state.focusIndex;
 
     index--;
     if (index < 0) index = 0;
 
-    this.setKeyboardFocusIndex(index);
+    this._setFocusIndex(index, true);
   },
 
   _incrementKeyboardFocusIndex() {
-    let index = this.state.keyboardFocusIndex;
+    let index = this.state.focusIndex;
     let maxIndex = React.Children.count(this.props.children) - 1;
 
     index++;
     if (index > maxIndex) index = maxIndex;
 
-    this.setKeyboardFocusIndex(index);
+    this._setFocusIndex(index, true);
   },
 
   _handleKeyDown(e) {
@@ -227,7 +257,6 @@ let Menu = React.createClass({
           }
           break;
       }
-
       e.preventDefault();
     }
   },

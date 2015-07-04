@@ -19,7 +19,11 @@ let MenuItem = React.createClass({
     disabled: React.PropTypes.bool,
     innerDivStyle: React.PropTypes.object,
     insetChildren: React.PropTypes.bool,
-    keyboardFocused: React.PropTypes.bool,
+    focusState: React.PropTypes.oneOf([
+      'none',
+      'focused',
+      'keyboard-focused'
+    ]),
     leftIcon: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
@@ -28,15 +32,16 @@ let MenuItem = React.createClass({
 
   getDefaultProps() {
     return {
+      focusState: 'none'
     };
   },
 
   componentDidMount() {
-    if (this.props.keyboardFocused) this.setKeyboardFocus();
+    this._applyFocusState();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
-    if (this.props.keyboardFocused) this.setKeyboardFocus();
+  componentDidUpdate() {
+    this._applyFocusState();
   },
 
   render() {
@@ -45,6 +50,7 @@ let MenuItem = React.createClass({
       checked,
       desktop,
       disabled,
+      focusState,
       innerDivStyle,
       insetChildren,
       leftIcon,
@@ -134,8 +140,8 @@ let MenuItem = React.createClass({
     );
   },
 
-  setKeyboardFocus() {
-    this.refs.listItem.setKeyboardFocus();
+  _applyFocusState() {
+    this.refs.listItem.applyFocusState(this.props.focusState);
   }
 });
 
