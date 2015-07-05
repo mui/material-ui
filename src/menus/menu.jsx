@@ -318,7 +318,7 @@ let Menu = React.createClass({
     let selectedIndex = -1;
     let menuItemIndex = 0;
 
-    React.Children.forEach(children, (child, index) => {
+    React.Children.forEach(children, (child) => {
       let childIsADivider = child.type.displayName === 'MenuDivider';
 
       if (this._isChildSelected(child)) selectedIndex = menuItemIndex;
