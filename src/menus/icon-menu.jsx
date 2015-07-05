@@ -27,6 +27,7 @@ let IconMenu = React.createClass({
     ]),
     onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
+    menuStyle: React.PropTypes.object,
     menuListStyle: React.PropTypes.object,
     onKeyDown: React.PropTypes.func,
     width: React.PropTypes.number
@@ -34,6 +35,7 @@ let IconMenu = React.createClass({
 
   getDefaultProps() {
     return {
+      openDirection: 'bottom-left',
       onKeyDown: () => {},
       onItemKeyboardActivate: () => {},
       onItemTouchTap: () => {}
@@ -60,6 +62,7 @@ let IconMenu = React.createClass({
       onChange,
       onKeyDown,
       onItemTouchTap,
+      menuStyle,
       menuListStyle,
       style,
       value,
@@ -69,15 +72,25 @@ let IconMenu = React.createClass({
     } = this.props;
 
     let open = this.state.open;
+    let openDown = openDirection.split('-')[0] === 'bottom';
+    let openLeft = openDirection.split('-')[1] === 'left';
 
     let styles = {
       root: {
         display: 'inline-block',
         position: 'relative'
+      },
+
+      menu: {
+        top: openDown ? 12 : null,
+        bottom: !openDown ? 12 : null,
+        left: !openLeft ? 12 : null,
+        right: openLeft ? 12 : null
       }
     };
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
     let iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardActivate: this._handleIconButtonKeyboardActivate,
@@ -98,7 +111,7 @@ let IconMenu = React.createClass({
 
         <Menu
           desktop={desktop}
-          menuListStyle={menuListStyle}
+          listStyle={menuListStyle}
           multiple={multiple}
           onItemTouchTap={this._handleItemTouchTap}
           onItemKeyboardActivate={this._handleItemKeyboardActivate}
@@ -106,6 +119,7 @@ let IconMenu = React.createClass({
           open={open}
           openDirection={openDirection}
           ref="menu"
+          style={mergedMenuStyles}
           value={value}
           valueLink={valueLink}
           width={width}>

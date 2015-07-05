@@ -2,8 +2,16 @@ let React = require('react');
 let { IconButton } = require('material-ui');
 let IconMenu = require('menus/icon-menu');
 let MenuItem = require('menus/menu-item');
+let MenuDivider = require('menus/menu-divider');
 let MoreVertIcon = require('svg-icons/navigation/more-vert');
 let ComponentDoc = require('../../component-doc');
+
+let ContentCopy = require('svg-icons/content/content-copy');
+let ContentLink = require('svg-icons/content/link');
+let Delete = require('svg-icons/action/delete');
+let Download = require('svg-icons/file/file-download');
+let PersonAdd = require('svg-icons/social/person-add');
+let RemoveRedEye = require('svg-icons/image/remove-red-eye');
 
 
 class IconMenus extends React.Component {
@@ -59,10 +67,10 @@ class IconMenus extends React.Component {
             desc: 'This is the placement of the menu relative to the IconButton.'
           },
           {
-            name: 'menuListStyle',
+            name: 'menuStyle',
             type: 'object',
             header: 'optional',
-            desc: 'The style object to use to override underlying menu list style.'
+            desc: 'The style object to use to override underlying menu style.'
           },
           {
             name: 'multiple',
@@ -206,6 +214,22 @@ class IconMenus extends React.Component {
             <MenuItem value="5">Sign out</MenuItem>
           </IconMenu>
         </p>
+
+        <p>Menu Item variations
+          <IconMenu
+            iconButtonElement={iconButtonElement}
+            openDirection="bottom-right">
+          <MenuItem leftIcon={<RemoveRedEye />}>Preview</MenuItem>
+          <MenuItem leftIcon={<PersonAdd />}>Share</MenuItem>
+          <MenuItem leftIcon={<ContentLink />}>Get link</MenuItem>
+          <MenuDivider />
+          <MenuItem leftIcon={<ContentCopy />}>Make a copy</MenuItem>
+          <MenuItem leftIcon={<Download />}>Download</MenuItem>
+          <MenuDivider />
+          <MenuItem leftIcon={<Delete />}>Remove</MenuItem>
+        </IconMenu>
+        </p>
+
       </ComponentDoc>
     );
 
