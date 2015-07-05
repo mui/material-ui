@@ -25,6 +25,7 @@ let IconMenu = React.createClass({
     ]),
     onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
+    maxHeight: React.PropTypes.number,
     menuStyle: React.PropTypes.object,
     menuListStyle: React.PropTypes.object,
     onKeyDown: React.PropTypes.func,
@@ -60,6 +61,7 @@ let IconMenu = React.createClass({
       onChange,
       onKeyDown,
       onItemTouchTap,
+      maxHeight,
       menuStyle,
       menuListStyle,
       style,
@@ -110,6 +112,7 @@ let IconMenu = React.createClass({
         <Menu
           desktop={desktop}
           listStyle={menuListStyle}
+          maxHeight={maxHeight}
           multiple={multiple}
           onItemTouchTap={this._handleItemTouchTap}
           onItemKeyboardActivate={this._handleItemKeyboardActivate}

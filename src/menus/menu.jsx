@@ -5,6 +5,7 @@ let StylePropable = require('../mixins/style-propable');
 let Transitions = require('../styles/transitions');
 let KeyCode = require('../utils/key-code');
 let List = require('../lists/list');
+let Paper = require('../paper');
 
 
 let Menu = React.createClass({
@@ -19,6 +20,7 @@ let Menu = React.createClass({
     autoWidth: React.PropTypes.bool,
     desktop: React.PropTypes.bool,
     listStyle: React.PropTypes.object,
+    maxHeight: React.PropTypes.number,
     multiple: React.PropTypes.bool,
     onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
@@ -33,12 +35,14 @@ let Menu = React.createClass({
     width: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.number
-    ])
+    ]),
+    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5])
   },
 
   getDefaultProps() {
     return {
       autoWidth: true,
+      maxHeight: null,
       onItemKeyboardActivate: () => {},
       onItemTouchTap: () => {},
       open: true,
@@ -80,6 +84,7 @@ let Menu = React.createClass({
       children,
       desktop,
       listStyle,
+      maxHeight,
       multiple,
       open,
       openDirection,
@@ -88,6 +93,7 @@ let Menu = React.createClass({
       value,
       valueLink,
       width,
+      zDepth,
       ...other
     } = this.props;
 
@@ -107,7 +113,8 @@ let Menu = React.createClass({
         left: !openLeft ? 0 : null,
         right: openLeft ? 0 : null,
         transform: open ? 'scaleX(1)' : 'scaleX(0)',
-        transformOrigin: openLeft ? 'right' : 'left'
+        transformOrigin: openLeft ? 'right' : 'left',
+
       },
 
       list: {
@@ -115,18 +122,23 @@ let Menu = React.createClass({
         paddingBottom: desktop ? 16 : 8,
         paddingTop: desktop ? 16 : 8,
         userSelect: 'none',
-        width: width,
-        transition: Transitions.easeOut(null, ['transform', 'opacity']),
-        transitionDuration: open ? '500ms' : '200ms',
-        transform: open ? 'scaleY(1) translate3d(0,0,0)' : 'scaleY(0) translate3d(0,-8px,0)',
-        transformOrigin: openDown ? 'top' : 'bottom',
-        opacity: open ? 1 : 0
+        width: width
       },
 
       menuItem: {
         transition: Transitions.easeOut(null, 'opacity'),
         transitionDelay: open ? '400ms' : '0ms',
         opacity: open ? 1 : 0
+      },
+
+      paper: {
+        transition: Transitions.easeOut(null, ['transform', 'opacity']),
+        transitionDuration: open ? '500ms' : '200ms',
+        transform: open ? 'scaleY(1) translate3d(0,0,0)' : 'scaleY(0) translate3d(0,-8px,0)',
+        transformOrigin: openDown ? 'top' : 'bottom',
+        opacity: open ? 1 : 0,
+        maxHeight: maxHeight,
+        overflowY: maxHeight ? 'scroll' : null
       },
 
       selectedMenuItem: {
@@ -168,12 +180,14 @@ let Menu = React.createClass({
       <div
         onKeyDown={this._handleKeyDown}
         style={mergedRootStyles}>
-        <List
-          {...other}
-          ref="list"
-          style={mergedListStyles}>
-          {newChildren}
-        </List>
+        <Paper zDepth={zDepth} style={styles.paper}>
+          <List
+            {...other}
+            ref="list"
+            style={mergedListStyles}>
+            {newChildren}
+          </List>
+        </Paper>
       </div>
     );
   },
