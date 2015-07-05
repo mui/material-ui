@@ -172,7 +172,7 @@ let IconMenu = React.createClass({
     setTimeout(() => {
       this.close();
       this.props.onItemTouchTap(e, child);
-    }, 200);
+    }, 150);
   }
 });
 
