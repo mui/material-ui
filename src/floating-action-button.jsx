@@ -70,7 +70,7 @@ let FloatingActionButton = React.createClass({
   },
 
   _getBackgroundColor() {
-    return  this.props.disabled ? this.getTheme().disabledColor :
+    return this.props.disabled ? this.getTheme().disabledColor :
       this.props.secondary ? this.getTheme().secondaryColor :
       this.getTheme().color;
   },
@@ -81,7 +81,7 @@ let FloatingActionButton = React.createClass({
   },
 
   _getIconColor() {
-    return  this.props.disabled ? this.getTheme().disabledTextColor :
+    return this.props.disabled ? this.getTheme().disabledTextColor :
       this.props.secondary ? this.getTheme().secondaryIconColor :
       this.getTheme().iconColor;
   },

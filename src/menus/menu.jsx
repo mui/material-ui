@@ -3,8 +3,6 @@ let update = React.addons.update;
 let Controllable = require('../mixins/controllable');
 let StylePropable = require('../mixins/style-propable');
 let Transitions = require('../styles/transitions');
-let Children = require('../utils/children');
-let Dom = require('../utils/dom');
 let KeyCode = require('../utils/key-code');
 let List = require('../lists/list');
 
@@ -61,11 +59,11 @@ let Menu = React.createClass({
     if (this.props.autoWidth) this._setWidth();
   },
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     if (this.props.autoWidth) this._setWidth();
   },
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate(nextProps) {
     let openChanged = nextProps.open !== this.props.open;
     if (openChanged && !nextProps.open) {
       this.setState({

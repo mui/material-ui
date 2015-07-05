@@ -3,7 +3,6 @@ let DateTime = require('../utils/date-time');
 let IconButton = require('../icon-button');
 let Toolbar = require('../toolbar/toolbar');
 let ToolbarGroup = require('../toolbar/toolbar-group');
-let DropDownMenu = require('../drop-down-menu');
 let NavigationChevronLeft = require('../svg-icons/navigation/chevron-left');
 let NavigationChevronLeftDouble = require('../svg-icons/navigation-chevron-left-double');
 let NavigationChevronRight = require('../svg-icons/navigation/chevron-right');

@@ -30,7 +30,7 @@ let LinkMenuItem = React.createClass({
   getInitialState() {
     return {
       hovered: false
-    }
+    };
   },
 
   getTheme() {
@@ -66,7 +66,7 @@ let LinkMenuItem = React.createClass({
     // Prevent context menu 'Open In New Tab/Window'
     let linkAttribute = (this.props.disabled) ? 'data-href' : 'href';
     let link = {};
-    link[linkAttribute] = this.props.payload
+    link[linkAttribute] = this.props.payload;
 
     let styles = this.getStyles();
 

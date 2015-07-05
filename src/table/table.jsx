@@ -4,7 +4,6 @@ let ClickAwayable = require('../mixins/click-awayable');
 let TableHeader = require('./table-header');
 let TableRow = require('./table-row');
 let TableFooter = require('./table-footer');
-let DOM = require('../utils/dom');
 
 
 let Table = React.createClass({
@@ -273,7 +272,7 @@ let Table = React.createClass({
         column.style = {
           width: this.props.defaultColumnWidth,
           maxWidth: this.props.defaultColumnWidth
-        }
+        };
       }
       else {
         if (column.style.width === undefined) column.style.width = this.props.defaultColumnWidth;
@@ -325,7 +324,6 @@ let Table = React.createClass({
 
     if (e.shiftKey && this.props.multiSelectable && selectedRows.length) {
       let lastSelection = selectedRows[selectedRows.length - 1];
-      let start, end, direction;
 
       if (typeof lastSelection === 'object') {
         lastSelection.end = rowNumber;

@@ -50,7 +50,7 @@ let CardHeader = React.createClass({
         display: 'block',
         fontSize: 14
       }
-    }
+    };
   },
 
   render() {
@@ -63,10 +63,10 @@ let CardHeader = React.createClass({
     let avatar = this.props.avatar;
     if (React.isValidElement(this.props.avatar)) {
       let avatarMergedStyle = this.mergeStyles(styles.avatar, avatar.props.style);
-      avatar = React.cloneElement(avatar, {style:avatarMergedStyle})
+      avatar = React.cloneElement(avatar, {style:avatarMergedStyle});
     }
     else
-      avatar = <Avatar src={this.props.avatar} style={styles.avatar}/>
+      avatar = <Avatar src={this.props.avatar} style={styles.avatar}/>;
 
     return (
       <div {...this.props} style={rootStyle}>
