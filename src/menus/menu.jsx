@@ -113,8 +113,7 @@ let Menu = React.createClass({
         left: !openLeft ? 0 : null,
         right: openLeft ? 0 : null,
         transform: open ? 'scaleX(1)' : 'scaleX(0)',
-        transformOrigin: openLeft ? 'right' : 'left',
-
+        transformOrigin: openLeft ? 'right' : 'left'
       },
 
       list: {
@@ -151,22 +150,22 @@ let Menu = React.createClass({
 
     //Cascade children opacity
     let childrenTransitionDelay = openDown ? 175 : 325;
-    let childrenTransitionDelayIncrement = Math.ceil(150/React.Children.count(this.props.children));
+    let cascadeChildrenCount = this._getCascadeChildrenCount();
+    let childrenTransitionDelayIncrement = Math.ceil(150/cascadeChildrenCount);
 
     let menuItemIndex = 0;
     let newChildren = React.Children.map(children, (child) => {
 
-      if (openDown) {
-        childrenTransitionDelay += childrenTransitionDelayIncrement;
-      } else {
-        childrenTransitionDelay -= childrenTransitionDelayIncrement;
-      }
+      let childIsADivider = child.type.displayName === 'MenuDivider';
+
+      childrenTransitionDelay = openDown ?
+        childrenTransitionDelay + childrenTransitionDelayIncrement :
+        childrenTransitionDelay - childrenTransitionDelayIncrement;
 
       let childrenContainerStyles = this.mergeStyles(styles.menuItem, {
         transitionDelay: open ? childrenTransitionDelay + 'ms' : '0ms'
       });
 
-      let childIsADivider = child.type.displayName === 'MenuDivider';
       let clonedChild = childIsADivider ? child :
         this._cloneMenuItem(child, menuItemIndex, styles);
 
@@ -250,6 +249,34 @@ let Menu = React.createClass({
     if (index < 0) index = 0;
 
     this._setFocusIndex(index, true);
+  },
+
+  _getCascadeChildrenCount() {
+    let {
+      children,
+      desktop,
+      maxHeight
+    } = this.props;
+    let count = 1;
+    let currentHeight = desktop ? 16 : 8;
+    let menuItemHeight = desktop ? 32 : 48;
+
+    //MaxHeight isn't set - cascade all of the children
+    if (!maxHeight) return React.Children.count(children);
+
+    //Count all the children that will fit inside the
+    //max menu height
+    React.Children.forEach(children, (child) => {
+      if (currentHeight < maxHeight) {
+        let childIsADivider = child.type.displayName === 'MenuDivider';
+
+        currentHeight += childIsADivider ? 16 : menuItemHeight;
+        count++;
+      }
+    });
+
+    return count;
+
   },
 
   _getMenuItemCount() {
