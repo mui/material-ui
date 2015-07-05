@@ -2,7 +2,6 @@ let React = require('react');
 let Checkbox = require('../checkbox');
 let StylePropable = require('../mixins/style-propable');
 let TableRowColumn = require('./table-row-column');
-let Tooltip = require('../tooltip');
 
 
 let TableRow = React.createClass({

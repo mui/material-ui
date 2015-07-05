@@ -65,7 +65,7 @@ let TableFooter = React.createClass({
         ...props
       } = footerData[index];
       if (content === undefined) content = footerData[index];
-      let key = keyPrefix + index
+      let key = keyPrefix + index;
       props.style = (props.style !== undefined) ? this.mergeAndPrefix(props.style, styles.cell) : styles.cell;
 
       footers.push(

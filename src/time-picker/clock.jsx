@@ -20,7 +20,7 @@ let Clock = React.createClass({
   init() {
     this.setState({
       mode: 'hour'
-    })
+    });
   },
 
   getDefaultProps() {
@@ -46,7 +46,7 @@ let Clock = React.createClass({
     setTimeout(() => {
         this.setState({
           mode: mode
-        })
+        });
     }, 100);
   },
 
@@ -146,7 +146,7 @@ let Clock = React.createClass({
       setTimeout(() => {
         this.setState({
           mode: 'minute'
-        })
+        });
       }, 100);
     }
   },

@@ -81,8 +81,8 @@ let ClockPointer = React.createClass({
         transform: "rotateZ(" + angle + "deg)"
       },
       mark: {
-        background:  this.getTheme().selectTextColor,
-        border: "4px solid " +  this.getTheme().accentColor,
+        background: this.getTheme().selectTextColor,
+        border: "4px solid " + this.getTheme().accentColor,
         width: "7px",
         height: "7px",
         position: "absolute",

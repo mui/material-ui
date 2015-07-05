@@ -21,7 +21,7 @@ let CalendarYear = React.createClass({
     this._scrollToSelectedYear();
   },
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this._scrollToSelectedYear();
   },
 
@@ -57,7 +57,7 @@ let CalendarYear = React.createClass({
       let selected = this.props.selectedDate.getFullYear() === year;
       let selectedProps = {};
       if (selected) {
-        selectedProps = {ref: 'selectedYearButton'}
+        selectedProps = {ref: 'selectedYearButton'};
       }
 
       let yearButton = (
@@ -67,7 +67,7 @@ let CalendarYear = React.createClass({
           onTouchTap={this._handleYearTouchTap}
           selected={selected}
           {...selectedProps} />
-      )
+      );
 
       years.push(yearButton);
     }

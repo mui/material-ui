@@ -15,7 +15,7 @@ let CardText = React.createClass({
   getDefaultProps() {
     return {
       color: Styles.Colors.ck
-    }
+    };
   },
 
   getStyles() {
@@ -25,7 +25,7 @@ let CardText = React.createClass({
         fontSize: '14px',
         color: this.props.color
       }
-    }
+    };
   },
 
   render() {

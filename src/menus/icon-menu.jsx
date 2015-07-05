@@ -1,8 +1,6 @@
 let React = require('react/addons');
 let ClickAwayable = require('../mixins/click-awayable');
-let Controllable = require('../mixins/controllable');
 let StylePropable = require('../mixins/style-propable');
-let Children = require('../utils/children');
 let KeyCode = require('../utils/key-code');
 let Menu = require('../menus/menu');
 
@@ -46,7 +44,7 @@ let IconMenu = React.createClass({
     return {
       iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
       open: false
-    }
+    };
   },
 
   componentClickAway() {
@@ -148,7 +146,7 @@ let IconMenu = React.createClass({
     }
   },
 
-  _handleIconButtonKeyboardActivate(e) {
+  _handleIconButtonKeyboardActivate() {
     this.refs.menu.setKeyboardFocused(true);
   },
 
@@ -161,7 +159,7 @@ let IconMenu = React.createClass({
     this.props.onKeyDown(e);
   },
 
-  _handleItemKeyboardActivate(e, child) {
+  _handleItemKeyboardActivate() {
     //The icon button receives keyboard focus when a
     //menu item is keyboard activated
     this.refs[this.state.iconButtonRef].setKeyboardFocus();

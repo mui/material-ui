@@ -10,7 +10,6 @@ let Paper = require('../paper');
 let MenuItem = require('./menu-item');
 let LinkMenuItem = require('./link-menu-item');
 let SubheaderMenuItem = require('./subheader-menu-item');
-let WindowListenable = require('../mixins/window-listenable');
 
 
 /***********************
@@ -306,7 +305,7 @@ var Menu = React.createClass({
   },
 
   _getChildren() {
-    let  menuItem,
+    let menuItem,
       itemComponent,
       isDisabled;
 
@@ -566,7 +565,6 @@ var Menu = React.createClass({
 
   _tryToggleNested(index) {
     let item = this.refs[index];
-    let toggleMenu = item.toggleNestedMenu;
     if (item && item.toggleNestedMenu)
       item.toggleNestedMenu();
   }

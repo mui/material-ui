@@ -64,7 +64,7 @@ let RaisedButton = React.createClass({
     let disabledColor = this.props.disabledBackgroundColor ? this.props.disabledBackgroundColor :
       this.getTheme().disabledColor;
 
-    return  this.props.disabled ? disabledColor :
+    return this.props.disabled ? disabledColor :
       this.props.backgroundColor ? this.props.backgroundColor :
       this.props.primary ? this.getTheme().primaryColor :
       this.props.secondary ? this.getTheme().secondaryColor :
@@ -75,7 +75,7 @@ let RaisedButton = React.createClass({
     let disabledColor = this.props.disabledLabelColor ? this.props.disabledLabelColor :
       this.getTheme().disabledTextColor;
 
-    return  this.props.disabled ? disabledColor :
+    return this.props.disabled ? disabledColor :
       this.props.labelColor ? this.props.labelColor :
       this.props.primary ? this.getTheme().primaryTextColor :
       this.props.secondary ? this.getTheme().secondaryTextColor :

@@ -125,7 +125,7 @@ let Toggle = React.createClass({
       left: '-10'
     }, this.props.rippleStyle);
 
-    let rippleColor =  this.state.switched ?
+    let rippleColor = this.state.switched ?
       this.getTheme().thumbOnColor : this.context.muiTheme.component.textColor;
 
     let iconStyle = this.mergeAndPrefix(
