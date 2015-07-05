@@ -63,16 +63,28 @@ let Menu = React.createClass({
     if (this.props.autoWidth) this._setWidth();
   },
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    let openChanged = prevProps.open !== this.props.open;
+    let justOpened = openChanged && this.props.open;
+
     if (this.props.autoWidth) this._setWidth();
+    if (justOpened) this._setScollPosition();
   },
 
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     let openChanged = nextProps.open !== this.props.open;
-    if (openChanged && !nextProps.open) {
+    let isOpening = openChanged && nextProps.open;
+    let isClosing = openChanged && !nextProps.open;
+
+    if (isClosing) {
       this.setState({
         focusIndex: 0,
         isKeyboardFocused: false
+      });
+    } else if (isOpening) {
+      let selectedIndex = this._getSelectedIndex();
+      this.setState({
+        focusIndex: selectedIndex >= 0 ? selectedIndex : 0
       });
     }
   },
@@ -149,21 +161,28 @@ let Menu = React.createClass({
     let mergedListStyles = this.mergeStyles(styles.list, listStyle);
 
     //Cascade children opacity
-    let childrenTransitionDelay = openDown ? 175 : 325;
+    let cumulativeDelay = openDown ? 175 : 325;
     let cascadeChildrenCount = this._getCascadeChildrenCount();
-    let childrenTransitionDelayIncrement = Math.ceil(150/cascadeChildrenCount);
+    let cumulativeDelayIncrement = Math.ceil(150/cascadeChildrenCount);
 
     let menuItemIndex = 0;
     let newChildren = React.Children.map(children, (child) => {
 
       let childIsADivider = child.type.displayName === 'MenuDivider';
+      let focusIndex = this.state.focusIndex;
+      let transitionDelay = 0;
 
-      childrenTransitionDelay = openDown ?
-        childrenTransitionDelay + childrenTransitionDelayIncrement :
-        childrenTransitionDelay - childrenTransitionDelayIncrement;
+      //Only cascade the visible menu items
+      if (open && (menuItemIndex >= focusIndex - 1) &&
+        (menuItemIndex <= focusIndex + cascadeChildrenCount - 1)) {
+        cumulativeDelay = openDown ?
+          cumulativeDelay + cumulativeDelayIncrement :
+          cumulativeDelay - cumulativeDelayIncrement;
+        transitionDelay = cumulativeDelay;
+      }
 
       let childrenContainerStyles = this.mergeStyles(styles.menuItem, {
-        transitionDelay: open ? childrenTransitionDelay + 'ms' : '0ms'
+        transitionDelay: transitionDelay + 'ms'
       });
 
       let clonedChild = childIsADivider ? child :
@@ -179,7 +198,10 @@ let Menu = React.createClass({
       <div
         onKeyDown={this._handleKeyDown}
         style={mergedRootStyles}>
-        <Paper zDepth={zDepth} style={styles.paper}>
+        <Paper
+          ref="scrollContainer"
+          style={styles.paper}
+          zDepth={zDepth}>
           <List
             {...other}
             ref="list"
@@ -206,12 +228,10 @@ let Menu = React.createClass({
       selectedMenuItemStyle
     } = this.props;
 
-    let menuValue = this.getValueLink(this.props).value;
-    let childValue = child.props.value;
+    let selected = this._isChildSelected(child);
     let selectedChildrenStyles = {};
 
-    if ((multiple && menuValue.length && menuValue.indexOf(childValue) !== -1) ||
-      (!multiple && menuValue && menuValue === childValue)) {
+    if (selected) {
       selectedChildrenStyles = this.mergeStyles(styles.selectedMenuItem, selectedMenuItemStyle);
     }
 
@@ -220,8 +240,9 @@ let Menu = React.createClass({
       selectedChildrenStyles
     );
 
+    let isFocused = open && childIndex === this.state.focusIndex;
     let focusState = 'none';
-    if (open && childIndex === this.state.focusIndex) {
+    if (isFocused) {
       focusState = this.state.isKeyboardFocused ?
         'keyboard-focused' : 'focused';
     }
@@ -237,6 +258,7 @@ let Menu = React.createClass({
         this._handleMenuItemTouchTap(e, child);
         if (child.props.onTouchTap) child.props.onTouchTap(e);
       },
+      ref: isFocused ? 'focusedMenuItem' : null,
       style: mergedChildrenStyles,
       tabIndex: open ? child.props.tabIndex : -1
     });
@@ -287,6 +309,23 @@ let Menu = React.createClass({
       }
     });
     return React.Children.count(this.props.children) - dividerCount;
+  },
+
+  _getSelectedIndex() {
+    let {
+      children
+    } = this.props;
+    let selectedIndex = -1;
+    let menuItemIndex = 0;
+
+    React.Children.forEach(children, (child, index) => {
+      let childIsADivider = child.type.displayName === 'MenuDivider';
+
+      if (this._isChildSelected(child)) selectedIndex = menuItemIndex;
+      if (!childIsADivider) menuItemIndex++;
+    }.bind(this));
+
+    return selectedIndex;
   },
 
   _handleKeyDown(e) {
@@ -341,11 +380,37 @@ let Menu = React.createClass({
     this._setFocusIndex(index, true);
   },
 
+  _isChildSelected(child) {
+    let multiple = this.props.multiple;
+    let menuValue = this.getValueLink(this.props).value;
+    let childValue = child.props.value;
+
+    return (multiple && menuValue.length && menuValue.indexOf(childValue) !== -1) ||
+      (!multiple && menuValue && menuValue === childValue);
+  },
+
   _setFocusIndex(newIndex, isKeyboardFocused) {
     this.setState({
       focusIndex: newIndex,
       isKeyboardFocused: isKeyboardFocused
     });
+  },
+
+  _setScollPosition() {
+    let desktop = this.props.desktop;
+    let focusedMenuItem = this.refs.focusedMenuItem;
+    let menuItemHeight = desktop ? 32 : 48;
+
+    if (focusedMenuItem) {
+      let selectedOffSet = React.findDOMNode(focusedMenuItem).offsetTop;
+
+      //Make the focused item be the 2nd item in the list the
+      //user sees
+      let scrollTop = selectedOffSet - menuItemHeight;
+      if (scrollTop < menuItemHeight) scrollTop = 0;
+
+      React.findDOMNode(this.refs.scrollContainer).scrollTop = scrollTop;
+    }
   },
 
   _setWidth() {

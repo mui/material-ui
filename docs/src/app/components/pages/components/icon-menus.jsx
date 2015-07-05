@@ -22,11 +22,13 @@ class IconMenus extends React.Component {
     this._handleIconMenuChange = this._handleIconMenuChange.bind(this);
     this._handleIconMenuMultiChange = this._handleIconMenuMultiChange.bind(this);
     this._handleIconMenuValueLinkChange = this._handleIconMenuValueLinkChange.bind(this);
+    this._handleIconMenuUsStateChange = this._handleIconMenuUsStateChange.bind(this);
 
     this.state = {
       iconMenuValue: '1',
       iconMenuMultiValue: ['2', '4'],
-      iconMenuValueLink: '1'
+      iconMenuValueLink: '1',
+      usState: 'TX'
     };
   }
 
@@ -122,6 +124,11 @@ class IconMenus extends React.Component {
     let iconMenuValueLink = {
       value: this.state.iconMenuValueLink,
       requestChange: this._handleIconMenuValueLinkChange
+    };
+
+    let usStateValueLink = {
+      value: this.state.usState,
+      requestChange: this._handleIconMenuUsStateChange
     };
 
     return (
@@ -232,7 +239,8 @@ class IconMenus extends React.Component {
           <IconMenu
             iconButtonElement={iconButtonElement}
             maxHeight={272}
-            openDirection="bottom-right">
+            openDirection="bottom-right"
+            valueLink={usStateValueLink}>
             <MenuItem value="AL">Alabama</MenuItem>
             <MenuItem value="AK">Alaska</MenuItem>
             <MenuItem value="AZ">Arizona</MenuItem>
@@ -301,6 +309,12 @@ class IconMenus extends React.Component {
   _handleIconMenuMultiChange(e, value) {
     this.setState({
       iconMenuMultiValue: value
+    });
+  }
+
+  _handleIconMenuUsStateChange(e, value) {
+    this.setState({
+      usState: value
     });
   }
 
