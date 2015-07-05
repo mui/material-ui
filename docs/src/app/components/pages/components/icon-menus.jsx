@@ -7,9 +7,11 @@ let MoreVertIcon = require('svg-icons/navigation/more-vert');
 let ComponentDoc = require('../../component-doc');
 
 let ContentCopy = require('svg-icons/content/content-copy');
+let ContentFilter = require('svg-icons/content/filter-list');
 let ContentLink = require('svg-icons/content/link');
 let Delete = require('svg-icons/action/delete');
 let Download = require('svg-icons/file/file-download');
+let MapsPlace = require('svg-icons/maps/place');
 let PersonAdd = require('svg-icons/social/person-add');
 let RemoveRedEye = require('svg-icons/image/remove-red-eye');
 
@@ -115,11 +117,9 @@ class IconMenus extends React.Component {
       }
     ];
 
-    let iconButtonElement = (
-      <IconButton>
-        <MoreVertIcon />
-      </IconButton>
-    );
+    let iconButtonElement = <IconButton><MoreVertIcon /></IconButton>;
+    let filterButtonElement = <IconButton><ContentFilter /></IconButton>;
+    let mapsButtonElement = <IconButton><MapsPlace /></IconButton>;
 
     let iconMenuValueLink = {
       value: this.state.iconMenuValueLink,
@@ -140,6 +140,7 @@ class IconMenus extends React.Component {
 
         <br/>
 
+        <p>Menu with various open directions
         <IconMenu iconButtonElement={iconButtonElement}>
           <MenuItem>Refresh</MenuItem>
           <MenuItem>Send Feedback</MenuItem>
@@ -177,10 +178,9 @@ class IconMenus extends React.Component {
           <MenuItem>Help</MenuItem>
           <MenuItem>Sign out</MenuItem>
         </IconMenu>
+        </p>
 
-        <br/><br/>
-
-        <p>Menu with value
+        <p>Menu with value, valueLink, multiple values
           <IconMenu
             iconButtonElement={iconButtonElement}
             onChange={this._handleIconMenuChange}
@@ -192,9 +192,7 @@ class IconMenus extends React.Component {
             <MenuItem value="4">Help</MenuItem>
             <MenuItem value="5">Sign out</MenuItem>
           </IconMenu>
-        </p>
 
-        <p>Menu with valueLink
           <IconMenu
             iconButtonElement={iconButtonElement}
             openDirection="bottom-right"
@@ -205,24 +203,35 @@ class IconMenus extends React.Component {
             <MenuItem value="4">Help</MenuItem>
             <MenuItem value="5">Sign out</MenuItem>
           </IconMenu>
-        </p>
 
-        <p>Menu with multiple values
           <IconMenu
-            iconButtonElement={iconButtonElement}
+            iconButtonElement={filterButtonElement}
             multiple={true}
             onChange={this._handleIconMenuMultiChange}
             openDirection="bottom-right"
             value={this.state.iconMenuMultiValue}>
-            <MenuItem value="1">Refresh</MenuItem>
-            <MenuItem value="2">Send Feedback</MenuItem>
-            <MenuItem value="3">Settings</MenuItem>
-            <MenuItem value="4">Help</MenuItem>
-            <MenuItem value="5">Sign out</MenuItem>
+            <MenuItem value="1">Blu-ray</MenuItem>
+            <MenuItem value="2">Cassette</MenuItem>
+            <MenuItem value="3">CD</MenuItem>
+            <MenuItem value="4">DVD Audio</MenuItem>
+            <MenuItem value="5">Hybrid SACD</MenuItem>
+            <MenuItem value="6">Vinyl</MenuItem>
           </IconMenu>
         </p>
 
         <p>Menu Item variations
+          <IconMenu
+            iconButtonElement={iconButtonElement}
+            openDirection="bottom-right">
+            <MenuItem>Home</MenuItem>
+            <MenuItem>Back</MenuItem>
+            <MenuItem disabled={true}>Forward</MenuItem>
+            <MenuDivider />
+            <MenuItem disabled={true}>Recently closed</MenuItem>
+            <MenuItem disabled={true}>Google</MenuItem>
+            <MenuItem>YouTube</MenuItem>
+          </IconMenu>
+
           <IconMenu
             iconButtonElement={iconButtonElement}
             openDirection="bottom-right">
@@ -235,9 +244,11 @@ class IconMenus extends React.Component {
             <MenuDivider />
             <MenuItem leftIcon={<Delete />}>Remove</MenuItem>
           </IconMenu>
+        </p>
 
+        <p>Scrollable
           <IconMenu
-            iconButtonElement={iconButtonElement}
+            iconButtonElement={mapsButtonElement}
             maxHeight={272}
             openDirection="bottom-right"
             valueLink={usStateValueLink}>

@@ -169,6 +169,7 @@ let Menu = React.createClass({
     let newChildren = React.Children.map(children, (child) => {
 
       let childIsADivider = child.type.displayName === 'MenuDivider';
+      let childIsDisabled = child.props.disabled;
       let focusIndex = this.state.focusIndex;
       let transitionDelay = 0;
 
@@ -185,10 +186,10 @@ let Menu = React.createClass({
         transitionDelay: transitionDelay + 'ms'
       });
 
-      let clonedChild = childIsADivider ? child :
+      let clonedChild = childIsADivider || childIsDisabled ? child :
         this._cloneMenuItem(child, menuItemIndex, styles);
 
-      if (!childIsADivider) menuItemIndex++;
+      if (!childIsADivider && !childIsDisabled) menuItemIndex++;
 
       return <div style={childrenContainerStyles}>{clonedChild}</div>;
 
@@ -302,13 +303,13 @@ let Menu = React.createClass({
   },
 
   _getMenuItemCount() {
-    let dividerCount = 0;
+    let menuItemCount = 0;
     React.Children.forEach(this.props.children, (child) => {
-      if (child.type.displayName === 'MenuDivider') {
-        dividerCount++;
-      }
+      let childIsADivider = child.type.displayName === 'MenuDivider';
+      let childIsDisabled = child.props.disabled;
+      if (!childIsADivider && !childIsDisabled) menuItemCount++;
     });
-    return React.Children.count(this.props.children) - dividerCount;
+    return menuItemCount;
   },
 
   _getSelectedIndex() {
