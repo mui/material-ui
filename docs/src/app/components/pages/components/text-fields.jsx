@@ -159,6 +159,12 @@ let TextFieldsPage = React.createClass({
       {
         name: 'Props',
         infoArray: [
+        {
+            name: 'errorStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Pass props to the error text message on the Text Field.'
+          },
           {
             name: 'errorText',
             type: 'string',
