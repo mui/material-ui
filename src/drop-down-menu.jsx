@@ -60,6 +60,7 @@ let DropDownMenu = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.autoWidth) this._setWidth();
     if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
       return;
     } else if (nextProps.hasOwnProperty('selectedIndex')) {
@@ -218,6 +219,7 @@ let DropDownMenu = React.createClass({
     let el = React.findDOMNode(this);
     let menuItemsDom = React.findDOMNode(this.refs.menuItems);
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
+      el.style.width = 'auto';
       el.style.width = menuItemsDom.offsetWidth + 'px';
     }
   },
