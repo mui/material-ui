@@ -36,8 +36,8 @@ let Dialog = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp',
-    'resize': '_positionDialog'
+    keyup: '_handleWindowKeyUp',
+    resize: '_positionDialog'
   },
 
   getDefaultProps() {
@@ -67,12 +67,8 @@ let Dialog = React.createClass({
     this._positionDialog();
   },
 
-  getSpacing() {
-    return this.context.muiTheme.spacing;
-  },
-
   getStyles() {
-    let spacing = this.getSpacing();
+    let spacing = this.context.muiTheme.spacing;
 
     let main = {
       position: 'fixed',
@@ -92,7 +88,7 @@ let Dialog = React.createClass({
       transition: Transitions.easeOut(),
       position: 'relative',
       width: '75%',
-      maxWidth: (this.context.muiTheme.spacing.desktopKeylineIncrement * 12),
+      maxWidth: spacing.desktopKeylineIncrement * 12,
       margin: '0 auto',
       zIndex: 10,
       background: this.context.muiTheme.canvasColor,
@@ -110,7 +106,7 @@ let Dialog = React.createClass({
         margin: 0,
         padding: gutter + gutter + '0 ' + gutter,
         color: this.context.muiTheme.palette.textColor,
-        fontSize: '24px',
+        fontSize: 24,
         lineHeight: '32px',
         fontWeight: '400'
     };
@@ -163,7 +159,8 @@ let Dialog = React.createClass({
 
           {actions}
         </Paper>
-        <Overlay ref="dialogOverlay" show={this.state.open} autoLockScrolling={false} onTouchTap={this._handleOverlayTouchTap} />
+        <Overlay ref="dialogOverlay" show={this.state.open} autoLockScrolling={false}
+          onTouchTap={this._handleOverlayTouchTap} />
       </div>
     );
   },

@@ -23,7 +23,7 @@ let TimePickerDialog = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    keyup: '_handleWindowKeyUp'
   },
 
 
@@ -41,11 +41,11 @@ let TimePickerDialog = React.createClass({
 
     let styles = {
       root: {
-        fontSize: "14px",
+        fontSize: 14,
         color: this.getTheme().clockColor
       },
       dialogContent: {
-        width: "280px"
+        width: 280
       }
     };
 
