@@ -59,7 +59,6 @@ let TextField = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    let hasErrorProp = nextProps.hasOwnProperty('errorText');
     let newState = {};
 
     newState.errorText = nextProps.errorText;
@@ -100,8 +99,8 @@ let TextField = React.createClass({
         transition: Transitions.easeOut('200ms', 'height')
       },
       error: {
-        position: 'absolute',
-        bottom: -10,
+        position: 'relative',
+        bottom: 5,
         fontSize: 12,
         lineHeight: '12px',
         color: theme.errorColor,
@@ -109,10 +108,11 @@ let TextField = React.createClass({
       },
       hint: {
         position: 'absolute',
-        lineHeight: '48px',
+        lineHeight: '22px',
         opacity: 1,
         color: theme.hintColor,
-        transition: Transitions.easeOut()
+        transition: Transitions.easeOut(),
+        bottom: 12
       },
       input: {
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -148,7 +148,9 @@ let TextField = React.createClass({
     };
 
     styles.floatingLabel = this.mergeStyles(styles.hint, {
-      top: 24,
+      lineHeight: '22px',
+      top: 38,
+      bottom: 'none',
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top'
@@ -170,18 +172,17 @@ let TextField = React.createClass({
 
     if (this.state.isFocused) {
       styles.floatingLabel.color = theme.focusColor;
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
     if (this.state.hasValue) {
       styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? theme.disabledTextColor : theme.floatingLabelColor, 0.5);
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
       styles.hint.opacity = 0;
     }
 
     if (props.floatingLabelText) {
-      styles.hint.top = 24;
       styles.hint.opacity = 0;
       styles.input.boxSizing = 'border-box';
       if (this.state.isFocused && !this.state.hasValue) styles.hint.opacity = 1;
@@ -256,7 +257,7 @@ let TextField = React.createClass({
       inputProps.onChange = this._handleInputChange;
     }
     if (this.props.children) {
-      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props})
+      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props});
     }
     else {
       inputElement = this.props.multiLine ? (
@@ -355,7 +356,7 @@ let TextField = React.createClass({
 
   _handleInputFocus(e) {
     if (this.props.disabled)
-      return
+      return;
     this.setState({isFocused: true});
     if (this.props.onFocus) this.props.onFocus(e);
   },

@@ -5,9 +5,9 @@
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No test implemented\" && exit 0",
     "prebuild": "rm -rf lib",
-    "eslint": "eslint src",
+    "eslint": "gulp eslint",
     "build": "npm run eslint && babel --stage 1 ./src --out-dir ./lib",
     "prepublish": "npm run build"
   },
@@ -40,6 +40,8 @@
     "babel-eslint": "^3.1.17",
     "eslint": "^0.23.0",
     "eslint-plugin-react": "^2.5.2",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^0.15.0",
     "react-router": "^0.13.3",
     "react-tap-event-plugin": "^0.1.6"
   }

@@ -93,7 +93,7 @@ let TimeDisplay = React.createClass({
       hour: {},
 
       minute: {}
-    }
+    };
 
     let [hour, min] = this.sanitizeTime();
 

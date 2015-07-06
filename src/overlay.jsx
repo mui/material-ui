@@ -77,7 +77,7 @@ let Overlay = React.createClass({
       ...other
     } = this.props;
 
-    let styles = this.mergeAndPrefix(this.getStyles().root, this.props.style, this.props.show && this.getStyles().rootWhenShown)
+    let styles = this.mergeAndPrefix(this.getStyles().root, this.props.style, this.props.show && this.getStyles().rootWhenShown);
 
     return (
       <div {...other} style={styles} />

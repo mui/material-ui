@@ -1,6 +1,6 @@
 let React = require('react');
 let StylePropable = require('../mixins/style-propable');
-let Colors = require('../styles/colors.js')
+let Colors = require('../styles/colors.js');
 
 
 let Tab = React.createClass({
@@ -44,7 +44,7 @@ let Tab = React.createClass({
       <div style={styles} onTouchTap={this.handleTouchTap} routeName={this.props.route}>
         {this.props.label}
       </div>
-    )
+    );
   }
 
 });

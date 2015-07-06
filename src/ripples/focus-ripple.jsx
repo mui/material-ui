@@ -37,9 +37,10 @@ let FocusRipple = React.createClass({
       position: 'absolute',
       top: 0,
       left: 0,
-      transition: Transitions.easeOut(),
+      transition: Transitions.easeOut(null, 'opacity'),
       transform: this.props.show ? 'scale(1)' : 'scale(0)',
-      opacity: this.props.show ? 1 : 0
+      opacity: this.props.show ? 1 : 0,
+      overflow: 'hidden'
     }, this.props.style);
 
     let innerStyles = this.mergeAndPrefix({
@@ -77,7 +78,7 @@ let FocusRipple = React.createClass({
   },
 
   _setRippleSize() {
-    let el = React.findDOMNode(this);
+    let el = React.findDOMNode(this.refs.innerCircle);
     let height = el.offsetHeight;
     let width = el.offsetWidth;
     let size = Math.max(height, width);

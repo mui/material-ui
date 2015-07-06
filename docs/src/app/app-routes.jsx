@@ -24,6 +24,7 @@ let Dialog = require('./components/pages/components/dialog');
 let DropDownMenu = require('./components/pages/components/drop-down-menu');
 let Icons = require('./components/pages/components/icons');
 let IconButtons = require('./components/pages/components/icon-buttons');
+let IconMenus = require('./components/pages/components/icon-menus');
 let LeftNav = require('./components/pages/components/left-nav');
 let Lists = require('./components/pages/components/lists');
 let Menus = require('./components/pages/components/menus');
@@ -69,6 +70,7 @@ let AppRoutes = (
       <Route name="dropdown-menu" handler={DropDownMenu} />
       <Route name="icons" handler={Icons} />
       <Route name="icon-buttons" handler={IconButtons} />
+      <Route name="icon-menus" handler={IconMenus} />
       <Route name="left-nav" handler={LeftNav} />
       <Route name="lists" handler={Lists} />
       <Route name="menus" handler={Menus} />

@@ -52,7 +52,7 @@ let Slider = React.createClass({
       focused: false,
       active: false,
       hovered: false
-    }
+    };
   },
 
   componentWillReceiveProps(nextProps) {
@@ -323,7 +323,7 @@ let Slider = React.createClass({
       let i;
       for (i = 0; i < (max - min) / step; i++) {
         let distance = (pos.left - cursor);
-        let nextDistance = (cursor + pixelStep) - pos.left
+        let nextDistance = (cursor + pixelStep) - pos.left;
         if (Math.abs(distance) > Math.abs(nextDistance)) {
           cursor += pixelStep;
         } else {

@@ -128,6 +128,7 @@ let MenuItem = React.createClass({
     if (this.props.data) data = <span style={this.mergeAndPrefix(styles.data)}>{this.props.data}</span>;
     if (this.props.number !== undefined) number = <span style={this.mergeAndPrefix(styles.number)}>{this.props.number}</span>;
     if (this.props.attribute !== undefined) attribute = <span style={this.mergeAndPrefix(styles.style)}>{this.props.attribute}</span>;
+    if (this.props.icon) icon = this.props.icon;
 
     if (this.props.toggle) {
       let {

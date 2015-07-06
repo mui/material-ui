@@ -108,7 +108,7 @@ let EnhancedTextarea = React.createClass({
   },
 
   setValue(value) {
-    this.refs.input.value = value;
+    this.getInputNode().value = value;
     this._syncHeightWithShadow(value);
   },
 

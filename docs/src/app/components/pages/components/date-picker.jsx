@@ -45,6 +45,12 @@ class DatePickerPage extends React.Component {
         name: 'Props',
         infoArray: [
           {
+            name: 'autoOk',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, automatically accept and close the picker on select a date.'
+          },
+          {
             name: 'defaultDate',
             type: 'date object',
             header: 'optional',
@@ -58,17 +64,11 @@ class DatePickerPage extends React.Component {
               'the input box. By default, date objects are formatted to M/D/YYYY.'
           },
           {
-            name: 'mode',
-            type: 'one of: portrait, landscape',
-            header: 'default: portrait',
-            desc: 'Tells the component to display the picker in portrait or landscape mode.'
-          },
-          {
-            name: 'minDate',
-            type: 'date object',
+            name: 'hideToolbarYearChange',
+            type: 'boolean',
             header: 'optional',
-            desc: 'The beginning of a range of valid dates. The range includes the startDate. ' +
-              'The default value is current date - 100 years.'
+            desc: 'Hide year change buttons on calendar; good for short time spans. Clicking ' +
+              'the year will always result in selecting a year.'
           },
           {
             name: 'maxDate',
@@ -78,18 +78,24 @@ class DatePickerPage extends React.Component {
               'The default value is current date + 100 years.'
           },
           {
+            name: 'minDate',
+            type: 'date object',
+            header: 'optional',
+            desc: 'The beginning of a range of valid dates. The range includes the startDate. ' +
+              'The default value is current date - 100 years.'
+          },
+          {
+            name: 'mode',
+            type: 'one of: portrait, landscape',
+            header: 'default: portrait',
+            desc: 'Tells the component to display the picker in portrait or landscape mode.'
+          },
+          {
             name: 'shouldDisableDate',
             type: 'function',
             header: 'optional',
             desc: 'Called during render time of a given day. If this method returns false ' +
               'the day is disabled otherwise it is displayed normally.'
-          },
-          {
-            name: 'hideToolbarYearChange',
-            type: 'boolean',
-            header: 'optional',
-            desc: 'Hide year change buttons on calendar; good for short time spans. Clicking ' +
-              'the year will always result in selecting a year.'
           },
           {
             name: 'showYearSelector',
@@ -99,16 +105,16 @@ class DatePickerPage extends React.Component {
               'If false, the year change buttons in the toolbar are hidden.'
           },
           {
-            name: 'autoOk',
-            type: 'bool',
-            header: 'default: false',
-            desc: 'If true, automatically accept and close the picker on select a date.'
-          },
-          {
             name: 'style',
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of DatePicker\'s root element.'
+          },
+          {
+            name: 'textFieldStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of DatePicker\'s TextField element.'
           }
         ]
       },

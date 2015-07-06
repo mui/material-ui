@@ -58,7 +58,7 @@ let DialogWindow = React.createClass({
     }
   },
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this._positionDialog();
     this._focusOnAction();
   },

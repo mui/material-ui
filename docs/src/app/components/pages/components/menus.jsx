@@ -49,14 +49,52 @@ class MenusPage extends React.Component {
         name: 'Menu Props',
         infoArray: [
           {
+            name: 'autoWidth',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'If true, the width will automatically be set according to the items inside the menu using the ' +
+              'proper keyline increment.'
+          },
+          {
             name: 'desktop',
             type: 'bool',
             header: 'default: false',
             desc: 'Indicates if the menu should render with compact desktop styles.'
           },
           {
+            name: 'multiple',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the value can an array and allow the menu to be a multi-select.'
+          },
+          {
+            name: 'open',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'If true, the menu will be rendered open.'
+          },
+          {
+            name: 'openDirection',
+            type: 'oneOf [bottom-left, bottom-right, top-left, top-right]',
+            header: 'default: bottom-left',
+            desc: 'This is the placement of the menu relative to the IconButton.'
+          },
+          {
+            name: 'listStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'The style object to use to override underlying list style.'
+          },
+          {
+            name: 'value',
+            type: 'string or array',
+            header: 'optional',
+            desc: 'The value of the selected menu item. If passed in, this will make the menu ' +
+              'a controlled component. This component also supports valueLink.'
+          },
+          {
             name: 'width',
-            type: 'number',
+            type: 'string or number',
             header: 'optional',
             desc: 'Sets the width of the menu. If not specified, the menu width will be dictated by its ' +
               'children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).'
@@ -114,6 +152,28 @@ class MenusPage extends React.Component {
             header: 'optional',
             desc: 'This is the block element that contains the secondary text. If a string is passed in, a ' +
               'div tag will be rendered.'
+          },
+          {
+            name: 'value',
+            type: 'string',
+            header: 'optional',
+            desc: 'The value of the menu item.'
+          }
+        ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
+          {
+            name: 'onItemTouchTap',
+            header: 'function(e, item)',
+            desc: 'Fired when a menu item is touchTapped.'
+          },
+          {
+            name: 'onChange',
+            header: 'function(e, value)',
+            desc: 'Fired when a menu item is touchTapped and the menu item value ' +
+              'is not equal to the current menu value.'
           }
         ]
       }
@@ -123,7 +183,9 @@ class MenusPage extends React.Component {
       menu: {
         marginRight: 32,
         marginBottom: 32,
-        float: 'left'
+        float: 'left',
+        position: 'relative',
+        zIndex: 0
       },
 
       hr: {

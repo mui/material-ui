@@ -1,6 +1,5 @@
 let AutoPrefix = require('./auto-prefix');
 
-
 module.exports = {
 
   easeOutFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
@@ -10,7 +9,20 @@ module.exports = {
 
     easeFunction = easeFunction || this.easeOutFunction;
 
-    return this.create(duration, property, delay, easeFunction);
+    if (property &&
+      Object.prototype.toString.call(property) === '[object Array]' ) {
+
+      let transitions = '';
+      for (let i = 0; i < property.length; i++) {
+        if (transitions) transitions += ',';
+        transitions += this.create(duration, property[i], delay, easeFunction);
+      }
+      return transitions;
+
+    } else {
+      return this.create(duration, property, delay, easeFunction);
+    }
+
   },
 
   create(duration, property, delay, easeFunction) {

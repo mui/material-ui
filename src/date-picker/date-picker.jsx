@@ -11,20 +11,22 @@ let DatePicker = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   propTypes: {
+    autoOk: React.PropTypes.bool,
     defaultDate: React.PropTypes.object,
     formatDate: React.PropTypes.func,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline']),
-    onFocus: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
-    shouldDisableDate: React.PropTypes.func,
     hideToolbarYearChange: React.PropTypes.bool,
-    autoOk: React.PropTypes.bool,
-    showYearSelector: React.PropTypes.bool
+    maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
+    mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline']),
+    onDismiss: React.PropTypes.func,
+    onChange: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onShow: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
+    shouldDisableDate: React.PropTypes.func,
+    showYearSelector: React.PropTypes.bool,
+    style: React.PropTypes.object,
+    textFieldStyle: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -54,16 +56,18 @@ let DatePicker = React.createClass({
 
   render() {
     let {
+      autoOk,
       formatDate,
+      maxDate,
+      minDate,
       mode,
+      onDismiss,
       onFocus,
       onTouchTap,
       onShow,
-      onDismiss,
-      minDate,
-      maxDate,
-      autoOk,
       showYearSelector,
+      style,
+      textFieldStyle,
       ...other
     } = this.props;
     let defaultInputValue;
@@ -73,16 +77,17 @@ let DatePicker = React.createClass({
     }
 
     return (
-      <div style={this.props.style}>
+      <div style={style}>
         <TextField
           {...other}
+          style={textFieldStyle}
           ref="input"
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}
           onTouchTap={this._handleInputTouchTap}/>
         <DatePickerDialog
           ref="dialogWindow"
-          mode={this.props.mode}
+          mode={mode}
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
