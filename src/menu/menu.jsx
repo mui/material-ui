@@ -10,7 +10,6 @@ let Paper = require('../paper');
 let MenuItem = require('./menu-item');
 let LinkMenuItem = require('./link-menu-item');
 let SubheaderMenuItem = require('./subheader-menu-item');
-let WindowListenable = require('../mixins/window-listenable');
 
 
 /***********************
@@ -306,9 +305,8 @@ var Menu = React.createClass({
   },
 
   _getChildren() {
-    let  menuItem,
+    let menuItem,
       itemComponent,
-      isSelected,
       isDisabled;
 
     let styles = this.getStyles();
@@ -319,7 +317,6 @@ var Menu = React.createClass({
 
     for (let i=0; i < this.props.menuItems.length; i++) {
       menuItem = this.props.menuItems[i];
-      isSelected = i === this.props.selectedIndex;
       isDisabled = (menuItem.disabled === undefined) ? false : menuItem.disabled;
 
       let {
@@ -339,7 +336,7 @@ var Menu = React.createClass({
             <LinkMenuItem
               key={i}
               index={i}
-              active={this.state.activeIndex == i}
+              active={this.state.activeIndex === i}
               text={menuItem.text}
               disabled={isDisabled}
               className={this.props.menuItemClassNameLink}
@@ -377,7 +374,7 @@ var Menu = React.createClass({
               key={i}
               index={i}
               nested={true}
-              active={this.state.activeIndex == i}
+              active={this.state.activeIndex === i}
               text={menuItem.text}
               disabled={isDisabled}
               menuItems={menuItem.items}
@@ -394,10 +391,10 @@ var Menu = React.createClass({
           itemComponent = (
             <MenuItem
               {...other}
-              selected={isSelected}
+              selected={this.props.selectedIndex === i}
               key={i}
               index={i}
-              active={this.state.activeIndex == i}
+              active={this.state.activeIndex === i}
               icon={menuItem.icon}
               data={menuItem.data}
               className={this.props.menuItemClassName}
@@ -568,7 +565,6 @@ var Menu = React.createClass({
 
   _tryToggleNested(index) {
     let item = this.refs[index];
-    let toggleMenu = item.toggleNestedMenu;
     if (item && item.toggleNestedMenu)
       item.toggleNestedMenu();
   }

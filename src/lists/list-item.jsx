@@ -241,11 +241,23 @@ let ListItem = React.createClass({
 
   },
 
-  setKeyboardFocus() {
+  applyFocusState(focusState) {
     let button = this.refs.enhancedButton;
+    let buttonEl = React.findDOMNode(button);
+
     if (button) {
-      button.setKeyboardFocus();
-      React.findDOMNode(button).focus();
+      switch(focusState) {
+        case 'none':
+          buttonEl.blur();
+          break;
+        case 'focused':
+          buttonEl.focus();
+          break;
+        case 'keyboard-focused':
+          button.setKeyboardFocus();
+          buttonEl.focus();
+          break;
+      }
     }
   },
 

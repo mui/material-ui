@@ -14,16 +14,16 @@ let Paper = React.createClass({
   propTypes: {
     circle: React.PropTypes.bool,
     rounded: React.PropTypes.bool,
-    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5]),
-    transitionEnabled: React.PropTypes.bool
+    transitionEnabled: React.PropTypes.bool,
+    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5])
   },
 
   getDefaultProps() {
     return {
       circle: false,
       rounded: true,
-      zDepth: 1,
-      transitionEnabled: true
+      transitionEnabled: true,
+      zDepth: 1
     };
   },
 

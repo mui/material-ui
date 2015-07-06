@@ -288,7 +288,7 @@ let EnhancedSwitch = React.createClass({
     );
 
     return (
-      <div ref="root"  className={className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div ref="root" className={className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
           {inputElement}
           {elementsInOrder}
       </div>

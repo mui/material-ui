@@ -1,9 +1,8 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
-var handleErrors = require('../util/handleErrors');
 
 gulp.task('eslint', function () {
-  return gulp.src(['../src/**'])
+  return gulp.src(['src/**'])
     // eslint() attaches the lint output to the eslint property
     // of the file object so it can be used by other modules.
     .pipe(eslint())
@@ -13,4 +12,4 @@ gulp.task('eslint', function () {
     // To have the process exit with an error code (1) on
     // lint error, return the stream and pipe to failOnError last.
     .pipe(eslint.failOnError());
-}).on('error', handleErrors);
+});

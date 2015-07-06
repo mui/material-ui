@@ -5,7 +5,7 @@ let TabTemplate = React.createClass({
 
   render() {
     let styles = {
-      'height': '0px',
+      'height': 0,
       'overflow': 'hidden',
       'width': '100%',
       'position': 'relative',
@@ -13,8 +13,8 @@ let TabTemplate = React.createClass({
     };
 
     if (this.props.selected) {
-      delete styles.height
-      delete styles.overflow
+      delete styles.height;
+      delete styles.overflow;
     }
 
     return (

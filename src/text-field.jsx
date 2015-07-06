@@ -59,7 +59,6 @@ let TextField = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    let hasErrorProp = nextProps.hasOwnProperty('errorText');
     let newState = {};
 
     newState.errorText = nextProps.errorText;
@@ -109,11 +108,11 @@ let TextField = React.createClass({
       },
       hint: {
         position: 'absolute',
-        lineHeight: '20px',
+        lineHeight: '22px',
         opacity: 1,
         color: theme.hintColor,
         transition: Transitions.easeOut(),
-        bottom: '10px'
+        bottom: 12
       },
       input: {
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -149,8 +148,9 @@ let TextField = React.createClass({
     };
 
     styles.floatingLabel = this.mergeStyles(styles.hint, {
-      lineHeight: '20px',
+      lineHeight: '22px',
       top: 38,
+      bottom: 'none',
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top'
@@ -183,7 +183,6 @@ let TextField = React.createClass({
     }
 
     if (props.floatingLabelText) {
-      styles.hint.top = 24;
       styles.hint.opacity = 0;
       styles.input.boxSizing = 'border-box';
       if (this.state.isFocused && !this.state.hasValue) styles.hint.opacity = 1;

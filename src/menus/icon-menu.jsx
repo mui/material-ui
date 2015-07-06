@@ -1,8 +1,6 @@
 let React = require('react/addons');
 let ClickAwayable = require('../mixins/click-awayable');
-let Controllable = require('../mixins/controllable');
 let StylePropable = require('../mixins/style-propable');
-let Children = require('../utils/children');
 let KeyCode = require('../utils/key-code');
 let Menu = require('../menus/menu');
 
@@ -25,7 +23,10 @@ let IconMenu = React.createClass({
       'top-left',
       'top-right'
     ]),
+    onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
+    maxHeight: React.PropTypes.number,
+    menuStyle: React.PropTypes.object,
     menuListStyle: React.PropTypes.object,
     onKeyDown: React.PropTypes.func,
     width: React.PropTypes.number
@@ -33,15 +34,18 @@ let IconMenu = React.createClass({
 
   getDefaultProps() {
     return {
+      openDirection: 'bottom-left',
       onKeyDown: () => {},
+      onItemKeyboardActivate: () => {},
       onItemTouchTap: () => {}
     };
   },
 
   getInitialState() {
     return {
+      iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
       open: false
-    }
+    };
   },
 
   componentClickAway() {
@@ -57,6 +61,8 @@ let IconMenu = React.createClass({
       onChange,
       onKeyDown,
       onItemTouchTap,
+      maxHeight,
+      menuStyle,
       menuListStyle,
       style,
       value,
@@ -66,22 +72,33 @@ let IconMenu = React.createClass({
     } = this.props;
 
     let open = this.state.open;
+    let openDown = openDirection.split('-')[0] === 'bottom';
+    let openLeft = openDirection.split('-')[1] === 'left';
 
     let styles = {
       root: {
         display: 'inline-block',
         position: 'relative'
+      },
+
+      menu: {
+        top: openDown ? 12 : null,
+        bottom: !openDown ? 12 : null,
+        left: !openLeft ? 12 : null,
+        right: openLeft ? 12 : null
       }
     };
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
     let iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardActivate: this._handleIconButtonKeyboardActivate,
       onTouchTap: (e) => {
         this.open();
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
-      }.bind(this)
+      }.bind(this),
+      ref: this.state.iconButtonRef
     });
 
     return (
@@ -94,13 +111,16 @@ let IconMenu = React.createClass({
 
         <Menu
           desktop={desktop}
-          menuListStyle={menuListStyle}
+          listStyle={menuListStyle}
+          maxHeight={maxHeight}
           multiple={multiple}
           onItemTouchTap={this._handleItemTouchTap}
+          onItemKeyboardActivate={this._handleItemKeyboardActivate}
           onChange={onChange}
           open={open}
           openDirection={openDirection}
           ref="menu"
+          style={mergedMenuStyles}
           value={value}
           valueLink={valueLink}
           width={width}>
@@ -112,10 +132,12 @@ let IconMenu = React.createClass({
   },
 
   close() {
-    if (!this.state.close) {
+    if (this.state.open) {
       this.setState({
         open: false
       });
+      //Set focus on the icon button when the menu closes
+      React.findDOMNode(this.refs[this.state.iconButtonRef]).focus();
     }
   },
 
@@ -127,8 +149,8 @@ let IconMenu = React.createClass({
     }
   },
 
-  _handleIconButtonKeyboardActivate(e) {
-    this.refs.menu.setKeyboardFocusIndex(0);
+  _handleIconButtonKeyboardActivate() {
+    this.refs.menu.setKeyboardFocused(true);
   },
 
   _handleKeyDown(e) {
@@ -140,11 +162,17 @@ let IconMenu = React.createClass({
     this.props.onKeyDown(e);
   },
 
+  _handleItemKeyboardActivate() {
+    //The icon button receives keyboard focus when a
+    //menu item is keyboard activated
+    this.refs[this.state.iconButtonRef].setKeyboardFocus();
+  },
+
   _handleItemTouchTap(e, child) {
     setTimeout(() => {
       this.close();
       this.props.onItemTouchTap(e, child);
-    }, 200);
+    }, 150);
   }
 });
 

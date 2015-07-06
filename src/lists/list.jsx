@@ -15,7 +15,8 @@ let List = React.createClass({
   propTypes: {
     insetSubheader: React.PropTypes.bool,
     subheader: React.PropTypes.string,
-    subheaderStyle: React.PropTypes.object
+    subheaderStyle: React.PropTypes.object,
+    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5])
   },
 
   getDefaultProps() {
@@ -31,6 +32,7 @@ let List = React.createClass({
       style,
       subheader,
       subheaderStyle,
+      zDepth,
       ...other
     } = this.props;
 
@@ -60,7 +62,8 @@ let List = React.createClass({
     return (
       <Paper
         {...other}
-        style={mergedRootStyles}>
+        style={mergedRootStyles}
+        zDepth={zDepth}>
         {subheaderElement}
         {this.props.children}
       </Paper>

@@ -50,7 +50,7 @@ let TimePicker = React.createClass({
     if (this.props.format === "ampm"){
       let isAM = hours < 12;
       hours = hours % 12;
-      aditional +=  isAM ? " am" : " pm";
+      aditional += isAM ? " am" : " pm";
       hours = hours || 12;
     }
 
@@ -60,7 +60,7 @@ let TimePicker = React.createClass({
     if (hours.length < 2) hours = "0" + hours;
     if (mins.length < 2) mins = "0" + mins;
 
-    return  hours + ":" + mins + aditional;
+    return hours + ":" + mins + aditional;
   },
 
   render() {

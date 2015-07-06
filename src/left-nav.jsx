@@ -55,7 +55,7 @@ let LeftNav = React.createClass({
     this._enableSwipeHandling();
   },
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this._updateMenuHeight();
     this._enableSwipeHandling();
   },
@@ -202,7 +202,7 @@ let LeftNav = React.createClass({
     }
   },
 
-  _onWindowResize(e) {
+  _onWindowResize() {
     this._updateMenuHeight();
   },
 

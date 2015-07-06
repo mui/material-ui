@@ -1,7 +1,6 @@
 let React = require('react');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
-let Spacing = require('./styles/spacing');
 let ClickAwayable = require('./mixins/click-awayable');
 let FontIcon = require('./font-icon');
 let Menu = require('./menu/menu');

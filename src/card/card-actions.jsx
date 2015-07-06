@@ -1,5 +1,4 @@
 let React = require('react');
-let Styles = require('../styles');
 
 let CardActions = React.createClass({
   getStyles() {
@@ -7,7 +6,7 @@ let CardActions = React.createClass({
       root: {
         padding: 8
       }
-    }
+    };
   },
 
   render() {
