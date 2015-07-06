@@ -22,8 +22,10 @@ let Menu = React.createClass({
     listStyle: React.PropTypes.object,
     maxHeight: React.PropTypes.number,
     multiple: React.PropTypes.bool,
+    onEscKeyDown: React.PropTypes.func,
     onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func,
     open: React.PropTypes.bool,
     openDirection: React.PropTypes.oneOf([
       'bottom-left',
@@ -43,8 +45,10 @@ let Menu = React.createClass({
     return {
       autoWidth: true,
       maxHeight: null,
+      onEscKeyDown: () => {},
       onItemKeyboardActivate: () => {},
       onItemTouchTap: () => {},
+      onKeyDown: () => {},
       open: true,
       openDirection: 'bottom-left',
       zDepth: 1
@@ -138,7 +142,6 @@ let Menu = React.createClass({
 
       menuItem: {
         transition: Transitions.easeOut(null, 'opacity'),
-        transitionDelay: open ? '400ms' : '0ms',
         opacity: open ? 1 : 0
       },
 
@@ -331,22 +334,28 @@ let Menu = React.createClass({
   _handleKeyDown(e) {
     if (this.props.open) {
       switch (e.keyCode) {
-        case KeyCode.UP:
-          this._decrementKeyboardFocusIndex();
-          break;
         case KeyCode.DOWN:
+          e.preventDefault();
           this._incrementKeyboardFocusIndex();
           break;
+        case KeyCode.ESC:
+          this.props.onEscKeyDown(e);
+          break;
         case KeyCode.TAB:
+          e.preventDefault();
           if (e.shiftKey) {
             this._decrementKeyboardFocusIndex();
           } else {
             this._incrementKeyboardFocusIndex();
           }
           break;
+        case KeyCode.UP:
+          e.preventDefault();
+          this._decrementKeyboardFocusIndex();
+          break;
       }
-      e.preventDefault();
     }
+    this.props.onKeyDown(e);
   },
 
   _handleMenuItemTouchTap(e, item) {
