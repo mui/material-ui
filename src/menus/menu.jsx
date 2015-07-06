@@ -224,7 +224,6 @@ let Menu = React.createClass({
 
     let {
       desktop,
-      multiple,
       open,
       selectedMenuItemStyle
     } = this.props;
