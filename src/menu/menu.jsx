@@ -1,6 +1,5 @@
 let React = require('react');
 let CssEvent = require('../utils/css-event');
-let Dom = require('../utils/dom');
 let KeyLine = require('../utils/key-line');
 let KeyCode = require('../utils/key-code');
 let StylePropable = require('../mixins/style-propable');
@@ -252,7 +251,7 @@ var Menu = React.createClass({
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps() {
     //Set the menu width
     this._setKeyWidth(React.findDOMNode(this));
   },
