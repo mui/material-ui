@@ -4,7 +4,7 @@ let WindowListenable = require('../mixins/window-listenable');
 let CssEvent = require('../utils/css-event');
 let KeyCode = require('../utils/key-code');
 let Calendar = require('./calendar');
-let DialogWindow = require('../dialog');
+let Dialog = require('../dialog');
 let FlatButton = require('../flat-button');
 
 
@@ -57,7 +57,7 @@ let DatePickerDialog = React.createClass({
       dialogContents: {
         width: this.props.mode === 'landscape' ? '560px' : '280px'
       },
-      
+
       dialogBodyContent: {
         padding: 0
       },
@@ -171,11 +171,10 @@ let DatePickerDialog = React.createClass({
   },
 
   _handleWindowKeyUp(e) {
-      switch (e.keyCode) {
-        case KeyCode.ENTER:
-          this._handleOKTouchTap();
-          break;
-      }
+    switch (e.keyCode) {
+      case KeyCode.ENTER:
+        this._handleOKTouchTap();
+        break;
     }
   }
 

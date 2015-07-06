@@ -3,7 +3,7 @@ let StylePropable = require('../mixins/style-propable');
 let WindowListenable = require('../mixins/window-listenable');
 let KeyCode = require('../utils/key-code');
 let Clock = require('./clock');
-let DialogWindow = require('../dialog-window');
+let Dialog = require('../dialog');
 let FlatButton = require('../flat-button');
 
 
@@ -63,7 +63,7 @@ let TimePickerDialog = React.createClass({
     ];
 
     return (
-      <DialogWindow {...other}
+      <Dialog {...other}
         ref="dialogWindow"
         style={this.mergeAndPrefix(styles.root)}
         actions={actions}
@@ -75,7 +75,7 @@ let TimePickerDialog = React.createClass({
           ref="clock"
           format={format}
           initialTime={initialTime} />
-      </DialogWindow>
+      </Dialog>
     );
   },
 

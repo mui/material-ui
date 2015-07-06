@@ -14,9 +14,10 @@ class DialogPage extends React.Component {
     this._handleCustomDialogSubmit = this._handleCustomDialogSubmit.bind(this);
     this._handleScrollableDialogCancel = this._handleScrollableDialogCancel.bind(this);
     this._handleScrollableDialogSubmit = this._handleScrollableDialogSubmit.bind(this);
-    this.handleCustomDialogTouchTap = this.handleCustomDialogTouchTap.bind(this);
-    this.handleStandardDialogTouchTap = this.handleStandardDialogTouchTap.bind(this);
-    this.handleScrollableDialogTouchTap = this.handleScrollableDialogTouchTap.bind(this);
+    this._handleCustomDialogTouchTap = this._handleCustomDialogTouchTap.bind(this);
+    this._handleStandardDialogTouchTap = this._handleStandardDialogTouchTap.bind(this);
+    this._handleScrollableDialogTouchTap = this._handleScrollableDialogTouchTap.bind(this);
+    this._handleToggleChange = this._handleToggleChange.bind(this);
   }
 
   render() {
@@ -166,7 +167,7 @@ class DialogPage extends React.Component {
         primary={true}
         onTouchTap={this._handleCustomDialogSubmit} />
     ];
-    var scrollableCustomActions = [
+    let scrollableCustomActions = [
       <FlatButton
         key={1}
         label="Cancel"
@@ -185,11 +186,11 @@ class DialogPage extends React.Component {
         code={code}
         componentInfo={componentInfo}>
 
-        <RaisedButton label="Standard Actions" onTouchTap={this.handleStandardDialogTouchTap} />
+        <RaisedButton label="Standard Actions" onTouchTap={this._handleStandardDialogTouchTap} />
         <br/><br/>
-        <RaisedButton label="Custom Actions" onTouchTap={this.handleCustomDialogTouchTap} />
+        <RaisedButton label="Custom Actions" onTouchTap={this._handleCustomDialogTouchTap} />
         <br/><br/>
-        <RaisedButton label="Scrollable Content And Custom Actions" onTouchTap={this.handleScrollableDialogTouchTap} />
+        <RaisedButton label="Scrollable Content And Custom Actions" onTouchTap={this._handleScrollableDialogTouchTap} />
 
         <Dialog
           ref="standardDialog"
@@ -207,11 +208,17 @@ class DialogPage extends React.Component {
           modal={this.state.modal}>
           The actions in this window were passed in as an array of react objects.
         </Dialog>
-        
+        <div style={{width: '300px', margin: '0 auto', paddingTop: '20px'}}>
+          <Toggle
+            label="Is Modal"
+            onToggle={this._handleToggleChange}
+            defaultToggled={this.state.modal}/>
+        </div>
         <Dialog
           ref="scrollableContentDialog"
           title="Dialog With Scrollable Content"
           actions={scrollableCustomActions}
+          modal={this.state.modal}
           autoDetectWindowHeight={true}
           autoScrollBodyContent={true}>
           <div style={{height: '1000px'}}>
@@ -239,7 +246,7 @@ class DialogPage extends React.Component {
   _handleToggleChange(e, toggled) {
     this.setState({modal: toggled});
   }
-  
+
   _handleScrollableDialogCancel() {
     this.refs.scrollableContentDialog.dismiss();
   }
@@ -248,15 +255,15 @@ class DialogPage extends React.Component {
     this.refs.scrollableContentDialog.dismiss();
   }
 
-  handleCustomDialogTouchTap() {
+  _handleCustomDialogTouchTap() {
     this.refs.customDialog.show();
   }
 
-  handleStandardDialogTouchTap() {
+  _handleStandardDialogTouchTap() {
     this.refs.standardDialog.show();
   }
-  
-  handleScrollableDialogTouchTap() {
+
+  _handleScrollableDialogTouchTap() {
     this.refs.scrollableContentDialog.show();
   }
 

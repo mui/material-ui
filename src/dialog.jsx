@@ -1,17 +1,20 @@
 let React = require('react');
-var WindowListenable = require('./mixins/window-listenable');
-var CssEvent = require('./utils/css-event');
-var DOM = require('./utils/dom');
-var KeyCode = require('./utils/key-code');
-var Transitions = require('./styles/mixins/transitions');
-var FlatButton = require('./flat-button');
-var Overlay = require('./overlay');
-var Paper = require('./paper');
-
+let WindowListenable = require('./mixins/window-listenable');
+let CssEvent = require('./utils/css-event');
+let DOM = require('./utils/dom');
+let KeyCode = require('./utils/key-code');
+let Transitions = require('./styles/transitions');
+let StylePropable = require('./mixins/style-propable');
+let FlatButton = require('./flat-button');
+let Overlay = require('./overlay');
+let Paper = require('./paper');
 
 let Dialog = React.createClass({
 
-  mixins: [WindowListenable, StylePropable],
+  mixins: [
+    WindowListenable,
+    StylePropable
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object
@@ -33,10 +36,11 @@ let Dialog = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    'keyup': '_handleWindowKeyUp',
+    'resize': '_positionDialog'
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       actions: [],
       repositionOnUpdate: true,
@@ -45,13 +49,13 @@ let Dialog = React.createClass({
     };
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       open: this.props.openImmediately || false
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._positionDialog();
     if (this.props.openImmediately) {
       this.refs.dialogOverlay.preventScrolling();
@@ -59,13 +63,18 @@ let Dialog = React.createClass({
     }
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
+  componentDidUpdate() {
     this._positionDialog();
   },
 
+  getSpacing() {
+    return this.context.muiTheme.spacing;
+  },
+
   getStyles() {
-  _main: function() {
-    var style = {
+    let spacing = this.getSpacing();
+
+    let main = {
       position: 'fixed',
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -77,75 +86,76 @@ let Dialog = React.createClass({
       transition: Transitions.easeOut('0ms', 'left', '450ms')
     };
 
-    if (this.state.open) {
-      style = this.mergeAndPrefix(style, {
-        left: 0,
-        transition: Transitions.easeOut('0ms', 'left', '0ms')
-      });
-    }
-
-    return this.mergeAndPrefix(style);
-  },
-
-  _contents: function() {
-    var style = {
+    let contents = {
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       transition: Transitions.easeOut(),
       position: 'relative',
       width: '75%',
-      maxWidth: (CustomVariables.spacing.desktopKeylineIncrement * 12),
+      maxWidth: (this.context.muiTheme.spacing.desktopKeylineIncrement * 12),
       margin: '0 auto',
       zIndex: 10,
-      background: CustomVariables.canvasColor,
+      background: this.context.muiTheme.canvasColor,
       opacity: 0
     };
 
-    if (this.state.open) {
-      style = this.mergeStyles(style, {
-        opacity: 1,
-        top: 0,
-        transform: 'translate3d(0, ' + CustomVariables.spacing.desktopKeylineIncrement + 'px, 0)',
-      });
-    }
-
-    return this.mergeAndPrefix(style, this.props.contentStyle);
-  },
-  
-        padding: gutter + gutter + '0 ' + gutter,
-    };
-        fontSize: '24px',
-        lineHeight: '32px',
-        fontWeight: '400'
-      },
-  
-  _dialogBody: function() {
-    var style = {
+    let body = {
+      padding: spacing.desktopGutter,
       overflowY: this.props.autoScrollBodyContent ? 'auto' : 'hidden',
       overflowX: 'hidden'
     };
-    
-    return this.mergeStyles(style, this.props.bodyStyle);
+
+    let gutter = spacing.desktopGutter + 'px ';
+    let title = {
+      padding: gutter + gutter + '0 ' + gutter,
+    };
+
+
+    if (this.state.open) {
+      main = this.mergeAndPrefix(main, {
+        left: 0,
+        transition: Transitions.easeOut('0ms', 'left', '0ms')
+      });
+      contents = this.mergeStyles(contents, {
+        opacity: 1,
+        top: 0,
+        transform: 'translate3d(0, ' + spacing.desktopKeylineIncrement + 'px, 0)',
+      });
+    }
+
+    return {
+      main: this.mergeAndPrefix(main, this.props.style),
+      contents: this.mergeAndPrefix(contents, this.props.contentStyle),
+      body: this.mergeStyles(body, this.props.bodyStyle),
+      title: this.mergeStyles(title, this.props.titleStyle),
+    };
   },
 
   render() {
-    var title = this._getTitle();
-    var actions = this._getActionsContainer(this.props.actions);
-      contentInnerStyle,
+    let styles = this.getStyles();
+    let actions = this._getActionsContainer(this.props.actions);
+    let title;
+    if (this.props.title) {
+      // If the title is a string, wrap in an h3 tag.
+      // If not, just use it as a node.
+      title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
+        <h3 style={styles.title}>{this.props.title}</h3> :
+        this.props.title;
+    }
 
     return (
-      <div ref="container" style={this._main()}>
+      <div ref="container" style={styles.main}>
         <Paper
           ref="dialogWindow"
-          style={this._contents()}
+          style={styles.contents}
           className={this.props.contentClassName}
           zDepth={4}>
           {title}
-          
-          <div ref="dialogContent" style={this._dialogBody()}>
+
+          <div ref="dialogContent" style={styles.body}>
             {this.props.children}
           </div>
-          
+
           {actions}
         </Paper>
         <Overlay ref="dialogOverlay" show={this.state.open} autoLockScrolling={false} onTouchTap={this._handleOverlayTouchTap} />
@@ -153,12 +163,12 @@ let Dialog = React.createClass({
     );
   },
 
-  isOpen: function() {
+  isOpen() {
     return this.state.open;
   },
 
-  dismiss: function() {
-    CssEvent.onTransitionEnd(this.getDOMNode(), function() {
+  dismiss() {
+    CssEvent.onTransitionEnd(this.getDOMNode(), () => {
       this.refs.dialogOverlay.allowScrolling();
     }.bind(this));
 
@@ -166,42 +176,37 @@ let Dialog = React.createClass({
     this._onDismiss();
   },
 
-  show: function() {
+  show() {
     this.refs.dialogOverlay.preventScrolling();
     this.setState({ open: true });
     this._onShow();
   },
-  
-  _getTitle: function() {
-    if (this.props.title) {
-      // If the title is a string, wrap in an h3 tag.
-      // If not, just use it as a node.
-      return this.props.title === undefined ? '' :
-        toString.call(this.props.title) === '[object String]' ?
-          <h3 style={this._title()}>{this.props.title}</h3> :
-          this.props.title;
 
-    }
-  },
-
-  _getAction: function(actionJSON, key) {
-    var onClickHandler = actionJSON.onClick ? actionJSON.onClick : this.dismiss;
-    var styles = {marginRight: 8};
-
+  _getAction(actionJSON, key) {
+    let styles = {marginRight: 8};
+    let onTouchTap = () => {
+      if (actionJSON.onTouchTap) {
+        actionJSON.onTouchTap.call(undefined);
+      }
+      if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
+        this.dismiss();
+      }
+    };
     return (
       <FlatButton
         key={key}
         secondary={true}
-        onClick={onClickHandler}
+        onClick={actionJSON.onClick}
+        onTouchTap = {onTouchTap}
         label={actionJSON.text}
         style={styles}/>
     );
   },
 
-  _getActionsContainer: function(actions) {
-    var actionContainer;
-    var actionObjects = [];
-    var actionStyle = {
+  _getActionsContainer(actions) {
+    let actionContainer;
+    let actionObjects = [];
+    let actionStyle = {
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       padding: 8,
@@ -211,8 +216,8 @@ let Dialog = React.createClass({
     };
 
     if (actions.length) {
-      for (var i = 0; i < actions.length; i++) {
-        var currentAction = actions[i];
+      for (let i = 0; i < actions.length; i++) {
+        let currentAction = actions[i];
 
         //if the current action isn't a react object, create one
         if (!React.isValidElement(currentAction)) {
@@ -232,57 +237,57 @@ let Dialog = React.createClass({
     return actionContainer;
   },
 
-  _positionDialog: function() {
-    var clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    var container = this.getDOMNode();
-    var dialogWindow = this.refs.dialogWindow.getDOMNode();
-    var dialogContent = this.refs.dialogContent.getDOMNode();
-    var minPaddingTop = 64;
-    var dialogWindowHeight;
-    var paddingTop;
-    var maxDialogWindowHeight;
+  _positionDialog() {
+    let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    let container = this.getDOMNode();
+    let dialogWindow = this.refs.dialogWindow.getDOMNode();
+    let dialogContent = this.refs.dialogContent.getDOMNode();
+    let minPaddingTop = 64;
+    let dialogWindowHeight;
+    let paddingTop;
+    let maxDialogWindowHeight;
 
     //Reset the height in case the window was resized.
     dialogWindow.style.height = '';
     dialogContent.style.height = '';
-    
+
     dialogWindowHeight = dialogWindow.offsetHeight;
     paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 64;
     if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
-    
+
     //Vertically center the dialog window, but make sure it doesn't
     //transition to that position.
     if (this.props.repositionOnUpdate || !container.style.paddingTop) {
       container.style.paddingTop = paddingTop + 'px';
     }
-    
+
     // Force a height if the dialog is taller than clientHeight
     maxDialogWindowHeight = clientHeight - (2 * paddingTop);
     if ((this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) &&
       (dialogWindowHeight > maxDialogWindowHeight)) {
       dialogWindow.style.height = maxDialogWindowHeight + 'px';
-      
+
       this._updateContentHeight();
     }
   },
-  
-  _updateContentHeight: function() {
+
+  _updateContentHeight() {
     if (!this.props.autoScrollBodyContent) return;
-    
-    var dialogWindow = this.refs.dialogWindow.getDOMNode();
-    var dialogContent = this.refs.dialogContent.getDOMNode();
-    var container = this.getDOMNode();
-    var containerOffset = DOM.getStyleAttributeAsNumber(container, 'paddingTop');
-    var dialogWindowHeight = dialogWindow.offsetHeight - containerOffset;
-    var dialogContentHeight = dialogContent.offsetHeight;  
-    
+
+    let dialogWindow = this.refs.dialogWindow.getDOMNode();
+    let dialogContent = this.refs.dialogContent.getDOMNode();
+    let container = this.getDOMNode();
+    let containerOffset = DOM.getStyleAttributeAsNumber(container, 'paddingTop');
+    let dialogWindowHeight = dialogWindow.offsetHeight - containerOffset;
+    let dialogContentHeight = dialogContent.offsetHeight;
+
     // If the content is taller than the window can hold, set the height so the content
     // will scroll.
     if (dialogContentHeight > dialogWindowHeight) {
-      var dialogContentPadding = DOM.getStyleAttributeAsNumber(dialogContent, 'paddingTop') + 
+      let dialogContentPadding = DOM.getStyleAttributeAsNumber(dialogContent, 'paddingTop') +
         DOM.getStyleAttributeAsNumber(dialogContent, 'paddingBottom');
-      var contentHeight = dialogWindowHeight - dialogContentPadding;
-      
+      let contentHeight = dialogWindowHeight - dialogContentPadding;
+
       if (this.props.title) contentHeight -= dialogContent.previousSibling.offsetHeight;
       if (this.props.actions) contentHeight -= dialogContent.nextSibling.offsetHeight;
 
@@ -291,24 +296,24 @@ let Dialog = React.createClass({
     }
   },
 
-  _onShow: function() {
+  _onShow() {
     if (this.props.onShow) this.props.onShow();
   },
 
-  _onDismiss: function() {
+  _onDismiss() {
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
-  _handleOverlayTouchTap: function() {
+  _handleOverlayTouchTap() {
     this.dismiss();
     if (this.props.onClickAway) this.props.onClickAway();
   },
 
-  _handleWindowKeyUp: function(e) {
+  _handleWindowKeyUp(e) {
     if (e.keyCode == KeyCode.ESC) {
       this.dismiss();
     }
-  }
+  },
 
 });
 
