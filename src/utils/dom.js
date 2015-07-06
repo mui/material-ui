@@ -18,6 +18,16 @@ module.exports = {
       left: rect.left + document.body.scrollLeft
     };
   },
+    
+  getStyleAttributeAsNumber: function(el, attr) {
+    var attrStyle = el.style[attr];
+    var attrNum = 0;
+    if (attrStyle && attrStyle.length) {
+        attrNum = parseInt(attrStyle);
+    }
+    
+    return attrNum;
+  },
 
   addClass(el, className) {
     if (el.classList)

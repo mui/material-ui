@@ -14,7 +14,6 @@ module.exports = {
   ClearFix: require('./clearfix'),
   DatePicker: require('./date-picker/date-picker'),
   Dialog: require('./dialog'),
-  DialogWindow: require('./dialog-window'),
   DropDownIcon: require('./drop-down-icon'),
   DropDownMenu: require('./drop-down-menu'),
   EnhancedButton: require('./enhanced-button'),

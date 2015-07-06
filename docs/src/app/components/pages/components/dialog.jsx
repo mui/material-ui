@@ -12,9 +12,11 @@ class DialogPage extends React.Component {
     };
     this._handleCustomDialogCancel = this._handleCustomDialogCancel.bind(this);
     this._handleCustomDialogSubmit = this._handleCustomDialogSubmit.bind(this);
+    this._handleScrollableDialogCancel = this._handleScrollableDialogCancel.bind(this);
+    this._handleScrollableDialogSubmit = this._handleScrollableDialogSubmit.bind(this);
     this.handleCustomDialogTouchTap = this.handleCustomDialogTouchTap.bind(this);
     this.handleStandardDialogTouchTap = this.handleStandardDialogTouchTap.bind(this);
-    this._handleToggleChange = this._handleToggleChange.bind(this);
+    this.handleScrollableDialogTouchTap = this.handleScrollableDialogTouchTap.bind(this);
   }
 
   render() {
@@ -47,6 +49,10 @@ class DialogPage extends React.Component {
       '  actions={customActions}\n' +
       '  modal={this.state.modal}>\n' +
       '  The actions in this window were passed in as an array of react objects.\n' +
+      '</Dialog>\n\n' +
+      '<Dialog title="Dialog With Scrollable Content" actions={customActions}\n' +
+      '  autoDetectWindowHeight={true} autoScrollBodyContent={true}>\n' +
+      '    <div style={{height: \'2000px\'}}>Really long content</div>\n' +
       '</Dialog>\n';
 
     let componentInfo = [
@@ -97,16 +103,17 @@ class DialogPage extends React.Component {
             desc: 'The title to display on the dialog. Could be number, string, element or an array containing these types.'
           },
           {
-            name: 'modal',
+            name: 'autoDetectWindowHeight',
             type: 'bool',
-            header: 'optional',
-            desc: 'Determine if a dialog should display as a modal dialog. Default value is false.'
+            header: 'default: true',
+            desc: 'If set to true, the height of the dialog will be auto detected. A max height will be enforced so that the '
+              + 'content does not extend beyond the viewport.'
           },
           {
-            name: 'style',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of Dialog\'s root element.'
+            name: 'autoScrollBodyContent',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If set to true, the body content of the dialog will be scrollable.'
           }
         ]
       },
@@ -159,6 +166,18 @@ class DialogPage extends React.Component {
         primary={true}
         onTouchTap={this._handleCustomDialogSubmit} />
     ];
+    var scrollableCustomActions = [
+      <FlatButton
+        key={1}
+        label="Cancel"
+        secondary={true}
+        onTouchTap={this._handleScrollableDialogCancel} />,
+      <FlatButton
+        key={2}
+        label="Submit"
+        primary={true}
+        onTouchTap={this._handleScrollableDialogSubmit} />
+    ];
 
     return (
       <ComponentDoc
@@ -169,6 +188,8 @@ class DialogPage extends React.Component {
         <RaisedButton label="Standard Actions" onTouchTap={this.handleStandardDialogTouchTap} />
         <br/><br/>
         <RaisedButton label="Custom Actions" onTouchTap={this.handleCustomDialogTouchTap} />
+        <br/><br/>
+        <RaisedButton label="Scrollable Content And Custom Actions" onTouchTap={this.handleScrollableDialogTouchTap} />
 
         <Dialog
           ref="standardDialog"
@@ -186,13 +207,17 @@ class DialogPage extends React.Component {
           modal={this.state.modal}>
           The actions in this window were passed in as an array of react objects.
         </Dialog>
-
-        <div style={{width: '300px', margin: '0 auto', paddingTop: '20px'}}>
-          <Toggle
-            label="Is Modal"
-            onToggle={this._handleToggleChange}
-            defaultToggled={this.state.modal}/>
-        </div>
+        
+        <Dialog
+          ref="scrollableContentDialog"
+          title="Dialog With Scrollable Content"
+          actions={scrollableCustomActions}
+          autoDetectWindowHeight={true}
+          autoScrollBodyContent={true}>
+          <div style={{height: '1000px'}}>
+            Really long content
+          </div>
+        </Dialog>
 
       </ComponentDoc>
     );
@@ -214,6 +239,14 @@ class DialogPage extends React.Component {
   _handleToggleChange(e, toggled) {
     this.setState({modal: toggled});
   }
+  
+  _handleScrollableDialogCancel() {
+    this.refs.scrollableContentDialog.dismiss();
+  }
+
+  _handleScrollableDialogSubmit() {
+    this.refs.scrollableContentDialog.dismiss();
+  }
 
   handleCustomDialogTouchTap() {
     this.refs.customDialog.show();
@@ -221,6 +254,10 @@ class DialogPage extends React.Component {
 
   handleStandardDialogTouchTap() {
     this.refs.standardDialog.show();
+  }
+  
+  handleScrollableDialogTouchTap() {
+    this.refs.scrollableContentDialog.show();
   }
 
 }
