@@ -138,11 +138,15 @@ let IconMenu = React.createClass({
     );
   },
 
-  close() {
+  close(isKeyboard) {
     if (this.state.open) {
-      this.setState({open: false});
-      //Set focus on the icon button when the menu closes
-      React.findDOMNode(this.refs[this.state.iconButtonRef]).focus();
+      this.setState({open: false}, () => {
+        //Set focus on the icon button when the menu close
+        if (isKeyboard) {
+          let iconButton = this.refs[this.state.iconButtonRef];
+          React.findDOMNode(iconButton).focus();
+        }
+      });
     }
   },
 
@@ -156,12 +160,16 @@ let IconMenu = React.createClass({
   },
 
   _handleItemTouchTap(e, child) {
+    let isKeyboard = Events.isKeyboard(e);
+
     this._timeout = setTimeout(() => {
-      this.close();
+      this.close(isKeyboard);
     }, this.props.touchTapCloseDelay);
-    if (Events.isKeyboard(e)) {
+
+    if (isKeyboard) {
       this.refs[this.state.iconButtonRef].setKeyboardFocus();
     }
+
     this.props.onItemTouchTap(e, child);
   }
 });
