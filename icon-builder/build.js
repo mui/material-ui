@@ -22,6 +22,12 @@ var argv = require('yargs')
       ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"')
     .describe('file-suffix', 'Filter only files ending with a suffix (pretty much only' +
      ' for material-ui-icons)')
+    .options('mui-require', {
+      demand: false,
+      default: 'absolute',
+      describe: 'Load material-ui dependencies (SvgIcon) relatively or absolutely. (absolute|relative). For material-ui distributions, relative, for anything else, you probably want absolute.',
+      type: 'string'
+    })
     .describe('mui-icons-opts', 'Shortcut to use MUI icons options')
     .boolean('mui-icons-opts')
     .argv;
@@ -33,11 +39,11 @@ rimraf(argv.outputDir, function() {
   var dirs = fs.readdirSync(argv.svgDir);
   fs.mkdirSync(argv.outputDir);
   dirs.forEach(function(dirName) {
-    processDir(dirName, argv.svgDir, argv.outputDir, argv.innerPath, argv.fileSuffix) 
+    processDir(dirName, argv.svgDir, argv.outputDir, argv.innerPath, argv.fileSuffix, argv.muiRequire) 
   });
 });
 
-function processDir(dirName, svgDir, outputDir, innerPath, fileSuffix) {
+function processDir(dirName, svgDir, outputDir, innerPath, fileSuffix, muiRequire) {
   var newIconDirPath = path.join(outputDir, dirName);
   var svgIconDirPath = path.join(svgDir, dirName, innerPath);
   if (!fs.existsSync(svgIconDirPath)) { return false; }
@@ -50,7 +56,7 @@ function processDir(dirName, svgDir, outputDir, innerPath, fileSuffix) {
       fs.mkdirSync(newIconDirPath);
 
       files.forEach(function(fileName) {
-        processFile(dirName, fileName, newIconDirPath, svgIconDirPath, fileSuffix);
+        processFile(dirName, fileName, newIconDirPath, svgIconDirPath, fileSuffix, muiRequire);
       });
     });
 
@@ -59,7 +65,7 @@ function processDir(dirName, svgDir, outputDir, innerPath, fileSuffix) {
   }
 }
 
-function processFile(dirName, fileName, dirPath, svgDirPath, fileSuffix) {
+function processFile(dirName, fileName, dirPath, svgDirPath, fileSuffix, muiRequire) {
   //Only process 24px files
   var svgFilePath = svgDirPath + '/' + fileName;
   var newFile;
@@ -78,12 +84,12 @@ function processFile(dirName, fileName, dirPath, svgDirPath, fileSuffix) {
   newFile = path.join(dirPath, fileName);
 
   //console.log('writing ' + newFile);
-  getJsxString(dirName, fileName, svgFilePath, function(fileString) {
+  getJsxString(dirName, fileName, svgFilePath, muiRequire, function(fileString) {
     fs.writeFileSync(newFile, fileString);
   });
 }
 
-function getJsxString(dirName, newFilename, svgFilePath, callback) {
+function getJsxString(dirName, newFilename, svgFilePath, muiRequire, callback) {
   var className = newFilename.replace('.jsx', '');
   className = dirName + '-' + className;
   className = pascalCase(className);
@@ -103,9 +109,12 @@ function getJsxString(dirName, newFilename, svgFilePath, callback) {
     paths = paths.replace('xlink:href="#a"', '');
     paths = paths.replace('xlink:href="#c"', '');
 
+    // Node acts wierd if we put this directly into string concatenation
+    var muiRequireStmt = muiRequire === "relative" ? "let SvgIcon = require('../../svg-icon');\n\n" : "let SvgIcon = require('material-ui').SvgIcon;\n\n";
+
     callback(
       "let React = require('react');\n" +
-      "let SvgIcon = require('../../svg-icon');\n\n" +
+      muiRequireStmt +
 
       "let " + className + " = React.createClass({\n\n" +
 
