@@ -30,7 +30,7 @@ let TextField = React.createClass({
     onKeyDown: React.PropTypes.func,
     onEnterKeyDown: React.PropTypes.func,
     rows: React.PropTypes.number,
-    type: React.PropTypes.string 
+    type: React.PropTypes.string
   },
 
   getDefaultProps() {

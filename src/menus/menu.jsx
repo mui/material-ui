@@ -64,10 +64,14 @@ let Menu = React.createClass({
     };
   },
 
-  componentDidEnter() {
+  componentDidAppear() {
     this.setState({
       componentEntered: true
     }, this._setScollPosition);
+  },
+
+  componentDidEnter() {
+    this.componentDidAppear();
   },
 
   componentDidMount() {
