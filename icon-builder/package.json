@@ -4,8 +4,8 @@
   "description": "Material Design Svg Icons converted to React components.",
   "scripts": {
     "prebuild": "rm -rf js",
-    "createJsx": "node build.js",
-    "build": "npm run createJsx && babel --stage 1 ./jsx --out-dir ./js",
+    "createMuiIconsJsx": "node build.js --mui-icon-opts",
+    "build": "npm run createMuiIconsJsx && babel --stage 1 ./jsx --out-dir ./js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

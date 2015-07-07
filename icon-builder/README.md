@@ -1,15 +1,39 @@
-#Material-UI-Icons
+# Material-UI-Icons
 
 This tool crawls the [material-design-icons](https://github.com/google/material-design-icons) repo
 and generates react svg icon components for each icon.
 
 ## Running the build
-```
+```sh
 npm install
 npm run build
+```
+
+Alternatively:
+
+```sh
+node build.sh --mui-icon-opts
 ```
 
 ## Generated folders
 The build script walks through all of the svg icons in the material-design-icons folder and generates the appropriate
 `.jsx` files in the `./jsx` folder. It'll also compile the `.jsx` files and create the cooresponding `.js` equivalent
 in the `./js` folder.
+
+## Advanced usage and Custom builds
+
+`node build.sh --help` can be used to pull up options available for building.
+
+You can build your own SVG icons as well as collections like [game-icons](http://game-icons.net/) through environmental variables.
+
+* `OUTPUT_DIR` - directory to output jsx components
+* `SVG_DIR` - SVG directory
+* `INNER_PATH` - "Reach into" subdirs, since libraries like material-design-icons
+  use arbitrary build directories to organize icons
+  e.g. "action/svg/production/icon_3d_rotation_24px.svg"
+* `FILE_SUFFIX` - Filter only files ending with a suffix (pretty much only
+  for material-ui-icons)
+
+If you experience any issues building icons or would like a feature added,
+[file and issue](https://github.com/callemall/material-ui/issues) and let us
+know.
