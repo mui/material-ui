@@ -2,6 +2,7 @@ let React = require('react/addons');
 let update = React.addons.update;
 let Controllable = require('../mixins/controllable');
 let StylePropable = require('../mixins/style-propable');
+let AutoPrefix = require('../styles/auto-prefix');
 let Transitions = require('../styles/transitions');
 let KeyCode = require('../utils/key-code');
 let List = require('../lists/list');
@@ -19,14 +20,13 @@ let Menu = React.createClass({
   propTypes: {
     autoWidth: React.PropTypes.bool,
     desktop: React.PropTypes.bool,
+    initiallyKeyboardFocused: React.PropTypes.bool,
     listStyle: React.PropTypes.object,
     maxHeight: React.PropTypes.number,
     multiple: React.PropTypes.bool,
     onEscKeyDown: React.PropTypes.func,
-    onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
-    open: React.PropTypes.bool,
     openDirection: React.PropTypes.oneOf([
       'bottom-left',
       'bottom-right',
@@ -46,51 +46,42 @@ let Menu = React.createClass({
       autoWidth: true,
       maxHeight: null,
       onEscKeyDown: () => {},
-      onItemKeyboardActivate: () => {},
       onItemTouchTap: () => {},
       onKeyDown: () => {},
-      open: true,
       openDirection: 'bottom-left',
       zDepth: 1
     };
   },
 
   getInitialState() {
+    let selectedIndex = this._getSelectedIndex();
+
     return {
-      focusIndex: 0,
-      isKeyboardFocused: false,
-      keyWidth: this.props.desktop ? 64 : 56
+      focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
+      isKeyboardFocused: this.props.initiallyKeyboardFocused,
+      keyWidth: this.props.desktop ? 64 : 56,
+      componentEntered: false
     };
+  },
+
+  componentDidEnter() {
+    this.setState({
+      componentEntered: true
+    }, this._setScollPosition);
   },
 
   componentDidMount() {
     if (this.props.autoWidth) this._setWidth();
   },
 
-  componentDidUpdate(prevProps) {
-    let openChanged = prevProps.open !== this.props.open;
-    let justOpened = openChanged && this.props.open;
+  componentWillLeave(callback) {
+    let rootStyle = React.findDOMNode(this).style;
 
-    if (this.props.autoWidth) this._setWidth();
-    if (justOpened) this._setScollPosition();
-  },
+    AutoPrefix.set(rootStyle, 'transition', Transitions.easeOut('250ms', ['opacity', 'transform']));
+    AutoPrefix.set(rootStyle, 'transform', 'translate3d(0,-8px,0)');
+    rootStyle.opacity = 0;
 
-  componentWillReceiveProps(nextProps) {
-    let openChanged = nextProps.open !== this.props.open;
-    let isOpening = openChanged && nextProps.open;
-    let isClosing = openChanged && !nextProps.open;
-
-    if (isClosing) {
-      this.setState({
-        focusIndex: 0,
-        isKeyboardFocused: false
-      });
-    } else if (isOpening) {
-      let selectedIndex = this._getSelectedIndex();
-      this.setState({
-        focusIndex: selectedIndex >= 0 ? selectedIndex : 0
-      });
-    }
+    setTimeout(callback, 250);
   },
 
   render() {
@@ -99,10 +90,10 @@ let Menu = React.createClass({
       autoWidth,
       children,
       desktop,
+      initiallyKeyboardFocused,
       listStyle,
       maxHeight,
       multiple,
-      open,
       openDirection,
       selectedMenuItemStyle,
       style,
@@ -113,6 +104,7 @@ let Menu = React.createClass({
       ...other
     } = this.props;
 
+    let componentEntered = this.state.componentEntered;
     let openDown = openDirection.split('-')[0] === 'bottom';
     let openLeft = openDirection.split('-')[1] === 'left';
 
@@ -121,14 +113,13 @@ let Menu = React.createClass({
         //Nested div bacause the List scales x faster than
         //it scales y
         transition: Transitions.easeOut('250ms', 'transform'),
-        transitionDelay: open ? '0ms' : '250ms',
         position: 'absolute',
         zIndex: 10,
         top: openDown ? 0 : null,
         bottom: !openDown ? 0 : null,
         left: !openLeft ? 0 : null,
         right: openLeft ? 0 : null,
-        transform: open ? 'scaleX(1)' : 'scaleX(0)',
+        transform: componentEntered ? 'scaleX(1)' : 'scaleX(0)',
         transformOrigin: openLeft ? 'right' : 'left'
       },
 
@@ -142,15 +133,14 @@ let Menu = React.createClass({
 
       menuItem: {
         transition: Transitions.easeOut(null, 'opacity'),
-        opacity: open ? 1 : 0
+        opacity: componentEntered ? 1 : 0
       },
 
       paper: {
-        transition: Transitions.easeOut(null, ['transform', 'opacity']),
-        transitionDuration: open ? '500ms' : '200ms',
-        transform: open ? 'scaleY(1) translate3d(0,0,0)' : 'scaleY(0) translate3d(0,-8px,0)',
+        transition: Transitions.easeOut('500ms', ['transform', 'opacity']),
+        transform: componentEntered ? 'scaleY(1)' : 'scaleY(0)',
         transformOrigin: openDown ? 'top' : 'bottom',
-        opacity: open ? 1 : 0,
+        opacity: componentEntered ? 1 : 0,
         maxHeight: maxHeight,
         overflowY: maxHeight ? 'scroll' : null
       },
@@ -177,7 +167,7 @@ let Menu = React.createClass({
       let transitionDelay = 0;
 
       //Only cascade the visible menu items
-      if (open && (menuItemIndex >= focusIndex - 1) &&
+      if (componentEntered && (menuItemIndex >= focusIndex - 1) &&
         (menuItemIndex <= focusIndex + cascadeChildrenCount - 1)) {
         cumulativeDelay = openDown ?
           cumulativeDelay + cumulativeDelayIncrement :
@@ -227,7 +217,6 @@ let Menu = React.createClass({
 
     let {
       desktop,
-      open,
       selectedMenuItemStyle
     } = this.props;
 
@@ -243,7 +232,7 @@ let Menu = React.createClass({
       selectedChildrenStyles
     );
 
-    let isFocused = open && childIndex === this.state.focusIndex;
+    let isFocused = childIndex === this.state.focusIndex;
     let focusState = 'none';
     if (isFocused) {
       focusState = this.state.isKeyboardFocused ?
@@ -253,17 +242,12 @@ let Menu = React.createClass({
     return React.cloneElement(child, {
       desktop: desktop,
       focusState: focusState,
-      onKeyboardActivate: (e) => {
-        this.props.onItemKeyboardActivate(e, child);
-        if (child.props.onKeyboardActivate) child.props.onKeyboardActivate(e);
-      },
       onTouchTap: (e) => {
         this._handleMenuItemTouchTap(e, child);
         if (child.props.onTouchTap) child.props.onTouchTap(e);
       },
       ref: isFocused ? 'focusedMenuItem' : null,
-      style: mergedChildrenStyles,
-      tabIndex: open ? child.props.tabIndex : -1
+      style: mergedChildrenStyles
     });
   },
 
@@ -332,28 +316,26 @@ let Menu = React.createClass({
   },
 
   _handleKeyDown(e) {
-    if (this.props.open) {
-      switch (e.keyCode) {
-        case KeyCode.DOWN:
-          e.preventDefault();
-          this._incrementKeyboardFocusIndex();
-          break;
-        case KeyCode.ESC:
-          this.props.onEscKeyDown(e);
-          break;
-        case KeyCode.TAB:
-          e.preventDefault();
-          if (e.shiftKey) {
-            this._decrementKeyboardFocusIndex();
-          } else {
-            this._incrementKeyboardFocusIndex();
-          }
-          break;
-        case KeyCode.UP:
-          e.preventDefault();
+    switch (e.keyCode) {
+      case KeyCode.DOWN:
+        e.preventDefault();
+        this._incrementKeyboardFocusIndex();
+        break;
+      case KeyCode.ESC:
+        this.props.onEscKeyDown(e);
+        break;
+      case KeyCode.TAB:
+        e.preventDefault();
+        if (e.shiftKey) {
           this._decrementKeyboardFocusIndex();
-          break;
-      }
+        } else {
+          this._incrementKeyboardFocusIndex();
+        }
+        break;
+      case KeyCode.UP:
+        e.preventDefault();
+        this._decrementKeyboardFocusIndex();
+        break;
     }
     this.props.onKeyDown(e);
   },

@@ -37,7 +37,7 @@ let FocusRipple = React.createClass({
       position: 'absolute',
       top: 0,
       left: 0,
-      transition: Transitions.easeOut(null, 'opacity'),
+      transition: Transitions.easeOut(null, ['transform', 'opacity']),
       transform: this.props.show ? 'scale(1)' : 'scale(0)',
       opacity: this.props.show ? 1 : 0,
       overflow: 'hidden'
@@ -50,7 +50,7 @@ let FocusRipple = React.createClass({
       borderRadius: '50%',
       opacity: this.props.opacity ? this.props.opacity : 0.16,
       backgroundColor: this.props.color,
-      transition: Transitions.easeOut(pulsateDuration + 'ms', null, null, Transitions.easeInOutFunction)
+      transition: Transitions.easeOut(pulsateDuration + 'ms', 'transform', null, Transitions.easeInOutFunction)
     }, this.props.innerStyle);
 
     return (
