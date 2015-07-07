@@ -25,7 +25,7 @@ let IconMenu = React.createClass({
     onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
-    timeout: React.PropTypes.number
+    touchTapCloseDelay: React.PropTypes.number
   },
 
   getDefaultProps() {
@@ -33,7 +33,7 @@ let IconMenu = React.createClass({
       openDirection: 'bottom-left',
       onItemKeyboardActivate: () => {},
       onItemTouchTap: () => {},
-      timeout: 200
+      touchTapCloseDelay: 200
     };
   },
 
@@ -47,7 +47,7 @@ let IconMenu = React.createClass({
 
   componentWillUnmount() {
     if (this._timeout)
-      clearTimeout(this.timeout);
+      clearTimeout(this._timeout);
   },
 
   componentClickAway() {
@@ -133,7 +133,7 @@ let IconMenu = React.createClass({
   _handleItemTouchTap(e, child) {
     this._timeout = setTimeout(() => {
       this.close();
-    }, this.props.timeout);
+    }, this.props.touchTapCloseDelay);
     if (Events.isKeyboard(e)) {
       this.refs[this.state.iconButtonRef].setKeyboardFocus();
     }

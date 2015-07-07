@@ -96,6 +96,12 @@ class IconMenus extends React.Component {
             desc: 'Sets the width of the menu. If not specified, the menu width ' +
               'will be dictated by its children. The rendered width will always be ' +
               'a keyline increment (64px for desktop, 56px otherwise).'
+          },
+          {
+            name: 'touchTapCloseDelay',
+            type: 'number',
+            header: 'default: 200',
+            desc: 'Sets the delay in milliseconds before closing the menu when an item is clicked.'
           }
         ]
       },
