@@ -24,6 +24,12 @@ let IconMenu = React.createClass({
     ]),
     onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
+    onKeyboardFocus: React.PropTypes.func,
+    onMouseDown: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func,
+    onMouseUp: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
     touchTapCloseDelay: React.PropTypes.number
   },
@@ -33,6 +39,12 @@ let IconMenu = React.createClass({
       openDirection: 'bottom-left',
       onItemKeyboardActivate: () => {},
       onItemTouchTap: () => {},
+      onKeyboardFocus: () => {},
+      onMouseDown: () => {},
+      onMouseOut: () => {},
+      onMouseOver: () => {},
+      onMouseUp: () => {},
+      onTouchTap: () => {},
       touchTapCloseDelay: 200
     };
   },
@@ -59,6 +71,12 @@ let IconMenu = React.createClass({
       iconButtonElement,
       openDirection,
       onItemTouchTap,
+      onKeyboardFocus,
+      onMouseDown,
+      onMouseOut,
+      onMouseOver,
+      onMouseUp,
+      onTouchTap,
       menuStyle,
       style,
       ...other
@@ -86,6 +104,7 @@ let IconMenu = React.createClass({
     let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
     let iconButton = React.cloneElement(iconButtonElement, {
+      onKeyboardFocus: this.props.onKeyboardFocus,
       onTouchTap: (e) => {
         this.open(Events.isKeyboard(e));
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
@@ -106,7 +125,13 @@ let IconMenu = React.createClass({
     ) : null;
 
     return (
-      <div style={mergedRootStyles}>
+      <div
+        onMouseDown={onMouseDown}
+        onMouseOut={onMouseOut}
+        onMouseOver={onMouseOver}
+        onMouseUp={onMouseUp}
+        onTouchTap={onTouchTap}
+        style={mergedRootStyles}>
         {iconButton}
         <ReactTransitionGroup>{menu}</ReactTransitionGroup>
       </div>

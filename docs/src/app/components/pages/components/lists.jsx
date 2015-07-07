@@ -13,6 +13,7 @@ let ContentInbox = require('svg-icons/content/inbox');
 let ContentSend = require('svg-icons/content/send');
 let EditorInsertChart = require('svg-icons/editor/insert-chart');
 let FileFolder = require('svg-icons/file/folder');
+let MoreVertIcon = require('svg-icons/navigation/more-vert');
 let ToggleStarBorder = require('svg-icons/toggle/star-border');
 
 let {
@@ -25,6 +26,10 @@ let {
   Styles,
   Toggle
 } = mui;
+
+let IconMenu = require('menus/icon-menu');
+let MenuItem = require('menus/menu-item');
+
 let { Colors } = Styles;
 
 
@@ -231,6 +236,23 @@ class ListsPage extends React.Component {
         ]
       }
     ];
+
+    let iconButtonElement = (
+      <IconButton
+        touch={true}
+        tooltip="more"
+        tooltipPosition="bottom-left">
+        <MoreVertIcon color={Colors.grey400} />
+      </IconButton>
+    );
+
+    let rightIconMenu = (
+      <IconMenu iconButtonElement={iconButtonElement}>
+        <MenuItem>Reply</MenuItem>
+        <MenuItem>Forward</MenuItem>
+        <MenuItem>Delete</MenuItem>
+      </IconMenu>
+    );
 
     return (
       <ComponentDoc
@@ -616,7 +638,7 @@ class ListsPage extends React.Component {
           <List subheader="Today">
             <ListItem
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
-              rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
+              rightIconButton={rightIconMenu}
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>
@@ -629,7 +651,7 @@ class ListsPage extends React.Component {
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
+              rightIconButton={rightIconMenu}
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>
@@ -642,7 +664,7 @@ class ListsPage extends React.Component {
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-              rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
+              rightIconButton={rightIconMenu}
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>
@@ -655,7 +677,7 @@ class ListsPage extends React.Component {
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-              rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
+              rightIconButton={rightIconMenu}
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>
@@ -668,7 +690,7 @@ class ListsPage extends React.Component {
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-              rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
+              rightIconButton={rightIconMenu}
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>

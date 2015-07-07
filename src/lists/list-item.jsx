@@ -204,7 +204,7 @@ let ListItem = React.createClass({
       onMouseOver: this._handleRightIconButtonMouseOver,
       onMouseOut: this._handleRightIconButtonMouseOut,
       onTouchTap: this._handleRightIconButtonTouchTap,
-      onMouseDown: this._handleRightIconButtonMouseUp,
+      onMouseDown: this._handleRightIconButtonMouseDown,
       onMouseUp: this._handleRightIconButtonMouseUp
     });
     this._pushElement(contentChildren, rightToggle, this.mergeStyles(styles.rightToggle));
