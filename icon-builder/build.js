@@ -110,7 +110,7 @@ function getJsxString(dirName, newFilename, svgFilePath, muiRequire, callback) {
     paths = paths.replace('xlink:href="#c"', '');
 
     // Node acts wierd if we put this directly into string concatenation
-    var muiRequireStmt = muiRequire === "relative" ? "let SvgIcon = require('../../svg-icon');\n\n" : "let SvgIcon = require('material-ui').SvgIcon;\n\n";
+    var muiRequireStmt = muiRequire === "relative" ? "let SvgIcon = require('../../svg-icon');\n\n" : "let SvgIcon = require('material-ui/lib/svg-icon');\n\n";
 
     callback(
       "let React = require('react');\n" +
