@@ -183,7 +183,8 @@ let Menu = React.createClass({
         transitionDelay: transitionDelay + 'ms'
       });
 
-      let clonedChild = childIsADivider || childIsDisabled ? child :
+      let clonedChild = childIsADivider ? child :
+        childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
         this._cloneMenuItem(child, menuItemIndex, styles);
 
       if (!childIsADivider && !childIsDisabled) menuItemIndex++;
