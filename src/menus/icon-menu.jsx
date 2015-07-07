@@ -1,6 +1,8 @@
 let React = require('react/addons');
+let ReactTransitionGroup = React.addons.TransitionGroup;
 let ClickAwayable = require('../mixins/click-awayable');
 let StylePropable = require('../mixins/style-propable');
+let Events = require('../utils/events');
 let Menu = require('../menus/menu');
 
 
@@ -36,6 +38,7 @@ let IconMenu = React.createClass({
   getInitialState() {
     return {
       iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
+      menuInitiallyKeyboardFocused: false,
       open: false
     };
   },
@@ -76,28 +79,29 @@ let IconMenu = React.createClass({
     let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
     let iconButton = React.cloneElement(iconButtonElement, {
-      onKeyboardActivate: this._handleIconButtonKeyboardActivate,
       onTouchTap: (e) => {
-        this.open();
+        this.open(Events.isKeyboard(e));
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
       }.bind(this),
       ref: this.state.iconButtonRef
     });
 
+    let menu = open ? (
+      <Menu
+        {...other}
+        initiallyKeyboardFocused={this.state.menuInitiallyKeyboardFocused}
+        onEscKeyDown={this.close}
+        onItemTouchTap={this._handleItemTouchTap}
+        openDirection={openDirection}
+        style={mergedMenuStyles}>
+        {this.props.children}
+      </Menu>
+    ) : null;
+
     return (
       <div style={mergedRootStyles}>
         {iconButton}
-        <Menu
-          {...other}
-          onEscKeyDown={this.close}
-          onItemTouchTap={this._handleItemTouchTap}
-          onItemKeyboardActivate={this._handleItemKeyboardActivate}
-          open={open}
-          openDirection={openDirection}
-          ref="menu"
-          style={mergedMenuStyles}>
-          {this.props.children}
-        </Menu>
+        <ReactTransitionGroup>{menu}</ReactTransitionGroup>
       </div>
     );
   },
@@ -110,25 +114,23 @@ let IconMenu = React.createClass({
     }
   },
 
-  open() {
-    if (!this.state.open) this.setState({open: true});
-  },
-
-  _handleIconButtonKeyboardActivate() {
-    this.refs.menu.setKeyboardFocused(true);
-  },
-
-  _handleItemKeyboardActivate() {
-    //The icon button receives keyboard focus when a
-    //menu item is keyboard activated
-    this.refs[this.state.iconButtonRef].setKeyboardFocus();
+  open(menuInitiallyKeyboardFocused) {
+    if (!this.state.open) {
+      this.setState({
+        open: true,
+        menuInitiallyKeyboardFocused: menuInitiallyKeyboardFocused
+      });
+    }
   },
 
   _handleItemTouchTap(e, child) {
     setTimeout(() => {
       this.close();
-      this.props.onItemTouchTap(e, child);
-    }, 150);
+    }, 200);
+    if (Events.isKeyboard(e)) {
+      this.refs[this.state.iconButtonRef].setKeyboardFocus();
+    }
+    this.props.onItemTouchTap(e, child);
   }
 });
 
