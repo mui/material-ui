@@ -129,8 +129,9 @@ class SnackbarPage extends React.Component {
   }
 
   _updateAutoHideDuration(e) {
+    let value = e.target.value;
     this.setState({
-      autoHideDuration: parseInt(e.target.value)
+      autoHideDuration: value.length > 0 ? parseInt(value) : undefined
     });
   }
 
