@@ -13,7 +13,7 @@ let ListNested = React.createClass({
     return {
       nestedLevel: 1,
       open: false
-    }
+    };
   },
 
   render() {
