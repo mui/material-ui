@@ -3,99 +3,43 @@
  * Material UI Icon Builder
  * ========================
  * 
- * Flags
- *
- * -h, --help   Print this help dialog.
- * --mui-icon-opts    Shortcut to build material-ui-icons
- *
- * Environmental Settings: 
- *
- * OUTPUT_DIR - directory to output jsx components
- * SVG_DIR - SVG directory
- * INNER_PATH - "Reach into" subdirs, since libraries like material-design-icons
- *   use arbitrary build directories to organize icons
- *   e.g. "action/svg/production/icon_3d_rotation_24px.svg"
- * FILE_SUFFIX - Filter only files ending with a suffix (pretty much only
- *   for material-ui-icons)
- * 
- * Usage:
+ * Usage: 
  *
  * node ./build.js --help
- *
- * node ./build.js --mui-icon-opts
- *
- * SVG_DIR=./node_modules/material-design-icons/ OUTPUT_DIR=./jsx INNER_PATH=/svg/production ./build.js 
  *
  */
 var fs = require('fs');
 var path = require('path');
 var rimraf = require('rimraf');
+var argv = require('yargs')
+    .usage('Build JSX components from SVG\'s.\nUsage: $0')
+    .demand('output-dir')
+    .describe('output-dir', 'Directory to output jsx components')
+    .demand('svg-dir')
+    .describe('svg-dir', 'SVG directory')
+    .describe('inner-path', '"Reach into" subdirs, since libraries like material-design-icons' +
+      ' use arbitrary build directories to organize icons' +
+      ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"')
+    .describe('file-suffix', 'Filter only files ending with a suffix (pretty much only' +
+     ' for material-ui-icons)')
+    .describe('mui-icons-opts', 'Shortcut to use MUI icons options')
+    .boolean('mui-icons-opts')
+    .argv;
 
-var options = {};
-
-var MUI_ICONS_OPTS = {
-  outputDir: __dirname + '/jsx',
-  svgDir: __dirname + '/node_modules/material-design-icons',
-  iconInnerPath: '/svg/production',
-  fileSuffix: '_24px.svg'
-}
-
-var DEFAULT_OPTS = {
-  outputDir: process.env.OUTPUT_DIR,
-  svgDir: process.env.SVG_DIR,
-  iconInnerPath: process.env.INNER_PATH,
-  fileSuffix: process.env.FILE_SUFFIX
-}
-
-
-function print_help() {
-  var fs = require('fs'),
-      readline = require('readline');
-
-  var rd = readline.createInterface({
-      input: fs.createReadStream(__filename),
-      output: process.stdout,
-      terminal: false
-  });
-
-  rd.on('line', function(line) {
-    if (line.indexOf("*/") !== -1) {
-      process.exit()
-    }
-    var COMMENT_REGEX = /^ ?(\/\*|\w\*|\*|\#\!.*)*/
-
-    var l = line.replace(COMMENT_REGEX, "")
-    if (l.length > 0) console.log(l);
-  });
-}
-
-if (process.argv.indexOf('--help') !== -1 || process.argv.indexOf('-h') !== -1) {
-  print_help();
-} else {
-  if (process.argv.indexOf('--mui-icon-opts') !== -1) {
-    run(MUI_ICONS_OPTS);
-  } else {
-    run(DEFAULT_OPTS);
-  }
-}
-
-function run(options) {
+//Clean old files
+rimraf(argv.outputDir, function() {
   console.log('** Starting Build');
-
-  //Clean old files
-  rimraf(options.outputDir, function() {
-    //Process each folder
-    var dirs = fs.readdirSync(options.svgDir);
-    fs.mkdirSync(options.outputDir);
-    dirs.forEach(function(dirName) {
-      processDir(dirName, options.svgDir, options.outputDir, options.iconInnerPath, options.fileSuffix) 
-    });
+  //Process each folder
+  var dirs = fs.readdirSync(argv.svgDir);
+  fs.mkdirSync(argv.outputDir);
+  dirs.forEach(function(dirName) {
+    processDir(dirName, argv.svgDir, argv.outputDir, argv.innerPath, argv.fileSuffix) 
   });
-}
+});
 
-function processDir(dirName, svgDir, outputDir, iconInnerPath, fileSuffix) {
+function processDir(dirName, svgDir, outputDir, innerPath, fileSuffix) {
   var newIconDirPath = path.join(outputDir, dirName);
-  var svgIconDirPath = path.join(svgDir, dirName, iconInnerPath);
+  var svgIconDirPath = path.join(svgDir, dirName, innerPath);
   if (!fs.existsSync(svgIconDirPath)) { return false; }
   if (!fs.lstatSync(svgIconDirPath).isDirectory()) { return false; }
   try {
