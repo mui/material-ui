@@ -12,7 +12,7 @@ let CardExpandable = React.createClass({
         bottom: 0,
         margin: 'auto',
         position: 'absolute',
-      }
+      },
     };
   },
 
@@ -47,7 +47,7 @@ let CardExpandable = React.createClass({
 
 
     return expandableBtn;
-  }
+  },
 });
 
 module.exports = CardExpandable;

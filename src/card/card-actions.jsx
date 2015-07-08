@@ -6,13 +6,13 @@ let CardActions = React.createClass({
       root: {
         padding: 8,
         position: 'relative',
-      }
+      },
     };
   },
 
   propTypes: {
     expandable: React.PropTypes.bool,
-    expandableController: React.PropTypes.bool
+    expandableController: React.PropTypes.bool,
   },
 
   render() {
