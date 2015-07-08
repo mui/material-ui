@@ -10,6 +10,7 @@ let CardText = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     style: React.PropTypes.object,
+    expandable: React.PropTypes.bool,
   },
 
   getDefaultProps() {

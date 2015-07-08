@@ -14,6 +14,8 @@ let CardTitle = React.createClass({
     subtitle: React.PropTypes.string,
     subtitleColor: React.PropTypes.string,
     subtitleStyle: React.PropTypes.object,
+    expandable: React.PropTypes.bool,
+    expandableController: React.PropTypes.bool,
   },
 
   getDefaultProps() {

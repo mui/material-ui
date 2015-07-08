@@ -10,6 +10,11 @@ let CardActions = React.createClass({
     };
   },
 
+  propTypes: {
+    expandable: React.PropTypes.bool,
+    expandableController: React.PropTypes.bool
+  },
+
   render() {
     let styles = this.getStyles();
 

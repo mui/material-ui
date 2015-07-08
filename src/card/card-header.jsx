@@ -16,6 +16,8 @@ let CardHeader = React.createClass({
     subtitleColor: React.PropTypes.string,
     subtitleStyle: React.PropTypes.object,
     textStyle: React.PropTypes.object,
+    expandable: React.PropTypes.bool,
+    expandableController: React.PropTypes.bool,
   },
 
   getDefaultProps() {
