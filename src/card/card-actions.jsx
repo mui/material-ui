@@ -5,7 +5,8 @@ let CardActions = React.createClass({
     return {
       root: {
         padding: 8,
-      },
+        position: 'relative',
+      }
     };
   },
 

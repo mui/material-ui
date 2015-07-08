@@ -32,6 +32,7 @@ let CardHeader = React.createClass({
         padding: 16,
         fontWeight: Styles.Typography.fontWeightMedium,
         boxSizing: 'border-box',
+        position: 'relative',
       },
       text: {
         display: 'inline-block',
@@ -75,6 +76,7 @@ let CardHeader = React.createClass({
           <span style={titleStyle}>{this.props.title}</span>
           <span style={subtitleStyle}>{this.props.subtitle}</span>
         </div>
+        {this.props.children}
       </div>
     );
   },

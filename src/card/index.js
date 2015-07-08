@@ -5,4 +5,5 @@ module.exports = {
   CardMedia: require('./card-media'),
   CardText: require('./card-text'),
   CardActions: require('./card-actions'),
+  CardExpandable: require('./card-expandable'),
 };

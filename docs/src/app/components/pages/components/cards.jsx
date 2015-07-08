@@ -6,6 +6,7 @@ let {
   Avatar,
   Card,
   CardActions,
+  CardExpandable,
   CardHeader,
   CardMedia,
   CardText,
@@ -43,6 +44,36 @@ class CardPage extends React.Component {
             Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
             Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
           </CardText>
+        </Card>
+        <Card initiallyExpanded={true}>
+          <CardHeader
+            title="Title"
+            subtitle="Subtitle"
+            avatar={<Avatar style={{color:'red'}}>A</Avatar>}
+            expandableController={true}>
+          </CardHeader>
+          <CardTitle
+            title="Title"
+            subtitle="Subtitle"
+            avatar={<Avatar style={{color:'red'}}>A</Avatar>}
+            expandableController={true}>
+          </CardTitle>
+          <CardText expandable={true}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+          </CardText>
+          <CardActions expandableController={true}>
+            <FlatButton label="Action1"/>
+            <FlatButton label="Action2"/>
+          </CardActions>
+          <CardText expandable={true}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+          </CardText>
         </Card>`;
 
     this.desc =
@@ -56,7 +87,36 @@ class CardPage extends React.Component {
       'Cards do not flip over to reveal information on the back.';
 
 
-    this.componentInfo = [];
+    this.componentInfo = [
+      {
+        name: 'Card.Props',
+        infoArray: [
+          {
+            name: 'initiallyExpanded',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Whether this card is initially expanded.'
+          },
+        ]
+      },
+      {
+        name: 'Props',
+        infoArray: [
+          {
+            name: 'expandable',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Whether this card component is expandable.'
+          },
+          {
+            name: 'expandableController',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Whether this card component include an arrow to expand the card. This works with CardTitle, CardHeader and CardActions.'
+          },
+        ]
+      }
+    ];
   }
 
   render() {
@@ -84,6 +144,37 @@ class CardPage extends React.Component {
               <FlatButton label="Action2"/>
             </CardActions>
             <CardText>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+            </CardText>
+          </Card>
+          <br />
+          <Card initiallyExpanded={true}>
+            <CardHeader
+              title="Title"
+              subtitle="Subtitle"
+              avatar={<Avatar style={{color:'red'}}>A</Avatar>}
+              expandableController={true}>
+            </CardHeader>
+            <CardTitle
+              title="Title"
+              subtitle="Subtitle"
+              avatar={<Avatar style={{color:'red'}}>A</Avatar>}
+              expandableController={true}>
+            </CardTitle>
+            <CardText expandable={true}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+            </CardText>
+            <CardActions expandableController={true}>
+              <FlatButton label="Action1"/>
+              <FlatButton label="Action2"/>
+            </CardActions>
+            <CardText expandable={true}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
               Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.

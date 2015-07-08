@@ -5,6 +5,7 @@ module.exports = {
   BeforeAfterWrapper: require('./before-after-wrapper'),
   Card: require('./card/card'),
   CardActions: require('./card/card-actions'),
+  CardExpandable: require('./card/card-expandable'),
   CardHeader: require('./card/card-header'),
   CardMedia: require('./card/card-media'),
   CardText: require('./card/card-text'),
