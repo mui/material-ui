@@ -104,7 +104,7 @@ let Overlay = React.createClass({
   _allowScrolling() {
     let body = document.getElementsByTagName('body')[0];
     body.style.overflow = this._originalBodyOverflow || '';
-  }
+  },
 
 });
 

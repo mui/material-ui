@@ -42,7 +42,7 @@ let TimePickerDialog = React.createClass({
     let styles = {
       root: {
         fontSize: 14,
-        color: this.getTheme().clockColor
+        color: this.getTheme().clockColor,
       },
       dialogContent: {
         width: 280,

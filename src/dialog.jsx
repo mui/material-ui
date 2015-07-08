@@ -15,7 +15,7 @@ let TransitionItem = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   getInitialState() {
@@ -52,15 +52,12 @@ let TransitionItem = React.createClass({
     return <div style={this.mergeAndPrefix(this.state.style, this.props.style)}>
         {this.props.children}
       </div>;
-  }
+  },
 });
 
 let Dialog = React.createClass({
 
-  mixins: [
-    WindowListenable,
-    StylePropable,
-  ],
+  mixins: [WindowListenable, StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
