@@ -17,12 +17,6 @@ let Clock = React.createClass({
     isActive: React.PropTypes.bool
   },
 
-  init() {
-    this.setState({
-      mode: 'hour'
-    });
-  },
-
   getDefaultProps() {
     return {
       initialTime: new Date()

@@ -81,7 +81,6 @@ let TimePickerDialog = React.createClass({
 
   show() {
     this.refs.dialogWindow.show();
-    this.refs.clock.init();
   },
 
   dismiss() {
