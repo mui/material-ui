@@ -5,6 +5,41 @@ let Transitions = require('./styles/transitions');
 let FocusRipple = require('./ripples/focus-ripple');
 
 
+/**
+  * Verifies min/max range.
+  * @param   {Object} props         Properties of the React component.
+  * @param   {String} propName      Name of the property to validate.
+  * @param   {String} componentName Name of the component whose property is being validated.
+  * @returns {Object} Returns an Error if min >= max otherwise null.
+  */
+let minMaxPropType = (props, propName, componentName) => {
+  let error = React.PropTypes.number(props, propName, componentName);
+  if (error !== null) return error;
+
+  if (props.min >= props.max) {
+    let errorMsg = (propName === 'min') ? 'min should be less than max' : 'max should be greater than min';
+    return new Error(errorMsg);
+  }
+};
+
+/**
+  * Verifies value is within the min/max range.
+  * @param   {Object} props         Properties of the React component.
+  * @param   {String} propName      Name of the property to validate.
+  * @param   {String} componentName Name of the component whose property is being validated.
+  * @returns {Object} Returns an Error if the value is not within the range otherwise null.
+  */
+let valueInRangePropType = (props, propName, componentName) => {
+  let error = React.PropTypes.number(props, propName, componentName);
+  if (error !== null) return error;
+
+  let value = props[propName];
+  if (value < props.min || props.max < value) {
+    return new Error(propName + ' should be within the range specified by min and max');
+  }
+};
+
+
 let Slider = React.createClass({
 
   mixins: [StylePropable],
@@ -14,49 +49,52 @@ let Slider = React.createClass({
   },
 
   propTypes: {
-    required: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    min: React.PropTypes.number,
-    max: React.PropTypes.number,
-    step: React.PropTypes.number,
-    error: React.PropTypes.string,
-    description: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
+    defaultValue: valueInRangePropType,
+    description: React.PropTypes.string,
+    disabled: React.PropTypes.bool,
+    error: React.PropTypes.string,
+    max: minMaxPropType,
+    min: minMaxPropType,
+    required: React.PropTypes.bool,
+    step: React.PropTypes.number,
     onBlur: React.PropTypes.func,
+    onChange: React.PropTypes.func,
     onDragStart: React.PropTypes.func,
-    onDragStop: React.PropTypes.func
+    onDragStop: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    value: valueInRangePropType,
   },
 
   getDefaultProps() {
     return {
-      required: true,
-      disabled: false,
       defaultValue: 0,
-      step: 0.01,
-      min: 0,
+      disabled: false,
       max: 1,
-      dragging: false
+      min: 0,
+      required: true,
+      step: 0.01,
     };
   },
 
   getInitialState() {
     let value = this.props.value;
-    if (value == null) value = this.props.defaultValue;
+    if (value === null) value = this.props.defaultValue;
     let percent = (value - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
+
     return {
-      value: value,
-      percent: percent,
-      focused: false,
       active: false,
-      hovered: false
+      dragging: false,
+      focused: false,
+      hovered: false,
+      percent: percent,
+      value: value,
     };
   },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value != null) {
+    if (nextProps.value !== null) {
       this.setValue(nextProps.value);
     }
   },
@@ -297,7 +335,7 @@ let Slider = React.createClass({
   },
 
   clearValue() {
-    this.setValue(0);
+    this.setValue(this.props.min);
   },
 
   _alignValue(val) {
