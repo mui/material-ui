@@ -8,13 +8,13 @@ let Tab = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     handleTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
-    width: React.PropTypes.string
+    width: React.PropTypes.string,
   },
 
   handleTouchTap() {
@@ -35,7 +35,7 @@ let Tab = React.createClass({
       whiteSpace: 'initial',
       fontFamily: this.context.muiTheme.contentFontFamily,
       boxSizing: 'border-box',
-      width: this.props.width
+      width: this.props.width,
     }, this.props.style);
 
     if (this.props.selected) styles.opacity = '1';
@@ -45,7 +45,7 @@ let Tab = React.createClass({
         {this.props.label}
       </div>
     );
-  }
+  },
 
 });
 

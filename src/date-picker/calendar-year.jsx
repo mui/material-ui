@@ -14,7 +14,7 @@ let CalendarYear = React.createClass({
     onYearTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
     minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object
+    maxDate: React.PropTypes.object,
   },
 
   componentDidMount() {
@@ -35,7 +35,7 @@ let CalendarYear = React.createClass({
       padding: '8px 14px 0 14px',
       backgroundColor: Colors.white,
       overflowX: 'hidden',
-      overflowY: 'scroll'
+      overflowY: 'scroll',
     };
 
     return (
@@ -90,7 +90,7 @@ let CalendarYear = React.createClass({
 
   _handleYearTouchTap(e, year) {
     if (this.props.onYearTouchTap) this.props.onYearTouchTap(e, year);
-  }
+  },
 
 });
 

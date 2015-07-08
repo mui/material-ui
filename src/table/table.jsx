@@ -11,7 +11,7 @@ let Table = React.createClass({
   mixins: [StylePropable, ClickAwayable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -38,7 +38,7 @@ let Table = React.createClass({
     preScanRowData: React.PropTypes.bool,
     selectable: React.PropTypes.bool,
     showRowHover: React.PropTypes.bool,
-    stripedRows: React.PropTypes.bool
+    stripedRows: React.PropTypes.bool,
   },
 
   getDefaultProps() {
@@ -54,7 +54,7 @@ let Table = React.createClass({
       preScanRowData: true,
       selectable: true,
       showRowHover: false,
-      stripedRows: false
+      stripedRows: false,
     };
   },
 
@@ -75,7 +75,7 @@ let Table = React.createClass({
     }
 
     return {
-      selectedRows: preSelectedRows
+      selectedRows: preSelectedRows,
     };
   },
 
@@ -91,17 +91,17 @@ let Table = React.createClass({
         width: '100%',
         borderCollapse: 'collapse',
         borderSpacing: 0,
-        tableLayout: 'fixed'
+        tableLayout: 'fixed',
       },
       bodyTable: {
         height: (this.props.fixedHeader || this.props.fixedFooter) ? this.props.height : 'auto',
         overflowX: 'hidden',
-        overflowY: 'auto'
+        overflowY: 'auto',
       },
       tableWrapper: {
         height: (this.props.fixedHeader || this.props.fixedFooter) ? 'auto' : this.props.height,
-        overflow: 'auto'
-      }
+        overflow: 'auto',
+      },
     };
 
     return styles;
@@ -271,7 +271,7 @@ let Table = React.createClass({
       if (column.style === undefined) {
         column.style = {
           width: this.props.defaultColumnWidth,
-          maxWidth: this.props.defaultColumnWidth
+          maxWidth: this.props.defaultColumnWidth,
         };
       }
       else {
@@ -387,8 +387,7 @@ let Table = React.createClass({
     columnId = (this.props.columnOrder.length) ? this.props.columnOrder[columnId] : columnId;
 
     return columnId;
-  }
-
+  },
 
 });
 

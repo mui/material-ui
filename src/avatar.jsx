@@ -7,7 +7,7 @@ let Avatar = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -54,12 +54,12 @@ let Avatar = React.createClass({
         textAlign: 'center',
         lineHeight: size + 'px',
         fontSize: size / 2 + 4,
-        color: color
+        color: color,
       },
 
       iconStyles: {
-        margin: 8
-      }
+        margin: 8,
+      },
     };
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
@@ -69,7 +69,7 @@ let Avatar = React.createClass({
     } else {
       let iconElement = icon ? React.cloneElement(icon, {
         color: color,
-        style: this.mergeStyles(styles.iconStyles, icon.props.style)
+        style: this.mergeStyles(styles.iconStyles, icon.props.style),
       }) : null;
 
       return <div {...other} style={mergedRootStyles}>
@@ -77,7 +77,7 @@ let Avatar = React.createClass({
         {this.props.children}
       </div>;
     }
-  }
+  },
 });
 
 module.exports = Avatar;

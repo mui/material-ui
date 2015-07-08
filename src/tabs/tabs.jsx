@@ -10,7 +10,7 @@ let Tabs = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -27,7 +27,7 @@ let Tabs = React.createClass({
       selectedIndex = this.props.initialSelectedIndex;
     }
     return {
-      selectedIndex: selectedIndex
+      selectedIndex: selectedIndex,
     };
   },
 
@@ -77,12 +77,12 @@ let Tabs = React.createClass({
         height: '48px',
         backgroundColor: themeVariables.backgroundColor,
         whiteSpace: 'nowrap',
-        display: 'table'
-      }
+        display: 'table',
+      },
     };
   },
 
-  render(){
+  render() {
     let styles = this.getStyles();
 
     let tabContent = [];
@@ -97,7 +97,7 @@ let Tabs = React.createClass({
         if (tab.props.children) {
           tabContent.push(React.createElement(TabTemplate, {
             key: index,
-            selected: this.state.selectedIndex === index
+            selected: this.state.selectedIndex === index,
           }, tab.props.children));
         }
         else {
@@ -109,7 +109,7 @@ let Tabs = React.createClass({
           selected: this.state.selectedIndex === index,
           tabIndex: index,
           width: width,
-          handleTouchTap: this.handleTouchTap
+          handleTouchTap: this.handleTouchTap,
         });
       }
       else {
@@ -142,14 +142,15 @@ let Tabs = React.createClass({
   _updateTabWidth() {
     if (this._tabWidthPropIsValid()) {
       this.setState({
-        fixedWidth: false
-      });
-    } else {
-      this.setState({
-        fixedWidth: true
+        fixedWidth: false,
       });
     }
-  }
+    else {
+      this.setState({
+        fixedWidth: true,
+      });
+    }
+  },
 
 });
 

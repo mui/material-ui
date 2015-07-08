@@ -10,7 +10,7 @@ module.exports = {
   desktopDropDownMenuFontSize: 15,
   desktopLeftNavMenuItemHeight: 48,
   desktopSubheaderHeight: 48,
-  desktopToolbarHeight: 56
+  desktopToolbarHeight: 56,
 };
 
 

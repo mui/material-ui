@@ -37,6 +37,6 @@ module.exports = {
   _unbindClickAway() {
     Events.off(document, 'mouseup', this._checkClickAway);
     Events.off(document, 'touchend', this._checkClickAway);
-  }
+  },
 
 };

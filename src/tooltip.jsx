@@ -9,7 +9,7 @@ let Tooltip = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -18,7 +18,7 @@ let Tooltip = React.createClass({
     show: React.PropTypes.bool,
     touch: React.PropTypes.bool,
     verticalPosition: React.PropTypes.oneOf(['top','bottom']),
-    horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center'])
+    horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center']),
   },
 
   componentDidMount() {
@@ -57,17 +57,17 @@ let Tooltip = React.createClass({
         borderRadius: 2,
         userSelect: 'none',
         opacity: 0,
-        right: horizontalPosition === 'left' ? '12px' : null,
+        right: horizontalPosition === 'left' ? 12 : null,
         left: horizontalPosition === 'center' ?
-          (this.state.offsetWidth-48)/2*-1 + 'px' : null,
+          (this.state.offsetWidth - 48) / 2 * -1 : null,
         transition:
           Transitions.easeOut('0ms', 'top', '450ms') + ',' +
           Transitions.easeOut('450ms', 'transform', '0ms') + ',' +
-          Transitions.easeOut('450ms', 'opacity', '0ms')
+          Transitions.easeOut('450ms', 'opacity', '0ms'),
       },
       label: {
         position: 'relative',
-        whiteSpace: 'nowrap'
+        whiteSpace: 'nowrap',
       },
       ripple: {
         position: 'absolute',
@@ -80,11 +80,11 @@ let Tooltip = React.createClass({
         transition:
           Transitions.easeOut('0ms', 'width', '450ms') + ',' +
           Transitions.easeOut('0ms', 'height', '450ms') + ',' +
-          Transitions.easeOut('450ms', 'backgroundColor', '0ms')
+          Transitions.easeOut('450ms', 'backgroundColor', '0ms'),
       },
       rootWhenShown: {
         top: verticalPosition === 'top' ?
-          touchOffsetTop + 'px' : '36px',
+          touchOffsetTop : 36,
         opacity: 0.9,
         transform: 'translate3d(0px, ' + offset + 'px, 0px)',
         transition:
@@ -95,16 +95,17 @@ let Tooltip = React.createClass({
       rootWhenTouched: {
         fontSize: '14px',
         lineHeight: '32px',
-        padding: '0 16px'
+        padding: '0 16px',
       },
       rippleWhenShown: {
         backgroundColor: Colors.grey700,
         transition:
           Transitions.easeOut('450ms', 'width', '0ms') + ',' +
           Transitions.easeOut('450ms', 'height', '0ms') + ',' +
-          Transitions.easeOut('450ms', 'backgroundColor', '0ms')
-      }
+          Transitions.easeOut('450ms', 'backgroundColor', '0ms'),
+      },
     };
+
     return styles;
   },
 
@@ -153,7 +154,7 @@ let Tooltip = React.createClass({
   _setTooltipPosition() {
     let tooltip = React.findDOMNode(this);
     this.setState({offsetWidth: tooltip.offsetWidth});
-  }
+  },
 
 });
 

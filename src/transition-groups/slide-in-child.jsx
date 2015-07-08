@@ -11,7 +11,7 @@ let SlideInChild = React.createClass({
   propTypes: {
     //This callback is needed bacause the direction could change
     //when leaving the dom
-    getLeaveDirection: React.PropTypes.func.isRequired
+    getLeaveDirection: React.PropTypes.func.isRequired,
   },
 
   componentWillEnter(callback) {
@@ -59,7 +59,7 @@ let SlideInChild = React.createClass({
       width: '100%',
       top: '0px',
       left: '0px',
-      transition: Transitions.easeOut()
+      transition: Transitions.easeOut(),
     }, this.props.style);
 
     return (
@@ -68,7 +68,7 @@ let SlideInChild = React.createClass({
         {this.props.children}
       </div>
     );
-  }
+  },
 
 });
 

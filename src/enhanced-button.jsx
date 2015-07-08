@@ -12,14 +12,14 @@ let EnhancedButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
     containerElement: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.element
+      React.PropTypes.element,
     ]),
     disabled: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
@@ -37,7 +37,7 @@ let EnhancedButton = React.createClass({
     onKeyDown: React.PropTypes.func,
     onKeyUp: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
-    tabIndex: React.PropTypes.number
+    tabIndex: React.PropTypes.number,
   },
 
   getDefaultProps() {
@@ -50,7 +50,7 @@ let EnhancedButton = React.createClass({
       onKeyUp: () => {},
       onTouchTap: () => {},
       tabIndex: 0,
-      type: 'button'
+      type: 'button',
     };
   },
 
@@ -58,7 +58,7 @@ let EnhancedButton = React.createClass({
     return {
       isKeyboardFocused: !this.props.disabled &&
         this.props.keyboardFocused &&
-        !this.props.disableKeyboardFocus
+        !this.props.disableKeyboardFocus,
     };
   },
 
@@ -66,7 +66,9 @@ let EnhancedButton = React.createClass({
     if ((nextProps.disabled || nextProps.disableKeyboardFocus) &&
       this.state.isKeyboardFocused) {
       this.setState({isKeyboardFocused: false});
-      if (nextProps.onKeyboardFocus) nextProps.onKeyboardFocus(null, false);
+      if (nextProps.onKeyboardFocus) {
+        nextProps.onKeyboardFocus(null, false);
+      }
     }
   },
 
@@ -119,7 +121,7 @@ let EnhancedButton = React.createClass({
       WebkitAppearance: !this.props.linkButton && 'button',
       cursor: disabled ? 'default' : 'pointer',
       textDecoration: 'none',
-      outline: 'none'
+      outline: 'none',
     }, style);
 
     let buttonProps = {
@@ -132,7 +134,7 @@ let EnhancedButton = React.createClass({
       onKeyUp: this._handleKeyUp,
       onKeyDown: this._handleKeyDown,
       tabIndex: tabIndex,
-      type: type
+      type: type,
     };
 
     let buttonChildren = [];
@@ -148,7 +150,8 @@ let EnhancedButton = React.createClass({
             {this.props.children}
         </TouchRipple>
       );
-    } else {
+    }
+    else {
       buttonChildren.push(this.props.children);
     }
 
@@ -199,7 +202,9 @@ let EnhancedButton = React.createClass({
 
   _handleKeyDown(e) {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
-      if (e.keyCode === KeyCode.TAB) _tabPressed = true;
+      if (e.keyCode === KeyCode.TAB) {
+        _tabPressed = true;
+      }
       if (e.keyCode === KeyCode.ENTER && this.state.isKeyboardFocused) {
         this._handleTouchTap(e);
       }
@@ -228,7 +233,9 @@ let EnhancedButton = React.createClass({
       //Wait so that we can capture if this was a keyboard focus
       //or touch focus
       this._focusTimeout = setTimeout(() => {
-        if (_tabPressed) this.setKeyboardFocus(e);
+        if (_tabPressed) {
+          this.setKeyboardFocus(e);
+        }
       }, 150);
 
       this.props.onFocus(e);
@@ -249,7 +256,7 @@ let EnhancedButton = React.createClass({
       clearTimeout(this._focusTimeout);
       this._focusTimeout = null;
     }
-  }
+  },
 
 });
 

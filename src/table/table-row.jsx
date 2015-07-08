@@ -9,7 +9,7 @@ let TableRow = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -26,7 +26,7 @@ let TableRow = React.createClass({
     striped: React.PropTypes.bool,
     hoverable: React.PropTypes.bool,
     displayBorder: React.PropTypes.bool,
-    displayRowCheckbox: React.PropTypes.bool
+    displayRowCheckbox: React.PropTypes.bool,
   },
 
   getDefaultProps() {
@@ -36,13 +36,13 @@ let TableRow = React.createClass({
       striped: false,
       hoverable: false,
       displayBorder: true,
-      displayRowCheckbox: true
+      displayRowCheckbox: true,
     };
   },
 
   getInitialState() {
     return {
-      hovered: false
+      hovered: false,
     };
   },
 
@@ -69,8 +69,8 @@ let TableRow = React.createClass({
       },
       cell: {
         backgroundColor: cellBgColor,
-        color: this.getTheme().textColor
-      }
+        color: this.getTheme().textColor,
+      },
     };
 
     if (!this.props.displayBorder) {
@@ -140,8 +140,8 @@ let TableRow = React.createClass({
       content: checkbox,
       style: {
         paddingLeft: 24,
-        paddingRight: 24
-      }
+        paddingRight: 24,
+      },
     };
   },
 
@@ -182,7 +182,7 @@ let TableRow = React.createClass({
   _onCheck(e) {
     e.ctrlKey = true;
     this._onCellClick(e, 0);
-  }
+  },
 
 });
 

@@ -16,7 +16,7 @@ let ListItem = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -41,7 +41,7 @@ let ListItem = React.createClass({
     rightIconButton: React.PropTypes.element,
     rightToggle: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
-    secondaryTextLines: React.PropTypes.oneOf([1, 2])
+    secondaryTextLines: React.PropTypes.oneOf([1, 2]),
   },
 
   getDefaultProps() {
@@ -49,7 +49,7 @@ let ListItem = React.createClass({
       autoGenerateNestedIndicator: true,
       nestedLevel: 0,
       open: false,
-      secondaryTextLines: 1
+      secondaryTextLines: 1,
     };
   },
 
@@ -60,12 +60,11 @@ let ListItem = React.createClass({
       open: this.props.open,
       rightIconButtonHovered: false,
       rightIconButtonKeyboardFocused: false,
-      touch: false
+      touch: false,
     };
   },
 
   render() {
-
     let {
       autoGenerateNestedIndicator,
       disabled,
@@ -108,7 +107,7 @@ let ListItem = React.createClass({
         fontSize: 16,
         lineHeight: '16px',
         position: 'relative',
-        transition: Transitions.easeOut()
+        transition: Transitions.easeOut(),
       },
 
       //This inner div is needed so that ripples will span the entire container
@@ -122,7 +121,7 @@ let ListItem = React.createClass({
       },
 
       label: {
-        cursor: 'pointer'
+        cursor: 'pointer',
       },
 
       icons: {
@@ -131,19 +130,19 @@ let ListItem = React.createClass({
         display: 'block',
         position: 'absolute',
         top: twoLine ? 12 : singleAvatar ? 4 : 0,
-        padding: 12
+        padding: 12,
       },
 
       leftIcon: {
         color: Colors.grey600,
         fill: Colors.grey600,
-        left: 4
+        left: 4,
       },
 
       rightIcon: {
         color: Colors.grey400,
         fill: Colors.grey400,
-        right: 4
+        right: 4,
       },
 
       avatars: {
@@ -152,11 +151,11 @@ let ListItem = React.createClass({
       },
 
       leftAvatar: {
-        left: 16
+        left: 16,
       },
 
       rightAvatar: {
-        right: 16
+        right: 16,
       },
 
       leftCheckbox: {
@@ -164,14 +163,14 @@ let ListItem = React.createClass({
         display: 'block',
         width: 24,
         top: twoLine ? 24 : singleAvatar ? 16 : 12,
-        left: 16
+        left: 16,
       },
 
       rightIconButton: {
         position: 'absolute',
         display: 'block',
         top: twoLine ? 12 : singleAvatar ? 4 : 0,
-        right: 4
+        right: 4,
       },
 
       rightToggle: {
@@ -179,7 +178,7 @@ let ListItem = React.createClass({
         display: 'block',
         width: 54,
         top: twoLine ? 25 : singleAvatar ? 17 : 13,
-        right: 8
+        right: 8,
       },
 
       secondaryText: {
@@ -196,8 +195,8 @@ let ListItem = React.createClass({
         whiteSpace: threeLine ? null : 'nowrap',
         display: threeLine ? '-webkit-box' : null,
         WebkitLineClamp: threeLine ? 2 : null,
-        WebkitBoxOrient: threeLine ? 'vertical' : null
-      }
+        WebkitBoxOrient: threeLine ? 'vertical' : null,
+      },
     };
 
     let secondaryTextIsAnElement = React.isValidElement(secondaryText);
@@ -214,6 +213,8 @@ let ListItem = React.createClass({
     let nestedList;
 
     React.Children.forEach(this.props.children, (child) => {
+      if (child === null) return;
+
       if (child.type !== undefined && child.type.displayName === 'ListItem') {
         nestedListItems.push(child);
       }
@@ -228,7 +229,7 @@ let ListItem = React.createClass({
       onMouseOut: this._handleRightIconButtonMouseOut,
       onTouchTap: this._handleRightIconButtonTouchTap,
       onMouseDown: this._handleRightIconButtonMouseUp,
-      onMouseUp: this._handleRightIconButtonMouseUp
+      onMouseUp: this._handleRightIconButtonMouseUp,
     };
 
     // Create a nested list indicator icon if we don't have an icon on the right
@@ -326,7 +327,7 @@ let ListItem = React.createClass({
         React.cloneElement(element, {
           key: children.length,
           style: styles,
-          ...additionalProps
+          ...additionalProps,
         })
       );
     }
@@ -400,7 +401,7 @@ let ListItem = React.createClass({
     this.setState({open : !this.state.open});
 
     if (this.props.onNestedListToggle) this.props.onNestedListToggle(this);
-  }
+  },
 
 });
 

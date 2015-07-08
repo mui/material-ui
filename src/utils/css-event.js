@@ -20,7 +20,7 @@ module.exports = {
       'transition':'transitionend',
       'OTransition':'otransitionend',
       'MozTransition':'transitionend',
-      'WebkitTransition':'webkitTransitionEnd'
+      'WebkitTransition':'webkitTransitionEnd',
     });
   },
 
@@ -29,7 +29,7 @@ module.exports = {
       'animation': 'animationend',
       '-o-animation': 'oAnimationEnd',
       '-moz-animation': 'animationend',
-      '-webkit-animation': 'webkitAnimationEnd'
+      '-webkit-animation': 'webkitAnimationEnd',
     });
   },
 
@@ -47,5 +47,5 @@ module.exports = {
     Events.once(el, animationEnd, () => {
       return callback();
     });
-  }
+  },
 };

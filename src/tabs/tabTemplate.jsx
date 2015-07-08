@@ -9,7 +9,7 @@ let TabTemplate = React.createClass({
       'overflow': 'hidden',
       'width': '100%',
       'position': 'relative',
-      'textAlign': 'initial'
+      'textAlign': 'initial',
     };
 
     if (this.props.selected) {
@@ -22,7 +22,7 @@ let TabTemplate = React.createClass({
         {this.props.children}
       </div>
     );
-  }
+  },
 });
 
 module.exports = TabTemplate;

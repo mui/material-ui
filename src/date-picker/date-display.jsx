@@ -11,28 +11,28 @@ let DateDisplay = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     selectedDate: React.PropTypes.object.isRequired,
     weekCount: React.PropTypes.number,
     yearSelectionAvailable: React.PropTypes.bool,
-    monthDaySelected: React.PropTypes.bool
+    monthDaySelected: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       weekCount: 4,
       yearSelectionAvailable: true,
-      monthDaySelected: true
+      monthDaySelected: true,
     };
   },
 
   getInitialState() {
     return {
       transitionDirection: 'up',
-      selectedYear: !this.props.monthDaySelected
+      selectedYear: !this.props.monthDaySelected,
     };
   },
 
@@ -42,7 +42,7 @@ let DateDisplay = React.createClass({
     if (nextProps.selectedDate !== this.props.selectedDate) {
       direction = nextProps.selectedDate > this.props.selectedDate ? 'up' : 'down';
       this.setState({
-        transitionDirection: direction
+        transitionDirection: direction,
       });
     }
 
@@ -67,26 +67,26 @@ let DateDisplay = React.createClass({
     let year = this.props.selectedDate.getFullYear();
 
     let isLandscape = this.props.mode === 'landscape';
-    let dateYPosition = '0px';
-    let dayYPosition = '30px';
-    let yearYPosition = '95px';
+    let dateYPosition = 0;
+    let dayYPosition = 30;
+    let yearYPosition = 95;
 
     if (isLandscape) {
-      dateYPosition = this.props.weekCount === 5 ? '14px' :
-        this.props.weekCount === 6 ? '34px' : '8px';
-      yearYPosition = this.props.weekCount === 4 ? '114px' : '150px';
-      if (this.props.weekCount > 4) dayYPosition = '50px';
+      dateYPosition = this.props.weekCount === 5 ? 14 :
+        this.props.weekCount === 6 ? 34 : 8;
+      yearYPosition = this.props.weekCount === 4 ? 114 : 150;
+      if (this.props.weekCount > 4) dayYPosition = 50;
     }
 
     let styles = {
       root: {
         textAlign: 'center',
-        position: 'relative'
+        position: 'relative',
       },
 
       dateContainer: {
         backgroundColor: this.getTheme().color,
-        height: isLandscape ? this.props.weekCount * 40 + 36 + 'px' : '150px',
+        height: isLandscape ? this.props.weekCount * 40 + 36 : 150,
         padding: '16px 0',
         transition: Transitions.easeOut(),
         boxSizing: 'border-box',
@@ -96,85 +96,85 @@ let DateDisplay = React.createClass({
         position: 'relative',
         color: this.getTheme().textColor,
         transition: Transitions.easeOut(),
-        transform: 'translate3d(0,' + dateYPosition + ',0)'
+        transform: 'translate3d(0,' + dateYPosition + 'px,0)',
       },
 
       dowContainer: {
-        height: '32px',
+        height: 32,
         backgroundColor: this.getTheme().selectColor,
         borderRadius: isLandscape ? '2px 0 0 0' : '2px 2px 0 0',
-        paddingTop: '9px',
-        boxSizing: 'border-box'
+        paddingTop: 9,
+        boxSizing: 'border-box',
       },
 
       dow: {
-        fontSize: '13px',
+        fontSize: 13,
         lineHeight: '13px',
         height: '100%',
-        color: this.getTheme().selectTextColor
+        color: this.getTheme().selectTextColor,
       },
 
       day: {
         root: {
           position: 'absolute',
           lineHeight: isLandscape ? '76px' : '58px',
-          fontSize: isLandscape ? '76px' : '58px',
-          height: isLandscape ? '76px' : '58px',
+          fontSize: isLandscape ? 76 : 58,
+          height: isLandscape ? 76 : 58,
           width: '100%',
-          opacity: this.state.selectedYear ? '0.7' : '1.0',
+          opacity: this.state.selectedYear ? 0.7 : 1.0,
           transition: Transitions.easeOut(),
-          transform: 'translate3d(0,' + dayYPosition + ',0)'
+          transform: 'translate3d(0,' + dayYPosition + 'px,0)',
         },
 
         title: {
-          width: '100px',
+          width: 100,
           marginLeft: 'auto',
           marginRight: 'auto',
-          cursor: !this.state.selectedYear ? 'default' : 'pointer'
-        }
+          cursor: !this.state.selectedYear ? 'default' : 'pointer',
+        },
       },
 
       month: {
         root: {
           position: 'absolute',
-          top: isLandscape ? '0px' : '1px',
-          fontSize: isLandscape ? '26px' : '22px',
+          top: isLandscape ? 0 : 1,
+          fontSize: isLandscape ? 26 : 22,
           lineHeight: isLandscape ? '26px' : '22px',
-          height: isLandscape ? '26px' : '22px',
+          height: isLandscape ? 26 : 22,
           width: '100%',
           textTransform: 'uppercase',
-          opacity: this.state.selectedYear ? '0.7' : '1.0'
+          opacity: this.state.selectedYear ? 0.7 : 1.0,
         },
 
         title: {
-          width: '100px',
+          width: 100,
           marginLeft: 'auto',
           marginRight: 'auto',
-          cursor: !this.state.selectedYear ? 'default' : 'pointer'
-        }
+          cursor: !this.state.selectedYear ? 'default' : 'pointer',
+        },
       },
 
       year: {
         root: {
           position: 'absolute',
-          margin: '0px',
-          fontSize: isLandscape ? '26px' : '22px',
+          margin: 0,
+          fontSize: isLandscape ? 26 : 22,
           lineHeight: isLandscape ? '26px' : '22px',
-          height: isLandscape ? '26px' : '22px',
+          height: isLandscape ? 26 : 22,
           width: '100%',
           textTransform: 'uppercase',
-          opacity: this.state.selectedYear ? '1.0' : '0.7',
+          opacity: this.state.selectedYear ? 1.0 : 0.7,
           transition: Transitions.easeOut(),
-          transform: 'translate3d(0,' + yearYPosition + ',0)'
+          transform: 'translate3d(0,' + yearYPosition + 'px,0)',
         },
 
         title: {
-          width: '100px',
+          width: 100,
           marginLeft: 'auto',
           marginRight: 'auto',
-          cursor: (!this.props.yearSelectionAvailable || this.state.selectedYear) ? 'default' : 'pointer'
-        }
-      }
+          cursor: (!this.props.yearSelectionAvailable || this.state.selectedYear) ? 'default' : 'pointer',
+        },
+      },
     };
 
     return (
@@ -229,7 +229,7 @@ let DateDisplay = React.createClass({
     }
 
     if (this.props.yearSelectionAvailable) this.setState({selectedYear: true});
-  }
+  },
 
 });
 

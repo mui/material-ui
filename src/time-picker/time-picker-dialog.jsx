@@ -12,18 +12,18 @@ let TimePickerDialog = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     initialTime: React.PropTypes.object,
     onAccept: React.PropTypes.func,
     onShow: React.PropTypes.func,
-    onDismiss: React.PropTypes.func
+    onDismiss: React.PropTypes.func,
   },
 
   windowListeners: {
-    keyup: '_handleWindowKeyUp'
+    keyup: '_handleWindowKeyUp',
   },
 
 
@@ -42,11 +42,11 @@ let TimePickerDialog = React.createClass({
     let styles = {
       root: {
         fontSize: 14,
-        color: this.getTheme().clockColor
+        color: this.getTheme().clockColor,
       },
       dialogContent: {
-        width: 280
-      }
+        width: 280,
+      },
     };
 
     let actions = [
@@ -59,7 +59,7 @@ let TimePickerDialog = React.createClass({
         key={1}
         label="OK"
         secondary={true}
-        onTouchTap={this._handleOKTouchTap} />
+        onTouchTap={this._handleOKTouchTap} />,
     ];
 
     return (
@@ -118,7 +118,7 @@ let TimePickerDialog = React.createClass({
           break;
       }
     }
-  }
+  },
 
 });
 

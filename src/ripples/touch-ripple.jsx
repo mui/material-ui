@@ -19,13 +19,12 @@ let TouchRipple = React.createClass({
       ripples: [{
         key: 0,
         started: false,
-        ending: false
-      }]
+        ending: false,
+      }],
     };
   },
 
   render() {
-
     let styles = this.mergeAndPrefix({
       height: '100%',
       width: '100%',
@@ -79,12 +78,12 @@ let TouchRipple = React.createClass({
     ripples.push({
       key: nextKey,
       started: false,
-      ending: false
+      ending: false,
     });
 
     //Re-render
     this.setState({
-      ripples: ripples
+      ripples: ripples,
     });
   },
 
@@ -107,7 +106,7 @@ let TouchRipple = React.createClass({
     if (endingRipple) {
       //Re-render
       this.setState({
-        ripples: ripples
+        ripples: ripples,
       });
 
       //Wait 2 seconds and remove the ripple from DOM
@@ -115,7 +114,7 @@ let TouchRipple = React.createClass({
         ripples.shift();
         if (this.isMounted()) {
           this.setState({
-            ripples: ripples
+            ripples: ripples,
           });
         }
       }, 2000);
@@ -189,7 +188,7 @@ let TouchRipple = React.createClass({
           opacity={this.props.opacity} />
       );
     });
-  }
+  },
 
 });
 

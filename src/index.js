@@ -42,7 +42,7 @@ module.exports = {
   Icons: {
     NavigationMenu: require('./svg-icons/navigation/menu'),
     NavigationChevronLeft: require('./svg-icons/navigation/chevron-left'),
-    NavigationChevronRight: require('./svg-icons/navigation/chevron-right')
+    NavigationChevronRight: require('./svg-icons/navigation/chevron-right'),
   },
   Styles: require('./styles/'),
   Snackbar: require('./snackbar'),
@@ -61,5 +61,5 @@ module.exports = {
   ToolbarSeparator: require('./toolbar/toolbar-separator'),
   ToolbarTitle: require('./toolbar/toolbar-title'),
   Tooltip: require('./tooltip'),
-  Utils: require('./utils/')
+  Utils: require('./utils/'),
 };

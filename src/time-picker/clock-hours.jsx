@@ -14,7 +14,7 @@ function getTouchEventOffsetValues(e) {
 
   let offset = {
     offsetX: e.clientX - boundingRect.left,
-    offsetY: e.clientY - boundingRect.top
+    offsetY: e.clientY - boundingRect.top,
   };
 
   return offset;
@@ -28,14 +28,14 @@ let ClockHours = React.createClass({
   propTypes: {
     initialHours: React.PropTypes.number,
     onChange: React.PropTypes.func,
-    format: React.PropTypes.oneOf(['ampm', '24hr'])
+    format: React.PropTypes.oneOf(['ampm', '24hr']),
   },
 
   center: {x: 0, y: 0},
   basePoint: {x: 0, y: 0},
 
   isMousePressed(e) {
-    if (typeof e.buttons == "undefined"){
+    if (typeof e.buttons === "undefined") {
       return e.nativeEvent.which;
     }
 
@@ -45,8 +45,8 @@ let ClockHours = React.createClass({
   getDefaultProps() {
     return {
       initialHours: new Date().getHours(),
-      onChange(){},
-      format: 'ampm'
+      onChange: () => {},
+      format: 'ampm',
     };
   },
 
@@ -55,12 +55,12 @@ let ClockHours = React.createClass({
 
     this.center = {
       x: clockElement.offsetWidth / 2,
-      y: clockElement.offsetHeight / 2
+      y: clockElement.offsetHeight / 2,
     };
 
     this.basePoint = {
       x: this.center.x,
-      y: 0
+      y: 0,
     };
   },
 
@@ -133,7 +133,7 @@ let ClockHours = React.createClass({
   _getSelected() {
     let hour = this.props.initialHours;
 
-    if (this.props.format == "ampm"){
+    if (this.props.format === "ampm"){
       hour %= 12;
       hour = hour || 12;
     }
@@ -143,9 +143,9 @@ let ClockHours = React.createClass({
 
   _getHourNumbers() {
     let style = {
-      pointerEvents: "none"
+      pointerEvents: "none",
     };
-    let hourSize = this.props.format == 'ampm' ? 12 : 24;
+    let hourSize = this.props.format === 'ampm' ? 12 : 24;
 
     let hours = [];
     for(let i = 1; i <= hourSize; i++){
@@ -166,15 +166,14 @@ let ClockHours = React.createClass({
         borderRadius: "100%",
         position: "relative",
         pointerEvents: "none",
-        boxSizing: "border-box"
+        boxSizing: "border-box",
       },
 
       hitMask: {
         height: "100%",
         width: "100%",
-        pointerEvents: "auto"
+        pointerEvents: "auto",
       },
-
     };
 
     let hours = this._getSelected();
@@ -187,7 +186,7 @@ let ClockHours = React.createClass({
         <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} onTouchMove={this.handleTouchMove} onTouchEnd={this.handleTouchEnd} onMouseUp={this.handleUp} onMouseMove={this.handleMove}/>
       </div>
     );
-  }
+  },
 });
 
 module.exports = ClockHours;

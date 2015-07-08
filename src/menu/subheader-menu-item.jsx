@@ -8,7 +8,7 @@ let SubheaderMenuItem = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -41,15 +41,16 @@ let SubheaderMenuItem = React.createClass({
         color: this.getTheme().textColor,
         borderTop: 'solid 1px ' + this.getTheme().borderColor,
         paddingTop: gutterMini,
-        marginTop: gutterMini
+        marginTop: gutterMini,
       },
       rootWhenFirstChild: {
         height: subheaderHeight,
         borderTop: 'none',
         paddingTop: 0,
-        marginTop: 0
-      }
+        marginTop: 0,
+      },
     };
+
     return styles;
   },
 
@@ -66,7 +67,7 @@ let SubheaderMenuItem = React.createClass({
             {this.props.text}
         </div>
     );
-  }
+  },
 
 });
 

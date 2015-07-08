@@ -3,7 +3,7 @@ let Extend = require('../utils/extend');
 
 const Types = {
   LIGHT: require('./themes/light-theme'),
-  DARK: require('./themes/dark-theme')
+  DARK: require('./themes/dark-theme'),
 };
 
 
@@ -41,7 +41,7 @@ let ThemeManager = () => {
 
     setComponentThemes(overrides) {
       this.component = Extend(this.component, overrides);
-    }
+    },
   };
 };
 

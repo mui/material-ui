@@ -11,7 +11,7 @@ let IconMenu = React.createClass({
   mixins: [StylePropable, ClickAwayable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -20,7 +20,7 @@ let IconMenu = React.createClass({
       'bottom-left',
       'bottom-right',
       'top-left',
-      'top-right'
+      'top-right',
     ]),
     onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
@@ -31,7 +31,7 @@ let IconMenu = React.createClass({
     onMouseUp: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
-    touchTapCloseDelay: React.PropTypes.number
+    touchTapCloseDelay: React.PropTypes.number,
   },
 
   getDefaultProps() {
@@ -45,7 +45,7 @@ let IconMenu = React.createClass({
       onMouseOver: () => {},
       onMouseUp: () => {},
       onTouchTap: () => {},
-      touchTapCloseDelay: 200
+      touchTapCloseDelay: 200,
     };
   },
 
@@ -53,7 +53,7 @@ let IconMenu = React.createClass({
     return {
       iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
       menuInitiallyKeyboardFocused: false,
-      open: false
+      open: false,
     };
   },
 
@@ -89,15 +89,15 @@ let IconMenu = React.createClass({
     let styles = {
       root: {
         display: 'inline-block',
-        position: 'relative'
+        position: 'relative',
       },
 
       menu: {
         top: openDown ? 12 : null,
         bottom: !openDown ? 12 : null,
         left: !openLeft ? 12 : null,
-        right: openLeft ? 12 : null
-      }
+        right: openLeft ? 12 : null,
+      },
     };
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
@@ -109,7 +109,7 @@ let IconMenu = React.createClass({
         this.open(Events.isKeyboard(e));
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
       }.bind(this),
-      ref: this.state.iconButtonRef
+      ref: this.state.iconButtonRef,
     });
 
     let menu = open ? (
@@ -154,7 +154,7 @@ let IconMenu = React.createClass({
     if (!this.state.open) {
       this.setState({
         open: true,
-        menuInitiallyKeyboardFocused: menuInitiallyKeyboardFocused
+        menuInitiallyKeyboardFocused: menuInitiallyKeyboardFocused,
       });
     }
   },
@@ -171,7 +171,7 @@ let IconMenu = React.createClass({
     }
 
     this.props.onItemTouchTap(e, child);
-  }
+  },
 });
 
 module.exports = IconMenu;

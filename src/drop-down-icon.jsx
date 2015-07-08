@@ -11,7 +11,7 @@ let DropDownIcon = React.createClass({
   mixins: [StylePropable, ClickAwayable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -20,7 +20,7 @@ let DropDownIcon = React.createClass({
     closeOnMenuItemTouchTap: React.PropTypes.bool,
     iconStyle: React.PropTypes.object,
     iconClassName: React.PropTypes.string,
-    iconLigature: React.PropTypes.string
+    iconLigature: React.PropTypes.string,
   },
 
   getInitialState() {
@@ -31,7 +31,7 @@ let DropDownIcon = React.createClass({
 
   getDefaultProps() {
     return {
-      closeOnMenuItemTouchTap: true
+      closeOnMenuItemTouchTap: true,
     };
   },
 
@@ -55,19 +55,19 @@ let DropDownIcon = React.createClass({
         position: 'relative',
         height: spacing.desktopToolbarHeight,
         fontSize: spacing.desktopDropDownMenuFontSize,
-        cursor: 'pointer'
+        cursor: 'pointer',
        },
       menu: {
         transition: Transitions.easeOut(),
         right: '-14px !important',
         top: '9px !important',
-        opacity: (this.state.open) ? 1 : 0
+        opacity: (this.state.open) ? 1 : 0,
       },
       menuItem: { // similair to drop down menu's menu item styles
         paddingRight: (spacing.iconSize + (spacing.desktopGutterLess*2)),
         height: spacing.desktopDropDownMenuItemHeight,
-        lineHeight: spacing.desktopDropDownMenuItemHeight + 'px'
-      }
+        lineHeight: spacing.desktopDropDownMenuItemHeight +'px',
+      },
     };
     return styles;
   },
@@ -115,7 +115,7 @@ let DropDownIcon = React.createClass({
     if (this.props.closeOnMenuItemTouchTap) {
       this.setState({ open: false });
     }
-  }
+  },
 });
 
 module.exports = DropDownIcon;

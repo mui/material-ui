@@ -7,21 +7,21 @@ let ClockNumber = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     value: React.PropTypes.number,
     type: React.PropTypes.oneOf(['hour', 'minute']),
     onSelected: React.PropTypes.func,
-    isSelected: React.PropTypes.bool
+    isSelected: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       value: 0,
       type: 'minute',
-      isSelected: false
+      isSelected: false,
     };
   },
 
@@ -33,7 +33,7 @@ let ClockNumber = React.createClass({
     let pos = this.props.value;
     let inner = false;
 
-    if (this.props.type == "hour") {
+    if (this.props.type === "hour") {
       inner = pos < 1 || pos > 12;
       pos %= 12;
     }
@@ -53,7 +53,7 @@ let ClockNumber = React.createClass({
       [-94.4, 168.5],
       [-109, 114],
       [-94.4, 59.5],
-      [-54.5, 19.6]
+      [-54.5, 19.6],
     ];
 
     let innerPositions = [
@@ -68,25 +68,25 @@ let ClockNumber = React.createClass({
       [-64, 151],
       [-74, 114],
       [-64, 77],
-      [-37, 50]
+      [-37, 50],
     ];
 
     let styles = {
       root: {
         display: "inline-block",
         position: "absolute",
-        width: "32px",
-        height: "32px",
+        width: 32,
+        height: 32,
         borderRadius: "100%",
         left: 'calc(50% - 16px)',
-        top: "10px",
+        top: 10,
         textAlign: "center",
-        paddingTop: '5px',
+        paddingTop: 5,
         userSelect: "none",  /* Chrome all / Safari all */
         fontSize: "1.1em",
         pointerEvents: "none",
-        boxSizing: "border-box"
-      }
+        boxSizing: "border-box",
+      },
     };
 
     if (this.props.isSelected) {
@@ -110,7 +110,7 @@ let ClockNumber = React.createClass({
     return (
         <span style={this.mergeAndPrefix(styles.root)}>{this.props.value}</span>
     );
-  }
+  },
 });
 
 module.exports = ClockNumber;

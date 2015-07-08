@@ -15,7 +15,7 @@ let TransitionItem = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   getInitialState() {
@@ -52,18 +52,15 @@ let TransitionItem = React.createClass({
     return <div style={this.mergeAndPrefix(this.state.style, this.props.style)}>
         {this.props.children}
       </div>;
-  }
+  },
 });
 
 let Dialog = React.createClass({
 
-  mixins: [
-    WindowListenable,
-    StylePropable
-  ],
+  mixins: [WindowListenable, StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -78,12 +75,12 @@ let Dialog = React.createClass({
     onShow: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
     autoDetectWindowHeight: React.PropTypes.bool,
-    autoScrollBodyContent: React.PropTypes.bool
+    autoScrollBodyContent: React.PropTypes.bool,
   },
 
   windowListeners: {
     keyup: '_handleWindowKeyUp',
-    resize: '_positionDialog'
+    resize: '_positionDialog',
   },
 
   getDefaultProps() {
@@ -91,13 +88,13 @@ let Dialog = React.createClass({
       actions: [],
       repositionOnUpdate: true,
       autoDetectWindowHeight: false,
-      autoScrollBodyContent: false
+      autoScrollBodyContent: false,
     };
   },
 
   getInitialState() {
     return {
-      open: this.props.openImmediately || false
+      open: this.props.openImmediately || false,
     };
   },
 
@@ -125,7 +122,7 @@ let Dialog = React.createClass({
       left: -10000,
       width: '100%',
       height: '100%',
-      transition: Transitions.easeOut('0ms', 'left', '450ms')
+      transition: Transitions.easeOut('0ms', 'left', '450ms'),
     };
 
     let content = {
@@ -142,7 +139,7 @@ let Dialog = React.createClass({
     let body = {
       padding: spacing.desktopGutter,
       overflowY: this.props.autoScrollBodyContent ? 'auto' : 'hidden',
-      overflowX: 'hidden'
+      overflowX: 'hidden',
     };
 
     let gutter = spacing.desktopGutter + 'px ';
@@ -152,14 +149,14 @@ let Dialog = React.createClass({
         color: this.context.muiTheme.palette.textColor,
         fontSize: 24,
         lineHeight: '32px',
-        fontWeight: '400'
+        fontWeight: '400',
     };
 
 
     if (this.state.open) {
       main = this.mergeAndPrefix(main, {
         left: 0,
-        transition: Transitions.easeOut('0ms', 'left', '0ms')
+        transition: Transitions.easeOut('0ms', 'left', '0ms'),
       });
     }
 

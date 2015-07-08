@@ -3,19 +3,19 @@ let Events = require('../utils/events');
 const Sizes = {
   SMALL: 1,
   MEDIUM: 2,
-  LARGE: 3
+  LARGE: 3,
 };
 
 
 module.exports = {
 
   statics: {
-    Sizes: Sizes
+    Sizes: Sizes,
   },
 
   getInitialState() {
     return {
-      deviceSize: Sizes.SMALL
+      deviceSize: Sizes.SMALL,
     };
   },
 
@@ -45,5 +45,5 @@ module.exports = {
 
   _unbindResize() {
     Events.off(window, 'resize', this._updateDeviceSize);
-  }
+  },
 };

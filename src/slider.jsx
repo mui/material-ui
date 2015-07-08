@@ -45,7 +45,7 @@ let Slider = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -117,14 +117,14 @@ let Slider = React.createClass({
         height: this.getTheme().handleSizeActive,
         position: 'relative',
         marginTop: 24,
-        marginBottom: 48
+        marginBottom: 48,
       },
       track: {
         position: 'absolute',
         top: (this.getTheme().handleSizeActive - this.getTheme().trackSize) / 2,
         left: 0,
         width: '100%',
-        height: this.getTheme().trackSize
+        height: this.getTheme().trackSize,
       },
       filledAndRemaining: {
         position: 'absolute',
@@ -134,7 +134,7 @@ let Slider = React.createClass({
       },
       percentZeroRemaining: {
         left: 1,
-        marginLeft: gutter
+        marginLeft: gutter,
       },
       handle: {
         boxSizing: 'border-box',
@@ -156,7 +156,7 @@ let Slider = React.createClass({
           Transitions.easeOut('450ms', 'border') + ',' +
           Transitions.easeOut('450ms', 'width') + ',' +
           Transitions.easeOut('450ms', 'height'),
-        overflow: 'visible'
+        overflow: 'visible',
       },
       handleWhenDisabled: {
         boxSizing: 'content-box',
@@ -164,12 +164,12 @@ let Slider = React.createClass({
         backgroundColor: this.getTheme().trackColor,
         width: this.getTheme().handleSizeDisabled,
         height: this.getTheme().handleSizeDisabled,
-        border: '2px solid white'
+        border: '2px solid white',
       },
       handleWhenPercentZero: {
         border: this.getTheme().trackSize + 'px solid ' + this.getTheme().trackColor,
         backgroundColor: this.getTheme().handleFillColor,
-        boxShadow: 'none'
+        boxShadow: 'none',
       },
       handleWhenActive: {
         borderColor: this.getTheme().trackColorSelected,
@@ -178,23 +178,23 @@ let Slider = React.createClass({
         transition:
           Transitions.easeOut('450ms', 'backgroundColor') + ',' +
           Transitions.easeOut('450ms', 'width') + ',' +
-          Transitions.easeOut('450ms', 'height')
+          Transitions.easeOut('450ms', 'height'),
       },
       ripples: {
         height: '300%',
         width: '300%',
         top: '-12px',
-        left: '-12px'
+        left: '-12px',
       },
       handleWhenDisabledAndZero: {
         width: (size / 2) + 'px',
-        height: (size /2) + 'px'
+        height: (size /2) + 'px',
       },
       handleWhenPercentZeroAndHovered: {
         border: this.getTheme().trackSize + 'px solid ' +
           this.getTheme().handleColorZero,
         width: size + 'px',
-        height: size + 'px'
+        height: size + 'px',
       },
     };
     styles.filled = this.mergeAndPrefix(styles.filledAndRemaining, {
@@ -203,13 +203,13 @@ let Slider = React.createClass({
         this.getTheme().trackColor :
         this.getTheme().selectionColor,
       marginRight: fillGutter,
-      width: (this.state.percent * 100) + (this.props.disabled ? -1 : 0) + '%'
+      width: (this.state.percent * 100) + (this.props.disabled ? -1 : 0) + '%',
     });
     styles.remaining = this.mergeAndPrefix(styles.filledAndRemaining, {
       right: 0,
       backgroundColor: this.getTheme().trackColor,
       marginLeft: fillGutter,
-      width: ((1 - this.state.percent) * 100) + (this.props.disabled ? -1 : 0) + '%'
+      width: ((1 - this.state.percent) * 100) + (this.props.disabled ? -1 : 0) + '%',
     });
 
     styles.percentZeroRemaining.width = styles.remaining.width - styles.percentZeroRemaining.left;
@@ -321,7 +321,7 @@ let Slider = React.createClass({
     // update state
     this.setState({
       value: i,
-      percent: percent
+      percent: percent,
     });
   },
 
@@ -364,12 +364,14 @@ let Slider = React.createClass({
         let nextDistance = (cursor + pixelStep) - pos.left;
         if (Math.abs(distance) > Math.abs(nextDistance)) {
           cursor += pixelStep;
-        } else {
+        }
+        else {
           break;
         }
       }
+
       return {
-        left: cursor
+        left: cursor,
       };
     };
   },
@@ -403,7 +405,7 @@ let Slider = React.createClass({
   _onDragStart(e, ui) {
     this.setState({
       dragging: true,
-      active: true
+      active: true,
     });
     if (this.props.onDragStart) this.props.onDragStart(e, ui);
   },
@@ -411,7 +413,7 @@ let Slider = React.createClass({
   _onDragStop(e, ui) {
     this.setState({
       dragging: false,
-      active: false
+      active: false,
     });
     if (this.props.onDragStop) this.props.onDragStop(e, ui);
   },
@@ -439,7 +441,7 @@ let Slider = React.createClass({
 
   _percentToValue(percent) {
     return percent * (this.props.max - this.props.min) + this.props.min;
-  }
+  },
 
 });
 

@@ -13,7 +13,7 @@ let DatePickerDialog = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -26,17 +26,17 @@ let DatePickerDialog = React.createClass({
     maxDate: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
     hideToolbarYearChange: React.PropTypes.bool,
-    showYearSelector: React.PropTypes.bool
+    showYearSelector: React.PropTypes.bool,
   },
 
   windowListeners: {
-    keyup: '_handleWindowKeyUp'
+    keyup: '_handleWindowKeyUp',
   },
 
   getInitialState() {
     return {
       isCalendarActive: false,
-      showMonthDayPicker: true
+      showMonthDayPicker: true,
     };
   },
 
@@ -51,20 +51,20 @@ let DatePickerDialog = React.createClass({
     let styles = {
       root: {
         fontSize: 14,
-        color: this.context.muiTheme.component.datePicker.calendarTextColor
+        color: this.context.muiTheme.component.datePicker.calendarTextColor,
       },
 
       dialogContent: {
-        width: this.props.mode === 'landscape' ? 560 : 280
+        width: this.props.mode === 'landscape' ? 560 : 280,
       },
 
       dialogBodyContent: {
-        padding: 0
+        padding: 0,
       },
 
       actions: {
         marginRight: 8,
-      }
+      },
     };
 
     let actions = [
@@ -143,17 +143,17 @@ let DatePickerDialog = React.createClass({
 
   _handleDialogShow() {
     this.setState({
-      isCalendarActive: true
+      isCalendarActive: true,
     });
 
     if (this.props.onShow) this.props.onShow();
   },
 
   _handleDialogDismiss() {
-    CssEvent.onTransitionEnd(this.refs.dialogWindow.getDOMNode(), () => {
+    CssEvent.onTransitionEnd(this.refs.dialog.getDOMNode(), () => {
       this.setState({
         isCalendarActive: false,
-        showMonthDayPicker: true
+        showMonthDayPicker: true,
       });
     });
 
@@ -161,10 +161,10 @@ let DatePickerDialog = React.createClass({
   },
 
   _handleDialogClickAway() {
-    CssEvent.onTransitionEnd(this.refs.dialogWindow.getDOMNode(), () => {
+    CssEvent.onTransitionEnd(this.refs.dialog.getDOMNode(), () => {
       this.setState({
         isCalendarActive: false,
-        showMonthDayPicker: true
+        showMonthDayPicker: true,
       });
     });
 
@@ -177,7 +177,7 @@ let DatePickerDialog = React.createClass({
         this._handleOKTouchTap();
         break;
     }
-  }
+  },
 
 });
 

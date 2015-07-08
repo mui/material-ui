@@ -7,17 +7,17 @@ let ClockPointer = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     value: React.PropTypes.number,
-    type: React.PropTypes.oneOf(['hour', 'minute'])
+    type: React.PropTypes.oneOf(['hour', 'minute']),
   },
 
   getInitialState() {
      return {
-        inner: this.isInner(this.props.value)
+        inner: this.isInner(this.props.value),
     };
   },
 
@@ -25,25 +25,24 @@ let ClockPointer = React.createClass({
     return {
       value: null,
       type: 'minute',
-      hasSelected: false
+      hasSelected: false,
     };
   },
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-        inner: this.isInner(nextProps.value)
+      inner: this.isInner(nextProps.value),
     });
   },
 
   isInner(value) {
-    if (this.props.type != "hour" ) {
+    if (this.props.type !== "hour" ) {
       return false;
     }
     return value < 1 || value > 12 ;
   },
 
   getAngle() {
-
     if (this.props.type === "hour") {
       return this.calcAngle(this.props.value, 12);
     }
@@ -72,24 +71,24 @@ let ClockPointer = React.createClass({
       root: {
         height: "30%",
         background: this.getTheme().accentColor,
-        width: "2px",
+        width: 2,
         left: 'calc(50% - 1px)',
         position: "absolute",
         bottom: "50%",
         transformOrigin: "bottom",
         pointerEvents: "none",
-        transform: "rotateZ(" + angle + "deg)"
+        transform: "rotateZ(" + angle + "deg)",
       },
       mark: {
         background: this.getTheme().selectTextColor,
         border: "4px solid " + this.getTheme().accentColor,
-        width: "7px",
-        height: "7px",
+        width: 7,
+        height: 7,
         position: "absolute",
-        top: "-5px",
-        left: "-6px",
-        borderRadius: "100%"
-      }
+        top: -5,
+        left: -6,
+        borderRadius: "100%",
+      },
     };
 
     if (!this.state.inner) {
@@ -105,7 +104,7 @@ let ClockPointer = React.createClass({
           <div style={styles.mark} />
         </div>
     );
-  }
+  },
 });
 
 module.exports = ClockPointer;

@@ -16,7 +16,7 @@ let Snackbar = React.createClass({
   _autoHideTimerId: undefined,
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -24,12 +24,12 @@ let Snackbar = React.createClass({
     action: React.PropTypes.string,
     autoHideDuration: React.PropTypes.number,
     onActionTouchTap: React.PropTypes.func,
-    openOnMount: React.PropTypes.bool
+    openOnMount: React.PropTypes.bool,
   },
 
   getInitialState() {
     return {
-      open: this.props.openOnMount || false
+      open: this.props.openOnMount || false,
     };
   },
 
@@ -92,7 +92,7 @@ let Snackbar = React.createClass({
         marginTop: 6,
         marginRight: -16,
         marginLeft: this.getSpacing().desktopGutter,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
       },
       rootWhenOpen: {
         left: '0px',
@@ -101,8 +101,8 @@ let Snackbar = React.createClass({
         transition:
           Transitions.easeOut('0ms', 'left', '0ms') + ',' +
           Transitions.easeOut('400ms', 'opacity', '0ms') + ',' +
-          Transitions.easeOut('400ms', 'transform', '0ms')
-      }
+          Transitions.easeOut('400ms', 'transform', '0ms'),
+      },
     };
 
     return styles;
@@ -153,7 +153,7 @@ let Snackbar = React.createClass({
       this._clearAutoHideTimer();
       this._autoHideTimerId = setTimeout(() => { this.dismiss(); }, this.props.autoHideDuration);
     }
-  }
+  },
 
 });
 

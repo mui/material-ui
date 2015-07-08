@@ -12,12 +12,12 @@ let CircleRipple = React.createClass({
     color: React.PropTypes.string,
     opacity: React.PropTypes.number,
     started: React.PropTypes.bool,
-    ending: React.PropTypes.bool
+    ending: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
-      color: Colors.darkBlack
+      color: Colors.darkBlack,
     };
   },
 
@@ -43,13 +43,13 @@ let CircleRipple = React.createClass({
       backgroundColor: this.props.color,
       transition:
         Transitions.easeOut('2s', 'opacity') + ',' +
-        Transitions.easeOut('1s', 'transform')
+        Transitions.easeOut('1s', 'transform'),
     }, this.props.style);
 
     return (
       <div {...other} style={styles} />
     );
-  }
+  },
 
 });
 

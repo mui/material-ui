@@ -9,7 +9,7 @@ let SelectField = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -34,12 +34,12 @@ let SelectField = React.createClass({
     autoWidth: React.PropTypes.bool,
     menuItems: React.PropTypes.array.isRequired,
     menuItemStyle: React.PropTypes.object,
-    selectedIndex: React.PropTypes.number
+    selectedIndex: React.PropTypes.number,
   },
 
   getDefaultProps() {
     return {
-      fullWidth:false
+      fullWidth: false,
     };
   },
 
@@ -55,16 +55,16 @@ let SelectField = React.createClass({
       label: {
         paddingLeft: 0,
         top: 4,
-        width: '100%'
+        width: '100%',
       },
       icon: {
         top: 20,
-        right: 0
+        right: 0,
       },
       underline: {
-        borderTop: 'none'
+        borderTop: 'none',
       },
-      input: {}
+      input: {},
     };
 
     if (!this.props.floatingLabelText) {
@@ -72,7 +72,8 @@ let SelectField = React.createClass({
         styles.root.top = -5;
         styles.label.top = 1;
         styles.icon.top = 17;
-      } else {
+      }
+      else {
         styles.root.top = -8;
       }
     }
@@ -110,7 +111,7 @@ let SelectField = React.createClass({
       style: this.mergeAndPrefix(styles.input, style),
       floatingLabelText: floatingLabelText,
       hintText: (!hintText && !floatingLabelText) ? ' ' : hintText,
-      fullWidth:fullWidth
+      fullWidth: fullWidth,
     };
     let dropDownMenuProps = {
       onChange: this.onChange,
@@ -120,7 +121,7 @@ let SelectField = React.createClass({
       labelStyle: this.mergeAndPrefix(styles.label, labelStyle),
       iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
       underlineStyle: this.mergeAndPrefix(styles.underline),
-      autoWidth: false
+      autoWidth: false,
     };
 
     return (
@@ -128,7 +129,7 @@ let SelectField = React.createClass({
         <DropDownMenu {...dropDownMenuProps} {...other} />
       </TextField>
     );
-  }
+  },
 });
 
 module.exports = SelectField;

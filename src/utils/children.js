@@ -16,6 +16,6 @@ module.exports = {
 
         return React.cloneElement(child, newProps, newChildren);
       }) : children;
-  }
+  },
 
 };

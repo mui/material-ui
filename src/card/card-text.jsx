@@ -9,12 +9,12 @@ let CardText = React.createClass({
 
   propTypes: {
     color: React.PropTypes.string,
-    style: React.PropTypes.object
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
     return {
-      color: Styles.Colors.ck
+      color: Styles.Colors.ck,
     };
   },
 
@@ -23,8 +23,8 @@ let CardText = React.createClass({
       root: {
         padding: 16,
         fontSize: '14px',
-        color: this.props.color
-      }
+        color: this.props.color,
+      },
     };
   },
 
@@ -37,7 +37,7 @@ let CardText = React.createClass({
         {this.props.children}
       </div>
     );
-  }
+  },
 });
 
 module.exports = CardText;

@@ -10,26 +10,26 @@ let DayButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     date: React.PropTypes.object,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
-    disabled: React.PropTypes.bool
+    disabled: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       selected: false,
-      disabled: false
+      disabled: false,
     };
   },
 
   getInitialState() {
     return {
-      hover: false
+      hover: false,
     };
   },
 
@@ -52,12 +52,12 @@ let DayButton = React.createClass({
         position: 'relative',
         float: 'left',
         width: 36,
-        padding: '4px 2px'
+        padding: '4px 2px',
       },
 
       label: {
         position: 'relative',
-        color: this.context.muiTheme.palette.textColor
+        color: this.context.muiTheme.palette.textColor,
       },
 
       buttonState: {
@@ -69,7 +69,7 @@ let DayButton = React.createClass({
         transform: 'scale(0)',
         transition: Transition.easeOut(),
         backgroundColor: this.getTheme().selectColor,
-      }
+      },
     };
 
     if (this.state.hover) {
@@ -124,7 +124,7 @@ let DayButton = React.createClass({
 
   _handleKeyboardFocus(e, keyboardFocused) {
     if (!this.props.disabled && this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
-  }
+  },
 
 });
 

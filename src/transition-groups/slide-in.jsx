@@ -9,12 +9,12 @@ let SlideIn = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-    direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down'])
+    direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),
   },
 
   getDefaultProps() {
     return {
-      direction: 'left'
+      direction: 'left',
     };
   },
 
@@ -27,7 +27,7 @@ let SlideIn = React.createClass({
     let styles = this.mergeAndPrefix({
       position: 'relative',
       overflow: 'hidden',
-      height: '100%'
+      height: '100%',
     }, this.props.style);
 
     return (
@@ -54,7 +54,7 @@ let SlideIn = React.createClass({
 
   _getLeaveDirection() {
     return this.props.direction;
-  }
+  },
 
 });
 

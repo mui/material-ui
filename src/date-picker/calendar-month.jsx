@@ -13,7 +13,7 @@ let CalendarMonth = React.createClass({
     minDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
-    autoOk: React.PropTypes.bool
+    autoOk: React.PropTypes.bool,
   },
 
   render() {
@@ -82,7 +82,7 @@ let CalendarMonth = React.createClass({
     if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
 
     return disabled;
-  }
+  },
 
 });
 

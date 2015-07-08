@@ -6,7 +6,7 @@ let Toggle = require('../toggle');
 const Types = {
   LINK: 'LINK',
   SUBHEADER: 'SUBHEADER',
-  NESTED: 'NESTED'
+  NESTED: 'NESTED',
 };
 
 
@@ -15,7 +15,7 @@ let MenuItem = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -33,18 +33,18 @@ let MenuItem = React.createClass({
     onTouchTap: React.PropTypes.func,
     onToggle: React.PropTypes.func,
     selected: React.PropTypes.bool,
-    active: React.PropTypes.bool
+    active: React.PropTypes.bool,
   },
 
   statics: {
-    Types: Types
+    Types: Types,
   },
 
   getDefaultProps() {
     return {
       toggle: false,
       disabled: false,
-      active:false
+      active: false,
     };
   },
 
@@ -64,24 +64,24 @@ let MenuItem = React.createClass({
         lineHeight: this.getTheme().height + 'px',
         paddingLeft: this.getTheme().padding,
         paddingRight: this.getTheme().padding,
-        color: this.context.muiTheme.palette.textColor
+        color: this.context.muiTheme.palette.textColor,
       },
       number: {
         float: 'right',
         width: 24,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       attribute: {
-        float: 'right'
+        float: 'right',
       },
       iconRight: {
         lineHeight: this.getTheme().height + 'px',
-        float: 'right'
+        float: 'right',
       },
       icon: {
         float: 'left',
         lineHeight: this.getTheme().height + 'px',
-        marginRight: this.getSpacing().desktopGutter
+        marginRight: this.getSpacing().desktopGutter,
       },
       data: {
         display: 'block',
@@ -92,24 +92,25 @@ let MenuItem = React.createClass({
         top: -12,
         position: 'relative',
         fontWeight: 300,
-        color: this.context.muiTheme.palette.textColor
+        color: this.context.muiTheme.palette.textColor,
       },
       toggle: {
         marginTop: ((this.getTheme().height - this.context.muiTheme.component.radioButton.size) / 2),
         float: 'right',
-        width: 42
+        width: 42,
       },
       rootWhenHovered: {
-        backgroundColor: this.getTheme().hoverColor
+        backgroundColor: this.getTheme().hoverColor,
       },
       rootWhenSelected: {
-        color: this.getTheme().selectedTextColor
+        color: this.getTheme().selectedTextColor,
       },
       rootWhenDisabled: {
         cursor: 'default',
-        color: this.context.muiTheme.palette.disabledColor
-      }
+        color: this.context.muiTheme.palette.disabledColor,
+      },
     };
+
     return styles;
   },
 
@@ -120,7 +121,6 @@ let MenuItem = React.createClass({
     let attribute;
     let number;
     let toggleElement;
-
     let styles = this.getStyles();
 
     if (this.props.iconClassName) icon = <FontIcon style={this.mergeAndPrefix(styles.icon, this.props.iconStyle)} className={this.props.iconClassName} />;
@@ -185,7 +185,7 @@ let MenuItem = React.createClass({
 
   _handleMouseOut(e) {
     if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e,this.props.index);
-  }
+  },
 });
 
 module.exports = MenuItem;

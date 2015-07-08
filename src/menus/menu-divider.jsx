@@ -7,10 +7,7 @@ let MenuDivider = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-
-  propTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   render() {
@@ -21,13 +18,13 @@ let MenuDivider = React.createClass({
 
     let mergedStyles = this.mergeAndPrefix({
       marginTop: 7,
-      marginBottom: 8
+      marginBottom: 8,
     }, style);
 
     return (
       <ListDivider {...other} style={mergedStyles} />
     );
-  }
+  },
 });
 
 module.exports = MenuDivider;

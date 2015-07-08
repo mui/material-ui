@@ -4,5 +4,5 @@ module.exports = {
   Spacing: require('./spacing'),
   ThemeManager: require('./theme-manager'),
   Transitions: require('./transitions'),
-  Typography: require('./typography')
+  Typography: require('./typography'),
 };

@@ -12,7 +12,7 @@ let IconButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -31,21 +31,21 @@ let IconButton = React.createClass({
       'bottom-right',
       'top-center',
       'top-left',
-      'top-right'
+      'top-right',
     ]),
     touch: React.PropTypes.bool,
   },
 
   getInitialState() {
     return {
-      tooltipShown: false
+      tooltipShown: false,
     };
   },
 
   getDefaultProps() {
     return {
       iconStyle: {},
-      tooltipPosition: 'bottom-center'
+      tooltipPosition: 'bottom-center',
     };
   },
 
@@ -59,29 +59,30 @@ let IconButton = React.createClass({
         boxSizing: 'border-box',
         transition: Transitions.easeOut(),
         padding: spacing.iconSize / 2,
-        width: spacing.iconSize*2,
-        height: spacing.iconSize*2,
-        fontSize: 0
+        width: spacing.iconSize * 2,
+        height: spacing.iconSize * 2,
+        fontSize: 0,
       },
       tooltip: {
         boxSizing: 'border-box',
       },
       icon: {
         color: palette.textColor,
-        fill: palette.textColor
+        fill: palette.textColor,
       },
       overlay: {
         position: 'relative',
         top: 0,
         width: '100%',
         height: '100%',
-        background: palette.disabledColor
+        background: palette.disabledColor,
       },
       disabled: {
         color: palette.disabledColor,
-        fill: palette.disabledColor
-      }
+        fill: palette.disabledColor,
+      },
     };
+
     return styles;
   },
 
@@ -145,7 +146,7 @@ let IconButton = React.createClass({
         {tooltipElement}
         {fonticon}
         {Children.extend(this.props.children, {
-          style: childrenStyle
+          style: childrenStyle,
         })}
 
       </EnhancedButton>
@@ -197,7 +198,7 @@ let IconButton = React.createClass({
     }
 
     if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused);
-  }
+  },
 
 });
 

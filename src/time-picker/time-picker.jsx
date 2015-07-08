@@ -21,24 +21,24 @@ let TimePicker = React.createClass({
     onTouchTap: React.PropTypes.func,
     onChange: React.PropTypes.func,
     onShow: React.PropTypes.func,
-    onDismiss: React.PropTypes.func
+    onDismiss: React.PropTypes.func,
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    'keyup': '_handleWindowKeyUp',
   },
 
   getDefaultProps() {
     return {
       defaultTime: emptyTime,
-      format: 'ampm'
+      format: 'ampm',
     };
   },
 
   getInitialState() {
     return {
       time: this.props.defaultTime,
-      dialogTime: new Date()
+      dialogTime: new Date(),
     };
   },
 
@@ -104,7 +104,7 @@ let TimePicker = React.createClass({
 
   setTime(t) {
     this.setState({
-      time: t
+      time: t,
     });
     this.refs.input.setValue(this.formatTime(t));
   },
@@ -123,12 +123,12 @@ let TimePicker = React.createClass({
     e.preventDefault();
 
     this.setState({
-      dialogTime: this.getTime()
+      dialogTime: this.getTime(),
     });
 
     this.refs.dialogWindow.show();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
-  }
+  },
 });
 
 module.exports = TimePicker;

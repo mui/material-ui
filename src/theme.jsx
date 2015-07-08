@@ -5,18 +5,18 @@ let ThemeManager = require('./styles/theme-manager');
 let Theme = React.createClass({
 
   propTypes: {
-    theme: React.PropTypes.object
+    theme: React.PropTypes.object,
   },
 
   childContextTypes: {
     muiTheme: React.PropTypes.object.isRequired,
-    muiThemeManager: React.PropTypes.object.isRequired
+    muiThemeManager: React.PropTypes.object.isRequired,
   },
 
   getChildContext() {
     return {
       muiTheme: this.themeManager.getCurrentTheme(),
-      muiThemeManager: this.themeManager
+      muiThemeManager: this.themeManager,
     };
   },
 
@@ -31,9 +31,9 @@ let Theme = React.createClass({
   render() {
     return this.props.children({
       muiTheme: this.themeManager.getCurrentTheme(),
-      muiThemeManager: this.themeManager
+      muiThemeManager: this.themeManager,
     });
-  }
+  },
 });
 
 
@@ -52,12 +52,12 @@ function theme(customTheme) {
           <Theme theme={customTheme}>
             {
               function(props) {
-                return (<Component {...this.props} {...props}/>);
+                return <Component {...this.props} {...props}/>;
               }.bind(this)
             }
           </Theme>
         );
-      }
+      },
     });
   };
 }

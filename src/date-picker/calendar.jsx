@@ -26,11 +26,11 @@ let Calendar = React.createClass({
     shouldShowMonthDayPickerFirst: React.PropTypes.bool,
     shouldShowYearPickerFirst: React.PropTypes.bool,
     showYearSelector: React.PropTypes.bool,
-    onSelectedDate: React.PropTypes.func
+    onSelectedDate: React.PropTypes.func,
   },
 
   windowListeners: {
-    'keydown': '_handleWindowKeyDown'
+    'keydown': '_handleWindowKeyDown',
   },
 
   getDefaultProps() {
@@ -41,7 +41,7 @@ let Calendar = React.createClass({
       hideToolbarYearChange: false,
       shouldShowMonthDayPickerFirst: true,
       shouldShowYearPickerFirst: false,
-      showYearSelector: false
+      showYearSelector: false,
     };
   },
 
@@ -51,12 +51,8 @@ let Calendar = React.createClass({
       selectedDate: this.props.initialDate,
       transitionDirection: 'left',
       displayMonthDay: this.props.shouldShowMonthDayPickerFirst || this.props.shouldShowYearPickerFirst || true,
-      transitionEnter: true
+      transitionEnter: true,
     };
-  },
-
-  getStyles() {
-
   },
 
   componentWillReceiveProps(nextProps) {
@@ -64,7 +60,7 @@ let Calendar = React.createClass({
       let d = nextProps.initialDate || new Date();
       this.setState({
         displayDate: DateTime.getFirstDayOfMonth(d),
-        selectedDate: d
+        selectedDate: d,
       });
     }
 
@@ -82,44 +78,44 @@ let Calendar = React.createClass({
     let isLandscape = this.props.mode === 'landscape';
     let styles = {
       root: {
-        fontSize: '12px'
+        fontSize: 12,
       },
       calendarContainer: {
-        width: isLandscape ? '280px' : '100%',
-        height: weekCount === 5 ? '268px' :
-          weekCount === 6 ? '308px' : '228px',
+        width: isLandscape ? 280 : '100%',
+        height: weekCount === 5 ? 268 :
+          weekCount === 6 ? 308 : 228,
         float: isLandscape ? 'right' : 'none',
         transition: Transitions.easeOut('150ms', 'height'),
-        overflow: 'hidden'
+        overflow: 'hidden',
       },
       yearContainer: {
-        width: '280px',
+        width: 280,
         overflow: 'hidden',
         height: yearCount < 6 ? yearCount * 56 + 10 :
-          weekCount === 5 ? '268px' :
-          weekCount === 6 ? '308px' : '228px',
-        float: isLandscape ? 'right' : 'none'
+          weekCount === 5 ? 268 :
+          weekCount === 6 ? 308 : 228,
+        float: isLandscape ? 'right' : 'none',
       },
       dateDisplay: {
-        width: isLandscape ? '280px' : '100%',
+        width: isLandscape ? 280 : '100%',
         height: '100%',
-        float: isLandscape ? 'left' : 'none'
+        float: isLandscape ? 'left' : 'none',
       },
       weekTitle: {
         padding: '0 14px',
         lineHeight: '12px',
         opacity: '0.5',
-        height: '12px',
+        height: 12,
         fontWeight: '500',
-        margin: 0
+        margin: 0,
       },
       weekTitleDay: {
         listStyle: 'none',
         float: 'left',
-        width: '32px',
+        width: 32,
         textAlign: 'center',
-        margin: '0 2px'
-      }
+        margin: '0 2px',
+      },
     };
 
     if (this.state.displayMonthDay || !this.props.showYearSelector) {
@@ -229,7 +225,7 @@ let Calendar = React.createClass({
       this.setState({
         displayDate: newDisplayDate,
         transitionDirection: direction,
-        selectedDate: newSelectedDate || this.state.selectedDate
+        selectedDate: newSelectedDate || this.state.selectedDate,
       });
     }
   },
@@ -246,9 +242,10 @@ let Calendar = React.createClass({
     let newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
     if (newDisplayDate !== this.state.displayDate) {
       this._setDisplayDate(newDisplayDate, adjustedDate);
-    } else {
+    }
+    else {
       this.setState({
-        selectedDate: adjustedDate
+        selectedDate: adjustedDate,
       });
     }
     if (this.props.onSelectedDate) this.props.onSelectedDate(e, date);
@@ -277,7 +274,7 @@ let Calendar = React.createClass({
       prevMonth: DateTime.monthDiff(this.state.selectedDate, this.props.minDate) > 0,
       nextMonth: DateTime.monthDiff(this.state.selectedDate, this.props.maxDate) < 0,
       prevYear: DateTime.yearDiff(this.state.selectedDate, this.props.minDate) > 0,
-      nextYear: DateTime.yearDiff(this.state.selectedDate, this.props.maxDate) < 0
+      nextYear: DateTime.yearDiff(this.state.selectedDate, this.props.maxDate) < 0,
     };
   },
 
@@ -299,7 +296,8 @@ let Calendar = React.createClass({
           }
           else if (e.shiftKey) {
             this._addSelectedMonths(-1);
-          } else {
+          }
+          else {
             this._addSelectedDays(-7);
           }
           break;
@@ -310,7 +308,8 @@ let Calendar = React.createClass({
           }
           else if (e.shiftKey) {
             this._addSelectedMonths(1);
-          } else {
+          }
+          else {
             this._addSelectedDays(7);
           }
           break;
@@ -321,7 +320,8 @@ let Calendar = React.createClass({
           }
           else if (e.shiftKey) {
             this._addSelectedMonths(1);
-          } else {
+          }
+          else {
             this._addSelectedDays(1);
           }
           break;
@@ -332,13 +332,14 @@ let Calendar = React.createClass({
           }
           else if (e.shiftKey) {
             this._addSelectedMonths(-1);
-          } else {
+          }
+          else {
             this._addSelectedDays(-1);
           }
           break;
       }
     }
-  }
+  },
 
 });
 

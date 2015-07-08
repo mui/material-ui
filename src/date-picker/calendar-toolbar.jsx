@@ -20,7 +20,7 @@ let CalendarToolbar = React.createClass({
     nextYear: React.PropTypes.bool,
     prevMonth: React.PropTypes.bool,
     nextMonth: React.PropTypes.bool,
-    hideYearChangeButtons: React.PropTypes.bool
+    hideYearChangeButtons: React.PropTypes.bool,
   },
 
   getDefaultProps() {
@@ -29,13 +29,13 @@ let CalendarToolbar = React.createClass({
       nextYear: true,
       prevMonth: true,
       nextMonth: true,
-      hideYearChangeButtons: false
+      hideYearChangeButtons: false,
     };
   },
 
   getInitialState() {
     return {
-      transitionDirection: 'up'
+      transitionDirection: 'up',
     };
   },
 
@@ -45,7 +45,7 @@ let CalendarToolbar = React.createClass({
     if (nextProps.displayDate !== this.props.displayDate) {
       direction = nextProps.displayDate > this.props.displayDate ? 'up' : 'down';
       this.setState({
-        transitionDirection: direction
+        transitionDirection: direction,
       });
     }
   },
@@ -55,7 +55,7 @@ let CalendarToolbar = React.createClass({
       root: {
         position: 'relative',
         padding: 0,
-        backgroundColor: 'inherit'
+        backgroundColor: 'inherit',
       },
 
       title: {
@@ -67,8 +67,8 @@ let CalendarToolbar = React.createClass({
         width: '100%',
         fontWeight: '500',
         textAlign: 'center',
-        zIndex: -1
-      }
+        zIndex: -1,
+      },
     };
   },
 
@@ -112,7 +112,7 @@ let CalendarToolbar = React.createClass({
 
   _getPrevYearChangeButton() {
     let style = {
-      display: this.props.hideYearChangeButtons ? 'none' : ''
+      display: this.props.hideYearChangeButtons ? 'none' : '',
     };
 
     return (
@@ -127,7 +127,7 @@ let CalendarToolbar = React.createClass({
 
   _getNextYearChangeButton() {
     let style = {
-      display: this.props.hideYearChangeButtons ? 'none' : ''
+      display: this.props.hideYearChangeButtons ? 'none' : '',
     };
 
     return (
@@ -154,7 +154,7 @@ let CalendarToolbar = React.createClass({
 
   _nextMonthTouchTap() {
     if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
-  }
+  },
 
 });
 

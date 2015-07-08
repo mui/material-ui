@@ -16,7 +16,7 @@ let LeftNav = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -28,17 +28,17 @@ let LeftNav = React.createClass({
     onNavOpen: React.PropTypes.func,
     onNavClose: React.PropTypes.func,
     openRight: React.PropTypes.bool,
-    selectedIndex: React.PropTypes.number
+    selectedIndex: React.PropTypes.number,
   },
 
   windowListeners: {
     'keyup': '_onWindowKeyUp',
-    'resize': '_onWindowResize'
+    'resize': '_onWindowResize',
   },
 
   getDefaultProps() {
     return {
-      docked: true
+      docked: true,
     };
   },
 
@@ -46,7 +46,7 @@ let LeftNav = React.createClass({
     return {
       open: this.props.docked,
       maybeSwiping: false,
-      swiping: null
+      swiping: null,
     };
   },
 
@@ -90,7 +90,7 @@ let LeftNav = React.createClass({
   },
 
   getStyles() {
-    let x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX()) + 'px';
+    let x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
     let styles = {
       root: {
         height: '100%',
@@ -99,32 +99,32 @@ let LeftNav = React.createClass({
         zIndex: 10,
         left: 0,
         top: 0,
-        transform: 'translate3d(' + x + ', 0, 0)',
+        transform: 'translate3d(' + x + 'px, 0, 0)',
         transition: !this.state.swiping && Transitions.easeOut(),
         backgroundColor: this.getTheme().color,
-        overflow: 'hidden'
+        overflow: 'hidden',
       },
       menu: {
         overflowY: 'auto',
         overflowX: 'hidden',
-        height: '100%'
+        height: '100%',
       },
       menuItem: {
         height: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight,
-        lineHeight: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight + 'px'
+        lineHeight: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight + 'px',
       },
       rootWhenOpenRight: {
         left: 'auto',
-        right: '0'
-      }
+        right: 0,
+      },
     };
     styles.menuItemLink = this.mergeAndPrefix(styles.menuItem, {
       display: 'block',
       textDecoration: 'none',
-      color: this.getThemePalette().textColor
+      color: this.getThemePalette().textColor,
     });
     styles.menuItemSubheader = this.mergeAndPrefix(styles.menuItem, {
-      overflow: 'hidden'
+      overflow: 'hidden',
     });
 
     return styles;
@@ -242,7 +242,7 @@ let LeftNav = React.createClass({
     this.setState({
       maybeSwiping: true,
       touchStartX: touchStartX,
-      touchStartY: touchStartY
+      touchStartY: touchStartY,
     });
 
     document.body.addEventListener('touchmove', this._onBodyTouchMove);
@@ -289,7 +289,7 @@ let LeftNav = React.createClass({
         this.setState({
           swiping: this.state.open ? 'closing' : 'opening',
           open: true,
-          swipeStartX: currentX
+          swipeStartX: currentX,
         });
         this._setPosition(this._getTranslateX(currentX));
       }
@@ -306,26 +306,28 @@ let LeftNav = React.createClass({
 
       this.setState({
         maybeSwiping: false,
-        swiping: null
+        swiping: null,
       });
 
       // We have to open or close after setting swiping to null,
       // because only then CSS transition is enabled.
       if (translateRatio > 0.5) {
         this.close();
-      } else {
+      }
+      else {
         this._setPosition(0);
       }
-    } else {
+    }
+    else {
       this.setState({
-        maybeSwiping: false
+        maybeSwiping: false,
       });
     }
 
     document.body.removeEventListener('touchmove', this._onBodyTouchMove);
     document.body.removeEventListener('touchend', this._onBodyTouchEnd);
     document.body.removeEventListener('touchcancel', this._onBodyTouchEnd);
-  }
+  },
 
 });
 

@@ -7,7 +7,7 @@ let Card = React.createClass({
   mixins:[StylePropable],
 
   propTypes: {
-    style: React.PropTypes.object
+    style: React.PropTypes.object,
   },
 
   render() {
@@ -26,7 +26,7 @@ let Card = React.createClass({
 
     let mergedStyles = this.mergeAndPrefix({
       overflow: 'hidden',
-      zIndex: 1
+      zIndex: 1,
     }, style);
 
     return (
@@ -36,7 +36,7 @@ let Card = React.createClass({
         </div>
       </Paper>
     );
-  }
+  },
 });
 
 module.exports = Card;
