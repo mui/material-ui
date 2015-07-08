@@ -195,7 +195,7 @@ let LeftNav = React.createClass({
   },
 
   _onWindowKeyUp(e) {
-    if (e.keyCode == KeyCode.ESC &&
+    if (e.keyCode === KeyCode.ESC &&
         !this.props.docked &&
         this.state.open) {
       this.close();

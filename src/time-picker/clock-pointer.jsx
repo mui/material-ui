@@ -61,7 +61,7 @@ let ClockPointer = React.createClass({
   },
 
   render() {
-    if (this.props.value == null) {
+    if (this.props.value === null) {
       return <span />;
     }
 

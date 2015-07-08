@@ -3,7 +3,7 @@ module.exports = {
   isDescendant(parent, child) {
     let node = child.parentNode;
 
-    while (node != null) {
+    while (node !== null) {
       if (node === parent) return true;
       node = node.parentNode;
     }

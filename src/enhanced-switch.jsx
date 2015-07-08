@@ -64,7 +64,7 @@ let EnhancedSwitch = React.createClass({
 
   componentDidMount() {
     let inputNode = React.findDOMNode(this.refs.checkbox);
-    if (!this.props.switched || inputNode.checked != this.props.switched) {
+    if (!this.props.switched || inputNode.checked !== this.props.switched) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
 
@@ -83,7 +83,7 @@ let EnhancedSwitch = React.createClass({
     let hasToggledProp = nextProps.hasOwnProperty('toggled');
     let hasNewDefaultProp =
       (nextProps.hasOwnProperty('defaultSwitched') &&
-      (nextProps.defaultSwitched != this.props.defaultSwitched));
+      (nextProps.defaultSwitched !== this.props.defaultSwitched));
     let newState = {};
 
     if (hasCheckedProp) {
@@ -99,7 +99,7 @@ let EnhancedSwitch = React.createClass({
       newState.switched = nextProps.defaultSwitched;
     }
 
-    if (newState.switched !== undefined && (newState.switched != this.props.switched)) {
+    if (newState.switched !== undefined && (newState.switched !== this.props.switched)) {
       this.props.onParentShouldUpdate(newState.switched);
     }
   },
@@ -152,9 +152,9 @@ let EnhancedSwitch = React.createClass({
         position: 'relative',
         display: 'block',
         width: switchWidth,
-        marginRight: (this.props.labelPosition == 'right') ?
+        marginRight: (this.props.labelPosition === 'right') ?
           spacing.desktopGutterLess : 0,
-        marginLeft: (this.props.labelPosition == 'left') ?
+        marginLeft: (this.props.labelPosition === 'left') ?
           spacing.desktopGutterLess : 0,
       },
       ripple: {
@@ -347,13 +347,13 @@ let EnhancedSwitch = React.createClass({
     if (e.keyCode == KeyCode.TAB) {
       this._tabPressed = true;
     }
-    if (e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
+    if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
       this._handleChange(e);
     }
   },
 
   _handleWindowKeyup(e) {
-    if (e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
+    if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
       this._handleChange(e);
     }
   },
