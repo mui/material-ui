@@ -160,6 +160,12 @@ let TextFieldsPage = React.createClass({
         name: 'Props',
         infoArray: [
           {
+            name: 'errorStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'The style object to use to override error styles.'
+          },
+          {
             name: 'errorText',
             type: 'string',
             header: 'optional',
