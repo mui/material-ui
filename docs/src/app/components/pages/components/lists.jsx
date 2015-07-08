@@ -40,7 +40,6 @@ class ListsPage extends React.Component {
   }
 
   render() {
-
     let code = `
       //First Example
       <List>
@@ -123,8 +122,25 @@ class ListsPage extends React.Component {
           }
           secondaryTextLines={2}>
           Raquel Parrado
+          <ListItem>TESTING</ListItem>
         </ListItem>
       </List>
+
+      // Nested List Items
+      <MobileTearSheet>
+        <List subheader="Nested List Items">
+          <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
+          <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+          <ListItem leftIcon={<ContentInbox />}>
+            Inbox
+            <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
+            <ListItem leftIcon={<ContentSend />}>
+              Sent Mail
+              <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+            </ListItem>
+          </ListItem>
+        </List>
+      </MobileTearSheet>
     `;
 
     let componentInfo = [
@@ -155,6 +171,12 @@ class ListsPage extends React.Component {
         name: 'ListItem Props',
         infoArray: [
           {
+            name: 'autoGenerateNestedIndicator',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'Generate a nested list indicator icon when nested list items are detected. Set to false if you do not want an indicator auto-generated. Note that an indicator will not be created if a rightIcon/Button has been specified.'
+          },
+          {
             name: 'disabled',
             type: 'bool',
             header: 'default: false',
@@ -183,6 +205,18 @@ class ListsPage extends React.Component {
             type: 'element',
             header: 'optional',
             desc: 'This is the SvgIcon or FontIcon to be displayed on the left side.'
+          },
+          {
+            name: 'nestedLevel',
+            type: 'integer',
+            header: 'optional',
+            desc: 'Controls how deep a ListItem appears. This property is automatically managed so modify at your own risk.'
+          },
+          {
+            name: 'open',
+            type: 'boolean',
+            header: 'default: false',
+            desc: 'Controls whether or not the child ListItems are initially displayed.'
           },
           {
             name: 'rightAvatar',
@@ -228,10 +262,34 @@ class ListsPage extends React.Component {
         name: 'ListItem Events',
         infoArray: [
           {
-            name: 'onTouchTap',
+            name: 'onKeyboardFocus',
+            type: 'function(e, isKeyboardFocused)',
+            header: 'optional',
+            desc: 'Called when the ListItem has keyboard focus.'
+          },
+          {
+            name: 'onMouseOut',
             type: 'function(e)',
             header: 'optional',
-            desc: 'Called when the ListItem is touched/tapped.'
+            desc: 'Called when the mouse is no longer over the ListItem.'
+          },
+          {
+            name: 'onMouseOver',
+            type: 'function(e)',
+            header: 'optional',
+            desc: 'Called when the mouse is over the ListItem.'
+          },
+          {
+            name: 'onNestedListToggle',
+            type: 'function(this)',
+            header: 'optional',
+            desc: 'Called when the ListItem toggles its nested ListItems.'
+          },
+          {
+            name: 'onTouchStart',
+            type: 'function(e)',
+            header: 'optional',
+            desc: 'Called when touches start.'
           }
         ]
       }
@@ -266,6 +324,14 @@ class ListsPage extends React.Component {
             <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
             <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
             <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+            <ListItem leftIcon={<ContentInbox />}>
+              Inbox
+              <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
+              <ListItem leftIcon={<ContentSend />}>
+                Sent Mail
+                <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+              </ListItem>
+            </ListItem>
           </List>
           <ListDivider />
           <List>
@@ -399,6 +465,21 @@ class ListsPage extends React.Component {
               rightIcon={<ActionInfo />}
               secondaryText="Jan 10, 2014">
               Kitchen remodel
+            </ListItem>
+          </List>
+        </MobileTearSheet>
+
+        <MobileTearSheet>
+          <List subheader="Nested List Items">
+            <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
+            <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+            <ListItem leftIcon={<ContentInbox />} open={true}>
+              Inbox
+              <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
+              <ListItem leftIcon={<ContentSend />}>
+                Sent Mail
+                <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+              </ListItem>
             </ListItem>
           </List>
         </MobileTearSheet>
