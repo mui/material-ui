@@ -13,7 +13,7 @@ let Snackbar = React.createClass({
   manuallyBindClickAway: true,
 
   // ID of the active timer.
-  autoHideTimerId: undefined,
+  _autoHideTimerId: undefined,
 
   contextTypes: {
     muiTheme: React.PropTypes.object
@@ -143,15 +143,15 @@ let Snackbar = React.createClass({
   },
 
   _clearAutoHideTimer() {
-    if (this.autoHideTimerId !== undefined) {
-      this.autoHideTimerId = clearTimeout(this.autoHideTimerId);
+    if (this._autoHideTimerId !== undefined) {
+      this._autoHideTimerId = clearTimeout(this._autoHideTimerId);
     }
   },
 
   _setAutoHideTimer() {
     if (this.props.autoHideDuration > 0) {
       this._clearAutoHideTimer();
-      this.autoHideTimerId = setTimeout(() => { this.dismiss(); }, this.props.autoHideDuration);
+      this._autoHideTimerId = setTimeout(() => { this.dismiss(); }, this.props.autoHideDuration);
     }
   }
 
