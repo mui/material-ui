@@ -30,9 +30,10 @@ let ListNested = React.createClass({
       <List style={style.nestedList}>
         {
           React.Children.map(this.props.children, (child) => {
-            if (child.type.displayName === 'ListItem') {
+            if (React.isValidElement(child)) {
               return React.cloneElement(child, {nestedLevel: nestedLevel + 1});
             }
+            return child;
           })
         }
       </List>
