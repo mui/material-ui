@@ -19,7 +19,7 @@ var NestedMenuItem = React.createClass({
   mixins: [ClickAwayable, StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -35,14 +35,14 @@ var NestedMenuItem = React.createClass({
 
   getDefaultProps() {
     return {
-      disabled: false
+      disabled: false,
     };
   },
 
   getInitialState() {
     return {
       open: false ,
-      activeIndex:0
+      activeIndex: 0,
     };
   },
 
@@ -70,29 +70,30 @@ var NestedMenuItem = React.createClass({
         userSelect: 'none',
         cursor: 'pointer',
         lineHeight: this.getTheme().height + 'px',
-        color: this.context.muiTheme.palette.textColor
+        color: this.context.muiTheme.palette.textColor,
       },
       icon: {
         float: 'left',
         lineHeight: this.getTheme().height + 'px',
-        marginRight: this.getSpacing().desktopGutter
+        marginRight: this.getSpacing().desktopGutter,
       },
       toggle: {
         marginTop: ((this.getTheme().height - this.context.muiTheme.component.radioButton.size) / 2),
         float: 'right',
-        width: 42
+        width: 42,
       },
       rootWhenHovered: {
-        backgroundColor: this.getTheme().hoverColor
+        backgroundColor: this.getTheme().hoverColor,
       },
       rootWhenSelected: {
-        color: this.getTheme().selectedTextColor
+        color: this.getTheme().selectedTextColor,
       },
       rootWhenDisabled: {
         cursor: 'default',
-        color: this.context.muiTheme.palette.disabledColor
-      }
+        color: this.context.muiTheme.palette.disabledColor,
+      },
     };
+
     return styles;
   },
 
@@ -101,16 +102,15 @@ var NestedMenuItem = React.createClass({
   },
 
   render() {
-
     let styles = this.getStyles();
     styles = this.mergeAndPrefix(styles.root,
       (this.props.active && !this.props.disabled) && styles.rootWhenHovered, {
-      position: 'relative'
+      position: 'relative',
     }, this.props.style);
 
     let iconCustomArrowDropRight = {
       marginRight: this.getSpacing().desktopGutterMini * -1,
-      color: this.context.muiTheme.component.dropDownMenu.accentColor
+      color: this.context.muiTheme.component.dropDownMenu.accentColor,
     };
 
     let {
@@ -186,7 +186,7 @@ var NestedMenuItem = React.createClass({
 
   _handleMouseOut(e) {
     if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e,this.props.index);
-  }
+  },
 
 });
 
@@ -199,7 +199,7 @@ var Menu = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -223,7 +223,7 @@ var Menu = React.createClass({
   getInitialState() {
     return {
       nestedMenuShown: false,
-      activeIndex:0
+      activeIndex: 0,
     };
   },
 
@@ -233,7 +233,7 @@ var Menu = React.createClass({
       hideable: false,
       visible: true,
       zDepth: 1,
-      onRequestClose() {}
+      onRequestClose: () => {},
     };
   },
 
@@ -271,22 +271,23 @@ var Menu = React.createClass({
         paddingTop: this.getSpacing().desktopGutterMini,
         paddingBottom: this.getSpacing().desktopGutterMini,
         transition: Transitions.easeOut(null, 'height'),
-        outline:'none !important'
+        outline:'none !important',
       },
       subheader: {
         paddingLeft: this.context.muiTheme.component.menuSubheader.padding,
-        paddingRight: this.context.muiTheme.component.menuSubheader.padding
+        paddingRight: this.context.muiTheme.component.menuSubheader.padding,
       },
       hideable: {
         overflow: 'hidden',
         position: 'absolute',
         top: 0,
-        zIndex: 1
+        zIndex: 1,
       },
       item: {
-        height:34
-      }
+        height: 34,
+      },
     };
+
     return styles;
   },
 
@@ -609,7 +610,7 @@ var Menu = React.createClass({
     let item = this.refs[index];
     if (item && item.toggleNestedMenu)
       item.toggleNestedMenu();
-  }
+  },
 
 });
 

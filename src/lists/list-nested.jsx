@@ -6,20 +6,20 @@ let ListNested = React.createClass({
 
   propTypes: {
     nestedLevel: React.PropTypes.number,
-    open: React.PropTypes.bool
+    open: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       nestedLevel: 1,
-      open: false
+      open: false,
     };
   },
 
   render() {
     let nestedLevel = this.props.nestedLevel;
     let style = {
-      nestedList: {}
+      nestedList: {},
     };
 
     if (!this.props.open) {
@@ -37,7 +37,7 @@ let ListNested = React.createClass({
         }
       </List>
     );
-  }
+  },
 
 });
 

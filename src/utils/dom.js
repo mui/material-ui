@@ -15,7 +15,7 @@ module.exports = {
     let rect = el.getBoundingClientRect();
     return {
       top: rect.top + document.body.scrollTop,
-      left: rect.left + document.body.scrollLeft
+      left: rect.left + document.body.scrollLeft,
     };
   },
 
@@ -78,6 +78,6 @@ module.exports = {
 
     //put the transition back
     el.style.transition = originalTransition;
-  }
+  },
 
 };

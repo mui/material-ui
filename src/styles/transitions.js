@@ -19,7 +19,8 @@ module.exports = {
       }
       return transitions;
 
-    } else {
+    }
+    else {
       return this.create(duration, property, delay, easeFunction);
     }
 
@@ -35,5 +36,5 @@ module.exports = {
       duration + ' ' +
       easeFunction + ' ' +
       delay;
-  }
+  },
 };

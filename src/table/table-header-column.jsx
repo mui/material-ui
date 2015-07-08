@@ -8,18 +8,18 @@ let TableHeaderColumn = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     tooltip: React.PropTypes.string,
     columnNumber: React.PropTypes.number.isRequired,
-    onClick: React.PropTypes.func
+    onClick: React.PropTypes.func,
   },
 
   getInitialState() {
     return {
-      hovered: false
+      hovered: false,
     };
   },
 
@@ -40,12 +40,12 @@ let TableHeaderColumn = React.createClass({
         whiteSpace: 'nowrap',
         textOverflow: 'ellipsis',
         color: this.getTheme().textColor,
-        position: 'relative'
+        position: 'relative',
       },
       tooltip: {
         boxSizing: 'border-box',
-        marginTop: theme.height
-      }
+        marginTop: theme.height,
+      },
     };
 
     return styles;
@@ -57,7 +57,7 @@ let TableHeaderColumn = React.createClass({
     let handlers = {
       onMouseOver: this._onMouseOver,
       onMouseOut: this._onMouseOut,
-      onClick: this._onClick
+      onClick: this._onClick,
     };
     let tooltip;
 
@@ -92,7 +92,7 @@ let TableHeaderColumn = React.createClass({
 
   _onClick(e) {
     if (this.props.onClick) this.props.onClick(e, this.props.columnNumber);
-  }
+  },
 
 });
 

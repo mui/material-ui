@@ -12,7 +12,7 @@ let getZDepth = function(disabled) {
   let zDepth = disabled ? 0 : 2;
   return {
     zDepth: zDepth,
-    initialZDepth: zDepth
+    initialZDepth: zDepth,
   };
 };
 
@@ -22,7 +22,7 @@ let FloatingActionButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -35,7 +35,7 @@ let FloatingActionButton = React.createClass({
     onMouseOut: React.PropTypes.func,
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
-    secondary: React.PropTypes.bool
+    secondary: React.PropTypes.bool,
   },
 
   getInitialState() {
@@ -44,7 +44,7 @@ let FloatingActionButton = React.createClass({
       hovered: false,
       initialZDepth: zDepth,
       touch: false,
-      zDepth: zDepth
+      zDepth: zDepth,
     };
   },
 
@@ -53,7 +53,7 @@ let FloatingActionButton = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    if (newProps.disabled !== this.props.disabled){
+    if (newProps.disabled !== this.props.disabled) {
       this.setState(getZDepth(newProps.disabled));
     }
   },
@@ -92,7 +92,7 @@ let FloatingActionButton = React.createClass({
     let styles = {
       root: {
         transition: Transitions.easeOut(),
-        display: 'inline-block'
+        display: 'inline-block',
       },
       container: {
         transition: Transitions.easeOut(),
@@ -108,28 +108,28 @@ let FloatingActionButton = React.createClass({
         //This is need so that ripples do not bleed
         //past border radius.
         //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-        transform: 'translate3d(0, 0, 0)'
+        transform: 'translate3d(0, 0, 0)',
       },
       containerWhenMini: {
         height: themeVariables.miniSize,
-        width: themeVariables.miniSize
+        width: themeVariables.miniSize,
       },
       overlay: {
         transition: Transitions.easeOut(),
-        top: 0
+        top: 0,
       },
       overlayWhenHovered: {
-        backgroundColor: ColorManipulator.fade(this._getIconColor(), 0.4)
+        backgroundColor: ColorManipulator.fade(this._getIconColor(), 0.4),
       },
       icon: {
         height: themeVariables.buttonSize,
         lineHeight: themeVariables.buttonSize + 'px',
         fill: themeVariables.iconColor,
-        color: this._getIconColor()
+        color: this._getIconColor(),
       },
       iconWhenMini: {
         height: themeVariables.miniSize,
-        lineHeight: themeVariables.miniSize + 'px'
+        lineHeight: themeVariables.miniSize + 'px',
       },
     };
     return styles;
@@ -161,7 +161,7 @@ let FloatingActionButton = React.createClass({
       style: this.mergeAndPrefix(
         styles.icon,
         mini && styles.iconWhenMini,
-        iconStyle)
+        iconStyle),
     });
 
     let buttonEventHandlers = disabled ? null : {
@@ -171,7 +171,7 @@ let FloatingActionButton = React.createClass({
       onMouseOver: this._handleMouseOver,
       onTouchStart: this._handleTouchStart,
       onTouchEnd: this._handleTouchEnd,
-      onKeyboardFocus: this._handleKeyboardFocus
+      onKeyboardFocus: this._handleKeyboardFocus,
     };
 
     return (
@@ -233,7 +233,7 @@ let FloatingActionButton = React.createClass({
   _handleTouchStart(e) {
     this.setState({
       touch: true,
-      zDepth: this.state.initialZDepth + 1
+      zDepth: this.state.initialZDepth + 1,
     });
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
@@ -247,11 +247,12 @@ let FloatingActionButton = React.createClass({
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
       React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
-    } else if (!this.state.hovered) {
+    }
+    else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
       React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
-  }
+  },
 
 });
 

@@ -8,7 +8,7 @@ let SvgIcon = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -16,18 +16,18 @@ let SvgIcon = React.createClass({
     hoverColor: React.PropTypes.string,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
-    viewBox: React.PropTypes.string
+    viewBox: React.PropTypes.string,
   },
 
   getInitialState() {
     return {
-      hovered: false
+      hovered: false,
     };
   },
 
   getDefaultProps() {
     return {
-      viewBox: '0 0 24 24'
+      viewBox: '0 0 24 24',
     };
   },
 
@@ -54,7 +54,7 @@ let SvgIcon = React.createClass({
       width: 24,
       userSelect: 'none',
       transition: Transitions.easeOut(),
-      fill: this.state.hovered ? onColor : offColor
+      fill: this.state.hovered ? onColor : offColor,
     }, style);
 
     return (
@@ -81,7 +81,7 @@ let SvgIcon = React.createClass({
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
-  }
+  },
 });
 
 module.exports = SvgIcon;

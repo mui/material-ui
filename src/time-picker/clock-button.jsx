@@ -9,22 +9,22 @@ let ClockButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
-    position: React.PropTypes.oneOf(['left', 'right'])
+    position: React.PropTypes.oneOf(['left', 'right']),
   },
 
   getDefaultProps() {
     return {
-        position: "left"
+        position: "left",
     };
   },
 
   _handleTouchTap() {
     this.setState({
-      selected: true
+      selected: true,
     });
     this.props.onTouchTap();
   },
@@ -41,31 +41,31 @@ let ClockButton = React.createClass({
     let styles = {
       root: {
         position: "absolute",
-        bottom: "65px",
+        bottom: 65,
         pointerEvents: "auto",
-        height: "50px",
-        width: "50px",
-        borderRadius: "100%"
+        height: 50,
+        width: 50,
+        borderRadius: "100%",
       },
 
       label : {
         position: "absolute",
-        top: "17px",
-        left: "14px"
+        top: 17,
+        left: 14,
       },
 
       select: {
         position: 'absolute',
         height: 50,
         width: 50,
-        top: "0px",
-        left: "0px",
+        top: 0,
+        left: 0,
         opacity: 0,
         borderRadius: '50%',
         transform: 'scale(0)',
         transition: Transitions.easeOut(),
-        backgroundColor: this.getTheme().accentColor
-      }
+        backgroundColor: this.getTheme().accentColor,
+      },
     };
 
     if (this.props.selected) {
@@ -91,7 +91,7 @@ let ClockButton = React.createClass({
           <span style={this.mergeAndPrefix(styles.label)} >{this.props.children}</span>
         </EnhancedButton>
     );
-  }
+  },
 });
 
 module.exports = ClockButton;

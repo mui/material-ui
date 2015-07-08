@@ -8,24 +8,24 @@ let YearButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     year: React.PropTypes.number,
     onTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool
+    selected: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
-      selected: false
+      selected: false,
     };
   },
 
   getInitialState() {
     return {
-      hover: false
+      hover: false,
     };
   },
 
@@ -50,14 +50,14 @@ let YearButton = React.createClass({
         display: 'block',
         margin: '0 auto',
         width: 36,
-        fontSize: '14px',
-        padding: '8px 2px'
+        fontSize: 14,
+        padding: '8px 2px',
       },
 
       label: {
         position: 'relative',
-        top: '-1px',
-        color: this.context.muiTheme.palette.textColor
+        top: -1,
+        color: this.context.muiTheme.palette.textColor,
       },
 
       buttonState: {
@@ -67,13 +67,13 @@ let YearButton = React.createClass({
         opacity: 0,
         borderRadius: '50%',
         transform: 'scale(0)',
-        backgroundColor: this.getTheme().selectColor
+        backgroundColor: this.getTheme().selectColor,
       },
     };
 
     if (this.state.hover) {
       styles.label.color = this.getTheme().selectTextColor;
-      styles.buttonState.opacity = '0.6';
+      styles.buttonState.opacity = 0.6;
       styles.buttonState.transform = 'scale(1.5)';
     }
 
@@ -111,7 +111,7 @@ let YearButton = React.createClass({
 
   _handleTouchTap(e) {
     if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.year);
-  }
+  },
 
 });
 

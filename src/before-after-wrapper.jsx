@@ -45,7 +45,7 @@ let BeforeAfterWrapper = React.createClass({
     afterStyle: React.PropTypes.object,
     beforeElementType: React.PropTypes.string,
     afterElementType: React.PropTypes.string,
-    elementType: React.PropTypes.string
+    elementType: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -57,7 +57,6 @@ let BeforeAfterWrapper = React.createClass({
   },
 
   render() {
-
     let {
       beforeStyle,
       afterStyle,
@@ -87,7 +86,7 @@ let BeforeAfterWrapper = React.createClass({
     props.style = this.props.style;
 
     return React.createElement(this.props.elementType, props, children);
-  }
+  },
 
 });
 

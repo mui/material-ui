@@ -8,19 +8,19 @@ let FontIcon = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     color: React.PropTypes.string,
     hoverColor: React.PropTypes.string,
     onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func
+    onMouseOver: React.PropTypes.func,
   },
 
   getInitialState() {
     return {
-      hovered: false
+      hovered: false,
     };
   },
 
@@ -45,9 +45,9 @@ let FontIcon = React.createClass({
       fontSize: spacing.iconSize,
       display: 'inline-block',
       userSelect: 'none',
-      transition: Transitions.easeOut()
+      transition: Transitions.easeOut(),
     }, style, {
-      color: this.state.hovered ? onColor : offColor
+      color: this.state.hovered ? onColor : offColor,
     });
 
     return (
@@ -71,7 +71,7 @@ let FontIcon = React.createClass({
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
-  }
+  },
 });
 
 module.exports = FontIcon;

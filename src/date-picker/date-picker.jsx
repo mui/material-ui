@@ -30,21 +30,21 @@ let DatePicker = React.createClass({
   },
 
   windowListeners: {
-    keyup: '_handleWindowKeyUp'
+    keyup: '_handleWindowKeyUp',
   },
 
   getDefaultProps() {
     return {
       formatDate: DateTime.format,
       autoOk: false,
-      showYearSelector: false
+      showYearSelector: false,
     };
   },
 
   getInitialState() {
     return {
       date: this.props.defaultDate,
-      dialogDate: new Date()
+      dialogDate: new Date(),
     };
   },
 
@@ -109,7 +109,7 @@ let DatePicker = React.createClass({
 
   setDate(d) {
     this.setState({
-      date: d
+      date: d,
     });
     this.refs.input.setValue(this.props.formatDate(d));
   },
@@ -130,7 +130,7 @@ let DatePicker = React.createClass({
 
   _handleInputTouchTap(e) {
     this.setState({
-      dialogDate: this.getDate()
+      dialogDate: this.getDate(),
     });
 
     this.refs.dialogWindow.show();
@@ -139,7 +139,7 @@ let DatePicker = React.createClass({
 
   _handleWindowKeyUp() {
     //TO DO: open the dialog if input has focus
-  }
+  },
 
 });
 

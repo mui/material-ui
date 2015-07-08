@@ -5,12 +5,12 @@ let classNames = require('classnames');
 module.exports = {
 
   propTypes: {
-    className: React.PropTypes.string
+    className: React.PropTypes.string,
   },
 
   getDefaultProps(){
     return {
-      className: ''
+      className: '',
     };
   },
 
@@ -45,6 +45,6 @@ module.exports = {
     }
 
     return classObj;
-  }
+  },
 
 };

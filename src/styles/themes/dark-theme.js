@@ -9,7 +9,7 @@ let DarkTheme = {
       canvasColor: '#303030',
       borderColor:  ColorManipulator.fade(Colors.fullWhite, 0.3), //Colors.grey300
       disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
-      primary1Color: Colors.teal200
+      primary1Color: Colors.teal200,
     };
   },
   getComponentThemes(palette) {
@@ -19,11 +19,11 @@ let DarkTheme = {
         disabledColor: ColorManipulator.fade(palette.textColor, 0.12),
       },
       leftNav: {
-        color: cardColor
+        color: cardColor,
       },
       menu: {
         backgroundColor: cardColor,
-        containerBackgroundColor: cardColor
+        containerBackgroundColor: cardColor,
       },
       menuItem: {
         hoverColor: 'rgba(255, 255, 255, .03)',
@@ -32,7 +32,7 @@ let DarkTheme = {
         borderColor: 'rgba(255, 255, 255, 0.3)',
       },
       paper: {
-        backgroundColor: cardColor
+        backgroundColor: cardColor,
       },
       raisedButton: {
         color: Colors.grey500,
@@ -51,9 +51,9 @@ let DarkTheme = {
         handleColorZero: cardColor,
         handleFillColor: cardColor,
         selectionColor: Colors.cyan200,
-      }
+      },
     };
-  }
+  },
 };
 
 module.exports = DarkTheme;

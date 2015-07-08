@@ -6,25 +6,25 @@ module.exports = {
     onChange: React.PropTypes.func,
     value: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.array
+      React.PropTypes.array,
     ]),
     valueLink: React.PropTypes.shape({
       value: React.PropTypes.string.isRequired,
-      requestChange: React.PropTypes.func.isRequired
-    })
+      requestChange: React.PropTypes.func.isRequired,
+    }),
   },
 
   getDefaultProps() {
     return {
-      onChange: () => {}
+      onChange: () => {},
     };
   },
 
   getValueLink(props) {
     return props.valueLink || {
       value: props.value,
-      requestChange: props.onChange
+      requestChange: props.onChange,
     };
-  }
+  },
 
 };

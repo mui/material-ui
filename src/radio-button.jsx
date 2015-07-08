@@ -11,13 +11,13 @@ let RadioButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     iconStyle: React.PropTypes.object,
     labelStyle: React.PropTypes.object,
-    onCheck: React.PropTypes.func
+    onCheck: React.PropTypes.func,
   },
 
   getTheme() {
@@ -28,14 +28,14 @@ let RadioButton = React.createClass({
     let styles = {
       icon: {
           height: this.getTheme().size,
-          width: this.getTheme().size
+          width: this.getTheme().size,
       },
       target: {
           transition: Transitions.easeOut(),
           position: 'absolute',
           opacity: 1,
           transform: 'scale(1)',
-          fill: this.getTheme().borderColor
+          fill: this.getTheme().borderColor,
       },
       fill: {
           position: 'absolute',
@@ -43,26 +43,27 @@ let RadioButton = React.createClass({
           transform: 'scale(0)',
           transformOrigin: '50% 50%',
           transition: Transitions.easeOut(),
-          fill: this.getTheme().checkedColor
+          fill: this.getTheme().checkedColor,
       },
       targetWhenChecked: {
         opacity: 0,
-        transform: 'scale(0)'
+        transform: 'scale(0)',
       },
       fillWhenChecked: {
         opacity: 1,
-        transform: 'scale(1)'
+        transform: 'scale(1)',
       },
       targetWhenDisabled: {
-        fill: this.getTheme().disabledColor
+        fill: this.getTheme().disabledColor,
       },
       fillWhenDisabled: {
-        fill: this.getTheme().disabledColor
+        fill: this.getTheme().disabledColor,
       },
       label: {
-        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
-      }
+        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
+      },
     };
+
     return styles;
   },
 
@@ -115,7 +116,7 @@ let RadioButton = React.createClass({
       labelStyle: labelStyle,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
-      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"
+      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right",
     };
 
     return (
@@ -145,7 +146,7 @@ let RadioButton = React.createClass({
 
   getValue() {
     return this.refs.enhancedSwitch.getValue();
-  }
+  },
 
 });
 

@@ -7,7 +7,7 @@ let ToolbarSeparator = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   getTheme() {
@@ -19,7 +19,6 @@ let ToolbarSeparator = React.createClass({
   },
 
   render() {
-
     let styles = this.mergeAndPrefix({
       backgroundColor: this.getTheme().separatorColor,
       display: 'inline-block',
@@ -33,7 +32,7 @@ let ToolbarSeparator = React.createClass({
     return (
       <span className={this.props.className} style={styles}/>
     );
-  }
+  },
 
 });
 

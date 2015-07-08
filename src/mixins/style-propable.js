@@ -11,7 +11,7 @@ let Extend = require('../utils/extend');
 module.exports = {
 
   propTypes: {
-    style: React.PropTypes.object
+    style: React.PropTypes.object,
   },
 
   mergeStyles() {
@@ -22,6 +22,7 @@ module.exports = {
         base = Extend(base, args[i]);
       }
     }
+
     return base;
   },
 
@@ -32,5 +33,5 @@ module.exports = {
   mergeAndPrefix() {
     let mergedStyles = this.mergeStyles.apply(this, arguments);
     return AutoPrefix.all(mergedStyles);
-  }
+  },
 };

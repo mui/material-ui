@@ -15,7 +15,7 @@ let EnhancedSwitch = React.createClass({
   mixins: [WindowListenable, StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -39,12 +39,12 @@ let EnhancedSwitch = React.createClass({
       defaultSwitched: React.PropTypes.bool,
       labelPosition: React.PropTypes.oneOf(['left', 'right']),
       disableFocusRipple: React.PropTypes.bool,
-      disableTouchRipple: React.PropTypes.bool
+      disableTouchRipple: React.PropTypes.bool,
     },
 
   windowListeners: {
     'keydown': '_handleWindowKeydown',
-    'keyup': '_handleWindowKeyup'
+    'keyup': '_handleWindowKeyup',
   },
 
   getInitialState() {
@@ -64,8 +64,9 @@ let EnhancedSwitch = React.createClass({
 
   componentDidMount() {
     let inputNode = React.findDOMNode(this.refs.checkbox);
-    if (!this.props.switched ||
-        inputNode.checked != this.props.switched) this.props.onParentShouldUpdate(inputNode.checked);
+    if (!this.props.switched || inputNode.checked != this.props.switched) {
+      this.props.onParentShouldUpdate(inputNode.checked);
+    }
 
     window.addEventListener("resize", this._handleResize);
 
@@ -87,15 +88,20 @@ let EnhancedSwitch = React.createClass({
 
     if (hasCheckedProp) {
       newState.switched = nextProps.checked;
-    } else if (hasToggledProp) {
+    }
+    else if (hasToggledProp) {
       newState.switched = nextProps.toggled;
-    } else if (hasCheckedLinkProp) {
+    }
+    else if (hasCheckedLinkProp) {
       newState.switched = nextProps.checkedLink.value;
-    } else if (hasNewDefaultProp) {
+    }
+    else if (hasNewDefaultProp) {
       newState.switched = nextProps.defaultSwitched;
     }
 
-    if (newState.switched !== undefined && (newState.switched != this.props.switched)) this.props.onParentShouldUpdate(newState.switched);
+    if (newState.switched !== undefined && (newState.switched != this.props.switched)) {
+      this.props.onParentShouldUpdate(newState.switched);
+    }
   },
 
   getTheme() {
@@ -113,7 +119,7 @@ let EnhancedSwitch = React.createClass({
         overflow: 'visible',
         display: 'table',
         height: 'auto',
-        width: '100%'
+        width: '100%',
       },
       input: {
         position: 'absolute',
@@ -126,11 +132,11 @@ let EnhancedSwitch = React.createClass({
         left: 0,
         boxSizing: 'border-box',
         padding: 0,
-        margin: 0
+        margin: 0,
       },
       controls: {
         width: '100%',
-        height: '100%'
+        height: '100%',
       },
       label: {
         float: 'left',
@@ -138,7 +144,7 @@ let EnhancedSwitch = React.createClass({
         display: 'block',
         width: labelWidth,
         lineHeight: '24px',
-        color: this.getTheme().textColor
+        color: this.getTheme().textColor,
       },
       wrap: {
         transition: Transitions.easeOut(),
@@ -149,15 +155,16 @@ let EnhancedSwitch = React.createClass({
         marginRight: (this.props.labelPosition == 'right') ?
           spacing.desktopGutterLess : 0,
         marginLeft: (this.props.labelPosition == 'left') ?
-          spacing.desktopGutterLess : 0
+          spacing.desktopGutterLess : 0,
       },
       ripple: {
         height: '200%',
         width: '200%',
-        top: '-12',
-        left: '-12'
-      }
+        top: -12,
+        left: -12,
+      },
     };
+
     return styles;
   },
 
@@ -183,7 +190,6 @@ let EnhancedSwitch = React.createClass({
     } = this.props;
 
     let styles = this.getStyles();
-
     let wrapStyles = this.mergeAndPrefix(styles.wrap, this.props.iconStyle);
     let rippleStyle = this.mergeAndPrefix(styles.ripple, this.props.rippleStyle);
     let rippleColor = this.props.hasOwnProperty('rippleColor') ? this.props.rippleColor :
@@ -197,7 +203,6 @@ let EnhancedSwitch = React.createClass({
     let inputId = this.props.id || UniqueId.generate();
 
     let labelStyle = this.mergeAndPrefix(styles.label, this.props.labelStyle);
-
     let labelElement = this.props.label ? (
       <label style={labelStyle} htmlFor={inputId}>
         {this.props.label}
@@ -212,7 +217,7 @@ let EnhancedSwitch = React.createClass({
       value: this.props.value,
       defaultChecked: this.props.defaultSwitched,
       onBlur: this._handleBlur,
-      onFocus: this._handleFocus
+      onFocus: this._handleFocus,
     };
 
     let hideTouchRipple = this.props.disabled || disableTouchRipple;
@@ -254,7 +259,7 @@ let EnhancedSwitch = React.createClass({
 
     let ripples = [
       hideTouchRipple ? null : touchRipple,
-      this.props.disabled || disableFocusRipple ? null : focusRipple
+      this.props.disabled || disableFocusRipple ? null : focusRipple,
     ];
 
     // If toggle component (indicated by whether the style includes thumb) manually lay out
@@ -305,7 +310,8 @@ let EnhancedSwitch = React.createClass({
     if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
       this.props.onParentShouldUpdate(newSwitchedValue);
       React.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
-    } else if (process.env.NODE_ENV !== 'production') {
+    }
+    else if (process.env.NODE_ENV !== 'production') {
       let message = 'Cannot call set method while checked is defined as a property.';
       console.error(message);
     }
@@ -322,25 +328,25 @@ let EnhancedSwitch = React.createClass({
   _handleChange(e) {
     this._tabPressed = false;
     this.setState({
-      isKeyboardFocused: false
+      isKeyboardFocused: false,
     });
 
     let isInputChecked = React.findDOMNode(this.refs.checkbox).checked;
 
-    if (!this.props.hasOwnProperty('checked')) this.props.onParentShouldUpdate(isInputChecked);
-    if (this.props.onSwitch) this.props.onSwitch(e, isInputChecked);
+    if (!this.props.hasOwnProperty('checked')) {
+      this.props.onParentShouldUpdate(isInputChecked);
+    }
+    if (this.props.onSwitch) {
+      this.props.onSwitch(e, isInputChecked);
+    }
   },
-
-  /**
-   * Because both the ripples and the checkbox input cannot share pointer
-   * events, the checkbox input takes control of pointer events and calls
-   * ripple animations manually.
-   */
 
   // Checkbox inputs only use SPACE to change their state. Using ENTER will
   // update the ui but not the input.
   _handleWindowKeydown(e) {
-    if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
+    if (e.keyCode == KeyCode.TAB) {
+      this._tabPressed = true;
+    }
     if (e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
       this._handleChange(e);
     }
@@ -352,9 +358,16 @@ let EnhancedSwitch = React.createClass({
     }
   },
 
+  /**
+   * Because both the ripples and the checkbox input cannot share pointer
+   * events, the checkbox input takes control of pointer events and calls
+   * ripple animations manually.
+   */
   _handleMouseDown(e) {
     //only listen to left clicks
-    if (e.button === 0) this.refs.touchRipple.start(e);
+    if (e.button === 0) {
+      this.refs.touchRipple.start(e);
+    }
   },
 
   _handleMouseUp() {
@@ -375,10 +388,12 @@ let EnhancedSwitch = React.createClass({
 
   _handleBlur(e) {
     this.setState({
-      isKeyboardFocused: false
+      isKeyboardFocused: false,
     });
 
-    if (this.props.onBlur) this.props.onBlur(e);
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
   },
 
   _handleFocus(e) {
@@ -388,17 +403,19 @@ let EnhancedSwitch = React.createClass({
     setTimeout(() => {
       if (this._tabPressed) {
         this.setState({
-          isKeyboardFocused: true
+          isKeyboardFocused: true,
         });
       }
     }, 150);
 
-    if (this.props.onFocus) this.props.onFocus(e);
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
   },
 
   _handleResize() {
     this.setState({parentWidth: this.getEvenWidth()});
-  }
+  },
 
 });
 

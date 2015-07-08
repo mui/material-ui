@@ -15,13 +15,13 @@ let CardHeader = React.createClass({
     subtitle: React.PropTypes.string,
     subtitleColor: React.PropTypes.string,
     subtitleStyle: React.PropTypes.object,
-    textStyle: React.PropTypes.object
+    textStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
     return {
       titleColor: Styles.Colors.darkBlack,
-      subtitleColor: Styles.Colors.lightBlack
+      subtitleColor: Styles.Colors.lightBlack,
     };
   },
 
@@ -31,25 +31,25 @@ let CardHeader = React.createClass({
         height: 72,
         padding: 16,
         fontWeight: Styles.Typography.fontWeightMedium,
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
       },
       text: {
         display: 'inline-block',
-        verticalAlign: 'top'
+        verticalAlign: 'top',
       },
       avatar: {
-        marginRight:16
+        marginRight: 16,
       },
       title: {
         color: this.props.titleColor,
         display: 'block',
-        fontSize: 15
+        fontSize: 15,
       },
       subtitle: {
         color: this.props.subtitleColor,
         display: 'block',
-        fontSize: 14
-      }
+        fontSize: 14,
+      },
     };
   },
 
@@ -77,7 +77,7 @@ let CardHeader = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 module.exports = CardHeader;

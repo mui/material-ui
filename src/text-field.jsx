@@ -11,7 +11,7 @@ let TextField = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -29,14 +29,14 @@ let TextField = React.createClass({
     type: React.PropTypes.string,
     rows: React.PropTypes.number,
     inputStyle: React.PropTypes.object,
-    floatingLabelStyle: React.PropTypes.object
+    floatingLabelStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
     return {
       fullWidth: false,
       type: 'text',
-      rows: 1
+      rows: 1,
     };
   },
 
@@ -46,7 +46,7 @@ let TextField = React.createClass({
     return {
       errorText: this.props.errorText,
       hasValue: props.value !== undefined || props.defaultValue !== undefined ||
-        (props.valueLink && props.valueLink.value !== undefined)
+        (props.valueLink && props.valueLink.value !== undefined),
     };
   },
 
@@ -96,7 +96,7 @@ let TextField = React.createClass({
         display: 'inline-block',
         position: 'relative',
         fontFamily: this.context.muiTheme.contentFontFamily,
-        transition: Transitions.easeOut('200ms', 'height')
+        transition: Transitions.easeOut('200ms', 'height'),
       },
       error: {
         position: 'relative',
@@ -112,7 +112,7 @@ let TextField = React.createClass({
         opacity: 1,
         color: theme.hintColor,
         transition: Transitions.easeOut(),
-        bottom: 12
+        bottom: 12,
       },
       input: {
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -123,7 +123,7 @@ let TextField = React.createClass({
         outline: 'none',
         backgroundColor: theme.backgroundColor,
         color: props.disabled ? theme.disabledTextColor : theme.textColor,
-        font: 'inherit'
+        font: 'inherit',
       },
       underline: {
         border: 'none',
@@ -134,7 +134,7 @@ let TextField = React.createClass({
         margin: 0,
         MozBoxSizing: 'content-box',
         boxSizing: 'content-box',
-        height: 0
+        height: 0,
       },
       underlineAfter: {
         position: 'absolute',
@@ -143,8 +143,8 @@ let TextField = React.createClass({
         userSelect: 'none',
         cursor: 'default',
         bottom: 8,
-        borderBottom: 'dotted 2px ' + theme.disabledTextColor
-      }
+        borderBottom: 'dotted 2px ' + theme.disabledTextColor,
+      },
     };
 
     styles.floatingLabel = this.mergeStyles(styles.hint, {
@@ -153,14 +153,14 @@ let TextField = React.createClass({
       bottom: 'none',
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
-      transformOrigin: 'left top'
+      transformOrigin: 'left top',
     });
 
     styles.textarea = this.mergeStyles(styles.input, {
       marginTop: props.floatingLabelText ? 36 : 12,
       marginBottom: props.floatingLabelText ? -36 : -12,
       boxSizing: 'border-box',
-      font: 'inherit'
+      font: 'inherit',
     });
 
     styles.focusUnderline= this.mergeStyles(styles.underline, {
@@ -250,7 +250,7 @@ let TextField = React.createClass({
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
       disabled: this.props.disabled,
-      onKeyDown: this._handleInputKeyDown
+      onKeyDown: this._handleInputKeyDown,
     };
 
     if (!this.props.hasOwnProperty('valueLink')) {
@@ -375,7 +375,7 @@ let TextField = React.createClass({
   _isControlled() {
     return this.props.hasOwnProperty('value') ||
       this.props.hasOwnProperty('valueLink');
-  }
+  },
 
 });
 

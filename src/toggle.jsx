@@ -10,7 +10,7 @@ let Toggle = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -18,7 +18,7 @@ let Toggle = React.createClass({
     labelStyle: React.PropTypes.object,
     onToggle: React.PropTypes.func,
     toggled: React.PropTypes.bool,
-    defaultToggled: React.PropTypes.bool
+    defaultToggled: React.PropTypes.bool,
   },
 
   getInitialState() {
@@ -27,7 +27,7 @@ let Toggle = React.createClass({
         this.props.toggled ||
         this.props.defaultToggled ||
         (this.props.valueLink && this.props.valueLink.value) ||
-        false
+        false,
     };
   },
 
@@ -41,17 +41,17 @@ let Toggle = React.createClass({
     let styles = {
       icon: {
         width: 36,
-        padding: '4px 0px 6px 2px'
+        padding: '4px 0px 6px 2px',
       },
       toggleElement: {
-        width: toggleTrackWidth
+        width: toggleTrackWidth,
       },
       track: {
           transition: Transitions.easeOut(),
           width: '100%',
           height: 14,
           borderRadius: 30,
-          backgroundColor: this.getTheme().trackOffColor
+          backgroundColor: this.getTheme().trackOffColor,
       },
       thumb: {
         transition: Transitions.easeOut(),
@@ -62,24 +62,24 @@ let Toggle = React.createClass({
         height: toggleSize,
         lineHeight: '24px',
         borderRadius: '50%',
-        backgroundColor: this.getTheme().thumbOffColor
+        backgroundColor: this.getTheme().thumbOffColor,
       },
       trackWhenSwitched: {
-        backgroundColor: this.getTheme().trackOnColor
+        backgroundColor: this.getTheme().trackOnColor,
       },
       thumbWhenSwitched: {
         backgroundColor: this.getTheme().thumbOnColor,
-        left: '100%'
+        left: '100%',
       },
       trackWhenDisabled: {
-        backgroundColor: this.getTheme().trackDisabledColor
+        backgroundColor: this.getTheme().trackDisabledColor,
       },
       thumbWhenDisabled: {
-        backgroundColor: this.getTheme().thumbDisabledColor
+        backgroundColor: this.getTheme().thumbDisabledColor,
       },
       label: {
-        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
-      }
+        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
+      },
     };
 
     return styles;
@@ -121,8 +121,8 @@ let Toggle = React.createClass({
     );
 
     let customRippleStyle = this.mergeAndPrefix({
-      top: '-10',
-      left: '-10'
+      top: -10,
+      left: -10,
     }, this.props.rippleStyle);
 
     let rippleColor = this.state.switched ?
@@ -152,7 +152,7 @@ let Toggle = React.createClass({
       onSwitch: this._handleToggle,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultToggled,
-      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "left"
+      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "left",
     };
 
     if (this.props.hasOwnProperty('toggled')) enhancedSwitchProps.checked = this.props.toggled;
@@ -178,7 +178,7 @@ let Toggle = React.createClass({
 
   _handleStateChange(newSwitched) {
     this.setState({switched: newSwitched});
-  }
+  },
 
 });
 

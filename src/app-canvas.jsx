@@ -6,15 +6,14 @@ let AppCanvas = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   render() {
-
     let styles = {
       height: '100%',
       backgroundColor: this.context.muiTheme.palette.canvasColor,
-      WebkitFontSmoothing: 'antialiased'
+      WebkitFontSmoothing: 'antialiased',
     };
 
     let newChildren = React.Children.map(this.props.children, (currentChild) => {
@@ -27,7 +26,7 @@ let AppCanvas = React.createClass({
           return React.cloneElement(currentChild, {
             style: this.mergeStyles({
               position: 'fixed',
-            }, currentChild.props.style)
+            }, currentChild.props.style),
           });
         default:
           return currentChild;
@@ -39,7 +38,7 @@ let AppCanvas = React.createClass({
         {newChildren}
       </div>
     );
-  }
+  },
 
 });
 

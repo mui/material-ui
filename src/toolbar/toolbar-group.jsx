@@ -8,17 +8,17 @@ let ToolbarGroup = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     className: React.PropTypes.string,
-    float: React.PropTypes.string
+    float: React.PropTypes.string,
   },
 
   getDefaultProps() {
     return {
-      float: 'left'
+      float: 'left',
     };
   },
 
@@ -36,27 +36,27 @@ let ToolbarGroup = React.createClass({
     let styles = {
       root: {
         position: 'relative',
-        float: this.props.float
+        float: this.props.float,
       },
       dropDownMenu: {
         root: {
           float: 'left',
           color: Colors.lightBlack,// removes hover color change, we want to keep it
           display: 'inline-block',
-          marginRight: this.getSpacing()
+          marginRight: this.getSpacing(),
         },
         controlBg: {
           backgroundColor: this.getTheme().menuHoverColor,
-          borderRadius: 0
+          borderRadius: 0,
         },
         underline: {
-          display: 'none'
-        }
+          display: 'none',
+        },
       },
       button: {
         float: 'left',
         margin: marginVertical + 'px ' + marginHorizontal + 'px',
-        position: 'relative'
+        position: 'relative',
       },
       icon: {
         root: {
@@ -64,18 +64,19 @@ let ToolbarGroup = React.createClass({
           cursor: 'pointer',
           color: this.getTheme().iconColor,
           lineHeight: this.getTheme().height + 'px',
-          paddingLeft: this.getSpacing()
+          paddingLeft: this.getSpacing(),
         },
         hover: {
-          color: Colors.darkBlack
-        }
+          color: Colors.darkBlack,
+        },
       },
       span: {
         float: 'left',
         color: this.getTheme().iconColor,
-        lineHeight: this.getTheme().height + 'px'
-      }
+        lineHeight: this.getTheme().height + 'px',
+      },
     };
+
     return styles;
   },
 
@@ -94,14 +95,14 @@ let ToolbarGroup = React.createClass({
           return React.cloneElement(currentChild, {
             style: this.mergeStyles(styles.dropDownMenu.root, currentChild.props.style),
             styleControlBg: styles.dropDownMenu.controlBg,
-            styleUnderline: styles.dropDownMenu.underline
+            styleUnderline: styles.dropDownMenu.underline,
           });
         case 'DropDownIcon' :
           return React.cloneElement(currentChild, {
             style: this.mergeStyles({float: 'left'}, currentChild.props.style),
             iconStyle: styles.icon.root,
             onMouseOver: this._handleMouseOverDropDownMenu,
-            onMouseOut: this._handleMouseOutDropDownMenu
+            onMouseOut: this._handleMouseOutDropDownMenu,
           });
         case 'RaisedButton' : case 'FlatButton' :
           return React.cloneElement(currentChild, {
@@ -111,11 +112,11 @@ let ToolbarGroup = React.createClass({
           return React.cloneElement(currentChild, {
             style: this.mergeStyles(styles.icon.root, currentChild.props.style),
             onMouseOver: this._handleMouseOverFontIcon,
-            onMouseOut: this._handleMouseOutFontIcon
+            onMouseOut: this._handleMouseOutFontIcon,
           });
         case 'ToolbarSeparator' : case 'ToolbarTitle' :
           return React.cloneElement(currentChild, {
-            style: this.mergeStyles(styles.span, currentChild.props.style)
+            style: this.mergeStyles(styles.span, currentChild.props.style),
           });
         default:
           return currentChild;
@@ -147,7 +148,7 @@ let ToolbarGroup = React.createClass({
   _handleMouseOutFontIcon(e) {
     e.target.style.zIndex = 'auto';
     e.target.style.color = this.getStyles().icon.root.color;
-  }
+  },
 });
 
 module.exports = ToolbarGroup;

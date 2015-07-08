@@ -14,7 +14,7 @@ let Menu = React.createClass({
   mixins: [StylePropable, Controllable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -31,14 +31,14 @@ let Menu = React.createClass({
       'bottom-left',
       'bottom-right',
       'top-left',
-      'top-right'
+      'top-right',
     ]),
     selectedMenuItemStyle: React.PropTypes.object,
     width: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.number
+      React.PropTypes.number,
     ]),
-    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5])
+    zDepth: React.PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
   },
 
   getDefaultProps() {
@@ -49,7 +49,7 @@ let Menu = React.createClass({
       onItemTouchTap: () => {},
       onKeyDown: () => {},
       openDirection: 'bottom-left',
-      zDepth: 1
+      zDepth: 1,
     };
   },
 
@@ -60,13 +60,13 @@ let Menu = React.createClass({
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
       isKeyboardFocused: this.props.initiallyKeyboardFocused,
       keyWidth: this.props.desktop ? 64 : 56,
-      componentEntered: false
+      componentEntered: false,
     };
   },
 
   componentDidAppear() {
     this.setState({
-      componentEntered: true
+      componentEntered: true,
     }, this._setScollPosition);
   },
 
@@ -89,7 +89,6 @@ let Menu = React.createClass({
   },
 
   render() {
-
     let {
       autoWidth,
       children,
@@ -124,7 +123,7 @@ let Menu = React.createClass({
         left: !openLeft ? 0 : null,
         right: openLeft ? 0 : null,
         transform: componentEntered ? 'scaleX(1)' : 'scaleX(0)',
-        transformOrigin: openLeft ? 'right' : 'left'
+        transformOrigin: openLeft ? 'right' : 'left',
       },
 
       list: {
@@ -132,12 +131,12 @@ let Menu = React.createClass({
         paddingBottom: desktop ? 16 : 8,
         paddingTop: desktop ? 16 : 8,
         userSelect: 'none',
-        width: width
+        width: width,
       },
 
       menuItem: {
         transition: Transitions.easeOut(null, 'opacity'),
-        opacity: componentEntered ? 1 : 0
+        opacity: componentEntered ? 1 : 0,
       },
 
       paper: {
@@ -146,12 +145,12 @@ let Menu = React.createClass({
         transformOrigin: openDown ? 'top' : 'bottom',
         opacity: componentEntered ? 1 : 0,
         maxHeight: maxHeight,
-        overflowY: maxHeight ? 'scroll' : null
+        overflowY: maxHeight ? 'scroll' : null,
       },
 
       selectedMenuItem: {
-        color: this.context.muiTheme.palette.accent1Color
-      }
+        color: this.context.muiTheme.palette.accent1Color,
+      },
     };
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
@@ -180,7 +179,7 @@ let Menu = React.createClass({
       }
 
       let childrenContainerStyles = this.mergeStyles(styles.menuItem, {
-        transitionDelay: transitionDelay + 'ms'
+        transitionDelay: transitionDelay + 'ms',
       });
 
       let clonedChild = childIsADivider ? child :
@@ -214,7 +213,7 @@ let Menu = React.createClass({
 
   setKeyboardFocused(keyboardFocused) {
     this.setState({
-      isKeyboardFocused: keyboardFocused
+      isKeyboardFocused: keyboardFocused,
     });
   },
 
@@ -252,7 +251,7 @@ let Menu = React.createClass({
         if (child.props.onTouchTap) child.props.onTouchTap(e);
       },
       ref: isFocused ? 'focusedMenuItem' : null,
-      style: mergedChildrenStyles
+      style: mergedChildrenStyles,
     });
   },
 
@@ -333,7 +332,8 @@ let Menu = React.createClass({
         e.preventDefault();
         if (e.shiftKey) {
           this._decrementKeyboardFocusIndex();
-        } else {
+        }
+        else {
           this._incrementKeyboardFocusIndex();
         }
         break;
@@ -359,7 +359,8 @@ let Menu = React.createClass({
 
       valueLink.requestChange(e, newMenuValue);
 
-    } else if (!multiple && itemValue !== menuValue) {
+    }
+    else if (!multiple && itemValue !== menuValue) {
       valueLink.requestChange(e, itemValue);
     }
 
@@ -388,7 +389,7 @@ let Menu = React.createClass({
   _setFocusIndex(newIndex, isKeyboardFocused) {
     this.setState({
       focusIndex: newIndex,
-      isKeyboardFocused: isKeyboardFocused
+      isKeyboardFocused: isKeyboardFocused,
     });
   },
 
@@ -425,7 +426,7 @@ let Menu = React.createClass({
 
     el.style.width = newWidth + 'px';
     listEl.style.width = newWidth + 'px';
-  }
+  },
 
 });
 

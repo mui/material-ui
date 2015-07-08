@@ -38,7 +38,7 @@ module.exports = {
     return [
       'keydown',
       'keypress',
-      'keyup'
+      'keyup',
     ].indexOf(e.type) !== -1;
-  }
+  },
 };

@@ -7,7 +7,7 @@ let ToolbarTitle = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -36,7 +36,7 @@ let ToolbarTitle = React.createClass({
     return (
       <span style={styles} {...other} >{text}</span>
     );
-  }
+  },
 
 });
 

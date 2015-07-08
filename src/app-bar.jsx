@@ -11,7 +11,7 @@ let AppBar = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -32,7 +32,7 @@ let AppBar = React.createClass({
     return {
       showMenuIconButton: true,
       title: '',
-      zDepth: 1
+      zDepth: 1,
     };
   },
 
@@ -67,7 +67,7 @@ let AppBar = React.createClass({
         minHeight: themeVariables.height,
         backgroundColor: themeVariables.color,
         paddingLeft: spacing.desktopGutter,
-        paddingRight: spacing.desktopGutter
+        paddingRight: spacing.desktopGutter,
       },
       title: {
         whiteSpace: 'nowrap',
@@ -79,22 +79,22 @@ let AppBar = React.createClass({
         fontSize: 24,
         fontWeight: Typography.fontWeightNormal,
         color: themeVariables.textColor,
-        lineHeight: themeVariables.height + 'px'
+        lineHeight: themeVariables.height + 'px',
       },
       mainElement: {
         boxFlex: 1,
-        flex: '1'
+        flex: '1',
       },
       iconButton: {
         style: {
           marginTop: (themeVariables.height - iconButtonSize) / 2,
           marginRight: 8,
-          marginLeft: -16
+          marginLeft: -16,
         },
         iconStyle: {
           fill: themeVariables.textColor,
-          color: themeVariables.textColor
-        }
+          color: themeVariables.textColor,
+        },
       },
       flatButton: {
         color: themeVariables.textColor,
@@ -102,6 +102,7 @@ let AppBar = React.createClass({
         marginTop: (iconButtonSize - flatButtonSize) / 2 + 2,
       },
     };
+
     return styles;
   },
 
@@ -113,7 +114,7 @@ let AppBar = React.createClass({
     let title = props.title;
     let iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
       marginRight: -16,
-      marginLeft: 'auto'
+      marginLeft: 'auto',
     }, props.iconStyleRight);
     let titleElement;
 
@@ -132,7 +133,7 @@ let AppBar = React.createClass({
         switch (iconElementLeft.type.displayName) {
           case 'IconButton':
             iconElementLeft = React.cloneElement(iconElementLeft, {
-              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle)
+              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
             });
             break;
         }
@@ -161,13 +162,13 @@ let AppBar = React.createClass({
         switch (iconElementRight.type.displayName) {
           case 'IconButton':
             iconElementRight = React.cloneElement(iconElementRight, {
-              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle)
+              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
             });
             break;
 
           case 'FlatButton':
             iconElementRight = React.cloneElement(iconElementRight, {
-              style: this.mergeStyles(styles.flatButton, iconElementRight.props.style)
+              style: this.mergeStyles(styles.flatButton, iconElementRight.props.style),
             });
             break;
         }
@@ -213,7 +214,7 @@ let AppBar = React.createClass({
     if (this.props.onRightIconButtonTouchTap) {
       this.props.onRightIconButtonTouchTap(event);
     }
-  }
+  },
 
 });
 

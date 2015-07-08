@@ -6,5 +6,5 @@ module.exports = {
   RIGHT: 39,
   SPACE: 32,
   TAB: 9,
-  UP: 38
+  UP: 38,
 };

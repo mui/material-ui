@@ -14,7 +14,7 @@ let DropDownMenu = React.createClass({
   mixins: [StylePropable, ClickAwayable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   // The nested styles for drop-down-menu are modified by toolbar and possibly
@@ -31,14 +31,14 @@ let DropDownMenu = React.createClass({
     underlineStyle:React.PropTypes.object,
     iconStyle:React.PropTypes.object,
     labelStyle:React.PropTypes.object,
-    selectedIndex: React.PropTypes.number
+    selectedIndex: React.PropTypes.number,
   },
 
   getDefaultProps() {
     return {
       autoWidth: true,
       valueMember:'payload',
-      displayMember:'text'
+      displayMember:'text',
     };
   },
 
@@ -46,7 +46,8 @@ let DropDownMenu = React.createClass({
     return {
       open: false,
       isHovered: false,
-      selectedIndex: (this.props.hasOwnProperty('value') || this.props.hasOwnProperty('valueLink')) ? null :(this.props.selectedIndex || 0),
+      selectedIndex: (this.props.hasOwnProperty('value') ||
+        this.props.hasOwnProperty('valueLink')) ? null : (this.props.selectedIndex || 0),
     };
   },
 
@@ -63,10 +64,11 @@ let DropDownMenu = React.createClass({
     if (this.props.autoWidth) this._setWidth();
     if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
       return;
-    } else if (nextProps.hasOwnProperty('selectedIndex')) {
+    }
+    else if (nextProps.hasOwnProperty('selectedIndex')) {
       this._setSelectedIndex(nextProps);
     }
- },
+  },
 
   getSpacing() {
     return this.context.muiTheme.spacing;
@@ -86,25 +88,25 @@ let DropDownMenu = React.createClass({
         display: 'inline-block',
         height: this.getSpacing().desktopToolbarHeight,
         fontSize: this.getSpacing().desktopDropDownMenuFontSize,
-        outline:'none'
+        outline:'none',
       },
       control: {
         cursor: 'pointer',
         position: 'static',
-        height: '100%'
+        height: '100%',
       },
       controlBg: {
         transition: Transitions.easeOut(),
         backgroundColor: backgroundColor,
         height: '100%',
         width: '100%',
-        opacity:0
+        opacity:0,
       },
       icon: {
         position: 'absolute',
         top: ((this.getSpacing().desktopToolbarHeight - 24) / 2),
         right: this.getSpacing().desktopGutterLess,
-        fill: this.context.muiTheme.component.dropDownMenu.accentColor
+        fill: this.context.muiTheme.component.dropDownMenu.accentColor,
       },
       label: {
         transition: Transitions.easeOut(),
@@ -113,11 +115,11 @@ let DropDownMenu = React.createClass({
         paddingLeft: this.getSpacing().desktopGutter,
         top: 0,
         opacity: 1,
-        color: this.getTextColor()
+        color: this.getTextColor(),
       },
       underline: {
         borderTop: 'solid 1px ' + accentColor,
-        margin: '-1px ' + this.getSpacing().desktopGutter + 'px'
+        margin: '-1px ' + this.getSpacing().desktopGutter + 'px',
       },
       menuItem: {
         paddingRight: this.getSpacing().iconSize +
@@ -125,24 +127,27 @@ let DropDownMenu = React.createClass({
                       this.getSpacing().desktopGutterMini,
         height: this.getSpacing().desktopDropDownMenuItemHeight,
         lineHeight: this.getSpacing().desktopDropDownMenuItemHeight + 'px',
-        whiteSpace: 'nowrap'
+        whiteSpace: 'nowrap',
       },
       rootWhenOpen: {
-        opacity: 1
+        opacity: 1,
       },
       labelWhenOpen: {
         opacity: 0,
-        top: this.getSpacing().desktopToolbarHeight / 2
-      }
+        top: this.getSpacing().desktopToolbarHeight / 2,
+      },
     };
+
     return styles;
   },
 
   getInputNode() {
     let root = this.refs.root;
     let item = this.props.menuItems[this.state.selectedIndex];
-    if (item)
+    if (item) {
       root.value = item[this.props.displayMember];
+    }
+
     return root;
   },
 
@@ -157,20 +162,20 @@ let DropDownMenu = React.createClass({
       }
     }
     else {
-      if (this.props.valueMember && (this.props.valueLink || this.props.value))
-      {
+      if (this.props.valueMember && (this.props.valueLink || this.props.value)) {
         let value = this.props.value || this.props.valueLink.value;
         for (let i = 0; i < this.props.menuItems.length; i++) {
-          if (this.props.menuItems[i][this.props.valueMember] === value)
+          if (this.props.menuItems[i][this.props.valueMember] === value) {
             selectedIndex = i;
+          }
         }
       }
     }
 
-
     let selectedItem = this.props.menuItems[selectedIndex];
-    if (selectedItem)
+    if (selectedItem) {
       displayValue = selectedItem[this.props.displayMember];
+    }
 
     let menuItems = this.props.menuItems.map((item) => {
       item.text = item[_this.props.displayMember];
@@ -241,18 +246,24 @@ let DropDownMenu = React.createClass({
   _onKeyDown(e) {
     switch(e.which) {
       case KeyCode.UP:
-        if (!this.state.open)
+        if (!this.state.open) {
           this._selectPreviousItem();
-        else
-          if (e.altKey)
+        }
+        else {
+          if (e.altKey) {
             this.setState({open:false});
+          }
+        }
         break;
       case KeyCode.DOWN:
-        if (!this.state.open)
-          if (e.altKey)
+        if (!this.state.open) {
+          if (e.altKey) {
             this.setState({open:true});
-          else
+          }
+          else {
             this._selectNextItem();
+          }
+        }
         break;
       case KeyCode.ENTER:
       case KeyCode.SPACE:
@@ -267,20 +278,23 @@ let DropDownMenu = React.createClass({
   _onMenuItemClick(e, key, payload) {
     if (this.props.onChange && this.state.selectedIndex !== key) {
       let selectedItem = this.props.menuItems[key];
-      if (selectedItem)
+      if (selectedItem) {
         e.target.value = selectedItem[this.props.valueMember];
+      }
 
-      if (this.props.valueLink)
+      if (this.props.valueLink) {
         this.props.valueLink.requestChange(e.target.value);
-      else
+      }
+      else {
         this.props.onChange(e, key, payload);
+      }
     }
 
     this.setState({
       selectedIndex: key,
-      value:e.target.value,
+      value: e.target.value,
       open: false,
-      isHovered:false
+      isHovered: false,
     });
   },
 
@@ -302,7 +316,7 @@ let DropDownMenu = React.createClass({
 
   _selectNextItem() {
     this.setState({selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1)});
-  }
+  },
 
 });
 

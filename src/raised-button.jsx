@@ -20,7 +20,7 @@ let RaisedButton = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -39,7 +39,7 @@ let RaisedButton = React.createClass({
     labelColor: React.PropTypes.string,
     disabledBackgroundColor: React.PropTypes.string,
     disabledLabelColor: React.PropTypes.string,
-    fullWidth: React.PropTypes.bool
+    fullWidth: React.PropTypes.bool,
   },
 
   getInitialState() {
@@ -48,7 +48,7 @@ let RaisedButton = React.createClass({
       hovered: false,
       touched: false,
       initialZDepth: zDepth,
-      zDepth: zDepth
+      zDepth: zDepth,
     };
   },
 
@@ -56,7 +56,7 @@ let RaisedButton = React.createClass({
     let zDepth = nextProps.disabled ? 0 : 1;
     this.setState({
       zDepth: zDepth,
-      initialZDepth: zDepth
+      initialZDepth: zDepth,
     });
   },
 
@@ -97,7 +97,7 @@ let RaisedButton = React.createClass({
         display: 'inline-block',
         minWidth: this.props.fullWidth ? '100%' : this.getThemeButton().minWidth,
         height: this.getThemeButton().height,
-        transition: Transitions.easeOut()
+        transition: Transitions.easeOut(),
       },
       container: {
         position: 'relative',
@@ -112,7 +112,7 @@ let RaisedButton = React.createClass({
         //This is need so that ripples do not bleed
         //past border radius.
         //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-        transform: 'translate3d(0, 0, 0)'
+        transform: 'translate3d(0, 0, 0)',
       },
       label: {
         position: 'relative',
@@ -124,17 +124,17 @@ let RaisedButton = React.createClass({
         margin: 0,
         padding: '0px ' + this.context.muiTheme.spacing.desktopGutterLess + 'px',
         userSelect: 'none',
-        lineHeight: this.props.style && this.props.style.height ?
+        lineHeight: (this.props.style && this.props.style.height) ?
          this.props.style.height : this.getThemeButton().height + 'px',
         color:  this._getLabelColor(),
       },
       overlay: {
         transition: Transitions.easeOut(),
-        top: 0
+        top: 0,
       },
       overlayWhenHovered: {
-        backgroundColor: ColorManipulator.fade(this._getLabelColor(), amount)
-      }
+        backgroundColor: ColorManipulator.fade(this._getLabelColor(), amount),
+      },
     };
     return styles;
   },
@@ -168,7 +168,7 @@ let RaisedButton = React.createClass({
       onMouseOver: this._handleMouseOver,
       onTouchStart: this._handleTouchStart,
       onTouchEnd: this._handleTouchEnd,
-      onKeyboardFocus: this._handleKeyboardFocus
+      onKeyboardFocus: this._handleKeyboardFocus,
     };
 
     return (
@@ -225,7 +225,7 @@ let RaisedButton = React.createClass({
   _handleTouchStart(e) {
     this.setState({
       touch: true,
-      zDepth: this.state.initialZDepth + 1
+      zDepth: this.state.initialZDepth + 1,
     });
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
@@ -240,11 +240,12 @@ let RaisedButton = React.createClass({
       this.setState({ zDepth: this.state.initialZDepth + 1 });
       let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
       React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.mergeAndPrefix(this.getStyles().label, this.props.labelStyle).color, amount);
-    } else if (!this.state.hovered) {
+    }
+    else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
       React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
-  }
+  },
 });
 
 module.exports = RaisedButton;

@@ -14,32 +14,32 @@ let Clock = React.createClass({
     initialTime: React.PropTypes.object,
     mode: React.PropTypes.oneOf(['hour', 'minute']),
     format: React.PropTypes.oneOf(['ampm', '24hr']),
-    isActive: React.PropTypes.bool
+    isActive: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
-      initialTime: new Date()
+      initialTime: new Date(),
     };
   },
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      selectedTime: nextProps.initialTime
+      selectedTime: nextProps.initialTime,
     });
   },
 
   getInitialState() {
     return {
       selectedTime: this.props.initialTime,
-      mode: 'hour'
+      mode: 'hour',
     };
   },
 
   _setMode(mode) {
     setTimeout(() => {
         this.setState({
-          mode: mode
+          mode: mode,
         });
     }, 100);
   },
@@ -58,7 +58,7 @@ let Clock = React.createClass({
   },
 
   _getAffix() {
-    if (this.props.format != "ampm") return "";
+    if (this.props.format !== "ampm") return "";
 
     let hours = this.state.selectedTime.getHours();
     if (hours < 12) {
@@ -75,7 +75,7 @@ let Clock = React.createClass({
     if (this.props.format === 'ampm'){
       buttons = [
         <ClockButton position="left" onTouchTap={this._setAffix.bind(this, "am")} selected={isAM} >{"AM"}</ClockButton>,
-        <ClockButton position="right" onTouchTap={this._setAffix.bind(this, "pm")} selected={!isAM} >{"PM"}</ClockButton>
+        <ClockButton position="right" onTouchTap={this._setAffix.bind(this, "pm")} selected={!isAM} >{"PM"}</ClockButton>,
       ];
     }
     return buttons;
@@ -93,12 +93,12 @@ let Clock = React.createClass({
       root: {},
 
       container: {
-        height: "280px",
-        padding: "10px"
-      }
+        height: 280,
+        padding: 10,
+      },
     };
 
-    if ( this.state.mode === "hour"){
+    if ( this.state.mode === "hour") {
       clock = <ClockHours key="hours"
                 format={this.props.format}
                 onChange={this.handleChangeHours}
@@ -111,7 +111,7 @@ let Clock = React.createClass({
     }
 
     return (
-      <div style={styles.root} >
+      <div style={styles.root}>
         <TimeDisplay
           selectedTime={this.state.selectedTime}
           mode={this.state.mode}
@@ -133,13 +133,13 @@ let Clock = React.createClass({
     let time = new Date(this.state.selectedTime);
     time.setHours(hours);
     this.setState({
-      selectedTime: time
+      selectedTime: time,
     });
 
     if (finished) {
       setTimeout(() => {
         this.setState({
-          mode: 'minute'
+          mode: 'minute',
         });
       }, 100);
     }
@@ -149,13 +149,13 @@ let Clock = React.createClass({
     let time = new Date(this.state.selectedTime);
     time.setMinutes(minutes);
     this.setState({
-      selectedTime: time
+      selectedTime: time,
     });
   },
 
   getSelectedTime() {
     return this.state.selectedTime;
-  }
+  },
 });
 
 module.exports = Clock;

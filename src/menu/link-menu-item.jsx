@@ -7,7 +7,7 @@ let LinkMenuItem = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -23,13 +23,13 @@ let LinkMenuItem = React.createClass({
   getDefaultProps() {
     return {
       active:false,
-      disabled: false
+      disabled: false,
     };
   },
 
   getInitialState() {
     return {
-      hovered: false
+      hovered: false,
     };
   },
 
@@ -45,19 +45,20 @@ let LinkMenuItem = React.createClass({
         display: 'block',
         lineHeight: this.getTheme().height + 'px',
         paddingLeft: this.getTheme().padding,
-        paddingRight: this.getTheme().padding
+        paddingRight: this.getTheme().padding,
       },
       rootWhenHovered: {
-        backgroundColor: this.getTheme().hoverColor
+        backgroundColor: this.getTheme().hoverColor,
       },
       rootWhenSelected: {
-        color: this.getTheme().selectedTextColor
+        color: this.getTheme().selectedTextColor,
       },
       rootWhenDisabled: {
         cursor: 'default',
-        color: this.context.muiTheme.palette.disabledColor
-      }
+        color: this.context.muiTheme.palette.disabledColor,
+      },
     };
+
     return style;
   },
 
@@ -105,7 +106,7 @@ let LinkMenuItem = React.createClass({
   _handleMouseOut(e) {
     this.setState({hovered: false});
     if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e);
-  }
+  },
 });
 
 module.exports = LinkMenuItem;

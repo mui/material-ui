@@ -26,6 +26,6 @@ module.exports = {
     return !str ? key : str.replace(/([A-Z])/g, (str,m1) => {
       return '-' + m1.toLowerCase();
     }).replace(/^ms-/,'-ms-');
-  }
+  },
 
 };

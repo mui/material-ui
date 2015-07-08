@@ -11,7 +11,7 @@ let Checkbox = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -19,7 +19,7 @@ let Checkbox = React.createClass({
     labelStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func,
     checkedIcon: React.PropTypes.element,
-    unCheckedIcon: React.PropTypes.element
+    unCheckedIcon: React.PropTypes.element,
   },
 
   getInitialState() {
@@ -50,34 +50,35 @@ let Checkbox = React.createClass({
           transitionOrigin: '50% 50%',
           transition: Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' +
                       Transitions.easeOut('0ms', 'transform', '450ms'),
-          fill: this.getTheme().checkedColor
+          fill: this.getTheme().checkedColor,
       },
       box: {
           position: 'absolute',
           opacity: 1,
           fill: this.getTheme().boxColor,
-          transition: Transitions.easeOut('2s', null, '200ms')
+          transition: Transitions.easeOut('2s', null, '200ms'),
       },
       checkWhenSwitched: {
         opacity: 1,
         transform: 'scale(1)',
         transition: Transitions.easeOut('0ms', 'opacity', '0ms') + ', ' +
-                    Transitions.easeOut('800ms', 'transform', '0ms')
+                    Transitions.easeOut('800ms', 'transform', '0ms'),
       },
       boxWhenSwitched: {
         transition: Transitions.easeOut('100ms', null, '0ms'),
-        fill: this.getTheme().checkedColor
+        fill: this.getTheme().checkedColor,
       },
       checkWhenDisabled: {
-        fill: this.getTheme().disabledColor
+        fill: this.getTheme().disabledColor,
       },
       boxWhenDisabled: {
-        fill: this.getTheme().disabledColor
+        fill: this.getTheme().disabledColor,
       },
       label: {
-        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
-      }
+        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
+      },
     };
+
     return styles;
   },
 
@@ -105,15 +106,15 @@ let Checkbox = React.createClass({
         this.props.disabled && styles.checkWhenDisabled);
 
     let checkedElement = checkedIcon ? React.cloneElement(checkedIcon, {
-      style: this.mergeAndPrefix(checkStyles, checkedIcon.props.style)
+      style: this.mergeAndPrefix(checkStyles, checkedIcon.props.style),
     }) : React.createElement(CheckboxChecked, {
-      style: checkStyles
+      style: checkStyles,
     });
 
     let unCheckedElement = unCheckedIcon ? React.cloneElement(unCheckedIcon, {
-      style: this.mergeAndPrefix(boxStyles, unCheckedIcon.props.style)
+      style: this.mergeAndPrefix(boxStyles, unCheckedIcon.props.style),
     }) : React.createElement(CheckboxOutline, {
-      style: boxStyles
+      style: boxStyles,
     });
 
     let checkboxElement = (
@@ -142,7 +143,7 @@ let Checkbox = React.createClass({
       labelStyle: labelStyle,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,
-      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"
+      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right",
     };
 
     return (
@@ -166,7 +167,7 @@ let Checkbox = React.createClass({
 
   _handleStateChange(newSwitched) {
     this.setState({switched: newSwitched});
-  }
+  },
 
 });
 

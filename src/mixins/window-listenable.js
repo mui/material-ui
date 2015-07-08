@@ -19,6 +19,6 @@ module.exports = {
        let callbackName = listeners[eventName];
        Events.off(window, eventName, this[callbackName]);
     }
-  }
+  },
 
 };

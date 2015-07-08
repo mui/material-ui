@@ -6,5 +6,5 @@ module.exports = {
   KeyLine: require('./key-line'),
   ColorManipulator: require('./color-manipulator'),
   Extend: require('./extend'),
-  UniqueId: require('./unique-id')
+  UniqueId: require('./unique-id'),
 };

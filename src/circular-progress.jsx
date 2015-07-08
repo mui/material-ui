@@ -14,11 +14,11 @@ let CircularProgress = React.createClass({
       max:  React.PropTypes.number,
       size: React.PropTypes.number,
       color: React.PropTypes.string,
-      innerStyle: React.PropTypes.object
+      innerStyle: React.PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   _getRelativeValue() {
@@ -88,7 +88,7 @@ let CircularProgress = React.createClass({
           value: 0,
           min: 0,
           max: 100,
-          size: 1
+          size: 1,
       };
   },
 
@@ -117,21 +117,21 @@ let CircularProgress = React.createClass({
         height: size,
         margin: "5px",
         display: "inline-block",
-        transition: Transitions.create("transform", "20s", null, "linear")
+        transition: Transitions.create("transform", "20s", null, "linear"),
       },
       svg: {
         height: size,
         position: "relative",
         transform: "scale(" + zoom + ")",
-        width: size
+        width: size,
       },
       path: {
         strokeDasharray: "89,200",
         strokeDashoffset: 0,
         stroke: this.props.color || this.getTheme().primary1Color,
         strokeLinecap: "round",
-        transition: Transitions.create("all", "1.5s", null, "ease-in-out")
-      }
+        transition: Transitions.create("all", "1.5s", null, "ease-in-out"),
+      },
     };
 
     if (this.props.mode == "determinate"){
@@ -163,7 +163,7 @@ let CircularProgress = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 module.exports = CircularProgress;
