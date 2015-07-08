@@ -4,8 +4,8 @@
   "description": "Material Design Svg Icons converted to React components.",
   "scripts": {
     "prebuild": "rm -rf js",
-    "createJsx": "node build.js",
-    "build": "npm run createJsx && babel --stage 1 ./jsx --out-dir ./js",
+    "createMuiIconsJsx": "node build.js --output-dir jsx --svg-dir ./node_modules/material-design-icons --inner-path /svg/production/ --file-suffix _24px.svg --mui-require relative",
+    "build": "npm run createMuiIconsJsx && babel --stage 1 ./jsx --out-dir ./js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -23,9 +23,9 @@
   "author": "Hai Nguyen",
   "license": "MIT",
   "dependencies": {
+    "yargs": "^3.15.0"
   },
-  "peerDependencies": {
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "babel": "^5.6.1",
     "material-design-icons": "^2.0.0",

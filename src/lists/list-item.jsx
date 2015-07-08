@@ -204,7 +204,7 @@ let ListItem = React.createClass({
       onMouseOver: this._handleRightIconButtonMouseOver,
       onMouseOut: this._handleRightIconButtonMouseOut,
       onTouchTap: this._handleRightIconButtonTouchTap,
-      onMouseDown: this._handleRightIconButtonMouseUp,
+      onMouseDown: this._handleRightIconButtonMouseDown,
       onMouseUp: this._handleRightIconButtonMouseUp
     });
     this._pushElement(contentChildren, rightToggle, this.mergeStyles(styles.rightToggle));
@@ -297,31 +297,31 @@ let ListItem = React.createClass({
     if (isKeyboardFocused) newState.isKeyboardFocused = false;
     this.setState(newState);
 
-    if (iconButton.onKeyboardFocus) iconButton.onKeyboardFocus(e, isKeyboardFocused);
+    if (iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(e, isKeyboardFocused);
   },
 
   _handleRightIconButtonMouseDown(e) {
     let iconButton = this.props.rightIconButton;
     e.stopPropagation();
-    if (iconButton.onMouseDown) iconButton.onDown(e);
+    if (iconButton.props.onMouseDown) iconButton.props.onMouseDown(e);
   },
 
   _handleRightIconButtonMouseOut(e) {
     let iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: false});
-    if (iconButton.onMouseOut) iconButton.onMouseOut(e);
+    if (iconButton.props.onMouseOut) iconButton.props.onMouseOut(e);
   },
 
   _handleRightIconButtonMouseOver(e) {
     let iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: true});
-    if (iconButton.onMouseOver) iconButton.onMouseOver(e);
+    if (iconButton.props.onMouseOver) iconButton.props.onMouseOver(e);
   },
 
   _handleRightIconButtonMouseUp(e) {
     let iconButton = this.props.rightIconButton;
     e.stopPropagation();
-    if (iconButton.onMouseUp) iconButton.onUp(e);
+    if (iconButton.props.onMouseUp) iconButton.props.onMouseUp(e);
   },
 
   _handleRightIconButtonTouchTap(e) {
@@ -329,7 +329,7 @@ let ListItem = React.createClass({
 
     //Stop the event from bubbling up to the list-item
     e.stopPropagation();
-    if (iconButton.onTouchTap) iconButton.onTouchTap(e);
+    if (iconButton.props.onTouchTap) iconButton.props.onTouchTap(e);
   },
 
   _handleTouchStart(e) {

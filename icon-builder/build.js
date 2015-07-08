@@ -1,75 +1,107 @@
+#! /usr/bin/env node
+/**
+ * Material UI Icon Builder
+ * ========================
+ * 
+ * Usage: 
+ *
+ * node ./build.js --help
+ *
+ */
 var fs = require('fs');
 var path = require('path');
 var rimraf = require('rimraf');
-
-console.log('** Starting Build');
-
-var jsxFolder = __dirname + '/jsx';
-var iconRootPath = __dirname + '/node_modules/material-design-icons';
-var folders = fs.readdirSync(iconRootPath);
+var argv = require('yargs')
+    .usage('Build JSX components from SVG\'s.\nUsage: $0')
+    .demand('output-dir')
+    .describe('output-dir', 'Directory to output jsx components')
+    .demand('svg-dir')
+    .describe('svg-dir', 'SVG directory')
+    .describe('inner-path', '"Reach into" subdirs, since libraries like material-design-icons' +
+      ' use arbitrary build directories to organize icons' +
+      ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"')
+    .describe('file-suffix', 'Filter only files ending with a suffix (pretty much only' +
+     ' for material-ui-icons)')
+    .options('mui-require', {
+      demand: false,
+      default: 'absolute',
+      describe: 'Load material-ui dependencies (SvgIcon) relatively or absolutely. (absolute|relative). For material-ui distributions, relative, for anything else, you probably want absolute.',
+      type: 'string'
+    })
+    .describe('mui-icons-opts', 'Shortcut to use MUI icons options')
+    .boolean('mui-icons-opts')
+    .argv;
 
 //Clean old files
-rimraf(jsxFolder, function() {
+rimraf(argv.outputDir, function() {
+  console.log('** Starting Build');
   //Process each folder
-  fs.mkdirSync(jsxFolder);
-  folders.forEach(processFolder);
+  var dirs = fs.readdirSync(argv.svgDir);
+  fs.mkdirSync(argv.outputDir);
+  dirs.forEach(function(dirName) {
+    processDir(dirName, argv.svgDir, argv.outputDir, argv.innerPath, argv.fileSuffix, argv.muiRequire) 
+  });
 });
 
-function processFolder(folderName) {
+function processDir(dirName, svgDir, outputDir, innerPath, fileSuffix, muiRequire) {
+  var newIconDirPath = path.join(outputDir, dirName);
+  var svgIconDirPath = path.join(svgDir, dirName, innerPath);
+  if (!fs.existsSync(svgIconDirPath)) { return false; }
+  if (!fs.lstatSync(svgIconDirPath).isDirectory()) { return false; }
   try {
+    var files = fs.readdirSync(svgIconDirPath);
 
-    var newIconFolderPath = jsxFolder + '/' + folderName;
-    var svgIconFolderPath = iconRootPath + '/' + folderName + '/svg/production';
-
-    var files = fs.readdirSync(svgIconFolderPath);
-
-    rimraf(newIconFolderPath, function() {
-      console.log('\n ' + folderName);
-      fs.mkdirSync(newIconFolderPath);
+    rimraf(newIconDirPath, function() {
+      console.log('\n ' + dirName);
+      fs.mkdirSync(newIconDirPath);
 
       files.forEach(function(fileName) {
-        processFile(folderName, fileName, newIconFolderPath, svgIconFolderPath);
+        processFile(dirName, fileName, newIconDirPath, svgIconDirPath, fileSuffix, muiRequire);
       });
     });
 
   } catch (err) {
-    return;
+    throw (err);
   }
 }
 
-function processFile(folderName, fileName, folderPath, svgFolderPath) {
+function processFile(dirName, fileName, dirPath, svgDirPath, fileSuffix, muiRequire) {
   //Only process 24px files
-  var svgFilePath = svgFolderPath + '/' + fileName;
-  var suffix = '_24px.svg';
-  var newFilename;
+  var svgFilePath = svgDirPath + '/' + fileName;
   var newFile;
-
-  if (fileName.indexOf(suffix, fileName.length - suffix.length) !== -1) {
-    newFilename = fileName.replace(suffix, '.jsx');
-    newFilename = newFilename.slice(3);
-    newFilename = newFilename.replace(/_/g, '-');
-    if (newFilename.indexOf('3d') === 0) {
-      newFilename = 'three-d' + newFilename.slice(2);
+  if (fileSuffix) {
+    if (fileName.indexOf(fileSuffix, fileName.length - fileSuffix.length) !== -1) {
+      fileName = fileName.replace(fileSuffix, '.jsx');
+      fileName = fileName.slice(3);
+      fileName = fileName.replace(/_/g, '-');
+      if (fileName.indexOf('3d') === 0) {
+        fileName = 'three-d' + fileName.slice(2);
+      }
+    } else {
+      return;
     }
-    newFile = folderPath + '/' + newFilename;
-
-    //console.log('writing ' + newFile);
-    getJsxString(folderName, newFilename, svgFilePath, function(fileString) {
-      fs.writeFileSync(newFile, fileString);
-    });
   }
+  newFile = path.join(dirPath, fileName);
+
+  //console.log('writing ' + newFile);
+  getJsxString(dirName, fileName, svgFilePath, muiRequire, function(fileString) {
+    fs.writeFileSync(newFile, fileString);
+  });
 }
 
-function getJsxString(folderName, newFilename, svgFilePath, callback) {
+function getJsxString(dirName, newFilename, svgFilePath, muiRequire, callback) {
   var className = newFilename.replace('.jsx', '');
-  className = folderName + '-' + className;
+  className = dirName + '-' + className;
   className = pascalCase(className);
   
   console.log('  ' + className);
 
   //var parser = new xml2js.Parser();
-  fs.readFile(svgFilePath, {encoding: 'utf8'}, function(err, data) {
 
+  fs.readFile(svgFilePath, {encoding: 'utf8'}, function(err, data) {
+    if (err) {
+      throw err;
+    }
     //Extract the paths from the svg string
     var paths = data.slice(data.indexOf('>') + 1);
     paths = paths.slice(0, -6);
@@ -77,9 +109,12 @@ function getJsxString(folderName, newFilename, svgFilePath, callback) {
     paths = paths.replace('xlink:href="#a"', '');
     paths = paths.replace('xlink:href="#c"', '');
 
+    // Node acts wierd if we put this directly into string concatenation
+    var muiRequireStmt = muiRequire === "relative" ? "let SvgIcon = require('../../svg-icon');\n\n" : "let SvgIcon = require('material-ui/lib/svg-icon');\n\n";
+
     callback(
       "let React = require('react');\n" +
-      "let SvgIcon = require('../../svg-icon');\n\n" +
+      muiRequireStmt +
 
       "let " + className + " = React.createClass({\n\n" +
 

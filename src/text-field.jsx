@@ -45,8 +45,8 @@ let TextField = React.createClass({
 
     return {
       errorText: this.props.errorText,
-      hasValue: props.value || props.defaultValue ||
-        (props.valueLink && props.valueLink.value)
+      hasValue: props.value !== undefined || props.defaultValue !== undefined ||
+        (props.valueLink && props.valueLink.value !== undefined)
     };
   },
 
@@ -71,13 +71,13 @@ let TextField = React.createClass({
     let hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
 
     if (hasValueLinkProp) {
-      newState.hasValue = nextProps.valueLink.value;
+      newState.hasValue = nextProps.valueLink.value !== undefined;
     }
     else if (hasValueProp) {
-      newState.hasValue = nextProps.value;
+      newState.hasValue = nextProps.value !== undefined;
     }
     else if (hasNewDefaultValue) {
-      newState.hasValue = nextProps.defaultValue;
+      newState.hasValue = nextProps.defaultValue !== undefined;
     }
 
     if (newState) this.setState(newState);
@@ -331,7 +331,7 @@ let TextField = React.createClass({
         this._getInputNode().value = newValue;
       }
 
-      this.setState({hasValue: newValue});
+      this.setState({hasValue: newValue !== undefined});
     }
   },
 
@@ -350,7 +350,7 @@ let TextField = React.createClass({
   },
 
   _handleInputChange(e) {
-    this.setState({hasValue: e.target.value});
+    this.setState({hasValue: e.target.value !== undefined});
     if (this.props.onChange) this.props.onChange(e);
   },
 

@@ -1,7 +1,8 @@
 let React = require('react/addons');
+let ReactTransitionGroup = React.addons.TransitionGroup;
 let ClickAwayable = require('../mixins/click-awayable');
 let StylePropable = require('../mixins/style-propable');
-let KeyCode = require('../utils/key-code');
+let Events = require('../utils/events');
 let Menu = require('../menus/menu');
 
 
@@ -14,9 +15,7 @@ let IconMenu = React.createClass({
   },
 
   propTypes: {
-    desktop: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
-    multiple: React.PropTypes.bool,
     openDirection: React.PropTypes.oneOf([
       'bottom-left',
       'bottom-right',
@@ -25,27 +24,42 @@ let IconMenu = React.createClass({
     ]),
     onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
-    maxHeight: React.PropTypes.number,
+    onKeyboardFocus: React.PropTypes.func,
+    onMouseDown: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func,
+    onMouseUp: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
-    menuListStyle: React.PropTypes.object,
-    onKeyDown: React.PropTypes.func,
-    width: React.PropTypes.number
+    touchTapCloseDelay: React.PropTypes.number
   },
 
   getDefaultProps() {
     return {
       openDirection: 'bottom-left',
-      onKeyDown: () => {},
       onItemKeyboardActivate: () => {},
-      onItemTouchTap: () => {}
+      onItemTouchTap: () => {},
+      onKeyboardFocus: () => {},
+      onMouseDown: () => {},
+      onMouseOut: () => {},
+      onMouseOver: () => {},
+      onMouseUp: () => {},
+      onTouchTap: () => {},
+      touchTapCloseDelay: 200
     };
   },
 
   getInitialState() {
     return {
       iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
+      menuInitiallyKeyboardFocused: false,
       open: false
     };
+  },
+
+  componentWillUnmount() {
+    if (this._timeout)
+      clearTimeout(this._timeout);
   },
 
   componentClickAway() {
@@ -54,20 +68,17 @@ let IconMenu = React.createClass({
 
   render() {
     let {
-      desktop,
       iconButtonElement,
-      multiple,
       openDirection,
-      onChange,
-      onKeyDown,
       onItemTouchTap,
-      maxHeight,
+      onKeyboardFocus,
+      onMouseDown,
+      onMouseOut,
+      onMouseOver,
+      onMouseUp,
+      onTouchTap,
       menuStyle,
-      menuListStyle,
       style,
-      value,
-      valueLink,
-      width,
       ...other
     } = this.props;
 
@@ -93,86 +104,73 @@ let IconMenu = React.createClass({
     let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
     let iconButton = React.cloneElement(iconButtonElement, {
-      onKeyboardActivate: this._handleIconButtonKeyboardActivate,
+      onKeyboardFocus: this.props.onKeyboardFocus,
       onTouchTap: (e) => {
-        this.open();
+        this.open(Events.isKeyboard(e));
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
       }.bind(this),
       ref: this.state.iconButtonRef
     });
 
+    let menu = open ? (
+      <Menu
+        {...other}
+        initiallyKeyboardFocused={this.state.menuInitiallyKeyboardFocused}
+        onEscKeyDown={this.close}
+        onItemTouchTap={this._handleItemTouchTap}
+        openDirection={openDirection}
+        style={mergedMenuStyles}>
+        {this.props.children}
+      </Menu>
+    ) : null;
+
     return (
       <div
-        {...other}
-        style={mergedRootStyles}
-        onKeyDown={this._handleKeyDown}>
-
+        onMouseDown={onMouseDown}
+        onMouseOut={onMouseOut}
+        onMouseOver={onMouseOver}
+        onMouseUp={onMouseUp}
+        onTouchTap={onTouchTap}
+        style={mergedRootStyles}>
         {iconButton}
-
-        <Menu
-          desktop={desktop}
-          listStyle={menuListStyle}
-          maxHeight={maxHeight}
-          multiple={multiple}
-          onItemTouchTap={this._handleItemTouchTap}
-          onItemKeyboardActivate={this._handleItemKeyboardActivate}
-          onChange={onChange}
-          open={open}
-          openDirection={openDirection}
-          ref="menu"
-          style={mergedMenuStyles}
-          value={value}
-          valueLink={valueLink}
-          width={width}>
-          {this.props.children}
-        </Menu>
-
+        <ReactTransitionGroup>{menu}</ReactTransitionGroup>
       </div>
     );
   },
 
-  close() {
+  close(isKeyboard) {
     if (this.state.open) {
-      this.setState({
-        open: false
+      this.setState({open: false}, () => {
+        //Set focus on the icon button when the menu close
+        if (isKeyboard) {
+          let iconButton = this.refs[this.state.iconButtonRef];
+          React.findDOMNode(iconButton).focus();
+        }
       });
-      //Set focus on the icon button when the menu closes
-      React.findDOMNode(this.refs[this.state.iconButtonRef]).focus();
     }
   },
 
-  open() {
+  open(menuInitiallyKeyboardFocused) {
     if (!this.state.open) {
       this.setState({
-        open: true
+        open: true,
+        menuInitiallyKeyboardFocused: menuInitiallyKeyboardFocused
       });
     }
-  },
-
-  _handleIconButtonKeyboardActivate() {
-    this.refs.menu.setKeyboardFocused(true);
-  },
-
-  _handleKeyDown(e) {
-    switch (e.keyCode) {
-      case KeyCode.ESC:
-        this.close();
-        break;
-    }
-    this.props.onKeyDown(e);
-  },
-
-  _handleItemKeyboardActivate() {
-    //The icon button receives keyboard focus when a
-    //menu item is keyboard activated
-    this.refs[this.state.iconButtonRef].setKeyboardFocus();
   },
 
   _handleItemTouchTap(e, child) {
-    setTimeout(() => {
-      this.close();
-      this.props.onItemTouchTap(e, child);
-    }, 150);
+    let isKeyboard = Events.isKeyboard(e);
+
+    this._timeout = setTimeout(() => {
+      this.close(isKeyboard);
+    }, this.props.touchTapCloseDelay);
+
+    if (isKeyboard) {
+      this.refs[this.state.iconButtonRef].setKeyboardFocus();
+    }
+
+    this.props.onItemTouchTap(e, child);
   }
 });
 

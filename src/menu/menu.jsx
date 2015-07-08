@@ -1,6 +1,5 @@
 let React = require('react');
 let CssEvent = require('../utils/css-event');
-let Dom = require('../utils/dom');
 let KeyLine = require('../utils/key-line');
 let KeyCode = require('../utils/key-code');
 let StylePropable = require('../mixins/style-propable');
@@ -252,6 +251,11 @@ var Menu = React.createClass({
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
   },
 
+  componentWillReceiveProps() {
+    //Set the menu width
+    this._setKeyWidth(React.findDOMNode(this));
+  },
+
   getTheme() {
     return this.context.muiTheme.component.menu;
   },
@@ -274,7 +278,6 @@ var Menu = React.createClass({
         paddingRight: this.context.muiTheme.component.menuSubheader.padding
       },
       hideable: {
-        opacity: (this.props.visible) ? 1 : 0,
         overflow: 'hidden',
         position: 'absolute',
         top: 0,
@@ -419,69 +422,108 @@ var Menu = React.createClass({
   },
 
   _setKeyWidth(el) {
-    let menuWidth = this.props.autoWidth ?
-      KeyLine.getIncrementalDim(el.offsetWidth) + 'px' :
-      '100%';
-
     //Update the menu width
-    Dom.withoutTransition(el, () => {
-      el.style.width = menuWidth;
-    });
+    let menuWidth = '100%';
+
+    if (this.props.autoWidth) {
+      el.style.width = 'auto';
+      menuWidth = KeyLine.getIncrementalDim(el.offsetWidth) + 'px';
+    }
+
+    el.style.width = menuWidth;
   },
 
   _renderVisibility() {
-    let el;
-
     if (this.props.hideable) {
-      el = React.findDOMNode(this);
-      let container = React.findDOMNode(this.refs.paperContainer);
-
-      if (this.props.visible) {
-        //Hide the element and allow the browser to automatically resize it.
-        el.style.transition = '';
-        el.style.visibility = 'hidden';
-        el.style.height = 'auto';
-
-        //Determine the height of the menu.
-        let padding = this.getSpacing().desktopGutterMini;
-        let height = el.offsetHeight +
-            //Add padding to the offset height, because it is not yet set in the style.
-            (padding * 2);
-
-        //Unhide the menu with the height set back to zero.
-        el.style.height = '0px';
-        el.style.visibility = 'visible';
-
-        //Add transition if it is not already defined.
-        el.style.transition = Transitions.easeOut();
-
-        //Open the menu
-        setTimeout(() => {
-          // Yeild to the DOM, then apply height and padding. This makes the transition smoother.
-          el.style.paddingTop = padding + 'px';
-          el.style.paddingBottom = padding + 'px';
-          el.style.height = height + 'px';
-
-          //Set the overflow to visible after the animation is done so
-          //that other nested menus can be shown
-          CssEvent.onTransitionEnd(el, () => {
-            //Make sure the menu is open before setting the overflow.
-            //This is to accout for fast clicks
-            if (this.props.visible) container.style.overflow = 'visible';
-            el.focus();
-          });
-        }, 0);
-      }
-      else {
-        //Close the menu
-        el.style.height = '0px';
-        el.style.paddingTop = '0px';
-        el.style.paddingBottom = '0px';
-
-        //Set the overflow to hidden so that animation works properly
-        container.style.overflow = 'hidden';
-      }
+      if (this.props.visible) this._expandHideableMenu();
+      else this._collapseHideableMenu();
     }
+  },
+
+  _expandHideableMenu() {
+    let el = React.findDOMNode(this);
+    let container = React.findDOMNode(this.refs.paperContainer);
+    let padding = this.getSpacing().desktopGutterMini;
+    let height = this._getHiddenMenuHeight(el, padding);
+
+    //Add transition
+    if (!el.style.transition) {
+      el.style.transition = Transitions.easeOut();
+    }
+
+    this._nextAnimationFrame(() => {
+      container.style.overflow = 'hidden';
+
+      // Yeild to the DOM, then apply height and padding. This makes the transition smoother.
+      el.style.paddingTop = padding + 'px';
+      el.style.paddingBottom = padding + 'px';
+      el.style.height = height + 'px';
+      el.style.opacity = 1;
+
+      //Set the overflow to visible after the animation is done so
+      //that other nested menus can be shown
+      CssEvent.onTransitionEnd(el, () => {
+        //Make sure the menu is open before setting the overflow.
+        //This is to accout for fast clicks
+        if (this.props.visible) container.style.overflow = 'visible';
+        el.style.transition = null;
+        el.focus();
+      });
+    });
+  },
+
+  _getHiddenMenuHeight(el, padding) {
+    //Add padding to the offset height, because it is not yet set in the style.
+    let height = padding * 2;
+
+    //Hide the element and allow the browser to automatically resize it.
+    el.style.visibility = 'hidden';
+    el.style.height = 'auto';
+
+    //Determine the height of the menu.
+    height += el.offsetHeight;
+
+    //Unhide the menu with the height set back to zero.
+    el.style.height = '0px';
+    el.style.visibility = 'visible';
+
+    return height;
+  },
+
+  _collapseHideableMenu() {
+    let el = React.findDOMNode(this);
+    let container = React.findDOMNode(this.refs.paperContainer);
+    let originalOpacity = el.style.opacity;
+
+    //Add transition
+    if (!el.style.transition && originalOpacity !== '') {
+      el.style.transition = Transitions.easeOut();
+    }
+
+    this._nextAnimationFrame(function () {
+      //Set the overflow to hidden so that animation works properly
+      container.style.overflow = 'hidden';
+
+      //Close the menu
+      el.style.opacity = 0;
+      el.style.height = '0px';
+      el.style.paddingTop = '0px';
+      el.style.paddingBottom = '0px';
+
+      let end = () => {
+        el.style.transition = null;
+      };
+
+      if (originalOpacity === '') end();
+      else CssEvent.onTransitionEnd(el, end);
+    });
+  },
+
+  _nextAnimationFrame(func) {
+    if (window.requestAnimationFrame) {
+      return window.requestAnimationFrame(func);
+    }
+    return setTimeout(func, 16);
   },
 
   _onNestedItemTap(e, index, menuItem) {

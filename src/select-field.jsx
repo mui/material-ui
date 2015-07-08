@@ -38,7 +38,9 @@ let SelectField = React.createClass({
   },
 
   getDefaultProps() {
-    return {};
+    return {
+      fullWidth:false
+    };
   },
 
   getStyles() {
@@ -100,13 +102,15 @@ let SelectField = React.createClass({
       disabled,
       floatingLabelText,
       hintText,
+      fullWidth,
       ...other
     } = this.props;
 
     let textFieldProps = {
       style: this.mergeAndPrefix(styles.input, style),
       floatingLabelText: floatingLabelText,
-      hintText: (!hintText && !floatingLabelText) ? ' ' : hintText
+      hintText: (!hintText && !floatingLabelText) ? ' ' : hintText,
+      fullWidth:fullWidth
     };
     let dropDownMenuProps = {
       onChange: this.onChange,

@@ -32,5 +32,13 @@ module.exports = {
     else {
       el.detachEvent('on' + type, callback);
     }
+  },
+
+  isKeyboard(e) {
+    return [
+      'keydown',
+      'keypress',
+      'keyup'
+    ].indexOf(e.type) !== -1;
   }
 };

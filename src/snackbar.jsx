@@ -12,15 +12,19 @@ let Snackbar = React.createClass({
 
   manuallyBindClickAway: true,
 
+  // ID of the active timer.
+  _autoHideTimerId: undefined,
+
   contextTypes: {
     muiTheme: React.PropTypes.object
   },
 
   propTypes: {
-    action: React.PropTypes.string,
     message: React.PropTypes.string.isRequired,
-    openOnMount: React.PropTypes.bool,
-    onActionTouchTap: React.PropTypes.func
+    action: React.PropTypes.string,
+    autoHideDuration: React.PropTypes.number,
+    onActionTouchTap: React.PropTypes.func,
+    openOnMount: React.PropTypes.bool
   },
 
   getInitialState() {
@@ -34,8 +38,10 @@ let Snackbar = React.createClass({
   },
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.open != this.state.open) {
+    if (prevState.open !== this.state.open) {
       if (this.state.open) {
+        this._setAutoHideTimer();
+
         //Only Bind clickaway after transition finishes
         CssEvent.onTransitionEnd(React.findDOMNode(this), () => {
           this._bindClickAway();
@@ -98,6 +104,7 @@ let Snackbar = React.createClass({
           Transitions.easeOut('400ms', 'transform', '0ms')
       }
     };
+
     return styles;
   },
 
@@ -131,7 +138,21 @@ let Snackbar = React.createClass({
   },
 
   dismiss() {
+    this._clearAutoHideTimer();
     this.setState({ open: false });
+  },
+
+  _clearAutoHideTimer() {
+    if (this._autoHideTimerId !== undefined) {
+      this._autoHideTimerId = clearTimeout(this._autoHideTimerId);
+    }
+  },
+
+  _setAutoHideTimer() {
+    if (this.props.autoHideDuration > 0) {
+      this._clearAutoHideTimer();
+      this._autoHideTimerId = setTimeout(() => { this.dismiss(); }, this.props.autoHideDuration);
+    }
   }
 
 });
