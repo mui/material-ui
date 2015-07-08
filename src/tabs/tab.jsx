@@ -14,7 +14,8 @@ let Tab = React.createClass({
   propTypes: {
     handleTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
-    width: React.PropTypes.string
+    width: React.PropTypes.string,
+    fontIcon: React.PropTypes.element
   },
 
   handleTouchTap() {
@@ -43,6 +44,7 @@ let Tab = React.createClass({
     return (
       <div style={styles} onTouchTap={this.handleTouchTap} routeName={this.props.route}>
         {this.props.label}
+        {this.props.fontIcon}
       </div>
     );
   }
