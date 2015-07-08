@@ -358,7 +358,7 @@ let Dialog = React.createClass({
   },
 
   _handleWindowKeyUp(e) {
-    if (e.keyCode == KeyCode.ESC) {
+    if (e.keyCode === KeyCode.ESC) {
       this.dismiss();
     }
   },
