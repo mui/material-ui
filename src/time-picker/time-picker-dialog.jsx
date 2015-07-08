@@ -36,7 +36,7 @@ let TimePickerDialog = React.createClass({
       initialTime,
       onAccept,
       format,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = {
@@ -46,6 +46,9 @@ let TimePickerDialog = React.createClass({
       },
       dialogContent: {
         width: 280,
+      },
+      body: {
+        padding:0,
       },
     };
 
@@ -66,6 +69,7 @@ let TimePickerDialog = React.createClass({
       <Dialog {...other}
         ref="dialogWindow"
         style={this.mergeAndPrefix(styles.root)}
+        bodyStyle={this.mergeAndPrefix(styles.body)}
         actions={actions}
         contentStyle={styles.dialogContent}
         onDismiss={this._handleDialogDismiss}

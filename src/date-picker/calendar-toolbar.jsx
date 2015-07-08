@@ -67,7 +67,10 @@ let CalendarToolbar = React.createClass({
         width: '100%',
         fontWeight: '500',
         textAlign: 'center',
-        zIndex: -1,
+        zIndex: 0,
+      },
+      button: {
+        zIndex:1,
       },
     };
   },
@@ -85,6 +88,7 @@ let CalendarToolbar = React.createClass({
           {prevYearChangeButton}
 
           <IconButton
+            style={styles.button}
             disabled={!this.props.prevMonth}
             onTouchTap={this._prevMonthTouchTap}>
               <NavigationChevronLeft />
@@ -93,6 +97,7 @@ let CalendarToolbar = React.createClass({
 
         <ToolbarGroup key={1} float="right">
           <IconButton
+            style={styles.button}
             disabled={!this.props.nextMonth}
             onTouchTap={this._nextMonthTouchTap}>
               <NavigationChevronRight />
