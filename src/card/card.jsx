@@ -21,7 +21,7 @@ let Card = React.createClass({
   },
 
   render() {
-
+    let lastElement;
     let newChildren = React.Children.map(this.props.children, (currentChild) => {
       if (!currentChild) {
         return null;
@@ -29,23 +29,19 @@ let Card = React.createClass({
       if (this.state.expanded === false && currentChild.props.expandable === true)
         return;
       if (currentChild.props.expandableController === true) {
-        return React.cloneElement(currentChild, {},
+        lastElement = React.cloneElement(currentChild, {},
           currentChild.props.children,
           <CardExpandable expanded={this.state.expanded} onExpanding={this._onExpandable}/>);
+      } else {
+        lastElement = currentChild;
       }
-      return currentChild;
+      return lastElement;
     }, this);
-
-
-    //TODO
-    let lastElement = React.Children.count(this.props.children) > 1 ?
-      this.props.children[this.props.children.length - 1]
-      : this.props.children;
 
     // If the last element is text or a title we should add
     // 8px padding to the bottom of the card
-    let addBottomPadding = (lastElement.type.displayName === "CardText" ||
-      lastElement.type.displayName === "CardTitle");
+    let addBottomPadding = (lastElement && (lastElement.type.displayName === "CardText" ||
+      lastElement.type.displayName === "CardTitle"));
     let {
       style,
       ...other,
