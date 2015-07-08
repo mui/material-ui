@@ -9,6 +9,52 @@ let FlatButton = require('./flat-button');
 let Overlay = require('./overlay');
 let Paper = require('./paper');
 
+let ReactTransitionGroup = React.addons.TransitionGroup;
+
+let TransitionItem = React.createClass({
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  getInitialState() {
+    return {
+      style: {},
+    };
+  },
+
+  componentWillEnter(callback) {
+    let spacing = this.context.muiTheme.spacing;
+
+    this.setState({
+      style: {
+        opacity: 1,
+        transform: 'translate3d(0, ' + spacing.desktopKeylineIncrement + 'px, 0)',
+      },
+    });
+
+    setTimeout(callback, 450); // matches transition duration
+  },
+
+  componentWillLeave(callback) {
+    this.setState({
+      style: {
+        opacity: 0,
+        transform: 'translate3d(0, 0, 0)',
+      },
+    });
+
+    setTimeout(callback, 450); // matches transition duration
+  },
+
+  render() {
+    return <div style={this.mergeAndPrefix(this.state.style, this.props.style)}>
+        {this.props.children}
+      </div>;
+  }
+});
+
 let Dialog = React.createClass({
 
   mixins: [
@@ -36,8 +82,8 @@ let Dialog = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp',
-    'resize': '_positionDialog'
+    keyup: '_handleWindowKeyUp',
+    resize: '_positionDialog'
   },
 
   getDefaultProps() {
@@ -67,12 +113,8 @@ let Dialog = React.createClass({
     this._positionDialog();
   },
 
-  getSpacing() {
-    return this.context.muiTheme.spacing;
-  },
-
   getStyles() {
-    let spacing = this.getSpacing();
+    let spacing = this.context.muiTheme.spacing;
 
     let main = {
       position: 'fixed',
@@ -86,17 +128,15 @@ let Dialog = React.createClass({
       transition: Transitions.easeOut('0ms', 'left', '450ms')
     };
 
-    let contents = {
+    let content = {
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       transition: Transitions.easeOut(),
       position: 'relative',
       width: '75%',
-      maxWidth: (this.context.muiTheme.spacing.desktopKeylineIncrement * 12),
+      maxWidth: spacing.desktopKeylineIncrement * 12,
       margin: '0 auto',
       zIndex: 10,
-      background: this.context.muiTheme.canvasColor,
-      opacity: 0
     };
 
     let body = {
@@ -110,7 +150,7 @@ let Dialog = React.createClass({
         margin: 0,
         padding: gutter + gutter + '0 ' + gutter,
         color: this.context.muiTheme.palette.textColor,
-        fontSize: '24px',
+        fontSize: 24,
         lineHeight: '32px',
         fontWeight: '400'
     };
@@ -121,16 +161,14 @@ let Dialog = React.createClass({
         left: 0,
         transition: Transitions.easeOut('0ms', 'left', '0ms')
       });
-      contents = this.mergeStyles(contents, {
-        opacity: 1,
-        top: 0,
-        transform: 'translate3d(0, ' + spacing.desktopKeylineIncrement + 'px, 0)',
-      });
     }
 
     return {
       main: this.mergeAndPrefix(main, this.props.style),
-      contents: this.mergeAndPrefix(contents, this.props.contentStyle),
+      content: this.mergeAndPrefix(content, this.props.contentStyle),
+      paper: {
+        background: this.context.muiTheme.canvasColor,
+      },
       body: this.mergeStyles(body, this.props.bodyStyle),
       title: this.mergeStyles(title, this.props.titleStyle),
     };
@@ -150,20 +188,26 @@ let Dialog = React.createClass({
 
     return (
       <div ref="container" style={styles.main}>
-        <Paper
-          ref="dialogWindow"
-          style={styles.contents}
-          className={this.props.contentClassName}
-          zDepth={4}>
-          {title}
+        <ReactTransitionGroup component="div" ref="dialogWindow">
+          {this.state.open &&
+            <TransitionItem
+              className={this.props.contentClassName}
+              style={styles.content}>
+              <Paper
+                style={styles.paper}
+                zDepth={4}>
+                {title}
 
-          <div ref="dialogContent" style={styles.body}>
-            {this.props.children}
-          </div>
+                <div ref="dialogContent" style={styles.body}>
+                  {this.props.children}
+                </div>
 
-          {actions}
-        </Paper>
-        <Overlay ref="dialogOverlay" show={this.state.open} autoLockScrolling={false} onTouchTap={this._handleOverlayTouchTap} />
+                {actions}
+            </Paper>
+          </TransitionItem>}
+        </ReactTransitionGroup>
+        <Overlay ref="dialogOverlay" show={this.state.open} autoLockScrolling={false}
+          onTouchTap={this._handleOverlayTouchTap} />
       </div>
     );
   },
@@ -243,36 +287,38 @@ let Dialog = React.createClass({
   },
 
   _positionDialog() {
-    let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    let container = this.getDOMNode();
-    let dialogWindow = this.refs.dialogWindow.getDOMNode();
-    let dialogContent = this.refs.dialogContent.getDOMNode();
-    let minPaddingTop = 64;
-    let dialogWindowHeight;
-    let paddingTop;
-    let maxDialogWindowHeight;
+    if (this.state.open) {
+      let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      let container = this.getDOMNode();
+      let dialogWindow = this.refs.dialogWindow.getDOMNode();
+      let dialogContent = this.refs.dialogContent.getDOMNode();
+      let minPaddingTop = 64;
+      let dialogWindowHeight;
+      let paddingTop;
+      let maxDialogWindowHeight;
 
-    //Reset the height in case the window was resized.
-    dialogWindow.style.height = '';
-    dialogContent.style.height = '';
+      //Reset the height in case the window was resized.
+      dialogWindow.style.height = '';
+      dialogContent.style.height = '';
 
-    dialogWindowHeight = dialogWindow.offsetHeight;
-    paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 64;
-    if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
+      dialogWindowHeight = dialogWindow.offsetHeight;
+      paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 64;
+      if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
 
-    //Vertically center the dialog window, but make sure it doesn't
-    //transition to that position.
-    if (this.props.repositionOnUpdate || !container.style.paddingTop) {
-      container.style.paddingTop = paddingTop + 'px';
-    }
+      //Vertically center the dialog window, but make sure it doesn't
+      //transition to that position.
+      if (this.props.repositionOnUpdate || !container.style.paddingTop) {
+        container.style.paddingTop = paddingTop + 'px';
+      }
 
-    // Force a height if the dialog is taller than clientHeight
-    maxDialogWindowHeight = clientHeight - (2 * paddingTop);
-    if ((this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) &&
-      (dialogWindowHeight > maxDialogWindowHeight)) {
-      dialogWindow.style.height = maxDialogWindowHeight + 'px';
+      // Force a height if the dialog is taller than clientHeight
+      maxDialogWindowHeight = clientHeight - (2 * paddingTop);
+      if ((this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) &&
+        (dialogWindowHeight > maxDialogWindowHeight)) {
+        dialogWindow.style.height = maxDialogWindowHeight + 'px';
 
-      this._updateContentHeight();
+        this._updateContentHeight();
+      }
     }
   },
 

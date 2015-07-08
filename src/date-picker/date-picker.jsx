@@ -30,7 +30,7 @@ let DatePicker = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    keyup: '_handleWindowKeyUp'
   },
 
   getDefaultProps() {

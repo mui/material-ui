@@ -30,7 +30,7 @@ let DatePickerDialog = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    keyup: '_handleWindowKeyUp'
   },
 
   getInitialState() {
@@ -50,12 +50,12 @@ let DatePickerDialog = React.createClass({
 
     let styles = {
       root: {
-        fontSize: '14px',
+        fontSize: 14,
         color: this.context.muiTheme.component.datePicker.calendarTextColor
       },
 
-      dialogContents: {
-        width: this.props.mode === 'landscape' ? '560px' : '280px'
+      dialogContent: {
+        width: this.props.mode === 'landscape' ? 560 : 280
       },
 
       dialogBodyContent: {
@@ -74,24 +74,25 @@ let DatePickerDialog = React.createClass({
         secondary={true}
         style={styles.actions}
         onTouchTap={this._handleCancelTouchTap} />,
-      <FlatButton
-        key={1}
-        label="OK"
-        secondary={true}
-        disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
-        style={styles.actions}
-        onTouchTap={this._handleOKTouchTap} />
     ];
 
-    if (this.props.autoOk){
-      actions = actions.slice(0, 1);
+    if (!this.props.autoOk) {
+      actions.push(
+        <FlatButton
+          key={1}
+          label="OK"
+          secondary={true}
+          disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
+          style={styles.actions}
+          onTouchTap={this._handleOKTouchTap} />
+      );
     }
 
     return (
       <Dialog {...other}
         ref="dialog"
         style={styles.root}
-        contentStyle={styles.dialogContents}
+        contentStyle={styles.dialogContent}
         bodyStyle={styles.dialogBodyContent}
         actions={actions}
         onDismiss={this._handleDialogDismiss}
