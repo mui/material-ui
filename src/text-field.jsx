@@ -15,21 +15,22 @@ let TextField = React.createClass({
   },
 
   propTypes: {
+    errorStyle: React.PropTypes.object,
     errorText: React.PropTypes.string,
+    floatingLabelStyle: React.PropTypes.object,
     floatingLabelText: React.PropTypes.string,
     fullWidth: React.PropTypes.bool,
     hintText: React.PropTypes.string,
     id: React.PropTypes.string,
+    inputStyle: React.PropTypes.object,
     multiLine: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
+    onEnterKeyDown: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
-    onEnterKeyDown: React.PropTypes.func,
-    type: React.PropTypes.string,
     rows: React.PropTypes.number,
-    inputStyle: React.PropTypes.object,
-    floatingLabelStyle: React.PropTypes.object,
+    type: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -206,6 +207,7 @@ let TextField = React.createClass({
   render() {
     let {
       className,
+      errorStyle,
       errorText,
       floatingLabelText,
       fullWidth,
@@ -222,21 +224,21 @@ let TextField = React.createClass({
 
     let styles = this.getStyles();
 
-    let inputId = this.props.id || this._uniqueId;
+    let inputId = id || this._uniqueId;
 
     let errorTextElement = this.state.errorText ? (
       <div style={this.mergeAndPrefix(styles.error)}>{this.state.errorText}</div>
     ) : null;
 
-    let hintTextElement = this.props.hintText ? (
-      <div style={this.mergeAndPrefix(styles.hint)}>{this.props.hintText}</div>
+    let hintTextElement = hintText ? (
+      <div style={this.mergeAndPrefix(styles.hint)}>{hintText}</div>
     ) : null;
 
-    let floatingLabelTextElement = this.props.floatingLabelText ? (
+    let floatingLabelTextElement = floatingLabelText ? (
       <label
         style={this.mergeAndPrefix(styles.floatingLabel, this.props.floatingLabelStyle)}
         htmlFor={inputId}>
-        {this.props.floatingLabelText}
+        {floatingLabelText}
       </label>
     ) : null;
 
@@ -260,18 +262,18 @@ let TextField = React.createClass({
       inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props});
     }
     else {
-      inputElement = this.props.multiLine ? (
+      inputElement = multiLine ? (
         <EnhancedTextarea
           {...other}
           {...inputProps}
-        rows={this.props.rows}
+        rows={rows}
           onHeightChange={this._handleTextAreaHeightChange}
           textareaStyle={this.mergeAndPrefix(styles.textarea)} />
       ) : (
         <input
           {...other}
           {...inputProps}
-          type={this.props.type} />
+          type={type} />
       );
     }
 
@@ -283,7 +285,7 @@ let TextField = React.createClass({
     let focusUnderlineElement = <hr style={this.mergeAndPrefix(styles.focusUnderline)} />;
 
     return (
-      <div className={this.props.className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div className={className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
         {floatingLabelTextElement}
         {hintTextElement}
         {inputElement}
