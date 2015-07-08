@@ -1,7 +1,7 @@
 let React = require('react');
 let StylePropable = require('../mixins/style-propable');
 let Dom = require('../utils/dom');
-let RippleCircle = require('./circle');
+let RippleCircle = require('./circle-ripple');
 
 
 let TouchRipple = React.createClass({
@@ -31,7 +31,8 @@ let TouchRipple = React.createClass({
       width: '100%',
       position: 'absolute',
       top: 0,
-      left: 0
+      left: 0,
+      overflow: 'hidden',
     }, this.props.style);
 
     return (

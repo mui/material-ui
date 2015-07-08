@@ -14,8 +14,8 @@ let ClearFix = React.createClass({
       return {
         content: "' '",
         display: 'table'
-      }
-    }
+      };
+    };
 
     let after = before();
     after.clear = 'both';

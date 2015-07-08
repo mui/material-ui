@@ -86,7 +86,6 @@ let TableHeader = React.createClass({
   },
 
   _getHeaderColumns(headerData, keyPrefix) {
-    let styles = this.getStyles();
     let headers = [];
 
     for (let index = 0; index < headerData.length; index++) {

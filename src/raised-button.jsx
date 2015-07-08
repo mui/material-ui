@@ -35,6 +35,11 @@ let RaisedButton = React.createClass({
     primary: React.PropTypes.bool,
     secondary: React.PropTypes.bool,
     labelStyle: React.PropTypes.object,
+    backgroundColor: React.PropTypes.string,
+    labelColor: React.PropTypes.string,
+    disabledBackgroundColor: React.PropTypes.string,
+    disabledLabelColor: React.PropTypes.string,
+    fullWidth: React.PropTypes.bool
   },
 
   getInitialState() {
@@ -56,14 +61,22 @@ let RaisedButton = React.createClass({
   },
 
   _getBackgroundColor() {
-    return  this.props.disabled ? this.getTheme().disabledColor :
+    let disabledColor = this.props.disabledBackgroundColor ? this.props.disabledBackgroundColor :
+      this.getTheme().disabledColor;
+
+    return this.props.disabled ? disabledColor :
+      this.props.backgroundColor ? this.props.backgroundColor :
       this.props.primary ? this.getTheme().primaryColor :
       this.props.secondary ? this.getTheme().secondaryColor :
       this.getTheme().color;
   },
 
   _getLabelColor() {
-    return  this.props.disabled ? this.getTheme().disabledTextColor :
+    let disabledColor = this.props.disabledLabelColor ? this.props.disabledLabelColor :
+      this.getTheme().disabledTextColor;
+
+    return this.props.disabled ? disabledColor :
+      this.props.labelColor ? this.props.labelColor :
       this.props.primary ? this.getTheme().primaryTextColor :
       this.props.secondary ? this.getTheme().secondaryTextColor :
       this.getTheme().textColor;
@@ -82,7 +95,7 @@ let RaisedButton = React.createClass({
     let styles = {
       root: {
         display: 'inline-block',
-        minWidth: this.getThemeButton().minWidth,
+        minWidth: this.props.fullWidth ? '100%' : this.getThemeButton().minWidth,
         height: this.getThemeButton().height,
         transition: Transitions.easeOut()
       },
@@ -111,7 +124,8 @@ let RaisedButton = React.createClass({
         margin: 0,
         padding: '0px ' + this.context.muiTheme.spacing.desktopGutterLess + 'px',
         userSelect: 'none',
-        lineHeight: this.getThemeButton().height + 'px',
+        lineHeight: this.props.style && this.props.style.height ?
+         this.props.style.height : this.getThemeButton().height + 'px',
         color:  this._getLabelColor(),
       },
       overlay: {

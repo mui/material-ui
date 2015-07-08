@@ -19,6 +19,7 @@ let TextFieldsPage = React.createClass({
       floatingPropValue: 'Prop Value',
       valueLinkValue: 'Value Link',
       selectValue: undefined,
+      selectValue2: undefined,
       selectValueLinkValue: 4,
       floatingValueLinkValue: 'Value Link'
     };
@@ -78,17 +79,23 @@ let TextFieldsPage = React.createClass({
       '  hintText="Disabled Hint Text"\n' +
       '  disabled={true}\n' +
       '  defaultValue="Disabled With Value" />\n\n' +
+
+      '//Select Fields\n'+
       '<SelectField\n'+
-        'value={this.state.selectValue}\n'+
-        'onChange={this._handleSelectValueChange}\n'+
-        'floatingLabelText="Select Field"\n'+
-        'menuItems={menuItems} />\n'+
+      '  value={this.state.selectValue}\n'+
+      '  onChange={this._handleSelectValueChange.bind(null, "selectValue")}\n'+
+      '  hintText="Hint Text"\n'+
+      '  menuItems={menuItems} />\n'+
       '<SelectField\n'+
-        'valueLink={this.linkState("selectValueLinkValue")}\n'+
-        'floatingLabelText="Select Field"\n'+
-        'valueMember="id"\n'+
-        'displayMember="name"\n'+
-        'menuItems={arbitraryArrayMenuItems} />\n'+
+      '  valueLink={this.linkState("selectValueLinkValue")}\n'+
+      '  floatingLabelText="Select Field"\n'+
+      '  valueMember="id"\n'+
+      '  displayMember="name"\n'+
+      '  menuItems={arbitraryArrayMenuItems} />\n'+
+      '<SelectField\n'+
+      '  value={this.state.selectValue2}\n'+
+      '  onChange={this._handleSelectValueChange.bind(null, "selectValue2")}\n'+
+      '  menuItems={arbitraryArrayMenuItems} />\n\n'+
 
       '//Floating Hint Text Labels\n' +
       '<TextField\n' +
@@ -193,6 +200,12 @@ let TextFieldsPage = React.createClass({
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of the TextField\'s root element.'
+          },
+          {
+            name: 'type',
+            type: 'string',
+            header: 'optional',
+            desc: 'Specifies the type of input to display such as "password" or "text".'
           }
         ]
       },
@@ -265,11 +278,11 @@ let TextFieldsPage = React.createClass({
       { payload: '5', text: 'Weekly' },
     ];
     let arbitraryArrayMenuItems = [
-     {id:1, name:'Never'},
-     {id:2, name:'Every Night'},
-     {id:3, name:'Weeknights'},
-     {id:4, name:'Weekends'},
-     {id:5, name:'Weekly'}
+      {id:1, name:'Never'},
+      {id:2, name:'Every Night'},
+      {id:3, name:'Weeknights'},
+      {id:4, name:'Weekends'},
+      {id:5, name:'Weekly'}
     ];
 
     return (
@@ -303,6 +316,14 @@ let TextFieldsPage = React.createClass({
               multiLine={true} /><br/>
             <TextField
               style={styles.textfield}
+              hintText="The hint text can be as long as you want, it will wrap."
+              multiLine={true} /><br/>
+            <TextField
+              style={styles.textfield}
+              hintText="Hint Text"
+              errorText="The error text can be as long as you want, it will wrap." /><br/>
+            <TextField
+              style={styles.textfield}
               hintText="Hint Text"
               errorText={this.state.errorText}
               onChange={this._handleErrorInputChange} /><br/>
@@ -322,15 +343,21 @@ let TextFieldsPage = React.createClass({
               disabled={true}
               defaultValue="Disabled With Value" /><br/>
             <SelectField
+              style={styles.textfield}
               value={this.state.selectValue}
-              onChange={this._handleSelectValueChange}
-              floatingLabelText="Select Field"
-              menuItems={menuItems} />
+              onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
+              hintText="Hint Text"
+              menuItems={menuItems} /><br/>
             <SelectField
               valueLink={this.linkState('selectValueLinkValue')}
-              floatingLabelText="Select Field"
+              floatingLabelText="Float Label Text"
               valueMember="id"
               displayMember="name"
+              menuItems={arbitraryArrayMenuItems} /><br/>
+            <SelectField
+              style={styles.textfield}
+              value={this.state.selectValue2}
+              onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
               menuItems={arbitraryArrayMenuItems} />
           </div>
           <div style={styles.group}>
@@ -427,10 +454,10 @@ let TextFieldsPage = React.createClass({
     });
   },
 
-  _handleSelectValueChange(e) {
-    this.setState({
-      selectValue: e.target.value
-    });
+  _handleSelectValueChange(name, e) {
+    let change = {};
+    change[name] = e.target.value;
+    this.setState(change);
   },
 
   _handleFloatingInputChange(e) {

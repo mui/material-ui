@@ -92,7 +92,6 @@ let ListItem = React.createClass({
         display: 'block',
         fontSize: 16,
         lineHeight: '16px',
-        overflow: 'hidden',
         position: 'relative',
         transition: Transitions.easeOut()
       },
@@ -205,7 +204,7 @@ let ListItem = React.createClass({
       onMouseOver: this._handleRightIconButtonMouseOver,
       onMouseOut: this._handleRightIconButtonMouseOut,
       onTouchTap: this._handleRightIconButtonTouchTap,
-      onMouseDown: this._handleRightIconButtonMouseUp,
+      onMouseDown: this._handleRightIconButtonMouseDown,
       onMouseUp: this._handleRightIconButtonMouseUp
     });
     this._pushElement(contentChildren, rightToggle, this.mergeStyles(styles.rightToggle));
@@ -232,6 +231,7 @@ let ListItem = React.createClass({
         onMouseOut={this._handleMouseOut}
         onMouseOver={this._handleMouseOver}
         onTouchStart={this._handleTouchStart}
+        ref="enhancedButton"
         style={mergedRootStyles}>
         <div style={mergedInnerDivStyles}>
           {contentChildren}
@@ -239,6 +239,26 @@ let ListItem = React.createClass({
       </EnhancedButton>
     );
 
+  },
+
+  applyFocusState(focusState) {
+    let button = this.refs.enhancedButton;
+    let buttonEl = React.findDOMNode(button);
+
+    if (button) {
+      switch(focusState) {
+        case 'none':
+          buttonEl.blur();
+          break;
+        case 'focused':
+          buttonEl.focus();
+          break;
+        case 'keyboard-focused':
+          button.setKeyboardFocus();
+          buttonEl.focus();
+          break;
+      }
+    }
   },
 
   _pushElement(children, element, baseStyles, additionalProps) {
@@ -277,31 +297,31 @@ let ListItem = React.createClass({
     if (isKeyboardFocused) newState.isKeyboardFocused = false;
     this.setState(newState);
 
-    if (iconButton.onKeyboardFocus) iconButton.onKeyboardFocus(e, isKeyboardFocused);
+    if (iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(e, isKeyboardFocused);
   },
 
   _handleRightIconButtonMouseDown(e) {
     let iconButton = this.props.rightIconButton;
     e.stopPropagation();
-    if (iconButton.onMouseDown) iconButton.onDown(e);
+    if (iconButton.props.onMouseDown) iconButton.props.onMouseDown(e);
   },
 
   _handleRightIconButtonMouseOut(e) {
     let iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: false});
-    if (iconButton.onMouseOut) iconButton.onMouseOut(e);
+    if (iconButton.props.onMouseOut) iconButton.props.onMouseOut(e);
   },
 
   _handleRightIconButtonMouseOver(e) {
     let iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: true});
-    if (iconButton.onMouseOver) iconButton.onMouseOver(e);
+    if (iconButton.props.onMouseOver) iconButton.props.onMouseOver(e);
   },
 
   _handleRightIconButtonMouseUp(e) {
     let iconButton = this.props.rightIconButton;
     e.stopPropagation();
-    if (iconButton.onMouseUp) iconButton.onUp(e);
+    if (iconButton.props.onMouseUp) iconButton.props.onMouseUp(e);
   },
 
   _handleRightIconButtonTouchTap(e) {
@@ -309,7 +329,7 @@ let ListItem = React.createClass({
 
     //Stop the event from bubbling up to the list-item
     e.stopPropagation();
-    if (iconButton.onTouchTap) iconButton.onTouchTap(e);
+    if (iconButton.props.onTouchTap) iconButton.props.onTouchTap(e);
   },
 
   _handleTouchStart(e) {

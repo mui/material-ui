@@ -55,7 +55,7 @@ let LeftNav = React.createClass({
     this._enableSwipeHandling();
   },
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this._updateMenuHeight();
     this._enableSwipeHandling();
   },
@@ -202,7 +202,7 @@ let LeftNav = React.createClass({
     }
   },
 
-  _onWindowResize(e) {
+  _onWindowResize() {
     this._updateMenuHeight();
   },
 
@@ -300,20 +300,26 @@ let LeftNav = React.createClass({
   },
 
   _onBodyTouchEnd(e) {
-    let currentX = e.changedTouches[0].pageX;
-    let translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
+    if (this.state.swiping) {
+      let currentX = e.changedTouches[0].pageX;
+      let translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
 
-    this.setState({
-      maybeSwiping: false,
-      swiping: null
-    });
+      this.setState({
+        maybeSwiping: false,
+        swiping: null
+      });
 
-    // We have to open or close after setting swiping to null,
-    // because only then CSS transition is enabled.
-    if (translateRatio > 0.5) {
-      this.close();
+      // We have to open or close after setting swiping to null,
+      // because only then CSS transition is enabled.
+      if (translateRatio > 0.5) {
+        this.close();
+      } else {
+        this._setPosition(0);
+      }
     } else {
-      this._setPosition(0);
+      this.setState({
+        maybeSwiping: false
+      });
     }
 
     document.body.removeEventListener('touchmove', this._onBodyTouchMove);

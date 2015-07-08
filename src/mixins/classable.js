@@ -11,7 +11,7 @@ module.exports = {
   getDefaultProps(){
     return {
       className: ''
-    }
+    };
   },
 
   getClasses(initialClasses, additionalClassObj) {
@@ -47,4 +47,4 @@ module.exports = {
     return classObj;
   }
 
-}
+};

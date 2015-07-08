@@ -56,8 +56,10 @@ module.exports = {
   },
 
   withoutTransition(el, callback) {
+    let originalTransition = el.style.transition;
+
     //turn off transition
-    el.style.transition = 'none';
+    el.style.transition = null;
 
     callback();
 
@@ -65,7 +67,7 @@ module.exports = {
     this.forceRedraw(el);
 
     //put the transition back
-    el.style.transition = '';
+    el.style.transition = originalTransition;
   }
 
-}
+};

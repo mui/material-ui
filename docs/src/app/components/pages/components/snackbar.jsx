@@ -1,5 +1,5 @@
 let React = require('react');
-let { RaisedButton, Snackbar } = require('material-ui');
+let { RaisedButton, Snackbar, TextField } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 
 
@@ -8,6 +8,11 @@ class SnackbarPage extends React.Component {
   constructor() {
     super();
     this._handleClick = this._handleClick.bind(this);
+    this._updateAutoHideDuration = this._updateAutoHideDuration.bind(this);
+
+    this.state = {
+      autoHideDuration: 0
+    };
   }
 
   render() {
@@ -15,6 +20,7 @@ class SnackbarPage extends React.Component {
       '<Snackbar\n' +
       '  message="Event added to your calendar"\n' +
       '  action="undo"\n' +
+      '  autoHideDuration={this.state.autoHideDuration}\n' +
       '  onActionTouchTap={this._handleAction}/>\n\n' +
       '//Somewhere in our code\n' +
       '_handleAction() {\n' +
@@ -31,6 +37,12 @@ class SnackbarPage extends React.Component {
             type: 'string',
             header: 'optional',
             desc: 'The name of the action on the snackbar.'
+          },
+          {
+            name: 'autoHideDuration',
+            type: 'number',
+            header: 'optional',
+            desc: 'The number of milliseconds to wait before automatically dismissing. If no value is specified the snackbar will dismiss normally. If a value is provided the snackbar can still be dismissed normally. If a snackbar is dismissed before the timer expires, the timer will be cleared.'
           },
           {
             name: 'message',
@@ -89,10 +101,18 @@ class SnackbarPage extends React.Component {
           onTouchTap={this._handleClick}
           label="Add to my calendar" />
 
+        <br />
+
+        <TextField
+          floatingLabelText="Auto Hide Duration"
+          value={this.state.autoHideDuration}
+          onChange={this._updateAutoHideDuration} />
+
         <Snackbar
           ref="snackbar"
           message="Event added to your calendar"
           action="undo"
+          autoHideDuration={this.state.autoHideDuration}
           onActionTouchTap={this._handleAction} />
 
       </ComponentDoc>
@@ -106,6 +126,13 @@ class SnackbarPage extends React.Component {
   _handleAction() {
     //We can add more code here! In this example, we'll just include an alert.
     window.alert("We removed the event from your calendar.");
+  }
+
+  _updateAutoHideDuration(e) {
+    let value = e.target.value;
+    this.setState({
+      autoHideDuration: value.length > 0 ? parseInt(value) : undefined
+    });
   }
 
 }

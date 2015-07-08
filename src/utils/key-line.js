@@ -10,4 +10,4 @@ module.exports = {
   getIncrementalDim(dim) {
     return Math.ceil(dim / this.Desktop.INCREMENT) * this.Desktop.INCREMENT;
   }
-}
+};

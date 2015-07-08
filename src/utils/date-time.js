@@ -164,4 +164,4 @@ module.exports = {
     return ~~(this.monthDiff(d1, d2) / 12);
   }
 
-}
+};

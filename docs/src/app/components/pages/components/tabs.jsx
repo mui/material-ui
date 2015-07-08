@@ -87,7 +87,13 @@ class TabsPage extends React.Component {
             name: 'tabItemContainerStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the tabs container.'
+            desc: 'Override the inline-styles of the tab-labels container.'
+          },
+          {
+            name: 'contentContainerStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the content\'s container.'
           },
           {
             name: 'tabWidth',

@@ -1,7 +1,6 @@
 let React = require('react/addons');
 let StylePropable = require('./mixins/style-propable');
 let Colors = require('./styles/colors');
-let Typography = require('./styles/typography');
 
 let Avatar = React.createClass({
 

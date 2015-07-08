@@ -5,6 +5,7 @@ let ColorManipulator = require('./utils/color-manipulator');
 let EnhancedButton = require('./enhanced-button');
 let FontIcon = require('./font-icon');
 let Paper = require('./paper');
+let Children = require('./utils/children');
 
 
 let getZDepth = function(disabled) {
@@ -16,7 +17,7 @@ let getZDepth = function(disabled) {
 };
 
 
-let RaisedButton = React.createClass({
+let FloatingActionButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -69,7 +70,7 @@ let RaisedButton = React.createClass({
   },
 
   _getBackgroundColor() {
-    return  this.props.disabled ? this.getTheme().disabledColor :
+    return this.props.disabled ? this.getTheme().disabledColor :
       this.props.secondary ? this.getTheme().secondaryColor :
       this.getTheme().color;
   },
@@ -80,12 +81,14 @@ let RaisedButton = React.createClass({
   },
 
   _getIconColor() {
-    return  this.props.disabled ? this.getTheme().disabledTextColor :
+    return this.props.disabled ? this.getTheme().disabledTextColor :
       this.props.secondary ? this.getTheme().secondaryIconColor :
       this.getTheme().iconColor;
   },
 
   getStyles() {
+    let themeVariables = this.context.muiTheme.component.floatingActionButton;
+
     let styles = {
       root: {
         transition: Transitions.easeOut(),
@@ -94,8 +97,8 @@ let RaisedButton = React.createClass({
       container: {
         transition: Transitions.easeOut(),
         position: 'relative',
-        height: this.getTheme().buttonSize,
-        width: this.getTheme().buttonSize,
+        height: themeVariables.buttonSize,
+        width: themeVariables.buttonSize,
         padding: 0,
         overflow: 'hidden',
         backgroundColor: this._getBackgroundColor(),
@@ -107,25 +110,27 @@ let RaisedButton = React.createClass({
         //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
         transform: 'translate3d(0, 0, 0)'
       },
-      icon: {
-        lineHeight: this.getTheme().buttonSize + 'px',
-        fill: this.getTheme().iconColor,
-        color: this._getIconColor()
+      containerWhenMini: {
+        height: themeVariables.miniSize,
+        width: themeVariables.miniSize
       },
       overlay: {
         transition: Transitions.easeOut(),
         top: 0
       },
-      containerWhenMini: {
-        height: this.getTheme().miniSize,
-        width: this.getTheme().miniSize
-      },
-      iconWhenMini: {
-        lineHeight: this.getTheme().miniSize + 'px'
-      },
       overlayWhenHovered: {
         backgroundColor: ColorManipulator.fade(this._getIconColor(), 0.4)
-      }
+      },
+      icon: {
+        height: themeVariables.buttonSize,
+        lineHeight: themeVariables.buttonSize + 'px',
+        fill: themeVariables.iconColor,
+        color: this._getIconColor()
+      },
+      iconWhenMini: {
+        height: themeVariables.miniSize,
+        lineHeight: themeVariables.miniSize + 'px'
+      },
     };
     return styles;
   },
@@ -133,25 +138,31 @@ let RaisedButton = React.createClass({
   render() {
     let {
       disabled,
-      icon,
       mini,
       secondary,
+      iconStyle,
+      iconClassName,
       ...other } = this.props;
 
     let styles = this.getStyles();
 
     let iconElement;
-    if (this.props.iconClassName) {
+    if (iconClassName) {
       iconElement =
         <FontIcon
-          className={this.props.iconClassName}
+          className={iconClassName}
           style={this.mergeAndPrefix(
             styles.icon,
             mini && styles.iconWhenMini,
-            this.props.iconStyle)}/>
+            iconStyle)}/>;
     }
 
-    let rippleColor = styles.icon.color;
+    let children = Children.extend(this.props.children, {
+      style: this.mergeAndPrefix(
+        styles.icon,
+        mini && styles.iconWhenMini,
+        iconStyle)
+    });
 
     let buttonEventHandlers = disabled ? null : {
       onMouseDown: this._handleMouseDown,
@@ -178,8 +189,8 @@ let RaisedButton = React.createClass({
             styles.container,
             this.props.mini && styles.containerWhenMini
           )}
-          focusRippleColor={rippleColor}
-          touchRippleColor={rippleColor}>
+          focusRippleColor={styles.icon.color}
+          touchRippleColor={styles.icon.color}>
             <div
               ref="overlay"
               style={this.mergeAndPrefix(
@@ -187,7 +198,7 @@ let RaisedButton = React.createClass({
                 (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
               )}>
                 {iconElement}
-                {this.props.children}
+                {children}
             </div>
         </EnhancedButton>
       </Paper>
@@ -244,4 +255,4 @@ let RaisedButton = React.createClass({
 
 });
 
-module.exports = RaisedButton;
+module.exports = FloatingActionButton;

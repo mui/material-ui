@@ -60,6 +60,7 @@ let DropDownMenu = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.autoWidth) this._setWidth();
     if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
       return;
     } else if (nextProps.hasOwnProperty('selectedIndex')) {
@@ -159,11 +160,13 @@ let DropDownMenu = React.createClass({
       if (this.props.valueMember && (this.props.valueLink || this.props.value))
       {
         let value = this.props.value || this.props.valueLink.value;
-        for (let i in this.props.menuItems)
+        for (let i = 0; i < this.props.menuItems.length; i++) {
           if (this.props.menuItems[i][this.props.valueMember] === value)
             selectedIndex = i;
+        }
       }
     }
+
 
     let selectedItem = this.props.menuItems[selectedIndex];
     if (selectedItem)
@@ -216,6 +219,7 @@ let DropDownMenu = React.createClass({
     let el = React.findDOMNode(this);
     let menuItemsDom = React.findDOMNode(this.refs.menuItems);
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
+      el.style.width = 'auto';
       el.style.width = menuItemsDom.offsetWidth + 'px';
     }
   },
@@ -267,7 +271,7 @@ let DropDownMenu = React.createClass({
         e.target.value = selectedItem[this.props.valueMember];
 
       if (this.props.valueLink)
-        this.props.valueLink.requestChange(e.target.value)
+        this.props.valueLink.requestChange(e.target.value);
       else
         this.props.onChange(e, key, payload);
     }

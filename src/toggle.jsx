@@ -28,7 +28,7 @@ let Toggle = React.createClass({
         this.props.defaultToggled ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false
-    }
+    };
   },
 
   getTheme() {
@@ -43,7 +43,7 @@ let Toggle = React.createClass({
         width: 36,
         padding: '4px 0px 6px 2px'
       },
-      toggleElemet: {
+      toggleElement: {
         width: toggleTrackWidth
       },
       track: {
@@ -111,10 +111,10 @@ let Toggle = React.createClass({
       thumbStyles.marginLeft = '-' + thumbStyles.width;
     }
 
-    let toggleElemetStyles = this.mergeAndPrefix(styles.toggleElemet, this.props.elementStyle);
+    let toggleElementStyles = this.mergeAndPrefix(styles.toggleElement, this.props.elementStyle);
 
     let toggleElement = (
-      <div style={toggleElemetStyles}>
+      <div style={toggleElementStyles}>
         <div style={trackStyles} />
         <Paper style={thumbStyles} circle={true} zDepth={1} />
       </div>
@@ -125,7 +125,7 @@ let Toggle = React.createClass({
       left: '-10'
     }, this.props.rippleStyle);
 
-    let rippleColor =  this.state.switched ?
+    let rippleColor = this.state.switched ?
       this.getTheme().thumbOnColor : this.context.muiTheme.component.textColor;
 
     let iconStyle = this.mergeAndPrefix(

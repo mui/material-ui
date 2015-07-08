@@ -5,7 +5,7 @@ let ClockPointer = require("./clock-pointer");
 
 
 function rad2deg(rad) {
-  return rad * 57.29577951308232
+  return rad * 57.29577951308232;
 }
 
 function getTouchEventOffsetValues(e) {
@@ -103,7 +103,7 @@ let ClockMinutes = React.createClass({
     let cx = this.basePoint.x - this.center.x;
     let cy = this.basePoint.y - this.center.y;
 
-    let atan = Math.atan2(cx, cy) -  Math.atan2(x, y);
+    let atan = Math.atan2(cx, cy) - Math.atan2(x, y);
 
     let deg = rad2deg(atan);
     deg = Math.round(deg / step ) * step;
@@ -157,9 +157,9 @@ let ClockMinutes = React.createClass({
 
     return (
       <div ref="clock" style={this.mergeAndPrefix(styles.root)} >
-        <ClockPointer value={minutes.selected}  type="minute" />
+        <ClockPointer value={minutes.selected} type="minute" />
         {minutes.numbers}
-        <div ref="mask"  style={this.mergeAndPrefix(styles.hitMask)} hasSelected={minutes.hasSelected} onTouchMove={this.handleTouch} onTouchEnd={this.handleTouch} onMouseUp={this.handleUp} onMouseMove={this.handleMove} />
+        <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} hasSelected={minutes.hasSelected} onTouchMove={this.handleTouch} onTouchEnd={this.handleTouch} onMouseUp={this.handleUp} onMouseMove={this.handleMove} />
       </div>
     );
   }

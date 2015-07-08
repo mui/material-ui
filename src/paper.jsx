@@ -14,15 +14,16 @@ let Paper = React.createClass({
   propTypes: {
     circle: React.PropTypes.bool,
     rounded: React.PropTypes.bool,
-    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5]),
-    transitionEnabled: React.PropTypes.bool
+    transitionEnabled: React.PropTypes.bool,
+    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5])
   },
 
   getDefaultProps() {
     return {
+      circle: false,
       rounded: true,
-      zDepth: 1,
-      transitionEnabled: true
+      transitionEnabled: true,
+      zDepth: 1
     };
   },
 
@@ -61,7 +62,7 @@ let Paper = React.createClass({
 
   _getZDepthShadows(zDepth) {
     let shadows = [
-      '',
+      null,
       '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)',
       '0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23)',
       '0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23)',

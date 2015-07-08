@@ -4,6 +4,7 @@ let Transitions = require('./styles/transitions');
 let EnhancedButton = require('./enhanced-button');
 let FontIcon = require('./font-icon');
 let Tooltip = require('./tooltip');
+let Children = require('./utils/children');
 
 
 let IconButton = React.createClass({
@@ -23,10 +24,16 @@ let IconButton = React.createClass({
     onFocus: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
+    tooltipStyles: React.PropTypes.object,
+    tooltipPosition: React.PropTypes.oneOf([
+      'bottom-center',
+      'bottom-left',
+      'bottom-right',
+      'top-center',
+      'top-left',
+      'top-right'
+    ]),
     touch: React.PropTypes.bool,
-    tooltipPosition: React.PropTypes.oneOf(['bottom-center',
-      'bottom-left','bottom-right','top-center', 'top-left',
-      'top-right'])
   },
 
   getInitialState() {
@@ -42,17 +49,6 @@ let IconButton = React.createClass({
     };
   },
 
-  componentDidMount() {
-    if (process.env.NODE_ENV !== 'production') {
-      if (this.props.iconClassName && this.props.children) {
-        let warning = 'You have set both an iconClassName and a child icon. ' +
-                      'It is recommended you use only one method when adding ' +
-                      'icons to IconButtons.';
-        console.warn(warning);
-      }
-    }
-  },
-
   getStyles() {
     let spacing = this.context.muiTheme.spacing;
     let palette = this.context.muiTheme.palette;
@@ -64,7 +60,8 @@ let IconButton = React.createClass({
         transition: Transitions.easeOut(),
         padding: spacing.iconSize / 2,
         width: spacing.iconSize*2,
-        height: spacing.iconSize*2
+        height: spacing.iconSize*2,
+        fontSize: 0
       },
       tooltip: {
         boxSizing: 'border-box',
@@ -94,6 +91,7 @@ let IconButton = React.createClass({
       iconClassName,
       tooltip,
       touch,
+      iconStyle,
       ...other } = this.props;
     let fonticon;
 
@@ -106,7 +104,7 @@ let IconButton = React.createClass({
         label={tooltip}
         show={this.state.tooltipShown}
         touch={touch}
-        style={this.mergeStyles(styles.tooltip)}
+        style={this.mergeStyles(styles.tooltip, this.props.tooltipStyles)}
         verticalPosition={tooltipPosition[0]}
         horizontalPosition={tooltipPosition[1]}/>
     ) : null;
@@ -114,8 +112,8 @@ let IconButton = React.createClass({
     if (iconClassName) {
       let {
         iconHoverColor,
-        ...iconStyle
-      } = this.props.iconStyle;
+        ...iconStyleFontIcon
+      } = iconStyle;
 
       fonticon = (
         <FontIcon
@@ -124,14 +122,13 @@ let IconButton = React.createClass({
           style={this.mergeStyles(
             styles.icon,
             disabled ? styles.disabled : {},
-            iconStyle
-          )}/>
+            iconStyleFontIcon
+          )}>
+          {this.props.children}</FontIcon>
       );
     }
 
-    let children = disabled ?
-      this._addStylesToChildren(styles.disabled) :
-      this.props.children;
+    let childrenStyle = disabled ? this.mergeStyles(iconStyle, styles.disabled) : iconStyle;
 
     return (
       <EnhancedButton {...other}
@@ -147,25 +144,16 @@ let IconButton = React.createClass({
 
         {tooltipElement}
         {fonticon}
-        {children}
+        {Children.extend(this.props.children, {
+          style: childrenStyle
+        })}
 
       </EnhancedButton>
     );
   },
 
-  _addStylesToChildren(styles) {
-    let children = [];
-
-    React.Children.forEach(this.props.children, (child) => {
-      children.push(
-        React.cloneElement(child, {
-          key: child.props.key ? child.props.key : children.length,
-          style: styles
-        })
-      );
-    });
-
-    return children;
+  setKeyboardFocus() {
+    this.refs.button.setKeyboardFocus();
   },
 
   _showTooltip() {

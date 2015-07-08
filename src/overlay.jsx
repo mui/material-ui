@@ -6,6 +6,8 @@ let Colors = require('./styles/colors');
 
 let Overlay = React.createClass({
 
+  _originalBodyOverflow: '',
+
   mixins: [StylePropable],
 
   propTypes: {
@@ -21,13 +23,16 @@ let Overlay = React.createClass({
     };
   },
 
+  componentDidMount() {
+    this._originalBodyOverflow = document.getElementsByTagName('body')[0].style.oveflow;
+  },
+
   componentDidUpdate() {
     if (this.props.autoLockScrolling) (this.props.show) ? this._preventScrolling() : this._allowScrolling();
   },
 
-
   componentWillUnmount() {
-    this.allowScrolling();
+    this._allowScrolling();
   },
 
   setOpacity(opacity) {
@@ -70,14 +75,13 @@ let Overlay = React.createClass({
   },
 
   render() {
-
     let {
       show,
       style,
       ...other
     } = this.props;
 
-    let styles = this.mergeAndPrefix(this.getStyles().root, this.props.style, this.props.show && this.getStyles().rootWhenShown)
+    let styles = this.mergeAndPrefix(this.getStyles().root, this.props.style, this.props.show && this.getStyles().rootWhenShown);
 
     return (
       <div {...other} style={styles} />
@@ -99,7 +103,7 @@ let Overlay = React.createClass({
 
   _allowScrolling() {
     let body = document.getElementsByTagName('body')[0];
-    body.style.overflow = '';
+    body.style.overflow = this._originalBodyOverflow;
   }
 
 });

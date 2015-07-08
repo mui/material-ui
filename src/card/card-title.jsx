@@ -38,7 +38,7 @@ let CardTitle = React.createClass({
         color: this.props.subtitleColor,
         display: 'block'
       }
-    }
+    };
   },
   render() {
     let styles = this.getStyles();

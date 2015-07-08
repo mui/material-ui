@@ -277,7 +277,7 @@ let Calendar = React.createClass({
       nextMonth: DateTime.monthDiff(this.state.selectedDate, this.props.maxDate) < 0,
       prevYear: DateTime.yearDiff(this.state.selectedDate, this.props.minDate) > 0,
       nextYear: DateTime.yearDiff(this.state.selectedDate, this.props.maxDate) < 0
-    }
+    };
   },
 
   _handleMonthDayClick() {
@@ -294,7 +294,7 @@ let Calendar = React.createClass({
       switch (e.keyCode) {
         case KeyCode.UP:
           if (e.altKey && e.shiftKey) {
-            this._addSelectedYears(-1)
+            this._addSelectedYears(-1);
           }
           else if (e.shiftKey) {
             this._addSelectedMonths(-1);

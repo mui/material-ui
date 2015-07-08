@@ -29,7 +29,7 @@ let Checkbox = React.createClass({
         this.props.defaultChecked ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
-    }
+    };
   },
 
   getTheme() {

@@ -95,7 +95,7 @@ module.exports = {
   fade(color, amount) {
     color = this._decomposeColor(color);
     if (color.type === 'rgb' || color.type === 'hsl') color.type += 'a';
-    return this._convertColorToString(color, amount)
+    return this._convertColorToString(color, amount);
   },
 
   // Desaturates rgb and sets opacity to 0.15
@@ -104,7 +104,7 @@ module.exports = {
 
     if (color.type.indexOf('hsl') > -1) {
       color.values[2] += amount;
-      return  this._decomposeColor(this._convertColorToString(color));
+      return this._decomposeColor(this._convertColorToString(color));
     }
     else if (color.type.indexOf('rgb') > -1) {
       for (let i = 0; i < 3; i++) {
@@ -115,7 +115,7 @@ module.exports = {
 
     if (color.type.indexOf('a') <= -1) color.type += 'a';
 
-    return  this._convertColorToString(color, '0.15');
+    return this._convertColorToString(color, '0.15');
   },
 
   darken(color, amount) {
@@ -123,7 +123,7 @@ module.exports = {
 
     if (color.type.indexOf('hsl') > -1) {
       color.values[2] += amount;
-      return  this._decomposeColor(this._convertColorToString(color));
+      return this._decomposeColor(this._convertColorToString(color));
     }
     else if (color.type.indexOf('rgb') > -1) {
       for (let i = 0; i < 3; i++) {

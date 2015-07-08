@@ -4,7 +4,7 @@ let Transitions = require('../styles/transitions');
 let Colors = require('../styles/colors');
 
 
-let RippleCircle = React.createClass({
+let CircleRipple = React.createClass({
 
   mixins: [StylePropable],
 
@@ -53,4 +53,4 @@ let RippleCircle = React.createClass({
 
 });
 
-module.exports = RippleCircle;
+module.exports = CircleRipple;

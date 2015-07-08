@@ -197,11 +197,11 @@ let LightTheme = {
     };
 
     // Properties based on previous properties
-    obj.flatButton.disabledTextColor = ColorManipulator.fade(obj.flatButton.textColor, 0.3),
-    obj.floatingActionButton.disabledColor = ColorManipulator.darken(Colors.white, 0.1),
-    obj.floatingActionButton.disabledTextColor = ColorManipulator.fade(palette.textColor, 0.3)
-    obj.raisedButton.disabledColor = ColorManipulator.darken(obj.raisedButton.color, 0.1),
-    obj.raisedButton.disabledTextColor = ColorManipulator.fade(obj.raisedButton.textColor, 0.3)
+    obj.flatButton.disabledTextColor = ColorManipulator.fade(obj.flatButton.textColor, 0.3);
+    obj.floatingActionButton.disabledColor = ColorManipulator.darken(Colors.white, 0.1);
+    obj.floatingActionButton.disabledTextColor = ColorManipulator.fade(palette.textColor, 0.3);
+    obj.raisedButton.disabledColor = ColorManipulator.darken(obj.raisedButton.color, 0.1);
+    obj.raisedButton.disabledTextColor = ColorManipulator.fade(obj.raisedButton.textColor, 0.3);
     obj.slider.handleSizeActive = obj.slider.handleSize * 2;
     obj.toggle.trackRequiredColor = ColorManipulator.fade(obj.toggle.thumbRequiredColor, 0.5);
 

@@ -59,7 +59,7 @@ function theme(customTheme) {
         );
       }
     });
-  }
+  };
 }
 
 module.exports = Theme;
