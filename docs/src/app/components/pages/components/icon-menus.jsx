@@ -45,11 +45,11 @@ class IconMenus extends React.Component {
     let MenuDivider = require('material-ui/lib/menus/menu-divider');
 
     <IconMenu iconButtonElement={iconButtonElement}>
-      <MenuItem>Refresh</MenuItem>
-      <MenuItem>Send Feedback More</MenuItem>
-      <MenuItem>Settings</MenuItem>
-      <MenuItem>Help</MenuItem>
-      <MenuItem>Sign out</MenuItem>
+      <MenuItem primaryText="Refresh" />
+      <MenuItem primaryText="Send feedback" />
+      <MenuItem primaryText="Settings" />
+      <MenuItem primaryText="Help" />
+      <MenuItem primaryText="Sign out" />
     </IconMenu>
     `;
 
@@ -155,41 +155,41 @@ class IconMenus extends React.Component {
 
         <p>Menu with various open directions
         <IconMenu iconButtonElement={iconButtonElement}>
-          <MenuItem>Refresh</MenuItem>
-          <MenuItem>Send Feedback</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Help</MenuItem>
-          <MenuItem>Sign out</MenuItem>
+          <MenuItem primaryText="Refresh" />
+          <MenuItem primaryText="Send feedback" />
+          <MenuItem primaryText="Settings" />
+          <MenuItem primaryText="Help" />
+          <MenuItem primaryText="Sign out" />
         </IconMenu>
 
         <IconMenu
           iconButtonElement={iconButtonElement}
           openDirection="bottom-right">
-          <MenuItem>Refresh</MenuItem>
-          <MenuItem>Send Feedback</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Help</MenuItem>
-          <MenuItem>Sign out</MenuItem>
+          <MenuItem primaryText="Refresh" />
+          <MenuItem primaryText="Send feedback" />
+          <MenuItem primaryText="Settings" />
+          <MenuItem primaryText="Help" />
+          <MenuItem primaryText="Sign out" />
         </IconMenu>
 
         <IconMenu
           iconButtonElement={iconButtonElement}
           openDirection="top-left">
-          <MenuItem>Refresh</MenuItem>
-          <MenuItem>Send Feedback</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Help</MenuItem>
-          <MenuItem>Sign out</MenuItem>
+          <MenuItem primaryText="Refresh" />
+          <MenuItem primaryText="Send feedback" />
+          <MenuItem primaryText="Settings" />
+          <MenuItem primaryText="Help" />
+          <MenuItem primaryText="Sign out" />
         </IconMenu>
 
         <IconMenu
           iconButtonElement={iconButtonElement}
           openDirection="top-right">
-          <MenuItem>Refresh</MenuItem>
-          <MenuItem>Send Feedback</MenuItem>
-          <MenuItem>Settings</MenuItem>
-          <MenuItem>Help</MenuItem>
-          <MenuItem>Sign out</MenuItem>
+          <MenuItem primaryText="Refresh" />
+          <MenuItem primaryText="Send feedback" />
+          <MenuItem primaryText="Settings" />
+          <MenuItem primaryText="Help" />
+          <MenuItem primaryText="Sign out" />
         </IconMenu>
         </p>
 
@@ -199,22 +199,22 @@ class IconMenus extends React.Component {
             onChange={this._handleIconMenuChange}
             openDirection="bottom-right"
             value={this.state.iconMenuValue}>
-            <MenuItem value="1">Refresh</MenuItem>
-            <MenuItem value="2">Send Feedback</MenuItem>
-            <MenuItem value="3">Settings</MenuItem>
-            <MenuItem value="4">Help</MenuItem>
-            <MenuItem value="5">Sign out</MenuItem>
+            <MenuItem value="1" primaryText="Refresh" />
+            <MenuItem value="2" primaryText="Send feedback" />
+            <MenuItem value="3" primaryText="Settings" />
+            <MenuItem value="4" primaryText="Help" />
+            <MenuItem value="5" primaryText="Sign out" />
           </IconMenu>
 
           <IconMenu
             iconButtonElement={iconButtonElement}
             openDirection="bottom-right"
             valueLink={iconMenuValueLink}>
-            <MenuItem value="1">Refresh</MenuItem>
-            <MenuItem value="2">Send Feedback</MenuItem>
-            <MenuItem value="3">Settings</MenuItem>
-            <MenuItem value="4">Help</MenuItem>
-            <MenuItem value="5">Sign out</MenuItem>
+            <MenuItem value="1" primaryText="Refresh" />
+            <MenuItem value="2" primaryText="Send feedback" />
+            <MenuItem value="3" primaryText="Settings" />
+            <MenuItem value="4" primaryText="Help" />
+            <MenuItem value="5" primaryText="Sign out" />
           </IconMenu>
 
           <IconMenu
@@ -223,12 +223,12 @@ class IconMenus extends React.Component {
             onChange={this._handleIconMenuMultiChange}
             openDirection="bottom-right"
             value={this.state.iconMenuMultiValue}>
-            <MenuItem value="1">Blu-ray</MenuItem>
-            <MenuItem value="2">Cassette</MenuItem>
-            <MenuItem value="3">CD</MenuItem>
-            <MenuItem value="4">DVD Audio</MenuItem>
-            <MenuItem value="5">Hybrid SACD</MenuItem>
-            <MenuItem value="6">Vinyl</MenuItem>
+            <MenuItem value="1" primaryText="Blu-ray" />
+            <MenuItem value="2" primaryText="Cassette" />
+            <MenuItem value="3" primaryText="CD" />
+            <MenuItem value="4" primaryText="DVD Audio" />
+            <MenuItem value="5" primaryText="Hybrid SACD" />
+            <MenuItem value="6" primaryText="Vinyl" />
           </IconMenu>
         </p>
 
@@ -236,26 +236,26 @@ class IconMenus extends React.Component {
           <IconMenu
             iconButtonElement={iconButtonElement}
             openDirection="bottom-right">
-            <MenuItem>Home</MenuItem>
-            <MenuItem>Back</MenuItem>
-            <MenuItem disabled={true}>Forward</MenuItem>
+            <MenuItem primaryText="Home" />
+            <MenuItem primaryText="Back" />
+            <MenuItem primaryText="Forward" disabled={true} />
             <MenuDivider />
-            <MenuItem disabled={true}>Recently closed</MenuItem>
-            <MenuItem disabled={true}>Google</MenuItem>
-            <MenuItem>YouTube</MenuItem>
+            <MenuItem primaryText="Recently closed" disabled={true} />
+            <MenuItem primaryText="Google" disabled={true} />
+            <MenuItem primaryText="YouTube" />
           </IconMenu>
 
           <IconMenu
             iconButtonElement={iconButtonElement}
             openDirection="bottom-right">
-            <MenuItem leftIcon={<RemoveRedEye />}>Preview</MenuItem>
-            <MenuItem leftIcon={<PersonAdd />}>Share</MenuItem>
-            <MenuItem leftIcon={<ContentLink />}>Get link</MenuItem>
+            <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
+            <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
+            <MenuItem primaryText="Get link" leftIcon={<ContentLink />} />
             <MenuDivider />
-            <MenuItem leftIcon={<ContentCopy />}>Make a copy</MenuItem>
-            <MenuItem leftIcon={<Download />}>Download</MenuItem>
+            <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
+            <MenuItem primaryText="Download" leftIcon={<Download />} />
             <MenuDivider />
-            <MenuItem leftIcon={<Delete />}>Remove</MenuItem>
+            <MenuItem primaryText="Remove" leftIcon={<Delete />} />
           </IconMenu>
         </p>
 
@@ -266,57 +266,57 @@ class IconMenus extends React.Component {
             maxHeight={272}
             openDirection="bottom-right"
             valueLink={usStateValueLink}>
-            <MenuItem value="AL">Alabama</MenuItem>
-            <MenuItem value="AK">Alaska</MenuItem>
-            <MenuItem value="AZ">Arizona</MenuItem>
-            <MenuItem value="AR">Arkansas</MenuItem>
-            <MenuItem value="CA">California</MenuItem>
-            <MenuItem value="CO">Colorado</MenuItem>
-            <MenuItem value="CT">Connecticut</MenuItem>
-            <MenuItem value="DE">Delaware</MenuItem>
-            <MenuItem value="DC">District Of Columbia</MenuItem>
-            <MenuItem value="FL">Florida</MenuItem>
-            <MenuItem value="GA">Georgia</MenuItem>
-            <MenuItem value="HI">Hawaii</MenuItem>
-            <MenuItem value="ID">Idaho</MenuItem>
-            <MenuItem value="IL">Illinois</MenuItem>
-            <MenuItem value="IN">Indiana</MenuItem>
-            <MenuItem value="IA">Iowa</MenuItem>
-            <MenuItem value="KS">Kansas</MenuItem>
-            <MenuItem value="KY">Kentucky</MenuItem>
-            <MenuItem value="LA">Louisiana</MenuItem>
-            <MenuItem value="ME">Maine</MenuItem>
-            <MenuItem value="MD">Maryland</MenuItem>
-            <MenuItem value="MA">Massachusetts</MenuItem>
-            <MenuItem value="MI">Michigan</MenuItem>
-            <MenuItem value="MN">Minnesota</MenuItem>
-            <MenuItem value="MS">Mississippi</MenuItem>
-            <MenuItem value="MO">Missouri</MenuItem>
-            <MenuItem value="MT">Montana</MenuItem>
-            <MenuItem value="NE">Nebraska</MenuItem>
-            <MenuItem value="NV">Nevada</MenuItem>
-            <MenuItem value="NH">New Hampshire</MenuItem>
-            <MenuItem value="NJ">New Jersey</MenuItem>
-            <MenuItem value="NM">New Mexico</MenuItem>
-            <MenuItem value="NY">New York</MenuItem>
-            <MenuItem value="NC">North Carolina</MenuItem>
-            <MenuItem value="ND">North Dakota</MenuItem>
-            <MenuItem value="OH">Ohio</MenuItem>
-            <MenuItem value="OK">Oklahoma</MenuItem>
-            <MenuItem value="OR">Oregon</MenuItem>
-            <MenuItem value="PA">Pennsylvania</MenuItem>
-            <MenuItem value="RI">Rhode Island</MenuItem>
-            <MenuItem value="SC">South Carolina</MenuItem>
-            <MenuItem value="SD">South Dakota</MenuItem>
-            <MenuItem value="TN">Tennessee</MenuItem>
-            <MenuItem value="TX">Texas</MenuItem>
-            <MenuItem value="UT">Utah</MenuItem>
-            <MenuItem value="VT">Vermont</MenuItem>
-            <MenuItem value="VA">Virginia</MenuItem>
-            <MenuItem value="WA">Washington</MenuItem>
-            <MenuItem value="WV">West Virginia</MenuItem>
-            <MenuItem value="WI">Wisconsin</MenuItem>
-            <MenuItem value="WY">Wyoming</MenuItem>
+            <MenuItem value="AL" primaryText="Alabama" />
+            <MenuItem value="AK" primaryText="Alaska" />
+            <MenuItem value="AZ" primaryText="Arizona" />
+            <MenuItem value="AR" primaryText="Arkansas" />
+            <MenuItem value="CA" primaryText="California" />
+            <MenuItem value="CO" primaryText="Colorado" />
+            <MenuItem value="CT" primaryText="Connecticut" />
+            <MenuItem value="DE" primaryText="Delaware" />
+            <MenuItem value="DC" primaryText="District Of Columbia" />
+            <MenuItem value="FL" primaryText="Florida" />
+            <MenuItem value="GA" primaryText="Georgia" />
+            <MenuItem value="HI" primaryText="Hawaii" />
+            <MenuItem value="ID" primaryText="Idaho" />
+            <MenuItem value="IL" primaryText="Illinois" />
+            <MenuItem value="IN" primaryText="Indiana" />
+            <MenuItem value="IA" primaryText="Iowa" />
+            <MenuItem value="KS" primaryText="Kansas" />
+            <MenuItem value="KY" primaryText="Kentucky" />
+            <MenuItem value="LA" primaryText="Louisiana" />
+            <MenuItem value="ME" primaryText="Maine" />
+            <MenuItem value="MD" primaryText="Maryland" />
+            <MenuItem value="MA" primaryText="Massachusetts" />
+            <MenuItem value="MI" primaryText="Michigan" />
+            <MenuItem value="MN" primaryText="Minnesota" />
+            <MenuItem value="MS" primaryText="Mississippi" />
+            <MenuItem value="MO" primaryText="Missouri" />
+            <MenuItem value="MT" primaryText="Montana" />
+            <MenuItem value="NE" primaryText="Nebraska" />
+            <MenuItem value="NV" primaryText="Nevada" />
+            <MenuItem value="NH" primaryText="New Hampshire" />
+            <MenuItem value="NJ" primaryText="New Jersey" />
+            <MenuItem value="NM" primaryText="New Mexico" />
+            <MenuItem value="NY" primaryText="New York" />
+            <MenuItem value="NC" primaryText="North Carolina" />
+            <MenuItem value="ND" primaryText="North Dakota" />
+            <MenuItem value="OH" primaryText="Ohio" />
+            <MenuItem value="OK" primaryText="Oklahoma" />
+            <MenuItem value="OR" primaryText="Oregon" />
+            <MenuItem value="PA" primaryText="Pennsylvania" />
+            <MenuItem value="RI" primaryText="Rhode Island" />
+            <MenuItem value="SC" primaryText="South Carolina" />
+            <MenuItem value="SD" primaryText="South Dakota" />
+            <MenuItem value="TN" primaryText="Tennessee" />
+            <MenuItem value="TX" primaryText="Texas" />
+            <MenuItem value="UT" primaryText="Utah" />
+            <MenuItem value="VT" primaryText="Vermont" />
+            <MenuItem value="VA" primaryText="Virginia" />
+            <MenuItem value="WA" primaryText="Washington" />
+            <MenuItem value="WV" primaryText="West Virginia" />
+            <MenuItem value="WI" primaryText="Wisconsin" />
+            <MenuItem value="WY" primaryText="Wyoming" />
           </IconMenu>
 
           <IconMenu
@@ -324,57 +324,57 @@ class IconMenus extends React.Component {
             maxHeight={272}
             openDirection="bottom-left"
             valueLink={usStateValueLink}>
-            <MenuItem value="AL">Alabama</MenuItem>
-            <MenuItem value="AK">Alaska</MenuItem>
-            <MenuItem value="AZ">Arizona</MenuItem>
-            <MenuItem value="AR">Arkansas</MenuItem>
-            <MenuItem value="CA">California</MenuItem>
-            <MenuItem value="CO">Colorado</MenuItem>
-            <MenuItem value="CT">Connecticut</MenuItem>
-            <MenuItem value="DE">Delaware</MenuItem>
-            <MenuItem value="DC">District Of Columbia</MenuItem>
-            <MenuItem value="FL">Florida</MenuItem>
-            <MenuItem value="GA">Georgia</MenuItem>
-            <MenuItem value="HI">Hawaii</MenuItem>
-            <MenuItem value="ID">Idaho</MenuItem>
-            <MenuItem value="IL">Illinois</MenuItem>
-            <MenuItem value="IN">Indiana</MenuItem>
-            <MenuItem value="IA">Iowa</MenuItem>
-            <MenuItem value="KS">Kansas</MenuItem>
-            <MenuItem value="KY">Kentucky</MenuItem>
-            <MenuItem value="LA">Louisiana</MenuItem>
-            <MenuItem value="ME">Maine</MenuItem>
-            <MenuItem value="MD">Maryland</MenuItem>
-            <MenuItem value="MA">Massachusetts</MenuItem>
-            <MenuItem value="MI">Michigan</MenuItem>
-            <MenuItem value="MN">Minnesota</MenuItem>
-            <MenuItem value="MS">Mississippi</MenuItem>
-            <MenuItem value="MO">Missouri</MenuItem>
-            <MenuItem value="MT">Montana</MenuItem>
-            <MenuItem value="NE">Nebraska</MenuItem>
-            <MenuItem value="NV">Nevada</MenuItem>
-            <MenuItem value="NH">New Hampshire</MenuItem>
-            <MenuItem value="NJ">New Jersey</MenuItem>
-            <MenuItem value="NM">New Mexico</MenuItem>
-            <MenuItem value="NY">New York</MenuItem>
-            <MenuItem value="NC">North Carolina</MenuItem>
-            <MenuItem value="ND">North Dakota</MenuItem>
-            <MenuItem value="OH">Ohio</MenuItem>
-            <MenuItem value="OK">Oklahoma</MenuItem>
-            <MenuItem value="OR">Oregon</MenuItem>
-            <MenuItem value="PA">Pennsylvania</MenuItem>
-            <MenuItem value="RI">Rhode Island</MenuItem>
-            <MenuItem value="SC">South Carolina</MenuItem>
-            <MenuItem value="SD">South Dakota</MenuItem>
-            <MenuItem value="TN">Tennessee</MenuItem>
-            <MenuItem value="TX">Texas</MenuItem>
-            <MenuItem value="UT">Utah</MenuItem>
-            <MenuItem value="VT">Vermont</MenuItem>
-            <MenuItem value="VA">Virginia</MenuItem>
-            <MenuItem value="WA">Washington</MenuItem>
-            <MenuItem value="WV">West Virginia</MenuItem>
-            <MenuItem value="WI">Wisconsin</MenuItem>
-            <MenuItem value="WY">Wyoming</MenuItem>
+            <MenuItem value="AL" primaryText="Alabama" />
+            <MenuItem value="AK" primaryText="Alaska" />
+            <MenuItem value="AZ" primaryText="Arizona" />
+            <MenuItem value="AR" primaryText="Arkansas" />
+            <MenuItem value="CA" primaryText="California" />
+            <MenuItem value="CO" primaryText="Colorado" />
+            <MenuItem value="CT" primaryText="Connecticut" />
+            <MenuItem value="DE" primaryText="Delaware" />
+            <MenuItem value="DC" primaryText="District Of Columbia" />
+            <MenuItem value="FL" primaryText="Florida" />
+            <MenuItem value="GA" primaryText="Georgia" />
+            <MenuItem value="HI" primaryText="Hawaii" />
+            <MenuItem value="ID" primaryText="Idaho" />
+            <MenuItem value="IL" primaryText="Illinois" />
+            <MenuItem value="IN" primaryText="Indiana" />
+            <MenuItem value="IA" primaryText="Iowa" />
+            <MenuItem value="KS" primaryText="Kansas" />
+            <MenuItem value="KY" primaryText="Kentucky" />
+            <MenuItem value="LA" primaryText="Louisiana" />
+            <MenuItem value="ME" primaryText="Maine" />
+            <MenuItem value="MD" primaryText="Maryland" />
+            <MenuItem value="MA" primaryText="Massachusetts" />
+            <MenuItem value="MI" primaryText="Michigan" />
+            <MenuItem value="MN" primaryText="Minnesota" />
+            <MenuItem value="MS" primaryText="Mississippi" />
+            <MenuItem value="MO" primaryText="Missouri" />
+            <MenuItem value="MT" primaryText="Montana" />
+            <MenuItem value="NE" primaryText="Nebraska" />
+            <MenuItem value="NV" primaryText="Nevada" />
+            <MenuItem value="NH" primaryText="New Hampshire" />
+            <MenuItem value="NJ" primaryText="New Jersey" />
+            <MenuItem value="NM" primaryText="New Mexico" />
+            <MenuItem value="NY" primaryText="New York" />
+            <MenuItem value="NC" primaryText="North Carolina" />
+            <MenuItem value="ND" primaryText="North Dakota" />
+            <MenuItem value="OH" primaryText="Ohio" />
+            <MenuItem value="OK" primaryText="Oklahoma" />
+            <MenuItem value="OR" primaryText="Oregon" />
+            <MenuItem value="PA" primaryText="Pennsylvania" />
+            <MenuItem value="RI" primaryText="Rhode Island" />
+            <MenuItem value="SC" primaryText="South Carolina" />
+            <MenuItem value="SD" primaryText="South Dakota" />
+            <MenuItem value="TN" primaryText="Tennessee" />
+            <MenuItem value="TX" primaryText="Texas" />
+            <MenuItem value="UT" primaryText="Utah" />
+            <MenuItem value="VT" primaryText="Vermont" />
+            <MenuItem value="VA" primaryText="Virginia" />
+            <MenuItem value="WA" primaryText="Washington" />
+            <MenuItem value="WV" primaryText="West Virginia" />
+            <MenuItem value="WI" primaryText="Wisconsin" />
+            <MenuItem value="WY" primaryText="Wyoming" />
           </IconMenu>
 
           <IconMenu
@@ -382,57 +382,57 @@ class IconMenus extends React.Component {
             maxHeight={272}
             openDirection="top-right"
             valueLink={usStateValueLink}>
-            <MenuItem value="AL">Alabama</MenuItem>
-            <MenuItem value="AK">Alaska</MenuItem>
-            <MenuItem value="AZ">Arizona</MenuItem>
-            <MenuItem value="AR">Arkansas</MenuItem>
-            <MenuItem value="CA">California</MenuItem>
-            <MenuItem value="CO">Colorado</MenuItem>
-            <MenuItem value="CT">Connecticut</MenuItem>
-            <MenuItem value="DE">Delaware</MenuItem>
-            <MenuItem value="DC">District Of Columbia</MenuItem>
-            <MenuItem value="FL">Florida</MenuItem>
-            <MenuItem value="GA">Georgia</MenuItem>
-            <MenuItem value="HI">Hawaii</MenuItem>
-            <MenuItem value="ID">Idaho</MenuItem>
-            <MenuItem value="IL">Illinois</MenuItem>
-            <MenuItem value="IN">Indiana</MenuItem>
-            <MenuItem value="IA">Iowa</MenuItem>
-            <MenuItem value="KS">Kansas</MenuItem>
-            <MenuItem value="KY">Kentucky</MenuItem>
-            <MenuItem value="LA">Louisiana</MenuItem>
-            <MenuItem value="ME">Maine</MenuItem>
-            <MenuItem value="MD">Maryland</MenuItem>
-            <MenuItem value="MA">Massachusetts</MenuItem>
-            <MenuItem value="MI">Michigan</MenuItem>
-            <MenuItem value="MN">Minnesota</MenuItem>
-            <MenuItem value="MS">Mississippi</MenuItem>
-            <MenuItem value="MO">Missouri</MenuItem>
-            <MenuItem value="MT">Montana</MenuItem>
-            <MenuItem value="NE">Nebraska</MenuItem>
-            <MenuItem value="NV">Nevada</MenuItem>
-            <MenuItem value="NH">New Hampshire</MenuItem>
-            <MenuItem value="NJ">New Jersey</MenuItem>
-            <MenuItem value="NM">New Mexico</MenuItem>
-            <MenuItem value="NY">New York</MenuItem>
-            <MenuItem value="NC">North Carolina</MenuItem>
-            <MenuItem value="ND">North Dakota</MenuItem>
-            <MenuItem value="OH">Ohio</MenuItem>
-            <MenuItem value="OK">Oklahoma</MenuItem>
-            <MenuItem value="OR">Oregon</MenuItem>
-            <MenuItem value="PA">Pennsylvania</MenuItem>
-            <MenuItem value="RI">Rhode Island</MenuItem>
-            <MenuItem value="SC">South Carolina</MenuItem>
-            <MenuItem value="SD">South Dakota</MenuItem>
-            <MenuItem value="TN">Tennessee</MenuItem>
-            <MenuItem value="TX">Texas</MenuItem>
-            <MenuItem value="UT">Utah</MenuItem>
-            <MenuItem value="VT">Vermont</MenuItem>
-            <MenuItem value="VA">Virginia</MenuItem>
-            <MenuItem value="WA">Washington</MenuItem>
-            <MenuItem value="WV">West Virginia</MenuItem>
-            <MenuItem value="WI">Wisconsin</MenuItem>
-            <MenuItem value="WY">Wyoming</MenuItem>
+            <MenuItem value="AL" primaryText="Alabama" />
+            <MenuItem value="AK" primaryText="Alaska" />
+            <MenuItem value="AZ" primaryText="Arizona" />
+            <MenuItem value="AR" primaryText="Arkansas" />
+            <MenuItem value="CA" primaryText="California" />
+            <MenuItem value="CO" primaryText="Colorado" />
+            <MenuItem value="CT" primaryText="Connecticut" />
+            <MenuItem value="DE" primaryText="Delaware" />
+            <MenuItem value="DC" primaryText="District Of Columbia" />
+            <MenuItem value="FL" primaryText="Florida" />
+            <MenuItem value="GA" primaryText="Georgia" />
+            <MenuItem value="HI" primaryText="Hawaii" />
+            <MenuItem value="ID" primaryText="Idaho" />
+            <MenuItem value="IL" primaryText="Illinois" />
+            <MenuItem value="IN" primaryText="Indiana" />
+            <MenuItem value="IA" primaryText="Iowa" />
+            <MenuItem value="KS" primaryText="Kansas" />
+            <MenuItem value="KY" primaryText="Kentucky" />
+            <MenuItem value="LA" primaryText="Louisiana" />
+            <MenuItem value="ME" primaryText="Maine" />
+            <MenuItem value="MD" primaryText="Maryland" />
+            <MenuItem value="MA" primaryText="Massachusetts" />
+            <MenuItem value="MI" primaryText="Michigan" />
+            <MenuItem value="MN" primaryText="Minnesota" />
+            <MenuItem value="MS" primaryText="Mississippi" />
+            <MenuItem value="MO" primaryText="Missouri" />
+            <MenuItem value="MT" primaryText="Montana" />
+            <MenuItem value="NE" primaryText="Nebraska" />
+            <MenuItem value="NV" primaryText="Nevada" />
+            <MenuItem value="NH" primaryText="New Hampshire" />
+            <MenuItem value="NJ" primaryText="New Jersey" />
+            <MenuItem value="NM" primaryText="New Mexico" />
+            <MenuItem value="NY" primaryText="New York" />
+            <MenuItem value="NC" primaryText="North Carolina" />
+            <MenuItem value="ND" primaryText="North Dakota" />
+            <MenuItem value="OH" primaryText="Ohio" />
+            <MenuItem value="OK" primaryText="Oklahoma" />
+            <MenuItem value="OR" primaryText="Oregon" />
+            <MenuItem value="PA" primaryText="Pennsylvania" />
+            <MenuItem value="RI" primaryText="Rhode Island" />
+            <MenuItem value="SC" primaryText="South Carolina" />
+            <MenuItem value="SD" primaryText="South Dakota" />
+            <MenuItem value="TN" primaryText="Tennessee" />
+            <MenuItem value="TX" primaryText="Texas" />
+            <MenuItem value="UT" primaryText="Utah" />
+            <MenuItem value="VT" primaryText="Vermont" />
+            <MenuItem value="VA" primaryText="Virginia" />
+            <MenuItem value="WA" primaryText="Washington" />
+            <MenuItem value="WV" primaryText="West Virginia" />
+            <MenuItem value="WI" primaryText="Wisconsin" />
+            <MenuItem value="WY" primaryText="Wyoming" />
           </IconMenu>
 
           <IconMenu
@@ -440,57 +440,57 @@ class IconMenus extends React.Component {
             maxHeight={272}
             openDirection="top-left"
             valueLink={usStateValueLink}>
-            <MenuItem value="AL">Alabama</MenuItem>
-            <MenuItem value="AK">Alaska</MenuItem>
-            <MenuItem value="AZ">Arizona</MenuItem>
-            <MenuItem value="AR">Arkansas</MenuItem>
-            <MenuItem value="CA">California</MenuItem>
-            <MenuItem value="CO">Colorado</MenuItem>
-            <MenuItem value="CT">Connecticut</MenuItem>
-            <MenuItem value="DE">Delaware</MenuItem>
-            <MenuItem value="DC">District Of Columbia</MenuItem>
-            <MenuItem value="FL">Florida</MenuItem>
-            <MenuItem value="GA">Georgia</MenuItem>
-            <MenuItem value="HI">Hawaii</MenuItem>
-            <MenuItem value="ID">Idaho</MenuItem>
-            <MenuItem value="IL">Illinois</MenuItem>
-            <MenuItem value="IN">Indiana</MenuItem>
-            <MenuItem value="IA">Iowa</MenuItem>
-            <MenuItem value="KS">Kansas</MenuItem>
-            <MenuItem value="KY">Kentucky</MenuItem>
-            <MenuItem value="LA">Louisiana</MenuItem>
-            <MenuItem value="ME">Maine</MenuItem>
-            <MenuItem value="MD">Maryland</MenuItem>
-            <MenuItem value="MA">Massachusetts</MenuItem>
-            <MenuItem value="MI">Michigan</MenuItem>
-            <MenuItem value="MN">Minnesota</MenuItem>
-            <MenuItem value="MS">Mississippi</MenuItem>
-            <MenuItem value="MO">Missouri</MenuItem>
-            <MenuItem value="MT">Montana</MenuItem>
-            <MenuItem value="NE">Nebraska</MenuItem>
-            <MenuItem value="NV">Nevada</MenuItem>
-            <MenuItem value="NH">New Hampshire</MenuItem>
-            <MenuItem value="NJ">New Jersey</MenuItem>
-            <MenuItem value="NM">New Mexico</MenuItem>
-            <MenuItem value="NY">New York</MenuItem>
-            <MenuItem value="NC">North Carolina</MenuItem>
-            <MenuItem value="ND">North Dakota</MenuItem>
-            <MenuItem value="OH">Ohio</MenuItem>
-            <MenuItem value="OK">Oklahoma</MenuItem>
-            <MenuItem value="OR">Oregon</MenuItem>
-            <MenuItem value="PA">Pennsylvania</MenuItem>
-            <MenuItem value="RI">Rhode Island</MenuItem>
-            <MenuItem value="SC">South Carolina</MenuItem>
-            <MenuItem value="SD">South Dakota</MenuItem>
-            <MenuItem value="TN">Tennessee</MenuItem>
-            <MenuItem value="TX">Texas</MenuItem>
-            <MenuItem value="UT">Utah</MenuItem>
-            <MenuItem value="VT">Vermont</MenuItem>
-            <MenuItem value="VA">Virginia</MenuItem>
-            <MenuItem value="WA">Washington</MenuItem>
-            <MenuItem value="WV">West Virginia</MenuItem>
-            <MenuItem value="WI">Wisconsin</MenuItem>
-            <MenuItem value="WY">Wyoming</MenuItem>
+            <MenuItem value="AL" primaryText="Alabama" />
+            <MenuItem value="AK" primaryText="Alaska" />
+            <MenuItem value="AZ" primaryText="Arizona" />
+            <MenuItem value="AR" primaryText="Arkansas" />
+            <MenuItem value="CA" primaryText="California" />
+            <MenuItem value="CO" primaryText="Colorado" />
+            <MenuItem value="CT" primaryText="Connecticut" />
+            <MenuItem value="DE" primaryText="Delaware" />
+            <MenuItem value="DC" primaryText="District Of Columbia" />
+            <MenuItem value="FL" primaryText="Florida" />
+            <MenuItem value="GA" primaryText="Georgia" />
+            <MenuItem value="HI" primaryText="Hawaii" />
+            <MenuItem value="ID" primaryText="Idaho" />
+            <MenuItem value="IL" primaryText="Illinois" />
+            <MenuItem value="IN" primaryText="Indiana" />
+            <MenuItem value="IA" primaryText="Iowa" />
+            <MenuItem value="KS" primaryText="Kansas" />
+            <MenuItem value="KY" primaryText="Kentucky" />
+            <MenuItem value="LA" primaryText="Louisiana" />
+            <MenuItem value="ME" primaryText="Maine" />
+            <MenuItem value="MD" primaryText="Maryland" />
+            <MenuItem value="MA" primaryText="Massachusetts" />
+            <MenuItem value="MI" primaryText="Michigan" />
+            <MenuItem value="MN" primaryText="Minnesota" />
+            <MenuItem value="MS" primaryText="Mississippi" />
+            <MenuItem value="MO" primaryText="Missouri" />
+            <MenuItem value="MT" primaryText="Montana" />
+            <MenuItem value="NE" primaryText="Nebraska" />
+            <MenuItem value="NV" primaryText="Nevada" />
+            <MenuItem value="NH" primaryText="New Hampshire" />
+            <MenuItem value="NJ" primaryText="New Jersey" />
+            <MenuItem value="NM" primaryText="New Mexico" />
+            <MenuItem value="NY" primaryText="New York" />
+            <MenuItem value="NC" primaryText="North Carolina" />
+            <MenuItem value="ND" primaryText="North Dakota" />
+            <MenuItem value="OH" primaryText="Ohio" />
+            <MenuItem value="OK" primaryText="Oklahoma" />
+            <MenuItem value="OR" primaryText="Oregon" />
+            <MenuItem value="PA" primaryText="Pennsylvania" />
+            <MenuItem value="RI" primaryText="Rhode Island" />
+            <MenuItem value="SC" primaryText="South Carolina" />
+            <MenuItem value="SD" primaryText="South Dakota" />
+            <MenuItem value="TN" primaryText="Tennessee" />
+            <MenuItem value="TX" primaryText="Texas" />
+            <MenuItem value="UT" primaryText="Utah" />
+            <MenuItem value="VT" primaryText="Vermont" />
+            <MenuItem value="VA" primaryText="Virginia" />
+            <MenuItem value="WA" primaryText="Washington" />
+            <MenuItem value="WV" primaryText="West Virginia" />
+            <MenuItem value="WI" primaryText="Wisconsin" />
+            <MenuItem value="WY" primaryText="Wyoming" />
           </IconMenu>
 
         </p>

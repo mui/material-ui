@@ -209,6 +209,13 @@ class ListsPage extends React.Component {
             desc: 'Controls whether or not the child ListItems are initially displayed.'
           },
           {
+            name: 'primaryText',
+            type: 'node',
+            header: 'optional',
+            desc: 'This is the block element that contains the primary text. If a string is passed in, a div ' +
+              'tag will be rendered.'
+          },
+          {
             name: 'rightAvatar',
             type: 'element',
             header: 'optional',
@@ -235,16 +242,11 @@ class ListsPage extends React.Component {
             desc: 'This is the Toggle element to display on the right side.'
           },
           {
-            name: 'primaryText',
-            type: 'node',
-            header: 'optional',
-            desc: 'This is the block element that contains the primary text. If a string is passed in, a paragraph tag will be rendered.'
-          },
-          {
             name: 'secondaryText',
             type: 'node',
             header: 'optional',
-            desc: 'This is the block element that contains the secondary text. If a string is passed in, a paragraph tag will be rendered.'
+            desc: 'This is the block element that contains the secondary text. If a string is passed in, a div ' +
+              'tag will be rendered.'
           },
           {
             name: 'secondaryTextLines',
