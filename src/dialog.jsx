@@ -301,7 +301,7 @@ let Dialog = React.createClass({
       let container = this.getDOMNode();
       let dialogWindow = this.refs.dialogWindow.getDOMNode();
       let dialogContent = this.refs.dialogContent.getDOMNode();
-      let minPaddingTop = 64;
+      let minPaddingTop = 16;
       let dialogWindowHeight;
       let paddingTop;
       let maxDialogWindowHeight;
