@@ -43,10 +43,10 @@ class ListsPage extends React.Component {
     let code = `
       //First Example
       <List>
-        <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
-        <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
-        <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
-        <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+        <ListItem leftIcon={<ContentInbox />} primaryText='Inbox'/>
+        <ListItem leftIcon={<ActionGrade />} primaryText='Starred'/>
+        <ListItem leftIcon={<ContentSend />} primaryText='Sent mail'/>
+        <ListItem leftIcon={<ContentDrafts />} primaryText='Drafts'/>
       </List>
       <ListDivider />
       <List>
@@ -101,6 +101,7 @@ class ListsPage extends React.Component {
         <ListItem
           leftAvatar={<Avatar src="images/kerem-128.jpg" />}
           rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
+          primaryText='Kerem Suer'
           secondaryText={
             <p>
               <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>
@@ -108,12 +109,12 @@ class ListsPage extends React.Component {
             </p>
           }
           secondaryTextLines={2}>
-          Kerem Suer
         </ListItem>
         <ListDivider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
           rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
+          primaryText='Raquel Parrado'
           secondaryText={
             <p>
               <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>
@@ -121,7 +122,6 @@ class ListsPage extends React.Component {
             </p>
           }
           secondaryTextLines={2}>
-          Raquel Parrado
           <ListItem>TESTING</ListItem>
         </ListItem>
       </List>
@@ -131,11 +131,9 @@ class ListsPage extends React.Component {
         <List subheader="Nested List Items">
           <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
           <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
-          <ListItem leftIcon={<ContentInbox />}>
-            Inbox
+          <ListItem leftIcon={<ContentInbox />} primaryText='Inbox'>
             <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
-            <ListItem leftIcon={<ContentSend />}>
-              Sent Mail
+            <ListItem leftIcon={<ContentSend />} primaryText='Sent Mail'>
               <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
             </ListItem>
           </ListItem>
@@ -245,6 +243,12 @@ class ListsPage extends React.Component {
             desc: 'This is the Toggle element to display on the right side.'
           },
           {
+            name: 'primaryText',
+            type: 'node',
+            header: 'optional',
+            desc: 'This is the block element that contains the primary text. If a string is passed in, a paragraph tag will be rendered.'
+          },
+          {
             name: 'secondaryText',
             type: 'node',
             header: 'optional',
@@ -320,25 +324,23 @@ class ListsPage extends React.Component {
 
         <MobileTearSheet>
           <List>
-          <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>
-            <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
-            <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
-            <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
-            <ListItem leftIcon={<ContentInbox />}>
-              Inbox
-              <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
-              <ListItem leftIcon={<ContentSend />}>
-                Sent Mail
-                <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+          <ListItem leftIcon={<ContentInbox />} primaryText='Inbox'/>
+            <ListItem leftIcon={<ActionGrade />} primaryText='Starred'/>
+            <ListItem leftIcon={<ContentSend />} primaryText='Sent mail'/>
+            <ListItem leftIcon={<ContentDrafts />} primaryText='Drafts'/>
+            <ListItem leftIcon={<ContentInbox />} primaryText='Inbox'>
+              <ListItem leftIcon={<ActionGrade />} primaryText='Starred'/>
+              <ListItem leftIcon={<ContentSend />} primaryText='Sent Mail'>
+                <ListItem leftIcon={<ContentDrafts />} primaryText='Drafts'/>
               </ListItem>
             </ListItem>
           </List>
           <ListDivider />
           <List>
-            <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
-            <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
-            <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
-            <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
+            <ListItem rightIcon={<ActionInfo />} primaryText='All mail'></ListItem>
+            <ListItem rightIcon={<ActionInfo />} primaryText='Trash'></ListItem>
+            <ListItem rightIcon={<ActionInfo />} primaryText='Spam'></ListItem>
+            <ListItem rightIcon={<ActionInfo />} primaryText='Follow up'></ListItem>
           </List>
         </MobileTearSheet>
 
@@ -596,13 +598,13 @@ class ListsPage extends React.Component {
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+              primaryText={<p>Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span></p>}
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> --
                   Wish I could but I can
                 </p>
               }>
-              Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span>
             </ListItem>
             <ListDivider inset={true} />
             <ListItem
@@ -667,6 +669,7 @@ class ListsPage extends React.Component {
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+              primaryText={<p>Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span></p>}
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> --
@@ -674,7 +677,6 @@ class ListsPage extends React.Component {
                 </p>
               }
               secondaryTextLines={2}>
-              Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span>
             </ListItem>
             <ListDivider inset={true} />
             <ListItem

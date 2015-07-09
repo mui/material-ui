@@ -40,6 +40,7 @@ let ListItem = React.createClass({
     rightIcon: React.PropTypes.element,
     rightIconButton: React.PropTypes.element,
     rightToggle: React.PropTypes.element,
+    primaryText: React.PropTypes.node,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2]),
   },
@@ -83,6 +84,7 @@ let ListItem = React.createClass({
       rightIcon,
       rightIconButton,
       rightToggle,
+      primaryText,
       secondaryText,
       secondaryTextLines,
       style,
@@ -215,7 +217,8 @@ let ListItem = React.createClass({
     React.Children.forEach(this.props.children, (child) => {
       if (child === null) return;
 
-      if (child.type !== undefined && child.type.displayName === 'ListItem') {
+      //consider all element to be nested except literals.
+      if (React.isValidElement(child)) {
         nestedListItems.push(child);
       }
       else {
@@ -263,6 +266,8 @@ let ListItem = React.createClass({
         </ListNested>
       );
     }
+
+    if (primaryText) contentChildren.push(primaryText);
 
     if (secondaryText) {
       contentChildren.push(
