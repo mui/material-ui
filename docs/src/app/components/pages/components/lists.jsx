@@ -43,102 +43,94 @@ class ListsPage extends React.Component {
     let code = `
       //First Example
       <List>
-        <ListItem leftIcon={<ContentInbox />} primaryText='Inbox'/>
-        <ListItem leftIcon={<ActionGrade />} primaryText='Starred'/>
-        <ListItem leftIcon={<ContentSend />} primaryText='Sent mail'/>
-        <ListItem leftIcon={<ContentDrafts />} primaryText='Drafts'/>
+        <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
+        <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
+        <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
+        <ListItem primaryText="Drafts"leftIcon={<ContentDrafts />} />
+        <ListItem primaryText="Inbox"leftIcon={<ContentInbox />} />
       </List>
       <ListDivider />
       <List>
-        <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>
-        <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>
-        <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>
-        <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>
+        <ListItem primaryText="All mail" rightIcon={<ActionInfo />} />
+        <ListItem primaryText="Trash" rightIcon={<ActionInfo />} />
+        <ListItem primaryText="Spam" rightIcon={<ActionInfo />} />
+        <ListItem primaryText="Follow up" rightIcon={<ActionInfo />} />
       </List>
 
       //Last Example
       <List subheader="Today">
         <ListItem
           leftAvatar={<Avatar src="images/ok-128.jpg" />}
-          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
+          rightIconButton={rightIconMenu}
+          primaryText="Brendan Lim"
           secondaryText={
             <p>
               <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>
-              I&apos;ll be in your neighborhood doing errands this weekend.
-              Do you want to grab brunch?
+              I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
             </p>
           }
-          secondaryTextLines={2}>
-          Brendan Lim
-        </ListItem>
+          secondaryTextLines={2} />
         <ListDivider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
+          rightIconButton={rightIconMenu}
+          primaryText="me, Scott, Jennifer"
           secondaryText={
             <p>
               <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>
               Wish I could come, but I&apos;m out of town this weekend.
             </p>
           }
-          secondaryTextLines={2}>
-          me, Scott, Jennifer
-        </ListItem>
+          secondaryTextLines={2} />
         <ListDivider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
+          rightIconButton={rightIconMenu}
+          primaryText="Grace Ng"
           secondaryText={
             <p>
               <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>
               Do you have any Paris recs? Have you ever been?
             </p>
           }
-          secondaryTextLines={2}>
-          Grace Ng
-        </ListItem>
+          secondaryTextLines={2} />
         <ListDivider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
-          primaryText='Kerem Suer'
+          rightIconButton={rightIconMenu}
+          primaryText="Kerem Suer"
           secondaryText={
             <p>
               <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>
               Do you have any ideas what we can get Heidi for her birthday? How about a pony?
             </p>
           }
-          secondaryTextLines={2}>
-        </ListItem>
+          secondaryTextLines={2} />
         <ListDivider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}
-          primaryText='Raquel Parrado'
+          rightIconButton={rightIconMenu}
+          primaryText="Raquel Parrado"
           secondaryText={
             <p>
               <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>
               We should eat this: grated squash. Corn and tomatillo tacos.
             </p>
           }
-          secondaryTextLines={2}>
-          <ListItem>TESTING</ListItem>
-        </ListItem>
+          secondaryTextLines={2} />
       </List>
 
       // Nested List Items
-      <MobileTearSheet>
-        <List subheader="Nested List Items">
-          <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
-          <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
-          <ListItem leftIcon={<ContentInbox />} primaryText='Inbox'>
-            <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
-            <ListItem leftIcon={<ContentSend />} primaryText='Sent Mail'>
-              <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
-            </ListItem>
+      <List subheader="Nested List Items">
+        <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
+        <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+        <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} open={true}>
+          <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
+          <ListItem primaryText="Sent Mail" leftIcon={<ContentSend />}>
+            <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
           </ListItem>
-        </List>
-      </MobileTearSheet>
+        </ListItem>
+      </List>
     `;
 
     let componentInfo = [
@@ -324,112 +316,92 @@ class ListsPage extends React.Component {
 
         <MobileTearSheet>
           <List>
-          <ListItem leftIcon={<ContentInbox />} primaryText='Inbox'/>
-            <ListItem leftIcon={<ActionGrade />} primaryText='Starred'/>
-            <ListItem leftIcon={<ContentSend />} primaryText='Sent mail'/>
-            <ListItem leftIcon={<ContentDrafts />} primaryText='Drafts'/>
-            <ListItem leftIcon={<ContentInbox />} primaryText='Inbox'>
-              <ListItem leftIcon={<ActionGrade />} primaryText='Starred'/>
-              <ListItem leftIcon={<ContentSend />} primaryText='Sent Mail'>
-                <ListItem leftIcon={<ContentDrafts />} primaryText='Drafts'/>
-              </ListItem>
-            </ListItem>
+            <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
+            <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
+            <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
+            <ListItem primaryText="Drafts"leftIcon={<ContentDrafts />} />
+            <ListItem primaryText="Inbox"leftIcon={<ContentInbox />} />
           </List>
           <ListDivider />
           <List>
-            <ListItem rightIcon={<ActionInfo />} primaryText='All mail'></ListItem>
-            <ListItem rightIcon={<ActionInfo />} primaryText='Trash'></ListItem>
-            <ListItem rightIcon={<ActionInfo />} primaryText='Spam'></ListItem>
-            <ListItem rightIcon={<ActionInfo />} primaryText='Follow up'></ListItem>
+            <ListItem primaryText="All mail" rightIcon={<ActionInfo />} />
+            <ListItem primaryText="Trash" rightIcon={<ActionInfo />} />
+            <ListItem primaryText="Spam" rightIcon={<ActionInfo />} />
+            <ListItem primaryText="Follow up" rightIcon={<ActionInfo />} />
           </List>
         </MobileTearSheet>
 
         <MobileTearSheet>
           <List subheader="Recent chats">
             <ListItem
+              primaryText="Brendan Lim"
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
-              rightIcon={<CommunicationChatBubble />}>
-              Brendan Lim
-            </ListItem>
+              rightIcon={<CommunicationChatBubble />} />
             <ListItem
+              primaryText="Eric Hoffman"
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              rightIcon={<CommunicationChatBubble />}>
-              Eric Hoffman
-            </ListItem>
+              rightIcon={<CommunicationChatBubble />} />
             <ListItem
+              primaryText="Grace Ng"
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-              rightIcon={<CommunicationChatBubble />}>
-              Grace Ng
-            </ListItem>
+              rightIcon={<CommunicationChatBubble />} />
             <ListItem
+              primaryText="Kerem Suer"
               leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-              rightIcon={<CommunicationChatBubble />}>
-              Kerem Suer
-            </ListItem>
+              rightIcon={<CommunicationChatBubble />} />
             <ListItem
+              primaryText="Raquel Parrado"
               leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-              rightIcon={<CommunicationChatBubble />}>
-              Raquel Parrado
-            </ListItem>
+              rightIcon={<CommunicationChatBubble />} />
           </List>
           <ListDivider />
           <List subheader="Previous chats">
             <ListItem
-              leftAvatar={<Avatar src="images/chexee-128.jpg" />}>
-              Chelsea Otakan
-            </ListItem>
+              primaryText="Chelsea Otakan"
+              leftAvatar={<Avatar src="images/chexee-128.jpg" />} />
             <ListItem
-              leftAvatar={<Avatar src="images/jsa-128.jpg" />}>
-              James Anderson
-            </ListItem>
+              primaryText="James Anderson"
+              leftAvatar={<Avatar src="images/jsa-128.jpg" />} />
           </List>
         </MobileTearSheet>
 
         <MobileTearSheet>
           <List>
             <ListItem
+              primaryText="Chelsea Otakan"
               leftIcon={<ActionGrade color={Colors.pinkA200} />}
-              rightAvatar={<Avatar src="images/chexee-128.jpg" />}>
-              Chelsea Otakan
-            </ListItem>
+              rightAvatar={<Avatar src="images/chexee-128.jpg" />} />
             <ListItem
+              primaryText="Eric Hoffman"
               insetChildren={true}
-              rightAvatar={<Avatar src="images/kolage-128.jpg" />}>
-              Eric Hoffman
-            </ListItem>
+              rightAvatar={<Avatar src="images/kolage-128.jpg" />} />
             <ListItem
+              primaryText="James Anderson"
               insetChildren={true}
-              rightAvatar={<Avatar src="images/jsa-128.jpg" />}>
-              James Anderson
-            </ListItem>
+              rightAvatar={<Avatar src="images/jsa-128.jpg" />} />
             <ListItem
+              primaryText="Kerem Suer"
               insetChildren={true}
-              rightAvatar={<Avatar src="images/kerem-128.jpg" />}>
-              Kerem Suer
-            </ListItem>
+              rightAvatar={<Avatar src="images/kerem-128.jpg" />} />
           </List>
           <ListDivider inset={true} />
           <List>
             <ListItem
+              primaryText="Adelle Charles"
               leftAvatar={<Avatar color={Colors.pinkA200} backgroundColor={Colors.transparent} style={{left:8}}>A</Avatar>}
-              rightAvatar={<Avatar src="images/adellecharles-128.jpg" />}>
-              Adelle Charles
-            </ListItem>
+              rightAvatar={<Avatar src="images/adellecharles-128.jpg" />} />
             <ListItem
+              primaryText="Adham Dannaway"
               insetChildren={true}
-              rightAvatar={<Avatar src="images/adhamdannaway-128.jpg" />}>
-              Adham Dannaway
-            </ListItem>
+              rightAvatar={<Avatar src="images/adhamdannaway-128.jpg" />} />
             <ListItem
+              primaryText="Allison Grayce"
               insetChildren={true}
-              rightAvatar={<Avatar src="images/allisongrayce-128.jpg" />}>
-              Allison Grayce
-            </ListItem>
+              rightAvatar={<Avatar src="images/allisongrayce-128.jpg" />} />
             <ListItem
+              primaryText="Angel Ceballos"
               insetChildren={true}
-              rightAvatar={<Avatar src="images/angelceballos-128.jpg" />}>
-              Angel Ceballos
-            </ListItem>
+              rightAvatar={<Avatar src="images/angelceballos-128.jpg" />} />
           </List>
         </MobileTearSheet>
 
@@ -438,49 +410,42 @@ class ListsPage extends React.Component {
             <ListItem
               leftAvatar={<Avatar icon={<FileFolder />} />}
               rightIcon={<ActionInfo />}
-              secondaryText="Jan 9, 2014">
-              Photos
-            </ListItem>
+              primaryText="Photos"
+              secondaryText="Jan 9, 2014" />
             <ListItem
               leftAvatar={<Avatar icon={<FileFolder />} />}
               rightIcon={<ActionInfo />}
-              secondaryText="Jan 17, 2014">
-              Recipes
-            </ListItem>
+              primaryText="Recipes"
+              secondaryText="Jan 17, 2014" />
             <ListItem
               leftAvatar={<Avatar icon={<FileFolder />} />}
               rightIcon={<ActionInfo />}
-              secondaryText="Jan 28, 2014">
-              Work
-            </ListItem>
+              primaryText="Work"
+              secondaryText="Jan 28, 2014" />
           </List>
           <ListDivider inset={true} />
           <List subheader="Files" insetSubheader={true}>
             <ListItem
               leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={Colors.blue500} />}
               rightIcon={<ActionInfo />}
-              secondaryText="Jan 20, 2014">
-              Vacation itinerary
-            </ListItem>
+              primaryText="Vacation itinerary"
+              secondaryText="Jan 20, 2014" />
             <ListItem
               leftAvatar={<Avatar icon={<EditorInsertChart />} backgroundColor={Colors.yellow600} />}
               rightIcon={<ActionInfo />}
-              secondaryText="Jan 10, 2014">
-              Kitchen remodel
-            </ListItem>
+              primaryText="Kitchen remodel"
+              secondaryText="Jan 10, 2014" />
           </List>
         </MobileTearSheet>
 
         <MobileTearSheet>
           <List subheader="Nested List Items">
-            <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>
-            <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
-            <ListItem leftIcon={<ContentInbox />} open={true}>
-              Inbox
-              <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>
-              <ListItem leftIcon={<ContentSend />}>
-                Sent Mail
-                <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>
+            <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
+            <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+            <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} open={true}>
+              <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
+              <ListItem primaryText="Sent Mail" leftIcon={<ContentSend />}>
+                <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
               </ListItem>
             </ListItem>
           </List>
@@ -489,67 +454,46 @@ class ListsPage extends React.Component {
         <MobileTearSheet>
           <List subheader="General">
             <ListItem
-              secondaryText="Change your Google+ profile photo">
-              Profile photo
-            </ListItem>
+              primaryText="Profile photo"
+              secondaryText="Change your Google+ profile photo" />
             <ListItem
-              secondaryText="Your status is visible to everyone you use with">
-              Show your status
-            </ListItem>
+              primaryText="Show your status"
+              secondaryText="Your status is visible to everyone you use with" />
           </List>
           <ListDivider />
           <List subheader="Hangout notifications">
             <ListItem
               leftCheckbox={<Checkbox />}
-              secondaryText="Allow notifications">
-              Notifications
-            </ListItem>
+              primaryText="Notificaitons"
+              secondaryText="Allow notifications" />
             <ListItem
               leftCheckbox={<Checkbox />}
-              secondaryText="Hangouts message">
-              Sounds
-            </ListItem>
+              primaryText="Sounds"
+              secondaryText="Hangouts message" />
             <ListItem
               leftCheckbox={<Checkbox />}
-              secondaryText="Hangouts video call">
-              Video sounds
-            </ListItem>
+              primaryText="Video sounds"
+              secondaryText="Hangouts video call" />
           </List>
         </MobileTearSheet>
 
         <MobileTearSheet>
           <List>
             <ListItem
-              secondaryText="Always interrupt">
-              When calls and notifications arrive
-            </ListItem>
+              primaryText="When calls and notifications arrive"
+              secondaryText="Always interrupt" />
           </List>
           <ListDivider />
           <List subheader="Priority interruptions">
-            <ListItem rightToggle={<Toggle />}>
-              Events and reminders
-            </ListItem>
-            <ListItem rightToggle={<Toggle />}>
-              Calls
-            </ListItem>
-            <ListItem rightToggle={<Toggle />}>
-              Messages
-            </ListItem>
+            <ListItem primaryText="Events and reminders" rightToggle={<Toggle />} />
+            <ListItem primaryText="Calls" rightToggle={<Toggle />} />
+            <ListItem primaryText="Messages" rightToggle={<Toggle />} />
           </List>
           <ListDivider />
           <List subheader="Hangout notifications">
-            <ListItem
-              leftCheckbox={<Checkbox />}>
-              Notifications
-            </ListItem>
-            <ListItem
-              leftCheckbox={<Checkbox />}>
-              Sounds
-            </ListItem>
-            <ListItem
-              leftCheckbox={<Checkbox />}>
-              Video sounds
-            </ListItem>
+            <ListItem primaryText="Notifications" leftCheckbox={<Checkbox />} />
+            <ListItem primaryText="Sounds" leftCheckbox={<Checkbox />} />
+            <ListItem primaryText="Video sounds" leftCheckbox={<Checkbox />} />
           </List>
         </MobileTearSheet>
 
@@ -558,28 +502,24 @@ class ListsPage extends React.Component {
             <ListItem
               leftIcon={<CommunicationCall color={Colors.indigo500} />}
               rightIcon={<CommunicationChatBubble />}
-              secondaryText="Mobile">
-              (650) 555 - 1234
-            </ListItem>
+              primaryText="(650) 555 - 1234"
+              secondaryText="Mobile" />
             <ListItem
               insetChildren={true}
               rightIcon={<CommunicationChatBubble />}
-              secondaryText="Work">
-              (323) 555-6789
-            </ListItem>
+              primaryText="(323) 555 - 6789"
+              secondaryText="Work" />
           </List>
           <ListDivider inset={true} />
           <List>
             <ListItem
               leftIcon={<CommunicationEmail color={Colors.indigo500} />}
-              secondaryText="Personal">
-              aliconnors@example.com
-            </ListItem>
+              primaryText="aliconnors@example.com"
+              secondaryText="Personal" />
             <ListItem
               insetChildren={true}
-              secondaryText="Work">
-              ali_connors@example.com
-            </ListItem>
+              primaryText="ali_connors@example.com"
+              secondaryText="Work" />
           </List>
         </MobileTearSheet>
 
@@ -587,69 +527,65 @@ class ListsPage extends React.Component {
           <List subheader="Today">
             <ListItem
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
+              primaryText="Brunch this weekend?"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Brendan Lim</span> --
                   I&apos;ll be in your neighborhood this weekend.
                 </p>
-              }>
-              Brunch this weekend?
-            </ListItem>
+              } />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              primaryText={<p>Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span></p>}
+              primaryText={
+                <p>Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span></p>
+              }
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> --
                   Wish I could but I can
                 </p>
-              }>
-            </ListItem>
+              } />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+              primaryText="Oui oui"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Grace Ng</span> --
                   Do you have Paris recommendations?
                 </p>
-              }>
-              Oui oui
-            </ListItem>
+              } />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+              primaryText="Birthday gift"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Kerem Suer</span> --
                   Do you have any ideas on what I
                 </p>
-              }>
-              Birthday gift
-            </ListItem>
+              } />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+              primaryText="Recipe to try"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> --
                   We should eat this: grated cheese
                 </p>
-              }>
-              Recipe to try
-            </ListItem>
+              } />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/chexee-128.jpg" />}
+              primaryText="Giants game"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Chelsea Otakan</span> --
                   Any interest in seeing the Giants
                 </p>
-              }>
-              Giants game
-            </ListItem>
+              } />
           </List>
         </MobileTearSheet>
 
@@ -657,63 +593,60 @@ class ListsPage extends React.Component {
           <List subheader="Today">
             <ListItem
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
+              primaryText="Brunch this weekend?"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Brendan Lim</span> --
                   I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
                 </p>
               }
-              secondaryTextLines={2}>
-              Brunch this weekend?
-            </ListItem>
+              secondaryTextLines={2} />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              primaryText={<p>Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span></p>}
+              primaryText={
+                <p>Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span></p>
+              }
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> --
                   Wish I could come, but I&apos;m out of town this weekend.
                 </p>
               }
-              secondaryTextLines={2}>
-            </ListItem>
+              secondaryTextLines={2} />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+              primaryText="Oui oui"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Grace Ng</span> --
                   Do you have Paris recommendations? Have you ever been?
                 </p>
               }
-              secondaryTextLines={2}>
-              Oui oui
-            </ListItem>
+              secondaryTextLines={2} />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+              primaryText="Birdthday gift"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Kerem Suer</span> --
                   Do you have any ideas what we can get Heidi for her birthday? How about a pony?
                 </p>
               }
-              secondaryTextLines={2}>
-              Birthday gift
-            </ListItem>
+              secondaryTextLines={2} />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+              primaryText="Recipe to try"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> --
                   We should eat this: grated squash. Corn and tomatillo tacos.
                 </p>
               }
-              secondaryTextLines={2}>
-              Recipe to try
-            </ListItem>
+              secondaryTextLines={2} />
           </List>
         </MobileTearSheet>
 
@@ -722,67 +655,62 @@ class ListsPage extends React.Component {
             <ListItem
               leftAvatar={<Avatar src="images/ok-128.jpg" />}
               rightIconButton={rightIconMenu}
+              primaryText="Brendan Lim"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>
                   I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
                 </p>
               }
-              secondaryTextLines={2}>
-              Brendan Lim
-            </ListItem>
+              secondaryTextLines={2} />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kolage-128.jpg" />}
               rightIconButton={rightIconMenu}
+              primaryText="me, Scott, Jennifer"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>
                   Wish I could come, but I&apos;m out of town this weekend.
                 </p>
               }
-              secondaryTextLines={2}>
-              me, Scott, Jennifer
-            </ListItem>
+              secondaryTextLines={2} />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
               rightIconButton={rightIconMenu}
+              primaryText="Grace Ng"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>
                   Do you have any Paris recs? Have you ever been?
                 </p>
               }
-              secondaryTextLines={2}>
-              Grace Ng
-            </ListItem>
+              secondaryTextLines={2} />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/kerem-128.jpg" />}
               rightIconButton={rightIconMenu}
+              primaryText="Kerem Suer"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>
                   Do you have any ideas what we can get Heidi for her birthday? How about a pony?
                 </p>
               }
-              secondaryTextLines={2}>
-              Kerem Suer
-            </ListItem>
+              secondaryTextLines={2} />
             <ListDivider inset={true} />
             <ListItem
               leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
               rightIconButton={rightIconMenu}
+              primaryText="Raquel Parrado"
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>
                   We should eat this: grated squash. Corn and tomatillo tacos.
                 </p>
               }
-              secondaryTextLines={2}>
-              Raquel Parrado
-            </ListItem>
+              secondaryTextLines={2} />
           </List>
         </MobileTearSheet>
 
