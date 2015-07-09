@@ -311,10 +311,9 @@ let Table = React.createClass({
   },
 
   _handleRowClick(e, rowNumber) {
-    // Prevent text selection while selecting rows.
-    window.getSelection().removeAllRanges();
-
     if (this.props.selectable) {
+      // Prevent text selection while selecting rows.
+      window.getSelection().removeAllRanges();
       this._processRowSelection(e, rowNumber);
     }
   },
