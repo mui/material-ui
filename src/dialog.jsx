@@ -64,18 +64,19 @@ let Dialog = React.createClass({
   },
 
   propTypes: {
-    title: React.PropTypes.node,
     actions: React.PropTypes.array,
+    autoDetectWindowHeight: React.PropTypes.bool,
+    autoScrollBodyContent: React.PropTypes.bool,
+    bodyStyle: React.PropTypes.object,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
-    bodyStyle: React.PropTypes.object,
+    modal: React.PropTypes.bool,
     openImmediately: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
-    autoDetectWindowHeight: React.PropTypes.bool,
-    autoScrollBodyContent: React.PropTypes.bool,
+    title: React.PropTypes.node,
   },
 
   windowListeners: {
@@ -85,10 +86,11 @@ let Dialog = React.createClass({
 
   getDefaultProps() {
     return {
-      actions: [],
-      repositionOnUpdate: true,
       autoDetectWindowHeight: false,
       autoScrollBodyContent: false,
+      actions: [],
+      modal: false,
+      repositionOnUpdate: true,
     };
   },
 
@@ -203,7 +205,10 @@ let Dialog = React.createClass({
             </Paper>
           </TransitionItem>}
         </ReactTransitionGroup>
-        <Overlay ref="dialogOverlay" show={this.state.open} autoLockScrolling={false}
+        <Overlay
+          ref="dialogOverlay"
+          show={this.state.open}
+          autoLockScrolling={false}
           onTouchTap={this._handleOverlayTouchTap} />
       </div>
     );
@@ -359,9 +364,14 @@ let Dialog = React.createClass({
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
-  _handleOverlayTouchTap() {
-    this.dismiss();
-    if (this.props.onClickAway) this.props.onClickAway();
+  _handleOverlayTouchTap(e) {
+    if (this.props.modal) {
+      e.stopPropagation();
+    }
+    else {
+      this.dismiss();
+      if (this.props.onClickAway) this.props.onClickAway();
+    }
   },
 
   _handleWindowKeyUp(e) {

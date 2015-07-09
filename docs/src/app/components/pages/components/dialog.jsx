@@ -92,6 +92,12 @@ class DialogPage extends React.Component {
             desc: 'Overrides the inline-styles of the dialog window content container.'
           },
           {
+            name: 'modal',
+            type: 'boolean',
+            header: 'default: false',
+            desc: 'Force the user to use one of the actions in the dialog. Clicking outside the dialog will not dismiss the dialog.'
+          },
+          {
             name: 'openImmediately',
             type: 'bool',
             header: 'default: false',

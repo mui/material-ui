@@ -11,8 +11,8 @@ let Overlay = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-    show: React.PropTypes.bool,
     autoLockScrolling: React.PropTypes.bool,
+    show: React.PropTypes.bool,
     transitionEnabled: React.PropTypes.bool,
   },
 
