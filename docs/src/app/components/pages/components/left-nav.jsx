@@ -48,10 +48,12 @@ class LeftNavPage extends React.Component {
       '     disabled: true \n' +
       '  },\n' +
       '];\n\n' +
+      '//Toggle the LeftNav\n'+
+      'this.refs.leftNav.toggle();\n\n'+
       '//Docked Left Nav\n' +
-      '<LeftNav menuItems={menuItems} />\n\n' +
+      '<LeftNav ref="leftNav" menuItems={menuItems} />\n\n' +
       '//Hideable Left Nav\n' +
-      '<LeftNav docked={false} menuItems={menuItems} />\n\n';
+      '<LeftNav ref="leftNav" docked={false} menuItems={menuItems} />\n\n';
 
     let componentInfo = [
       {
