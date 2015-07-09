@@ -279,10 +279,11 @@ let Slider = React.createClass({
         <div style={sliderStyles}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
+          onMouseDown={this._onMouseDown}
           onMouseOver={this._onMouseOver}
           onMouseOut={this._onMouseOut}
           onMouseUp={this._onMouseUp} >
-            <div ref="track" style={trackStyles}>
+          <div ref="track" style={trackStyles}>
               <div style={filledStyles}></div>
               <div style={remainingStyles}></div>
               <Draggable axis="x" bound="point"
@@ -292,7 +293,7 @@ let Slider = React.createClass({
                 onStart={this._onDragStart}
                 onStop={this._onDragStop}
                 onDrag={this._onDragUpdate}
-                onMouseDown={this._onMouseDown}>
+                onMouseDown={this._onMouseDownKnob}>
                   <div style={handleStyles} tabIndex={0}>
                     {focusRipple}
                   </div>
@@ -386,6 +387,10 @@ let Slider = React.createClass({
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
+  _onMouseDown(e) {
+    this._pos = e.clientX;
+  },
+
   _onMouseOver() {
     this.setState({hovered: true});
   },
@@ -394,11 +399,17 @@ let Slider = React.createClass({
     this.setState({hovered: false});
   },
 
-  _onMouseUp() {
+  _onMouseUp(e) {
     if (!this.props.disabled) this.setState({active: false});
+    if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
+      let pos = e.clientX - React.findDOMNode(this).getBoundingClientRect().left;
+      this._dragX(e, pos);
+    }
+
+    this._pos = undefined;
   },
 
-  _onMouseDown() {
+  _onMouseDownKnob() {
     if (!this.props.disabled) this.setState({active: true});
   },
 
