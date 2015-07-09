@@ -12,6 +12,7 @@ class TablePage extends React.Component {
 
     this._onToggle = this._onToggle.bind(this);
     this.onChange = this._onChange.bind(this);
+    this._onRowSelection = this._onRowSelection.bind(this);
 
     this.state = {
       fixedHeader: true,
@@ -21,6 +22,7 @@ class TablePage extends React.Component {
       selectable: true,
       multiSelectable: false,
       canSelectAll: false,
+      deselectOnClickaway: true,
       height: '300px',
       rowData: this._getRowData()
     };
@@ -70,6 +72,7 @@ this.state = {
   selectable: true,
   multiSelectable: false,
   canSelectAll: false,
+  deselectOnClickaway: true,
   height: '300px',
   rowData: rowData
 };
@@ -106,7 +109,9 @@ let footerCols = {id: {content: 'ID'}, name: {content: 'Name'}, status: {content
   showRowHover={this.state.showRowHover}
   selectable={this.state.selectable}
   multiSelectable={this.state.multiSelectable}
-  canSelectAll={this.state.canSelectAll} />
+  canSelectAll={this.state.canSelectAll}
+  deselectOnClickaway={this.state.deselectOnClickaway}
+  onRowSelection={this._onRowSelection} />
     `;
 
     let desc = 'Data table component.';
@@ -138,6 +143,12 @@ let footerCols = {id: {content: 'ID'}, name: {content: 'Name'}, status: {content
             type: 'string',
             header: 'optional',
             desc: 'The default value of a table column. The initial value is 50px.'
+          },
+          {
+            name: 'deselectOnClickAway',
+            type: 'boolean',
+            header: 'default: true',
+            desc: 'Controls whether or not to deselect all selected rows after clicking outside the table.'
           },
           {
             name: 'displayRowCheckbox',
@@ -292,13 +303,15 @@ let footerCols = {id: {content: 'ID'}, name: {content: 'Name'}, status: {content
             columnOrder={colOrder}
             rowData={this.state.rowData}
             height={this.state.height}
+            deselectOnClickaway={this.state.deselectOnClickaway}
             fixedHeader={this.state.fixedHeader}
             fixedFooter={this.state.fixedFooter}
             stripedRows={this.state.stripedRows}
             showRowHover={this.state.showRowHover}
             selectable={this.state.selectable}
             multiSelectable={this.state.multiSelectable}
-            canSelectAll={this.state.canSelectAll} />
+            canSelectAll={this.state.canSelectAll}
+            onRowSelection={this._onRowSelection} />
 
           <div style={propContainerStyle}>
             <h3>Table Properties</h3>
@@ -349,6 +362,12 @@ let footerCols = {id: {content: 'ID'}, name: {content: 'Name'}, status: {content
               onToggle={this._onToggle}
               defaultToggled={this.state.canSelectAll} />
 
+            <Toggle
+              name='deselectOnClickaway'
+              label='Deselect On Clickaway'
+              onToggle={this._onToggle}
+              defaultToggled={this.state.deselectOnClickaway} />
+
           </div>
         </div>
       </ComponentDoc>
@@ -376,6 +395,10 @@ let footerCols = {id: {content: 'ID'}, name: {content: 'Name'}, status: {content
     let state = {};
     state[e.target.name] = toggled;
     this.setState(state);
+  }
+
+  _onRowSelection(rows) {
+    console.log(rows);
   }
 }
 

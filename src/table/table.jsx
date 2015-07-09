@@ -19,6 +19,7 @@ let Table = React.createClass({
     canSelectAll: React.PropTypes.bool,
     columnOrder: React.PropTypes.array,
     defaultColumnWidth: React.PropTypes.string,
+    deselectOnClickaway: React.PropTypes.bool,
     displayRowCheckbox: React.PropTypes.bool,
     displaySelectAll: React.PropTypes.bool,
     fixedFooter: React.PropTypes.bool,
@@ -45,6 +46,7 @@ let Table = React.createClass({
     return {
       canSelectAll: false,
       defaultColumnWidth: '50px',
+      deselectOnClickaway: true,
       displayRowCheckbox: true,
       displaySelectAll: true,
       fixedFooter: true,
@@ -108,7 +110,9 @@ let Table = React.createClass({
   },
 
   componentClickAway() {
-    if (this.state.selectedRows.length) this.setState({ selectedRows: [] });
+    if (this.props.deselectOnClickaway && this.state.selectedRows.length) {
+      this.setState({ selectedRows: [] });
+    }
   },
 
   render() {
@@ -311,6 +315,8 @@ let Table = React.createClass({
   },
 
   _handleRowClick(e, rowNumber) {
+    e.stopPropagation();
+
     if (this.props.selectable) {
       // Prevent text selection while selecting rows.
       window.getSelection().removeAllRanges();
@@ -354,8 +360,8 @@ let Table = React.createClass({
   },
 
   _handleCellClick(e, rowNumber, columnNumber) {
+    e.stopPropagation();
     if (this.props.onCellClick) this.props.onCellClick(rowNumber, this._getColumnId(columnNumber));
-    this._handleRowClick(e, rowNumber);
   },
 
   _handleRowHover(e, rowNumber) {
