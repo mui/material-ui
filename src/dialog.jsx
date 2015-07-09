@@ -230,22 +230,29 @@ let Dialog = React.createClass({
 
   _getAction(actionJSON, key) {
     let styles = {marginRight: 8};
-    let onTouchTap = () => {
-      if (actionJSON.onTouchTap) {
-        actionJSON.onTouchTap.call(undefined);
-      }
-      if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
-        this.dismiss();
-      }
+    let props = {
+      key: key,
+      secondary: true,
+      onClick: actionJSON.onClick,
+      onTouchTap: () => {
+        if (actionJSON.onTouchTap) {
+          actionJSON.onTouchTap.call(undefined);
+        }
+        if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
+          this.dismiss();
+        }
+      },
+      label: actionJSON.text,
+      style: styles,
     };
+    if (actionJSON.ref) {
+      props.ref = actionJSON.ref;
+      props.keyboardFocused = actionJSON.ref === this.props.actionFocus;
+    }
+
     return (
       <FlatButton
-        key={key}
-        secondary={true}
-        onClick={actionJSON.onClick}
-        onTouchTap = {onTouchTap}
-        label={actionJSON.text}
-        style={styles}/>
+        {...props} />
     );
   },
 
