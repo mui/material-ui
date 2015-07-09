@@ -168,6 +168,10 @@ let ListItem = React.createClass({
         left: 16,
       },
 
+      primaryText: {
+        margin: 0
+      },
+
       rightIconButton: {
         position: 'absolute',
         display: 'block',
@@ -201,12 +205,15 @@ let ListItem = React.createClass({
       },
     };
 
+    let primaryTextIsAnElement = React.isValidElement(primaryText);
     let secondaryTextIsAnElement = React.isValidElement(secondaryText);
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
     let mergedInnerDivStyles = this.mergeAndPrefix(styles.innerDiv, innerDivStyle);
     let mergedDivStyles = this.mergeAndPrefix(styles.root, mergedInnerDivStyles, style);
     let mergedLabelStyles = this.mergeAndPrefix(styles.root, mergedInnerDivStyles, styles.label, style);
+    let mergedPrimaryTextStyles = primaryTextIsAnElement ?
+      this.mergeStyles(styles.primaryText, primaryText.props.style) : null;
     let mergedSecondaryTextStyles = secondaryTextIsAnElement ?
       this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
 
@@ -267,7 +274,13 @@ let ListItem = React.createClass({
       );
     }
 
-    if (primaryText) contentChildren.push(primaryText);
+    if (primaryText) {
+      contentChildren.push(
+        React.isValidElement(primaryText) ?
+          React.cloneElement(primaryText, {key: 'primaryText', style: mergedPrimaryTextStyles}) :
+          <div key="primaryText" style={styles.primaryText}>{primaryText}</div>
+      );
+    }
 
     if (secondaryText) {
       contentChildren.push(
