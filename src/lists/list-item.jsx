@@ -224,8 +224,7 @@ let ListItem = React.createClass({
     React.Children.forEach(this.props.children, (child) => {
       if (child === null) return;
 
-      //consider all element to be nested except literals.
-      if (React.isValidElement(child)) {
+      if (React.isValidElement(child) && child.type.displayName === 'ListItem') {
         nestedListItems.push(child);
       }
       else {
