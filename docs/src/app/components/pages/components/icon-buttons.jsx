@@ -22,7 +22,7 @@ class IconButtonsPage extends React.Component {
         '  <FontIcon className="muidocs-icon-custom-sort"/>\n' +
         '</IconButton>\n\n' +
         '//Method 4: Using Google material-icons\n' + 
-        ' <IconButton className="material-icons" tooltipAlignment="bottom-center" \n' + 
+        ' <IconButton iconClassName="material-icons" tooltipAlignment="bottom-center" \n' + 
         '  tooltip="Sky">settings_system_daydream</IconButton>';
 
     let desc = (
