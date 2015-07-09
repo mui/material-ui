@@ -67,10 +67,6 @@ let CalendarToolbar = React.createClass({
         width: '100%',
         fontWeight: '500',
         textAlign: 'center',
-        zIndex: 0,
-      },
-      button: {
-        zIndex:1,
       },
     };
   },
@@ -84,6 +80,12 @@ let CalendarToolbar = React.createClass({
 
     return (
       <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root} noGutter={true}>
+        <SlideInTransitionGroup
+          style={styles.title}
+          direction={this.state.transitionDirection}>
+          <div key={month + '_' + year}>{month} {year}</div>
+        </SlideInTransitionGroup>
+
         <ToolbarGroup key={0} float="left">
           {prevYearChangeButton}
 
@@ -105,12 +107,6 @@ let CalendarToolbar = React.createClass({
 
           {nextYearChangeButton}
         </ToolbarGroup>
-
-        <SlideInTransitionGroup
-          style={styles.title}
-          direction={this.state.transitionDirection}>
-          <div key={month + '_' + year}>{month} {year}</div>
-        </SlideInTransitionGroup>
       </Toolbar>
     );
   },
