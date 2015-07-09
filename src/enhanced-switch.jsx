@@ -344,7 +344,7 @@ let EnhancedSwitch = React.createClass({
   // Checkbox inputs only use SPACE to change their state. Using ENTER will
   // update the ui but not the input.
   _handleWindowKeydown(e) {
-    if (e.keyCode == KeyCode.TAB) {
+    if (e.keyCode === KeyCode.TAB) {
       this._tabPressed = true;
     }
     if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
