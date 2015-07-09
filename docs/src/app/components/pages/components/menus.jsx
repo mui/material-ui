@@ -18,6 +18,14 @@ class MenusPage extends React.Component {
   render() {
 
     let code = `
+    //We're working on migrating some of our components to use a new implementation of menus.
+    //If you'd like to use the new menu before our migration is complete, please directly
+    //require them like this:
+
+    let Menu = require('material-ui/lib/menus/menu');
+    let MenuItem = require('material-ui/lib/menus/menu-item');
+    let MenuDivider = require('material-ui/lib/menus/menu-divider');
+
     <Menu>
       <MenuItem>Maps</MenuItem>
       <MenuItem>Books</MenuItem>
@@ -63,28 +71,28 @@ class MenusPage extends React.Component {
             desc: 'Indicates if the menu should render with compact desktop styles.'
           },
           {
+            name: 'listStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'The style object to use to override underlying list style.'
+          },
+          {
+            name: 'maxHeight',
+            type: 'number',
+            header: 'optional',
+            desc: 'The maxHeight of the menu in pixels. If specified, the menu will scroll if larger than the maxHeight.'
+          },
+          {
             name: 'multiple',
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the value can an array and allow the menu to be a multi-select.'
           },
           {
-            name: 'open',
-            type: 'bool',
-            header: 'default: true',
-            desc: 'If true, the menu will be rendered open.'
-          },
-          {
             name: 'openDirection',
             type: 'oneOf [bottom-left, bottom-right, top-left, top-right]',
             header: 'default: bottom-left',
             desc: 'This is the placement of the menu relative to the IconButton.'
-          },
-          {
-            name: 'listStyle',
-            type: 'object',
-            header: 'optional',
-            desc: 'The style object to use to override underlying list style.'
           },
           {
             name: 'value',
@@ -96,6 +104,13 @@ class MenusPage extends React.Component {
           {
             name: 'width',
             type: 'string or number',
+            header: 'optional',
+            desc: 'Sets the width of the menu. If not specified, the menu width will be dictated by its ' +
+              'children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).'
+          },
+          {
+            name: 'zDepth',
+            type: 'oneOf [0,1,2,3,4,5]',
             header: 'optional',
             desc: 'Sets the width of the menu. If not specified, the menu width will be dictated by its ' +
               'children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).'
@@ -165,6 +180,11 @@ class MenusPage extends React.Component {
       {
         name: 'Events',
         infoArray: [
+          {
+            name: 'onEscKeyDown',
+            header: 'function(e)',
+            desc: 'Fired when an Esc key is keyed down.'
+          },
           {
             name: 'onItemTouchTap',
             header: 'function(e, item)',

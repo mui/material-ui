@@ -37,6 +37,13 @@ class IconMenus extends React.Component {
   render() {
 
     let code = `
+    //We're working on migrating some of our components to use a new implementation of menus.
+    //If you'd like to use the new menu before our migration is complete, please directly
+    //require them like this:
+
+    let MenuItem = require('menus/menu-item');
+    let MenuDivider = require('menus/menu-divider');
+
     <IconMenu iconButtonElement={iconButtonElement}>
       <MenuItem>Refresh</MenuItem>
       <MenuItem>Send Feedback More</MenuItem>
