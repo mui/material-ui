@@ -50,9 +50,10 @@ let SvgIcon = React.createClass({
       width: 24,
       userSelect: 'none',
       transition: Transitions.easeOut(),
-    },
-    style,
-    {fill: this.state.hovered ? onColor : offColor}); // Make sure our fill color overrides fill provided in props.style
+    }, style, {
+      // Make sure our fill color overrides fill provided in props.style
+      fill: this.state.hovered ? onColor : offColor,
+    });
 
     return (
       <svg
