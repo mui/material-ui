@@ -5,6 +5,16 @@ let Transitions = require('./styles/transitions');
 let UniqueId = require('./utils/unique-id');
 let EnhancedTextarea = require('./enhanced-textarea');
 
+/**
+ * Check if a string is empty.
+ *
+ * @param   {String}  string The string to check.
+ * @returns {Boolean} True if the string provided is empty, false otherwise.
+ */
+function isEmpty(string) {
+  return !string || !string.length;
+}
+
 
 let TextField = React.createClass({
 
@@ -46,8 +56,8 @@ let TextField = React.createClass({
 
     return {
       errorText: this.props.errorText,
-      hasValue: props.value !== undefined || props.defaultValue !== undefined ||
-        (props.valueLink && props.valueLink.value !== undefined),
+      hasValue: !isEmpty(props.value) || !isEmpty(props.defaultValue) ||
+        (props.valueLink != null && !isEmpty(props.valueLink.value)),
     };
   },
 
@@ -72,13 +82,13 @@ let TextField = React.createClass({
     let hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
 
     if (hasValueLinkProp) {
-      newState.hasValue = nextProps.valueLink.value !== undefined;
+      newState.hasValue = !isEmpty(nextProps.valueLink.value);
     }
     else if (hasValueProp) {
-      newState.hasValue = nextProps.value !== undefined;
+      newState.hasValue = !isEmpty(nextProps.value);
     }
     else if (hasNewDefaultValue) {
-      newState.hasValue = nextProps.defaultValue !== undefined;
+      newState.hasValue = !isEmpty(nextProps.defaultValue);
     }
 
     if (newState) this.setState(newState);
@@ -333,7 +343,7 @@ let TextField = React.createClass({
         this._getInputNode().value = newValue;
       }
 
-      this.setState({hasValue: newValue !== undefined});
+      this.setState({hasValue: !isEmpty(newValue)});
     }
   },
 
@@ -352,7 +362,7 @@ let TextField = React.createClass({
   },
 
   _handleInputChange(e) {
-    this.setState({hasValue: e.target.value !== undefined});
+    this.setState({hasValue: !isEmpty(e.target.value)});
     if (this.props.onChange) this.props.onChange(e);
   },
 
