@@ -47,14 +47,14 @@ let CircularProgress = React.createClass({
     setTimeout(this._scalePath.bind(this, path, step + 1), step ? 750 : 250);
 
     if (!this.isMounted()) return;
-    if (this.props.mode != "indeterminate") return;
+    if (this.props.mode !== "indeterminate") return;
 
     if (step === 0) {
       path.style.strokeDasharray = "1, 200";
       path.style.strokeDashoffset = 0;
       path.style.transitionDuration = "0ms";
     }
-    else if (step == 1) {
+    else if (step === 1) {
       path.style.strokeDasharray = "89, 200";
       path.style.strokeDashoffset = -35;
       path.style.transitionDuration = "750ms";
@@ -70,7 +70,7 @@ let CircularProgress = React.createClass({
     setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
 
     if (!this.isMounted()) return;
-    if (this.props.mode != "indeterminate") return;
+    if (this.props.mode !== "indeterminate") return;
 
     wrapper.style.transform = null;
     wrapper.style.transform = "rotate(0deg)";
@@ -134,7 +134,7 @@ let CircularProgress = React.createClass({
       },
     };
 
-    if (this.props.mode == "determinate"){
+    if (this.props.mode === "determinate"){
       let relVal = this._getRelativeValue();
       styles.path.transition = Transitions.create("all", "0.3s", null, "linear");
       styles.path.strokeDasharray = Math.round(relVal * 1.25) + ",200";

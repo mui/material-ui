@@ -74,7 +74,7 @@ let ClockMinutes = React.createClass({
 
   handleMove(e) {
     e.preventDefault();
-    if (this.isMousePressed(e) != 1 ) return;
+    if (this.isMousePressed(e) !== 1 ) return;
     this.setClock(e.nativeEvent, false);
   },
 
