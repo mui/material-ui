@@ -169,7 +169,7 @@ let ListItem = React.createClass({
       },
 
       primaryText: {
-        margin: 0
+        margin: 0,
       },
 
       rightIconButton: {
