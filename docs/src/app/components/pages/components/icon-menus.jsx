@@ -41,8 +41,8 @@ class IconMenus extends React.Component {
     //If you'd like to use the new menu before our migration is complete, please directly
     //require them like this:
 
-    let MenuItem = require('menus/menu-item');
-    let MenuDivider = require('menus/menu-divider');
+    let MenuItem = require('material-ui/lib/menus/menu-item');
+    let MenuDivider = require('material-ui/lib/menus/menu-divider');
 
     <IconMenu iconButtonElement={iconButtonElement}>
       <MenuItem>Refresh</MenuItem>
