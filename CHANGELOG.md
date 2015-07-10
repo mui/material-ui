@@ -1,3 +1,107 @@
+## 0.10.0
+###### _Jul 9, 2015_
+
+##### Breaking Changes
+- Removed `input.jsx` file. This component was deprecated long ago, but was never removed from the project.
+- Buttons now default to a type of `button` instead of the browser's default of `submit`. We found that
+  most of the buttons in our apps were not submit buttons and it was more intuitive to default to `button`.
+  If you need a submit button, be sure to pass in a type of `submit`. (#1017)
+
+##### New Components
+- SvgIcons & Icon Builder
+  - We've created SvgIcon versions of all the
+    [material-design-icons](https://github.com/google/material-design-icons). These SvgIcon
+    components can be found in the `/lib/svg-icons` directory and were not added to the main `index.js`
+    file. To use these icons, require them directly: `require('material-ui/lib/svg-icons/action/face')`.
+    These icons were created using a script that crawls the icon repo and generates the
+    appropriate `js` and `jsx` files and can be found in the `/icon-builder` directory.
+- Menu, MenuItem, MenuDivider
+  - This is a new implementation of menus and menu items. With it comes:
+    - better composability
+    - scrollable menus
+    - better transitions
+    - better keyboard access
+    - selectable with value and valueLink
+  - We're working on migrating some of our other components to use this new implementation. Until that's
+    thats done, require these components directly if you'd like to use them:
+    `require('material-ui/lib/menus/menu')`.
+- IconMenu
+  - This component replaces `DropDownIcon` and has all of the new menu features mentioned above.
+
+##### Component Fixes / Enhancements
+- AppBar
+  - IconButton styles are now being properly merged (#967)
+  - FlatButtons are now being properly styled (#967)
+- AppCanvas - AppBar child styles can now be overridable (#903)
+- Avatar - Added `size` prop (#945)
+- CardMedia - Styles are now being properly merged using the `mediaStyle` prop (#1004)
+- CircularProgress - Added `color` and `innerStyle` prop (#928)
+- DatePicker
+  - Prevent root styles from propagating to child input (#991)
+  - Fixed DatePicker year/month navigation buttons (#1081, #1075)
+- Dialog
+  - Window scrolling is now enabled on unmount as well (#946)
+  - Allow dialog window to scroll for long content (#1045, #525)
+  - Drastically improved dialog performance (#1059)
+  - Dialogs now honor modal property. (#1092)
+  - Fixed vertical centering on smaller screen sizes (#1095)
+- FloatingActionButton - Now accepts `FontIcon` and `SvgIcon` as children (#967, #894)
+- FontIcon - Now supports `material-icon` ligatures (#952, #1007)
+- IconButton
+  - Added `tooltipPosition` prop (#921)
+  - Added `tooltipStyles` prop (#1010, #1005)
+  - Pass iconStyle props to every children (#967)
+  - Now supports `material-icon` ligatures (#1024, #1013)
+- LeftNav - Fixed swipe gesture to open / close (#868, #848, #998, #997)
+- List - Added `zDepth` prop.
+- ListItem
+  - Fixed display glitch on touch devices (#858)
+  - List items can now be keyboard focused
+  - Allow drop downs to be displayed inside a list item (#978)
+  - Fixed a bug that caused rightIconButton events to not propagate (#1055)
+  - List Items can now be nested (#918)
+  - Added `primaryText` prop (#1073)
+- Menu
+  - Fixed a bug that caused closed menu to be selectable (#913)
+  - Fixed menu height and width when menu items change (#1012, #805, #1014)
+  - Subheader styles are now being properly merged (#950)
+- MenuItems now properly renders icons (#956)
+- Overlay
+  - Added to main `index.js` (#955)
+  - Fix issue where Overlay can prevent the body from scrolling (#1058, #897)
+- RaisedButton
+  - Fixed a display glitch when changing the button's height (#937, #765)
+  - Added `backgroundColor`, `labelColor`, `disabledBackgroundColor`, `disabledLabelColor` props (#965)
+  - Added `fullWidth` prop (#989)
+- SelectField
+  - Fixed menu and error text display glitches (#922)
+  - Added hint text functionality (#966)
+  - Fixed display problem when `floatingLabelText` is set (#976)
+  - Fixed font size (#1027)
+- Slider
+  - `className` can now be set (#938, #713)
+  - Added min/max prop validation (#1070, #899)
+- Snackbar
+  - Root styles are not being merged properly (#925)
+  - Added `autoHideDuration` prop (#1050, #958)
+  - Clicking slider track advances the slider knob. (#1089, #1074)
+- Table
+  - Fixed `displayRowCheckbox` prop (#935)
+  - Table rows can be selected in the rowData configuration (#1023)
+  - Removed duplicate table calls and support multiple tables (#954, #1087, #1084)
+- Tab - Added `contentContainerStyle` prop (#953)
+- Tabs - Fixed a bug that caused inkbar to not display properly (#1015, #940)
+- TextField
+  - Fix error when setting the value of the textfield `input`. (#959)
+  - Style fixes for floating label (#980)
+  - Fixed display glitch for long hint text and error text (#987, #438, #439)
+  - Fixed display problem when value is 0 (#1090)
+  - Added `errorStyle` prop (#1079)
+- TimePicker - Fixed key warnings (#1018)
+- Toolbar
+  - Fixed display glitch with DropDownIcons (#917, #904)
+  - Styles are now being properly merged for `DropDownMenu`, `DropDownIcon`, `RaisedButton`, `FontIcon` (#965)
+
 ## 0.9.2
 ###### _Jun 20, 2015_
 
@@ -93,27 +197,27 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 
 ##### Breaking Changes
 - Refactored all CSS into Javascript (#30, #316)
-  - All Material-UI components now have their styles defined inline. This solves 
-    many problems with CSS as mentions in [@vjeux's presentation](https://speakerdeck.com/vjeux/react-css-in-js) 
-    such as polluting the global namespace with classes that really should be 
-    component specific. In addition to the benefits mentioned in the 
-    presentation, inline styles allow Material-UI to become CSS preprocessor 
+  - All Material-UI components now have their styles defined inline. This solves
+    many problems with CSS as mentions in [@vjeux's presentation](https://speakerdeck.com/vjeux/react-css-in-js)
+    such as polluting the global namespace with classes that really should be
+    component specific. In addition to the benefits mentioned in the
+    presentation, inline styles allow Material-UI to become CSS preprocessor
     agnostic and make Themeing much more dynamic and simple.
     [Read our CSS in JS discussion](https://github.com/callemall/material-ui/issues/30)
   - Upgrade path:
-    - *If you are overriding component CSS classes:* Redefine your overrides as 
+    - *If you are overriding component CSS classes:* Redefine your overrides as
       an object following [React's inline styles format](https://facebook.github.io/react/tips/inline-styles.html),
-      then pass it into the material-ui component via the `style` prop. These 
-      changes are applied to the root element of the component. If you are 
+      then pass it into the material-ui component via the `style` prop. These
+      changes are applied to the root element of the component. If you are
       overriding a nested element of the component, check the component's
-      documentation and see if there is a style prop available for that nested 
-      element. If a style prop does not exist for the component's nested element 
-      that you are trying to override, [submit an issue](https://github.com/callemall/material-ui/issues/new) 
+      documentation and see if there is a style prop available for that nested
+      element. If a style prop does not exist for the component's nested element
+      that you are trying to override, [submit an issue](https://github.com/callemall/material-ui/issues/new)
       requesting to have it added.
-    - *If you are using any of Material-UI's Less files:* These files have been 
-      refactored into their [own javascript files](https://github.com/callemall/material-ui/tree/css-in-js/src/styles) 
+    - *If you are using any of Material-UI's Less files:* These files have been
+      refactored into their [own javascript files](https://github.com/callemall/material-ui/tree/css-in-js/src/styles)
       and can be accessed like so `var FILENAME = require('material-ui').Styles.FILENAME;`.
-      Material-UI has moved away from being a CSS Framework to being simply a 
+      Material-UI has moved away from being a CSS Framework to being simply a
       set of React components.
 - Paper component no longer generates nested divs (#601)
   - This allowed us to simplify styling of paper containers. As a result, styling the inner div is no longer necessary.
@@ -122,7 +226,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Themes have been added (#202)
 - Requiring individual components is now supported (#363)
   - An example would be: `var SvgIcon = require('material-ui/lib/svg-icon);`
-  - The `/lib` folder in Material-UI contains the file structure needed when referencing individual components. 
+  - The `/lib` folder in Material-UI contains the file structure needed when referencing individual components.
 
 ##### Components
 - Date Picker
@@ -182,8 +286,8 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Replaced `DOMIdable` with `UniqueId` (#490)
 
 ##### Components
-- Dialog 
-  - Changed `title` prop to accept node types instead of just strings (#474) 
+- Dialog
+  - Changed `title` prop to accept node types instead of just strings (#474)
 - Link Menu Item
   - Fixed anchor attribute name (#493)
 - Menu
@@ -197,18 +301,18 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Updated react and peer dependecies to React v0.13 (#452)
 
 ##### Components
-- Date Picker 
+- Date Picker
   - Added `onShow` and `onDismiss` props (#399)
-- Dialog 
+- Dialog
   - Fixed scrolling issue when opened immediately (#406)
   - `onShow` is now called when opened immediately (#453)
 - Flat Button
-  - Disabled primary buttons use disabled styling over primary (#432) 
+  - Disabled primary buttons use disabled styling over primary (#432)
 - Floating Action Button
   - Fixed zdepth to update when `disabled` prop changes (#390)
-  - Disabled secondary buttons use disabled styling over secondary (#432) 
+  - Disabled secondary buttons use disabled styling over secondary (#432)
 - Left Nav
-  - Scrolling is prevented when displayed (#406) 
+  - Scrolling is prevented when displayed (#406)
 - Menu
   - Menu and menu-related components have been moved into `js/menu/*` (#402)
   - Added LinkMenuItem component (#402)
@@ -216,10 +320,10 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Added `disable` prop (#402)
 - Overlay
   - Now control scroll un/locking. (#406)
-- Paper 
+- Paper
   - Added `innerStyle` prop (#418)
 - Raised Button
-  - Disabled primary buttons use disabled styling over primary (#432) 
+  - Disabled primary buttons use disabled styling over primary (#432)
 - Tabs
   - Added `initialSelectedIndex` prop (#389)
 
@@ -318,7 +422,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Tabs
   - Added new Tabs component.
 - TextField
-  - This component replaces Input. It extends the native input element and will support all of 
+  - This component replaces Input. It extends the native input element and will support all of
     its props and events. It also supports valueLink and can be controlled or uncontrolled.
   - MultiLine text fields now grow and shrink as the user inputs data.
   - Allow for both floating labels and hint text in the same input.
@@ -355,7 +459,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 ###### _Jan. 3, 2015_
 
 ##### Breaking Changes
-- Removed lesshat dependency. Be sure to change your build process to include an 
+- Removed lesshat dependency. Be sure to change your build process to include an
   [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer).
 
 ##### Components
@@ -441,7 +545,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Input
   - Fixed a bug that caused placeholder to not show on focus (#112)
   - Placeholders can now be displayed in-line by setting inlinePlaceholder to true.
-  - The initial number of rows can now be set with the rows prop. 
+  - The initial number of rows can now be set with the rows prop.
 - Toggle
   - Fixed alignment issue (#118)
   - The inital state of the toggle can now be set with the toggled prop.
@@ -538,7 +642,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Items are now passed in as children instead of groupItem prop
 
 ##### Mixins
-- Added WindowListenable. Allows listening to window events. 
+- Added WindowListenable. Allows listening to window events.
 
 ##### Utils
 - Added Dom and Events utility functions

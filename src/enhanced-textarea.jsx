@@ -146,7 +146,7 @@ let EnhancedTextarea = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value != this.props.value) {
+    if (nextProps.value !== this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
     }
   },

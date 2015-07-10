@@ -19,7 +19,7 @@ module.exports = {
     let el = React.findDOMNode(this);
 
     // Check if the target is inside the current component
-    if (e.target != el &&
+    if (e.target !== el &&
         !Dom.isDescendant(el, e.target) &&
         document.documentElement.contains(e.target)) {
       if (this.componentClickAway) this.componentClickAway();

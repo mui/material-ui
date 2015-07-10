@@ -88,7 +88,7 @@ let TableRow = React.createClass({
     }
 
     return (
-      <tr className={className} onClick={this._onRowClick} style={this.getStyles().root}>
+      <tr className={className} style={this.getStyles().root}>
         {this._getColumns(columns)}
       </tr>
     );
@@ -133,8 +133,7 @@ let TableRow = React.createClass({
         name={key}
         value='selected'
         disabled={!this.props.selectable}
-        defaultChecked={this.props.selected}
-        onCheck={this._onCheck} />;
+        defaultChecked={this.props.selected} />;
 
     return {
       content: checkbox,
@@ -159,7 +158,10 @@ let TableRow = React.createClass({
 
   _onCellClick(e, columnIndex) {
     if (this.props.selectable && this.props.onCellClick) this.props.onCellClick(e, this.props.rowNumber, columnIndex);
-    if (this.refs.rowSelectCB !== undefined) this.refs.rowSelectCB.setChecked(!this.refs.rowSelectCB.isChecked());
+    if (this.refs.rowSelectCB !== undefined) {
+      this.refs.rowSelectCB.setChecked(!this.refs.rowSelectCB.isChecked());
+      e.ctrlKey = true;
+    }
     this._onRowClick(e);
   },
 
@@ -177,11 +179,6 @@ let TableRow = React.createClass({
       if (this.props.onCellHoverExit) this.props.onCellHoverExit(e, this.props.rowNumber, columnIndex);
       this._onRowHoverExit(e);
     }
-  },
-
-  _onCheck(e) {
-    e.ctrlKey = true;
-    this._onCellClick(e, 0);
   },
 
 });

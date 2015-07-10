@@ -5,6 +5,15 @@ let Transitions = require('./styles/transitions');
 let UniqueId = require('./utils/unique-id');
 let EnhancedTextarea = require('./enhanced-textarea');
 
+/**
+ * Check if a value is valid to be displayed inside an input.
+ *
+ * @param The value to check.
+ * @returns True if the string provided is valid, false otherwise.
+ */
+function isValid(value) {
+  return value || value === 0;
+}
 
 let TextField = React.createClass({
 
@@ -46,8 +55,8 @@ let TextField = React.createClass({
 
     return {
       errorText: this.props.errorText,
-      hasValue: props.value !== undefined || props.defaultValue !== undefined ||
-        (props.valueLink && props.valueLink.value !== undefined),
+      hasValue: isValid(props.value) || isValid(props.defaultValue) ||
+        (props.valueLink && isValid(props.valueLink.value)),
     };
   },
 
@@ -72,13 +81,13 @@ let TextField = React.createClass({
     let hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
 
     if (hasValueLinkProp) {
-      newState.hasValue = nextProps.valueLink.value !== undefined;
+      newState.hasValue = isValid(nextProps.valueLink.value);
     }
     else if (hasValueProp) {
-      newState.hasValue = nextProps.value !== undefined;
+      newState.hasValue = isValid(nextProps.value);
     }
     else if (hasNewDefaultValue) {
-      newState.hasValue = nextProps.defaultValue !== undefined;
+      newState.hasValue = isValid(nextProps.defaultValue);
     }
 
     if (newState) this.setState(newState);
@@ -333,7 +342,7 @@ let TextField = React.createClass({
         this._getInputNode().value = newValue;
       }
 
-      this.setState({hasValue: newValue !== undefined});
+      this.setState({hasValue: isValid(newValue)});
     }
   },
 
@@ -352,7 +361,7 @@ let TextField = React.createClass({
   },
 
   _handleInputChange(e) {
-    this.setState({hasValue: e.target.value !== undefined});
+    this.setState({hasValue: isValid(e.target.value)});
     if (this.props.onChange) this.props.onChange(e);
   },
 

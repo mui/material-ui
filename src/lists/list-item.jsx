@@ -40,6 +40,7 @@ let ListItem = React.createClass({
     rightIcon: React.PropTypes.element,
     rightIconButton: React.PropTypes.element,
     rightToggle: React.PropTypes.element,
+    primaryText: React.PropTypes.node,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2]),
   },
@@ -83,6 +84,7 @@ let ListItem = React.createClass({
       rightIcon,
       rightIconButton,
       rightToggle,
+      primaryText,
       secondaryText,
       secondaryTextLines,
       style,
@@ -166,6 +168,10 @@ let ListItem = React.createClass({
         left: 16,
       },
 
+      primaryText: {
+        margin: 0,
+      },
+
       rightIconButton: {
         position: 'absolute',
         display: 'block',
@@ -199,12 +205,15 @@ let ListItem = React.createClass({
       },
     };
 
+    let primaryTextIsAnElement = React.isValidElement(primaryText);
     let secondaryTextIsAnElement = React.isValidElement(secondaryText);
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
     let mergedInnerDivStyles = this.mergeAndPrefix(styles.innerDiv, innerDivStyle);
     let mergedDivStyles = this.mergeAndPrefix(styles.root, mergedInnerDivStyles, style);
     let mergedLabelStyles = this.mergeAndPrefix(styles.root, mergedInnerDivStyles, styles.label, style);
+    let mergedPrimaryTextStyles = primaryTextIsAnElement ?
+      this.mergeStyles(styles.primaryText, primaryText.props.style) : null;
     let mergedSecondaryTextStyles = secondaryTextIsAnElement ?
       this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
 
@@ -215,7 +224,7 @@ let ListItem = React.createClass({
     React.Children.forEach(this.props.children, (child) => {
       if (child === null) return;
 
-      if (child.type !== undefined && child.type.displayName === 'ListItem') {
+      if (React.isValidElement(child) && child.type.displayName === 'ListItem') {
         nestedListItems.push(child);
       }
       else {
@@ -261,6 +270,14 @@ let ListItem = React.createClass({
         <ListNested nestedLevel={nestedLevel + 1} open={this.state.open}>
           {nestedListItems}
         </ListNested>
+      );
+    }
+
+    if (primaryText) {
+      contentChildren.push(
+        React.isValidElement(primaryText) ?
+          React.cloneElement(primaryText, {key: 'primaryText', style: mergedPrimaryTextStyles}) :
+          <div key="primaryText" style={styles.primaryText}>{primaryText}</div>
       );
     }
 

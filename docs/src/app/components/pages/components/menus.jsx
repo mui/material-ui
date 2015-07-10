@@ -18,28 +18,36 @@ class MenusPage extends React.Component {
   render() {
 
     let code = `
+    //We're working on migrating some of our components to use a new implementation of menus.
+    //If you'd like to use the new menu before our migration is complete, please directly
+    //require them like this:
+
+    let Menu = require('material-ui/lib/menus/menu');
+    let MenuItem = require('material-ui/lib/menus/menu-item');
+    let MenuDivider = require('material-ui/lib/menus/menu-divider');
+
     <Menu>
-      <MenuItem>Maps</MenuItem>
-      <MenuItem>Books</MenuItem>
-      <MenuItem>Flights</MenuItem>
-      <MenuItem>Apps</MenuItem>
+      <MenuItem primaryText="Maps" />
+      <MenuItem primaryText="Books" />
+      <MenuItem primaryText="Flights" />
+      <MenuItem primaryText="Apps" />
     </Menu>
 
     <Menu desktop={true} width={320}>
-      <MenuItem secondaryText="&#8984;B">Bold</MenuItem>
-      <MenuItem secondaryText="&#8984;I">Italic</MenuItem>
-      <MenuItem secondaryText="&#8984;U">Underline</MenuItem>
-      <MenuItem secondaryText="Alt+Shift+5">Strikethrough</MenuItem>
-      <MenuItem secondaryText="&#8984;.">Superscript</MenuItem>
-      <MenuItem secondaryText="&#8984;,">Subscript</MenuItem>
+      <MenuItem primaryText="Bold" secondaryText="&#8984;B" />
+      <MenuItem primaryText="Italic" secondaryText="&#8984;I" />
+      <MenuItem primaryText="Underline" secondaryText="&#8984;U" />
+      <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />
+      <MenuItem primaryText="Superscript" secondaryText="&#8984;." />
+      <MenuItem primaryText="Subscript" secondaryText="&#8984;," />
       <MenuDivider />
-      <MenuItem rightIcon={<ArrowDropRight />}>Paragraph styles</MenuItem>
-      <MenuItem rightIcon={<ArrowDropRight />}>Align</MenuItem>
-      <MenuItem rightIcon={<ArrowDropRight />}>Line spacing</MenuItem>
-      <MenuItem rightIcon={<ArrowDropRight />}>Numbered list</MenuItem>
-      <MenuItem rightIcon={<ArrowDropRight />}>List options</MenuItem>
+      <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />
+      <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />
+      <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />
+      <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />
+      <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />
       <MenuDivider />
-      <MenuItem secondaryText="&#8984;/">Clear formatting</MenuItem>
+      <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
     </Menu>
     `;
 
@@ -63,28 +71,28 @@ class MenusPage extends React.Component {
             desc: 'Indicates if the menu should render with compact desktop styles.'
           },
           {
+            name: 'listStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'The style object to use to override underlying list style.'
+          },
+          {
+            name: 'maxHeight',
+            type: 'number',
+            header: 'optional',
+            desc: 'The maxHeight of the menu in pixels. If specified, the menu will scroll if larger than the maxHeight.'
+          },
+          {
             name: 'multiple',
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the value can an array and allow the menu to be a multi-select.'
           },
           {
-            name: 'open',
-            type: 'bool',
-            header: 'default: true',
-            desc: 'If true, the menu will be rendered open.'
-          },
-          {
             name: 'openDirection',
             type: 'oneOf [bottom-left, bottom-right, top-left, top-right]',
             header: 'default: bottom-left',
             desc: 'This is the placement of the menu relative to the IconButton.'
-          },
-          {
-            name: 'listStyle',
-            type: 'object',
-            header: 'optional',
-            desc: 'The style object to use to override underlying list style.'
           },
           {
             name: 'value',
@@ -96,6 +104,13 @@ class MenusPage extends React.Component {
           {
             name: 'width',
             type: 'string or number',
+            header: 'optional',
+            desc: 'Sets the width of the menu. If not specified, the menu width will be dictated by its ' +
+              'children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).'
+          },
+          {
+            name: 'zDepth',
+            type: 'oneOf [0,1,2,3,4,5]',
             header: 'optional',
             desc: 'Sets the width of the menu. If not specified, the menu width will be dictated by its ' +
               'children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).'
@@ -142,6 +157,13 @@ class MenusPage extends React.Component {
             desc: 'This is the SvgIcon or FontIcon to be displayed on the left side.'
           },
           {
+            name: 'primaryText',
+            type: 'node',
+            header: 'optional',
+            desc: 'This is the block element that contains the primary text. If a string is passed in, a ' +
+              'div tag will be rendered.'
+          },
+          {
             name: 'rightIcon',
             type: 'element',
             header: 'optional',
@@ -165,6 +187,11 @@ class MenusPage extends React.Component {
       {
         name: 'Events',
         infoArray: [
+          {
+            name: 'onEscKeyDown',
+            header: 'function(e)',
+            desc: 'Fired when an Esc key is keyed down.'
+          },
           {
             name: 'onItemTouchTap',
             header: 'function(e, item)',
@@ -204,109 +231,106 @@ class MenusPage extends React.Component {
 
         <ReactTransitionGroup>
           <Menu style={styles.menu}>
-            <MenuItem>Maps</MenuItem>
-            <MenuItem>Books</MenuItem>
-            <MenuItem>Flights</MenuItem>
-            <MenuItem>Apps</MenuItem>
+            <MenuItem primaryText="Maps" />
+            <MenuItem primaryText="Books" />
+            <MenuItem primaryText="Flights" />
+            <MenuItem primaryText="Apps" />
           </Menu>
 
           <Menu style={styles.menu}>
-            <MenuItem>Refresh</MenuItem>
-            <MenuItem>Help &amp; feedback</MenuItem>
-            <MenuItem>Settings</MenuItem>
-            <MenuItem>Sign out</MenuItem>
+            <MenuItem primaryText="Refresh" />
+            <MenuItem primaryText="Help &amp; feedback" />
+            <MenuItem primaryText="Settings" />
+            <MenuItem primaryText="Sign out" />
           </Menu>
 
           <Menu style={styles.menu} desktop={true}>
-            <MenuItem>Home</MenuItem>
-            <MenuItem>Back</MenuItem>
-            <MenuItem disabled={true}>Forward</MenuItem>
+            <MenuItem primaryText="Back" />
+            <MenuItem primaryText="Forward" disabled={true} />
             <MenuDivider />
-            <MenuItem disabled={true}>Recently closed</MenuItem>
-            <MenuItem disabled={true}>Google</MenuItem>
-            <MenuItem>YouTube</MenuItem>
+            <MenuItem primaryText="Recently closed" disabled={true} />
+            <MenuItem primaryText="Google" disabled={true} />
+            <MenuItem primaryText="YouTube" />
           </Menu>
 
           <Menu style={styles.menu}>
-            <MenuItem leftIcon={<RemoveRedEye />}>Preview</MenuItem>
-            <MenuItem leftIcon={<PersonAdd />}>Share</MenuItem>
-            <MenuItem leftIcon={<ContentLink />}>Get link</MenuItem>
+            <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
+            <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
+            <MenuItem primaryText="Get links" leftIcon={<ContentLink />} />
             <MenuDivider />
-            <MenuItem leftIcon={<ContentCopy />}>Make a copy</MenuItem>
-            <MenuItem leftIcon={<Download />}>Download</MenuItem>
+            <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
+            <MenuItem primaryText="Download" leftIcon={<Download />} />
             <MenuDivider />
-            <MenuItem leftIcon={<Delete />}>Remove</MenuItem>
+            <MenuItem primaryText="Remove" leftIcon={<Delete />} />
           </Menu>
 
           <Menu style={styles.menu} desktop={true}>
-            <MenuItem>Undo</MenuItem>
-            <MenuItem disabled={true}>Redo</MenuItem>
+            <MenuItem primaryText="Undo" />
+            <MenuItem primaryText="Redo" disabled={true} />
             <MenuDivider />
-            <MenuItem disabled={true}>Cut</MenuItem>
-            <MenuItem disabled={true}>Copy</MenuItem>
-            <MenuItem>Paste</MenuItem>
+            <MenuItem primaryText="Cut" disabled={true} />
+            <MenuItem primaryText="Copy" disabled={true} />
+            <MenuItem primaryText="Paste" />
           </Menu>
 
           <Menu style={styles.menu} desktop={true}>
-            <MenuItem>Untitled</MenuItem>
-            <MenuItem>Using the z-axis to Solve Design Challenges</MenuItem>
-            <MenuItem>An Extensive History of Dimensionality</MenuItem>
+            <MenuItem primaryText="Untitled" />
+            <MenuItem primaryText="Using the z-axis to Solve Design Challenges" />
+            <MenuItem primaryText="An Extensive History of Dimensionality" />
           </Menu>
 
           <Menu style={styles.menu} desktop={true}>
-            <MenuItem>Untitled</MenuItem>
-            <MenuItem>Using the z-axis to Solve Design Challenges</MenuItem>
-            <MenuItem>An Extensive History of Dimensionality: the Abridged Edition</MenuItem>
+            <MenuItem primaryText="Untitled" />
+            <MenuItem primaryText="Using the z-axis to Solve Design Challenges" />
+            <MenuItem primaryText="An Extensive History of Dimensionality: the Abridged Edition" />
           </Menu>
 
           <Menu style={styles.menu} desktop={true} width={320}>
-            <MenuItem secondaryText="Cmnd + O">Open</MenuItem>
-            <MenuItem secondaryText="Shift + V">Paste in place</MenuItem>
-            <MenuItem secondaryText="Opt + Shift + Cmnd + I">Research</MenuItem>
+            <MenuItem primaryText="Open" secondaryText="Cmnd + O" />
+            <MenuItem primaryText="Paste in place" secondaryText="Shift + V" />
+            <MenuItem primaryText="Research" secondaryText="Opt + Shift + Cmnd + I" />
           </Menu>
 
           <Menu style={styles.menu} desktop={true} width={320}>
-            <MenuItem secondaryText="&#8984;O">Open</MenuItem>
-            <MenuItem secondaryText="&#8679;&#8984;V">Paste in place</MenuItem>
-            <MenuItem secondaryText="&#8997;&#8679;&#8984;I">Research</MenuItem>
+            <MenuItem primaryText="Open" secondaryText="&#8984;O" />
+            <MenuItem primaryText="Paste in place" secondaryText="&#8679;&#8984;V" />
+            <MenuItem primaryText="Research" secondaryText="&#8997;&#8679;&#8984;I" />
           </Menu>
 
           <Menu style={styles.menu} desktop={true} width={320}>
-            <MenuItem secondaryText="&#8984;B">Bold</MenuItem>
-            <MenuItem secondaryText="&#8984;I">Italic</MenuItem>
-            <MenuItem secondaryText="&#8984;U">Underline</MenuItem>
-            <MenuItem secondaryText="Alt+Shift+5">Strikethrough</MenuItem>
-            <MenuItem secondaryText="&#8984;.">Superscript</MenuItem>
-            <MenuItem secondaryText="&#8984;,">Subscript</MenuItem>
+            <MenuItem primaryText="Bold" secondaryText="&#8984;B" />
+            <MenuItem primaryText="Italic" secondaryText="&#8984;I" />
+            <MenuItem primaryText="Underline" secondaryText="&#8984;U" />
+            <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />
+            <MenuItem primaryText="Superscript" secondaryText="&#8984;." />
+            <MenuItem primaryText="Subscript" secondaryText="&#8984;," />
             <MenuDivider />
-            <MenuItem rightIcon={<ArrowDropRight />}>Paragraph styles</MenuItem>
-            <MenuItem rightIcon={<ArrowDropRight />}>Align</MenuItem>
-            <MenuItem rightIcon={<ArrowDropRight />}>Line spacing</MenuItem>
-            <MenuItem rightIcon={<ArrowDropRight />}>Numbered list</MenuItem>
-            <MenuItem rightIcon={<ArrowDropRight />}>List options</MenuItem>
+            <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />
+            <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />
+            <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />
+            <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />
+            <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />
             <MenuDivider />
-            <MenuItem secondaryText="&#8984;/">Clear formatting</MenuItem>
+            <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
           </Menu>
 
           <Menu style={styles.menu} desktop={true} width={320}>
-            <MenuItem insetChildren={true}>Single</MenuItem>
-            <MenuItem insetChildren={true}>1.15</MenuItem>
-            <MenuItem insetChildren={true}>Double</MenuItem>
-            <MenuItem checked={true} rightIcon={<ArrowDropRight />}>Custom: 1.2</MenuItem>
-            <MenuItem secondaryText="&#8984;.">Superscript</MenuItem>
-            <MenuItem secondaryText="&#8984;,">Subscript</MenuItem>
+            <MenuItem primaryText="Single" insetChildren={true} />
+            <MenuItem primaryText="1.15" insetChildren={true} />
+            <MenuItem primaryText="Double" insetChildren={true} />
+            <MenuItem primaryText="Custom: 1.2" checked={true} rightIcon={<ArrowDropRight />} />
             <MenuDivider />
-            <MenuItem>Add space before paragraph</MenuItem>
-            <MenuItem>Add space after paragraph</MenuItem>
+            <MenuItem primaryText="Add space before paragraph" />
+            <MenuItem primaryText="Add space after paragraph" />
             <MenuDivider />
-            <MenuItem>Custom spacing...</MenuItem>
+            <MenuItem primaryText="Custom spacing..." />
           </Menu>
 
           <Menu style={styles.menu} desktop={true}>
-            <MenuItem>Show</MenuItem>
-            <MenuItem checked={true}>Grid lines</MenuItem>
-            <MenuItem insetChildren={true}>Page breaks</MenuItem>
-            <MenuItem checked={true}>Rules</MenuItem>
+            <MenuItem primaryText="Show" />
+            <MenuItem primaryText="Grid lines" checked={true} />
+            <MenuItem primaryText="Page breaks" insetChildren={true} />
+            <MenuItem primaryText="Rules" checked={true} />
           </Menu>
         </ReactTransitionGroup>
       </ComponentDoc>

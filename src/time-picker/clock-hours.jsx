@@ -71,7 +71,7 @@ let ClockHours = React.createClass({
 
   handleMove(e) {
     e.preventDefault();
-    if (this.isMousePressed(e) != 1 ) return;
+    if (this.isMousePressed(e) !== 1 ) return;
     this.setClock(e.nativeEvent, false);
   },
 
@@ -117,7 +117,7 @@ let ClockHours = React.createClass({
     let distance = Math.sqrt(delta);
 
     value = value || 12;
-    if (this.props.format == "24hr"){
+    if (this.props.format === "24hr"){
       if (distance < 90){
         value += 12;
         value %= 24;
@@ -153,7 +153,7 @@ let ClockHours = React.createClass({
     }
 
     return hours.map((hour) => {
-      let isSelected = this._getSelected() == hour;
+      let isSelected = this._getSelected() === hour;
       return <ClockNumber key={hour} style={style} isSelected={isSelected} type="hour" value={hour} />;
     });
   },

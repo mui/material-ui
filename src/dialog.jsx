@@ -64,18 +64,19 @@ let Dialog = React.createClass({
   },
 
   propTypes: {
-    title: React.PropTypes.node,
     actions: React.PropTypes.array,
+    autoDetectWindowHeight: React.PropTypes.bool,
+    autoScrollBodyContent: React.PropTypes.bool,
+    bodyStyle: React.PropTypes.object,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
-    bodyStyle: React.PropTypes.object,
+    modal: React.PropTypes.bool,
     openImmediately: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
-    autoDetectWindowHeight: React.PropTypes.bool,
-    autoScrollBodyContent: React.PropTypes.bool,
+    title: React.PropTypes.node,
   },
 
   windowListeners: {
@@ -85,10 +86,11 @@ let Dialog = React.createClass({
 
   getDefaultProps() {
     return {
-      actions: [],
-      repositionOnUpdate: true,
       autoDetectWindowHeight: false,
       autoScrollBodyContent: false,
+      actions: [],
+      modal: false,
+      repositionOnUpdate: true,
     };
   },
 
@@ -203,7 +205,10 @@ let Dialog = React.createClass({
             </Paper>
           </TransitionItem>}
         </ReactTransitionGroup>
-        <Overlay ref="dialogOverlay" show={this.state.open} autoLockScrolling={false}
+        <Overlay
+          ref="dialogOverlay"
+          show={this.state.open}
+          autoLockScrolling={false}
           onTouchTap={this._handleOverlayTouchTap} />
       </div>
     );
@@ -230,22 +235,29 @@ let Dialog = React.createClass({
 
   _getAction(actionJSON, key) {
     let styles = {marginRight: 8};
-    let onTouchTap = () => {
-      if (actionJSON.onTouchTap) {
-        actionJSON.onTouchTap.call(undefined);
-      }
-      if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
-        this.dismiss();
-      }
+    let props = {
+      key: key,
+      secondary: true,
+      onClick: actionJSON.onClick,
+      onTouchTap: () => {
+        if (actionJSON.onTouchTap) {
+          actionJSON.onTouchTap.call(undefined);
+        }
+        if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
+          this.dismiss();
+        }
+      },
+      label: actionJSON.text,
+      style: styles,
     };
+    if (actionJSON.ref) {
+      props.ref = actionJSON.ref;
+      props.keyboardFocused = actionJSON.ref === this.props.actionFocus;
+    }
+
     return (
       <FlatButton
-        key={key}
-        secondary={true}
-        onClick={actionJSON.onClick}
-        onTouchTap = {onTouchTap}
-        label={actionJSON.text}
-        style={styles}/>
+        {...props} />
     );
   },
 
@@ -289,7 +301,7 @@ let Dialog = React.createClass({
       let container = this.getDOMNode();
       let dialogWindow = this.refs.dialogWindow.getDOMNode();
       let dialogContent = this.refs.dialogContent.getDOMNode();
-      let minPaddingTop = 64;
+      let minPaddingTop = 16;
       let dialogWindowHeight;
       let paddingTop;
       let maxDialogWindowHeight;
@@ -352,13 +364,18 @@ let Dialog = React.createClass({
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
-  _handleOverlayTouchTap() {
-    this.dismiss();
-    if (this.props.onClickAway) this.props.onClickAway();
+  _handleOverlayTouchTap(e) {
+    if (this.props.modal) {
+      e.stopPropagation();
+    }
+    else {
+      this.dismiss();
+      if (this.props.onClickAway) this.props.onClickAway();
+    }
   },
 
   _handleWindowKeyUp(e) {
-    if (e.keyCode == KeyCode.ESC) {
+    if (e.keyCode === KeyCode.ESC) {
       this.dismiss();
     }
   },
