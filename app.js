@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -11052,45 +11052,46 @@ var Redirect = Router.Redirect;
 var DefaultRoute = Router.DefaultRoute;
 
 // Here we define all our material-ui ReactComponents.
-var Master = require('./components/master.jsx');
-var Home = require('./components/pages/home.jsx');
-var GetStarted = require('./components/pages/get-started.jsx');
+var Master = require('./components/master');
+var Home = require('./components/pages/home');
+var GetStarted = require('./components/pages/get-started');
 
-var Customization = require('./components/pages/customization.jsx');
-var Colors = require('./components/pages/customization/colors.jsx');
-var Themes = require('./components/pages/customization/themes.jsx');
-var InlineStyles = require('./components/pages/customization/inline-styles.jsx');
+var Customization = require('./components/pages/customization');
+var Colors = require('./components/pages/customization/colors');
+var Themes = require('./components/pages/customization/themes');
+var InlineStyles = require('./components/pages/customization/inline-styles');
 
-var Components = require('./components/pages/components.jsx');
-var AppBar = require('./components/pages/components/app-bar.jsx');
-var Avatars = require('./components/pages/components/avatars.jsx');
-var Buttons = require('./components/pages/components/buttons.jsx');
-var Cards = require('./components/pages/components/cards.jsx');
-var DatePicker = require('./components/pages/components/date-picker.jsx');
-var Dialog = require('./components/pages/components/dialog.jsx');
-var DropDownMenu = require('./components/pages/components/drop-down-menu.jsx');
-var Icons = require('./components/pages/components/icons.jsx');
-var IconButtons = require('./components/pages/components/icon-buttons.jsx');
-var LeftNav = require('./components/pages/components/left-nav.jsx');
-var Lists = require('./components/pages/components/lists.jsx');
-var Menus = require('./components/pages/components/menus.jsx');
-var Paper = require('./components/pages/components/paper.jsx');
-var Progress = require('./components/pages/components/progress.jsx');
-var Sliders = require('./components/pages/components/sliders.jsx');
-var Snackbar = require('./components/pages/components/snackbar.jsx');
-var Switches = require('./components/pages/components/switches.jsx');
-var Table = require('./components/pages/components/table.jsx');
-var Tabs = require('./components/pages/components/tabs.jsx');
-var TextFields = require('./components/pages/components/text-fields.jsx');
-var TimePicker = require('./components/pages/components/time-picker.jsx');
-var Toolbars = require('./components/pages/components/toolbars.jsx');
+var Components = require('./components/pages/components');
+var AppBar = require('./components/pages/components/app-bar');
+var Avatars = require('./components/pages/components/avatars');
+var Buttons = require('./components/pages/components/buttons');
+var Cards = require('./components/pages/components/cards');
+var DatePicker = require('./components/pages/components/date-picker');
+var Dialog = require('./components/pages/components/dialog');
+var DropDownMenu = require('./components/pages/components/drop-down-menu');
+var Icons = require('./components/pages/components/icons');
+var IconButtons = require('./components/pages/components/icon-buttons');
+var IconMenus = require('./components/pages/components/icon-menus');
+var LeftNav = require('./components/pages/components/left-nav');
+var Lists = require('./components/pages/components/lists');
+var Menus = require('./components/pages/components/menus');
+var Paper = require('./components/pages/components/paper');
+var Progress = require('./components/pages/components/progress');
+var Sliders = require('./components/pages/components/sliders');
+var Snackbar = require('./components/pages/components/snackbar');
+var Switches = require('./components/pages/components/switches');
+var Table = require('./components/pages/components/table');
+var Tabs = require('./components/pages/components/tabs');
+var TextFields = require('./components/pages/components/text-fields');
+var TimePicker = require('./components/pages/components/time-picker');
+var Toolbars = require('./components/pages/components/toolbars');
 
 /** Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
-  * 
+  *
   * Routes are used to declare your view hierarchy.
   *
   * Say you go to http://material-ui.com/#/components/paper
-  * The react router will search for a route named 'paper' and will recursively render its 
+  * The react router will search for a route named 'paper' and will recursively render its
   * handler and its parent handler like so: Paper > Components > Master
   */
 
@@ -11119,6 +11120,7 @@ var AppRoutes = React.createElement(
     React.createElement(Route, { name: 'dropdown-menu', handler: DropDownMenu }),
     React.createElement(Route, { name: 'icons', handler: Icons }),
     React.createElement(Route, { name: 'icon-buttons', handler: IconButtons }),
+    React.createElement(Route, { name: 'icon-menus', handler: IconMenus }),
     React.createElement(Route, { name: 'left-nav', handler: LeftNav }),
     React.createElement(Route, { name: 'lists', handler: Lists }),
     React.createElement(Route, { name: 'menus', handler: Menus }),
@@ -11139,7 +11141,7 @@ var AppRoutes = React.createElement(
 
 module.exports = AppRoutes;
 
-},{"./components/master.jsx":137,"./components/pages/components.jsx":139,"./components/pages/components/app-bar.jsx":140,"./components/pages/components/avatars.jsx":141,"./components/pages/components/buttons.jsx":142,"./components/pages/components/cards.jsx":143,"./components/pages/components/date-picker.jsx":144,"./components/pages/components/dialog.jsx":145,"./components/pages/components/drop-down-menu.jsx":146,"./components/pages/components/icon-buttons.jsx":147,"./components/pages/components/icons.jsx":148,"./components/pages/components/left-nav.jsx":149,"./components/pages/components/lists.jsx":150,"./components/pages/components/menus.jsx":151,"./components/pages/components/paper.jsx":152,"./components/pages/components/progress.jsx":153,"./components/pages/components/sliders.jsx":154,"./components/pages/components/snackbar.jsx":155,"./components/pages/components/switches.jsx":156,"./components/pages/components/table.jsx":157,"./components/pages/components/tabs.jsx":158,"./components/pages/components/text-fields.jsx":159,"./components/pages/components/time-picker.jsx":160,"./components/pages/components/toolbars.jsx":161,"./components/pages/customization.jsx":162,"./components/pages/customization/colors.jsx":163,"./components/pages/customization/inline-styles.jsx":164,"./components/pages/customization/themes.jsx":165,"./components/pages/get-started.jsx":166,"./components/pages/home.jsx":168,"react":401,"react-router":210}],130:[function(require,module,exports){
+},{"./components/master":137,"./components/pages/components":139,"./components/pages/components/app-bar":140,"./components/pages/components/avatars":141,"./components/pages/components/buttons":142,"./components/pages/components/cards":143,"./components/pages/components/date-picker":144,"./components/pages/components/dialog":145,"./components/pages/components/drop-down-menu":146,"./components/pages/components/icon-buttons":147,"./components/pages/components/icon-menus":148,"./components/pages/components/icons":149,"./components/pages/components/left-nav":150,"./components/pages/components/lists":151,"./components/pages/components/menus":152,"./components/pages/components/paper":153,"./components/pages/components/progress":154,"./components/pages/components/sliders":155,"./components/pages/components/snackbar":156,"./components/pages/components/switches":157,"./components/pages/components/table":158,"./components/pages/components/tabs":159,"./components/pages/components/text-fields":160,"./components/pages/components/time-picker":161,"./components/pages/components/toolbars":162,"./components/pages/customization":163,"./components/pages/customization/colors":164,"./components/pages/customization/inline-styles":165,"./components/pages/customization/themes":166,"./components/pages/get-started":167,"./components/pages/home":169,"react":388,"react-router":197}],130:[function(require,module,exports){
 'use strict';
 
 (function () {
@@ -11158,7 +11160,7 @@ module.exports = AppRoutes;
   //https://github.com/zilverline/react-tap-event-plugin
   injectTapEventPlugin();
 
-  /** Render the main app component. You can read more about the react-router here: 
+  /** Render the main app component. You can read more about the react-router here:
     *  https://github.com/rackt/react-router/blob/master/docs/guides/overview.md
     */
   Router
@@ -11169,18 +11171,18 @@ module.exports = AppRoutes;
     scrollBehavior: Router.ScrollToTopBehavior
   })
   // This is our callback function, whenever the url changes it will be called again.
-  // Handler: The ReactComponent class that will be rendered 
+  // Handler: The ReactComponent class that will be rendered
   .run(function (Handler) {
     React.render(React.createElement(Handler, null), document.body);
   });
 })();
 
-},{"./app-routes.jsx":129,"react":401,"react-router":210,"react-tap-event-plugin":228}],131:[function(require,module,exports){
+},{"./app-routes.jsx":129,"react":388,"react-router":197,"react-tap-event-plugin":215}],131:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
@@ -11188,13 +11190,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 
 var React = require('react');
 var Router = require('react-router');
-var mui = require('mui');
-var MenuItem = mui.MenuItem;
-var LeftNav = mui.LeftNav;
-var _mui$Styles = mui.Styles;
-var Colors = _mui$Styles.Colors;
-var Spacing = _mui$Styles.Spacing;
-var Typography = _mui$Styles.Typography;
+
+var _require = require('material-ui');
+
+var MenuItem = _require.MenuItem;
+var LeftNav = _require.LeftNav;
+var Styles = _require.Styles;
+var Colors = Styles.Colors;
+var Spacing = Styles.Spacing;
+var Typography = Styles.Typography;
 
 var menuItems = [{ route: 'get-started', text: 'Get Started' }, { route: 'customization', text: 'Customization' }, { route: 'components', text: 'Components' }, { type: MenuItem.Types.SUBHEADER, text: 'Resources' }, { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' }, { type: MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' }, { type: MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }];
 
@@ -11253,7 +11257,7 @@ var AppLeftNav = (function (_React$Component) {
   }, {
     key: '_getSelectedIndex',
     value: function _getSelectedIndex() {
-      var currentItem;
+      var currentItem = undefined;
 
       for (var i = menuItems.length - 1; i >= 0; i--) {
         currentItem = menuItems[i];
@@ -11282,12 +11286,12 @@ AppLeftNav.contextTypes = {
 
 module.exports = AppLeftNav;
 
-},{"mui":435,"react":401,"react-router":210}],132:[function(require,module,exports){
+},{"material-ui":"material-ui","react":388,"react-router":197}],132:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
@@ -11295,8 +11299,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 
 var React = require('react');
 var hljs = require('highlight.js');
-var mui = require('mui');
-var Spacing = mui.Styles.Spacing;
+
+var _require = require('material-ui');
+
+var Styles = _require.Styles;
+var Spacing = Styles.Spacing;
 
 var CodeBlock = (function (_React$Component) {
   function CodeBlock() {
@@ -11354,33 +11361,36 @@ CodeBlock.contextTypes = {
 
 module.exports = CodeBlock;
 
-},{"highlight.js":3,"mui":435,"react":401}],133:[function(require,module,exports){
+},{"highlight.js":3,"material-ui":"material-ui","react":388}],133:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var CodeBlock = require('./code-block.jsx');
 
-var ClearFix = mui.ClearFix;
-var Paper = mui.Paper;
-var _mui$Styles = mui.Styles;
-var Colors = _mui$Styles.Colors;
-var Spacing = _mui$Styles.Spacing;
-var Typography = _mui$Styles.Typography;
+var _require = require('material-ui');
+
+var ClearFix = _require.ClearFix;
+var Paper = _require.Paper;
+var Styles = _require.Styles;
+
+var CodeBlock = require('./code-block');
+
+var Colors = Styles.Colors;
+var Spacing = Styles.Spacing;
+var Typography = Styles.Typography;
 
 var CodeExample = (function (_React$Component) {
   function CodeExample() {
     _classCallCheck(this, CodeExample);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(CodeExample.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(CodeExample, _React$Component);
@@ -11418,7 +11428,7 @@ var CodeExample = (function (_React$Component) {
     value: function render() {
       var styles = this.getStyles();
       return React.createElement(
-        mui.Paper,
+        Paper,
         { style: styles.root },
         React.createElement(
           'div',
@@ -11452,17 +11462,22 @@ CodeExample.contextTypes = {
 
 module.exports = CodeExample;
 
-},{"./code-block.jsx":132,"mui":435,"react":401}],134:[function(require,module,exports){
+},{"./code-block":132,"material-ui":"material-ui","react":388}],134:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var mui = require('mui');
-var Classable = mui.Mixins.Classable;
-var CodeExample = require('./code-example/code-example.jsx');
-var ComponentInfo = require('./component-info.jsx');
-var Typography = mui.Styles.Typography;
-var StylePropable = mui.Mixins.StylePropable;
-var ClearFix = mui.ClearFix;
+
+var _require = require('material-ui');
+
+var ClearFix = _require.ClearFix;
+var Mixins = _require.Mixins;
+var Styles = _require.Styles;
+
+var CodeExample = require('./code-example/code-example');
+var ComponentInfo = require('./component-info');
+var Typography = Styles.Typography;
+var Classable = Mixins.Classable;
+var StylePropable = Mixins.StylePropable;
 
 var ComponentDoc = React.createClass({
   displayName: 'ComponentDoc',
@@ -11552,7 +11567,7 @@ var ComponentDoc = React.createClass({
       }
     }
 
-    var header;
+    var header = undefined;
     if (this.props.name.length > 0) {
       header = React.createElement(
         'h2',
@@ -11583,19 +11598,20 @@ var ComponentDoc = React.createClass({
 
 module.exports = ComponentDoc;
 
-},{"./code-example/code-example.jsx":133,"./component-info.jsx":135,"mui":435,"react":401}],135:[function(require,module,exports){
+},{"./code-example/code-example":133,"./component-info":135,"material-ui":"material-ui","react":388}],135:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var mui = require('mui');
 
-var _mui$Styles = mui.Styles;
-var Typography = _mui$Styles.Typography;
-var Spacing = _mui$Styles.Spacing;
-var Colors = _mui$Styles.Colors;
-var _mui$Mixins = mui.Mixins;
-var StyleResizable = _mui$Mixins.StyleResizable;
-var StylePropable = _mui$Mixins.StylePropable;
+var _require = require('material-ui');
+
+var Mixins = _require.Mixins;
+var Styles = _require.Styles;
+var StyleResizable = Mixins.StyleResizable;
+var StylePropable = Mixins.StylePropable;
+var Typography = Styles.Typography;
+var Spacing = Styles.Spacing;
+var Colors = Styles.Colors;
 
 var ComponentInfo = React.createClass({
   displayName: 'ComponentInfo',
@@ -11710,7 +11726,7 @@ var ComponentInfo = React.createClass({
 
   render: function render() {
     var propElements = [],
-        typesSpan;
+        typesSpan = undefined;
 
     var styles = this.getStyles();
     this.props.infoArray.forEach(function (info, i) {
@@ -11774,7 +11790,7 @@ var ComponentInfo = React.createClass({
 
 module.exports = ComponentInfo;
 
-},{"mui":435,"react":401}],136:[function(require,module,exports){
+},{"material-ui":"material-ui","react":388}],136:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -11782,11 +11798,16 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var React = require('react');
-var mui = require('mui');
-var ClearFix = mui.ClearFix;
-var StylePropable = mui.Mixins.StylePropable;
-var StyleResizable = mui.Mixins.StyleResizable;
-var DesktopGutter = mui.Styles.Spacing.desktopGutter;
+
+var _require = require('material-ui');
+
+var ClearFix = _require.ClearFix;
+var Mixins = _require.Mixins;
+var Styles = _require.Styles;
+var StylePropable = Mixins.StylePropable;
+var StyleResizable = Mixins.StyleResizable;
+
+var DesktopGutter = Styles.Spacing.desktopGutter;
 
 var FullWidthSection = React.createClass({
   displayName: 'FullWidthSection',
@@ -11838,7 +11859,7 @@ var FullWidthSection = React.createClass({
 
     var styles = this.getStyles();
 
-    var content;
+    var content = undefined;
     if (useContent) {
       content = React.createElement(contentType, { style: this.mergeAndPrefix(styles.content, contentStyle) }, this.props.children);
     } else {
@@ -11856,12 +11877,12 @@ var FullWidthSection = React.createClass({
 
 module.exports = FullWidthSection;
 
-},{"mui":435,"react":401}],137:[function(require,module,exports){
+},{"material-ui":"material-ui","react":388}],137:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
@@ -11869,19 +11890,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 
 var React = require('react');
 var Router = require('react-router');
+var AppLeftNav = require('./app-left-nav');
+var FullWidthSection = require('./full-width-section');
+
+var _require = require('material-ui');
+
+var AppBar = _require.AppBar;
+var AppCanvas = _require.AppCanvas;
+var IconButton = _require.IconButton;
+var Menu = _require.Menu;
+var Styles = _require.Styles;
+
 var RouteHandler = Router.RouteHandler;
-var AppLeftNav = require('./app-left-nav.jsx');
-var FullWidthSection = require('./full-width-section.jsx');
-var mui = require('mui');
+var Colors = Styles.Colors;
+var Typography = Styles.Typography;
 
-var Colors = mui.Styles.Colors;
-var Typography = mui.Styles.Typography;
-var ThemeManager = new mui.Styles.ThemeManager();
-
-var AppBar = mui.AppBar;
-var AppCanvas = mui.AppCanvas;
-var Menu = mui.Menu;
-var IconButton = mui.IconButton;
+var ThemeManager = new Styles.ThemeManager();
 
 var Master = (function (_React$Component) {
   function Master() {
@@ -11989,12 +12013,10 @@ Master.childContextTypes = {
 
 module.exports = Master;
 
-},{"./app-left-nav.jsx":131,"./full-width-section.jsx":136,"mui":435,"react":401,"react-router":210}],138:[function(require,module,exports){
+},{"./app-left-nav":131,"./full-width-section":136,"material-ui":"material-ui","react":388,"react-router":197}],138:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
 
 var MobileTearSheet = React.createClass({
   displayName: 'MobileTearSheet',
@@ -12051,25 +12073,25 @@ var MobileTearSheet = React.createClass({
 
 module.exports = MobileTearSheet;
 
-},{"mui":435,"react":401}],139:[function(require,module,exports){
+},{"react":388}],139:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var PageWithNav = require('./page-with-nav.jsx');
+var PageWithNav = require('./page-with-nav');
 
 var Components = (function (_React$Component) {
   function Components() {
     _classCallCheck(this, Components);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(Components.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(Components, _React$Component);
@@ -12077,7 +12099,7 @@ var Components = (function (_React$Component) {
   _createClass(Components, [{
     key: 'render',
     value: function render() {
-      var menuItems = [{ route: 'appbar', text: 'AppBar' }, { route: 'avatars', text: 'Avatars' }, { route: 'buttons', text: 'Buttons' }, { route: 'cards', text: 'Cards' }, { route: 'date-picker', text: 'Date Picker' }, { route: 'dialog', text: 'Dialog' }, { route: 'dropdown-menu', text: 'Dropdown Menu' }, { route: 'icons', text: 'Icons' }, { route: 'icon-buttons', text: 'Icon Buttons' }, { route: 'left-nav', text: 'Left Nav' }, { route: 'lists', text: 'Lists' }, { route: 'menus', text: 'Menus' }, { route: 'paper', text: 'Paper' }, { route: 'progress', text: 'Progress' }, { route: 'sliders', text: 'Sliders' }, { route: 'switches', text: 'Switches' }, { route: 'snackbar', text: 'Snackbar' }, { route: 'table', text: 'Table' }, { route: 'tabs', text: 'Tabs' }, { route: 'text-fields', text: 'Text Fields' }, { route: 'time-picker', text: 'Time Picker' }, { route: 'toolbars', text: 'Toolbars' }];
+      var menuItems = [{ route: 'appbar', text: 'AppBar' }, { route: 'avatars', text: 'Avatars' }, { route: 'buttons', text: 'Buttons' }, { route: 'cards', text: 'Cards' }, { route: 'date-picker', text: 'Date Picker' }, { route: 'dialog', text: 'Dialog' }, { route: 'dropdown-menu', text: 'Dropdown Menu' }, { route: 'icons', text: 'Icons' }, { route: 'icon-buttons', text: 'Icon Buttons' }, { route: 'icon-menus', text: 'Icon Menus' }, { route: 'left-nav', text: 'Left Nav' }, { route: 'lists', text: 'Lists' }, { route: 'menus', text: 'Menus' }, { route: 'paper', text: 'Paper' }, { route: 'progress', text: 'Progress' }, { route: 'sliders', text: 'Sliders' }, { route: 'switches', text: 'Switches' }, { route: 'snackbar', text: 'Snackbar' }, { route: 'table', text: 'Table' }, { route: 'tabs', text: 'Tabs' }, { route: 'text-fields', text: 'Text Fields' }, { route: 'time-picker', text: 'Time Picker' }, { route: 'toolbars', text: 'Toolbars' }];
 
       return React.createElement(PageWithNav, { menuItems: menuItems });
     }
@@ -12088,23 +12110,28 @@ var Components = (function (_React$Component) {
 
 module.exports = Components;
 
-},{"./page-with-nav.jsx":169,"react":401}],140:[function(require,module,exports){
+},{"./page-with-nav":170,"react":388}],140:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var ComponentDoc = require('../../component-doc.jsx');
 
-var AppBar = mui.AppBar;
-var DropDownMenu = mui.DropDownMenu;
+var _require = require('material-ui');
+
+var AppBar = _require.AppBar;
+var DropDownMenu = _require.DropDownMenu;
+
+var IconButton = require('icon-button');
+var NavigationClose = require('svg-icons/navigation/close');
+var FlatButton = require('flat-button');
+var ComponentDoc = require('../../component-doc');
 
 var AppBarPage = (function (_React$Component) {
   function AppBarPage(props) {
@@ -12112,7 +12139,7 @@ var AppBarPage = (function (_React$Component) {
 
     _get(Object.getPrototypeOf(AppBarPage.prototype), 'constructor', this).call(this, props);
 
-    this.code = '<AppBar title=\'Title\' iconClassNameRight="muidocs-icon-navigation-expand-more"/>';
+    this.code = '<AppBar\n' + '  title="Title"\n' + '  iconClassNameRight="muidocs-icon-navigation-expand-more" />\n' + '\n' + '<AppBar\n' + '  title="Title"\n' + '  iconElementLeft={<IconButton><NavigationClose /></IconButton>}\n' + '  iconElementRight={<FlatButton label="Save" />} />';
 
     this.desc = 'App bars are a collection of components placed as a static ' + 'header for an application. It is used for navigation, search ' + 'branding, and actions. An app bar is also referred to as the ' + 'primary toolbar or action bar for Android.';
 
@@ -12190,7 +12217,18 @@ var AppBarPage = (function (_React$Component) {
           code: this.code,
           desc: this.desc,
           componentInfo: this.componentInfo },
-        React.createElement(AppBar, { title: 'Title', iconClassNameRight: 'muidocs-icon-navigation-expand-more' })
+        React.createElement(AppBar, {
+          title: 'Title',
+          iconClassNameRight: 'muidocs-icon-navigation-expand-more' }),
+        React.createElement('br', null),
+        React.createElement(AppBar, {
+          title: 'Title',
+          iconElementLeft: React.createElement(
+            IconButton,
+            null,
+            React.createElement(NavigationClose, null)
+          ),
+          iconElementRight: React.createElement(FlatButton, { label: 'Save' }) })
       );
     }
   }]);
@@ -12200,32 +12238,36 @@ var AppBarPage = (function (_React$Component) {
 
 module.exports = AppBarPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],141:[function(require,module,exports){
+},{"../../component-doc":134,"flat-button":417,"icon-button":420,"material-ui":"material-ui","react":388,"svg-icons/navigation/close":492}],141:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var Colors = mui.Styles.Colors;
-var Avatar = mui.Avatar;
-var FontIcon = mui.FontIcon;
-var List = mui.List;
-var ListItem = mui.ListItem;
-var ComponentDoc = require('../../component-doc.jsx');
-var FileFolder = require('../../svg-icons/file-folder.jsx');
+
+var _require = require('material-ui');
+
+var Avatar = _require.Avatar;
+var FontIcon = _require.FontIcon;
+var List = _require.List;
+var ListItem = _require.ListItem;
+var Styles = _require.Styles;
+
+var ComponentDoc = require('../../component-doc');
+var FileFolder = require('svg-icons/file/folder');
+var Colors = Styles.Colors;
 
 var AvatarsPage = (function (_React$Component) {
   function AvatarsPage() {
     _classCallCheck(this, AvatarsPage);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(AvatarsPage.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(AvatarsPage, _React$Component);
@@ -12256,10 +12298,20 @@ var AvatarsPage = (function (_React$Component) {
           header: 'default: white',
           desc: 'The icon or letter color.'
         }, {
+          name: 'size',
+          type: 'number',
+          header: 'default: 40',
+          desc: 'This is the size of the avatar in pixels'
+        }, {
           name: 'src',
           type: 'string',
           header: 'optional',
           desc: 'If passed in, this component will render an img element. Otherwise, a div will be rendered.'
+        }, {
+          name: 'style',
+          type: 'object',
+          header: 'optional',
+          desc: 'Override the inline-styles of the root element.'
         }]
       }];
 
@@ -12291,37 +12343,37 @@ var AvatarsPage = (function (_React$Component) {
           null,
           React.createElement(
             ListItem,
-            { leftAvatar: imageAvatar, disableTouchTap: true },
+            { leftAvatar: imageAvatar, disabled: true },
             'Image Avatar'
           ),
           React.createElement(
             ListItem,
-            { leftAvatar: svgAvatar, disableTouchTap: true },
+            { leftAvatar: svgAvatar, disabled: true },
             'SvgIcon Avatar'
           ),
           React.createElement(
             ListItem,
-            { leftAvatar: customSvgAvatar, disableTouchTap: true },
+            { leftAvatar: customSvgAvatar, disabled: true },
             'SvgIcon Avatar with custom colors'
           ),
           React.createElement(
             ListItem,
-            { leftAvatar: fontAvatar, disableTouchTap: true },
+            { leftAvatar: fontAvatar, disabled: true },
             'FontIcon Avatar'
           ),
           React.createElement(
             ListItem,
-            { leftAvatar: customFontAvatar, disableTouchTap: true },
+            { leftAvatar: customFontAvatar, disabled: true },
             'FontIcon Avatar with custom colors'
           ),
           React.createElement(
             ListItem,
-            { leftAvatar: letterAvatar, disableTouchTap: true },
+            { leftAvatar: letterAvatar, disabled: true },
             'Letter Avatar'
           ),
           React.createElement(
             ListItem,
-            { leftAvatar: customLetterAvatar, disableTouchTap: true },
+            { leftAvatar: customLetterAvatar, disabled: true },
             'Letter Avatar with custom colors'
           )
         )
@@ -12334,30 +12386,35 @@ var AvatarsPage = (function (_React$Component) {
 
 module.exports = AvatarsPage;
 
-},{"../../component-doc.jsx":134,"../../svg-icons/file-folder.jsx":181,"mui":435,"react":401}],142:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388,"svg-icons/file/folder":481}],142:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var ComponentDoc = require('../../component-doc.jsx');
-var extend = mui.Utils.Extend;
-var Colors = mui.Styles.Colors;
-var Typography = mui.Styles.Typography;
+var ComponentDoc = require('../../component-doc');
+var mui = require('material-ui');
+var ToggleStar = require('svg-icons/toggle/star');
+
 var ClearFix = mui.ClearFix;
 var FlatButton = mui.FlatButton;
 var FloatingActionButton = mui.FloatingActionButton;
 var FontIcon = mui.FontIcon;
 var RaisedButton = mui.RaisedButton;
+var Styles = mui.Styles;
 var Tab = mui.Tab;
 var Tabs = mui.Tabs;
+var Utils = mui.Utils;
+
+var extend = Utils.Extend;
+var Colors = Styles.Colors;
+var Typography = Styles.Typography;
 
 var ButtonPage = (function (_React$Component) {
   function ButtonPage(props) {
@@ -12369,7 +12426,7 @@ var ButtonPage = (function (_React$Component) {
 
     this.codeRaisedButton = '//Raised Buttons\n' + '<RaisedButton label="Default" />\n' + '<RaisedButton label="Primary" primary={true} />\n' + '<RaisedButton label="Secondary" secondary={true} />\n' + '<div style={styles.container}>\n' + '  <RaisedButton primary={true} label="Choose an Image">\n' + '    <input type="file" style={styles.exampleImageInput}></input>\n' + '  </RaisedButton>\n' + '</div>\n' + '<div style={styles.container}>\n' + '  <RaisedButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true} label="Github">\n' + '    <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>\n' + '  </RaisedButton>\n' + '</div>\n' + '<RaisedButton label="Disabled" disabled={true} />';
 
-    this.codeFloatingActionButton = '//Floating Action Buttons\n' + '<FloatingActionButton iconClassName="muidocs-icon-action-grade" />\n' + '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />\n' + '<FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />\n' + '<FloatingActionButton iconClassName="muidocs-icon-custom-github" linkButton={true} href="https://github.com/callemall/material-ui" mini={true} secondary={true}/>' + '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />\n' + '<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />\n' + '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} secondary={true} />';
+    this.codeFloatingActionButton = '//Floating Action Buttons\n' + '<FloatingActionButton>\n' + '  <ToggleStar />\n' + '</FloatingActionButton>\n' + '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />\n' + '\n' + '<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true}>\n' + '<FloatingActionButton secondary={true} mini={true} linkButton={true}\n' + '  href="https://github.com/callemall/material-ui" />\n' + '  <ToggleStar />\n' + '</FloatingActionButton>\n' + '\n' + '<FloatingActionButton disabled={true}>\n' + '  <FontIcon className="muidocs-icon-action-grade" />\n' + '</FloatingActionButton>\n' + '<FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} mini={true} />\n';
 
     this.desc = 'This component generates a button element and all props except for ' + 'the custom props below will be passed down to the button element. Also, ' + 'focus styles will happen on tab but not on click.';
 
@@ -12439,6 +12496,11 @@ var ButtonPage = (function (_React$Component) {
         header: 'optional',
         desc: 'Disables the button if set to true.'
       }, {
+        name: 'fullWidth',
+        type: 'bool',
+        header: 'optional',
+        desc: 'If true, will change the width of the button to span the full width of the parent.'
+      }, {
         name: 'label or children',
         type: 'string (label) or HTML/React elements (children)',
         header: 'required',
@@ -12463,6 +12525,26 @@ var ButtonPage = (function (_React$Component) {
         type: 'bool',
         header: 'default: false',
         desc: 'If true, the button will use the secondary button colors.'
+      }, {
+        name: 'backgroundColor',
+        type: 'string',
+        header: 'optional',
+        desc: 'Override the background color. Always takes precedence unless the button is disabled.'
+      }, {
+        name: 'labelColor',
+        type: 'string',
+        header: 'optional',
+        desc: 'Override the label color. Always takes precedence unless the button is disabled.'
+      }, {
+        name: 'disabledBackgroundColor',
+        type: 'string',
+        header: 'optional',
+        desc: 'Override the background color if the button is disabled.'
+      }, {
+        name: 'disabledLabelColor',
+        type: 'string',
+        header: 'optional',
+        desc: 'Override the label color if the button is disabled.'
       }, {
         name: 'style',
         type: 'object',
@@ -12736,7 +12818,11 @@ var ButtonPage = (function (_React$Component) {
                 React.createElement(
                   'div',
                   { style: styles.container },
-                  React.createElement(FloatingActionButton, { iconClassName: 'muidocs-icon-action-grade' })
+                  React.createElement(
+                    FloatingActionButton,
+                    null,
+                    React.createElement(ToggleStar, null)
+                  )
                 ),
                 React.createElement(
                   'div',
@@ -12755,7 +12841,11 @@ var ButtonPage = (function (_React$Component) {
                 React.createElement(
                   'div',
                   { style: styles.container },
-                  React.createElement(FloatingActionButton, { iconClassName: 'muidocs-icon-action-grade', mini: true, secondary: true })
+                  React.createElement(
+                    FloatingActionButton,
+                    { mini: true, secondary: true },
+                    React.createElement(ToggleStar, null)
+                  )
                 )
               ),
               React.createElement(
@@ -12764,7 +12854,11 @@ var ButtonPage = (function (_React$Component) {
                 React.createElement(
                   'div',
                   { style: styles.container },
-                  React.createElement(FloatingActionButton, { iconClassName: 'muidocs-icon-action-grade', disabled: true })
+                  React.createElement(
+                    FloatingActionButton,
+                    { disabled: true },
+                    React.createElement(FontIcon, { className: 'muidocs-icon-action-grade' })
+                  )
                 ),
                 React.createElement(
                   'div',
@@ -12784,28 +12878,29 @@ var ButtonPage = (function (_React$Component) {
 
 module.exports = ButtonPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],143:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388,"svg-icons/toggle/star":501}],143:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var ComponentDoc = require('../../component-doc.jsx');
-var Card = mui.Card;
-var CardMedia = mui.CardMedia;
-var CardTitle = mui.CardTitle;
-var CardActions = mui.CardActions;
-var CardText = mui.CardText;
-var CardHeader = mui.CardHeader;
-var FlatButton = mui.FlatButton;
+var mui = require('material-ui');
+var ComponentDoc = require('../../component-doc');
+
 var Avatar = mui.Avatar;
+var Card = mui.Card;
+var CardActions = mui.CardActions;
+var CardHeader = mui.CardHeader;
+var CardMedia = mui.CardMedia;
+var CardText = mui.CardText;
+var CardTitle = mui.CardTitle;
+var FlatButton = mui.FlatButton;
 
 var CardPage = (function (_React$Component) {
   function CardPage(props) {
@@ -12874,23 +12969,26 @@ var CardPage = (function (_React$Component) {
 
 module.exports = CardPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],144:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],144:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var DatePicker = mui.DatePicker;
-var TextField = mui.TextField;
-var Toggle = mui.Toggle;
-var ComponentDoc = require('../../component-doc.jsx');
+
+var _require = require('material-ui');
+
+var DatePicker = _require.DatePicker;
+var TextField = _require.TextField;
+var Toggle = _require.Toggle;
+
+var ComponentDoc = require('../../component-doc');
 
 var DatePickerPage = (function (_React$Component) {
   function DatePickerPage(props) {
@@ -12924,6 +13022,11 @@ var DatePickerPage = (function (_React$Component) {
       var componentInfo = [{
         name: 'Props',
         infoArray: [{
+          name: 'autoOk',
+          type: 'bool',
+          header: 'default: false',
+          desc: 'If true, automatically accept and close the picker on select a date.'
+        }, {
           name: 'defaultDate',
           type: 'date object',
           header: 'optional',
@@ -12934,45 +13037,45 @@ var DatePickerPage = (function (_React$Component) {
           header: 'default: formats to M/D/YYYY',
           desc: 'This function is called to format the date to display in ' + 'the input box. By default, date objects are formatted to M/D/YYYY.'
         }, {
-          name: 'mode',
-          type: 'one of: portrait, landscape',
-          header: 'default: portrait',
-          desc: 'Tells the component to display the picker in portrait or landscape mode.'
-        }, {
-          name: 'minDate',
-          type: 'date object',
+          name: 'hideToolbarYearChange',
+          type: 'boolean',
           header: 'optional',
-          desc: 'The beginning of a range of valid dates. The range includes the startDate. ' + 'The default value is current date - 100 years.'
+          desc: 'Hide year change buttons on calendar; good for short time spans. Clicking ' + 'the year will always result in selecting a year.'
         }, {
           name: 'maxDate',
           type: 'date object',
           header: 'optional',
           desc: 'The ending of a range of valid dates. The range includes the endDate. ' + 'The default value is current date + 100 years.'
         }, {
+          name: 'minDate',
+          type: 'date object',
+          header: 'optional',
+          desc: 'The beginning of a range of valid dates. The range includes the startDate. ' + 'The default value is current date - 100 years.'
+        }, {
+          name: 'mode',
+          type: 'one of: portrait, landscape',
+          header: 'default: portrait',
+          desc: 'Tells the component to display the picker in portrait or landscape mode.'
+        }, {
           name: 'shouldDisableDate',
           type: 'function',
           header: 'optional',
           desc: 'Called during render time of a given day. If this method returns false ' + 'the day is disabled otherwise it is displayed normally.'
-        }, {
-          name: 'hideToolbarYearChange',
-          type: 'boolean',
-          header: 'optional',
-          desc: 'Hide year change buttons on calendar; good for short time spans. Clicking ' + 'the year will always result in selecting a year.'
         }, {
           name: 'showYearSelector',
           type: 'boolean',
           header: 'default: false',
           desc: 'Determines whether or not a DatePicker has a year selection capability. ' + 'If false, the year change buttons in the toolbar are hidden.'
         }, {
-          name: 'autoOk',
-          type: 'bool',
-          header: 'default: false',
-          desc: 'If true, automatically accept and close the picker on select a date.'
-        }, {
           name: 'style',
           type: 'object',
           header: 'optional',
           desc: 'Override the inline-styles of DatePicker\'s root element.'
+        }, {
+          name: 'textFieldStyle',
+          type: 'object',
+          header: 'optional',
+          desc: 'Override the inline-styles of DatePicker\'s TextField element.'
         }]
       }, {
         name: 'Methods',
@@ -13063,24 +13166,27 @@ var DatePickerPage = (function (_React$Component) {
 
 module.exports = DatePickerPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],145:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],145:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var Dialog = mui.Dialog;
-var FlatButton = mui.FlatButton;
-var RaisedButton = mui.RaisedButton;
-var Toggle = mui.Toggle;
-var ComponentDoc = require('../../component-doc.jsx');
+
+var _require = require('material-ui');
+
+var Dialog = _require.Dialog;
+var FlatButton = _require.FlatButton;
+var RaisedButton = _require.RaisedButton;
+var Toggle = _require.Toggle;
+
+var ComponentDoc = require('../../component-doc');
 
 var DialogPage = (function (_React$Component) {
   function DialogPage() {
@@ -13092,8 +13198,11 @@ var DialogPage = (function (_React$Component) {
     };
     this._handleCustomDialogCancel = this._handleCustomDialogCancel.bind(this);
     this._handleCustomDialogSubmit = this._handleCustomDialogSubmit.bind(this);
-    this.handleCustomDialogTouchTap = this.handleCustomDialogTouchTap.bind(this);
-    this.handleStandardDialogTouchTap = this.handleStandardDialogTouchTap.bind(this);
+    this._handleScrollableDialogCancel = this._handleScrollableDialogCancel.bind(this);
+    this._handleScrollableDialogSubmit = this._handleScrollableDialogSubmit.bind(this);
+    this._handleCustomDialogTouchTap = this._handleCustomDialogTouchTap.bind(this);
+    this._handleStandardDialogTouchTap = this._handleStandardDialogTouchTap.bind(this);
+    this._handleScrollableDialogTouchTap = this._handleScrollableDialogTouchTap.bind(this);
     this._handleToggleChange = this._handleToggleChange.bind(this);
   }
 
@@ -13102,7 +13211,7 @@ var DialogPage = (function (_React$Component) {
   _createClass(DialogPage, [{
     key: 'render',
     value: function render() {
-      var code = '//Standard Actions\n' + 'var standardActions = [\n' + '  { text: \'Cancel\' },\n' + '  { text: \'Submit\', onTouchTap: this._onDialogSubmit, ref: \'submit\' }\n' + '];\n\n' + '<Dialog\n' + '  title="Dialog With Standard Actions"\n' + '  actions={standardActions}\n' + '  actionFocus="submit"\n' + '  modal={this.state.modal}>\n' + '  The actions in this window are created from the json that\'s passed in. \n' + '</Dialog>\n\n' + '//Custom Actions\n' + 'var customActions = [\n' + '  <FlatButton\n' + '    label="Cancel"\n' + '    secondary={true}\n' + '    onTouchTap={this._handleCustomDialogCancel} />,\n' + '  <FlatButton\n' + '    label="Submit"\n' + '    primary={true}\n' + '    onTouchTap={this._handleCustomDialogSubmit} />\n' + '];\n\n' + '<Dialog\n' + '  title="Dialog With Custom Actions"\n' + '  actions={customActions}\n' + '  modal={this.state.modal}>\n' + '  The actions in this window were passed in as an array of react objects.\n' + '</Dialog>\n';
+      var code = '//Standard Actions\n' + 'let standardActions = [\n' + '  { text: \'Cancel\' },\n' + '  { text: \'Submit\', onTouchTap: this._onDialogSubmit, ref: \'submit\' }\n' + '];\n\n' + '<Dialog\n' + '  title="Dialog With Standard Actions"\n' + '  actions={standardActions}\n' + '  actionFocus="submit"\n' + '  modal={this.state.modal}>\n' + '  The actions in this window are created from the json that\'s passed in. \n' + '</Dialog>\n\n' + '//Custom Actions\n' + 'let customActions = [\n' + '  <FlatButton\n' + '    label="Cancel"\n' + '    secondary={true}\n' + '    onTouchTap={this._handleCustomDialogCancel} />,\n' + '  <FlatButton\n' + '    label="Submit"\n' + '    primary={true}\n' + '    onTouchTap={this._handleCustomDialogSubmit} />\n' + '];\n\n' + '<Dialog\n' + '  title="Dialog With Custom Actions"\n' + '  actions={customActions}\n' + '  modal={this.state.modal}>\n' + '  The actions in this window were passed in as an array of react objects.\n' + '</Dialog>\n\n' + '<Dialog title="Dialog With Scrollable Content" actions={customActions}\n' + '  autoDetectWindowHeight={true} autoScrollBodyContent={true}>\n' + '    <div style={{height: \'2000px\'}}>Really long content</div>\n' + '</Dialog>\n';
 
       var componentInfo = [{
         name: 'Props',
@@ -13132,6 +13241,11 @@ var DialogPage = (function (_React$Component) {
           header: 'optional',
           desc: 'Overrides the inline-styles of the dialog window content container.'
         }, {
+          name: 'modal',
+          type: 'boolean',
+          header: 'default: false',
+          desc: 'Force the user to use one of the actions in the dialog. Clicking outside the dialog will not dismiss the dialog.'
+        }, {
           name: 'openImmediately',
           type: 'bool',
           header: 'default: false',
@@ -13142,15 +13256,15 @@ var DialogPage = (function (_React$Component) {
           header: 'optional',
           desc: 'The title to display on the dialog. Could be number, string, element or an array containing these types.'
         }, {
-          name: 'modal',
+          name: 'autoDetectWindowHeight',
           type: 'bool',
-          header: 'optional',
-          desc: 'Determine if a dialog should display as a modal dialog. Default value is false.'
+          header: 'default: true',
+          desc: 'If set to true, the height of the dialog will be auto detected. A max height will be enforced so that the ' + 'content does not extend beyond the viewport.'
         }, {
-          name: 'style',
-          type: 'object',
-          header: 'optional',
-          desc: 'Override the inline-styles of Dialog\'s root element.'
+          name: 'autoScrollBodyContent',
+          type: 'bool',
+          header: 'default: false',
+          desc: 'If set to true, the body content of the dialog will be scrollable.'
         }]
       }, {
         name: 'Methods',
@@ -13187,6 +13301,15 @@ var DialogPage = (function (_React$Component) {
         label: 'Submit',
         primary: true,
         onTouchTap: this._handleCustomDialogSubmit })];
+      var scrollableCustomActions = [React.createElement(FlatButton, {
+        key: 1,
+        label: 'Cancel',
+        secondary: true,
+        onTouchTap: this._handleScrollableDialogCancel }), React.createElement(FlatButton, {
+        key: 2,
+        label: 'Submit',
+        primary: true,
+        onTouchTap: this._handleScrollableDialogSubmit })];
 
       return React.createElement(
         ComponentDoc,
@@ -13194,10 +13317,13 @@ var DialogPage = (function (_React$Component) {
           name: 'Dialog',
           code: code,
           componentInfo: componentInfo },
-        React.createElement(RaisedButton, { label: 'Standard Actions', onTouchTap: this.handleStandardDialogTouchTap }),
+        React.createElement(RaisedButton, { label: 'Standard Actions', onTouchTap: this._handleStandardDialogTouchTap }),
         React.createElement('br', null),
         React.createElement('br', null),
-        React.createElement(RaisedButton, { label: 'Custom Actions', onTouchTap: this.handleCustomDialogTouchTap }),
+        React.createElement(RaisedButton, { label: 'Custom Actions', onTouchTap: this._handleCustomDialogTouchTap }),
+        React.createElement('br', null),
+        React.createElement('br', null),
+        React.createElement(RaisedButton, { label: 'Scrollable Content And Custom Actions', onTouchTap: this._handleScrollableDialogTouchTap }),
         React.createElement(
           Dialog,
           {
@@ -13224,6 +13350,21 @@ var DialogPage = (function (_React$Component) {
             label: 'Is Modal',
             onToggle: this._handleToggleChange,
             defaultToggled: this.state.modal })
+        ),
+        React.createElement(
+          Dialog,
+          {
+            ref: 'scrollableContentDialog',
+            title: 'Dialog With Scrollable Content',
+            actions: scrollableCustomActions,
+            modal: this.state.modal,
+            autoDetectWindowHeight: true,
+            autoScrollBodyContent: true },
+          React.createElement(
+            'div',
+            { style: { height: '1000px' } },
+            'Really long content'
+          )
         )
       );
     }
@@ -13248,14 +13389,29 @@ var DialogPage = (function (_React$Component) {
       this.setState({ modal: toggled });
     }
   }, {
-    key: 'handleCustomDialogTouchTap',
-    value: function handleCustomDialogTouchTap() {
+    key: '_handleScrollableDialogCancel',
+    value: function _handleScrollableDialogCancel() {
+      this.refs.scrollableContentDialog.dismiss();
+    }
+  }, {
+    key: '_handleScrollableDialogSubmit',
+    value: function _handleScrollableDialogSubmit() {
+      this.refs.scrollableContentDialog.dismiss();
+    }
+  }, {
+    key: '_handleCustomDialogTouchTap',
+    value: function _handleCustomDialogTouchTap() {
       this.refs.customDialog.show();
     }
   }, {
-    key: 'handleStandardDialogTouchTap',
-    value: function handleStandardDialogTouchTap() {
+    key: '_handleStandardDialogTouchTap',
+    value: function _handleStandardDialogTouchTap() {
       this.refs.standardDialog.show();
+    }
+  }, {
+    key: '_handleScrollableDialogTouchTap',
+    value: function _handleScrollableDialogTouchTap() {
+      this.refs.scrollableContentDialog.show();
     }
   }]);
 
@@ -13264,27 +13420,30 @@ var DialogPage = (function (_React$Component) {
 
 module.exports = DialogPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],146:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],146:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var DropDownMenu = mui.DropDownMenu;
-var ComponentDoc = require('../../component-doc.jsx');
+
+var _require = require('material-ui');
+
+var DropDownMenu = _require.DropDownMenu;
+
+var ComponentDoc = require('../../component-doc');
 
 var DropDownMenuPage = (function (_React$Component) {
   function DropDownMenuPage() {
     _classCallCheck(this, DropDownMenuPage);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(DropDownMenuPage.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(DropDownMenuPage, _React$Component);
@@ -13295,7 +13454,7 @@ var DropDownMenuPage = (function (_React$Component) {
 
       var menuItems = [{ payload: '1', text: 'Never' }, { payload: '2', text: 'Every Night' }, { payload: '3', text: 'Weeknights' }, { payload: '4', text: 'Weekends' }, { payload: '5', text: 'Weekly' }];
 
-      var code = 'var menuItems = [\n' + '   { payload: \'1\', text: \'Never\' },\n' + '   { payload: \'2\', text: \'Every Night\' },\n' + '   { payload: \'3\', text: \'Weeknights\' },\n' + '   { payload: \'4\', text: \'Weekends\' },\n' + '   { payload: \'5\', text: \'Weekly\' },\n' + '];\n\n' + '<DropDownMenu menuItems={menuItems} />';
+      var code = 'let menuItems = [\n' + '   { payload: \'1\', text: \'Never\' },\n' + '   { payload: \'2\', text: \'Every Night\' },\n' + '   { payload: \'3\', text: \'Weeknights\' },\n' + '   { payload: \'4\', text: \'Weekends\' },\n' + '   { payload: \'5\', text: \'Weekly\' },\n' + '];\n\n' + '<DropDownMenu menuItems={menuItems} />';
 
       var componentInfo = [{
         name: 'Props',
@@ -13350,31 +13509,34 @@ var DropDownMenuPage = (function (_React$Component) {
 
 module.exports = DropDownMenuPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],147:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],147:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var IconButton = mui.IconButton;
-var NavigationMenu = mui.Icons.NavigationMenu;
-var ComponentDoc = require('../../component-doc.jsx');
-var ActionGrade = require('../../svg-icons/action-grade.jsx');
-var ActionHome = require('../../svg-icons/action-home.jsx');
-var FontIcon = mui.FontIcon;
+
+var _require = require('material-ui');
+
+var FontIcon = _require.FontIcon;
+var IconButton = _require.IconButton;
+var NavigationMenu = _require.NavigationMenu;
+
+var ComponentDoc = require('../../component-doc');
+var ActionGrade = require('svg-icons/action/grade');
+var ActionHome = require('svg-icons/action/home');
 
 var IconButtonsPage = (function (_React$Component) {
   function IconButtonsPage() {
     _classCallCheck(this, IconButtonsPage);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(IconButtonsPage.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(IconButtonsPage, _React$Component);
@@ -13383,7 +13545,7 @@ var IconButtonsPage = (function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      var code = '//Method 1: muidocs-icon-github is defined in a style sheet.\n' + '<IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>\n\n' + '//Method 2: ActionGrade is a component created using mui.SvgIcon.\n' + '<IconButton tooltip="Star" touch={true}>\n' + '  <ActionGrade/>\n' + '</IconButton>\n\n' + '//Method 3: Manually creating a mui.FontIcon component within ' + 'IconButton\n' + '<IconButton tooltip="Sort" disabled={true}>\n' + '  <FontIcon className="muidocs-icon-custom-sort"/>\n' + '</IconButton>';
+      var code = '//Method 1: muidocs-icon-github is defined in a style sheet.\n' + '<IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>\n\n' + '//Method 2: ActionGrade is a component created using mui.SvgIcon.\n' + '<IconButton tooltip="Star" touch={true}>\n' + '  <ActionGrade/>\n' + '</IconButton>\n\n' + '//Method 3: Manually creating a mui.FontIcon component within ' + 'IconButton\n' + '<IconButton tooltip="Sort" disabled={true}>\n' + '  <FontIcon className="muidocs-icon-custom-sort"/>\n' + '</IconButton>\n\n' + '//Method 4: Using Google material-icons\n' + ' <IconButton iconClassName="material-icons" tooltipAlignment="bottom-center" \n' + '  tooltip="Sky">settings_system_daydream</IconButton>';
 
       var desc = React.createElement(
         'p',
@@ -13419,6 +13581,11 @@ var IconButtonsPage = (function (_React$Component) {
               'FontIcon'
             ),
             ' component as a child of IconButton. This is similiar to how the iconClassName prop from method 1 is handled.'
+          ),
+          React.createElement(
+            'li',
+            null,
+            'Google Material Icons: Now also supported for iconButtons by passing "material-icons" in iconClassName prop.'
           )
         )
       );
@@ -13446,6 +13613,16 @@ var IconButtonsPage = (function (_React$Component) {
           header: 'optional',
           desc: 'The tooltip text to show.'
         }, {
+          name: 'tooltipPosition',
+          type: 'string',
+          header: 'default: bottom-center',
+          desc: 'Allows the tooltip to be viewed with different alignments: "bottom-center", "top-center", "bottom-right", "top-right", "bottom-left" and "top-left"'
+        }, {
+          name: 'tooltipStyles',
+          type: 'object',
+          header: 'optional',
+          desc: 'Allows modification of tooltip styles.'
+        }, {
           name: 'touch',
           type: 'bool',
           header: 'default: false',
@@ -13471,16 +13648,61 @@ var IconButtonsPage = (function (_React$Component) {
           code: code,
           desc: desc,
           componentInfo: componentInfo },
-        React.createElement(IconButton, { iconClassName: 'muidocs-icon-custom-github', tooltip: 'GitHub' }),
+        React.createElement(IconButton, { iconClassName: 'muidocs-icon-custom-github', tooltip: 'bottom-right', tooltipPosition: 'bottom-right' }),
+        React.createElement(IconButton, { iconClassName: 'muidocs-icon-custom-github', tooltip: 'bottom-center', tooltipPosition: 'bottom-center' }),
+        React.createElement(IconButton, { iconClassName: 'muidocs-icon-custom-github', tooltip: 'bottom-left', tooltipPosition: 'bottom-left' }),
+        React.createElement(IconButton, { iconClassName: 'muidocs-icon-custom-github', tooltip: 'top-right', tooltipPosition: 'top-right' }),
+        React.createElement(IconButton, { iconClassName: 'muidocs-icon-custom-github', tooltip: 'top-center', tooltipPosition: 'top-center' }),
+        React.createElement(IconButton, { iconClassName: 'muidocs-icon-custom-github', tooltip: 'top-left', tooltipPosition: 'top-left' }),
+        React.createElement('br', null),
+        React.createElement('br', null),
+        React.createElement('br', null),
+        React.createElement('br', null),
         React.createElement(
           IconButton,
-          { tooltip: 'Star', touch: true },
+          { tooltip: 'bottom-right', touch: true, tooltipPosition: 'bottom-right' },
           React.createElement(ActionGrade, null)
         ),
         React.createElement(
           IconButton,
+          { tooltip: 'bottom-center', touch: true, tooltipPosition: 'bottom-center' },
+          React.createElement(ActionGrade, null)
+        ),
+        React.createElement(
+          IconButton,
+          { tooltip: 'bottom-left', touch: true, tooltipPosition: 'bottom-left' },
+          React.createElement(ActionGrade, null)
+        ),
+        React.createElement(
+          IconButton,
+          { tooltip: 'top-right', touch: true, tooltipPosition: 'top-right' },
+          React.createElement(ActionGrade, null)
+        ),
+        React.createElement(
+          IconButton,
+          { tooltip: 'top-center', touch: true, tooltipPosition: 'top-center' },
+          React.createElement(ActionGrade, null)
+        ),
+        React.createElement(
+          IconButton,
+          { tooltip: 'top-left', touch: true, tooltipPosition: 'top-left' },
+          React.createElement(ActionGrade, null)
+        ),
+        React.createElement('br', null),
+        React.createElement('br', null),
+        React.createElement('br', null),
+        React.createElement(
+          IconButton,
           { tooltip: 'Sort', disabled: true },
           React.createElement(FontIcon, { className: 'muidocs-icon-custom-sort' })
+        ),
+        React.createElement('br', null),
+        React.createElement('br', null),
+        React.createElement('br', null),
+        React.createElement(
+          IconButton,
+          { iconClassName: 'material-icons', tooltip: 'Sky' },
+          'settings_system_daydream'
         )
       );
     }
@@ -13491,32 +13713,589 @@ var IconButtonsPage = (function (_React$Component) {
 
 module.exports = IconButtonsPage;
 
-},{"../../component-doc.jsx":134,"../../svg-icons/action-grade.jsx":171,"../../svg-icons/action-home.jsx":172,"mui":435,"react":401}],148:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388,"svg-icons/action/grade":467,"svg-icons/action/home":468}],148:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var Colors = mui.Styles.Colors;
-var ComponentDoc = require('../../component-doc.jsx');
-var ActionHome = require('../../svg-icons/action-home.jsx');
 
-var Typography = mui.Styles.Typography;
-var ClearFix = mui.ClearFix;
-var FontIcon = mui.FontIcon;
+var _require = require('material-ui');
+
+var IconButton = _require.IconButton;
+
+var IconMenu = require('menus/icon-menu');
+var MenuItem = require('menus/menu-item');
+var MenuDivider = require('menus/menu-divider');
+var MoreVertIcon = require('svg-icons/navigation/more-vert');
+var ComponentDoc = require('../../component-doc');
+
+var ContentCopy = require('svg-icons/content/content-copy');
+var ContentFilter = require('svg-icons/content/filter-list');
+var ContentLink = require('svg-icons/content/link');
+var Delete = require('svg-icons/action/delete');
+var Download = require('svg-icons/file/file-download');
+var MapsPlace = require('svg-icons/maps/place');
+var PersonAdd = require('svg-icons/social/person-add');
+var RemoveRedEye = require('svg-icons/image/remove-red-eye');
+
+var IconMenus = (function (_React$Component) {
+  function IconMenus(props) {
+    _classCallCheck(this, IconMenus);
+
+    _get(Object.getPrototypeOf(IconMenus.prototype), 'constructor', this).call(this, props);
+
+    this._handleIconMenuChange = this._handleIconMenuChange.bind(this);
+    this._handleIconMenuMultiChange = this._handleIconMenuMultiChange.bind(this);
+    this._handleIconMenuValueLinkChange = this._handleIconMenuValueLinkChange.bind(this);
+    this._handleIconMenuUsStateChange = this._handleIconMenuUsStateChange.bind(this);
+
+    this.state = {
+      iconMenuValue: '1',
+      iconMenuMultiValue: ['2', '4'],
+      iconMenuValueLink: '1',
+      usState: 'TX'
+    };
+  }
+
+  _inherits(IconMenus, _React$Component);
+
+  _createClass(IconMenus, [{
+    key: 'render',
+    value: function render() {
+
+      var code = '\n    //We\'re working on migrating some of our components to use a new implementation of menus.\n    //If you\'d like to use the new menu before our migration is complete, please directly\n    //require them like this:\n\n    let MenuItem = require(\'material-ui/lib/menus/menu-item\');\n    let MenuDivider = require(\'material-ui/lib/menus/menu-divider\');\n\n    <IconMenu iconButtonElement={iconButtonElement}>\n      <MenuItem primaryText="Refresh" />\n      <MenuItem primaryText="Send feedback" />\n      <MenuItem primaryText="Settings" />\n      <MenuItem primaryText="Help" />\n      <MenuItem primaryText="Sign out" />\n    </IconMenu>\n    ';
+
+      var desc = null;
+
+      var componentInfo = [{
+        name: 'Props',
+        infoArray: [{
+          name: 'desktop',
+          type: 'bool',
+          header: 'default: false',
+          desc: 'Indicates if the menu should render with compact desktop styles.'
+        }, {
+          name: 'iconButtonElement',
+          type: 'element: IconButton',
+          header: 'required',
+          desc: 'This is the IconButton to render. This button will open the menu.'
+        }, {
+          name: 'openDirection',
+          type: 'oneOf [bottom-left, bottom-right, top-left, top-right]',
+          header: 'default: bottom-left',
+          desc: 'This is the placement of the menu relative to the IconButton.'
+        }, {
+          name: 'menuStyle',
+          type: 'object',
+          header: 'optional',
+          desc: 'The style object to use to override underlying menu style.'
+        }, {
+          name: 'multiple',
+          type: 'bool',
+          header: 'default: false',
+          desc: 'If true, the value can an array and allow the menu to be a multi-select.'
+        }, {
+          name: 'value',
+          type: 'string or array',
+          header: 'optional',
+          desc: 'The value of the selected menu item. If passed in, this will make the menu ' + 'a controlled component. This component also supports valueLink.'
+        }, {
+          name: 'width',
+          type: 'string or number',
+          header: 'optional',
+          desc: 'Sets the width of the menu. If not specified, the menu width ' + 'will be dictated by its children. The rendered width will always be ' + 'a keyline increment (64px for desktop, 56px otherwise).'
+        }, {
+          name: 'touchTapCloseDelay',
+          type: 'number',
+          header: 'default: 200',
+          desc: 'Sets the delay in milliseconds before closing the menu when an item is clicked.'
+        }]
+      }, {
+        name: 'Events',
+        infoArray: [{
+          name: 'onItemTouchTap',
+          header: 'function(e, item)',
+          desc: 'Fired when a menu item is touchTapped.'
+        }, {
+          name: 'onChange',
+          header: 'function(e, value)',
+          desc: 'Fired when a menu item is touchTapped and the menu item value ' + 'is not equal to the current menu value.'
+        }]
+      }];
+
+      var iconButtonElement = React.createElement(
+        IconButton,
+        null,
+        React.createElement(MoreVertIcon, null)
+      );
+      var filterButtonElement = React.createElement(
+        IconButton,
+        null,
+        React.createElement(ContentFilter, null)
+      );
+      var mapsButtonElement = React.createElement(
+        IconButton,
+        null,
+        React.createElement(MapsPlace, null)
+      );
+
+      var iconMenuValueLink = {
+        value: this.state.iconMenuValueLink,
+        requestChange: this._handleIconMenuValueLinkChange
+      };
+
+      var usStateValueLink = {
+        value: this.state.usState,
+        requestChange: this._handleIconMenuUsStateChange
+      };
+
+      return React.createElement(
+        ComponentDoc,
+        {
+          name: 'Icon Menus',
+          code: code,
+          desc: desc,
+          componentInfo: componentInfo },
+        React.createElement('br', null),
+        React.createElement(
+          'p',
+          null,
+          'Menu with various open directions',
+          React.createElement(
+            IconMenu,
+            { iconButtonElement: iconButtonElement },
+            React.createElement(MenuItem, { primaryText: 'Refresh' }),
+            React.createElement(MenuItem, { primaryText: 'Send feedback' }),
+            React.createElement(MenuItem, { primaryText: 'Settings' }),
+            React.createElement(MenuItem, { primaryText: 'Help' }),
+            React.createElement(MenuItem, { primaryText: 'Sign out' })
+          ),
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: iconButtonElement,
+              openDirection: 'bottom-right' },
+            React.createElement(MenuItem, { primaryText: 'Refresh' }),
+            React.createElement(MenuItem, { primaryText: 'Send feedback' }),
+            React.createElement(MenuItem, { primaryText: 'Settings' }),
+            React.createElement(MenuItem, { primaryText: 'Help' }),
+            React.createElement(MenuItem, { primaryText: 'Sign out' })
+          ),
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: iconButtonElement,
+              openDirection: 'top-left' },
+            React.createElement(MenuItem, { primaryText: 'Refresh' }),
+            React.createElement(MenuItem, { primaryText: 'Send feedback' }),
+            React.createElement(MenuItem, { primaryText: 'Settings' }),
+            React.createElement(MenuItem, { primaryText: 'Help' }),
+            React.createElement(MenuItem, { primaryText: 'Sign out' })
+          ),
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: iconButtonElement,
+              openDirection: 'top-right' },
+            React.createElement(MenuItem, { primaryText: 'Refresh' }),
+            React.createElement(MenuItem, { primaryText: 'Send feedback' }),
+            React.createElement(MenuItem, { primaryText: 'Settings' }),
+            React.createElement(MenuItem, { primaryText: 'Help' }),
+            React.createElement(MenuItem, { primaryText: 'Sign out' })
+          )
+        ),
+        React.createElement(
+          'p',
+          null,
+          'Menu with value, valueLink, multiple values',
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: iconButtonElement,
+              onChange: this._handleIconMenuChange,
+              openDirection: 'bottom-right',
+              value: this.state.iconMenuValue },
+            React.createElement(MenuItem, { value: '1', primaryText: 'Refresh' }),
+            React.createElement(MenuItem, { value: '2', primaryText: 'Send feedback' }),
+            React.createElement(MenuItem, { value: '3', primaryText: 'Settings' }),
+            React.createElement(MenuItem, { value: '4', primaryText: 'Help' }),
+            React.createElement(MenuItem, { value: '5', primaryText: 'Sign out' })
+          ),
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: iconButtonElement,
+              openDirection: 'bottom-right',
+              valueLink: iconMenuValueLink },
+            React.createElement(MenuItem, { value: '1', primaryText: 'Refresh' }),
+            React.createElement(MenuItem, { value: '2', primaryText: 'Send feedback' }),
+            React.createElement(MenuItem, { value: '3', primaryText: 'Settings' }),
+            React.createElement(MenuItem, { value: '4', primaryText: 'Help' }),
+            React.createElement(MenuItem, { value: '5', primaryText: 'Sign out' })
+          ),
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: filterButtonElement,
+              multiple: true,
+              onChange: this._handleIconMenuMultiChange,
+              openDirection: 'bottom-right',
+              value: this.state.iconMenuMultiValue },
+            React.createElement(MenuItem, { value: '1', primaryText: 'Blu-ray' }),
+            React.createElement(MenuItem, { value: '2', primaryText: 'Cassette' }),
+            React.createElement(MenuItem, { value: '3', primaryText: 'CD' }),
+            React.createElement(MenuItem, { value: '4', primaryText: 'DVD Audio' }),
+            React.createElement(MenuItem, { value: '5', primaryText: 'Hybrid SACD' }),
+            React.createElement(MenuItem, { value: '6', primaryText: 'Vinyl' })
+          )
+        ),
+        React.createElement(
+          'p',
+          null,
+          'Menu Item variations',
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: iconButtonElement,
+              openDirection: 'bottom-right' },
+            React.createElement(MenuItem, { primaryText: 'Home' }),
+            React.createElement(MenuItem, { primaryText: 'Back' }),
+            React.createElement(MenuItem, { primaryText: 'Forward', disabled: true }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Recently closed', disabled: true }),
+            React.createElement(MenuItem, { primaryText: 'Google', disabled: true }),
+            React.createElement(MenuItem, { primaryText: 'YouTube' })
+          ),
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: iconButtonElement,
+              openDirection: 'bottom-right' },
+            React.createElement(MenuItem, { primaryText: 'Preview', leftIcon: React.createElement(RemoveRedEye, null) }),
+            React.createElement(MenuItem, { primaryText: 'Share', leftIcon: React.createElement(PersonAdd, null) }),
+            React.createElement(MenuItem, { primaryText: 'Get link', leftIcon: React.createElement(ContentLink, null) }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Make a copy', leftIcon: React.createElement(ContentCopy, null) }),
+            React.createElement(MenuItem, { primaryText: 'Download', leftIcon: React.createElement(Download, null) }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Remove', leftIcon: React.createElement(Delete, null) })
+          )
+        ),
+        React.createElement(
+          'p',
+          null,
+          'Scrollable',
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: mapsButtonElement,
+              maxHeight: 272,
+              openDirection: 'bottom-right',
+              valueLink: usStateValueLink },
+            React.createElement(MenuItem, { value: 'AL', primaryText: 'Alabama' }),
+            React.createElement(MenuItem, { value: 'AK', primaryText: 'Alaska' }),
+            React.createElement(MenuItem, { value: 'AZ', primaryText: 'Arizona' }),
+            React.createElement(MenuItem, { value: 'AR', primaryText: 'Arkansas' }),
+            React.createElement(MenuItem, { value: 'CA', primaryText: 'California' }),
+            React.createElement(MenuItem, { value: 'CO', primaryText: 'Colorado' }),
+            React.createElement(MenuItem, { value: 'CT', primaryText: 'Connecticut' }),
+            React.createElement(MenuItem, { value: 'DE', primaryText: 'Delaware' }),
+            React.createElement(MenuItem, { value: 'DC', primaryText: 'District Of Columbia' }),
+            React.createElement(MenuItem, { value: 'FL', primaryText: 'Florida' }),
+            React.createElement(MenuItem, { value: 'GA', primaryText: 'Georgia' }),
+            React.createElement(MenuItem, { value: 'HI', primaryText: 'Hawaii' }),
+            React.createElement(MenuItem, { value: 'ID', primaryText: 'Idaho' }),
+            React.createElement(MenuItem, { value: 'IL', primaryText: 'Illinois' }),
+            React.createElement(MenuItem, { value: 'IN', primaryText: 'Indiana' }),
+            React.createElement(MenuItem, { value: 'IA', primaryText: 'Iowa' }),
+            React.createElement(MenuItem, { value: 'KS', primaryText: 'Kansas' }),
+            React.createElement(MenuItem, { value: 'KY', primaryText: 'Kentucky' }),
+            React.createElement(MenuItem, { value: 'LA', primaryText: 'Louisiana' }),
+            React.createElement(MenuItem, { value: 'ME', primaryText: 'Maine' }),
+            React.createElement(MenuItem, { value: 'MD', primaryText: 'Maryland' }),
+            React.createElement(MenuItem, { value: 'MA', primaryText: 'Massachusetts' }),
+            React.createElement(MenuItem, { value: 'MI', primaryText: 'Michigan' }),
+            React.createElement(MenuItem, { value: 'MN', primaryText: 'Minnesota' }),
+            React.createElement(MenuItem, { value: 'MS', primaryText: 'Mississippi' }),
+            React.createElement(MenuItem, { value: 'MO', primaryText: 'Missouri' }),
+            React.createElement(MenuItem, { value: 'MT', primaryText: 'Montana' }),
+            React.createElement(MenuItem, { value: 'NE', primaryText: 'Nebraska' }),
+            React.createElement(MenuItem, { value: 'NV', primaryText: 'Nevada' }),
+            React.createElement(MenuItem, { value: 'NH', primaryText: 'New Hampshire' }),
+            React.createElement(MenuItem, { value: 'NJ', primaryText: 'New Jersey' }),
+            React.createElement(MenuItem, { value: 'NM', primaryText: 'New Mexico' }),
+            React.createElement(MenuItem, { value: 'NY', primaryText: 'New York' }),
+            React.createElement(MenuItem, { value: 'NC', primaryText: 'North Carolina' }),
+            React.createElement(MenuItem, { value: 'ND', primaryText: 'North Dakota' }),
+            React.createElement(MenuItem, { value: 'OH', primaryText: 'Ohio' }),
+            React.createElement(MenuItem, { value: 'OK', primaryText: 'Oklahoma' }),
+            React.createElement(MenuItem, { value: 'OR', primaryText: 'Oregon' }),
+            React.createElement(MenuItem, { value: 'PA', primaryText: 'Pennsylvania' }),
+            React.createElement(MenuItem, { value: 'RI', primaryText: 'Rhode Island' }),
+            React.createElement(MenuItem, { value: 'SC', primaryText: 'South Carolina' }),
+            React.createElement(MenuItem, { value: 'SD', primaryText: 'South Dakota' }),
+            React.createElement(MenuItem, { value: 'TN', primaryText: 'Tennessee' }),
+            React.createElement(MenuItem, { value: 'TX', primaryText: 'Texas' }),
+            React.createElement(MenuItem, { value: 'UT', primaryText: 'Utah' }),
+            React.createElement(MenuItem, { value: 'VT', primaryText: 'Vermont' }),
+            React.createElement(MenuItem, { value: 'VA', primaryText: 'Virginia' }),
+            React.createElement(MenuItem, { value: 'WA', primaryText: 'Washington' }),
+            React.createElement(MenuItem, { value: 'WV', primaryText: 'West Virginia' }),
+            React.createElement(MenuItem, { value: 'WI', primaryText: 'Wisconsin' }),
+            React.createElement(MenuItem, { value: 'WY', primaryText: 'Wyoming' })
+          ),
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: mapsButtonElement,
+              maxHeight: 272,
+              openDirection: 'bottom-left',
+              valueLink: usStateValueLink },
+            React.createElement(MenuItem, { value: 'AL', primaryText: 'Alabama' }),
+            React.createElement(MenuItem, { value: 'AK', primaryText: 'Alaska' }),
+            React.createElement(MenuItem, { value: 'AZ', primaryText: 'Arizona' }),
+            React.createElement(MenuItem, { value: 'AR', primaryText: 'Arkansas' }),
+            React.createElement(MenuItem, { value: 'CA', primaryText: 'California' }),
+            React.createElement(MenuItem, { value: 'CO', primaryText: 'Colorado' }),
+            React.createElement(MenuItem, { value: 'CT', primaryText: 'Connecticut' }),
+            React.createElement(MenuItem, { value: 'DE', primaryText: 'Delaware' }),
+            React.createElement(MenuItem, { value: 'DC', primaryText: 'District Of Columbia' }),
+            React.createElement(MenuItem, { value: 'FL', primaryText: 'Florida' }),
+            React.createElement(MenuItem, { value: 'GA', primaryText: 'Georgia' }),
+            React.createElement(MenuItem, { value: 'HI', primaryText: 'Hawaii' }),
+            React.createElement(MenuItem, { value: 'ID', primaryText: 'Idaho' }),
+            React.createElement(MenuItem, { value: 'IL', primaryText: 'Illinois' }),
+            React.createElement(MenuItem, { value: 'IN', primaryText: 'Indiana' }),
+            React.createElement(MenuItem, { value: 'IA', primaryText: 'Iowa' }),
+            React.createElement(MenuItem, { value: 'KS', primaryText: 'Kansas' }),
+            React.createElement(MenuItem, { value: 'KY', primaryText: 'Kentucky' }),
+            React.createElement(MenuItem, { value: 'LA', primaryText: 'Louisiana' }),
+            React.createElement(MenuItem, { value: 'ME', primaryText: 'Maine' }),
+            React.createElement(MenuItem, { value: 'MD', primaryText: 'Maryland' }),
+            React.createElement(MenuItem, { value: 'MA', primaryText: 'Massachusetts' }),
+            React.createElement(MenuItem, { value: 'MI', primaryText: 'Michigan' }),
+            React.createElement(MenuItem, { value: 'MN', primaryText: 'Minnesota' }),
+            React.createElement(MenuItem, { value: 'MS', primaryText: 'Mississippi' }),
+            React.createElement(MenuItem, { value: 'MO', primaryText: 'Missouri' }),
+            React.createElement(MenuItem, { value: 'MT', primaryText: 'Montana' }),
+            React.createElement(MenuItem, { value: 'NE', primaryText: 'Nebraska' }),
+            React.createElement(MenuItem, { value: 'NV', primaryText: 'Nevada' }),
+            React.createElement(MenuItem, { value: 'NH', primaryText: 'New Hampshire' }),
+            React.createElement(MenuItem, { value: 'NJ', primaryText: 'New Jersey' }),
+            React.createElement(MenuItem, { value: 'NM', primaryText: 'New Mexico' }),
+            React.createElement(MenuItem, { value: 'NY', primaryText: 'New York' }),
+            React.createElement(MenuItem, { value: 'NC', primaryText: 'North Carolina' }),
+            React.createElement(MenuItem, { value: 'ND', primaryText: 'North Dakota' }),
+            React.createElement(MenuItem, { value: 'OH', primaryText: 'Ohio' }),
+            React.createElement(MenuItem, { value: 'OK', primaryText: 'Oklahoma' }),
+            React.createElement(MenuItem, { value: 'OR', primaryText: 'Oregon' }),
+            React.createElement(MenuItem, { value: 'PA', primaryText: 'Pennsylvania' }),
+            React.createElement(MenuItem, { value: 'RI', primaryText: 'Rhode Island' }),
+            React.createElement(MenuItem, { value: 'SC', primaryText: 'South Carolina' }),
+            React.createElement(MenuItem, { value: 'SD', primaryText: 'South Dakota' }),
+            React.createElement(MenuItem, { value: 'TN', primaryText: 'Tennessee' }),
+            React.createElement(MenuItem, { value: 'TX', primaryText: 'Texas' }),
+            React.createElement(MenuItem, { value: 'UT', primaryText: 'Utah' }),
+            React.createElement(MenuItem, { value: 'VT', primaryText: 'Vermont' }),
+            React.createElement(MenuItem, { value: 'VA', primaryText: 'Virginia' }),
+            React.createElement(MenuItem, { value: 'WA', primaryText: 'Washington' }),
+            React.createElement(MenuItem, { value: 'WV', primaryText: 'West Virginia' }),
+            React.createElement(MenuItem, { value: 'WI', primaryText: 'Wisconsin' }),
+            React.createElement(MenuItem, { value: 'WY', primaryText: 'Wyoming' })
+          ),
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: mapsButtonElement,
+              maxHeight: 272,
+              openDirection: 'top-right',
+              valueLink: usStateValueLink },
+            React.createElement(MenuItem, { value: 'AL', primaryText: 'Alabama' }),
+            React.createElement(MenuItem, { value: 'AK', primaryText: 'Alaska' }),
+            React.createElement(MenuItem, { value: 'AZ', primaryText: 'Arizona' }),
+            React.createElement(MenuItem, { value: 'AR', primaryText: 'Arkansas' }),
+            React.createElement(MenuItem, { value: 'CA', primaryText: 'California' }),
+            React.createElement(MenuItem, { value: 'CO', primaryText: 'Colorado' }),
+            React.createElement(MenuItem, { value: 'CT', primaryText: 'Connecticut' }),
+            React.createElement(MenuItem, { value: 'DE', primaryText: 'Delaware' }),
+            React.createElement(MenuItem, { value: 'DC', primaryText: 'District Of Columbia' }),
+            React.createElement(MenuItem, { value: 'FL', primaryText: 'Florida' }),
+            React.createElement(MenuItem, { value: 'GA', primaryText: 'Georgia' }),
+            React.createElement(MenuItem, { value: 'HI', primaryText: 'Hawaii' }),
+            React.createElement(MenuItem, { value: 'ID', primaryText: 'Idaho' }),
+            React.createElement(MenuItem, { value: 'IL', primaryText: 'Illinois' }),
+            React.createElement(MenuItem, { value: 'IN', primaryText: 'Indiana' }),
+            React.createElement(MenuItem, { value: 'IA', primaryText: 'Iowa' }),
+            React.createElement(MenuItem, { value: 'KS', primaryText: 'Kansas' }),
+            React.createElement(MenuItem, { value: 'KY', primaryText: 'Kentucky' }),
+            React.createElement(MenuItem, { value: 'LA', primaryText: 'Louisiana' }),
+            React.createElement(MenuItem, { value: 'ME', primaryText: 'Maine' }),
+            React.createElement(MenuItem, { value: 'MD', primaryText: 'Maryland' }),
+            React.createElement(MenuItem, { value: 'MA', primaryText: 'Massachusetts' }),
+            React.createElement(MenuItem, { value: 'MI', primaryText: 'Michigan' }),
+            React.createElement(MenuItem, { value: 'MN', primaryText: 'Minnesota' }),
+            React.createElement(MenuItem, { value: 'MS', primaryText: 'Mississippi' }),
+            React.createElement(MenuItem, { value: 'MO', primaryText: 'Missouri' }),
+            React.createElement(MenuItem, { value: 'MT', primaryText: 'Montana' }),
+            React.createElement(MenuItem, { value: 'NE', primaryText: 'Nebraska' }),
+            React.createElement(MenuItem, { value: 'NV', primaryText: 'Nevada' }),
+            React.createElement(MenuItem, { value: 'NH', primaryText: 'New Hampshire' }),
+            React.createElement(MenuItem, { value: 'NJ', primaryText: 'New Jersey' }),
+            React.createElement(MenuItem, { value: 'NM', primaryText: 'New Mexico' }),
+            React.createElement(MenuItem, { value: 'NY', primaryText: 'New York' }),
+            React.createElement(MenuItem, { value: 'NC', primaryText: 'North Carolina' }),
+            React.createElement(MenuItem, { value: 'ND', primaryText: 'North Dakota' }),
+            React.createElement(MenuItem, { value: 'OH', primaryText: 'Ohio' }),
+            React.createElement(MenuItem, { value: 'OK', primaryText: 'Oklahoma' }),
+            React.createElement(MenuItem, { value: 'OR', primaryText: 'Oregon' }),
+            React.createElement(MenuItem, { value: 'PA', primaryText: 'Pennsylvania' }),
+            React.createElement(MenuItem, { value: 'RI', primaryText: 'Rhode Island' }),
+            React.createElement(MenuItem, { value: 'SC', primaryText: 'South Carolina' }),
+            React.createElement(MenuItem, { value: 'SD', primaryText: 'South Dakota' }),
+            React.createElement(MenuItem, { value: 'TN', primaryText: 'Tennessee' }),
+            React.createElement(MenuItem, { value: 'TX', primaryText: 'Texas' }),
+            React.createElement(MenuItem, { value: 'UT', primaryText: 'Utah' }),
+            React.createElement(MenuItem, { value: 'VT', primaryText: 'Vermont' }),
+            React.createElement(MenuItem, { value: 'VA', primaryText: 'Virginia' }),
+            React.createElement(MenuItem, { value: 'WA', primaryText: 'Washington' }),
+            React.createElement(MenuItem, { value: 'WV', primaryText: 'West Virginia' }),
+            React.createElement(MenuItem, { value: 'WI', primaryText: 'Wisconsin' }),
+            React.createElement(MenuItem, { value: 'WY', primaryText: 'Wyoming' })
+          ),
+          React.createElement(
+            IconMenu,
+            {
+              iconButtonElement: mapsButtonElement,
+              maxHeight: 272,
+              openDirection: 'top-left',
+              valueLink: usStateValueLink },
+            React.createElement(MenuItem, { value: 'AL', primaryText: 'Alabama' }),
+            React.createElement(MenuItem, { value: 'AK', primaryText: 'Alaska' }),
+            React.createElement(MenuItem, { value: 'AZ', primaryText: 'Arizona' }),
+            React.createElement(MenuItem, { value: 'AR', primaryText: 'Arkansas' }),
+            React.createElement(MenuItem, { value: 'CA', primaryText: 'California' }),
+            React.createElement(MenuItem, { value: 'CO', primaryText: 'Colorado' }),
+            React.createElement(MenuItem, { value: 'CT', primaryText: 'Connecticut' }),
+            React.createElement(MenuItem, { value: 'DE', primaryText: 'Delaware' }),
+            React.createElement(MenuItem, { value: 'DC', primaryText: 'District Of Columbia' }),
+            React.createElement(MenuItem, { value: 'FL', primaryText: 'Florida' }),
+            React.createElement(MenuItem, { value: 'GA', primaryText: 'Georgia' }),
+            React.createElement(MenuItem, { value: 'HI', primaryText: 'Hawaii' }),
+            React.createElement(MenuItem, { value: 'ID', primaryText: 'Idaho' }),
+            React.createElement(MenuItem, { value: 'IL', primaryText: 'Illinois' }),
+            React.createElement(MenuItem, { value: 'IN', primaryText: 'Indiana' }),
+            React.createElement(MenuItem, { value: 'IA', primaryText: 'Iowa' }),
+            React.createElement(MenuItem, { value: 'KS', primaryText: 'Kansas' }),
+            React.createElement(MenuItem, { value: 'KY', primaryText: 'Kentucky' }),
+            React.createElement(MenuItem, { value: 'LA', primaryText: 'Louisiana' }),
+            React.createElement(MenuItem, { value: 'ME', primaryText: 'Maine' }),
+            React.createElement(MenuItem, { value: 'MD', primaryText: 'Maryland' }),
+            React.createElement(MenuItem, { value: 'MA', primaryText: 'Massachusetts' }),
+            React.createElement(MenuItem, { value: 'MI', primaryText: 'Michigan' }),
+            React.createElement(MenuItem, { value: 'MN', primaryText: 'Minnesota' }),
+            React.createElement(MenuItem, { value: 'MS', primaryText: 'Mississippi' }),
+            React.createElement(MenuItem, { value: 'MO', primaryText: 'Missouri' }),
+            React.createElement(MenuItem, { value: 'MT', primaryText: 'Montana' }),
+            React.createElement(MenuItem, { value: 'NE', primaryText: 'Nebraska' }),
+            React.createElement(MenuItem, { value: 'NV', primaryText: 'Nevada' }),
+            React.createElement(MenuItem, { value: 'NH', primaryText: 'New Hampshire' }),
+            React.createElement(MenuItem, { value: 'NJ', primaryText: 'New Jersey' }),
+            React.createElement(MenuItem, { value: 'NM', primaryText: 'New Mexico' }),
+            React.createElement(MenuItem, { value: 'NY', primaryText: 'New York' }),
+            React.createElement(MenuItem, { value: 'NC', primaryText: 'North Carolina' }),
+            React.createElement(MenuItem, { value: 'ND', primaryText: 'North Dakota' }),
+            React.createElement(MenuItem, { value: 'OH', primaryText: 'Ohio' }),
+            React.createElement(MenuItem, { value: 'OK', primaryText: 'Oklahoma' }),
+            React.createElement(MenuItem, { value: 'OR', primaryText: 'Oregon' }),
+            React.createElement(MenuItem, { value: 'PA', primaryText: 'Pennsylvania' }),
+            React.createElement(MenuItem, { value: 'RI', primaryText: 'Rhode Island' }),
+            React.createElement(MenuItem, { value: 'SC', primaryText: 'South Carolina' }),
+            React.createElement(MenuItem, { value: 'SD', primaryText: 'South Dakota' }),
+            React.createElement(MenuItem, { value: 'TN', primaryText: 'Tennessee' }),
+            React.createElement(MenuItem, { value: 'TX', primaryText: 'Texas' }),
+            React.createElement(MenuItem, { value: 'UT', primaryText: 'Utah' }),
+            React.createElement(MenuItem, { value: 'VT', primaryText: 'Vermont' }),
+            React.createElement(MenuItem, { value: 'VA', primaryText: 'Virginia' }),
+            React.createElement(MenuItem, { value: 'WA', primaryText: 'Washington' }),
+            React.createElement(MenuItem, { value: 'WV', primaryText: 'West Virginia' }),
+            React.createElement(MenuItem, { value: 'WI', primaryText: 'Wisconsin' }),
+            React.createElement(MenuItem, { value: 'WY', primaryText: 'Wyoming' })
+          )
+        )
+      );
+    }
+  }, {
+    key: '_handleIconMenuChange',
+    value: function _handleIconMenuChange(e, value) {
+      this.setState({
+        iconMenuValue: value
+      });
+    }
+  }, {
+    key: '_handleIconMenuMultiChange',
+    value: function _handleIconMenuMultiChange(e, value) {
+      this.setState({
+        iconMenuMultiValue: value
+      });
+    }
+  }, {
+    key: '_handleIconMenuUsStateChange',
+    value: function _handleIconMenuUsStateChange(e, value) {
+      this.setState({
+        usState: value
+      });
+    }
+  }, {
+    key: '_handleIconMenuValueLinkChange',
+    value: function _handleIconMenuValueLinkChange(e, value) {
+      this.setState({
+        iconMenuValueLink: value
+      });
+    }
+  }]);
+
+  return IconMenus;
+})(React.Component);
+
+module.exports = IconMenus;
+
+},{"../../component-doc":134,"material-ui":"material-ui","menus/icon-menu":432,"menus/menu-divider":433,"menus/menu-item":434,"react":388,"svg-icons/action/delete":466,"svg-icons/content/content-copy":473,"svg-icons/content/filter-list":475,"svg-icons/content/link":477,"svg-icons/file/file-download":480,"svg-icons/image/remove-red-eye":482,"svg-icons/maps/place":483,"svg-icons/navigation/more-vert":494,"svg-icons/social/person-add":495}],149:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+var React = require('react');
+
+var _require = require('material-ui');
+
+var ClearFix = _require.ClearFix;
+var FontIcon = _require.FontIcon;
+var Styles = _require.Styles;
+
+var ComponentDoc = require('../../component-doc');
+var ActionHome = require('svg-icons/action/home');
+
+var Colors = Styles.Colors;
+var Typography = Styles.Typography;
 
 var FontIconPage = (function (_React$Component) {
   function FontIconPage() {
     _classCallCheck(this, FontIconPage);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(FontIconPage.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(FontIconPage, _React$Component);
@@ -13538,9 +14317,9 @@ var FontIconPage = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var fontIconCode = '\n<FontIcon className="muidocs-icon-action-home" />\n<FontIcon className="muidocs-icon-action-home" color={Colors.red500} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.yellow500} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.blue500} />\n\n<FontIcon className="muidocs-icon-action-home"\n  hoverColor={Colors.greenA200} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.red500}\n  hoverColor={Colors.greenA200} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.yellow500}\n  hoverColor={Colors.greenA200} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.blue500}\n  hoverColor={Colors.greenA200} />\n    ';
+      var fontIconCode = '\n<FontIcon className="muidocs-icon-action-home" />\n<FontIcon className="muidocs-icon-action-home" color={Colors.red500} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.yellow500} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.blue500} />\n\n<FontIcon className="muidocs-icon-action-home"\n  hoverColor={Colors.greenA200} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.red500}\n  hoverColor={Colors.greenA200} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.yellow500}\n  hoverColor={Colors.greenA200} />\n<FontIcon className="muidocs-icon-action-home" color={Colors.blue500}\n  hoverColor={Colors.greenA200} />\n\n<FontIcon className="material-icons">home</FontIcon>\n<FontIcon className="material-icons" color={Colors.red500}>home</FontIcon>\n<FontIcon className="material-icons" color={Colors.yellow500}>home</FontIcon>\n<FontIcon className="material-icons" color={Colors.blue500}>home</FontIcon> \n    ';
 
-      var svgIconCode = '/** action-home.jsx */\n' + 'var React = require(\'react\');\n' + 'var mui = require(\'mui\');\n' + 'var SvgIcon = mui.SvgIcon;\n\n' + 'var ActionHome = React.createClass({\n' + '  render: function() {\n' + '    return (\n' + '      <SvgIcon {...this.props}>\n' + '        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>\n' + '      </SvgIcon>\n' + '    );\n' + '  }\n' + '});\n\n' + 'module.exports = ActionHome;\n\n\n' + '/** Some other component. */\n' + 'var ActionHome = require(\'./path/to/action-home.jsx\');\n' + '...\n' + '<ActionHome/>\n' + '...';
+      var svgIconCode = '/** action-home.jsx */\n' + 'let React = require(\'react\');\n' + 'let mui = require(\'mui\');\n' + 'let SvgIcon = mui.SvgIcon;\n\n' + 'let ActionHome = React.createClass({\n' + '  render: function() {\n' + '    return (\n' + '      <SvgIcon {...this.props}>\n' + '        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>\n' + '      </SvgIcon>\n' + '    );\n' + '  }\n' + '});\n\n' + 'module.exports = ActionHome;\n\n\n' + '/** Some other component. */\n' + 'let ActionHome = require(\'./path/to/action-home.jsx\');\n' + '...\n' + '<ActionHome/>\n' + '...';
 
       var fontIconDesc = React.createElement(
         'p',
@@ -13558,7 +14337,13 @@ var FontIconPage = (function (_React$Component) {
           { title: 'Icomoon website', href: 'https://icomoon.io/' },
           'IcoMoon'
         ),
-        ' for generating custom font files. To use FontIcons, add your stylesheet to your project and reference the icon\'s className in the "className" prop.'
+        ' for generating custom font files. To use FontIcons, add your stylesheet to your project and reference the icon\'s className in the "className" prop. We also support ',
+        React.createElement(
+          'a',
+          { title: 'Google\'s  Material Icons', href: 'https://google.github.io/material-design-icons' },
+          'Google\'s Material Icons'
+        ),
+        ' as seen in the thrid block of code.'
       );
 
       var svgIconDesc = React.createElement(
@@ -13625,7 +14410,29 @@ var FontIconPage = (function (_React$Component) {
           React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, hoverColor: Colors.greenA200 }),
           React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, color: Colors.red500, hoverColor: Colors.greenA200 }),
           React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, color: Colors.yellow500, hoverColor: Colors.greenA200 }),
-          React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, color: Colors.blue500, hoverColor: Colors.greenA200 })
+          React.createElement(FontIcon, { className: 'muidocs-icon-action-home', style: iconStyles, color: Colors.blue500, hoverColor: Colors.greenA200 }),
+          React.createElement('br', null),
+          React.createElement('br', null),
+          React.createElement(
+            FontIcon,
+            { className: 'material-icons', style: iconStyles },
+            'home'
+          ),
+          React.createElement(
+            FontIcon,
+            { className: 'material-icons', style: iconStyles, color: Colors.red500 },
+            'home'
+          ),
+          React.createElement(
+            FontIcon,
+            { className: 'material-icons', style: iconStyles, color: Colors.yellow500 },
+            'home'
+          ),
+          React.createElement(
+            FontIcon,
+            { className: 'material-icons', style: iconStyles, color: Colors.blue500 },
+            'home'
+          )
         ),
         React.createElement(
           ComponentDoc,
@@ -13654,23 +14461,26 @@ var FontIconPage = (function (_React$Component) {
 
 module.exports = FontIconPage;
 
-},{"../../component-doc.jsx":134,"../../svg-icons/action-home.jsx":172,"mui":435,"react":401}],149:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388,"svg-icons/action/home":468}],150:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var MenuItem = mui.MenuItem;
-var LeftNav = mui.LeftNav;
-var RaisedButton = mui.RaisedButton;
-var ComponentDoc = require('../../component-doc.jsx');
+
+var _require = require('material-ui');
+
+var LeftNav = _require.LeftNav;
+var MenuItem = _require.MenuItem;
+var RaisedButton = _require.RaisedButton;
+
+var ComponentDoc = require('../../component-doc');
 
 var LeftNavPage = (function (_React$Component) {
   function LeftNavPage() {
@@ -13692,7 +14502,7 @@ var LeftNavPage = (function (_React$Component) {
     value: function render() {
       var menuItems = [{ route: 'get-started', text: 'Get Started' }, { route: 'customization', text: 'Customization' }, { route: 'components', text: 'Components' }, { type: MenuItem.Types.SUBHEADER, text: 'Resources' }, { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' }, { text: 'Disabled', disabled: true }, { type: MenuItem.Types.LINK, payload: 'https://www.google.com', text: 'Disabled Link', disabled: true }];
 
-      var code = 'menuItems = [\n' + '  { route: \'get-started\', text: \'Get Started\' },\n' + '  { route: \'customization\', text: \'Customization\' },\n' + '  { route: \'components\', text: \'Components\' },\n' + '  { type: MenuItem.Types.SUBHEADER, text: \'Resources\' },\n' + '  { \n' + '     type: MenuItem.Types.LINK, \n' + '     payload: \'https://github.com/callemall/material-ui\', \n' + '     text: \'GitHub\' \n' + '  },\n' + '  { \n' + '     text: \'Disabled\', \n' + '     disabled: true \n' + '  },\n' + '  { \n' + '     type: MenuItem.Types.LINK, \n' + '     payload: \'https://www.google.com\', \n' + '     text: \'Disabled Link\', \n' + '     disabled: true \n' + '  },\n' + '];\n\n' + '//Docked Left Nav\n' + '<LeftNav menuItems={menuItems} />\n\n' + '//Hideable Left Nav\n' + '<LeftNav docked={false} menuItems={menuItems} />\n\n';
+      var code = 'menuItems = [\n' + '  { route: \'get-started\', text: \'Get Started\' },\n' + '  { route: \'customization\', text: \'Customization\' },\n' + '  { route: \'components\', text: \'Components\' },\n' + '  { type: MenuItem.Types.SUBHEADER, text: \'Resources\' },\n' + '  { \n' + '     type: MenuItem.Types.LINK, \n' + '     payload: \'https://github.com/callemall/material-ui\', \n' + '     text: \'GitHub\' \n' + '  },\n' + '  { \n' + '     text: \'Disabled\', \n' + '     disabled: true \n' + '  },\n' + '  { \n' + '     type: MenuItem.Types.LINK, \n' + '     payload: \'https://www.google.com\', \n' + '     text: \'Disabled Link\', \n' + '     disabled: true \n' + '  },\n' + '];\n\n' + '//Toggle the LeftNav\n' + 'this.refs.leftNav.toggle();\n\n' + '//Docked Left Nav\n' + '<LeftNav ref="leftNav" menuItems={menuItems} />\n\n' + '//Hideable Left Nav\n' + '<LeftNav ref="leftNav" docked={false} menuItems={menuItems} />\n\n';
 
       var componentInfo = [{
         name: 'Props',
@@ -13793,41 +14603,48 @@ var LeftNavPage = (function (_React$Component) {
 
 module.exports = LeftNavPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],150:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],151:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
+var mui = require('material-ui');
+var ComponentDoc = require('../../component-doc');
+var MobileTearSheet = require('../../mobile-tear-sheet');
+var ActionAssignment = require('svg-icons/action/assignment');
+var ActionGrade = require('svg-icons/action/grade');
+var ActionInfo = require('svg-icons/action/info');
+var CommunicationCall = require('svg-icons/communication/call');
+var CommunicationChatBubble = require('svg-icons/communication/chat-bubble');
+var CommunicationEmail = require('svg-icons/communication/email');
+var ContentDrafts = require('svg-icons/content/drafts');
+var ContentInbox = require('svg-icons/content/inbox');
+var ContentSend = require('svg-icons/content/send');
+var EditorInsertChart = require('svg-icons/editor/insert-chart');
+var FileFolder = require('svg-icons/file/folder');
+var MoreVertIcon = require('svg-icons/navigation/more-vert');
+var ToggleStarBorder = require('svg-icons/toggle/star-border');
+
 var Avatar = mui.Avatar;
 var Checkbox = mui.Checkbox;
-var Colors = mui.Styles.Colors;
 var IconButton = mui.IconButton;
 var List = mui.List;
 var ListDivider = mui.ListDivider;
 var ListItem = mui.ListItem;
+var Styles = mui.Styles;
 var Toggle = mui.Toggle;
-var ComponentDoc = require('../../component-doc.jsx');
-var MobileTearSheet = require('../../mobile-tear-sheet.jsx');
-var ActionAssignment = require('../../svg-icons/action-assignment.jsx');
-var ActionGrade = require('../../svg-icons/action-grade.jsx');
-var ActionInfo = require('../../svg-icons/action-info.jsx');
-var CommunicationCall = require('../../svg-icons/communication-call.jsx');
-var CommunicationChatBubble = require('../../svg-icons/communication-chat-bubble.jsx');
-var CommunicationEmail = require('../../svg-icons/communication-email.jsx');
-var ContentDrafts = require('../../svg-icons/content-drafts.jsx');
-var ContentInbox = require('../../svg-icons/content-inbox.jsx');
-var ContentSend = require('../../svg-icons/content-send.jsx');
-var EditorInsertChart = require('../../svg-icons/editor-insert-chart.jsx');
-var FileFolder = require('../../svg-icons/file-folder.jsx');
-var ToggleStarBorder = require('../../svg-icons/toggle-star-border.jsx');
+
+var IconMenu = require('menus/icon-menu');
+var MenuItem = require('menus/menu-item');
+
+var Colors = Styles.Colors;
 
 var ListsPage = (function (_React$Component) {
   function ListsPage() {
@@ -13841,8 +14658,7 @@ var ListsPage = (function (_React$Component) {
   _createClass(ListsPage, [{
     key: 'render',
     value: function render() {
-
-      var code = '\n      //First Example\n      <List>\n        <ListItem leftIcon={<ContentInbox />}>Inbox</ListItem>\n        <ListItem leftIcon={<ActionGrade />}>Starred</ListItem>\n        <ListItem leftIcon={<ContentSend />}>Sent mail</ListItem>\n        <ListItem leftIcon={<ContentDrafts />}>Drafts</ListItem>\n      </List>\n      <ListDivider />\n      <List>\n        <ListItem rightIcon={<ActionInfo />}>All mail</ListItem>\n        <ListItem rightIcon={<ActionInfo />}>Trash</ListItem>\n        <ListItem rightIcon={<ActionInfo />}>Spam</ListItem>\n        <ListItem rightIcon={<ActionInfo />}>Follow up</ListItem>\n      </List>\n\n      //Last Example\n      <List subheader="Today">\n        <ListItem\n          leftAvatar={<Avatar src="images/ok-128.jpg" />}\n          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>\n              I&apos;ll be in your neighborhood doing errands this weekend.\n              Do you want to grab brunch?\n            </p>\n          }\n          secondaryTextLines={2}>\n          Brendan Lim\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/kolage-128.jpg" />}\n          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>\n              Wish I could come, but I&apos;m out of town this weekend.\n            </p>\n          }\n          secondaryTextLines={2}>\n          me, Scott, Jennifer\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/uxceo-128.jpg" />}\n          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>\n              Do you have any Paris recs? Have you ever been?\n            </p>\n          }\n          secondaryTextLines={2}>\n          Grace Ng\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/kerem-128.jpg" />}\n          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>\n              Do you have any ideas what we can get Heidi for her birthday? How about a pony?\n            </p>\n          }\n          secondaryTextLines={2}>\n          Kerem Suer\n        </ListItem>\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}\n          rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>\n              We should eat this: grated squash. Corn and tomatillo tacos.\n            </p>\n          }\n          secondaryTextLines={2}>\n          Raquel Parrado\n        </ListItem>\n      </List>\n    ';
+      var code = '\n      //First Example\n      <List>\n        <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />\n        <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />\n        <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />\n        <ListItem primaryText="Drafts"leftIcon={<ContentDrafts />} />\n        <ListItem primaryText="Inbox"leftIcon={<ContentInbox />} />\n      </List>\n      <ListDivider />\n      <List>\n        <ListItem primaryText="All mail" rightIcon={<ActionInfo />} />\n        <ListItem primaryText="Trash" rightIcon={<ActionInfo />} />\n        <ListItem primaryText="Spam" rightIcon={<ActionInfo />} />\n        <ListItem primaryText="Follow up" rightIcon={<ActionInfo />} />\n      </List>\n\n      //Last Example\n      <List subheader="Today">\n        <ListItem\n          leftAvatar={<Avatar src="images/ok-128.jpg" />}\n          rightIconButton={rightIconMenu}\n          primaryText="Brendan Lim"\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>\n              I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?\n            </p>\n          }\n          secondaryTextLines={2} />\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/kolage-128.jpg" />}\n          rightIconButton={rightIconMenu}\n          primaryText="me, Scott, Jennifer"\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>\n              Wish I could come, but I&apos;m out of town this weekend.\n            </p>\n          }\n          secondaryTextLines={2} />\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/uxceo-128.jpg" />}\n          rightIconButton={rightIconMenu}\n          primaryText="Grace Ng"\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>\n              Do you have any Paris recs? Have you ever been?\n            </p>\n          }\n          secondaryTextLines={2} />\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/kerem-128.jpg" />}\n          rightIconButton={rightIconMenu}\n          primaryText="Kerem Suer"\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>\n              Do you have any ideas what we can get Heidi for her birthday? How about a pony?\n            </p>\n          }\n          secondaryTextLines={2} />\n        <ListDivider inset={true} />\n        <ListItem\n          leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}\n          rightIconButton={rightIconMenu}\n          primaryText="Raquel Parrado"\n          secondaryText={\n            <p>\n              <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>\n              We should eat this: grated squash. Corn and tomatillo tacos.\n            </p>\n          }\n          secondaryTextLines={2} />\n      </List>\n\n      // Nested List Items\n      <List subheader="Nested List Items">\n        <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />\n        <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />\n        <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} open={true}>\n          <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />\n          <ListItem primaryText="Sent Mail" leftIcon={<ContentSend />}>\n            <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />\n          </ListItem>\n        </ListItem>\n      </List>\n    ';
 
       var componentInfo = [{
         name: 'List Props',
@@ -13865,7 +14681,12 @@ var ListsPage = (function (_React$Component) {
       }, {
         name: 'ListItem Props',
         infoArray: [{
-          name: 'disableTouchTap',
+          name: 'autoGenerateNestedIndicator',
+          type: 'bool',
+          header: 'default: true',
+          desc: 'Generate a nested list indicator icon when nested list items are detected. Set to false if you do not want an indicator auto-generated. Note that an indicator will not be created if a rightIcon/Button has been specified.'
+        }, {
+          name: 'disabled',
           type: 'bool',
           header: 'default: false',
           desc: 'If true, the list-item will not be clickable and will not display hover affects. This is automatically disabled if leftCheckbox or rightToggle is set.'
@@ -13890,6 +14711,21 @@ var ListsPage = (function (_React$Component) {
           header: 'optional',
           desc: 'This is the SvgIcon or FontIcon to be displayed on the left side.'
         }, {
+          name: 'nestedLevel',
+          type: 'integer',
+          header: 'optional',
+          desc: 'Controls how deep a ListItem appears. This property is automatically managed so modify at your own risk.'
+        }, {
+          name: 'open',
+          type: 'boolean',
+          header: 'default: false',
+          desc: 'Controls whether or not the child ListItems are initially displayed.'
+        }, {
+          name: 'primaryText',
+          type: 'node',
+          header: 'optional',
+          desc: 'This is the block element that contains the primary text. If a string is passed in, a div ' + 'tag will be rendered.'
+        }, {
           name: 'rightAvatar',
           type: 'element',
           header: 'optional',
@@ -13913,14 +14749,71 @@ var ListsPage = (function (_React$Component) {
           name: 'secondaryText',
           type: 'node',
           header: 'optional',
-          desc: 'This is the block element that contains the secondary text. If a string is passed in, a paragraph tag will be rendered.'
+          desc: 'This is the block element that contains the secondary text. If a string is passed in, a div ' + 'tag will be rendered.'
         }, {
           name: 'secondaryTextLines',
           type: 'oneOf [1,2]',
           header: 'default: 1',
           desc: 'Can be 1 or 2. This is the number of secondary text lines before ellipsis will show.'
         }]
+      }, {
+        name: 'ListItem Events',
+        infoArray: [{
+          name: 'onKeyboardFocus',
+          type: 'function(e, isKeyboardFocused)',
+          header: 'optional',
+          desc: 'Called when the ListItem has keyboard focus.'
+        }, {
+          name: 'onMouseOut',
+          type: 'function(e)',
+          header: 'optional',
+          desc: 'Called when the mouse is no longer over the ListItem.'
+        }, {
+          name: 'onMouseOver',
+          type: 'function(e)',
+          header: 'optional',
+          desc: 'Called when the mouse is over the ListItem.'
+        }, {
+          name: 'onNestedListToggle',
+          type: 'function(this)',
+          header: 'optional',
+          desc: 'Called when the ListItem toggles its nested ListItems.'
+        }, {
+          name: 'onTouchStart',
+          type: 'function(e)',
+          header: 'optional',
+          desc: 'Called when touches start.'
+        }]
       }];
+
+      var iconButtonElement = React.createElement(
+        IconButton,
+        {
+          touch: true,
+          tooltip: 'more',
+          tooltipPosition: 'bottom-left' },
+        React.createElement(MoreVertIcon, { color: Colors.grey400 })
+      );
+
+      var rightIconMenu = React.createElement(
+        IconMenu,
+        { iconButtonElement: iconButtonElement },
+        React.createElement(
+          MenuItem,
+          null,
+          'Reply'
+        ),
+        React.createElement(
+          MenuItem,
+          null,
+          'Forward'
+        ),
+        React.createElement(
+          MenuItem,
+          null,
+          'Delete'
+        )
+      );
 
       return React.createElement(
         ComponentDoc,
@@ -13934,51 +14827,20 @@ var ListsPage = (function (_React$Component) {
           React.createElement(
             List,
             null,
-            React.createElement(
-              ListItem,
-              { leftIcon: React.createElement(ContentInbox, null) },
-              'Inbox'
-            ),
-            React.createElement(
-              ListItem,
-              { leftIcon: React.createElement(ActionGrade, null) },
-              'Starred'
-            ),
-            React.createElement(
-              ListItem,
-              { leftIcon: React.createElement(ContentSend, null) },
-              'Sent mail'
-            ),
-            React.createElement(
-              ListItem,
-              { leftIcon: React.createElement(ContentDrafts, null) },
-              'Drafts'
-            )
+            React.createElement(ListItem, { primaryText: 'Inbox', leftIcon: React.createElement(ContentInbox, null) }),
+            React.createElement(ListItem, { primaryText: 'Starred', leftIcon: React.createElement(ActionGrade, null) }),
+            React.createElement(ListItem, { primaryText: 'Sent mail', leftIcon: React.createElement(ContentSend, null) }),
+            React.createElement(ListItem, { primaryText: 'Drafts', leftIcon: React.createElement(ContentDrafts, null) }),
+            React.createElement(ListItem, { primaryText: 'Inbox', leftIcon: React.createElement(ContentInbox, null) })
           ),
           React.createElement(ListDivider, null),
           React.createElement(
             List,
             null,
-            React.createElement(
-              ListItem,
-              { rightIcon: React.createElement(ActionInfo, null) },
-              'All mail'
-            ),
-            React.createElement(
-              ListItem,
-              { rightIcon: React.createElement(ActionInfo, null) },
-              'Trash'
-            ),
-            React.createElement(
-              ListItem,
-              { rightIcon: React.createElement(ActionInfo, null) },
-              'Spam'
-            ),
-            React.createElement(
-              ListItem,
-              { rightIcon: React.createElement(ActionInfo, null) },
-              'Follow up'
-            )
+            React.createElement(ListItem, { primaryText: 'All mail', rightIcon: React.createElement(ActionInfo, null) }),
+            React.createElement(ListItem, { primaryText: 'Trash', rightIcon: React.createElement(ActionInfo, null) }),
+            React.createElement(ListItem, { primaryText: 'Spam', rightIcon: React.createElement(ActionInfo, null) }),
+            React.createElement(ListItem, { primaryText: 'Follow up', rightIcon: React.createElement(ActionInfo, null) })
           )
         ),
         React.createElement(
@@ -13987,58 +14849,37 @@ var ListsPage = (function (_React$Component) {
           React.createElement(
             List,
             { subheader: 'Recent chats' },
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/ok-128.jpg' }),
-                rightIcon: React.createElement(CommunicationChatBubble, null) },
-              'Brendan Lim'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }),
-                rightIcon: React.createElement(CommunicationChatBubble, null) },
-              'Eric Hoffman'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/uxceo-128.jpg' }),
-                rightIcon: React.createElement(CommunicationChatBubble, null) },
-              'Grace Ng'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }),
-                rightIcon: React.createElement(CommunicationChatBubble, null) },
-              'Kerem Suer'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/raquelromanp-128.jpg' }),
-                rightIcon: React.createElement(CommunicationChatBubble, null) },
-              'Raquel Parrado'
-            )
+            React.createElement(ListItem, {
+              primaryText: 'Brendan Lim',
+              leftAvatar: React.createElement(Avatar, { src: 'images/ok-128.jpg' }),
+              rightIcon: React.createElement(CommunicationChatBubble, null) }),
+            React.createElement(ListItem, {
+              primaryText: 'Eric Hoffman',
+              leftAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }),
+              rightIcon: React.createElement(CommunicationChatBubble, null) }),
+            React.createElement(ListItem, {
+              primaryText: 'Grace Ng',
+              leftAvatar: React.createElement(Avatar, { src: 'images/uxceo-128.jpg' }),
+              rightIcon: React.createElement(CommunicationChatBubble, null) }),
+            React.createElement(ListItem, {
+              primaryText: 'Kerem Suer',
+              leftAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }),
+              rightIcon: React.createElement(CommunicationChatBubble, null) }),
+            React.createElement(ListItem, {
+              primaryText: 'Raquel Parrado',
+              leftAvatar: React.createElement(Avatar, { src: 'images/raquelromanp-128.jpg' }),
+              rightIcon: React.createElement(CommunicationChatBubble, null) })
           ),
           React.createElement(ListDivider, null),
           React.createElement(
             List,
             { subheader: 'Previous chats' },
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/chexee-128.jpg' }) },
-              'Chelsea Otakan'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/jsa-128.jpg' }) },
-              'James Anderson'
-            )
+            React.createElement(ListItem, {
+              primaryText: 'Chelsea Otakan',
+              leftAvatar: React.createElement(Avatar, { src: 'images/chexee-128.jpg' }) }),
+            React.createElement(ListItem, {
+              primaryText: 'James Anderson',
+              leftAvatar: React.createElement(Avatar, { src: 'images/jsa-128.jpg' }) })
           )
         ),
         React.createElement(
@@ -14047,71 +14888,47 @@ var ListsPage = (function (_React$Component) {
           React.createElement(
             List,
             null,
-            React.createElement(
-              ListItem,
-              {
-                leftIcon: React.createElement(ActionGrade, { color: Colors.pinkA200 }),
-                rightAvatar: React.createElement(Avatar, { src: 'images/chexee-128.jpg' }) },
-              'Chelsea Otakan'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                insetChildren: true,
-                rightAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }) },
-              'Eric Hoffman'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                insetChildren: true,
-                rightAvatar: React.createElement(Avatar, { src: 'images/jsa-128.jpg' }) },
-              'James Anderson'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                insetChildren: true,
-                rightAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }) },
-              'Kerem Suer'
-            )
+            React.createElement(ListItem, {
+              primaryText: 'Chelsea Otakan',
+              leftIcon: React.createElement(ActionGrade, { color: Colors.pinkA200 }),
+              rightAvatar: React.createElement(Avatar, { src: 'images/chexee-128.jpg' }) }),
+            React.createElement(ListItem, {
+              primaryText: 'Eric Hoffman',
+              insetChildren: true,
+              rightAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }) }),
+            React.createElement(ListItem, {
+              primaryText: 'James Anderson',
+              insetChildren: true,
+              rightAvatar: React.createElement(Avatar, { src: 'images/jsa-128.jpg' }) }),
+            React.createElement(ListItem, {
+              primaryText: 'Kerem Suer',
+              insetChildren: true,
+              rightAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }) })
           ),
           React.createElement(ListDivider, { inset: true }),
           React.createElement(
             List,
             null,
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(
-                  Avatar,
-                  { color: Colors.pinkA200, backgroundColor: Colors.transparent, style: { left: 8 } },
-                  'A'
-                ),
-                rightAvatar: React.createElement(Avatar, { src: 'images/adellecharles-128.jpg' }) },
-              'Adelle Charles'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                insetChildren: true,
-                rightAvatar: React.createElement(Avatar, { src: 'images/adhamdannaway-128.jpg' }) },
-              'Adham Dannaway'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                insetChildren: true,
-                rightAvatar: React.createElement(Avatar, { src: 'images/allisongrayce-128.jpg' }) },
-              'Allison Grayce'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                insetChildren: true,
-                rightAvatar: React.createElement(Avatar, { src: 'images/angelceballos-128.jpg' }) },
-              'Angel Ceballos'
-            )
+            React.createElement(ListItem, {
+              primaryText: 'Adelle Charles',
+              leftAvatar: React.createElement(
+                Avatar,
+                { color: Colors.pinkA200, backgroundColor: Colors.transparent, style: { left: 8 } },
+                'A'
+              ),
+              rightAvatar: React.createElement(Avatar, { src: 'images/adellecharles-128.jpg' }) }),
+            React.createElement(ListItem, {
+              primaryText: 'Adham Dannaway',
+              insetChildren: true,
+              rightAvatar: React.createElement(Avatar, { src: 'images/adhamdannaway-128.jpg' }) }),
+            React.createElement(ListItem, {
+              primaryText: 'Allison Grayce',
+              insetChildren: true,
+              rightAvatar: React.createElement(Avatar, { src: 'images/allisongrayce-128.jpg' }) }),
+            React.createElement(ListItem, {
+              primaryText: 'Angel Ceballos',
+              insetChildren: true,
+              rightAvatar: React.createElement(Avatar, { src: 'images/angelceballos-128.jpg' }) })
           )
         ),
         React.createElement(
@@ -14120,50 +14937,55 @@ var ListsPage = (function (_React$Component) {
           React.createElement(
             List,
             { subheader: 'Folders', insetSubheader: true },
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { icon: React.createElement(FileFolder, null) }),
-                rightIcon: React.createElement(ActionInfo, null),
-                secondaryText: 'Jan 9, 2014' },
-              'Photos'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { icon: React.createElement(FileFolder, null) }),
-                rightIcon: React.createElement(ActionInfo, null),
-                secondaryText: 'Jan 17, 2014' },
-              'Recipes'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { icon: React.createElement(FileFolder, null) }),
-                rightIcon: React.createElement(ActionInfo, null),
-                secondaryText: 'Jan 28, 2014' },
-              'Work'
-            )
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { icon: React.createElement(FileFolder, null) }),
+              rightIcon: React.createElement(ActionInfo, null),
+              primaryText: 'Photos',
+              secondaryText: 'Jan 9, 2014' }),
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { icon: React.createElement(FileFolder, null) }),
+              rightIcon: React.createElement(ActionInfo, null),
+              primaryText: 'Recipes',
+              secondaryText: 'Jan 17, 2014' }),
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { icon: React.createElement(FileFolder, null) }),
+              rightIcon: React.createElement(ActionInfo, null),
+              primaryText: 'Work',
+              secondaryText: 'Jan 28, 2014' })
           ),
           React.createElement(ListDivider, { inset: true }),
           React.createElement(
             List,
             { subheader: 'Files', insetSubheader: true },
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { icon: React.createElement(ActionAssignment, null), backgroundColor: Colors.blue500 }),
+              rightIcon: React.createElement(ActionInfo, null),
+              primaryText: 'Vacation itinerary',
+              secondaryText: 'Jan 20, 2014' }),
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { icon: React.createElement(EditorInsertChart, null), backgroundColor: Colors.yellow600 }),
+              rightIcon: React.createElement(ActionInfo, null),
+              primaryText: 'Kitchen remodel',
+              secondaryText: 'Jan 10, 2014' })
+          )
+        ),
+        React.createElement(
+          MobileTearSheet,
+          null,
+          React.createElement(
+            List,
+            { subheader: 'Nested List Items' },
+            React.createElement(ListItem, { primaryText: 'Sent mail', leftIcon: React.createElement(ContentSend, null) }),
+            React.createElement(ListItem, { primaryText: 'Drafts', leftIcon: React.createElement(ContentDrafts, null) }),
             React.createElement(
               ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { icon: React.createElement(ActionAssignment, null), backgroundColor: Colors.blue500 }),
-                rightIcon: React.createElement(ActionInfo, null),
-                secondaryText: 'Jan 20, 2014' },
-              'Vacation itinerary'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { icon: React.createElement(EditorInsertChart, null), backgroundColor: Colors.yellow600 }),
-                rightIcon: React.createElement(ActionInfo, null),
-                secondaryText: 'Jan 10, 2014' },
-              'Kitchen remodel'
+              { primaryText: 'Inbox', leftIcon: React.createElement(ContentInbox, null), open: true },
+              React.createElement(ListItem, { primaryText: 'Starred', leftIcon: React.createElement(ActionGrade, null) }),
+              React.createElement(
+                ListItem,
+                { primaryText: 'Sent Mail', leftIcon: React.createElement(ContentSend, null) },
+                React.createElement(ListItem, { primaryText: 'Drafts', leftIcon: React.createElement(ContentDrafts, null) })
+              )
             )
           )
         ),
@@ -14173,44 +14995,29 @@ var ListsPage = (function (_React$Component) {
           React.createElement(
             List,
             { subheader: 'General' },
-            React.createElement(
-              ListItem,
-              {
-                secondaryText: 'Change your Google+ profile photo' },
-              'Profile photo'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                secondaryText: 'Your status is visible to everyone you use with' },
-              'Show your status'
-            )
+            React.createElement(ListItem, {
+              primaryText: 'Profile photo',
+              secondaryText: 'Change your Google+ profile photo' }),
+            React.createElement(ListItem, {
+              primaryText: 'Show your status',
+              secondaryText: 'Your status is visible to everyone you use with' })
           ),
           React.createElement(ListDivider, null),
           React.createElement(
             List,
             { subheader: 'Hangout notifications' },
-            React.createElement(
-              ListItem,
-              {
-                leftCheckbox: React.createElement(Checkbox, null),
-                secondaryText: 'Allow notifications' },
-              'Notifications'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftCheckbox: React.createElement(Checkbox, null),
-                secondaryText: 'Hangouts message' },
-              'Sounds'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftCheckbox: React.createElement(Checkbox, null),
-                secondaryText: 'Hangouts video call' },
-              'Video sounds'
-            )
+            React.createElement(ListItem, {
+              leftCheckbox: React.createElement(Checkbox, null),
+              primaryText: 'Notificaitons',
+              secondaryText: 'Allow notifications' }),
+            React.createElement(ListItem, {
+              leftCheckbox: React.createElement(Checkbox, null),
+              primaryText: 'Sounds',
+              secondaryText: 'Hangouts message' }),
+            React.createElement(ListItem, {
+              leftCheckbox: React.createElement(Checkbox, null),
+              primaryText: 'Video sounds',
+              secondaryText: 'Hangouts video call' })
           )
         ),
         React.createElement(
@@ -14219,55 +15026,25 @@ var ListsPage = (function (_React$Component) {
           React.createElement(
             List,
             null,
-            React.createElement(
-              ListItem,
-              {
-                secondaryText: 'Always interrupt' },
-              'When calls and notifications arrive'
-            )
+            React.createElement(ListItem, {
+              primaryText: 'When calls and notifications arrive',
+              secondaryText: 'Always interrupt' })
           ),
           React.createElement(ListDivider, null),
           React.createElement(
             List,
             { subheader: 'Priority interruptions' },
-            React.createElement(
-              ListItem,
-              { rightToggle: React.createElement(Toggle, null) },
-              'Events and reminders'
-            ),
-            React.createElement(
-              ListItem,
-              { rightToggle: React.createElement(Toggle, null) },
-              'Calls'
-            ),
-            React.createElement(
-              ListItem,
-              { rightToggle: React.createElement(Toggle, null) },
-              'Messages'
-            )
+            React.createElement(ListItem, { primaryText: 'Events and reminders', rightToggle: React.createElement(Toggle, null) }),
+            React.createElement(ListItem, { primaryText: 'Calls', rightToggle: React.createElement(Toggle, null) }),
+            React.createElement(ListItem, { primaryText: 'Messages', rightToggle: React.createElement(Toggle, null) })
           ),
           React.createElement(ListDivider, null),
           React.createElement(
             List,
             { subheader: 'Hangout notifications' },
-            React.createElement(
-              ListItem,
-              {
-                leftCheckbox: React.createElement(Checkbox, null) },
-              'Notifications'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftCheckbox: React.createElement(Checkbox, null) },
-              'Sounds'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                leftCheckbox: React.createElement(Checkbox, null) },
-              'Video sounds'
-            )
+            React.createElement(ListItem, { primaryText: 'Notifications', leftCheckbox: React.createElement(Checkbox, null) }),
+            React.createElement(ListItem, { primaryText: 'Sounds', leftCheckbox: React.createElement(Checkbox, null) }),
+            React.createElement(ListItem, { primaryText: 'Video sounds', leftCheckbox: React.createElement(Checkbox, null) })
           )
         ),
         React.createElement(
@@ -14276,41 +15053,29 @@ var ListsPage = (function (_React$Component) {
           React.createElement(
             List,
             null,
-            React.createElement(
-              ListItem,
-              {
-                leftIcon: React.createElement(CommunicationCall, { color: Colors.indigo500 }),
-                rightIcon: React.createElement(CommunicationChatBubble, null),
-                secondaryText: 'Mobile' },
-              '(650) 555 - 1234'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                insetChildren: true,
-                rightIcon: React.createElement(CommunicationChatBubble, null),
-                secondaryText: 'Work' },
-              '(323) 555-6789'
-            )
+            React.createElement(ListItem, {
+              leftIcon: React.createElement(CommunicationCall, { color: Colors.indigo500 }),
+              rightIcon: React.createElement(CommunicationChatBubble, null),
+              primaryText: '(650) 555 - 1234',
+              secondaryText: 'Mobile' }),
+            React.createElement(ListItem, {
+              insetChildren: true,
+              rightIcon: React.createElement(CommunicationChatBubble, null),
+              primaryText: '(323) 555 - 6789',
+              secondaryText: 'Work' })
           ),
           React.createElement(ListDivider, { inset: true }),
           React.createElement(
             List,
             null,
-            React.createElement(
-              ListItem,
-              {
-                leftIcon: React.createElement(CommunicationEmail, { color: Colors.indigo500 }),
-                secondaryText: 'Personal' },
-              'aliconnors@example.com'
-            ),
-            React.createElement(
-              ListItem,
-              {
-                insetChildren: true,
-                secondaryText: 'Work' },
-              'ali_connors@example.com'
-            )
+            React.createElement(ListItem, {
+              leftIcon: React.createElement(CommunicationEmail, { color: Colors.indigo500 }),
+              primaryText: 'aliconnors@example.com',
+              secondaryText: 'Personal' }),
+            React.createElement(ListItem, {
+              insetChildren: true,
+              primaryText: 'ali_connors@example.com',
+              secondaryText: 'Work' })
           )
         ),
         React.createElement(
@@ -14319,112 +15084,98 @@ var ListsPage = (function (_React$Component) {
           React.createElement(
             List,
             { subheader: 'Today' },
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/ok-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Brendan Lim'
-                  ),
-                  ' -- I\'ll be in your neighborhood this weekend.'
-                ) },
-              'Brunch this weekend?'
-            ),
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/ok-128.jpg' }),
+              primaryText: 'Brunch this weekend?',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Brendan Lim'
+                ),
+                ' -- I\'ll be in your neighborhood this weekend.'
+              ) }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'to me, Scott, Jennifer'
-                  ),
-                  ' -- Wish I could but I can'
-                ) },
-              'Summer BBQ  ',
-              React.createElement(
-                'span',
-                { style: { color: Colors.lightBlack } },
-                '4'
-              )
-            ),
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }),
+              primaryText: React.createElement(
+                'p',
+                null,
+                'Summer BBQ  ',
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.lightBlack } },
+                  '4'
+                )
+              ),
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'to me, Scott, Jennifer'
+                ),
+                ' -- Wish I could but I can'
+              ) }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/uxceo-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Grace Ng'
-                  ),
-                  ' -- Do you have Paris recommendations?'
-                ) },
-              'Oui oui'
-            ),
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/uxceo-128.jpg' }),
+              primaryText: 'Oui oui',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Grace Ng'
+                ),
+                ' -- Do you have Paris recommendations?'
+              ) }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Kerem Suer'
-                  ),
-                  ' -- Do you have any ideas on what I'
-                ) },
-              'Birthday gift'
-            ),
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }),
+              primaryText: 'Birthday gift',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Kerem Suer'
+                ),
+                ' -- Do you have any ideas on what I'
+              ) }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/raquelromanp-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Raquel Parrado'
-                  ),
-                  ' -- We should eat this: grated cheese'
-                ) },
-              'Recipe to try'
-            ),
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/raquelromanp-128.jpg' }),
+              primaryText: 'Recipe to try',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Raquel Parrado'
+                ),
+                ' -- We should eat this: grated cheese'
+              ) }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/chexee-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Chelsea Otakan'
-                  ),
-                  ' -- Any interest in seeing the Giants'
-                ) },
-              'Giants game'
-            )
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/chexee-128.jpg' }),
+              primaryText: 'Giants game',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Chelsea Otakan'
+                ),
+                ' -- Any interest in seeing the Giants'
+              ) })
           )
         ),
         React.createElement(
@@ -14433,100 +15184,89 @@ var ListsPage = (function (_React$Component) {
           React.createElement(
             List,
             { subheader: 'Today' },
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/ok-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Brendan Lim'
-                  ),
-                  ' -- I\'ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?'
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/ok-128.jpg' }),
+              primaryText: 'Brunch this weekend?',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Brendan Lim'
                 ),
-                secondaryTextLines: 2 },
-              'Brunch this weekend?'
-            ),
+                ' -- I\'ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?'
+              ),
+              secondaryTextLines: 2 }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'to me, Scott, Jennifer'
-                  ),
-                  ' -- Wish I could come, but I\'m out of town this weekend.'
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }),
+              primaryText: React.createElement(
+                'p',
+                null,
+                'Summer BBQ  ',
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.lightBlack } },
+                  '4'
+                )
+              ),
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'to me, Scott, Jennifer'
                 ),
-                secondaryTextLines: 2 },
-              'Summer BBQ  ',
-              React.createElement(
-                'span',
-                { style: { color: Colors.lightBlack } },
-                '4'
-              )
-            ),
+                ' -- Wish I could come, but I\'m out of town this weekend.'
+              ),
+              secondaryTextLines: 2 }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/uxceo-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Grace Ng'
-                  ),
-                  ' -- Do you have Paris recommendations? Have you ever been?'
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/uxceo-128.jpg' }),
+              primaryText: 'Oui oui',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Grace Ng'
                 ),
-                secondaryTextLines: 2 },
-              'Oui oui'
-            ),
+                ' -- Do you have Paris recommendations? Have you ever been?'
+              ),
+              secondaryTextLines: 2 }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Kerem Suer'
-                  ),
-                  ' -- Do you have any ideas what we can get Heidi for her birthday? How about a pony?'
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }),
+              primaryText: 'Birdthday gift',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Kerem Suer'
                 ),
-                secondaryTextLines: 2 },
-              'Birthday gift'
-            ),
+                ' -- Do you have any ideas what we can get Heidi for her birthday? How about a pony?'
+              ),
+              secondaryTextLines: 2 }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/raquelromanp-128.jpg' }),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Raquel Parrado'
-                  ),
-                  ' -- We should eat this: grated squash. Corn and tomatillo tacos.'
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/raquelromanp-128.jpg' }),
+              primaryText: 'Recipe to try',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Raquel Parrado'
                 ),
-                secondaryTextLines: 2 },
-              'Recipe to try'
-            )
+                ' -- We should eat this: grated squash. Corn and tomatillo tacos.'
+              ),
+              secondaryTextLines: 2 })
           )
         ),
         React.createElement(
@@ -14535,125 +15275,90 @@ var ListsPage = (function (_React$Component) {
           React.createElement(
             List,
             { subheader: 'Today' },
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/ok-128.jpg' }),
-                rightIconButton: React.createElement(
-                  IconButton,
-                  null,
-                  React.createElement(ToggleStarBorder, { color: Colors.grey400 })
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/ok-128.jpg' }),
+              rightIconButton: rightIconMenu,
+              primaryText: 'Brendan Lim',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Brunch this weekend?'
                 ),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Brunch this weekend?'
-                  ),
-                  React.createElement('br', null),
-                  'I\'ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?'
-                ),
-                secondaryTextLines: 2 },
-              'Brendan Lim'
-            ),
+                React.createElement('br', null),
+                'I\'ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?'
+              ),
+              secondaryTextLines: 2 }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }),
-                rightIconButton: React.createElement(
-                  IconButton,
-                  null,
-                  React.createElement(ToggleStarBorder, { color: Colors.grey400 })
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/kolage-128.jpg' }),
+              rightIconButton: rightIconMenu,
+              primaryText: 'me, Scott, Jennifer',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Summer BBQ'
                 ),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Summer BBQ'
-                  ),
-                  React.createElement('br', null),
-                  'Wish I could come, but I\'m out of town this weekend.'
-                ),
-                secondaryTextLines: 2 },
-              'me, Scott, Jennifer'
-            ),
+                React.createElement('br', null),
+                'Wish I could come, but I\'m out of town this weekend.'
+              ),
+              secondaryTextLines: 2 }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/uxceo-128.jpg' }),
-                rightIconButton: React.createElement(
-                  IconButton,
-                  null,
-                  React.createElement(ToggleStarBorder, { color: Colors.grey400 })
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/uxceo-128.jpg' }),
+              rightIconButton: rightIconMenu,
+              primaryText: 'Grace Ng',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Oui oui'
                 ),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Oui oui'
-                  ),
-                  React.createElement('br', null),
-                  'Do you have any Paris recs? Have you ever been?'
-                ),
-                secondaryTextLines: 2 },
-              'Grace Ng'
-            ),
+                React.createElement('br', null),
+                'Do you have any Paris recs? Have you ever been?'
+              ),
+              secondaryTextLines: 2 }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }),
-                rightIconButton: React.createElement(
-                  IconButton,
-                  null,
-                  React.createElement(ToggleStarBorder, { color: Colors.grey400 })
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/kerem-128.jpg' }),
+              rightIconButton: rightIconMenu,
+              primaryText: 'Kerem Suer',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Birthday gift'
                 ),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Birthday gift'
-                  ),
-                  React.createElement('br', null),
-                  'Do you have any ideas what we can get Heidi for her birthday? How about a pony?'
-                ),
-                secondaryTextLines: 2 },
-              'Kerem Suer'
-            ),
+                React.createElement('br', null),
+                'Do you have any ideas what we can get Heidi for her birthday? How about a pony?'
+              ),
+              secondaryTextLines: 2 }),
             React.createElement(ListDivider, { inset: true }),
-            React.createElement(
-              ListItem,
-              {
-                leftAvatar: React.createElement(Avatar, { src: 'images/raquelromanp-128.jpg' }),
-                rightIconButton: React.createElement(
-                  IconButton,
-                  null,
-                  React.createElement(ToggleStarBorder, { color: Colors.grey400 })
+            React.createElement(ListItem, {
+              leftAvatar: React.createElement(Avatar, { src: 'images/raquelromanp-128.jpg' }),
+              rightIconButton: rightIconMenu,
+              primaryText: 'Raquel Parrado',
+              secondaryText: React.createElement(
+                'p',
+                null,
+                React.createElement(
+                  'span',
+                  { style: { color: Colors.darkBlack } },
+                  'Recipe to try'
                 ),
-                secondaryText: React.createElement(
-                  'p',
-                  null,
-                  React.createElement(
-                    'span',
-                    { style: { color: Colors.darkBlack } },
-                    'Recipe to try'
-                  ),
-                  React.createElement('br', null),
-                  'We should eat this: grated squash. Corn and tomatillo tacos.'
-                ),
-                secondaryTextLines: 2 },
-              'Raquel Parrado'
-            )
+                React.createElement('br', null),
+                'We should eat this: grated squash. Corn and tomatillo tacos.'
+              ),
+              secondaryTextLines: 2 })
           )
         )
       );
@@ -14665,334 +15370,331 @@ var ListsPage = (function (_React$Component) {
 
 module.exports = ListsPage;
 
-},{"../../component-doc.jsx":134,"../../mobile-tear-sheet.jsx":138,"../../svg-icons/action-assignment.jsx":170,"../../svg-icons/action-grade.jsx":171,"../../svg-icons/action-info.jsx":173,"../../svg-icons/communication-call.jsx":174,"../../svg-icons/communication-chat-bubble.jsx":175,"../../svg-icons/communication-email.jsx":176,"../../svg-icons/content-drafts.jsx":177,"../../svg-icons/content-inbox.jsx":178,"../../svg-icons/content-send.jsx":179,"../../svg-icons/editor-insert-chart.jsx":180,"../../svg-icons/file-folder.jsx":181,"../../svg-icons/toggle-star-border.jsx":182,"mui":435,"react":401}],151:[function(require,module,exports){
+},{"../../component-doc":134,"../../mobile-tear-sheet":138,"material-ui":"material-ui","menus/icon-menu":432,"menus/menu-item":434,"react":388,"svg-icons/action/assignment":465,"svg-icons/action/grade":467,"svg-icons/action/info":469,"svg-icons/communication/call":470,"svg-icons/communication/chat-bubble":471,"svg-icons/communication/email":472,"svg-icons/content/drafts":474,"svg-icons/content/inbox":476,"svg-icons/content/send":478,"svg-icons/editor/insert-chart":479,"svg-icons/file/folder":481,"svg-icons/navigation/more-vert":494,"svg-icons/toggle/star-border":500}],152:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
-var React = require('react');
-var mui = require('mui');
-var CodeExample = require('../../code-example/code-example.jsx');
-var ComponentInfo = require('../../component-info.jsx');
+var React = require('react/addons');
+var ReactTransitionGroup = React.addons.TransitionGroup;
+var Menu = require('menus/menu');
+var MenuItem = require('menus/menu-item');
+var MenuDivider = require('menus/menu-divider');
+var ComponentDoc = require('../../component-doc');
 
-var Typography = mui.Styles.Typography;
-var Tab = mui.Tab;
-var Tabs = mui.Tabs;
-
-var ThemeManager = new mui.Styles.ThemeManager();
-
-var labelMenuItems = [{ payload: '1', text: 'ID', data: '1234567890', icon: 'home' }, { payload: '2', text: 'Type', data: 'Announcement', icon: 'home' }, { payload: '3', text: 'Caller ID', data: '(123) 456-7890', icon: 'home' }];
-
-var numberMenuItems = [{ payload: '1', text: 'All', number: '22' }, { payload: '3', text: 'Uncategorized', number: '6' }, { payload: '4', text: 'Trash', number: '11' }];
-
-var iconMenuItems = [{ payload: '1', text: 'Live Answer', iconClassName: 'muidocs-icon-communication-phone', number: '10' }, { payload: '2', text: 'Voicemail', iconClassName: 'muidocs-icon-communication-voicemail', number: '5' }, { payload: '3', text: 'Starred', iconClassName: 'muidocs-icon-action-stars', number: '3' }, { payload: '4', text: 'Shared', iconClassName: 'muidocs-icon-action-thumb-up', number: '12' }];
-
-var filterMenuItems = [{ payload: '1', text: 'Text Opt-In', toggle: true }, { payload: '2', text: 'Text Opt-Out', toggle: true, defaultToggled: true }, { payload: '3', text: 'Voice Opt-Out', toggle: true, disabled: true }];
-
-var nestedMenuItems = [{ type: mui.MenuItem.Types.NESTED, text: 'Reports', items: [{ payload: '1', text: 'Nested Item 1' }, { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2', items: [{ payload: '1', text: 'Nested Item 2.1' }, { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 2.2', items: [{ payload: '1', text: 'Nested Item 2.2.1' }, { payload: '3', text: 'Nested Item 2.2.2' }] }, { payload: '3', text: 'Nested Item 2.3' }] }, { payload: '3', text: 'Nested Item 3' }, { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4', items: [{ payload: '1', text: 'Nested Item 4.1' }, { type: mui.MenuItem.Types.NESTED, text: 'Nested Item 4.2', items: [{ payload: '1', text: 'Nested Item 4.2.1', disabled: true }, { payload: '3', text: 'Nested Item 4.2.2' }] }, { payload: '3', text: 'Nested Item 4.3' }] }, { payload: '4', text: 'Nested Item 5' }] }, { payload: '1', text: 'Audio Library' }, { payload: '2', text: 'Settings' }, { payload: '3', text: 'Logout', disabled: true }];
-
-var componentInfo = [{
-  name: 'Props',
-  infoArray: [{
-    name: 'autoWidth',
-    type: 'boolean',
-    header: 'default: true',
-    desc: 'If true, the width of the Menu is constant. If false, the ' + 'width of the Menu is set to 100%.'
-  }, {
-    name: 'hideable',
-    type: 'boolean',
-    header: 'default: false',
-    desc: 'Determines whether of not the Menu can be hidden via the ' + 'visible prop.'
-  }, {
-    name: 'menuItems',
-    type: 'Array',
-    header: 'required',
-    desc: 'An array of objects describing the properties of a MenuItem. ' + 'If your MenuItem includes a Toggle element and you would like ' + 'to pass down Toggle properties, include those properties in ' + 'the same object used to describe the MenuItem.'
-  }, {
-    name: 'menuItemClassName',
-    type: 'string',
-    header: 'optional',
-    desc: 'Adds a classname to MenuItems and nested MenuItems for CSS ' + 'styles.'
-  }, {
-    name: 'menuItemClassNameLink',
-    type: 'string',
-    header: 'optional',
-    desc: 'Adds a classname to LinkMenuItems for CSS styles.'
-  }, {
-    name: 'menuItemClassNameSubheader',
-    type: 'string',
-    header: 'optional',
-    desc: 'Adds a classname to SubheaderMenuItems for CSS styles.'
-  }, {
-    name: 'menuItemStyle',
-    type: 'object',
-    header: 'optional',
-    desc: 'Overrides the inline-styles of MenuItems and nested MenuItems.'
-  }, {
-    name: 'menuItemStyleLink',
-    type: 'object',
-    header: 'optional',
-    desc: 'Overrides the inline-styles of LinkMenuItems.'
-  }, {
-    name: 'menuItemStyleSubheader',
-    type: 'object',
-    header: 'optional',
-    desc: 'Overrides the inline-styles of SubheaderMenuItems.'
-  }, {
-    name: 'selectedIndex',
-    type: 'number',
-    header: 'optional',
-    desc: 'The index of the currently selected MenuItem.'
-  }, {
-    name: 'style',
-    type: 'object',
-    header: 'optional',
-    desc: 'Override the inline-styles of Menu\'s root element.'
-  }, {
-    name: 'visible',
-    type: 'boolean',
-    header: 'default: true',
-    desc: 'Determines whether of not the Menu is displayed.'
-  }, {
-    name: 'zDepth',
-    type: 'number',
-    header: 'optional',
-    desc: 'The zDepth of the Menu. This is equivalent to CSS\'s zDepth ' + 'property.'
-  }]
-}, {
-  name: 'Events',
-  infoArray: [{
-    name: 'onItemTap',
-    type: 'function(e, index, menuItem)',
-    header: 'optional',
-    desc: 'Callback function for when a MenuItem has been selected.'
-  }, {
-    name: 'onToggle',
-    type: 'function(e, index, toggled)',
-    header: 'optional',
-    desc: 'Callback function for when a MenuItem with a Toggle component ' + 'has been toggled.'
-  }]
-}];
+var ArrowDropRight = require('svg-icons/navigation-arrow-drop-right');
+var ContentCopy = require('svg-icons/content/content-copy');
+var ContentLink = require('svg-icons/content/link');
+var Delete = require('svg-icons/action/delete');
+var Download = require('svg-icons/file/file-download');
+var PersonAdd = require('svg-icons/social/person-add');
+var RemoveRedEye = require('svg-icons/image/remove-red-eye');
 
 var MenusPage = (function (_React$Component) {
   function MenusPage() {
     _classCallCheck(this, MenusPage);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(MenusPage.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(MenusPage, _React$Component);
 
   _createClass(MenusPage, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      ThemeManager.setComponentThemes({
-        toggle: {
-          thumbOnColor: 'rgb(255,100,0)',
-          trackOnColor: 'rgba(255,100,0,0.5)'
-        }
-      });
-    }
-  }, {
-    key: 'getChildContext',
-    value: function getChildContext() {
-      return {
-        muiTheme: ThemeManager.getCurrentTheme()
-      };
-    }
-  }, {
-    key: 'getStyles',
-    value: function getStyles() {
-      return {
-        exampleMenu: {
-          width: '100%'
-        },
-        exampleMenuNested: {
-          width: 64 * 3 + 'px'
-        },
-        headline: {
-          fontSize: '24px',
-          lineHeight: '32px',
-          paddingTop: '16px',
-          marginBottom: '12px',
-          letterSpacing: '0',
-          fontWeight: Typography.fontWeightNormal,
-          color: Typography.textDarkBlack
-        }
-      };
-    }
-  }, {
     key: 'render',
     value: function render() {
 
-      // Copied from component-doc
-      var info = componentInfo.map(function (info, i) {
-        return React.createElement(ComponentInfo, {
-          key: i,
-          name: info.name,
-          infoArray: info.infoArray });
-      });
+      var code = '\n    //We\'re working on migrating some of our components to use a new implementation of menus.\n    //If you\'d like to use the new menu before our migration is complete, please directly\n    //require them like this:\n\n    let Menu = require(\'material-ui/lib/menus/menu\');\n    let MenuItem = require(\'material-ui/lib/menus/menu-item\');\n    let MenuDivider = require(\'material-ui/lib/menus/menu-divider\');\n\n    <Menu>\n      <MenuItem primaryText="Maps" />\n      <MenuItem primaryText="Books" />\n      <MenuItem primaryText="Flights" />\n      <MenuItem primaryText="Apps" />\n    </Menu>\n\n    <Menu desktop={true} width={320}>\n      <MenuItem primaryText="Bold" secondaryText="&#8984;B" />\n      <MenuItem primaryText="Italic" secondaryText="&#8984;I" />\n      <MenuItem primaryText="Underline" secondaryText="&#8984;U" />\n      <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />\n      <MenuItem primaryText="Superscript" secondaryText="&#8984;." />\n      <MenuItem primaryText="Subscript" secondaryText="&#8984;," />\n      <MenuDivider />\n      <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />\n      <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />\n      <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />\n      <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />\n      <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />\n      <MenuDivider />\n      <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />\n    </Menu>\n    ';
+
+      var desc = null;
+
+      var componentInfo = [{
+        name: 'Menu Props',
+        infoArray: [{
+          name: 'autoWidth',
+          type: 'bool',
+          header: 'default: true',
+          desc: 'If true, the width will automatically be set according to the items inside the menu using the ' + 'proper keyline increment.'
+        }, {
+          name: 'desktop',
+          type: 'bool',
+          header: 'default: false',
+          desc: 'Indicates if the menu should render with compact desktop styles.'
+        }, {
+          name: 'listStyle',
+          type: 'object',
+          header: 'optional',
+          desc: 'The style object to use to override underlying list style.'
+        }, {
+          name: 'maxHeight',
+          type: 'number',
+          header: 'optional',
+          desc: 'The maxHeight of the menu in pixels. If specified, the menu will scroll if larger than the maxHeight.'
+        }, {
+          name: 'multiple',
+          type: 'bool',
+          header: 'default: false',
+          desc: 'If true, the value can an array and allow the menu to be a multi-select.'
+        }, {
+          name: 'openDirection',
+          type: 'oneOf [bottom-left, bottom-right, top-left, top-right]',
+          header: 'default: bottom-left',
+          desc: 'This is the placement of the menu relative to the IconButton.'
+        }, {
+          name: 'value',
+          type: 'string or array',
+          header: 'optional',
+          desc: 'The value of the selected menu item. If passed in, this will make the menu ' + 'a controlled component. This component also supports valueLink.'
+        }, {
+          name: 'width',
+          type: 'string or number',
+          header: 'optional',
+          desc: 'Sets the width of the menu. If not specified, the menu width will be dictated by its ' + 'children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).'
+        }, {
+          name: 'zDepth',
+          type: 'oneOf [0,1,2,3,4,5]',
+          header: 'optional',
+          desc: 'Sets the width of the menu. If not specified, the menu width will be dictated by its ' + 'children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).'
+        }]
+      }, {
+        name: 'MenuItem Props',
+        infoArray: [{
+          name: 'checked',
+          type: 'bool',
+          header: 'default: false',
+          desc: 'If true, a left check mark will be rendered'
+        }, {
+          name: 'desktop',
+          type: 'bool',
+          header: 'default: false',
+          desc: 'Indicates if the menu should render with compact desktop styles.'
+        }, {
+          name: 'disabled',
+          type: 'bool',
+          header: 'default: false',
+          desc: 'Disables a menu item.'
+        }, {
+          name: 'innerDivStyle',
+          type: 'object',
+          header: 'optional',
+          desc: 'Style overrides for the inner div.'
+        }, {
+          name: 'insetChildren',
+          type: 'bool',
+          header: 'default: false',
+          desc: 'If true, the children will be indented. Only needed when there is no leftIcon.'
+        }, {
+          name: 'leftIcon',
+          type: 'element',
+          header: 'optional',
+          desc: 'This is the SvgIcon or FontIcon to be displayed on the left side.'
+        }, {
+          name: 'primaryText',
+          type: 'node',
+          header: 'optional',
+          desc: 'This is the block element that contains the primary text. If a string is passed in, a ' + 'div tag will be rendered.'
+        }, {
+          name: 'rightIcon',
+          type: 'element',
+          header: 'optional',
+          desc: 'This is the SvgIcon or FontIcon to be displayed on the right side.'
+        }, {
+          name: 'secondaryText',
+          type: 'node',
+          header: 'optional',
+          desc: 'This is the block element that contains the secondary text. If a string is passed in, a ' + 'div tag will be rendered.'
+        }, {
+          name: 'value',
+          type: 'string',
+          header: 'optional',
+          desc: 'The value of the menu item.'
+        }]
+      }, {
+        name: 'Events',
+        infoArray: [{
+          name: 'onEscKeyDown',
+          header: 'function(e)',
+          desc: 'Fired when an Esc key is keyed down.'
+        }, {
+          name: 'onItemTouchTap',
+          header: 'function(e, item)',
+          desc: 'Fired when a menu item is touchTapped.'
+        }, {
+          name: 'onChange',
+          header: 'function(e, value)',
+          desc: 'Fired when a menu item is touchTapped and the menu item value ' + 'is not equal to the current menu value.'
+        }]
+      }];
+
+      var styles = {
+        menu: {
+          marginRight: 32,
+          marginBottom: 32,
+          float: 'left',
+          position: 'relative',
+          zIndex: 0
+        },
+
+        hr: {
+          clear: 'both',
+          border: 'none'
+        }
+      };
 
       return React.createElement(
-        'div',
-        null,
+        ComponentDoc,
+        {
+          name: 'Menus',
+          code: code,
+          desc: desc,
+          componentInfo: componentInfo },
         React.createElement(
-          'h2',
-          { style: this.getStyles().headline },
-          'Menus'
-        ),
-        React.createElement(
-          Tabs,
+          ReactTransitionGroup,
           null,
           React.createElement(
-            Tab,
-            { label: 'Label Menu' },
-            this._getLabelMenuExample()
+            Menu,
+            { style: styles.menu },
+            React.createElement(MenuItem, { primaryText: 'Maps' }),
+            React.createElement(MenuItem, { primaryText: 'Books' }),
+            React.createElement(MenuItem, { primaryText: 'Flights' }),
+            React.createElement(MenuItem, { primaryText: 'Apps' })
           ),
           React.createElement(
-            Tab,
-            { label: 'Number Menu' },
-            this._getNumberMenuExample()
+            Menu,
+            { style: styles.menu },
+            React.createElement(MenuItem, { primaryText: 'Refresh' }),
+            React.createElement(MenuItem, { primaryText: 'Help & feedback' }),
+            React.createElement(MenuItem, { primaryText: 'Settings' }),
+            React.createElement(MenuItem, { primaryText: 'Sign out' })
           ),
           React.createElement(
-            Tab,
-            { label: 'Icon Menu' },
-            this._getIconMenuExample()
+            Menu,
+            { style: styles.menu, desktop: true },
+            React.createElement(MenuItem, { primaryText: 'Back' }),
+            React.createElement(MenuItem, { primaryText: 'Forward', disabled: true }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Recently closed', disabled: true }),
+            React.createElement(MenuItem, { primaryText: 'Google', disabled: true }),
+            React.createElement(MenuItem, { primaryText: 'YouTube' })
           ),
           React.createElement(
-            Tab,
-            { label: 'Filter Menu' },
-            this._getFilterMenuExample()
+            Menu,
+            { style: styles.menu },
+            React.createElement(MenuItem, { primaryText: 'Preview', leftIcon: React.createElement(RemoveRedEye, null) }),
+            React.createElement(MenuItem, { primaryText: 'Share', leftIcon: React.createElement(PersonAdd, null) }),
+            React.createElement(MenuItem, { primaryText: 'Get links', leftIcon: React.createElement(ContentLink, null) }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Make a copy', leftIcon: React.createElement(ContentCopy, null) }),
+            React.createElement(MenuItem, { primaryText: 'Download', leftIcon: React.createElement(Download, null) }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Remove', leftIcon: React.createElement(Delete, null) })
           ),
           React.createElement(
-            Tab,
-            { label: 'Nested Menu' },
-            this._getNestedMenuExample()
+            Menu,
+            { style: styles.menu, desktop: true },
+            React.createElement(MenuItem, { primaryText: 'Undo' }),
+            React.createElement(MenuItem, { primaryText: 'Redo', disabled: true }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Cut', disabled: true }),
+            React.createElement(MenuItem, { primaryText: 'Copy', disabled: true }),
+            React.createElement(MenuItem, { primaryText: 'Paste' })
+          ),
+          React.createElement(
+            Menu,
+            { style: styles.menu, desktop: true },
+            React.createElement(MenuItem, { primaryText: 'Untitled' }),
+            React.createElement(MenuItem, { primaryText: 'Using the z-axis to Solve Design Challenges' }),
+            React.createElement(MenuItem, { primaryText: 'An Extensive History of Dimensionality' })
+          ),
+          React.createElement(
+            Menu,
+            { style: styles.menu, desktop: true },
+            React.createElement(MenuItem, { primaryText: 'Untitled' }),
+            React.createElement(MenuItem, { primaryText: 'Using the z-axis to Solve Design Challenges' }),
+            React.createElement(MenuItem, { primaryText: 'An Extensive History of Dimensionality: the Abridged Edition' })
+          ),
+          React.createElement(
+            Menu,
+            { style: styles.menu, desktop: true, width: 320 },
+            React.createElement(MenuItem, { primaryText: 'Open', secondaryText: 'Cmnd + O' }),
+            React.createElement(MenuItem, { primaryText: 'Paste in place', secondaryText: 'Shift + V' }),
+            React.createElement(MenuItem, { primaryText: 'Research', secondaryText: 'Opt + Shift + Cmnd + I' })
+          ),
+          React.createElement(
+            Menu,
+            { style: styles.menu, desktop: true, width: 320 },
+            React.createElement(MenuItem, { primaryText: 'Open', secondaryText: '⌘O' }),
+            React.createElement(MenuItem, { primaryText: 'Paste in place', secondaryText: '⇧⌘V' }),
+            React.createElement(MenuItem, { primaryText: 'Research', secondaryText: '⌥⇧⌘I' })
+          ),
+          React.createElement(
+            Menu,
+            { style: styles.menu, desktop: true, width: 320 },
+            React.createElement(MenuItem, { primaryText: 'Bold', secondaryText: '⌘B' }),
+            React.createElement(MenuItem, { primaryText: 'Italic', secondaryText: '⌘I' }),
+            React.createElement(MenuItem, { primaryText: 'Underline', secondaryText: '⌘U' }),
+            React.createElement(MenuItem, { primaryText: 'Strikethrough', secondaryText: 'Alt+Shift+5' }),
+            React.createElement(MenuItem, { primaryText: 'Superscript', secondaryText: '⌘.' }),
+            React.createElement(MenuItem, { primaryText: 'Subscript', secondaryText: '⌘,' }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Paragraph styles', rightIcon: React.createElement(ArrowDropRight, null) }),
+            React.createElement(MenuItem, { primaryText: 'Align', rightIcon: React.createElement(ArrowDropRight, null) }),
+            React.createElement(MenuItem, { primaryText: 'Line spacing', rightIcon: React.createElement(ArrowDropRight, null) }),
+            React.createElement(MenuItem, { primaryText: 'Numbered list', rightIcon: React.createElement(ArrowDropRight, null) }),
+            React.createElement(MenuItem, { primaryText: 'List options', rightIcon: React.createElement(ArrowDropRight, null) }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Clear formatting', secondaryText: '⌘/' })
+          ),
+          React.createElement(
+            Menu,
+            { style: styles.menu, desktop: true, width: 320 },
+            React.createElement(MenuItem, { primaryText: 'Single', insetChildren: true }),
+            React.createElement(MenuItem, { primaryText: '1.15', insetChildren: true }),
+            React.createElement(MenuItem, { primaryText: 'Double', insetChildren: true }),
+            React.createElement(MenuItem, { primaryText: 'Custom: 1.2', checked: true, rightIcon: React.createElement(ArrowDropRight, null) }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Add space before paragraph' }),
+            React.createElement(MenuItem, { primaryText: 'Add space after paragraph' }),
+            React.createElement(MenuDivider, null),
+            React.createElement(MenuItem, { primaryText: 'Custom spacing...' })
+          ),
+          React.createElement(
+            Menu,
+            { style: styles.menu, desktop: true },
+            React.createElement(MenuItem, { primaryText: 'Show' }),
+            React.createElement(MenuItem, { primaryText: 'Grid lines', checked: true }),
+            React.createElement(MenuItem, { primaryText: 'Page breaks', insetChildren: true }),
+            React.createElement(MenuItem, { primaryText: 'Rules', checked: true })
           )
-        ),
-        React.createElement(
-          'div',
-          { className: 'component-doc-info' },
-          info
         )
       );
-    }
-  }, {
-    key: '_getLabelMenuExample',
-    value: function _getLabelMenuExample() {
-      var code = 'var labelMenuItems = [\n' + '   { payload: \'1\', text: \'ID\', data: \'1234567890\', icon: \'home\' },\n' + '   { payload: \'2\', text: \'Type\', data: \'Announcement\', icon: \'home\' },\n' + '   { payload: \'3\', text: \'Caller ID\', data: \'(123) 456-7890\', icon: \'home\' }\n' + '];\n\n' + '//You can also pass an onItemTap callback prop.\n';
-      '<Menu menuItems={labelMenuItems} autoWidth={false}/>';
-
-      return React.createElement(
-        CodeExample,
-        { code: code },
-        React.createElement(
-          'div',
-          { style: this.getStyles().exampleMenu },
-          React.createElement(mui.Menu, { menuItems: labelMenuItems, onItemTap: this._onItemTap, autoWidth: false })
-        )
-      );
-    }
-  }, {
-    key: '_getNumberMenuExample',
-    value: function _getNumberMenuExample() {
-      var code = 'var numberMenuItems = [\n' + '   { payload: \'1\', text: \'All\', number: \'22\' },\n' + '   { payload: \'3\', text: \'Uncategorized\', number: \'6\'},\n' + '   { payload: \'4\', text: \'Trash\', number: \'11\' }\n' + '];\n\n' + '<Menu menuItems={numberMenuItems} autoWidth={false}/>';
-
-      return React.createElement(
-        CodeExample,
-        { code: code },
-        React.createElement(
-          'div',
-          { style: this.getStyles().exampleMenu },
-          React.createElement(mui.Menu, { menuItems: numberMenuItems, onItemTap: this._onItemTap, autoWidth: false })
-        )
-      );
-    }
-  }, {
-    key: '_getIconMenuExample',
-    value: function _getIconMenuExample() {
-      var code = '//iconClassName is the classname for our icon that will get passed into mui.FontIcon\n' + 'iconMenuItems = [\n' + '   { payload: \'1\', text: \'Live Answer\', iconClassName: \'muidocs-icon-communication-phone\', number: \'10\' },\n' + '   { payload: \'2\', text: \'Voicemail\', iconClassName: \'muidocs-icon-communication-voicemail\',  number: \'5\' },\n' + '   { payload: \'3\', text: \'Starred\', iconClassName: \'muidocs-icon-action-stars\', number: \'3\' },\n' + '   { payload: \'4\', text: \'Shared\', iconClassName: \'muidocs-icon-action-thumb-up\',  number: \'12\' }\n' + '];\n\n' + '<Menu menuItems={iconMenuItems} autoWidth={false}/>';
-
-      return React.createElement(
-        CodeExample,
-        { code: code },
-        React.createElement(
-          'div',
-          { style: this.getStyles().exampleMenu },
-          React.createElement(mui.Menu, { menuItems: iconMenuItems, onItemTap: this._onItemTap, autoWidth: false })
-        )
-      );
-    }
-  }, {
-    key: '_getFilterMenuExample',
-    value: function _getFilterMenuExample() {
-      var code = '// Include toggle properties as keys so that they are passed into the toggle component\n' + 'filterMenuItems = [\n' + '   { payload: \'1\', text: \'Text Opt-In\', toggle: true},\n' + '   { payload: \'2\', text: \'Text Opt-Out\', toggle: true, defaultToggled: true},\n' + '   { payload: \'3\', text: \'Voice Opt-Out\', toggle: true, disabled: true}\n' + '];\n\n' + '<Menu menuItems={filterMenuItems} autoWidth={false}/>';
-
-      return React.createElement(
-        CodeExample,
-        { code: code },
-        React.createElement(
-          'div',
-          { style: this.getStyles().exampleMenu },
-          React.createElement(mui.Menu, { menuItems: filterMenuItems, onItemToggle: this._onFilterMenuToggle, onItemTap: this._onItemTap, autoWidth: false })
-        )
-      );
-    }
-  }, {
-    key: '_getNestedMenuExample',
-    value: function _getNestedMenuExample() {
-      var code = 'nestedMenuItems = [\n' + '    { type: mui.MenuItem.Types.NESTED, text: \'Reports\', items: [\n' + '      { payload: \'1\', text: \'Nested Item 1\' },\n' + '      { type: mui.MenuItem.Types.NESTED, text: \'Nested Item 2\', items: [\n' + '        { payload: \'1\', text: \'Nested Item 2.1\' },\n' + '        { type: mui.MenuItem.Types.NESTED, text: \'Nested Item 2.2\', items: [\n' + '          { payload: \'1\', text: \'Nested Item 2.2.1\' },\n' + '          { payload: \'3\', text: \'Nested Item 2.2.2\' }\n' + '        ] },\n' + '        { payload: \'3\', text: \'Nested Item 2.3\' }\n' + '      ] },\n' + '      { payload: \'3\', text: \'Nested Item 3\' },\n' + '      { type: mui.MenuItem.Types.NESTED, text: \'Nested Item 4\', items: [\n' + '        { payload: \'1\', text: \'Nested Item 4.1\' },\n' + '        { type: mui.MenuItem.Types.NESTED, text: \'Nested Item 4.2\', items: [\n' + '          { payload: \'1\', text: \'Nested Item 4.2.1\', disabled: true },\n' + '          { payload: \'3\', text: \'Nested Item 4.2.2\' }\n' + '        ] },\n' + '        { payload: \'3\', text: \'Nested Item 4.3\' }\n' + '      ] },\n' + '      { payload: \'4\', text: \'Nested Item 5\' }\n' + '    ] },\n' + '    { payload: \'1\', text: \'Audio Library\'},\n' + '    { payload: \'2\', text: \'Settings\'},\n' + '    { payload: \'3\', text: \'Logout\', disabled: true}\n' + '  ];\n\n' + '<Menu menuItems={nestedMenuItems} autoWidth={false}/>';
-
-      return React.createElement(
-        CodeExample,
-        { code: code },
-        React.createElement(
-          'div',
-          { style: this.getStyles().exampleMenuNested },
-          React.createElement(mui.Menu, { menuItems: nestedMenuItems, onItemTap: this._onItemTap, autoWidth: false })
-        )
-      );
-    }
-  }, {
-    key: '_onFilterMenuToggle',
-    value: function _onFilterMenuToggle(e, key, menuItem, toggled) {
-      console.log('Filter Menu Toggled: ', key, menuItem, toggled);
-    }
-  }, {
-    key: '_onItemTap',
-    value: function _onItemTap(e, key, menuItem) {
-      console.log('Menu Item Tap: ', menuItem);
     }
   }]);
 
   return MenusPage;
 })(React.Component);
 
-MenusPage.contextTypes = {
-  muiTheme: React.PropTypes.object
-};
-
-MenusPage.childContextTypes = {
-  muiTheme: React.PropTypes.object
-};
-
 module.exports = MenusPage;
 
-},{"../../code-example/code-example.jsx":133,"../../component-info.jsx":135,"mui":435,"react":401}],152:[function(require,module,exports){
+},{"../../component-doc":134,"menus/menu":435,"menus/menu-divider":433,"menus/menu-item":434,"react/addons":216,"svg-icons/action/delete":466,"svg-icons/content/content-copy":473,"svg-icons/content/link":477,"svg-icons/file/file-download":480,"svg-icons/image/remove-red-eye":482,"svg-icons/navigation-arrow-drop-right":484,"svg-icons/social/person-add":495}],153:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var mui = require('mui');
-var Paper = mui.Paper;
-var ClearFix = mui.ClearFix;
-var StyleResizable = mui.Mixins.StyleResizable;
-var ComponentDoc = require('../../component-doc.jsx');
+
+var _require = require('material-ui');
+
+var ClearFix = _require.ClearFix;
+var Mixins = _require.Mixins;
+var Paper = _require.Paper;
+
+var ComponentDoc = require('../../component-doc');
+
+var StyleResizable = Mixins.StyleResizable;
 
 var PaperPage = React.createClass({
   displayName: 'PaperPage',
@@ -15136,14 +15838,17 @@ var PaperPage = React.createClass({
 
 module.exports = PaperPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],153:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],154:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var mui = require('mui');
-var LinearProgress = mui.LinearProgress;
-var CircularProgress = mui.CircularProgress;
-var ComponentDoc = require('../../component-doc.jsx');
+
+var _require = require('material-ui');
+
+var CircularProgress = _require.CircularProgress;
+var LinearProgress = _require.LinearProgress;
+
+var ComponentDoc = require('../../component-doc');
 
 var ProgressPage = React.createClass({
   displayName: 'ProgressPage',
@@ -15258,27 +15963,30 @@ var ProgressPage = React.createClass({
 
 module.exports = ProgressPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],154:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],155:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var Slider = mui.Slider;
-var ComponentDoc = require('../../component-doc.jsx');
+
+var _require = require('material-ui');
+
+var Slider = _require.Slider;
+
+var ComponentDoc = require('../../component-doc');
 
 var SlidersPage = (function (_React$Component) {
   function SlidersPage() {
     _classCallCheck(this, SlidersPage);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(SlidersPage.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(SlidersPage, _React$Component);
@@ -15297,15 +16005,45 @@ var SlidersPage = (function (_React$Component) {
       var componentInfo = [{
         name: 'Props',
         infoArray: [{
+          name: 'name',
+          type: 'string',
+          header: 'required',
+          desc: 'The name of the slider. Behaves like the name attribute of an input element.'
+        }, {
+          name: 'defaultValue',
+          type: 'number',
+          header: 'default: 0',
+          desc: 'The default value of the slider.'
+        }, {
+          name: 'description',
+          type: 'string',
+          header: 'optional',
+          desc: 'Describe the slider.'
+        }, {
+          name: 'disabled',
+          type: 'boolean',
+          header: 'default: false',
+          desc: 'If true, the slider will not be interactable.'
+        }, {
+          name: 'error',
+          type: 'string',
+          header: 'optional',
+          desc: 'An error message for the slider.'
+        }, {
           name: 'max',
           type: 'number',
           header: 'default: 1',
-          desc: 'The maximum value the slider can slide to on a scale from ' + '0 to 1 inclusive.'
+          desc: 'The maximum value the slider can slide to on a scale from ' + '0 to 1 inclusive. Cannot be equal to min.'
         }, {
           name: 'min',
           type: 'number',
           header: 'default: 0',
-          desc: 'The minimum value the slider can slide to on a scale from ' + '0 to 1 inclusive.'
+          desc: 'The minimum value the slider can slide to on a scale from ' + '0 to 1 inclusive. Cannot be equal to max.'
+        }, {
+          name: 'required',
+          type: 'boolean',
+          header: 'default: true',
+          desc: 'Whether or not the slider is required in a form.'
         }, {
           name: 'step',
           type: 'number',
@@ -15316,14 +16054,39 @@ var SlidersPage = (function (_React$Component) {
           type: 'object',
           header: 'optional',
           desc: 'Override the inline-styles of the Slider\'s root element.'
+        }, {
+          name: 'value',
+          type: 'number',
+          header: 'optional',
+          desc: 'The value of the slider.'
         }]
       }, {
         name: 'Events',
         infoArray: [{
+          name: 'onBlur',
+          type: 'function(e)',
+          header: 'optional',
+          desc: 'Callback function that is fired when the focus has left the slider.'
+        }, {
           name: 'onChange',
           type: 'function(e, value)',
           header: 'optional',
           desc: 'Callback function that is fired when the user changes the ' + 'slider\'s value.'
+        }, {
+          name: 'onDragStart',
+          type: 'function(e, ui)',
+          header: 'optional',
+          desc: 'Callback function that is fired when the slider has begun to move. ui contains the position information.'
+        }, {
+          name: 'onDragStop',
+          type: 'function(e, ui)',
+          header: 'optional',
+          desc: 'Callback function that is fried when teh slide has stopped moving. ui contains the position information.'
+        }, {
+          name: 'onFocus',
+          type: 'function(e)',
+          header: 'optional',
+          desc: 'Callback fired when the user has focused on the slider.'
         }]
       }];
 
@@ -15334,7 +16097,7 @@ var SlidersPage = (function (_React$Component) {
           code: code,
           componentInfo: componentInfo },
         React.createElement(Slider, { name: 'slider1' }),
-        React.createElement(Slider, { name: 'slider2', value: 0.5, step: 0.1 }),
+        React.createElement(Slider, { name: 'slider2', value: 0.5, step: 0.10 }),
         React.createElement(Slider, { name: 'slider3', value: 1 }),
         React.createElement(Slider, { name: 'slider1', disabled: true }),
         React.createElement(Slider, { name: 'slider2', disabled: true, value: 0.5 }),
@@ -15348,22 +16111,26 @@ var SlidersPage = (function (_React$Component) {
 
 module.exports = SlidersPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],155:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],156:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var RaisedButton = mui.RaisedButton;
-var Snackbar = mui.Snackbar;
-var ComponentDoc = require('../../component-doc.jsx');
+
+var _require = require('material-ui');
+
+var RaisedButton = _require.RaisedButton;
+var Snackbar = _require.Snackbar;
+var TextField = _require.TextField;
+
+var ComponentDoc = require('../../component-doc');
 
 var SnackbarPage = (function (_React$Component) {
   function SnackbarPage() {
@@ -15371,6 +16138,11 @@ var SnackbarPage = (function (_React$Component) {
 
     _get(Object.getPrototypeOf(SnackbarPage.prototype), 'constructor', this).call(this);
     this._handleClick = this._handleClick.bind(this);
+    this._updateAutoHideDuration = this._updateAutoHideDuration.bind(this);
+
+    this.state = {
+      autoHideDuration: 0
+    };
   }
 
   _inherits(SnackbarPage, _React$Component);
@@ -15378,7 +16150,7 @@ var SnackbarPage = (function (_React$Component) {
   _createClass(SnackbarPage, [{
     key: 'render',
     value: function render() {
-      var code = '<Snackbar\n' + '  message="Event added to your calendar"\n' + '  action="undo"\n' + '  onActionTouchTap={this._handleAction}/>\n\n' + '//Somewhere in our code\n' + '_handleAction: function() {\n' + '  //We can add more code to this function, but for now we\'ll just include an alert.\n' + '  alert("We removed the event from your calendar.");\n' + '}';
+      var code = '<Snackbar\n' + '  message="Event added to your calendar"\n' + '  action="undo"\n' + '  autoHideDuration={this.state.autoHideDuration}\n' + '  onActionTouchTap={this._handleAction}/>\n\n' + '//Somewhere in our code\n' + '_handleAction() {\n' + '  //We can add more code to this function, but for now we\'ll just include an alert.\n' + '  alert("We removed the event from your calendar.");\n' + '}';
 
       var componentInfo = [{
         name: 'Props',
@@ -15387,6 +16159,11 @@ var SnackbarPage = (function (_React$Component) {
           type: 'string',
           header: 'optional',
           desc: 'The name of the action on the snackbar.'
+        }, {
+          name: 'autoHideDuration',
+          type: 'number',
+          header: 'optional',
+          desc: 'The number of milliseconds to wait before automatically dismissing. If no value is specified the snackbar will dismiss normally. If a value is provided the snackbar can still be dismissed normally. If a snackbar is dismissed before the timer expires, the timer will be cleared.'
         }, {
           name: 'message',
           type: 'string',
@@ -15432,10 +16209,16 @@ var SnackbarPage = (function (_React$Component) {
         React.createElement(RaisedButton, {
           onTouchTap: this._handleClick,
           label: 'Add to my calendar' }),
+        React.createElement('br', null),
+        React.createElement(TextField, {
+          floatingLabelText: 'Auto Hide Duration',
+          value: this.state.autoHideDuration,
+          onChange: this._updateAutoHideDuration }),
         React.createElement(Snackbar, {
           ref: 'snackbar',
           message: 'Event added to your calendar',
           action: 'undo',
+          autoHideDuration: this.state.autoHideDuration,
           onActionTouchTap: this._handleAction })
       );
     }
@@ -15450,6 +16233,14 @@ var SnackbarPage = (function (_React$Component) {
       //We can add more code here! In this example, we'll just include an alert.
       window.alert('We removed the event from your calendar.');
     }
+  }, {
+    key: '_updateAutoHideDuration',
+    value: function _updateAutoHideDuration(e) {
+      var value = e.target.value;
+      this.setState({
+        autoHideDuration: value.length > 0 ? parseInt(value) : undefined
+      });
+    }
   }]);
 
   return SnackbarPage;
@@ -15457,32 +16248,34 @@ var SnackbarPage = (function (_React$Component) {
 
 module.exports = SnackbarPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],156:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],157:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var CodeExample = require('../../code-example/code-example.jsx');
-var ComponentDoc = require('../../component-doc.jsx');
-var ToggleStar = require('../../svg-icons/toggle-star.jsx');
-var ToggleStarBorder = require('../../svg-icons/toggle-star-border.jsx');
-var Typography = mui.Styles.Typography;
+var mui = require('material-ui');
+var CodeExample = require('../../code-example/code-example');
+var ComponentDoc = require('../../component-doc');
+var ToggleStar = require('svg-icons/toggle/star');
+var ToggleStarBorder = require('svg-icons/toggle/star-border');
+
 var Checkbox = mui.Checkbox;
 var ClearFix = mui.ClearFix;
 var RadioButton = mui.RadioButton;
 var RadioButtonGroup = mui.RadioButtonGroup;
+var RaisedButton = mui.RaisedButton;
+var Styles = mui.Styles;
 var Tab = mui.Tab;
 var Tabs = mui.Tabs;
 var Toggle = mui.Toggle;
-var RaisedButton = mui.RaisedButton;
+var Typography = Styles.Typography;
 
 var SwitchesPage = (function (_React$Component) {
   function SwitchesPage(props) {
@@ -15946,12 +16739,12 @@ var SwitchesPage = (function (_React$Component) {
 
 module.exports = SwitchesPage;
 
-},{"../../code-example/code-example.jsx":133,"../../component-doc.jsx":134,"../../svg-icons/toggle-star-border.jsx":182,"../../svg-icons/toggle-star.jsx":183,"mui":435,"react":401}],157:[function(require,module,exports){
+},{"../../code-example/code-example":133,"../../component-doc":134,"material-ui":"material-ui","react":388,"svg-icons/toggle/star":501,"svg-icons/toggle/star-border":500}],158:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
@@ -15960,7 +16753,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 var React = require('react');
 var CodeExample = require('../../code-example/code-example');
 
-var _require = require('mui');
+var _require = require('material-ui');
 
 var Table = _require.Table;
 var TextField = _require.TextField;
@@ -15977,6 +16770,7 @@ var TablePage = (function (_React$Component) {
 
     this._onToggle = this._onToggle.bind(this);
     this.onChange = this._onChange.bind(this);
+    this._onRowSelection = this._onRowSelection.bind(this);
 
     this.state = {
       fixedHeader: true,
@@ -15986,6 +16780,7 @@ var TablePage = (function (_React$Component) {
       selectable: true,
       multiSelectable: false,
       canSelectAll: false,
+      deselectOnClickaway: true,
       height: '300px',
       rowData: this._getRowData()
     };
@@ -15996,14 +16791,14 @@ var TablePage = (function (_React$Component) {
   _createClass(TablePage, [{
     key: '_getRowData',
     value: function _getRowData() {
-      var rowData = [{ id: { content: '1' }, name: { content: 'John Smith' }, status: { content: 'Employed' } }, { id: { content: '2' }, name: { content: 'Randal White' }, status: { content: 'Unemployed' } }, { id: { content: '3' }, name: { content: 'Stephanie Sanders' }, status: { content: 'Employed' } }, { id: { content: '4' }, name: { content: 'Steve Brown' }, status: { content: 'Employed' } }, { id: { content: '5' }, name: { content: 'Joyce Whitten' }, status: { content: 'Employed' } }, { id: { content: '6' }, name: { content: 'Samuel Roberts' }, status: { content: 'Unemployed' } }, { id: { content: '7' }, name: { content: 'Adam Moore' }, status: { content: 'Employed' } }, { id: { content: '8' }, name: { content: 'Robert Brown' }, status: { content: 'Employed' } }, { id: { content: '9' }, name: { content: 'Elizabeth Stevenson' }, status: { content: 'Employed' } }, { id: { content: '10' }, name: { content: 'Zachary Dobb' }, status: { content: 'Employed' } }, { id: { content: '11' }, name: { content: 'Zachary Dobb' }, status: { content: 'Employed' } }];
+      var rowData = [{ selected: true, id: { content: '1' }, name: { content: 'John Smith' }, status: { content: 'Employed' } }, { id: { content: '2' }, name: { content: 'Randal White' }, status: { content: 'Unemployed' } }, { selected: true, id: { content: '3' }, name: { content: 'Stephanie Sanders' }, status: { content: 'Employed' } }, { id: { content: '4' }, name: { content: 'Steve Brown' }, status: { content: 'Employed' } }, { id: { content: '5' }, name: { content: 'Joyce Whitten' }, status: { content: 'Employed' } }, { id: { content: '6' }, name: { content: 'Samuel Roberts' }, status: { content: 'Unemployed' } }, { id: { content: '7' }, name: { content: 'Adam Moore' }, status: { content: 'Employed' } }, { id: { content: '8' }, name: { content: 'Robert Brown' }, status: { content: 'Employed' } }, { id: { content: '9' }, name: { content: 'Elizabeth Stevenson' }, status: { content: 'Employed' } }, { id: { content: '10' }, name: { content: 'Zachary Dobb' }, status: { content: 'Employed' } }, { id: { content: '11' }, name: { content: 'Zachary Dobb' }, status: { content: 'Employed' } }];
 
       return rowData;
     }
   }, {
     key: 'render',
     value: function render() {
-      var code = '\n// Row data\nlet rowData = [\n  {id: {content: \'1\'}, name: {content: \'John Smith\'}, status: {content: \'Employed\'}},\n  {id: {content: \'2\'}, name: {content: \'Randal White\'}, status: {content: \'Unemployed\'}},\n  {id: {content: \'3\'}, name: {content: \'Stephanie Sanders\'}, status: {content: \'Employed\'}},\n  {id: {content: \'4\'}, name: {content: \'Steve Brown\'}, status: {content: \'Employed\'}},\n  {id: {content: \'5\'}, name: {content: \'Joyce Whitten\'}, status: {content: \'Employed\'}},\n  {id: {content: \'6\'}, name: {content: \'Samuel Roberts\'}, status: {content: \'Unemployed\'}},\n  {id: {content: \'7\'}, name: {content: \'Adam Moore\'}, status: {content: \'Employed\'}},\n  {id: {content: \'8\'}, name: {content: \'Robert Brown\'}, status: {content: \'Employed\'}},\n  {id: {content: \'9\'}, name: {content: \'Elizabeth Stevenson\'}, status: {content: \'Employed\'}},\n  {id: {content: \'10\'}, name: {content: \'Zachary Dobb\'}, status: {content: \'Employed\'}},\n  {id: {content: \'11\'}, name: {content: \'Zachary Dobb\'}, status: {content: \'Employed\'}}\n];\n\n// State\nthis.state = {\n  fixedHeader: true,\n  fixedFooter: true,\n  stripedRows: false,\n  showRowHover: false,\n  selectable: true,\n  multiSelectable: false,\n  canSelectAll: false,\n  height: \'300px\',\n  rowData: rowData\n};\n\n// Column configuration\nlet headerCols = {\n  id: {\n    content: \'ID\',\n    tooltip: \'The ID\'\n  },\n  name: {\n    content: \'Name\',\n    tooltip: \'The name\'\n  },\n  status: {\n    content: \'Status\',\n    tooltip: \'The status\'\n  }\n};\nlet colOrder = [\'id\', \'name\', \'status\'];\n// Footer column content can also be specified as [ \'ID\', \'Name\', \'Status\'].\nlet footerCols = {id: {content: \'ID\'}, name: {content: \'Name\'}, status: {content: \'Status\'}};\n\n// Table component\n<Table\n  headerColumns={headerCols}\n  footerColumns={footerCols}\n  columnOrder={colOrder}\n  rowData={this.state.rowData}\n  height={this.state.height}\n  fixedHeader={this.state.fixedHeader}\n  fixedFooter={this.state.fixedFooter}\n  stripedRows={this.state.stripedRows}\n  showRowHover={this.state.showRowHover}\n  selectable={this.state.selectable}\n  multiSelectable={this.state.multiSelectable}\n  canSelectAll={this.state.canSelectAll} />\n    ';
+      var code = '\n// Row data\nlet rowData = [\n  {selected: true, id: {content: \'1\'}, name: {content: \'John Smith\'}, status: {content: \'Employed\'}},\n  {id: {content: \'2\'}, name: {content: \'Randal White\'}, status: {content: \'Unemployed\'}},\n  {selected: true, id: {content: \'3\'}, name: {content: \'Stephanie Sanders\'}, status: {content: \'Employed\'}},\n  {id: {content: \'4\'}, name: {content: \'Steve Brown\'}, status: {content: \'Employed\'}},\n  {id: {content: \'5\'}, name: {content: \'Joyce Whitten\'}, status: {content: \'Employed\'}},\n  {id: {content: \'6\'}, name: {content: \'Samuel Roberts\'}, status: {content: \'Unemployed\'}},\n  {id: {content: \'7\'}, name: {content: \'Adam Moore\'}, status: {content: \'Employed\'}},\n  {id: {content: \'8\'}, name: {content: \'Robert Brown\'}, status: {content: \'Employed\'}},\n  {id: {content: \'9\'}, name: {content: \'Elizabeth Stevenson\'}, status: {content: \'Employed\'}},\n  {id: {content: \'10\'}, name: {content: \'Zachary Dobb\'}, status: {content: \'Employed\'}},\n  {id: {content: \'11\'}, name: {content: \'Zachary Dobb\'}, status: {content: \'Employed\'}}\n];\n\n// State\nthis.state = {\n  fixedHeader: true,\n  fixedFooter: true,\n  stripedRows: false,\n  showRowHover: false,\n  selectable: true,\n  multiSelectable: false,\n  canSelectAll: false,\n  deselectOnClickaway: true,\n  height: \'300px\',\n  rowData: rowData\n};\n\n// Column configuration\nlet headerCols = {\n  id: {\n    content: \'ID\',\n    tooltip: \'The ID\'\n  },\n  name: {\n    content: \'Name\',\n    tooltip: \'The name\'\n  },\n  status: {\n    content: \'Status\',\n    tooltip: \'The status\'\n  }\n};\nlet colOrder = [\'id\', \'name\', \'status\'];\n// Footer column content can also be specified as [ \'ID\', \'Name\', \'Status\'].\nlet footerCols = {id: {content: \'ID\'}, name: {content: \'Name\'}, status: {content: \'Status\'}};\n\n// Table component\n<Table\n  headerColumns={headerCols}\n  footerColumns={footerCols}\n  columnOrder={colOrder}\n  rowData={this.state.rowData}\n  height={this.state.height}\n  fixedHeader={this.state.fixedHeader}\n  fixedFooter={this.state.fixedFooter}\n  stripedRows={this.state.stripedRows}\n  showRowHover={this.state.showRowHover}\n  selectable={this.state.selectable}\n  multiSelectable={this.state.multiSelectable}\n  canSelectAll={this.state.canSelectAll}\n  deselectOnClickaway={this.state.deselectOnClickaway}\n  onRowSelection={this._onRowSelection} />\n    ';
 
       var desc = 'Data table component.';
 
@@ -16013,17 +16808,52 @@ var TablePage = (function (_React$Component) {
           name: 'rowData',
           type: 'array',
           header: 'required',
-          desc: 'Specify the row data. If the row data is specified as an array of objects, columnOrder must be provided. If an array of arrays is provided the order is determined by index position. Column data within a row can be represented two ways. The first, as an object with a content key and optionally a style key ({content: \'some data\', style: myStyleObj}). Secondly, if only content is provided simply provide the content with putting it in an object.'
+          desc: 'Specify the row data. If the row data is specified as an array of objects, columnOrder must be provided. If an array of arrays is provided the order is determined by index position. Column data within a row can be represented two ways. The first, as an object with a content key and optionally a style key ({content: \'some data\', style: myStyleObj}). Secondly, if only content is provided simply provide the content without putting it in an object.'
+        }, {
+          name: 'canSelectAll',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'Controls whether or not the user can select all of the rows in the table. The default value is false.'
         }, {
           name: 'columnOrder',
           type: 'array',
           header: 'optional',
           desc: 'An array indicating the order that the columns should appear. If this field is provided the data must be objects consisting of these keys so that the data can be displayed in the correct order.'
         }, {
-          name: 'headerColumns',
-          type: 'object',
+          name: 'defaultColumnWidth',
+          type: 'string',
           header: 'optional',
-          desc: 'An array or object containing the header column information.'
+          desc: 'The default value of a table column. The initial value is 50px.'
+        }, {
+          name: 'deselectOnClickAway',
+          type: 'boolean',
+          header: 'default: true',
+          desc: 'Controls whether or not to deselect all selected rows after clicking outside the table.'
+        }, {
+          name: 'displayRowCheckbox',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'Controls the display of the row checkbox. The default value is true.'
+        }, {
+          name: 'displaySelectAll',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'Controls whether or not the select all checkbox is displayed. The default value is true.'
+        }, {
+          name: 'fixedFooter',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'If true, the footer will appear fixed below the table. The default value is true.'
+        }, {
+          name: 'fixedHeader',
+          type: 'boolean',
+          header: 'optional',
+          desc: 'If true, the header will appear fixed above the table. The default value is true.'
+        }, {
+          name: 'footer',
+          type: 'element',
+          header: 'optional',
+          desc: 'If customization of the footer is required a table-footer elemet can be provided. If this field is provided footerColumns will be ignored.'
         }, {
           name: 'footerColumns',
           type: 'object',
@@ -16035,66 +16865,44 @@ var TablePage = (function (_React$Component) {
           header: 'optional',
           desc: 'If customization of the header is required a table-header element can be provided. If this field is provided headerColumns will be ignored.'
         }, {
-          name: 'footer',
-          type: 'element',
+          name: 'headerColumns',
+          type: 'object',
           header: 'optional',
-          desc: 'If customization of the footer is required a table-footer elemet can be provided. If this field is provided footerColumns will be ignored.'
+          desc: 'An array or object containing the header column information.'
         }, {
           name: 'height',
           type: 'string',
           header: 'optional',
           desc: 'The height of the table.'
         }, {
-          name: 'defaultColumnWidth',
-          type: 'string',
-          header: 'optional',
-          desc: 'The default value of a table column. The initial value is 50px.'
-        }, {
-          name: 'fixedHeader',
+          name: 'multiSelectable',
           type: 'boolean',
           header: 'optional',
-          desc: 'If true, the header will appear fixed above the table. The default value is true.'
+          desc: 'If true, multiple table rows can be selected. CTRL/CMD+Click and SHIFT+Click are valid actions. The default value is false.'
         }, {
-          name: 'fixedFooter',
+          name: 'preScanRowData',
           type: 'boolean',
-          header: 'optional',
-          desc: 'If true, the footer will appear fixed below the table. The default value is true.'
-        }, {
-          name: 'stripedRows',
-          type: 'boolean',
-          header: 'optional',
-          desc: 'If true, every other table row starting with the first row will be striped. The default value is false.'
-        }, {
-          name: 'showRowHover',
-          type: 'boolean',
-          header: 'optional',
-          desc: 'If true, table rows will be highlighted when the cursor is hovering over the row. The default value is false.'
+          header: 'default: true',
+          desc: 'Controls whether or not the rowData is pre-scanned to determine initial state. If your table has a large number of rows and you are experiencing a delay in rendering, turn off this property.'
         }, {
           name: 'selectable',
           type: 'boolean',
           header: 'optional',
           desc: 'If true, table rows can be selected. If multiple row selection is desired, enable multiSelectable. The default value is true.'
         }, {
-          name: 'multiSelectable',
+          name: 'showRowHover',
           type: 'boolean',
           header: 'optional',
-          desc: 'If true, multiple table rows can be selected. CTRL/CMD+Click and SHIFT+Click are valid actions. The default value is false.'
+          desc: 'If true, table rows will be highlighted when the cursor is hovering over the row. The default value is false.'
         }, {
-          name: 'showRowSelectCheckbox',
+          name: 'stripedRows',
           type: 'boolean',
           header: 'optional',
-          desc: 'Controls the display of the row checkbox. The default value is true.'
-        }, {
-          name: 'canSelectAll',
-          type: 'boolean',
-          header: 'optional',
-          desc: 'Controls whether or not the user can select all of the rows in the table. The default value is false.'
-        }, {
-          name: 'displaySelectAll',
-          type: 'boolean',
-          header: 'optional',
-          desc: 'Controls whether or not the select all checkbox is displayed. The default value is true.'
-        }, {
+          desc: 'If true, every other table row starting with the first row will be striped. The default value is false.'
+        }]
+      }, {
+        name: 'Table Events',
+        infoArray: [{
           name: 'onRowSelection',
           type: 'function(selectedRows)',
           header: 'optional',
@@ -16153,13 +16961,15 @@ var TablePage = (function (_React$Component) {
             columnOrder: colOrder,
             rowData: this.state.rowData,
             height: this.state.height,
+            deselectOnClickaway: this.state.deselectOnClickaway,
             fixedHeader: this.state.fixedHeader,
             fixedFooter: this.state.fixedFooter,
             stripedRows: this.state.stripedRows,
             showRowHover: this.state.showRowHover,
             selectable: this.state.selectable,
             multiSelectable: this.state.multiSelectable,
-            canSelectAll: this.state.canSelectAll }),
+            canSelectAll: this.state.canSelectAll,
+            onRowSelection: this._onRowSelection }),
           React.createElement(
             'div',
             { style: propContainerStyle },
@@ -16206,7 +17016,12 @@ var TablePage = (function (_React$Component) {
               name: 'canSelectAll',
               label: 'Can Select All',
               onToggle: this._onToggle,
-              defaultToggled: this.state.canSelectAll })
+              defaultToggled: this.state.canSelectAll }),
+            React.createElement(Toggle, {
+              name: 'deselectOnClickaway',
+              label: 'Deselect On Clickaway',
+              onToggle: this._onToggle,
+              defaultToggled: this.state.deselectOnClickaway })
           )
         )
       );
@@ -16225,6 +17040,11 @@ var TablePage = (function (_React$Component) {
       state[e.target.name] = toggled;
       this.setState(state);
     }
+  }, {
+    key: '_onRowSelection',
+    value: function _onRowSelection(rows) {
+      console.log(rows);
+    }
   }]);
 
   return TablePage;
@@ -16232,29 +17052,30 @@ var TablePage = (function (_React$Component) {
 
 module.exports = TablePage;
 
-},{"../../code-example/code-example":133,"../../component-doc":134,"mui":435,"react":401,"react-router":210}],158:[function(require,module,exports){
+},{"../../code-example/code-example":133,"../../component-doc":134,"material-ui":"material-ui","react":388,"react-router":197}],159:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var CodeExample = require('../../code-example/code-example.jsx');
-var mui = require('mui');
-var Router = require('react-router');
-var ComponentDoc = require('../../component-doc.jsx');
-var RouteHandler = Router.RouteHandler;
+var CodeExample = require('../../code-example/code-example');
 
-var Tabs = mui.Tabs;
-var Tab = mui.Tab;
-var Slider = mui.Slider;
+var _require = require('material-ui');
 
-var Typography = mui.Styles.Typography;
+var Slider = _require.Slider;
+var Styles = _require.Styles;
+var Tab = _require.Tab;
+var Tabs = _require.Tabs;
+
+var ComponentDoc = require('../../component-doc');
+
+var Typography = Styles.Typography;
 
 var TabsPage = (function (_React$Component) {
   function TabsPage() {
@@ -16284,7 +17105,7 @@ var TabsPage = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var code = '<Tabs> \n' + '  <Tab label="Item One" > \n' + '    <div> \n' + '      <h2 style={this.getStyles().headline}>Tab One Template Example</h2> \n' + '      <p> \n' + '        This is an example of a tab template! \n' + '      </p> \n' + '      <p> \n' + '        You can put any sort of HTML or react component in here. \n' + '      </p> \n' + '    </div> \n' + '  </Tab> \n' + '  <Tab label="Item Two" > \n' + '    <div> \n' + '      <h2 style={this.getStyles().headline}>Tab Two Template Example</h2> \n' + '      <p> \n' + '        This is another example of a tab template! \n' + '      </p> \n' + '      <p> \n' + '        Fair warning - the next tab routes to home! \n' + '      </p> \n' + '    </div> \n' + '  </Tab> \n' + '  <Tab \n' + '    label="Item Three" \n' + '    route="home" \n' + '    onActive={this._onActive} /> \n' + '</Tabs> \n' + '\n' + '_onActive: function(tab){ \n' + '  this.context.router.transitionTo(tab.props.route); \n' + '}';
+      var code = '<Tabs> \n' + '  <Tab label="Item One" > \n' + '    <div> \n' + '      <h2 style={this.getStyles().headline}>Tab One Template Example</h2> \n' + '      <p> \n' + '        This is an example of a tab template! \n' + '      </p> \n' + '      <p> \n' + '        You can put any sort of HTML or react component in here. \n' + '      </p> \n' + '    </div> \n' + '  </Tab> \n' + '  <Tab label="Item Two" > \n' + '    <div> \n' + '      <h2 style={this.getStyles().headline}>Tab Two Template Example</h2> \n' + '      <p> \n' + '        This is another example of a tab template! \n' + '      </p> \n' + '      <p> \n' + '        Fair warning - the next tab routes to home! \n' + '      </p> \n' + '    </div> \n' + '  </Tab> \n' + '  <Tab \n' + '    label="Item Three" \n' + '    route="home" \n' + '    onActive={this._onActive} /> \n' + '</Tabs> \n' + '\n' + '_onActive(tab){ \n' + '  this.context.router.transitionTo(tab.props.route); \n' + '}';
 
       var desc = 'Refs cannot be set on individual Tab components as cloneWithProps is being ' + 'used to extend the individual tab components under the hood. However, ' + 'refs can be passed to the Tabs container and to any element or component within the template. ' + 'If you need to access a tab directly - you can do so with the first argument of onActive or ' + 'by accessing the props.children array by passing refs to the Tabs container.';
 
@@ -16304,7 +17125,12 @@ var TabsPage = (function (_React$Component) {
           name: 'tabItemContainerStyle',
           type: 'object',
           header: 'optional',
-          desc: 'Override the inline-styles of the tabs container.'
+          desc: 'Override the inline-styles of the tab-labels container.'
+        }, {
+          name: 'contentContainerStyle',
+          type: 'object',
+          header: 'optional',
+          desc: 'Override the inline-styles of the content\'s container.'
         }, {
           name: 'tabWidth',
           type: 'number',
@@ -16426,16 +17252,21 @@ TabsPage.contextTypes = {
 
 module.exports = TabsPage;
 
-},{"../../code-example/code-example.jsx":133,"../../component-doc.jsx":134,"mui":435,"react":401,"react-router":210}],159:[function(require,module,exports){
+},{"../../code-example/code-example":133,"../../component-doc":134,"material-ui":"material-ui","react":388}],160:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
-var mui = require('mui');
-var ClearFix = mui.ClearFix;
-var TextField = mui.TextField;
-var SelectField = mui.SelectField;
-var StyleResizable = mui.Mixins.StyleResizable;
-var ComponentDoc = require('../../component-doc.jsx');
+
+var _require = require('material-ui');
+
+var ClearFix = _require.ClearFix;
+var Mixins = _require.Mixins;
+var SelectField = _require.SelectField;
+var TextField = _require.TextField;
+
+var ComponentDoc = require('../../component-doc');
+
+var StyleResizable = Mixins.StyleResizable;
 
 var TextFieldsPage = React.createClass({
   displayName: 'TextFieldsPage',
@@ -16452,6 +17283,7 @@ var TextFieldsPage = React.createClass({
       floatingPropValue: 'Prop Value',
       valueLinkValue: 'Value Link',
       selectValue: undefined,
+      selectValue2: undefined,
       selectValueLinkValue: 4,
       floatingValueLinkValue: 'Value Link'
     };
@@ -16478,13 +17310,18 @@ var TextFieldsPage = React.createClass({
 
   render: function render() {
 
-    var code = '//In Line Hint Text\n' + '<TextField\n' + '  hintText="Hint Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  defaultValue="Default Value" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  value={this.state.propValue}\n' + '  onChange={this._handleInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  valueLink={this.linkState(\'valueLinkValue\')} />\n' + '<TextField\n' + '  hintText="Hint Text (MultiLine)"\n' + '  multiLine={true} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.errorText}\n' + '  onChange={this._handleErrorInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.error2Text}\n' + '  onChange={this._handleError2InputChange}\n' + '  defaultValue="abc" />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true} />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  defaultValue="Disabled With Value" />\n\n' + '<SelectField\n' + 'value={this.state.selectValue}\n' + 'onChange={this._handleSelectValueChange}\n' + 'floatingLabelText="Select Field"\n' + 'menuItems={menuItems} />\n' + '<SelectField\n' + 'valueLink={this.linkState("selectValueLinkValue")}\n' + 'floatingLabelText="Select Field"\n' + 'valueMember="id"\n' + 'displayMember="name"\n' + 'menuItems={arbitraryArrayMenuItems} />\n' + '//Floating Hint Text Labels\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  defaultValue="Default Value"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text"\n' + '  value={this.state.floatingPropValue}\n' + '  onChange={this._handleFloatingInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text"\n' + '  valueLink={this.linkState(\'floatingValueLinkValue\')} />\n' + '<TextField\n' + '  hintText="Hint Text (MultiLine)"\n' + '  floatingLabelText="Floating Label Text"\n' + '  multiLine={true} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.floatingErrorText}\n' + '  floatingLabelText="Floating Label Text"\n' + '  onChange={this._handleFloatingErrorInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.floatingError2Text}\n' + '  defaultValue="abc"\n' + '  floatingLabelText="Floating Label Text"\n' + '  onChange={this._handleFloating2ErrorInputChange} />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  defaultValue="Disabled With Value"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Custom Child input (e.g. password)"\n' + '  defaultValue="Custom Child input (e.g. password)"\n' + '  floatingLabelText="Custom Child input (e.g. password)">\n' + '    <input type="password" />\n' + '</TextField>\n' + '<TextField\n' + '  hintText="Disabled Child input (e.g. password)"\n' + '  disabled={true}\n' + '  defaultValue="Custom Child input (e.g. password)"\n' + '  floatingLabelText="Custom Child input (e.g. password)">\n' + '    <input type="password" />\n' + '</TextField>';
+    var code = '//In Line Hint Text\n' + '<TextField\n' + '  hintText="Hint Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  defaultValue="Default Value" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  value={this.state.propValue}\n' + '  onChange={this._handleInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  valueLink={this.linkState(\'valueLinkValue\')} />\n' + '<TextField\n' + '  hintText="Hint Text (MultiLine)"\n' + '  multiLine={true} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.errorText}\n' + '  onChange={this._handleErrorInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.error2Text}\n' + '  onChange={this._handleError2InputChange}\n' + '  defaultValue="abc" />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true} />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  defaultValue="Disabled With Value" />\n\n' + '//Select Fields\n' + '<SelectField\n' + '  value={this.state.selectValue}\n' + '  onChange={this._handleSelectValueChange.bind(null, "selectValue")}\n' + '  hintText="Hint Text"\n' + '  menuItems={menuItems} />\n' + '<SelectField\n' + '  valueLink={this.linkState("selectValueLinkValue")}\n' + '  floatingLabelText="Select Field"\n' + '  valueMember="id"\n' + '  displayMember="name"\n' + '  menuItems={arbitraryArrayMenuItems} />\n' + '<SelectField\n' + '  value={this.state.selectValue2}\n' + '  onChange={this._handleSelectValueChange.bind(null, "selectValue2")}\n' + '  menuItems={arbitraryArrayMenuItems} />\n\n' + '//Floating Hint Text Labels\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  defaultValue="Default Value"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text"\n' + '  value={this.state.floatingPropValue}\n' + '  onChange={this._handleFloatingInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  floatingLabelText="Floating Label Text"\n' + '  valueLink={this.linkState(\'floatingValueLinkValue\')} />\n' + '<TextField\n' + '  hintText="Hint Text (MultiLine)"\n' + '  floatingLabelText="Floating Label Text"\n' + '  multiLine={true} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.floatingErrorText}\n' + '  floatingLabelText="Floating Label Text"\n' + '  onChange={this._handleFloatingErrorInputChange} />\n' + '<TextField\n' + '  hintText="Hint Text"\n' + '  errorText={this.state.floatingError2Text}\n' + '  defaultValue="abc"\n' + '  floatingLabelText="Floating Label Text"\n' + '  onChange={this._handleFloating2ErrorInputChange} />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Disabled Hint Text"\n' + '  disabled={true}\n' + '  defaultValue="Disabled With Value"\n' + '  floatingLabelText="Floating Label Text" />\n' + '<TextField\n' + '  hintText="Custom Child input (e.g. password)"\n' + '  defaultValue="Custom Child input (e.g. password)"\n' + '  floatingLabelText="Custom Child input (e.g. password)">\n' + '    <input type="password" />\n' + '</TextField>\n' + '<TextField\n' + '  hintText="Disabled Child input (e.g. password)"\n' + '  disabled={true}\n' + '  defaultValue="Custom Child input (e.g. password)"\n' + '  floatingLabelText="Custom Child input (e.g. password)">\n' + '    <input type="password" />\n' + '</TextField>';
 
     var desc = 'This component extends the current input element and will support all of its props and events. It supports ' + 'valueLink and can be controlled or uncontrolled.';
 
     var componentInfo = [{
       name: 'Props',
       infoArray: [{
+        name: 'errorStyle',
+        type: 'object',
+        header: 'optional',
+        desc: 'The style object to use to override error styles.'
+      }, {
         name: 'errorText',
         type: 'string',
         header: 'optional',
@@ -16519,6 +17356,11 @@ var TextFieldsPage = React.createClass({
         type: 'object',
         header: 'optional',
         desc: 'Override the inline-styles of the TextField\'s root element.'
+      }, {
+        name: 'type',
+        type: 'string',
+        header: 'optional',
+        desc: 'Specifies the type of input to display such as "password" or "text".'
       }]
     }, {
       name: 'Methods',
@@ -16608,6 +17450,16 @@ var TextFieldsPage = React.createClass({
           React.createElement('br', null),
           React.createElement(TextField, {
             style: styles.textfield,
+            hintText: 'The hint text can be as long as you want, it will wrap.',
+            multiLine: true }),
+          React.createElement('br', null),
+          React.createElement(TextField, {
+            style: styles.textfield,
+            hintText: 'Hint Text',
+            errorText: 'The error text can be as long as you want, it will wrap.' }),
+          React.createElement('br', null),
+          React.createElement(TextField, {
+            style: styles.textfield,
             hintText: 'Hint Text',
             errorText: this.state.errorText,
             onChange: this._handleErrorInputChange }),
@@ -16631,15 +17483,23 @@ var TextFieldsPage = React.createClass({
             defaultValue: 'Disabled With Value' }),
           React.createElement('br', null),
           React.createElement(SelectField, {
+            style: styles.textfield,
             value: this.state.selectValue,
-            onChange: this._handleSelectValueChange,
-            floatingLabelText: 'Select Field',
+            onChange: this._handleSelectValueChange.bind(null, 'selectValue'),
+            hintText: 'Hint Text',
             menuItems: menuItems }),
+          React.createElement('br', null),
           React.createElement(SelectField, {
             valueLink: this.linkState('selectValueLinkValue'),
-            floatingLabelText: 'Select Field',
+            floatingLabelText: 'Float Label Text',
             valueMember: 'id',
             displayMember: 'name',
+            menuItems: arbitraryArrayMenuItems }),
+          React.createElement('br', null),
+          React.createElement(SelectField, {
+            style: styles.textfield,
+            value: this.state.selectValue2,
+            onChange: this._handleSelectValueChange.bind(null, 'selectValue2'),
             menuItems: arbitraryArrayMenuItems })
         ),
         React.createElement(
@@ -16750,10 +17610,10 @@ var TextFieldsPage = React.createClass({
     });
   },
 
-  _handleSelectValueChange: function _handleSelectValueChange(e) {
-    this.setState({
-      selectValue: e.target.value
-    });
+  _handleSelectValueChange: function _handleSelectValueChange(name, e) {
+    var change = {};
+    change[name] = e.target.value;
+    this.setState(change);
   },
 
   _handleFloatingInputChange: function _handleFloatingInputChange(e) {
@@ -16766,13 +17626,16 @@ var TextFieldsPage = React.createClass({
 
 module.exports = TextFieldsPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react/addons":229}],160:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react/addons":216}],161:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var mui = require('mui');
-var TimePicker = mui.TimePicker;
-var ComponentDoc = require('../../component-doc.jsx');
+
+var _require = require('material-ui');
+
+var TimePicker = _require.TimePicker;
+
+var ComponentDoc = require('../../component-doc');
 
 var TimePickerPage = React.createClass({
   displayName: 'TimePickerPage',
@@ -16836,18 +17699,20 @@ var TimePickerPage = React.createClass({
 
 module.exports = TimePickerPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],161:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],162:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var ComponentDoc = require('../../component-doc.jsx');
+var mui = require('material-ui');
+var ComponentDoc = require('../../component-doc');
 
 var DropDownIcon = mui.DropDownIcon;
 var DropDownMenu = mui.DropDownMenu;
@@ -16862,9 +17727,7 @@ var ToolbarPage = (function (_React$Component) {
   function ToolbarPage() {
     _classCallCheck(this, ToolbarPage);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(ToolbarPage.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(ToolbarPage, _React$Component);
@@ -16873,7 +17736,7 @@ var ToolbarPage = (function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      var code = 'var filterOptions = [\n' + '  { payload: \'1\', text: \'All Broadcasts\' },\n' + '  { payload: \'2\', text: \'All Voice\' },\n' + '  { payload: \'3\', text: \'All Text\' },\n' + '  { payload: \'4\', text: \'Complete Voice\' },\n' + '  { payload: \'5\', text: \'Complete Text\' },\n' + '  { payload: \'6\', text: \'Active Voice\' },\n' + '  { payload: \'7\', text: \'Active Text\' },\n' + '];\n' + 'var iconMenuItems = [\n' + '  { payload: \'1\', text: \'Download\' },\n' + '  { payload: \'2\', text: \'More Info\' }\n' + '];\n\n' + '<Toolbar>\n' + '  <ToolbarGroup key={0} float="left">\n' + '    <DropDownMenu menuItems={filterOptions} />\n' + '  </ToolbarGroup>\n' + '  <ToolbarGroup key={1} float="right">\n' + '    <ToolbarTitle text="Options" />\n' + '    <FontIcon className="mui-icon-sort" />\n' + '    <DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />\n' + '    <ToolbarSeparator/>\n' + '    <RaisedButton label="Create Broadcast" primary={true} />\n' + '  </ToolbarGroup>\n' + '</Toolbar>';
+      var code = 'let filterOptions = [\n' + '  { payload: \'1\', text: \'All Broadcasts\' },\n' + '  { payload: \'2\', text: \'All Voice\' },\n' + '  { payload: \'3\', text: \'All Text\' },\n' + '  { payload: \'4\', text: \'Complete Voice\' },\n' + '  { payload: \'5\', text: \'Complete Text\' },\n' + '  { payload: \'6\', text: \'Active Voice\' },\n' + '  { payload: \'7\', text: \'Active Text\' },\n' + '];\n' + 'let iconMenuItems = [\n' + '  { payload: \'1\', text: \'Download\' },\n' + '  { payload: \'2\', text: \'More Info\' }\n' + '];\n\n' + '<Toolbar>\n' + '  <ToolbarGroup key={0} float="left">\n' + '    <DropDownMenu menuItems={filterOptions} />\n' + '  </ToolbarGroup>\n' + '  <ToolbarGroup key={1} float="right">\n' + '    <ToolbarTitle text="Options" />\n' + '    <FontIcon className="mui-icon-sort" />\n' + '    <DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />\n' + '    <ToolbarSeparator/>\n' + '    <RaisedButton label="Create Broadcast" primary={true} />\n' + '  </ToolbarGroup>\n' + '</Toolbar>';
 
       var desc = 'Toolbars are collections of components stacked horizontally ' + 'against each other. Toolbars provide greater versatility than ' + 'appBars. AppBars are a subset of toolbars. The following ' + 'toolbar components can help organize your layout. Note that ' + 'every component listed here (including Toolbar) have a style ' + 'prop which overrides the inline-styles of their root element.';
 
@@ -16944,25 +17807,25 @@ var ToolbarPage = (function (_React$Component) {
 
 module.exports = ToolbarPage;
 
-},{"../../component-doc.jsx":134,"mui":435,"react":401}],162:[function(require,module,exports){
+},{"../../component-doc":134,"material-ui":"material-ui","react":388}],163:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
-var React = require('react'),
-    PageWithNav = require('./page-with-nav.jsx');
+var React = require('react');
+var PageWithNav = require('./page-with-nav');
 
 var Customization = (function (_React$Component) {
   function Customization() {
     _classCallCheck(this, Customization);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(Customization.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(Customization, _React$Component);
@@ -16981,20 +17844,22 @@ var Customization = (function (_React$Component) {
 
 module.exports = Customization;
 
-},{"./page-with-nav.jsx":169,"react":401}],163:[function(require,module,exports){
+},{"./page-with-nav":170,"react":388}],164:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var mui = require('mui');
-var ClearFix = mui.ClearFix;
-var ColorManipulator = mui.Utils.ColorManipulator;
 
-var _mui$Styles = mui.Styles;
-var Colors = _mui$Styles.Colors;
-var Typography = _mui$Styles.Typography;
-var _mui$Mixins = mui.Mixins;
-var StyleResizable = _mui$Mixins.StyleResizable;
-var StylePropable = _mui$Mixins.StylePropable;
+var _require = require('material-ui');
+
+var ClearFix = _require.ClearFix;
+var Mixins = _require.Mixins;
+var Styles = _require.Styles;
+var Utils = _require.Utils;
+var ColorManipulator = Utils.ColorManipulator;
+var StyleResizable = Mixins.StyleResizable;
+var StylePropable = Mixins.StylePropable;
+var Colors = Styles.Colors;
+var Typography = Styles.Typography;
 
 var ColorsPage = React.createClass({
   displayName: 'ColorsPage',
@@ -17050,17 +17915,19 @@ var ColorsPage = React.createClass({
   },
 
   render: function render() {
+    var _this = this;
+
     var mainColors = ['Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue', 'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange'],
         neutralColors = ['Brown', 'Blue Grey', 'Grey'],
         colorGroups = [],
         neutralGroups = [];
 
     mainColors.forEach(function (color) {
-      colorGroups.push(this._getColorGroup(color, true));
+      colorGroups.push(_this._getColorGroup(color, true));
     }, this);
 
     neutralColors.forEach(function (color) {
-      neutralGroups.push(this._getColorGroup(color, false));
+      neutralGroups.push(_this._getColorGroup(color, false));
     }, this);
 
     var googleLink = 'https://www.google.com/design/spec/style/color.html#color-ui-color-palette';
@@ -17105,6 +17972,8 @@ var ColorsPage = React.createClass({
   },
 
   _getColorGroup: function _getColorGroup(color, showAltPalette) {
+    var _this2 = this;
+
     var mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
     var altPalette = ['A100', 'A200', 'A400', 'A700'];
     var cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
@@ -17112,12 +17981,12 @@ var ColorsPage = React.createClass({
     var colorGroupStyle = this.getStyles().colorGroup;
 
     mainPalette.forEach(function (mainValue) {
-      colors.push(this._getColorBlock(cssColor, mainValue));
+      colors.push(_this2._getColorBlock(cssColor, mainValue));
     }, this);
 
     if (showAltPalette) {
       altPalette.forEach(function (altValue) {
-        colors.push(this._getColorBlock(cssColor, altValue));
+        colors.push(_this2._getColorBlock(cssColor, altValue));
       }, this);
     }
 
@@ -17134,7 +18003,7 @@ var ColorsPage = React.createClass({
     var bgColor = Colors[bgColorText];
     var fgColor = Colors.fullBlack;
     var contrastRatio = ColorManipulator.contrastRatio(bgColor, fgColor);
-    var blockTitle;
+    var blockTitle = undefined;
 
     if (contrastRatio < 7) fgColor = Colors.fullWhite;
     if (colorTitle) blockTitle = React.createElement(
@@ -17150,8 +18019,6 @@ var ColorsPage = React.createClass({
       padding: '15px'
     };
 
-    // if (colorValue === 900) styles.paddingBottom = '16px';
-
     return React.createElement(
       'li',
       { style: styles },
@@ -17166,29 +18033,34 @@ module.exports = ColorsPage;
 
 //null
 
-},{"mui":435,"react":401}],164:[function(require,module,exports){
+},{"material-ui":"material-ui","react":388}],165:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var CodeBlock = require('../../code-example/code-block.jsx');
-var CodeExample = require('../../code-example/code-example.jsx');
-var Checkbox = mui.Checkbox;
-var Typography = mui.Styles.Typography;
+
+var _require = require('material-ui');
+
+var Checkbox = _require.Checkbox;
+var Styles = _require.Styles;
+
+var CodeBlock = require('../../code-example/code-block');
+var CodeExample = require('../../code-example/code-example');
+
+var Typography = Styles.Typography;
 
 var InlineStyles = (function (_React$Component) {
   function InlineStyles() {
     _classCallCheck(this, InlineStyles);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(InlineStyles.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(InlineStyles, _React$Component);
@@ -17326,14 +18198,14 @@ var InlineStyles = (function (_React$Component) {
 
 module.exports = InlineStyles;
 
-},{"../../code-example/code-block.jsx":132,"../../code-example/code-example.jsx":133,"mui":435,"react":401}],165:[function(require,module,exports){
+},{"../../code-example/code-block":132,"../../code-example/code-example":133,"material-ui":"material-ui","react":388}],166:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var mui = require('mui');
-var CodeBlock = require('../../code-example/code-block.jsx');
-var ComponentDoc = require('../../component-doc.jsx');
-var ComponentInfo = require('../../component-info.jsx');
+var mui = require('material-ui');
+var CodeBlock = require('../../code-example/code-block');
+var ComponentDoc = require('../../component-doc');
+var ComponentInfo = require('../../component-info');
 
 var Checkbox = mui.Checkbox;
 var ClearFix = mui.ClearFix;
@@ -17344,22 +18216,23 @@ var FlatButton = mui.FlatButton;
 var FloatingActionButton = mui.FloatingActionButton;
 var LeftNav = mui.LeftNav;
 var MenuItem = mui.MenuItem;
+var Mixins = mui.Mixins;
 var Paper = mui.Paper;
 var RadioButton = mui.RadioButton;
 var RadioButtonGroup = mui.RadioButtonGroup;
 var RaisedButton = mui.RaisedButton;
 var Snackbar = mui.Snackbar;
 var Slider = mui.Slider;
+var Styles = mui.Styles;
 var Tabs = mui.Tabs;
 var Tab = mui.Tab;
 var TextField = mui.TextField;
 var Toggle = mui.Toggle;
-var _mui$Mixins = mui.Mixins;
-var StylePropable = _mui$Mixins.StylePropable;
-var StyleResizable = _mui$Mixins.StyleResizable;
+var StylePropable = Mixins.StylePropable;
+var StyleResizable = Mixins.StyleResizable;
+var Typography = Styles.Typography;
 
-var Typography = mui.Styles.Typography;
-var ThemeManager = new mui.Styles.ThemeManager();
+var ThemeManager = new Styles.ThemeManager();
 
 var ThemesPage = React.createClass({
   displayName: 'ThemesPage',
@@ -17444,9 +18317,9 @@ var ThemesPage = React.createClass({
 
   render: function render() {
 
-    var usageCodeES6 = 'var React = require(\'react\');\n' + 'var mui = require(\'mui\');\n' + 'var ThemeManager = new mui.Styles.ThemeManager();\n\n' + 'class OuterMostParentComponent extends React.Component {\n' + '  // Important!\n' + '  getChildContext() { \n' + '    return {\n' + '      muiTheme: ThemeManager.getCurrentTheme()\n' + '    };\n' + '  }\n' + '};\n\n' + '// Important!\n' + 'OuterMostParentComponent.childContextTypes = {\n' + '  muiTheme: React.PropTypes.object\n' + '};\n\n' + 'module.exports = OuterMostParentComponent;';
+    var usageCodeES6 = 'let React = require(\'react\');\n' + 'let mui = require(\'mui\');\n' + 'let ThemeManager = new mui.Styles.ThemeManager();\n\n' + 'class OuterMostParentComponent extends React.Component {\n' + '  // Important!\n' + '  getChildContext() { \n' + '    return {\n' + '      muiTheme: ThemeManager.getCurrentTheme()\n' + '    };\n' + '  }\n' + '};\n\n' + '// Important!\n' + 'OuterMostParentComponent.childContextTypes = {\n' + '  muiTheme: React.PropTypes.object\n' + '};\n\n' + 'module.exports = OuterMostParentComponent;';
 
-    var usageCodeES5 = 'var React = require(\'react\');\n' + 'var mui = require(\'mui\');\n' + 'var ThemeManager = new mui.Styles.ThemeManager();\n\n' + 'var OuterMostParentComponent = React.createClass ({\n' + '  // Important!\n' + '  childContextTypes: {\n' + '    muiTheme: React.PropTypes.object\n' + '  },\n\n' + '  // Important!\n' + '  getChildContext: function() { \n' + '    return {\n' + '      muiTheme: ThemeManager.getCurrentTheme()\n' + '    };\n' + '  }\n' + '});\n\n' + 'module.exports = OuterMostParentComponent;';
+    var usageCodeES5 = 'let React = require(\'react\');\n' + 'let mui = require(\'mui\');\n' + 'let ThemeManager = new mui.Styles.ThemeManager();\n\n' + 'let OuterMostParentComponent = React.createClass ({\n' + '  // Important!\n' + '  childContextTypes: {\n' + '    muiTheme: React.PropTypes.object\n' + '  },\n\n' + '  // Important!\n' + '  getChildContext() { \n' + '    return {\n' + '      muiTheme: ThemeManager.getCurrentTheme()\n' + '    };\n' + '  }\n' + '});\n\n' + 'module.exports = OuterMostParentComponent;';
 
     var customComponentCode = 'CustomReactComponent.contextTypes = {\n' + '  muiTheme: React.PropTypes.object\n' + '}';
 
@@ -17661,7 +18534,7 @@ var ThemesPage = React.createClass({
   },
 
   getThemeStructure: function getThemeStructure() {
-    var text = 'var CustomTheme = {\n' + '  getPalette: function() {\n' + '    return {\n' + '      primary1Color: String,\n' + '      primary2Color: String,\n' + '      primary3Color: String,\n' + '      accent1Color: String,\n' + '      accent2Color: String,\n' + '      accent3Color: String,\n' + '      textColor: String,\n' + '      canvasColor: String,\n' + '      borderColor: String,\n' + '      disabledColor: String\n' + '    };\n' + '  },\n' + '  getComponentThemes: function(palette) {\n' + '    return {\n' + '      appBar: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        height: Number\n' + '      },\n' + '      button: {\n' + '        height: Number,\n' + '        minWidth: Number,\n' + '        iconButtonSize: Number\n' + '      },\n' + '      checkbox: {\n' + '        boxColor: String,\n' + '        checkedColor: String,\n' + '        requiredColor: String,\n' + '        disabledColor: String,\n' + '        labelColor: String,\n' + '        labelDisabledColor: String\n' + '      },\n' + '      datePicker: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        calendarTextColor: String,\n' + '        selectColor: String,\n' + '        selectTextColor: String,\n' + '      },\n' + '      dropDownMenu: {\n' + '        accentColor: String,\n' + '      },\n' + '      flatButton: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        primaryTextColor: String,\n' + '        secondaryTextColor: String,\n' + '        disabledColor: String\n' + '      },\n' + '      floatingActionButton: {\n' + '        buttonSize: Number,\n' + '        miniSize: Number,\n' + '        color: String,\n' + '        iconColor: String,\n' + '        secondaryColor: String,\n' + '        secondaryIconColor: String,\n' + '        disabledColor: String,\n' + '        disabledTextColor: String\n' + '      },\n' + '      leftNav: {\n' + '        width: Number,\n' + '        color: String,\n' + '      },\n' + '      menu: {\n' + '        backgroundColor: String,\n' + '        containerBackgroundColor: String,\n' + '      },\n' + '      menuItem: {\n' + '        dataHeight: Number,\n' + '        height: Number,\n' + '        hoverColor: String,\n' + '        padding: Number,\n' + '        selectedTextColor: String,\n' + '      },\n' + '      menuSubheader: {\n' + '        padding: Number,\n' + '        borderColor: String,\n' + '        textColor: String,\n' + '      },\n' + '      paper: {\n' + '        backgroundColor: String,\n' + '      },\n' + '      radioButton: {\n' + '        borderColor: String,\n' + '        backgroundColor: String,\n' + '        checkedColor: String,\n' + '        requiredColor: String,\n' + '        disabledColor: String,\n' + '        size: Number,\n' + '        labelColor: String,\n' + '        labelDisabledColor: String\n' + '      },\n' + '      raisedButton: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        primaryColor: String,\n' + '        primaryTextColor: String,\n' + '        secondaryColor: String,\n' + '        secondaryTextColor: String,\n' + '        disabledColor: String,\n' + '        disabledTextColor: String\n';
+    var text = 'let CustomTheme = {\n' + '  getPalette() {\n' + '    return {\n' + '      primary1Color: String,\n' + '      primary2Color: String,\n' + '      primary3Color: String,\n' + '      accent1Color: String,\n' + '      accent2Color: String,\n' + '      accent3Color: String,\n' + '      textColor: String,\n' + '      canvasColor: String,\n' + '      borderColor: String,\n' + '      disabledColor: String\n' + '    };\n' + '  },\n' + '  getComponentThemes(palette) {\n' + '    return {\n' + '      appBar: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        height: Number\n' + '      },\n' + '      button: {\n' + '        height: Number,\n' + '        minWidth: Number,\n' + '        iconButtonSize: Number\n' + '      },\n' + '      checkbox: {\n' + '        boxColor: String,\n' + '        checkedColor: String,\n' + '        requiredColor: String,\n' + '        disabledColor: String,\n' + '        labelColor: String,\n' + '        labelDisabledColor: String\n' + '      },\n' + '      datePicker: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        calendarTextColor: String,\n' + '        selectColor: String,\n' + '        selectTextColor: String,\n' + '      },\n' + '      dropDownMenu: {\n' + '        accentColor: String,\n' + '      },\n' + '      flatButton: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        primaryTextColor: String,\n' + '        secondaryTextColor: String,\n' + '        disabledColor: String\n' + '      },\n' + '      floatingActionButton: {\n' + '        buttonSize: Number,\n' + '        miniSize: Number,\n' + '        color: String,\n' + '        iconColor: String,\n' + '        secondaryColor: String,\n' + '        secondaryIconColor: String,\n' + '        disabledColor: String,\n' + '        disabledTextColor: String\n' + '      },\n' + '      leftNav: {\n' + '        width: Number,\n' + '        color: String,\n' + '      },\n' + '      menu: {\n' + '        backgroundColor: String,\n' + '        containerBackgroundColor: String,\n' + '      },\n' + '      menuItem: {\n' + '        dataHeight: Number,\n' + '        height: Number,\n' + '        hoverColor: String,\n' + '        padding: Number,\n' + '        selectedTextColor: String,\n' + '      },\n' + '      menuSubheader: {\n' + '        padding: Number,\n' + '        borderColor: String,\n' + '        textColor: String,\n' + '      },\n' + '      paper: {\n' + '        backgroundColor: String,\n' + '      },\n' + '      radioButton: {\n' + '        borderColor: String,\n' + '        backgroundColor: String,\n' + '        checkedColor: String,\n' + '        requiredColor: String,\n' + '        disabledColor: String,\n' + '        size: Number,\n' + '        labelColor: String,\n' + '        labelDisabledColor: String\n' + '      },\n' + '      raisedButton: {\n' + '        color: String,\n' + '        textColor: String,\n' + '        primaryColor: String,\n' + '        primaryTextColor: String,\n' + '        secondaryColor: String,\n' + '        secondaryTextColor: String,\n' + '        disabledColor: String,\n' + '        disabledTextColor: String\n';
     '      },\n' + '      slider: {\n' + '        trackSize: Number,\n' + '        trackColor: String,\n' + '        trackColorSelected: String,\n' + '        handleSize: Number,\n' + '        handleSizeActive: Number,\n' + '        handleSizeDisabled: Number,\n' + '        handleColorZero: String,\n' + '        handleFillColor: String,\n' + '        selectionColor: String,\n' + '        rippleColor: String,\n' + '      },\n' + '      snackbar: {\n' + '        textColor: String,\n' + '        backgroundColor: String,\n' + '        actionColor: String,\n' + '      },\n' + '      toggle: {\n' + '        thumbOnColor: String,\n' + '        thumbOffColor: String,\n' + '        thumbDisabledColor: String,\n' + '        thumbRequiredColor: String,\n' + '        trackOnColor: String,\n' + '        trackOffColor: String,\n' + '        trackDisabledColor: String,\n' + '        trackRequiredColor: String,\n' + '        labelColor: String,\n' + '        labelDisabledColor: String\n' + '      },\n' + '      toolbar: {\n' + '        backgroundColor: String,\n' + '        height: Number,\n' + '        titleFontSize: Number,\n' + '        iconColor: String,\n' + '        separatorColor: String,\n' + '        menuHoverColor: String,\n' + '        menuHoverColor: String,\n' + '      }\n' + '    };\n' + '  }\n' + '}\n\n' + 'module.exports = CustomTheme;';
     return text;
   },
@@ -17859,7 +18732,7 @@ var ThemesPage = React.createClass({
   },
 
   getOverrideExamplePage: function getOverrideExamplePage() {
-    return 'var React = require(\'react\');\n' + 'var mui = require(\'mui\');\n' + 'var ThemeManager = new mui.Styles.ThemeManager();\n\n' + 'class MenusPage extends React.Component {\n\n' + '  getChildContext() { \n' + '    return {\n' + '      muiTheme: ThemeManager.getCurrentTheme()\n' + '    }\n' + '  }\n\n' + '  componentWillMount() {\n' + '    ThemeManager.setComponentThemes({\n' + '      toggle: {\n' + '        thumbOnColor: String,\n' + '        trackOnColor: String,\n' + '      }\n' + '    });\n' + '  }\n' + '}\n\n' + 'MenusPage.childContextTypes = {\n' + '  muiTheme: React.PropTypes.object\n' + '};';
+    return 'let React = require(\'react\');\n' + 'let mui = require(\'mui\');\n' + 'let ThemeManager = new mui.Styles.ThemeManager();\n\n' + 'class MenusPage extends React.Component {\n\n' + '  getChildContext() { \n' + '    return {\n' + '      muiTheme: ThemeManager.getCurrentTheme()\n' + '    }\n' + '  }\n\n' + '  componentWillMount() {\n' + '    ThemeManager.setComponentThemes({\n' + '      toggle: {\n' + '        thumbOnColor: String,\n' + '        trackOnColor: String,\n' + '      }\n' + '    });\n' + '  }\n' + '}\n\n' + 'MenusPage.childContextTypes = {\n' + '  muiTheme: React.PropTypes.object\n' + '};';
   },
 
   // Toggles between light and dark themes
@@ -17895,30 +18768,35 @@ var ThemesPage = React.createClass({
 
 module.exports = ThemesPage;
 
-},{"../../code-example/code-block.jsx":132,"../../component-doc.jsx":134,"../../component-info.jsx":135,"mui":435,"react":401}],166:[function(require,module,exports){
+},{"../../code-example/code-block":132,"../../component-doc":134,"../../component-info":135,"material-ui":"material-ui","react":388}],167:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-var mui = require('mui');
-var CodeBlock = require('../code-example/code-block.jsx');
-var FullWidthSection = require('../full-width-section.jsx');
-var _mui$Styles = mui.Styles;
-var Spacing = _mui$Styles.Spacing;
-var Typography = _mui$Styles.Typography;
+
+var _require = require('material-ui');
+
+var Paper = _require.Paper;
+var Styles = _require.Styles;
+
+var CodeBlock = require('../code-example/code-block');
+var FullWidthSection = require('../full-width-section');
+
+var Spacing = Styles.Spacing;
+var Typography = Styles.Typography;
 
 var GetStarted = (function (_React$Component) {
   function GetStarted() {
     _classCallCheck(this, GetStarted);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(GetStarted.prototype), 'constructor', this).apply(this, arguments);
   }
 
   _inherits(GetStarted, _React$Component);
@@ -17961,9 +18839,9 @@ var GetStarted = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var usageCode = '/** MyAwesomeReactComponent.jsx */\n\n' + 'var React = require(\'react\'),\n' + '  mui = require(\'material-ui\'),\n' + '  RaisedButton = mui.RaisedButton;\n\n' + 'var SomeAwesomeComponent = React.createClass({\n\n' + '  childContextTypes: {\n' + '    muiTheme: React.PropTypes.object\n' + '  },\n\n' + '  getChildContext: function() {\n' + '    return {\n' + '      muiTheme: ThemeManager.getCurrentTheme()\n' + '    };\n' + '  },\n\n' + '  render: function() {\n' + '    return (\n' + '        <RaisedButton label="Default" />\n' + '    );\n' + '  }\n\n' + '});\n\n' + 'module.exports = MyAwesomeReactComponent;\n\n\n',
+      var usageCode = '/** MyAwesomeReactComponent.jsx */\n\n' + 'let React = require(\'react\'),\n' + '  mui = require(\'material-ui\'),\n' + '  RaisedButton = mui.RaisedButton;\n\n' + 'let SomeAwesomeComponent = React.createClass({\n\n' + '  childContextTypes: {\n' + '    muiTheme: React.PropTypes.object\n' + '  },\n\n' + '  getChildContext() {\n' + '    return {\n' + '      muiTheme: ThemeManager.getCurrentTheme()\n' + '    };\n' + '  },\n\n' + '  render() {\n' + '    return (\n' + '        <RaisedButton label="Default" />\n' + '    );\n' + '  }\n\n' + '});\n\n' + 'module.exports = MyAwesomeReactComponent;\n\n\n',
           customizationCode = '@import "node_modules/material-ui/src/less/scaffolding.less";\n\n' + '//Define a custom less file to override\n//any variables defined in scaffolding.less\n' + '@import "my-custom-overrides.less";\n\n' + '@import "node_modules/material-ui/src/less/components.less";',
-          usageNotesCode = 'var injectTapEventPlugin = require("react-tap-event-plugin");\n\n' + '//Needed for onTouchTap\n' + '//Can go away when react 1.0 release\n' + '//Check this repo:\n' + '//https://github.com/zilverline/react-tap-event-plugin\n' + 'injectTapEventPlugin();\n';
+          usageNotesCode = 'let injectTapEventPlugin = require("react-tap-event-plugin");\n\n' + '//Needed for onTouchTap\n' + '//Can go away when react 1.0 release\n' + '//Check this repo:\n' + '//https://github.com/zilverline/react-tap-event-plugin\n' + 'injectTapEventPlugin();\n';
 
       var styles = this.getStyles();
 
@@ -18022,7 +18900,7 @@ var GetStarted = (function (_React$Component) {
             ' to listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be sure to inject this plugin at the start of your app.'
           ),
           React.createElement(
-            mui.Paper,
+            Paper,
             { style: styles.codeExample },
             React.createElement(
               CodeBlock,
@@ -18063,7 +18941,7 @@ var GetStarted = (function (_React$Component) {
             'Once material-ui is included in your project, you can use the components this way:'
           ),
           React.createElement(
-            mui.Paper,
+            Paper,
             { style: styles.codeExample },
             React.createElement(
               CodeBlock,
@@ -18161,23 +19039,25 @@ GetStarted.contextTypes = {
 
 module.exports = GetStarted;
 
-},{"../code-example/code-block.jsx":132,"../full-width-section.jsx":136,"mui":435,"react":401}],167:[function(require,module,exports){
+},{"../code-example/code-block":132,"../full-width-section":136,"material-ui":"material-ui","react":388}],168:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Router = require('react-router');
-var Link = Router.Link;
-var mui = require('mui');
-var Paper = mui.Paper;
 
-var _mui$Mixins = mui.Mixins;
-var StylePropable = _mui$Mixins.StylePropable;
-var StyleResizable = _mui$Mixins.StyleResizable;
-var _mui$Styles = mui.Styles;
-var Colors = _mui$Styles.Colors;
-var Spacing = _mui$Styles.Spacing;
-var Transitions = _mui$Styles.Transitions;
-var Typography = _mui$Styles.Typography;
+var _require = require('material-ui');
+
+var Paper = _require.Paper;
+var Mixins = _require.Mixins;
+var Styles = _require.Styles;
+
+var Link = Router.Link;
+var StylePropable = Mixins.StylePropable;
+var StyleResizable = Mixins.StyleResizable;
+var Colors = Styles.Colors;
+var Spacing = Styles.Spacing;
+var Transitions = Styles.Transitions;
+var Typography = Styles.Typography;
 
 var HomeFeature = React.createClass({
   displayName: 'HomeFeature',
@@ -18296,24 +19176,28 @@ var HomeFeature = React.createClass({
 
 module.exports = HomeFeature;
 
-},{"mui":435,"react":401,"react-router":210}],168:[function(require,module,exports){
+},{"material-ui":"material-ui","react":388,"react-router":197}],169:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Router = require('react-router');
-var mui = require('mui');
-var RaisedButton = mui.RaisedButton;
-var HomeFeature = require('./home-feature.jsx');
-var FullWidthSection = require('../full-width-section.jsx');
-var ThemeManager = new mui.Styles.ThemeManager().getCurrentTheme();
 
-var _mui$Mixins = mui.Mixins;
-var StylePropable = _mui$Mixins.StylePropable;
-var StyleResizable = _mui$Mixins.StyleResizable;
-var _mui$Styles = mui.Styles;
-var Colors = _mui$Styles.Colors;
-var Spacing = _mui$Styles.Spacing;
-var Typography = _mui$Styles.Typography;
+var _require = require('material-ui');
+
+var Mixins = _require.Mixins;
+var RaisedButton = _require.RaisedButton;
+var Styles = _require.Styles;
+
+var HomeFeature = require('./home-feature');
+var FullWidthSection = require('../full-width-section');
+
+var StylePropable = Mixins.StylePropable;
+var StyleResizable = Mixins.StyleResizable;
+var Colors = Styles.Colors;
+var Spacing = Styles.Spacing;
+var Typography = Styles.Typography;
+
+var ThemeManager = new Styles.ThemeManager().getCurrentTheme();
 
 var HomePage = React.createClass({
   displayName: 'HomePage',
@@ -18549,21 +19433,22 @@ var HomePage = React.createClass({
 
 module.exports = HomePage;
 
-},{"../full-width-section.jsx":136,"./home-feature.jsx":167,"mui":435,"react":401,"react-router":210}],169:[function(require,module,exports){
+},{"../full-width-section":136,"./home-feature":168,"material-ui":"material-ui","react":388,"react-router":197}],170:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
-var mui = require('mui');
-var Menu = mui.Menu;
 
-var _mui$Styles = mui.Styles;
-var Spacing = _mui$Styles.Spacing;
-var Colors = _mui$Styles.Colors;
-var _mui$Mixins = mui.Mixins;
-var StyleResizable = _mui$Mixins.StyleResizable;
-var StylePropable = _mui$Mixins.StylePropable;
+var _require = require('material-ui');
+
+var Menu = _require.Menu;
+var Mixins = _require.Mixins;
+var Styles = _require.Styles;
+var Spacing = Styles.Spacing;
+var Colors = Styles.Colors;
+var StyleResizable = Mixins.StyleResizable;
+var StylePropable = Mixins.StylePropable;
 
 var PageWithNav = React.createClass({
   displayName: 'PageWithNav',
@@ -18643,7 +19528,7 @@ var PageWithNav = React.createClass({
 
   _getSelectedIndex: function _getSelectedIndex() {
     var menuItems = this.props.menuItems;
-    var currentItem;
+    var currentItem = undefined;
 
     for (var i = menuItems.length - 1; i >= 0; i--) {
       currentItem = menuItems[i];
@@ -18659,315 +19544,7 @@ var PageWithNav = React.createClass({
 
 module.exports = PageWithNav;
 
-},{"mui":435,"react":401,"react-router":210}],170:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var ActionAssignment = React.createClass({
-  displayName: 'ActionAssignment',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z' })
-    );
-  }
-
-});
-
-module.exports = ActionAssignment;
-
-},{"mui":435,"react":401}],171:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var ActionGrade = React.createClass({
-  displayName: 'ActionGrade',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' })
-    );
-  }
-
-});
-
-module.exports = ActionGrade;
-
-},{"mui":435,"react":401}],172:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var ActionHome = React.createClass({
-  displayName: 'ActionHome',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' })
-    );
-  }
-
-});
-
-module.exports = ActionHome;
-
-},{"mui":435,"react":401}],173:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var ActionInfo = React.createClass({
-  displayName: 'ActionInfo',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z' })
-    );
-  }
-
-});
-
-module.exports = ActionInfo;
-
-},{"mui":435,"react":401}],174:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var CommunicationCall = React.createClass({
-  displayName: 'CommunicationCall',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z' })
-    );
-  }
-
-});
-
-module.exports = CommunicationCall;
-
-},{"mui":435,"react":401}],175:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var CommunicationChatBubble = React.createClass({
-  displayName: 'CommunicationChatBubble',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z' })
-    );
-  }
-
-});
-
-module.exports = CommunicationChatBubble;
-
-},{"mui":435,"react":401}],176:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var CommunicationEmail = React.createClass({
-  displayName: 'CommunicationEmail',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z' })
-    );
-  }
-
-});
-
-module.exports = CommunicationEmail;
-
-},{"mui":435,"react":401}],177:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var ContentDrafts = React.createClass({
-  displayName: 'ContentDrafts',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M21.99 8c0-.72-.37-1.35-.94-1.7L12 1 2.95 6.3C2.38 6.65 2 7.28 2 8v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2l-.01-10zM12 13L3.74 7.84 12 3l8.26 4.84L12 13z' })
-    );
-  }
-
-});
-
-module.exports = ContentDrafts;
-
-},{"mui":435,"react":401}],178:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var ContentInbox = React.createClass({
-  displayName: 'ContentInbox',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M19 3H4.99c-1.1 0-1.98.9-1.98 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 12h-4c0 1.66-1.34 3-3 3s-3-1.34-3-3H4.99V5H19v10zm-3-5h-2V7h-4v3H8l4 4 4-4z' })
-    );
-  }
-
-});
-
-module.exports = ContentInbox;
-
-},{"mui":435,"react":401}],179:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var ContentSend = React.createClass({
-  displayName: 'ContentSend',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M2.01 21L23 12 2.01 3 2 10l15 2-15 2z' })
-    );
-  }
-
-});
-
-module.exports = ContentSend;
-
-},{"mui":435,"react":401}],180:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var EditorInsertChart = React.createClass({
-  displayName: 'EditorInsertChart',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z' })
-    );
-  }
-
-});
-
-module.exports = EditorInsertChart;
-
-},{"mui":435,"react":401}],181:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var FileFolder = React.createClass({
-  displayName: 'FileFolder',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z' })
-    );
-  }
-
-});
-
-module.exports = FileFolder;
-
-},{"mui":435,"react":401}],182:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var ToggleStarBorder = React.createClass({
-  displayName: 'ToggleStarBorder',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z' })
-    );
-  }
-
-});
-
-module.exports = ToggleStarBorder;
-
-},{"mui":435,"react":401}],183:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var mui = require('mui');
-var SvgIcon = mui.SvgIcon;
-
-var ToggleStar = React.createClass({
-  displayName: 'ToggleStar',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' })
-    );
-  }
-
-});
-
-module.exports = ToggleStar;
-
-},{"mui":435,"react":401}],184:[function(require,module,exports){
+},{"material-ui":"material-ui","react":388,"react-router":197}],171:[function(require,module,exports){
 /*!
   Copyright (c) 2015 Jed Watson.
   Licensed under the MIT License (MIT), see
@@ -19012,7 +19589,7 @@ if (typeof define !== 'undefined' && define.amd) {
 	});
 }
 
-},{}],185:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -19683,7 +20260,7 @@ module.exports = React.createClass({
 
 });
 
-},{"react/addons":229}],186:[function(require,module,exports){
+},{"react/addons":216}],173:[function(require,module,exports){
 /**
  * Represents a cancellation caused by navigating away
  * before the previous transition has fully resolved.
@@ -19693,7 +20270,7 @@ module.exports = React.createClass({
 function Cancellation() {}
 
 module.exports = Cancellation;
-},{}],187:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -19724,7 +20301,7 @@ var History = {
 };
 
 module.exports = History;
-},{"react/lib/ExecutionEnvironment":250,"react/lib/invariant":379}],188:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":237,"react/lib/invariant":366}],175:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -19800,7 +20377,7 @@ var Match = (function () {
 })();
 
 module.exports = Match;
-},{"./PathUtils":190}],189:[function(require,module,exports){
+},{"./PathUtils":177}],176:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -19871,7 +20448,7 @@ var Navigation = {
 };
 
 module.exports = Navigation;
-},{"./PropTypes":191}],190:[function(require,module,exports){
+},{"./PropTypes":178}],177:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -20025,7 +20602,7 @@ var PathUtils = {
 };
 
 module.exports = PathUtils;
-},{"object-assign":219,"qs":220,"react/lib/invariant":379}],191:[function(require,module,exports){
+},{"object-assign":206,"qs":207,"react/lib/invariant":366}],178:[function(require,module,exports){
 'use strict';
 
 var assign = require('react/lib/Object.assign');
@@ -20057,7 +20634,7 @@ var PropTypes = assign({}, ReactPropTypes, {
 });
 
 module.exports = PropTypes;
-},{"./Route":193,"react":401,"react/lib/Object.assign":257}],192:[function(require,module,exports){
+},{"./Route":180,"react":388,"react/lib/Object.assign":244}],179:[function(require,module,exports){
 /**
  * Encapsulates a redirect to the given route.
  */
@@ -20070,7 +20647,7 @@ function Redirect(to, params, query) {
 }
 
 module.exports = Redirect;
-},{}],193:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20271,7 +20848,7 @@ var Route = (function () {
 })();
 
 module.exports = Route;
-},{"./PathUtils":190,"react/lib/Object.assign":257,"react/lib/invariant":379,"react/lib/warning":400}],194:[function(require,module,exports){
+},{"./PathUtils":177,"react/lib/Object.assign":244,"react/lib/invariant":366,"react/lib/warning":387}],181:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -20347,7 +20924,7 @@ var ScrollHistory = {
 };
 
 module.exports = ScrollHistory;
-},{"./getWindowScrollPosition":209,"react/lib/ExecutionEnvironment":250,"react/lib/invariant":379}],195:[function(require,module,exports){
+},{"./getWindowScrollPosition":196,"react/lib/ExecutionEnvironment":237,"react/lib/invariant":366}],182:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -20422,7 +20999,7 @@ var State = {
 };
 
 module.exports = State;
-},{"./PropTypes":191}],196:[function(require,module,exports){
+},{"./PropTypes":178}],183:[function(require,module,exports){
 /* jshint -W058 */
 
 'use strict';
@@ -20498,7 +21075,7 @@ Transition.to = function (transition, routes, params, query, callback) {
 };
 
 module.exports = Transition;
-},{"./Cancellation":186,"./Redirect":192}],197:[function(require,module,exports){
+},{"./Cancellation":173,"./Redirect":179}],184:[function(require,module,exports){
 /**
  * Actions that modify the URL.
  */
@@ -20524,7 +21101,7 @@ var LocationActions = {
 };
 
 module.exports = LocationActions;
-},{}],198:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -20554,7 +21131,7 @@ var ImitateBrowserBehavior = {
 };
 
 module.exports = ImitateBrowserBehavior;
-},{"../actions/LocationActions":197}],199:[function(require,module,exports){
+},{"../actions/LocationActions":184}],186:[function(require,module,exports){
 /**
  * A scroll behavior that always scrolls to the top of the page
  * after a transition.
@@ -20570,7 +21147,7 @@ var ScrollToTopBehavior = {
 };
 
 module.exports = ScrollToTopBehavior;
-},{}],200:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20609,7 +21186,7 @@ var ContextWrapper = (function (_React$Component) {
 })(React.Component);
 
 module.exports = ContextWrapper;
-},{"react":401}],201:[function(require,module,exports){
+},{"react":388}],188:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20657,7 +21234,7 @@ DefaultRoute.defaultProps = {
 };
 
 module.exports = DefaultRoute;
-},{"../PropTypes":191,"./Route":205,"./RouteHandler":206}],202:[function(require,module,exports){
+},{"../PropTypes":178,"./Route":192,"./RouteHandler":193}],189:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20793,7 +21370,7 @@ Link.defaultProps = {
 };
 
 module.exports = Link;
-},{"../PropTypes":191,"react":401,"react/lib/Object.assign":257}],203:[function(require,module,exports){
+},{"../PropTypes":178,"react":388,"react/lib/Object.assign":244}],190:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20842,7 +21419,7 @@ NotFoundRoute.defaultProps = {
 };
 
 module.exports = NotFoundRoute;
-},{"../PropTypes":191,"./Route":205,"./RouteHandler":206}],204:[function(require,module,exports){
+},{"../PropTypes":178,"./Route":192,"./RouteHandler":193}],191:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20886,7 +21463,7 @@ Redirect.propTypes = {
 Redirect.defaultProps = {};
 
 module.exports = Redirect;
-},{"../PropTypes":191,"./Route":205}],205:[function(require,module,exports){
+},{"../PropTypes":178,"./Route":192}],192:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -20978,7 +21555,7 @@ Route.defaultProps = {
 };
 
 module.exports = Route;
-},{"../PropTypes":191,"./RouteHandler":206,"react":401,"react/lib/invariant":379}],206:[function(require,module,exports){
+},{"../PropTypes":178,"./RouteHandler":193,"react":388,"react/lib/invariant":366}],193:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -21087,7 +21664,7 @@ RouteHandler.childContextTypes = {
 };
 
 module.exports = RouteHandler;
-},{"../PropTypes":191,"./ContextWrapper":200,"react":401,"react/lib/Object.assign":257}],207:[function(require,module,exports){
+},{"../PropTypes":178,"./ContextWrapper":187,"react":388,"react/lib/Object.assign":244}],194:[function(require,module,exports){
 (function (process){
 /* jshint -W058 */
 'use strict';
@@ -21605,7 +22182,7 @@ function createRouter(options) {
 module.exports = createRouter;
 }).call(this,require('_process'))
 
-},{"./Cancellation":186,"./History":187,"./Match":188,"./PathUtils":190,"./PropTypes":191,"./Redirect":192,"./Route":193,"./ScrollHistory":194,"./Transition":196,"./actions/LocationActions":197,"./behaviors/ImitateBrowserBehavior":198,"./createRoutesFromReactChildren":208,"./isReactChildren":211,"./locations/HashLocation":212,"./locations/HistoryLocation":213,"./locations/RefreshLocation":214,"./locations/StaticLocation":215,"./supportsHistory":218,"_process":1,"react":401,"react/lib/ExecutionEnvironment":250,"react/lib/invariant":379,"react/lib/warning":400}],208:[function(require,module,exports){
+},{"./Cancellation":173,"./History":174,"./Match":175,"./PathUtils":177,"./PropTypes":178,"./Redirect":179,"./Route":180,"./ScrollHistory":181,"./Transition":183,"./actions/LocationActions":184,"./behaviors/ImitateBrowserBehavior":185,"./createRoutesFromReactChildren":195,"./isReactChildren":198,"./locations/HashLocation":199,"./locations/HistoryLocation":200,"./locations/RefreshLocation":201,"./locations/StaticLocation":202,"./supportsHistory":205,"_process":1,"react":388,"react/lib/ExecutionEnvironment":237,"react/lib/invariant":366,"react/lib/warning":387}],195:[function(require,module,exports){
 /* jshint -W084 */
 'use strict';
 
@@ -21687,7 +22264,7 @@ function createRoutesFromReactChildren(children) {
 }
 
 module.exports = createRoutesFromReactChildren;
-},{"./Route":193,"./components/DefaultRoute":201,"./components/NotFoundRoute":203,"./components/Redirect":204,"react":401,"react/lib/Object.assign":257,"react/lib/warning":400}],209:[function(require,module,exports){
+},{"./Route":180,"./components/DefaultRoute":188,"./components/NotFoundRoute":190,"./components/Redirect":191,"react":388,"react/lib/Object.assign":244,"react/lib/warning":387}],196:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -21706,7 +22283,7 @@ function getWindowScrollPosition() {
 }
 
 module.exports = getWindowScrollPosition;
-},{"react/lib/ExecutionEnvironment":250,"react/lib/invariant":379}],210:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":237,"react/lib/invariant":366}],197:[function(require,module,exports){
 'use strict';
 
 exports.DefaultRoute = require('./components/DefaultRoute');
@@ -21738,7 +22315,7 @@ exports.createRoutesFromReactChildren = require('./createRoutesFromReactChildren
 
 exports.create = require('./createRouter');
 exports.run = require('./runRouter');
-},{"./History":187,"./Navigation":189,"./Route":193,"./State":195,"./behaviors/ImitateBrowserBehavior":198,"./behaviors/ScrollToTopBehavior":199,"./components/DefaultRoute":201,"./components/Link":202,"./components/NotFoundRoute":203,"./components/Redirect":204,"./components/Route":205,"./components/RouteHandler":206,"./createRouter":207,"./createRoutesFromReactChildren":208,"./locations/HashLocation":212,"./locations/HistoryLocation":213,"./locations/RefreshLocation":214,"./locations/StaticLocation":215,"./locations/TestLocation":216,"./runRouter":217}],211:[function(require,module,exports){
+},{"./History":174,"./Navigation":176,"./Route":180,"./State":182,"./behaviors/ImitateBrowserBehavior":185,"./behaviors/ScrollToTopBehavior":186,"./components/DefaultRoute":188,"./components/Link":189,"./components/NotFoundRoute":190,"./components/Redirect":191,"./components/Route":192,"./components/RouteHandler":193,"./createRouter":194,"./createRoutesFromReactChildren":195,"./locations/HashLocation":199,"./locations/HistoryLocation":200,"./locations/RefreshLocation":201,"./locations/StaticLocation":202,"./locations/TestLocation":203,"./runRouter":204}],198:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21752,7 +22329,7 @@ function isReactChildren(object) {
 }
 
 module.exports = isReactChildren;
-},{"react":401}],212:[function(require,module,exports){
+},{"react":388}],199:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -21864,7 +22441,7 @@ var HashLocation = {
 };
 
 module.exports = HashLocation;
-},{"../History":187,"../actions/LocationActions":197}],213:[function(require,module,exports){
+},{"../History":174,"../actions/LocationActions":184}],200:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -21951,7 +22528,7 @@ var HistoryLocation = {
 };
 
 module.exports = HistoryLocation;
-},{"../History":187,"../actions/LocationActions":197}],214:[function(require,module,exports){
+},{"../History":174,"../actions/LocationActions":184}],201:[function(require,module,exports){
 'use strict';
 
 var HistoryLocation = require('./HistoryLocation');
@@ -21983,7 +22560,7 @@ var RefreshLocation = {
 };
 
 module.exports = RefreshLocation;
-},{"../History":187,"./HistoryLocation":213}],215:[function(require,module,exports){
+},{"../History":174,"./HistoryLocation":200}],202:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -22033,7 +22610,7 @@ StaticLocation.prototype.replace = throwCannotModify;
 StaticLocation.prototype.pop = throwCannotModify;
 
 module.exports = StaticLocation;
-},{"react/lib/invariant":379}],216:[function(require,module,exports){
+},{"react/lib/invariant":366}],203:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -22128,7 +22705,7 @@ var TestLocation = (function () {
 })();
 
 module.exports = TestLocation;
-},{"../History":187,"../actions/LocationActions":197,"react/lib/invariant":379}],217:[function(require,module,exports){
+},{"../History":174,"../actions/LocationActions":184,"react/lib/invariant":366}],204:[function(require,module,exports){
 'use strict';
 
 var createRouter = require('./createRouter');
@@ -22179,7 +22756,7 @@ function runRouter(routes, location, callback) {
 }
 
 module.exports = runRouter;
-},{"./createRouter":207}],218:[function(require,module,exports){
+},{"./createRouter":194}],205:[function(require,module,exports){
 'use strict';
 
 function supportsHistory() {
@@ -22196,7 +22773,7 @@ function supportsHistory() {
 }
 
 module.exports = supportsHistory;
-},{}],219:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 'use strict';
 
 function ToObject(val) {
@@ -22224,10 +22801,10 @@ module.exports = Object.assign || function (target, source) {
 	return to;
 };
 
-},{}],220:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 module.exports = require('./lib/');
 
-},{"./lib/":221}],221:[function(require,module,exports){
+},{"./lib/":208}],208:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -22244,7 +22821,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":222,"./stringify":223}],222:[function(require,module,exports){
+},{"./parse":209,"./stringify":210}],209:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -22407,7 +22984,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":224}],223:[function(require,module,exports){
+},{"./utils":211}],210:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -22506,7 +23083,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":224}],224:[function(require,module,exports){
+},{"./utils":211}],211:[function(require,module,exports){
 // Load modules
 
 
@@ -22640,7 +23217,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],225:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22951,7 +23528,7 @@ var ResponderEventPlugin = {
 
 module.exports = ResponderEventPlugin;
 
-},{"react/lib/EventConstants":244,"react/lib/EventPluginUtils":248,"react/lib/EventPropagators":249,"react/lib/SyntheticEvent":337,"react/lib/accumulateInto":347,"react/lib/keyOf":386}],226:[function(require,module,exports){
+},{"react/lib/EventConstants":231,"react/lib/EventPluginUtils":235,"react/lib/EventPropagators":236,"react/lib/SyntheticEvent":324,"react/lib/accumulateInto":334,"react/lib/keyOf":373}],213:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23119,7 +23696,7 @@ var TapEventPlugin = {
 
 module.exports = TapEventPlugin;
 
-},{"./TouchEventUtils":227,"react/lib/EventConstants":244,"react/lib/EventPluginUtils":248,"react/lib/EventPropagators":249,"react/lib/SyntheticUIEvent":343,"react/lib/ViewportMetrics":346,"react/lib/keyOf":386}],227:[function(require,module,exports){
+},{"./TouchEventUtils":214,"react/lib/EventConstants":231,"react/lib/EventPluginUtils":235,"react/lib/EventPropagators":236,"react/lib/SyntheticUIEvent":330,"react/lib/ViewportMetrics":333,"react/lib/keyOf":373}],214:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23163,7 +23740,7 @@ var TouchEventUtils = {
 
 module.exports = TouchEventUtils;
 
-},{}],228:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 module.exports = function injectTapEventPlugin () {
   var React = require("react");
   React.initializeTouchEvents(true);
@@ -23174,10 +23751,10 @@ module.exports = function injectTapEventPlugin () {
   });
 };
 
-},{"./ResponderEventPlugin.js":225,"./TapEventPlugin.js":226,"react":401,"react/lib/EventPluginHub":246}],229:[function(require,module,exports){
+},{"./ResponderEventPlugin.js":212,"./TapEventPlugin.js":213,"react":388,"react/lib/EventPluginHub":233}],216:[function(require,module,exports){
 module.exports = require('./lib/ReactWithAddons');
 
-},{"./lib/ReactWithAddons":329}],230:[function(require,module,exports){
+},{"./lib/ReactWithAddons":316}],217:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -23204,7 +23781,7 @@ var AutoFocusMixin = {
 
 module.exports = AutoFocusMixin;
 
-},{"./focusNode":363}],231:[function(require,module,exports){
+},{"./focusNode":350}],218:[function(require,module,exports){
 /**
  * Copyright 2013-2015 Facebook, Inc.
  * All rights reserved.
@@ -23699,7 +24276,7 @@ var BeforeInputEventPlugin = {
 
 module.exports = BeforeInputEventPlugin;
 
-},{"./EventConstants":244,"./EventPropagators":249,"./ExecutionEnvironment":250,"./FallbackCompositionState":251,"./SyntheticCompositionEvent":335,"./SyntheticInputEvent":339,"./keyOf":386}],232:[function(require,module,exports){
+},{"./EventConstants":231,"./EventPropagators":236,"./ExecutionEnvironment":237,"./FallbackCompositionState":238,"./SyntheticCompositionEvent":322,"./SyntheticInputEvent":326,"./keyOf":373}],219:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -23812,7 +24389,7 @@ module.exports = CSSCore;
 
 }).call(this,require('_process'))
 
-},{"./invariant":379,"_process":1}],233:[function(require,module,exports){
+},{"./invariant":366,"_process":1}],220:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -23937,7 +24514,7 @@ var CSSProperty = {
 
 module.exports = CSSProperty;
 
-},{}],234:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -24120,7 +24697,7 @@ module.exports = CSSPropertyOperations;
 
 }).call(this,require('_process'))
 
-},{"./CSSProperty":233,"./ExecutionEnvironment":250,"./camelizeStyleName":350,"./dangerousStyleValue":357,"./hyphenateStyleName":377,"./memoizeStringOnly":388,"./warning":400,"_process":1}],235:[function(require,module,exports){
+},{"./CSSProperty":220,"./ExecutionEnvironment":237,"./camelizeStyleName":337,"./dangerousStyleValue":344,"./hyphenateStyleName":364,"./memoizeStringOnly":375,"./warning":387,"_process":1}],222:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -24221,7 +24798,7 @@ module.exports = CallbackQueue;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":257,"./PooledClass":258,"./invariant":379,"_process":1}],236:[function(require,module,exports){
+},{"./Object.assign":244,"./PooledClass":245,"./invariant":366,"_process":1}],223:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -24603,7 +25180,7 @@ var ChangeEventPlugin = {
 
 module.exports = ChangeEventPlugin;
 
-},{"./EventConstants":244,"./EventPluginHub":246,"./EventPropagators":249,"./ExecutionEnvironment":250,"./ReactUpdates":328,"./SyntheticEvent":337,"./isEventSupported":380,"./isTextInputElement":382,"./keyOf":386}],237:[function(require,module,exports){
+},{"./EventConstants":231,"./EventPluginHub":233,"./EventPropagators":236,"./ExecutionEnvironment":237,"./ReactUpdates":315,"./SyntheticEvent":324,"./isEventSupported":367,"./isTextInputElement":369,"./keyOf":373}],224:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -24628,7 +25205,7 @@ var ClientReactRootIndex = {
 
 module.exports = ClientReactRootIndex;
 
-},{}],238:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -24767,7 +25344,7 @@ module.exports = DOMChildrenOperations;
 
 }).call(this,require('_process'))
 
-},{"./Danger":241,"./ReactMultiChildUpdateTypes":307,"./invariant":379,"./setTextContent":394,"_process":1}],239:[function(require,module,exports){
+},{"./Danger":228,"./ReactMultiChildUpdateTypes":294,"./invariant":366,"./setTextContent":381,"_process":1}],226:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -25067,7 +25644,7 @@ module.exports = DOMProperty;
 
 }).call(this,require('_process'))
 
-},{"./invariant":379,"_process":1}],240:[function(require,module,exports){
+},{"./invariant":366,"_process":1}],227:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -25260,7 +25837,7 @@ module.exports = DOMPropertyOperations;
 
 }).call(this,require('_process'))
 
-},{"./DOMProperty":239,"./quoteAttributeValueForBrowser":392,"./warning":400,"_process":1}],241:[function(require,module,exports){
+},{"./DOMProperty":226,"./quoteAttributeValueForBrowser":379,"./warning":387,"_process":1}],228:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -25448,7 +26025,7 @@ module.exports = Danger;
 
 }).call(this,require('_process'))
 
-},{"./ExecutionEnvironment":250,"./createNodesFromMarkup":355,"./emptyFunction":358,"./getMarkupWrap":371,"./invariant":379,"_process":1}],242:[function(require,module,exports){
+},{"./ExecutionEnvironment":237,"./createNodesFromMarkup":342,"./emptyFunction":345,"./getMarkupWrap":358,"./invariant":366,"_process":1}],229:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -25487,7 +26064,7 @@ var DefaultEventPluginOrder = [
 
 module.exports = DefaultEventPluginOrder;
 
-},{"./keyOf":386}],243:[function(require,module,exports){
+},{"./keyOf":373}],230:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -25627,7 +26204,7 @@ var EnterLeaveEventPlugin = {
 
 module.exports = EnterLeaveEventPlugin;
 
-},{"./EventConstants":244,"./EventPropagators":249,"./ReactMount":305,"./SyntheticMouseEvent":341,"./keyOf":386}],244:[function(require,module,exports){
+},{"./EventConstants":231,"./EventPropagators":236,"./ReactMount":292,"./SyntheticMouseEvent":328,"./keyOf":373}],231:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -25699,7 +26276,7 @@ var EventConstants = {
 
 module.exports = EventConstants;
 
-},{"./keyMirror":385}],245:[function(require,module,exports){
+},{"./keyMirror":372}],232:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -25790,7 +26367,7 @@ module.exports = EventListener;
 
 }).call(this,require('_process'))
 
-},{"./emptyFunction":358,"_process":1}],246:[function(require,module,exports){
+},{"./emptyFunction":345,"_process":1}],233:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -26069,7 +26646,7 @@ module.exports = EventPluginHub;
 
 }).call(this,require('_process'))
 
-},{"./EventPluginRegistry":247,"./EventPluginUtils":248,"./accumulateInto":347,"./forEachAccumulated":364,"./invariant":379,"_process":1}],247:[function(require,module,exports){
+},{"./EventPluginRegistry":234,"./EventPluginUtils":235,"./accumulateInto":334,"./forEachAccumulated":351,"./invariant":366,"_process":1}],234:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -26350,7 +26927,7 @@ module.exports = EventPluginRegistry;
 
 }).call(this,require('_process'))
 
-},{"./invariant":379,"_process":1}],248:[function(require,module,exports){
+},{"./invariant":366,"_process":1}],235:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -26572,7 +27149,7 @@ module.exports = EventPluginUtils;
 
 }).call(this,require('_process'))
 
-},{"./EventConstants":244,"./invariant":379,"_process":1}],249:[function(require,module,exports){
+},{"./EventConstants":231,"./invariant":366,"_process":1}],236:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -26715,7 +27292,7 @@ module.exports = EventPropagators;
 
 }).call(this,require('_process'))
 
-},{"./EventConstants":244,"./EventPluginHub":246,"./accumulateInto":347,"./forEachAccumulated":364,"_process":1}],250:[function(require,module,exports){
+},{"./EventConstants":231,"./EventPluginHub":233,"./accumulateInto":334,"./forEachAccumulated":351,"_process":1}],237:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -26759,7 +27336,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],251:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -26850,7 +27427,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 
 module.exports = FallbackCompositionState;
 
-},{"./Object.assign":257,"./PooledClass":258,"./getTextContentAccessor":374}],252:[function(require,module,exports){
+},{"./Object.assign":244,"./PooledClass":245,"./getTextContentAccessor":361}],239:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -27061,7 +27638,7 @@ var HTMLDOMPropertyConfig = {
 
 module.exports = HTMLDOMPropertyConfig;
 
-},{"./DOMProperty":239,"./ExecutionEnvironment":250}],253:[function(require,module,exports){
+},{"./DOMProperty":226,"./ExecutionEnvironment":237}],240:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -27102,7 +27679,7 @@ var LinkedStateMixin = {
 
 module.exports = LinkedStateMixin;
 
-},{"./ReactLink":303,"./ReactStateSetters":322}],254:[function(require,module,exports){
+},{"./ReactLink":290,"./ReactStateSetters":309}],241:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -27259,7 +27836,7 @@ module.exports = LinkedValueUtils;
 
 }).call(this,require('_process'))
 
-},{"./ReactPropTypes":314,"./invariant":379,"_process":1}],255:[function(require,module,exports){
+},{"./ReactPropTypes":301,"./invariant":366,"_process":1}],242:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -27317,7 +27894,7 @@ module.exports = LocalEventTrapMixin;
 
 }).call(this,require('_process'))
 
-},{"./ReactBrowserEventEmitter":261,"./accumulateInto":347,"./forEachAccumulated":364,"./invariant":379,"_process":1}],256:[function(require,module,exports){
+},{"./ReactBrowserEventEmitter":248,"./accumulateInto":334,"./forEachAccumulated":351,"./invariant":366,"_process":1}],243:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -27375,7 +27952,7 @@ var MobileSafariClickEventPlugin = {
 
 module.exports = MobileSafariClickEventPlugin;
 
-},{"./EventConstants":244,"./emptyFunction":358}],257:[function(require,module,exports){
+},{"./EventConstants":231,"./emptyFunction":345}],244:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -27424,7 +28001,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],258:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -27541,7 +28118,7 @@ module.exports = PooledClass;
 
 }).call(this,require('_process'))
 
-},{"./invariant":379,"_process":1}],259:[function(require,module,exports){
+},{"./invariant":366,"_process":1}],246:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -27694,7 +28271,7 @@ module.exports = React;
 
 }).call(this,require('_process'))
 
-},{"./EventPluginUtils":248,"./ExecutionEnvironment":250,"./Object.assign":257,"./ReactChildren":265,"./ReactClass":266,"./ReactComponent":267,"./ReactContext":272,"./ReactCurrentOwner":273,"./ReactDOM":274,"./ReactDOMTextComponent":285,"./ReactDefaultInjection":288,"./ReactElement":291,"./ReactElementValidator":292,"./ReactInstanceHandles":300,"./ReactMount":305,"./ReactPerf":310,"./ReactPropTypes":314,"./ReactReconciler":317,"./ReactServerRendering":320,"./findDOMNode":361,"./onlyChild":389,"_process":1}],260:[function(require,module,exports){
+},{"./EventPluginUtils":235,"./ExecutionEnvironment":237,"./Object.assign":244,"./ReactChildren":252,"./ReactClass":253,"./ReactComponent":254,"./ReactContext":259,"./ReactCurrentOwner":260,"./ReactDOM":261,"./ReactDOMTextComponent":272,"./ReactDefaultInjection":275,"./ReactElement":278,"./ReactElementValidator":279,"./ReactInstanceHandles":287,"./ReactMount":292,"./ReactPerf":297,"./ReactPropTypes":301,"./ReactReconciler":304,"./ReactServerRendering":307,"./findDOMNode":348,"./onlyChild":376,"_process":1}],247:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -27725,7 +28302,7 @@ var ReactBrowserComponentMixin = {
 
 module.exports = ReactBrowserComponentMixin;
 
-},{"./findDOMNode":361}],261:[function(require,module,exports){
+},{"./findDOMNode":348}],248:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -28078,7 +28655,7 @@ var ReactBrowserEventEmitter = assign({}, ReactEventEmitterMixin, {
 
 module.exports = ReactBrowserEventEmitter;
 
-},{"./EventConstants":244,"./EventPluginHub":246,"./EventPluginRegistry":247,"./Object.assign":257,"./ReactEventEmitterMixin":295,"./ViewportMetrics":346,"./isEventSupported":380}],262:[function(require,module,exports){
+},{"./EventConstants":231,"./EventPluginHub":233,"./EventPluginRegistry":234,"./Object.assign":244,"./ReactEventEmitterMixin":282,"./ViewportMetrics":333,"./isEventSupported":367}],249:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -28148,7 +28725,7 @@ var ReactCSSTransitionGroup = React.createClass({
 
 module.exports = ReactCSSTransitionGroup;
 
-},{"./Object.assign":257,"./React":259,"./ReactCSSTransitionGroupChild":263,"./ReactTransitionGroup":326}],263:[function(require,module,exports){
+},{"./Object.assign":244,"./React":246,"./ReactCSSTransitionGroupChild":250,"./ReactTransitionGroup":313}],250:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -28297,7 +28874,7 @@ module.exports = ReactCSSTransitionGroupChild;
 
 }).call(this,require('_process'))
 
-},{"./CSSCore":232,"./React":259,"./ReactTransitionEvents":325,"./onlyChild":389,"./warning":400,"_process":1}],264:[function(require,module,exports){
+},{"./CSSCore":219,"./React":246,"./ReactTransitionEvents":312,"./onlyChild":376,"./warning":387,"_process":1}],251:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -28424,7 +29001,7 @@ var ReactChildReconciler = {
 
 module.exports = ReactChildReconciler;
 
-},{"./ReactReconciler":317,"./flattenChildren":362,"./instantiateReactComponent":378,"./shouldUpdateReactComponent":396}],265:[function(require,module,exports){
+},{"./ReactReconciler":304,"./flattenChildren":349,"./instantiateReactComponent":365,"./shouldUpdateReactComponent":383}],252:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -28578,7 +29155,7 @@ module.exports = ReactChildren;
 
 }).call(this,require('_process'))
 
-},{"./PooledClass":258,"./ReactFragment":297,"./traverseAllChildren":398,"./warning":400,"_process":1}],266:[function(require,module,exports){
+},{"./PooledClass":245,"./ReactFragment":284,"./traverseAllChildren":385,"./warning":387,"_process":1}],253:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -29525,7 +30102,7 @@ module.exports = ReactClass;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":257,"./ReactComponent":267,"./ReactCurrentOwner":273,"./ReactElement":291,"./ReactErrorUtils":294,"./ReactInstanceMap":301,"./ReactLifeCycle":302,"./ReactPropTypeLocationNames":312,"./ReactPropTypeLocations":313,"./ReactUpdateQueue":327,"./invariant":379,"./keyMirror":385,"./keyOf":386,"./warning":400,"_process":1}],267:[function(require,module,exports){
+},{"./Object.assign":244,"./ReactComponent":254,"./ReactCurrentOwner":260,"./ReactElement":278,"./ReactErrorUtils":281,"./ReactInstanceMap":288,"./ReactLifeCycle":289,"./ReactPropTypeLocationNames":299,"./ReactPropTypeLocations":300,"./ReactUpdateQueue":314,"./invariant":366,"./keyMirror":372,"./keyOf":373,"./warning":387,"_process":1}],254:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -29680,7 +30257,7 @@ module.exports = ReactComponent;
 
 }).call(this,require('_process'))
 
-},{"./ReactUpdateQueue":327,"./invariant":379,"./warning":400,"_process":1}],268:[function(require,module,exports){
+},{"./ReactUpdateQueue":314,"./invariant":366,"./warning":387,"_process":1}],255:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -29727,7 +30304,7 @@ var ReactComponentBrowserEnvironment = {
 
 module.exports = ReactComponentBrowserEnvironment;
 
-},{"./ReactDOMIDOperations":278,"./ReactMount":305}],269:[function(require,module,exports){
+},{"./ReactDOMIDOperations":265,"./ReactMount":292}],256:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -29789,7 +30366,7 @@ module.exports = ReactComponentEnvironment;
 
 }).call(this,require('_process'))
 
-},{"./invariant":379,"_process":1}],270:[function(require,module,exports){
+},{"./invariant":366,"_process":1}],257:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -29838,7 +30415,7 @@ var ReactComponentWithPureRenderMixin = {
 
 module.exports = ReactComponentWithPureRenderMixin;
 
-},{"./shallowEqual":395}],271:[function(require,module,exports){
+},{"./shallowEqual":382}],258:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -30752,7 +31329,7 @@ module.exports = ReactCompositeComponent;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":257,"./ReactComponentEnvironment":269,"./ReactContext":272,"./ReactCurrentOwner":273,"./ReactElement":291,"./ReactElementValidator":292,"./ReactInstanceMap":301,"./ReactLifeCycle":302,"./ReactNativeComponent":308,"./ReactPerf":310,"./ReactPropTypeLocationNames":312,"./ReactPropTypeLocations":313,"./ReactReconciler":317,"./ReactUpdates":328,"./emptyObject":359,"./invariant":379,"./shouldUpdateReactComponent":396,"./warning":400,"_process":1}],272:[function(require,module,exports){
+},{"./Object.assign":244,"./ReactComponentEnvironment":256,"./ReactContext":259,"./ReactCurrentOwner":260,"./ReactElement":278,"./ReactElementValidator":279,"./ReactInstanceMap":288,"./ReactLifeCycle":289,"./ReactNativeComponent":295,"./ReactPerf":297,"./ReactPropTypeLocationNames":299,"./ReactPropTypeLocations":300,"./ReactReconciler":304,"./ReactUpdates":315,"./emptyObject":346,"./invariant":366,"./shouldUpdateReactComponent":383,"./warning":387,"_process":1}],259:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -30831,7 +31408,7 @@ module.exports = ReactContext;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":257,"./emptyObject":359,"./warning":400,"_process":1}],273:[function(require,module,exports){
+},{"./Object.assign":244,"./emptyObject":346,"./warning":387,"_process":1}],260:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -30865,7 +31442,7 @@ var ReactCurrentOwner = {
 
 module.exports = ReactCurrentOwner;
 
-},{}],274:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -31045,7 +31622,7 @@ module.exports = ReactDOM;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":291,"./ReactElementValidator":292,"./mapObject":387,"_process":1}],275:[function(require,module,exports){
+},{"./ReactElement":278,"./ReactElementValidator":279,"./mapObject":374,"_process":1}],262:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -31109,7 +31686,7 @@ var ReactDOMButton = ReactClass.createClass({
 
 module.exports = ReactDOMButton;
 
-},{"./AutoFocusMixin":230,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291,"./keyMirror":385}],276:[function(require,module,exports){
+},{"./AutoFocusMixin":217,"./ReactBrowserComponentMixin":247,"./ReactClass":253,"./ReactElement":278,"./keyMirror":372}],263:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -31620,7 +32197,7 @@ module.exports = ReactDOMComponent;
 
 }).call(this,require('_process'))
 
-},{"./CSSPropertyOperations":234,"./DOMProperty":239,"./DOMPropertyOperations":240,"./Object.assign":257,"./ReactBrowserEventEmitter":261,"./ReactComponentBrowserEnvironment":268,"./ReactMount":305,"./ReactMultiChild":306,"./ReactPerf":310,"./escapeTextContentForBrowser":360,"./invariant":379,"./isEventSupported":380,"./keyOf":386,"./warning":400,"_process":1}],277:[function(require,module,exports){
+},{"./CSSPropertyOperations":221,"./DOMProperty":226,"./DOMPropertyOperations":227,"./Object.assign":244,"./ReactBrowserEventEmitter":248,"./ReactComponentBrowserEnvironment":255,"./ReactMount":292,"./ReactMultiChild":293,"./ReactPerf":297,"./escapeTextContentForBrowser":347,"./invariant":366,"./isEventSupported":367,"./keyOf":373,"./warning":387,"_process":1}],264:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -31669,7 +32246,7 @@ var ReactDOMForm = ReactClass.createClass({
 
 module.exports = ReactDOMForm;
 
-},{"./EventConstants":244,"./LocalEventTrapMixin":255,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291}],278:[function(require,module,exports){
+},{"./EventConstants":231,"./LocalEventTrapMixin":242,"./ReactBrowserComponentMixin":247,"./ReactClass":253,"./ReactElement":278}],265:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -31838,7 +32415,7 @@ module.exports = ReactDOMIDOperations;
 
 }).call(this,require('_process'))
 
-},{"./CSSPropertyOperations":234,"./DOMChildrenOperations":238,"./DOMPropertyOperations":240,"./ReactMount":305,"./ReactPerf":310,"./invariant":379,"./setInnerHTML":393,"_process":1}],279:[function(require,module,exports){
+},{"./CSSPropertyOperations":221,"./DOMChildrenOperations":225,"./DOMPropertyOperations":227,"./ReactMount":292,"./ReactPerf":297,"./invariant":366,"./setInnerHTML":380,"_process":1}],266:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -31883,7 +32460,7 @@ var ReactDOMIframe = ReactClass.createClass({
 
 module.exports = ReactDOMIframe;
 
-},{"./EventConstants":244,"./LocalEventTrapMixin":255,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291}],280:[function(require,module,exports){
+},{"./EventConstants":231,"./LocalEventTrapMixin":242,"./ReactBrowserComponentMixin":247,"./ReactClass":253,"./ReactElement":278}],267:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -31929,7 +32506,7 @@ var ReactDOMImg = ReactClass.createClass({
 
 module.exports = ReactDOMImg;
 
-},{"./EventConstants":244,"./LocalEventTrapMixin":255,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291}],281:[function(require,module,exports){
+},{"./EventConstants":231,"./LocalEventTrapMixin":242,"./ReactBrowserComponentMixin":247,"./ReactClass":253,"./ReactElement":278}],268:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -32107,7 +32684,7 @@ module.exports = ReactDOMInput;
 
 }).call(this,require('_process'))
 
-},{"./AutoFocusMixin":230,"./DOMPropertyOperations":240,"./LinkedValueUtils":254,"./Object.assign":257,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291,"./ReactMount":305,"./ReactUpdates":328,"./invariant":379,"_process":1}],282:[function(require,module,exports){
+},{"./AutoFocusMixin":217,"./DOMPropertyOperations":227,"./LinkedValueUtils":241,"./Object.assign":244,"./ReactBrowserComponentMixin":247,"./ReactClass":253,"./ReactElement":278,"./ReactMount":292,"./ReactUpdates":315,"./invariant":366,"_process":1}],269:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -32160,7 +32737,7 @@ module.exports = ReactDOMOption;
 
 }).call(this,require('_process'))
 
-},{"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291,"./warning":400,"_process":1}],283:[function(require,module,exports){
+},{"./ReactBrowserComponentMixin":247,"./ReactClass":253,"./ReactElement":278,"./warning":387,"_process":1}],270:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32338,7 +32915,7 @@ var ReactDOMSelect = ReactClass.createClass({
 
 module.exports = ReactDOMSelect;
 
-},{"./AutoFocusMixin":230,"./LinkedValueUtils":254,"./Object.assign":257,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291,"./ReactUpdates":328}],284:[function(require,module,exports){
+},{"./AutoFocusMixin":217,"./LinkedValueUtils":241,"./Object.assign":244,"./ReactBrowserComponentMixin":247,"./ReactClass":253,"./ReactElement":278,"./ReactUpdates":315}],271:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32551,7 +33128,7 @@ var ReactDOMSelection = {
 
 module.exports = ReactDOMSelection;
 
-},{"./ExecutionEnvironment":250,"./getNodeForCharacterOffset":372,"./getTextContentAccessor":374}],285:[function(require,module,exports){
+},{"./ExecutionEnvironment":237,"./getNodeForCharacterOffset":359,"./getTextContentAccessor":361}],272:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32668,7 +33245,7 @@ assign(ReactDOMTextComponent.prototype, {
 
 module.exports = ReactDOMTextComponent;
 
-},{"./DOMPropertyOperations":240,"./Object.assign":257,"./ReactComponentBrowserEnvironment":268,"./ReactDOMComponent":276,"./escapeTextContentForBrowser":360}],286:[function(require,module,exports){
+},{"./DOMPropertyOperations":227,"./Object.assign":244,"./ReactComponentBrowserEnvironment":255,"./ReactDOMComponent":263,"./escapeTextContentForBrowser":347}],273:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -32809,7 +33386,7 @@ module.exports = ReactDOMTextarea;
 
 }).call(this,require('_process'))
 
-},{"./AutoFocusMixin":230,"./DOMPropertyOperations":240,"./LinkedValueUtils":254,"./Object.assign":257,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactElement":291,"./ReactUpdates":328,"./invariant":379,"./warning":400,"_process":1}],287:[function(require,module,exports){
+},{"./AutoFocusMixin":217,"./DOMPropertyOperations":227,"./LinkedValueUtils":241,"./Object.assign":244,"./ReactBrowserComponentMixin":247,"./ReactClass":253,"./ReactElement":278,"./ReactUpdates":315,"./invariant":366,"./warning":387,"_process":1}],274:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32882,7 +33459,7 @@ var ReactDefaultBatchingStrategy = {
 
 module.exports = ReactDefaultBatchingStrategy;
 
-},{"./Object.assign":257,"./ReactUpdates":328,"./Transaction":345,"./emptyFunction":358}],288:[function(require,module,exports){
+},{"./Object.assign":244,"./ReactUpdates":315,"./Transaction":332,"./emptyFunction":345}],275:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -33042,7 +33619,7 @@ module.exports = {
 
 }).call(this,require('_process'))
 
-},{"./BeforeInputEventPlugin":231,"./ChangeEventPlugin":236,"./ClientReactRootIndex":237,"./DefaultEventPluginOrder":242,"./EnterLeaveEventPlugin":243,"./ExecutionEnvironment":250,"./HTMLDOMPropertyConfig":252,"./MobileSafariClickEventPlugin":256,"./ReactBrowserComponentMixin":260,"./ReactClass":266,"./ReactComponentBrowserEnvironment":268,"./ReactDOMButton":275,"./ReactDOMComponent":276,"./ReactDOMForm":277,"./ReactDOMIDOperations":278,"./ReactDOMIframe":279,"./ReactDOMImg":280,"./ReactDOMInput":281,"./ReactDOMOption":282,"./ReactDOMSelect":283,"./ReactDOMTextComponent":285,"./ReactDOMTextarea":286,"./ReactDefaultBatchingStrategy":287,"./ReactDefaultPerf":289,"./ReactElement":291,"./ReactEventListener":296,"./ReactInjection":298,"./ReactInstanceHandles":300,"./ReactMount":305,"./ReactReconcileTransaction":316,"./SVGDOMPropertyConfig":330,"./SelectEventPlugin":331,"./ServerReactRootIndex":332,"./SimpleEventPlugin":333,"./createFullPageComponent":354,"_process":1}],289:[function(require,module,exports){
+},{"./BeforeInputEventPlugin":218,"./ChangeEventPlugin":223,"./ClientReactRootIndex":224,"./DefaultEventPluginOrder":229,"./EnterLeaveEventPlugin":230,"./ExecutionEnvironment":237,"./HTMLDOMPropertyConfig":239,"./MobileSafariClickEventPlugin":243,"./ReactBrowserComponentMixin":247,"./ReactClass":253,"./ReactComponentBrowserEnvironment":255,"./ReactDOMButton":262,"./ReactDOMComponent":263,"./ReactDOMForm":264,"./ReactDOMIDOperations":265,"./ReactDOMIframe":266,"./ReactDOMImg":267,"./ReactDOMInput":268,"./ReactDOMOption":269,"./ReactDOMSelect":270,"./ReactDOMTextComponent":272,"./ReactDOMTextarea":273,"./ReactDefaultBatchingStrategy":274,"./ReactDefaultPerf":276,"./ReactElement":278,"./ReactEventListener":283,"./ReactInjection":285,"./ReactInstanceHandles":287,"./ReactMount":292,"./ReactReconcileTransaction":303,"./SVGDOMPropertyConfig":317,"./SelectEventPlugin":318,"./ServerReactRootIndex":319,"./SimpleEventPlugin":320,"./createFullPageComponent":341,"_process":1}],276:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -33308,7 +33885,7 @@ var ReactDefaultPerf = {
 
 module.exports = ReactDefaultPerf;
 
-},{"./DOMProperty":239,"./ReactDefaultPerfAnalysis":290,"./ReactMount":305,"./ReactPerf":310,"./performanceNow":391}],290:[function(require,module,exports){
+},{"./DOMProperty":226,"./ReactDefaultPerfAnalysis":277,"./ReactMount":292,"./ReactPerf":297,"./performanceNow":378}],277:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -33514,7 +34091,7 @@ var ReactDefaultPerfAnalysis = {
 
 module.exports = ReactDefaultPerfAnalysis;
 
-},{"./Object.assign":257}],291:[function(require,module,exports){
+},{"./Object.assign":244}],278:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -33823,7 +34400,7 @@ module.exports = ReactElement;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":257,"./ReactContext":272,"./ReactCurrentOwner":273,"./warning":400,"_process":1}],292:[function(require,module,exports){
+},{"./Object.assign":244,"./ReactContext":259,"./ReactCurrentOwner":260,"./warning":387,"_process":1}],279:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -34289,7 +34866,7 @@ module.exports = ReactElementValidator;
 
 }).call(this,require('_process'))
 
-},{"./ReactCurrentOwner":273,"./ReactElement":291,"./ReactFragment":297,"./ReactNativeComponent":308,"./ReactPropTypeLocationNames":312,"./ReactPropTypeLocations":313,"./getIteratorFn":370,"./invariant":379,"./warning":400,"_process":1}],293:[function(require,module,exports){
+},{"./ReactCurrentOwner":260,"./ReactElement":278,"./ReactFragment":284,"./ReactNativeComponent":295,"./ReactPropTypeLocationNames":299,"./ReactPropTypeLocations":300,"./getIteratorFn":357,"./invariant":366,"./warning":387,"_process":1}],280:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -34385,7 +34962,7 @@ module.exports = ReactEmptyComponent;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":291,"./ReactInstanceMap":301,"./invariant":379,"_process":1}],294:[function(require,module,exports){
+},{"./ReactElement":278,"./ReactInstanceMap":288,"./invariant":366,"_process":1}],281:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34417,7 +34994,7 @@ var ReactErrorUtils = {
 
 module.exports = ReactErrorUtils;
 
-},{}],295:[function(require,module,exports){
+},{}],282:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34467,7 +35044,7 @@ var ReactEventEmitterMixin = {
 
 module.exports = ReactEventEmitterMixin;
 
-},{"./EventPluginHub":246}],296:[function(require,module,exports){
+},{"./EventPluginHub":233}],283:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34650,7 +35227,7 @@ var ReactEventListener = {
 
 module.exports = ReactEventListener;
 
-},{"./EventListener":245,"./ExecutionEnvironment":250,"./Object.assign":257,"./PooledClass":258,"./ReactInstanceHandles":300,"./ReactMount":305,"./ReactUpdates":328,"./getEventTarget":369,"./getUnboundedScrollPosition":375}],297:[function(require,module,exports){
+},{"./EventListener":232,"./ExecutionEnvironment":237,"./Object.assign":244,"./PooledClass":245,"./ReactInstanceHandles":287,"./ReactMount":292,"./ReactUpdates":315,"./getEventTarget":356,"./getUnboundedScrollPosition":362}],284:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015, Facebook, Inc.
@@ -34836,7 +35413,7 @@ module.exports = ReactFragment;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":291,"./warning":400,"_process":1}],298:[function(require,module,exports){
+},{"./ReactElement":278,"./warning":387,"_process":1}],285:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34878,7 +35455,7 @@ var ReactInjection = {
 
 module.exports = ReactInjection;
 
-},{"./DOMProperty":239,"./EventPluginHub":246,"./ReactBrowserEventEmitter":261,"./ReactClass":266,"./ReactComponentEnvironment":269,"./ReactDOMComponent":276,"./ReactEmptyComponent":293,"./ReactNativeComponent":308,"./ReactPerf":310,"./ReactRootIndex":319,"./ReactUpdates":328}],299:[function(require,module,exports){
+},{"./DOMProperty":226,"./EventPluginHub":233,"./ReactBrowserEventEmitter":248,"./ReactClass":253,"./ReactComponentEnvironment":256,"./ReactDOMComponent":263,"./ReactEmptyComponent":280,"./ReactNativeComponent":295,"./ReactPerf":297,"./ReactRootIndex":306,"./ReactUpdates":315}],286:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -35013,7 +35590,7 @@ var ReactInputSelection = {
 
 module.exports = ReactInputSelection;
 
-},{"./ReactDOMSelection":284,"./containsNode":352,"./focusNode":363,"./getActiveElement":365}],300:[function(require,module,exports){
+},{"./ReactDOMSelection":271,"./containsNode":339,"./focusNode":350,"./getActiveElement":352}],287:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -35350,7 +35927,7 @@ module.exports = ReactInstanceHandles;
 
 }).call(this,require('_process'))
 
-},{"./ReactRootIndex":319,"./invariant":379,"_process":1}],301:[function(require,module,exports){
+},{"./ReactRootIndex":306,"./invariant":366,"_process":1}],288:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -35399,7 +35976,7 @@ var ReactInstanceMap = {
 
 module.exports = ReactInstanceMap;
 
-},{}],302:[function(require,module,exports){
+},{}],289:[function(require,module,exports){
 /**
  * Copyright 2015, Facebook, Inc.
  * All rights reserved.
@@ -35436,7 +36013,7 @@ var ReactLifeCycle = {
 
 module.exports = ReactLifeCycle;
 
-},{}],303:[function(require,module,exports){
+},{}],290:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -35509,7 +36086,7 @@ ReactLink.PropTypes = {
 
 module.exports = ReactLink;
 
-},{"./React":259}],304:[function(require,module,exports){
+},{"./React":246}],291:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -35557,7 +36134,7 @@ var ReactMarkupChecksum = {
 
 module.exports = ReactMarkupChecksum;
 
-},{"./adler32":348}],305:[function(require,module,exports){
+},{"./adler32":335}],292:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -36449,7 +37026,7 @@ module.exports = ReactMount;
 
 }).call(this,require('_process'))
 
-},{"./DOMProperty":239,"./ReactBrowserEventEmitter":261,"./ReactCurrentOwner":273,"./ReactElement":291,"./ReactElementValidator":292,"./ReactEmptyComponent":293,"./ReactInstanceHandles":300,"./ReactInstanceMap":301,"./ReactMarkupChecksum":304,"./ReactPerf":310,"./ReactReconciler":317,"./ReactUpdateQueue":327,"./ReactUpdates":328,"./containsNode":352,"./emptyObject":359,"./getReactRootElementInContainer":373,"./instantiateReactComponent":378,"./invariant":379,"./setInnerHTML":393,"./shouldUpdateReactComponent":396,"./warning":400,"_process":1}],306:[function(require,module,exports){
+},{"./DOMProperty":226,"./ReactBrowserEventEmitter":248,"./ReactCurrentOwner":260,"./ReactElement":278,"./ReactElementValidator":279,"./ReactEmptyComponent":280,"./ReactInstanceHandles":287,"./ReactInstanceMap":288,"./ReactMarkupChecksum":291,"./ReactPerf":297,"./ReactReconciler":304,"./ReactUpdateQueue":314,"./ReactUpdates":315,"./containsNode":339,"./emptyObject":346,"./getReactRootElementInContainer":360,"./instantiateReactComponent":365,"./invariant":366,"./setInnerHTML":380,"./shouldUpdateReactComponent":383,"./warning":387,"_process":1}],293:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -36879,7 +37456,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 
-},{"./ReactChildReconciler":264,"./ReactComponentEnvironment":269,"./ReactMultiChildUpdateTypes":307,"./ReactReconciler":317}],307:[function(require,module,exports){
+},{"./ReactChildReconciler":251,"./ReactComponentEnvironment":256,"./ReactMultiChildUpdateTypes":294,"./ReactReconciler":304}],294:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -36912,7 +37489,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 
 module.exports = ReactMultiChildUpdateTypes;
 
-},{"./keyMirror":385}],308:[function(require,module,exports){
+},{"./keyMirror":372}],295:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -37020,7 +37597,7 @@ module.exports = ReactNativeComponent;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":257,"./invariant":379,"_process":1}],309:[function(require,module,exports){
+},{"./Object.assign":244,"./invariant":366,"_process":1}],296:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -37133,7 +37710,7 @@ module.exports = ReactOwner;
 
 }).call(this,require('_process'))
 
-},{"./invariant":379,"_process":1}],310:[function(require,module,exports){
+},{"./invariant":366,"_process":1}],297:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -37238,7 +37815,7 @@ module.exports = ReactPerf;
 
 }).call(this,require('_process'))
 
-},{"_process":1}],311:[function(require,module,exports){
+},{"_process":1}],298:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37348,7 +37925,7 @@ var ReactPropTransferer = {
 
 module.exports = ReactPropTransferer;
 
-},{"./Object.assign":257,"./emptyFunction":358,"./joinClasses":384}],312:[function(require,module,exports){
+},{"./Object.assign":244,"./emptyFunction":345,"./joinClasses":371}],299:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -37377,7 +37954,7 @@ module.exports = ReactPropTypeLocationNames;
 
 }).call(this,require('_process'))
 
-},{"_process":1}],313:[function(require,module,exports){
+},{"_process":1}],300:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37401,7 +37978,7 @@ var ReactPropTypeLocations = keyMirror({
 
 module.exports = ReactPropTypeLocations;
 
-},{"./keyMirror":385}],314:[function(require,module,exports){
+},{"./keyMirror":372}],301:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37750,7 +38327,7 @@ function getPreciseType(propValue) {
 
 module.exports = ReactPropTypes;
 
-},{"./ReactElement":291,"./ReactFragment":297,"./ReactPropTypeLocationNames":312,"./emptyFunction":358}],315:[function(require,module,exports){
+},{"./ReactElement":278,"./ReactFragment":284,"./ReactPropTypeLocationNames":299,"./emptyFunction":345}],302:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37806,7 +38383,7 @@ PooledClass.addPoolingTo(ReactPutListenerQueue);
 
 module.exports = ReactPutListenerQueue;
 
-},{"./Object.assign":257,"./PooledClass":258,"./ReactBrowserEventEmitter":261}],316:[function(require,module,exports){
+},{"./Object.assign":244,"./PooledClass":245,"./ReactBrowserEventEmitter":248}],303:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37982,7 +38559,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 
-},{"./CallbackQueue":235,"./Object.assign":257,"./PooledClass":258,"./ReactBrowserEventEmitter":261,"./ReactInputSelection":299,"./ReactPutListenerQueue":315,"./Transaction":345}],317:[function(require,module,exports){
+},{"./CallbackQueue":222,"./Object.assign":244,"./PooledClass":245,"./ReactBrowserEventEmitter":248,"./ReactInputSelection":286,"./ReactPutListenerQueue":302,"./Transaction":332}],304:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -38107,7 +38684,7 @@ module.exports = ReactReconciler;
 
 }).call(this,require('_process'))
 
-},{"./ReactElementValidator":292,"./ReactRef":318,"_process":1}],318:[function(require,module,exports){
+},{"./ReactElementValidator":279,"./ReactRef":305,"_process":1}],305:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -38178,7 +38755,7 @@ ReactRef.detachRefs = function(instance, element) {
 
 module.exports = ReactRef;
 
-},{"./ReactOwner":309}],319:[function(require,module,exports){
+},{"./ReactOwner":296}],306:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -38209,7 +38786,7 @@ var ReactRootIndex = {
 
 module.exports = ReactRootIndex;
 
-},{}],320:[function(require,module,exports){
+},{}],307:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -38292,7 +38869,7 @@ module.exports = {
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":291,"./ReactInstanceHandles":300,"./ReactMarkupChecksum":304,"./ReactServerRenderingTransaction":321,"./emptyObject":359,"./instantiateReactComponent":378,"./invariant":379,"_process":1}],321:[function(require,module,exports){
+},{"./ReactElement":278,"./ReactInstanceHandles":287,"./ReactMarkupChecksum":291,"./ReactServerRenderingTransaction":308,"./emptyObject":346,"./instantiateReactComponent":365,"./invariant":366,"_process":1}],308:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -38405,7 +38982,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
 
-},{"./CallbackQueue":235,"./Object.assign":257,"./PooledClass":258,"./ReactPutListenerQueue":315,"./Transaction":345,"./emptyFunction":358}],322:[function(require,module,exports){
+},{"./CallbackQueue":222,"./Object.assign":244,"./PooledClass":245,"./ReactPutListenerQueue":302,"./Transaction":332,"./emptyFunction":345}],309:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -38511,7 +39088,7 @@ ReactStateSetters.Mixin = {
 
 module.exports = ReactStateSetters;
 
-},{}],323:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39025,7 +39602,7 @@ for (eventType in topLevelTypes) {
 
 module.exports = ReactTestUtils;
 
-},{"./EventConstants":244,"./EventPluginHub":246,"./EventPropagators":249,"./Object.assign":257,"./React":259,"./ReactBrowserEventEmitter":261,"./ReactCompositeComponent":271,"./ReactElement":291,"./ReactEmptyComponent":293,"./ReactInstanceHandles":300,"./ReactInstanceMap":301,"./ReactMount":305,"./ReactUpdates":328,"./SyntheticEvent":337,"./emptyObject":359}],324:[function(require,module,exports){
+},{"./EventConstants":231,"./EventPluginHub":233,"./EventPropagators":236,"./Object.assign":244,"./React":246,"./ReactBrowserEventEmitter":248,"./ReactCompositeComponent":258,"./ReactElement":278,"./ReactEmptyComponent":280,"./ReactInstanceHandles":287,"./ReactInstanceMap":288,"./ReactMount":292,"./ReactUpdates":315,"./SyntheticEvent":324,"./emptyObject":346}],311:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39130,7 +39707,7 @@ var ReactTransitionChildMapping = {
 
 module.exports = ReactTransitionChildMapping;
 
-},{"./ReactChildren":265,"./ReactFragment":297}],325:[function(require,module,exports){
+},{"./ReactChildren":252,"./ReactFragment":284}],312:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39241,7 +39818,7 @@ var ReactTransitionEvents = {
 
 module.exports = ReactTransitionEvents;
 
-},{"./ExecutionEnvironment":250}],326:[function(require,module,exports){
+},{"./ExecutionEnvironment":237}],313:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39471,7 +40048,7 @@ var ReactTransitionGroup = React.createClass({
 
 module.exports = ReactTransitionGroup;
 
-},{"./Object.assign":257,"./React":259,"./ReactTransitionChildMapping":324,"./cloneWithProps":351,"./emptyFunction":358}],327:[function(require,module,exports){
+},{"./Object.assign":244,"./React":246,"./ReactTransitionChildMapping":311,"./cloneWithProps":338,"./emptyFunction":345}],314:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015, Facebook, Inc.
@@ -39771,7 +40348,7 @@ module.exports = ReactUpdateQueue;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":257,"./ReactCurrentOwner":273,"./ReactElement":291,"./ReactInstanceMap":301,"./ReactLifeCycle":302,"./ReactUpdates":328,"./invariant":379,"./warning":400,"_process":1}],328:[function(require,module,exports){
+},{"./Object.assign":244,"./ReactCurrentOwner":260,"./ReactElement":278,"./ReactInstanceMap":288,"./ReactLifeCycle":289,"./ReactUpdates":315,"./invariant":366,"./warning":387,"_process":1}],315:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -40054,7 +40631,7 @@ module.exports = ReactUpdates;
 
 }).call(this,require('_process'))
 
-},{"./CallbackQueue":235,"./Object.assign":257,"./PooledClass":258,"./ReactCurrentOwner":273,"./ReactPerf":310,"./ReactReconciler":317,"./Transaction":345,"./invariant":379,"./warning":400,"_process":1}],329:[function(require,module,exports){
+},{"./CallbackQueue":222,"./Object.assign":244,"./PooledClass":245,"./ReactCurrentOwner":260,"./ReactPerf":297,"./ReactReconciler":304,"./Transaction":332,"./invariant":366,"./warning":387,"_process":1}],316:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -40111,7 +40688,7 @@ module.exports = React;
 
 }).call(this,require('_process'))
 
-},{"./LinkedStateMixin":253,"./React":259,"./ReactCSSTransitionGroup":262,"./ReactComponentWithPureRenderMixin":270,"./ReactDefaultPerf":289,"./ReactFragment":297,"./ReactTestUtils":323,"./ReactTransitionGroup":326,"./ReactUpdates":328,"./cloneWithProps":351,"./cx":356,"./update":399,"_process":1}],330:[function(require,module,exports){
+},{"./LinkedStateMixin":240,"./React":246,"./ReactCSSTransitionGroup":249,"./ReactComponentWithPureRenderMixin":257,"./ReactDefaultPerf":276,"./ReactFragment":284,"./ReactTestUtils":310,"./ReactTransitionGroup":313,"./ReactUpdates":315,"./cloneWithProps":338,"./cx":343,"./update":386,"_process":1}],317:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40205,7 +40782,7 @@ var SVGDOMPropertyConfig = {
 
 module.exports = SVGDOMPropertyConfig;
 
-},{"./DOMProperty":239}],331:[function(require,module,exports){
+},{"./DOMProperty":226}],318:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40400,7 +40977,7 @@ var SelectEventPlugin = {
 
 module.exports = SelectEventPlugin;
 
-},{"./EventConstants":244,"./EventPropagators":249,"./ReactInputSelection":299,"./SyntheticEvent":337,"./getActiveElement":365,"./isTextInputElement":382,"./keyOf":386,"./shallowEqual":395}],332:[function(require,module,exports){
+},{"./EventConstants":231,"./EventPropagators":236,"./ReactInputSelection":286,"./SyntheticEvent":324,"./getActiveElement":352,"./isTextInputElement":369,"./keyOf":373,"./shallowEqual":382}],319:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40431,7 +41008,7 @@ var ServerReactRootIndex = {
 
 module.exports = ServerReactRootIndex;
 
-},{}],333:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -40860,7 +41437,7 @@ module.exports = SimpleEventPlugin;
 
 }).call(this,require('_process'))
 
-},{"./EventConstants":244,"./EventPluginUtils":248,"./EventPropagators":249,"./SyntheticClipboardEvent":334,"./SyntheticDragEvent":336,"./SyntheticEvent":337,"./SyntheticFocusEvent":338,"./SyntheticKeyboardEvent":340,"./SyntheticMouseEvent":341,"./SyntheticTouchEvent":342,"./SyntheticUIEvent":343,"./SyntheticWheelEvent":344,"./getEventCharCode":366,"./invariant":379,"./keyOf":386,"./warning":400,"_process":1}],334:[function(require,module,exports){
+},{"./EventConstants":231,"./EventPluginUtils":235,"./EventPropagators":236,"./SyntheticClipboardEvent":321,"./SyntheticDragEvent":323,"./SyntheticEvent":324,"./SyntheticFocusEvent":325,"./SyntheticKeyboardEvent":327,"./SyntheticMouseEvent":328,"./SyntheticTouchEvent":329,"./SyntheticUIEvent":330,"./SyntheticWheelEvent":331,"./getEventCharCode":353,"./invariant":366,"./keyOf":373,"./warning":387,"_process":1}],321:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40905,7 +41482,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 
 module.exports = SyntheticClipboardEvent;
 
-},{"./SyntheticEvent":337}],335:[function(require,module,exports){
+},{"./SyntheticEvent":324}],322:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40950,7 +41527,7 @@ SyntheticEvent.augmentClass(
 
 module.exports = SyntheticCompositionEvent;
 
-},{"./SyntheticEvent":337}],336:[function(require,module,exports){
+},{"./SyntheticEvent":324}],323:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40989,7 +41566,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
 
-},{"./SyntheticMouseEvent":341}],337:[function(require,module,exports){
+},{"./SyntheticMouseEvent":328}],324:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41155,7 +41732,7 @@ PooledClass.addPoolingTo(SyntheticEvent, PooledClass.threeArgumentPooler);
 
 module.exports = SyntheticEvent;
 
-},{"./Object.assign":257,"./PooledClass":258,"./emptyFunction":358,"./getEventTarget":369}],338:[function(require,module,exports){
+},{"./Object.assign":244,"./PooledClass":245,"./emptyFunction":345,"./getEventTarget":356}],325:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41194,7 +41771,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
 
-},{"./SyntheticUIEvent":343}],339:[function(require,module,exports){
+},{"./SyntheticUIEvent":330}],326:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41240,7 +41817,7 @@ SyntheticEvent.augmentClass(
 
 module.exports = SyntheticInputEvent;
 
-},{"./SyntheticEvent":337}],340:[function(require,module,exports){
+},{"./SyntheticEvent":324}],327:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41327,7 +41904,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
 
-},{"./SyntheticUIEvent":343,"./getEventCharCode":366,"./getEventKey":367,"./getEventModifierState":368}],341:[function(require,module,exports){
+},{"./SyntheticUIEvent":330,"./getEventCharCode":353,"./getEventKey":354,"./getEventModifierState":355}],328:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41408,7 +41985,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
 
-},{"./SyntheticUIEvent":343,"./ViewportMetrics":346,"./getEventModifierState":368}],342:[function(require,module,exports){
+},{"./SyntheticUIEvent":330,"./ViewportMetrics":333,"./getEventModifierState":355}],329:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41456,7 +42033,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
 
-},{"./SyntheticUIEvent":343,"./getEventModifierState":368}],343:[function(require,module,exports){
+},{"./SyntheticUIEvent":330,"./getEventModifierState":355}],330:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41518,7 +42095,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
 
-},{"./SyntheticEvent":337,"./getEventTarget":369}],344:[function(require,module,exports){
+},{"./SyntheticEvent":324,"./getEventTarget":356}],331:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41579,7 +42156,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
 
-},{"./SyntheticMouseEvent":341}],345:[function(require,module,exports){
+},{"./SyntheticMouseEvent":328}],332:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -41821,7 +42398,7 @@ module.exports = Transaction;
 
 }).call(this,require('_process'))
 
-},{"./invariant":379,"_process":1}],346:[function(require,module,exports){
+},{"./invariant":366,"_process":1}],333:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41850,7 +42427,7 @@ var ViewportMetrics = {
 
 module.exports = ViewportMetrics;
 
-},{}],347:[function(require,module,exports){
+},{}],334:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -41917,7 +42494,7 @@ module.exports = accumulateInto;
 
 }).call(this,require('_process'))
 
-},{"./invariant":379,"_process":1}],348:[function(require,module,exports){
+},{"./invariant":366,"_process":1}],335:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41951,7 +42528,7 @@ function adler32(data) {
 
 module.exports = adler32;
 
-},{}],349:[function(require,module,exports){
+},{}],336:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41983,7 +42560,7 @@ function camelize(string) {
 
 module.exports = camelize;
 
-},{}],350:[function(require,module,exports){
+},{}],337:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -42025,7 +42602,7 @@ function camelizeStyleName(string) {
 
 module.exports = camelizeStyleName;
 
-},{"./camelize":349}],351:[function(require,module,exports){
+},{"./camelize":336}],338:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42085,7 +42662,7 @@ module.exports = cloneWithProps;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":291,"./ReactPropTransferer":311,"./keyOf":386,"./warning":400,"_process":1}],352:[function(require,module,exports){
+},{"./ReactElement":278,"./ReactPropTransferer":298,"./keyOf":373,"./warning":387,"_process":1}],339:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42129,7 +42706,7 @@ function containsNode(outerNode, innerNode) {
 
 module.exports = containsNode;
 
-},{"./isTextNode":383}],353:[function(require,module,exports){
+},{"./isTextNode":370}],340:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42215,7 +42792,7 @@ function createArrayFromMixed(obj) {
 
 module.exports = createArrayFromMixed;
 
-},{"./toArray":397}],354:[function(require,module,exports){
+},{"./toArray":384}],341:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42278,7 +42855,7 @@ module.exports = createFullPageComponent;
 
 }).call(this,require('_process'))
 
-},{"./ReactClass":266,"./ReactElement":291,"./invariant":379,"_process":1}],355:[function(require,module,exports){
+},{"./ReactClass":253,"./ReactElement":278,"./invariant":366,"_process":1}],342:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42369,7 +42946,7 @@ module.exports = createNodesFromMarkup;
 
 }).call(this,require('_process'))
 
-},{"./ExecutionEnvironment":250,"./createArrayFromMixed":353,"./getMarkupWrap":371,"./invariant":379,"_process":1}],356:[function(require,module,exports){
+},{"./ExecutionEnvironment":237,"./createArrayFromMixed":340,"./getMarkupWrap":358,"./invariant":366,"_process":1}],343:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42426,7 +43003,7 @@ module.exports = cx;
 
 }).call(this,require('_process'))
 
-},{"./warning":400,"_process":1}],357:[function(require,module,exports){
+},{"./warning":387,"_process":1}],344:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42484,7 +43061,7 @@ function dangerousStyleValue(name, value) {
 
 module.exports = dangerousStyleValue;
 
-},{"./CSSProperty":233}],358:[function(require,module,exports){
+},{"./CSSProperty":220}],345:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42518,7 +43095,7 @@ emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{}],359:[function(require,module,exports){
+},{}],346:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42543,7 +43120,7 @@ module.exports = emptyObject;
 
 }).call(this,require('_process'))
 
-},{"_process":1}],360:[function(require,module,exports){
+},{"_process":1}],347:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42583,7 +43160,7 @@ function escapeTextContentForBrowser(text) {
 
 module.exports = escapeTextContentForBrowser;
 
-},{}],361:[function(require,module,exports){
+},{}],348:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42657,7 +43234,7 @@ module.exports = findDOMNode;
 
 }).call(this,require('_process'))
 
-},{"./ReactCurrentOwner":273,"./ReactInstanceMap":301,"./ReactMount":305,"./invariant":379,"./isNode":381,"./warning":400,"_process":1}],362:[function(require,module,exports){
+},{"./ReactCurrentOwner":260,"./ReactInstanceMap":288,"./ReactMount":292,"./invariant":366,"./isNode":368,"./warning":387,"_process":1}],349:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42716,7 +43293,7 @@ module.exports = flattenChildren;
 
 }).call(this,require('_process'))
 
-},{"./traverseAllChildren":398,"./warning":400,"_process":1}],363:[function(require,module,exports){
+},{"./traverseAllChildren":385,"./warning":387,"_process":1}],350:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -42745,7 +43322,7 @@ function focusNode(node) {
 
 module.exports = focusNode;
 
-},{}],364:[function(require,module,exports){
+},{}],351:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42776,7 +43353,7 @@ var forEachAccumulated = function(arr, cb, scope) {
 
 module.exports = forEachAccumulated;
 
-},{}],365:[function(require,module,exports){
+},{}],352:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42805,7 +43382,7 @@ function getActiveElement() /*?DOMElement*/ {
 
 module.exports = getActiveElement;
 
-},{}],366:[function(require,module,exports){
+},{}],353:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42857,7 +43434,7 @@ function getEventCharCode(nativeEvent) {
 
 module.exports = getEventCharCode;
 
-},{}],367:[function(require,module,exports){
+},{}],354:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -42962,7 +43539,7 @@ function getEventKey(nativeEvent) {
 
 module.exports = getEventKey;
 
-},{"./getEventCharCode":366}],368:[function(require,module,exports){
+},{"./getEventCharCode":353}],355:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43009,7 +43586,7 @@ function getEventModifierState(nativeEvent) {
 
 module.exports = getEventModifierState;
 
-},{}],369:[function(require,module,exports){
+},{}],356:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43040,7 +43617,7 @@ function getEventTarget(nativeEvent) {
 
 module.exports = getEventTarget;
 
-},{}],370:[function(require,module,exports){
+},{}],357:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43084,7 +43661,7 @@ function getIteratorFn(maybeIterable) {
 
 module.exports = getIteratorFn;
 
-},{}],371:[function(require,module,exports){
+},{}],358:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43204,7 +43781,7 @@ module.exports = getMarkupWrap;
 
 }).call(this,require('_process'))
 
-},{"./ExecutionEnvironment":250,"./invariant":379,"_process":1}],372:[function(require,module,exports){
+},{"./ExecutionEnvironment":237,"./invariant":366,"_process":1}],359:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43279,7 +43856,7 @@ function getNodeForCharacterOffset(root, offset) {
 
 module.exports = getNodeForCharacterOffset;
 
-},{}],373:[function(require,module,exports){
+},{}],360:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43314,7 +43891,7 @@ function getReactRootElementInContainer(container) {
 
 module.exports = getReactRootElementInContainer;
 
-},{}],374:[function(require,module,exports){
+},{}],361:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43351,7 +43928,7 @@ function getTextContentAccessor() {
 
 module.exports = getTextContentAccessor;
 
-},{"./ExecutionEnvironment":250}],375:[function(require,module,exports){
+},{"./ExecutionEnvironment":237}],362:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43391,7 +43968,7 @@ function getUnboundedScrollPosition(scrollable) {
 
 module.exports = getUnboundedScrollPosition;
 
-},{}],376:[function(require,module,exports){
+},{}],363:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43424,7 +44001,7 @@ function hyphenate(string) {
 
 module.exports = hyphenate;
 
-},{}],377:[function(require,module,exports){
+},{}],364:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43465,7 +44042,7 @@ function hyphenateStyleName(string) {
 
 module.exports = hyphenateStyleName;
 
-},{"./hyphenate":376}],378:[function(require,module,exports){
+},{"./hyphenate":363}],365:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43604,7 +44181,7 @@ module.exports = instantiateReactComponent;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":257,"./ReactCompositeComponent":271,"./ReactEmptyComponent":293,"./ReactNativeComponent":308,"./invariant":379,"./warning":400,"_process":1}],379:[function(require,module,exports){
+},{"./Object.assign":244,"./ReactCompositeComponent":258,"./ReactEmptyComponent":280,"./ReactNativeComponent":295,"./invariant":366,"./warning":387,"_process":1}],366:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43662,7 +44239,7 @@ module.exports = invariant;
 
 }).call(this,require('_process'))
 
-},{"_process":1}],380:[function(require,module,exports){
+},{"_process":1}],367:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43727,7 +44304,7 @@ function isEventSupported(eventNameSuffix, capture) {
 
 module.exports = isEventSupported;
 
-},{"./ExecutionEnvironment":250}],381:[function(require,module,exports){
+},{"./ExecutionEnvironment":237}],368:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43754,7 +44331,7 @@ function isNode(object) {
 
 module.exports = isNode;
 
-},{}],382:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43797,7 +44374,7 @@ function isTextInputElement(elem) {
 
 module.exports = isTextInputElement;
 
-},{}],383:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43822,7 +44399,7 @@ function isTextNode(object) {
 
 module.exports = isTextNode;
 
-},{"./isNode":381}],384:[function(require,module,exports){
+},{"./isNode":368}],371:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43863,7 +44440,7 @@ function joinClasses(className/*, ... */) {
 
 module.exports = joinClasses;
 
-},{}],385:[function(require,module,exports){
+},{}],372:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43919,7 +44496,7 @@ module.exports = keyMirror;
 
 }).call(this,require('_process'))
 
-},{"./invariant":379,"_process":1}],386:[function(require,module,exports){
+},{"./invariant":366,"_process":1}],373:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43955,7 +44532,7 @@ var keyOf = function(oneKeyObj) {
 
 module.exports = keyOf;
 
-},{}],387:[function(require,module,exports){
+},{}],374:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44008,7 +44585,7 @@ function mapObject(object, callback, context) {
 
 module.exports = mapObject;
 
-},{}],388:[function(require,module,exports){
+},{}],375:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44041,7 +44618,7 @@ function memoizeStringOnly(callback) {
 
 module.exports = memoizeStringOnly;
 
-},{}],389:[function(require,module,exports){
+},{}],376:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -44082,7 +44659,7 @@ module.exports = onlyChild;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":291,"./invariant":379,"_process":1}],390:[function(require,module,exports){
+},{"./ReactElement":278,"./invariant":366,"_process":1}],377:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44110,7 +44687,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = performance || {};
 
-},{"./ExecutionEnvironment":250}],391:[function(require,module,exports){
+},{"./ExecutionEnvironment":237}],378:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44138,7 +44715,7 @@ var performanceNow = performance.now.bind(performance);
 
 module.exports = performanceNow;
 
-},{"./performance":390}],392:[function(require,module,exports){
+},{"./performance":377}],379:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44166,7 +44743,7 @@ function quoteAttributeValueForBrowser(value) {
 
 module.exports = quoteAttributeValueForBrowser;
 
-},{"./escapeTextContentForBrowser":360}],393:[function(require,module,exports){
+},{"./escapeTextContentForBrowser":347}],380:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44255,7 +44832,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = setInnerHTML;
 
-},{"./ExecutionEnvironment":250}],394:[function(require,module,exports){
+},{"./ExecutionEnvironment":237}],381:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44297,7 +44874,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = setTextContent;
 
-},{"./ExecutionEnvironment":250,"./escapeTextContentForBrowser":360,"./setInnerHTML":393}],395:[function(require,module,exports){
+},{"./ExecutionEnvironment":237,"./escapeTextContentForBrowser":347,"./setInnerHTML":380}],382:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44341,7 +44918,7 @@ function shallowEqual(objA, objB) {
 
 module.exports = shallowEqual;
 
-},{}],396:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -44446,7 +45023,7 @@ module.exports = shouldUpdateReactComponent;
 
 }).call(this,require('_process'))
 
-},{"./warning":400,"_process":1}],397:[function(require,module,exports){
+},{"./warning":387,"_process":1}],384:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -44519,7 +45096,7 @@ module.exports = toArray;
 
 }).call(this,require('_process'))
 
-},{"./invariant":379,"_process":1}],398:[function(require,module,exports){
+},{"./invariant":366,"_process":1}],385:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -44773,7 +45350,7 @@ module.exports = traverseAllChildren;
 
 }).call(this,require('_process'))
 
-},{"./ReactElement":291,"./ReactFragment":297,"./ReactInstanceHandles":300,"./getIteratorFn":370,"./invariant":379,"./warning":400,"_process":1}],399:[function(require,module,exports){
+},{"./ReactElement":278,"./ReactFragment":284,"./ReactInstanceHandles":287,"./getIteratorFn":357,"./invariant":366,"./warning":387,"_process":1}],386:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -44945,7 +45522,7 @@ module.exports = update;
 
 }).call(this,require('_process'))
 
-},{"./Object.assign":257,"./invariant":379,"./keyOf":386,"_process":1}],400:[function(require,module,exports){
+},{"./Object.assign":244,"./invariant":366,"./keyOf":373,"_process":1}],387:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -45009,10 +45586,10 @@ module.exports = warning;
 
 }).call(this,require('_process'))
 
-},{"./emptyFunction":358,"_process":1}],401:[function(require,module,exports){
+},{"./emptyFunction":345,"_process":1}],388:[function(require,module,exports){
 module.exports = require('./lib/React');
 
-},{"./lib/React":259}],402:[function(require,module,exports){
+},{"./lib/React":246}],389:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -45020,7 +45597,7 @@ var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Typography = require('./styles/typography');
 var IconButton = require('./icon-button');
-var NavigationMenu = require('./svg-icons/navigation-menu');
+var NavigationMenu = require('./svg-icons/navigation/menu');
 var Paper = require('./paper');
 
 var AppBar = React.createClass({
@@ -45036,6 +45613,7 @@ var AppBar = React.createClass({
     onLeftIconButtonTouchTap: React.PropTypes.func,
     onRightIconButtonTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
+    style: React.PropTypes.object,
     iconClassNameLeft: React.PropTypes.string,
     iconClassNameRight: React.PropTypes.string,
     iconElementLeft: React.PropTypes.element,
@@ -45054,9 +45632,14 @@ var AppBar = React.createClass({
   },
 
   componentDidMount: function componentDidMount() {
-    if (process.env.NODE_ENV !== 'production' && this.props.iconElementLeft && this.props.iconClassNameLeft) {
+    if (process.env.NODE_ENV !== 'production') {
+      if (this.props.iconElementLeft && this.props.iconClassNameLeft) {
+        console.warn('Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' + 'defined. Please use one or the other.');
+      }
 
-      console.warn('Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' + 'defined. Please use one or the other.');
+      if (this.props.iconElementRight && this.props.iconClassNameRight) {
+        console.warn('Properties iconClassNameRight and iconElementRight cannot be simultaneously ' + 'defined. Please use one or the other.');
+      }
     }
   },
 
@@ -45064,6 +45647,7 @@ var AppBar = React.createClass({
     var spacing = this.context.muiTheme.spacing;
     var themeVariables = this.context.muiTheme.component.appBar;
     var iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
+    var flatButtonSize = 36;
     var styles = {
       root: {
         zIndex: 5,
@@ -45100,24 +45684,28 @@ var AppBar = React.createClass({
           fill: themeVariables.textColor,
           color: themeVariables.textColor
         }
+      },
+      flatButton: {
+        color: themeVariables.textColor,
+        backgroundColor: 'transparent',
+        marginTop: (iconButtonSize - flatButtonSize) / 2 + 2
       }
     };
+
     return styles;
   },
 
   render: function render() {
+    var props = this.props;
+    var menuElementLeft = undefined;
+    var menuElementRight = undefined;
     var styles = this.getStyles();
-
+    var title = props.title;
     var iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
       marginRight: -16,
       marginLeft: 'auto'
-    }, this.props.iconStyleRight);
-
-    var title = this.props.title;
-
-    var titleElement;
-    var menuElementLeft;
-    var menuElementRight;
+    }, props.iconStyleRight);
+    var titleElement = undefined;
 
     if (title) {
       // If the title is a string, wrap in an h1 tag.
@@ -45133,37 +45721,63 @@ var AppBar = React.createClass({
       );
     }
 
-    if (this.props.showMenuIconButton) {
-      if (this.props.iconElementLeft) {
+    if (props.showMenuIconButton) {
+      var iconElementLeft = props.iconElementLeft;
+
+      if (iconElementLeft) {
+        switch (iconElementLeft.type.displayName) {
+          case 'IconButton':
+            iconElementLeft = React.cloneElement(iconElementLeft, {
+              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle)
+            });
+            break;
+        }
+
         menuElementLeft = React.createElement(
           'div',
           { style: styles.iconButton.style },
-          this.props.iconElementLeft
+          iconElementLeft
         );
       } else {
-        var child = this.props.iconClassNameLeft ? '' : React.createElement(NavigationMenu, { style: this.mergeAndPrefix(styles.iconButton.iconStyle) });
+        var child = props.iconClassNameLeft ? '' : React.createElement(NavigationMenu, { style: this.mergeAndPrefix(styles.iconButton.iconStyle) });
         menuElementLeft = React.createElement(
           IconButton,
           {
             style: this.mergeAndPrefix(styles.iconButton.style),
             iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
-            iconClassName: this.props.iconClassNameLeft,
+            iconClassName: props.iconClassNameLeft,
             onTouchTap: this._onLeftIconButtonTouchTap },
           child
         );
       }
 
-      if (this.props.iconElementRight) {
+      if (props.iconElementRight) {
+        var iconElementRight = props.iconElementRight;
+
+        switch (iconElementRight.type.displayName) {
+          case 'IconButton':
+            iconElementRight = React.cloneElement(iconElementRight, {
+              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle)
+            });
+            break;
+
+          case 'FlatButton':
+            iconElementRight = React.cloneElement(iconElementRight, {
+              style: this.mergeStyles(styles.flatButton, iconElementRight.props.style)
+            });
+            break;
+        }
+
         menuElementRight = React.createElement(
           'div',
           { style: iconRightStyle },
-          this.props.iconElementRight
+          iconElementRight
         );
-      } else if (this.props.iconClassNameRight) {
+      } else if (props.iconClassNameRight) {
         menuElementRight = React.createElement(IconButton, {
           style: iconRightStyle,
           iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
-          iconClassName: this.props.iconClassNameRight,
+          iconClassName: props.iconClassNameRight,
           onTouchTap: this._onRightIconButtonTouchTap });
       }
     }
@@ -45172,13 +45786,13 @@ var AppBar = React.createClass({
       Paper,
       {
         rounded: false,
-        className: this.props.className,
-        style: this.mergeAndPrefix(styles.root, this.props.style),
-        zDepth: this.props.zDepth },
+        className: props.className,
+        style: this.mergeAndPrefix(styles.root, props.style),
+        zDepth: props.zDepth },
       menuElementLeft,
       titleElement,
       menuElementRight,
-      this.props.children
+      props.children
     );
   },
 
@@ -45200,19 +45814,23 @@ module.exports = AppBar;
 
 }).call(this,require('_process'))
 
-},{"./icon-button":434,"./mixins/style-propable":448,"./paper":452,"./styles/typography":470,"./svg-icons/navigation-menu":477,"_process":1,"react":401}],403:[function(require,module,exports){
+},{"./icon-button":420,"./mixins/style-propable":440,"./paper":444,"./styles/typography":463,"./svg-icons/navigation/menu":493,"_process":1,"react":388}],390:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
+var StylePropable = require('./mixins/style-propable');
 
 var AppCanvas = React.createClass({
   displayName: 'AppCanvas',
+
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object
   },
 
   render: function render() {
+    var _this = this;
 
     var styles = {
       height: '100%',
@@ -45223,15 +45841,15 @@ var AppCanvas = React.createClass({
     var newChildren = React.Children.map(this.props.children, function (currentChild) {
       if (!currentChild) {
         // If undefined, skip it
-        return;
+        return null;
       }
 
       switch (currentChild.type.displayName) {
         case 'AppBar':
           return React.cloneElement(currentChild, {
-            style: {
+            style: _this.mergeStyles({
               position: 'fixed'
-            }
+            }, currentChild.props.style)
           });
         default:
           return currentChild;
@@ -45249,7 +45867,7 @@ var AppCanvas = React.createClass({
 
 module.exports = AppCanvas;
 
-},{"react":401}],404:[function(require,module,exports){
+},{"./mixins/style-propable":440,"react":388}],391:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45259,10 +45877,9 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 var React = require('react/addons');
 var StylePropable = require('./mixins/style-propable');
 var Colors = require('./styles/colors');
-var Typography = require('./styles/typography');
 
-var SvgIcon = React.createClass({
-  displayName: 'SvgIcon',
+var Avatar = React.createClass({
+  displayName: 'Avatar',
 
   mixins: [StylePropable],
 
@@ -45274,13 +45891,16 @@ var SvgIcon = React.createClass({
     icon: React.PropTypes.element,
     backgroundColor: React.PropTypes.string,
     color: React.PropTypes.string,
-    src: React.PropTypes.string
+    size: React.PropTypes.number,
+    src: React.PropTypes.string,
+    style: React.PropTypes.object
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
       backgroundColor: Colors.grey400,
-      color: Colors.white
+      color: Colors.white,
+      size: 40
     };
   },
 
@@ -45289,15 +45909,16 @@ var SvgIcon = React.createClass({
     var icon = _props.icon;
     var backgroundColor = _props.backgroundColor;
     var color = _props.color;
+    var size = _props.size;
     var src = _props.src;
     var style = _props.style;
 
-    var other = _objectWithoutProperties(_props, ['icon', 'backgroundColor', 'color', 'src', 'style']);
+    var other = _objectWithoutProperties(_props, ['icon', 'backgroundColor', 'color', 'size', 'src', 'style']);
 
     var styles = {
       root: {
-        height: src ? 38 : 40,
-        width: src ? 38 : 40,
+        height: src ? size - 2 : size,
+        width: src ? size - 2 : size,
         userSelect: 'none',
         backgroundColor: backgroundColor,
         borderRadius: '50%',
@@ -45307,8 +45928,8 @@ var SvgIcon = React.createClass({
 
         //Needed for letter avatars
         textAlign: 'center',
-        lineHeight: '40px',
-        fontSize: 24,
+        lineHeight: size + 'px',
+        fontSize: size / 2 + 4,
         color: color
       },
 
@@ -45318,25 +45939,28 @@ var SvgIcon = React.createClass({
     };
 
     var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
-    var mergedIconStyles = icon ? this.mergeStyles(styles.iconStyles, icon.props.style) : null;
 
-    var iconElement = icon ? React.cloneElement(icon, {
-      color: color,
-      style: mergedIconStyles
-    }) : null;
+    if (src) {
+      return React.createElement('img', _extends({}, other, { src: src, style: mergedRootStyles }));
+    } else {
+      var iconElement = icon ? React.cloneElement(icon, {
+        color: color,
+        style: this.mergeStyles(styles.iconStyles, icon.props.style)
+      }) : null;
 
-    return src ? React.createElement('img', _extends({}, other, { src: src, style: mergedRootStyles })) : React.createElement(
-      'div',
-      _extends({}, other, { style: mergedRootStyles }),
-      iconElement,
-      this.props.children
-    );
+      return React.createElement(
+        'div',
+        _extends({}, other, { style: mergedRootStyles }),
+        iconElement,
+        this.props.children
+      );
+    }
   }
 });
 
-module.exports = SvgIcon;
+module.exports = Avatar;
 
-},{"./mixins/style-propable":448,"./styles/colors":463,"./styles/typography":470,"react/addons":229}],405:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/colors":456,"react/addons":216}],392:[function(require,module,exports){
 'use strict';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -45345,9 +45969,9 @@ var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var AutoPrefix = require('./styles/auto-prefix');
 
-/**  
+/**
  *  BeforeAfterWrapper
- *    An alternative for the ::before and ::after css pseudo-elements for 
+ *    An alternative for the ::before and ::after css pseudo-elements for
  *    components whose styles are defined in javascript instead of css.
  *
  *  Usage: For the element that we want to apply before and after elements to,
@@ -45361,21 +45985,21 @@ var AutoPrefix = require('./styles/auto-prefix');
  *  </Paper>                                    </div>
  *                                            </Paper>
  *
- *  Notice: Notice that this div bundles together our elements. If the element 
- *    that we want to apply before and after elements is a HTML tag (i.e. a 
- *    div, p, or button tag), we can avoid this extra nesting by passing using 
+ *  Notice: Notice that this div bundles together our elements. If the element
+ *    that we want to apply before and after elements is a HTML tag (i.e. a
+ *    div, p, or button tag), we can avoid this extra nesting by passing using
  *    the BeforeAfterWrapper in place of said tag like so:
  *
  *  <p>
  *    <BeforeAfterWrapper>   do this instead   <BeforeAfterWrapper elementType='p'>
  *      [children of p]          ------>         [children of p]
- *    </BeforeAfterWrapper>                    </BeforeAfterWrapper> 
+ *    </BeforeAfterWrapper>                    </BeforeAfterWrapper>
  *  </p>
  *
- *  BeforeAfterWrapper features spread functionality. This means that we can 
+ *  BeforeAfterWrapper features spread functionality. This means that we can
  *  pass HTML tag properties directly into the BeforeAfterWrapper tag.
  *
- *  When using BeforeAfterWrapper, ensure that the parent of the beforeElement 
+ *  When using BeforeAfterWrapper, ensure that the parent of the beforeElement
  *  and afterElement have a defined style position.
  */
 
@@ -45410,7 +46034,8 @@ var BeforeAfterWrapper = React.createClass({
 
     var other = _objectWithoutProperties(_props, ['beforeStyle', 'afterStyle', 'beforeElementType', 'afterElementType', 'elementType']);
 
-    var beforeElement, afterElement;
+    var beforeElement = undefined,
+        afterElement = undefined;
 
     beforeStyle = AutoPrefix.all({ boxSizing: 'border-box' });
     afterStyle = AutoPrefix.all({ boxSizing: 'border-box' });
@@ -45432,13 +46057,12 @@ var BeforeAfterWrapper = React.createClass({
 
 module.exports = BeforeAfterWrapper;
 
-},{"./mixins/style-propable":448,"./styles/auto-prefix":462,"react":401}],406:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/auto-prefix":455,"react":388}],393:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react');
-var Styles = require('../styles');
 
 var CardActions = React.createClass({
   displayName: 'CardActions',
@@ -45450,6 +46074,7 @@ var CardActions = React.createClass({
       }
     };
   },
+
   render: function render() {
     var styles = this.getStyles();
 
@@ -45469,7 +46094,7 @@ var CardActions = React.createClass({
 
 module.exports = CardActions;
 
-},{"../styles":464,"react":401}],407:[function(require,module,exports){
+},{"react":388}],394:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45566,7 +46191,7 @@ var CardHeader = React.createClass({
 
 module.exports = CardHeader;
 
-},{"../avatar":404,"../mixins/style-propable":448,"../styles":464,"react":401}],408:[function(require,module,exports){
+},{"../avatar":391,"../mixins/style-propable":440,"../styles":457,"react":388}],395:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45612,7 +46237,8 @@ var CardMedia = React.createClass({
         left: 0,
         paddingTop: 8,
         background: Styles.Colors.lightBlack
-      }
+      },
+      media: {}
     };
   },
 
@@ -45676,7 +46302,7 @@ var CardMedia = React.createClass({
 
 module.exports = CardMedia;
 
-},{"../mixins/style-propable":448,"../styles":464,"react":401}],409:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles":457,"react":388}],396:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45725,7 +46351,7 @@ var CardText = React.createClass({
 
 module.exports = CardText;
 
-},{"../mixins/style-propable":448,"../styles":464,"react":401}],410:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles":457,"react":388}],397:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45754,6 +46380,7 @@ var CardTitle = React.createClass({
       subtitleColor: Styles.Colors.lightBlack
     };
   },
+
   getStyles: function getStyles() {
     return {
       root: {
@@ -45772,6 +46399,7 @@ var CardTitle = React.createClass({
       }
     };
   },
+
   render: function render() {
     var styles = this.getStyles();
     var rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
@@ -45797,7 +46425,7 @@ var CardTitle = React.createClass({
 
 module.exports = CardTitle;
 
-},{"../mixins/style-propable":448,"../styles":464,"react":401}],411:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles":457,"react":388}],398:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45847,7 +46475,7 @@ var Card = React.createClass({
 
 module.exports = Card;
 
-},{"../mixins/style-propable":448,"../paper":452,"react":401}],412:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../paper":444,"react":388}],399:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -45858,8 +46486,8 @@ var React = require('react');
 var EnhancedSwitch = require('./enhanced-switch');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
-var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank');
-var CheckboxChecked = require('./svg-icons/toggle-check-box-checked');
+var CheckboxOutline = require('./svg-icons/toggle/check-box-outline-blank');
+var CheckboxChecked = require('./svg-icons/toggle/check-box');
 
 var Checkbox = React.createClass({
   displayName: 'Checkbox',
@@ -45928,6 +46556,7 @@ var Checkbox = React.createClass({
         color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
       }
     };
+
     return styles;
   },
 
@@ -46005,7 +46634,7 @@ var Checkbox = React.createClass({
 
 module.exports = Checkbox;
 
-},{"./enhanced-switch":429,"./mixins/style-propable":448,"./styles/transitions":469,"./svg-icons/toggle-check-box-checked":478,"./svg-icons/toggle-check-box-outline-blank":479,"react":401}],413:[function(require,module,exports){
+},{"./enhanced-switch":415,"./mixins/style-propable":440,"./styles/transitions":462,"./svg-icons/toggle/check-box":497,"./svg-icons/toggle/check-box-outline-blank":496,"react":388}],400:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -46026,7 +46655,9 @@ var CircularProgress = React.createClass({
     value: React.PropTypes.number,
     min: React.PropTypes.number,
     max: React.PropTypes.number,
-    size: React.PropTypes.number
+    size: React.PropTypes.number,
+    color: React.PropTypes.string,
+    innerStyle: React.PropTypes.object
   },
 
   contextTypes: {
@@ -46045,13 +46676,13 @@ var CircularProgress = React.createClass({
   },
 
   componentDidMount: function componentDidMount() {
-
     var wrapper = React.findDOMNode(this.refs.wrapper);
     var path = React.findDOMNode(this.refs.path);
 
     this._scalePath(path);
     this._rotateWrapper(wrapper);
   },
+
   _scalePath: function _scalePath(path, step) {
     step = step || 0;
     step %= 3;
@@ -46059,31 +46690,28 @@ var CircularProgress = React.createClass({
     setTimeout(this._scalePath.bind(this, path, step + 1), step ? 750 : 250);
 
     if (!this.isMounted()) return;
-    if (this.props.mode != 'indeterminate') return;
+    if (this.props.mode !== 'indeterminate') return;
 
     if (step === 0) {
-
       path.style.strokeDasharray = '1, 200';
       path.style.strokeDashoffset = 0;
       path.style.transitionDuration = '0ms';
-    } else if (step == 1) {
-
+    } else if (step === 1) {
       path.style.strokeDasharray = '89, 200';
       path.style.strokeDashoffset = -35;
       path.style.transitionDuration = '750ms';
     } else {
-
       path.style.strokeDasharray = '89,200';
       path.style.strokeDashoffset = -124;
       path.style.transitionDuration = '850ms';
     }
   },
-  _rotateWrapper: function _rotateWrapper(wrapper) {
 
+  _rotateWrapper: function _rotateWrapper(wrapper) {
     setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
 
     if (!this.isMounted()) return;
-    if (this.props.mode != 'indeterminate') return;
+    if (this.props.mode !== 'indeterminate') return;
 
     wrapper.style.transform = null;
     wrapper.style.transform = 'rotate(0deg)';
@@ -46124,10 +46752,8 @@ var CircularProgress = React.createClass({
         display: 'inline-block',
         width: size,
         height: size
-
       },
       wrapper: {
-
         width: size,
         height: size,
         margin: '5px',
@@ -46143,17 +46769,17 @@ var CircularProgress = React.createClass({
       path: {
         strokeDasharray: '89,200',
         strokeDashoffset: 0,
-        stroke: this.getTheme().primary1Color,
+        stroke: this.props.color || this.getTheme().primary1Color,
         strokeLinecap: 'round',
         transition: Transitions.create('all', '1.5s', null, 'ease-in-out')
       }
     };
 
-    if (this.props.mode == 'determinate') {
+    if (this.props.mode === 'determinate') {
       var relVal = this._getRelativeValue();
       styles.path.transition = Transitions.create('all', '0.3s', null, 'linear');
       styles.path.strokeDasharray = Math.round(relVal * 1.25) + ',200';
-    } else {}
+    }
 
     return styles;
   },
@@ -46161,9 +46787,10 @@ var CircularProgress = React.createClass({
   render: function render() {
     var _props = this.props;
     var style = _props.style;
+    var innerStyle = _props.innerStyle;
     var size = _props.size;
 
-    var other = _objectWithoutProperties(_props, ['style', 'size']);
+    var other = _objectWithoutProperties(_props, ['style', 'innerStyle', 'size']);
 
     var styles = this.getStyles(size || 1);
 
@@ -46172,7 +46799,7 @@ var CircularProgress = React.createClass({
       _extends({}, other, { style: this.mergeAndPrefix(styles.root, style) }),
       React.createElement(
         'div',
-        { ref: 'wrapper', style: this.mergeAndPrefix(styles.wrapper) },
+        { ref: 'wrapper', style: this.mergeAndPrefix(styles.wrapper, innerStyle) },
         React.createElement(
           'svg',
           { style: this.mergeAndPrefix(styles.svg) },
@@ -46185,7 +46812,7 @@ var CircularProgress = React.createClass({
 
 module.exports = CircularProgress;
 
-},{"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],414:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/transitions":462,"react":388}],401:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -46227,7 +46854,7 @@ var ClearFix = React.createClass({
 
 module.exports = ClearFix;
 
-},{"./before-after-wrapper":405,"react":401}],415:[function(require,module,exports){
+},{"./before-after-wrapper":392,"react":388}],402:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -46267,35 +46894,39 @@ var CalendarMonth = React.createClass({
   },
 
   _getWeekElements: function _getWeekElements() {
+    var _this = this;
+
     var weekArray = DateTime.getWeekArray(this.props.displayDate);
 
     return weekArray.map(function (week, i) {
       return React.createElement(
         ClearFix,
         { key: i },
-        this._getDayElements(week, i)
+        _this._getDayElements(week, i)
       );
     }, this);
   },
 
   _getDayElements: function _getDayElements(week, i) {
+    var _this2 = this;
+
     return week.map(function (day, j) {
-      var isSameDate = DateTime.isEqualDate(this.props.selectedDate, day);
-      var disabled = this._shouldDisableDate(day);
+      var isSameDate = DateTime.isEqualDate(_this2.props.selectedDate, day);
+      var disabled = _this2._shouldDisableDate(day);
       var selected = !disabled && isSameDate;
 
       if (isSameDate) {
         if (disabled) {
-          this._selectedDateDisabled = true;
+          _this2._selectedDateDisabled = true;
         } else {
-          this._selectedDateDisabled = false;
+          _this2._selectedDateDisabled = false;
         }
       }
 
       return React.createElement(DayButton, {
         key: 'db' + i + j,
         date: day,
-        onTouchTap: this._handleDayTouchTap,
+        onTouchTap: _this2._handleDayTouchTap,
         selected: selected,
         disabled: disabled });
     }, this);
@@ -46317,7 +46948,7 @@ var CalendarMonth = React.createClass({
 
 module.exports = CalendarMonth;
 
-},{"../clearfix":414,"../utils/date-time":513,"./day-button":422,"react":401}],416:[function(require,module,exports){
+},{"../clearfix":401,"../utils/date-time":534,"./day-button":409,"react":388}],403:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -46325,10 +46956,9 @@ var DateTime = require('../utils/date-time');
 var IconButton = require('../icon-button');
 var Toolbar = require('../toolbar/toolbar');
 var ToolbarGroup = require('../toolbar/toolbar-group');
-var DropDownMenu = require('../drop-down-menu');
-var NavigationChevronLeft = require('../svg-icons/navigation-chevron-left');
+var NavigationChevronLeft = require('../svg-icons/navigation/chevron-left');
 var NavigationChevronLeftDouble = require('../svg-icons/navigation-chevron-left-double');
-var NavigationChevronRight = require('../svg-icons/navigation-chevron-right');
+var NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
 var NavigationChevronRightDouble = require('../svg-icons/navigation-chevron-right-double');
 var SlideInTransitionGroup = require('../transition-groups/slide-in');
 
@@ -46363,7 +46993,7 @@ var CalendarToolbar = React.createClass({
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    var direction;
+    var direction = undefined;
 
     if (nextProps.displayDate !== this.props.displayDate) {
       direction = nextProps.displayDate > this.props.displayDate ? 'up' : 'down';
@@ -46389,8 +47019,7 @@ var CalendarToolbar = React.createClass({
         height: '14px',
         width: '100%',
         fontWeight: '500',
-        textAlign: 'center',
-        zIndex: -1
+        textAlign: 'center'
       }
     };
   },
@@ -46406,30 +47035,6 @@ var CalendarToolbar = React.createClass({
       Toolbar,
       { className: 'mui-date-picker-calendar-toolbar', style: styles.root, noGutter: true },
       React.createElement(
-        ToolbarGroup,
-        { key: 0, float: 'left' },
-        prevYearChangeButton,
-        React.createElement(
-          IconButton,
-          {
-            disabled: !this.props.prevMonth,
-            onTouchTap: this._prevMonthTouchTap },
-          React.createElement(NavigationChevronLeft, null)
-        )
-      ),
-      React.createElement(
-        ToolbarGroup,
-        { key: 1, float: 'right' },
-        React.createElement(
-          IconButton,
-          {
-            disabled: !this.props.nextMonth,
-            onTouchTap: this._nextMonthTouchTap },
-          React.createElement(NavigationChevronRight, null)
-        ),
-        nextYearChangeButton
-      ),
-      React.createElement(
         SlideInTransitionGroup,
         {
           style: styles.title,
@@ -46441,6 +47046,32 @@ var CalendarToolbar = React.createClass({
           ' ',
           year
         )
+      ),
+      React.createElement(
+        ToolbarGroup,
+        { key: 0, float: 'left' },
+        prevYearChangeButton,
+        React.createElement(
+          IconButton,
+          {
+            style: styles.button,
+            disabled: !this.props.prevMonth,
+            onTouchTap: this._prevMonthTouchTap },
+          React.createElement(NavigationChevronLeft, null)
+        )
+      ),
+      React.createElement(
+        ToolbarGroup,
+        { key: 1, float: 'right' },
+        React.createElement(
+          IconButton,
+          {
+            style: styles.button,
+            disabled: !this.props.nextMonth,
+            onTouchTap: this._nextMonthTouchTap },
+          React.createElement(NavigationChevronRight, null)
+        ),
+        nextYearChangeButton
       )
     );
   },
@@ -46495,7 +47126,7 @@ var CalendarToolbar = React.createClass({
 
 module.exports = CalendarToolbar;
 
-},{"../drop-down-menu":427,"../icon-button":434,"../svg-icons/navigation-chevron-left":474,"../svg-icons/navigation-chevron-left-double":473,"../svg-icons/navigation-chevron-right":476,"../svg-icons/navigation-chevron-right-double":475,"../toolbar/toolbar":507,"../toolbar/toolbar-group":504,"../transition-groups/slide-in":510,"../utils/date-time":513,"react":401}],417:[function(require,module,exports){
+},{"../icon-button":420,"../svg-icons/navigation-chevron-left-double":485,"../svg-icons/navigation-chevron-right-double":486,"../svg-icons/navigation/chevron-left":490,"../svg-icons/navigation/chevron-right":491,"../toolbar/toolbar":527,"../toolbar/toolbar-group":524,"../transition-groups/slide-in":530,"../utils/date-time":534,"react":388}],404:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -46523,7 +47154,7 @@ var CalendarYear = React.createClass({
     this._scrollToSelectedYear();
   },
 
-  componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate: function componentDidUpdate() {
     this._scrollToSelectedYear();
   },
 
@@ -46596,7 +47227,7 @@ var CalendarYear = React.createClass({
 
 module.exports = CalendarYear;
 
-},{"../mixins/style-propable":448,"../styles/colors":463,"../utils/date-time":513,"./year-button":423,"react":401}],418:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles/colors":456,"../utils/date-time":534,"./year-button":410,"react":388}],405:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -46656,8 +47287,6 @@ var Calendar = React.createClass({
     };
   },
 
-  getStyles: function getStyles() {},
-
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
     if (nextProps.initialDate !== this.props.initialDate) {
       var d = nextProps.initialDate || new Date();
@@ -46681,22 +47310,23 @@ var Calendar = React.createClass({
     var isLandscape = this.props.mode === 'landscape';
     var styles = {
       root: {
-        fontSize: '12px'
+        fontSize: 12
       },
       calendarContainer: {
-        width: isLandscape ? '280px' : '100%',
-        height: weekCount === 5 ? '268px' : weekCount === 6 ? '308px' : '228px',
+        width: isLandscape ? 280 : '100%',
+        height: weekCount === 5 ? 268 : weekCount === 6 ? 308 : 228,
         float: isLandscape ? 'right' : 'none',
-        transition: Transitions.easeOut('150ms', 'height')
+        transition: Transitions.easeOut('150ms', 'height'),
+        overflow: 'hidden'
       },
       yearContainer: {
-        width: '280px',
+        width: 280,
         overflow: 'hidden',
-        height: yearCount < 6 ? yearCount * 56 + 10 : weekCount === 5 ? '268px' : weekCount === 6 ? '308px' : '228px',
+        height: yearCount < 6 ? yearCount * 56 + 10 : weekCount === 5 ? 268 : weekCount === 6 ? 308 : 228,
         float: isLandscape ? 'right' : 'none'
       },
       dateDisplay: {
-        width: isLandscape ? '280px' : '100%',
+        width: isLandscape ? 280 : '100%',
         height: '100%',
         float: isLandscape ? 'left' : 'none'
       },
@@ -46704,14 +47334,14 @@ var Calendar = React.createClass({
         padding: '0 14px',
         lineHeight: '12px',
         opacity: '0.5',
-        height: '12px',
+        height: 12,
         fontWeight: '500',
         margin: 0
       },
       weekTitleDay: {
         listStyle: 'none',
         float: 'left',
-        width: '32px',
+        width: 32,
         textAlign: 'center',
         margin: '0 2px'
       }
@@ -46961,7 +47591,7 @@ var Calendar = React.createClass({
 
 module.exports = Calendar;
 
-},{"../clearfix":414,"../mixins/style-propable":448,"../mixins/window-listenable":450,"../styles/transitions":469,"../transition-groups/slide-in":510,"../utils/date-time":513,"../utils/key-code":517,"./calendar-month":415,"./calendar-toolbar":416,"./calendar-year":417,"./date-display":419,"react":401}],419:[function(require,module,exports){
+},{"../clearfix":401,"../mixins/style-propable":440,"../mixins/window-listenable":442,"../styles/transitions":462,"../transition-groups/slide-in":530,"../utils/date-time":534,"../utils/key-code":539,"./calendar-month":402,"./calendar-toolbar":403,"./calendar-year":404,"./date-display":406,"react":388}],406:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47007,7 +47637,7 @@ var DateDisplay = React.createClass({
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    var direction;
+    var direction = undefined;
 
     if (nextProps.selectedDate !== this.props.selectedDate) {
       direction = nextProps.selectedDate > this.props.selectedDate ? 'up' : 'down';
@@ -47038,14 +47668,14 @@ var DateDisplay = React.createClass({
     var year = this.props.selectedDate.getFullYear();
 
     var isLandscape = this.props.mode === 'landscape';
-    var dateYPosition = '0px';
-    var dayYPosition = '30px';
-    var yearYPosition = '95px';
+    var dateYPosition = 0;
+    var dayYPosition = 30;
+    var yearYPosition = 95;
 
     if (isLandscape) {
-      dateYPosition = this.props.weekCount === 5 ? '14px' : this.props.weekCount === 6 ? '34px' : '8px';
-      yearYPosition = this.props.weekCount === 4 ? '114px' : '150px';
-      if (this.props.weekCount > 4) dayYPosition = '50px';
+      dateYPosition = this.props.weekCount === 5 ? 14 : this.props.weekCount === 6 ? 34 : 8;
+      yearYPosition = this.props.weekCount === 4 ? 114 : 150;
+      if (this.props.weekCount > 4) dayYPosition = 50;
     }
 
     var styles = {
@@ -47056,7 +47686,7 @@ var DateDisplay = React.createClass({
 
       dateContainer: {
         backgroundColor: this.getTheme().color,
-        height: isLandscape ? this.props.weekCount * 40 + 36 + 'px' : '150px',
+        height: isLandscape ? this.props.weekCount * 40 + 36 : 150,
         padding: '16px 0',
         transition: Transitions.easeOut(),
         boxSizing: 'border-box'
@@ -47066,19 +47696,19 @@ var DateDisplay = React.createClass({
         position: 'relative',
         color: this.getTheme().textColor,
         transition: Transitions.easeOut(),
-        transform: 'translate3d(0,' + dateYPosition + ',0)'
+        transform: 'translate3d(0,' + dateYPosition + 'px,0)'
       },
 
       dowContainer: {
-        height: '32px',
+        height: 32,
         backgroundColor: this.getTheme().selectColor,
         borderRadius: isLandscape ? '2px 0 0 0' : '2px 2px 0 0',
-        paddingTop: '9px',
+        paddingTop: 9,
         boxSizing: 'border-box'
       },
 
       dow: {
-        fontSize: '13px',
+        fontSize: 13,
         lineHeight: '13px',
         height: '100%',
         color: this.getTheme().selectTextColor
@@ -47088,16 +47718,16 @@ var DateDisplay = React.createClass({
         root: {
           position: 'absolute',
           lineHeight: isLandscape ? '76px' : '58px',
-          fontSize: isLandscape ? '76px' : '58px',
-          height: isLandscape ? '76px' : '58px',
+          fontSize: isLandscape ? 76 : 58,
+          height: isLandscape ? 76 : 58,
           width: '100%',
-          opacity: this.state.selectedYear ? '0.7' : '1.0',
+          opacity: this.state.selectedYear ? 0.7 : 1.0,
           transition: Transitions.easeOut(),
-          transform: 'translate3d(0,' + dayYPosition + ',0)'
+          transform: 'translate3d(0,' + dayYPosition + 'px,0)'
         },
 
         title: {
-          width: '100px',
+          width: 100,
           marginLeft: 'auto',
           marginRight: 'auto',
           cursor: !this.state.selectedYear ? 'default' : 'pointer'
@@ -47107,17 +47737,17 @@ var DateDisplay = React.createClass({
       month: {
         root: {
           position: 'absolute',
-          top: isLandscape ? '0px' : '1px',
-          fontSize: isLandscape ? '26px' : '22px',
+          top: isLandscape ? 0 : 1,
+          fontSize: isLandscape ? 26 : 22,
           lineHeight: isLandscape ? '26px' : '22px',
-          height: isLandscape ? '26px' : '22px',
+          height: isLandscape ? 26 : 22,
           width: '100%',
           textTransform: 'uppercase',
-          opacity: this.state.selectedYear ? '0.7' : '1.0'
+          opacity: this.state.selectedYear ? 0.7 : 1.0
         },
 
         title: {
-          width: '100px',
+          width: 100,
           marginLeft: 'auto',
           marginRight: 'auto',
           cursor: !this.state.selectedYear ? 'default' : 'pointer'
@@ -47127,19 +47757,19 @@ var DateDisplay = React.createClass({
       year: {
         root: {
           position: 'absolute',
-          margin: '0px',
-          fontSize: isLandscape ? '26px' : '22px',
+          margin: 0,
+          fontSize: isLandscape ? 26 : 22,
           lineHeight: isLandscape ? '26px' : '22px',
-          height: isLandscape ? '26px' : '22px',
+          height: isLandscape ? 26 : 22,
           width: '100%',
           textTransform: 'uppercase',
-          opacity: this.state.selectedYear ? '1.0' : '0.7',
+          opacity: this.state.selectedYear ? 1.0 : 0.7,
           transition: Transitions.easeOut(),
-          transform: 'translate3d(0,' + yearYPosition + ',0)'
+          transform: 'translate3d(0,' + yearYPosition + 'px,0)'
         },
 
         title: {
-          width: '100px',
+          width: 100,
           marginLeft: 'auto',
           marginRight: 'auto',
           cursor: !this.props.yearSelectionAvailable || this.state.selectedYear ? 'default' : 'pointer'
@@ -47229,7 +47859,7 @@ var DateDisplay = React.createClass({
 
 module.exports = DateDisplay;
 
-},{"../mixins/style-propable":448,"../styles/auto-prefix":462,"../styles/transitions":469,"../transition-groups/slide-in":510,"../utils/date-time":513,"react":401}],420:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles/auto-prefix":455,"../styles/transitions":462,"../transition-groups/slide-in":530,"../utils/date-time":534,"react":388}],407:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47242,7 +47872,7 @@ var WindowListenable = require('../mixins/window-listenable');
 var CssEvent = require('../utils/css-event');
 var KeyCode = require('../utils/key-code');
 var Calendar = require('./calendar');
-var DialogWindow = require('../dialog-window');
+var Dialog = require('../dialog');
 var FlatButton = require('../flat-button');
 
 var DatePickerDialog = React.createClass({
@@ -47268,7 +47898,7 @@ var DatePickerDialog = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    keyup: '_handleWindowKeyUp'
   },
 
   getInitialState: function getInitialState() {
@@ -47288,12 +47918,16 @@ var DatePickerDialog = React.createClass({
 
     var styles = {
       root: {
-        fontSize: '14px',
+        fontSize: 14,
         color: this.context.muiTheme.component.datePicker.calendarTextColor
       },
 
-      dialogContents: {
-        width: this.props.mode === 'landscape' ? '560px' : '280px'
+      dialogContent: {
+        width: this.props.mode === 'landscape' ? 560 : 280
+      },
+
+      dialogBodyContent: {
+        padding: 0
       },
 
       actions: {
@@ -47306,24 +47940,25 @@ var DatePickerDialog = React.createClass({
       label: 'Cancel',
       secondary: true,
       style: styles.actions,
-      onTouchTap: this._handleCancelTouchTap }), React.createElement(FlatButton, {
-      key: 1,
-      label: 'OK',
-      secondary: true,
-      disabled: this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled(),
-      style: styles.actions,
-      onTouchTap: this._handleOKTouchTap })];
+      onTouchTap: this._handleCancelTouchTap })];
 
-    if (this.props.autoOk) {
-      actions = actions.slice(0, 1);
+    if (!this.props.autoOk) {
+      actions.push(React.createElement(FlatButton, {
+        key: 1,
+        label: 'OK',
+        secondary: true,
+        disabled: this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled(),
+        style: styles.actions,
+        onTouchTap: this._handleOKTouchTap }));
     }
 
     return React.createElement(
-      DialogWindow,
+      Dialog,
       _extends({}, other, {
-        ref: 'dialogWindow',
+        ref: 'dialog',
         style: styles.root,
-        contentStyle: styles.dialogContents,
+        contentStyle: styles.dialogContent,
+        bodyStyle: styles.dialogBodyContent,
         actions: actions,
         onDismiss: this._handleDialogDismiss,
         onShow: this._handleDialogShow,
@@ -47345,14 +47980,14 @@ var DatePickerDialog = React.createClass({
   },
 
   show: function show() {
-    this.refs.dialogWindow.show();
+    this.refs.dialog.show();
   },
 
   dismiss: function dismiss() {
-    this.refs.dialogWindow.dismiss();
+    this.refs.dialog.dismiss();
   },
 
-  _onSelectedDate: function _onSelectedDate(e) {
+  _onSelectedDate: function _onSelectedDate() {
     if (this.props.autoOk) {
       setTimeout(this._handleOKTouchTap, 300);
     }
@@ -47379,34 +48014,36 @@ var DatePickerDialog = React.createClass({
   },
 
   _handleDialogDismiss: function _handleDialogDismiss() {
-    CssEvent.onTransitionEnd(this.refs.dialogWindow.getDOMNode(), (function () {
-      this.setState({
+    var _this = this;
+
+    CssEvent.onTransitionEnd(this.refs.dialog.getDOMNode(), function () {
+      _this.setState({
         isCalendarActive: false,
         showMonthDayPicker: true
       });
-    }).bind(this));
+    });
 
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
   _handleDialogClickAway: function _handleDialogClickAway() {
-    CssEvent.onTransitionEnd(this.refs.dialogWindow.getDOMNode(), (function () {
-      this.setState({
+    var _this2 = this;
+
+    CssEvent.onTransitionEnd(this.refs.dialog.getDOMNode(), function () {
+      _this2.setState({
         isCalendarActive: false,
         showMonthDayPicker: true
       });
-    }).bind(this));
+    });
 
     if (this.props.onClickAway) this.props.onClickAway();
   },
 
   _handleWindowKeyUp: function _handleWindowKeyUp(e) {
-    if (this.refs.dialogWindow.isOpen()) {
-      switch (e.keyCode) {
-        case KeyCode.ENTER:
-          this._handleOKTouchTap();
-          break;
-      }
+    switch (e.keyCode) {
+      case KeyCode.ENTER:
+        this._handleOKTouchTap();
+        break;
     }
   }
 
@@ -47414,7 +48051,7 @@ var DatePickerDialog = React.createClass({
 
 module.exports = DatePickerDialog;
 
-},{"../dialog-window":424,"../flat-button":431,"../mixins/style-propable":448,"../mixins/window-listenable":450,"../utils/css-event":512,"../utils/key-code":517,"./calendar":418,"react":401}],421:[function(require,module,exports){
+},{"../dialog":411,"../flat-button":417,"../mixins/style-propable":440,"../mixins/window-listenable":442,"../utils/css-event":533,"../utils/key-code":539,"./calendar":405,"react":388}],408:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47434,24 +48071,26 @@ var DatePicker = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   propTypes: {
+    autoOk: React.PropTypes.bool,
     defaultDate: React.PropTypes.object,
     formatDate: React.PropTypes.func,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline']),
-    onFocus: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
-    shouldDisableDate: React.PropTypes.func,
     hideToolbarYearChange: React.PropTypes.bool,
-    autoOk: React.PropTypes.bool,
-    showYearSelector: React.PropTypes.bool
+    maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
+    mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline']),
+    onDismiss: React.PropTypes.func,
+    onChange: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onShow: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
+    shouldDisableDate: React.PropTypes.func,
+    showYearSelector: React.PropTypes.bool,
+    style: React.PropTypes.object,
+    textFieldStyle: React.PropTypes.object
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    keyup: '_handleWindowKeyUp'
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -47477,20 +48116,22 @@ var DatePicker = React.createClass({
 
   render: function render() {
     var _props = this.props;
+    var autoOk = _props.autoOk;
     var formatDate = _props.formatDate;
+    var maxDate = _props.maxDate;
+    var minDate = _props.minDate;
     var mode = _props.mode;
+    var onDismiss = _props.onDismiss;
     var onFocus = _props.onFocus;
     var onTouchTap = _props.onTouchTap;
     var onShow = _props.onShow;
-    var onDismiss = _props.onDismiss;
-    var minDate = _props.minDate;
-    var maxDate = _props.maxDate;
-    var autoOk = _props.autoOk;
     var showYearSelector = _props.showYearSelector;
+    var style = _props.style;
+    var textFieldStyle = _props.textFieldStyle;
 
-    var other = _objectWithoutProperties(_props, ['formatDate', 'mode', 'onFocus', 'onTouchTap', 'onShow', 'onDismiss', 'minDate', 'maxDate', 'autoOk', 'showYearSelector']);
+    var other = _objectWithoutProperties(_props, ['autoOk', 'formatDate', 'maxDate', 'minDate', 'mode', 'onDismiss', 'onFocus', 'onTouchTap', 'onShow', 'showYearSelector', 'style', 'textFieldStyle']);
 
-    var defaultInputValue;
+    var defaultInputValue = undefined;
 
     if (this.props.defaultDate) {
       defaultInputValue = this.props.formatDate(this.props.defaultDate);
@@ -47498,15 +48139,16 @@ var DatePicker = React.createClass({
 
     return React.createElement(
       'div',
-      { style: this.props.style },
+      { style: style },
       React.createElement(TextField, _extends({}, other, {
+        style: textFieldStyle,
         ref: 'input',
         defaultValue: defaultInputValue,
         onFocus: this._handleInputFocus,
         onTouchTap: this._handleInputTouchTap })),
       React.createElement(DatePickerDialog, {
         ref: 'dialogWindow',
-        mode: this.props.mode,
+        mode: mode,
         initialDate: this.state.dialogDate,
         onAccept: this._handleDialogAccept,
         onShow: onShow,
@@ -47562,7 +48204,7 @@ module.exports = DatePicker;
 
 //TO DO: open the dialog if input has focus
 
-},{"../mixins/style-propable":448,"../mixins/window-listenable":450,"../text-field":491,"../utils/date-time":513,"./date-picker-dialog":420,"react":401}],422:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../mixins/window-listenable":442,"../text-field":511,"../utils/date-time":534,"./date-picker-dialog":407,"react":388}],409:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47702,7 +48344,7 @@ var DayButton = React.createClass({
 
 module.exports = DayButton;
 
-},{"../enhanced-button":428,"../mixins/style-propable":448,"../styles/transitions":469,"../utils/date-time":513,"react":401}],423:[function(require,module,exports){
+},{"../enhanced-button":414,"../mixins/style-propable":440,"../styles/transitions":462,"../utils/date-time":534,"react":388}],410:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47711,7 +48353,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-var DateTime = require('../utils/date-time');
 var EnhancedButton = require('../enhanced-button');
 
 var YearButton = React.createClass({
@@ -47762,13 +48403,13 @@ var YearButton = React.createClass({
         display: 'block',
         margin: '0 auto',
         width: 36,
-        fontSize: '14px',
+        fontSize: 14,
         padding: '8px 2px'
       },
 
       label: {
         position: 'relative',
-        top: '-1px',
+        top: -1,
         color: this.context.muiTheme.palette.textColor
       },
 
@@ -47785,7 +48426,7 @@ var YearButton = React.createClass({
 
     if (this.state.hover) {
       styles.label.color = this.getTheme().selectTextColor;
-      styles.buttonState.opacity = '0.6';
+      styles.buttonState.opacity = 0.6;
       styles.buttonState.transform = 'scale(1.5)';
     }
 
@@ -47833,23 +48474,72 @@ var YearButton = React.createClass({
 
 module.exports = YearButton;
 
-},{"../enhanced-button":428,"../mixins/style-propable":448,"../utils/date-time":513,"react":401}],424:[function(require,module,exports){
+},{"../enhanced-button":414,"../mixins/style-propable":440,"react":388}],411:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var WindowListenable = require('./mixins/window-listenable');
 var CssEvent = require('./utils/css-event');
+var DOM = require('./utils/dom');
 var KeyCode = require('./utils/key-code');
-var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
+var StylePropable = require('./mixins/style-propable');
 var FlatButton = require('./flat-button');
 var Overlay = require('./overlay');
 var Paper = require('./paper');
 
-var DialogWindow = React.createClass({
-  displayName: 'DialogWindow',
+var ReactTransitionGroup = React.addons.TransitionGroup;
 
-  closeable: false,
+var TransitionItem = React.createClass({
+  displayName: 'TransitionItem',
+
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  getInitialState: function getInitialState() {
+    return {
+      style: {}
+    };
+  },
+
+  componentWillEnter: function componentWillEnter(callback) {
+    var spacing = this.context.muiTheme.spacing;
+
+    this.setState({
+      style: {
+        opacity: 1,
+        transform: 'translate3d(0, ' + spacing.desktopKeylineIncrement + 'px, 0)'
+      }
+    });
+
+    setTimeout(callback, 450); // matches transition duration
+  },
+
+  componentWillLeave: function componentWillLeave(callback) {
+    this.setState({
+      style: {
+        opacity: 0,
+        transform: 'translate3d(0, 0, 0)'
+      }
+    });
+
+    setTimeout(callback, 450); // matches transition duration
+  },
+
+  render: function render() {
+    return React.createElement(
+      'div',
+      { style: this.mergeAndPrefix(this.state.style, this.props.style) },
+      this.props.children
+    );
+  }
+});
+
+var Dialog = React.createClass({
+  displayName: 'Dialog',
 
   mixins: [WindowListenable, StylePropable],
 
@@ -47859,27 +48549,32 @@ var DialogWindow = React.createClass({
 
   propTypes: {
     actions: React.PropTypes.array,
-    actionFocus: React.PropTypes.string,
+    autoDetectWindowHeight: React.PropTypes.bool,
+    autoScrollBodyContent: React.PropTypes.bool,
+    bodyStyle: React.PropTypes.object,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
+    modal: React.PropTypes.bool,
     openImmediately: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
-    modal: React.PropTypes.bool
+    title: React.PropTypes.node
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp',
-    'resize': '_positionDialog'
+    keyup: '_handleWindowKeyUp',
+    resize: '_positionDialog'
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
+      autoDetectWindowHeight: false,
+      autoScrollBodyContent: false,
       actions: [],
-      repositionOnUpdate: true,
-      modal: false
+      modal: false,
+      repositionOnUpdate: true
     };
   },
 
@@ -47892,80 +48587,120 @@ var DialogWindow = React.createClass({
   componentDidMount: function componentDidMount() {
     this._positionDialog();
     if (this.props.openImmediately) {
-      this.show();
+      this.refs.dialogOverlay.preventScrolling();
+      this._onShow();
     }
   },
 
-  componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate: function componentDidUpdate() {
     this._positionDialog();
-    this._focusOnAction();
-  },
-
-  getTheme: function getTheme() {
-    return this.context.muiTheme;
-  },
-
-  getSpacing: function getSpacing() {
-    return this.context.muiTheme.spacing;
   },
 
   getStyles: function getStyles() {
-    var styles = {
-      root: {
-        position: 'fixed',
-        boxSizing: 'border-box',
-        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-        zIndex: 10,
-        top: 0,
-        left: -10000,
-        width: '100%',
-        height: '100%',
-        transition: Transitions.easeOut('0ms', 'left', '450ms'),
-        color: this.getTheme().palette.textColor
-      },
-      contents: {
-        boxSizing: 'border-box',
-        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-        transition: Transitions.easeOut(),
-        position: 'relative',
-        width: '75%',
-        maxWidth: this.getSpacing().desktopKeylineIncrement * 12,
-        margin: '0 auto',
-        zIndex: 10,
-        background: this.getTheme().palette.canvasColor,
-        opacity: 0
-      },
-      rootWhenOpen: {
-        left: 2,
-        transition: Transitions.easeOut('0ms', 'left', '0ms')
-      },
-      contentsWhenOpen: {
-        opacity: 1,
-        top: 0,
-        transform: 'translate3d(0, ' + this.getSpacing().desktopKeylineIncrement + 'px, 0)'
-      }
+    var spacing = this.context.muiTheme.spacing;
+
+    var main = {
+      position: 'fixed',
+      boxSizing: 'border-box',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      zIndex: 10,
+      top: 0,
+      left: -10000,
+      width: '100%',
+      height: '100%',
+      transition: Transitions.easeOut('0ms', 'left', '450ms')
     };
-    return styles;
+
+    var content = {
+      boxSizing: 'border-box',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      transition: Transitions.easeOut(),
+      position: 'relative',
+      width: '75%',
+      maxWidth: spacing.desktopKeylineIncrement * 12,
+      margin: '0 auto',
+      zIndex: 10
+    };
+
+    var body = {
+      padding: spacing.desktopGutter,
+      overflowY: this.props.autoScrollBodyContent ? 'auto' : 'hidden',
+      overflowX: 'hidden'
+    };
+
+    var gutter = spacing.desktopGutter + 'px ';
+    var title = {
+      margin: 0,
+      padding: gutter + gutter + '0 ' + gutter,
+      color: this.context.muiTheme.palette.textColor,
+      fontSize: 24,
+      lineHeight: '32px',
+      fontWeight: '400'
+    };
+
+    if (this.state.open) {
+      main = this.mergeAndPrefix(main, {
+        left: 0,
+        transition: Transitions.easeOut('0ms', 'left', '0ms')
+      });
+    }
+
+    return {
+      main: this.mergeAndPrefix(main, this.props.style),
+      content: this.mergeAndPrefix(content, this.props.contentStyle),
+      paper: {
+        background: this.context.muiTheme.canvasColor
+      },
+      body: this.mergeStyles(body, this.props.bodyStyle),
+      title: this.mergeStyles(title, this.props.titleStyle)
+    };
   },
 
   render: function render() {
-    var actions = this._getActionsContainer(this.props.actions);
     var styles = this.getStyles();
+    var actions = this._getActionsContainer(this.props.actions);
+    var title = undefined;
+    if (this.props.title) {
+      // If the title is a string, wrap in an h3 tag.
+      // If not, just use it as a node.
+      title = Object.prototype.toString.call(this.props.title) === '[object String]' ? React.createElement(
+        'h3',
+        { style: styles.title },
+        this.props.title
+      ) : this.props.title;
+    }
 
     return React.createElement(
       'div',
-      { ref: 'container', style: this.mergeAndPrefix(styles.root, this.props.style, this.state.open && styles.rootWhenOpen) },
+      { ref: 'container', style: styles.main },
       React.createElement(
-        Paper,
-        {
-          ref: 'dialogWindow',
-          style: this.mergeAndPrefix(styles.contents, this.props.contentStyle, this.state.open && styles.contentsWhenOpen),
-          className: this.props.contentClassName,
-          zDepth: 4 },
-        this.props.children,
-        actions
+        ReactTransitionGroup,
+        { component: 'div', ref: 'dialogWindow' },
+        this.state.open && React.createElement(
+          TransitionItem,
+          {
+            className: this.props.contentClassName,
+            style: styles.content },
+          React.createElement(
+            Paper,
+            {
+              style: styles.paper,
+              zDepth: 4 },
+            title,
+            React.createElement(
+              'div',
+              { ref: 'dialogContent', style: styles.body },
+              this.props.children
+            ),
+            actions
+          )
+        )
       ),
-      React.createElement(Overlay, { ref: 'dialogOverlay', show: this.state.open, autoLockScrolling: false, onTouchTap: this._handleOverlayTouchTap })
+      React.createElement(Overlay, {
+        ref: 'dialogOverlay',
+        show: this.state.open,
+        autoLockScrolling: false,
+        onTouchTap: this._handleOverlayTouchTap })
     );
   },
 
@@ -47974,30 +48709,24 @@ var DialogWindow = React.createClass({
   },
 
   dismiss: function dismiss() {
-    if (this.closeable) {
-      CssEvent.onTransitionEnd(React.findDOMNode(this), (function () {
-        this.refs.dialogOverlay.allowScrolling();
-      }).bind(this));
+    var _this = this;
 
-      this.setState({ open: false });
-      this._onDismiss();
-    }
+    CssEvent.onTransitionEnd(this.getDOMNode(), (function () {
+      _this.refs.dialogOverlay.allowScrolling();
+    }).bind(this));
+
+    this.setState({ open: false });
+    this._onDismiss();
   },
 
   show: function show() {
-    // prevent rapid show/hide
-    setTimeout((function () {
-      this.closeable = true;
-    }).bind(this), 250);
-
     this.refs.dialogOverlay.preventScrolling();
-    this._focusOnAction();
     this.setState({ open: true });
     this._onShow();
   },
 
   _getAction: function _getAction(actionJSON, key) {
-    var _this = this;
+    var _this2 = this;
 
     var styles = { marginRight: 8 };
     var props = {
@@ -48009,7 +48738,7 @@ var DialogWindow = React.createClass({
           actionJSON.onTouchTap.call(undefined);
         }
         if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
-          _this.dismiss();
+          _this2.dismiss();
         }
       },
       label: actionJSON.text,
@@ -48024,12 +48753,11 @@ var DialogWindow = React.createClass({
   },
 
   _getActionsContainer: function _getActionsContainer(actions) {
-    //json w/ refs
-    var actionContainer;
+    var actionContainer = undefined;
     var actionObjects = [];
     var actionStyle = {
       boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(s0,0,0,0)',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       padding: 8,
       marginBottom: 8,
       width: '100%',
@@ -48044,6 +48772,7 @@ var DialogWindow = React.createClass({
         if (!React.isValidElement(currentAction)) {
           currentAction = this._getAction(currentAction, i);
         }
+
         actionObjects.push(currentAction);
       }
 
@@ -48058,26 +48787,61 @@ var DialogWindow = React.createClass({
   },
 
   _positionDialog: function _positionDialog() {
-    var container = React.findDOMNode(this);
-    var dialogWindow = React.findDOMNode(this.refs.dialogWindow);
-    var containerHeight = container.offsetHeight;
-    var dialogWindowHeight = dialogWindow.offsetHeight;
+    if (this.state.open) {
+      var clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      var container = this.getDOMNode();
+      var dialogWindow = this.refs.dialogWindow.getDOMNode();
+      var dialogContent = this.refs.dialogContent.getDOMNode();
+      var minPaddingTop = 16;
+      var dialogWindowHeight = undefined;
+      var paddingTop = undefined;
+      var maxDialogWindowHeight = undefined;
 
-    //Reset the height in case the window was resized.
-    dialogWindow.style.height = '';
+      //Reset the height in case the window was resized.
+      dialogWindow.style.height = '';
+      dialogContent.style.height = '';
 
-    var paddingTop = Math.max((containerHeight - dialogWindowHeight) / 2 - 64, 0);
+      dialogWindowHeight = dialogWindow.offsetHeight;
+      paddingTop = (clientHeight - dialogWindowHeight) / 2 - 64;
+      if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
 
-    //Vertically center the dialog window, but make sure it doesn't
-    //transition to that position.
-    if (this.props.repositionOnUpdate || !container.style.paddingTop) {
-      container.style.paddingTop = paddingTop + 'px';
+      //Vertically center the dialog window, but make sure it doesn't
+      //transition to that position.
+      if (this.props.repositionOnUpdate || !container.style.paddingTop) {
+        container.style.paddingTop = paddingTop + 'px';
+      }
+
+      // Force a height if the dialog is taller than clientHeight
+      maxDialogWindowHeight = clientHeight - 2 * paddingTop;
+      if ((this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) && dialogWindowHeight > maxDialogWindowHeight) {
+        dialogWindow.style.height = maxDialogWindowHeight + 'px';
+
+        this._updateContentHeight();
+      }
     }
   },
 
-  _focusOnAction: function _focusOnAction() {
-    if (this.props.actionFocus) {
-      React.findDOMNode(this.refs[this.props.actionFocus]).focus();
+  _updateContentHeight: function _updateContentHeight() {
+    if (!this.props.autoScrollBodyContent) return;
+
+    var dialogWindow = this.refs.dialogWindow.getDOMNode();
+    var dialogContent = this.refs.dialogContent.getDOMNode();
+    var container = this.getDOMNode();
+    var containerOffset = DOM.getStyleAttributeAsNumber(container, 'paddingTop');
+    var dialogWindowHeight = dialogWindow.offsetHeight - containerOffset;
+    var dialogContentHeight = dialogContent.offsetHeight;
+
+    // If the content is taller than the window can hold, set the height so the content
+    // will scroll.
+    if (dialogContentHeight > dialogWindowHeight) {
+      var dialogContentPadding = DOM.getStyleAttributeAsNumber(dialogContent, 'paddingTop') + DOM.getStyleAttributeAsNumber(dialogContent, 'paddingBottom');
+      var contentHeight = dialogWindowHeight - dialogContentPadding;
+
+      if (this.props.title) contentHeight -= dialogContent.previousSibling.offsetHeight;
+      if (this.props.actions) contentHeight -= dialogContent.nextSibling.offsetHeight;
+
+      dialogContent.style.height = contentHeight + 'px';
+      dialogWindow.style.height = dialogWindowHeight + 'px';
     }
   },
 
@@ -48089,115 +48853,26 @@ var DialogWindow = React.createClass({
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
-  _handleOverlayTouchTap: function _handleOverlayTouchTap() {
-    if (!this.props.modal && this.closeable) {
+  _handleOverlayTouchTap: function _handleOverlayTouchTap(e) {
+    if (this.props.modal) {
+      e.stopPropagation();
+    } else {
       this.dismiss();
       if (this.props.onClickAway) this.props.onClickAway();
     }
   },
 
   _handleWindowKeyUp: function _handleWindowKeyUp(e) {
-    if (!this.props.modal && e.keyCode == KeyCode.ESC) {
+    if (e.keyCode === KeyCode.ESC) {
       this.dismiss();
     }
   }
 
 });
 
-module.exports = DialogWindow;
-
-},{"./flat-button":431,"./mixins/style-propable":448,"./mixins/window-listenable":450,"./overlay":451,"./paper":452,"./styles/transitions":469,"./utils/css-event":512,"./utils/key-code":517,"react":401}],425:[function(require,module,exports){
-'use strict';
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var React = require('react');
-var StylePropable = require('./mixins/style-propable');
-var DialogWindow = require('./dialog-window');
-
-var Dialog = React.createClass({
-  displayName: 'Dialog',
-
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-
-  propTypes: {
-    title: React.PropTypes.node,
-    contentInnerStyle: React.PropTypes.object
-  },
-
-  getStyles: function getStyles() {
-    var spacing = this.context.muiTheme.spacing;
-    var gutter = spacing.desktopGutter + 'px ';
-    var styles = {
-      title: {
-        margin: 0,
-        padding: gutter + gutter + '0 ' + gutter,
-        color: this.context.muiTheme.palette.textColor,
-        fontSize: '24px',
-        lineHeight: '32px',
-        fontWeight: '400'
-      },
-      content: {
-        padding: spacing.desktopGutter
-      }
-    };
-    return styles;
-  },
-
-  render: function render() {
-    var _props = this.props;
-    var className = _props.className;
-    var contentInnerStyle = _props.contentInnerStyle;
-
-    var other = _objectWithoutProperties(_props, ['className', 'contentInnerStyle']);
-
-    var styles = this.getStyles();
-
-    var title;
-    if (this.props.title) {
-      // If the title is a string, wrap in an h3 tag.
-      // If not, just use it as a node.
-      title = Object.prototype.toString.call(this.props.title) === '[object String]' ? React.createElement(
-        'h3',
-        { style: styles.title },
-        this.props.title
-      ) : this.props.title;
-    }
-
-    return React.createElement(
-      DialogWindow,
-      _extends({}, other, {
-        ref: 'dialogWindow',
-        className: className,
-        style: this.props.style }),
-      title,
-      React.createElement(
-        'div',
-        { ref: 'dialogContent', style: this.mergeAndPrefix(styles.content, contentInnerStyle) },
-        this.props.children
-      )
-    );
-  },
-
-  dismiss: function dismiss() {
-    this.refs.dialogWindow.dismiss();
-  },
-
-  show: function show() {
-    this.refs.dialogWindow.show();
-  }
-
-});
-
 module.exports = Dialog;
 
-},{"./dialog-window":424,"./mixins/style-propable":448,"react":401}],426:[function(require,module,exports){
+},{"./flat-button":417,"./mixins/style-propable":440,"./mixins/window-listenable":442,"./overlay":443,"./paper":444,"./styles/transitions":462,"./utils/css-event":533,"./utils/dom":535,"./utils/key-code":539,"react":388}],412:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -48240,6 +48915,8 @@ var DropDownIcon = React.createClass({
       closeOnMenuItemTouchTap: true
     };
   },
+
+  componentDidMount: function componentDidMount() {},
 
   componentClickAway: function componentClickAway() {
     this.setState({ open: false });
@@ -48326,7 +49003,12 @@ var DropDownIcon = React.createClass({
 
 module.exports = DropDownIcon;
 
-},{"./font-icon":433,"./menu/menu":444,"./mixins/click-awayable":447,"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],427:[function(require,module,exports){
+// This component can be deprecated once ./menu/menu has been deprecated.
+// if (process.env.NODE_ENV !== 'production') {
+//   console.warn('DropDownIcon has been deprecated. Use IconMenu instead.');
+// }
+
+},{"./font-icon":419,"./menu/menu":430,"./mixins/click-awayable":437,"./mixins/style-propable":440,"./styles/transitions":462,"react":388}],413:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -48335,10 +49017,11 @@ var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var ClickAwayable = require('./mixins/click-awayable');
 var KeyCode = require('./utils/key-code');
-var DropDownArrow = require('./svg-icons/drop-down-arrow');
+var DropDownArrow = require('./svg-icons/navigation/arrow-drop-down');
 var Paper = require('./paper');
 var Menu = require('./menu/menu');
 var ClearFix = require('./clearfix');
+
 var DropDownMenu = React.createClass({
   displayName: 'DropDownMenu',
 
@@ -48391,6 +49074,7 @@ var DropDownMenu = React.createClass({
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    if (this.props.autoWidth) this._setWidth();
     if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
       return;
     } else if (nextProps.hasOwnProperty('selectedIndex')) {
@@ -48463,13 +49147,17 @@ var DropDownMenu = React.createClass({
         top: this.getSpacing().desktopToolbarHeight / 2
       }
     };
+
     return styles;
   },
 
   getInputNode: function getInputNode() {
     var root = this.refs.root;
     var item = this.props.menuItems[this.state.selectedIndex];
-    if (item) root.value = item[this.props.displayMember];
+    if (item) {
+      root.value = item[this.props.displayMember];
+    }
+
     return root;
   },
 
@@ -48485,12 +49173,18 @@ var DropDownMenu = React.createClass({
     } else {
       if (this.props.valueMember && (this.props.valueLink || this.props.value)) {
         var value = this.props.value || this.props.valueLink.value;
-        for (var i in this.props.menuItems) if (this.props.menuItems[i][this.props.valueMember] === value) selectedIndex = i;
+        for (var i = 0; i < this.props.menuItems.length; i++) {
+          if (this.props.menuItems[i][this.props.valueMember] === value) {
+            selectedIndex = i;
+          }
+        }
       }
     }
 
     var selectedItem = this.props.menuItems[selectedIndex];
-    if (selectedItem) displayValue = selectedItem[this.props.displayMember];
+    if (selectedItem) {
+      displayValue = selectedItem[this.props.displayMember];
+    }
 
     var menuItems = this.props.menuItems.map(function (item) {
       item.text = item[_this.props.displayMember];
@@ -48538,6 +49232,7 @@ var DropDownMenu = React.createClass({
     var el = React.findDOMNode(this);
     var menuItemsDom = React.findDOMNode(this.refs.menuItems);
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
+      el.style.width = 'auto';
       el.style.width = menuItemsDom.offsetWidth + 'px';
     }
   },
@@ -48559,10 +49254,22 @@ var DropDownMenu = React.createClass({
   _onKeyDown: function _onKeyDown(e) {
     switch (e.which) {
       case KeyCode.UP:
-        if (!this.state.open) this._selectPreviousItem();else if (e.altKey) this.setState({ open: false });
+        if (!this.state.open) {
+          this._selectPreviousItem();
+        } else {
+          if (e.altKey) {
+            this.setState({ open: false });
+          }
+        }
         break;
       case KeyCode.DOWN:
-        if (!this.state.open) if (e.altKey) this.setState({ open: true });else this._selectNextItem();
+        if (!this.state.open) {
+          if (e.altKey) {
+            this.setState({ open: true });
+          } else {
+            this._selectNextItem();
+          }
+        }
         break;
       case KeyCode.ENTER:
       case KeyCode.SPACE:
@@ -48577,9 +49284,15 @@ var DropDownMenu = React.createClass({
   _onMenuItemClick: function _onMenuItemClick(e, key, payload) {
     if (this.props.onChange && this.state.selectedIndex !== key) {
       var selectedItem = this.props.menuItems[key];
-      if (selectedItem) e.target.value = selectedItem[this.props.valueMember];
+      if (selectedItem) {
+        e.target.value = selectedItem[this.props.valueMember];
+      }
 
-      if (this.props.valueLink) this.props.valueLink.requestChange(e.target.value);else this.props.onChange(e, key, payload);
+      if (this.props.valueLink) {
+        this.props.valueLink.requestChange(e.target.value);
+      } else {
+        this.props.onChange(e, key, payload);
+      }
     }
 
     this.setState({
@@ -48616,7 +49329,7 @@ module.exports = DropDownMenu;
 
 }).call(this,require('_process'))
 
-},{"./clearfix":414,"./menu/menu":444,"./mixins/click-awayable":447,"./mixins/style-propable":448,"./paper":452,"./styles/transitions":469,"./svg-icons/drop-down-arrow":472,"./utils/key-code":517,"_process":1,"react":401}],428:[function(require,module,exports){
+},{"./clearfix":401,"./menu/menu":430,"./mixins/click-awayable":437,"./mixins/style-propable":440,"./paper":444,"./styles/transitions":462,"./svg-icons/navigation/arrow-drop-down":487,"./utils/key-code":539,"_process":1,"react":388}],414:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -48625,15 +49338,17 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react');
 var KeyCode = require('./utils/key-code');
+var Colors = require('./styles/colors');
 var StylePropable = require('./mixins/style-propable');
-var WindowListenable = require('./mixins/window-listenable');
 var FocusRipple = require('./ripples/focus-ripple');
 var TouchRipple = require('./ripples/touch-ripple');
+
+var _tabPressed = false;
 
 var EnhancedButton = React.createClass({
   displayName: 'EnhancedButton',
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object
@@ -48644,6 +49359,7 @@ var EnhancedButton = React.createClass({
     containerElement: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.element]),
     disabled: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
+    disableKeyboardFocus: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
     keyboardFocused: React.PropTypes.bool,
     linkButton: React.PropTypes.bool,
@@ -48653,27 +49369,40 @@ var EnhancedButton = React.createClass({
     touchRippleOpacity: React.PropTypes.number,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func,
+    onKeyboardFocus: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func,
+    onKeyUp: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
-    onKeyboardFocus: React.PropTypes.func
+    tabIndex: React.PropTypes.number
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
-      containerElement: 'button'
+      containerElement: 'button',
+      onBlur: function onBlur() {},
+      onFocus: function onFocus() {},
+      onKeyboardFocus: function onKeyboardFocus() {},
+      onKeyDown: function onKeyDown() {},
+      onKeyUp: function onKeyUp() {},
+      onTouchTap: function onTouchTap() {},
+      tabIndex: 0,
+      type: 'button'
     };
-  },
-
-  windowListeners: {
-    'keydown': '_handleWindowKeydown',
-    'keyup': '_handleWindowKeyup'
   },
 
   getInitialState: function getInitialState() {
     return {
-      isKeyboardFocused: !this.props.disabled && this.props.keyboardFocused
+      isKeyboardFocused: !this.props.disabled && this.props.keyboardFocused && !this.props.disableKeyboardFocus
     };
+  },
+
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    if ((nextProps.disabled || nextProps.disableKeyboardFocus) && this.state.isKeyboardFocused) {
+      this.setState({ isKeyboardFocused: false });
+      if (nextProps.onKeyboardFocus) {
+        nextProps.onKeyboardFocus(null, false);
+      }
+    }
   },
 
   // Remove inner padding and border in Firefox 4+.
@@ -48686,36 +49415,13 @@ var EnhancedButton = React.createClass({
     }
   },
 
-  getStyles: function getStyles() {
-    var styles = {
-      root: {
-        border: 10,
-        background: 'none',
-        boxSizing: 'border-box',
-        font: 'inherit',
-        fontFamily: this.context.muiTheme.contentFontFamily,
-        WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-        WebkitAppearance: !this.props.linkButton && 'button',
-        cursor: 'pointer'
-      },
-      rootWhenLinkButton: {
-        display: 'inline-block',
-        cursor: this.props.disabled ? 'default' : 'pointer',
-        textDecoration: 'none'
-      },
-      rootWhenDisabled: {
-        cursor: 'default'
-      }
-    };
-    return styles;
-  },
-
   render: function render() {
     var _props = this.props;
     var centerRipple = _props.centerRipple;
     var containerElement = _props.containerElement;
     var disabled = _props.disabled;
     var disableFocusRipple = _props.disableFocusRipple;
+    var disableKeyboardFocus = _props.disableKeyboardFocus;
     var disableTouchRipple = _props.disableTouchRipple;
     var focusRippleColor = _props.focusRippleColor;
     var focusRippleOpacity = _props.focusRippleOpacity;
@@ -48724,45 +49430,66 @@ var EnhancedButton = React.createClass({
     var touchRippleOpacity = _props.touchRippleOpacity;
     var onBlur = _props.onBlur;
     var onFocus = _props.onFocus;
-    var onMouseOver = _props.onMouseOver;
-    var onMouseOut = _props.onMouseOut;
+    var onKeyUp = _props.onKeyUp;
+    var onKeyDown = _props.onKeyDown;
     var onTouchTap = _props.onTouchTap;
     var style = _props.style;
+    var tabIndex = _props.tabIndex;
+    var type = _props.type;
 
-    var other = _objectWithoutProperties(_props, ['centerRipple', 'containerElement', 'disabled', 'disableFocusRipple', 'disableTouchRipple', 'focusRippleColor', 'focusRippleOpacity', 'linkButton', 'touchRippleColor', 'touchRippleOpacity', 'onBlur', 'onFocus', 'onMouseOver', 'onMouseOut', 'onTouchTap', 'style']);
+    var other = _objectWithoutProperties(_props, ['centerRipple', 'containerElement', 'disabled', 'disableFocusRipple', 'disableKeyboardFocus', 'disableTouchRipple', 'focusRippleColor', 'focusRippleOpacity', 'linkButton', 'touchRippleColor', 'touchRippleOpacity', 'onBlur', 'onFocus', 'onKeyUp', 'onKeyDown', 'onTouchTap', 'style', 'tabIndex', 'type']);
 
-    var styles = this.getStyles();
-
-    var mergedStyles = this.mergeAndPrefix(styles.root, linkButton && styles.rootWhenLinkButton, disabled && styles.rootWhenDisabled, style);
+    var mergedStyles = this.mergeAndPrefix({
+      border: 10,
+      background: 'none',
+      boxSizing: 'border-box',
+      display: 'inline-block',
+      font: 'inherit',
+      fontFamily: this.context.muiTheme.contentFontFamily,
+      WebkitTapHighlightColor: Colors.transparent,
+      WebkitAppearance: !this.props.linkButton && 'button',
+      cursor: disabled ? 'default' : 'pointer',
+      textDecoration: 'none',
+      outline: 'none'
+    }, style);
 
     var buttonProps = _extends({}, other, {
       style: mergedStyles,
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
-      onMouseOver: this._handleMouseOver,
-      onMouseOut: this._handleMouseOut,
-      onTouchTap: this._handleTouchTap
+      onTouchTap: this._handleTouchTap,
+      onKeyUp: this._handleKeyUp,
+      onKeyDown: this._handleKeyDown,
+      tabIndex: tabIndex,
+      type: type
     });
 
     var buttonChildren = [];
 
     // Create ripples if we need to
-    buttonChildren.push(disabled || disableTouchRipple ? this.props.children : React.createElement(
-      TouchRipple,
-      {
-        ref: 'touchRipple',
-        key: 'touchRipple',
-        centerRipple: centerRipple,
-        color: touchRippleColor,
-        opacity: touchRippleOpacity },
-      this.props.children
-    ));
-    buttonChildren.push(disabled || disableFocusRipple ? null : React.createElement(FocusRipple, {
-      key: 'focusRipple',
-      color: focusRippleColor,
-      opacity: focusRippleOpacity,
-      show: this.state.isKeyboardFocused }));
+    if (!disabled && !disableTouchRipple) {
+      buttonChildren.push(React.createElement(
+        TouchRipple,
+        {
+          key: 'touchRipple',
+          centerRipple: centerRipple,
+          color: touchRippleColor,
+          opacity: touchRippleOpacity },
+        this.props.children
+      ));
+    } else {
+      buttonChildren.push(this.props.children);
+    }
+
+    if (!disabled && !disableFocusRipple && !disableKeyboardFocus) {
+      buttonChildren.push(React.createElement(FocusRipple, {
+        key: 'focusRipple',
+        color: focusRippleColor,
+        opacity: focusRippleOpacity,
+        show: this.state.isKeyboardFocused
+      }));
+    }
 
     if (disabled && linkButton) {
       return React.createElement(
@@ -48780,69 +49507,68 @@ var EnhancedButton = React.createClass({
     return this.state.isKeyboardFocused;
   },
 
-  _handleWindowKeydown: function _handleWindowKeydown(e) {
-    if (!this.props.disabled) {
-      if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
-      if (e.keyCode == KeyCode.ENTER && this.state.isKeyboardFocused) {
-        this._handleTouchTap(e);
-      }
+  removeKeyboardFocus: function removeKeyboardFocus(e) {
+    if (this.state.isKeyboardFocused) {
+      this.setState({ isKeyboardFocused: false });
+      this.props.onKeyboardFocus(e, false);
     }
   },
 
-  _handleWindowKeyup: function _handleWindowKeyup(e) {
-    if (!this.props.disabled && e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
+  setKeyboardFocus: function setKeyboardFocus(e) {
+    if (!this.state.isKeyboardFocused) {
+      this.setState({ isKeyboardFocused: true });
+      this.props.onKeyboardFocus(e, true);
+    }
+  },
+
+  _handleKeyDown: function _handleKeyDown(e) {
+    if (!this.props.disabled && !this.props.disableKeyboardFocus) {
+      if (e.keyCode === KeyCode.TAB) {
+        _tabPressed = true;
+      }
+      if (e.keyCode === KeyCode.ENTER && this.state.isKeyboardFocused) {
+        this._handleTouchTap(e);
+      }
+    }
+    this.props.onKeyDown(e);
+  },
+
+  _handleKeyUp: function _handleKeyUp(e) {
+    if (!this.props.disabled && e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
       this._handleTouchTap(e);
     }
+    this.props.onKeyUp(e);
   },
 
   _handleBlur: function _handleBlur(e) {
     this._cancelFocusTimeout();
-    if (!this.props.disabled) {
-      this.setState({
-        isKeyboardFocused: false
-      });
-      if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
-      if (this.props.onBlur) this.props.onBlur(e);
-    }
+    this.removeKeyboardFocus(e);
+    this.props.onBlur(e);
   },
 
   _handleFocus: function _handleFocus(e) {
-    React.findDOMNode(this).style.outline = 'none';
-    if (!this.props.disabled) {
+    var _this = this;
+
+    if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       //setTimeout is needed because the focus event fires first
       //Wait so that we can capture if this was a keyboard focus
       //or touch focus
-      this._focusTimeout = setTimeout((function () {
-        if (this._tabPressed) {
-          this.setState({
-            isKeyboardFocused: true
-          });
-          if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, true);
+      this._focusTimeout = setTimeout(function () {
+        if (_tabPressed) {
+          _this.setKeyboardFocus(e);
         }
-      }).bind(this), 150);
+      }, 150);
 
-      if (this.props.onFocus) this.props.onFocus(e);
+      this.props.onFocus(e);
     }
-  },
-
-  _handleMouseOver: function _handleMouseOver(e) {
-    React.findDOMNode(this).style.textDecoration = 'none';
-    if (this.props.onMouseOver) this.props.onMouseOver(e);
-  },
-
-  _handleMouseOut: function _handleMouseOut(e) {
-    if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleTouchTap: function _handleTouchTap(e) {
     this._cancelFocusTimeout();
     if (!this.props.disabled) {
-      this._tabPressed = false;
-      this.setState({
-        isKeyboardFocused: false
-      });
-      if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, false);
-      if (this.props.onTouchTap) this.props.onTouchTap(e);
+      _tabPressed = false;
+      this.removeKeyboardFocus(e);
+      this.props.onTouchTap(e);
     }
   },
 
@@ -48859,7 +49585,7 @@ EnhancedButton.hasStyleBeenInjected = false;
 
 module.exports = EnhancedButton;
 
-},{"./mixins/style-propable":448,"./mixins/window-listenable":450,"./ripples/focus-ripple":457,"./ripples/touch-ripple":458,"./utils/key-code":517,"react":401}],429:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./ripples/focus-ripple":449,"./ripples/touch-ripple":451,"./styles/colors":456,"./utils/key-code":539,"react":388}],415:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -48929,7 +49655,9 @@ var EnhancedSwitch = React.createClass({
 
   componentDidMount: function componentDidMount() {
     var inputNode = React.findDOMNode(this.refs.checkbox);
-    if (!this.props.switched || inputNode.checked != this.props.switched) this.props.onParentShouldUpdate(inputNode.checked);
+    if (!this.props.switched || inputNode.checked !== this.props.switched) {
+      this.props.onParentShouldUpdate(inputNode.checked);
+    }
 
     window.addEventListener('resize', this._handleResize);
 
@@ -48944,7 +49672,7 @@ var EnhancedSwitch = React.createClass({
     var hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
     var hasCheckedProp = nextProps.hasOwnProperty('checked');
     var hasToggledProp = nextProps.hasOwnProperty('toggled');
-    var hasNewDefaultProp = nextProps.hasOwnProperty('defaultSwitched') && nextProps.defaultSwitched != this.props.defaultSwitched;
+    var hasNewDefaultProp = nextProps.hasOwnProperty('defaultSwitched') && nextProps.defaultSwitched !== this.props.defaultSwitched;
     var newState = {};
 
     if (hasCheckedProp) {
@@ -48957,7 +49685,9 @@ var EnhancedSwitch = React.createClass({
       newState.switched = nextProps.defaultSwitched;
     }
 
-    if (newState.switched !== undefined && newState.switched != this.props.switched) this.props.onParentShouldUpdate(newState.switched);
+    if (newState.switched !== undefined && newState.switched !== this.props.switched) {
+      this.props.onParentShouldUpdate(newState.switched);
+    }
   },
 
   getTheme: function getTheme() {
@@ -48968,7 +49698,6 @@ var EnhancedSwitch = React.createClass({
     var spacing = this.context.muiTheme.spacing;
     var switchWidth = 60 - spacing.desktopGutterLess;
     var labelWidth = 'calc(100% - 60px)';
-
     var styles = {
       root: {
         position: 'relative',
@@ -49009,16 +49738,17 @@ var EnhancedSwitch = React.createClass({
         position: 'relative',
         display: 'block',
         width: switchWidth,
-        marginRight: this.props.labelPosition == 'right' ? spacing.desktopGutterLess : 0,
-        marginLeft: this.props.labelPosition == 'left' ? spacing.desktopGutterLess : 0
+        marginRight: this.props.labelPosition === 'right' ? spacing.desktopGutterLess : 0,
+        marginLeft: this.props.labelPosition === 'left' ? spacing.desktopGutterLess : 0
       },
       ripple: {
         height: '200%',
         width: '200%',
-        top: '-12',
-        left: '-12'
+        top: -12,
+        left: -12
       }
     };
+
     return styles;
   },
 
@@ -49044,7 +49774,6 @@ var EnhancedSwitch = React.createClass({
     var other = _objectWithoutProperties(_props, ['type', 'name', 'value', 'label', 'onSwitch', 'defaultSwitched', 'onBlur', 'onFocus', 'onMouseUp', 'onMouseDown', 'onMouseOut', 'onTouchStart', 'onTouchEnd', 'disableTouchRipple', 'disableFocusRipple', 'className']);
 
     var styles = this.getStyles();
-
     var wrapStyles = this.mergeAndPrefix(styles.wrap, this.props.iconStyle);
     var rippleStyle = this.mergeAndPrefix(styles.ripple, this.props.rippleStyle);
     var rippleColor = this.props.hasOwnProperty('rippleColor') ? this.props.rippleColor : this.getTheme().primary1Color;
@@ -49057,7 +49786,6 @@ var EnhancedSwitch = React.createClass({
     var inputId = this.props.id || UniqueId.generate();
 
     var labelStyle = this.mergeAndPrefix(styles.label, this.props.labelStyle);
-
     var labelElement = this.props.label ? React.createElement(
       'label',
       { style: labelStyle, htmlFor: inputId },
@@ -49180,8 +49908,29 @@ var EnhancedSwitch = React.createClass({
 
     var isInputChecked = React.findDOMNode(this.refs.checkbox).checked;
 
-    if (!this.props.hasOwnProperty('checked')) this.props.onParentShouldUpdate(isInputChecked);
-    if (this.props.onSwitch) this.props.onSwitch(e, isInputChecked);
+    if (!this.props.hasOwnProperty('checked')) {
+      this.props.onParentShouldUpdate(isInputChecked);
+    }
+    if (this.props.onSwitch) {
+      this.props.onSwitch(e, isInputChecked);
+    }
+  },
+
+  // Checkbox inputs only use SPACE to change their state. Using ENTER will
+  // update the ui but not the input.
+  _handleWindowKeydown: function _handleWindowKeydown(e) {
+    if (e.keyCode === KeyCode.TAB) {
+      this._tabPressed = true;
+    }
+    if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
+      this._handleChange(e);
+    }
+  },
+
+  _handleWindowKeyup: function _handleWindowKeyup(e) {
+    if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
+      this._handleChange(e);
+    }
   },
 
   /**
@@ -49189,25 +49938,11 @@ var EnhancedSwitch = React.createClass({
    * events, the checkbox input takes control of pointer events and calls
    * ripple animations manually.
    */
-
-  // Checkbox inputs only use SPACE to change their state. Using ENTER will
-  // update the ui but not the input.
-  _handleWindowKeydown: function _handleWindowKeydown(e) {
-    if (e.keyCode == KeyCode.TAB) this._tabPressed = true;
-    if (e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
-      this._handleChange(e);
-    }
-  },
-
-  _handleWindowKeyup: function _handleWindowKeyup(e) {
-    if (e.keyCode == KeyCode.SPACE && this.state.isKeyboardFocused) {
-      this._handleChange(e);
-    }
-  },
-
   _handleMouseDown: function _handleMouseDown(e) {
     //only listen to left clicks
-    if (e.button === 0) this.refs.touchRipple.start(e);
+    if (e.button === 0) {
+      this.refs.touchRipple.start(e);
+    }
   },
 
   _handleMouseUp: function _handleMouseUp() {
@@ -49231,22 +49966,28 @@ var EnhancedSwitch = React.createClass({
       isKeyboardFocused: false
     });
 
-    if (this.props.onBlur) this.props.onBlur(e);
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
   },
 
   _handleFocus: function _handleFocus(e) {
+    var _this = this;
+
     //setTimeout is needed becuase the focus event fires first
     //Wait so that we can capture if this was a keyboard focus
     //or touch focus
-    setTimeout((function () {
-      if (this._tabPressed) {
-        this.setState({
+    setTimeout(function () {
+      if (_this._tabPressed) {
+        _this.setState({
           isKeyboardFocused: true
         });
       }
-    }).bind(this), 150);
+    }, 150);
 
-    if (this.props.onFocus) this.props.onFocus(e);
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
   },
 
   _handleResize: function _handleResize() {
@@ -49259,7 +50000,7 @@ module.exports = EnhancedSwitch;
 
 }).call(this,require('_process'))
 
-},{"./clearfix":414,"./mixins/style-propable":448,"./mixins/window-listenable":450,"./paper":452,"./ripples/focus-ripple":457,"./ripples/touch-ripple":458,"./styles/transitions":469,"./utils/key-code":517,"./utils/unique-id":520,"_process":1,"react":401}],430:[function(require,module,exports){
+},{"./clearfix":401,"./mixins/style-propable":440,"./mixins/window-listenable":442,"./paper":444,"./ripples/focus-ripple":449,"./ripples/touch-ripple":451,"./styles/transitions":462,"./utils/key-code":539,"./utils/unique-id":542,"_process":1,"react":388}],416:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49345,8 +50086,12 @@ var EnhancedTextarea = React.createClass({
       opacity: 0
     });
 
-    if (this.props.hasOwnProperty('valueLink')) other.value = this.props.valueLink.value;
-    if (this.props.disabled) style.cursor = 'default';
+    if (this.props.hasOwnProperty('valueLink')) {
+      other.value = this.props.valueLink.value;
+    }
+    if (this.props.disabled) {
+      style.cursor = 'default';
+    }
 
     return React.createElement(
       'div',
@@ -49373,21 +50118,25 @@ var EnhancedTextarea = React.createClass({
   },
 
   setValue: function setValue(value) {
-    this.refs.input.value = value;
+    this.getInputNode().value = value;
     this._syncHeightWithShadow(value);
   },
 
   _syncHeightWithShadow: function _syncHeightWithShadow(newValue, e) {
     var shadow = React.findDOMNode(this.refs.shadow);
     var currentHeight = this.state.height;
-    var newHeight;
+    var newHeight = undefined;
 
-    if (newValue !== undefined) shadow.value = newValue;
+    if (newValue !== undefined) {
+      shadow.value = newValue;
+    }
     newHeight = shadow.scrollHeight;
 
     if (currentHeight !== newHeight) {
       this.setState({ height: newHeight });
-      if (this.props.onHeightChange) this.props.onHeightChange(e, newHeight);
+      if (this.props.onHeightChange) {
+        this.props.onHeightChange(e, newHeight);
+      }
     }
   },
 
@@ -49398,11 +50147,13 @@ var EnhancedTextarea = React.createClass({
       this.props.valueLink.requestChange(e.target.value);
     }
 
-    if (this.props.onChange) this.props.onChange(e);
+    if (this.props.onChange) {
+      this.props.onChange(e);
+    }
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    if (nextProps.value != this.props.value) {
+    if (nextProps.value !== this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
     }
   }
@@ -49410,7 +50161,7 @@ var EnhancedTextarea = React.createClass({
 
 module.exports = EnhancedTextarea;
 
-},{"./mixins/style-propable":448,"./styles/auto-prefix":462,"react":401}],431:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/auto-prefix":455,"react":388}],417:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49424,6 +50175,12 @@ var ColorManipulator = require('./utils/color-manipulator');
 var Typography = require('./styles/typography');
 var EnhancedButton = require('./enhanced-button');
 
+function validateLabel(props, propName, componentName) {
+  if (!props.children && !props.label) {
+    return new Error('Required prop label or children was not ' + 'specified in ' + componentName + '.');
+  }
+}
+
 var FlatButton = React.createClass({
   displayName: 'FlatButton',
 
@@ -49434,15 +50191,14 @@ var FlatButton = React.createClass({
   },
 
   propTypes: {
-    className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     hoverColor: React.PropTypes.string,
-    label: function label(props, propName, componentName) {
-      if (!props.children && !props.label) {
-        return new Error('Warning: Required prop `label` or `children` was not specified in `' + componentName + '`.');
-      }
-    },
+    label: validateLabel,
     labelStyle: React.PropTypes.object,
+    onKeyboardFocus: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func,
+    onTouchStart: React.PropTypes.func,
     primary: React.PropTypes.bool,
     rippleColor: React.PropTypes.string,
     secondary: React.PropTypes.bool
@@ -49457,136 +50213,116 @@ var FlatButton = React.createClass({
   getInitialState: function getInitialState() {
     return {
       hovered: false,
-      isKeyboardFocused: false
+      isKeyboardFocused: false,
+      touch: false
     };
-  },
-
-  getThemeButton: function getThemeButton() {
-    return this.context.muiTheme.component.button;
-  },
-
-  getTheme: function getTheme() {
-    return this.context.muiTheme.component.flatButton;
-  },
-
-  _getColor: function _getColor() {
-    var theme = this.getTheme();
-    var color = this.props.disabled ? theme.disabledTextColor : this.props.primary ? theme.primaryTextColor : this.props.secondary ? theme.secondaryTextColor : theme.textColor;
-
-    return {
-      'default': color,
-      hover: this.props.hoverColor || ColorManipulator.fade(ColorManipulator.lighten(color, 0.4), 0.15),
-      ripple: this.props.rippleColor || ColorManipulator.fade(color, 0.8)
-    };
-  },
-
-  getStyles: function getStyles() {
-    var color = this._getColor();
-    var styles = {
-      root: {
-        color: color['default'],
-        transition: Transitions.easeOut(),
-        fontSize: Typography.fontStyleButtonFontSize,
-        letterSpacing: 0,
-        textTransform: 'uppercase',
-        fontWeight: Typography.fontWeightMedium,
-        borderRadius: 2,
-        userSelect: 'none',
-        position: 'relative',
-        overflow: 'hidden',
-        backgroundColor: this.getTheme().color,
-        lineHeight: this.getThemeButton().height + 'px',
-        minWidth: this.getThemeButton().minWidth,
-        padding: 0,
-        margin: 0,
-        //This is need so that ripples do not bleed past border radius.
-        //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-        transform: 'translate3d(0, 0, 0)'
-      },
-      label: {
-        position: 'relative',
-        padding: '0px ' + this.context.muiTheme.spacing.desktopGutterLess + 'px'
-      },
-      rootWhenHovered: {
-        backgroundColor: color.hover
-      },
-      rippleColor: color.ripple
-    };
-
-    return styles;
   },
 
   render: function render() {
     var _props = this.props;
-    var children = _props.children;
+    var disabled = _props.disabled;
     var hoverColor = _props.hoverColor;
     var label = _props.label;
     var labelStyle = _props.labelStyle;
-    var onBlur = _props.onBlur;
+    var onKeyboardFocus = _props.onKeyboardFocus;
     var onMouseOut = _props.onMouseOut;
     var onMouseOver = _props.onMouseOver;
+    var onTouchStart = _props.onTouchStart;
     var primary = _props.primary;
     var rippleColor = _props.rippleColor;
     var secondary = _props.secondary;
     var style = _props.style;
 
-    var other = _objectWithoutProperties(_props, ['children', 'hoverColor', 'label', 'labelStyle', 'onBlur', 'onMouseOut', 'onMouseOver', 'primary', 'rippleColor', 'secondary', 'style']);
+    var other = _objectWithoutProperties(_props, ['disabled', 'hoverColor', 'label', 'labelStyle', 'onKeyboardFocus', 'onMouseOut', 'onMouseOver', 'onTouchStart', 'primary', 'rippleColor', 'secondary', 'style']);
 
-    var styles = this.getStyles();
+    var theme = this.context.muiTheme;
+    var buttonTheme = theme.component.button;
+    var flatButtonTheme = theme.component.flatButton;
 
-    var labelElement;
-    if (label) {
-      labelElement = React.createElement(
-        'span',
-        { style: this.mergeAndPrefix(styles.label, this.props.labelStyle) },
-        label
-      );
-    }
+    var defaultColor = disabled ? flatButtonTheme.disabledTextColor : primary ? flatButtonTheme.primaryTextColor : secondary ? flatButtonTheme.secondaryTextColor : flatButtonTheme.textColor;
+
+    var defaultHoverColor = ColorManipulator.fade(ColorManipulator.lighten(defaultColor, 0.4), 0.15);
+    var defaultRippleColor = ColorManipulator.fade(defaultColor, 0.8);
+    var buttonHoverColor = hoverColor || defaultHoverColor;
+    var buttonRippleColor = rippleColor || defaultRippleColor;
+    var hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
+
+    var mergedRootStyles = this.mergeStyles({
+      color: defaultColor,
+      transition: Transitions.easeOut(),
+      fontSize: Typography.fontStyleButtonFontSize,
+      letterSpacing: 0,
+      textTransform: 'uppercase',
+      fontWeight: Typography.fontWeightMedium,
+      borderRadius: 2,
+      userSelect: 'none',
+      position: 'relative',
+      overflow: 'hidden',
+      backgroundColor: hovered ? buttonHoverColor : flatButtonTheme.color,
+      lineHeight: buttonTheme.height + 'px',
+      minWidth: buttonTheme.minWidth,
+      padding: 0,
+      margin: 0,
+      //This is need so that ripples do not bleed past border radius.
+      //See: http://stackoverflow.com/questions/17298739
+      transform: 'translate3d(0, 0, 0)'
+    }, this.props.style);
+
+    var mergedLabelStyles = this.mergeAndPrefix({
+      position: 'relative',
+      padding: '0 ' + theme.spacing.desktopGutterLess + 'px'
+    }, labelStyle);
+
+    var labelElement = label ? React.createElement(
+      'span',
+      { style: mergedLabelStyles },
+      label
+    ) : null;
 
     return React.createElement(
       EnhancedButton,
       _extends({}, other, {
-        ref: 'enhancedButton',
-        style: this.mergeStyles(styles.root, (this.state.hovered || this.state.isKeyboardFocused) && !this.props.disabled && styles.rootWhenHovered, this.props.style),
-        onMouseOver: this._handleMouseOver,
+        disabled: disabled,
+        focusRippleColor: buttonRippleColor,
+        onKeyboardFocus: this._handleKeyboardFocus,
         onMouseOut: this._handleMouseOut,
-        focusRippleColor: styles.rippleColor,
-        touchRippleColor: styles.rippleColor,
-        onKeyboardFocus: this._handleKeyboardFocus }),
+        onMouseOver: this._handleMouseOver,
+        onTouchStart: this._handleTouchStart,
+        style: mergedRootStyles,
+        touchRippleColor: buttonRippleColor }),
       labelElement,
       this.props.children
     );
   },
 
-  _handleMouseOver: function _handleMouseOver(e) {
-    this.setState({ hovered: true });
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
+  _handleKeyboardFocus: function _handleKeyboardFocus(e, isKeyboardFocused) {
+    this.setState({ isKeyboardFocused: isKeyboardFocused });
+    if (this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(e, isKeyboardFocused);
     }
+  },
+
+  _handleMouseOver: function _handleMouseOver(e) {
+    //Cancel hover styles for touch devices
+    if (!this.state.touch) this.setState({ hovered: true });
+    if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
   _handleMouseOut: function _handleMouseOut(e) {
     this.setState({ hovered: false });
-    if (this.props.onMouseOut) {
-      this.props.onMouseOut(e);
-    }
+    if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
-  _handleKeyboardFocus: function _handleKeyboardFocus(e, isKeyboardFocused) {
-    this.setState({ isKeyboardFocused: isKeyboardFocused });
-  },
-
-  _handleOnBlur: function _handleOnBlur(e) {
-    this.setState({ hovered: false });
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
-    }
+  _handleTouchStart: function _handleTouchStart(e) {
+    this.setState({ touch: true });
+    if (this.props.onTouchStart) this.props.onTouchStart(e);
   }
+
 });
 
 module.exports = FlatButton;
 
-},{"./enhanced-button":428,"./mixins/style-propable":448,"./styles/transitions":469,"./styles/typography":470,"./utils/color-manipulator":511,"react":401}],432:[function(require,module,exports){
+},{"./enhanced-button":414,"./mixins/style-propable":440,"./styles/transitions":462,"./styles/typography":463,"./utils/color-manipulator":532,"react":388}],418:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -49601,6 +50337,7 @@ var ColorManipulator = require('./utils/color-manipulator');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
 var Paper = require('./paper');
+var Children = require('./utils/children');
 
 var getZDepth = function getZDepth(disabled) {
   var zDepth = disabled ? 0 : 2;
@@ -49610,8 +50347,8 @@ var getZDepth = function getZDepth(disabled) {
   };
 };
 
-var RaisedButton = React.createClass({
-  displayName: 'RaisedButton',
+var FloatingActionButton = React.createClass({
+  displayName: 'FloatingActionButton',
 
   mixins: [StylePropable],
 
@@ -49635,9 +50372,10 @@ var RaisedButton = React.createClass({
   getInitialState: function getInitialState() {
     var zDepth = this.props.disabled ? 0 : 2;
     return {
-      zDepth: zDepth,
+      hovered: false,
       initialZDepth: zDepth,
-      hovered: false
+      touch: false,
+      zDepth: zDepth
     };
   },
 
@@ -49673,6 +50411,8 @@ var RaisedButton = React.createClass({
   },
 
   getStyles: function getStyles() {
+    var themeVariables = this.context.muiTheme.component.floatingActionButton;
+
     var styles = {
       root: {
         transition: Transitions.easeOut(),
@@ -49681,8 +50421,8 @@ var RaisedButton = React.createClass({
       container: {
         transition: Transitions.easeOut(),
         position: 'relative',
-        height: this.getTheme().buttonSize,
-        width: this.getTheme().buttonSize,
+        height: themeVariables.buttonSize,
+        width: themeVariables.buttonSize,
         padding: 0,
         overflow: 'hidden',
         backgroundColor: this._getBackgroundColor(),
@@ -49694,24 +50434,26 @@ var RaisedButton = React.createClass({
         //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
         transform: 'translate3d(0, 0, 0)'
       },
-      icon: {
-        lineHeight: this.getTheme().buttonSize + 'px',
-        fill: this.getTheme().iconColor,
-        color: this._getIconColor()
+      containerWhenMini: {
+        height: themeVariables.miniSize,
+        width: themeVariables.miniSize
       },
       overlay: {
         transition: Transitions.easeOut(),
         top: 0
       },
-      containerWhenMini: {
-        height: this.getTheme().miniSize,
-        width: this.getTheme().miniSize
-      },
-      iconWhenMini: {
-        lineHeight: this.getTheme().miniSize + 'px'
-      },
       overlayWhenHovered: {
         backgroundColor: ColorManipulator.fade(this._getIconColor(), 0.4)
+      },
+      icon: {
+        height: themeVariables.buttonSize,
+        lineHeight: themeVariables.buttonSize + 'px',
+        fill: themeVariables.iconColor,
+        color: this._getIconColor()
+      },
+      iconWhenMini: {
+        height: themeVariables.miniSize,
+        lineHeight: themeVariables.miniSize + 'px'
       }
     };
     return styles;
@@ -49720,22 +50462,25 @@ var RaisedButton = React.createClass({
   render: function render() {
     var _props = this.props;
     var disabled = _props.disabled;
-    var icon = _props.icon;
     var mini = _props.mini;
     var secondary = _props.secondary;
+    var iconStyle = _props.iconStyle;
+    var iconClassName = _props.iconClassName;
 
-    var other = _objectWithoutProperties(_props, ['disabled', 'icon', 'mini', 'secondary']);
+    var other = _objectWithoutProperties(_props, ['disabled', 'mini', 'secondary', 'iconStyle', 'iconClassName']);
 
     var styles = this.getStyles();
 
-    var iconElement;
-    if (this.props.iconClassName) {
+    var iconElement = undefined;
+    if (iconClassName) {
       iconElement = React.createElement(FontIcon, {
-        className: this.props.iconClassName,
-        style: this.mergeAndPrefix(styles.icon, mini && styles.iconWhenMini, this.props.iconStyle) });
+        className: iconClassName,
+        style: this.mergeAndPrefix(styles.icon, mini && styles.iconWhenMini, iconStyle) });
     }
 
-    var rippleColor = styles.icon.color;
+    var children = Children.extend(this.props.children, {
+      style: this.mergeAndPrefix(styles.icon, mini && styles.iconWhenMini, iconStyle)
+    });
 
     var buttonEventHandlers = disabled ? null : {
       onMouseDown: this._handleMouseDown,
@@ -49759,15 +50504,15 @@ var RaisedButton = React.createClass({
           ref: 'container',
           disabled: disabled,
           style: this.mergeAndPrefix(styles.container, this.props.mini && styles.containerWhenMini),
-          focusRippleColor: rippleColor,
-          touchRippleColor: rippleColor }),
+          focusRippleColor: styles.icon.color,
+          touchRippleColor: styles.icon.color }),
         React.createElement(
           'div',
           {
             ref: 'overlay',
             style: this.mergeAndPrefix(styles.overlay, this.state.hovered && !this.props.disabled && styles.overlayWhenHovered) },
           iconElement,
-          this.props.children
+          children
         )
       )
     );
@@ -49792,12 +50537,17 @@ var RaisedButton = React.createClass({
   },
 
   _handleMouseOver: function _handleMouseOver(e) {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({ hovered: true });
+    if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
+      this.setState({ hovered: true });
+    }
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
   _handleTouchStart: function _handleTouchStart(e) {
-    this.setState({ zDepth: this.state.initialZDepth + 1 });
+    this.setState({
+      touch: true,
+      zDepth: this.state.initialZDepth + 1
+    });
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
 
@@ -49818,11 +50568,11 @@ var RaisedButton = React.createClass({
 
 });
 
-module.exports = RaisedButton;
+module.exports = FloatingActionButton;
 
 }).call(this,require('_process'))
 
-},{"./enhanced-button":428,"./font-icon":433,"./mixins/style-propable":448,"./paper":452,"./styles/transitions":469,"./utils/color-manipulator":511,"_process":1,"react":401}],433:[function(require,module,exports){
+},{"./enhanced-button":414,"./font-icon":419,"./mixins/style-propable":440,"./paper":444,"./styles/transitions":462,"./utils/children":531,"./utils/color-manipulator":532,"_process":1,"react":388}],419:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49902,8 +50652,7 @@ var FontIcon = React.createClass({
 
 module.exports = FontIcon;
 
-},{"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],434:[function(require,module,exports){
-(function (process){
+},{"./mixins/style-propable":440,"./styles/transitions":462,"react":388}],420:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49916,6 +50665,7 @@ var Transitions = require('./styles/transitions');
 var EnhancedButton = require('./enhanced-button');
 var FontIcon = require('./font-icon');
 var Tooltip = require('./tooltip');
+var Children = require('./utils/children');
 
 var IconButton = React.createClass({
   displayName: 'IconButton',
@@ -49933,7 +50683,10 @@ var IconButton = React.createClass({
     iconStyle: React.PropTypes.object,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
+    onKeyboardFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
+    tooltipStyles: React.PropTypes.object,
+    tooltipPosition: React.PropTypes.oneOf(['bottom-center', 'bottom-left', 'bottom-right', 'top-center', 'top-left', 'top-right']),
     touch: React.PropTypes.bool
   },
 
@@ -49945,20 +50698,9 @@ var IconButton = React.createClass({
 
   getDefaultProps: function getDefaultProps() {
     return {
-      iconStyle: {}
+      iconStyle: {},
+      tooltipPosition: 'bottom-center'
     };
-  },
-
-  componentDidMount: function componentDidMount() {
-    if (this.props.tooltip) {
-      this._positionTooltip();
-    }
-    if (process.env.NODE_ENV !== 'production') {
-      if (this.props.iconClassName && this.props.children) {
-        var warning = 'You have set both an iconClassName and a child icon. ' + 'It is recommended you use only one method when adding ' + 'icons to IconButtons.';
-        console.warn(warning);
-      }
-    }
   },
 
   getStyles: function getStyles() {
@@ -49972,11 +50714,11 @@ var IconButton = React.createClass({
         transition: Transitions.easeOut(),
         padding: spacing.iconSize / 2,
         width: spacing.iconSize * 2,
-        height: spacing.iconSize * 2
+        height: spacing.iconSize * 2,
+        fontSize: 0
       },
       tooltip: {
-        boxSizing: 'border-box',
-        marginTop: this.context.muiTheme.component.button.iconButtonSize + 4
+        boxSizing: 'border-box'
       },
       icon: {
         color: palette.textColor,
@@ -49994,6 +50736,7 @@ var IconButton = React.createClass({
         fill: palette.disabledColor
       }
     };
+
     return styles;
   },
 
@@ -50003,33 +50746,40 @@ var IconButton = React.createClass({
     var iconClassName = _props.iconClassName;
     var tooltip = _props.tooltip;
     var touch = _props.touch;
+    var iconStyle = _props.iconStyle;
 
-    var other = _objectWithoutProperties(_props, ['disabled', 'iconClassName', 'tooltip', 'touch']);
+    var other = _objectWithoutProperties(_props, ['disabled', 'iconClassName', 'tooltip', 'touch', 'iconStyle']);
 
-    var fonticon;
+    var fonticon = undefined;
 
     var styles = this.getStyles();
+    var tooltipPosition = this.props.tooltipPosition.split('-');
 
     var tooltipElement = tooltip ? React.createElement(Tooltip, {
       ref: 'tooltip',
       label: tooltip,
       show: this.state.tooltipShown,
       touch: touch,
-      style: this.mergeStyles(styles.tooltip) }) : null;
+      style: this.mergeStyles(styles.tooltip, this.props.tooltipStyles),
+      verticalPosition: tooltipPosition[0],
+      horizontalPosition: tooltipPosition[1] }) : null;
 
     if (iconClassName) {
-      var _props$iconStyle = this.props.iconStyle;
-      var iconHoverColor = _props$iconStyle.iconHoverColor;
+      var iconHoverColor = iconStyle.iconHoverColor;
 
-      var iconStyle = _objectWithoutProperties(_props$iconStyle, ['iconHoverColor']);
+      var iconStyleFontIcon = _objectWithoutProperties(iconStyle, ['iconHoverColor']);
 
-      fonticon = React.createElement(FontIcon, {
-        className: iconClassName,
-        hoverColor: disabled ? null : iconHoverColor,
-        style: this.mergeStyles(styles.icon, disabled ? styles.disabled : {}, iconStyle) });
+      fonticon = React.createElement(
+        FontIcon,
+        {
+          className: iconClassName,
+          hoverColor: disabled ? null : iconHoverColor,
+          style: this.mergeStyles(styles.icon, disabled ? styles.disabled : {}, iconStyleFontIcon) },
+        this.props.children
+      );
     }
 
-    var children = disabled ? this._addStylesToChildren(styles.disabled) : this.props.children;
+    var childrenStyle = disabled ? this.mergeStyles(iconStyle, styles.disabled) : iconStyle;
 
     return React.createElement(
       EnhancedButton,
@@ -50045,29 +50795,14 @@ var IconButton = React.createClass({
         onKeyboardFocus: this._handleKeyboardFocus }),
       tooltipElement,
       fonticon,
-      children
+      Children.extend(this.props.children, {
+        style: childrenStyle
+      })
     );
   },
 
-  _addStylesToChildren: function _addStylesToChildren(styles) {
-    var children = [];
-
-    React.Children.forEach(this.props.children, function (child) {
-      children.push(React.cloneElement(child, {
-        key: child.props.key ? child.props.key : children.length,
-        style: styles
-      }));
-    });
-
-    return children;
-  },
-
-  _positionTooltip: function _positionTooltip() {
-    var tooltip = React.findDOMNode(this.refs.tooltip);
-    var tooltipWidth = tooltip.offsetWidth;
-    var buttonWidth = 48;
-
-    tooltip.style.left = (tooltipWidth - buttonWidth) / 2 * -1 + 'px';
+  setKeyboardFocus: function setKeyboardFocus() {
+    this.refs.button.setKeyboardFocus();
   },
 
   _showTooltip: function _showTooltip() {
@@ -50108,101 +50843,15 @@ var IconButton = React.createClass({
       this._hideTooltip();
       if (this.props.onBlur) this.props.onBlur(e);
     }
+
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused);
   }
 
 });
 
 module.exports = IconButton;
 
-}).call(this,require('_process'))
-
-},{"./enhanced-button":428,"./font-icon":433,"./mixins/style-propable":448,"./styles/transitions":469,"./tooltip":508,"_process":1,"react":401}],435:[function(require,module,exports){
-'use strict';
-
-module.exports = {
-  AppBar: require('./app-bar'),
-  AppCanvas: require('./app-canvas'),
-  Avatar: require('./avatar'),
-  BeforeAfterWrapper: require('./before-after-wrapper'),
-  Card: require('./card/card'),
-  CardActions: require('./card/card-actions'),
-  CardHeader: require('./card/card-header'),
-  CardMedia: require('./card/card-media'),
-  CardText: require('./card/card-text'),
-  CardTitle: require('./card/card-title'),
-  Checkbox: require('./checkbox'),
-  CircularProgress: require('./circular-progress'),
-  ClearFix: require('./clearfix'),
-  DatePicker: require('./date-picker/date-picker'),
-  Dialog: require('./dialog'),
-  DialogWindow: require('./dialog-window'),
-  DropDownIcon: require('./drop-down-icon'),
-  DropDownMenu: require('./drop-down-menu'),
-  EnhancedButton: require('./enhanced-button'),
-  FlatButton: require('./flat-button'),
-  FloatingActionButton: require('./floating-action-button'),
-  FontIcon: require('./font-icon'),
-  IconButton: require('./icon-button'),
-  LeftNav: require('./left-nav'),
-  LinearProgress: require('./linear-progress'),
-  List: require('./lists/list'),
-  ListDivider: require('./lists/list-divider'),
-  ListItem: require('./lists/list-item'),
-  Menu: require('./menu/menu'),
-  MenuItem: require('./menu/menu-item'),
-  Mixins: {
-    Classable: require('./mixins/classable'),
-    ClickAwayable: require('./mixins/click-awayable'),
-    WindowListenable: require('./mixins/window-listenable'),
-    StylePropable: require('./mixins/style-propable'),
-    StyleResizable: require('./mixins/style-resizable')
-  },
-  Paper: require('./paper'),
-  RadioButton: require('./radio-button'),
-  RadioButtonGroup: require('./radio-button-group'),
-  RaisedButton: require('./raised-button'),
-  SelectField: require('./select-field'),
-  Slider: require('./slider'),
-  SvgIcon: require('./svg-icon'),
-  Icons: {
-    NavigationMenu: require('./svg-icons/navigation-menu'),
-    NavigationChevronLeft: require('./svg-icons/navigation-chevron-left'),
-    NavigationChevronRight: require('./svg-icons/navigation-chevron-right')
-  },
-  Styles: {
-    AutoPrefix: require('./styles/auto-prefix'),
-    Colors: require('./styles/colors'),
-    Spacing: require('./styles/spacing'),
-    ThemeManager: require('./styles/theme-manager'),
-    Transitions: require('./styles/transitions'),
-    Typography: require('./styles/typography')
-  },
-  Snackbar: require('./snackbar'),
-  Tab: require('./tabs/tab'),
-  Table: require('./table/table'),
-  Tabs: require('./tabs/tabs'),
-  Theme: require('./theme'),
-  Toggle: require('./toggle'),
-  TimePicker: require('./time-picker'),
-  TextField: require('./text-field'),
-  Toolbar: require('./toolbar/toolbar'),
-  ToolbarGroup: require('./toolbar/toolbar-group'),
-  ToolbarSeparator: require('./toolbar/toolbar-separator'),
-  ToolbarTitle: require('./toolbar/toolbar-title'),
-  Tooltip: require('./tooltip'),
-  Utils: {
-    CssEvent: require('./utils/css-event'),
-    Dom: require('./utils/dom'),
-    Events: require('./utils/events'),
-    KeyCode: require('./utils/key-code'),
-    KeyLine: require('./utils/key-line'),
-    ColorManipulator: require('./utils/color-manipulator'),
-    Extend: require('./utils/extend'),
-    UniqueId: require('./utils/unique-id')
-  }
-};
-
-},{"./app-bar":402,"./app-canvas":403,"./avatar":404,"./before-after-wrapper":405,"./card/card":411,"./card/card-actions":406,"./card/card-header":407,"./card/card-media":408,"./card/card-text":409,"./card/card-title":410,"./checkbox":412,"./circular-progress":413,"./clearfix":414,"./date-picker/date-picker":421,"./dialog":425,"./dialog-window":424,"./drop-down-icon":426,"./drop-down-menu":427,"./enhanced-button":428,"./flat-button":431,"./floating-action-button":432,"./font-icon":433,"./icon-button":434,"./left-nav":437,"./linear-progress":438,"./lists/list":441,"./lists/list-divider":439,"./lists/list-item":440,"./menu/menu":444,"./menu/menu-item":443,"./mixins/classable":446,"./mixins/click-awayable":447,"./mixins/style-propable":448,"./mixins/style-resizable":449,"./mixins/window-listenable":450,"./paper":452,"./radio-button":454,"./radio-button-group":453,"./raised-button":455,"./select-field":459,"./slider":460,"./snackbar":461,"./styles/auto-prefix":462,"./styles/colors":463,"./styles/spacing":465,"./styles/theme-manager":466,"./styles/transitions":469,"./styles/typography":470,"./svg-icon":471,"./svg-icons/navigation-chevron-left":474,"./svg-icons/navigation-chevron-right":476,"./svg-icons/navigation-menu":477,"./table/table":487,"./tabs/tab":488,"./tabs/tabs":490,"./text-field":491,"./theme":492,"./time-picker":499,"./toggle":503,"./toolbar/toolbar":507,"./toolbar/toolbar-group":504,"./toolbar/toolbar-separator":505,"./toolbar/toolbar-title":506,"./tooltip":508,"./utils/color-manipulator":511,"./utils/css-event":512,"./utils/dom":514,"./utils/events":515,"./utils/extend":516,"./utils/key-code":517,"./utils/key-line":518,"./utils/unique-id":520}],436:[function(require,module,exports){
+},{"./enhanced-button":414,"./font-icon":419,"./mixins/style-propable":440,"./styles/transitions":462,"./tooltip":528,"./utils/children":531,"react":388}],421:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50249,7 +50898,7 @@ var InkBar = React.createClass({
 
 module.exports = InkBar;
 
-},{"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],437:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/transitions":462,"react":388}],422:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50261,6 +50910,8 @@ var WindowListenable = require('./mixins/window-listenable');
 var Overlay = require('./overlay');
 var Paper = require('./paper');
 var Menu = require('./menu/menu');
+
+var openNavEventHandler = null;
 
 var LeftNav = React.createClass({
   displayName: 'LeftNav',
@@ -50298,7 +50949,7 @@ var LeftNav = React.createClass({
     return {
       open: this.props.docked,
       maybeSwiping: false,
-      swiping: false
+      swiping: null
     };
   },
 
@@ -50307,7 +50958,7 @@ var LeftNav = React.createClass({
     this._enableSwipeHandling();
   },
 
-  componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate: function componentDidUpdate() {
     this._updateMenuHeight();
     this._enableSwipeHandling();
   },
@@ -50342,7 +50993,7 @@ var LeftNav = React.createClass({
   },
 
   getStyles: function getStyles() {
-    var x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX()) + 'px';
+    var x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
     var styles = {
       root: {
         height: '100%',
@@ -50351,7 +51002,7 @@ var LeftNav = React.createClass({
         zIndex: 10,
         left: 0,
         top: 0,
-        transform: 'translate3d(' + x + ', 0, 0)',
+        transform: 'translate3d(' + x + 'px, 0, 0)',
         transition: !this.state.swiping && Transitions.easeOut(),
         backgroundColor: this.getTheme().color,
         overflow: 'hidden'
@@ -50367,7 +51018,7 @@ var LeftNav = React.createClass({
       },
       rootWhenOpenRight: {
         left: 'auto',
-        right: '0'
+        right: 0
       }
     };
     styles.menuItemLink = this.mergeAndPrefix(styles.menuItem, {
@@ -50384,14 +51035,16 @@ var LeftNav = React.createClass({
 
   render: function render() {
     var selectedIndex = this.props.selectedIndex;
-    var overlay;
+    var overlay = undefined;
 
     var styles = this.getStyles();
     if (!this.props.docked) {
-      overlay = React.createElement(Overlay, { ref: 'overlay',
+      overlay = React.createElement(Overlay, {
+        ref: 'overlay',
         show: this.state.open,
         transitionEnabled: !this.state.swiping,
-        onTouchTap: this._onOverlayTouchTap });
+        onTouchTap: this._onOverlayTouchTap
+      });
     }
 
     return React.createElement(
@@ -50442,12 +51095,12 @@ var LeftNav = React.createClass({
   },
 
   _onWindowKeyUp: function _onWindowKeyUp(e) {
-    if (e.keyCode == KeyCode.ESC && !this.props.docked && this.state.open) {
+    if (e.keyCode === KeyCode.ESC && !this.props.docked && this.state.open) {
       this.close();
     }
   },
 
-  _onWindowResize: function _onWindowResize(e) {
+  _onWindowResize: function _onWindowResize() {
     this._updateMenuHeight();
   },
 
@@ -50460,8 +51113,11 @@ var LeftNav = React.createClass({
   },
 
   _enableSwipeHandling: function _enableSwipeHandling() {
-    if (this.state.open && !this.props.docked) {
+    if (!this.props.docked) {
       document.body.addEventListener('touchstart', this._onBodyTouchStart);
+      if (!openNavEventHandler) {
+        openNavEventHandler = this._onBodyTouchStart;
+      }
     } else {
       this._disableSwipeHandling();
     }
@@ -50469,9 +51125,16 @@ var LeftNav = React.createClass({
 
   _disableSwipeHandling: function _disableSwipeHandling() {
     document.body.removeEventListener('touchstart', this._onBodyTouchStart);
+    if (openNavEventHandler === this._onBodyTouchStart) {
+      openNavEventHandler = null;
+    }
   },
 
   _onBodyTouchStart: function _onBodyTouchStart(e) {
+    if (!this.state.open && openNavEventHandler !== this._onBodyTouchStart) {
+      return;
+    }
+
     var touchStartX = e.touches[0].pageX;
     var touchStartY = e.touches[0].pageY;
     this.setState({
@@ -50485,17 +51148,23 @@ var LeftNav = React.createClass({
     document.body.addEventListener('touchcancel', this._onBodyTouchEnd);
   },
 
+  _setPosition: function _setPosition(translateX) {
+    var leftNav = React.findDOMNode(this.refs.clickAwayableElement);
+    leftNav.style[AutoPrefix.single('transform')] = 'translate3d(' + this._getTranslateMultiplier() * translateX + 'px, 0, 0)';
+    this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
+  },
+
+  _getTranslateX: function _getTranslateX(currentX) {
+    return Math.min(Math.max(this.state.swiping === 'closing' ? this._getTranslateMultiplier() * (currentX - this.state.swipeStartX) : this._getMaxTranslateX() - this._getTranslateMultiplier() * (this.state.swipeStartX - currentX), 0), this._getMaxTranslateX());
+  },
+
   _onBodyTouchMove: function _onBodyTouchMove(e) {
     var currentX = e.touches[0].pageX;
     var currentY = e.touches[0].pageY;
 
     if (this.state.swiping) {
       e.preventDefault();
-      var translateX = Math.min(Math.max(this._getTranslateMultiplier() * (currentX - this.state.swipeStartX), 0), this._getMaxTranslateX());
-
-      var leftNav = React.findDOMNode(this.refs.clickAwayableElement);
-      leftNav.style[AutoPrefix.single('transform')] = 'translate3d(' + this._getTranslateMultiplier() * translateX + 'px, 0, 0)';
-      this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
+      this._setPosition(this._getTranslateX(currentX));
     } else if (this.state.maybeSwiping) {
       var dXAbs = Math.abs(currentX - this.state.touchStartX);
       var dYAbs = Math.abs(currentY - this.state.touchStartY);
@@ -50506,28 +51175,39 @@ var LeftNav = React.createClass({
 
       if (dXAbs > threshold && dYAbs <= threshold) {
         this.setState({
-          swiping: true,
+          swiping: this.state.open ? 'closing' : 'opening',
+          open: true,
           swipeStartX: currentX
         });
+        this._setPosition(this._getTranslateX(currentX));
       } else if (dXAbs <= threshold && dYAbs > threshold) {
         this._onBodyTouchEnd();
       }
     }
   },
 
-  _onBodyTouchEnd: function _onBodyTouchEnd() {
-    var shouldClose = false;
+  _onBodyTouchEnd: function _onBodyTouchEnd(e) {
+    if (this.state.swiping) {
+      var currentX = e.changedTouches[0].pageX;
+      var translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
 
-    if (this.state.swiping) shouldClose = true;
+      this.setState({
+        maybeSwiping: false,
+        swiping: null
+      });
 
-    this.setState({
-      maybeSwiping: false,
-      swiping: false
-    });
-
-    // We have to call close() after setting swiping to false,
-    // because only then CSS transition is enabled.
-    if (shouldClose) this.close();
+      // We have to open or close after setting swiping to null,
+      // because only then CSS transition is enabled.
+      if (translateRatio > 0.5) {
+        this.close();
+      } else {
+        this._setPosition(0);
+      }
+    } else {
+      this.setState({
+        maybeSwiping: false
+      });
+    }
 
     document.body.removeEventListener('touchmove', this._onBodyTouchMove);
     document.body.removeEventListener('touchend', this._onBodyTouchEnd);
@@ -50538,7 +51218,7 @@ var LeftNav = React.createClass({
 
 module.exports = LeftNav;
 
-},{"./menu/menu":444,"./mixins/style-propable":448,"./mixins/window-listenable":450,"./overlay":451,"./paper":452,"./styles/auto-prefix":462,"./styles/transitions":469,"./utils/key-code":517,"react":401}],438:[function(require,module,exports){
+},{"./menu/menu":430,"./mixins/style-propable":440,"./mixins/window-listenable":442,"./overlay":443,"./paper":444,"./styles/auto-prefix":455,"./styles/transitions":462,"./utils/key-code":539,"react":388}],423:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -50577,16 +51257,16 @@ var LinearProgress = React.createClass({
   },
 
   componentDidMount: function componentDidMount() {
+    var _this = this;
 
     var bar1 = React.findDOMNode(this.refs.bar1);
     var bar2 = React.findDOMNode(this.refs.bar2);
 
     this._barUpdate(0, bar1, [[-35, 100], [100, -90]]);
 
-    setTimeout((function () {
-
-      this._barUpdate(0, bar2, [[-200, 100], [107, -8]]);
-    }).bind(this), 850);
+    setTimeout(function () {
+      _this._barUpdate(0, bar2, [[-200, 100], [107, -8]]);
+    }, 850);
   },
 
   _barUpdate: function _barUpdate(step, barElement, stepValues) {
@@ -50594,19 +51274,17 @@ var LinearProgress = React.createClass({
     step %= 4;
     setTimeout(this._barUpdate.bind(this, step + 1, barElement, stepValues), 420);
     if (!this.isMounted()) return;
-    if (this.props.mode != 'indeterminate') return;
+    if (this.props.mode !== 'indeterminate') return;
 
     if (step === 0) {
       barElement.style.left = stepValues[0][0] + '%';
       barElement.style.right = stepValues[0][1] + '%';
-    } else if (step == 1) {
-
+    } else if (step === 1) {
       barElement.style.transitionDuration = '840ms';
-    } else if (step == 2) {
-
+    } else if (step === 2) {
       barElement.style.left = stepValues[1][0] + '%';
       barElement.style.right = stepValues[1][1] + '%';
-    } else if (step == 3) {
+    } else if (step === 3) {
       barElement.style.transitionDuration = '0ms';
     }
   },
@@ -50625,15 +51303,14 @@ var LinearProgress = React.createClass({
   },
 
   getStyles: function getStyles() {
-
     var styles = {
       root: {
         position: 'relative',
-        height: '4px',
+        height: 4,
         display: 'block',
         width: '100%',
         backgroundColor: this.getTheme().primary3Color,
-        borderRadius: '2px',
+        borderRadius: 2,
         margin: 0,
         overflow: 'hidden'
       },
@@ -50644,7 +51321,7 @@ var LinearProgress = React.createClass({
       barFragment2: {}
     };
 
-    if (this.props.mode == 'indeterminate') {
+    if (this.props.mode === 'indeterminate') {
       styles.barFragment1 = {
         position: 'absolute',
         backgroundColor: this.getTheme().primary1Color,
@@ -50694,7 +51371,7 @@ var LinearProgress = React.createClass({
 
 module.exports = LinearProgress;
 
-},{"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],439:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/transitions":462,"react":388}],424:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -50739,7 +51416,7 @@ var ListDivider = React.createClass({
 
 module.exports = ListDivider;
 
-},{"../mixins/style-propable":448,"react/addons":229}],440:[function(require,module,exports){
+},{"../mixins/style-propable":440,"react/addons":216}],425:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -50753,6 +51430,10 @@ var Colors = require('../styles/colors');
 var Transitions = require('../styles/transitions');
 var Typography = require('../styles/typography');
 var EnhancedButton = require('../enhanced-button');
+var IconButton = require('../icon-button');
+var OpenIcon = require('../svg-icons/navigation/arrow-drop-up');
+var CloseIcon = require('../svg-icons/navigation/arrow-drop-down');
+var ListNested = require('./list-nested');
 
 var ListItem = React.createClass({
   displayName: 'ListItem',
@@ -50764,23 +51445,36 @@ var ListItem = React.createClass({
   },
 
   propTypes: {
-    disableTouchTap: React.PropTypes.bool,
+    autoGenerateNestedIndicator: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
+    disableKeyboardFocus: React.PropTypes.bool,
+    innerDivStyle: React.PropTypes.object,
     insetChildren: React.PropTypes.bool,
+    innerStyle: React.PropTypes.object,
     leftAvatar: React.PropTypes.element,
     leftCheckbox: React.PropTypes.element,
     leftIcon: React.PropTypes.element,
+    nestedLevel: React.PropTypes.number,
+    onKeyboardFocus: React.PropTypes.func,
     onMouseOut: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
+    onNestedListToggle: React.PropTypes.func,
+    onTouchStart: React.PropTypes.func,
+    open: React.PropTypes.bool,
     rightAvatar: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
     rightIconButton: React.PropTypes.element,
     rightToggle: React.PropTypes.element,
+    primaryText: React.PropTypes.node,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2])
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
+      autoGenerateNestedIndicator: true,
+      nestedLevel: 0,
+      open: false,
       secondaryTextLines: 1
     };
   },
@@ -50788,31 +51482,42 @@ var ListItem = React.createClass({
   getInitialState: function getInitialState() {
     return {
       hovered: false,
-      rightIconButtonHovered: false
+      isKeyboardFocused: false,
+      open: this.props.open,
+      rightIconButtonHovered: false,
+      rightIconButtonKeyboardFocused: false,
+      touch: false
     };
   },
 
   render: function render() {
     var _props = this.props;
-    var disableTouchTap = _props.disableTouchTap;
+    var autoGenerateNestedIndicator = _props.autoGenerateNestedIndicator;
+    var disabled = _props.disabled;
+    var disableKeyboardFocus = _props.disableKeyboardFocus;
+    var innerDivStyle = _props.innerDivStyle;
     var insetChildren = _props.insetChildren;
     var leftAvatar = _props.leftAvatar;
     var leftCheckbox = _props.leftCheckbox;
     var leftIcon = _props.leftIcon;
+    var nestedLevel = _props.nestedLevel;
+    var onKeyboardFocus = _props.onKeyboardFocus;
     var onMouseOut = _props.onMouseOut;
     var onMouseOver = _props.onMouseOver;
+    var onTouchStart = _props.onTouchStart;
     var rightAvatar = _props.rightAvatar;
     var rightIcon = _props.rightIcon;
     var rightIconButton = _props.rightIconButton;
     var rightToggle = _props.rightToggle;
+    var primaryText = _props.primaryText;
     var secondaryText = _props.secondaryText;
     var secondaryTextLines = _props.secondaryTextLines;
     var style = _props.style;
 
-    var other = _objectWithoutProperties(_props, ['disableTouchTap', 'insetChildren', 'leftAvatar', 'leftCheckbox', 'leftIcon', 'onMouseOut', 'onMouseOver', 'rightAvatar', 'rightIcon', 'rightIconButton', 'rightToggle', 'secondaryText', 'secondaryTextLines', 'style']);
+    var other = _objectWithoutProperties(_props, ['autoGenerateNestedIndicator', 'disabled', 'disableKeyboardFocus', 'innerDivStyle', 'insetChildren', 'leftAvatar', 'leftCheckbox', 'leftIcon', 'nestedLevel', 'onKeyboardFocus', 'onMouseOut', 'onMouseOver', 'onTouchStart', 'rightAvatar', 'rightIcon', 'rightIconButton', 'rightToggle', 'primaryText', 'secondaryText', 'secondaryTextLines', 'style']);
 
     var textColor = this.context.muiTheme.palette.textColor;
-    var hoverColor = ColorManipulator.fade(textColor, 0.03);
+    var hoverColor = ColorManipulator.fade(textColor, 0.1);
     var singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
     var singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
     var twoLine = secondaryText && secondaryTextLines === 1;
@@ -50821,22 +51526,23 @@ var ListItem = React.createClass({
 
     var styles = {
       root: {
-        backgroundColor: this.state.hovered && !this.state.rightIconButtonHovered ? hoverColor : null,
+        backgroundColor: (this.state.isKeyboardFocused || this.state.hovered) && !this.state.rightIconButtonHovered && !this.state.rightIconButtonKeyboardFocused ? hoverColor : null,
         color: textColor,
         display: 'block',
         fontSize: 16,
         lineHeight: '16px',
-        overflow: 'hidden',
         position: 'relative',
         transition: Transitions.easeOut()
       },
 
-      //This inner div is need so that ripples will span the entire container
+      //This inner div is needed so that ripples will span the entire container
       innerDiv: {
+        marginLeft: nestedLevel * this.context.muiTheme.component.listItem.nestedLevelDepth,
         paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
         paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,
         paddingBottom: singleAvatar ? 20 : 16,
-        paddingTop: singleNoAvatar || threeLine ? 16 : 20
+        paddingTop: singleNoAvatar || threeLine ? 16 : 20,
+        position: 'relative'
       },
 
       label: {
@@ -50885,6 +51591,10 @@ var ListItem = React.createClass({
         left: 16
       },
 
+      primaryText: {
+        margin: 0
+      },
+
       rightIconButton: {
         position: 'absolute',
         display: 'block',
@@ -50918,49 +51628,133 @@ var ListItem = React.createClass({
       }
     };
 
+    var primaryTextIsAnElement = React.isValidElement(primaryText);
     var secondaryTextIsAnElement = React.isValidElement(secondaryText);
 
     var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
-    var mergedDivStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, style);
-    var mergedLabelStyles = this.mergeAndPrefix(styles.root, styles.innerDiv, styles.label, style);
+    var mergedInnerDivStyles = this.mergeAndPrefix(styles.innerDiv, innerDivStyle);
+    var mergedDivStyles = this.mergeAndPrefix(styles.root, mergedInnerDivStyles, style);
+    var mergedLabelStyles = this.mergeAndPrefix(styles.root, mergedInnerDivStyles, styles.label, style);
+    var mergedPrimaryTextStyles = primaryTextIsAnElement ? this.mergeStyles(styles.primaryText, primaryText.props.style) : null;
     var mergedSecondaryTextStyles = secondaryTextIsAnElement ? this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
 
     var contentChildren = [];
+    var nestedListItems = [];
+    var nestedList = undefined;
+
+    React.Children.forEach(this.props.children, function (child) {
+      if (child === null) return;
+
+      if (React.isValidElement(child) && child.type.displayName === 'ListItem') {
+        nestedListItems.push(child);
+      } else {
+        contentChildren.push(child);
+      }
+    });
+
+    var rightIconButtonHandlers = {
+      onKeyboardFocus: this._handleRightIconButtonKeyboardFocus,
+      onMouseOver: this._handleRightIconButtonMouseOver,
+      onMouseOut: this._handleRightIconButtonMouseOut,
+      onTouchTap: this._handleRightIconButtonTouchTap,
+      onMouseDown: this._handleRightIconButtonMouseUp,
+      onMouseUp: this._handleRightIconButtonMouseUp
+    };
+
+    // Create a nested list indicator icon if we don't have an icon on the right
+    if (nestedListItems.length > 0 && autoGenerateNestedIndicator && rightIcon === undefined && rightAvatar === undefined && rightIconButton === undefined) {
+      if (this.state.open) {
+        rightIconButton = React.createElement(
+          IconButton,
+          null,
+          React.createElement(OpenIcon, null)
+        );
+      } else {
+        rightIconButton = React.createElement(
+          IconButton,
+          null,
+          React.createElement(CloseIcon, null)
+        );
+      }
+
+      rightIconButtonHandlers.onTouchTap = this._handleNestedListToggle;
+    }
 
     this._pushElement(contentChildren, leftIcon, this.mergeStyles(styles.icons, styles.leftIcon));
     this._pushElement(contentChildren, rightIcon, this.mergeStyles(styles.icons, styles.rightIcon));
     this._pushElement(contentChildren, leftAvatar, this.mergeStyles(styles.avatars, styles.leftAvatar));
     this._pushElement(contentChildren, rightAvatar, this.mergeStyles(styles.avatars, styles.rightAvatar));
     this._pushElement(contentChildren, leftCheckbox, this.mergeStyles(styles.leftCheckbox));
-    this._pushElement(contentChildren, rightIconButton, this.mergeStyles(styles.rightIconButton), {
-      onMouseOver: this._handleRightIconButtonMouseOver,
-      onMouseOut: this._handleRightIconButtonMouseOut,
-      onTouchTap: this._handleRightIconButtonTouchTap,
-      onMouseDown: this._handleRightIconButtonMouseUp,
-      onMouseUp: this._handleRightIconButtonMouseUp
-    });
+    this._pushElement(contentChildren, rightIconButton, this.mergeStyles(styles.rightIconButton), rightIconButtonHandlers);
     this._pushElement(contentChildren, rightToggle, this.mergeStyles(styles.rightToggle));
 
-    if (this.props.children) contentChildren.push(this.props.children);
-    if (secondaryText) contentChildren.push(React.isValidElement(secondaryText) ? React.cloneElement(secondaryText, { key: 'secondaryText', style: mergedSecondaryTextStyles }) : React.createElement(
-      'div',
-      { key: 'secondaryText', style: styles.secondaryText },
-      secondaryText
-    ));
+    if (nestedListItems.length) {
+      nestedList = React.createElement(
+        ListNested,
+        { nestedLevel: nestedLevel + 1, open: this.state.open },
+        nestedListItems
+      );
+    }
 
-    return hasCheckbox || disableTouchTap ? React.createElement(hasCheckbox ? 'label' : 'div', { style: hasCheckbox ? mergedLabelStyles : mergedDivStyles }, contentChildren) : React.createElement(
-      EnhancedButton,
-      _extends({}, other, {
-        linkButton: true,
-        onMouseOut: this._handleMouseOut,
-        onMouseOver: this._handleMouseOver,
-        style: mergedRootStyles }),
-      React.createElement(
+    if (primaryText) {
+      contentChildren.push(React.isValidElement(primaryText) ? React.cloneElement(primaryText, { key: 'primaryText', style: mergedPrimaryTextStyles }) : React.createElement(
         'div',
-        { style: styles.innerDiv },
-        contentChildren
-      )
+        { key: 'primaryText', style: styles.primaryText },
+        primaryText
+      ));
+    }
+
+    if (secondaryText) {
+      contentChildren.push(React.isValidElement(secondaryText) ? React.cloneElement(secondaryText, { key: 'secondaryText', style: mergedSecondaryTextStyles }) : React.createElement(
+        'div',
+        { key: 'secondaryText', style: styles.secondaryText },
+        secondaryText
+      ));
+    }
+
+    return hasCheckbox || disabled ? React.createElement(hasCheckbox ? 'label' : 'div', { style: hasCheckbox ? mergedLabelStyles : mergedDivStyles }, contentChildren) : React.createElement(
+      'div',
+      null,
+      React.createElement(
+        EnhancedButton,
+        _extends({}, other, {
+          disabled: disabled,
+          disableKeyboardFocus: disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused,
+          linkButton: true,
+          onKeyboardFocus: this._handleKeyboardFocus,
+          onMouseOut: this._handleMouseOut,
+          onMouseOver: this._handleMouseOver,
+          onTouchStart: this._handleTouchStart,
+          ref: 'enhancedButton',
+          style: mergedRootStyles }),
+        React.createElement(
+          'div',
+          { style: mergedInnerDivStyles },
+          contentChildren
+        )
+      ),
+      nestedList
     );
+  },
+
+  applyFocusState: function applyFocusState(focusState) {
+    var button = this.refs.enhancedButton;
+    var buttonEl = React.findDOMNode(button);
+
+    if (button) {
+      switch (focusState) {
+        case 'none':
+          buttonEl.blur();
+          break;
+        case 'focused':
+          buttonEl.focus();
+          break;
+        case 'keyboard-focused':
+          button.setKeyboardFocus();
+          buttonEl.focus();
+          break;
+      }
+    }
   },
 
   _pushElement: function _pushElement(children, element, baseStyles, additionalProps) {
@@ -50973,28 +51767,54 @@ var ListItem = React.createClass({
     }
   },
 
+  _handleKeyboardFocus: function _handleKeyboardFocus(e, isKeyboardFocused) {
+    this.setState({ isKeyboardFocused: isKeyboardFocused });
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, isKeyboardFocused);
+  },
+
+  _handleMouseOver: function _handleMouseOver(e) {
+    if (!this.state.touch) this.setState({ hovered: true });
+    if (this.props.onMouseOver) this.props.onMouseOver(e);
+  },
+
+  _handleMouseOut: function _handleMouseOut(e) {
+    this.setState({ hovered: false });
+    if (this.props.onMouseOut) this.props.onMouseOut(e);
+  },
+
+  _handleRightIconButtonKeyboardFocus: function _handleRightIconButtonKeyboardFocus(e, isKeyboardFocused) {
+    var iconButton = this.props.rightIconButton;
+    var newState = {};
+
+    newState.rightIconButtonKeyboardFocused = isKeyboardFocused;
+    if (isKeyboardFocused) newState.isKeyboardFocused = false;
+    this.setState(newState);
+
+    if (iconButton && iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(e, isKeyboardFocused);
+  },
+
   _handleRightIconButtonMouseDown: function _handleRightIconButtonMouseDown(e) {
     var iconButton = this.props.rightIconButton;
     e.stopPropagation();
-    if (iconButton.onMouseDown) iconButton.onDown(e);
+    if (iconButton && iconButton.props.onMouseDown) iconButton.props.onMouseDown(e);
   },
 
   _handleRightIconButtonMouseOut: function _handleRightIconButtonMouseOut(e) {
     var iconButton = this.props.rightIconButton;
     this.setState({ rightIconButtonHovered: false });
-    if (iconButton.onMouseOut) iconButton.onMouseOut(e);
+    if (iconButton && iconButton.props.onMouseOut) iconButton.props.onMouseOut(e);
   },
 
   _handleRightIconButtonMouseOver: function _handleRightIconButtonMouseOver(e) {
     var iconButton = this.props.rightIconButton;
     this.setState({ rightIconButtonHovered: true });
-    if (iconButton.onMouseOver) iconButton.onMouseOver(e);
+    if (iconButton && iconButton.props.onMouseOver) iconButton.props.onMouseOver(e);
   },
 
   _handleRightIconButtonMouseUp: function _handleRightIconButtonMouseUp(e) {
     var iconButton = this.props.rightIconButton;
     e.stopPropagation();
-    if (iconButton.onMouseUp) iconButton.onUp(e);
+    if (iconButton && iconButton.props.onMouseUp) iconButton.props.onMouseUp(e);
   },
 
   _handleRightIconButtonTouchTap: function _handleRightIconButtonTouchTap(e) {
@@ -51002,28 +51822,73 @@ var ListItem = React.createClass({
 
     //Stop the event from bubbling up to the list-item
     e.stopPropagation();
-    if (iconButton.onTouchTap) iconButton.onTouchTap(e);
+    if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(e);
   },
 
-  _handleMouseOver: function _handleMouseOver(e) {
-    this.setState({ hovered: true });
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
-    }
+  _handleTouchStart: function _handleTouchStart(e) {
+    this.setState({ touch: true });
+    if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
 
-  _handleMouseOut: function _handleMouseOut(e) {
-    this.setState({ hovered: false });
-    if (this.props.onMouseOut) {
-      this.props.onMouseOut(e);
-    }
+  _handleNestedListToggle: function _handleNestedListToggle(e) {
+    e.stopPropagation();
+    this.setState({ open: !this.state.open });
+
+    if (this.props.onNestedListToggle) this.props.onNestedListToggle(this);
   }
 
 });
 
 module.exports = ListItem;
 
-},{"../enhanced-button":428,"../mixins/style-propable":448,"../styles/colors":463,"../styles/transitions":469,"../styles/typography":470,"../utils/color-manipulator":511,"react/addons":229}],441:[function(require,module,exports){
+},{"../enhanced-button":414,"../icon-button":420,"../mixins/style-propable":440,"../styles/colors":456,"../styles/transitions":462,"../styles/typography":463,"../svg-icons/navigation/arrow-drop-down":487,"../svg-icons/navigation/arrow-drop-up":488,"../utils/color-manipulator":532,"./list-nested":426,"react/addons":216}],426:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var List = require('./list');
+
+var ListNested = React.createClass({
+  displayName: 'ListNested',
+
+  propTypes: {
+    nestedLevel: React.PropTypes.number,
+    open: React.PropTypes.bool
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      nestedLevel: 1,
+      open: false
+    };
+  },
+
+  render: function render() {
+    var nestedLevel = this.props.nestedLevel;
+    var style = {
+      nestedList: {}
+    };
+
+    if (!this.props.open) {
+      style.nestedList.display = 'none';
+    }
+
+    return React.createElement(
+      List,
+      { style: style.nestedList },
+      React.Children.map(this.props.children, function (child) {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, { nestedLevel: nestedLevel + 1 });
+        }
+        return child;
+      })
+    );
+  }
+
+});
+
+module.exports = ListNested;
+
+},{"./list":427,"react":388}],427:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -51033,6 +51898,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 var React = require('react/addons');
 var StylePropable = require('../mixins/style-propable');
 var Typography = require('../styles/typography');
+var Paper = require('../paper');
 
 var List = React.createClass({
   displayName: 'List',
@@ -51046,11 +51912,14 @@ var List = React.createClass({
   propTypes: {
     insetSubheader: React.PropTypes.bool,
     subheader: React.PropTypes.string,
-    subheaderStyle: React.PropTypes.object
+    subheaderStyle: React.PropTypes.object,
+    zDepth: React.PropTypes.oneOf([0, 1, 2, 3, 4, 5])
   },
 
   getDefaultProps: function getDefaultProps() {
-    return {};
+    return {
+      zDepth: 0
+    };
   },
 
   render: function render() {
@@ -51059,8 +51928,9 @@ var List = React.createClass({
     var style = _props.style;
     var subheader = _props.subheader;
     var subheaderStyle = _props.subheaderStyle;
+    var zDepth = _props.zDepth;
 
-    var other = _objectWithoutProperties(_props, ['insetSubheader', 'style', 'subheader', 'subheaderStyle']);
+    var other = _objectWithoutProperties(_props, ['insetSubheader', 'style', 'subheader', 'subheaderStyle', 'zDepth']);
 
     var styles = {
       root: {
@@ -51078,7 +51948,7 @@ var List = React.createClass({
       }
     };
 
-    var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    var mergedRootStyles = this.mergeStyles(styles.root, style);
     var mergedSubheaderStyles = this.mergeAndPrefix(styles.subheader, subheaderStyle);
 
     var subheaderElement = subheader ? React.createElement(
@@ -51088,9 +51958,10 @@ var List = React.createClass({
     ) : null;
 
     return React.createElement(
-      'div',
+      Paper,
       _extends({}, other, {
-        style: mergedRootStyles }),
+        style: mergedRootStyles,
+        zDepth: zDepth }),
       subheaderElement,
       this.props.children
     );
@@ -51099,7 +51970,7 @@ var List = React.createClass({
 
 module.exports = List;
 
-},{"../mixins/style-propable":448,"../styles/typography":470,"react/addons":229}],442:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../paper":444,"../styles/typography":463,"react/addons":216}],428:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -51164,6 +52035,7 @@ var LinkMenuItem = React.createClass({
         color: this.context.muiTheme.palette.disabledColor
       }
     };
+
     return style;
   },
 
@@ -51209,7 +52081,7 @@ var LinkMenuItem = React.createClass({
 
 module.exports = LinkMenuItem;
 
-},{"../mixins/style-propable":448,"react":401}],443:[function(require,module,exports){
+},{"../mixins/style-propable":440,"react":388}],429:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -51328,17 +52200,17 @@ var MenuItem = React.createClass({
         color: this.context.muiTheme.palette.disabledColor
       }
     };
+
     return styles;
   },
 
   render: function render() {
-    var icon;
-    var data;
-    var iconRight;
-    var attribute;
-    var number;
-    var toggleElement;
-
+    var icon = undefined;
+    var data = undefined;
+    var iconRight = undefined;
+    var attribute = undefined;
+    var number = undefined;
+    var toggleElement = undefined;
     var styles = this.getStyles();
 
     if (this.props.iconClassName) icon = React.createElement(FontIcon, { style: this.mergeAndPrefix(styles.icon, this.props.iconStyle), className: this.props.iconClassName });
@@ -51358,6 +52230,7 @@ var MenuItem = React.createClass({
       { style: this.mergeAndPrefix(styles.style) },
       this.props.attribute
     );
+    if (this.props.icon) icon = this.props.icon;
 
     if (this.props.toggle) {
       var _props = this.props;
@@ -51382,7 +52255,7 @@ var MenuItem = React.createClass({
         className: this.props.className,
         onTouchTap: this._handleTouchTap,
         onMouseOver: this._handleMouseOver,
-        onMouseOut: this._handleMouseOut, f: true,
+        onMouseOut: this._handleMouseOut,
         style: this.mergeAndPrefix(styles.root, this.props.selected && styles.rootWhenSelected, this.props.active && !this.props.disabled && styles.rootWhenHovered, this.props.style, this.props.disabled && styles.rootWhenDisabled) },
       icon,
       this.props.children,
@@ -51413,7 +52286,7 @@ var MenuItem = React.createClass({
 
 module.exports = MenuItem;
 
-},{"../font-icon":433,"../mixins/style-propable":448,"../toggle":503,"react":401}],444:[function(require,module,exports){
+},{"../font-icon":419,"../mixins/style-propable":440,"../toggle":523,"react":388}],430:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -51422,7 +52295,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react');
 var CssEvent = require('../utils/css-event');
-var Dom = require('../utils/dom');
 var KeyLine = require('../utils/key-line');
 var KeyCode = require('../utils/key-code');
 var StylePropable = require('../mixins/style-propable');
@@ -51432,7 +52304,6 @@ var Paper = require('../paper');
 var MenuItem = require('./menu-item');
 var LinkMenuItem = require('./link-menu-item');
 var SubheaderMenuItem = require('./subheader-menu-item');
-var WindowListenable = require('../mixins/window-listenable');
 
 /***********************
 * Nested Menu Component
@@ -51517,6 +52388,7 @@ var NestedMenuItem = React.createClass({
         color: this.context.muiTheme.palette.disabledColor
       }
     };
+
     return styles;
   },
 
@@ -51525,7 +52397,6 @@ var NestedMenuItem = React.createClass({
   },
 
   render: function render() {
-
     var styles = this.getStyles();
     styles = this.mergeAndPrefix(styles.root, this.props.active && !this.props.disabled && styles.rootWhenHovered, {
       position: 'relative'
@@ -51668,15 +52539,17 @@ var Menu = React.createClass({
     //Set the menu width
     this._setKeyWidth(el);
 
-    //Save the initial menu item height for later
-    this._initialMenuItemHeight = el.offsetHeight / Math.max(1, this.props.menuItems.length);
-
     //Show or Hide the menu according to visibility
     this._renderVisibility();
   },
 
   componentDidUpdate: function componentDidUpdate(prevProps) {
     if (this.props.visible !== prevProps.visible) this._renderVisibility();
+  },
+
+  componentWillReceiveProps: function componentWillReceiveProps() {
+    //Set the menu width
+    this._setKeyWidth(React.findDOMNode(this));
   },
 
   getTheme: function getTheme() {
@@ -51701,13 +52574,16 @@ var Menu = React.createClass({
         paddingRight: this.context.muiTheme.component.menuSubheader.padding
       },
       hideable: {
-        opacity: this.props.visible ? 1 : 0,
         overflow: 'hidden',
         position: 'absolute',
         top: 0,
         zIndex: 1
+      },
+      item: {
+        height: 34
       }
     };
+
     return styles;
   },
 
@@ -51726,7 +52602,9 @@ var Menu = React.createClass({
   },
 
   _getChildren: function _getChildren() {
-    var menuItem, itemComponent, isSelected, isDisabled;
+    var menuItem = undefined,
+        itemComponent = undefined,
+        isDisabled = undefined;
 
     var styles = this.getStyles();
 
@@ -51736,7 +52614,6 @@ var Menu = React.createClass({
 
     for (var i = 0; i < this.props.menuItems.length; i++) {
       menuItem = this.props.menuItems[i];
-      isSelected = i === this.props.selectedIndex;
       isDisabled = menuItem.disabled === undefined ? false : menuItem.disabled;
 
       var icon = menuItem.icon;
@@ -51754,7 +52631,7 @@ var Menu = React.createClass({
           itemComponent = React.createElement(LinkMenuItem, {
             key: i,
             index: i,
-            active: this.state.activeIndex == i,
+            active: this.state.activeIndex === i,
             text: menuItem.text,
             disabled: isDisabled,
             className: this.props.menuItemClassNameLink,
@@ -51768,7 +52645,7 @@ var Menu = React.createClass({
             key: i,
             index: i,
             className: this.props.menuItemClassNameSubheader,
-            style: this.mergeAndPrefix(styles.subheader),
+            style: this.mergeAndPrefix(styles.subheader, this.props.menuItemStyleSubheader),
             firstChild: i === 0,
             text: menuItem.text });
           break;
@@ -51786,7 +52663,7 @@ var Menu = React.createClass({
             key: i,
             index: i,
             nested: true,
-            active: this.state.activeIndex == i,
+            active: this.state.activeIndex === i,
             text: menuItem.text,
             disabled: isDisabled,
             menuItems: menuItem.items,
@@ -51802,10 +52679,10 @@ var Menu = React.createClass({
           itemComponent = React.createElement(
             MenuItem,
             _extends({}, other, {
-              selected: isSelected,
+              selected: this.props.selectedIndex === i,
               key: i,
               index: i,
-              active: this.state.activeIndex == i,
+              active: this.state.activeIndex === i,
               icon: menuItem.icon,
               data: menuItem.data,
               className: this.props.menuItemClassName,
@@ -51829,50 +52706,108 @@ var Menu = React.createClass({
   },
 
   _setKeyWidth: function _setKeyWidth(el) {
-    var menuWidth = this.props.autoWidth ? KeyLine.getIncrementalDim(el.offsetWidth) + 'px' : '100%';
-
     //Update the menu width
-    Dom.withoutTransition(el, function () {
-      el.style.width = menuWidth;
-    });
-  },
+    var menuWidth = '100%';
 
-  _getCurrentHeight: function _getCurrentHeight() {
-    var totalItens = Math.max(1, this.props.menuItems.length);
-    var newHeight = this._initialMenuItemHeight * totalItens;
+    if (this.props.autoWidth) {
+      el.style.width = 'auto';
+      menuWidth = KeyLine.getIncrementalDim(el.offsetWidth) + 'px';
+    }
 
-    return newHeight;
+    el.style.width = menuWidth;
   },
 
   _renderVisibility: function _renderVisibility() {
-    var el;
-
     if (this.props.hideable) {
-      el = React.findDOMNode(this);
-      var container = React.findDOMNode(this.refs.paperContainer);
-
-      if (this.props.visible) {
-        //Open the menu
-        el.style.transition = Transitions.easeOut();
-        el.style.height = this._getCurrentHeight() + 'px';
-
-        //Set the overflow to visible after the animation is done so
-        //that other nested menus can be shown
-        CssEvent.onTransitionEnd(el, (function () {
-          //Make sure the menu is open before setting the overflow.
-          //This is to accout for fast clicks
-          if (this.props.visible) container.style.overflow = 'visible';
-          el.focus();
-        }).bind(this));
-      } else {
-
-        //Close the menu
-        el.style.height = '0px';
-
-        //Set the overflow to hidden so that animation works properly
-        container.style.overflow = 'hidden';
-      }
+      if (this.props.visible) this._expandHideableMenu();else this._collapseHideableMenu();
     }
+  },
+
+  _expandHideableMenu: function _expandHideableMenu() {
+    var _this = this;
+
+    var el = React.findDOMNode(this);
+    var container = React.findDOMNode(this.refs.paperContainer);
+    var padding = this.getSpacing().desktopGutterMini;
+    var height = this._getHiddenMenuHeight(el, padding);
+
+    //Add transition
+    if (!el.style.transition) {
+      el.style.transition = Transitions.easeOut();
+    }
+
+    this._nextAnimationFrame(function () {
+      container.style.overflow = 'hidden';
+
+      // Yeild to the DOM, then apply height and padding. This makes the transition smoother.
+      el.style.paddingTop = padding + 'px';
+      el.style.paddingBottom = padding + 'px';
+      el.style.height = height + 'px';
+      el.style.opacity = 1;
+
+      //Set the overflow to visible after the animation is done so
+      //that other nested menus can be shown
+      CssEvent.onTransitionEnd(el, function () {
+        //Make sure the menu is open before setting the overflow.
+        //This is to accout for fast clicks
+        if (_this.props.visible) container.style.overflow = 'visible';
+        el.style.transition = null;
+        el.focus();
+      });
+    });
+  },
+
+  _getHiddenMenuHeight: function _getHiddenMenuHeight(el, padding) {
+    //Add padding to the offset height, because it is not yet set in the style.
+    var height = padding * 2;
+
+    //Hide the element and allow the browser to automatically resize it.
+    el.style.visibility = 'hidden';
+    el.style.height = 'auto';
+
+    //Determine the height of the menu.
+    height += el.offsetHeight;
+
+    //Unhide the menu with the height set back to zero.
+    el.style.height = '0px';
+    el.style.visibility = 'visible';
+
+    return height;
+  },
+
+  _collapseHideableMenu: function _collapseHideableMenu() {
+    var el = React.findDOMNode(this);
+    var container = React.findDOMNode(this.refs.paperContainer);
+    var originalOpacity = el.style.opacity;
+
+    //Add transition
+    if (!el.style.transition && originalOpacity !== '') {
+      el.style.transition = Transitions.easeOut();
+    }
+
+    this._nextAnimationFrame(function () {
+      //Set the overflow to hidden so that animation works properly
+      container.style.overflow = 'hidden';
+
+      //Close the menu
+      el.style.opacity = 0;
+      el.style.height = '0px';
+      el.style.paddingTop = '0px';
+      el.style.paddingBottom = '0px';
+
+      var end = function end() {
+        el.style.transition = null;
+      };
+
+      if (originalOpacity === '') end();else CssEvent.onTransitionEnd(el, end);
+    });
+  },
+
+  _nextAnimationFrame: function _nextAnimationFrame(func) {
+    if (window.requestAnimationFrame) {
+      return window.requestAnimationFrame(func);
+    }
+    return setTimeout(func, 16);
   },
 
   _onNestedItemTap: function _onNestedItemTap(e, index, menuItem) {
@@ -51890,7 +52825,7 @@ var Menu = React.createClass({
     this.setState({ activeIndex: index });
   },
   _onItemDeactivated: function _onItemDeactivated(e, index) {
-    if (this.state.activeKey == index) this.setState({ activeIndex: 0 });
+    if (this.state.activeKey === index) this.setState({ activeIndex: 0 });
   },
 
   _onKeyDown: function _onKeyDown(e) {
@@ -51953,7 +52888,6 @@ var Menu = React.createClass({
 
   _tryToggleNested: function _tryToggleNested(index) {
     var item = this.refs[index];
-    var toggleMenu = item.toggleNestedMenu;
     if (item && item.toggleNestedMenu) item.toggleNestedMenu();
   }
 
@@ -51961,7 +52895,7 @@ var Menu = React.createClass({
 
 module.exports = Menu;
 
-},{"../mixins/click-awayable":447,"../mixins/style-propable":448,"../mixins/window-listenable":450,"../paper":452,"../styles/transitions":469,"../utils/css-event":512,"../utils/dom":514,"../utils/key-code":517,"../utils/key-line":518,"./link-menu-item":442,"./menu-item":443,"./subheader-menu-item":445,"react":401}],445:[function(require,module,exports){
+},{"../mixins/click-awayable":437,"../mixins/style-propable":440,"../paper":444,"../styles/transitions":462,"../utils/css-event":533,"../utils/key-code":539,"../utils/key-line":540,"./link-menu-item":428,"./menu-item":429,"./subheader-menu-item":431,"react":388}],431:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -52016,6 +52950,7 @@ var SubheaderMenuItem = React.createClass({
         marginTop: 0
       }
     };
+
     return styles;
   },
 
@@ -52034,7 +52969,802 @@ var SubheaderMenuItem = React.createClass({
 
 module.exports = SubheaderMenuItem;
 
-},{"../mixins/style-propable":448,"../styles/typography":470,"react":401}],446:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles/typography":463,"react":388}],432:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var React = require('react/addons');
+var ReactTransitionGroup = React.addons.TransitionGroup;
+var ClickAwayable = require('../mixins/click-awayable');
+var StylePropable = require('../mixins/style-propable');
+var Events = require('../utils/events');
+var Menu = require('../menus/menu');
+
+var IconMenu = React.createClass({
+  displayName: 'IconMenu',
+
+  mixins: [StylePropable, ClickAwayable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  propTypes: {
+    iconButtonElement: React.PropTypes.element.isRequired,
+    openDirection: React.PropTypes.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
+    onItemKeyboardActivate: React.PropTypes.func,
+    onItemTouchTap: React.PropTypes.func,
+    onKeyboardFocus: React.PropTypes.func,
+    onMouseDown: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func,
+    onMouseUp: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
+    menuStyle: React.PropTypes.object,
+    touchTapCloseDelay: React.PropTypes.number
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      openDirection: 'bottom-left',
+      onItemKeyboardActivate: function onItemKeyboardActivate() {},
+      onItemTouchTap: function onItemTouchTap() {},
+      onKeyboardFocus: function onKeyboardFocus() {},
+      onMouseDown: function onMouseDown() {},
+      onMouseOut: function onMouseOut() {},
+      onMouseOver: function onMouseOver() {},
+      onMouseUp: function onMouseUp() {},
+      onTouchTap: function onTouchTap() {},
+      touchTapCloseDelay: 200
+    };
+  },
+
+  getInitialState: function getInitialState() {
+    return {
+      iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
+      menuInitiallyKeyboardFocused: false,
+      open: false
+    };
+  },
+
+  componentWillUnmount: function componentWillUnmount() {
+    if (this._timeout) clearTimeout(this._timeout);
+  },
+
+  componentClickAway: function componentClickAway() {
+    this.close();
+  },
+
+  render: function render() {
+    var _this = this;
+
+    var _props = this.props;
+    var iconButtonElement = _props.iconButtonElement;
+    var openDirection = _props.openDirection;
+    var onItemTouchTap = _props.onItemTouchTap;
+    var onKeyboardFocus = _props.onKeyboardFocus;
+    var onMouseDown = _props.onMouseDown;
+    var onMouseOut = _props.onMouseOut;
+    var onMouseOver = _props.onMouseOver;
+    var onMouseUp = _props.onMouseUp;
+    var onTouchTap = _props.onTouchTap;
+    var menuStyle = _props.menuStyle;
+    var style = _props.style;
+
+    var other = _objectWithoutProperties(_props, ['iconButtonElement', 'openDirection', 'onItemTouchTap', 'onKeyboardFocus', 'onMouseDown', 'onMouseOut', 'onMouseOver', 'onMouseUp', 'onTouchTap', 'menuStyle', 'style']);
+
+    var open = this.state.open;
+    var openDown = openDirection.split('-')[0] === 'bottom';
+    var openLeft = openDirection.split('-')[1] === 'left';
+
+    var styles = {
+      root: {
+        display: 'inline-block',
+        position: 'relative'
+      },
+
+      menu: {
+        top: openDown ? 12 : null,
+        bottom: !openDown ? 12 : null,
+        left: !openLeft ? 12 : null,
+        right: openLeft ? 12 : null
+      }
+    };
+
+    var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    var mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
+
+    var iconButton = React.cloneElement(iconButtonElement, {
+      onKeyboardFocus: this.props.onKeyboardFocus,
+      onTouchTap: (function (e) {
+        _this.open(Events.isKeyboard(e));
+        if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
+      }).bind(this),
+      ref: this.state.iconButtonRef
+    });
+
+    var menu = open ? React.createElement(
+      Menu,
+      _extends({}, other, {
+        initiallyKeyboardFocused: this.state.menuInitiallyKeyboardFocused,
+        onEscKeyDown: this.close,
+        onItemTouchTap: this._handleItemTouchTap,
+        openDirection: openDirection,
+        style: mergedMenuStyles }),
+      this.props.children
+    ) : null;
+
+    return React.createElement(
+      'div',
+      {
+        onMouseDown: onMouseDown,
+        onMouseOut: onMouseOut,
+        onMouseOver: onMouseOver,
+        onMouseUp: onMouseUp,
+        onTouchTap: onTouchTap,
+        style: mergedRootStyles },
+      iconButton,
+      React.createElement(
+        ReactTransitionGroup,
+        null,
+        menu
+      )
+    );
+  },
+
+  close: function close(isKeyboard) {
+    var _this2 = this;
+
+    if (this.state.open) {
+      this.setState({ open: false }, function () {
+        //Set focus on the icon button when the menu close
+        if (isKeyboard) {
+          var iconButton = _this2.refs[_this2.state.iconButtonRef];
+          React.findDOMNode(iconButton).focus();
+        }
+      });
+    }
+  },
+
+  open: function open(menuInitiallyKeyboardFocused) {
+    if (!this.state.open) {
+      this.setState({
+        open: true,
+        menuInitiallyKeyboardFocused: menuInitiallyKeyboardFocused
+      });
+    }
+  },
+
+  _handleItemTouchTap: function _handleItemTouchTap(e, child) {
+    var _this3 = this;
+
+    var isKeyboard = Events.isKeyboard(e);
+
+    this._timeout = setTimeout(function () {
+      _this3.close(isKeyboard);
+    }, this.props.touchTapCloseDelay);
+
+    if (isKeyboard) {
+      this.refs[this.state.iconButtonRef].setKeyboardFocus();
+    }
+
+    this.props.onItemTouchTap(e, child);
+  }
+});
+
+module.exports = IconMenu;
+
+},{"../menus/menu":435,"../mixins/click-awayable":437,"../mixins/style-propable":440,"../utils/events":536,"react/addons":216}],433:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var React = require('react/addons');
+var StylePropable = require('../mixins/style-propable');
+var ListDivider = require('../lists/list-divider');
+
+var MenuDivider = React.createClass({
+  displayName: 'MenuDivider',
+
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  render: function render() {
+    var _props = this.props;
+    var style = _props.style;
+
+    var other = _objectWithoutProperties(_props, ['style']);
+
+    var mergedStyles = this.mergeAndPrefix({
+      marginTop: 7,
+      marginBottom: 8
+    }, style);
+
+    return React.createElement(ListDivider, _extends({}, other, { style: mergedStyles }));
+  }
+});
+
+module.exports = MenuDivider;
+
+},{"../lists/list-divider":424,"../mixins/style-propable":440,"react/addons":216}],434:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var React = require('react/addons');
+var StylePropable = require('../mixins/style-propable');
+var Colors = require('../styles/colors');
+var CheckIcon = require('../svg-icons/navigation/check');
+var ListItem = require('../lists/list-item');
+
+var MenuItem = React.createClass({
+  displayName: 'MenuItem',
+
+  mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  propTypes: {
+    checked: React.PropTypes.bool,
+    desktop: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
+    innerDivStyle: React.PropTypes.object,
+    insetChildren: React.PropTypes.bool,
+    focusState: React.PropTypes.oneOf(['none', 'focused', 'keyboard-focused']),
+    leftIcon: React.PropTypes.element,
+    rightIcon: React.PropTypes.element,
+    secondaryText: React.PropTypes.node,
+    value: React.PropTypes.string
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      focusState: 'none'
+    };
+  },
+
+  componentDidMount: function componentDidMount() {
+    this._applyFocusState();
+  },
+
+  componentDidUpdate: function componentDidUpdate() {
+    this._applyFocusState();
+  },
+
+  render: function render() {
+    var _props = this.props;
+    var checked = _props.checked;
+    var desktop = _props.desktop;
+    var disabled = _props.disabled;
+    var focusState = _props.focusState;
+    var innerDivStyle = _props.innerDivStyle;
+    var insetChildren = _props.insetChildren;
+    var leftIcon = _props.leftIcon;
+    var rightIcon = _props.rightIcon;
+    var secondaryText = _props.secondaryText;
+    var style = _props.style;
+    var value = _props.value;
+
+    var other = _objectWithoutProperties(_props, ['checked', 'desktop', 'disabled', 'focusState', 'innerDivStyle', 'insetChildren', 'leftIcon', 'rightIcon', 'secondaryText', 'style', 'value']);
+
+    var disabledColor = this.context.muiTheme.palette.disabledColor;
+    var textColor = this.context.muiTheme.palette.textColor;
+    var leftIndent = desktop ? 64 : 72;
+    var sidePadding = desktop ? 24 : 16;
+
+    var styles = {
+      root: {
+        color: disabled ? disabledColor : textColor,
+        lineHeight: desktop ? '32px' : '48px',
+        fontSize: desktop ? 15 : 16,
+        whiteSpace: 'nowrap'
+      },
+
+      innerDivStyle: {
+        paddingLeft: leftIcon || insetChildren || checked ? leftIndent : sidePadding,
+        paddingRight: sidePadding,
+        paddingBottom: 0,
+        paddingTop: 0
+      },
+
+      secondaryText: {
+        float: 'right'
+      },
+
+      leftIconDesktop: {
+        padding: 0,
+        left: 24,
+        top: 4
+      },
+
+      rightIconDesktop: {
+        padding: 0,
+        right: 24,
+        top: 4,
+        fill: Colors.grey600
+      }
+    };
+
+    var secondaryTextIsAnElement = React.isValidElement(secondaryText);
+    var leftIconElement = leftIcon ? leftIcon : checked ? React.createElement(CheckIcon, null) : null;
+
+    var mergedRootStyles = this.mergeStyles(styles.root, style);
+    var mergedInnerDivStyles = this.mergeStyles(styles.innerDivStyle, innerDivStyle);
+    var mergedSecondaryTextStyles = secondaryTextIsAnElement ? this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
+    var mergedLeftIconStyles = leftIconElement && desktop ? this.mergeStyles(styles.leftIconDesktop, leftIconElement.props.style) : null;
+    var mergedRightIconStyles = rightIcon && desktop ? this.mergeStyles(styles.rightIconDesktop, rightIcon.props.style) : null;
+
+    var secondaryTextElement = secondaryText ? secondaryTextIsAnElement ? React.cloneElement(secondaryText, { style: mergedSecondaryTextStyles }) : React.createElement(
+      'div',
+      { style: styles.secondaryText },
+      secondaryText
+    ) : null;
+
+    var styledLeftIcon = leftIconElement && desktop ? React.cloneElement(leftIconElement, { style: mergedLeftIconStyles }) : leftIconElement;
+
+    var rightIconElement = rightIcon ? React.cloneElement(rightIcon, { style: mergedRightIconStyles }) : null;
+
+    return React.createElement(
+      ListItem,
+      _extends({}, other, {
+        disabled: disabled,
+        innerDivStyle: mergedInnerDivStyles,
+        insetChildren: insetChildren,
+        leftIcon: styledLeftIcon,
+        ref: 'listItem',
+        rightIcon: rightIconElement,
+        style: mergedRootStyles }),
+      this.props.children,
+      secondaryTextElement
+    );
+  },
+
+  _applyFocusState: function _applyFocusState() {
+    this.refs.listItem.applyFocusState(this.props.focusState);
+  }
+});
+
+module.exports = MenuItem;
+
+},{"../lists/list-item":425,"../mixins/style-propable":440,"../styles/colors":456,"../svg-icons/navigation/check":489,"react/addons":216}],435:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var React = require('react/addons');
+var update = React.addons.update;
+var Controllable = require('../mixins/controllable');
+var StylePropable = require('../mixins/style-propable');
+var AutoPrefix = require('../styles/auto-prefix');
+var Transitions = require('../styles/transitions');
+var KeyCode = require('../utils/key-code');
+var List = require('../lists/list');
+var Paper = require('../paper');
+
+var Menu = React.createClass({
+  displayName: 'Menu',
+
+  mixins: [StylePropable, Controllable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  propTypes: {
+    autoWidth: React.PropTypes.bool,
+    desktop: React.PropTypes.bool,
+    initiallyKeyboardFocused: React.PropTypes.bool,
+    listStyle: React.PropTypes.object,
+    maxHeight: React.PropTypes.number,
+    multiple: React.PropTypes.bool,
+    onEscKeyDown: React.PropTypes.func,
+    onItemTouchTap: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func,
+    openDirection: React.PropTypes.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
+    selectedMenuItemStyle: React.PropTypes.object,
+    width: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+    zDepth: React.PropTypes.oneOf([0, 1, 2, 3, 4, 5])
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      autoWidth: true,
+      maxHeight: null,
+      onEscKeyDown: function onEscKeyDown() {},
+      onItemTouchTap: function onItemTouchTap() {},
+      onKeyDown: function onKeyDown() {},
+      openDirection: 'bottom-left',
+      zDepth: 1
+    };
+  },
+
+  getInitialState: function getInitialState() {
+    var selectedIndex = this._getSelectedIndex();
+
+    return {
+      focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
+      isKeyboardFocused: this.props.initiallyKeyboardFocused,
+      keyWidth: this.props.desktop ? 64 : 56,
+      componentEntered: false
+    };
+  },
+
+  componentDidAppear: function componentDidAppear() {
+    this.setState({
+      componentEntered: true
+    }, this._setScollPosition);
+  },
+
+  componentDidEnter: function componentDidEnter() {
+    this.componentDidAppear();
+  },
+
+  componentDidMount: function componentDidMount() {
+    if (this.props.autoWidth) this._setWidth();
+  },
+
+  componentWillLeave: function componentWillLeave(callback) {
+    var rootStyle = React.findDOMNode(this).style;
+
+    AutoPrefix.set(rootStyle, 'transition', Transitions.easeOut('250ms', ['opacity', 'transform']));
+    AutoPrefix.set(rootStyle, 'transform', 'translate3d(0,-8px,0)');
+    rootStyle.opacity = 0;
+
+    setTimeout(callback, 250);
+  },
+
+  render: function render() {
+    var _this = this;
+
+    var _props = this.props;
+    var autoWidth = _props.autoWidth;
+    var children = _props.children;
+    var desktop = _props.desktop;
+    var initiallyKeyboardFocused = _props.initiallyKeyboardFocused;
+    var listStyle = _props.listStyle;
+    var maxHeight = _props.maxHeight;
+    var multiple = _props.multiple;
+    var openDirection = _props.openDirection;
+    var selectedMenuItemStyle = _props.selectedMenuItemStyle;
+    var style = _props.style;
+    var value = _props.value;
+    var valueLink = _props.valueLink;
+    var width = _props.width;
+    var zDepth = _props.zDepth;
+
+    var other = _objectWithoutProperties(_props, ['autoWidth', 'children', 'desktop', 'initiallyKeyboardFocused', 'listStyle', 'maxHeight', 'multiple', 'openDirection', 'selectedMenuItemStyle', 'style', 'value', 'valueLink', 'width', 'zDepth']);
+
+    var componentEntered = this.state.componentEntered;
+    var openDown = openDirection.split('-')[0] === 'bottom';
+    var openLeft = openDirection.split('-')[1] === 'left';
+
+    var styles = {
+      root: {
+        //Nested div bacause the List scales x faster than
+        //it scales y
+        transition: Transitions.easeOut('250ms', 'transform'),
+        position: 'absolute',
+        zIndex: 10,
+        top: openDown ? 0 : null,
+        bottom: !openDown ? 0 : null,
+        left: !openLeft ? 0 : null,
+        right: openLeft ? 0 : null,
+        transform: componentEntered ? 'scaleX(1)' : 'scaleX(0)',
+        transformOrigin: openLeft ? 'right' : 'left'
+      },
+
+      list: {
+        display: 'table-cell',
+        paddingBottom: desktop ? 16 : 8,
+        paddingTop: desktop ? 16 : 8,
+        userSelect: 'none',
+        width: width
+      },
+
+      menuItem: {
+        transition: Transitions.easeOut(null, 'opacity'),
+        opacity: componentEntered ? 1 : 0
+      },
+
+      paper: {
+        transition: Transitions.easeOut('500ms', ['transform', 'opacity']),
+        transform: componentEntered ? 'scaleY(1)' : 'scaleY(0)',
+        transformOrigin: openDown ? 'top' : 'bottom',
+        opacity: componentEntered ? 1 : 0,
+        maxHeight: maxHeight,
+        overflowY: maxHeight ? 'scroll' : null
+      },
+
+      selectedMenuItem: {
+        color: this.context.muiTheme.palette.accent1Color
+      }
+    };
+
+    var mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    var mergedListStyles = this.mergeStyles(styles.list, listStyle);
+
+    //Cascade children opacity
+    var cumulativeDelay = openDown ? 175 : 325;
+    var cascadeChildrenCount = this._getCascadeChildrenCount();
+    var cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
+
+    var menuItemIndex = 0;
+    var newChildren = React.Children.map(children, (function (child) {
+
+      var childIsADivider = child.type.displayName === 'MenuDivider';
+      var childIsDisabled = child.props.disabled;
+      var focusIndex = _this.state.focusIndex;
+      var transitionDelay = 0;
+
+      //Only cascade the visible menu items
+      if (componentEntered && menuItemIndex >= focusIndex - 1 && menuItemIndex <= focusIndex + cascadeChildrenCount - 1) {
+        cumulativeDelay = openDown ? cumulativeDelay + cumulativeDelayIncrement : cumulativeDelay - cumulativeDelayIncrement;
+        transitionDelay = cumulativeDelay;
+      }
+
+      var childrenContainerStyles = _this.mergeStyles(styles.menuItem, {
+        transitionDelay: transitionDelay + 'ms'
+      });
+
+      var clonedChild = childIsADivider ? child : childIsDisabled ? React.cloneElement(child, { desktop: desktop }) : _this._cloneMenuItem(child, menuItemIndex, styles);
+
+      if (!childIsADivider && !childIsDisabled) menuItemIndex++;
+
+      return React.createElement(
+        'div',
+        { style: childrenContainerStyles },
+        clonedChild
+      );
+    }).bind(this));
+
+    return React.createElement(
+      'div',
+      {
+        onKeyDown: this._handleKeyDown,
+        style: mergedRootStyles },
+      React.createElement(
+        Paper,
+        {
+          ref: 'scrollContainer',
+          style: styles.paper,
+          zDepth: zDepth },
+        React.createElement(
+          List,
+          _extends({}, other, {
+            ref: 'list',
+            style: mergedListStyles }),
+          newChildren
+        )
+      )
+    );
+  },
+
+  setKeyboardFocused: function setKeyboardFocused(keyboardFocused) {
+    this.setState({
+      isKeyboardFocused: keyboardFocused
+    });
+  },
+
+  _cloneMenuItem: function _cloneMenuItem(child, childIndex, styles) {
+    var _this2 = this;
+
+    var _props2 = this.props;
+    var desktop = _props2.desktop;
+    var selectedMenuItemStyle = _props2.selectedMenuItemStyle;
+
+    var selected = this._isChildSelected(child);
+    var selectedChildrenStyles = {};
+
+    if (selected) {
+      selectedChildrenStyles = this.mergeStyles(styles.selectedMenuItem, selectedMenuItemStyle);
+    }
+
+    var mergedChildrenStyles = this.mergeStyles(child.props.style || {}, selectedChildrenStyles);
+
+    var isFocused = childIndex === this.state.focusIndex;
+    var focusState = 'none';
+    if (isFocused) {
+      focusState = this.state.isKeyboardFocused ? 'keyboard-focused' : 'focused';
+    }
+
+    return React.cloneElement(child, {
+      desktop: desktop,
+      focusState: focusState,
+      onTouchTap: function onTouchTap(e) {
+        _this2._handleMenuItemTouchTap(e, child);
+        if (child.props.onTouchTap) child.props.onTouchTap(e);
+      },
+      ref: isFocused ? 'focusedMenuItem' : null,
+      style: mergedChildrenStyles
+    });
+  },
+
+  _decrementKeyboardFocusIndex: function _decrementKeyboardFocusIndex() {
+    var index = this.state.focusIndex;
+
+    index--;
+    if (index < 0) index = 0;
+
+    this._setFocusIndex(index, true);
+  },
+
+  _getCascadeChildrenCount: function _getCascadeChildrenCount() {
+    var _props3 = this.props;
+    var children = _props3.children;
+    var desktop = _props3.desktop;
+    var maxHeight = _props3.maxHeight;
+
+    var count = 1;
+    var currentHeight = desktop ? 16 : 8;
+    var menuItemHeight = desktop ? 32 : 48;
+
+    //MaxHeight isn't set - cascade all of the children
+    if (!maxHeight) return React.Children.count(children);
+
+    //Count all the children that will fit inside the
+    //max menu height
+    React.Children.forEach(children, function (child) {
+      if (currentHeight < maxHeight) {
+        var childIsADivider = child.type.displayName === 'MenuDivider';
+
+        currentHeight += childIsADivider ? 16 : menuItemHeight;
+        count++;
+      }
+    });
+
+    return count;
+  },
+
+  _getMenuItemCount: function _getMenuItemCount() {
+    var menuItemCount = 0;
+    React.Children.forEach(this.props.children, function (child) {
+      var childIsADivider = child.type.displayName === 'MenuDivider';
+      var childIsDisabled = child.props.disabled;
+      if (!childIsADivider && !childIsDisabled) menuItemCount++;
+    });
+    return menuItemCount;
+  },
+
+  _getSelectedIndex: function _getSelectedIndex() {
+    var _this3 = this;
+
+    var children = this.props.children;
+
+    var selectedIndex = -1;
+    var menuItemIndex = 0;
+
+    React.Children.forEach(children, (function (child) {
+      var childIsADivider = child.type.displayName === 'MenuDivider';
+
+      if (_this3._isChildSelected(child)) selectedIndex = menuItemIndex;
+      if (!childIsADivider) menuItemIndex++;
+    }).bind(this));
+
+    return selectedIndex;
+  },
+
+  _handleKeyDown: function _handleKeyDown(e) {
+    switch (e.keyCode) {
+      case KeyCode.DOWN:
+        e.preventDefault();
+        this._incrementKeyboardFocusIndex();
+        break;
+      case KeyCode.ESC:
+        this.props.onEscKeyDown(e);
+        break;
+      case KeyCode.TAB:
+        e.preventDefault();
+        if (e.shiftKey) {
+          this._decrementKeyboardFocusIndex();
+        } else {
+          this._incrementKeyboardFocusIndex();
+        }
+        break;
+      case KeyCode.UP:
+        e.preventDefault();
+        this._decrementKeyboardFocusIndex();
+        break;
+    }
+    this.props.onKeyDown(e);
+  },
+
+  _handleMenuItemTouchTap: function _handleMenuItemTouchTap(e, item) {
+    var multiple = this.props.multiple;
+    var valueLink = this.getValueLink(this.props);
+    var menuValue = valueLink.value;
+    var itemValue = item.props.value;
+
+    if (multiple) {
+      var index = menuValue.indexOf(itemValue);
+      var newMenuValue = index === -1 ? update(menuValue, { $push: [itemValue] }) : update(menuValue, { $splice: [[index, 1]] });
+
+      valueLink.requestChange(e, newMenuValue);
+    } else if (!multiple && itemValue !== menuValue) {
+      valueLink.requestChange(e, itemValue);
+    }
+
+    this.props.onItemTouchTap(e, item);
+  },
+
+  _incrementKeyboardFocusIndex: function _incrementKeyboardFocusIndex() {
+    var index = this.state.focusIndex;
+    var maxIndex = this._getMenuItemCount() - 1;
+
+    index++;
+    if (index > maxIndex) index = maxIndex;
+
+    this._setFocusIndex(index, true);
+  },
+
+  _isChildSelected: function _isChildSelected(child) {
+    var multiple = this.props.multiple;
+    var menuValue = this.getValueLink(this.props).value;
+    var childValue = child.props.value;
+
+    return multiple && menuValue.length && menuValue.indexOf(childValue) !== -1 || !multiple && menuValue && menuValue === childValue;
+  },
+
+  _setFocusIndex: function _setFocusIndex(newIndex, isKeyboardFocused) {
+    this.setState({
+      focusIndex: newIndex,
+      isKeyboardFocused: isKeyboardFocused
+    });
+  },
+
+  _setScollPosition: function _setScollPosition() {
+    var desktop = this.props.desktop;
+    var focusedMenuItem = this.refs.focusedMenuItem;
+    var menuItemHeight = desktop ? 32 : 48;
+
+    if (focusedMenuItem) {
+      var selectedOffSet = React.findDOMNode(focusedMenuItem).offsetTop;
+
+      //Make the focused item be the 2nd item in the list the
+      //user sees
+      var scrollTop = selectedOffSet - menuItemHeight;
+      if (scrollTop < menuItemHeight) scrollTop = 0;
+
+      React.findDOMNode(this.refs.scrollContainer).scrollTop = scrollTop;
+    }
+  },
+
+  _setWidth: function _setWidth() {
+    var el = React.findDOMNode(this);
+    var listEl = React.findDOMNode(this.refs.list);
+    var elWidth = el.offsetWidth;
+    var keyWidth = this.state.keyWidth;
+    var minWidth = keyWidth * 1.5;
+    var keyIncrements = elWidth / keyWidth;
+    var newWidth = undefined;
+
+    keyIncrements = keyIncrements <= 1.5 ? 1.5 : Math.ceil(keyIncrements);
+    newWidth = keyIncrements * keyWidth;
+
+    if (newWidth < minWidth) newWidth = minWidth;
+
+    el.style.width = newWidth + 'px';
+    listEl.style.width = newWidth + 'px';
+  }
+
+});
+
+module.exports = Menu;
+
+},{"../lists/list":427,"../mixins/controllable":438,"../mixins/style-propable":440,"../paper":444,"../styles/auto-prefix":455,"../styles/transitions":462,"../utils/key-code":539,"react/addons":216}],436:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -52086,7 +53816,7 @@ module.exports = {
 
 };
 
-},{"classnames":184,"react":401}],447:[function(require,module,exports){
+},{"classnames":171,"react":388}],437:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -52109,7 +53839,7 @@ module.exports = {
     var el = React.findDOMNode(this);
 
     // Check if the target is inside the current component
-    if (e.target != el && !Dom.isDescendant(el, e.target) && document.documentElement.contains(e.target)) {
+    if (e.target !== el && !Dom.isDescendant(el, e.target) && document.documentElement.contains(e.target)) {
       if (this.componentClickAway) this.componentClickAway();
     }
   },
@@ -52129,7 +53859,49 @@ module.exports = {
 
 };
 
-},{"../utils/dom":514,"../utils/events":515,"react":401}],448:[function(require,module,exports){
+},{"../utils/dom":535,"../utils/events":536,"react":388}],438:[function(require,module,exports){
+'use strict';
+
+var React = require('react/addons');
+
+module.exports = {
+
+  propTypes: {
+    onChange: React.PropTypes.func,
+    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.array]),
+    valueLink: React.PropTypes.shape({
+      value: React.PropTypes.string.isRequired,
+      requestChange: React.PropTypes.func.isRequired
+    })
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      onChange: function onChange() {}
+    };
+  },
+
+  getValueLink: function getValueLink(props) {
+    return props.valueLink || {
+      value: props.value,
+      requestChange: props.onChange
+    };
+  }
+
+};
+
+},{"react/addons":216}],439:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+  Classable: require('./classable'),
+  ClickAwayable: require('./click-awayable'),
+  WindowListenable: require('./window-listenable'),
+  StylePropable: require('./style-propable'),
+  StyleResizable: require('./style-resizable')
+};
+
+},{"./classable":436,"./click-awayable":437,"./style-propable":440,"./style-resizable":441,"./window-listenable":442}],440:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -52151,12 +53923,15 @@ module.exports = {
     var args = Array.prototype.slice.call(arguments, 0);
     var base = args[0];
     for (var i = 1; i < args.length; i++) {
-      if (args[i]) base = Extend(base, args[i]);
+      if (args[i]) {
+        base = Extend(base, args[i]);
+      }
     }
+
     return base;
   },
 
-  /** 
+  /**
    * loops through all properties defined in the first argument, so overrides
    * of undefined properties will not take place.
    */
@@ -52166,7 +53941,7 @@ module.exports = {
   }
 };
 
-},{"../styles/auto-prefix":462,"../utils/extend":516,"react/addons":229}],449:[function(require,module,exports){
+},{"../styles/auto-prefix":455,"../utils/extend":537,"react/addons":216}],441:[function(require,module,exports){
 'use strict';
 
 var Events = require('../utils/events');
@@ -52216,7 +53991,7 @@ module.exports = {
   }
 };
 
-},{"../utils/events":515}],450:[function(require,module,exports){
+},{"../utils/events":536}],442:[function(require,module,exports){
 'use strict';
 
 var Events = require('../utils/events');
@@ -52243,7 +54018,7 @@ module.exports = {
 
 };
 
-},{"../utils/events":515}],451:[function(require,module,exports){
+},{"../utils/events":536}],443:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -52258,11 +54033,13 @@ var Colors = require('./styles/colors');
 var Overlay = React.createClass({
   displayName: 'Overlay',
 
+  _originalBodyOverflow: '',
+
   mixins: [StylePropable],
 
   propTypes: {
-    show: React.PropTypes.bool,
     autoLockScrolling: React.PropTypes.bool,
+    show: React.PropTypes.bool,
     transitionEnabled: React.PropTypes.bool
   },
 
@@ -52273,8 +54050,16 @@ var Overlay = React.createClass({
     };
   },
 
+  componentDidMount: function componentDidMount() {
+    this._originalBodyOverflow = document.getElementsByTagName('body')[0].style.oveflow;
+  },
+
   componentDidUpdate: function componentDidUpdate() {
     if (this.props.autoLockScrolling) this.props.show ? this._preventScrolling() : this._allowScrolling();
+  },
+
+  componentWillUnmount: function componentWillUnmount() {
+    this._allowScrolling();
   },
 
   setOpacity: function setOpacity(opacity) {
@@ -52337,14 +54122,14 @@ var Overlay = React.createClass({
 
   _allowScrolling: function _allowScrolling() {
     var body = document.getElementsByTagName('body')[0];
-    body.style.overflow = '';
+    body.style.overflow = this._originalBodyOverflow || '';
   }
 
 });
 
 module.exports = Overlay;
 
-},{"./mixins/style-propable":448,"./styles/colors":463,"./styles/transitions":469,"react":401}],452:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/colors":456,"./styles/transitions":462,"react":388}],444:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -52354,6 +54139,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
+
 var Paper = React.createClass({
   displayName: 'Paper',
 
@@ -52366,15 +54152,16 @@ var Paper = React.createClass({
   propTypes: {
     circle: React.PropTypes.bool,
     rounded: React.PropTypes.bool,
-    zDepth: React.PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
-    transitionEnabled: React.PropTypes.bool
+    transitionEnabled: React.PropTypes.bool,
+    zDepth: React.PropTypes.oneOf([0, 1, 2, 3, 4, 5])
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
+      circle: false,
       rounded: true,
-      zDepth: 1,
-      transitionEnabled: true
+      transitionEnabled: true,
+      zDepth: 1
     };
   },
 
@@ -52390,6 +54177,7 @@ var Paper = React.createClass({
         borderRadius: this.props.circle ? '50%' : this.props.rounded ? '2px' : '0px'
       }
     };
+
     return styles;
   },
 
@@ -52412,7 +54200,7 @@ var Paper = React.createClass({
   },
 
   _getZDepthShadows: function _getZDepthShadows(zDepth) {
-    var shadows = ['', '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)', '0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23)', '0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23)', '0 14px 45px rgba(0, 0, 0, 0.25), 0 10px 18px rgba(0, 0, 0, 0.22)', '0 19px 60px rgba(0, 0, 0, 0.30), 0 15px 20px rgba(0, 0, 0, 0.22)'];
+    var shadows = [null, '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)', '0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23)', '0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23)', '0 14px 45px rgba(0, 0, 0, 0.25), 0 10px 18px rgba(0, 0, 0, 0.22)', '0 19px 60px rgba(0, 0, 0, 0.30), 0 15px 20px rgba(0, 0, 0, 0.22)'];
 
     return shadows[zDepth];
   }
@@ -52421,7 +54209,7 @@ var Paper = React.createClass({
 
 module.exports = Paper;
 
-},{"./mixins/style-propable":448,"./styles/transitions":469,"react":401}],453:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/transitions":462,"react":388}],445:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -52455,10 +54243,12 @@ var RadioButtonGroup = React.createClass({
   },
 
   componentWillMount: function componentWillMount() {
+    var _this = this;
+
     var cnt = 0;
 
     React.Children.forEach(this.props.children, function (option) {
-      if (this._hasCheckAttribute(option)) cnt++;
+      if (_this._hasCheckAttribute(option)) cnt++;
     }, this);
 
     this.setState({ numberCheckedRadioButtons: cnt });
@@ -52471,6 +54261,7 @@ var RadioButtonGroup = React.createClass({
   },
 
   render: function render() {
+    var _this2 = this;
 
     var options = React.Children.map(this.props.children, function (option) {
       var _option$props = option.props;
@@ -52483,13 +54274,13 @@ var RadioButtonGroup = React.createClass({
 
       return React.createElement(RadioButton, _extends({}, other, {
         ref: option.props.value,
-        name: this.props.name,
+        name: _this2.props.name,
         key: option.props.value,
         value: option.props.value,
         label: option.props.label,
-        labelPosition: this.props.labelPosition,
-        onCheck: this._onChange,
-        checked: option.props.value == this.state.selected }));
+        labelPosition: _this2.props.labelPosition,
+        onCheck: _this2._onChange,
+        checked: option.props.value === _this2.state.selected }));
     }, this);
 
     return React.createElement(
@@ -52537,7 +54328,7 @@ module.exports = RadioButtonGroup;
 
 }).call(this,require('_process'))
 
-},{"./radio-button":454,"_process":1,"react":401}],454:[function(require,module,exports){
+},{"./radio-button":446,"_process":1,"react":388}],446:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -52548,8 +54339,8 @@ var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require('./styles/transitions');
 var EnhancedSwitch = require('./enhanced-switch');
-var RadioButtonOff = require('./svg-icons/toggle-radio-button-off');
-var RadioButtonOn = require('./svg-icons/toggle-radio-button-on');
+var RadioButtonOff = require('./svg-icons/toggle/radio-button-unchecked');
+var RadioButtonOn = require('./svg-icons/toggle/radio-button-checked');
 
 var RadioButton = React.createClass({
   displayName: 'RadioButton',
@@ -52609,6 +54400,7 @@ var RadioButton = React.createClass({
         color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
       }
     };
+
     return styles;
   },
 
@@ -52676,7 +54468,7 @@ var RadioButton = React.createClass({
 
 module.exports = RadioButton;
 
-},{"./enhanced-switch":429,"./mixins/style-propable":448,"./styles/transitions":469,"./svg-icons/toggle-radio-button-off":480,"./svg-icons/toggle-radio-button-on":481,"react":401}],455:[function(require,module,exports){
+},{"./enhanced-switch":415,"./mixins/style-propable":440,"./styles/transitions":462,"./svg-icons/toggle/radio-button-checked":498,"./svg-icons/toggle/radio-button-unchecked":499,"react":388}],447:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -52691,6 +54483,12 @@ var Typography = require('./styles/typography');
 var EnhancedButton = require('./enhanced-button');
 var Paper = require('./paper');
 
+function validateLabel(props, propName, componentName) {
+  if (!props.children && !props.label) {
+    return new Error('Required prop label or children was not ' + 'specified in ' + componentName + '.');
+  }
+}
+
 var RaisedButton = React.createClass({
   displayName: 'RaisedButton',
 
@@ -52703,11 +54501,7 @@ var RaisedButton = React.createClass({
   propTypes: {
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
-    label: function label(props, propName, componentName) {
-      if (!props.children && !props.label) {
-        return new Error('Warning: Required prop `label` or `children` was not specified in `' + componentName + '`.');
-      }
-    },
+    label: validateLabel,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
     onMouseOut: React.PropTypes.func,
@@ -52715,15 +54509,21 @@ var RaisedButton = React.createClass({
     onTouchStart: React.PropTypes.func,
     primary: React.PropTypes.bool,
     secondary: React.PropTypes.bool,
-    labelStyle: React.PropTypes.object
+    labelStyle: React.PropTypes.object,
+    backgroundColor: React.PropTypes.string,
+    labelColor: React.PropTypes.string,
+    disabledBackgroundColor: React.PropTypes.string,
+    disabledLabelColor: React.PropTypes.string,
+    fullWidth: React.PropTypes.bool
   },
 
   getInitialState: function getInitialState() {
     var zDepth = this.props.disabled ? 0 : 1;
     return {
-      zDepth: zDepth,
+      hovered: false,
+      touched: false,
       initialZDepth: zDepth,
-      hovered: false
+      zDepth: zDepth
     };
   },
 
@@ -52736,11 +54536,15 @@ var RaisedButton = React.createClass({
   },
 
   _getBackgroundColor: function _getBackgroundColor() {
-    return this.props.disabled ? this.getTheme().disabledColor : this.props.primary ? this.getTheme().primaryColor : this.props.secondary ? this.getTheme().secondaryColor : this.getTheme().color;
+    var disabledColor = this.props.disabledBackgroundColor ? this.props.disabledBackgroundColor : this.getTheme().disabledColor;
+
+    return this.props.disabled ? disabledColor : this.props.backgroundColor ? this.props.backgroundColor : this.props.primary ? this.getTheme().primaryColor : this.props.secondary ? this.getTheme().secondaryColor : this.getTheme().color;
   },
 
   _getLabelColor: function _getLabelColor() {
-    return this.props.disabled ? this.getTheme().disabledTextColor : this.props.primary ? this.getTheme().primaryTextColor : this.props.secondary ? this.getTheme().secondaryTextColor : this.getTheme().textColor;
+    var disabledColor = this.props.disabledLabelColor ? this.props.disabledLabelColor : this.getTheme().disabledTextColor;
+
+    return this.props.disabled ? disabledColor : this.props.labelColor ? this.props.labelColor : this.props.primary ? this.getTheme().primaryTextColor : this.props.secondary ? this.getTheme().secondaryTextColor : this.getTheme().textColor;
   },
 
   getThemeButton: function getThemeButton() {
@@ -52756,7 +54560,7 @@ var RaisedButton = React.createClass({
     var styles = {
       root: {
         display: 'inline-block',
-        minWidth: this.getThemeButton().minWidth,
+        minWidth: this.props.fullWidth ? '100%' : this.getThemeButton().minWidth,
         height: this.getThemeButton().height,
         transition: Transitions.easeOut()
       },
@@ -52785,7 +54589,7 @@ var RaisedButton = React.createClass({
         margin: 0,
         padding: '0px ' + this.context.muiTheme.spacing.desktopGutterLess + 'px',
         userSelect: 'none',
-        lineHeight: this.getThemeButton().height + 'px',
+        lineHeight: this.props.style && this.props.style.height ? this.props.style.height : this.getThemeButton().height + 'px',
         color: this._getLabelColor()
       },
       overlay: {
@@ -52810,7 +54614,7 @@ var RaisedButton = React.createClass({
 
     var styles = this.getStyles();
 
-    var labelElement;
+    var labelElement = undefined;
     if (label) {
       labelElement = React.createElement(
         'span',
@@ -52876,12 +54680,17 @@ var RaisedButton = React.createClass({
   },
 
   _handleMouseOver: function _handleMouseOver(e) {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({ hovered: true });
+    if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
+      this.setState({ hovered: true });
+    }
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
   _handleTouchStart: function _handleTouchStart(e) {
-    this.setState({ zDepth: this.state.initialZDepth + 1 });
+    this.setState({
+      touch: true,
+      zDepth: this.state.initialZDepth + 1
+    });
     if (this.props.onTouchStart) this.props.onTouchStart(e);
   },
 
@@ -52904,7 +54713,7 @@ var RaisedButton = React.createClass({
 
 module.exports = RaisedButton;
 
-},{"./enhanced-button":428,"./mixins/style-propable":448,"./paper":452,"./styles/transitions":469,"./styles/typography":470,"./utils/color-manipulator":511,"react":401}],456:[function(require,module,exports){
+},{"./enhanced-button":414,"./mixins/style-propable":440,"./paper":444,"./styles/transitions":462,"./styles/typography":463,"./utils/color-manipulator":532,"react":388}],448:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -52916,8 +54725,8 @@ var StylePropable = require('../mixins/style-propable');
 var Transitions = require('../styles/transitions');
 var Colors = require('../styles/colors');
 
-var RippleCircle = React.createClass({
-  displayName: 'RippleCircle',
+var CircleRipple = React.createClass({
+  displayName: 'CircleRipple',
 
   mixins: [StylePropable],
 
@@ -52961,9 +54770,9 @@ var RippleCircle = React.createClass({
 
 });
 
-module.exports = RippleCircle;
+module.exports = CircleRipple;
 
-},{"../mixins/style-propable":448,"../styles/colors":463,"../styles/transitions":469,"react":401}],457:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles/colors":456,"../styles/transitions":462,"react":388}],449:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -52998,16 +54807,16 @@ var FocusRipple = React.createClass({
   },
 
   render: function render() {
-
     var outerStyles = this.mergeAndPrefix({
       height: '100%',
       width: '100%',
       position: 'absolute',
       top: 0,
       left: 0,
-      transition: Transitions.easeOut(),
+      transition: Transitions.easeOut(null, ['transform', 'opacity']),
       transform: this.props.show ? 'scale(1)' : 'scale(0)',
-      opacity: this.props.show ? 1 : 0
+      opacity: this.props.show ? 1 : 0,
+      overflow: 'hidden'
     }, this.props.style);
 
     var innerStyles = this.mergeAndPrefix({
@@ -53017,7 +54826,7 @@ var FocusRipple = React.createClass({
       borderRadius: '50%',
       opacity: this.props.opacity ? this.props.opacity : 0.16,
       backgroundColor: this.props.color,
-      transition: Transitions.easeOut(pulsateDuration + 'ms', null, null, Transitions.easeInOutFunction)
+      transition: Transitions.easeOut(pulsateDuration + 'ms', 'transform', null, Transitions.easeInOutFunction)
     }, this.props.innerStyle);
 
     return React.createElement(
@@ -53028,13 +54837,13 @@ var FocusRipple = React.createClass({
   },
 
   _pulsate: function _pulsate() {
-    if (!this.isMounted() || !this.props.show) return;
+    if (!this.isMounted()) return;
 
     var startScale = 'scale(0.75)';
     var endScale = 'scale(0.85)';
     var innerCircle = React.findDOMNode(this.refs.innerCircle);
     var currentScale = innerCircle.style[AutoPrefix.single('transform')];
-    var nextScale;
+    var nextScale = undefined;
 
     currentScale = currentScale || startScale;
     nextScale = currentScale === startScale ? endScale : startScale;
@@ -53044,7 +54853,7 @@ var FocusRipple = React.createClass({
   },
 
   _setRippleSize: function _setRippleSize() {
-    var el = React.findDOMNode(this);
+    var el = React.findDOMNode(this.refs.innerCircle);
     var height = el.offsetHeight;
     var width = el.offsetWidth;
     var size = Math.max(height, width);
@@ -53057,13 +54866,23 @@ var FocusRipple = React.createClass({
 
 module.exports = FocusRipple;
 
-},{"../mixins/style-propable":448,"../styles/auto-prefix":462,"../styles/colors":463,"../styles/transitions":469,"react":401}],458:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles/auto-prefix":455,"../styles/colors":456,"../styles/transitions":462,"react":388}],450:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+  CircleRipple: require('./circle-ripple'),
+  FocusRipple: require('./focus-ripple'),
+  TouchRipple: require('./touch-ripple')
+};
+
+},{"./circle-ripple":448,"./focus-ripple":449,"./touch-ripple":451}],451:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
 var Dom = require('../utils/dom');
-var RippleCircle = require('./circle');
+var RippleCircle = require('./circle-ripple');
+
 var TouchRipple = React.createClass({
   displayName: 'TouchRipple',
 
@@ -53086,13 +54905,13 @@ var TouchRipple = React.createClass({
   },
 
   render: function render() {
-
     var styles = this.mergeAndPrefix({
       height: '100%',
       width: '100%',
       position: 'absolute',
       top: 0,
-      left: 0
+      left: 0,
+      overflow: 'hidden'
     }, this.props.style);
 
     return React.createElement(
@@ -53116,7 +54935,7 @@ var TouchRipple = React.createClass({
     var ripples = this.state.ripples;
     var nextKey = ripples[ripples.length - 1].key + 1;
     var style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
-    var ripple;
+    var ripple = undefined;
 
     //Do nothing if we're starting a click-event-generated ripple
     //while having touch-generated ripples
@@ -53151,9 +54970,11 @@ var TouchRipple = React.createClass({
   },
 
   end: function end() {
+    var _this = this;
+
     var ripples = this.state.ripples;
-    var ripple;
-    var endingRipple;
+    var ripple = undefined;
+    var endingRipple = undefined;
 
     //End the the next un-ended ripple
     for (var i = 0; i < ripples.length; i++) {
@@ -53173,14 +54994,14 @@ var TouchRipple = React.createClass({
       });
 
       //Wait 2 seconds and remove the ripple from DOM
-      setTimeout((function () {
+      setTimeout(function () {
         ripples.shift();
-        if (this.isMounted()) {
-          this.setState({
+        if (_this.isMounted()) {
+          _this.setState({
             ripples: ripples
           });
         }
-      }).bind(this), 2000);
+      }, 2000);
     }
   },
 
@@ -53238,29 +55059,32 @@ var TouchRipple = React.createClass({
   },
 
   _getRippleElements: function _getRippleElements() {
-    return this.state.ripples.map((function (ripple) {
+    var _this2 = this;
+
+    return this.state.ripples.map(function (ripple) {
       return React.createElement(RippleCircle, {
         key: ripple.key,
         started: ripple.started,
         ending: ripple.ending,
         style: ripple.style,
-        color: this.props.color,
-        opacity: this.props.opacity });
-    }).bind(this));
+        color: _this2.props.color,
+        opacity: _this2.props.opacity });
+    });
   }
 
 });
 
 module.exports = TouchRipple;
 
-},{"../mixins/style-propable":448,"../utils/dom":514,"./circle":456,"react":401}],459:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../utils/dom":535,"./circle-ripple":448,"react":388}],452:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
-var Transitions = require('./styles/transitions');
 var TextField = require('./text-field');
 var DropDownMenu = require('./drop-down-menu');
 
@@ -53276,6 +55100,9 @@ var SelectField = React.createClass({
   propTypes: {
     errorText: React.PropTypes.string,
     floatingLabelText: React.PropTypes.string,
+    selectFieldRoot: React.PropTypes.string,
+    underlineStyle: React.PropTypes.string,
+    labelStyle: React.PropTypes.string,
     hintText: React.PropTypes.string,
     id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
@@ -53287,6 +55114,7 @@ var SelectField = React.createClass({
     type: React.PropTypes.string,
     rows: React.PropTypes.number,
     inputStyle: React.PropTypes.object,
+    iconStyle: React.PropTypes.object,
     floatingLabelStyle: React.PropTypes.object,
     autoWidth: React.PropTypes.bool,
     menuItems: React.PropTypes.array.isRequired,
@@ -53295,66 +55123,147 @@ var SelectField = React.createClass({
   },
 
   getDefaultProps: function getDefaultProps() {
-    return {};
+    return {
+      fullWidth: false
+    };
   },
 
   getStyles: function getStyles() {
     var styles = {
-      selectfield: {
-        root: {
-          height: 'auto',
-          position: 'relative',
-          width: '100%'
-        },
-        label: {
-          paddingLeft: 0,
-          top: 4,
-          width: '100%'
-        },
-        icon: {
-          top: 20,
-          right: 0
-        },
-        underline: {
-          borderTop: 'none'
-        }
-      }
+      root: {
+        height: 46,
+        position: 'relative',
+        width: '100%',
+        top: 16,
+        fontSize: 16
+      },
+      label: {
+        paddingLeft: 0,
+        top: 4,
+        width: '100%'
+      },
+      icon: {
+        top: 20,
+        right: 0
+      },
+      underline: {
+        borderTop: 'none'
+      },
+      input: {}
     };
+
+    if (!this.props.floatingLabelText) {
+      if (this.props.hintText) {
+        styles.root.top = -5;
+        styles.label.top = 1;
+        styles.icon.top = 17;
+      } else {
+        styles.root.top = -8;
+      }
+    }
+
     return styles;
   },
 
   onChange: function onChange(e, index, payload) {
-    e.target.value = payload;
-    if (this.props.onChange) this.props.onChange(e);
+    if (payload) {
+      e.target.value = payload[this.props.valueMember] || payload;
+    }
+    if (this.props.onChange) {
+      this.props.onChange(e);
+    }
   },
 
   render: function render() {
     var styles = this.getStyles();
+    var _props = this.props;
+    var style = _props.style;
+    var labelStyle = _props.labelStyle;
+    var iconStyle = _props.iconStyle;
+    var underlineStyle = _props.underlineStyle;
+    var selectFieldRoot = _props.selectFieldRoot;
+    var onChange = _props.onChange;
+    var menuItems = _props.menuItems;
+    var disabled = _props.disabled;
+    var floatingLabelText = _props.floatingLabelText;
+    var hintText = _props.hintText;
+    var fullWidth = _props.fullWidth;
+
+    var other = _objectWithoutProperties(_props, ['style', 'labelStyle', 'iconStyle', 'underlineStyle', 'selectFieldRoot', 'onChange', 'menuItems', 'disabled', 'floatingLabelText', 'hintText', 'fullWidth']);
+
+    var textFieldProps = {
+      style: this.mergeAndPrefix(styles.input, style),
+      floatingLabelText: floatingLabelText,
+      hintText: !hintText && !floatingLabelText ? ' ' : hintText,
+      fullWidth: fullWidth
+    };
+    var dropDownMenuProps = {
+      onChange: this.onChange,
+      menuItems: menuItems,
+      disabled: disabled,
+      style: this.mergeAndPrefix(styles.root, selectFieldRoot),
+      labelStyle: this.mergeAndPrefix(styles.label, labelStyle),
+      iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
+      underlineStyle: this.mergeAndPrefix(styles.underline),
+      autoWidth: false
+    };
+
     return React.createElement(
       TextField,
-      this.props,
-      React.createElement(DropDownMenu, _extends({}, this.props, {
-        onChange: this.onChange,
-        style: styles.selectfield.root,
-        labelStyle: styles.selectfield.label,
-        iconStyle: styles.selectfield.icon,
-        underlineStyle: styles.selectfield.underline,
-        autoWidth: false
-      }))
+      textFieldProps,
+      React.createElement(DropDownMenu, _extends({}, dropDownMenuProps, other))
     );
   }
 });
 
 module.exports = SelectField;
 
-},{"./drop-down-menu":427,"./mixins/style-propable":448,"./styles/transitions":469,"./text-field":491,"react":401}],460:[function(require,module,exports){
+},{"./drop-down-menu":413,"./mixins/style-propable":440,"./text-field":511,"react":388}],453:[function(require,module,exports){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Draggable = require('react-draggable2');
-var Transitions = require('./styles/transitions.js');
+var Transitions = require('./styles/transitions');
 var FocusRipple = require('./ripples/focus-ripple');
+
+/**
+  * Verifies min/max range.
+  * @param   {Object} props         Properties of the React component.
+  * @param   {String} propName      Name of the property to validate.
+  * @param   {String} componentName Name of the component whose property is being validated.
+  * @returns {Object} Returns an Error if min >= max otherwise null.
+  */
+var minMaxPropType = function minMaxPropType(props, propName, componentName) {
+  var error = React.PropTypes.number(props, propName, componentName);
+  if (error !== null) return error;
+
+  if (props.min >= props.max) {
+    var errorMsg = propName === 'min' ? 'min should be less than max' : 'max should be greater than min';
+    return new Error(errorMsg);
+  }
+};
+
+/**
+  * Verifies value is within the min/max range.
+  * @param   {Object} props         Properties of the React component.
+  * @param   {String} propName      Name of the property to validate.
+  * @param   {String} componentName Name of the component whose property is being validated.
+  * @returns {Object} Returns an Error if the value is not within the range otherwise null.
+  */
+var valueInRangePropType = function valueInRangePropType(props, propName, componentName) {
+  var error = React.PropTypes.number(props, propName, componentName);
+  if (error !== null) return error;
+
+  var value = props[propName];
+  if (value < props.min || props.max < value) {
+    return new Error(propName + ' should be within the range specified by min and max');
+  }
+};
 
 var Slider = React.createClass({
   displayName: 'Slider',
@@ -53366,49 +55275,52 @@ var Slider = React.createClass({
   },
 
   propTypes: {
-    required: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    min: React.PropTypes.number,
-    max: React.PropTypes.number,
-    step: React.PropTypes.number,
-    error: React.PropTypes.string,
-    description: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
+    defaultValue: valueInRangePropType,
+    description: React.PropTypes.string,
+    disabled: React.PropTypes.bool,
+    error: React.PropTypes.string,
+    max: minMaxPropType,
+    min: minMaxPropType,
+    required: React.PropTypes.bool,
+    step: React.PropTypes.number,
     onBlur: React.PropTypes.func,
+    onChange: React.PropTypes.func,
     onDragStart: React.PropTypes.func,
-    onDragStop: React.PropTypes.func
+    onDragStop: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    value: valueInRangePropType
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
-      required: true,
-      disabled: false,
       defaultValue: 0,
-      step: 0.01,
-      min: 0,
+      disabled: false,
       max: 1,
-      dragging: false
+      min: 0,
+      required: true,
+      step: 0.01
     };
   },
 
   getInitialState: function getInitialState() {
     var value = this.props.value;
-    if (value == null) value = this.props.defaultValue;
+    if (value === null) value = this.props.defaultValue;
     var percent = (value - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
+
     return {
-      value: value,
-      percent: percent,
-      focused: false,
       active: false,
-      hovered: false
+      dragging: false,
+      focused: false,
+      hovered: false,
+      percent: percent,
+      value: value
     };
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    if (nextProps.value != null) {
+    if (nextProps.value !== null) {
       this.setValue(nextProps.value);
     }
   },
@@ -53521,6 +55433,8 @@ var Slider = React.createClass({
   },
 
   render: function render() {
+    var others = _objectWithoutProperties(this.props, []);
+
     var percent = this.state.percent;
     if (percent > 1) percent = 1;else if (percent < 0) percent = 0;
     var gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
@@ -53544,7 +55458,7 @@ var Slider = React.createClass({
 
     var rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active && this.state.percent !== 0;
     var rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
-    var focusRipple;
+    var focusRipple = undefined;
     if (!this.props.disabled && !this.props.disableFocusRipple) {
       focusRipple = React.createElement(FocusRipple, {
         ref: 'focusRipple',
@@ -53557,7 +55471,7 @@ var Slider = React.createClass({
 
     return React.createElement(
       'div',
-      { style: this.props.style },
+      _extends({}, others, { style: this.props.style }),
       React.createElement('span', { className: 'mui-input-highlight' }),
       React.createElement('span', { className: 'mui-input-bar' }),
       React.createElement(
@@ -53575,6 +55489,7 @@ var Slider = React.createClass({
         { style: sliderStyles,
           onFocus: this._onFocus,
           onBlur: this._onBlur,
+          onMouseDown: this._onMouseDown,
           onMouseOver: this._onMouseOver,
           onMouseOut: this._onMouseOut,
           onMouseUp: this._onMouseUp },
@@ -53592,7 +55507,7 @@ var Slider = React.createClass({
               onStart: this._onDragStart,
               onStop: this._onDragStop,
               onDrag: this._onDragUpdate,
-              onMouseDown: this._onMouseDown },
+              onMouseDown: this._onMouseDownKnob },
             React.createElement(
               'div',
               { style: handleStyles, tabIndex: 0 },
@@ -53636,7 +55551,7 @@ var Slider = React.createClass({
   },
 
   clearValue: function clearValue() {
-    this.setValue(0);
+    this.setValue(this.props.min);
   },
 
   _alignValue: function _alignValue(val) {
@@ -53667,7 +55582,7 @@ var Slider = React.createClass({
       var pixelStep = pixelMax / ((max - min) / step);
 
       var cursor = min;
-      var i;
+      var i = undefined;
       for (i = 0; i < (max - min) / step; i++) {
         var distance = pos.left - cursor;
         var nextDistance = cursor + pixelStep - pos.left;
@@ -53677,6 +55592,7 @@ var Slider = React.createClass({
           break;
         }
       }
+
       return {
         left: cursor
       };
@@ -53693,6 +55609,10 @@ var Slider = React.createClass({
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
+  _onMouseDown: function _onMouseDown(e) {
+    this._pos = e.clientX;
+  },
+
   _onMouseOver: function _onMouseOver() {
     this.setState({ hovered: true });
   },
@@ -53701,11 +55621,17 @@ var Slider = React.createClass({
     this.setState({ hovered: false });
   },
 
-  _onMouseUp: function _onMouseUp() {
+  _onMouseUp: function _onMouseUp(e) {
     if (!this.props.disabled) this.setState({ active: false });
+    if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
+      var pos = e.clientX - React.findDOMNode(this).getBoundingClientRect().left;
+      this._dragX(e, pos);
+    }
+
+    this._pos = undefined;
   },
 
-  _onMouseDown: function _onMouseDown() {
+  _onMouseDownKnob: function _onMouseDownKnob() {
     if (!this.props.disabled) this.setState({ active: true });
   },
 
@@ -53733,6 +55659,9 @@ var Slider = React.createClass({
   _dragX: function _dragX(e, pos) {
     var max = React.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0;else if (pos > max) pos = max;
+    if (pos === this.props.min) {
+      return this._updateWithChangeEvent(e, 0);
+    }
     this._updateWithChangeEvent(e, pos / max);
   },
 
@@ -53751,7 +55680,7 @@ var Slider = React.createClass({
 
 module.exports = Slider;
 
-},{"./mixins/style-propable":448,"./ripples/focus-ripple":457,"./styles/transitions.js":469,"react":401,"react-draggable2":185}],461:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./ripples/focus-ripple":449,"./styles/transitions":462,"react":388,"react-draggable2":172}],454:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -53768,15 +55697,19 @@ var Snackbar = React.createClass({
 
   manuallyBindClickAway: true,
 
+  // ID of the active timer.
+  _autoHideTimerId: undefined,
+
   contextTypes: {
     muiTheme: React.PropTypes.object
   },
 
   propTypes: {
-    action: React.PropTypes.string,
     message: React.PropTypes.string.isRequired,
-    openOnMount: React.PropTypes.bool,
-    onActionTouchTap: React.PropTypes.func
+    action: React.PropTypes.string,
+    autoHideDuration: React.PropTypes.number,
+    onActionTouchTap: React.PropTypes.func,
+    openOnMount: React.PropTypes.bool
   },
 
   getInitialState: function getInitialState() {
@@ -53790,12 +55723,16 @@ var Snackbar = React.createClass({
   },
 
   componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
-    if (prevState.open != this.state.open) {
+    var _this = this;
+
+    if (prevState.open !== this.state.open) {
       if (this.state.open) {
+        this._setAutoHideTimer();
+
         //Only Bind clickaway after transition finishes
-        CssEvent.onTransitionEnd(React.findDOMNode(this), (function () {
-          this._bindClickAway();
-        }).bind(this));
+        CssEvent.onTransitionEnd(React.findDOMNode(this), function () {
+          _this._bindClickAway();
+        });
       } else {
         this._unbindClickAway();
       }
@@ -53847,14 +55784,14 @@ var Snackbar = React.createClass({
         transition: Transitions.easeOut('0ms', 'left', '0ms') + ',' + Transitions.easeOut('400ms', 'opacity', '0ms') + ',' + Transitions.easeOut('400ms', 'transform', '0ms')
       }
     };
+
     return styles;
   },
 
   render: function render() {
-
     var styles = this.getStyles();
 
-    var action;
+    var action = undefined;
     if (this.props.action) {
       action = React.createElement(FlatButton, {
         style: styles.action,
@@ -53862,8 +55799,7 @@ var Snackbar = React.createClass({
         onTouchTap: this.props.onActionTouchTap });
     }
 
-    var rootStyles = styles.root;
-    if (this.state.open) rootStyles = this.mergeStyles(styles.root, styles.rootWhenOpen, this.props.style);
+    var rootStyles = this.state.open ? this.mergeStyles(styles.root, styles.rootWhenOpen, this.props.style) : this.mergeStyles(styles.root, this.props.style);
 
     return React.createElement(
       'span',
@@ -53882,14 +55818,32 @@ var Snackbar = React.createClass({
   },
 
   dismiss: function dismiss() {
+    this._clearAutoHideTimer();
     this.setState({ open: false });
+  },
+
+  _clearAutoHideTimer: function _clearAutoHideTimer() {
+    if (this._autoHideTimerId !== undefined) {
+      this._autoHideTimerId = clearTimeout(this._autoHideTimerId);
+    }
+  },
+
+  _setAutoHideTimer: function _setAutoHideTimer() {
+    var _this2 = this;
+
+    if (this.props.autoHideDuration > 0) {
+      this._clearAutoHideTimer();
+      this._autoHideTimerId = setTimeout(function () {
+        _this2.dismiss();
+      }, this.props.autoHideDuration);
+    }
   }
 
 });
 
 module.exports = Snackbar;
 
-},{"./flat-button":431,"./mixins/click-awayable":447,"./mixins/style-propable":448,"./styles/transitions":469,"./utils/css-event":512,"react":401}],462:[function(require,module,exports){
+},{"./flat-button":417,"./mixins/click-awayable":437,"./mixins/style-propable":440,"./styles/transitions":462,"./utils/css-event":533,"react":388}],455:[function(require,module,exports){
 'use strict';
 
 var isBrowser = typeof window !== 'undefined';
@@ -53923,10 +55877,10 @@ module.exports = {
 
 };
 
-},{"../utils/modernizr.custom":519}],463:[function(require,module,exports){
+},{"../utils/modernizr.custom":541}],456:[function(require,module,exports){
 // To include this file in your project:
-// var mui = require('mui');
-// var Colors = mui.Styles.Colors;
+// let mui = require('mui');
+// let Colors = mui.Styles.Colors;
 
 'use strict';
 
@@ -54220,7 +56174,7 @@ module.exports = {
 
 };
 
-},{}],464:[function(require,module,exports){
+},{}],457:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -54232,7 +56186,7 @@ module.exports = {
   Typography: require('./typography')
 };
 
-},{"./auto-prefix":462,"./colors":463,"./spacing":465,"./theme-manager":466,"./transitions":469,"./typography":470}],465:[function(require,module,exports){
+},{"./auto-prefix":455,"./colors":456,"./spacing":458,"./theme-manager":459,"./transitions":462,"./typography":463}],458:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -54250,7 +56204,7 @@ module.exports = {
   desktopToolbarHeight: 56
 };
 
-},{}],466:[function(require,module,exports){
+},{}],459:[function(require,module,exports){
 'use strict';
 
 var Extend = require('../utils/extend');
@@ -54300,7 +56254,7 @@ var ThemeManager = function ThemeManager() {
 
 module.exports = ThemeManager;
 
-},{"../utils/extend":516,"./themes/dark-theme":467,"./themes/light-theme":468}],467:[function(require,module,exports){
+},{"../utils/extend":537,"./themes/dark-theme":460,"./themes/light-theme":461}],460:[function(require,module,exports){
 'use strict';
 
 var Colors = require('../colors');
@@ -54312,7 +56266,8 @@ var DarkTheme = {
       textColor: Colors.fullWhite,
       canvasColor: '#303030',
       borderColor: ColorManipulator.fade(Colors.fullWhite, 0.3), //Colors.grey300
-      disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3)
+      disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
+      primary1Color: Colors.teal200
     };
   },
   getComponentThemes: function getComponentThemes(palette) {
@@ -54361,7 +56316,7 @@ var DarkTheme = {
 
 module.exports = DarkTheme;
 
-},{"../../utils/color-manipulator":511,"../colors":463}],468:[function(require,module,exports){
+},{"../../utils/color-manipulator":532,"../colors":456}],461:[function(require,module,exports){
 'use strict';
 
 var Colors = require('../colors');
@@ -54439,6 +56394,9 @@ var LightTheme = {
       leftNav: {
         width: spacing.desktopKeylineIncrement * 4,
         color: Colors.white
+      },
+      listItem: {
+        nestedLevelDepth: 18
       },
       menu: {
         backgroundColor: Colors.white,
@@ -54562,8 +56520,11 @@ var LightTheme = {
     };
 
     // Properties based on previous properties
-    obj.flatButton.disabledTextColor = ColorManipulator.fade(obj.flatButton.textColor, 0.3), obj.floatingActionButton.disabledColor = ColorManipulator.darken(Colors.white, 0.1), obj.floatingActionButton.disabledTextColor = ColorManipulator.fade(palette.textColor, 0.3);
-    obj.raisedButton.disabledColor = ColorManipulator.darken(obj.raisedButton.color, 0.1), obj.raisedButton.disabledTextColor = ColorManipulator.fade(obj.raisedButton.textColor, 0.3);
+    obj.flatButton.disabledTextColor = ColorManipulator.fade(obj.flatButton.textColor, 0.3);
+    obj.floatingActionButton.disabledColor = ColorManipulator.darken(Colors.white, 0.1);
+    obj.floatingActionButton.disabledTextColor = ColorManipulator.fade(palette.textColor, 0.3);
+    obj.raisedButton.disabledColor = ColorManipulator.darken(obj.raisedButton.color, 0.1);
+    obj.raisedButton.disabledTextColor = ColorManipulator.fade(obj.raisedButton.textColor, 0.3);
     obj.slider.handleSizeActive = obj.slider.handleSize * 2;
     obj.toggle.trackRequiredColor = ColorManipulator.fade(obj.toggle.thumbRequiredColor, 0.5);
 
@@ -54573,7 +56534,7 @@ var LightTheme = {
 
 module.exports = LightTheme;
 
-},{"../../utils/color-manipulator":511,"../colors":463,"../spacing":465}],469:[function(require,module,exports){
+},{"../../utils/color-manipulator":532,"../colors":456,"../spacing":458}],462:[function(require,module,exports){
 'use strict';
 
 var AutoPrefix = require('./auto-prefix');
@@ -54587,11 +56548,20 @@ module.exports = {
 
     easeFunction = easeFunction || this.easeOutFunction;
 
-    return this.create(duration, property, delay, easeFunction);
+    if (property && Object.prototype.toString.call(property) === '[object Array]') {
+
+      var transitions = '';
+      for (var i = 0; i < property.length; i++) {
+        if (transitions) transitions += ',';
+        transitions += this.create(duration, property[i], delay, easeFunction);
+      }
+      return transitions;
+    } else {
+      return this.create(duration, property, delay, easeFunction);
+    }
   },
 
   create: function create(duration, property, delay, easeFunction) {
-
     duration = duration || '450ms';
     property = property || 'all';
     delay = delay || '0ms';
@@ -54601,12 +56571,15 @@ module.exports = {
   }
 };
 
-},{"./auto-prefix":462}],470:[function(require,module,exports){
+},{"./auto-prefix":455}],463:[function(require,module,exports){
 'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 var Colors = require('./colors');
 
 var Typography = function Typography() {
+  _classCallCheck(this, Typography);
 
   // text colors
   this.textFullBlack = Colors.fullBlack;
@@ -54627,7 +56600,7 @@ var Typography = function Typography() {
 
 module.exports = new Typography();
 
-},{"./colors":463}],471:[function(require,module,exports){
+},{"./colors":456}],464:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -54679,18 +56652,16 @@ var SvgIcon = React.createClass({
     var offColor = color ? color : style && style.fill ? style.fill : this.context.muiTheme.palette.textColor;
     var onColor = hoverColor ? hoverColor : offColor;
 
-    //remove the fill prop so that it doesn't override our computed
-    //fill from above
-    if (style) delete style.fill;
-
     var mergedStyles = this.mergeAndPrefix({
       display: 'inline-block',
       height: 24,
       width: 24,
       userSelect: 'none',
-      transition: Transitions.easeOut(),
+      transition: Transitions.easeOut()
+    }, style, {
+      // Make sure our fill color overrides fill provided in props.style
       fill: this.state.hovered ? onColor : offColor
-    }, style);
+    });
 
     return React.createElement(
       'svg',
@@ -54720,28 +56691,427 @@ var SvgIcon = React.createClass({
 
 module.exports = SvgIcon;
 
-},{"./mixins/style-propable":448,"./styles/transitions":469,"react/addons":229}],472:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/transitions":462,"react/addons":216}],465:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var SvgIcon = require('../svg-icon');
+var SvgIcon = require('../../svg-icon');
 
-var DropDownArrow = React.createClass({
-  displayName: 'DropDownArrow',
+var ActionAssignment = React.createClass({
+  displayName: 'ActionAssignment',
 
   render: function render() {
     return React.createElement(
       SvgIcon,
       this.props,
-      React.createElement('polygon', { points: '7,9.5 12,14.5 17,9.5 ' })
+      React.createElement('path', { d: 'M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z' })
     );
   }
 
 });
 
-module.exports = DropDownArrow;
+module.exports = ActionAssignment;
 
-},{"../svg-icon":471,"react":401}],473:[function(require,module,exports){
+},{"../../svg-icon":464,"react":388}],466:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ActionDelete = React.createClass({
+  displayName: 'ActionDelete',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z' })
+    );
+  }
+
+});
+
+module.exports = ActionDelete;
+
+},{"../../svg-icon":464,"react":388}],467:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ActionGrade = React.createClass({
+  displayName: 'ActionGrade',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' })
+    );
+  }
+
+});
+
+module.exports = ActionGrade;
+
+},{"../../svg-icon":464,"react":388}],468:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ActionHome = React.createClass({
+  displayName: 'ActionHome',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' })
+    );
+  }
+
+});
+
+module.exports = ActionHome;
+
+},{"../../svg-icon":464,"react":388}],469:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ActionInfo = React.createClass({
+  displayName: 'ActionInfo',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z' })
+    );
+  }
+
+});
+
+module.exports = ActionInfo;
+
+},{"../../svg-icon":464,"react":388}],470:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var CommunicationCall = React.createClass({
+  displayName: 'CommunicationCall',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z' })
+    );
+  }
+
+});
+
+module.exports = CommunicationCall;
+
+},{"../../svg-icon":464,"react":388}],471:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var CommunicationChatBubble = React.createClass({
+  displayName: 'CommunicationChatBubble',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z' })
+    );
+  }
+
+});
+
+module.exports = CommunicationChatBubble;
+
+},{"../../svg-icon":464,"react":388}],472:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var CommunicationEmail = React.createClass({
+  displayName: 'CommunicationEmail',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z' })
+    );
+  }
+
+});
+
+module.exports = CommunicationEmail;
+
+},{"../../svg-icon":464,"react":388}],473:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ContentContentCopy = React.createClass({
+  displayName: 'ContentContentCopy',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z' })
+    );
+  }
+
+});
+
+module.exports = ContentContentCopy;
+
+},{"../../svg-icon":464,"react":388}],474:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ContentDrafts = React.createClass({
+  displayName: 'ContentDrafts',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M21.99 8c0-.72-.37-1.35-.94-1.7L12 1 2.95 6.3C2.38 6.65 2 7.28 2 8v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2l-.01-10zM12 13L3.74 7.84 12 3l8.26 4.84L12 13z' })
+    );
+  }
+
+});
+
+module.exports = ContentDrafts;
+
+},{"../../svg-icon":464,"react":388}],475:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ContentFilterList = React.createClass({
+  displayName: 'ContentFilterList',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z' })
+    );
+  }
+
+});
+
+module.exports = ContentFilterList;
+
+},{"../../svg-icon":464,"react":388}],476:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ContentInbox = React.createClass({
+  displayName: 'ContentInbox',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M19 3H4.99c-1.1 0-1.98.9-1.98 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 12h-4c0 1.66-1.34 3-3 3s-3-1.34-3-3H4.99V5H19v10zm-3-5h-2V7h-4v3H8l4 4 4-4z' })
+    );
+  }
+
+});
+
+module.exports = ContentInbox;
+
+},{"../../svg-icon":464,"react":388}],477:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ContentLink = React.createClass({
+  displayName: 'ContentLink',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z' })
+    );
+  }
+
+});
+
+module.exports = ContentLink;
+
+},{"../../svg-icon":464,"react":388}],478:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ContentSend = React.createClass({
+  displayName: 'ContentSend',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M2.01 21L23 12 2.01 3 2 10l15 2-15 2z' })
+    );
+  }
+
+});
+
+module.exports = ContentSend;
+
+},{"../../svg-icon":464,"react":388}],479:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var EditorInsertChart = React.createClass({
+  displayName: 'EditorInsertChart',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z' })
+    );
+  }
+
+});
+
+module.exports = EditorInsertChart;
+
+},{"../../svg-icon":464,"react":388}],480:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var FileFileDownload = React.createClass({
+  displayName: 'FileFileDownload',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z' })
+    );
+  }
+
+});
+
+module.exports = FileFileDownload;
+
+},{"../../svg-icon":464,"react":388}],481:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var FileFolder = React.createClass({
+  displayName: 'FileFolder',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z' })
+    );
+  }
+
+});
+
+module.exports = FileFolder;
+
+},{"../../svg-icon":464,"react":388}],482:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ImageRemoveRedEye = React.createClass({
+  displayName: 'ImageRemoveRedEye',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z' })
+    );
+  }
+
+});
+
+module.exports = ImageRemoveRedEye;
+
+},{"../../svg-icon":464,"react":388}],483:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var MapsPlace = React.createClass({
+  displayName: 'MapsPlace',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z' })
+    );
+  }
+
+});
+
+module.exports = MapsPlace;
+
+},{"../../svg-icon":464,"react":388}],484:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../svg-icon');
+
+var NavigationArrowDropRight = React.createClass({
+  displayName: 'NavigationArrowDropRight',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M9.5,7l5,5l-5,5V7z' })
+    );
+  }
+
+});
+
+module.exports = NavigationArrowDropRight;
+
+},{"../svg-icon":464,"react":388}],485:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -54763,28 +57133,7 @@ var NavigationChevronLeftDouble = React.createClass({
 
 module.exports = NavigationChevronLeftDouble;
 
-},{"../svg-icon":471,"react":401}],474:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var SvgIcon = require('../svg-icon');
-
-var NavigationChevronLeft = React.createClass({
-  displayName: 'NavigationChevronLeft',
-
-  render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' })
-    );
-  }
-
-});
-
-module.exports = NavigationChevronLeft;
-
-},{"../svg-icon":471,"react":401}],475:[function(require,module,exports){
+},{"../svg-icon":464,"react":388}],486:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -54806,14 +57155,98 @@ var NavigationChevronRightDouble = React.createClass({
 
 module.exports = NavigationChevronRightDouble;
 
-},{"../svg-icon":471,"react":401}],476:[function(require,module,exports){
+},{"../svg-icon":464,"react":388}],487:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var SvgIcon = require('../svg-icon');
+var SvgIcon = require('../../svg-icon');
+
+var NavigationArrowDropDown = React.createClass({
+  displayName: 'NavigationArrowDropDown',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M7 10l5 5 5-5z' })
+    );
+  }
+
+});
+
+module.exports = NavigationArrowDropDown;
+
+},{"../../svg-icon":464,"react":388}],488:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var NavigationArrowDropUp = React.createClass({
+  displayName: 'NavigationArrowDropUp',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M7 14l5-5 5 5z' })
+    );
+  }
+
+});
+
+module.exports = NavigationArrowDropUp;
+
+},{"../../svg-icon":464,"react":388}],489:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var NavigationCheck = React.createClass({
+  displayName: 'NavigationCheck',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' })
+    );
+  }
+
+});
+
+module.exports = NavigationCheck;
+
+},{"../../svg-icon":464,"react":388}],490:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
 
 var NavigationChevronLeft = React.createClass({
   displayName: 'NavigationChevronLeft',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' })
+    );
+  }
+
+});
+
+module.exports = NavigationChevronLeft;
+
+},{"../../svg-icon":464,"react":388}],491:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var NavigationChevronRight = React.createClass({
+  displayName: 'NavigationChevronRight',
 
   render: function render() {
     return React.createElement(
@@ -54825,13 +57258,34 @@ var NavigationChevronLeft = React.createClass({
 
 });
 
-module.exports = NavigationChevronLeft;
+module.exports = NavigationChevronRight;
 
-},{"../svg-icon":471,"react":401}],477:[function(require,module,exports){
+},{"../../svg-icon":464,"react":388}],492:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var SvgIcon = require('../svg-icon');
+var SvgIcon = require('../../svg-icon');
+
+var NavigationClose = React.createClass({
+  displayName: 'NavigationClose',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' })
+    );
+  }
+
+});
+
+module.exports = NavigationClose;
+
+},{"../../svg-icon":464,"react":388}],493:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
 
 var NavigationMenu = React.createClass({
   displayName: 'NavigationMenu',
@@ -54848,32 +57302,53 @@ var NavigationMenu = React.createClass({
 
 module.exports = NavigationMenu;
 
-},{"../svg-icon":471,"react":401}],478:[function(require,module,exports){
+},{"../../svg-icon":464,"react":388}],494:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var SvgIcon = require('../svg-icon');
+var SvgIcon = require('../../svg-icon');
 
-var ToggleCheckBoxChecked = React.createClass({
-  displayName: 'ToggleCheckBoxChecked',
+var NavigationMoreVert = React.createClass({
+  displayName: 'NavigationMoreVert',
 
   render: function render() {
     return React.createElement(
       SvgIcon,
       this.props,
-      React.createElement('path', { d: 'M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M10,17l-5-5l1.4-1.4 l3.6,3.6l7.6-7.6L19,8L10,17z' })
+      React.createElement('path', { d: 'M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z' })
     );
   }
 
 });
 
-module.exports = ToggleCheckBoxChecked;
+module.exports = NavigationMoreVert;
 
-},{"../svg-icon":471,"react":401}],479:[function(require,module,exports){
+},{"../../svg-icon":464,"react":388}],495:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var SvgIcon = require('../svg-icon');
+var SvgIcon = require('../../svg-icon');
+
+var SocialPersonAdd = React.createClass({
+  displayName: 'SocialPersonAdd',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z' })
+    );
+  }
+
+});
+
+module.exports = SocialPersonAdd;
+
+},{"../../svg-icon":464,"react":388}],496:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
 
 var ToggleCheckBoxOutlineBlank = React.createClass({
   displayName: 'ToggleCheckBoxOutlineBlank',
@@ -54882,7 +57357,7 @@ var ToggleCheckBoxOutlineBlank = React.createClass({
     return React.createElement(
       SvgIcon,
       this.props,
-      React.createElement('path', { d: 'M19,5v14H5V5H19 M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z' })
+      React.createElement('path', { d: 'M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z' })
     );
   }
 
@@ -54890,35 +57365,35 @@ var ToggleCheckBoxOutlineBlank = React.createClass({
 
 module.exports = ToggleCheckBoxOutlineBlank;
 
-},{"../svg-icon":471,"react":401}],480:[function(require,module,exports){
+},{"../../svg-icon":464,"react":388}],497:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var SvgIcon = require('../svg-icon');
+var SvgIcon = require('../../svg-icon');
 
-var RadioButtonOff = React.createClass({
-  displayName: 'RadioButtonOff',
+var ToggleCheckBox = React.createClass({
+  displayName: 'ToggleCheckBox',
 
   render: function render() {
     return React.createElement(
       SvgIcon,
       this.props,
-      React.createElement('path', { d: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z' })
+      React.createElement('path', { d: 'M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z' })
     );
   }
 
 });
 
-module.exports = RadioButtonOff;
+module.exports = ToggleCheckBox;
 
-},{"../svg-icon":471,"react":401}],481:[function(require,module,exports){
+},{"../../svg-icon":464,"react":388}],498:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var SvgIcon = require('../svg-icon');
+var SvgIcon = require('../../svg-icon');
 
-var RadioButtonOn = React.createClass({
-  displayName: 'RadioButtonOn',
+var ToggleRadioButtonChecked = React.createClass({
+  displayName: 'ToggleRadioButtonChecked',
 
   render: function render() {
     return React.createElement(
@@ -54930,9 +57405,72 @@ var RadioButtonOn = React.createClass({
 
 });
 
-module.exports = RadioButtonOn;
+module.exports = ToggleRadioButtonChecked;
 
-},{"../svg-icon":471,"react":401}],482:[function(require,module,exports){
+},{"../../svg-icon":464,"react":388}],499:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ToggleRadioButtonUnchecked = React.createClass({
+  displayName: 'ToggleRadioButtonUnchecked',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z' })
+    );
+  }
+
+});
+
+module.exports = ToggleRadioButtonUnchecked;
+
+},{"../../svg-icon":464,"react":388}],500:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ToggleStarBorder = React.createClass({
+  displayName: 'ToggleStarBorder',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z' })
+    );
+  }
+
+});
+
+module.exports = ToggleStarBorder;
+
+},{"../../svg-icon":464,"react":388}],501:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var SvgIcon = require('../../svg-icon');
+
+var ToggleStar = React.createClass({
+  displayName: 'ToggleStar',
+
+  render: function render() {
+    return React.createElement(
+      SvgIcon,
+      this.props,
+      React.createElement('path', { d: 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' })
+    );
+  }
+
+});
+
+module.exports = ToggleStar;
+
+},{"../../svg-icon":464,"react":388}],502:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -55024,13 +57562,12 @@ var TableFooter = React.createClass({
 
 module.exports = TableFooter;
 
-},{"../mixins/style-propable":448,"react":401}],483:[function(require,module,exports){
+},{"../mixins/style-propable":440,"react":388}],503:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react');
-var Checkbox = require('../checkbox');
 var StylePropable = require('../mixins/style-propable');
 var Tooltip = require('../tooltip');
 
@@ -55128,7 +57665,7 @@ var TableHeaderColumn = React.createClass({
 
 module.exports = TableHeaderColumn;
 
-},{"../checkbox":412,"../mixins/style-propable":448,"../tooltip":508,"react":401}],484:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../tooltip":528,"react":388}],504:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -55223,7 +57760,6 @@ var TableHeader = React.createClass({
   },
 
   _getHeaderColumns: function _getHeaderColumns(headerData, keyPrefix) {
-    var styles = this.getStyles();
     var headers = [];
 
     for (var index = 0; index < headerData.length; index++) {
@@ -55274,7 +57810,7 @@ var TableHeader = React.createClass({
 
 module.exports = TableHeader;
 
-},{"../checkbox":412,"../mixins/style-propable":448,"./table-header-column":483,"react":401}],485:[function(require,module,exports){
+},{"../checkbox":399,"../mixins/style-propable":440,"./table-header-column":503,"react":388}],505:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -55377,14 +57913,13 @@ var TableRowColumn = React.createClass({
 
 module.exports = TableRowColumn;
 
-},{"../mixins/style-propable":448,"react":401}],486:[function(require,module,exports){
+},{"../mixins/style-propable":440,"react":388}],506:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Checkbox = require('../checkbox');
 var StylePropable = require('../mixins/style-propable');
 var TableRowColumn = require('./table-row-column');
-var Tooltip = require('../tooltip');
 
 var TableRow = React.createClass({
   displayName: 'TableRow',
@@ -55470,7 +58005,7 @@ var TableRow = React.createClass({
 
     return React.createElement(
       'tr',
-      { className: className, onClick: this._onRowClick, style: this.getStyles().root },
+      { className: className, style: this.getStyles().root },
       this._getColumns(columns)
     );
   },
@@ -55513,8 +58048,7 @@ var TableRow = React.createClass({
       name: key,
       value: 'selected',
       disabled: !this.props.selectable,
-      defaultChecked: this.props.selected,
-      onCheck: this._onCheck });
+      defaultChecked: this.props.selected });
 
     return {
       content: checkbox,
@@ -55539,7 +58073,10 @@ var TableRow = React.createClass({
 
   _onCellClick: function _onCellClick(e, columnIndex) {
     if (this.props.selectable && this.props.onCellClick) this.props.onCellClick(e, this.props.rowNumber, columnIndex);
-    if (this.refs.rowSelectCB !== undefined) this.refs.rowSelectCB.setChecked(!this.refs.rowSelectCB.isChecked());
+    if (this.refs.rowSelectCB !== undefined) {
+      this.refs.rowSelectCB.setChecked(!this.refs.rowSelectCB.isChecked());
+      e.ctrlKey = true;
+    }
     this._onRowClick(e);
   },
 
@@ -55557,18 +58094,13 @@ var TableRow = React.createClass({
       if (this.props.onCellHoverExit) this.props.onCellHoverExit(e, this.props.rowNumber, columnIndex);
       this._onRowHoverExit(e);
     }
-  },
-
-  _onCheck: function _onCheck(e) {
-    e.ctrlKey = true;
-    this._onCellClick(e, 0);
   }
 
 });
 
 module.exports = TableRow;
 
-},{"../checkbox":412,"../mixins/style-propable":448,"../tooltip":508,"./table-row-column":485,"react":401}],487:[function(require,module,exports){
+},{"../checkbox":399,"../mixins/style-propable":440,"./table-row-column":505,"react":388}],507:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -55577,7 +58109,6 @@ var ClickAwayable = require('../mixins/click-awayable');
 var TableHeader = require('./table-header');
 var TableRow = require('./table-row');
 var TableFooter = require('./table-footer');
-var DOM = require('../utils/dom');
 
 var Table = React.createClass({
   displayName: 'Table',
@@ -55590,49 +58121,68 @@ var Table = React.createClass({
 
   propTypes: {
     rowData: React.PropTypes.array.isRequired,
+    canSelectAll: React.PropTypes.bool,
     columnOrder: React.PropTypes.array,
-    headerColumns: React.PropTypes.object,
+    defaultColumnWidth: React.PropTypes.string,
+    deselectOnClickaway: React.PropTypes.bool,
+    displayRowCheckbox: React.PropTypes.bool,
+    displaySelectAll: React.PropTypes.bool,
+    fixedFooter: React.PropTypes.bool,
+    fixedHeader: React.PropTypes.bool,
+    footer: React.PropTypes.element,
     footerColumns: React.PropTypes.object,
     header: React.PropTypes.element,
-    footer: React.PropTypes.element,
+    headerColumns: React.PropTypes.object,
     height: React.PropTypes.string,
-    defaultColumnWidth: React.PropTypes.string,
-    fixedHeader: React.PropTypes.bool,
-    fixedFooter: React.PropTypes.bool,
-    stripedRows: React.PropTypes.bool,
-    showRowHover: React.PropTypes.bool,
-    selectable: React.PropTypes.bool,
     multiSelectable: React.PropTypes.bool,
-    showRowSelectCheckbox: React.PropTypes.bool,
-    canSelectAll: React.PropTypes.bool,
-    displaySelectAll: React.PropTypes.bool,
-    onRowSelection: React.PropTypes.func,
     onCellClick: React.PropTypes.func,
+    onCellHover: React.PropTypes.func,
+    onCellHoverExit: React.PropTypes.func,
     onRowHover: React.PropTypes.func,
     onRowHoverExit: React.PropTypes.func,
-    onCellHover: React.PropTypes.func,
-    onCellHoverExit: React.PropTypes.func
+    onRowSelection: React.PropTypes.func,
+    preScanRowData: React.PropTypes.bool,
+    selectable: React.PropTypes.bool,
+    showRowHover: React.PropTypes.bool,
+    stripedRows: React.PropTypes.bool
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
-      fixedHeader: true,
-      fixedFooter: true,
-      height: 'inherit',
-      defaultColumnWidth: '50px',
-      stripedRows: false,
-      showRowHover: false,
-      selectable: true,
-      showRowSelectCheckbox: true,
-      multiSelectable: false,
       canSelectAll: false,
-      displaySelectAll: true
+      defaultColumnWidth: '50px',
+      deselectOnClickaway: true,
+      displayRowCheckbox: true,
+      displaySelectAll: true,
+      fixedFooter: true,
+      fixedHeader: true,
+      height: 'inherit',
+      multiSelectable: false,
+      preScanRowData: true,
+      selectable: true,
+      showRowHover: false,
+      stripedRows: false
     };
   },
 
   getInitialState: function getInitialState() {
+    // Determine what rows are 'pre-selected'.
+    var preSelectedRows = [];
+    if (this.props.selectable && this.props.preScanRowData) {
+      for (var idx = 0; idx < this.props.rowData.length; idx++) {
+        var row = this.props.rowData[idx];
+        if (row.selected !== undefined && row.selected) {
+          preSelectedRows.push(idx);
+
+          if (!this.props.multiSelectable) {
+            break;
+          }
+        }
+      }
+    }
+
     return {
-      selectedRows: []
+      selectedRows: preSelectedRows
     };
   },
 
@@ -55665,7 +58215,9 @@ var Table = React.createClass({
   },
 
   componentClickAway: function componentClickAway() {
-    if (this.state.selectedRows.length) this.setState({ selectedRows: [] });
+    if (this.props.deselectOnClickaway && this.state.selectedRows.length) {
+      this.setState({ selectedRows: [] });
+    }
   },
 
   render: function render() {
@@ -55757,11 +58309,13 @@ var Table = React.createClass({
   },
 
   _getBody: function _getBody() {
-    var body = this._orderColumnBasedData(this.props.rowData, (function (rowData, rowNumber) {
-      var selected = this._isRowSelected(rowNumber);
-      var striped = this.props.stripedRows && rowNumber % 2 === 0;
+    var _this = this;
+
+    var body = this._orderColumnBasedData(this.props.rowData, function (rowData, rowNumber) {
+      var selected = _this._isRowSelected(rowNumber);
+      var striped = _this.props.stripedRows && rowNumber % 2 === 0;
       var border = true;
-      if (rowNumber === this.props.rowData.length - 1) {
+      if (rowNumber === _this.props.rowData.length - 1) {
         border = false;
       }
 
@@ -55771,18 +58325,19 @@ var Table = React.createClass({
         columns: rowData,
         selected: selected,
         striped: striped,
-        hoverable: this.props.showRowHover,
+        displayRowCheckbox: _this.props.displayRowCheckbox,
+        hoverable: _this.props.showRowHover,
         displayBorder: border,
-        selectable: this.props.selectable,
-        onRowClick: this._handleRowClick,
-        onCellClick: this._handleCellClick,
-        onRowHover: this._handleRowHover,
-        onRowHoverExit: this._handleRowHoverExit,
-        onCellHover: this._handleCellHover,
-        onCellHoverExit: this._handleCellHoverExit });
+        selectable: _this.props.selectable,
+        onRowClick: _this._handleRowClick,
+        onCellClick: _this._handleCellClick,
+        onRowHover: _this._handleRowHover,
+        onRowHoverExit: _this._handleRowHoverExit,
+        onCellHover: _this._handleCellHover,
+        onCellHoverExit: _this._handleCellHoverExit });
 
       return row;
-    }).bind(this));
+    });
 
     return React.createElement(
       'tbody',
@@ -55825,17 +58380,19 @@ var Table = React.createClass({
   },
 
   _setColumnWidths: function _setColumnWidths(columnData) {
-    columnData.forEach((function (column) {
+    var _this2 = this;
+
+    columnData.forEach(function (column) {
       if (column.style === undefined) {
         column.style = {
-          width: this.props.defaultColumnWidth,
-          maxWidth: this.props.defaultColumnWidth
+          width: _this2.props.defaultColumnWidth,
+          maxWidth: _this2.props.defaultColumnWidth
         };
       } else {
-        if (column.style.width === undefined) column.style.width = this.props.defaultColumnWidth;
-        if (column.style.maxWidth === undefined) column.style.maxWidth = this.props.defaultColumnWidth;
+        if (column.style.width === undefined) column.style.width = _this2.props.defaultColumnWidth;
+        if (column.style.maxWidth === undefined) column.style.maxWidth = _this2.props.defaultColumnWidth;
       }
-    }).bind(this));
+    });
 
     return columnData;
   },
@@ -55867,10 +58424,11 @@ var Table = React.createClass({
   },
 
   _handleRowClick: function _handleRowClick(e, rowNumber) {
-    // Prevent text selection while selecting rows.
-    window.getSelection().removeAllRanges();
+    e.stopPropagation();
 
     if (this.props.selectable) {
+      // Prevent text selection while selecting rows.
+      window.getSelection().removeAllRanges();
       this._processRowSelection(e, rowNumber);
     }
   },
@@ -55880,9 +58438,6 @@ var Table = React.createClass({
 
     if (e.shiftKey && this.props.multiSelectable && selectedRows.length) {
       var lastSelection = selectedRows[selectedRows.length - 1];
-      var start = undefined,
-          end = undefined,
-          direction = undefined;
 
       if (typeof lastSelection === 'object') {
         lastSelection.end = rowNumber;
@@ -55909,8 +58464,8 @@ var Table = React.createClass({
   },
 
   _handleCellClick: function _handleCellClick(e, rowNumber, columnNumber) {
+    e.stopPropagation();
     if (this.props.onCellClick) this.props.onCellClick(rowNumber, this._getColumnId(columnNumber));
-    this._handleRowClick(e, rowNumber);
   },
 
   _handleRowHover: function _handleRowHover(e, rowNumber) {
@@ -55947,12 +58502,13 @@ var Table = React.createClass({
 
 module.exports = Table;
 
-},{"../mixins/click-awayable":447,"../mixins/style-propable":448,"../utils/dom":514,"./table-footer":482,"./table-header":484,"./table-row":486,"react":401}],488:[function(require,module,exports){
+},{"../mixins/click-awayable":437,"../mixins/style-propable":440,"./table-footer":502,"./table-header":504,"./table-row":506,"react":388}],508:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var StylePropable = require('../mixins/style-propable.js');
+var StylePropable = require('../mixins/style-propable');
 var Colors = require('../styles/colors.js');
+
 var Tab = React.createClass({
   displayName: 'Tab',
 
@@ -55974,19 +58530,19 @@ var Tab = React.createClass({
 
   render: function render() {
     var styles = this.mergeAndPrefix({
-      'display': 'table-cell',
-      'cursor': 'pointer',
-      'textAlign': 'center',
-      'verticalAlign': 'middle',
-      'height': '48px',
-      'color': Colors.white,
-      'opacity': '.6',
-      'fontSize': '14px',
-      'fontWeight': '500',
-      'whiteSpace': 'initial',
-      'fontFamily': this.context.muiTheme.contentFontFamily,
-      'boxSizing': 'border-box',
-      'width': this.props.width
+      display: 'table-cell',
+      cursor: 'pointer',
+      textAlign: 'center',
+      verticalAlign: 'middle',
+      height: 48,
+      color: Colors.white,
+      opacity: 0.6,
+      fontSize: 14,
+      fontWeight: '500',
+      whiteSpace: 'initial',
+      fontFamily: this.context.muiTheme.contentFontFamily,
+      boxSizing: 'border-box',
+      width: this.props.width
     }, this.props.style);
 
     if (this.props.selected) styles.opacity = '1';
@@ -56002,7 +58558,7 @@ var Tab = React.createClass({
 
 module.exports = Tab;
 
-},{"../mixins/style-propable.js":448,"../styles/colors.js":463,"react":401}],489:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles/colors.js":456,"react":388}],509:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -56011,9 +58567,8 @@ var TabTemplate = React.createClass({
   displayName: 'TabTemplate',
 
   render: function render() {
-
     var styles = {
-      'height': '0px',
+      'height': 0,
       'overflow': 'hidden',
       'width': '100%',
       'position': 'relative',
@@ -56035,13 +58590,13 @@ var TabTemplate = React.createClass({
 
 module.exports = TabTemplate;
 
-},{"react":401}],490:[function(require,module,exports){
+},{"react":388}],510:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
 var TabTemplate = require('./tabTemplate');
 var InkBar = require('../ink-bar');
-var StylePropable = require('../mixins/style-propable.js');
+var StylePropable = require('../mixins/style-propable');
 var Events = require('../utils/events');
 
 var Tabs = React.createClass({
@@ -56057,12 +58612,13 @@ var Tabs = React.createClass({
     initialSelectedIndex: React.PropTypes.number,
     onActive: React.PropTypes.func,
     tabWidth: React.PropTypes.number,
-    tabItemContainerStyle: React.PropTypes.object
+    tabItemContainerStyle: React.PropTypes.object,
+    contentContainerStyle: React.PropTypes.object
   },
 
   getInitialState: function getInitialState() {
     var selectedIndex = 0;
-    if (this.props.initialSelectedIndex && this.props.initialSelectedIndex < this.props.children.length) {
+    if (this.props.initialSelectedIndex && this.props.initialSelectedIndex < this.getTabCount()) {
       selectedIndex = this.props.initialSelectedIndex;
     }
     return {
@@ -56072,6 +58628,10 @@ var Tabs = React.createClass({
 
   getEvenWidth: function getEvenWidth() {
     return parseInt(window.getComputedStyle(React.findDOMNode(this)).getPropertyValue('width'), 10);
+  },
+
+  getTabCount: function getTabCount() {
+    return React.Children.count(this.props.children);
   },
 
   componentDidMount: function componentDidMount() {
@@ -56114,20 +58674,21 @@ var Tabs = React.createClass({
   },
 
   render: function render() {
+    var _this = this;
+
     var styles = this.getStyles();
 
     var tabContent = [];
-    var width = this.state.fixedWidth ? 100 / this.props.children.length + '%' : this.props.tabWidth + 'px';
+    var width = this.state.fixedWidth ? 100 / this.getTabCount() + '%' : this.props.tabWidth + 'px';
 
     var left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
 
     var tabs = React.Children.map(this.props.children, function (tab, index) {
       if (tab.type.displayName === 'Tab') {
-
         if (tab.props.children) {
           tabContent.push(React.createElement(TabTemplate, {
             key: index,
-            selected: this.state.selectedIndex === index
+            selected: _this.state.selectedIndex === index
           }, tab.props.children));
         } else {
           tabContent.push(undefined);
@@ -56135,16 +58696,17 @@ var Tabs = React.createClass({
 
         return React.addons.cloneWithProps(tab, {
           key: index,
-          selected: this.state.selectedIndex === index,
+          selected: _this.state.selectedIndex === index,
           tabIndex: index,
           width: width,
-          handleTouchTap: this.handleTouchTap
+          handleTouchTap: _this.handleTouchTap
         });
       } else {
         var type = tab.type.displayName || tab.type;
         throw 'Tabs only accepts Tab Components as children. Found ' + type + ' as child number ' + (index + 1) + ' of Tabs';
       }
     }, this);
+
     return React.createElement(
       'div',
       { style: this.mergeAndPrefix(this.props.style) },
@@ -56156,14 +58718,14 @@ var Tabs = React.createClass({
       React.createElement(InkBar, { left: left, width: width }),
       React.createElement(
         'div',
-        null,
+        { style: this.mergeAndPrefix(this.props.contentContainerStyle) },
         tabContent
       )
     );
   },
 
   _tabWidthPropIsValid: function _tabWidthPropIsValid() {
-    return this.props.tabWidth && this.props.tabWidth * this.props.children.length <= this.getEvenWidth();
+    return this.props.tabWidth && this.props.tabWidth * this.getTabCount() <= this.getEvenWidth();
   },
 
   // Validates that the tabWidth can fit all tabs on the tab bar. If not, the
@@ -56184,7 +58746,7 @@ var Tabs = React.createClass({
 
 module.exports = Tabs;
 
-},{"../ink-bar":436,"../mixins/style-propable.js":448,"../utils/events":515,"./tabTemplate":489,"react/addons":229}],491:[function(require,module,exports){
+},{"../ink-bar":421,"../mixins/style-propable":440,"../utils/events":536,"./tabTemplate":509,"react/addons":216}],511:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -56199,6 +58761,16 @@ var Transitions = require('./styles/transitions');
 var UniqueId = require('./utils/unique-id');
 var EnhancedTextarea = require('./enhanced-textarea');
 
+/**
+ * Check if a value is valid to be displayed inside an input.
+ *
+ * @param The value to check.
+ * @returns True if the string provided is valid, false otherwise.
+ */
+function isValid(value) {
+  return value || value === 0;
+}
+
 var TextField = React.createClass({
   displayName: 'TextField',
 
@@ -56209,21 +58781,22 @@ var TextField = React.createClass({
   },
 
   propTypes: {
+    errorStyle: React.PropTypes.object,
     errorText: React.PropTypes.string,
+    floatingLabelStyle: React.PropTypes.object,
     floatingLabelText: React.PropTypes.string,
     fullWidth: React.PropTypes.bool,
     hintText: React.PropTypes.string,
     id: React.PropTypes.string,
+    inputStyle: React.PropTypes.object,
     multiLine: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
+    onEnterKeyDown: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
-    onEnterKeyDown: React.PropTypes.func,
-    type: React.PropTypes.string,
     rows: React.PropTypes.number,
-    inputStyle: React.PropTypes.object,
-    floatingLabelStyle: React.PropTypes.object
+    type: React.PropTypes.string
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -56235,11 +58808,11 @@ var TextField = React.createClass({
   },
 
   getInitialState: function getInitialState() {
-    var props = this.props;
-    if (props.children) props = props.children.props;
+    var props = this.props.children ? this.props.children.props : this.props;
+
     return {
       errorText: this.props.errorText,
-      hasValue: props.value || props.defaultValue || props.valueLink && props.valueLink.value
+      hasValue: isValid(props.value) || isValid(props.defaultValue) || props.valueLink && isValid(props.valueLink.value)
     };
   },
 
@@ -56252,10 +58825,9 @@ var TextField = React.createClass({
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    var hasErrorProp = nextProps.hasOwnProperty('errorText');
     var newState = {};
 
-    if (hasErrorProp) newState.errorText = nextProps.errorText;
+    newState.errorText = nextProps.errorText;
     if (nextProps.children && nextProps.children.props) {
       nextProps = nextProps.children.props;
     }
@@ -56265,11 +58837,11 @@ var TextField = React.createClass({
     var hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
 
     if (hasValueLinkProp) {
-      newState.hasValue = nextProps.valueLink.value;
+      newState.hasValue = isValid(nextProps.valueLink.value);
     } else if (hasValueProp) {
-      newState.hasValue = nextProps.value;
+      newState.hasValue = isValid(nextProps.value);
     } else if (hasNewDefaultValue) {
-      newState.hasValue = nextProps.defaultValue;
+      newState.hasValue = isValid(nextProps.defaultValue);
     }
 
     if (newState) this.setState(newState);
@@ -56291,8 +58863,8 @@ var TextField = React.createClass({
         transition: Transitions.easeOut('200ms', 'height')
       },
       error: {
-        position: 'absolute',
-        bottom: -10,
+        position: 'relative',
+        bottom: 5,
         fontSize: 12,
         lineHeight: '12px',
         color: theme.errorColor,
@@ -56300,10 +58872,11 @@ var TextField = React.createClass({
       },
       hint: {
         position: 'absolute',
-        lineHeight: '48px',
+        lineHeight: '22px',
         opacity: 1,
         color: theme.hintColor,
-        transition: Transitions.easeOut()
+        transition: Transitions.easeOut(),
+        bottom: 12
       },
       input: {
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -56339,7 +58912,9 @@ var TextField = React.createClass({
     };
 
     styles.floatingLabel = this.mergeStyles(styles.hint, {
-      top: 24,
+      lineHeight: '22px',
+      top: 38,
+      bottom: 'none',
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top'
@@ -56361,18 +58936,17 @@ var TextField = React.createClass({
 
     if (this.state.isFocused) {
       styles.floatingLabel.color = theme.focusColor;
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
     if (this.state.hasValue) {
       styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? theme.disabledTextColor : theme.floatingLabelColor, 0.5);
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0, -18px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
       styles.hint.opacity = 0;
     }
 
     if (props.floatingLabelText) {
-      styles.hint.top = 24;
       styles.hint.opacity = 0;
       styles.input.boxSizing = 'border-box';
       if (this.state.isFocused && !this.state.hasValue) styles.hint.opacity = 1;
@@ -56396,6 +58970,7 @@ var TextField = React.createClass({
   render: function render() {
     var _props = this.props;
     var className = _props.className;
+    var errorStyle = _props.errorStyle;
     var errorText = _props.errorText;
     var floatingLabelText = _props.floatingLabelText;
     var fullWidth = _props.fullWidth;
@@ -56408,11 +58983,11 @@ var TextField = React.createClass({
     var type = _props.type;
     var rows = _props.rows;
 
-    var other = _objectWithoutProperties(_props, ['className', 'errorText', 'floatingLabelText', 'fullWidth', 'hintText', 'id', 'multiLine', 'onBlur', 'onChange', 'onFocus', 'type', 'rows']);
+    var other = _objectWithoutProperties(_props, ['className', 'errorStyle', 'errorText', 'floatingLabelText', 'fullWidth', 'hintText', 'id', 'multiLine', 'onBlur', 'onChange', 'onFocus', 'type', 'rows']);
 
     var styles = this.getStyles();
 
-    var inputId = this.props.id || this._uniqueId;
+    var inputId = id || this._uniqueId;
 
     var errorTextElement = this.state.errorText ? React.createElement(
       'div',
@@ -56420,22 +58995,22 @@ var TextField = React.createClass({
       this.state.errorText
     ) : null;
 
-    var hintTextElement = this.props.hintText ? React.createElement(
+    var hintTextElement = hintText ? React.createElement(
       'div',
       { style: this.mergeAndPrefix(styles.hint) },
-      this.props.hintText
+      hintText
     ) : null;
 
-    var floatingLabelTextElement = this.props.floatingLabelText ? React.createElement(
+    var floatingLabelTextElement = floatingLabelText ? React.createElement(
       'label',
       {
         style: this.mergeAndPrefix(styles.floatingLabel, this.props.floatingLabelStyle),
         htmlFor: inputId },
-      this.props.floatingLabelText
+      floatingLabelText
     ) : null;
 
-    var inputProps;
-    var inputElement;
+    var inputProps = undefined;
+    var inputElement = undefined;
 
     inputProps = {
       id: inputId,
@@ -56453,11 +59028,11 @@ var TextField = React.createClass({
     if (this.props.children) {
       inputElement = React.cloneElement(this.props.children, _extends({}, inputProps, this.props.children.props));
     } else {
-      inputElement = this.props.multiLine ? React.createElement(EnhancedTextarea, _extends({}, other, inputProps, {
-        rows: this.props.rows,
+      inputElement = multiLine ? React.createElement(EnhancedTextarea, _extends({}, other, inputProps, {
+        rows: rows,
         onHeightChange: this._handleTextAreaHeightChange,
         textareaStyle: this.mergeAndPrefix(styles.textarea) })) : React.createElement('input', _extends({}, other, inputProps, {
-        type: this.props.type }));
+        type: type }));
     }
 
     var underlineElement = this.props.disabled ? React.createElement('div', { style: this.mergeAndPrefix(styles.underlineAfter) }) : React.createElement('hr', { style: this.mergeAndPrefix(styles.underline) });
@@ -56465,7 +59040,7 @@ var TextField = React.createClass({
 
     return React.createElement(
       'div',
-      { className: this.props.className, style: this.mergeAndPrefix(styles.root, this.props.style) },
+      { className: className, style: this.mergeAndPrefix(styles.root, this.props.style) },
       floatingLabelTextElement,
       hintTextElement,
       inputElement,
@@ -56503,14 +59078,13 @@ var TextField = React.createClass({
     if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
       console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
     } else if (this.isMounted()) {
-
       if (this.props.multiLine) {
         this.refs[this._getRef()].setValue(newValue);
       } else {
         this._getInputNode().value = newValue;
       }
 
-      this.setState({ hasValue: newValue });
+      this.setState({ hasValue: isValid(newValue) });
     }
   },
 
@@ -56528,7 +59102,7 @@ var TextField = React.createClass({
   },
 
   _handleInputChange: function _handleInputChange(e) {
-    this.setState({ hasValue: e.target.value });
+    this.setState({ hasValue: isValid(e.target.value) });
     if (this.props.onChange) this.props.onChange(e);
   },
 
@@ -56559,7 +59133,7 @@ module.exports = TextField;
 
 }).call(this,require('_process'))
 
-},{"./enhanced-textarea":430,"./mixins/style-propable":448,"./styles/transitions":469,"./utils/color-manipulator":511,"./utils/unique-id":520,"_process":1,"react":401}],492:[function(require,module,exports){
+},{"./enhanced-textarea":416,"./mixins/style-propable":440,"./styles/transitions":462,"./utils/color-manipulator":532,"./utils/unique-id":542,"_process":1,"react":388}],512:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -56628,7 +59202,7 @@ function theme(customTheme) {
 module.exports = Theme;
 module.exports.theme = theme;
 
-},{"./styles/theme-manager":466,"react":401}],493:[function(require,module,exports){
+},{"./styles/theme-manager":459,"react":388}],513:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -56658,16 +59232,18 @@ var ClockButton = React.createClass({
       position: 'left'
     };
   },
-  _handleTouchTap: function _handleTouchTap() {
 
+  _handleTouchTap: function _handleTouchTap() {
     this.setState({
       selected: true
     });
     this.props.onTouchTap();
   },
+
   getTheme: function getTheme() {
     return this.context.muiTheme.component.timePicker;
   },
+
   render: function render() {
     var _props = this.props;
     var className = _props.className;
@@ -56677,25 +59253,25 @@ var ClockButton = React.createClass({
     var styles = {
       root: {
         position: 'absolute',
-        bottom: '65px',
+        bottom: 65,
         pointerEvents: 'auto',
-        height: '50px',
-        width: '50px',
+        height: 50,
+        width: 50,
         borderRadius: '100%'
       },
 
       label: {
         position: 'absolute',
-        top: '17px',
-        left: '14px'
+        top: 17,
+        left: 14
       },
 
       select: {
         position: 'absolute',
         height: 50,
         width: 50,
-        top: '0px',
-        left: '0px',
+        top: 0,
+        left: 0,
         opacity: 0,
         borderRadius: '50%',
         transform: 'scale(0)',
@@ -56710,7 +59286,7 @@ var ClockButton = React.createClass({
       styles.select.transform = 'scale(1)';
     }
 
-    if (this.props.position == 'right') {
+    if (this.props.position === 'right') {
       styles.root.right = '5px';
     } else {
       styles.root.left = '5px';
@@ -56735,7 +59311,7 @@ var ClockButton = React.createClass({
 
 module.exports = ClockButton;
 
-},{"../enhanced-button":428,"../mixins/style-propable":448,"../styles/transitions":469,"react":401}],494:[function(require,module,exports){
+},{"../enhanced-button":414,"../mixins/style-propable":440,"../styles/transitions":462,"react":388}],514:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -56772,14 +59348,15 @@ var ClockHours = React.createClass({
 
   center: { x: 0, y: 0 },
   basePoint: { x: 0, y: 0 },
-  isMousePressed: function isMousePressed(e) {
 
-    if (typeof e.buttons == 'undefined') {
+  isMousePressed: function isMousePressed(e) {
+    if (typeof e.buttons === 'undefined') {
       return e.nativeEvent.which;
     }
 
     return e.buttons;
   },
+
   getDefaultProps: function getDefaultProps() {
     return {
       initialHours: new Date().getHours(),
@@ -56801,23 +59378,28 @@ var ClockHours = React.createClass({
       y: 0
     };
   },
+
   handleUp: function handleUp(e) {
     e.preventDefault();
     this.setClock(e.nativeEvent, true);
   },
+
   handleMove: function handleMove(e) {
     e.preventDefault();
-    if (this.isMousePressed(e) != 1) return;
+    if (this.isMousePressed(e) !== 1) return;
     this.setClock(e.nativeEvent, false);
   },
+
   handleTouchMove: function handleTouchMove(e) {
     e.preventDefault();
     this.setClock(e.changedTouches[0], false);
   },
+
   handleTouchEnd: function handleTouchEnd(e) {
     e.preventDefault();
     this.setClock(e.changedTouches[0], true);
   },
+
   setClock: function setClock(e, finish) {
     if (typeof e.offsetX === 'undefined') {
       var offset = getTouchEventOffsetValues(e);
@@ -56830,11 +59412,11 @@ var ClockHours = React.createClass({
 
     this.props.onChange(hours, finish);
   },
-  getHours: function getHours(x, y) {
 
+  getHours: function getHours(offsetX, offsetY) {
     var step = 30;
-    x = x - this.center.x;
-    y = y - this.center.y;
+    var x = offsetX - this.center.x;
+    var y = offsetY - this.center.y;
     var cx = this.basePoint.x - this.center.x;
     var cy = this.basePoint.y - this.center.y;
 
@@ -56850,7 +59432,7 @@ var ClockHours = React.createClass({
     var distance = Math.sqrt(delta);
 
     value = value || 12;
-    if (this.props.format == '24hr') {
+    if (this.props.format === '24hr') {
       if (distance < 90) {
         value += 12;
         value %= 24;
@@ -56861,39 +59443,38 @@ var ClockHours = React.createClass({
 
     return value;
   },
-  _getSelected: function _getSelected() {
 
+  _getSelected: function _getSelected() {
     var hour = this.props.initialHours;
 
-    if (this.props.format == 'ampm') {
+    if (this.props.format === 'ampm') {
       hour %= 12;
       hour = hour || 12;
     }
 
     return hour;
   },
+
   _getHourNumbers: function _getHourNumbers() {
+    var _this = this;
+
     var style = {
       pointerEvents: 'none'
     };
-
-    var hourSize = this.props.format == 'ampm' ? 12 : 24;
+    var hourSize = this.props.format === 'ampm' ? 12 : 24;
 
     var hours = [];
-
     for (var i = 1; i <= hourSize; i++) {
       hours.push(i % 24);
     }
 
-    return hours.map((function (hour) {
-
-      var isSelected = this._getSelected() == hour;
-      return React.createElement(ClockNumber, { style: style, isSelected: isSelected, type: 'hour', value: hour });
-    }).bind(this));
+    return hours.map(function (hour) {
+      var isSelected = _this._getSelected() === hour;
+      return React.createElement(ClockNumber, { key: hour, style: style, isSelected: isSelected, type: 'hour', value: hour });
+    });
   },
 
   render: function render() {
-
     var styles = {
       root: {
         height: '100%',
@@ -56909,7 +59490,6 @@ var ClockHours = React.createClass({
         width: '100%',
         pointerEvents: 'auto'
       }
-
     };
 
     var hours = this._getSelected();
@@ -56927,12 +59507,11 @@ var ClockHours = React.createClass({
 
 module.exports = ClockHours;
 
-},{"../mixins/style-propable":448,"./clock-number":496,"./clock-pointer":497,"react":401}],495:[function(require,module,exports){
+},{"../mixins/style-propable":440,"./clock-number":516,"./clock-pointer":517,"react":388}],515:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-
 var ClockNumber = require('./clock-number');
 var ClockPointer = require('./clock-pointer');
 
@@ -56968,13 +59547,15 @@ var ClockMinutes = React.createClass({
 
   center: { x: 0, y: 0 },
   basePoint: { x: 0, y: 0 },
+
   isMousePressed: function isMousePressed(e) {
 
-    if (typeof e.buttons == 'undefined') {
+    if (typeof e.buttons === 'undefined') {
       return e.nativeEvent.which;
     }
     return e.buttons;
   },
+
   getDefaultProps: function getDefaultProps() {
     return {
       initialMinutes: new Date().getMinutes(),
@@ -56995,19 +59576,23 @@ var ClockMinutes = React.createClass({
       y: 0
     };
   },
+
   handleUp: function handleUp(e) {
     e.preventDefault();
     this.setClock(e.nativeEvent, true);
   },
+
   handleMove: function handleMove(e) {
     e.preventDefault();
-    if (this.isMousePressed(e) != 1) return;
+    if (this.isMousePressed(e) !== 1) return;
     this.setClock(e.nativeEvent, false);
   },
+
   handleTouch: function handleTouch(e) {
     e.preventDefault();
     this.setClock(e.changedTouches[0], false);
   },
+
   setClock: function setClock(e, finish) {
     if (typeof e.offsetX === 'undefined') {
       var offset = getTouchEventOffsetValues(e);
@@ -57020,11 +59605,11 @@ var ClockMinutes = React.createClass({
 
     this.props.onChange(minutes, finish);
   },
-  getMinutes: function getMinutes(x, y) {
 
+  getMinutes: function getMinutes(offsetX, offsetY) {
     var step = 6;
-    x = x - this.center.x;
-    y = y - this.center.y;
+    var x = offsetX - this.center.x;
+    var y = offsetY - this.center.y;
     var cx = this.basePoint.x - this.center.x;
     var cy = this.basePoint.y - this.center.y;
 
@@ -57038,21 +59623,20 @@ var ClockMinutes = React.createClass({
 
     return value;
   },
-  _getMinuteNumbers: function _getMinuteNumbers() {
 
+  _getMinuteNumbers: function _getMinuteNumbers() {
     var minutes = [];
     for (var i = 0; i < 12; i++) {
       minutes.push(i * 5);
     }
     var selectedMinutes = this.props.initialMinutes;
-
     var hasSelected = false;
 
-    var numbers = minutes.map((function (minute) {
-      var isSelected = selectedMinutes == minute;
+    var numbers = minutes.map(function (minute) {
+      var isSelected = selectedMinutes === minute;
       if (isSelected) hasSelected = true;
       return React.createElement(ClockNumber, { isSelected: isSelected, type: 'minute', value: minute });
-    }).bind(this));
+    });
 
     return {
       numbers: numbers,
@@ -57060,8 +59644,8 @@ var ClockMinutes = React.createClass({
       selected: selectedMinutes
     };
   },
-  render: function render() {
 
+  render: function render() {
     var styles = {
       root: {
         height: '100%',
@@ -57077,7 +59661,6 @@ var ClockMinutes = React.createClass({
         width: '100%',
         pointerEvents: 'auto'
       }
-
     };
 
     var minutes = this._getMinuteNumbers();
@@ -57094,10 +59677,10 @@ var ClockMinutes = React.createClass({
 
 module.exports = ClockMinutes;
 
-},{"../mixins/style-propable":448,"./clock-number":496,"./clock-pointer":497,"react":401}],496:[function(require,module,exports){
+},{"../mixins/style-propable":440,"./clock-number":516,"./clock-pointer":517,"react":388}],516:[function(require,module,exports){
 'use strict';
 
-function _slicedToArray(arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
 
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
@@ -57117,6 +59700,7 @@ var ClockNumber = React.createClass({
     onSelected: React.PropTypes.func,
     isSelected: React.PropTypes.bool
   },
+
   getDefaultProps: function getDefaultProps() {
     return {
       value: 0,
@@ -57124,16 +59708,16 @@ var ClockNumber = React.createClass({
       isSelected: false
     };
   },
+
   getTheme: function getTheme() {
     return this.context.muiTheme.component.timePicker;
   },
+
   render: function render() {
-
     var pos = this.props.value;
-
     var inner = false;
 
-    if (this.props.type == 'hour') {
+    if (this.props.type === 'hour') {
       inner = pos < 1 || pos > 12;
       pos %= 12;
     } else {
@@ -57148,19 +59732,18 @@ var ClockNumber = React.createClass({
       root: {
         display: 'inline-block',
         position: 'absolute',
-        width: '32px',
-        height: '32px',
+        width: 32,
+        height: 32,
         borderRadius: '100%',
         left: 'calc(50% - 16px)',
-        top: '10px',
+        top: 10,
         textAlign: 'center',
-        paddingTop: '5px',
+        paddingTop: 5,
         userSelect: 'none', /* Chrome all / Safari all */
         fontSize: '1.1em',
         pointerEvents: 'none',
         boxSizing: 'border-box'
       }
-
     };
 
     if (this.props.isSelected) {
@@ -57194,7 +59777,7 @@ var ClockNumber = React.createClass({
 
 module.exports = ClockNumber;
 
-},{"../mixins/style-propable":448,"react":401}],497:[function(require,module,exports){
+},{"../mixins/style-propable":440,"react":388}],517:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -57219,6 +59802,7 @@ var ClockPointer = React.createClass({
       inner: this.isInner(this.props.value)
     };
   },
+
   getDefaultProps: function getDefaultProps() {
     return {
       value: null,
@@ -57226,37 +59810,40 @@ var ClockPointer = React.createClass({
       hasSelected: false
     };
   },
-  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
     this.setState({
       inner: this.isInner(nextProps.value)
     });
   },
+
   isInner: function isInner(value) {
-    if (this.props.type != 'hour') {
+    if (this.props.type !== 'hour') {
       return false;
     }
     return value < 1 || value > 12;
   },
-  getAngle: function getAngle() {
 
-    if (this.props.type == 'hour') {
+  getAngle: function getAngle() {
+    if (this.props.type === 'hour') {
       return this.calcAngle(this.props.value, 12);
     }
 
     return this.calcAngle(this.props.value, 60);
   },
+
   calcAngle: function calcAngle(value, base) {
     value %= base;
     var angle = 360 / base * value;
     return angle;
   },
+
   getTheme: function getTheme() {
     return this.context.muiTheme.component.timePicker;
   },
-  render: function render() {
 
-    if (this.props.value == null) {
+  render: function render() {
+    if (this.props.value === null) {
       return React.createElement('span', null);
     }
 
@@ -57266,7 +59853,7 @@ var ClockPointer = React.createClass({
       root: {
         height: '30%',
         background: this.getTheme().accentColor,
-        width: '2px',
+        width: 2,
         left: 'calc(50% - 1px)',
         position: 'absolute',
         bottom: '50%',
@@ -57277,11 +59864,11 @@ var ClockPointer = React.createClass({
       mark: {
         background: this.getTheme().selectTextColor,
         border: '4px solid ' + this.getTheme().accentColor,
-        width: '7px',
-        height: '7px',
+        width: 7,
+        height: 7,
         position: 'absolute',
-        top: '-5px',
-        left: '-6px',
+        top: -5,
+        left: -6,
         borderRadius: '100%'
       }
     };
@@ -57304,12 +59891,11 @@ var ClockPointer = React.createClass({
 
 module.exports = ClockPointer;
 
-},{"../mixins/style-propable":448,"react":401}],498:[function(require,module,exports){
+},{"../mixins/style-propable":440,"react":388}],518:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-
 var TimeDisplay = require('./time-display');
 var ClockButton = require('./clock-button');
 var ClockHours = require('./clock-hours');
@@ -57327,12 +59913,6 @@ var Clock = React.createClass({
     isActive: React.PropTypes.bool
   },
 
-  init: function init() {
-    this.setState({
-      mode: 'hour'
-    });
-  },
-
   getDefaultProps: function getDefaultProps() {
     return {
       initialTime: new Date()
@@ -57340,14 +59920,12 @@ var Clock = React.createClass({
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-
     this.setState({
       selectedTime: nextProps.initialTime
     });
   },
 
   getInitialState: function getInitialState() {
-
     return {
       selectedTime: this.props.initialTime,
       mode: 'hour'
@@ -57355,20 +59933,21 @@ var Clock = React.createClass({
   },
 
   _setMode: function _setMode(mode) {
-    setTimeout((function () {
-      this.setState({
+    var _this = this;
+
+    setTimeout(function () {
+      _this.setState({
         mode: mode
       });
-    }).bind(this), 100);
+    }, 100);
   },
 
   _setAffix: function _setAffix(affix) {
-
-    if (affix == this._getAffix()) return;
+    if (affix === this._getAffix()) return;
 
     var hours = this.state.selectedTime.getHours();
 
-    if (affix == 'am') {
+    if (affix === 'am') {
       this.handleChangeHours(hours - 12);
       return;
     }
@@ -57377,8 +59956,7 @@ var Clock = React.createClass({
   },
 
   _getAffix: function _getAffix() {
-
-    if (this.props.format != 'ampm') return '';
+    if (this.props.format !== 'ampm') return '';
 
     var hours = this.state.selectedTime.getHours();
     if (hours < 12) {
@@ -57392,7 +59970,7 @@ var Clock = React.createClass({
     var buttons = [];
     var isAM = this._getIsAM();
 
-    if (this.props.format == 'ampm') {
+    if (this.props.format === 'ampm') {
       buttons = [React.createElement(
         ClockButton,
         { position: 'left', onTouchTap: this._setAffix.bind(this, 'am'), selected: isAM },
@@ -57407,12 +59985,10 @@ var Clock = React.createClass({
   },
 
   _getIsAM: function _getIsAM() {
-
-    return this._getAffix() == 'am';
+    return this._getAffix() === 'am';
   },
 
   render: function render() {
-
     var clock = null;
     var buttons = this._getButtons();
 
@@ -57420,12 +59996,12 @@ var Clock = React.createClass({
       root: {},
 
       container: {
-        height: '280px',
-        padding: '10px'
+        height: 280,
+        padding: 10
       }
     };
 
-    if (this.state.mode == 'hour') {
+    if (this.state.mode === 'hour') {
       clock = React.createElement(ClockHours, { key: 'hours',
         format: this.props.format,
         onChange: this.handleChangeHours,
@@ -57445,33 +60021,34 @@ var Clock = React.createClass({
         format: this.props.format,
         affix: this._getAffix(),
         onSelectHour: this._setMode.bind(this, 'hour'),
-        onSelectMin: this._setMode.bind(this, 'minute')
-      }),
+        onSelectMin: this._setMode.bind(this, 'minute') }),
       React.createElement(
         'div',
-        {
-          style: styles.container },
+        { style: styles.container },
         clock
       ),
       buttons
     );
   },
-  handleChangeHours: function handleChangeHours(hours, finished) {
-    var time = new Date(this.state.selectedTime);
 
+  handleChangeHours: function handleChangeHours(hours, finished) {
+    var _this2 = this;
+
+    var time = new Date(this.state.selectedTime);
     time.setHours(hours);
     this.setState({
       selectedTime: time
     });
 
     if (finished) {
-      setTimeout((function () {
-        this.setState({
+      setTimeout(function () {
+        _this2.setState({
           mode: 'minute'
         });
-      }).bind(this), 100);
+      }, 100);
     }
   },
+
   handleChangeMinutes: function handleChangeMinutes(minutes) {
     var time = new Date(this.state.selectedTime);
     time.setMinutes(minutes);
@@ -57479,6 +60056,7 @@ var Clock = React.createClass({
       selectedTime: time
     });
   },
+
   getSelectedTime: function getSelectedTime() {
     return this.state.selectedTime;
   }
@@ -57486,17 +60064,17 @@ var Clock = React.createClass({
 
 module.exports = Clock;
 
-},{"../mixins/style-propable":448,"./clock-button":493,"./clock-hours":494,"./clock-minutes":495,"./time-display":500,"react":401}],499:[function(require,module,exports){
+},{"../mixins/style-propable":440,"./clock-button":513,"./clock-hours":514,"./clock-minutes":515,"./time-display":520,"react":388}],519:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./time-picker');
 
-},{"./time-picker":502}],500:[function(require,module,exports){
+},{"./time-picker":522}],520:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function _slicedToArray(arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
@@ -57524,28 +60102,31 @@ var TimeDisplay = React.createClass({
       transitionDirection: 'up'
     };
   },
+
   getDefaultProps: function getDefaultProps() {
     return {
       mode: 'hour',
       affix: ''
     };
   },
+
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    var direction;
+    var direction = undefined;
 
     if (nextProps.selectedTime !== this.props.selectedTime) {
       direction = nextProps.selectedTime > this.props.selectedTime ? 'up' : 'down';
+
       this.setState({
         transitionDirection: direction
       });
     }
   },
+
   sanitizeTime: function sanitizeTime() {
     var hour = this.props.selectedTime.getHours();
     var min = this.props.selectedTime.getMinutes().toString();
 
-    if (this.props.format == 'ampm') {
-
+    if (this.props.format === 'ampm') {
       hour %= 12;
       hour = hour || 12;
     }
@@ -57556,9 +60137,11 @@ var TimeDisplay = React.createClass({
 
     return [hour, min];
   },
+
   getTheme: function getTheme() {
     return this.context.muiTheme.component.timePicker;
   },
+
   render: function render() {
     var _props = this.props;
     var selectedTime = _props.selectedTime;
@@ -57570,14 +60153,14 @@ var TimeDisplay = React.createClass({
       root: {
         textAlign: 'center',
         position: 'relative',
-        width: '280px',
+        width: 280,
         height: '100%'
       },
 
       time: {
         margin: '6px 0',
         lineHeight: '58px',
-        height: '58px',
+        height: 58,
         fontSize: '58px'
       },
 
@@ -57639,7 +60222,7 @@ var TimeDisplay = React.createClass({
 
 module.exports = TimeDisplay;
 
-},{"../mixins/style-propable":448,"react":401}],501:[function(require,module,exports){
+},{"../mixins/style-propable":440,"react":388}],521:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -57651,7 +60234,7 @@ var StylePropable = require('../mixins/style-propable');
 var WindowListenable = require('../mixins/window-listenable');
 var KeyCode = require('../utils/key-code');
 var Clock = require('./clock');
-var DialogWindow = require('../dialog-window');
+var Dialog = require('../dialog');
 var FlatButton = require('../flat-button');
 
 var TimePickerDialog = React.createClass({
@@ -57671,12 +60254,13 @@ var TimePickerDialog = React.createClass({
   },
 
   windowListeners: {
-    'keyup': '_handleWindowKeyUp'
+    keyup: '_handleWindowKeyUp'
   },
 
   getTheme: function getTheme() {
     return this.context.muiTheme.component.timePicker;
   },
+
   render: function render() {
     var _props = this.props;
     var initialTime = _props.initialTime;
@@ -57687,11 +60271,14 @@ var TimePickerDialog = React.createClass({
 
     var styles = {
       root: {
-        fontSize: '14px',
+        fontSize: 14,
         color: this.getTheme().clockColor
       },
       dialogContent: {
-        width: '280px'
+        width: 280
+      },
+      body: {
+        padding: 0
       }
     };
 
@@ -57706,10 +60293,11 @@ var TimePickerDialog = React.createClass({
       onTouchTap: this._handleOKTouchTap })];
 
     return React.createElement(
-      DialogWindow,
+      Dialog,
       _extends({}, other, {
         ref: 'dialogWindow',
         style: this.mergeAndPrefix(styles.root),
+        bodyStyle: this.mergeAndPrefix(styles.body),
         actions: actions,
         contentStyle: styles.dialogContent,
         onDismiss: this._handleDialogDismiss,
@@ -57724,7 +60312,6 @@ var TimePickerDialog = React.createClass({
 
   show: function show() {
     this.refs.dialogWindow.show();
-    this.refs.clock.init();
   },
 
   dismiss: function dismiss() {
@@ -57743,14 +60330,12 @@ var TimePickerDialog = React.createClass({
   },
 
   _handleDialogShow: function _handleDialogShow() {
-
     if (this.props.onShow) {
       this.props.onShow();
     }
   },
 
   _handleDialogDismiss: function _handleDialogDismiss() {
-
     if (this.props.onDismiss) {
       this.props.onDismiss();
     }
@@ -57770,7 +60355,7 @@ var TimePickerDialog = React.createClass({
 
 module.exports = TimePickerDialog;
 
-},{"../dialog-window":424,"../flat-button":431,"../mixins/style-propable":448,"../mixins/window-listenable":450,"../utils/key-code":517,"./clock":498,"react":401}],502:[function(require,module,exports){
+},{"../dialog":411,"../flat-button":417,"../mixins/style-propable":440,"../mixins/window-listenable":442,"../utils/key-code":539,"./clock":518,"react":388}],522:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -57779,7 +60364,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
-
 var WindowListenable = require('../mixins/window-listenable');
 var TimePickerDialog = require('./time-picker-dialog');
 var TextField = require('../text-field');
@@ -57820,13 +60404,13 @@ var TimePicker = React.createClass({
       dialogTime: new Date()
     };
   },
-  formatTime: function formatTime(date) {
 
+  formatTime: function formatTime(date) {
     var hours = date.getHours();
     var mins = date.getMinutes();
     var aditional = '';
 
-    if (this.props.format == 'ampm') {
+    if (this.props.format === 'ampm') {
       var isAM = hours < 12;
       hours = hours % 12;
       aditional += isAM ? ' am' : ' pm';
@@ -57841,6 +60425,7 @@ var TimePicker = React.createClass({
 
     return hours + ':' + mins + aditional;
   },
+
   render: function render() {
     var _props = this.props;
     var format = _props.format;
@@ -57851,7 +60436,7 @@ var TimePicker = React.createClass({
 
     var other = _objectWithoutProperties(_props, ['format', 'onFocus', 'onTouchTap', 'onShow', 'onDismiss']);
 
-    var defaultInputValue;
+    var defaultInputValue = undefined;
 
     if (this.props.defaultTime) {
       defaultInputValue = this.formatTime(this.props.defaultTime);
@@ -57887,7 +60472,6 @@ var TimePicker = React.createClass({
   },
 
   _handleDialogAccept: function _handleDialogAccept(t) {
-
     this.setTime(t);
     if (this.props.onChange) this.props.onChange(null, t);
   },
@@ -57907,12 +60491,11 @@ var TimePicker = React.createClass({
     this.refs.dialogWindow.show();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   }
-
 });
 
 module.exports = TimePicker;
 
-},{"../mixins/style-propable":448,"../mixins/window-listenable":450,"../text-field":491,"./time-picker-dialog":501,"react":401}],503:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../mixins/window-listenable":442,"../text-field":511,"./time-picker-dialog":521,"react":388}],523:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -57960,7 +60543,7 @@ var Toggle = React.createClass({
         width: 36,
         padding: '4px 0px 6px 2px'
       },
-      toggleElemet: {
+      toggleElement: {
         width: toggleTrackWidth
       },
       track: {
@@ -57998,6 +60581,7 @@ var Toggle = React.createClass({
         color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor
       }
     };
+
     return styles;
   },
 
@@ -58017,18 +60601,18 @@ var Toggle = React.createClass({
       thumbStyles.marginLeft = '-' + thumbStyles.width;
     }
 
-    var toggleElemetStyles = this.mergeAndPrefix(styles.toggleElemet, this.props.elementStyle);
+    var toggleElementStyles = this.mergeAndPrefix(styles.toggleElement, this.props.elementStyle);
 
     var toggleElement = React.createElement(
       'div',
-      { style: toggleElemetStyles },
+      { style: toggleElementStyles },
       React.createElement('div', { style: trackStyles }),
       React.createElement(Paper, { style: thumbStyles, circle: true, zDepth: 1 })
     );
 
     var customRippleStyle = this.mergeAndPrefix({
-      top: '-10',
-      left: '-10'
+      top: -10,
+      left: -10
     }, this.props.rippleStyle);
 
     var rippleColor = this.state.switched ? this.getTheme().thumbOnColor : this.context.muiTheme.component.textColor;
@@ -58079,7 +60663,7 @@ var Toggle = React.createClass({
 
 module.exports = Toggle;
 
-},{"./enhanced-switch":429,"./mixins/style-propable":448,"./paper":452,"./styles/transitions":469,"react":401}],504:[function(require,module,exports){
+},{"./enhanced-switch":415,"./mixins/style-propable":440,"./paper":444,"./styles/transitions":462,"react":388}],524:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -58151,7 +60735,6 @@ var ToolbarGroup = React.createClass({
           paddingLeft: this.getSpacing()
         },
         hover: {
-          zIndex: 1,
           color: Colors.darkBlack
         }
       },
@@ -58161,10 +60744,13 @@ var ToolbarGroup = React.createClass({
         lineHeight: this.getTheme().height + 'px'
       }
     };
+
     return styles;
   },
 
   render: function render() {
+    var _this = this;
+
     var styles = this.getStyles();
 
     if (this.props.firstChild) styles.marginLeft = -24;
@@ -58177,30 +60763,30 @@ var ToolbarGroup = React.createClass({
       switch (currentChild.type.displayName) {
         case 'DropDownMenu':
           return React.cloneElement(currentChild, {
-            style: styles.dropDownMenu.root,
+            style: _this.mergeStyles(styles.dropDownMenu.root, currentChild.props.style),
             styleControlBg: styles.dropDownMenu.controlBg,
             styleUnderline: styles.dropDownMenu.underline
           });
         case 'DropDownIcon':
           return React.cloneElement(currentChild, {
-            style: { float: 'left' },
+            style: _this.mergeStyles({ float: 'left' }, currentChild.props.style),
             iconStyle: styles.icon.root,
-            onMouseOver: this._handleMouseOverDropDownMenu,
-            onMouseOut: this._handleMouseOutDropDownMenu
+            onMouseOver: _this._handleMouseOverDropDownMenu,
+            onMouseOut: _this._handleMouseOutDropDownMenu
           });
         case 'RaisedButton':case 'FlatButton':
           return React.cloneElement(currentChild, {
-            style: styles.button
+            style: _this.mergeStyles(styles.button, currentChild.props.style)
           });
         case 'FontIcon':
           return React.cloneElement(currentChild, {
-            style: styles.icon.root,
-            onMouseOver: this._handleMouseOverFontIcon,
-            onMouseOut: this._handleMouseOutFontIcon
+            style: _this.mergeStyles(styles.icon.root, currentChild.props.style),
+            onMouseOver: _this._handleMouseOverFontIcon,
+            onMouseOut: _this._handleMouseOutFontIcon
           });
         case 'ToolbarSeparator':case 'ToolbarTitle':
           return React.cloneElement(currentChild, {
-            style: this.mergeStyles(styles.span, currentChild.props.style)
+            style: _this.mergeStyles(styles.span, currentChild.props.style)
           });
         default:
           return currentChild;
@@ -58237,7 +60823,7 @@ var ToolbarGroup = React.createClass({
 
 module.exports = ToolbarGroup;
 
-},{"../mixins/style-propable":448,"../styles/colors":463,"react":401}],505:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles/colors":456,"react":388}],525:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -58261,7 +60847,6 @@ var ToolbarSeparator = React.createClass({
   },
 
   render: function render() {
-
     var styles = this.mergeAndPrefix({
       backgroundColor: this.getTheme().separatorColor,
       display: 'inline-block',
@@ -58279,7 +60864,7 @@ var ToolbarSeparator = React.createClass({
 
 module.exports = ToolbarSeparator;
 
-},{"../mixins/style-propable":448,"react":401}],506:[function(require,module,exports){
+},{"../mixins/style-propable":440,"react":388}],526:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -58332,7 +60917,7 @@ var ToolbarTitle = React.createClass({
 
 module.exports = ToolbarTitle;
 
-},{"../mixins/style-propable":448,"react":401}],507:[function(require,module,exports){
+},{"../mixins/style-propable":440,"react":388}],527:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -58379,7 +60964,7 @@ var Toolbar = React.createClass({
 
 module.exports = Toolbar;
 
-},{"../mixins/style-propable":448,"react":401}],508:[function(require,module,exports){
+},{"../mixins/style-propable":440,"react":388}],528:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -58404,18 +60989,33 @@ var Tooltip = React.createClass({
     className: React.PropTypes.string,
     label: React.PropTypes.string.isRequired,
     show: React.PropTypes.bool,
-    touch: React.PropTypes.bool
+    touch: React.PropTypes.bool,
+    verticalPosition: React.PropTypes.oneOf(['top', 'bottom']),
+    horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center'])
   },
 
   componentDidMount: function componentDidMount() {
     this._setRippleSize();
+    this._setTooltipPosition();
   },
 
   componentDidUpdate: function componentDidUpdate() {
     this._setRippleSize();
   },
 
+  getInitialState: function getInitialState() {
+    return {
+      offsetWidth: null
+    };
+  },
+
   getStyles: function getStyles() {
+    var verticalPosition = this.props.verticalPosition;
+    var horizontalPosition = this.props.horizontalPosition;
+    var touchMarginOffset = this.props.touch ? 10 : 0;
+    var touchOffsetTop = this.props.touch ? -20 : -10;
+    var offset = verticalPosition === 'bottom' ? 14 + touchMarginOffset : -14 - touchMarginOffset;
+
     var styles = {
       root: {
         position: 'absolute',
@@ -58429,6 +61029,8 @@ var Tooltip = React.createClass({
         borderRadius: 2,
         userSelect: 'none',
         opacity: 0,
+        right: horizontalPosition === 'left' ? 12 : null,
+        left: horizontalPosition === 'center' ? (this.state.offsetWidth - 48) / 2 * -1 : null,
         transition: Transitions.easeOut('0ms', 'top', '450ms') + ',' + Transitions.easeOut('450ms', 'transform', '0ms') + ',' + Transitions.easeOut('450ms', 'opacity', '0ms')
       },
       label: {
@@ -58437,29 +61039,30 @@ var Tooltip = React.createClass({
       },
       ripple: {
         position: 'absolute',
-        left: '50%',
-        top: 0,
+        left: horizontalPosition === 'center' ? '50%' : horizontalPosition === 'left' ? '100%' : '0%',
+        top: verticalPosition === 'bottom' ? 0 : '100%',
         transform: 'translate(-50%, -50%)',
         borderRadius: '50%',
         backgroundColor: 'transparent',
         transition: Transitions.easeOut('0ms', 'width', '450ms') + ',' + Transitions.easeOut('0ms', 'height', '450ms') + ',' + Transitions.easeOut('450ms', 'backgroundColor', '0ms')
       },
       rootWhenShown: {
-        top: -16,
-        opacity: 1,
-        transform: 'translate3d(0px, 16px, 0px)',
+        top: verticalPosition === 'top' ? touchOffsetTop : 36,
+        opacity: 0.9,
+        transform: 'translate3d(0px, ' + offset + 'px, 0px)',
         transition: Transitions.easeOut('0ms', 'top', '0ms') + ',' + Transitions.easeOut('450ms', 'transform', '0ms') + ',' + Transitions.easeOut('450ms', 'opacity', '0ms')
       },
       rootWhenTouched: {
         fontSize: '14px',
-        lineHeight: '44px',
+        lineHeight: '32px',
         padding: '0 16px'
       },
       rippleWhenShown: {
-        backgroundColor: Colors.grey600,
+        backgroundColor: Colors.grey700,
         transition: Transitions.easeOut('450ms', 'width', '0ms') + ',' + Transitions.easeOut('450ms', 'height', '0ms') + ',' + Transitions.easeOut('450ms', 'backgroundColor', '0ms')
       }
     };
+
     return styles;
   },
 
@@ -58488,11 +61091,10 @@ var Tooltip = React.createClass({
   _setRippleSize: function _setRippleSize() {
     var ripple = React.findDOMNode(this.refs.ripple);
     var tooltip = window.getComputedStyle(React.findDOMNode(this));
-    var tooltipWidth = parseInt(tooltip.getPropertyValue('width'), 10);
+    var tooltipWidth = parseInt(tooltip.getPropertyValue('width'), 10) / (this.props.horizontalPosition === 'center' ? 2 : 1);
     var tooltipHeight = parseInt(tooltip.getPropertyValue('height'), 10);
 
-    var rippleDiameter = Math.sqrt(Math.pow(tooltipHeight, 2) + Math.pow(tooltipWidth / 2, 2)) * 2;
-
+    var rippleDiameter = Math.ceil(Math.sqrt(Math.pow(tooltipHeight, 2) + Math.pow(tooltipWidth, 2)) * 2);
     if (this.props.show) {
       ripple.style.height = rippleDiameter + 'px';
       ripple.style.width = rippleDiameter + 'px';
@@ -58500,13 +61102,18 @@ var Tooltip = React.createClass({
       ripple.style.width = '0px';
       ripple.style.height = '0px';
     }
+  },
+
+  _setTooltipPosition: function _setTooltipPosition() {
+    var tooltip = React.findDOMNode(this);
+    this.setState({ offsetWidth: tooltip.offsetWidth });
   }
 
 });
 
 module.exports = Tooltip;
 
-},{"./mixins/style-propable":448,"./styles/colors":463,"./styles/transitions":469,"react":401}],509:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/colors":456,"./styles/transitions":462,"react":388}],529:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -58585,7 +61192,7 @@ var SlideInChild = React.createClass({
 
 module.exports = SlideInChild;
 
-},{"../mixins/style-propable":448,"../styles/auto-prefix":462,"../styles/transitions":469,"react/addons":229}],510:[function(require,module,exports){
+},{"../mixins/style-propable":440,"../styles/auto-prefix":455,"../styles/transitions":462,"react/addons":216}],530:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -58634,13 +61241,15 @@ var SlideIn = React.createClass({
   },
 
   _getSlideInChildren: function _getSlideInChildren() {
+    var _this = this;
+
     return React.Children.map(this.props.children, function (child) {
       return React.createElement(
         SlideInChild,
         {
           key: child.key,
-          direction: this.props.direction,
-          getLeaveDirection: this._getLeaveDirection },
+          direction: _this.props.direction,
+          getLeaveDirection: _this._getLeaveDirection },
         child
       );
     }, this);
@@ -58654,19 +61263,40 @@ var SlideIn = React.createClass({
 
 module.exports = SlideIn;
 
-},{"../mixins/style-propable":448,"./slide-in-child":509,"react/addons":229}],511:[function(require,module,exports){
+},{"../mixins/style-propable":440,"./slide-in-child":529,"react/addons":216}],531:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = {
+
+  extend: function extend(children, extendedProps, extendedChildren) {
+
+    return React.isValidElement(children) ? React.Children.map(children, function (child) {
+
+      var newProps = typeof extendedProps === 'function' ? extendedProps(child) : extendedProps;
+
+      var newChildren = typeof extendedChildren === 'function' ? extendedChildren(child) : extendedChildren ? extendedChildren : child.props.children;
+
+      return React.cloneElement(child, newProps, newChildren);
+    }) : children;
+  }
+
+};
+
+},{"react":388}],532:[function(require,module,exports){
 'use strict';
 
 module.exports = {
 
   /**
-   * The relative brightness of any point in a colorspace, normalized to 0 for 
-   * darkest black and 1 for lightest white. RGB colors only. Does not take 
-   * into account alpha values. 
+   * The relative brightness of any point in a colorspace, normalized to 0 for
+   * darkest black and 1 for lightest white. RGB colors only. Does not take
+   * into account alpha values.
    *
-   * TODO: 
+   * TODO:
    * - Take into account alpha values.
-   * - Identify why there are minor discrepancies for some use cases 
+   * - Identify why there are minor discrepancies for some use cases
    *   (i.e. #F0F & #FFF). Note that these cases rarely occur.
    *
    * Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
@@ -58690,7 +61320,7 @@ module.exports = {
 
   /**
    * @params:
-   * additionalValue = An extra value that has been calculated but not included 
+   * additionalValue = An extra value that has been calculated but not included
    *                   with the original color object, such as an alpha value.
    */
   _convertColorToString: function _convertColorToString(color, additonalValue) {
@@ -58698,7 +61328,7 @@ module.exports = {
 
     if (additonalValue !== undefined) {
       str += ',' + additonalValue + ')';
-    } else if (color.values.length == 4) {
+    } else if (color.values.length === 4) {
       str += ',' + color.values[3] + ')';
     } else {
       str += ')';
@@ -58743,7 +61373,7 @@ module.exports = {
   // Any existing alpha values are overwritten.
   fade: function fade(color, amount) {
     color = this._decomposeColor(color);
-    if (color.type == 'rgb' || color.type == 'hsl') color.type += 'a';
+    if (color.type === 'rgb' || color.type === 'hsl') color.type += 'a';
     return this._convertColorToString(color, amount);
   },
 
@@ -58796,7 +61426,7 @@ module.exports = {
     }
   },
 
-  /** 
+  /**
    * Determines how readable a color combination is based on its level.
    * Levels are defined from @LeaVerou:
    * https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/contrast-ratio.js
@@ -58828,10 +61458,9 @@ module.exports = {
       if (ratio >= range[0] && ratio <= range[1]) return level;
     }
   }
-
 };
 
-},{}],512:[function(require,module,exports){
+},{}],533:[function(require,module,exports){
 'use strict';
 
 var Events = require('./events');
@@ -58839,7 +61468,7 @@ var Events = require('./events');
 module.exports = {
 
   _testSupportedProps: function _testSupportedProps(props) {
-    var i,
+    var i = undefined,
         el = document.createElement('div');
 
     for (i in props) {
@@ -58883,10 +61512,9 @@ module.exports = {
       return callback();
     });
   }
-
 };
 
-},{"./events":515}],513:[function(require,module,exports){
+},{"./events":536}],534:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -59015,10 +61643,10 @@ module.exports = {
   getWeekArray: function getWeekArray(d) {
     var dayArray = [];
     var daysInMonth = this.getDaysInMonth(d);
-    var daysInWeek;
-    var emptyDays;
-    var firstDayOfWeek;
-    var week;
+    var daysInWeek = undefined;
+    var emptyDays = undefined;
+    var firstDayOfWeek = undefined;
+    var week = undefined;
     var weekArray = [];
 
     for (var i = 1; i <= daysInMonth; i++) {
@@ -59071,7 +61699,7 @@ module.exports = {
   },
 
   monthDiff: function monthDiff(d1, d2) {
-    var m;
+    var m = undefined;
     m = (d1.getFullYear() - d2.getFullYear()) * 12;
     m += d1.getMonth();
     m -= d2.getMonth();
@@ -59084,7 +61712,7 @@ module.exports = {
 
 };
 
-},{}],514:[function(require,module,exports){
+},{}],535:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -59092,8 +61720,8 @@ module.exports = {
   isDescendant: function isDescendant(parent, child) {
     var node = child.parentNode;
 
-    while (node != null) {
-      if (node == parent) return true;
+    while (node !== null) {
+      if (node === parent) return true;
       node = node.parentNode;
     }
 
@@ -59106,6 +61734,16 @@ module.exports = {
       top: rect.top + document.body.scrollTop,
       left: rect.left + document.body.scrollLeft
     };
+  },
+
+  getStyleAttributeAsNumber: function getStyleAttributeAsNumber(el, attr) {
+    var attrStyle = el.style[attr];
+    var attrNum = 0;
+    if (attrStyle && attrStyle.length) {
+      attrNum = parseInt(attrStyle);
+    }
+
+    return attrNum;
   },
 
   addClass: function addClass(el, className) {
@@ -59133,8 +61771,10 @@ module.exports = {
   },
 
   withoutTransition: function withoutTransition(el, callback) {
+    var originalTransition = el.style.transition;
+
     //turn off transition
-    el.style.transition = 'none';
+    el.style.transition = null;
 
     callback();
 
@@ -59142,12 +61782,12 @@ module.exports = {
     this.forceRedraw(el);
 
     //put the transition back
-    el.style.transition = '';
+    el.style.transition = originalTransition;
   }
 
 };
 
-},{}],515:[function(require,module,exports){
+},{}],536:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -59182,22 +61822,26 @@ module.exports = {
     } else {
       el.detachEvent('on' + type, callback);
     }
+  },
+
+  isKeyboard: function isKeyboard(e) {
+    return ['keydown', 'keypress', 'keyup'].indexOf(e.type) !== -1;
   }
 };
 
-},{}],516:[function(require,module,exports){
+},{}],537:[function(require,module,exports){
 'use strict';
 
 function isObject(obj) {
   return typeof obj === 'object' && obj !== null;
 }
 
-/** 
-*  A recursive merge between two objects. 
-* 
+/**
+*  A recursive merge between two objects.
+*
 *  @param base     - the object whose properties are to be overwritten. It
 *                    should be either the root level or some nested level.
-*  @param override - an object containing properties to be overwritten. It 
+*  @param override - an object containing properties to be overwritten. It
 *                    should have the same structure as the object object.
 */
 var extend = function extend(base, override) {
@@ -59208,7 +61852,7 @@ var extend = function extend(base, override) {
   Object.keys(base).forEach(function (key) {
 
     var baseProp = base[key];
-    var overrideProp;
+    var overrideProp = undefined;
 
     if (isObject(override)) overrideProp = override[key];
 
@@ -59236,7 +61880,21 @@ var extend = function extend(base, override) {
 
 module.exports = extend;
 
-},{}],517:[function(require,module,exports){
+},{}],538:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+  CssEvent: require('./css-event'),
+  Dom: require('./dom'),
+  Events: require('./events'),
+  KeyCode: require('./key-code'),
+  KeyLine: require('./key-line'),
+  ColorManipulator: require('./color-manipulator'),
+  Extend: require('./extend'),
+  UniqueId: require('./unique-id')
+};
+
+},{"./color-manipulator":532,"./css-event":533,"./dom":535,"./events":536,"./extend":537,"./key-code":539,"./key-line":540,"./unique-id":542}],539:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -59250,7 +61908,7 @@ module.exports = {
   UP: 38
 };
 
-},{}],518:[function(require,module,exports){
+},{}],540:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -59267,13 +61925,12 @@ module.exports = {
   }
 };
 
-},{}],519:[function(require,module,exports){
+},{}],541:[function(require,module,exports){
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-borderradius-boxshadow-opacity-csstransforms-csstransforms3d-csstransitions-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes
  */
-'use strict';
 
-;
+'use strict';
 
 module.exports = (function (window, document, undefined) {
 
@@ -59283,24 +61940,20 @@ module.exports = (function (window, document, undefined) {
         mod = 'modernizr',
         modElem = document.createElement(mod),
         mStyle = modElem.style,
-        inputElem,
-        toString = ({}).toString,
         prefixes = ' -webkit- -moz- -o- -ms- '.split(' '),
         omPrefixes = 'Webkit Moz O ms',
         cssomPrefixes = omPrefixes.split(' '),
         domPrefixes = omPrefixes.toLowerCase().split(' '),
         tests = {},
-        inputs = {},
-        attrs = {},
         classes = [],
         slice = classes.slice,
-        featureName,
+        featureName = undefined,
         injectElementWithStyles = function injectElementWithStyles(rule, callback, nodes, testnames) {
 
-        var style,
-            ret,
-            node,
-            docOverflow,
+        var style = undefined,
+            ret = undefined,
+            node = undefined,
+            docOverflow = undefined,
             div = document.createElement('div'),
             body = document.body,
             fakeBody = body || document.createElement('body');
@@ -59336,7 +61989,11 @@ module.exports = (function (window, document, undefined) {
         return !!ret;
     },
         _hasOwnProperty = ({}).hasOwnProperty,
-        hasOwnProp;
+        hasOwnProp = undefined;
+
+    function is(obj, type) {
+        return typeof obj === type;
+    }
 
     if (!is(_hasOwnProperty, 'undefined') && !is(_hasOwnProperty.call, 'undefined')) {
         hasOwnProp = function (object, property) {
@@ -59364,13 +62021,13 @@ module.exports = (function (window, document, undefined) {
 
                     var F = function F() {};
                     F.prototype = target.prototype;
-                    var self = new F();
+                    var _self = new F();
 
-                    var result = target.apply(self, args.concat(slice.call(arguments)));
+                    var result = target.apply(_self, args.concat(slice.call(arguments)));
                     if (Object(result) === result) {
                         return result;
                     }
-                    return self;
+                    return _self;
                 } else {
 
                     return target.apply(that, args.concat(slice.call(arguments)));
@@ -59387,10 +62044,6 @@ module.exports = (function (window, document, undefined) {
 
     function setCssAll(str1, str2) {
         return setCss(prefixes.join(str1 + ';') + (str2 || ''));
-    }
-
-    function is(obj, type) {
-        return typeof obj === type;
     }
 
     function contains(str, substr) {
@@ -59437,37 +62090,37 @@ module.exports = (function (window, document, undefined) {
         }
     }
 
-    tests['borderradius'] = function () {
+    tests.borderradius = function () {
         return testPropsAll('borderRadius');
     };
 
-    tests['boxshadow'] = function () {
+    tests.boxshadow = function () {
         return testPropsAll('boxShadow');
     };
 
-    tests['opacity'] = function () {
+    tests.opacity = function () {
         setCssAll('opacity:.55');
 
         return /^0.55$/.test(mStyle.opacity);
     };
-    tests['csstransforms'] = function () {
+    tests.csstransforms = function () {
         return !!testPropsAll('transform');
     };
 
-    tests['csstransforms3d'] = function () {
+    tests.csstransforms3d = function () {
 
         var ret = !!testPropsAll('perspective');
 
         if (ret && 'webkitPerspective' in docElement.style) {
 
-            injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function (node, rule) {
+            injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function (node) {
                 ret = node.offsetLeft === 9 && node.offsetHeight === 3;
             });
         }
         return ret;
     };
 
-    tests['csstransitions'] = function () {
+    tests.csstransitions = function () {
         return testPropsAll('transition');
     };
 
@@ -59507,7 +62160,6 @@ module.exports = (function (window, document, undefined) {
     };
 
     setCss('');
-    modElem = inputElem = null;
 
     Modernizr._version = version;
 
@@ -59532,9 +62184,8 @@ module.exports = (function (window, document, undefined) {
 
     return Modernizr;
 })(window, window.document);
-;
 
-},{}],520:[function(require,module,exports){
+},{}],542:[function(require,module,exports){
 "use strict";
 
 var index = 0;
@@ -59545,7 +62196,76 @@ module.exports = {
   }
 };
 
-},{}]},{},[130])
+},{}],"material-ui":[function(require,module,exports){
+'use strict';
+
+module.exports = {
+  AppBar: require('./app-bar'),
+  AppCanvas: require('./app-canvas'),
+  Avatar: require('./avatar'),
+  BeforeAfterWrapper: require('./before-after-wrapper'),
+  Card: require('./card/card'),
+  CardActions: require('./card/card-actions'),
+  CardHeader: require('./card/card-header'),
+  CardMedia: require('./card/card-media'),
+  CardText: require('./card/card-text'),
+  CardTitle: require('./card/card-title'),
+  Checkbox: require('./checkbox'),
+  CircularProgress: require('./circular-progress'),
+  ClearFix: require('./clearfix'),
+  DatePicker: require('./date-picker/date-picker'),
+  Dialog: require('./dialog'),
+  DropDownIcon: require('./drop-down-icon'),
+  DropDownMenu: require('./drop-down-menu'),
+  EnhancedButton: require('./enhanced-button'),
+  FlatButton: require('./flat-button'),
+  FloatingActionButton: require('./floating-action-button'),
+  FontIcon: require('./font-icon'),
+  IconButton: require('./icon-button'),
+  IconMenu: require('./menus/icon-menu'),
+  LeftNav: require('./left-nav'),
+  LinearProgress: require('./linear-progress'),
+  List: require('./lists/list'),
+  ListDivider: require('./lists/list-divider'),
+  ListItem: require('./lists/list-item'),
+  Menu: require('./menu/menu'),
+  MenuItem: require('./menu/menu-item'),
+  Mixins: require('./mixins/'),
+  Overlay: require('./overlay'),
+  Paper: require('./paper'),
+  RadioButton: require('./radio-button'),
+  RadioButtonGroup: require('./radio-button-group'),
+  RaisedButton: require('./raised-button'),
+  Ripples: require('./ripples/'),
+  SelectField: require('./select-field'),
+  Slider: require('./slider'),
+  SvgIcon: require('./svg-icon'),
+  Icons: {
+    NavigationMenu: require('./svg-icons/navigation/menu'),
+    NavigationChevronLeft: require('./svg-icons/navigation/chevron-left'),
+    NavigationChevronRight: require('./svg-icons/navigation/chevron-right')
+  },
+  Styles: require('./styles/'),
+  Snackbar: require('./snackbar'),
+  Tab: require('./tabs/tab'),
+  Tabs: require('./tabs/tabs'),
+  Table: require('./table/table'),
+  TableFooter: require('./table/table-footer'),
+  TableHeader: require('./table/table-header'),
+  TableHeaderColumn: require('./table/table-header-column'),
+  Theme: require('./theme'),
+  Toggle: require('./toggle'),
+  TimePicker: require('./time-picker'),
+  TextField: require('./text-field'),
+  Toolbar: require('./toolbar/toolbar'),
+  ToolbarGroup: require('./toolbar/toolbar-group'),
+  ToolbarSeparator: require('./toolbar/toolbar-separator'),
+  ToolbarTitle: require('./toolbar/toolbar-title'),
+  Tooltip: require('./tooltip'),
+  Utils: require('./utils/')
+};
+
+},{"./app-bar":389,"./app-canvas":390,"./avatar":391,"./before-after-wrapper":392,"./card/card":398,"./card/card-actions":393,"./card/card-header":394,"./card/card-media":395,"./card/card-text":396,"./card/card-title":397,"./checkbox":399,"./circular-progress":400,"./clearfix":401,"./date-picker/date-picker":408,"./dialog":411,"./drop-down-icon":412,"./drop-down-menu":413,"./enhanced-button":414,"./flat-button":417,"./floating-action-button":418,"./font-icon":419,"./icon-button":420,"./left-nav":422,"./linear-progress":423,"./lists/list":427,"./lists/list-divider":424,"./lists/list-item":425,"./menu/menu":430,"./menu/menu-item":429,"./menus/icon-menu":432,"./mixins/":439,"./overlay":443,"./paper":444,"./radio-button":446,"./radio-button-group":445,"./raised-button":447,"./ripples/":450,"./select-field":452,"./slider":453,"./snackbar":454,"./styles/":457,"./svg-icon":464,"./svg-icons/navigation/chevron-left":490,"./svg-icons/navigation/chevron-right":491,"./svg-icons/navigation/menu":493,"./table/table":507,"./table/table-footer":502,"./table/table-header":504,"./table/table-header-column":503,"./tabs/tab":508,"./tabs/tabs":510,"./text-field":511,"./theme":512,"./time-picker":519,"./toggle":523,"./toolbar/toolbar":527,"./toolbar/toolbar-group":524,"./toolbar/toolbar-separator":525,"./toolbar/toolbar-title":526,"./tooltip":528,"./utils/":538}]},{},[130])
 
 
 //# sourceMappingURL=app.js.map
