@@ -1,7 +1,6 @@
 let React = require('react');
 let ComponentDoc = require('../../component-doc');
 let mui = require('material-ui');
-let ToggleStar = require('svg-icons/toggle/star');
 
 let {
   ClearFix,
@@ -135,52 +134,7 @@ class UploadPage extends React.Component {
         float: 'left',
         width: '50%'
       },
-      groupFloatingAction: {
-        float: 'left',
-        width: '33%'
-      },
-      buttonLabel: {
-        padding: '0px 16px 0px 8px'
-      },
-      exampleIconButtonLabel: {
-        padding: '0px 8px'
-      },
-      exampleImageButton: {
-        whiteSpace: 'pre',
-        cursor: 'pointer',
-        position: 'relative',
-        textAlign: 'center',
-        lineHeight: '24px',
-        width: '50%',
-        top: '0px',
-        left: '0px',
-        marginTop: '24px',
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        padding: '0px 8px'
-      },
-      exampleImageInput: {
-        cursor: 'pointer',
-        position: 'absolute',
-        top: '0',
-        bottom: '0',
-        right: '0',
-        left: '0',
-        width: '100%',
-        opacity: '0'
-      },
-      exampleFlatButtonIcon: {
-        height: '100%',
-        display: 'inline-block',
-        verticalAlign: 'middle',
-        float: 'left',
-        paddingLeft: '12px',
-        lineHeight: '36px',
-        color: Colors.cyan500
-      },
-      exampleButtonIcon: {
-        color: Typography.textFullWhite
-      },
+
       headline: {
         //mui-font-style-headline
         fontSize: '24px',
@@ -192,7 +146,6 @@ class UploadPage extends React.Component {
         color: Typography.textDarkBlack
       }
     };
-    styles.exampleButtonIcon = extend(styles.exampleFlatButtonIcon, styles.exampleButtonIcon);
     return styles;
   }
 
