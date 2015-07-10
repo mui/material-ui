@@ -1,7 +1,7 @@
 let React = require('react');
 let Transitions = require('./styles/transitions');
 let StylePropable = require('./mixins/style-propable');
-
+let Colors = require('./styles/colors');
 
 let InkBar = React.createClass({
 
@@ -17,14 +17,12 @@ let InkBar = React.createClass({
   mixins: [StylePropable],
 
   render() {
-    let palette = this.context.muiTheme.palette;
-
     let styles = this.mergeAndPrefix({
       left: this.props.left,
       width: this.props.width,
       bottom: 0,
       display: 'block',
-      backgroundColor: palette.accent1Color,
+      backgroundColor: Colors.yellow200,
       height: 2,
       marginTop: -2,
       position: 'relative',

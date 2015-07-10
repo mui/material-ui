@@ -23,7 +23,7 @@ let PageWithNav = React.createClass({
     let subNavWidth = Spacing.desktopKeylineIncrement * 3 + 'px';
     let styles = {
       root: {
-        paddingTop: Spacing.desktopKeylineIncrement + 'px'
+        //paddingTop: Spacing.desktopKeylineIncrement + 'px'
       },
       rootWhenMedium: {
         position: 'relative'

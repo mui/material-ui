@@ -2,7 +2,9 @@ let React = require('react');
 let Router = require('react-router');
 let AppLeftNav = require('./app-left-nav');
 let FullWidthSection = require('./full-width-section');
-let { AppBar, AppCanvas, IconButton, Menu, Styles } = require('material-ui');
+let {AppBar, AppCanvas, FontIcon, 
+      IconButton, Menu, Mixins, RaisedButton, 
+      Styles, Tab, Tabs} = require('material-ui');
 
 let RouteHandler = Router.RouteHandler;
 let { Colors, Typography } = Styles;
@@ -13,7 +15,6 @@ class Master extends React.Component {
 
   constructor() {
     super();
-    this._onLeftIconButtonTouchTap = this._onLeftIconButtonTouchTap.bind(this);
   }
 
   getChildContext() {
@@ -40,6 +41,11 @@ class Master extends React.Component {
       },
       iconButton: {
         color: darkWhite
+      },
+      github: {
+        position: 'absolute',
+        right: '0px',
+        top: '0px',
       }
     };
   }
@@ -56,20 +62,14 @@ class Master extends React.Component {
         iconStyle={styles.iconButton}
         iconClassName="muidocs-icon-custom-github"
         href="https://github.com/callemall/material-ui"
-        linkButton={true} />
+        linkButton={true}
+        style={styles.github} />
     );
 
     return (
       <AppCanvas>
-
-        <AppBar
-          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
-          title={title}
-          zDepth={0}
-          iconElementRight={githubButton}/>
-
-        <AppLeftNav ref="leftNav" />
-
+        {githubButton}
+        {this._getTabs()}
         <RouteHandler />
 
         <FullWidthSection style={styles.footer}>
@@ -84,10 +84,54 @@ class Master extends React.Component {
     );
   }
 
-  _onLeftIconButtonTouchTap() {
-    this.refs.leftNav.toggle();
+ _getTabs() {
+    let styles = {
+      root: {
+        position: 'absolute',
+        right: '50px',
+        bottom: 0,
+        width: '55%',
+      },
+      tabs: {
+      },
+      tab: {
+
+      }
+
+    };
+
+    return(
+      <div style={{backgroundColor: Colors.cyan500, position: 'relative', height: '50px'}}>
+        <div style={styles.root}>
+          <Tabs onChange={this._onTabChange.bind(this)}
+                style={styles.tabs}> 
+            <Tab label="Home" style={styles.tab} />
+            <Tab label="Getting Started" style={styles.tab} />
+            <Tab label="Customization" style={styles.tab}/>
+            <Tab label="Components" style={styles.tab}/>
+          </Tabs>
+        </div>
+      </div>
+    );
+  }
+
+ _onTabChange (tabIndex, tab){
+      switch(tabIndex){
+        case 0:  
+          this.context.router.transitionTo('home');
+          break;
+        case 1:  
+          this.context.router.transitionTo('get-started');
+          break;
+        case 2:  
+          this.context.router.transitionTo('customization');
+          break;
+        case 3:  
+          this.context.router.transitionTo('components');
+        }
   }
 }
+
 
 Master.contextTypes = {
   router: React.PropTypes.func

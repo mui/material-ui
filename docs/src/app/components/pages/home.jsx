@@ -19,7 +19,7 @@ let HomePage = React.createClass({
 
   render() {
     let style = {
-      paddingTop: Spacing.desktopKeylineIncrement
+      //paddingTop: Spacing.desktopKeylineIncrement
     };
 
     return (
@@ -100,23 +100,16 @@ let HomePage = React.createClass({
           <div style={styles.tagline}>
             <h1 style={styles.h1}>material ui</h1>
             <h2 style={styles.h2}>
-              A Set of React Components <span style={styles.nowrap}>
+              React Components <span style={styles.nowrap}>
               that Implement</span> <span style={styles.nowrap}>
               Google&apos;s Material Design</span>
             </h2>
             <RaisedButton
               className="demo-button"
-              label="Demo"
+              label="Components"
               onTouchTap={this._onDemoClick}
               linkButton={true}
               style={styles.demoStyle}
-              labelStyle={styles.label}/>
-            <RaisedButton
-              className="github-button"
-              label="GitHub"
-              linkButton={true}
-              href="https://github.com/callemall/material-ui"
-              style={styles.githubStyle}
               labelStyle={styles.label}/>
           </div>
       </FullWidthSection>
