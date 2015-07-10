@@ -35,10 +35,28 @@ class UploadPage extends React.Component {
         name: 'Upload Button',
         infoArray: [
           {
+            name: 'backgroundColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the background color. Always takes precedence unless the button is disabled.'
+          },
+          {
+            name: 'disabledBackgroundColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the background color if the button is disabled.'
+          },
+          {
             name: 'disabled',
             type: 'bool',
             header: 'optional',
             desc: 'Disables the button if set to true.'
+          },
+          {
+            name: 'disabledLabelColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the label color if the button is disabled.'
           },
           {
             name: 'fullWidth',
@@ -54,6 +72,12 @@ class UploadPage extends React.Component {
             ' If you are not using valueLink, the label will change to the file name after the input changes.'
           },
           {
+            name: 'labelColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the label color. Always takes precedence unless the button is disabled.'
+          },
+          {
             name: 'labelStyle',
             type: 'object',
             header: 'optional',
@@ -64,12 +88,6 @@ class UploadPage extends React.Component {
             type: 'string',
             header: 'optional',
             desc: 'Set the input name.'
-          },
-          {
-            name: 'ref',
-            type: 'string',
-            header: 'optional',
-            desc: 'Set the input ref.'
           },
           {
             name: 'onChange',
@@ -84,34 +102,16 @@ class UploadPage extends React.Component {
             desc: 'If true, the button will use the primary button colors.'
           },
           {
+            name: 'ref',
+            type: 'string',
+            header: 'optional',
+            desc: 'Set the input ref.'
+          },
+          {
             name: 'secondary',
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the button will use the secondary button colors.'
-          },
-          {
-            name: 'backgroundColor',
-            type: 'string',
-            header: 'optional',
-            desc: 'Override the background color. Always takes precedence unless the button is disabled.'
-          },
-          {
-            name: 'labelColor',
-            type: 'string',
-            header: 'optional',
-            desc: 'Override the label color. Always takes precedence unless the button is disabled.'
-          },
-          {
-            name: 'disabledBackgroundColor',
-            type: 'string',
-            header: 'optional',
-            desc: 'Override the background color if the button is disabled.'
-          },
-          {
-            name: 'disabledLabelColor',
-            type: 'string',
-            header: 'optional',
-            desc: 'Override the label color if the button is disabled.'
           },
           {
             name: 'style',
