@@ -24,11 +24,17 @@ let UploadButton = React.createClass({
   },
 
   propTypes: {
+    backgroundColor: React.PropTypes.string,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
-    label: validateLabel,
-    onChange: React.PropTypes.func,
+    disabledBackgroundColor: React.PropTypes.string,
+    disabledLabelColor: React.PropTypes.string,
+    fullWidth: React.PropTypes.bool,
     inputName: React.PropTypes.string,
+    label: validateLabel,
+    labelStyle: React.PropTypes.object,
+    labelColor: React.PropTypes.string,
+    onChange: React.PropTypes.func,
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
     onMouseOut: React.PropTypes.func,
@@ -36,12 +42,6 @@ let UploadButton = React.createClass({
     onTouchStart: React.PropTypes.func,
     primary: React.PropTypes.bool,
     secondary: React.PropTypes.bool,
-    labelStyle: React.PropTypes.object,
-    backgroundColor: React.PropTypes.string,
-    labelColor: React.PropTypes.string,
-    disabledBackgroundColor: React.PropTypes.string,
-    disabledLabelColor: React.PropTypes.string,
-    fullWidth: React.PropTypes.bool,
   },
 
   getInitialState() {
@@ -95,8 +95,6 @@ let UploadButton = React.createClass({
   getTheme() {
     return this.context.muiTheme.component.raisedButton;
   },
-
-
 
   getStyles() {
     let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
@@ -160,8 +158,6 @@ let UploadButton = React.createClass({
     return styles;
   },
 
-
-
   render() {
     let {
       disabled,
@@ -175,8 +171,15 @@ let UploadButton = React.createClass({
 
     let currentLabel = this.state.fileName;
 
-    let inputProps;
+    let inputProps = {
+      style : styles.inputFile,
+      ref: this._getRef(),
+      name : inputName,
+    };
+
     let labelElement;
+    let inputElement;
+
     if (currentLabel) {
       labelElement = (
         <span style={this.mergeAndPrefix(styles.label, this.props.labelStyle)}>
@@ -185,12 +188,6 @@ let UploadButton = React.createClass({
       );
     }
 
-    let inputElement;
-    inputProps = {
-      style : styles.inputFile,
-      ref: this._getRef(),
-      name : inputName,
-    };
 
     if (this.props.hasOwnProperty('valueLink')) {
       inputProps.valueLink = this.props.valueLink;
@@ -200,9 +197,9 @@ let UploadButton = React.createClass({
       inputProps.onChange = this._getFileName;
     }
 
-      inputElement = (
-        <input type='file' {...inputProps} />
-      );
+    inputElement = (
+      <input type='file' {...inputProps} />
+    );
 
 
     let rippleColor = styles.label.color;
