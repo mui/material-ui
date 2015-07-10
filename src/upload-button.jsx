@@ -242,21 +242,20 @@ let UploadButton = React.createClass({
     );
   },
 
-   _getFileName(e){
+   _getFileName(e) {
      if (e.target.files[0].name) {
        this.setState({
          fileName: '.../' + e.target.files[0].name,
        });
      }
-     console.log(this.props.onChange);
      if (this.props.onChange) this.props.onChange(e);
    },
 
-  _getRef: function() {
+  _getRef() {
     return this.props.ref ? this.props.ref : 'input';
   },
 
-  _getInputNode: function() {
+  _getInputNode() {
     return (this.props.children || this.props.multiLine) ?
       this.refs[this._getRef()].getInputNode() : React.findDOMNode(this.refs[this._getRef()]);
   },
@@ -275,14 +274,17 @@ let UploadButton = React.createClass({
   },
 
   _handleMouseOut(e) {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({ zDepth: this.state.initialZDepth, hovered: false });
+    if (!this.refs.container.isKeyboardFocused()){
+        this.setState({
+          zDepth: this.state.initialZDepth,
+          hovered: false,
+        });
+      }
     if (this.props.onMouseOut) this.props.onMouseOut(e);
   },
 
   _handleMouseOver(e) {
-    if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
-      this.setState({hovered: true});
-    }
+    if (!this.refs.container.isKeyboardFocused() && !this.state.touch) this.setState({hovered: true});
     if (this.props.onMouseOver) this.props.onMouseOver(e);
   },
 
