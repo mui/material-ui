@@ -63,7 +63,7 @@ let BeforeAfterWrapper = React.createClass({
       beforeElementType,
       afterElementType,
       elementType,
-      ...other
+      ...other,
     } = this.props;
 
     let beforeElement, afterElement;
@@ -73,12 +73,16 @@ let BeforeAfterWrapper = React.createClass({
 
     if (this.props.beforeStyle) beforeElement =
       React.createElement(this.props.beforeElementType,
-                            {style: this.mergeAndPrefix(beforeStyle, this.props.beforeStyle),
-                            key: "::before"});
+                            {
+                              style: this.mergeAndPrefix(beforeStyle, this.props.beforeStyle),
+                              key: "::before",
+                            });
     if (this.props.afterStyle) afterElement =
       React.createElement(this.props.afterElementType,
-                            {style: this.mergeAndPrefix(afterStyle, this.props.afterStyle),
-                            key: "::after"});
+                            {
+                              style: this.mergeAndPrefix(afterStyle, this.props.afterStyle),
+                              key: "::after",
+                            });
 
     let children = [beforeElement, this.props.children, afterElement];
 

@@ -81,7 +81,7 @@ let IconMenu = React.createClass({
       onTouchTap,
       menuStyle,
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let open = this.state.open;

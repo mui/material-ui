@@ -62,7 +62,7 @@ let TableFooter = React.createClass({
     for (let index = 0; index < footerData.length; index++) {
       let {
         content,
-        ...props
+        ...props,
       } = footerData[index];
       if (content === undefined) content = footerData[index];
       let key = keyPrefix + index;

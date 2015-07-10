@@ -39,7 +39,7 @@ let YearButton = React.createClass({
       year,
       onTouchTap,
       selected,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = {

@@ -228,7 +228,7 @@ let TextField = React.createClass({
       onFocus,
       type,
       rows,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.getStyles();

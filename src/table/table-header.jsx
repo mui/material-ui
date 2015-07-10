@@ -93,7 +93,7 @@ let TableHeader = React.createClass({
         content,
         tooltip,
         style,
-        ...props
+        ...props,
       } = headerData[index];
       let key = keyPrefix + index;
 

@@ -102,7 +102,7 @@ let TableRow = React.createClass({
       let key = this.props.rowNumber + '-' + index;
       let {
         content,
-        style
+        style,
       } = columns[index];
       if (content === undefined) content = columns[index];
 

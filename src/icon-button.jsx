@@ -93,7 +93,8 @@ let IconButton = React.createClass({
       tooltip,
       touch,
       iconStyle,
-      ...other } = this.props;
+      ...other,
+    } = this.props;
     let fonticon;
 
     let styles = this.getStyles();
@@ -113,7 +114,7 @@ let IconButton = React.createClass({
     if (iconClassName) {
       let {
         iconHoverColor,
-        ...iconStyleFontIcon
+        ...iconStyleFontIcon,
       } = iconStyle;
 
       fonticon = (

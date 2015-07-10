@@ -7,7 +7,7 @@ let ClearFix = React.createClass({
   render() {
     let {
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let before = function() {

@@ -68,7 +68,7 @@ let DatePicker = React.createClass({
       showYearSelector,
       style,
       textFieldStyle,
-      ...other
+      ...other,
     } = this.props;
     let defaultInputValue;
 

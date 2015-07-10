@@ -81,7 +81,7 @@ let DropDownIcon = React.createClass({
       closeOnMenuItemTouchTap,
       iconStyle,
       iconClassName,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.getStyles();
