@@ -80,7 +80,8 @@ let CircularProgress = React.createClass({
     setTimeout(() => {
       AutoPrefix.set(wrapper.style, "transform", "rotate(1800deg)");
       wrapper.style.transitionDuration = "10s";
-      wrapper.style.webkitTransitionTimingFunction = "linear";
+      //wrapper.style.webkitTransitionTimingFunction = "linear";
+      AutoPrefix.set(wrapper.style, "transitionTimingFunction", "linear");
     }, 50);
   },
 
@@ -120,7 +121,7 @@ let CircularProgress = React.createClass({
         margin: "5px",
         display: "inline-block",
         transition: Transitions.create("transform", "20s", null, "linear"),
-        webkitTransitionTimingFunction: "linear",
+        //webkitTransitionTimingFunction: "linear",
       },
       svg: {
         height: size,
@@ -136,6 +137,8 @@ let CircularProgress = React.createClass({
         transition: Transitions.create("all", "1.5s", null, "ease-in-out"),
       },
     };
+
+    AutoPrefix.set(styles.wrapper, "transitionTimingFunction", "linear");
 
     if (this.props.mode === "determinate"){
       let relVal = this._getRelativeValue();
