@@ -63,7 +63,7 @@ let BeforeAfterWrapper = React.createClass({
       beforeElementType,
       afterElementType,
       elementType,
-      ...other,
+      ...other
     } = this.props;
 
     let beforeElement, afterElement;
