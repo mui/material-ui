@@ -340,7 +340,7 @@ let Dialog = React.createClass({
     let containerOffset = DOM.getStyleAttributeAsNumber(container, 'paddingTop');
     let dialogWindowHeight = dialogWindow.offsetHeight - containerOffset;
     let dialogActualHeight = dialogContent.offsetHeight;
-    
+
     let spacing = this.context.muiTheme.spacing;
     if (this.props.title) dialogActualHeight += dialogContent.previousSibling.offsetHeight;
     if (this.props.actions) dialogActualHeight += dialogContent.nextSibling.offsetHeight;
