@@ -106,7 +106,7 @@ let HomePage = React.createClass({
             </h2>
             <RaisedButton
               className="demo-button"
-              label="Components"
+              label="Demo"
               onTouchTap={this._onDemoClick}
               linkButton={true}
               style={styles.demoStyle}
@@ -132,17 +132,20 @@ let HomePage = React.createClass({
         marginBottom: '13px',
         letterSpacing: '0',
         color: Typography.textDarkBlack
+      },
+      a: {
+        textDecoration: 'none'
       }
     };
 
     return (
       <FullWidthSection style={styles.root} useContent={true} contentStyle={styles.content} contentType="p" className="home-purpose">
         Material-UI came about from our love of&nbsp;
-        <a href="http://facebook.github.io/react/">React</a> and&nbsp;
-        <a href="https://www.google.com/design/spec/material-design/introduction.html">
+        <a style={styles.a} href="http://facebook.github.io/react/">React</a> and&nbsp;
+        <a style={styles.a} href="https://www.google.com/design/spec/material-design/introduction.html">
           Google's Material Design
         </a>. We're currently using it on a project at&nbsp;
-        <a href="https://www.call-em-all.com/">Call-Em-All</a> and plan on adding to it
+        <a style={styles.a} href="https://www.call-em-all.com/">Call-Em-All</a> and plan on adding to it
         and making it better in the coming months.
       </FullWidthSection>
     );

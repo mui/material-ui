@@ -50,7 +50,16 @@ class Master extends React.Component {
     };
   }
 
+  componentWillMount(){
+    let tabIndex =
+      this.context.router.isActive('get-started') ? 1 :
+      this.context.router.isActive('customization') ? 2 :
+      this.context.router.isActive('components') ? 3 : 0;
+    this.setState({tabIndex: tabIndex});
+  }
+
   render() {
+    console.log(this.state);
     let styles = this.getStyles();
     let title =
       this.context.router.isActive('get-started') ? 'Get Started' :
@@ -88,11 +97,12 @@ class Master extends React.Component {
     let styles = {
       root: {
         position: 'absolute',
-        right: '50px',
+        right: '40px',
         bottom: 0,
-        width: '55%',
+        width: '450px',
       },
       tabs: {
+        width: '450px'
       },
       tab: {
 
@@ -104,7 +114,8 @@ class Master extends React.Component {
       <div style={{backgroundColor: Colors.cyan500, position: 'relative', height: '50px'}}>
         <div style={styles.root}>
           <Tabs onChange={this._onTabChange.bind(this)}
-                style={styles.tabs}> 
+                style={styles.tabs}
+                initialSelectedIndex={this.state.tabIndex}> 
             <Tab label="Home" style={styles.tab} />
             <Tab label="Getting Started" style={styles.tab} />
             <Tab label="Customization" style={styles.tab}/>
@@ -129,6 +140,7 @@ class Master extends React.Component {
         case 3:  
           this.context.router.transitionTo('components');
         }
+        this.setState({tabIndex: tabIndex});
   }
 }
 
