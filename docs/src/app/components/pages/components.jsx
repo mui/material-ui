@@ -28,6 +28,8 @@ class Components extends React.Component {
       { route: 'text-fields', text: 'Text Fields'},
       { route: 'time-picker', text: 'Time Picker'},
       { route: 'toolbars', text: 'Toolbars'},
+      { route: 'upload-button', text: 'Upload Button'},
+
     ];
 
     return (

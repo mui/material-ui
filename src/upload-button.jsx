@@ -191,12 +191,11 @@ let UploadButton = React.createClass({
 
     if (this.props.hasOwnProperty('valueLink')) {
       inputProps.valueLink = this.props.valueLink;
-    }
-
-    if (onChange){
+    } else {
       inputProps.onChange = this._getFileName;
     }
 
+    if(!disabled)
     inputElement = (
       <input type='file' {...inputProps} />
     );
