@@ -339,17 +339,23 @@ let Dialog = React.createClass({
     let container = this.getDOMNode();
     let containerOffset = DOM.getStyleAttributeAsNumber(container, 'paddingTop');
     let dialogWindowHeight = dialogWindow.offsetHeight - containerOffset;
-    let dialogContentHeight = dialogContent.offsetHeight;
+    let dialogActualHeight = dialogContent.offsetHeight;
+    
+    let spacing = this.context.muiTheme.spacing;
+    if (this.props.title) dialogActualHeight += dialogContent.previousSibling.offsetHeight;
+    if (this.props.actions) dialogActualHeight += dialogContent.nextSibling.offsetHeight;
+    dialogActualHeight += spacing;
 
     // If the content is taller than the window can hold, set the height so the content
     // will scroll.
-    if (dialogContentHeight > dialogWindowHeight) {
+    if (dialogActualHeight > dialogWindowHeight) {
       let dialogContentPadding = DOM.getStyleAttributeAsNumber(dialogContent, 'paddingTop') +
         DOM.getStyleAttributeAsNumber(dialogContent, 'paddingBottom');
       let contentHeight = dialogWindowHeight - dialogContentPadding;
 
       if (this.props.title) contentHeight -= dialogContent.previousSibling.offsetHeight;
       if (this.props.actions) contentHeight -= dialogContent.nextSibling.offsetHeight;
+      contentHeight -= spacing;
 
       dialogContent.style.height = contentHeight + 'px';
       dialogWindow.style.height = dialogWindowHeight + 'px';
