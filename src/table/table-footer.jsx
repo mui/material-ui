@@ -23,7 +23,6 @@ let TableFooter = React.createClass({
   },
 
   getStyles() {
-
    let styles = {
       cell: {
         borderTop: '1px solid ' + this.getTheme().borderColor,

@@ -15,7 +15,6 @@ let Table = React.createClass({
   },
 
   propTypes: {
-    rowData: React.PropTypes.array.isRequired,
     canSelectAll: React.PropTypes.bool,
     columnOrder: React.PropTypes.array,
     defaultColumnWidth: React.PropTypes.string,
@@ -36,7 +35,6 @@ let Table = React.createClass({
     onRowHover: React.PropTypes.func,
     onRowHoverExit: React.PropTypes.func,
     onRowSelection: React.PropTypes.func,
-    preScanRowData: React.PropTypes.bool,
     selectable: React.PropTypes.bool,
     showRowHover: React.PropTypes.bool,
     stripedRows: React.PropTypes.bool,
@@ -53,7 +51,6 @@ let Table = React.createClass({
       fixedHeader: true,
       height: 'inherit',
       multiSelectable: false,
-      preScanRowData: true,
       selectable: true,
       showRowHover: false,
       stripedRows: false,
@@ -63,18 +60,6 @@ let Table = React.createClass({
   getInitialState() {
     // Determine what rows are 'pre-selected'.
     let preSelectedRows = [];
-    if (this.props.selectable && this.props.preScanRowData) {
-      for (let idx = 0; idx < this.props.rowData.length; idx++) {
-        let row = this.props.rowData[idx];
-        if (row.selected !== undefined && row.selected) {
-          preSelectedRows.push(idx);
-
-          if (!this.props.multiSelectable) {
-            break;
-          }
-        }
-      }
-    }
 
     return {
       selectedRows: preSelectedRows,
@@ -119,9 +104,27 @@ let Table = React.createClass({
     let className = 'mui-table';
     let styles = this.getStyles();
 
-    let tHead = this._getHeader();
-    let tBody = this._getBody();
-    let tFoot = this._getFooter();
+    //let tHead = this._getHeader();
+    //let tBody = this._getBody();
+    //let tFoot = this._getFooter();
+    let tHead, tFoot, tBody;
+    for (let child of this.props.children) {
+      if (child === null || !React.isValidElement(child)) continue;
+
+      let displayName = child.type.displayName;
+      if (displayName === 'TableBody') {
+        tBody = child;
+      }
+      else if (displayName === 'TableHeader') {
+        tHead = child;
+      }
+      else if (displayName === 'TableFooter') {
+        tFoot = child;
+      }
+    }
+
+    // If we could not find a table-header and a table-body, do not attempt to display anything.
+    if (!tBody && !tHead) return null;
 
     let headerTable, footerTable;
     let inlineHeader, inlineFooter;

@@ -1,8 +1,18 @@
 let React = require('react');
 let CodeExample = require('../../code-example/code-example');
-let { Table, TextField, Toggle } = require('material-ui');
 let Router = require('react-router');
 let ComponentDoc = require('../../component-doc');
+let {
+  Table,
+  TableBody,
+  TableHeader,
+  TableFooter,
+  TableRow,
+  TableHeaderColumn,
+  TableRowColumn,
+  TextField,
+  Toggle,
+} = require('material-ui');
 
 
 class TablePage extends React.Component {
@@ -311,7 +321,15 @@ let footerCols = {id: {content: 'ID'}, name: {content: 'Name'}, status: {content
             selectable={this.state.selectable}
             multiSelectable={this.state.multiSelectable}
             canSelectAll={this.state.canSelectAll}
-            onRowSelection={this._onRowSelection} />
+            onRowSelection={this._onRowSelection}>
+            <TableHeader>
+              <TableRow>
+                <TableHeaderColumn />
+              </TableRow>
+            </TableHeader>
+            <TableBody />
+            <TableFooter />
+          </Table>
 
           <div style={propContainerStyle}>
             <h3>Table Properties</h3>
