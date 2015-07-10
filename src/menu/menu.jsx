@@ -116,7 +116,7 @@ var NestedMenuItem = React.createClass({
     let {
       index,
       menuItemStyle,
-      ...other
+      ...other,
     } = this.props;
 
     return (
@@ -330,7 +330,7 @@ var Menu = React.createClass({
         number,
         toggle,
         onTouchTap,
-        ...other
+        ...other,
       } = menuItem;
 
       switch (menuItem.type) {
@@ -368,7 +368,7 @@ var Menu = React.createClass({
             key,
             index,
             zDepth,
-            ...other
+            ...other,
           } = this.props;
 
           itemComponent = (

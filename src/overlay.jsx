@@ -78,7 +78,7 @@ let Overlay = React.createClass({
     let {
       show,
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.mergeAndPrefix(this.getStyles().root, this.props.style, this.props.show && this.getStyles().rootWhenShown);

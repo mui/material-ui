@@ -57,7 +57,7 @@ let MenuItem = React.createClass({
       secondaryText,
       style,
       value,
-      ...other
+      ...other,
     } = this.props;
 
     let disabledColor = this.context.muiTheme.palette.disabledColor;

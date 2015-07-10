@@ -45,7 +45,7 @@ let DatePickerDialog = React.createClass({
       initialDate,
       onAccept,
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = {

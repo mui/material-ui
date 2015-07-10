@@ -21,7 +21,7 @@ let SlideIn = React.createClass({
   render() {
     let {
       direction,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.mergeAndPrefix({

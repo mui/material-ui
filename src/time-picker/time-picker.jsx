@@ -70,7 +70,7 @@ let TimePicker = React.createClass({
       onTouchTap,
       onShow,
       onDismiss,
-      ...other
+      ...other,
     } = this.props;
 
     let defaultInputValue;
