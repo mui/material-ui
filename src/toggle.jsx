@@ -88,7 +88,7 @@ let Toggle = React.createClass({
   render() {
     let {
       onToggle,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.getStyles();

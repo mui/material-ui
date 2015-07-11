@@ -50,15 +50,15 @@ let SlideInChild = React.createClass({
   render() {
     let {
       styles,
-      ...other
+      ...other,
     } = this.props;
 
     styles = this.mergeAndPrefix({
       position: 'absolute',
       height: '100%',
       width: '100%',
-      top: '0px',
-      left: '0px',
+      top: 0,
+      left: 0,
       transition: Transitions.easeOut(),
     }, this.props.style);
 

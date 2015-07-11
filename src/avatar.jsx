@@ -36,7 +36,7 @@ let Avatar = React.createClass({
       size,
       src,
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = {

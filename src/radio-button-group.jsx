@@ -47,7 +47,7 @@ let RadioButtonGroup = React.createClass({
         value,
         label,
         onCheck,
-        ...other
+        ...other,
       } = option.props;
 
       return <RadioButton

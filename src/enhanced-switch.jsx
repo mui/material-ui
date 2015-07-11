@@ -43,8 +43,8 @@ let EnhancedSwitch = React.createClass({
     },
 
   windowListeners: {
-    'keydown': '_handleWindowKeydown',
-    'keyup': '_handleWindowKeyup',
+    keydown: '_handleWindowKeydown',
+    keyup: '_handleWindowKeyup',
   },
 
   getInitialState() {
@@ -186,7 +186,7 @@ let EnhancedSwitch = React.createClass({
       disableTouchRipple,
       disableFocusRipple,
       className,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.getStyles();

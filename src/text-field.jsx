@@ -228,7 +228,7 @@ let TextField = React.createClass({
       onFocus,
       type,
       rows,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.getStyles();
@@ -236,7 +236,7 @@ let TextField = React.createClass({
     let inputId = id || this._uniqueId;
 
     let errorTextElement = this.state.errorText ? (
-      <div style={this.mergeAndPrefix(styles.error)}>{this.state.errorText}</div>
+      <div style={this.mergeAndPrefix(styles.error, errorStyle)}>{this.state.errorText}</div>
     ) : null;
 
     let hintTextElement = hintText ? (

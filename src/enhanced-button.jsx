@@ -107,7 +107,7 @@ let EnhancedButton = React.createClass({
       style,
       tabIndex,
       type,
-      ...other
+      ...other,
     } = this.props;
 
     let mergedStyles = this.mergeAndPrefix({

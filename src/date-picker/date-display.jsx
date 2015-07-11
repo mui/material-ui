@@ -59,7 +59,7 @@ let DateDisplay = React.createClass({
     let {
       selectedDate,
       style,
-      ...other
+      ...other,
     } = this.props;
     let dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
     let month = DateTime.getShortMonth(this.props.selectedDate);
