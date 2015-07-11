@@ -13,7 +13,7 @@ let MenuDivider = React.createClass({
   render() {
     let {
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let mergedStyles = this.mergeAndPrefix({

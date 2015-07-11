@@ -1,5 +1,6 @@
 let React = require('react');
 let StylePropable = require('./mixins/style-propable');
+let AutoPrefix = require('./styles/auto-prefix');
 let Transitions = require("./styles/transitions");
 
 
@@ -72,13 +73,15 @@ let CircularProgress = React.createClass({
     if (!this.isMounted()) return;
     if (this.props.mode !== "indeterminate") return;
 
-    wrapper.style.transform = null;
-    wrapper.style.transform = "rotate(0deg)";
+    AutoPrefix.set(wrapper.style, "transform", null);
+    AutoPrefix.set(wrapper.style, "transform", "rotate(0deg)");
     wrapper.style.transitionDuration = "0ms";
 
     setTimeout(() => {
-      wrapper.style.transform = "rotate(1800deg)";
+      AutoPrefix.set(wrapper.style, "transform", "rotate(1800deg)");
       wrapper.style.transitionDuration = "10s";
+      //wrapper.style.webkitTransitionTimingFunction = "linear";
+      AutoPrefix.set(wrapper.style, "transitionTimingFunction", "linear");
     }, 50);
   },
 
@@ -118,6 +121,7 @@ let CircularProgress = React.createClass({
         margin: "5px",
         display: "inline-block",
         transition: Transitions.create("transform", "20s", null, "linear"),
+        //webkitTransitionTimingFunction: "linear",
       },
       svg: {
         height: size,
@@ -134,6 +138,8 @@ let CircularProgress = React.createClass({
       },
     };
 
+    AutoPrefix.set(styles.wrapper, "transitionTimingFunction", "linear");
+
     if (this.props.mode === "determinate"){
       let relVal = this._getRelativeValue();
       styles.path.transition = Transitions.create("all", "0.3s", null, "linear");
@@ -148,7 +154,7 @@ let CircularProgress = React.createClass({
       style,
       innerStyle,
       size,
-      ...other
+      ...other,
     } = this.props;
 
 

@@ -21,7 +21,7 @@ let Card = React.createClass({
       lastElement.type.displayName === "CardTitle");
     let {
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let mergedStyles = this.mergeAndPrefix({

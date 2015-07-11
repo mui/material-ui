@@ -37,7 +37,7 @@ let SvgIcon = React.createClass({
       hoverColor,
       viewBox,
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let offColor = color ? color :

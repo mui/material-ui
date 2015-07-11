@@ -88,7 +88,7 @@ let Checkbox = React.createClass({
       onCheck,
       checkedIcon,
       unCheckedIcon,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.getStyles();
