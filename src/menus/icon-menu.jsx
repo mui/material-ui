@@ -32,6 +32,7 @@ let IconMenu = React.createClass({
     onTouchTap: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
     touchTapCloseDelay: React.PropTypes.number,
+    closeAfterTap: React.PropTypes.bool,
   },
 
   getDefaultProps() {
@@ -46,6 +47,7 @@ let IconMenu = React.createClass({
       onMouseUp: () => {},
       onTouchTap: () => {},
       touchTapCloseDelay: 200,
+      closeAfterTap: true
     };
   },
 
@@ -162,10 +164,12 @@ let IconMenu = React.createClass({
   _handleItemTouchTap(e, child) {
     let isKeyboard = Events.isKeyboard(e);
 
-    this._timeout = setTimeout(() => {
-      this.close(isKeyboard);
-    }, this.props.touchTapCloseDelay);
-
+    if (this.props.closeAfterTap) {
+      this._timeout = setTimeout(() => {
+        this.close(isKeyboard);
+      }, this.props.touchTapCloseDelay);
+    }
+      
     if (isKeyboard) {
       this.refs[this.state.iconButtonRef].setKeyboardFocus();
     }
