@@ -104,7 +104,7 @@ let Menu = React.createClass({
       valueLink,
       width,
       zDepth,
-      ...other
+      ...other,
     } = this.props;
 
     let componentEntered = this.state.componentEntered;
@@ -221,7 +221,7 @@ let Menu = React.createClass({
 
     let {
       desktop,
-      selectedMenuItemStyle
+      selectedMenuItemStyle,
     } = this.props;
 
     let selected = this._isChildSelected(child);
@@ -233,7 +233,7 @@ let Menu = React.createClass({
 
     let mergedChildrenStyles = this.mergeStyles(
       child.props.style || {},
-      selectedChildrenStyles
+      selectedChildrenStyles,
     );
 
     let isFocused = childIndex === this.state.focusIndex;
@@ -268,7 +268,7 @@ let Menu = React.createClass({
     let {
       children,
       desktop,
-      maxHeight
+      maxHeight,
     } = this.props;
     let count = 1;
     let currentHeight = desktop ? 16 : 8;
@@ -304,7 +304,7 @@ let Menu = React.createClass({
 
   _getSelectedIndex() {
     let {
-      children
+      children,
     } = this.props;
     let selectedIndex = -1;
     let menuItemIndex = 0;

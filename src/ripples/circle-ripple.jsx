@@ -27,7 +27,7 @@ let CircleRipple = React.createClass({
       started,
       ending,
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.mergeAndPrefix({

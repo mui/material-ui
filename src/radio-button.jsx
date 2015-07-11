@@ -70,7 +70,7 @@ let RadioButton = React.createClass({
   render() {
     let {
       onCheck,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.getStyles();

@@ -51,7 +51,7 @@ let EnhancedTextarea = React.createClass({
       style,
       textareaStyle,
       valueLink,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.getStyles().root;

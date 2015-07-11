@@ -88,7 +88,7 @@ let ListItem = React.createClass({
       secondaryText,
       secondaryTextLines,
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let textColor = this.context.muiTheme.palette.textColor;

@@ -32,7 +32,7 @@ let List = React.createClass({
       subheader,
       subheaderStyle,
       zDepth,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = {

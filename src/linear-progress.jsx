@@ -132,7 +132,7 @@ let LinearProgress = React.createClass({
   render() {
     let {
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.getStyles();
