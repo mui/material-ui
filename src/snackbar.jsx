@@ -135,7 +135,7 @@ let Snackbar = React.createClass({
     return (
       <span style={rootStyles}>
           <span style={{order:1}}>{this.props.message}</span>
-          <span style={{order:2, borderRight: '1px solid rgba(0, 0, 0, 0.26)', marginLeft: '20px', marginTop: '10px', marginBottom: '10px'}}></span>
+          <span style={{order:2, borderRight: '1px solid #888', marginLeft: '20px', marginTop: '10px', marginBottom: '10px'}}></span>
           {action}
           <IconButton style={{order:4}} onTouchTap={this.dismiss}><NavigationClose /></IconButton>
       </span>
