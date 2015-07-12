@@ -133,10 +133,10 @@ let Snackbar = React.createClass({
 
     return (
       <span style={rootStyles}>
-          <span style='order:1;'>{this.props.message}</span>
-          <span style='order:2; border-right: 1px solid black;'></span>
+          <span style={{order:1}}>{this.props.message}</span>
+          <span style={{order:2, borderRight: '1px solid black'}}></span>
           {action}
-          <IconButton style='order:4;'><NavigationClose /></IconButton>
+          <IconButton style={{order:4}}><NavigationClose /></IconButton>
       </span>
     );
   },
