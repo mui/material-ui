@@ -104,6 +104,7 @@ let SelectField = React.createClass({
       floatingLabelText,
       hintText,
       fullWidth,
+      errorText,
       ...other,
     } = this.props;
 
@@ -112,6 +113,7 @@ let SelectField = React.createClass({
       floatingLabelText: floatingLabelText,
       hintText: (!hintText && !floatingLabelText) ? ' ' : hintText,
       fullWidth: fullWidth,
+      errorText: errorText,
     };
     let dropDownMenuProps = {
       onChange: this.onChange,
