@@ -21,7 +21,6 @@ let Table = React.createClass({
     defaultColumnWidth: React.PropTypes.string,
     deselectOnClickaway: React.PropTypes.bool,
     displayRowCheckbox: React.PropTypes.bool,
-    columnCheckboxWidth: React.PropTypes.string,
     displaySelectAll: React.PropTypes.bool,
     fixedFooter: React.PropTypes.bool,
     fixedHeader: React.PropTypes.bool,
@@ -47,7 +46,6 @@ let Table = React.createClass({
     return {
       canSelectAll: false,
       defaultColumnWidth: '50px',
-      columnCheckboxWidth: '70px',
       deselectOnClickaway: true,
       displayRowCheckbox: true,
       displaySelectAll: true,
@@ -179,7 +177,6 @@ let Table = React.createClass({
       return (
         <TableHeader
           columns={orderedHeaderColumns}
-          columnCheckboxWidth={this.props.columnCheckboxWidth}
           enableSelectAll={this.props.canSelectAll && this.props.selectable}
           displaySelectAll={this.props.displaySelectAll}
           onSelectAll={this._onSelectAll} />
@@ -218,7 +215,6 @@ let Table = React.createClass({
           columns={rowData}
           selected={selected}
           striped={striped}
-          columnCheckboxWidth={this.props.columnCheckboxWidth}
           displayRowCheckbox={this.props.displayRowCheckbox}
           hoverable={this.props.showRowHover}
           displayBorder={border}

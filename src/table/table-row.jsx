@@ -27,7 +27,6 @@ let TableRow = React.createClass({
     hoverable: React.PropTypes.bool,
     displayBorder: React.PropTypes.bool,
     displayRowCheckbox: React.PropTypes.bool,
-    columnCheckboxWidth: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -139,7 +138,7 @@ let TableRow = React.createClass({
     return {
       content: checkbox,
       style: {
-        width: this.props.columnCheckboxWidth,
+        width: 72,
         paddingLeft: 24,
         paddingRight: 24,
       },

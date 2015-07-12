@@ -19,7 +19,6 @@ let TableHeader = React.createClass({
     displaySelectAll: React.PropTypes.bool,
     enableSelectAll: React.PropTypes.bool,
     fixed: React.PropTypes.bool,
-    columnCheckboxWidth: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -119,7 +118,7 @@ let TableHeader = React.createClass({
     return {
       content: checkbox,
       style: {
-        width: this.props.columnCheckboxWidth,
+        width: 72,
         paddingLeft: 24,
         paddingRight: 24,
       },
