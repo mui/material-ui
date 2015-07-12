@@ -129,6 +129,7 @@ let Snackbar = React.createClass({
       <span style={rootStyles}>
           <span>{this.props.message}</span>
           {action}
+          <IconButton><NavigationClose /></IconButton>
       </span>
     );
   },

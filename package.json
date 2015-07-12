@@ -8,7 +8,7 @@
     "test": "echo \"No test implemented\" && exit 0",
     "prebuild": "rm -rf lib",
     "eslint": "gulp eslint",
-    "build": "npm run eslint && babel --stage 1 ./src --out-dir ./lib",
+    "build": "babel --stage 1 ./src --out-dir ./lib",
     "prepublish": "npm run build"
   },
   "keywords": [
