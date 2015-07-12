@@ -78,7 +78,7 @@ let TableBody = React.createClass({
     let {
       className,
       style,
-      ...other
+      ...other,
     } = this.props;
     let classes = 'mui-table-body';
     if (className) classes += ' ' + className;

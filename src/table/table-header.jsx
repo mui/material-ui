@@ -48,7 +48,7 @@ let TableHeader = React.createClass({
     let {
       className,
       style,
-      ...other
+      ...other,
     } = this.props;
     let classes = 'mui-table-header';
     if (className) classes += ' ' + className;

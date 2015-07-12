@@ -67,7 +67,7 @@ let TableHeaderColumn = React.createClass({
       style,
       tooltip,
       tooltipStyle,
-      ...other
+      ...other,
     } = this.props;
     let classes = 'mui-table-header-column';
     if (className) classes += ' ' + className;

@@ -93,7 +93,7 @@ let TableRow = React.createClass({
       selected,
       striped,
       style,
-      ...other
+      ...other,
     } = this.props;
     let classes = 'mui-table-row';
     if (className) classes += ' ' + className;

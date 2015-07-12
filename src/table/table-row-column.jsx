@@ -66,7 +66,7 @@ let TableRowColumn = React.createClass({
       onHover,
       onHoverExit,
       style,
-      ...other
+      ...other,
     } = this.props;
     let styles = this.getStyles();
     let handlers = {

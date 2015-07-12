@@ -43,7 +43,7 @@ let TableFooter = React.createClass({
   render() {
     let {
       className,
-      ...other
+      ...other,
     } = this.props;
     let classes = 'mui-table-footer';
     if (className) classes += ' ' + className;
