@@ -11,11 +11,12 @@ let TableRowColumn = React.createClass({
   },
 
   propTypes: {
-    columnNumber: React.PropTypes.number.isRequired,
+    columnNumber: React.PropTypes.number,
+    hoverable: React.PropTypes.bool,
     onClick: React.PropTypes.func,
     onHover: React.PropTypes.func,
     onHoverExit: React.PropTypes.func,
-    hoverable: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -37,14 +38,16 @@ let TableRowColumn = React.createClass({
   getStyles() {
     let theme = this.getTheme();
     let styles = {
-      paddingLeft: theme.spacing,
-      paddingRight: theme.spacing,
-      height: theme.height,
-      textAlign: 'left',
-      fontSize: 13,
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
+      root: {
+        paddingLeft: theme.spacing,
+        paddingRight: theme.spacing,
+        height: theme.height,
+        textAlign: 'left',
+        fontSize: 13,
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+      },
     };
 
     if (React.Children.count(this.props.children) === 1 && !isNaN(this.props.children)) {
@@ -55,20 +58,32 @@ let TableRowColumn = React.createClass({
   },
 
   render() {
-    let className = 'mui-table-row-column';
+    let {
+      className,
+      columnNumber,
+      hoverable,
+      onClick,
+      onHover,
+      onHoverExit,
+      style,
+      ...other
+    } = this.props;
     let styles = this.getStyles();
     let handlers = {
       onClick: this._onClick,
       onMouseOver: this._onMouseOver,
       onMouseOut: this._onMouseOut,
     };
+    let classes = 'mui-table-row-column';
+    if (className) classes += ' ' + className;
 
     return (
       <td
         key={this.props.key}
-        className={className}
-        style={this.mergeAndPrefix(styles, this.props.style)}
-        {...handlers}>
+        className={classes}
+        style={this.mergeAndPrefix(styles.root, style)}
+        {...handlers}
+        {...other}>
         {this.props.children}
       </td>
     );

@@ -1,4 +1,5 @@
 let React = require('react');
+let TableRowColumn = require('./table-row-column');
 let StylePropable = require('../mixins/style-propable');
 
 
@@ -11,11 +12,14 @@ let TableFooter = React.createClass({
   },
 
   propTypes: {
-    columns: React.PropTypes.array.isRequired,
+    adjustForCheckbox: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
-    return {};
+    return {
+      adjustForCheckbox: true,
+    };
   },
 
   getTheme() {
@@ -23,7 +27,7 @@ let TableFooter = React.createClass({
   },
 
   getStyles() {
-   let styles = {
+   const styles = {
       cell: {
         borderTop: '1px solid ' + this.getTheme().borderColor,
         verticalAlign: 'bottom',
@@ -37,44 +41,54 @@ let TableFooter = React.createClass({
   },
 
   render() {
-    let className = 'mui-table-footer';
+    let {
+      className,
+      ...other
+    } = this.props;
+    let classes = 'mui-table-footer';
+    if (className) classes += ' ' + className;
+
+    let footerRows = this._createRows();
 
     return (
-      <tfoot className={className}>
-        {this._getFooterRow()}
+      <tfoot className={classes} {...other}>
+        {footerRows}
       </tfoot>
     );
   },
 
-  _getFooterRow() {
+  _createRows() {
+    let rowNumber = 0;
     return (
-      <tr className='mui-table-footer-row'>
-        {this._getColumnHeaders(this.props.columns, 'f')}
-      </tr>
+      React.Children.map(this.props.children, (child) => {
+        return this._createRow(child, rowNumber++);
+      })
     );
   },
 
-  _getColumnHeaders(footerData, keyPrefix) {
-    let footers = [];
+  _createRow(child, rowNumber) {
     let styles = this.getStyles();
+    let props = {
+      className: 'mui-table-footer-row',
+      displayBorder: false,
+      key: 'f-' + rowNumber,
+      rowNumber: rowNumber
+      style: this.mergeAndPrefix(styles.cell, child.props.style),
+    };
 
-    for (let index = 0; index < footerData.length; index++) {
-      let {
-        content,
-        ...props,
-      } = footerData[index];
-      if (content === undefined) content = footerData[index];
-      let key = keyPrefix + index;
-      props.style = (props.style !== undefined) ? this.mergeAndPrefix(props.style, styles.cell) : styles.cell;
+    let children = [this._getSelectAllCheckboxColumn(props)];
+    React.Children.forEach(child.props.children, (child) => {
+      children.push(child);
+    });
 
-      footers.push(
-        <td key={key} className='mui-table-footer-column' {...props}>
-          {content}
-        </td>
-      );
-    }
+    return React.cloneElement(child, props, children);
+  },
 
-    return footers;
+  _getCheckboxPlaceholder(props) {
+    if (!this.props.adjustForCheckbox) return null;
+
+    let key = 'fpcb' + props.rowNumber;
+    return <TableHeaderColumn key={key} style={{width: 24}} />;
   },
 
 });

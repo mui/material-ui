@@ -13,17 +13,20 @@ let TableHeader = React.createClass({
   },
 
   propTypes: {
+    adjustForCheckbox: React.PropTypes.bool,
     displaySelectAll: React.PropTypes.bool,
     enableSelectAll: React.PropTypes.bool,
-    fixed: React.PropTypes.bool,
     onSelectAll: React.PropTypes.func,
+    selectAllSelected: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
     return {
+      adjustForCheckbox: true,
       displaySelectAll: true,
       enableSelectAll: true,
-      fixed: true,
+      selectAllSelected: false,
     };
   },
 
@@ -42,12 +45,19 @@ let TableHeader = React.createClass({
   },
 
   render() {
-    let className = 'mui-table-header';
+    let {
+      className,
+      style,
+      ...other
+    } = this.props;
+    let classes = 'mui-table-header';
+    if (className) classes += ' ' + className;
+
     let superHeaderRows = this._createSuperHeaderRows();
     let baseHeaderRow = this._createBaseHeaderRow();
 
     return (
-      <thead className={className} style={this.getStyles().root}>
+      <thead className={classes} style={this.mergeAndPrefix(this.getStyles().root, style)}>
         {superHeaderRows}
         {baseHeaderRow}
       </thead>
@@ -56,69 +66,87 @@ let TableHeader = React.createClass({
 
   _createSuperHeaderRows() {
     let numChildren = React.Children.count(this.props.children);
-    if (numChildren === 1) return null;
+    if (numChildren === 1) return undefined;
 
     let superHeaders = [];
-    for (let i = 0; i < numChildren - 1; i++) {
-      let child = this.props.children[i];
+    for (let index = 0; index < numChildren - 1; index++) {
+      let child = this.props.children[index];
 
       if (!React.isValidElement(child)) continue;
 
-      superHeaders.push(
-        React.cloneElement(child, {className: 'mui-table-super-header-row', rowNumber: i})
-      );
+      let props = {
+        className: 'mui-table-super-header-row',
+        displayRowCheckbox: false,
+        key: 'sh' + index,
+        rowNumber: index,
+      };
+      superHeaders.push(this._createSuperHeaderRow(child, props));
     }
 
     if (superHeaders.length) return superHeaders;
   },
 
-  _createBaseHeaderRow() {
-    let child;
-    let numChildren = React.Children.count(this.props.children);
-    child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
-
-    let checkboxColumn;
-    if (this.props.displaySelectAll) {
-      this._getSelectAllCheckboxColumn();
+  _createSuperHeaderRow(child, props) {
+    let children = [];
+    if (this.props.adjustForCheckbox) {
+      children.push(this._getCheckboxPlaceholder(props));
     }
+    React.Children.forEach(child.props.children, (child) => {
+      children.push(child);
+    });
+
+    return React.cloneElement(child, props, children);
+  },
+
+  _createBaseHeaderRow() {
+    let numChildren = React.Children.count(this.props.children);
+    let child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
+    let props = {
+      className: 'mui-table-header-row',
+      key: 'h' + numChildren,
+      rowNumber: numChildren,
+    };
+
+    let children = [this._getSelectAllCheckboxColumn(props)];
+    React.Children.forEach(child.props.children, (child) => {
+      children.push(child);
+    });
 
     return React.cloneElement(
       child,
-      {
-        className: 'mui-table-header-row',
-        rowNumber: numChildren
-      },
-      [checkboxColumn, ...child.props.children]
+      props,
+      children
     );
   },
 
-  _getSelectAllCheckboxColumn() {
+  _getCheckboxPlaceholder(props) {
+    if (!this.props.adjustForCheckbox) return null;
+
+    let key = 'hpcb' + props.rowNumber;
+    return <TableHeaderColumn key={key} style={{width: 24}} />;
+  },
+
+  _getSelectAllCheckboxColumn(props) {
+  if (!this.props.displaySelectAll) return this._getCheckboxPlaceholder(props);
+
     let checkbox =
       <Checkbox
+        key='selectallcb'
         name='selectallcb'
         value='selected'
         disabled={!this.props.enableSelectAll}
+        checked={this.props.selectAllSelected}
         onCheck={this._onSelectAll} />;
-    let style = {
-      paddingLeft: 24,
-      paddingRight: 24,
-    };
 
     return (
-      <TableHeaderColumn
-        style={style}
-        tooltip='De/Select All'>
+      <TableHeaderColumn style={{width: 24}}>
         {checkbox}
       </TableHeaderColumn>
     );
   },
 
-  _onSelectAll() {
-    if (this.props.onSelectAll) this.props.onSelectAll();
-  },
-
-  _onColumnClick(e, columnNumber) {
-    if (this.props.onColumnClick) this.props.onColumnClick(e, columnNumber);
+  _onSelectAll(e, checked) {
+    if (this.props.onSelectAll) this.props.onSelectAll(checked);
   },
 
 });
