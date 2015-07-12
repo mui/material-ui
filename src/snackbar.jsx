@@ -67,6 +67,8 @@ let Snackbar = React.createClass({
   getStyles() {
     let styles = {
       root: {
+         display: 'flex',
+         flexDirection: 'row',
         color: this.getTheme().textColor,
         backgroundColor: this.getTheme().backgroundColor,
         borderRadius: 2,
@@ -90,6 +92,7 @@ let Snackbar = React.createClass({
           Transitions.easeOut('400ms', 'transform'),
       },
       action: {
+        order:3,
         color: this.getTheme().actionColor,
         float: 'right',
         marginTop: 6,
@@ -130,9 +133,10 @@ let Snackbar = React.createClass({
 
     return (
       <span style={rootStyles}>
-          <span>{this.props.message}</span>
+          <span style='order:1;'>{this.props.message}</span>
+          <span style='order:2; border-right: 1px solid black;'></span>
           {action}
-          <IconButton><NavigationClose /></IconButton>
+          <IconButton style='order:4;'><NavigationClose /></IconButton>
       </span>
     );
   },
