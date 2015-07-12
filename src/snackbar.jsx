@@ -93,12 +93,13 @@ let Snackbar = React.createClass({
       },
       action: {
         order:3,
-        color: this.getTheme().actionColor,
+        color: '#778DC5',
         float: 'right',
         marginTop: 6,
         marginRight: -16,
         marginLeft: this.getSpacing().desktopGutter,
         backgroundColor: 'transparent',
+        textTransform: 'none'
       },
       rootWhenOpen: {
         left: '0px',
@@ -134,7 +135,7 @@ let Snackbar = React.createClass({
     return (
       <span style={rootStyles}>
           <span style={{order:1}}>{this.props.message}</span>
-          <span style={{order:2, borderRight: '1px solid black'}}></span>
+          <span style={{order:2, borderRight: '1px solid rgba(0, 0, 0, 0.26)', marginLeft: '20px', marginTop: '10px', marginBottom: '10px'}}></span>
           {action}
           <IconButton style={{order:4}}><NavigationClose /></IconButton>
       </span>
