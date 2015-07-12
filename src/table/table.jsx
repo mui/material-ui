@@ -207,6 +207,7 @@ let Table = React.createClass({
   },
 
   _onSelectAll() {
+    if (this.props.onRowSelection && !this.state.allRowsSelected) this.props.onRowSelection('all');
     this.setState({allRowsSelected: !this.state.allRowsSelected});
   },
 

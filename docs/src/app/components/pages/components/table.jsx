@@ -421,7 +421,8 @@ this.state = {
             name: 'onRowSelection',
             type: 'function(selectedRows)',
             header: 'optional',
-            desc: 'Called when a row is selected. selectedRows is an array of all row selections.'
+            desc: 'Called when a row is selected. selectedRows is an array of all row selections. IF all rows have been ' +
+              'selected, the string "all" will be returned instead to indicate that all rows have been selected.'
           },
           {
             name: 'onCellClick',
