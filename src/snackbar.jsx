@@ -5,7 +5,7 @@ let Transitions = require('./styles/transitions');
 let ClickAwayable = require('./mixins/click-awayable');
 let FlatButton = require('./flat-button');
 let IconButton = require('./icon-button');
-let NavigationClose = require('svg-icons/navigation/close');
+let NavigationClose = require('./svg-icons/navigation/close');
 
 
 
