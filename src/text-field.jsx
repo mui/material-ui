@@ -266,6 +266,8 @@ let TextField = React.createClass({
 
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
+    } else {
+      inputProps.valueLink = this.props.valueLink;
     }
     if (this.props.children) {
       inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props});
