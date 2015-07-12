@@ -20,8 +20,8 @@ module.exports = {
   },
 
   getStyleAttributeAsNumber: function(el, attr) {
-    var attrStyle = el.style[attr];
-    var attrNum = 0;
+    let attrStyle = el.style[attr];
+    let attrNum = 0;
     if (attrStyle && attrStyle.length) {
         attrNum = parseInt(attrStyle);
     }
