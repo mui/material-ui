@@ -97,7 +97,7 @@ let Snackbar = React.createClass({
         float: 'right',
         marginTop: 2,
         marginRight: -16,
-        marginLeft: '8px',
+        marginLeft: 0,
         backgroundColor: 'transparent',
         textTransform: 'none'
       },
@@ -137,7 +137,7 @@ let Snackbar = React.createClass({
           <span style={{order:1}}>{this.props.message}</span>
           <span style={{order:2, borderRight: '1px solid rgba(0, 0, 0, 0.26)', marginLeft: '20px', marginTop: '10px', marginBottom: '10px'}}></span>
           {action}
-          <IconButton style={{order:4}}><NavigationClose /></IconButton>
+          <IconButton style={{order:4}} onTouchTap={this.dismiss()}><NavigationClose /></IconButton>
       </span>
     );
   },
