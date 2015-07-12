@@ -145,12 +145,6 @@ let footerCols = {id: {content: 'ID'}, name: {content: 'Name'}, status: {content
             desc: 'The default value of a table column. The initial value is 50px.'
           },
           {
-            name: 'columnCheckboxWidth',
-            type: 'string',
-            header: 'optional',
-            desc: 'Width of the column which contains checkbox. The initial value is 70px.'
-          },
-          {
             name: 'deselectOnClickAway',
             type: 'boolean',
             header: 'default: true',
