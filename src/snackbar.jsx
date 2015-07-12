@@ -72,7 +72,7 @@ let Snackbar = React.createClass({
         color: this.getTheme().textColor,
         backgroundColor: this.getTheme().backgroundColor,
         borderRadius: 2,
-        padding: '0px ' + this.getSpacing().desktopGutter + 'px',
+        padding: '0 0 0 ' + this.getSpacing().desktopGutter + 'px',
         height: this.getSpacing().desktopSubheaderHeight,
         lineHeight: this.getSpacing().desktopSubheaderHeight + 'px',
         minWidth: 288,
