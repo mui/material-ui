@@ -108,6 +108,7 @@ let LeftNav = React.createClass({
         overflowY: 'auto',
         overflowX: 'hidden',
         height: '100%',
+        borderRadius: '0',
       },
       menuItem: {
         height: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight,
