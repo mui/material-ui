@@ -72,11 +72,11 @@ let TableFooter = React.createClass({
       className: 'mui-table-footer-row',
       displayBorder: false,
       key: 'f-' + rowNumber,
-      rowNumber: rowNumber
+      rowNumber: rowNumber,
       style: this.mergeAndPrefix(styles.cell, child.props.style),
     };
 
-    let children = [this._getSelectAllCheckboxColumn(props)];
+    let children = [this._getCheckboxPlaceholder(props)];
     React.Children.forEach(child.props.children, (child) => {
       children.push(child);
     });
@@ -88,7 +88,7 @@ let TableFooter = React.createClass({
     if (!this.props.adjustForCheckbox) return null;
 
     let key = 'fpcb' + props.rowNumber;
-    return <TableHeaderColumn key={key} style={{width: 24}} />;
+    return <TableRowColumn key={key} style={{width: 24}} />;
   },
 
 });
