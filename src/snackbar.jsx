@@ -95,9 +95,9 @@ let Snackbar = React.createClass({
         order:3,
         color: '#778DC5',
         float: 'right',
-        marginTop: 6,
+        marginTop: 2,
         marginRight: -16,
-        marginLeft: this.getSpacing().desktopGutter,
+        marginLeft: '8px',
         backgroundColor: 'transparent',
         textTransform: 'none'
       },
