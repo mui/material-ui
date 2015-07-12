@@ -159,6 +159,7 @@ let Snackbar = React.createClass({
 
   _setAutoHideTimer() {
     if (this.props.autoHideDuration > 0) {
+      console.log("_setAutoHideTimer: " + this.props.autoHideDuration);
       this._clearAutoHideTimer();
       this._autoHideTimerId = setTimeout(() => { this.dismiss(); }, this.props.autoHideDuration);
     }
