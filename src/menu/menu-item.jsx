@@ -140,7 +140,7 @@ let MenuItem = React.createClass({
         children,
         label,
         style,
-        ...other
+        ...other,
       } = this.props;
       toggleElement = <Toggle {...other} onToggle={this._handleToggle} style={styles.toggle}/>;
     }

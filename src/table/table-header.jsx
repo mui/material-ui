@@ -93,7 +93,7 @@ let TableHeader = React.createClass({
         content,
         tooltip,
         style,
-        ...props
+        ...props,
       } = headerData[index];
       let key = keyPrefix + index;
 
@@ -118,6 +118,7 @@ let TableHeader = React.createClass({
     return {
       content: checkbox,
       style: {
+        width: 72,
         paddingLeft: 24,
         paddingRight: 24,
       },

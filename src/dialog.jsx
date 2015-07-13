@@ -49,7 +49,12 @@ let TransitionItem = React.createClass({
   },
 
   render() {
-    return <div style={this.mergeAndPrefix(this.state.style, this.props.style)}>
+    let {
+      style,
+      ...other,
+    } = this.props;
+
+    return <div {...other} style={this.mergeAndPrefix(this.state.style, style)}>
         {this.props.children}
       </div>;
   },

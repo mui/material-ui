@@ -31,7 +31,7 @@ let FontIcon = React.createClass({
       onMouseOut,
       onMouseOver,
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let spacing = this.context.muiTheme.spacing;

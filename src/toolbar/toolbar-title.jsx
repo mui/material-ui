@@ -22,7 +22,7 @@ let ToolbarTitle = React.createClass({
     let {
       style,
       text,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = this.mergeAndPrefix({

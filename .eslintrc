@@ -15,6 +15,7 @@
     "no-shadow": 0,
     "no-shadow-restricted-names": 0,
     "no-extend-native": 0,
+    "no-var": 2,
     "new-cap": 0,
     "quotes": 0,
     "semi-spacing": 0,

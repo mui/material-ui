@@ -18,7 +18,7 @@ let ListDivider = React.createClass({
     let {
       inset,
       style,
-      ...other
+      ...other,
     } = this.props;
 
     let mergedStyles = this.mergeAndPrefix({

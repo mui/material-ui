@@ -64,7 +64,7 @@ let FlatButton = React.createClass({
       rippleColor,
       secondary,
       style,
-      ...other
+      ...other,
       } = this.props;
 
     let theme = this.context.muiTheme;

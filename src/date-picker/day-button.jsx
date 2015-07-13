@@ -42,7 +42,7 @@ let DayButton = React.createClass({
       date,
       onTouchTap,
       selected,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = {

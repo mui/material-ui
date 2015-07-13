@@ -86,7 +86,7 @@ let DropDownMenu = React.createClass({
         transition: Transitions.easeOut(),
         position: 'relative',
         display: 'inline-block',
-        height: this.getSpacing().desktopToolbarHeight,
+        height: this.getSpacing().desktopSubheaderHeight,
         fontSize: this.getSpacing().desktopDropDownMenuFontSize,
         outline:'none',
       },

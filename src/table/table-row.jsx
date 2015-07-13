@@ -102,7 +102,7 @@ let TableRow = React.createClass({
       let key = this.props.rowNumber + '-' + index;
       let {
         content,
-        style
+        style,
       } = columns[index];
       if (content === undefined) content = columns[index];
 
@@ -138,6 +138,7 @@ let TableRow = React.createClass({
     return {
       content: checkbox,
       style: {
+        width: 72,
         paddingLeft: 24,
         paddingRight: 24,
       },

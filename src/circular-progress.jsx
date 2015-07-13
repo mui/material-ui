@@ -154,7 +154,7 @@ let CircularProgress = React.createClass({
       style,
       innerStyle,
       size,
-      ...other
+      ...other,
     } = this.props;
 
 

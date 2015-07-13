@@ -104,7 +104,7 @@ let SelectField = React.createClass({
       floatingLabelText,
       hintText,
       fullWidth,
-      ...other
+      ...other,
     } = this.props;
 
     let textFieldProps = {

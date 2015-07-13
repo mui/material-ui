@@ -14,7 +14,7 @@ let SubheaderMenuItem = require('./subheader-menu-item');
 /***********************
 * Nested Menu Component
 ***********************/
-var NestedMenuItem = React.createClass({
+let NestedMenuItem = React.createClass({
 
   mixins: [ClickAwayable, StylePropable],
 
@@ -116,7 +116,7 @@ var NestedMenuItem = React.createClass({
     let {
       index,
       menuItemStyle,
-      ...other
+      ...other,
     } = this.props;
 
     return (
@@ -194,7 +194,7 @@ var NestedMenuItem = React.createClass({
 /****************
 * Menu Component
 ****************/
-var Menu = React.createClass({
+let Menu = React.createClass({
 
   mixins: [StylePropable],
 
@@ -330,7 +330,7 @@ var Menu = React.createClass({
         number,
         toggle,
         onTouchTap,
-        ...other
+        ...other,
       } = menuItem;
 
       switch (menuItem.type) {
@@ -368,7 +368,7 @@ var Menu = React.createClass({
             key,
             index,
             zDepth,
-            ...other
+            ...other,
           } = this.props;
 
           itemComponent = (

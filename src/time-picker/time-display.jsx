@@ -66,7 +66,7 @@ let TimeDisplay = React.createClass({
     let {
       selectedTime,
       mode,
-      ...other
+      ...other,
     } = this.props;
 
     let styles = {
