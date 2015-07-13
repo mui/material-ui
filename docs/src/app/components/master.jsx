@@ -2,9 +2,17 @@ let React = require('react');
 let Router = require('react-router');
 let AppLeftNav = require('./app-left-nav');
 let FullWidthSection = require('./full-width-section');
-let {AppBar, AppCanvas, FontIcon, 
-      IconButton, Menu, Mixins, RaisedButton, 
-      Styles, Tab, Tabs} = require('material-ui');
+let { AppBar,
+    AppCanvas, 
+    FontIcon, 
+    IconButton, 
+    Menu, 
+    Mixins, 
+    RaisedButton, 
+    Styles, 
+    Tab, 
+    Tabs,
+    Paper} = require('material-ui');
 
 let RouteHandler = Router.RouteHandler;
 let { Colors, Typography } = Styles;
@@ -43,9 +51,10 @@ class Master extends React.Component {
         color: darkWhite
       },
       github: {
-        position: 'absolute',
+        position: 'fixed',
         right: '0px',
         top: '0px',
+        zIndex: 5,
       }
     };
   }
@@ -59,7 +68,6 @@ class Master extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     let styles = this.getStyles();
     let title =
       this.context.router.isActive('get-started') ? 'Get Started' :
@@ -75,6 +83,14 @@ class Master extends React.Component {
         style={styles.github} />
     );
 
+    let githubButton2 = (
+      <IconButton
+        iconStyle={styles.iconButton}
+        iconClassName="muidocs-icon-custom-github"
+        href="https://github.com/callemall/material-ui"
+        linkButton={true}/>
+    );
+
     return (
       <AppCanvas>
         {githubButton}
@@ -86,7 +102,7 @@ class Master extends React.Component {
             Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
             awesome <a style={styles.a} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
           </p>
-          {githubButton}
+          {githubButton2}
         </FullWidthSection>
 
       </AppCanvas>
@@ -96,13 +112,26 @@ class Master extends React.Component {
  _getTabs() {
     let styles = {
       root: {
+        backgroundColor: Colors.cyan500, 
+        position: 'fixed', 
+        height: '50px',
+        top: 0,
+        right: 0,
+        zIndex: 5,
+        width: '100%'
+
+      },
+      container: {
         position: 'absolute',
-        right: '40px',
+        right: '48px',
         bottom: 0,
-        width: '450px',
+        width: '500px',
+      },
+      inkBar: {
+        backgroundColor: Colors.yellow200,
       },
       tabs: {
-        width: '450px'
+        width: '500px'
       },
       tab: {
 
@@ -111,18 +140,19 @@ class Master extends React.Component {
     };
 
     return(
-      <div style={{backgroundColor: Colors.cyan500, position: 'relative', height: '50px'}}>
-        <div style={styles.root}>
+      <Paper zDepth={this.state.tabIndex === 0 ? 0: 1} style={styles.root} >
+        <div style={styles.container}>
           <Tabs onChange={this._onTabChange.bind(this)}
                 style={styles.tabs}
-                initialSelectedIndex={this.state.tabIndex}> 
-            <Tab label="Home" style={styles.tab} />
-            <Tab label="Getting Started" style={styles.tab} />
-            <Tab label="Customization" style={styles.tab}/>
-            <Tab label="Components" style={styles.tab}/>
+                initialSelectedIndex={this.state.tabIndex}
+                inkBarStyles={styles.inkBar}> 
+            <Tab label="HOME" style={styles.tab} />
+            <Tab label="GETTING STARTED" style={styles.tab} />
+            <Tab label="CUSTOMIZATION" style={styles.tab}/>
+            <Tab label="COMPONENTS" style={styles.tab}/>
           </Tabs>
         </div>
-      </div>
+      </Paper>
     );
   }
 
