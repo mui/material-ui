@@ -11,7 +11,7 @@ class GetStarted extends React.Component {
   getStyles() {
     return {
       root: {
-        paddingTop: Spacing.desktopKeylineIncrement
+        //paddingTop: Spacing.desktopKeylineIncrement
       },
       fullWidthSection: {
         maxWidth: '650px',

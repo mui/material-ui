@@ -2,7 +2,17 @@ let React = require('react');
 let Router = require('react-router');
 let AppLeftNav = require('./app-left-nav');
 let FullWidthSection = require('./full-width-section');
-let { AppBar, AppCanvas, IconButton, Menu, Styles } = require('material-ui');
+let { AppBar,
+    AppCanvas, 
+    FontIcon, 
+    IconButton, 
+    Menu, 
+    Mixins, 
+    RaisedButton, 
+    Styles, 
+    Tab, 
+    Tabs,
+    Paper} = require('material-ui');
 
 let RouteHandler = Router.RouteHandler;
 let { Colors, Typography } = Styles;
@@ -13,7 +23,6 @@ class Master extends React.Component {
 
   constructor() {
     super();
-    this._onLeftIconButtonTouchTap = this._onLeftIconButtonTouchTap.bind(this);
   }
 
   getChildContext() {
@@ -40,8 +49,22 @@ class Master extends React.Component {
       },
       iconButton: {
         color: darkWhite
+      },
+      github: {
+        position: 'fixed',
+        right: '0px',
+        top: '0px',
+        zIndex: 5,
       }
     };
+  }
+
+  componentWillMount(){
+    let tabIndex =
+      this.context.router.isActive('get-started') ? 1 :
+      this.context.router.isActive('customization') ? 2 :
+      this.context.router.isActive('components') ? 3 : 0;
+    this.setState({tabIndex: tabIndex});
   }
 
   render() {
@@ -56,20 +79,22 @@ class Master extends React.Component {
         iconStyle={styles.iconButton}
         iconClassName="muidocs-icon-custom-github"
         href="https://github.com/callemall/material-ui"
-        linkButton={true} />
+        linkButton={true}
+        style={styles.github} />
+    );
+
+    let githubButton2 = (
+      <IconButton
+        iconStyle={styles.iconButton}
+        iconClassName="muidocs-icon-custom-github"
+        href="https://github.com/callemall/material-ui"
+        linkButton={true}/>
     );
 
     return (
       <AppCanvas>
-
-        <AppBar
-          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
-          title={title}
-          zDepth={0}
-          iconElementRight={githubButton}/>
-
-        <AppLeftNav ref="leftNav" />
-
+        {githubButton}
+        {this._getTabs()}
         <RouteHandler />
 
         <FullWidthSection style={styles.footer}>
@@ -77,17 +102,78 @@ class Master extends React.Component {
             Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
             awesome <a style={styles.a} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
           </p>
-          {githubButton}
+          {githubButton2}
         </FullWidthSection>
 
       </AppCanvas>
     );
   }
 
-  _onLeftIconButtonTouchTap() {
-    this.refs.leftNav.toggle();
+ _getTabs() {
+    let styles = {
+      root: {
+        backgroundColor: Colors.cyan500, 
+        position: 'fixed', 
+        height: '50px',
+        top: 0,
+        right: 0,
+        zIndex: 5,
+        width: '100%'
+
+      },
+      container: {
+        position: 'absolute',
+        right: '48px',
+        bottom: 0,
+        width: '500px',
+      },
+      inkBar: {
+        backgroundColor: Colors.yellow200,
+      },
+      tabs: {
+        width: '500px'
+      },
+      tab: {
+
+      }
+
+    };
+
+    return(
+      <Paper zDepth={this.state.tabIndex === 0 ? 0: 1} style={styles.root} >
+        <div style={styles.container}>
+          <Tabs onChange={this._onTabChange.bind(this)}
+                style={styles.tabs}
+                initialSelectedIndex={this.state.tabIndex}
+                inkBarStyles={styles.inkBar}> 
+            <Tab label="HOME" style={styles.tab} />
+            <Tab label="GETTING STARTED" style={styles.tab} />
+            <Tab label="CUSTOMIZATION" style={styles.tab}/>
+            <Tab label="COMPONENTS" style={styles.tab}/>
+          </Tabs>
+        </div>
+      </Paper>
+    );
+  }
+
+ _onTabChange (tabIndex, tab){
+      switch(tabIndex){
+        case 0:  
+          this.context.router.transitionTo('home');
+          break;
+        case 1:  
+          this.context.router.transitionTo('get-started');
+          break;
+        case 2:  
+          this.context.router.transitionTo('customization');
+          break;
+        case 3:  
+          this.context.router.transitionTo('components');
+        }
+        this.setState({tabIndex: tabIndex});
   }
 }
+
 
 Master.contextTypes = {
   router: React.PropTypes.func
