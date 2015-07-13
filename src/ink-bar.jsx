@@ -29,7 +29,7 @@ let InkBar = React.createClass({
       marginTop: -2,
       position: 'relative',
       transition: Transitions.easeOut('1s', 'left'),
-    });
+    }, this.props.style);
 
     return (
       <div style={styles}>
