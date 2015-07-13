@@ -13545,7 +13545,7 @@ var IconButtonsPage = (function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      var code = '//Method 1: muidocs-icon-github is defined in a style sheet.\n' + '<IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>\n\n' + '//Method 2: ActionGrade is a component created using mui.SvgIcon.\n' + '<IconButton tooltip="Star" touch={true}>\n' + '  <ActionGrade/>\n' + '</IconButton>\n\n' + '//Method 3: Manually creating a mui.FontIcon component within ' + 'IconButton\n' + '<IconButton tooltip="Sort" disabled={true}>\n' + '  <FontIcon className="muidocs-icon-custom-sort"/>\n' + '</IconButton>\n\n' + '//Method 4: Using Google material-icons\n' + ' <IconButton iconClassName="material-icons" tooltipAlignment="bottom-center" \n' + '  tooltip="Sky">settings_system_daydream</IconButton>';
+      var code = '//Method 1: muidocs-icon-github is defined in a style sheet.\n' + '<IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>\n\n' + '//Method 2: ActionGrade is a component created using mui.SvgIcon.\n' + '<IconButton tooltip="Star" touch={true}>\n' + '  <ActionGrade/>\n' + '</IconButton>\n\n' + '//Method 3: Manually creating a mui.FontIcon component within ' + 'IconButton\n' + '<IconButton tooltip="Sort" disabled={true}>\n' + '  <FontIcon className="muidocs-icon-custom-sort"/>\n' + '</IconButton>\n\n' + '//Method 4: Using Google material-icons\n' + ' <IconButton iconClassName="material-icons" tooltipPosition="bottom-center" \n' + '  tooltip="Sky">settings_system_daydream</IconButton>';
 
       var desc = React.createElement(
         'p',
@@ -13816,6 +13816,11 @@ var IconMenus = (function (_React$Component) {
           type: 'number',
           header: 'default: 200',
           desc: 'Sets the delay in milliseconds before closing the menu when an item is clicked.'
+        }, {
+          name: 'closeOnItemTouchTap',
+          type: 'bool',
+          header: 'optional',
+          desc: 'If false, menu will not be closed after tap (default: true).'
         }]
       }, {
         name: 'Events',
@@ -17116,6 +17121,11 @@ var TabsPage = (function (_React$Component) {
           type: 'number',
           header: 'optional',
           desc: 'Specify initial visible tab index. Initial selected index is set by default to 0. If initialSelectedIndex is set but larger than the total amount of specified tabs, initialSelectedIndex will revert back to default'
+        }, {
+          name: 'inkBarStyle',
+          type: 'object',
+          header: 'optional',
+          desc: 'Override the inline-styles of the InkBar.'
         }, {
           name: 'style',
           type: 'object',
@@ -46040,10 +46050,14 @@ var BeforeAfterWrapper = React.createClass({
     beforeStyle = AutoPrefix.all({ boxSizing: 'border-box' });
     afterStyle = AutoPrefix.all({ boxSizing: 'border-box' });
 
-    if (this.props.beforeStyle) beforeElement = React.createElement(this.props.beforeElementType, { style: this.mergeAndPrefix(beforeStyle, this.props.beforeStyle),
-      key: '::before' });
-    if (this.props.afterStyle) afterElement = React.createElement(this.props.afterElementType, { style: this.mergeAndPrefix(afterStyle, this.props.afterStyle),
-      key: '::after' });
+    if (this.props.beforeStyle) beforeElement = React.createElement(this.props.beforeElementType, {
+      style: this.mergeAndPrefix(beforeStyle, this.props.beforeStyle),
+      key: '::before'
+    });
+    if (this.props.afterStyle) afterElement = React.createElement(this.props.afterElementType, {
+      style: this.mergeAndPrefix(afterStyle, this.props.afterStyle),
+      key: '::after'
+    });
 
     var children = [beforeElement, this.props.children, afterElement];
 
@@ -46643,6 +46657,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react');
 var StylePropable = require('./mixins/style-propable');
+var AutoPrefix = require('./styles/auto-prefix');
 var Transitions = require('./styles/transitions');
 
 var CircularProgress = React.createClass({
@@ -46713,13 +46728,15 @@ var CircularProgress = React.createClass({
     if (!this.isMounted()) return;
     if (this.props.mode !== 'indeterminate') return;
 
-    wrapper.style.transform = null;
-    wrapper.style.transform = 'rotate(0deg)';
+    AutoPrefix.set(wrapper.style, 'transform', null);
+    AutoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
     wrapper.style.transitionDuration = '0ms';
 
     setTimeout(function () {
-      wrapper.style.transform = 'rotate(1800deg)';
+      AutoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
       wrapper.style.transitionDuration = '10s';
+      //wrapper.style.webkitTransitionTimingFunction = "linear";
+      AutoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
   },
 
@@ -46775,6 +46792,8 @@ var CircularProgress = React.createClass({
       }
     };
 
+    AutoPrefix.set(styles.wrapper, 'transitionTimingFunction', 'linear');
+
     if (this.props.mode === 'determinate') {
       var relVal = this._getRelativeValue();
       styles.path.transition = Transitions.create('all', '0.3s', null, 'linear');
@@ -46811,8 +46830,9 @@ var CircularProgress = React.createClass({
 });
 
 module.exports = CircularProgress;
+//webkitTransitionTimingFunction: "linear",
 
-},{"./mixins/style-propable":440,"./styles/transitions":462,"react":388}],401:[function(require,module,exports){
+},{"./mixins/style-propable":440,"./styles/auto-prefix":455,"./styles/transitions":462,"react":388}],401:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -48477,10 +48497,13 @@ module.exports = YearButton;
 },{"../enhanced-button":414,"../mixins/style-propable":440,"react":388}],411:[function(require,module,exports){
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 var React = require('react');
 var WindowListenable = require('./mixins/window-listenable');
 var CssEvent = require('./utils/css-event');
-var DOM = require('./utils/dom');
 var KeyCode = require('./utils/key-code');
 var Transitions = require('./styles/transitions');
 var StylePropable = require('./mixins/style-propable');
@@ -48530,9 +48553,14 @@ var TransitionItem = React.createClass({
   },
 
   render: function render() {
+    var _props = this.props;
+    var style = _props.style;
+
+    var other = _objectWithoutProperties(_props, ['style']);
+
     return React.createElement(
       'div',
-      { style: this.mergeAndPrefix(this.state.style, this.props.style) },
+      _extends({}, other, { style: this.mergeAndPrefix(this.state.style, style) }),
       this.props.children
     );
   }
@@ -48793,16 +48821,13 @@ var Dialog = React.createClass({
       var dialogWindow = this.refs.dialogWindow.getDOMNode();
       var dialogContent = this.refs.dialogContent.getDOMNode();
       var minPaddingTop = 16;
-      var dialogWindowHeight = undefined;
-      var paddingTop = undefined;
-      var maxDialogWindowHeight = undefined;
 
       //Reset the height in case the window was resized.
       dialogWindow.style.height = '';
       dialogContent.style.height = '';
 
-      dialogWindowHeight = dialogWindow.offsetHeight;
-      paddingTop = (clientHeight - dialogWindowHeight) / 2 - 64;
+      var dialogWindowHeight = dialogWindow.offsetHeight;
+      var paddingTop = (clientHeight - dialogWindowHeight) / 2 - 64;
       if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
 
       //Vertically center the dialog window, but make sure it doesn't
@@ -48812,36 +48837,15 @@ var Dialog = React.createClass({
       }
 
       // Force a height if the dialog is taller than clientHeight
-      maxDialogWindowHeight = clientHeight - 2 * paddingTop;
-      if ((this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) && dialogWindowHeight > maxDialogWindowHeight) {
-        dialogWindow.style.height = maxDialogWindowHeight + 'px';
+      if (this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) {
+        var styles = this.getStyles();
+        var maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + paddingTop + 64);
 
-        this._updateContentHeight();
+        if (this.props.title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
+        if (this.props.actions) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
+
+        dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
       }
-    }
-  },
-
-  _updateContentHeight: function _updateContentHeight() {
-    if (!this.props.autoScrollBodyContent) return;
-
-    var dialogWindow = this.refs.dialogWindow.getDOMNode();
-    var dialogContent = this.refs.dialogContent.getDOMNode();
-    var container = this.getDOMNode();
-    var containerOffset = DOM.getStyleAttributeAsNumber(container, 'paddingTop');
-    var dialogWindowHeight = dialogWindow.offsetHeight - containerOffset;
-    var dialogContentHeight = dialogContent.offsetHeight;
-
-    // If the content is taller than the window can hold, set the height so the content
-    // will scroll.
-    if (dialogContentHeight > dialogWindowHeight) {
-      var dialogContentPadding = DOM.getStyleAttributeAsNumber(dialogContent, 'paddingTop') + DOM.getStyleAttributeAsNumber(dialogContent, 'paddingBottom');
-      var contentHeight = dialogWindowHeight - dialogContentPadding;
-
-      if (this.props.title) contentHeight -= dialogContent.previousSibling.offsetHeight;
-      if (this.props.actions) contentHeight -= dialogContent.nextSibling.offsetHeight;
-
-      dialogContent.style.height = contentHeight + 'px';
-      dialogWindow.style.height = dialogWindowHeight + 'px';
     }
   },
 
@@ -48872,7 +48876,7 @@ var Dialog = React.createClass({
 
 module.exports = Dialog;
 
-},{"./flat-button":417,"./mixins/style-propable":440,"./mixins/window-listenable":442,"./overlay":443,"./paper":444,"./styles/transitions":462,"./utils/css-event":533,"./utils/dom":535,"./utils/key-code":539,"react":388}],412:[function(require,module,exports){
+},{"./flat-button":417,"./mixins/style-propable":440,"./mixins/window-listenable":442,"./overlay":443,"./paper":444,"./styles/transitions":462,"./utils/css-event":533,"./utils/key-code":539,"react":388}],412:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49098,7 +49102,7 @@ var DropDownMenu = React.createClass({
         transition: Transitions.easeOut(),
         position: 'relative',
         display: 'inline-block',
-        height: this.getSpacing().desktopToolbarHeight,
+        height: this.getSpacing().desktopSubheaderHeight,
         fontSize: this.getSpacing().desktopDropDownMenuFontSize,
         outline: 'none'
       },
@@ -49638,8 +49642,8 @@ var EnhancedSwitch = React.createClass({
   },
 
   windowListeners: {
-    'keydown': '_handleWindowKeydown',
-    'keyup': '_handleWindowKeyup'
+    keydown: '_handleWindowKeydown',
+    keyup: '_handleWindowKeyup'
   },
 
   getInitialState: function getInitialState() {
@@ -50885,7 +50889,7 @@ var InkBar = React.createClass({
       marginTop: -2,
       position: 'relative',
       transition: Transitions.easeOut('1s', 'left')
-    });
+    }, this.props.style);
 
     return React.createElement(
       'div',
@@ -51010,7 +51014,8 @@ var LeftNav = React.createClass({
       menu: {
         overflowY: 'auto',
         overflowX: 'hidden',
-        height: '100%'
+        height: '100%',
+        borderRadius: '0'
       },
       menuItem: {
         height: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight,
@@ -52544,7 +52549,9 @@ var Menu = React.createClass({
   },
 
   componentDidUpdate: function componentDidUpdate(prevProps) {
-    if (this.props.visible !== prevProps.visible) this._renderVisibility();
+    if (this.props.visible !== prevProps.visible || this.props.menuItems.length !== prevProps.menuItems.length) {
+      this._renderVisibility();
+    }
   },
 
   componentWillReceiveProps: function componentWillReceiveProps() {
@@ -53004,7 +53011,8 @@ var IconMenu = React.createClass({
     onMouseUp: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
-    touchTapCloseDelay: React.PropTypes.number
+    touchTapCloseDelay: React.PropTypes.number,
+    closeOnItemTouchTap: React.PropTypes.bool
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -53018,7 +53026,8 @@ var IconMenu = React.createClass({
       onMouseOver: function onMouseOver() {},
       onMouseUp: function onMouseUp() {},
       onTouchTap: function onTouchTap() {},
-      touchTapCloseDelay: 200
+      touchTapCloseDelay: 200,
+      closeOnItemTouchTap: true
     };
   },
 
@@ -53141,14 +53150,18 @@ var IconMenu = React.createClass({
   _handleItemTouchTap: function _handleItemTouchTap(e, child) {
     var _this3 = this;
 
-    var isKeyboard = Events.isKeyboard(e);
+    if (this.props.closeOnItemTouchTap) {
+      (function () {
+        var isKeyboard = Events.isKeyboard(e);
 
-    this._timeout = setTimeout(function () {
-      _this3.close(isKeyboard);
-    }, this.props.touchTapCloseDelay);
+        _this3._timeout = setTimeout(function () {
+          _this3.close(isKeyboard);
+        }, _this3.props.touchTapCloseDelay);
 
-    if (isKeyboard) {
-      this.refs[this.state.iconButtonRef].setKeyboardFocus();
+        if (isKeyboard) {
+          _this3.refs[_this3.state.iconButtonRef].setKeyboardFocus();
+        }
+      })();
     }
 
     this.props.onItemTouchTap(e, child);
@@ -55101,8 +55114,8 @@ var SelectField = React.createClass({
     errorText: React.PropTypes.string,
     floatingLabelText: React.PropTypes.string,
     selectFieldRoot: React.PropTypes.string,
-    underlineStyle: React.PropTypes.string,
-    labelStyle: React.PropTypes.string,
+    underlineStyle: React.PropTypes.object,
+    labelStyle: React.PropTypes.object,
     hintText: React.PropTypes.string,
     id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
@@ -55188,14 +55201,16 @@ var SelectField = React.createClass({
     var floatingLabelText = _props.floatingLabelText;
     var hintText = _props.hintText;
     var fullWidth = _props.fullWidth;
+    var errorText = _props.errorText;
 
-    var other = _objectWithoutProperties(_props, ['style', 'labelStyle', 'iconStyle', 'underlineStyle', 'selectFieldRoot', 'onChange', 'menuItems', 'disabled', 'floatingLabelText', 'hintText', 'fullWidth']);
+    var other = _objectWithoutProperties(_props, ['style', 'labelStyle', 'iconStyle', 'underlineStyle', 'selectFieldRoot', 'onChange', 'menuItems', 'disabled', 'floatingLabelText', 'hintText', 'fullWidth', 'errorText']);
 
     var textFieldProps = {
       style: this.mergeAndPrefix(styles.input, style),
       floatingLabelText: floatingLabelText,
       hintText: !hintText && !floatingLabelText ? ' ' : hintText,
-      fullWidth: fullWidth
+      fullWidth: fullWidth,
+      errorText: errorText
     };
     var dropDownMenuProps = {
       onChange: this.onChange,
@@ -57792,6 +57807,7 @@ var TableHeader = React.createClass({
     return {
       content: checkbox,
       style: {
+        width: 72,
         paddingLeft: 24,
         paddingRight: 24
       }
@@ -58053,6 +58069,7 @@ var TableRow = React.createClass({
     return {
       content: checkbox,
       style: {
+        width: 72,
         paddingLeft: 24,
         paddingRight: 24
       }
@@ -58613,7 +58630,8 @@ var Tabs = React.createClass({
     onActive: React.PropTypes.func,
     tabWidth: React.PropTypes.number,
     tabItemContainerStyle: React.PropTypes.object,
-    contentContainerStyle: React.PropTypes.object
+    contentContainerStyle: React.PropTypes.object,
+    inkBarStyle: React.PropTypes.object
   },
 
   getInitialState: function getInitialState() {
@@ -58715,7 +58733,7 @@ var Tabs = React.createClass({
         { style: this.mergeAndPrefix(styles.tabItemContainer, this.props.tabItemContainerStyle) },
         tabs
       ),
-      React.createElement(InkBar, { left: left, width: width }),
+      React.createElement(InkBar, { left: left, width: width, style: this.props.inkBarStyle }),
       React.createElement(
         'div',
         { style: this.mergeAndPrefix(this.props.contentContainerStyle) },
@@ -58991,7 +59009,7 @@ var TextField = React.createClass({
 
     var errorTextElement = this.state.errorText ? React.createElement(
       'div',
-      { style: this.mergeAndPrefix(styles.error) },
+      { style: this.mergeAndPrefix(styles.error, errorStyle) },
       this.state.errorText
     ) : null;
 
@@ -59635,7 +59653,7 @@ var ClockMinutes = React.createClass({
     var numbers = minutes.map(function (minute) {
       var isSelected = selectedMinutes === minute;
       if (isSelected) hasSelected = true;
-      return React.createElement(ClockNumber, { isSelected: isSelected, type: 'minute', value: minute });
+      return React.createElement(ClockNumber, { key: minute, isSelected: isSelected, type: 'minute', value: minute });
     });
 
     return {
@@ -61175,8 +61193,8 @@ var SlideInChild = React.createClass({
       position: 'absolute',
       height: '100%',
       width: '100%',
-      top: '0px',
-      left: '0px',
+      top: 0,
+      left: 0,
       transition: Transitions.easeOut()
     }, this.props.style);
 
