@@ -5,7 +5,7 @@ module.exports = {
   desktopGutterMore: 32,
   desktopGutterLess: 16,
   desktopGutterMini: 8,
-  desktopKeylineIncrement: 64,
+  desktopKeylineIncrement: 50,
   desktopDropDownMenuItemHeight: 32,
   desktopDropDownMenuFontSize: 15,
   desktopLeftNavMenuItemHeight: 48,

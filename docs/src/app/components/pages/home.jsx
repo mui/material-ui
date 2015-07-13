@@ -36,16 +36,16 @@ let HomePage = React.createClass({
     let styles = {
       root: {
         backgroundColor: Colors.cyan500,
-        overflow: 'hidden'
+        overflow: 'hidden',
       },
       svgLogo: {
         marginLeft: (window.innerWidth * 0.5) - 130 + 'px',
-        width: '420px'
+        width: 420,
       },
       tagline: {
         margin: '16px auto 0 auto',
         textAlign: 'center',
-        maxWidth: '575px'
+        maxWidth: 575,
       },
       label: {
         color: ThemeManager.palette.primary1Color,
@@ -62,27 +62,27 @@ let HomePage = React.createClass({
       },
       h2: {
         //.mui-font-style-title
-        fontSize: '20px',
+        fontSize: 20,
         lineHeight: '28px',
-        paddingTop: '19px',
-        marginBottom: '13px',
-        letterSpacing: '0',
+        paddingTop: 19,
+        marginBottom: 13,
+        letterSpacing: 0,
       },
       nowrap: {
         whiteSpace: 'nowrap'
       },
       taglineWhenLarge: {
-        marginTop: '32px'
+        marginTop: 32
       },
       h1WhenLarge: {
-        fontSize: '56px'
+        fontSize: 56
       },
       h2WhenLarge: {
         //.mui-font-style-headline;
-        fontSize: '24px',
+        fontSize: 24,
         lineHeight: '32px',
-        paddingTop: '16px',
-        marginBottom: '12px'
+        paddingTop: 16,
+        marginBottom: 12,
       }
     };
 
@@ -111,13 +111,6 @@ let HomePage = React.createClass({
               linkButton={true}
               style={styles.demoStyle}
               labelStyle={styles.label}/>
-            <RaisedButton
-              className="github-button"
-              label="GitHub"
-              linkButton={true}
-              href="https://github.com/callemall/material-ui"
-              style={styles.githubStyle}
-              labelStyle={styles.label}/>
           </div>
       </FullWidthSection>
     );
@@ -129,16 +122,16 @@ let HomePage = React.createClass({
         backgroundColor: Colors.grey200
       },
       content: {
-        maxWidth: '700px',
+        maxWidth: 700,
         padding: 0,
         margin: '0 auto',
         fontWeight: Typography.fontWeightLight,
-        fontSize: '20px',
+        fontSize: 20,
         lineHeight: '28px',
-        paddingTop: '19px',
-        marginBottom: '13px',
-        letterSpacing: '0',
-        color: Typography.textDarkBlack
+        paddingTop: 19,
+        marginBottom: 13,
+        letterSpacing: 0,
+        color: Typography.textDarkBlack,
       }
     };
 
@@ -170,13 +163,13 @@ let HomePage = React.createClass({
     let styles = {
       root: {
         backgroundColor: Colors.grey200,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       h3: {
-        margin: '0',
-        padding: '0',
+        margin: 0,
+        padding: 0,
         fontWeight: Typography.fontWeightLight,
-        fontSize: '22'
+        fontSize: 22,
       },
       button: {
         marginTop: 32
