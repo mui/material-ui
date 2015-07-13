@@ -1,7 +1,6 @@
 let React = require('react');
 let WindowListenable = require('./mixins/window-listenable');
 let CssEvent = require('./utils/css-event');
-let DOM = require('./utils/dom');
 let KeyCode = require('./utils/key-code');
 let Transitions = require('./styles/transitions');
 let StylePropable = require('./mixins/style-propable');
@@ -307,16 +306,13 @@ let Dialog = React.createClass({
       let dialogWindow = this.refs.dialogWindow.getDOMNode();
       let dialogContent = this.refs.dialogContent.getDOMNode();
       let minPaddingTop = 16;
-      let dialogWindowHeight;
-      let paddingTop;
-      let maxDialogWindowHeight;
 
       //Reset the height in case the window was resized.
       dialogWindow.style.height = '';
       dialogContent.style.height = '';
 
-      dialogWindowHeight = dialogWindow.offsetHeight;
-      paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 64;
+      let dialogWindowHeight = dialogWindow.offsetHeight;
+      let paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 64;
       if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
 
       //Vertically center the dialog window, but make sure it doesn't
@@ -326,38 +322,15 @@ let Dialog = React.createClass({
       }
 
       // Force a height if the dialog is taller than clientHeight
-      maxDialogWindowHeight = clientHeight - (2 * paddingTop);
-      if ((this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) &&
-        (dialogWindowHeight > maxDialogWindowHeight)) {
-        dialogWindow.style.height = maxDialogWindowHeight + 'px';
+      if (this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) {
+        let styles = this.getStyles();
+        let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + paddingTop + 64);
 
-        this._updateContentHeight();
+        if (this.props.title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
+        if (this.props.actions) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
+
+        dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
       }
-    }
-  },
-
-  _updateContentHeight() {
-    if (!this.props.autoScrollBodyContent) return;
-
-    let dialogWindow = this.refs.dialogWindow.getDOMNode();
-    let dialogContent = this.refs.dialogContent.getDOMNode();
-    let container = this.getDOMNode();
-    let containerOffset = DOM.getStyleAttributeAsNumber(container, 'paddingTop');
-    let dialogWindowHeight = dialogWindow.offsetHeight - containerOffset;
-    let dialogContentHeight = dialogContent.offsetHeight;
-
-    // If the content is taller than the window can hold, set the height so the content
-    // will scroll.
-    if (dialogContentHeight > dialogWindowHeight) {
-      let dialogContentPadding = DOM.getStyleAttributeAsNumber(dialogContent, 'paddingTop') +
-        DOM.getStyleAttributeAsNumber(dialogContent, 'paddingBottom');
-      let contentHeight = dialogWindowHeight - dialogContentPadding;
-
-      if (this.props.title) contentHeight -= dialogContent.previousSibling.offsetHeight;
-      if (this.props.actions) contentHeight -= dialogContent.nextSibling.offsetHeight;
-
-      dialogContent.style.height = contentHeight + 'px';
-      dialogWindow.style.height = dialogWindowHeight + 'px';
     }
   },
 
