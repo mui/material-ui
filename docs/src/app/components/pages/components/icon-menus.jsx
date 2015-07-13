@@ -109,6 +109,12 @@ class IconMenus extends React.Component {
             type: 'number',
             header: 'default: 200',
             desc: 'Sets the delay in milliseconds before closing the menu when an item is clicked.'
+          },
+          {
+            name: 'closeOnItemTouchTap',
+            type: 'bool',
+            header: 'optional',
+            desc: 'If false, menu will not be closed after tap (default: true).'
           }
         ]
       },
