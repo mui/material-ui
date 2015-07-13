@@ -47,7 +47,7 @@ let IconMenu = React.createClass({
       onMouseUp: () => {},
       onTouchTap: () => {},
       touchTapCloseDelay: 200,
-      closeOnItemTouchTap: true
+      closeOnItemTouchTap: true,
     };
   },
 
