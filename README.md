@@ -73,7 +73,7 @@ module.exports = MyAwesomeReactComponent;
 
 ### Theme
 
-**Please note that since v0.8.0, you also need to define a theme for components to start working.** For instrucitons on implementing and using themes, visit our [documentation](http://material-ui.com/#/customization/themes).
+**Please note that since v0.8.0, you also need to define a theme for components to start working.** For instructions on implementing and using themes, visit our [documentation](http://material-ui.com/#/customization/themes).
 
 ## Customization
 
