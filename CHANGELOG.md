@@ -6,6 +6,10 @@
 - Buttons now default to a type of `button` instead of the browser's default of `submit`. We found that
   most of the buttons in our apps were not submit buttons and it was more intuitive to default to `button`.
   If you need a submit button, be sure to pass in a type of `submit`. (#1017)
+- The `DialogWindow` component was refactored into `Dialog`. `DialogWindow` was never documented and was just
+  a lower level component that was used by `Dialog`. It was, however, exposed on the main `index.js` and has
+  since been removed. If you were using `DialogWindow` before, you should be able to safely use
+  `Dialog` instead.
 
 ##### New Components
 - SvgIcons & Icon Builder
