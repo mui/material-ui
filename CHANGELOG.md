@@ -1,3 +1,21 @@
+## 0.10.1
+###### _Jul 13, 2015_
+
+##### Component Fixes / Enhancements
+- CircularProgress - Fixed animation bug in Safari (#1093, #863)
+- Dialog
+  - `contentClassName` is now being passed down to the appropriate child (#1122)
+  - Fixed max height on vertically scrollable dialogs (#1153, #1100)
+- DropDownMenu
+  - Fixed display height (#1123)
+  - Fixed display height when menu items change (#1145)
+- IconMenu - Added `closeOnItemTouchTap` prop (#1156)
+- LeftNav - Performance improvements during show/hide (#1137)
+- SelectField - `errorText` is now being passed down to underlying `textField` (#1131)
+- Table - Added static width to checkbox columns (#1128)
+- Tabs - Added `inkBarStyle` prop (#1154)
+- TextField - `errorStyle` prop is now being properly merged (#1116)
+
 ## 0.10.0
 ###### _Jul 9, 2015_
 
