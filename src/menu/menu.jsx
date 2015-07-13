@@ -248,7 +248,9 @@ var Menu = React.createClass({
   },
 
   componentDidUpdate(prevProps) {
-    if (this.props.visible !== prevProps.visible) this._renderVisibility();
+    if (this.props.visible !== prevProps.visible || this.props.menuItems.length !== prevProps.menuItems.length) {
+      this._renderVisibility();
+    }
   },
 
   componentWillReceiveProps() {
