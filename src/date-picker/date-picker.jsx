@@ -57,6 +57,7 @@ let DatePicker = React.createClass({
   render() {
     let {
       autoOk,
+      defaultDate,
       formatDate,
       maxDate,
       minDate,
@@ -72,8 +73,13 @@ let DatePicker = React.createClass({
     } = this.props;
     let defaultInputValue;
 
-    if (this.props.defaultDate) {
-      defaultInputValue = this.props.formatDate(this.props.defaultDate);
+    if (defaultDate) {
+      defaultInputValue = formatDate(defaultDate);
+    }
+
+    // Format the date of controlled inputs
+    if (other.value) {
+      other.value = formatDate(other.value);
     }
 
     return (
