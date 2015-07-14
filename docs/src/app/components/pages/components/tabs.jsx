@@ -72,6 +72,12 @@ class TabsPage extends React.Component {
         name: 'Tabs Props',
         infoArray: [
           {
+            name: 'contentContainerStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the content\'s container.'
+          },
+          {
             name: 'initialSelectedIndex',
             type: 'number',
             header: 'optional',
@@ -96,17 +102,17 @@ class TabsPage extends React.Component {
             desc: 'Override the inline-styles of the tab-labels container.'
           },
           {
-            name: 'contentContainerStyle',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of the content\'s container.'
-          },
-          {
             name: 'tabWidth',
             type: 'number',
             header: 'optional',
             desc: 'Specifiy tabWidth to set each tab to a set number of pixels. Tab Width is set by default to an even distribution of the parent Tabs container. If tabWidth is set but the total width of all tabs is greater than the container, tabWidth will revert back to default'
-          }
+          },
+          {
+            name: 'unSelect',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Toggle whether tabs can be selected or not.'
+          },
         ]
       },
       {
