@@ -54,7 +54,7 @@ let Menu = React.createClass({
   },
 
   getInitialState() {
-    let selectedIndex = this._getSelectedIndex();
+    let selectedIndex = this._getSelectedIndex(this.props);
 
     return {
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
@@ -67,14 +67,21 @@ let Menu = React.createClass({
   componentDidAppear() {
     this.setState({
       componentEntered: true,
-    }, this._setScollPosition);
+    });
   },
 
   componentDidEnter() {
-    this.componentDidAppear();
+    this.setState({
+      componentEntered: true,
+    });
   },
 
   componentDidMount() {
+    if (this.props.autoWidth) this._setWidth();
+    this._setScollPosition();
+  },
+
+  componentDidUpdate() {
     if (this.props.autoWidth) this._setWidth();
   },
 
@@ -86,6 +93,15 @@ let Menu = React.createClass({
     rootStyle.opacity = 0;
 
     setTimeout(callback, 250);
+  },
+
+  componentWillReceiveProps(nextProps) {
+    let selectedIndex = this._getSelectedIndex(nextProps);
+
+    this.setState({
+      focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
+      keyWidth: nextProps.desktop ? 64 : 56,
+    });
   },
 
   render() {
@@ -224,7 +240,7 @@ let Menu = React.createClass({
       selectedMenuItemStyle,
     } = this.props;
 
-    let selected = this._isChildSelected(child);
+    let selected = this._isChildSelected(child, this.props);
     let selectedChildrenStyles = {};
 
     if (selected) {
@@ -302,17 +318,17 @@ let Menu = React.createClass({
     return menuItemCount;
   },
 
-  _getSelectedIndex() {
+  _getSelectedIndex(props) {
     let {
       children,
-    } = this.props;
+    } = props;
     let selectedIndex = -1;
     let menuItemIndex = 0;
 
     React.Children.forEach(children, (child) => {
       let childIsADivider = child.type.displayName === 'MenuDivider';
 
-      if (this._isChildSelected(child)) selectedIndex = menuItemIndex;
+      if (this._isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;
     }.bind(this));
 
@@ -358,7 +374,6 @@ let Menu = React.createClass({
         update(menuValue, {$splice: [[index, 1]]});
 
       valueLink.requestChange(e, newMenuValue);
-
     }
     else if (!multiple && itemValue !== menuValue) {
       valueLink.requestChange(e, itemValue);
@@ -377,9 +392,9 @@ let Menu = React.createClass({
     this._setFocusIndex(index, true);
   },
 
-  _isChildSelected(child) {
-    let multiple = this.props.multiple;
-    let menuValue = this.getValueLink(this.props).value;
+  _isChildSelected(child, props) {
+    let multiple = props.multiple;
+    let menuValue = this.getValueLink(props).value;
     let childValue = child.props.value;
 
     return (multiple && menuValue.length && menuValue.indexOf(childValue) !== -1) ||
