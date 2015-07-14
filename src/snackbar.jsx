@@ -101,6 +101,13 @@ let Snackbar = React.createClass({
         backgroundColor: 'transparent',
         textTransform: 'none'
       },
+      separator: {
+        order:2, 
+        borderRight: '1px solid #888', 
+        marginLeft: '20px', 
+        marginTop: '10px', 
+        marginBottom: '10px'
+      },
       rootWhenOpen: {
         left: '0px',
         opacity: 1,
@@ -135,7 +142,7 @@ let Snackbar = React.createClass({
     return (
       <span style={rootStyles}>
           <span style={{order:1}}>{this.props.message}</span>
-          <span style={{order:2, borderRight: '1px solid #888', marginLeft: '20px', marginTop: '10px', marginBottom: '10px'}}></span>
+          <span style={styles.separator}></span>
           {action}
           <IconButton style={{order:4}} onTouchTap={this.dismiss}><NavigationClose /></IconButton>
       </span>
