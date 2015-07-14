@@ -111,7 +111,9 @@ let DatePicker = React.createClass({
     this.setState({
       date: d,
     });
-    this.refs.input.setValue(this.props.formatDate(d));
+    if (!this.refs.input._isControlled()) {
+      this.refs.input.setValue(this.props.formatDate(d));
+    }
   },
 
   _handleDialogAccept(d) {
