@@ -94,6 +94,7 @@ let RaisedButton = React.createClass({
     let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
     let styles = {
       root: {
+        backgroundColor: 'none',
         display: 'inline-block',
         minWidth: this.props.fullWidth ? '100%' : this.getThemeButton().minWidth,
         height: this.getThemeButton().height,
