@@ -1,4 +1,5 @@
 let React = require('react/addons');
+let PropTypes = require('../utils/prop-types');
 let StylePropable = require('../mixins/style-propable');
 let Typography = require('../styles/typography');
 let Paper = require('../paper');
@@ -16,7 +17,7 @@ let List = React.createClass({
     insetSubheader: React.PropTypes.bool,
     subheader: React.PropTypes.string,
     subheaderStyle: React.PropTypes.object,
-    zDepth: React.PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
+    zDepth: PropTypes.zDepth,
   },
 
   getDefaultProps() {

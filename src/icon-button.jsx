@@ -1,6 +1,7 @@
 let React = require('react');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
+let PropTypes = require('./utils/prop-types');
 let EnhancedButton = require('./enhanced-button');
 let FontIcon = require('./font-icon');
 let Tooltip = require('./tooltip');
@@ -25,14 +26,7 @@ let IconButton = React.createClass({
     onKeyboardFocus: React.PropTypes.func,
     tooltip: React.PropTypes.string,
     tooltipStyles: React.PropTypes.object,
-    tooltipPosition: React.PropTypes.oneOf([
-      'bottom-center',
-      'bottom-left',
-      'bottom-right',
-      'top-center',
-      'top-left',
-      'top-right',
-    ]),
+    tooltipPosition: PropTypes.cornersAndCenter,
     touch: React.PropTypes.bool,
   },
 

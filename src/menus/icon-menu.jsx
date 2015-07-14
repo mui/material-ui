@@ -3,6 +3,7 @@ let ReactTransitionGroup = React.addons.TransitionGroup;
 let ClickAwayable = require('../mixins/click-awayable');
 let StylePropable = require('../mixins/style-propable');
 let Events = require('../utils/events');
+let PropTypes = require('../utils/prop-types');
 let Menu = require('../menus/menu');
 
 
@@ -17,12 +18,7 @@ let IconMenu = React.createClass({
   propTypes: {
     closeOnItemTouchTap: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
-    openDirection: React.PropTypes.oneOf([
-      'bottom-left',
-      'bottom-right',
-      'top-left',
-      'top-right',
-    ]),
+    openDirection: PropTypes.corners,
     onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,

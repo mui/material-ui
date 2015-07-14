@@ -1,5 +1,6 @@
 let React = require('react');
 let StylePropable = require('./mixins/style-propable');
+let PropTypes = require('./utils/prop-types');
 let Transitions = require('./styles/transitions');
 
 
@@ -15,7 +16,7 @@ let Paper = React.createClass({
     circle: React.PropTypes.bool,
     rounded: React.PropTypes.bool,
     transitionEnabled: React.PropTypes.bool,
-    zDepth: React.PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
+    zDepth: PropTypes.zDepth,
   },
 
   getDefaultProps() {

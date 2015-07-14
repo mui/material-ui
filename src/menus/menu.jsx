@@ -5,6 +5,7 @@ let StylePropable = require('../mixins/style-propable');
 let AutoPrefix = require('../styles/auto-prefix');
 let Transitions = require('../styles/transitions');
 let KeyCode = require('../utils/key-code');
+let PropTypes = require('../utils/prop-types');
 let List = require('../lists/list');
 let Paper = require('../paper');
 
@@ -27,18 +28,10 @@ let Menu = React.createClass({
     onEscKeyDown: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
-    openDirection: React.PropTypes.oneOf([
-      'bottom-left',
-      'bottom-right',
-      'top-left',
-      'top-right',
-    ]),
+    openDirection: PropTypes.corners,
     selectedMenuItemStyle: React.PropTypes.object,
-    width: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
-    ]),
-    zDepth: React.PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
+    width: PropTypes.stringOrNumber,
+    zDepth: PropTypes.zDepth,
   },
 
   getDefaultProps() {
