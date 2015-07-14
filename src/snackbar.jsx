@@ -78,13 +78,15 @@ let Snackbar = React.createClass({
         bottom: this.getSpacing().desktopGutter,
         marginLeft: this.getSpacing().desktopGutter,
 
-        left: -10000,
+        left: 0,
         opacity: 0,
+        visibility: 'hidden',
         transform: 'translate3d(0, 20px, 0)',
         transition:
           Transitions.easeOut('0ms', 'left', '400ms') + ',' +
           Transitions.easeOut('400ms', 'opacity') + ',' +
-          Transitions.easeOut('400ms', 'transform'),
+          Transitions.easeOut('400ms', 'transform') + ',' +
+          Transitions.easeOut('400ms', 'visibility'),
       },
       action: {
         color: this.getTheme().actionColor,
@@ -95,13 +97,14 @@ let Snackbar = React.createClass({
         backgroundColor: 'transparent',
       },
       rootWhenOpen: {
-        left: '0px',
         opacity: 1,
+        visibility: 'visible',
         transform: 'translate3d(0, 0, 0)',
         transition:
           Transitions.easeOut('0ms', 'left', '0ms') + ',' +
           Transitions.easeOut('400ms', 'opacity', '0ms') + ',' +
-          Transitions.easeOut('400ms', 'transform', '0ms'),
+          Transitions.easeOut('400ms', 'transform', '0ms') + ',' +
+          Transitions.easeOut('400ms', 'visibility', '0ms'),
       },
     };
 
