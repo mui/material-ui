@@ -3,7 +3,7 @@
 let React = require('react');
 let mui = require('material-ui');
 let RaisedButton = mui.RaisedButton;
-let Dialog = mui.Dialog
+let Dialog = mui.Dialog;
 let ThemeManager = new mui.Styles.ThemeManager();
 let Colors = mui.Styles.Colors;
 
@@ -44,7 +44,7 @@ let Main = React.createClass({
           ref="superSecretPasswordDialog">
           1-2-3-4-5
         </Dialog>
-        
+
         <h1>material-ui</h1>
         <h2>example project</h2>
 
