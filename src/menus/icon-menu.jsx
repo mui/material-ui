@@ -19,7 +19,6 @@ let IconMenu = React.createClass({
     closeOnItemTouchTap: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
     openDirection: PropTypes.corners,
-    onItemKeyboardActivate: React.PropTypes.func,
     onItemTouchTap: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
     onMouseDown: React.PropTypes.func,
@@ -35,7 +34,6 @@ let IconMenu = React.createClass({
     return {
       closeOnItemTouchTap: true,
       openDirection: 'bottom-left',
-      onItemKeyboardActivate: () => {},
       onItemTouchTap: () => {},
       onKeyboardFocus: () => {},
       onMouseDown: () => {},
