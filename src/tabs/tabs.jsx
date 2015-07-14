@@ -20,6 +20,7 @@ let Tabs = React.createClass({
     tabItemContainerStyle: React.PropTypes.object,
     contentContainerStyle: React.PropTypes.object,
     inkBarStyle: React.PropTypes.object,
+    unSelect: React.PropTypes.bool,
   },
 
   getInitialState(){
@@ -27,9 +28,8 @@ let Tabs = React.createClass({
     if (this.props.initialSelectedIndex && this.props.initialSelectedIndex < this.getTabCount()) {
       selectedIndex = this.props.initialSelectedIndex;
     }
-    return {
-      selectedIndex: selectedIndex,
-    };
+    if(this.props.unSelect) selectedIndex= null;
+    return {selectedIndex: selectedIndex};
   },
 
   getEvenWidth(){
@@ -62,7 +62,7 @@ let Tabs = React.createClass({
       this.props.onChange(tabIndex, tab);
     }
 
-    this.setState({selectedIndex: tabIndex});
+    this.setState({selectedIndex: this.props.unSelect ? null: tabIndex});
     //default CB is _onActive. Can be updated in tab.jsx
     if (tab.props.onActive) tab.props.onActive(tab);
   },
@@ -119,13 +119,15 @@ let Tabs = React.createClass({
               type + ' as child number ' + (index + 1) + ' of Tabs';
       }
     }, this);
+    let inkBar = this.state.selectedIndex !== null ? 
+      (<InkBar left={left} width={width} style={this.props.inkBarStyle}/>): null;
 
     return (
       <div style={this.mergeAndPrefix(this.props.style)}>
         <div style={this.mergeAndPrefix(styles.tabItemContainer, this.props.tabItemContainerStyle)}>
           {tabs}
         </div>
-        <InkBar left={left} width={width} style={this.props.inkBarStyle}/>
+        {inkBar}
         <div style={this.mergeAndPrefix(this.props.contentContainerStyle)}>
           {tabContent}
         </div>
