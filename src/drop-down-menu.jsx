@@ -1,7 +1,6 @@
 let React = require('react');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
-let ClickAwayable = require('./mixins/click-awayable');
 let KeyCode = require('./utils/key-code');
 let DropDownArrow = require('./svg-icons/navigation/arrow-drop-down');
 let Paper = require('./paper');
@@ -11,7 +10,7 @@ let ClearFix = require('./clearfix');
 
 let DropDownMenu = React.createClass({
 
-  mixins: [StylePropable, ClickAwayable],
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -37,8 +36,8 @@ let DropDownMenu = React.createClass({
   getDefaultProps() {
     return {
       autoWidth: true,
-      valueMember:'payload',
-      displayMember:'text',
+      valueMember: 'payload',
+      displayMember: 'text',
     };
   },
 
@@ -49,10 +48,6 @@ let DropDownMenu = React.createClass({
       selectedIndex: (this.props.hasOwnProperty('value') ||
         this.props.hasOwnProperty('valueLink')) ? null : (this.props.selectedIndex || 0),
     };
-  },
-
-  componentClickAway() {
-    this.setState({open:false});
   },
 
   componentDidMount() {
@@ -70,15 +65,9 @@ let DropDownMenu = React.createClass({
     }
   },
 
-  getSpacing() {
-    return this.context.muiTheme.spacing;
-  },
-
-  getTextColor() {
-    return this.context.muiTheme.palette.textColor;
-  },
-
   getStyles(){
+    let zIndex = 5; // As AppBar
+    let spacing = this.context.muiTheme.spacing;
     let accentColor = this.context.muiTheme.component.dropDownMenu.accentColor;
     let backgroundColor = this.context.muiTheme.component.menu.backgroundColor;
     let styles = {
@@ -86,9 +75,9 @@ let DropDownMenu = React.createClass({
         transition: Transitions.easeOut(),
         position: 'relative',
         display: 'inline-block',
-        height: this.getSpacing().desktopSubheaderHeight,
-        fontSize: this.getSpacing().desktopDropDownMenuFontSize,
-        outline:'none',
+        height: spacing.desktopSubheaderHeight,
+        fontSize: spacing.desktopDropDownMenuFontSize,
+        outline: 'none',
       },
       control: {
         cursor: 'pointer',
@@ -100,33 +89,36 @@ let DropDownMenu = React.createClass({
         backgroundColor: backgroundColor,
         height: '100%',
         width: '100%',
-        opacity:0,
+        opacity: 0,
       },
       icon: {
         position: 'absolute',
-        top: ((this.getSpacing().desktopToolbarHeight - 24) / 2),
-        right: this.getSpacing().desktopGutterLess,
+        top: ((spacing.desktopToolbarHeight - 24) / 2),
+        right: spacing.desktopGutterLess,
         fill: this.context.muiTheme.component.dropDownMenu.accentColor,
       },
       label: {
         transition: Transitions.easeOut(),
-        lineHeight: this.getSpacing().desktopToolbarHeight + 'px',
+        lineHeight: spacing.desktopToolbarHeight + 'px',
         position: 'absolute',
-        paddingLeft: this.getSpacing().desktopGutter,
+        paddingLeft: spacing.desktopGutter,
         top: 0,
         opacity: 1,
-        color: this.getTextColor(),
+        color: this.context.muiTheme.palette.textColor,
       },
       underline: {
         borderTop: 'solid 1px ' + accentColor,
-        margin: '-1px ' + this.getSpacing().desktopGutter + 'px',
+        margin: '-1px ' + spacing.desktopGutter + 'px',
+      },
+      menu: {
+        zIndex: zIndex + 1,
       },
       menuItem: {
-        paddingRight: this.getSpacing().iconSize +
-                      this.getSpacing().desktopGutterLess +
-                      this.getSpacing().desktopGutterMini,
-        height: this.getSpacing().desktopDropDownMenuItemHeight,
-        lineHeight: this.getSpacing().desktopDropDownMenuItemHeight + 'px',
+        paddingRight: spacing.iconSize +
+                      spacing.desktopGutterLess +
+                      spacing.desktopGutterMini,
+        height: spacing.desktopDropDownMenuItemHeight,
+        lineHeight: spacing.desktopDropDownMenuItemHeight + 'px',
         whiteSpace: 'nowrap',
       },
       rootWhenOpen: {
@@ -134,7 +126,15 @@ let DropDownMenu = React.createClass({
       },
       labelWhenOpen: {
         opacity: 0,
-        top: this.getSpacing().desktopToolbarHeight / 2,
+        top: spacing.desktopToolbarHeight / 2,
+      },
+      overlay: {
+        height: '100%',
+        width: '100%',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: zIndex,
       },
     };
 
@@ -211,11 +211,13 @@ let DropDownMenu = React.createClass({
             autoWidth={this.props.autoWidth}
             selectedIndex={selectedIndex}
             menuItems={menuItems}
+            style={styles.menu}
             menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.menuItemStyle)}
             hideable={true}
             visible={this.state.open}
             onRequestClose={this._onMenuRequestClose}
             onItemTap={this._onMenuItemClick} />
+          {this.state.open && <div style={styles.overlay} onTouchTap={this._onTouchTapOverlay} />}
       </div>
     );
   },
@@ -316,6 +318,12 @@ let DropDownMenu = React.createClass({
 
   _selectNextItem() {
     this.setState({selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1)});
+  },
+
+  _onTouchTapOverlay() {
+    this.setState({
+      open: false,
+    });
   },
 
 });

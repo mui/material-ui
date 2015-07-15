@@ -15,13 +15,13 @@ module.exports = {
     this._unbindClickAway();
   },
 
-  _checkClickAway(e) {
+  _checkClickAway(event) {
     let el = React.findDOMNode(this);
 
     // Check if the target is inside the current component
-    if (e.target !== el &&
-        !Dom.isDescendant(el, e.target) &&
-        document.documentElement.contains(e.target)) {
+    if (event.target !== el &&
+        !Dom.isDescendant(el, event.target) &&
+        document.documentElement.contains(event.target)) {
       if (this.componentClickAway) this.componentClickAway();
     }
   },
