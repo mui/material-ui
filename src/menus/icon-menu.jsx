@@ -54,8 +54,7 @@ let IconMenu = React.createClass({
   },
 
   componentWillUnmount() {
-    if (this._timeout)
-      clearTimeout(this._timeout);
+    if (this._timeout) clearTimeout(this._timeout);
   },
 
   componentClickAway() {
@@ -64,6 +63,7 @@ let IconMenu = React.createClass({
 
   render() {
     let {
+      closeOnItemTouchTap,
       iconButtonElement,
       openDirection,
       onItemTouchTap,
@@ -112,7 +112,7 @@ let IconMenu = React.createClass({
       <Menu
         {...other}
         initiallyKeyboardFocused={this.state.menuInitiallyKeyboardFocused}
-        onEscKeyDown={this.close}
+        onEscKeyDown={this._handleMenuEscKeyDown}
         onItemTouchTap={this._handleItemTouchTap}
         openDirection={openDirection}
         style={mergedMenuStyles}>
@@ -141,6 +141,7 @@ let IconMenu = React.createClass({
         if (isKeyboard) {
           let iconButton = this.refs[this.state.iconButtonRef];
           React.findDOMNode(iconButton).focus();
+          iconButton.setKeyboardFocus();
         }
       });
     }
@@ -163,14 +164,15 @@ let IconMenu = React.createClass({
       this._timeout = setTimeout(() => {
         this.close(isKeyboard);
       }, this.props.touchTapCloseDelay);
-
-      if (isKeyboard) {
-        this.refs[this.state.iconButtonRef].setKeyboardFocus();
-      }
     }
 
     this.props.onItemTouchTap(e, child);
   },
+
+  _handleMenuEscKeyDown() {
+    this.close(true);
+  },
+
 });
 
 module.exports = IconMenu;
