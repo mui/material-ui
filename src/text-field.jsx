@@ -125,7 +125,8 @@ let TextField = React.createClass({
         bottom: 12,
       },
       input: {
-        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+        tapHighlightColor: 'rgba(0,0,0,0)',
+        padding: 0,
         position: 'relative',
         width: '100%',
         height: '100%',
