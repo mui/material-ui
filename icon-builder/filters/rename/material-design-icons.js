@@ -1,14 +1,18 @@
-function myFilter(fileName, fileSuffix) {
-  if (fileSuffix && fileName.indexOf(fileSuffix, fileName.length - fileSuffix.length) !== -1) {
-    fileName = fileName.replace(fileSuffix, '.jsx');
-    fileName = fileName.slice(3);
-    fileName = fileName.replace(/_/g, '-');
+function myDestRewriter(pathObj, innerPath, options) {
+  var path = require('path');
+  var fileName = pathObj.base;
 
-    if (fileName.indexOf('3d') === 0) {
-      fileName = 'three-d' + fileName.slice(2);
-    }
-    return fileName;
+  var rewrittenInnerPath = innerPath.replace('/svg/production', '');
+
+  fileName = fileName.replace('_24px.svg', '.jsx');
+  fileName = fileName.slice(3);
+  fileName = fileName.replace(/_/g, '-');
+
+  if (fileName.indexOf('3d') === 0) {
+    fileName = 'three-d' + fileName.slice(2);
   }
+
+  return path.join(rewrittenInnerPath, fileName);
 }
 
-module.exports = myFilter; 
+module.exports = myDestRewriter; 
