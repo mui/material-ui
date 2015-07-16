@@ -29,6 +29,7 @@
   "devDependencies": {
     "babel": "^5.6.1",
     "chai": "^3.0.0",
+    "glob": "^5.0.14",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1",
