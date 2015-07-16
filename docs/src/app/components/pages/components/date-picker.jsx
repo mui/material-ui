@@ -18,7 +18,8 @@ class DatePickerPage extends React.Component {
       minDate: minDate,
       maxDate: maxDate,
       autoOk: false,
-      showYearSelector: false
+      showYearSelector: false,
+      controlledDate: new Date('2015/07/15')
     };
   }
 
@@ -31,7 +32,12 @@ class DatePickerPage extends React.Component {
       '//Landscape Dialog\n' +
       '<DatePicker\n' +
       '  hintText="Landscape Dialog"\n' +
-      '  mode="landscape"/>\n\n'+
+      '  mode="landscape"/>\n\n' +
+      '//Controlled Input\n' +
+      '<DatePicker\n' +
+      '  hintText="Controlled Date Input"\n' +
+      '  value={this.state.controlledDate}\n' +
+      '  onChange={this._handleChange} />\n\n' +
       '// Ranged Date Picker\n' +
       '<DatePicker\n' +
       '  hintText="Ranged Date Picker"\n' +
@@ -132,6 +138,19 @@ class DatePickerPage extends React.Component {
             desc: 'Sets the date value to d, where d is a date object.'
           }
         ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
+          {
+            name: 'onChange',
+            header: 'function(nill, date)',
+            desc: 'Callback function that is fired when the date value ' +
+            'changes. Since there is no particular event associated with ' +
+            'the change the first argument will always be null and the second ' +
+            'argument will be the new Date instance.'
+          },
+        ]
       }
     ];
 
@@ -152,6 +171,11 @@ class DatePickerPage extends React.Component {
         <DatePicker
           hintText="Landscape Dialog"
           mode="landscape" />
+
+        <DatePicker
+          hintText="Controlled Date Input"
+          value={this.state.controlledDate}
+          onChange={this._handleChange.bind(this)} />
 
         <DatePicker
           hintText="Ranged Date Picker"
@@ -207,6 +231,9 @@ class DatePickerPage extends React.Component {
     this.setState(state);
   }
 
+  _handleChange(nill, date) {
+    this.setState({controlledDate: date});
+  }
 }
 
 module.exports = DatePickerPage;

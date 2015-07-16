@@ -57,6 +57,7 @@ let DatePicker = React.createClass({
   render() {
     let {
       autoOk,
+      defaultDate,
       formatDate,
       maxDate,
       minDate,
@@ -72,8 +73,13 @@ let DatePicker = React.createClass({
     } = this.props;
     let defaultInputValue;
 
-    if (this.props.defaultDate) {
-      defaultInputValue = this.props.formatDate(this.props.defaultDate);
+    if (defaultDate) {
+      defaultInputValue = formatDate(defaultDate);
+    }
+
+    // Format the date of controlled inputs
+    if (other.value) {
+      other.value = formatDate(other.value);
     }
 
     return (
@@ -111,7 +117,9 @@ let DatePicker = React.createClass({
     this.setState({
       date: d,
     });
-    this.refs.input.setValue(this.props.formatDate(d));
+    if (!this._isControlled()) {
+      this.refs.input.setValue(this.props.formatDate(d));
+    }
   },
 
   _handleDialogAccept(d) {
@@ -139,6 +147,11 @@ let DatePicker = React.createClass({
 
   _handleWindowKeyUp() {
     //TO DO: open the dialog if input has focus
+  },
+
+  _isControlled() {
+    return this.props.hasOwnProperty('value') ||
+      this.props.hasOwnProperty('valueLink');
   },
 
 });
