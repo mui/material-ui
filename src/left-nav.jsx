@@ -43,9 +43,13 @@ let LeftNav = React.createClass({
   },
 
   getInitialState() {
+    this._maybeSwiping = false;
+    this._touchStartX = null;
+    this._touchStartY = null;
+    this._swipeStartX = null;
+
     return {
       open: this.props.docked,
-      maybeSwiping: false,
       swiping: null,
     };
   },
@@ -240,11 +244,10 @@ let LeftNav = React.createClass({
 
     let touchStartX = e.touches[0].pageX;
     let touchStartY = e.touches[0].pageY;
-    this.setState({
-      maybeSwiping: true,
-      touchStartX: touchStartX,
-      touchStartY: touchStartY,
-    });
+
+    this._maybeSwiping = true;
+    this._touchStartX = touchStartX;
+    this._touchStartY = touchStartY;
 
     document.body.addEventListener('touchmove', this._onBodyTouchMove);
     document.body.addEventListener('touchend', this._onBodyTouchEnd);
@@ -262,8 +265,8 @@ let LeftNav = React.createClass({
     return Math.min(
              Math.max(
                this.state.swiping === 'closing' ?
-                 this._getTranslateMultiplier() * (currentX - this.state.swipeStartX) :
-                 this._getMaxTranslateX() - this._getTranslateMultiplier() * (this.state.swipeStartX - currentX),
+                 this._getTranslateMultiplier() * (currentX - this._swipeStartX) :
+                 this._getMaxTranslateX() - this._getTranslateMultiplier() * (this._swipeStartX - currentX),
                0
              ),
              this._getMaxTranslateX()
@@ -278,19 +281,19 @@ let LeftNav = React.createClass({
       e.preventDefault();
       this._setPosition(this._getTranslateX(currentX));
     }
-    else if (this.state.maybeSwiping) {
-      let dXAbs = Math.abs(currentX - this.state.touchStartX);
-      let dYAbs = Math.abs(currentY - this.state.touchStartY);
+    else if (this._maybeSwiping) {
+      let dXAbs = Math.abs(currentX - this._touchStartX);
+      let dYAbs = Math.abs(currentY - this._touchStartY);
       // If the user has moved his thumb ten pixels in either direction,
       // we can safely make an assumption about whether he was intending
       // to swipe or scroll.
       let threshold = 10;
 
       if (dXAbs > threshold && dYAbs <= threshold) {
+        this._swipeStartX = currentX;
         this.setState({
           swiping: this.state.open ? 'closing' : 'opening',
           open: true,
-          swipeStartX: currentX,
         });
         this._setPosition(this._getTranslateX(currentX));
       }
@@ -305,8 +308,8 @@ let LeftNav = React.createClass({
       let currentX = e.changedTouches[0].pageX;
       let translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
 
+      this._maybeSwiping = false;
       this.setState({
-        maybeSwiping: false,
         swiping: null,
       });
 
@@ -320,9 +323,7 @@ let LeftNav = React.createClass({
       }
     }
     else {
-      this.setState({
-        maybeSwiping: false,
-      });
+      this._maybeSwiping = false;
     }
 
     document.body.removeEventListener('touchmove', this._onBodyTouchMove);
