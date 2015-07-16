@@ -117,7 +117,7 @@ let DatePicker = React.createClass({
     this.setState({
       date: d,
     });
-    if (!this.refs.input._isControlled()) {
+    if (!this._isControlled()) {
       this.refs.input.setValue(this.props.formatDate(d));
     }
   },
@@ -147,6 +147,11 @@ let DatePicker = React.createClass({
 
   _handleWindowKeyUp() {
     //TO DO: open the dialog if input has focus
+  },
+
+  _isControlled() {
+    return this.props.hasOwnProperty('value') ||
+      this.props.hasOwnProperty('valueLink');
   },
 
 });
