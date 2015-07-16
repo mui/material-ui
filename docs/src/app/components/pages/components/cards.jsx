@@ -106,7 +106,9 @@ class CardPage extends React.Component {
             name: 'showExpandableButton',
             type: 'bool',
             header: 'optional',
-            desc: 'Whether this card component include an arrow to expand the card. This works with CardTitle, CardHeader and CardActions.',
+            desc: 'Whether this card component include a button to expand the card. CardTitle, CardHeader ' +
+                  'and CardActions implement showExpandableButton. Any child component of Card can implements ' +
+                  'showExpandableButton or forwards the property to a child component supporting it.',
           },
         ],
       },
