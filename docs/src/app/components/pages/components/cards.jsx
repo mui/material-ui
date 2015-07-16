@@ -50,21 +50,15 @@ class CardPage extends React.Component {
             title="Title"
             subtitle="Subtitle"
             avatar={<Avatar style={{color:'red'}}>A</Avatar>}
-            expandableController={true}>
+            showExpandableButton={true}>
           </CardHeader>
-          <CardTitle
-            title="Title"
-            subtitle="Subtitle"
-            avatar={<Avatar style={{color:'red'}}>A</Avatar>}
-            expandableController={true}>
-          </CardTitle>
           <CardText expandable={true}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
             Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
             Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
           </CardText>
-          <CardActions expandableController={true}>
+          <CardActions expandable={true}>
             <FlatButton label="Action1"/>
             <FlatButton label="Action2"/>
           </CardActions>
@@ -95,9 +89,9 @@ class CardPage extends React.Component {
             name: 'initiallyExpanded',
             type: 'bool',
             header: 'optional',
-            desc: 'Whether this card is initially expanded.'
+            desc: 'Whether this card is initially expanded.',
           },
-        ]
+        ],
       },
       {
         name: 'Props',
@@ -106,16 +100,16 @@ class CardPage extends React.Component {
             name: 'expandable',
             type: 'bool',
             header: 'optional',
-            desc: 'Whether this card component is expandable.'
+            desc: 'Whether this card component is expandable. Can be set on any child of the Card component.',
           },
           {
-            name: 'expandableController',
+            name: 'showExpandableButton',
             type: 'bool',
             header: 'optional',
-            desc: 'Whether this card component include an arrow to expand the card. This works with CardTitle, CardHeader and CardActions.'
+            desc: 'Whether this card component include an arrow to expand the card. This works with CardTitle, CardHeader and CardActions.',
           },
-        ]
-      }
+        ],
+      },
     ];
   }
 
@@ -156,21 +150,15 @@ class CardPage extends React.Component {
               title="Title"
               subtitle="Subtitle"
               avatar={<Avatar style={{color:'red'}}>A</Avatar>}
-              expandableController={true}>
+              showExpandableButton={true}>
             </CardHeader>
-            <CardTitle
-              title="Title"
-              subtitle="Subtitle"
-              avatar={<Avatar style={{color:'red'}}>A</Avatar>}
-              expandableController={true}>
-            </CardTitle>
             <CardText expandable={true}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
               Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
               Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
             </CardText>
-            <CardActions expandableController={true}>
+            <CardActions expandable={true}>
               <FlatButton label="Action1"/>
               <FlatButton label="Action2"/>
             </CardActions>

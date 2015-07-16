@@ -1,6 +1,6 @@
 let React = require('react');
-let OpenIcon = require('../svg-icons/navigation/arrow-drop-up');
-let CloseIcon = require('../svg-icons/navigation/arrow-drop-down');
+let OpenIcon = require('../svg-icons/hardware/keyboard-arrow-up');
+let CloseIcon = require('../svg-icons/hardware/keyboard-arrow-down');
 let IconButton = require('../icon-button');
 
 let CardExpandable = React.createClass({

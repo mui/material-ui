@@ -28,7 +28,7 @@ let Card = React.createClass({
       }
       if (this.state.expanded === false && currentChild.props.expandable === true)
         return;
-      if (currentChild.props.expandableController === true) {
+      if (currentChild.props.showExpandableButton === true) {
         lastElement = React.cloneElement(currentChild, {},
           currentChild.props.children,
           <CardExpandable expanded={this.state.expanded} onExpanding={this._onExpandable}/>);

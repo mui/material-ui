@@ -12,7 +12,7 @@ let CardActions = React.createClass({
 
   propTypes: {
     expandable: React.PropTypes.bool,
-    expandableController: React.PropTypes.bool,
+    showExpandableButton: React.PropTypes.bool,
   },
 
   render() {
