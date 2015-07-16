@@ -4,7 +4,7 @@
   "description": "Material Design Svg Icons converted to React components.",
   "scripts": {
     "prebuild": "rm -rf js",
-    "createMuiIconsJsx": "node build.js --output-dir jsx --svg-dir ./node_modules/material-design-icons --inner-path /svg/production/ --file-suffix _24px.svg --mui-require relative",
+    "createMuiIconsJsx": "node build.js --output-dir jsx --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --mui-require relative --renameFilter ./filters/rename/material-design-icons.js",
     "build": "npm run createMuiIconsJsx && babel --stage 1 ./jsx --out-dir ./js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,7 +28,19 @@
   "peerDependencies": {},
   "devDependencies": {
     "babel": "^5.6.1",
+    "chai": "^3.0.0",
+    "glob": "^5.0.14",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-test": "^0.12.7",
+    "load-grunt-tasks": "^3.2.0",
+    "lodash": "^3.10.0",
     "material-design-icons": "^2.0.0",
-    "rimraf": "^2.4.0"
+    "mkdirp": "^0.5.1",
+    "mocha": "^2.2.5",
+    "mustache": "^2.1.2",
+    "rimraf": "^2.4.0",
+    "temp": "^0.8.3"
   }
 }
