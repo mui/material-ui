@@ -79,7 +79,7 @@ describe('--output-dir', function() {
   var options = {
     svgDir: MUI_ICONS_SVG_DIR,
     innerPath: "/svg/production/",
-    glob: '/**/*_24px.svg',
+    glob: '/**/production/*_24px.svg',
     renameFilter: builder.RENAME_FILTER_MUI,
     disable_log: DISABLE_LOG
   }, tempPath;
@@ -140,7 +140,7 @@ describe('--mui-require', function() {
   var options = {
     svgDir: MUI_ICONS_SVG_DIR,
     innerPath: "/svg/production/",
-    glob: '/**/*_24px.svg',
+    glob: '/**/production/*_24px.svg',
     disable_log: DISABLE_LOG,
     renameFilter: builder.RENAME_FILTER_MUI,
   }, tempPath, jsxExampleOutputPath;
@@ -200,7 +200,7 @@ describe('Template rendering', function() {
   var options = {
     svgDir: MUI_ICONS_SVG_DIR,
     innerPath: "/svg/production/",
-    glob: '/**/*_24px.svg',
+    glob: '/**/production/*_24px.svg',
     renameFilter: builder.RENAME_FILTER_MUI,
     muiRequire: 'relative',
     disable_log: DISABLE_LOG
