@@ -217,7 +217,7 @@ let DropDownMenu = React.createClass({
             visible={this.state.open}
             onRequestClose={this._onMenuRequestClose}
             onItemTap={this._onMenuItemClick} />
-          {this.state.open && <div style={styles.overlay} onTouchTap={this._onTouchTapOverlay} />}
+          {this.state.open && <div style={styles.overlay} onTouchTap={this._handleOverlayTouchTap} />}
       </div>
     );
   },
@@ -320,7 +320,7 @@ let DropDownMenu = React.createClass({
     this.setState({selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1)});
   },
 
-  _onTouchTapOverlay() {
+  _handleOverlayTouchTap() {
     this.setState({
       open: false,
     });
