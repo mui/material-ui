@@ -60,14 +60,18 @@ let FontIcon = React.createClass({
   },
 
   _handleMouseLeave(e) {
-    this.setState({hovered: false});
+    // hover is needed only when a hoverColor is defined
+    if (this.props.hoverColor !== undefined)
+      this.setState({hovered: false});
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
   },
 
   _handleMouseEnter(e) {
-    this.setState({hovered: true});
+    // hover is needed only when a hoverColor is defined
+    if (this.props.hoverColor !== undefined)
+      this.setState({hovered: true});
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(e);
     }
