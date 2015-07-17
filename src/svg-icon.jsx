@@ -14,8 +14,8 @@ let SvgIcon = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     hoverColor: React.PropTypes.string,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    onMouseEnter: React.PropTypes.func,
     viewBox: React.PropTypes.string,
   },
 
@@ -58,8 +58,8 @@ let SvgIcon = React.createClass({
     return (
       <svg
         {...other}
-        onMouseOut={this._handleMouseOut}
-        onMouseOver={this._handleMouseOver}
+        onMouseLeave={this._handleMouseLeave}
+        onMouseEnter={this._handleMouseEnter}
         style={mergedStyles}
         viewBox={viewBox}>
         {this.props.children}
@@ -67,17 +67,17 @@ let SvgIcon = React.createClass({
     );
   },
 
-  _handleMouseOut(e) {
+  _handleMouseLeave(e) {
     this.setState({hovered: false});
-    if (this.props.onMouseOut) {
-      this.props.onMouseOut(e);
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
     }
   },
 
-  _handleMouseOver(e) {
+  _handleMouseEnter(e) {
     this.setState({hovered: true});
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
     }
   },
 });

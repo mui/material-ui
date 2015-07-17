@@ -186,8 +186,8 @@ let DropDownMenu = React.createClass({
     return (
       <div
         ref="root"
-        onMouseOut={this._handleMouseOut}
-        onMouseOver={this._handleMouseOver}
+        onMouseLeave={this._handleMouseLeave}
+        onMouseEnter={this._handleMouseEnter}
         onKeyDown={this._onKeyDown}
         onFocus={this.props.onFocus}
         onBlur={this.props.onBlur}
@@ -302,11 +302,11 @@ let DropDownMenu = React.createClass({
     this.setState({open:false});
   },
 
-  _handleMouseOver() {
+  _handleMouseEnter() {
     this.setState({isHovered: true});
   },
 
-  _handleMouseOut() {
+  _handleMouseLeave() {
     this.setState({isHovered: false});
   },
 

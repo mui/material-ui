@@ -22,8 +22,8 @@ let IconMenu = React.createClass({
     onItemTouchTap: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
     onMouseDown: React.PropTypes.func,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    onMouseEnter: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
@@ -37,8 +37,8 @@ let IconMenu = React.createClass({
       onItemTouchTap: () => {},
       onKeyboardFocus: () => {},
       onMouseDown: () => {},
-      onMouseOut: () => {},
-      onMouseOver: () => {},
+      onMouseLeave: () => {},
+      onMouseEnter: () => {},
       onMouseUp: () => {},
       onTouchTap: () => {},
       touchTapCloseDelay: 200,
@@ -69,8 +69,8 @@ let IconMenu = React.createClass({
       onItemTouchTap,
       onKeyboardFocus,
       onMouseDown,
-      onMouseOut,
-      onMouseOver,
+      onMouseLeave,
+      onMouseEnter,
       onMouseUp,
       onTouchTap,
       menuStyle,
@@ -123,8 +123,8 @@ let IconMenu = React.createClass({
     return (
       <div
         onMouseDown={onMouseDown}
-        onMouseOut={onMouseOut}
-        onMouseOver={onMouseOver}
+        onMouseLeave={onMouseLeave}
+        onMouseEnter={onMouseEnter}
         onMouseUp={onMouseUp}
         onTouchTap={onTouchTap}
         style={mergedRootStyles}>

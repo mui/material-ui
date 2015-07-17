@@ -180,7 +180,7 @@ let EnhancedSwitch = React.createClass({
       onFocus,
       onMouseUp,
       onMouseDown,
-      onMouseOut,
+      onMouseLeave,
       onTouchStart,
       onTouchEnd,
       disableTouchRipple,
@@ -225,7 +225,7 @@ let EnhancedSwitch = React.createClass({
     if (!hideTouchRipple) {
       inputProps.onMouseUp = this._handleMouseUp;
       inputProps.onMouseDown = this._handleMouseDown;
-      inputProps.onMouseOut = this._handleMouseOut;
+      inputProps.onMouseLeave = this._handleMouseLeave;
       inputProps.onTouchStart = this._handleTouchStart;
       inputProps.onTouchEnd = this._handleTouchEnd;
     }
@@ -374,7 +374,7 @@ let EnhancedSwitch = React.createClass({
     this.refs.touchRipple.end();
   },
 
-  _handleMouseOut() {
+  _handleMouseLeave() {
     this.refs.touchRipple.end();
   },
 

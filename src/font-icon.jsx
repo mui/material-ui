@@ -14,8 +14,8 @@ let FontIcon = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     hoverColor: React.PropTypes.string,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    onMouseEnter: React.PropTypes.func,
   },
 
   getInitialState() {
@@ -28,8 +28,8 @@ let FontIcon = React.createClass({
     let {
       color,
       hoverColor,
-      onMouseOut,
-      onMouseOver,
+      onMouseLeave,
+      onMouseEnter,
       style,
       ...other,
     } = this.props;
@@ -53,23 +53,23 @@ let FontIcon = React.createClass({
     return (
       <span
         {...other}
-        onMouseOut={this._handleMouseOut}
-        onMouseOver={this._handleMouseOver}
+        onMouseLeave={this._handleMouseLeave}
+        onMouseEnter={this._handleMouseEnter}
         style={mergedStyles} />
     );
   },
 
-  _handleMouseOut(e) {
+  _handleMouseLeave(e) {
     this.setState({hovered: false});
-    if (this.props.onMouseOut) {
-      this.props.onMouseOut(e);
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
     }
   },
 
-  _handleMouseOver(e) {
+  _handleMouseEnter(e) {
     this.setState({hovered: true});
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
     }
   },
 });

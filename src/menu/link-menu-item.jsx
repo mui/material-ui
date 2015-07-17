@@ -87,8 +87,8 @@ let LinkMenuItem = React.createClass({
         style={linkStyles} {...link}
         className={this.props.className}
         onClick={onClickHandler}
-        onMouseOver={this._handleMouseOver}
-        onMouseOut={this._handleMouseOut}>
+        onMouseEnter={this._handleMouseEnter}
+        onMouseLeave={this._handleMouseLeave}>
           {this.props.text}
       </a>
     );
@@ -98,14 +98,14 @@ let LinkMenuItem = React.createClass({
     event.preventDefault();
   },
 
-  _handleMouseOver(e) {
+  _handleMouseEnter(e) {
     this.setState({hovered: true});
-    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e);
+    if (!this.props.disabled && this.props.onMouseEnter) this.props.onMouseEnter(e);
   },
 
-  _handleMouseOut(e) {
+  _handleMouseLeave(e) {
     this.setState({hovered: false});
-    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e);
+    if (!this.props.disabled && this.props.onMouseLeave) this.props.onMouseLeave(e);
   },
 });
 
