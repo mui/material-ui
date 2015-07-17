@@ -280,8 +280,8 @@ let Slider = React.createClass({
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           onMouseDown={this._onMouseDown}
-          onMouseOver={this._onMouseOver}
-          onMouseOut={this._onMouseOut}
+          onMouseEnter={this._onMouseEnter}
+          onMouseLeave={this._onMouseLeave}
           onMouseUp={this._onMouseUp} >
           <div ref="track" style={trackStyles}>
               <div style={filledStyles}></div>
@@ -391,11 +391,11 @@ let Slider = React.createClass({
     this._pos = e.clientX;
   },
 
-  _onMouseOver() {
+  _onMouseEnter() {
     this.setState({hovered: true});
   },
 
-  _onMouseOut() {
+  _onMouseLeave() {
     this.setState({hovered: false});
   },
 

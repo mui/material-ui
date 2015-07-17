@@ -386,8 +386,8 @@ let Menu = React.createClass({
               menuItems={menuItem.items}
               menuItemStyle={this.props.menuItemStyle}
               zDepth={this.props.zDepth}
-              onMouseOver={this._onItemActivated}
-              onMouseOut={this._onItemDeactivated}
+              onMouseEnter={this._onItemActivated}
+              onMouseLeave={this._onItemDeactivated}
               onItemTap={this._onNestedItemTap} />
           );
           this._nestedChildren.push(i);
@@ -411,8 +411,8 @@ let Menu = React.createClass({
               onToggle={this.props.onToggle}
               disabled={isDisabled}
               onTouchTap={this._onItemTap}
-              onMouseOver={this._onItemActivated}
-              onMouseOut={this._onItemDeactivated}
+              onMouseEnter={this._onItemActivated}
+              onMouseLeave={this._onItemDeactivated}
               >
               {menuItem.text}
             </MenuItem>

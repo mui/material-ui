@@ -14,8 +14,8 @@ let FontIcon = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     hoverColor: React.PropTypes.string,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    onMouseEnter: React.PropTypes.func,
   },
 
   getInitialState() {
@@ -28,8 +28,8 @@ let FontIcon = React.createClass({
     let {
       color,
       hoverColor,
-      onMouseOut,
-      onMouseOver,
+      onMouseLeave,
+      onMouseEnter,
       style,
       ...other,
     } = this.props;
@@ -53,23 +53,27 @@ let FontIcon = React.createClass({
     return (
       <span
         {...other}
-        onMouseOut={this._handleMouseOut}
-        onMouseOver={this._handleMouseOver}
+        onMouseLeave={this._handleMouseLeave}
+        onMouseEnter={this._handleMouseEnter}
         style={mergedStyles} />
     );
   },
 
-  _handleMouseOut(e) {
-    this.setState({hovered: false});
-    if (this.props.onMouseOut) {
-      this.props.onMouseOut(e);
+  _handleMouseLeave(e) {
+    // hover is needed only when a hoverColor is defined
+    if (this.props.hoverColor !== undefined)
+      this.setState({hovered: false});
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
     }
   },
 
-  _handleMouseOver(e) {
-    this.setState({hovered: true});
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
+  _handleMouseEnter(e) {
+    // hover is needed only when a hoverColor is defined
+    if (this.props.hoverColor !== undefined)
+      this.setState({hovered: true});
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
     }
   },
 });

@@ -59,8 +59,8 @@ let TableRowColumn = React.createClass({
     let styles = this.getStyles();
     let handlers = {
       onClick: this._onClick,
-      onMouseOver: this._onMouseOver,
-      onMouseOut: this._onMouseOut,
+      onMouseEnter: this._onMouseEnter,
+      onMouseLeave: this._onMouseLeave,
     };
 
     return (
@@ -78,14 +78,14 @@ let TableRowColumn = React.createClass({
     if (this.props.onClick) this.props.onClick(e, this.props.columnNumber);
   },
 
-  _onMouseOver(e) {
+  _onMouseEnter(e) {
     if (this.props.hoverable) {
       this.setState({hovered: true});
       if (this.props.onHover) this.props.onHover(e, this.props.columnNumber);
     }
   },
 
-  _onMouseOut(e) {
+  _onMouseLeave(e) {
     if (this.props.hoverable) {
       this.setState({hovered: false});
       if (this.props.onHoverExit) this.props.onHoverExit(e, this.props.columnNumber);

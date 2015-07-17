@@ -101,8 +101,8 @@ let ToolbarGroup = React.createClass({
           return React.cloneElement(currentChild, {
             style: this.mergeStyles({float: 'left'}, currentChild.props.style),
             iconStyle: styles.icon.root,
-            onMouseOver: this._handleMouseOverDropDownMenu,
-            onMouseOut: this._handleMouseOutDropDownMenu,
+            onMouseEnter: this._handleMouseEnterDropDownMenu,
+            onMouseLeave: this._handleMouseLeaveDropDownMenu,
           });
         case 'RaisedButton' : case 'FlatButton' :
           return React.cloneElement(currentChild, {
@@ -111,8 +111,8 @@ let ToolbarGroup = React.createClass({
         case 'FontIcon' :
           return React.cloneElement(currentChild, {
             style: this.mergeStyles(styles.icon.root, currentChild.props.style),
-            onMouseOver: this._handleMouseOverFontIcon,
-            onMouseOut: this._handleMouseOutFontIcon,
+            onMouseEnter: this._handleMouseEnterFontIcon,
+            onMouseLeave: this._handleMouseLeaveFontIcon,
           });
         case 'ToolbarSeparator' : case 'ToolbarTitle' :
           return React.cloneElement(currentChild, {
@@ -130,22 +130,22 @@ let ToolbarGroup = React.createClass({
     );
   },
 
-  _handleMouseOverDropDownMenu(e) {
+  _handleMouseEnterDropDownMenu(e) {
     e.target.style.zIndex = this.getStyles().icon.hover.zIndex;
     e.target.style.color = this.getStyles().icon.hover.color;
   },
 
-  _handleMouseOutDropDownMenu(e) {
+  _handleMouseLeaveDropDownMenu(e) {
     e.target.style.zIndex = 'auto';
     e.target.style.color = this.getStyles().icon.root.color;
   },
 
-  _handleMouseOverFontIcon(e) {
+  _handleMouseEnterFontIcon(e) {
     e.target.style.zIndex = this.getStyles().icon.hover.zIndex;
     e.target.style.color = this.getStyles().icon.hover.color;
   },
 
-  _handleMouseOutFontIcon(e) {
+  _handleMouseLeaveFontIcon(e) {
     e.target.style.zIndex = 'auto';
     e.target.style.color = this.getStyles().icon.root.color;
   },

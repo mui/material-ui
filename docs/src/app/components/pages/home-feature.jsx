@@ -96,8 +96,8 @@ let HomeFeature = React.createClass({
     return (
       <Paper
         zDepth={this.state.zDepth}
-        onMouseOver={this._onMouseOver}
-        onMouseOut={this._onMouseOut}
+        onMouseEnter={this._onMouseEnter}
+        onMouseLeave={this._onMouseLeave}
         style={this.mergeAndPrefix(
           styles.root,
           this.props.lastChild && styles.rootWhenLastChild)}>
@@ -109,13 +109,13 @@ let HomeFeature = React.createClass({
     );
   },
 
-  _onMouseOver() {
+  _onMouseEnter() {
     this.setState({
       zDepth: 4
     });
   },
 
-  _onMouseOut() {
+  _onMouseLeave() {
     this.setState({
       zDepth: 0
     });

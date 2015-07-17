@@ -28,8 +28,8 @@ let FlatButton = React.createClass({
     label: validateLabel,
     labelStyle: React.PropTypes.object,
     onKeyboardFocus: React.PropTypes.func,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    onMouseEnter: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     primary: React.PropTypes.bool,
     rippleColor: React.PropTypes.string,
@@ -57,8 +57,8 @@ let FlatButton = React.createClass({
       label,
       labelStyle,
       onKeyboardFocus,
-      onMouseOut,
-      onMouseOver,
+      onMouseLeave,
+      onMouseEnter,
       onTouchStart,
       primary,
       rippleColor,
@@ -116,8 +116,8 @@ let FlatButton = React.createClass({
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
         onKeyboardFocus={this._handleKeyboardFocus}
-        onMouseOut={this._handleMouseOut}
-        onMouseOver={this._handleMouseOver}
+        onMouseLeave={this._handleMouseLeave}
+        onMouseEnter={this._handleMouseEnter}
         onTouchStart={this._handleTouchStart}
         style={mergedRootStyles}
         touchRippleColor={buttonRippleColor}>
@@ -134,15 +134,15 @@ let FlatButton = React.createClass({
     }
   },
 
-  _handleMouseOver(e) {
+  _handleMouseEnter(e) {
     //Cancel hover styles for touch devices
     if (!this.state.touch) this.setState({hovered: true});
-    if (this.props.onMouseOver) this.props.onMouseOver(e);
+    if (this.props.onMouseEnter) this.props.onMouseEnter(e);
   },
 
-  _handleMouseOut(e) {
+  _handleMouseLeave(e) {
     this.setState({hovered: false});
-    if (this.props.onMouseOut) this.props.onMouseOut(e);
+    if (this.props.onMouseLeave) this.props.onMouseLeave(e);
   },
 
   _handleTouchStart(e) {

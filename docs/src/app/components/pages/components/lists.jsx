@@ -266,13 +266,13 @@ class ListsPage extends React.Component {
             desc: 'Called when the ListItem has keyboard focus.'
           },
           {
-            name: 'onMouseOut',
+            name: 'onMouseLeave',
             type: 'function(e)',
             header: 'optional',
             desc: 'Called when the mouse is no longer over the ListItem.'
           },
           {
-            name: 'onMouseOver',
+            name: 'onMouseEnter',
             type: 'function(e)',
             header: 'optional',
             desc: 'Called when the mouse is over the ListItem.'

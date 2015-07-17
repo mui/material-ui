@@ -135,8 +135,8 @@ let MenuItem = React.createClass({
         toggle,
         onTouchTap,
         onToggle,
-        onMouseOver,
-        onMouseOut,
+        onMouseEnter,
+        onMouseLeave,
         children,
         label,
         style,
@@ -150,8 +150,8 @@ let MenuItem = React.createClass({
         key={this.props.index}
         className={this.props.className}
         onTouchTap={this._handleTouchTap}
-        onMouseOver={this._handleMouseOver}
-        onMouseOut={this._handleMouseOut}
+        onMouseEnter={this._handleMouseEnter}
+        onMouseLeave={this._handleMouseLeave}
         style={this.mergeAndPrefix(
           styles.root,
           this.props.selected && styles.rootWhenSelected,
@@ -179,12 +179,12 @@ let MenuItem = React.createClass({
     if (!this.props.disabled && this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
   },
 
-  _handleMouseOver(e) {
-    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e, this.props.index);
+  _handleMouseEnter(e) {
+    if (!this.props.disabled && this.props.onMouseEnter) this.props.onMouseEnter(e, this.props.index);
   },
 
-  _handleMouseOut(e) {
-    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e,this.props.index);
+  _handleMouseLeave(e) {
+    if (!this.props.disabled && this.props.onMouseLeave) this.props.onMouseLeave(e,this.props.index);
   },
 });
 
