@@ -1,32 +1,33 @@
 let React = require('react/addons');
 let ReactTransitionGroup = React.addons.TransitionGroup;
 let StylePropable = require('../mixins/style-propable');
-let SlideInChild = require('./slide-in-child');
+let ScaleInChild = require('./scale-in-child');
 
 
-let SlideIn = React.createClass({
+let ScaleIn = React.createClass({
 
   mixins: [StylePropable],
 
   propTypes: {
-    enterDelay: React.PropTypes.number,
     childStyle: React.PropTypes.object,
-    direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),
+    enterDelay: React.PropTypes.number,
+    maxScale: React.PropTypes.number,
+    minScale: React.PropTypes.number,
   },
 
   getDefaultProps() {
     return {
       enterDelay: 0,
-      direction: 'left',
     };
   },
 
   render() {
     let {
-      enterDelay,
       children,
       childStyle,
-      direction,
+      enterDelay,
+      maxScale,
+      minScale,
       style,
       ...other,
     } = this.props;
@@ -39,16 +40,16 @@ let SlideIn = React.createClass({
 
     let newChildren = React.Children.map(children, (child) => {
       return (
-        <SlideInChild
+        <ScaleInChild
           key={child.key}
-          direction={direction}
           enterDelay={enterDelay}
-          getLeaveDirection={this._getLeaveDirection}
+          maxScale={maxScale}
+          minScale={minScale}
           style={childStyle}>
           {child}
-        </SlideInChild>
+        </ScaleInChild>
       );
-    }, this);
+    });
 
     return (
       <ReactTransitionGroup
@@ -60,10 +61,6 @@ let SlideIn = React.createClass({
     );
   },
 
-  _getLeaveDirection() {
-    return this.props.direction;
-  },
-
 });
 
-module.exports = SlideIn;
+module.exports = ScaleIn;
