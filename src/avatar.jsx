@@ -39,16 +39,21 @@ let Avatar = React.createClass({
       ...other,
     } = this.props;
 
+    const boxShadow = (style && style.boxShadow) ? style.boxShadow : '0 0 1px 0 rgba(0, 0, 0, 0.2) inset';
+    const borderRadius = (style && style.borderRadius) ? style.borderRadius : '50%';
+
     let styles = {
       root: {
-        height: src ? size - 2 : size,
-        width: src ? size - 2 : size,
+        height: size,
+        width: size,
         userSelect: 'none',
         backgroundColor: backgroundColor,
-        borderRadius: '50%',
-        border: src ? 'solid 1px' : 'none',
-        borderColor: this.context.muiTheme.palette.borderColor,
+        boxShadow: src ? null : boxShadow, // Doesn't apply above an img
+        borderRadius: borderRadius,
         display: 'inline-block',
+
+        //Needed for img
+        position: 'relative',
 
         //Needed for letter avatars
         textAlign: 'center',
@@ -56,20 +61,39 @@ let Avatar = React.createClass({
         fontSize: size / 2 + 4,
         color: color,
       },
-
-      iconStyles: {
-        margin: 8,
-      },
     };
 
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
 
     if (src) {
-      return <img {...other} src={src} style={mergedRootStyles} />;
+      const styleImg = {
+        height: size,
+        width: size,
+        borderRadius: borderRadius,
+      };
+
+      const styleImgShadow = {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        boxShadow: boxShadow,
+        borderRadius: borderRadius,
+      };
+
+      return <div {...other} style={mergedRootStyles} >
+          <img src={src} style={styleImg} />
+          <div style={this.mergeAndPrefix(styleImgShadow)} />
+        </div>;
     } else {
+      const styleIcon = {
+        margin: 8,
+      };
+
       let iconElement = icon ? React.cloneElement(icon, {
         color: color,
-        style: this.mergeStyles(styles.iconStyles, icon.props.style),
+        style: this.mergeStyles(styleIcon, icon.props.style),
       }) : null;
 
       return <div {...other} style={mergedRootStyles}>
