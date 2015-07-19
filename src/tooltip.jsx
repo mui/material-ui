@@ -26,6 +26,10 @@ let Tooltip = React.createClass({
     this._setTooltipPosition();
   },
 
+  componentWillReceiveProps() {
+    this._setTooltipPosition();
+  },
+
   componentDidUpdate() {
     this._setRippleSize();
   },
