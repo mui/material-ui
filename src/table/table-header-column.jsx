@@ -12,9 +12,11 @@ let TableHeaderColumn = React.createClass({
   },
 
   propTypes: {
-    tooltip: React.PropTypes.string,
-    columnNumber: React.PropTypes.number.isRequired,
+    columnNumber: React.PropTypes.number,
     onClick: React.PropTypes.func,
+    style: React.PropTypes.object,
+    tooltip: React.PropTypes.string,
+    tooltipStyle: React.PropTypes.object,
   },
 
   getInitialState() {
@@ -44,7 +46,7 @@ let TableHeaderColumn = React.createClass({
       },
       tooltip: {
         boxSizing: 'border-box',
-        marginTop: theme.height,
+        marginTop: theme.height / 2,
       },
     };
 
@@ -52,30 +54,40 @@ let TableHeaderColumn = React.createClass({
   },
 
   render() {
-    let className = 'mui-table-header-column';
     let styles = this.getStyles();
     let handlers = {
       onMouseEnter: this._onMouseEnter,
       onMouseLeave: this._onMouseLeave,
       onClick: this._onClick,
     };
-    let tooltip;
+    let {
+      className,
+      columnNumber,
+      onClick,
+      style,
+      tooltip,
+      tooltipStyle,
+      ...other,
+    } = this.props;
+    let classes = 'mui-table-header-column';
+    if (className) classes += ' ' + className;
 
     if (this.props.tooltip !== undefined) {
       tooltip = (
         <Tooltip
           label={this.props.tooltip}
           show={this.state.hovered}
-          style={this.mergeStyles(styles.tooltip)} />
+          style={this.mergeAndPrefix(styles.tooltip, tooltipStyle)} />
       );
     }
 
     return (
       <th
         key={this.props.key}
-        className={className}
-        style={this.mergeAndPrefix(styles.root, this.props.style)}
-        {...handlers}>
+        className={classes}
+        style={this.mergeAndPrefix(styles.root, style)}
+        {...handlers}
+        {...other}>
         {tooltip}
         {this.props.children}
       </th>

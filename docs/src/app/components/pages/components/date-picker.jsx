@@ -24,7 +24,6 @@ class DatePickerPage extends React.Component {
   }
 
   render() {
-
     let code =
       '//Portrait Dialog\n' +
       '<DatePicker\n' +
