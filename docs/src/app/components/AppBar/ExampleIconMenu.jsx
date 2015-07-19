@@ -11,6 +11,7 @@ const AppBarExampleIconMenu = React.createClass({
     return (
       <AppBar
         title="Title"
+        position="static"
         iconElementLeft={<IconButton><NavigationClose /></IconButton>}
         iconElementRight={
           <IconMenu

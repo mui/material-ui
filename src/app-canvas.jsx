@@ -47,26 +47,9 @@ const AppCanvas = React.createClass({
       direction: 'ltr',
     };
 
-    let newChildren = React.Children.map(this.props.children, (currentChild) => {
-      if (!currentChild) { // If undefined, skip it
-        return null;
-      }
-
-      switch (currentChild.type.displayName) {
-        case 'AppBar' :
-          return React.cloneElement(currentChild, {
-            style: this.mergeStyles(currentChild.props.style, {
-              position: 'fixed',
-            }),
-          });
-        default:
-          return currentChild;
-      }
-    }, this);
-
     return (
       <div style={this.prepareStyles(styles)}>
-        {newChildren}
+        {this.props.children}
       </div>
     );
   },

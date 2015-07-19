@@ -10,6 +10,7 @@ import AppBarExampleIconMenu from '../../AppBar/ExampleIconMenu';
 import appBarExampleIconMenuCode from '!raw!../../AppBar/ExampleIconMenu';
 import MarkdownElement from '../../MarkdownElement';
 import appBarReadmeText from '../../AppBar/README';
+import RaisedButton from 'raised-button';
 
 export default class AppBarPage extends React.Component {
 
@@ -21,6 +22,11 @@ export default class AppBarPage extends React.Component {
     return (
       <div>
         <MarkdownElement text={appBarReadmeText} />
+        <RaisedButton
+          label="View Waterfall example"
+          linkButton={true}
+          href="/#/examples/app-bar-waterfall"
+          primary={true} />
         <CodeExample code={appBarExampleIconCode}>
           <AppBarExampleIcon />
         </CodeExample>

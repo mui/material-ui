@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Typography from './styles/typography';
 import IconButton from './icon-button';
@@ -82,6 +83,14 @@ const AppBar = React.createClass({
     onTitleTouchTap: React.PropTypes.func,
 
     /**
+     * Specify position and behavior. Fixed - will have a fixed position at the top of viewport.
+     * Static - will have a static position. Waterfall - will have a fixed position at the top
+     * of viewport and will decrease its height on window scroll down (see waterfall prop for
+     * additional settings).
+     */
+    position: React.PropTypes.oneOf(['fixed', 'static', 'waterfall']),
+
+    /**
      * Determines whether or not to display the Menu icon next to the title.
      * Setting this prop to false will hide the icon.
      */
@@ -95,13 +104,36 @@ const AppBar = React.createClass({
     /**
      * The title to display on the app bar.
      */
-    title: React.PropTypes.node,
+    title: React.PropTypes.oneOfType([
+      React.PropTypes.node,
+      React.PropTypes.func,
+    ]),
 
     /**
      * Override the inline-styles of the app bar's title element.
      */
     titleStyle: React.PropTypes.object,
 
+    /**
+     * Settings object for position waterfall. Should at least have minHeight
+     * and maxHeight properties, both numeric. These specify min and max visual heigth
+     * of the component while window scrolling. Optional children property can be a node
+     * or a function (will receive component styles object as argument) returning a node. This node will
+     * be inserted in the slide (scrolled) element of the component. Optional onHeightChange property
+     * is a function called when visual height of the component changes on scroll. This function will
+     * receive as arguments an object with height, minHeight, maxHeight and childrenEl (DOM element of
+     * the component) properties. Using onHeightChange, animation effects can be achieved
+     * by altering style properties of specific DOM elements.
+     */
+    waterfall: React.PropTypes.shape({
+      minHeight: React.PropTypes.number,
+      maxHeight: React.PropTypes.number,
+      onHeightChange: React.PropTypes.func,
+      children: React.PropTypes.oneOfType([
+        React.PropTypes.node,
+        React.PropTypes.func,
+      ]),
+    }),
     /**
      * The zDepth of the app bar.
      * The shadow of the app bar is also dependent on this property.
@@ -127,6 +159,7 @@ const AppBar = React.createClass({
       showMenuIconButton: true,
       title: '',
       zDepth: 1,
+      position: 'fixed',
     };
   },
 
@@ -146,6 +179,71 @@ const AppBar = React.createClass({
         );
       }
     }
+
+    if (this.props.waterfall && this.props.waterfall.onHeightChange) {
+      this.setupWaterfall();
+    }
+  },
+
+  componentDidUpdate: function(prevProps) {
+    if (this.props.waterfall && this.props.waterfall.onHeightChange) {
+      if (!(prevProps.waterfall && prevProps.waterfall.onHeightChange)) {
+        this.setupWaterfall();
+      }
+    } else if (prevProps.waterfall && prevProps.waterfall.onHeightChange) {
+      this.removeWaterfall();
+    }
+  },
+
+  componentWillUnmount: function() {
+    if (this.props.waterfall && this.props.waterfall.onHeightChange) {
+      this.removeWaterfall();
+    }
+  },
+
+  setupWaterfall() {
+    // in some cases scroll event is not triggered
+    // after page reloaded and kept it's scroll
+    // so we call the handler from the start
+    this.waterfallScrollHandler();
+
+    ReactDOM.findDOMNode(this.refs.slideEl).style.position = 'absolute';
+
+    window.addEventListener('scroll', this.waterfallScrollHandler);
+  },
+
+  removeWaterfall() {
+    window.removeEventListener('scroll', this.waterfallScrollHandler);
+  },
+
+  waterfallScrollHandler() {
+    if (this.waterfallRunning) { return; }
+    this.waterfallRunning = true;
+    requestAnimationFrame(() => {
+      let waterfall = this.props.waterfall;
+
+      let waterfallHeight = this.calculateWaterfallHeight();
+      if (this.waterfallHeight !== waterfallHeight) {
+        this.waterfallHeight = waterfallHeight;
+        if (waterfall.onHeightChange) {
+          waterfall.onHeightChange({
+            height: waterfallHeight,
+            maxHeight: waterfall.maxHeight,
+            minHeight: waterfall.minHeight,
+            childrenEl: ReactDOM.findDOMNode(this.refs.root),
+          });
+        }
+      }
+
+      this.waterfallRunning = false;
+    });
+
+  },
+
+  calculateWaterfallHeight() {
+    let waterfall = this.props.waterfall;
+    let windowScroll = window ? window.scrollY : 0;
+    return Math.max(waterfall.minHeight, waterfall.maxHeight - windowScroll);
   },
 
   getStyles() {
@@ -158,7 +256,8 @@ const AppBar = React.createClass({
 
     let styles = {
       root: {
-        position: 'relative',
+        position: 'fixed',
+        top: 0,
         zIndex: rawTheme.zIndex.appBar,
         width: '100%',
         display: 'flex',
@@ -217,6 +316,8 @@ const AppBar = React.createClass({
       className,
       style,
       zDepth,
+      position,
+      waterfall,
       children,
       ...other,
     } = this.props;
@@ -233,15 +334,22 @@ const AppBar = React.createClass({
     if (title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
-      titleElement = typeof title === 'string' || title instanceof String ?
-        <h1 onTouchTap={this._onTitleTouchTap}
+      if (typeof title === 'string' || title instanceof String) {
+        titleElement = (<h1 onTouchTap={this._onTitleTouchTap}
           style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}>
           {title}
-        </h1> :
-        <div onTouchTap={this._onTitleTouchTap}
+        </h1>);
+      } else {
+        let titleNode = title;
+        if (typeof title === 'function') {
+          // pass styles, otherwise inaccesible
+          titleNode = title(this.getStyles());
+        }
+        titleElement = (<div onTouchTap={this._onTitleTouchTap}
           style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}>
-          {title}
-        </div>;
+          {titleNode}
+        </div>);
+      }
     }
 
     if (showMenuIconButton) {
@@ -304,19 +412,88 @@ const AppBar = React.createClass({
       );
     }
 
-    return (
-      <Paper
+    let paperElStyle = this.mergeStyles(styles.root, style);
+
+    if (position === 'static') {
+      paperElStyle.position = 'static';
+    }
+
+    if (position === 'waterfall') {
+      let waterfallChildren;
+      if (typeof waterfall.children === 'function') {
+        waterfallChildren = waterfall.children(this.getStyles());
+      } else {
+        waterfallChildren = waterfall.children || null;
+      }
+      return (
+        <div
+          {...other}
+          className={className}
+          ref="root"
+          style={{
+            height: waterfall.maxHeight,
+          }}>
+          <Paper
+            rounded={false}
+            style={this.mergeStyles(styles.root, {
+              height: waterfall.minHeight,
+            }, style)}
+            zDepth={zDepth} />
+          {/* this is the visual element that will slide.
+            position will be transformed to absolute in setupWaterfall
+          */}
+          <div
+            ref="slideEl"
+            style={{
+              position: 'fixed',
+              top: 0,
+              zIndex: paperElStyle.zIndex + 1,
+              width: '100%',
+              height: waterfall.maxHeight,
+              paddingTop: waterfall.minHeight,
+              boxSizing: 'border-box',
+              backgroundColor: paperElStyle.backgroundColor,
+            }}>{waterfallChildren}</div>
+          {/* this is the container for icons and children
+           * same styles ar for root but with no background - transparent */}
+          <div style={this.mergeStyles(styles.root, {
+            position: 'fixed',
+            top: 0,
+            zIndex: paperElStyle.zIndex + 2,
+            background: 'none',
+            boxSizing: 'border-box',
+          })}>
+            {menuElementLeft}
+            {titleElement}
+            {menuElementRight}
+            {children}
+          </div>
+        </div>
+      );
+    } else {
+      let paperEl = (<Paper
         {...other}
         rounded={false}
         className={className}
-        style={this.mergeStyles(styles.root, style)}
+        style={paperElStyle}
         zDepth={zDepth}>
           {menuElementLeft}
           {titleElement}
           {menuElementRight}
           {children}
-      </Paper>
-    );
+        </Paper>);
+
+      if (position === 'fixed') {
+        return (
+          <div style={{
+            height: paperElStyle.height,
+            minHeight: paperElStyle.minHeight,
+          }}>{paperEl}</div>
+        );
+      } else if (position === 'static') {
+        return paperEl;
+      }
+    }
   },
 
   _onLeftIconButtonTouchTap(event) {
