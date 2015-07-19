@@ -3,6 +3,7 @@ let { AppBar, DropDownMenu } = require('material-ui');
 let IconButton = require('icon-button');
 let NavigationClose = require('svg-icons/navigation/close');
 let FlatButton = require('flat-button');
+let RaisedButton = require('raised-button');
 let ComponentDoc = require('../../component-doc');
 
 
@@ -19,7 +20,19 @@ class AppBarPage extends React.Component {
           '<AppBar\n' +
           '  title="Title"\n' +
           '  iconElementLeft={<IconButton><NavigationClose /></IconButton>}\n' +
-          '  iconElementRight={<FlatButton label="Save" />} />';
+          '  iconElementRight={<FlatButton label="Save" />} />\n' +
+          '\n' +
+          '<AppCanvas>\n' +
+          '  <AppBar\n' +
+          '    title="Waterfall"\n' +
+          '    iconElementLeft={<IconButton><NavigationClose /></IconButton>}\n' +
+          '    iconElementRight={<FlatButton label="Save" />}\n' +
+          '    waterfall={{\n' +
+          '      minHeight: 64,\n' +
+          '      height: 100,\n' +
+          '      maxHeight: 128\n' +
+          '    }}/>\n' +
+          '</AppCanvas>';
 
     this.desc = 'App bars are a collection of components placed as a static ' +
                 'header for an application. It is used for navigation, search ' +
@@ -128,6 +141,10 @@ class AppBarPage extends React.Component {
             title="Title"
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             iconElementRight={<FlatButton label="Save" />} />
+          <br />
+          <RaisedButton label="View Waterfall example"
+            linkButton={true} href="/#/examples/app-bar-waterfall"
+            primary={true}/>
       </ComponentDoc>
     );
   }

@@ -39,56 +39,63 @@ let TextFields = require('./components/pages/components/text-fields');
 let TimePicker = require('./components/pages/components/time-picker');
 let Toolbars = require('./components/pages/components/toolbars');
 
+let AppBarWaterfall = require('./components/examples/app-bar-waterfall');
+
 
 /** Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
-  *
-  * Routes are used to declare your view hierarchy.
-  *
-  * Say you go to http://material-ui.com/#/components/paper
-  * The react router will search for a route named 'paper' and will recursively render its
-  * handler and its parent handler like so: Paper > Components > Master
-  */
+ *
+ * Routes are used to declare your view hierarchy.
+ *
+ * Say you go to http://material-ui.com/#/components/paper
+ * The react router will search for a route named 'paper' and will recursively render its
+ * handler and its parent handler like so: Paper > Components > Master
+ */
 
 let AppRoutes = (
-  <Route name="root" path="/" handler={Master}>
-    <Route name="home" handler={Home} />
-    <Route name="get-started" handler={GetStarted} />
-    <Route name="customization" handler={Customization}>
-      <Route name="colors" handler={Colors} />
-      <Route name="themes" handler={Themes} />
-      <Route name="inline-styles" handler={InlineStyles} />
-      <Redirect from="/customization" to="themes" />
-    </Route>
+    <Route name="root">
+      <Route name="docs" path="/" handler={Master}>
+        <Route name="home" handler={Home} />
+        <Route name="get-started" handler={GetStarted} />
+        <Route name="customization" handler={Customization}>
+          <Route name="colors" handler={Colors} />
+          <Route name="themes" handler={Themes} />
+          <Route name="inline-styles" handler={InlineStyles} />
+          <Redirect from="/customization" to="themes" />
+        </Route>
 
-    <Route name="components" handler={Components}>
-      <Route name="appbar" handler={AppBar} />
-      <Route name="avatars" handler={Avatars} />
-      <Route name="buttons" handler={Buttons} />
-      <Route name="cards" handler={Cards} />
-      <Route name="date-picker" handler={DatePicker} />
-      <Route name="dialog" handler={Dialog} />
-      <Route name="dropdown-menu" handler={DropDownMenu} />
-      <Route name="icons" handler={Icons} />
-      <Route name="icon-buttons" handler={IconButtons} />
-      <Route name="icon-menus" handler={IconMenus} />
-      <Route name="left-nav" handler={LeftNav} />
-      <Route name="lists" handler={Lists} />
-      <Route name="menus" handler={Menus} />
-      <Route name="paper" handler={Paper} />
-      <Route name="progress" handler={Progress} />
-      <Route name="sliders" handler={Sliders} />
-      <Route name="switches" handler={Switches} />
-      <Route name="snackbar" handler={Snackbar} />
-      <Route name="table" handler={Table} />
-      <Route name="tabs" handler={Tabs} />
-      <Route name="text-fields" handler={TextFields} />
-      <Route name="time-picker" handler={TimePicker} />
-      <Route name="toolbars" handler={Toolbars} />
-      <Redirect from="/components" to="appbar" />
-    </Route>
+        <Route name="components" handler={Components}>
+          <Route name="appbar" handler={AppBar} />
+          <Route name="avatars" handler={Avatars} />
+          <Route name="buttons" handler={Buttons} />
+          <Route name="cards" handler={Cards} />
+          <Route name="date-picker" handler={DatePicker} />
+          <Route name="dialog" handler={Dialog} />
+          <Route name="dropdown-menu" handler={DropDownMenu} />
+          <Route name="icons" handler={Icons} />
+          <Route name="icon-buttons" handler={IconButtons} />
+          <Route name="icon-menus" handler={IconMenus} />
+          <Route name="left-nav" handler={LeftNav} />
+          <Route name="lists" handler={Lists} />
+          <Route name="menus" handler={Menus} />
+          <Route name="paper" handler={Paper} />
+          <Route name="progress" handler={Progress} />
+          <Route name="sliders" handler={Sliders} />
+          <Route name="switches" handler={Switches} />
+          <Route name="snackbar" handler={Snackbar} />
+          <Route name="table" handler={Table} />
+          <Route name="tabs" handler={Tabs} />
+          <Route name="text-fields" handler={TextFields} />
+          <Route name="time-picker" handler={TimePicker} />
+          <Route name="toolbars" handler={Toolbars} />
+          <Redirect from="/components" to="appbar" />
+        </Route>
 
-    <DefaultRoute handler={Home}/>
-  </Route>
+        <DefaultRoute handler={Home}/>
+      </Route>
+      <Route name="examples" path="/examples">
+        <Route name="app-bar-waterfall" handler={AppBarWaterfall} />
+      </Route>
+    </Route>
 );
 
 module.exports = AppRoutes;
