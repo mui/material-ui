@@ -30,6 +30,20 @@ class DropDownMenuPage extends React.Component {
         name: 'Props',
         infoArray: [
           {
+            name: 'displayMember',
+            type: 'string',
+            header: 'default: text',
+            desc: 'DropDownMenu will use text as default value, with this ' +
+              'property you can choose another name.'
+          },
+          {
+            name: 'valueMember',
+            type: 'string',
+            header: 'default: payload',
+            desc: 'DropDownMenu will use payload as default value, with this ' +
+              'property you can choose another name.'
+          },
+          {
             name: 'autoWidth',
             type: 'bool',
             header: 'default: true',
