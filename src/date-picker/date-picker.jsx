@@ -5,6 +5,15 @@ let DateTime = require('../utils/date-time');
 let DatePickerDialog = require('./date-picker-dialog');
 let TextField = require('../text-field');
 
+/**
+ * Check if a value is a valid Date instance.
+ *
+ * @param value The value to check.
+ * @returns {boolean} True if the object provided is valid, false otherwise.
+ */
+function isValid(value) {
+  return value instanceof Date;
+}
 
 let DatePicker = React.createClass({
 
@@ -43,15 +52,17 @@ let DatePicker = React.createClass({
 
   getInitialState() {
     return {
-      date: this.props.defaultDate,
+      date: this._getPropsDate(),
       dialogDate: new Date(),
     };
   },
 
+  /**
+   * Rather than checking all the possible dates for changes ourselves,
+   * just assign the current props date and let setState do the checking.
+   */
   componentWillReceiveProps(nextProps) {
-    if (this.props.defaultDate !== nextProps.defaultDate) {
-      this.setDate(nextProps.defaultDate);
-    }
+    this.setDate(this._getPropsDate(nextProps));
   },
 
   render() {
@@ -71,16 +82,6 @@ let DatePicker = React.createClass({
       textFieldStyle,
       ...other,
     } = this.props;
-    let defaultInputValue;
-
-    if (defaultDate) {
-      defaultInputValue = formatDate(defaultDate);
-    }
-
-    // Format the date of controlled inputs
-    if (other.value) {
-      other.value = formatDate(other.value);
-    }
 
     return (
       <div style={style}>
@@ -88,7 +89,7 @@ let DatePicker = React.createClass({
           {...other}
           style={textFieldStyle}
           ref="input"
-          defaultValue={defaultInputValue}
+          value={this.state.date ? formatDate(this.state.date) : undefined}
           onFocus={this._handleInputFocus}
           onTouchTap={this._handleInputTouchTap}/>
         <DatePickerDialog
@@ -113,18 +114,20 @@ let DatePicker = React.createClass({
     return this.state.date;
   },
 
+  /**
+   * Setting the state will update the date here and also re-render the TextField with
+   * the new value.
+   */
   setDate(d) {
     this.setState({
       date: d,
     });
-    if (!this._isControlled()) {
-      this.refs.input.setValue(this.props.formatDate(d));
-    }
   },
 
   _handleDialogAccept(d) {
     this.setDate(d);
     if (this.props.onChange) this.props.onChange(null, d);
+    if (this.props.valueLink) this.props.valueLink.requestChange(d);
   },
 
   _handleDialogDismiss() {
@@ -149,9 +152,14 @@ let DatePicker = React.createClass({
     //TO DO: open the dialog if input has focus
   },
 
-  _isControlled() {
-    return this.props.hasOwnProperty('value') ||
-      this.props.hasOwnProperty('valueLink');
+  _getPropsDate(props = this.props) {
+    if (isValid(props.value)) {
+      return props.value;
+    } else if (props.valueLink && isValid(props.valueLink.value)) {
+      return props.valueLink.value;
+    } else if (isValid(props.defaultDate)) {
+      return props.defaultDate;
+    }
   },
 
 });
