@@ -140,7 +140,7 @@ let LightTheme = {
       tableHeaderColumn: {
         textColor: Colors.lightBlack,
         height: 56,
-        spacing: 28,
+        spacing: 24,
       },
       tableFooter: {
         borderColor: palette.borderColor,
@@ -155,7 +155,7 @@ let LightTheme = {
       },
       tableRowColumn: {
         height: 48,
-        spacing: 28,
+        spacing: 24,
       },
       timePicker: {
         color: Colors.white,
