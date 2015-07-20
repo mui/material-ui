@@ -124,6 +124,24 @@ let DatePicker = React.createClass({
     });
   },
 
+  /**
+   * Open the date-picker dialog programmatically from a parent.
+   */
+  openDialog() {
+    this.setState({
+      dialogDate: this.getDate(),
+      // State changes aren't always handled immediately,
+      // better to wait on the callback.
+    }, () => this.refs.dialogWindow.show());
+  },
+
+  /**
+   * Alias for `openDialog()` for an api consistent with TextField.
+   */
+  focus() {
+    this.openDialog();
+  },
+
   _handleDialogAccept(d) {
     this.setDate(d);
     if (this.props.onChange) this.props.onChange(null, d);
@@ -140,11 +158,7 @@ let DatePicker = React.createClass({
   },
 
   _handleInputTouchTap(e) {
-    this.setState({
-      dialogDate: this.getDate(),
-    });
-
-    this.refs.dialogWindow.show();
+    this.openDialog();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   },
 
