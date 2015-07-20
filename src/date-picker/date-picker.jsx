@@ -58,11 +58,13 @@ let DatePicker = React.createClass({
   },
 
   /**
-   * Rather than checking all the possible dates for changes ourselves,
-   * just assign the current props date and let setState do the checking.
+   * If this is a controlled input, rather than checking all the possible dates for changes
+   * ourselves, just assign the current props date and let setState do the checking.
    */
   componentWillReceiveProps(nextProps) {
-    this.setDate(this._getPropsDate(nextProps));
+    if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
+      this.setDate(this._getPropsDate(nextProps));
+    }
   },
 
   render() {
