@@ -57,6 +57,24 @@ class DropDownMenuPage extends React.Component {
             desc: 'Index of the item selected.'
           },
           {
+            name: 'underlineStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the styles of DropDownMenu\'s underline.'
+          },
+          {
+            name: 'iconStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the styles of DropDownMenu\'s icon element.'
+          },
+          {
+            name: 'labelStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the styles of DropDownMenu\'s label when the DropDownMenu is inactive.'
+          },
+          {
             name: 'style',
             type: 'object',
             header: 'optional',
