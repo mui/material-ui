@@ -1,6 +1,6 @@
 
 module.exports = {
   datePicker: require('./date-picker'),
-  datePickerDialog: require('./date-picker-dialog')
+  sudo : require('./date-picker-dialog'),
 };
 
