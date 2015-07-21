@@ -112,6 +112,17 @@ class CardPage extends React.Component {
           },
         ],
       },
+      {
+        name: 'Card.Events',
+        infoArray: [
+          {
+            name: 'onExpandChange',
+            type: 'function(isExpanded)',
+            header: 'optional',
+            desc: 'Fired when the expandable state changes.'
+          },
+        ],
+      },
     ];
   }
 
