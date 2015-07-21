@@ -4,7 +4,7 @@ let Extend = require('../utils/extend');
 const Types = {
   LIGHT: require('./themes/light-theme'),
   DARK: require('./themes/dark-theme'),
-  MEDLIFE: require('./themes/medlife-theme')
+  MEDLIFE: require('./themes/medlife-theme'),
 };
 
 
