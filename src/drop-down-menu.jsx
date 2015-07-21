@@ -45,8 +45,7 @@ let DropDownMenu = React.createClass({
     return {
       open: false,
       isHovered: false,
-      selectedIndex: (this.props.hasOwnProperty('value') ||
-        this.props.hasOwnProperty('valueLink')) ? null : (this.props.selectedIndex || 0),
+      selectedIndex: this._isControlled() ? null : (this.props.selectedIndex || 0),
     };
   },
 
@@ -154,7 +153,7 @@ let DropDownMenu = React.createClass({
   render() {
     let _this = this;
     let styles = this.getStyles();
-    let selectedIndex = this.state.selectedIndex;
+    let selectedIndex = this._isControlled() ? null : this.state.selectedIndex;
     let displayValue = "";
     if (selectedIndex) {
       if (process.env.NODE_ENV !== 'production') {
@@ -162,11 +161,13 @@ let DropDownMenu = React.createClass({
       }
     }
     else {
-      if (this.props.valueMember && (this.props.valueLink || this.props.value)) {
-        let value = this.props.value || this.props.valueLink.value;
-        for (let i = 0; i < this.props.menuItems.length; i++) {
-          if (this.props.menuItems[i][this.props.valueMember] === value) {
-            selectedIndex = i;
+      if (this.props.valueMember && this._isControlled()) {
+        let value = this.props.hasOwnProperty('value') ? this.props.value : this.props.valueLink.value;
+        if (value) {
+          for (let i = 0; i < this.props.menuItems.length; i++) {
+            if (this.props.menuItems[i][this.props.valueMember] === value) {
+              selectedIndex = i;
+            }
           }
         }
       }
@@ -324,6 +325,11 @@ let DropDownMenu = React.createClass({
     this.setState({
       open: false,
     });
+  },
+
+  _isControlled() {
+    return this.props.hasOwnProperty('value') ||
+      this.props.hasOwnProperty('valueLink');
   },
 
 });
