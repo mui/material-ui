@@ -13,15 +13,27 @@ let Tab = React.createClass({
 
   propTypes: {
     handleTouchTap: React.PropTypes.func,
+    onActive: React.PropTypes.func,
     selected: React.PropTypes.bool,
     width: React.PropTypes.string,
+    value: React.PropTypes.string,
   },
 
-  handleTouchTap() {
-    this.props.handleTouchTap(this.props.tabIndex, this);
+  getDefaultProps(){
+    return {
+      onActive: () => {},
+    };
   },
 
   render() {
+    let {
+      label,
+      selected,
+      style,
+      value,
+      width,
+      ...other,
+    } = this.props;
     let styles = this.mergeAndPrefix({
       display: 'table-cell',
       cursor: 'pointer',
@@ -29,22 +41,28 @@ let Tab = React.createClass({
       verticalAlign: 'middle',
       height: 48,
       color: Colors.white,
-      opacity: 0.6,
+      opacity: selected ? 1 : 0.6,
+      outline: 'none',
       fontSize: 14,
-      fontWeight: '500',
+      fontWeight: 500,
       whiteSpace: 'initial',
       fontFamily: this.context.muiTheme.contentFontFamily,
       boxSizing: 'border-box',
-      width: this.props.width,
-    }, this.props.style);
-
-    if (this.props.selected) styles.opacity = '1';
+      width: width,
+    }, style);
 
     return (
-      <div style={styles} onTouchTap={this.handleTouchTap} routeName={this.props.route}>
-        {this.props.label}
+      <div
+        {...other}
+        style={styles}
+        onTouchTap={this._handleTouchTap}>
+        {label}
       </div>
     );
+  },
+
+   _handleTouchTap(e) {
+    this.props.handleTouchTap(e, this);
   },
 
 });
