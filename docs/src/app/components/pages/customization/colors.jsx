@@ -78,7 +78,7 @@ let ColorsPage = React.createClass({
     }, this);
 
     let googleLink = "https://www.google.com/design/spec/style/color.html#color-ui-color-palette";
-    let githubLink = "https://github.com/callemall/material-ui/blob/css-in-js/src/js/styles/colors.js";
+    let githubLink = "https://github.com/callemall/material-ui/blob/master/src/styles/colors.js";
 
     return (
       <div>
