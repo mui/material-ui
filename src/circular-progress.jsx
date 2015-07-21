@@ -121,7 +121,6 @@ let CircularProgress = React.createClass({
         margin: "5px",
         display: "inline-block",
         transition: Transitions.create("transform", "20s", null, "linear"),
-        //webkitTransitionTimingFunction: "linear",
       },
       svg: {
         height: size,
