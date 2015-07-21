@@ -233,8 +233,7 @@ let Dialog = React.createClass({
 
   show() {
     this.refs.dialogOverlay.preventScrolling();
-    this.setState({ open: true });
-    this._onShow();
+    this.setState({ open: true }, this._onShow);
   },
 
   _getAction(actionJSON, key) {
