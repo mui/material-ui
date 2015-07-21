@@ -9,9 +9,16 @@ let SlideInChild = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-    //This callback is needed bacause the direction could change
-    //when leaving the dom
+    enterDelay: React.PropTypes.number,
+    //This callback is needed bacause
+    //the direction could change when leaving the dom
     getLeaveDirection: React.PropTypes.func.isRequired,
+  },
+
+  getDefaultProps: function() {
+    return {
+      enterDelay: 0,
+    };
   },
 
   componentWillEnter(callback) {
@@ -24,7 +31,7 @@ let SlideInChild = React.createClass({
     style.opacity = '0';
     AutoPrefix.set(style, 'transform', 'translate3d(' + x + ',' + y + ',0)');
 
-    setTimeout(callback, 0);
+    setTimeout(callback, this.props.enterDelay);
   },
 
   componentDidEnter() {
@@ -49,6 +56,8 @@ let SlideInChild = React.createClass({
 
   render() {
     let {
+      enterDelay,
+      getLeaveDirection,
       styles,
       ...other,
     } = this.props;
@@ -63,8 +72,7 @@ let SlideInChild = React.createClass({
     }, this.props.style);
 
     return (
-      <div {...other}
-        style={styles}>
+      <div {...other} style={styles}>
         {this.props.children}
       </div>
     );
