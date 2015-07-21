@@ -1,6 +1,6 @@
 {
   "name": "material-ui",
-  "author": "Call-em-all Engineering Team",
+  "author": "Call-em-all Engineering Team + Medlife Custom Theme Build",
   "version": "0.10.1",
   "description": "Material Design UI components built with React",
   "main": "./lib",
@@ -20,11 +20,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
+    "url": "https://github.com/muthufmass/material-ui.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/callemall/material-ui/issues"
+    "url": "https://github.com/muthufmass/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {

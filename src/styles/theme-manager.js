@@ -4,19 +4,20 @@ let Extend = require('../utils/extend');
 const Types = {
   LIGHT: require('./themes/light-theme'),
   DARK: require('./themes/dark-theme'),
+  MEDLIFE: require('./themes/medlife-theme')
 };
 
 
 let ThemeManager = () => {
   return {
     types: Types,
-    template: Types.LIGHT,
+    template: Types.MEDLIFE,
 
-    spacing: Types.LIGHT.spacing,
+    spacing: Types.MEDLIFE.spacing,
     contentFontFamily: 'Roboto, sans-serif',
 
-    palette: Types.LIGHT.getPalette(),
-    component: Types.LIGHT.getComponentThemes(Types.LIGHT.getPalette()),
+    palette: Types.MEDLIFE.getPalette(),
+    component: Types.MEDLIFE.getComponentThemes(Types.MEDLIFE.getPalette()),
 
     getCurrentTheme() {
       return this;

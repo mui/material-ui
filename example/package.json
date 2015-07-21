@@ -4,7 +4,7 @@
   "description": "Sample project that uses material-ui",
   "repository": {
     "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
+    "url": "https://github.com/muthufmass/material-ui.git"
   },
   "scripts": {
     "start": "gulp"
