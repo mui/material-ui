@@ -99,7 +99,7 @@ let TextField = React.createClass({
 
     let styles = {
       root: {
-        fontSize: 16,
+        fontSize: 14,
         lineHeight: '24px',
         width: props.fullWidth ? '100%' : 256,
         height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),

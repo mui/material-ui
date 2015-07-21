@@ -2,28 +2,33 @@ let Colors = require('../colors');
 let Spacing = require('../spacing');
 let ColorManipulator = require('../../utils/color-manipulator');
 
-
 /**
  *  Light Theme is the default theme used in material-ui. It is guaranteed to
  *  have all theme variables needed for every component. Variables not defined
  *  in a custom theme will default to these values.
  */
 
-let LightTheme = {
+let MedlifeTheme = {
   spacing: Spacing,
   contentFontFamily: 'Roboto, sans-serif',
   getPalette() {
     return {
-      primary1Color: Colors.cyan500,
-      primary2Color: Colors.cyan700,
-      primary3Color: Colors.cyan100,
-      accent1Color: Colors.pinkA200,
-      accent2Color: Colors.pinkA400,
-      accent3Color: Colors.pinkA100,
+      primary1Color: Colors.blue900,
+      primary2Color: Colors.blue700,
+      primary3Color: Colors.lightBlue100,
+      primary4Color: Colors.white,
+      accent1Color: Colors.lightBlueA200,
+      accent2Color: Colors.lightBlueA400,
+      accent3Color: Colors.lightBlueA100,
+      accent4Color: Colors.white,
       textColor: Colors.darkBlack,
+      textColor2: Colors.white,
+      textColor3:  ColorManipulator.fade(Colors.white, 0.7),
       canvasColor: Colors.white,
       borderColor: Colors.grey300,
+      borderColor2:ColorManipulator.fade(Colors.white, 0.7),
       disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
+      disabledColor2: ColorManipulator.fade(Colors.white, 0.8),
     };
   },
   getComponentThemes(palette, spacing) {
@@ -73,14 +78,14 @@ let LightTheme = {
       },
       leftNav: {
         width: spacing.desktopKeylineIncrement * 4,
-        color: Colors.white,
+        color: Colors.grey800,
       },
       listItem: {
         nestedLevelDepth: 18,
       },
       menu: {
-        backgroundColor: Colors.white,
-        containerBackgroundColor: Colors.white,
+        backgroundColor: Colors.grey800,
+        containerBackgroundColor: Colors.grey800,
       },
       menuItem: {
         dataHeight: 32,
@@ -95,7 +100,7 @@ let LightTheme = {
         textColor: palette.primary1Color,
       },
       paper: {
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey800,
       },
       radioButton: {
         borderColor:  palette.textColor,
@@ -140,7 +145,7 @@ let LightTheme = {
       tableHeaderColumn: {
         textColor: Colors.lightBlack,
         height: 56,
-        spacing: 24,
+        spacing: 28,
       },
       tableFooter: {
         borderColor: palette.borderColor,
@@ -155,7 +160,7 @@ let LightTheme = {
       },
       tableRowColumn: {
         height: 48,
-        spacing: 24,
+        spacing: 28,
       },
       timePicker: {
         color: Colors.white,
@@ -188,14 +193,14 @@ let LightTheme = {
         backgroundColor: palette.primary1Color,
       },
       textField: {
-        textColor: palette.textColor,
-        hintColor: palette.disabledColor,
-        floatingLabelColor: palette.textColor,
-        disabledTextColor: palette.disabledColor,
+        textColor: palette.textColor2,
+        hintColor: palette.textColor2,
+        floatingLabelColor: palette.textColor3,
+        disabledTextColor: palette.disabledColor2,
         errorColor: Colors.red500,
-        focusColor: palette.primary1Color,
+        focusColor: palette.primary3Color,
         backgroundColor: 'transparent',
-        borderColor: palette.borderColor,
+        borderColor: palette.borderColor2,
       },
     };
 
@@ -212,4 +217,4 @@ let LightTheme = {
   },
 };
 
-module.exports = LightTheme;
+module.exports = MedlifeTheme;
