@@ -144,7 +144,7 @@ let LeftNav = React.createClass({
       overlay = (
         <Overlay
           ref="overlay"
-          show={this.state.open}
+          show={this.state.open || !!this.state.swiping}
           transitionEnabled={!this.state.swiping}
           onTouchTap={this._onOverlayTouchTap}
         />
@@ -293,7 +293,6 @@ let LeftNav = React.createClass({
         this._swipeStartX = currentX;
         this.setState({
           swiping: this.state.open ? 'closing' : 'opening',
-          open: true,
         });
         this._setPosition(this._getTranslateX(currentX));
       }
@@ -309,6 +308,7 @@ let LeftNav = React.createClass({
       let translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
 
       this._maybeSwiping = false;
+      let swiping = this.state.swiping;
       this.setState({
         swiping: null,
       });
@@ -316,10 +316,18 @@ let LeftNav = React.createClass({
       // We have to open or close after setting swiping to null,
       // because only then CSS transition is enabled.
       if (translateRatio > 0.5) {
-        this.close();
+        if (swiping === 'opening') {
+          this._setPosition(this._getMaxTranslateX());
+        } else {
+          this.close();
+        }
       }
       else {
-        this._setPosition(0);
+        if (swiping === 'opening') {
+          this.open();
+        } else {
+          this._setPosition(0);
+        }
       }
     }
     else {
