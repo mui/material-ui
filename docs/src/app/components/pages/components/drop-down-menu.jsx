@@ -30,6 +30,20 @@ class DropDownMenuPage extends React.Component {
         name: 'Props',
         infoArray: [
           {
+            name: 'displayMember',
+            type: 'string',
+            header: 'default: text',
+            desc: 'DropDownMenu will use text as default value, with this ' +
+              'property you can choose another name.'
+          },
+          {
+            name: 'valueMember',
+            type: 'string',
+            header: 'default: payload',
+            desc: 'DropDownMenu will use payload as default value, with this ' +
+              'property you can choose another name.'
+          },
+          {
             name: 'autoWidth',
             type: 'bool',
             header: 'default: true',
@@ -55,6 +69,24 @@ class DropDownMenuPage extends React.Component {
             type: 'number',
             header: 'default: 0',
             desc: 'Index of the item selected.'
+          },
+          {
+            name: 'underlineStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the styles of DropDownMenu\'s underline.'
+          },
+          {
+            name: 'iconStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the styles of DropDownMenu\'s icon element.'
+          },
+          {
+            name: 'labelStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the styles of DropDownMenu\'s label when the DropDownMenu is inactive.'
           },
           {
             name: 'style',
