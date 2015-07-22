@@ -14,10 +14,13 @@ let Card = React.createClass({
     style: React.PropTypes.object,
     expandable: React.PropTypes.bool,
     initiallyExpanded: React.PropTypes.bool,
+    onExpandChange: React.PropTypes.func,
   },
 
   _onExpandable(value) {
     this.setState({expanded: value});
+    if (this.props.onExpandChange)
+      this.props.onExpandChange(value);
   },
 
   render() {
