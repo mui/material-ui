@@ -101,9 +101,9 @@ class TabsPage extends React.Component {
         infoArray: [
           {
             name: 'onChange',
-            type: 'function(e, tab)',
+            type: 'function(value, e, tab)',
             header: 'optional',
-            desc: 'Fired on touch or tap of a tab. Passes the index and the tab element.'
+            desc: 'Fired on touch or tap of a tab. Passes the value of the tab, the touchTap event and the tab element.'
           }
         ]
       },
@@ -266,8 +266,8 @@ class TabsPage extends React.Component {
     this.context.router.transitionTo(tab.props.route);
   }
 
-  _handleTabsChange(e, tab){
-    this.setState({tabsValue: tab.props.value});
+  _handleTabsChange(value, e, tab){
+    this.setState({tabsValue: value});
   }
 }
 

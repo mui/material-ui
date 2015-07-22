@@ -111,7 +111,7 @@ let Tabs = React.createClass({
           selected: this._getSelected(tab, index),
           tabIndex: index,
           width: width,
-          handleTouchTap: this._handleTouchTap,
+          onTouchTap: this._handleTabTouchTap,
         });
       }
       else {
@@ -161,14 +161,13 @@ let Tabs = React.createClass({
     return selectedIndex;
   },
 
-  _handleTouchTap(e, tab){
+  _handleTabTouchTap(value, e, tab){
     let valueLink = this.getValueLink(this.props);
     let tabIndex = tab.props.tabIndex;
-    let value = tab.props.value;
 
     if ((valueLink.value && valueLink.value !== value) ||
       this.state.selectedIndex !== tabIndex) {
-      valueLink.requestChange(e, tab);
+      valueLink.requestChange(value, e, tab);
     }
 
     this.setState({selectedIndex: tabIndex});
