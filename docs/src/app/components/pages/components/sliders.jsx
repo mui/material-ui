@@ -141,8 +141,8 @@ class SlidersPage extends React.Component {
         componentInfo={componentInfo}>
 
         <Slider name="slider1" />
-        <Slider name="slider2" value={0.5} step={0.10} />
-        <Slider name="slider3" value={1}/>
+        <Slider name="slider2" defaultValue={0.5} step={0.10} />
+        <Slider name="slider3" defaultValue={1}/>
         <Slider name="slider1" disabled={true} />
         <Slider name="slider2" disabled={true} value={0.5} />
         <Slider name="slider3" disabled={true} value={1} />
