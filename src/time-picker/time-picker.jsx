@@ -17,6 +17,7 @@ let TimePicker = React.createClass({
   propTypes: {
     defaultTime: React.PropTypes.object,
     format: React.PropTypes.oneOf(['ampm', '24hr']),
+    pedantic: React.PropTypes.bool,
     onFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     onChange: React.PropTypes.func,
@@ -32,6 +33,7 @@ let TimePicker = React.createClass({
     return {
       defaultTime: emptyTime,
       format: 'ampm',
+      pedantic: true,
     };
   },
 
@@ -54,12 +56,14 @@ let TimePicker = React.createClass({
 
       if (mins.length < 2 ) mins = "0" + mins;
 
-      // Treat midday/midnight specially http://www.nist.gov/pml/div688/times.cfm
-      if (hours === "12" && mins === "00" && additional === " am") {
-        return "12 noon";
-      }
-      if (hours === "12" && mins === "00" && additional === " pm") {
-        return "12 midnight";
+      if (this.props.pedantic) {
+        // Treat midday/midnight specially http://www.nist.gov/pml/div688/times.cfm
+        if (hours === "12" && mins === "00" && additional === " am") {
+          return "12 noon";
+        }
+        if (hours === "12" && mins === "00" && additional === " pm") {
+          return "12 midnight";
+        }
       }
 
       return hours + (mins === "00" ? "" : ":" + mins) + additional;

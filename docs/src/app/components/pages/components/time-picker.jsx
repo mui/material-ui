@@ -32,6 +32,12 @@ let TimePickerPage = React.createClass({
             type: 'one of: ampm, 24hr',
             header: 'default: ampm',
             desc: 'Tells the component to display the picker in ampm (12hr) format or 24hr format.'
+          },
+          {
+            name: 'pedantic',
+            type: 'boolean',
+            header: 'default: true',
+            desc: 'It\'s technically more correct to refer to "12 noon" and "12 midnight" rather than "12 a.m." and "12 p.m." and it avoids real confusion between different locales. The default is to use the unambiguous forms (noon/midnight) but if you prefer the system of using "a.m./p.m." set pedantic={false}.'
           }
         ]
       },
