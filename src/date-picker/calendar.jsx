@@ -26,7 +26,7 @@ let Calendar = React.createClass({
     shouldShowMonthDayPickerFirst: React.PropTypes.bool,
     shouldShowYearPickerFirst: React.PropTypes.bool,
     showYearSelector: React.PropTypes.bool,
-	onDayTouchTap: React.PropTypes.func,
+    onDayTouchTap: React.PropTypes.func,
   },
 
   windowListeners: {
@@ -252,7 +252,7 @@ let Calendar = React.createClass({
 
   _handleDayTouchTap(e, date) {
     this._setSelectedDate(date);
-	if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
+    if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
   },
 
   _handleMonthChange(months) {
