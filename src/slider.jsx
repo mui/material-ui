@@ -78,8 +78,7 @@ let Slider = React.createClass({
   },
 
   getInitialState() {
-    let value = this.props.value;
-    if (value === null) value = this.props.defaultValue;
+    let value = this.props.value || this.props.defaultValue || 0;
     let percent = (value - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
 
@@ -94,7 +93,7 @@ let Slider = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== null) {
+    if (!nextProps.value) {
       this.setValue(nextProps.value);
     }
   },
