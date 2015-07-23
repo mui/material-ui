@@ -20,19 +20,7 @@ class AppBarPage extends React.Component {
           '<AppBar\n' +
           '  title="Title"\n' +
           '  iconElementLeft={<IconButton><NavigationClose /></IconButton>}\n' +
-          '  iconElementRight={<FlatButton label="Save" />} />\n' +
-          '\n' +
-          '<AppCanvas>\n' +
-          '  <AppBar\n' +
-          '    title="Waterfall"\n' +
-          '    iconElementLeft={<IconButton><NavigationClose /></IconButton>}\n' +
-          '    iconElementRight={<FlatButton label="Save" />}\n' +
-          '    waterfall={{\n' +
-          '      minHeight: 64,\n' +
-          '      height: 100,\n' +
-          '      maxHeight: 128\n' +
-          '    }}/>\n' +
-          '</AppCanvas>';
+          '  iconElementRight={<FlatButton label="Save" />} />';
 
     this.desc = 'App bars are a collection of components placed as a static ' +
                 'header for an application. It is used for navigation, search ' +
@@ -135,10 +123,12 @@ class AppBarPage extends React.Component {
         componentInfo={this.componentInfo}>
           <AppBar
             title="Title"
+            position="static"
             iconClassNameRight="muidocs-icon-navigation-expand-more" />
           <br />
           <AppBar
             title="Title"
+            position="static"
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             iconElementRight={<FlatButton label="Save" />} />
           <br />

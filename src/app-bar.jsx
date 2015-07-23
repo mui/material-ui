@@ -24,11 +24,17 @@ let AppBar = React.createClass({
     iconElementLeft: React.PropTypes.element,
     iconElementRight: React.PropTypes.element,
     iconStyleRight: React.PropTypes.object,
-    title: React.PropTypes.node,
+    title: React.PropTypes.oneOfType([
+      React.PropTypes.node,
+      React.PropTypes.func
+    ]),
     zDepth: React.PropTypes.number,
+    position: React.PropTypes.oneOf('fixed', 'static', 'waterfall'),
     waterfall: React.PropTypes.shape({
       minHeight: React.PropTypes.number,
       maxHeight: React.PropTypes.number,
+      onHeightChange: React.PropTypes.func,
+      children: React.PropTypes.node
     }),
   },
 
@@ -37,6 +43,7 @@ let AppBar = React.createClass({
       showMenuIconButton: true,
       title: '',
       zDepth: 1,
+      position: 'fixed',
     };
   },
 
@@ -44,15 +51,15 @@ let AppBar = React.createClass({
     if (process.env.NODE_ENV !== 'production') {
       if (this.props.iconElementLeft && this.props.iconClassNameLeft) {
         console.warn(
-            'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
-            'defined. Please use one or the other.'
+          'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
+          'defined. Please use one or the other.'
         );
       }
 
       if (this.props.iconElementRight && this.props.iconClassNameRight) {
         console.warn(
-            'Properties iconClassNameRight and iconElementRight cannot be simultaneously ' +
-            'defined. Please use one or the other.'
+          'Properties iconClassNameRight and iconElementRight cannot be simultaneously ' +
+          'defined. Please use one or the other.'
         );
       }
     }
@@ -77,12 +84,34 @@ let AppBar = React.createClass({
   },
 
   waterfallScrollHandler() {
-    const waterfall = this.props.waterfall;
+    if (this.waterfallRunning) { return; }
+    this.waterfallRunning = true;
+    requestAnimationFrame(() => {
+      let waterfall = this.props.waterfall;
 
-    const waterfallHeight = Math.max(waterfall.minHeight, waterfall.maxHeight - window.scrollY);
-    if (this.state.waterfallHeight !== waterfallHeight) {
-      this.setState({waterfallHeight: waterfallHeight});
-    }
+      let waterfallHeight = this.calculateWaterfallHeight();
+      if (this.waterfallHeight !== waterfallHeight) {
+        this.waterfallHeight = waterfallHeight;
+        if (waterfall.onHeightChange) {
+          waterfall.onHeightChange({
+            height: waterfallHeight,
+            menuElementLeft: React.findDOMNode(this.refs.menuElementLeft),
+            titleElement: React.findDOMNode(this.refs.titleElement),
+            menuElementRight: React.findDOMNode(this.refs.menuElementRight),
+            slideElement: React.findDOMNode(this.refs.slideElement),
+          });
+        }
+      }
+
+      this.waterfallRunning = false;
+    });
+
+  },
+
+  calculateWaterfallHeight() {
+    let waterfall = this.props.waterfall;
+    let windowScroll = window ? window.scrollY : 0;
+    return Math.max(waterfall.minHeight, waterfall.maxHeight - windowScroll);
   },
 
   getStyles() {
@@ -137,89 +166,16 @@ let AppBar = React.createClass({
     return styles;
   },
 
-  getInitialState() {
-    if (this.props.waterfall) {
-      return {waterfallHeight: this.props.waterfall.maxHeight};
-    } else {
-      return null;
-    }
-  },
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.waterfall){
-      let waterfallHeight = this.state.waterfallHeight;
-      waterfallHeight = Math.max(waterfallHeight, nextProps.waterfall.minHeight);
-      waterfallHeight = Math.min(waterfallHeight, nextProps.waterfall.maxHeight);
-      if (waterfallHeight !== this.state.waterfallHeight) {
-        this.setState({waterfallHeight: waterfallHeight});
-      }
-    } else {
-      this.removeWaterfall();
-    }
-  },
-
   render() {
-    if (this.props.waterfall) {
-      if ( this.props.waterfall.spring) {
-        return this.renderWaterfallSpring();
-      } else {
-        return this.renderMain(this.state.waterfallHeight);
-      }
-    } else {
-      return this.renderMain();
-    }
-  },
-
-  renderWaterfallSpring() {
-    let Spring = this.props.waterfall.spring;
-
-    return (
-        <Spring endValue={this.state.waterfallHeight}>
-          {interpolatedHeight => this.renderMain(interpolatedHeight)}
-        </Spring>
-    );
-  },
-
-  renderMain(waterfallHeight) {
     let props = this.props;
-    let title = props.title;
-
-    let children = this.props.children;
-
-    let waterfall = this.props.waterfall;
-    let rootWaterfallStyles;
-    let childWaterfallStyles;
-
-    if (waterfall) {
-      waterfallHeight = Math.max(waterfallHeight, waterfall.minHeight);
-      let dY = waterfallHeight - waterfall.maxHeight;
-      // define root translation and height styles
-      rootWaterfallStyles = {
-        height: waterfall.maxHeight,
-        transform: 'translate3d(0,' + dY +'px,0)',
-        transition: 'transform 0s',
-      };
-      // define children translation styles
-      childWaterfallStyles = {
-        transform: 'translate3d(0,' + (-dY) +'px,0)',
-        transition: 'transform 0s',
-      };
-      // TODO is there a more performant way than clone?
-      children = React.Children.map(children, child => React.cloneElement(child, {
-        // cloneElement do only a shallow copy of style,
-        // so we need to merge child style, in order to keep it
-        style: this.mergeAndPrefix(child.props.style, childWaterfallStyles),
-      }));
-    }
-
     let menuElementLeft;
     let menuElementRight;
     let styles = this.getStyles();
-
+    let title = props.title;
     let iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
       marginRight: -16,
       marginLeft: 'auto',
-    }, props.iconStyleRight, childWaterfallStyles);
+    }, props.iconStyleRight);
     let titleElement;
 
     if (title) {
@@ -227,14 +183,17 @@ let AppBar = React.createClass({
       // If not, just use it as a node.
       if (typeof title === 'string' || title instanceof String) {
         titleElement =
-            <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement, childWaterfallStyles)}>{title}</h1>;
+            <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement)}
+                ref="titleElement">{title}</h1>;
       } else {
         let titleNode = title;
-        if (waterfall && typeof title === 'function') {
-          titleNode = title(waterfallHeight, this.getStyles());
+        if (typeof title === 'function') {
+          // pass styles, otherwise inaccesible
+          titleNode = title(this.getStyles());
         }
         titleElement =
-            <div style={this.mergeAndPrefix(styles.mainElement, childWaterfallStyles)}>{titleNode}</div>;
+            <div style={this.mergeAndPrefix(styles.mainElement)}
+                ref="titleElement">{titleNode}</div>;
       }
     }
 
@@ -251,20 +210,21 @@ let AppBar = React.createClass({
         }
 
         menuElementLeft = (
-            <div style={this.mergeAndPrefix(styles.iconButton.style, childWaterfallStyles)}>
-              {iconElementLeft}
-            </div>
+          <div style={this.mergeAndPrefix(styles.iconButton.style)} ref="menuElementLeft">
+            {iconElementLeft}
+          </div>
         );
       } else {
         let child = (props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
-            <IconButton
-                style={this.mergeAndPrefix(styles.iconButton.style, childWaterfallStyles)}
-                iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
-                iconClassName={props.iconClassNameLeft}
-                onTouchTap={this._onLeftIconButtonTouchTap}>
+          <IconButton
+            ref="menuElementLeft"
+            style={this.mergeAndPrefix(styles.iconButton.style)}
+            iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
+            iconClassName={props.iconClassNameLeft}
+            onTouchTap={this._onLeftIconButtonTouchTap}>
               {child}
-            </IconButton>
+          </IconButton>
         );
       }
 
@@ -286,34 +246,98 @@ let AppBar = React.createClass({
         }
 
         menuElementRight = (
-            <div style={iconRightStyle}>
-              {iconElementRight}
-            </div>
+          <div style={iconRightStyle} ref="menuElementRight">
+            {iconElementRight}
+          </div>
         );
       } else if (props.iconClassNameRight) {
         menuElementRight = (
-            <IconButton
-                style={iconRightStyle}
-                iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
-                iconClassName={props.iconClassNameRight}
-                onTouchTap={this._onRightIconButtonTouchTap}>
-            </IconButton>
+          <IconButton
+            ref="menuElementRight"
+            style={iconRightStyle}
+            iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
+            iconClassName={props.iconClassNameRight}
+            onTouchTap={this._onRightIconButtonTouchTap}>
+          </IconButton>
         );
       }
     }
 
-    return (
-        <Paper
-            rounded={false}
+    let paperElStyle = this.mergeAndPrefix(styles.root, props.style);
+
+    if (this.props.position === 'fixed') {
+      paperElStyle.position = 'fixed';
+      paperElStyle.top = 0;
+    }
+
+    if (this.props.position === 'waterfall') {
+      let waterfallChildren = this.props.waterfall.children || null;
+      return (
+          <div
             className={props.className}
-            style={this.mergeAndPrefix(styles.root, props.style, rootWaterfallStyles)}
-            zDepth={props.zDepth}>
+            style={{
+              height: this.props.waterfall.maxHeight,
+            }}>
+            <Paper
+              rounded={false}
+              style={this.mergeAndPrefix(styles.root, props.style, {
+                height: this.props.waterfall.minHeight,
+                position: 'fixed',
+                top: 0,
+              })}
+              zDepth={props.zDepth}>
+            </Paper>
+            {/* this is the visual element that will slide */}
+            <div
+              ref="slideElement"
+              style={{
+                position: 'absolute',
+                zIndex: paperElStyle.zIndex + 1,
+                width: '100%',
+                height: this.props.waterfall.maxHeight,
+                paddingTop: this.props.waterfall.minHeight,
+                boxSizing: 'border-box',
+                backgroundColor: paperElStyle.backgroundColor,
+              }}>{waterfallChildren}</div>
+            {/* this is the container for icons and children
+             * same styles ar for root but with no background - transparent */}
+            <div style={this.mergeAndPrefix(styles.root, {
+                position: 'fixed',
+                top: 0,
+                zIndex: paperElStyle.zIndex + 2,
+                background: 'none',
+                boxSizing: 'border-box',
+              })}>
+              {menuElementLeft}
+              {titleElement}
+              {menuElementRight}
+              {props.children}
+            </div>
+          </div>
+      );
+    } else {
+      let paperEl = <Paper
+        rounded={false}
+        className={props.className}
+        style={paperElStyle}
+        zDepth={props.zDepth}>
           {menuElementLeft}
           {titleElement}
           {menuElementRight}
-          {children}
-        </Paper>
-    );
+          {props.children}
+        </Paper>;
+
+      if (this.props.position === 'fixed') {
+        return (
+          <div style={{
+            height: paperElStyle.height,
+            minHeight: paperElStyle.minHeight,
+          }}>{paperEl}</div>
+        );
+      } else if (this.props.position === 'static') {
+        return paperEl;
+      }
+    }
   },
 
   _onLeftIconButtonTouchTap(event) {

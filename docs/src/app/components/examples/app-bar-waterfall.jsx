@@ -4,11 +4,11 @@ let { AppBar, AppCanvas, Styles, Mixins } = require('material-ui');
 let IconButton = require('icon-button');
 let ArrowBack = require('svg-icons/navigation/arrow-back');
 
+let CodeExample = require('../code-example/code-example');
+let FullWidthSection = require('../full-width-section');
+
 let { Colors, Typography } = Styles;
 let ThemeManager = new Styles.ThemeManager();
-
-let Spring = require('react-motion/lib/Spring').Spring;
-
 
 let AppBarWaterfall = React.createClass({
 
@@ -28,11 +28,27 @@ let AppBarWaterfall = React.createClass({
         }
     },
 
+    getStyles() {
+        return {
+            headline: {
+                //headline
+                fontSize: '24px',
+                lineHeight: '32px',
+                paddingTop: '16px',
+                marginBottom: '12px',
+                letterSpacing: '0',
+                fontWeight: Typography.fontWeightNormal,
+                color: Typography.textDarkBlack
+            }
+        };
+    },
+
     goBack() {
         window.history.back();
     },
 
     render() {
+        let styles = this.getStyles();
 
         let githubButton = (
             <IconButton
@@ -49,46 +65,93 @@ let AppBarWaterfall = React.createClass({
             contentItems.push(<li>Item {i}</li>);
         }
 
-        const waterfall = {
-            minHeight: 64,
-            maxHeight: 210,
-            spring: Spring
+        let imgStyle = {
+            height: 120,
+            margin: "0 auto",
+            display: "block",
+            transformOrigin: "20% 100% 0",
+            transform: "translate3d(80px,0,0)",
         };
 
-        let getTitleElement = (height, styles) => {
+        let waterfall = {
+            minHeight: 64,
+            maxHeight: 210,
+            // overflow hidden is needed because image may be translated outside
+            // of viewport creating horizontal scroll
+            children: <div style={{overflow: 'hidden'}}>
+                <img style={imgStyle} src="images/material-ui-logo.svg" />
+            </div>
+        };
+
+        waterfall.onHeightChange = function({height, titleElement, slideElement}){
             // interpolate opacity
             let interpolation = (height - waterfall.minHeight) / (waterfall.maxHeight - waterfall.minHeight);
             let h1Opacity =  1 - interpolation;
 
-            let imgStyle = {
-                height: 130,
-                marginLeft: 18,
-                transformOrigin: "20% 0 0",
-                transform: `scale3d(${interpolation}, ${interpolation}, 1)`,
-                opacity: interpolation
-            };
+            titleElement.querySelector('h1').style.opacity = h1Opacity;
+            let imgStyle = slideElement.querySelector('img').style;
+            imgStyle.transform = 'translate3d(80px,0,0) scale3d('+interpolation+', '+interpolation+', 1)';
+            imgStyle.opacity = interpolation;
+        };
 
-            return (
-                <div>
-                    <h1 style={this.mergeAndPrefix(styles.title, {opacity: h1Opacity})}>Waterfall AppBar</h1>
-                    <img style={imgStyle} src="images/material-ui-logo.svg" />
-                </div>
-                );
+        let getTitle = (styles) => {
+            return <h1 style={this.mergeAndPrefix(styles.title, {opacity: 0})}>Waterfall AppBar</h1>;
         };
 
         return (
             <AppCanvas>
                 <AppBar
-                    title={getTitleElement}
+                    title={getTitle}
                     iconElementLeft={<IconButton onClick={this.goBack}><ArrowBack /></IconButton>}
                     iconElementRight={githubButton}
+                    position="waterfall"
                     waterfall={waterfall}
-                >
-                </AppBar>
-                <div style={{paddingTop: waterfall.maxHeight}}>
-                    <h1>Waterfall AppBar</h1>
+                />
+                <FullWidthSection>
+                    <h2 style={styles.headline}>Waterfall AppBar</h2>
+                    <CodeExample code={
+`let imgStyle = {
+    height: 120,
+    margin: "0 auto",
+    display: "block",
+    transformOrigin: "20% 100% 0",
+    transform: "translate3d(80px,0,0)",
+};
+
+let waterfall = {
+    minHeight: 64,
+    maxHeight: 210,
+    // overflow hidden is needed because image may be translated outside
+    // of viewport creating horizontal scroll
+    children: <div style={{overflow: 'hidden'}}>
+        <img style={imgStyle} src="images/material-ui-logo.svg" />
+    </div>
+};
+
+waterfall.onHeightChange = function({height, titleElement, slideElement}){
+    // interpolate opacity
+    let interpolation = (height - waterfall.minHeight) / (waterfall.maxHeight - waterfall.minHeight);
+    let h1Opacity =  1 - interpolation;
+
+    titleElement.querySelector('h1').style.opacity = h1Opacity;
+    let imgStyle = slideElement.querySelector('img').style;
+    imgStyle.transform = 'translate3d(80px,0,0) scale3d('+interpolation+', '+interpolation+', 1)';
+    imgStyle.opacity = interpolation;
+};
+
+let getTitle = (styles) => {
+    return <h1 style={this.mergeAndPrefix(styles.title, {opacity: 0})}>Waterfall AppBar</h1>;
+};
+<AppBar
+    title={getTitle}
+    iconElementLeft={<IconButton onClick={this.goBack}><ArrowBack /></IconButton>}
+    iconElementRight={githubButton}
+    position="waterfall"
+    waterfall={waterfall}
+/>`
+                    }/>
                     <ul>{contentItems}</ul>
-                </div>
+                </FullWidthSection>
 
             </AppCanvas>
         );

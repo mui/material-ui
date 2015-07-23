@@ -27,7 +27,6 @@
     "watchify": "^2.2.1"
   },
   "dependencies": {
-    "highlight.js": "^8.4.0",
-    "react-motion": "^0.1.0"
+    "highlight.js": "^8.4.0"
   }
 }
