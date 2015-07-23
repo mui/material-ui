@@ -167,7 +167,7 @@ class SwitchesPage extends React.Component {
       infoArray: [
         {
           name: 'onCheck',
-          type: 'function(e, checked)',
+          type: 'function(event, checked)',
           header: 'optional',
           desc: 'Callback function that is fired when the checkbox is checked.'
         }
@@ -287,7 +287,7 @@ class SwitchesPage extends React.Component {
       infoArray: [
         {
           name: 'onChange',
-          type: 'function(e, selected)',
+          type: 'function(event, selected)',
           header: 'optional',
           desc: 'Callback function that is fired when a radio button has been clicked. Returns ' +
                 'the event and the value of the radio button that has been selected.'
@@ -370,7 +370,7 @@ class SwitchesPage extends React.Component {
       infoArray: [
         {
           name: 'onToggle',
-          type: 'function(e, toggled)',
+          type: 'function(event, toggled)',
           header: 'optional',
           desc: 'Callback function that is fired when the toggle switch is toggled.'
         }
@@ -542,15 +542,15 @@ class SwitchesPage extends React.Component {
     );
   }
 
-  _onCheck(e, checked) {
+  _onCheck(event, checked) {
     console.log('Checked: ', checked);
   }
 
-  _onToggle(e, toggled) {
+  _onToggle(event, toggled) {
     console.log('Toggled: ', toggled);
   }
 
-  _onRadioButtonClick(e, selected) {
+  _onRadioButtonClick(event, selected) {
     console.log('Selected: ', selected);
   }
 }
