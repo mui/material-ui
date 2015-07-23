@@ -5,15 +5,6 @@ let DateTime = require('../utils/date-time');
 let DatePickerDialog = require('./date-picker-dialog');
 let TextField = require('../text-field');
 
-/**
- * Check if a value is a valid Date instance.
- *
- * @param value The value to check.
- * @returns {boolean} True if the object provided is valid, false otherwise.
- */
-function isValid(value) {
-  return value instanceof Date;
-}
 
 let DatePicker = React.createClass({
 
@@ -52,18 +43,19 @@ let DatePicker = React.createClass({
 
   getInitialState() {
     return {
-      date: this._getPropsDate(),
+      date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
       dialogDate: new Date(),
     };
   },
 
-  /**
-   * If this is a controlled input, rather than checking all the possible dates for changes
-   * ourselves, just assign the current props date and let setState do the checking.
-   */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
-      this.setDate(this._getPropsDate(nextProps));
+    if (this._isControlled()) {
+      let newDate = this._getControlledDate(nextProps);
+      if (!DateTime.isEqualDate(this.state.date, newDate)) {
+        this.setState({
+          date: newDate,
+        });
+      }
     }
   },
 
@@ -116,11 +108,10 @@ let DatePicker = React.createClass({
     return this.state.date;
   },
 
-  /**
-   * Setting the state will update the date here and also re-render the TextField with
-   * the new value.
-   */
   setDate(d) {
+    if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
+      console.error('Cannot call DatePicker.setDate when value or valueLink is defined as a property.');
+    }
     this.setState({
       date: d,
     });
@@ -132,9 +123,7 @@ let DatePicker = React.createClass({
   openDialog() {
     this.setState({
       dialogDate: this.getDate(),
-      // State changes aren't always handled immediately,
-      // better to wait on the callback.
-    }, () => this.refs.dialogWindow.show());
+    }, this.refs.dialogWindow.show);
   },
 
   /**
@@ -145,7 +134,9 @@ let DatePicker = React.createClass({
   },
 
   _handleDialogAccept(d) {
-    this.setDate(d);
+    if (!this._isControlled()) {
+      this.setDate(d);
+    }
     if (this.props.onChange) this.props.onChange(null, d);
     if (this.props.valueLink) this.props.valueLink.requestChange(d);
   },
@@ -168,13 +159,16 @@ let DatePicker = React.createClass({
     //TO DO: open the dialog if input has focus
   },
 
-  _getPropsDate(props = this.props) {
-    if (isValid(props.value)) {
+  _isControlled() {
+    return this.props.hasOwnProperty('value') ||
+      this.props.hasOwnProperty('valueLink');
+  },
+
+  _getControlledDate(props = this.props) {
+    if (DateTime.isDateObject(props.value)) {
       return props.value;
-    } else if (props.valueLink && isValid(props.valueLink.value)) {
+    } else if (props.valueLink && DateTime.isDateObject(props.valueLink.value)) {
       return props.valueLink.value;
-    } else if (isValid(props.defaultDate)) {
-      return props.defaultDate;
     }
   },
 
