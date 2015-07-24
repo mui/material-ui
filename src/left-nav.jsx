@@ -58,15 +58,15 @@ let LeftNav = React.createClass({
 
   componentDidMount() {
     this._updateMenuHeight();
-    if (this.props.disableSwipe === false){
-      this._enableSwipeHandling();
+    if (this.props.disableSwipe === true){
+      this._enableSwipeHandlingOnClose();
     }
   },
 
   componentDidUpdate() {
     this._updateMenuHeight();
     if (this.props.disableSwipe === false){
-      this._enableSwipeHandling();
+      this._enableSwipeHandlingOnClose();
     }
   },
 
@@ -226,7 +226,16 @@ let LeftNav = React.createClass({
   _getTranslateMultiplier() {
     return this.props.openRight ? 1 : -1;
   },
-
+  _enableSwipeHandlingOnClose() {
+    if (!this.props.docked && this.state.opening) {
+      document.body.addEventListener('touchstart', this._onBodyTouchStart);
+      if (!openNavEventHandler) {
+        openNavEventHandler = this._onBodyTouchStart;
+      }
+    } else {
+      this._disableSwipeHandling();
+    }
+  },
   _enableSwipeHandling() {
     if (!this.props.docked) {
       document.body.addEventListener('touchstart', this._onBodyTouchStart);
