@@ -40,7 +40,7 @@ let LeftNav = React.createClass({
   getDefaultProps() {
     return {
       docked: true,
-      disableSwipe: true,
+      disableSwipe: false,
     };
   },
 
