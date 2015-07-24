@@ -16,6 +16,8 @@ let SvgIcon = React.createClass({
     hoverColor: React.PropTypes.string,
     onMouseLeave: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
+    height: React.PropTypes.number,
+    width: React.PropTypes.number,
     viewBox: React.PropTypes.string,
   },
 
@@ -37,6 +39,8 @@ let SvgIcon = React.createClass({
       hoverColor,
       viewBox,
       style,
+      height,
+      width,
       ...other,
     } = this.props;
 
@@ -46,8 +50,8 @@ let SvgIcon = React.createClass({
 
     let mergedStyles = this.mergeAndPrefix({
       display: 'inline-block',
-      height: 24,
-      width: 24,
+      height: height ? height : 24,
+      width: width ? width : 24,
       userSelect: 'none',
       transition: Transitions.easeOut(),
     }, style, {

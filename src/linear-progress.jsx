@@ -12,6 +12,7 @@ let LinearProgress = React.createClass({
     value: React.PropTypes.number,
     min:  React.PropTypes.number,
     max:  React.PropTypes.number,
+    top: React.PropTypes.number,
   },
 
   contextTypes: {
@@ -89,8 +90,8 @@ let LinearProgress = React.createClass({
           height: 4,
           display: "block",
           width: "100%",
-          backgroundColor: this.getTheme().primary3Color,
-          borderRadius: 2,
+          backgroundColor: this.getTheme().primary1Color,
+          borderRadius: 0,
           margin: 0,
           overflow: "hidden",
       },
@@ -104,8 +105,8 @@ let LinearProgress = React.createClass({
     if (this.props.mode === "indeterminate") {
       styles.barFragment1 = {
         position: "absolute",
-        backgroundColor: this.getTheme().primary1Color,
-        top: 0,
+        backgroundColor: this.getTheme().progressBaseColor,
+        top: (this.props.top) ? this.props.top : 0,
         left: 0,
         bottom: 0,
         transition: Transitions.create("all", "840ms", null, "cubic-bezier(0.650, 0.815, 0.735, 0.395)"),
@@ -113,15 +114,15 @@ let LinearProgress = React.createClass({
 
       styles.barFragment2 = {
         position: "absolute",
-        backgroundColor: this.getTheme().primary1Color,
-        top: 0,
+        backgroundColor: this.getTheme().progressBaseColor,
+        top: (this.props.top) ? this.props.top : 0,
         left: 0,
         bottom: 0,
         transition: Transitions.create("all", "840ms", null, "cubic-bezier(0.165, 0.840, 0.440, 1.000)"),
       };
     }
     else {
-      styles.bar.backgroundColor= this.getTheme().primary1Color;
+      styles.bar.backgroundColor= this.getTheme().progressBaseColor;
       styles.bar.transition = Transitions.create("width", ".3s", null, "linear");
       styles.bar.width = this._getRelativeValue() + "%";
     }

@@ -28,6 +28,7 @@ let IconButton = React.createClass({
     tooltipStyles: React.PropTypes.object,
     tooltipPosition: PropTypes.cornersAndCenter,
     touch: React.PropTypes.bool,
+    onTouchTap : React.PropTypes.func,
   },
 
   getInitialState() {
@@ -136,7 +137,8 @@ let IconButton = React.createClass({
         onFocus={this._handleFocus}
         onMouseLeave={this._handleMouseLeave}
         onMouseEnter={this._handleMouseEnter}
-        onKeyboardFocus={this._handleKeyboardFocus}>
+        onKeyboardFocus={this._handleKeyboardFocus}
+        onTouchTap={this._handleTouchTap}>
 
         {tooltipElement}
         {fonticon}
@@ -194,7 +196,11 @@ let IconButton = React.createClass({
 
     if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused);
   },
-
+  _handleTouchTap(e)
+  {
+      this._hideTooltip();
+      if(this.props.onTouchTap) this.props.onTouchTap(e);
+  },
 });
 
 module.exports = IconButton;

@@ -14,7 +14,7 @@ let ThemeManager = () => {
     template: Types.MEDLIFE,
 
     spacing: Types.MEDLIFE.spacing,
-    contentFontFamily: 'Roboto, sans-serif',
+    contentFontFamily: 'Roboto Light, sans-serif',
 
     palette: Types.MEDLIFE.getPalette(),
     component: Types.MEDLIFE.getComponentThemes(Types.MEDLIFE.getPalette()),
