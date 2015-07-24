@@ -112,26 +112,27 @@ let Snackbar = React.createClass({
   },
 
   render() {
+    const {action, message, onActionTouchTap, style, ...others } = this.props;
     let styles = this.getStyles();
 
-    let action;
-    if (this.props.action) {
-      action = (
+    let actionButton;
+    if (action) {
+      actionButton = (
         <FlatButton
           style={styles.action}
-          label={this.props.action}
-          onTouchTap={this.props.onActionTouchTap} />
+          label={action}
+          onTouchTap={onActionTouchTap} />
       );
     }
 
     let rootStyles = this.state.open ?
-      this.mergeStyles(styles.root, styles.rootWhenOpen, this.props.style) :
-      this.mergeStyles(styles.root, this.props.style);
+      this.mergeStyles(styles.root, styles.rootWhenOpen, style) :
+      this.mergeStyles(styles.root, style);
 
     return (
-      <span style={rootStyles}>
-          <span>{this.props.message}</span>
-          {action}
+      <span {...others} style={rootStyles}>
+          <span>{message}</span>
+          {actionButton}
       </span>
     );
   },
