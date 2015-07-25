@@ -58,7 +58,7 @@ let LeftNav = React.createClass({
 
   componentDidMount() {
     this._updateMenuHeight();
-    if (this.props.disableSwipe === true){
+    if (this.props.disableSwipeOut === true){
       this._enableSwipeHandlingOnClose();
     }
   },
