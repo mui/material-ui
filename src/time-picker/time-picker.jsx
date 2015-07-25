@@ -58,11 +58,8 @@ let TimePicker = React.createClass({
 
       if (this.props.pedantic) {
         // Treat midday/midnight specially http://www.nist.gov/pml/div688/times.cfm
-        if (hours === "12" && mins === "00" && additional === " am") {
-          return "12 noon";
-        }
-        if (hours === "12" && mins === "00" && additional === " pm") {
-          return "12 midnight";
+        if (hours === "12" && mins === "00") {
+          return additional === " pm" ? "12 noon" : "12 midnight";
         }
       }
 
