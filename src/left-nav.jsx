@@ -29,7 +29,7 @@ let LeftNav = React.createClass({
     onNavClose: React.PropTypes.func,
     openRight: React.PropTypes.bool,
     selectedIndex: React.PropTypes.number,
-    disableSwipe: React.PropTypes.bool,
+    disableSwipeOut: React.PropTypes.bool,
   },
 
   windowListeners: {
@@ -65,13 +65,13 @@ let LeftNav = React.createClass({
 
   componentDidUpdate() {
     this._updateMenuHeight();
-    if (this.props.disableSwipe === false){
+    if (this.props.disableSwipeOut === false){
       this._enableSwipeHandlingOnClose();
     }
   },
 
   componentWillUnmount() {
-    if (this.props.disableSwipe === false){
+    if (this.props.disableSwipeOut === false){
       this._disableSwipeHandling();
     }
   },
