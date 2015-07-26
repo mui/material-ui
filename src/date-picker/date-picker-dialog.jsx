@@ -17,6 +17,7 @@ let DatePickerDialog = React.createClass({
   },
 
   propTypes: {
+    disableYearSelection: React.PropTypes.bool,
     initialDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,

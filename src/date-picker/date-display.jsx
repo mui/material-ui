@@ -2,7 +2,6 @@ let React = require('react');
 let StylePropable = require('../mixins/style-propable');
 let DateTime = require('../utils/date-time');
 let Transitions = require('../styles/transitions');
-let AutoPrefix = require('../styles/auto-prefix');
 let SlideInTransitionGroup = require('../transition-groups/slide-in');
 
 
@@ -15,6 +14,7 @@ let DateDisplay = React.createClass({
   },
 
   propTypes: {
+    disableYearSelection: React.PropTypes.bool,
     monthDaySelected: React.PropTypes.bool,
     selectedDate: React.PropTypes.object.isRequired,
     weekCount: React.PropTypes.number,
@@ -22,6 +22,7 @@ let DateDisplay = React.createClass({
 
   getDefaultProps() {
     return {
+      disableYearSelection: false,
       monthDaySelected: true,
       weekCount: 4,
     };
@@ -101,7 +102,7 @@ let DateDisplay = React.createClass({
         },
 
         title: {
-          cursor: this.state.selectedYear ? 'default' : 'pointer',
+          cursor: (this.state.selectedYear && !this.props.disableYearSelection) ? 'default' : 'pointer',
         },
       },
     };
@@ -153,7 +154,7 @@ let DateDisplay = React.createClass({
   },
 
   _handleYearClick() {
-    if (this.props.handleYearClick && !this.state.selectedYear) {
+    if (this.props.handleYearClick && !this.props.disableYearSelection && !this.state.selectedYear) {
       this.props.handleYearClick();
     }
 

@@ -17,6 +17,7 @@ let Calendar = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   propTypes: {
+    disableYearSelection: React.PropTypes.bool,
     initialDate: React.PropTypes.object,
     isActive: React.PropTypes.bool,
     minDate: React.PropTypes.object,
@@ -174,6 +175,8 @@ let Calendar = React.createClass({
   },
 
   _yearSelector() {
+    if (this.props.disableYearSelection) return;
+
     return (
       <CalendarYear
         key={'years'}
@@ -244,7 +247,7 @@ let Calendar = React.createClass({
   },
 
   _handleMonthChange(months) {
-    this.setState({displayDate: DateTime.addMonths(this.state.displayDate, months)})
+    this.setState({displayDate: DateTime.addMonths(this.state.displayDate, months)});
   },
 
   _handleYearTouchTap(e, year) {
