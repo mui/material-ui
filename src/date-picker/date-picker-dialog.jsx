@@ -18,14 +18,13 @@ let DatePickerDialog = React.createClass({
 
   propTypes: {
     initialDate: React.PropTypes.object,
-    onAccept: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    onClickAway: React.PropTypes.func,
-    minDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
+    onAccept: React.PropTypes.func,
+    onClickAway: React.PropTypes.func,
+    onDismiss: React.PropTypes.func,
+    onShow: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
-    hideToolbarYearChange: React.PropTypes.bool,
     showYearSelector: React.PropTypes.bool,
   },
 
@@ -55,7 +54,7 @@ let DatePickerDialog = React.createClass({
       },
 
       dialogContent: {
-        width: this.props.mode === 'landscape' ? 560 : 280,
+        width: this.props.mode === 'landscape' ? 430 : 280,
       },
 
       dialogBodyContent: {
@@ -108,7 +107,6 @@ let DatePickerDialog = React.createClass({
           maxDate={this.props.maxDate}
           shouldDisableDate={this.props.shouldDisableDate}
           shouldShowMonthDayPickerFirst={this.state.showMonthDayPicker}
-          hideToolbarYearChange={this.props.hideToolbarYearChange}
           showYearSelector={this.props.showYearSelector}
           mode={this.props.mode} />
       </Dialog>
