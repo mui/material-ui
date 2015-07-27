@@ -4,6 +4,7 @@ let Transitions = require('./styles/transitions');
 let ColorManipulator = require('./utils/color-manipulator');
 let Typography = require('./styles/typography');
 let EnhancedButton = require('./enhanced-button');
+let Colors = require('./styles/colors');
 
 
 function validateLabel (props, propName, componentName) {
@@ -34,6 +35,10 @@ let FlatButton = React.createClass({
     primary: React.PropTypes.bool,
     rippleColor: React.PropTypes.string,
     secondary: React.PropTypes.bool,
+    isUpperCase: React.PropTypes.bool,
+    bgTransparent: React.PropTypes.bool,
+    fontSize: React.PropTypes.number,
+    primaryColor: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -64,6 +69,10 @@ let FlatButton = React.createClass({
       rippleColor,
       secondary,
       style,
+      isUpperCase,
+      bgTransparent,
+      fontSize,
+      primaryColor,
       ...other,
       } = this.props;
 
@@ -75,25 +84,24 @@ let FlatButton = React.createClass({
       primary ? flatButtonTheme.primaryTextColor :
       secondary ? flatButtonTheme.secondaryTextColor :
       flatButtonTheme.textColor;
-
     let defaultHoverColor = ColorManipulator.fade(ColorManipulator.lighten(defaultColor, 0.4), 0.15);
     let defaultRippleColor = ColorManipulator.fade(defaultColor, 0.8);
     let buttonHoverColor = hoverColor || defaultHoverColor;
     let buttonRippleColor = rippleColor || defaultRippleColor;
     let hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
-
+    let nonBgDefaultColor = primaryColor ? primaryColor : (hovered ? (disabled ? defaultColor :(primary ? flatButtonTheme.secondaryTextColor : flatButtonTheme.primaryTextColor) ) : defaultColor);
     let mergedRootStyles = this.mergeStyles({
-      color: defaultColor,
+      color: bgTransparent ? nonBgDefaultColor : defaultColor,
       transition: Transitions.easeOut(),
       fontSize: Typography.fontStyleButtonFontSize,
       letterSpacing: 0,
-      textTransform: 'uppercase',
+      textTransform: isUpperCase ? 'uppercase' : 'none',
       fontWeight: Typography.fontWeightMedium,
       borderRadius: 2,
       userSelect: 'none',
       position: 'relative',
       overflow: 'hidden',
-      backgroundColor: hovered ? buttonHoverColor : flatButtonTheme.color,
+      backgroundColor: bgTransparent ? Colors.transparent : (hovered ? buttonHoverColor : flatButtonTheme.color),
       lineHeight: buttonTheme.height + 'px',
       minWidth: buttonTheme.minWidth,
       padding: 0,
@@ -105,10 +113,12 @@ let FlatButton = React.createClass({
 
     let mergedLabelStyles = this.mergeAndPrefix({
       position: 'relative',
-      padding: '0 ' + theme.spacing.desktopGutterLess + 'px',
+      textAlign: 'center',
+      fontSize: fontSize,
+      padding: '0 ' + this.context.muiTheme.spacing.desktopGutterMini + 'px',
     }, labelStyle);
 
-    let labelElement = label ? <span style={mergedLabelStyles}>{label}</span> : null;
+    let labelElement = label ? <div style={mergedLabelStyles}>{label}</div> : null;
 
     return (
       <EnhancedButton

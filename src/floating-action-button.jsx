@@ -36,6 +36,7 @@ let FloatingActionButton = React.createClass({
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     secondary: React.PropTypes.bool,
+    onTouchTap: React.PropTypes.func,
   },
 
   getInitialState() {
@@ -172,6 +173,7 @@ let FloatingActionButton = React.createClass({
       onTouchStart: this._handleTouchStart,
       onTouchEnd: this._handleTouchEnd,
       onKeyboardFocus: this._handleKeyboardFocus,
+      onTouchTap: this._handleTouchTap,
     };
 
     return (
@@ -253,7 +255,9 @@ let FloatingActionButton = React.createClass({
       React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
-
+  _handleTouchTap(e){
+      if(this.props.onTouchTap) this.props.onTouchTap(e);
+  },
 });
 
 module.exports = FloatingActionButton;

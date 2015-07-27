@@ -40,6 +40,8 @@ let TextField = React.createClass({
     onKeyDown: React.PropTypes.func,
     rows: React.PropTypes.number,
     type: React.PropTypes.string,
+    alignCenter: React.PropTypes.bool,
+    fontSize: React.PropTypes.number,
   },
 
   getDefaultProps() {
@@ -99,13 +101,14 @@ let TextField = React.createClass({
 
     let styles = {
       root: {
-        fontSize: 14,
+        fontSize: props.fontSize ? props.fontSize : 15,
         lineHeight: '24px',
         width: props.fullWidth ? '100%' : 256,
         height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
         display: 'inline-block',
         position: 'relative',
         fontFamily: this.context.muiTheme.contentFontFamily,
+        fontWeight:300,
         transition: Transitions.easeOut('200ms', 'height'),
       },
       error: {
@@ -165,6 +168,7 @@ let TextField = React.createClass({
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top',
+      fontWeight:300,
     });
 
     styles.textarea = this.mergeStyles(styles.input, {
@@ -229,21 +233,36 @@ let TextField = React.createClass({
       onFocus,
       type,
       rows,
+      alignCenter,
       ...other,
     } = this.props;
 
     let styles = this.getStyles();
-
+    if(alignCenter){
+        styles.hint.textAlign = 'center';
+        styles.hint.position= 'relative';
+        styles.hint.width= '100%';
+        styles.floatingLabel.textAlign = 'center';
+        styles.floatingLabel.position= 'relative';
+        styles.floatingLabel.width= '100%';
+        styles.input.textAlign= 'center';
+        styles.input.marginTop= '12px';
+        styles.input.paddingTop = '0px';
+        styles.input.height = 'auto';
+        if (this.state.isFocused) {
+          styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(48px, -28px, 0)';
+        }
+        if (this.state.hasValue) {
+          styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(48px, -28px, 0)';
+        }
+    }
     let inputId = id || this._uniqueId;
-
     let errorTextElement = this.state.errorText ? (
       <div style={this.mergeAndPrefix(styles.error, errorStyle)}>{this.state.errorText}</div>
     ) : null;
-
     let hintTextElement = hintText ? (
       <div style={this.mergeAndPrefix(styles.hint)}>{hintText}</div>
     ) : null;
-
     let floatingLabelTextElement = floatingLabelText ? (
       <label
         style={this.mergeAndPrefix(styles.floatingLabel, this.props.floatingLabelStyle)}
@@ -251,10 +270,8 @@ let TextField = React.createClass({
         {floatingLabelText}
       </label>
     ) : null;
-
     let inputProps;
     let inputElement;
-
     inputProps = {
       id: inputId,
       ref: this._getRef(),
@@ -283,7 +300,7 @@ let TextField = React.createClass({
         <input
           {...other}
           {...inputProps}
-          type={type} />
+          type={type} autoComplete="off"/>
       );
     }
 

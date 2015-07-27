@@ -40,6 +40,7 @@ let RaisedButton = React.createClass({
     disabledBackgroundColor: React.PropTypes.string,
     disabledLabelColor: React.PropTypes.string,
     fullWidth: React.PropTypes.bool,
+    isUpperCase: React.PropTypes.bool,
   },
 
   getInitialState() {
@@ -117,12 +118,12 @@ let RaisedButton = React.createClass({
       },
       label: {
         position: 'relative',
+        textAlign: 'center',
         opacity: 1,
         fontSize: '14px',
         letterSpacing: 0,
-        textTransform: 'uppercase',
+        textTransform: 'none',
         fontWeight: Typography.fontWeightMedium,
-        margin: 0,
         padding: '0px ' + this.context.muiTheme.spacing.desktopGutterLess + 'px',
         userSelect: 'none',
         lineHeight: (this.props.style && this.props.style.height) ?
@@ -146,16 +147,18 @@ let RaisedButton = React.createClass({
       label,
       primary,
       secondary,
+      isUpperCase,
       ...other } = this.props;
 
     let styles = this.getStyles();
+        styles.label.textTransform = isUpperCase ? 'uppercase' : 'none';
 
     let labelElement;
     if (label) {
       labelElement = (
-        <span style={this.mergeAndPrefix(styles.label, this.props.labelStyle)}>
+        <div style={this.mergeAndPrefix(styles.label, this.props.labelStyle)}>
           {label}
-        </span>
+        </div>
       );
     }
 

@@ -10,7 +10,7 @@ let ColorManipulator = require('../../utils/color-manipulator');
 
 let MedlifeTheme = {
   spacing: Spacing,
-  contentFontFamily: 'Roboto, sans-serif',
+  contentFontFamily: 'Roboto Light, sans-serif',
   getPalette() {
     return {
       primary1Color: Colors.blue900,
@@ -29,6 +29,8 @@ let MedlifeTheme = {
       borderColor2:ColorManipulator.fade(Colors.white, 0.7),
       disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
       disabledColor2: ColorManipulator.fade(Colors.white, 0.8),
+      progressBaseColor: Colors.white,
+      progressRunnerColor: Colors.lightBlueA200,
     };
   },
   getComponentThemes(palette, spacing) {
@@ -64,9 +66,9 @@ let MedlifeTheme = {
       },
       flatButton: {
         color: palette.canvasColor,
-        textColor: palette.textColor,
-        primaryTextColor: palette.accent1Color,
-        secondaryTextColor: palette.primary1Color,
+        textColor: palette.textColor2,
+        primaryTextColor: palette.primary3Color,
+        secondaryTextColor: palette.textColor2,
       },
       floatingActionButton: {
         buttonSize: 56,
@@ -78,7 +80,7 @@ let MedlifeTheme = {
       },
       leftNav: {
         width: spacing.desktopKeylineIncrement * 4,
-        color: Colors.grey800,
+        color: Colors.blue900,
       },
       listItem: {
         nestedLevelDepth: 18,

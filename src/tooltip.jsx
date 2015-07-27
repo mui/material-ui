@@ -51,7 +51,7 @@ let Tooltip = React.createClass({
         fontSize: '10px',
         lineHeight: '22px',
         padding: '0 8px',
-        color: Colors.white,
+        color: Colors.blue900,
         overflow: 'hidden',
         top: -10000,
         borderRadius: 2,
@@ -98,7 +98,7 @@ let Tooltip = React.createClass({
         padding: '0 16px',
       },
       rippleWhenShown: {
-        backgroundColor: Colors.grey700,
+        backgroundColor: Colors.white,
         transition:
           Transitions.easeOut('450ms', 'width', '0ms') + ',' +
           Transitions.easeOut('450ms', 'height', '0ms') + ',' +
