@@ -60,7 +60,8 @@ class DatePickerPage extends React.Component {
             name: 'defaultDate',
             type: 'date object',
             header: 'optional',
-            desc: 'This is the initial date value of the component.'
+            desc: 'This is the initial date value of the component. If either `value` or `valueLink` ' +
+            'is provided they will override this prop with `value` taking precedence.'
           },
           {
             name: 'formatDate',
@@ -136,6 +137,18 @@ class DatePickerPage extends React.Component {
             name: 'setDate',
             header: 'DatePicker.setDate(d)',
             desc: 'Sets the date value to d, where d is a date object.'
+          },
+          {
+            name: 'openDialog',
+            header: 'DatePicker.openDialog()',
+            desc: 'Opens the date-picker dialog programmatically. Use this if you want to open the ' +
+            'dialog in response to some event other than focus/tap on the input field, such as an ' +
+            'external button click.'
+          },
+          {
+            name: 'focus',
+            header: 'DatePicker.focus()',
+            desc: 'An alias for the `openDialog()` method to allow more generic use alongside `TextField`.'
           }
         ]
       },
