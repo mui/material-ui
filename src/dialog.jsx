@@ -120,7 +120,7 @@ let Dialog = React.createClass({
     let spacing = this.context.muiTheme.spacing;
 
     let main = {
-      position: 'fixed',
+      position: 'absolute',
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       zIndex: 10,
