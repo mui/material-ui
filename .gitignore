@@ -2,10 +2,5 @@ node_modules
 npm-debug.log
 build
 
-# Exclude compiled files
-lib
-icon-builder/js
-icon-builder/jsx
-
 # Exclude IDE project folders
 .idea
