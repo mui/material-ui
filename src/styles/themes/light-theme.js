@@ -72,7 +72,7 @@ let LightTheme = {
         secondaryIconColor: Colors.white,
       },
       inkBar: {
-        backgroundColor: palette.accent1Color,
+        backgroundColor: Colors.yellow200,
       },
       leftNav: {
         width: spacing.desktopKeylineIncrement * 4,

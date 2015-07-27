@@ -1,6 +1,5 @@
 let React = require('react');
 let StylePropable = require('../mixins/style-propable');
-let Colors = require('../styles/colors.js');
 
 
 let Tab = React.createClass({
@@ -44,8 +43,7 @@ let Tab = React.createClass({
       textAlign: 'center',
       verticalAlign: 'middle',
       height: 48,
-      color: Colors.white,
-      opacity: selected ? 1 : 0.6,
+      color: selected ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.6)',
       outline: 'none',
       fontSize: 14,
       fontWeight: 500,
