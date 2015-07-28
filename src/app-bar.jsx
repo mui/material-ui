@@ -29,7 +29,7 @@ let AppBar = React.createClass({
       React.PropTypes.func,
     ]),
     zDepth: React.PropTypes.number,
-    position: React.PropTypes.oneOf('fixed', 'static', 'waterfall'),
+    position: React.PropTypes.oneOf(['fixed', 'static', 'waterfall']),
     waterfall: React.PropTypes.shape({
       minHeight: React.PropTypes.number,
       maxHeight: React.PropTypes.number,
