@@ -4,21 +4,23 @@ let IconButton = require('icon-button');
 let NavigationClose = require('svg-icons/navigation/close');
 let FlatButton = require('flat-button');
 let ComponentDoc = require('../../component-doc');
-
+let CodeBlock = require('../../code-example/code-block');
 
 class AppBarPage extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.code =
+    this.code1 =
           '<AppBar\n' +
           '  title="Title"\n' +
-          '  iconClassNameRight="muidocs-icon-navigation-expand-more" />\n' +
-          '\n' +
+          '  iconClassNameRight="muidocs-icon-navigation-expand-more" />';
+
+
+    this.code2=
           '<AppBar\n' +
           '  title="Title"\n' +
-          '  iconElementLeft={<IconButton><NavigationClose /></IconButton>}\n' +
+          '  iconElementLeft={<IconButton><NavigationClose/></IconButton>}\n' +
           '  iconElementRight={<FlatButton label="Save" />} />';
 
     this.desc = 'App bars are a collection of components placed as a static ' +
@@ -114,22 +116,44 @@ class AppBarPage extends React.Component {
   }
 
   render() {
-    return (
-      <ComponentDoc
-        name="AppBar"
-        code={this.code}
-        desc={this.desc}
-        componentInfo={this.componentInfo}>
-          <AppBar
-            title="Title"
-            iconClassNameRight="muidocs-icon-navigation-expand-more" />
-          <br />
-          <AppBar
-            title="Title"
-            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-            iconElementRight={<FlatButton label="Save" />} />
-      </ComponentDoc>
+     return (
+      <div style={{width: '100%', position: 'relative'}} >
+        <AppBar
+          title="Title"
+          iconClassNameRight="muidocs-icon-navigation-expand-more" />
+        <br/>
+        <span style={{width: '50%'}}>
+          <CodeBlock>{this.code1}</CodeBlock>
+        </span>
+        <br/>
+        <AppBar
+         title="Title"
+         iconElementLeft={ <IconButton><NavigationClose /></IconButton>}
+         iconElementRight={<FlatButton label="Save" />} />
+         <br/>
+         <span style={{width: '50%', left: '50%'}}>
+          <CodeBlock>{this.code2}</CodeBlock>
+        </span>
+      </div>
     );
+
+
+    // return (
+    //   <ComponentDoc
+    //     name="AppBar"
+    //     code={this.code}
+    //     desc={this.desc}
+    //     componentInfo={this.componentInfo}>
+    //       <AppBar
+    //         title="Title"
+    //         iconClassNameRight="muidocs-icon-navigation-expand-more" />
+    //       <br />
+    //       <AppBar
+    //         title="Title"
+    //         iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+    //         iconElementRight={<FlatButton label="Save" />} />
+    //   </ComponentDoc>
+    // );
   }
 
 }
