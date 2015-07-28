@@ -26,7 +26,7 @@ let AppBar = React.createClass({
     iconStyleRight: React.PropTypes.object,
     title: React.PropTypes.oneOfType([
       React.PropTypes.node,
-      React.PropTypes.func
+      React.PropTypes.func,
     ]),
     zDepth: React.PropTypes.number,
     position: React.PropTypes.oneOf('fixed', 'static', 'waterfall'),
@@ -34,7 +34,10 @@ let AppBar = React.createClass({
       minHeight: React.PropTypes.number,
       maxHeight: React.PropTypes.number,
       onHeightChange: React.PropTypes.func,
-      children: React.PropTypes.node
+      children: React.PropTypes.oneOfType([
+        React.PropTypes.node,
+        React.PropTypes.func,
+      ]),
     }),
   },
 
@@ -64,13 +67,23 @@ let AppBar = React.createClass({
       }
     }
 
-    if (this.props.waterfall) {
+    if (this.props.waterfall && this.props.waterfall.onHeightChange) {
       this.setupWaterfall();
     }
   },
 
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.waterfall && nextProps.waterfall.onHeightChange
+        && !(this.props.waterfall && this.props.waterfall.onHeightChange)
+    ) {
+      this.setupWaterfall();
+    } else if (this.props.waterfall && this.props.waterfall.onHeightChange) {
+      this.removeWaterfall();
+    }
+  },
+
   componentWillUnmount: function() {
-    if (this.props.waterfall) {
+    if (this.props.waterfall && this.props.waterfall.onHeightChange) {
       this.removeWaterfall();
     }
   },
@@ -95,10 +108,7 @@ let AppBar = React.createClass({
         if (waterfall.onHeightChange) {
           waterfall.onHeightChange({
             height: waterfallHeight,
-            menuElementLeft: React.findDOMNode(this.refs.menuElementLeft),
-            titleElement: React.findDOMNode(this.refs.titleElement),
-            menuElementRight: React.findDOMNode(this.refs.menuElementRight),
-            slideElement: React.findDOMNode(this.refs.slideElement),
+            el: React.findDOMNode(this.refs.root),
           });
         }
       }
@@ -183,8 +193,7 @@ let AppBar = React.createClass({
       // If not, just use it as a node.
       if (typeof title === 'string' || title instanceof String) {
         titleElement =
-            <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement)}
-                ref="titleElement">{title}</h1>;
+            <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement)}>{title}</h1>;
       } else {
         let titleNode = title;
         if (typeof title === 'function') {
@@ -192,8 +201,7 @@ let AppBar = React.createClass({
           titleNode = title(this.getStyles());
         }
         titleElement =
-            <div style={this.mergeAndPrefix(styles.mainElement)}
-                ref="titleElement">{titleNode}</div>;
+            <div style={this.mergeAndPrefix(styles.mainElement)}>{titleNode}</div>;
       }
     }
 
@@ -210,7 +218,7 @@ let AppBar = React.createClass({
         }
 
         menuElementLeft = (
-          <div style={this.mergeAndPrefix(styles.iconButton.style)} ref="menuElementLeft">
+          <div style={this.mergeAndPrefix(styles.iconButton.style)}>
             {iconElementLeft}
           </div>
         );
@@ -218,7 +226,6 @@ let AppBar = React.createClass({
         let child = (props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
-            ref="menuElementLeft"
             style={this.mergeAndPrefix(styles.iconButton.style)}
             iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
             iconClassName={props.iconClassNameLeft}
@@ -246,14 +253,13 @@ let AppBar = React.createClass({
         }
 
         menuElementRight = (
-          <div style={iconRightStyle} ref="menuElementRight">
+          <div style={iconRightStyle}>
             {iconElementRight}
           </div>
         );
       } else if (props.iconClassNameRight) {
         menuElementRight = (
           <IconButton
-            ref="menuElementRight"
             style={iconRightStyle}
             iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
             iconClassName={props.iconClassNameRight}
@@ -271,10 +277,16 @@ let AppBar = React.createClass({
     }
 
     if (this.props.position === 'waterfall') {
-      let waterfallChildren = this.props.waterfall.children || null;
+      let waterfallChildren;
+      if (typeof this.props.waterfall.children === 'function') {
+        waterfallChildren = this.props.waterfall.children(this.getStyles());
+      } else {
+        waterfallChildren = this.props.waterfall.children || null;
+      }
       return (
           <div
             className={props.className}
+            ref="root"
             style={{
               height: this.props.waterfall.maxHeight,
             }}>
@@ -289,7 +301,6 @@ let AppBar = React.createClass({
             </Paper>
             {/* this is the visual element that will slide */}
             <div
-              ref="slideElement"
               style={{
                 position: 'absolute',
                 zIndex: paperElStyle.zIndex + 1,

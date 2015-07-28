@@ -60,11 +60,6 @@ let AppBarWaterfall = React.createClass({
                 linkButton={true} />
         );
 
-        let contentItems = [], i;
-        for(i = 0; i < 100; i++) {
-            contentItems.push(<li>Item {i}</li>);
-        }
-
         let imgStyle = {
             height: 120,
             margin: "0 auto",
@@ -79,17 +74,17 @@ let AppBarWaterfall = React.createClass({
             // overflow hidden is needed because image may be translated outside
             // of viewport creating horizontal scroll
             children: <div style={{overflow: 'hidden'}}>
-                <img style={imgStyle} src="images/material-ui-logo.svg" />
+                <img className="logo" style={imgStyle} src="images/material-ui-logo.svg" />
             </div>
         };
 
-        waterfall.onHeightChange = function({height, titleElement, slideElement}){
+        waterfall.onHeightChange = function({height, el}){
             // interpolate opacity
             let interpolation = (height - waterfall.minHeight) / (waterfall.maxHeight - waterfall.minHeight);
             let h1Opacity =  1 - interpolation;
 
-            titleElement.querySelector('h1').style.opacity = h1Opacity;
-            let imgStyle = slideElement.querySelector('img').style;
+            el.querySelector('h1').style.opacity = h1Opacity;
+            let imgStyle = el.querySelector('img.logo').style;
             imgStyle.transform = 'translate3d(80px,0,0) scale3d('+interpolation+', '+interpolation+', 1)';
             imgStyle.opacity = interpolation;
         };
@@ -109,6 +104,8 @@ let AppBarWaterfall = React.createClass({
                 />
                 <FullWidthSection>
                     <h2 style={styles.headline}>Waterfall AppBar</h2>
+                    <p>Here is an example of how you can obtain a nice animation effect on scroll
+                    when using position waterfall.</p>
                     <CodeExample code={
 `let imgStyle = {
     height: 120,
@@ -124,17 +121,17 @@ let waterfall = {
     // overflow hidden is needed because image may be translated outside
     // of viewport creating horizontal scroll
     children: <div style={{overflow: 'hidden'}}>
-        <img style={imgStyle} src="images/material-ui-logo.svg" />
+        <img className="logo" style={imgStyle} src="images/material-ui-logo.svg" />
     </div>
 };
 
-waterfall.onHeightChange = function({height, titleElement, slideElement}){
+waterfall.onHeightChange = function({height, el}){
     // interpolate opacity
     let interpolation = (height - waterfall.minHeight) / (waterfall.maxHeight - waterfall.minHeight);
     let h1Opacity =  1 - interpolation;
 
-    titleElement.querySelector('h1').style.opacity = h1Opacity;
-    let imgStyle = slideElement.querySelector('img').style;
+    el.querySelector('h1').style.opacity = h1Opacity;
+    let imgStyle = el.querySelector('img.logo').style;
     imgStyle.transform = 'translate3d(80px,0,0) scale3d('+interpolation+', '+interpolation+', 1)';
     imgStyle.opacity = interpolation;
 };
@@ -150,7 +147,8 @@ let getTitle = (styles) => {
     waterfall={waterfall}
 />`
                     }/>
-                    <ul>{contentItems}</ul>
+                    {/* just a spacer to make page have a scrollbar */}
+                    <div style={{height: 1000}}></div>
                 </FullWidthSection>
 
             </AppCanvas>
