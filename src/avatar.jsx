@@ -43,7 +43,6 @@ let Avatar = React.createClass({
         height: size,
         width: size,
         userSelect: 'none',
-        backgroundColor: backgroundColor,
         borderRadius: '50%',
         display: 'inline-block',
       },
@@ -63,6 +62,7 @@ let Avatar = React.createClass({
       return <img {...other} src={src} style={this.mergeAndPrefix(styles.root, style)} />;
     } else {
       styles.root = this.mergeStyles(styles.root, {
+        backgroundColor: backgroundColor,
         textAlign: 'center',
         lineHeight: size + 'px',
         fontSize: size / 2 + 4,
