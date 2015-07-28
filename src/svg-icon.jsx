@@ -1,9 +1,9 @@
-let React = require('react/addons');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
 
 
-let SvgIcon = React.createClass({
+const SvgIcon = React.createClass({
 
   mixins: [StylePropable],
 
@@ -14,8 +14,8 @@ let SvgIcon = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     hoverColor: React.PropTypes.string,
-    onMouseLeave: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
     viewBox: React.PropTypes.string,
   },
 
@@ -27,24 +27,30 @@ let SvgIcon = React.createClass({
 
   getDefaultProps() {
     return {
+      onMouseEnter: () => {},
+      onMouseLeave: () => {},
       viewBox: '0 0 24 24',
     };
   },
 
   render() {
-    let {
+    const {
+      children,
       color,
       hoverColor,
-      viewBox,
+      onMouseEnter,
+      onMouseLeave,
       style,
+      viewBox,
       ...other,
     } = this.props;
 
-    let offColor = color ? color :
-      style && style.fill ? style.fill : this.context.muiTheme.palette.textColor;
-    let onColor = hoverColor ? hoverColor : offColor;
+    const offColor = color ? color :
+      style && style.fill ? style.fill :
+      this.context.muiTheme.palette.textColor;
+    const onColor = hoverColor ? hoverColor : offColor;
 
-    let mergedStyles = this.mergeAndPrefix({
+    const mergedStyles = this.mergeAndPrefix({
       display: 'inline-block',
       height: 24,
       width: 24,
@@ -55,30 +61,30 @@ let SvgIcon = React.createClass({
       fill: this.state.hovered ? onColor : offColor,
     });
 
+    const events = hoverColor ? {
+      onMouseEnter: this._handleMouseEnter,
+      onMouseLeave: this._handleMouseLeave,
+    } : {};
+
     return (
       <svg
         {...other}
-        onMouseLeave={this._handleMouseLeave}
-        onMouseEnter={this._handleMouseEnter}
+        {...events}
         style={mergedStyles}
         viewBox={viewBox}>
-        {this.props.children}
+        {children}
       </svg>
     );
   },
 
   _handleMouseLeave(e) {
     this.setState({hovered: false});
-    if (this.props.onMouseLeave) {
-      this.props.onMouseLeave(e);
-    }
+    this.props.onMouseLeave(e);
   },
 
   _handleMouseEnter(e) {
     this.setState({hovered: true});
-    if (this.props.onMouseEnter) {
-      this.props.onMouseEnter(e);
-    }
+    this.props.onMouseEnter(e);
   },
 });
 
