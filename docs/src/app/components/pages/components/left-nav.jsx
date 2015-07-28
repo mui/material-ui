@@ -60,6 +60,13 @@ class LeftNavPage extends React.Component {
         name: 'Props',
         infoArray: [
           {
+            name: 'disableSwipeToOpen',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'Indicates whether swiping sideways when the nav is closed ' +
+              'should open the nav.'
+          },
+          {
             name: 'docked',
             type: 'bool',
             header: 'default: true',
