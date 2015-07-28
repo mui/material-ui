@@ -284,47 +284,47 @@ let AppBar = React.createClass({
         waterfallChildren = this.props.waterfall.children || null;
       }
       return (
+        <div
+          className={props.className}
+          ref="root"
+          style={{
+            height: this.props.waterfall.maxHeight,
+          }}>
+          <Paper
+            rounded={false}
+            style={this.mergeAndPrefix(styles.root, props.style, {
+              height: this.props.waterfall.minHeight,
+              position: 'fixed',
+              top: 0,
+            })}
+            zDepth={props.zDepth}>
+          </Paper>
+          {/* this is the visual element that will slide */}
           <div
-            className={props.className}
-            ref="root"
             style={{
+              position: 'absolute',
+              zIndex: paperElStyle.zIndex + 1,
+              width: '100%',
               height: this.props.waterfall.maxHeight,
-            }}>
-            <Paper
-              rounded={false}
-              style={this.mergeAndPrefix(styles.root, props.style, {
-                height: this.props.waterfall.minHeight,
-                position: 'fixed',
-                top: 0,
-              })}
-              zDepth={props.zDepth}>
-            </Paper>
-            {/* this is the visual element that will slide */}
-            <div
-              style={{
-                position: 'absolute',
-                zIndex: paperElStyle.zIndex + 1,
-                width: '100%',
-                height: this.props.waterfall.maxHeight,
-                paddingTop: this.props.waterfall.minHeight,
-                boxSizing: 'border-box',
-                backgroundColor: paperElStyle.backgroundColor,
-              }}>{waterfallChildren}</div>
-            {/* this is the container for icons and children
-             * same styles ar for root but with no background - transparent */}
-            <div style={this.mergeAndPrefix(styles.root, {
-                position: 'fixed',
-                top: 0,
-                zIndex: paperElStyle.zIndex + 2,
-                background: 'none',
-                boxSizing: 'border-box',
-              })}>
-              {menuElementLeft}
-              {titleElement}
-              {menuElementRight}
-              {props.children}
-            </div>
+              paddingTop: this.props.waterfall.minHeight,
+              boxSizing: 'border-box',
+              backgroundColor: paperElStyle.backgroundColor,
+            }}>{waterfallChildren}</div>
+          {/* this is the container for icons and children
+           * same styles ar for root but with no background - transparent */}
+          <div style={this.mergeAndPrefix(styles.root, {
+              position: 'fixed',
+              top: 0,
+              zIndex: paperElStyle.zIndex + 2,
+              background: 'none',
+              boxSizing: 'border-box',
+            })}>
+            {menuElementLeft}
+            {titleElement}
+            {menuElementRight}
+            {props.children}
           </div>
+        </div>
       );
     } else {
       let paperEl = <Paper
