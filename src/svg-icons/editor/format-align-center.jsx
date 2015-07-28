@@ -1,7 +1,10 @@
-let React = require('react');
-let SvgIcon = require('../../svg-icon');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const SvgIcon = require('../../svg-icon');
 
-let EditorFormatAlignCenter = React.createClass({
+const EditorFormatAlignCenter = React.createClass({
+
+  mixins: [PureRenderMixin],
 
   render() {
     return (
