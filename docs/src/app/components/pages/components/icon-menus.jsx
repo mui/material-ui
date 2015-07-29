@@ -159,47 +159,49 @@ class IconMenus extends React.Component {
 
         <br/>
 
-        <p>Menu with various open directions
-        <IconMenu iconButtonElement={iconButtonElement}>
-          <MenuItem primaryText="Refresh" />
-          <MenuItem primaryText="Send feedback" />
-          <MenuItem primaryText="Settings" />
-          <MenuItem primaryText="Help" />
-          <MenuItem primaryText="Sign out" />
-        </IconMenu>
+        <p>Menu with various open directions</p>
+        <div>
+          <IconMenu iconButtonElement={iconButtonElement}>
+            <MenuItem primaryText="Refresh" />
+            <MenuItem primaryText="Send feedback" />
+            <MenuItem primaryText="Settings" />
+            <MenuItem primaryText="Help" />
+            <MenuItem primaryText="Sign out" />
+          </IconMenu>
 
-        <IconMenu
-          iconButtonElement={iconButtonElement}
-          openDirection="bottom-right">
-          <MenuItem primaryText="Refresh" />
-          <MenuItem primaryText="Send feedback" />
-          <MenuItem primaryText="Settings" />
-          <MenuItem primaryText="Help" />
-          <MenuItem primaryText="Sign out" />
-        </IconMenu>
+          <IconMenu
+            iconButtonElement={iconButtonElement}
+            openDirection="bottom-right">
+            <MenuItem primaryText="Refresh" />
+            <MenuItem primaryText="Send feedback" />
+            <MenuItem primaryText="Settings" />
+            <MenuItem primaryText="Help" />
+            <MenuItem primaryText="Sign out" />
+          </IconMenu>
 
-        <IconMenu
-          iconButtonElement={iconButtonElement}
-          openDirection="top-left">
-          <MenuItem primaryText="Refresh" />
-          <MenuItem primaryText="Send feedback" />
-          <MenuItem primaryText="Settings" />
-          <MenuItem primaryText="Help" />
-          <MenuItem primaryText="Sign out" />
-        </IconMenu>
+          <IconMenu
+            iconButtonElement={iconButtonElement}
+            openDirection="top-left">
+            <MenuItem primaryText="Refresh" />
+            <MenuItem primaryText="Send feedback" />
+            <MenuItem primaryText="Settings" />
+            <MenuItem primaryText="Help" />
+            <MenuItem primaryText="Sign out" />
+          </IconMenu>
 
-        <IconMenu
-          iconButtonElement={iconButtonElement}
-          openDirection="top-right">
-          <MenuItem primaryText="Refresh" />
-          <MenuItem primaryText="Send feedback" />
-          <MenuItem primaryText="Settings" />
-          <MenuItem primaryText="Help" />
-          <MenuItem primaryText="Sign out" />
-        </IconMenu>
-        </p>
+          <IconMenu
+            iconButtonElement={iconButtonElement}
+            openDirection="top-right">
+            <MenuItem primaryText="Refresh" />
+            <MenuItem primaryText="Send feedback" />
+            <MenuItem primaryText="Settings" />
+            <MenuItem primaryText="Help" />
+            <MenuItem primaryText="Sign out" />
+          </IconMenu>
+        </div>
 
-        <p>Menu with value, valueLink, multiple values
+        <p>Menu with value, valueLink, multiple values</p>
+        <div>
           <IconMenu
             iconButtonElement={iconButtonElement}
             onChange={this._handleIconMenuChange}
@@ -236,9 +238,10 @@ class IconMenus extends React.Component {
             <MenuItem value="5" primaryText="Hybrid SACD" />
             <MenuItem value="6" primaryText="Vinyl" />
           </IconMenu>
-        </p>
+        </div>
 
-        <p>Menu Item variations
+        <p>Menu Item variations</p>
+        <div>
           <IconMenu
             iconButtonElement={iconButtonElement}
             openDirection="bottom-right">
@@ -263,10 +266,10 @@ class IconMenus extends React.Component {
             <MenuDivider />
             <MenuItem primaryText="Remove" leftIcon={<Delete />} />
           </IconMenu>
-        </p>
+        </div>
 
-        <p>Scrollable
-
+        <p>Scrollable</p>
+        <div>
           <IconMenu
             iconButtonElement={mapsButtonElement}
             maxHeight={272}
@@ -498,8 +501,7 @@ class IconMenus extends React.Component {
             <MenuItem value="WI" primaryText="Wisconsin" />
             <MenuItem value="WY" primaryText="Wyoming" />
           </IconMenu>
-
-        </p>
+        </div>
 
       </ComponentDoc>
     );
