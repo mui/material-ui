@@ -29,6 +29,7 @@ let LeftNav = React.createClass({
     onNavClose: React.PropTypes.func,
     openRight: React.PropTypes.bool,
     selectedIndex: React.PropTypes.number,
+    disableSwipeOut: React.PropTypes.bool,
   },
 
   windowListeners: {
@@ -39,6 +40,7 @@ let LeftNav = React.createClass({
   getDefaultProps() {
     return {
       docked: true,
+      disableSwipe: false,
     };
   },
 
@@ -56,16 +58,22 @@ let LeftNav = React.createClass({
 
   componentDidMount() {
     this._updateMenuHeight();
-    this._enableSwipeHandling();
+    if (this.props.disableSwipeOut === true){
+      this._enableSwipeHandlingOnClose();
+    }
   },
 
   componentDidUpdate() {
     this._updateMenuHeight();
-    this._enableSwipeHandling();
+    if (this.props.disableSwipeOut === false){
+      this._enableSwipeHandlingOnClose();
+    }
   },
 
   componentWillUnmount() {
-    this._disableSwipeHandling();
+    if (this.props.disableSwipeOut === false){
+      this._disableSwipeHandling();
+    }
   },
 
   toggle() {
@@ -218,7 +226,16 @@ let LeftNav = React.createClass({
   _getTranslateMultiplier() {
     return this.props.openRight ? 1 : -1;
   },
-
+  _enableSwipeHandlingOnClose() {
+    if (!this.props.docked && this.state.opening) {
+      document.body.addEventListener('touchstart', this._onBodyTouchStart);
+      if (!openNavEventHandler) {
+        openNavEventHandler = this._onBodyTouchStart;
+      }
+    } else {
+      this._disableSwipeHandling();
+    }
+  },
   _enableSwipeHandling() {
     if (!this.props.docked) {
       document.body.addEventListener('touchstart', this._onBodyTouchStart);
