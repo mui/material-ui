@@ -135,6 +135,12 @@ class ButtonPage extends React.Component {
             'This only applies to flat and raised buttons.'
           },
           {
+            name: 'labelPosition',
+            type: 'string',
+            header: 'default: "right"',
+            desc: 'Place label before or after the passed children'
+          }
+          {
             name: 'labelStyle',
             type: 'object',
             header: 'optional',
