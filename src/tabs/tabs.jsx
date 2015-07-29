@@ -20,7 +20,7 @@ let Tabs = React.createClass({
     tabItemContainerStyle: React.PropTypes.object,
     contentContainerStyle: React.PropTypes.object,
     inkBarStyle: React.PropTypes.object,
-    contentContainerClassName: React.PropTypes.string
+    contentContainerClassName: React.PropTypes.string,
   },
 
   getInitialState(){
