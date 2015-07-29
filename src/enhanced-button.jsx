@@ -143,7 +143,8 @@ let EnhancedButton = React.createClass({
 
     let buttonChildren = [];
 
-    if (!disabled && !disableFocusRipple && !disableKeyboardFocus) {
+    if (this.state.isKeyboardFocused && !disabled &&
+      !disableFocusRipple && !disableKeyboardFocus) {
       buttonChildren.push(
         <FocusRipple
           key="focusRipple"

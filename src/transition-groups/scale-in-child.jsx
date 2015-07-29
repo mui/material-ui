@@ -1,10 +1,10 @@
-let React = require('react/addons');
-let StylePropable = require('../mixins/style-propable');
-let AutoPrefix = require('../styles/auto-prefix');
-let Transitions = require('../styles/transitions');
+const React = require('react/addons');
+const StylePropable = require('../mixins/style-propable');
+const AutoPrefix = require('../styles/auto-prefix');
+const Transitions = require('../styles/transitions');
 
 
-let ScaleInChild = React.createClass({
+const ScaleInChild = React.createClass({
 
   mixins: [StylePropable],
 
@@ -22,20 +22,20 @@ let ScaleInChild = React.createClass({
     };
   },
 
+  componentWillAppear(callback) {
+    this._initializeAnimation(callback);
+  },
+
   componentWillEnter(callback) {
-    let style = React.findDOMNode(this).style;
+    this._initializeAnimation(callback);
+  },
 
-    style.opacity = '0';
-    AutoPrefix.set(style, 'transform', 'scale(0)');
-
-    setTimeout(callback, this.props.enterDelay);
+  componentDidAppear() {
+    this._animate();
   },
 
   componentDidEnter() {
-    let style = React.findDOMNode(this).style;
-
-    style.opacity = '1';
-    AutoPrefix.set(style, 'transform', 'scale(' + this.props.maxScale + ')');
+    this._animate();
   },
 
   componentWillLeave(callback) {
@@ -48,14 +48,14 @@ let ScaleInChild = React.createClass({
   },
 
   render() {
-    let {
+    const {
       children,
       enterDelay,
       style,
       ...other,
     } = this.props;
 
-    let mergedRootStyles = this.mergeAndPrefix({
+    const mergedRootStyles = this.mergeAndPrefix({
       position: 'absolute',
       height: '100%',
       width: '100%',
@@ -69,6 +69,22 @@ let ScaleInChild = React.createClass({
         {children}
       </div>
     );
+  },
+
+  _animate() {
+    let style = React.findDOMNode(this).style;
+
+    style.opacity = '1';
+    AutoPrefix.set(style, 'transform', 'scale(' + this.props.maxScale + ')');
+  },
+
+  _initializeAnimation(callback) {
+    let style = React.findDOMNode(this).style;
+
+    style.opacity = '0';
+    AutoPrefix.set(style, 'transform', 'scale(0)');
+
+    setTimeout(callback, this.props.enterDelay);
   },
 
 });
