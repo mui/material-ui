@@ -14,7 +14,6 @@ let ContentSend = require('svg-icons/content/send');
 let EditorInsertChart = require('svg-icons/editor/insert-chart');
 let FileFolder = require('svg-icons/file/folder');
 let MoreVertIcon = require('svg-icons/navigation/more-vert');
-let ToggleStarBorder = require('svg-icons/toggle/star-border');
 
 let {
   Avatar,

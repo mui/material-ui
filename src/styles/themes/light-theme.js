@@ -34,6 +34,9 @@ let LightTheme = {
         textColor: Colors.darkWhite,
         height: spacing.desktopKeylineIncrement,
       },
+      avatar: {
+        borderColor: 'rgba(0, 0, 0, 0.08)',
+      },
       button: {
         height: 36,
         minWidth: 88,
