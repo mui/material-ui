@@ -21,6 +21,7 @@ let LeftNav = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
+    disableSwipeToOpen: React.PropTypes.bool,
     docked: React.PropTypes.bool,
     header: React.PropTypes.element,
     menuItems: React.PropTypes.array.isRequired,
@@ -38,6 +39,7 @@ let LeftNav = React.createClass({
 
   getDefaultProps() {
     return {
+      disableSwipeToOpen: false,
       docked: true,
     };
   },
@@ -238,7 +240,10 @@ let LeftNav = React.createClass({
   },
 
   _onBodyTouchStart(e) {
-    if (!this.state.open && openNavEventHandler !== this._onBodyTouchStart) {
+    if (!this.state.open &&
+         (openNavEventHandler !== this._onBodyTouchStart ||
+          this.props.disableSwipeToOpen)
+       ) {
       return;
     }
 
