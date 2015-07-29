@@ -19,6 +19,7 @@ let Menu = React.createClass({
   },
 
   propTypes: {
+    animated: React.PropTypes.bool,
     autoWidth: React.PropTypes.bool,
     desktop: React.PropTypes.bool,
     initiallyKeyboardFocused: React.PropTypes.bool,
@@ -36,6 +37,7 @@ let Menu = React.createClass({
 
   getDefaultProps() {
     return {
+      animated: false,
       autoWidth: true,
       maxHeight: null,
       onEscKeyDown: () => {},
@@ -53,24 +55,16 @@ let Menu = React.createClass({
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
       isKeyboardFocused: this.props.initiallyKeyboardFocused,
       keyWidth: this.props.desktop ? 64 : 56,
-      componentEntered: false,
     };
   },
 
-  componentDidAppear() {
-    this.setState({
-      componentEntered: true,
-    });
-  },
-
   componentDidEnter() {
-    this.setState({
-      componentEntered: true,
-    });
+    this._animateOpen();
   },
 
   componentDidMount() {
     if (this.props.autoWidth) this._setWidth();
+    if (!this.props.animated) this._animateOpen();
     this._setScollPosition();
   },
 
@@ -99,6 +93,7 @@ let Menu = React.createClass({
 
   render() {
     let {
+      animated,
       autoWidth,
       children,
       desktop,
@@ -116,7 +111,6 @@ let Menu = React.createClass({
       ...other,
     } = this.props;
 
-    let componentEntered = this.state.componentEntered;
     let openDown = openDirection.split('-')[0] === 'bottom';
     let openLeft = openDirection.split('-')[1] === 'left';
 
@@ -124,14 +118,14 @@ let Menu = React.createClass({
       root: {
         //Nested div bacause the List scales x faster than
         //it scales y
-        transition: Transitions.easeOut('250ms', 'transform'),
+        transition: animated ? Transitions.easeOut('250ms', 'transform') : null,
         position: 'absolute',
         zIndex: 10,
         top: openDown ? 0 : null,
         bottom: !openDown ? 0 : null,
         left: !openLeft ? 0 : null,
         right: openLeft ? 0 : null,
-        transform: componentEntered ? 'scaleX(1)' : 'scaleX(0)',
+        transform: 'scaleX(0)',
         transformOrigin: openLeft ? 'right' : 'left',
       },
 
@@ -143,16 +137,16 @@ let Menu = React.createClass({
         width: width,
       },
 
-      menuItem: {
-        transition: Transitions.easeOut(null, 'opacity'),
-        opacity: componentEntered ? 1 : 0,
+      menuItemContainer: {
+        transition: animated ? Transitions.easeOut(null, 'opacity') : null,
+        opacity: 0,
       },
 
       paper: {
-        transition: Transitions.easeOut('500ms', ['transform', 'opacity']),
-        transform: componentEntered ? 'scaleY(1)' : 'scaleY(0)',
+        transition: animated ? Transitions.easeOut('500ms', ['transform', 'opacity']) : null,
+        transform: 'scaleY(0)',
         transformOrigin: openDown ? 'top' : 'bottom',
-        opacity: componentEntered ? 1 : 0,
+        opacity: 0,
         maxHeight: maxHeight,
         overflowY: maxHeight ? 'scroll' : null,
       },
@@ -175,21 +169,25 @@ let Menu = React.createClass({
 
       let childIsADivider = child.type.displayName === 'MenuDivider';
       let childIsDisabled = child.props.disabled;
-      let focusIndex = this.state.focusIndex;
-      let transitionDelay = 0;
+      let childrenContainerStyles = {};
 
-      //Only cascade the visible menu items
-      if (componentEntered && (menuItemIndex >= focusIndex - 1) &&
-        (menuItemIndex <= focusIndex + cascadeChildrenCount - 1)) {
-        cumulativeDelay = openDown ?
-          cumulativeDelay + cumulativeDelayIncrement :
-          cumulativeDelay - cumulativeDelayIncrement;
-        transitionDelay = cumulativeDelay;
+      if (animated) {
+        let focusIndex = this.state.focusIndex;
+        let transitionDelay = 0;
+
+        //Only cascade the visible menu items
+        if ((menuItemIndex >= focusIndex - 1) &&
+          (menuItemIndex <= focusIndex + cascadeChildrenCount - 1)) {
+          cumulativeDelay = openDown ?
+            cumulativeDelay + cumulativeDelayIncrement :
+            cumulativeDelay - cumulativeDelayIncrement;
+          transitionDelay = cumulativeDelay;
+        }
+
+        childrenContainerStyles = this.mergeAndPrefix(styles.menuItemContainer, {
+          transitionDelay: transitionDelay + 'ms',
+        });
       }
-
-      let childrenContainerStyles = this.mergeStyles(styles.menuItem, {
-        transitionDelay: transitionDelay + 'ms',
-      });
 
       let clonedChild = childIsADivider ? child :
         childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
@@ -197,7 +195,9 @@ let Menu = React.createClass({
 
       if (!childIsADivider && !childIsDisabled) menuItemIndex++;
 
-      return <div style={childrenContainerStyles}>{clonedChild}</div>;
+      return animated ? (
+        <div style={childrenContainerStyles}>{clonedChild}</div>
+      ) : clonedChild;
 
     }.bind(this));
 
@@ -224,6 +224,20 @@ let Menu = React.createClass({
     this.setState({
       isKeyboardFocused: keyboardFocused,
     });
+  },
+
+  _animateOpen() {
+    let rootStyle = React.findDOMNode(this).style;
+    let scrollContainerStyle = React.findDOMNode(this.refs.scrollContainer).style;
+    let menuContainers = React.findDOMNode(this.refs.list).childNodes;
+
+    AutoPrefix.set(rootStyle, 'transform', 'scaleX(1)');
+    AutoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)');
+    scrollContainerStyle.opacity = 1;
+
+    for (let i = 0; i < menuContainers.length; ++i) {
+      menuContainers[i].style.opacity = 1;
+    }
   },
 
   _cloneMenuItem(child, childIndex, styles) {

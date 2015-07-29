@@ -58,6 +58,13 @@ class MenusPage extends React.Component {
         name: 'Menu Props',
         infoArray: [
           {
+            name: 'animated',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the menu will apply transitions when added it gets added to the DOM. In order for transitions ' +
+              'to work, wrap the menu inside a ReactTransitionGroup.'
+          },
+          {
             name: 'autoWidth',
             type: 'bool',
             header: 'default: true',
@@ -229,110 +236,109 @@ class MenusPage extends React.Component {
         desc={desc}
         componentInfo={componentInfo}>
 
-        <ReactTransitionGroup>
-          <Menu style={styles.menu}>
-            <MenuItem primaryText="Maps" />
-            <MenuItem primaryText="Books" />
-            <MenuItem primaryText="Flights" />
-            <MenuItem primaryText="Apps" />
-          </Menu>
+        <Menu style={styles.menu}>
+          <MenuItem primaryText="Maps" />
+          <MenuItem primaryText="Books" />
+          <MenuItem primaryText="Flights" />
+          <MenuItem primaryText="Apps" />
+        </Menu>
 
-          <Menu style={styles.menu}>
-            <MenuItem primaryText="Refresh" />
-            <MenuItem primaryText="Help &amp; feedback" />
-            <MenuItem primaryText="Settings" />
-            <MenuItem primaryText="Sign out" />
-          </Menu>
+        <Menu style={styles.menu}>
+          <MenuItem primaryText="Refresh" />
+          <MenuItem primaryText="Help &amp; feedback" />
+          <MenuItem primaryText="Settings" />
+          <MenuItem primaryText="Sign out" />
+        </Menu>
 
-          <Menu style={styles.menu} desktop={true}>
-            <MenuItem primaryText="Back" />
-            <MenuItem primaryText="Forward" disabled={true} />
-            <MenuDivider />
-            <MenuItem primaryText="Recently closed" disabled={true} />
-            <MenuItem primaryText="Google" disabled={true} />
-            <MenuItem primaryText="YouTube" />
-          </Menu>
+        <Menu style={styles.menu} desktop={true}>
+          <MenuItem primaryText="Back" />
+          <MenuItem primaryText="Forward" disabled={true} />
+          <MenuDivider />
+          <MenuItem primaryText="Recently closed" disabled={true} />
+          <MenuItem primaryText="Google" disabled={true} />
+          <MenuItem primaryText="YouTube" />
+        </Menu>
 
-          <Menu style={styles.menu}>
-            <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
-            <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
-            <MenuItem primaryText="Get links" leftIcon={<ContentLink />} />
-            <MenuDivider />
-            <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
-            <MenuItem primaryText="Download" leftIcon={<Download />} />
-            <MenuDivider />
-            <MenuItem primaryText="Remove" leftIcon={<Delete />} />
-          </Menu>
+        <Menu style={styles.menu}>
+          <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
+          <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
+          <MenuItem primaryText="Get links" leftIcon={<ContentLink />} />
+          <MenuDivider />
+          <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
+          <MenuItem primaryText="Download" leftIcon={<Download />} />
+          <MenuDivider />
+          <MenuItem primaryText="Remove" leftIcon={<Delete />} />
+        </Menu>
 
-          <Menu style={styles.menu} desktop={true}>
-            <MenuItem primaryText="Undo" />
-            <MenuItem primaryText="Redo" disabled={true} />
-            <MenuDivider />
-            <MenuItem primaryText="Cut" disabled={true} />
-            <MenuItem primaryText="Copy" disabled={true} />
-            <MenuItem primaryText="Paste" />
-          </Menu>
+        <Menu style={styles.menu} desktop={true}>
+          <MenuItem primaryText="Undo" />
+          <MenuItem primaryText="Redo" disabled={true} />
+          <MenuDivider />
+          <MenuItem primaryText="Cut" disabled={true} />
+          <MenuItem primaryText="Copy" disabled={true} />
+          <MenuItem primaryText="Paste" />
+        </Menu>
 
-          <Menu style={styles.menu} desktop={true}>
-            <MenuItem primaryText="Untitled" />
-            <MenuItem primaryText="Using the z-axis to Solve Design Challenges" />
-            <MenuItem primaryText="An Extensive History of Dimensionality" />
-          </Menu>
+        <Menu style={styles.menu} desktop={true}>
+          <MenuItem primaryText="Untitled" />
+          <MenuItem primaryText="Using the z-axis to Solve Design Challenges" />
+          <MenuItem primaryText="An Extensive History of Dimensionality" />
+        </Menu>
 
-          <Menu style={styles.menu} desktop={true}>
-            <MenuItem primaryText="Untitled" />
-            <MenuItem primaryText="Using the z-axis to Solve Design Challenges" />
-            <MenuItem primaryText="An Extensive History of Dimensionality: the Abridged Edition" />
-          </Menu>
+        <Menu style={styles.menu} desktop={true}>
+          <MenuItem primaryText="Untitled" />
+          <MenuItem primaryText="Using the z-axis to Solve Design Challenges" />
+          <MenuItem primaryText="An Extensive History of Dimensionality: the Abridged Edition" />
+        </Menu>
 
-          <Menu style={styles.menu} desktop={true} width={320}>
-            <MenuItem primaryText="Open" secondaryText="Cmnd + O" />
-            <MenuItem primaryText="Paste in place" secondaryText="Shift + V" />
-            <MenuItem primaryText="Research" secondaryText="Opt + Shift + Cmnd + I" />
-          </Menu>
+        <Menu style={styles.menu} desktop={true} width={320}>
+          <MenuItem primaryText="Open" secondaryText="Cmnd + O" />
+          <MenuItem primaryText="Paste in place" secondaryText="Shift + V" />
+          <MenuItem primaryText="Research" secondaryText="Opt + Shift + Cmnd + I" />
+        </Menu>
 
-          <Menu style={styles.menu} desktop={true} width={320}>
-            <MenuItem primaryText="Open" secondaryText="&#8984;O" />
-            <MenuItem primaryText="Paste in place" secondaryText="&#8679;&#8984;V" />
-            <MenuItem primaryText="Research" secondaryText="&#8997;&#8679;&#8984;I" />
-          </Menu>
+        <Menu style={styles.menu} desktop={true} width={320}>
+          <MenuItem primaryText="Open" secondaryText="&#8984;O" />
+          <MenuItem primaryText="Paste in place" secondaryText="&#8679;&#8984;V" />
+          <MenuItem primaryText="Research" secondaryText="&#8997;&#8679;&#8984;I" />
+        </Menu>
 
-          <Menu style={styles.menu} desktop={true} width={320}>
-            <MenuItem primaryText="Bold" secondaryText="&#8984;B" />
-            <MenuItem primaryText="Italic" secondaryText="&#8984;I" />
-            <MenuItem primaryText="Underline" secondaryText="&#8984;U" />
-            <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />
-            <MenuItem primaryText="Superscript" secondaryText="&#8984;." />
-            <MenuItem primaryText="Subscript" secondaryText="&#8984;," />
-            <MenuDivider />
-            <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />
-            <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />
-            <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />
-            <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />
-            <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />
-            <MenuDivider />
-            <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
-          </Menu>
+        <Menu style={styles.menu} desktop={true} width={320}>
+          <MenuItem primaryText="Bold" secondaryText="&#8984;B" />
+          <MenuItem primaryText="Italic" secondaryText="&#8984;I" />
+          <MenuItem primaryText="Underline" secondaryText="&#8984;U" />
+          <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />
+          <MenuItem primaryText="Superscript" secondaryText="&#8984;." />
+          <MenuItem primaryText="Subscript" secondaryText="&#8984;," />
+          <MenuDivider />
+          <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />
+          <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />
+          <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />
+          <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />
+          <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />
+          <MenuDivider />
+          <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
+        </Menu>
 
-          <Menu style={styles.menu} desktop={true} width={320}>
-            <MenuItem primaryText="Single" insetChildren={true} />
-            <MenuItem primaryText="1.15" insetChildren={true} />
-            <MenuItem primaryText="Double" insetChildren={true} />
-            <MenuItem primaryText="Custom: 1.2" checked={true} rightIcon={<ArrowDropRight />} />
-            <MenuDivider />
-            <MenuItem primaryText="Add space before paragraph" />
-            <MenuItem primaryText="Add space after paragraph" />
-            <MenuDivider />
-            <MenuItem primaryText="Custom spacing..." />
-          </Menu>
+        <Menu style={styles.menu} desktop={true} width={320}>
+          <MenuItem primaryText="Single" insetChildren={true} />
+          <MenuItem primaryText="1.15" insetChildren={true} />
+          <MenuItem primaryText="Double" insetChildren={true} />
+          <MenuItem primaryText="Custom: 1.2" checked={true} rightIcon={<ArrowDropRight />} />
+          <MenuDivider />
+          <MenuItem primaryText="Add space before paragraph" />
+          <MenuItem primaryText="Add space after paragraph" />
+          <MenuDivider />
+          <MenuItem primaryText="Custom spacing..." />
+        </Menu>
 
-          <Menu style={styles.menu} desktop={true}>
-            <MenuItem primaryText="Show" />
-            <MenuItem primaryText="Grid lines" checked={true} />
-            <MenuItem primaryText="Page breaks" insetChildren={true} />
-            <MenuItem primaryText="Rules" checked={true} />
-          </Menu>
-        </ReactTransitionGroup>
+        <Menu style={styles.menu} desktop={true}>
+          <MenuItem primaryText="Show" />
+          <MenuItem primaryText="Grid lines" checked={true} />
+          <MenuItem primaryText="Page breaks" insetChildren={true} />
+          <MenuItem primaryText="Rules" checked={true} />
+        </Menu>
+
       </ComponentDoc>
     );
 
