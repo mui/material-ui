@@ -1,7 +1,10 @@
-let React = require('react');
-let SvgIcon = require('../../svg-icon');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const SvgIcon = require('../../svg-icon');
 
-let ImageLoupe = React.createClass({
+const ImageLoupe = React.createClass({
+
+  mixins: [PureRenderMixin],
 
   render() {
     return (

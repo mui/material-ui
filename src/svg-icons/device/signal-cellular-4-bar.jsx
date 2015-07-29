@@ -1,7 +1,10 @@
-let React = require('react');
-let SvgIcon = require('../../svg-icon');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const SvgIcon = require('../../svg-icon');
 
-let DeviceSignalCellular4Bar = React.createClass({
+const DeviceSignalCellular4Bar = React.createClass({
+
+  mixins: [PureRenderMixin],
 
   render() {
     return (
