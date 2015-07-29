@@ -17,7 +17,15 @@ module.exports = {
   },
 
   single(key) {
-    return isBrowser ? Modernizr.prefixed(key) : key;
+    if (isBrowser) {
+      // Windows 7 Firefox has an issue with the implementation of Modernizr.prefixed
+      // and is capturing 'false' as the CSS property name instead of the non-prefixed version.
+      let prefKey = Modernizr.prefixed(key);
+      return prefKey === false ? key : prefKey;
+    }
+    else {
+      return key;
+    }
   },
 
   singleHyphened(key) {

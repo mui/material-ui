@@ -56,24 +56,25 @@ let SlideInChild = React.createClass({
 
   render() {
     let {
+      children,
       enterDelay,
       getLeaveDirection,
-      styles,
+      style,
       ...other,
     } = this.props;
 
-    styles = this.mergeAndPrefix({
+    let mergedRootStyles = this.mergeAndPrefix({
       position: 'absolute',
       height: '100%',
       width: '100%',
       top: 0,
       left: 0,
-      transition: Transitions.easeOut(),
-    }, this.props.style);
+      transition: Transitions.easeOut(null, ['transform', 'opacity']),
+    }, style);
 
     return (
-      <div {...other} style={styles}>
-        {this.props.children}
+      <div {...other} style={mergedRootStyles}>
+        {children}
       </div>
     );
   },

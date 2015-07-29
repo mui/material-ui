@@ -152,6 +152,10 @@ module.exports = {
             !(this.isAfterDate(dateToCheck, endDate)));
   },
 
+  isDateObject(d) {
+    return d instanceof Date;
+  },
+
   monthDiff(d1, d2) {
     let m;
     m = (d1.getFullYear() - d2.getFullYear()) * 12;

@@ -101,7 +101,7 @@ let DatePickerDialog = React.createClass({
         repositionOnUpdate={false}>
         <Calendar
           ref="calendar"
-          onSelectedDate={this._onSelectedDate}
+          onDayTouchTap={this._onDayTouchTap}
           initialDate={this.props.initialDate}
           isActive={this.state.isCalendarActive}
           minDate={this.props.minDate}
@@ -123,7 +123,7 @@ let DatePickerDialog = React.createClass({
     this.refs.dialog.dismiss();
   },
 
-  _onSelectedDate() {
+  _onDayTouchTap() {
     if (this.props.autoOk) {
       setTimeout(this._handleOKTouchTap, 300);
     }
@@ -172,10 +172,12 @@ let DatePickerDialog = React.createClass({
   },
 
   _handleWindowKeyUp(e) {
-    switch (e.keyCode) {
-      case KeyCode.ENTER:
-        this._handleOKTouchTap();
-        break;
+    if (this.state.isCalendarActive) {
+      switch (e.keyCode) {
+        case KeyCode.ENTER:
+          this._handleOKTouchTap();
+          break;
+      }
     }
   },
 

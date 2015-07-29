@@ -47,7 +47,7 @@ var React = require('react'),
   ThemeManager = new mui.Styles.ThemeManager(),
   RaisedButton = mui.RaisedButton;
 
-var SomeAwesomeComponent = React.createClass({
+var MyAwesomeReactComponent = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object

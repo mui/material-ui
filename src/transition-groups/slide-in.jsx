@@ -9,21 +9,21 @@ let SlideIn = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-    childEnterDelay: React.PropTypes.number,
+    enterDelay: React.PropTypes.number,
     childStyle: React.PropTypes.object,
     direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),
   },
 
   getDefaultProps() {
     return {
-      childEnterDelay: 0,
+      enterDelay: 0,
       direction: 'left',
     };
   },
 
   render() {
     let {
-      childEnterDelay,
+      enterDelay,
       children,
       childStyle,
       direction,
@@ -42,7 +42,7 @@ let SlideIn = React.createClass({
         <SlideInChild
           key={child.key}
           direction={direction}
-          enterDelay={childEnterDelay}
+          enterDelay={enterDelay}
           getLeaveDirection={this._getLeaveDirection}
           style={childStyle}>
           {child}
@@ -51,7 +51,8 @@ let SlideIn = React.createClass({
     }, this);
 
     return (
-      <ReactTransitionGroup {...other}
+      <ReactTransitionGroup
+        {...other}
         style={mergedRootStyles}
         component="div">
         {newChildren}

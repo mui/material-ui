@@ -46,111 +46,110 @@ let TextFieldsPage = React.createClass({
 
   render() {
 
-    let code =
-      '//In Line Hint Text\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text" />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  defaultValue="Default Value" />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  value={this.state.propValue}\n' +
-      '  onChange={this._handleInputChange} />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  valueLink={this.linkState(\'valueLinkValue\')} />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text (MultiLine)"\n' +
-      '  multiLine={true} />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  errorText={this.state.errorText}\n' +
-      '  onChange={this._handleErrorInputChange} />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  errorText={this.state.error2Text}\n' +
-      '  onChange={this._handleError2InputChange}\n' +
-      '  defaultValue="abc" />\n' +
-      '<TextField\n' +
-      '  hintText="Disabled Hint Text"\n' +
-      '  disabled={true} />\n' +
-      '<TextField\n' +
-      '  hintText="Disabled Hint Text"\n' +
-      '  disabled={true}\n' +
-      '  defaultValue="Disabled With Value" />\n\n' +
 
-      '//Select Fields\n'+
-      '<SelectField\n'+
-      '  value={this.state.selectValue}\n'+
-      '  onChange={this._handleSelectValueChange.bind(null, "selectValue")}\n'+
-      '  hintText="Hint Text"\n'+
-      '  menuItems={menuItems} />\n'+
-      '<SelectField\n'+
-      '  valueLink={this.linkState("selectValueLinkValue")}\n'+
-      '  floatingLabelText="Select Field"\n'+
-      '  valueMember="id"\n'+
-      '  displayMember="name"\n'+
-      '  menuItems={arbitraryArrayMenuItems} />\n'+
-      '<SelectField\n'+
-      '  value={this.state.selectValue2}\n'+
-      '  onChange={this._handleSelectValueChange.bind(null, "selectValue2")}\n'+
-      '  menuItems={arbitraryArrayMenuItems} />\n\n'+
+    let code = `
+      //In Line Hint Text
+      <TextField
+        hintText="Hint Text" />
+      <TextField
+        hintText="Hint Text"
+        defaultValue="Default Value" />
+      <TextField
+        hintText="Hint Text"
+        value={this.state.propValue}
+        onChange={this._handleInputChange} />
+      <TextField
+        hintText="Hint Text"
+        valueLink={this.linkState('valueLinkValue')} />
+      <TextField
+        hintText="Hint Text (MultiLine)"
+        multiLine={true} />
+      <TextField
+        hintText="The hint text can be as long as you want, it will wrap."
+        multiLine={true} />
+      <TextField
+        hintText="Hint Text"
+        errorText="The error text can be as long as you want, it will wrap." />
+      <TextField
+        hintText="Hint Text"
+        errorText={this.state.errorText}
+        onChange={this._handleErrorInputChange} />
+      <TextField
+        hintText="Hint Text"
+        errorText={this.state.error2Text}
+        onChange={this._handleError2InputChange}
+        defaultValue="abc" />
+      <TextField
+        hintText="Disabled Hint Text"
+        disabled={true} />
+      <TextField
+        hintText="Disabled Hint Text"
+        disabled={true}
+        defaultValue="Disabled With Value" />
 
-      '//Floating Hint Text Labels\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  floatingLabelText="Floating Label Text" />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  defaultValue="Default Value"\n' +
-      '  floatingLabelText="Floating Label Text" />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  floatingLabelText="Floating Label Text"\n' +
-      '  value={this.state.floatingPropValue}\n' +
-      '  onChange={this._handleFloatingInputChange} />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  floatingLabelText="Floating Label Text"\n' +
-      '  valueLink={this.linkState(\'floatingValueLinkValue\')} />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text (MultiLine)"\n' +
-      '  floatingLabelText="Floating Label Text"\n' +
-      '  multiLine={true} />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  errorText={this.state.floatingErrorText}\n' +
-      '  floatingLabelText="Floating Label Text"\n' +
-      '  onChange={this._handleFloatingErrorInputChange} />\n' +
-      '<TextField\n' +
-      '  hintText="Hint Text"\n' +
-      '  errorText={this.state.floatingError2Text}\n' +
-      '  defaultValue="abc"\n' +
-      '  floatingLabelText="Floating Label Text"\n' +
-      '  onChange={this._handleFloating2ErrorInputChange} />\n' +
-      '<TextField\n' +
-      '  hintText="Disabled Hint Text"\n' +
-      '  disabled={true}\n' +
-      '  floatingLabelText="Floating Label Text" />\n' +
-      '<TextField\n' +
-      '  hintText="Disabled Hint Text"\n' +
-      '  disabled={true}\n' +
-      '  defaultValue="Disabled With Value"\n' +
-      '  floatingLabelText="Floating Label Text" />\n'+
-      '<TextField\n' +
-      '  hintText="Custom Child input (e.g. password)"\n' +
-      '  defaultValue="Custom Child input (e.g. password)"\n' +
-      '  floatingLabelText="Custom Child input (e.g. password)">\n' +
-      '    <input type="password" />\n' +
-      '</TextField>\n'+
-      '<TextField\n' +
-      '  hintText="Disabled Child input (e.g. password)"\n' +
-      '  disabled={true}\n' +
-      '  defaultValue="Custom Child input (e.g. password)"\n' +
-      '  floatingLabelText="Custom Child input (e.g. password)">\n' +
-      '    <input type="password" />\n' +
-      '</TextField>';
+      //Select Fields
+      <SelectField
+        value={this.state.selectValue}
+        onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
+        hintText="Hint Text"
+        menuItems={menuItems} />
+      <SelectField
+        valueLink={this.linkState('selectValueLinkValue')}
+        floatingLabelText="Float Label Text"
+        valueMember="id"
+        displayMember="name"
+        menuItems={arbitraryArrayMenuItems} />
+      <SelectField
+        value={this.state.selectValue2}
+        onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
+        menuItems={arbitraryArrayMenuItems} />
+
+      //Floating Hint Text Labels
+      <TextField
+        hintText="Hint Text"
+        floatingLabelText="Floating Label Text" />
+      <TextField
+        hintText="Hint Text"
+        defaultValue="Default Value"
+        floatingLabelText="Floating Label Text" />
+      <TextField
+        hintText="Hint Text"
+        floatingLabelText="Floating Label Text"
+        value={this.state.floatingPropValue}
+        onChange={this._handleFloatingInputChange} />
+      <TextField
+        hintText="Hint Text"
+        floatingLabelText="Floating Label Text"
+        valueLink={this.linkState('floatingValueLinkValue')} />
+      <TextField
+        hintText="Hint Text (MultiLine)"
+        floatingLabelText="Floating Label Text"
+        multiLine={true} />
+      <TextField
+        hintText="Hint Text"
+        errorText={this.state.floatingErrorText}
+        floatingLabelText="Floating Label Text"
+        onChange={this._handleFloatingErrorInputChange} />
+      <TextField
+        hintText="Hint Text"
+        errorText={this.state.floatingError2Text}
+        defaultValue="abc"
+        floatingLabelText="Floating Label Text"
+        onChange={this._handleFloating2ErrorInputChange} />
+      <TextField
+        hintText="Disabled Hint Text"
+        disabled={true}
+        floatingLabelText="Floating Label Text" />
+      <TextField
+        hintText="Disabled Hint Text"
+        disabled={true}
+        defaultValue="Disabled With Value"
+        floatingLabelText="Floating Label Text" />
+      <TextField
+        hintText="Password Field"
+        floatingLabelText="Password"
+        type="password" />
+    `;
 
     let desc = 'This component extends the current input element and will support all of its props and events. It supports ' +
       'valueLink and can be controlled or uncontrolled.' ;
@@ -408,18 +407,9 @@ let TextFieldsPage = React.createClass({
               defaultValue="Disabled With Value"
               floatingLabelText="Floating Label Text" /><br/>
             <TextField
-              hintText="Custom Child input (e.g. password)"
-              defaultValue="Custom Child input (e.g. password)"
-              floatingLabelText="Custom Child input (e.g. password)">
-                <input type="password" />
-            </TextField>
-            <TextField
-              hintText="Disabled Child input (e.g. password)"
-              disabled={true}
-              defaultValue="Custom Child input (e.g. password)"
-              floatingLabelText="Custom Child input (e.g. password)">
-                <input type="password" />
-            </TextField>
+              hintText="Password Field"
+              floatingLabelText="Password"
+              type="password" /><br/>
           </div>
         </ClearFix>
       </ComponentDoc>
