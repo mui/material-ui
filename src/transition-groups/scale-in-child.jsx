@@ -1,4 +1,5 @@
 const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('../mixins/style-propable');
 const AutoPrefix = require('../styles/auto-prefix');
 const Transitions = require('../styles/transitions');
@@ -6,7 +7,7 @@ const Transitions = require('../styles/transitions');
 
 const ScaleInChild = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [PureRenderMixin, StylePropable],
 
   propTypes: {
     enterDelay: React.PropTypes.number,
