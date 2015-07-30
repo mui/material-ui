@@ -134,7 +134,7 @@ let IconMenu = React.createClass({
       </div>
     );
   },
-  
+
   isOpen() {
     return this.state.open;
   },
