@@ -1,12 +1,13 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let Transitions = require('../styles/transitions');
-let Colors = require('../styles/colors');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const StylePropable = require('../mixins/style-propable');
+const Transitions = require('../styles/transitions');
+const Colors = require('../styles/colors');
 
 
-let CircleRipple = React.createClass({
+const CircleRipple = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [PureRenderMixin, StylePropable],
 
   propTypes: {
     color: React.PropTypes.string,
@@ -22,32 +23,33 @@ let CircleRipple = React.createClass({
   },
 
   render() {
-    let {
+    const {
       color,
-      started,
       ending,
+      opacity,
+      started,
       style,
       ...other,
     } = this.props;
 
-    let styles = this.mergeAndPrefix({
+    const mergedStyles = this.mergeAndPrefix({
       position: 'absolute',
       top: 0,
       left: 0,
       height: '100%',
       width: '100%',
-      opacity:  this.props.ending ? 0 :
-                this.props.opacity ? this.props.opacity : 0.16,
+      opacity:  ending ? 0 :
+        opacity ? opacity : 0.16,
       borderRadius: '50%',
-      transform: this.props.started ? 'scale(1)' : 'scale(0)',
-      backgroundColor: this.props.color,
+      transform: started ? 'scale(1)' : 'scale(0)',
+      backgroundColor: color,
       transition:
         Transitions.easeOut('2s', 'opacity') + ',' +
         Transitions.easeOut('1s', 'transform'),
-    }, this.props.style);
+    }, style);
 
     return (
-      <div {...other} style={styles} />
+      <div {...other} style={mergedStyles} />
     );
   },
 

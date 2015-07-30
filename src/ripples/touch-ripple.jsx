@@ -1,12 +1,14 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let Dom = require('../utils/dom');
-let RippleCircle = require('./circle-ripple');
+const React = require('react');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const StylePropable = require('../mixins/style-propable');
+const Dom = require('../utils/dom');
+const ImmutabilityHelper = require('../utils/immutability-helper');
+const CircleRipple = require('./circle-ripple');
 
 
-let TouchRipple = React.createClass({
+const TouchRipple = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [PureRenderMixin, StylePropable],
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
@@ -25,14 +27,20 @@ let TouchRipple = React.createClass({
   },
 
   render() {
-    let styles = this.mergeAndPrefix({
+
+    const {
+      children,
+      style,
+    } = this.props;
+
+    const mergedStyles = this.mergeAndPrefix({
       height: '100%',
       width: '100%',
       position: 'absolute',
       top: 0,
       left: 0,
       overflow: 'hidden',
-    }, this.props.style);
+    }, style);
 
     return (
       <div
@@ -41,19 +49,16 @@ let TouchRipple = React.createClass({
         onMouseLeave={this._handleMouseLeave}
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}>
-        <div style={styles}>
+        <div style={mergedStyles}>
           {this._getRippleElements()}
         </div>
-        {this.props.children}
+        {children}
       </div>
     );
   },
 
   start(e, isRippleTouchGenerated) {
     let ripples = this.state.ripples;
-    let nextKey = ripples[ripples.length-1].key + 1;
-    let style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
-    let ripple;
 
     //Do nothing if we're starting a click-event-generated ripple
     //while having touch-generated ripples
@@ -65,18 +70,21 @@ let TouchRipple = React.createClass({
 
     //Start the next unstarted ripple
     for (let i = 0; i < ripples.length; i++) {
-      ripple = ripples[i];
+      const ripple = ripples[i];
+
       if (!ripple.started) {
-        ripple.started = true;
-        ripple.touchGenerated = isRippleTouchGenerated;
-        ripple.style = style;
+        ripples = ImmutabilityHelper.mergeItem(ripples, i, {
+          started: true,
+          touchGenerated: isRippleTouchGenerated,
+          style: !this.props.centerRipple ? this._getRippleStyle(e) : {},
+        });
         break;
       }
     }
 
     //Add an unstarted ripple at the end
-    ripples.push({
-      key: nextKey,
+    ripples = ImmutabilityHelper.push(ripples, {
+      key: ripples[ripples.length-1].key + 1,
       started: false,
       ending: false,
     });
@@ -88,36 +96,26 @@ let TouchRipple = React.createClass({
   },
 
   end() {
-    let ripples = this.state.ripples;
-    let ripple;
-    let endingRipple;
 
     //End the the next un-ended ripple
+    let ripples = this.state.ripples;
     for (let i = 0; i < ripples.length; i++) {
-      ripple = ripples[i];
+      const ripple = ripples[i];
+
       if (ripple.started && !ripple.ending) {
-        ripple.ending = true;
-        endingRipple = ripple;
+        const newRipples = ImmutabilityHelper.mergeItem(ripples, i, {
+          ending: true,
+        });
+
+        this.setState({
+          ripples: newRipples,
+        });
+
+        //Wait 2 seconds and remove the ripple from DOM
+        setTimeout(this._removeRipple, 2000);
+
         break;
       }
-    }
-
-    //Only update if a ripple was found
-    if (endingRipple) {
-      //Re-render
-      this.setState({
-        ripples: ripples,
-      });
-
-      //Wait 2 seconds and remove the ripple from DOM
-      setTimeout(() => {
-        ripples.shift();
-        if (this.isMounted()) {
-          this.setState({
-            ripples: ripples,
-          });
-        }
-      }, 2000);
     }
   },
 
@@ -144,25 +142,25 @@ let TouchRipple = React.createClass({
 
   _getRippleStyle(e) {
     let style = {};
-    let el = React.findDOMNode(this);
-    let elHeight = el.offsetHeight;
-    let elWidth = el.offsetWidth;
-    let offset = Dom.offset(el);
-    let isTouchEvent = e.touches && e.touches.length;
-    let pageX = isTouchEvent ? e.touches[0].pageX : e.pageX;
-    let pageY = isTouchEvent ? e.touches[0].pageY : e.pageY;
-    let pointerX = pageX - offset.left;
-    let pointerY = pageY - offset.top;
-    let topLeftDiag = this._calcDiag(pointerX, pointerY);
-    let topRightDiag = this._calcDiag(elWidth - pointerX, pointerY);
-    let botRightDiag = this._calcDiag(elWidth - pointerX, elHeight - pointerY);
-    let botLeftDiag = this._calcDiag(pointerX, elHeight - pointerY);
-    let rippleRadius = Math.max(
+    const el = React.findDOMNode(this);
+    const elHeight = el.offsetHeight;
+    const elWidth = el.offsetWidth;
+    const offset = Dom.offset(el);
+    const isTouchEvent = e.touches && e.touches.length;
+    const pageX = isTouchEvent ? e.touches[0].pageX : e.pageX;
+    const pageY = isTouchEvent ? e.touches[0].pageY : e.pageY;
+    const pointerX = pageX - offset.left;
+    const pointerY = pageY - offset.top;
+    const topLeftDiag = this._calcDiag(pointerX, pointerY);
+    const topRightDiag = this._calcDiag(elWidth - pointerX, pointerY);
+    const botRightDiag = this._calcDiag(elWidth - pointerX, elHeight - pointerY);
+    const botLeftDiag = this._calcDiag(pointerX, elHeight - pointerY);
+    const rippleRadius = Math.max(
       topLeftDiag, topRightDiag, botRightDiag, botLeftDiag
     );
-    let rippleSize = rippleRadius * 2;
-    let left = pointerX - rippleRadius;
-    let top = pointerY - rippleRadius;
+    const rippleSize = rippleRadius * 2;
+    const left = pointerX - rippleRadius;
+    const top = pointerY - rippleRadius;
 
     style.height = rippleSize + 'px';
     style.width = rippleSize + 'px';
@@ -179,7 +177,7 @@ let TouchRipple = React.createClass({
   _getRippleElements() {
     return this.state.ripples.map((ripple) => {
       return (
-        <RippleCircle
+        <CircleRipple
           key={ripple.key}
           started={ripple.started}
           ending={ripple.ending}
@@ -188,6 +186,15 @@ let TouchRipple = React.createClass({
           opacity={this.props.opacity} />
       );
     });
+  },
+
+  _removeRipple() {
+    if (this.isMounted()) {
+      const currentRipples = this.state.ripples;
+      this.setState({
+        ripples: ImmutabilityHelper.shift(currentRipples),
+      });
+    }
   },
 
 });
