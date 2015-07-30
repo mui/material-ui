@@ -155,39 +155,39 @@ let AppBar = React.createClass({
           </IconButton>
         );
       }
+    }
 
-      if (props.iconElementRight) {
-        let iconElementRight = props.iconElementRight;
+    if (props.iconElementRight) {
+      let iconElementRight = props.iconElementRight;
 
-        switch (iconElementRight.type.displayName) {
-          case 'IconButton':
-            iconElementRight = React.cloneElement(iconElementRight, {
-              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
-            });
-            break;
+      switch (iconElementRight.type.displayName) {
+        case 'IconButton':
+          iconElementRight = React.cloneElement(iconElementRight, {
+            iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
+          });
+          break;
 
-          case 'FlatButton':
-            iconElementRight = React.cloneElement(iconElementRight, {
-              style: this.mergeStyles(styles.flatButton, iconElementRight.props.style),
-            });
-            break;
-        }
-
-        menuElementRight = (
-          <div style={iconRightStyle}>
-            {iconElementRight}
-          </div>
-        );
-      } else if (props.iconClassNameRight) {
-        menuElementRight = (
-          <IconButton
-            style={iconRightStyle}
-            iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
-            iconClassName={props.iconClassNameRight}
-            onTouchTap={this._onRightIconButtonTouchTap}>
-          </IconButton>
-        );
+        case 'FlatButton':
+          iconElementRight = React.cloneElement(iconElementRight, {
+            style: this.mergeStyles(styles.flatButton, iconElementRight.props.style),
+          });
+          break;
       }
+
+      menuElementRight = (
+        <div style={iconRightStyle}>
+          {iconElementRight}
+        </div>
+      );
+    } else if (props.iconClassNameRight) {
+      menuElementRight = (
+        <IconButton
+          style={iconRightStyle}
+          iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
+          iconClassName={props.iconClassNameRight}
+          onTouchTap={this._onRightIconButtonTouchTap}>
+        </IconButton>
+      );
     }
 
     return (
