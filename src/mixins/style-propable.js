@@ -1,6 +1,6 @@
-const React = require('react/addons');
-const update = React.addons.update;
+const React = require('react');
 const AutoPrefix = require('../styles/auto-prefix');
+const ImmutabilityHelper = require('../utils/immutability-helper');
 
 
 /**
@@ -21,7 +21,7 @@ module.exports = {
 
     for (let i = 1; i < args.length; i++) {
       if (args[i]) {
-        base = update(base, {$merge: args[i]});
+        base = ImmutabilityHelper.merge(base, args[i]);
       }
     }
 
