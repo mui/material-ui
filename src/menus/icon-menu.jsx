@@ -134,6 +134,10 @@ let IconMenu = React.createClass({
       </div>
     );
   },
+  
+  isOpen() {
+    return this.state.open;
+  },
 
   close(isKeyboard) {
     if (this.state.open) {
