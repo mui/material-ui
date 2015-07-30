@@ -1,5 +1,6 @@
 const React = require('react');
 const PureRenderMixin = React.addons.PureRenderMixin;
+const ReactTransitionGroup = React.addons.TransitionGroup;
 const StylePropable = require('../mixins/style-propable');
 const Dom = require('../utils/dom');
 const ImmutabilityHelper = require('../utils/immutability-helper');
@@ -18,11 +19,8 @@ const TouchRipple = React.createClass({
 
   getInitialState() {
     return {
-      ripples: [{
-        key: 0,
-        started: false,
-        ending: false,
-      }],
+      nextKey: 0,
+      ripples: [],
     };
   },
 
@@ -49,9 +47,9 @@ const TouchRipple = React.createClass({
         onMouseLeave={this._handleMouseLeave}
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}>
-        <div style={mergedStyles}>
-          {this._getRippleElements()}
-        </div>
+        <ReactTransitionGroup style={mergedStyles}>
+          {this.state.ripples}
+        </ReactTransitionGroup>
         {children}
       </div>
     );
@@ -64,59 +62,31 @@ const TouchRipple = React.createClass({
     //while having touch-generated ripples
     if (!isRippleTouchGenerated) {
       for (let i = 0; i < ripples.length; i++) {
-        if (ripples[i].touchGenerated) return;
+        if (ripples[i].props.touchGenerated) return;
       }
     }
 
-    //Start the next unstarted ripple
-    for (let i = 0; i < ripples.length; i++) {
-      const ripple = ripples[i];
+    //Add a ripple to the ripples array
+    ripples = ImmutabilityHelper.push(ripples, (
+      <CircleRipple
+        key={this.state.nextKey}
+        style={!this.props.centerRipple ? this._getRippleStyle(e) : {}}
+        color={this.props.color}
+        opacity={this.props.opacity}
+        touchGenerated={isRippleTouchGenerated} />
+    ));
 
-      if (!ripple.started) {
-        ripples = ImmutabilityHelper.mergeItem(ripples, i, {
-          started: true,
-          touchGenerated: isRippleTouchGenerated,
-          style: !this.props.centerRipple ? this._getRippleStyle(e) : {},
-        });
-        break;
-      }
-    }
-
-    //Add an unstarted ripple at the end
-    ripples = ImmutabilityHelper.push(ripples, {
-      key: ripples[ripples.length-1].key + 1,
-      started: false,
-      ending: false,
-    });
-
-    //Re-render
     this.setState({
+      nextKey: this.state.nextKey + 1,
       ripples: ripples,
     });
   },
 
   end() {
-
-    //End the the next un-ended ripple
-    let ripples = this.state.ripples;
-    for (let i = 0; i < ripples.length; i++) {
-      const ripple = ripples[i];
-
-      if (ripple.started && !ripple.ending) {
-        const newRipples = ImmutabilityHelper.mergeItem(ripples, i, {
-          ending: true,
-        });
-
-        this.setState({
-          ripples: newRipples,
-        });
-
-        //Wait 2 seconds and remove the ripple from DOM
-        setTimeout(this._removeRipple, 2000);
-
-        break;
-      }
-    }
+    const currentRipples = this.state.ripples;
+    this.setState({
+      ripples: ImmutabilityHelper.shift(currentRipples),
+    });
   },
 
   _handleMouseDown(e) {
@@ -172,29 +142,6 @@ const TouchRipple = React.createClass({
 
   _calcDiag(a, b) {
     return Math.sqrt((a * a) + (b * b));
-  },
-
-  _getRippleElements() {
-    return this.state.ripples.map((ripple) => {
-      return (
-        <CircleRipple
-          key={ripple.key}
-          started={ripple.started}
-          ending={ripple.ending}
-          style={ripple.style}
-          color={this.props.color}
-          opacity={this.props.opacity} />
-      );
-    });
-  },
-
-  _removeRipple() {
-    if (this.isMounted()) {
-      const currentRipples = this.state.ripples;
-      this.setState({
-        ripples: ImmutabilityHelper.shift(currentRipples),
-      });
-    }
   },
 
 });

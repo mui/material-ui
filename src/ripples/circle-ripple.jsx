@@ -1,6 +1,7 @@
 const React = require('react/addons');
 const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('../mixins/style-propable');
+const AutoPrefix = require('../styles/auto-prefix');
 const Transitions = require('../styles/transitions');
 const Colors = require('../styles/colors');
 
@@ -12,22 +13,37 @@ const CircleRipple = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     opacity: React.PropTypes.number,
-    started: React.PropTypes.bool,
-    ending: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       color: Colors.darkBlack,
+      opacity: 0.16,
     };
+  },
+
+  componentDidEnter() {
+    let style = React.findDOMNode(this).style;
+    AutoPrefix.set(style, 'transform', 'scale(1)');
+  },
+
+  componentWillEnter(callback) {
+    let style = React.findDOMNode(this).style;
+    style.opacity = this.props.opacity;
+    AutoPrefix.set(style, 'transform', 'scale(0)');
+    setTimeout(callback, 0);
+  },
+
+  componentWillLeave(callback) {
+    let style = React.findDOMNode(this).style;
+    style.opacity = 0;
+    setTimeout(callback, 2000);
   },
 
   render() {
     const {
       color,
-      ending,
       opacity,
-      started,
       style,
       ...other,
     } = this.props;
@@ -38,10 +54,7 @@ const CircleRipple = React.createClass({
       left: 0,
       height: '100%',
       width: '100%',
-      opacity:  ending ? 0 :
-        opacity ? opacity : 0.16,
       borderRadius: '50%',
-      transform: started ? 'scale(1)' : 'scale(0)',
       backgroundColor: color,
       transition:
         Transitions.easeOut('2s', 'opacity') + ',' +
