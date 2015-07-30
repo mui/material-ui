@@ -1,4 +1,5 @@
 const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
 const ReactTransitionGroup = React.addons.TransitionGroup;
 const StylePropable = require('../mixins/style-propable');
 const ScaleInChild = require('./scale-in-child');
@@ -6,7 +7,7 @@ const ScaleInChild = require('./scale-in-child');
 
 const ScaleIn = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [PureRenderMixin, StylePropable],
 
   propTypes: {
     childStyle: React.PropTypes.object,
