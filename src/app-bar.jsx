@@ -89,7 +89,11 @@ let AppBar = React.createClass({
   },
 
   setupWaterfall() {
-    window.addEventListener("scroll", this.waterfallScrollHandler.bind(this));
+    // in some cases scroll event is not triggered
+    // after page reloaded and kept it's scroll
+    // so we call the handler from the start
+    this.waterfallScrollHandler();
+    window.addEventListener("scroll", this.waterfallScrollHandler);
   },
 
   removeWaterfall() {
