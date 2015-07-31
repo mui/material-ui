@@ -45,7 +45,9 @@ const ScaleInChild = React.createClass({
     style.opacity = '0';
     AutoPrefix.set(style, 'transform', 'scale(' + this.props.minScale + ')');
 
-    setTimeout(callback, 450);
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }.bind(this), 450);
   },
 
   render() {
