@@ -4,6 +4,8 @@ const update = React.addons.update;
 module.exports = {
 
   merge(obj1, obj2) {
+    if (!obj1) return obj2;
+    if (!obj2) return obj1;
     return update(obj1, {$merge: obj2});
   },
 
