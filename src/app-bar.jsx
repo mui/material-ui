@@ -73,10 +73,10 @@ let AppBar = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (nextProps.waterfall && nextProps.waterfall.onHeightChange
-        && !(this.props.waterfall && this.props.waterfall.onHeightChange)
-    ) {
-      this.setupWaterfall();
+    if (nextProps.waterfall && nextProps.waterfall.onHeightChange) {
+      if (!(this.props.waterfall && this.props.waterfall.onHeightChange)) {
+        this.setupWaterfall();
+      }
     } else if (this.props.waterfall && this.props.waterfall.onHeightChange) {
       this.removeWaterfall();
     }
