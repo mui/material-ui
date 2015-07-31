@@ -37,7 +37,9 @@ const CircleRipple = React.createClass({
   componentWillLeave(callback) {
     let style = React.findDOMNode(this).style;
     style.opacity = 0;
-    setTimeout(callback, 2000);
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }.bind(this), 2000);
   },
 
   render() {

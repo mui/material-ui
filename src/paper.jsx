@@ -1,12 +1,13 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let PropTypes = require('./utils/prop-types');
-let Transitions = require('./styles/transitions');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const StylePropable = require('./mixins/style-propable');
+const PropTypes = require('./utils/prop-types');
+const Transitions = require('./styles/transitions');
 
 
-let Paper = React.createClass({
+const Paper = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [PureRenderMixin, StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -28,42 +29,36 @@ let Paper = React.createClass({
     };
   },
 
-  getStyles() {
-    let styles = {
-      root: {
-        backgroundColor: this.context.muiTheme.component.paper.backgroundColor,
-        transition: this.props.transitionEnabled && Transitions.easeOut(),
-        boxSizing: 'border-box',
-        fontFamily: this.context.muiTheme.contentFontFamily,
-        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-        boxShadow: this._getZDepthShadows(this.props.zDepth),
-        borderRadius: this.props.circle ? '50%' :
-          this.props.rounded ? '2px' : '0px',
-      },
-    };
-
-    return styles;
-  },
-
   render() {
-    let {
-      style,
+    const {
+      children,
       circle,
       rounded,
+      style,
+      transitionEnabled,
       zDepth,
-      ...other } = this.props;
+      ...other,
+    } = this.props;
 
-    let styles = this.getStyles();
+    const styles = {
+      backgroundColor: this.context.muiTheme.component.paper.backgroundColor,
+      transition: transitionEnabled && Transitions.easeOut(),
+      boxSizing: 'border-box',
+      fontFamily: this.context.muiTheme.contentFontFamily,
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      boxShadow: this._getZDepthShadows(zDepth),
+      borderRadius: circle ? '50%' : rounded ? '2px' : '0px',
+    };
 
     return (
-      <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>
-        {this.props.children}
+      <div {...other} style={this.mergeAndPrefix(styles, style)}>
+        {children}
       </div>
     );
   },
 
   _getZDepthShadows(zDepth) {
-    let shadows = [
+    const shadows = [
       null,
       '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)',
       '0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23)',

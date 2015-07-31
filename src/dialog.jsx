@@ -44,7 +44,9 @@ let TransitionItem = React.createClass({
       },
     });
 
-    setTimeout(callback, 450); // matches transition duration
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }.bind(this), 450); // matches transition duration
   },
 
   render() {
