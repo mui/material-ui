@@ -249,7 +249,7 @@ let DropDownMenu = React.createClass({
     switch(e.which) {
       case KeyCode.UP:
         if (!this.state.open) {
-          this._selectPreviousItem();
+          this._selectPreviousItem(e);
         }
         else {
           if (e.altKey) {
@@ -263,7 +263,7 @@ let DropDownMenu = React.createClass({
             this.setState({open:true});
           }
           else {
-            this._selectNextItem();
+            this._selectNextItem(e);
           }
         }
         break;
@@ -312,12 +312,16 @@ let DropDownMenu = React.createClass({
     this.setState({isHovered: false});
   },
 
-  _selectPreviousItem() {
-    this.setState({selectedIndex: Math.max(this.state.selectedIndex - 1, 0)});
+  _selectPreviousItem(e) {
+    let index = Math.max(this.state.selectedIndex - 1, 0);
+    this.setState({selectedIndex: index});
+    this.props.onChange(e, index, this.props.menuItems[index]);
   },
 
-  _selectNextItem() {
-    this.setState({selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1)});
+  _selectNextItem(e) {
+    let index = Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1);
+    this.setState({selectedIndex: index});
+    this.props.onChange(e, index, this.props.menuItems[index]);
   },
 
   _handleOverlayTouchTap() {
