@@ -1,53 +1,68 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let Transitions = require('../styles/transitions');
-let Colors = require('../styles/colors');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const StylePropable = require('../mixins/style-propable');
+const AutoPrefix = require('../styles/auto-prefix');
+const Transitions = require('../styles/transitions');
+const Colors = require('../styles/colors');
 
 
-let CircleRipple = React.createClass({
+const CircleRipple = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [PureRenderMixin, StylePropable],
 
   propTypes: {
     color: React.PropTypes.string,
     opacity: React.PropTypes.number,
-    started: React.PropTypes.bool,
-    ending: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       color: Colors.darkBlack,
+      opacity: 0.16,
     };
   },
 
+  componentDidEnter() {
+    let style = React.findDOMNode(this).style;
+    AutoPrefix.set(style, 'transform', 'scale(1)');
+  },
+
+  componentWillEnter(callback) {
+    let style = React.findDOMNode(this).style;
+    style.opacity = this.props.opacity;
+    AutoPrefix.set(style, 'transform', 'scale(0)');
+    setTimeout(callback, 0);
+  },
+
+  componentWillLeave(callback) {
+    let style = React.findDOMNode(this).style;
+    style.opacity = 0;
+    setTimeout(callback, 2000);
+  },
+
   render() {
-    let {
+    const {
       color,
-      started,
-      ending,
+      opacity,
       style,
       ...other,
     } = this.props;
 
-    let styles = this.mergeAndPrefix({
+    const mergedStyles = this.mergeAndPrefix({
       position: 'absolute',
       top: 0,
       left: 0,
       height: '100%',
       width: '100%',
-      opacity:  this.props.ending ? 0 :
-                this.props.opacity ? this.props.opacity : 0.16,
       borderRadius: '50%',
-      transform: this.props.started ? 'scale(1)' : 'scale(0)',
-      backgroundColor: this.props.color,
+      backgroundColor: color,
       transition:
         Transitions.easeOut('2s', 'opacity') + ',' +
         Transitions.easeOut('1s', 'transform'),
-    }, this.props.style);
+    }, style);
 
     return (
-      <div {...other} style={styles} />
+      <div {...other} style={mergedStyles} />
     );
   },
 

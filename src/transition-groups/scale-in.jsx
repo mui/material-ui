@@ -1,12 +1,13 @@
-let React = require('react/addons');
-let ReactTransitionGroup = React.addons.TransitionGroup;
-let StylePropable = require('../mixins/style-propable');
-let ScaleInChild = require('./scale-in-child');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const ReactTransitionGroup = React.addons.TransitionGroup;
+const StylePropable = require('../mixins/style-propable');
+const ScaleInChild = require('./scale-in-child');
 
 
-let ScaleIn = React.createClass({
+const ScaleIn = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [PureRenderMixin, StylePropable],
 
   propTypes: {
     childStyle: React.PropTypes.object,
@@ -22,7 +23,7 @@ let ScaleIn = React.createClass({
   },
 
   render() {
-    let {
+    const {
       children,
       childStyle,
       enterDelay,
@@ -32,13 +33,13 @@ let ScaleIn = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedRootStyles = this.mergeAndPrefix({
+    const mergedRootStyles = this.mergeAndPrefix({
       position: 'relative',
       overflow: 'hidden',
       height: '100%',
     }, style);
 
-    let newChildren = React.Children.map(children, (child) => {
+    const newChildren = React.Children.map(children, (child) => {
       return (
         <ScaleInChild
           key={child.key}

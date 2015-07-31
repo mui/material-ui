@@ -1,6 +1,6 @@
-let React = require('react/addons');
-let AutoPrefix = require('../styles/auto-prefix');
-let Extend = require('../utils/extend');
+const React = require('react');
+const AutoPrefix = require('../styles/auto-prefix');
+const ImmutabilityHelper = require('../utils/immutability-helper');
 
 
 /**
@@ -15,11 +15,13 @@ module.exports = {
   },
 
   mergeStyles() {
-    let args = Array.prototype.slice.call(arguments, 0);
+
+    const args = Array.prototype.slice.call(arguments, 0);
     let base = args[0];
+
     for (let i = 1; i < args.length; i++) {
       if (args[i]) {
-        base = Extend(base, args[i]);
+        base = ImmutabilityHelper.merge(base, args[i]);
       }
     }
 
