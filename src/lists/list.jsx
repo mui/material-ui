@@ -1,13 +1,14 @@
-let React = require('react/addons');
-let PropTypes = require('../utils/prop-types');
-let StylePropable = require('../mixins/style-propable');
-let Typography = require('../styles/typography');
-let Paper = require('../paper');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const PropTypes = require('../utils/prop-types');
+const StylePropable = require('../mixins/style-propable');
+const Typography = require('../styles/typography');
+const Paper = require('../paper');
 
 
-let List = React.createClass({
+const List = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [PureRenderMixin, StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -27,7 +28,8 @@ let List = React.createClass({
   },
 
   render() {
-    let {
+    const {
+      children,
       insetSubheader,
       style,
       subheader,
@@ -36,7 +38,7 @@ let List = React.createClass({
       ...other,
     } = this.props;
 
-    let styles = {
+    const styles = {
       root: {
         padding: 0,
         paddingBottom: 8,
@@ -52,20 +54,19 @@ let List = React.createClass({
       },
     };
 
-    let mergedRootStyles = this.mergeStyles(styles.root, style);
-    let mergedSubheaderStyles = this.mergeAndPrefix(styles.subheader, subheaderStyle);
-
-    let subheaderElement = subheader ? (
-      <div style={mergedSubheaderStyles}>{subheader}</div>
-    ) : null;
+    let subheaderElement;
+    if (subheader) {
+      const mergedSubheaderStyles = this.mergeAndPrefix(styles.subheader, subheaderStyle);
+      subheaderElement = <div style={mergedSubheaderStyles}>{subheader}</div>;
+    }
 
     return (
       <Paper
         {...other}
-        style={mergedRootStyles}
+        style={this.mergeStyles(styles.root, style)}
         zDepth={zDepth}>
         {subheaderElement}
-        {this.props.children}
+        {children}
       </Paper>
     );
   },
