@@ -1,5 +1,5 @@
 import React from 'react';
-import {AutoPrefix, Transitions, Controllable} from '../styles';
+import { AutoPrefix, Transitions } from '../styles';
 import Overlay from '../overlay';
 import Menu from '../menus/menu';
 import Paper from '../paper';
@@ -7,7 +7,9 @@ import KeyCode from '../utils/key-code';
 import StylePropable from '../mixins/style-propable';
 import WindowListenable from '../mixins/window-listenable';
 
-let SideMenu = React.createClass({
+let openNavEventHandler = null;
+
+let SideNav = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
@@ -17,14 +19,22 @@ let SideMenu = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
-    /*open type currently supports: docked/overlay*/
-    openType: React.PropTypes.string,
+    /*open type currently supports: docked/overlay */
+    openType: React.PropTypes.oneOf([
+      'none',
+      'docked',
+      'overlay',
+    ]),
     defaultOpen: React.PropTypes.bool,
+    width: React.PropTypes.number,
+    desktop: React.PropTypes.bool,
     header: React.PropTypes.element,
     onChange: React.PropTypes.func,
     onNavOpen: React.PropTypes.func,
     onNavClose: React.PropTypes.func,
     openRight: React.PropTypes.bool,
+    disableSwipeToOpen: React.PropTypes.bool,
+    selectedNavItemStyle: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -35,7 +45,8 @@ let SideMenu = React.createClass({
   getDefaultProps() {
     return {
       openType:'docked',
-      defaultOpen: true,
+      defaultOpen: false,
+      disableSwipeToOpen: false,
     };
   },
 
@@ -87,6 +98,7 @@ let SideMenu = React.createClass({
   },
 
   getTheme() {
+    /*here needs to add theme for sideNav*/
     return this.context.muiTheme.component.leftNav;
   },
 
@@ -95,7 +107,7 @@ let SideMenu = React.createClass({
     let styles = {
       root: {
         height: '100%',
-        width: this.getTheme().width,
+        width: this.props.width? this.props.width : this.getTheme().width,
         position: 'fixed',
         zIndex: 10,
         left: 0,
@@ -111,23 +123,11 @@ let SideMenu = React.createClass({
         height: '100%',
         borderRadius: '0',
       },
-      menuItem: {
-        height: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight,
-        lineHeight: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight + 'px',
-      },
       rootWhenOpenRight: {
         left: 'auto',
         right: 0,
       },
     };
-    styles.menuItemLink = this.mergeAndPrefix(styles.menuItem, {
-      display: 'block',
-      textDecoration: 'none',
-      color: this.getThemePalette().textColor,
-    });
-    styles.menuItemSubheader = this.mergeAndPrefix(styles.menuItem, {
-      overflow: 'hidden',
-    });
 
     return styles;
   },
@@ -135,8 +135,25 @@ let SideMenu = React.createClass({
   render() {
     let overlay;
 
+    let {
+      className,
+      openType,
+      defaultOpen,
+      header,
+      onChange,
+      onNavOpen,
+      onNavClose,
+      openRight,
+      disableSwipeToOpen,
+      style,
+      width,
+      zDepth,
+      selectedNavItemStyle,
+      ...other,
+    } = this.props;
+
     let styles = this.getStyles();
-    if (this.props.openType=='overlay') {
+    if (openType==='overlay') {
       overlay = (
         <Overlay
           ref="overlay"
@@ -148,7 +165,7 @@ let SideMenu = React.createClass({
     }
 
     return (
-      <div className={this.props.className}>
+      <div className={className}>
         {overlay}
         <Paper
           ref="container"
@@ -157,18 +174,16 @@ let SideMenu = React.createClass({
           transitionEnabled={!this.state.swiping}
           style={this.mergeAndPrefix(
             styles.root,
-            this.props.openRight && styles.rootWhenOpenRight,
-            this.props.style)}>
-            {this.props.header}
+            openRight && styles.rootWhenOpenRight,
+            style)}>
+            {header}
             <Menu
-              ref="menuItems"
+              {...other}
+              ref="menu"
               style={this.mergeAndPrefix(styles.menu)}
               zDepth={0}
-              menuItems={this.props.menuItems}
-              menuItemStyle={this.mergeAndPrefix(styles.menuItem)}
-              menuItemStyleLink={this.mergeAndPrefix(styles.menuItemLink)}
-              menuItemStyleSubheader={this.mergeAndPrefix(styles.menuItemSubheader)}
-              onItemTap={this._onMenuItemClick} >
+              selectedMenuItemStyle={selectedNavItemStyle}
+              onItemTouchTap={this._onMenuItemClick} >
               {this.props.children};
             </Menu>
         </Paper>
@@ -179,17 +194,17 @@ let SideMenu = React.createClass({
   _updateMenuHeight() {
     if (this.props.header) {
       let container = React.findDOMNode(this.refs.container);
-      let menu = React.findDOMNode(this.refs.menuItems);
+      let menu = React.findDOMNode(this.refs.menu);
       let menuHeight = container.clientHeight - menu.offsetTop;
       menu.style.height = menuHeight + 'px';
     }
   },
 
-  _onMenuItemClick(e, key, payload) {
+  _onMenuItemClick(e, item) {
     if (this.props.onChange) {
-      this.props.onChange(e, key, payload);
+      this.props.onChange(e, item);
     }
-    if (this.props.openType=='overlay') this.close();
+    if (this.props.openType==='overlay') this.close();
   },
 
   _onOverlayTouchTap() {
@@ -198,7 +213,7 @@ let SideMenu = React.createClass({
 
   _onWindowKeyUp(e) {
     if (e.keyCode === KeyCode.ESC &&
-        (this.props.openType=='overlay') &&
+        (this.props.openType==='overlay') &&
         this.state.open) {
       this.close();
     }
@@ -217,7 +232,7 @@ let SideMenu = React.createClass({
   },
 
   _enableSwipeHandling() {
-    if (this.props.openType=='overlay') {
+    if (this.props.openType==='overlay') {
       document.body.addEventListener('touchstart', this._onBodyTouchStart);
       if (!openNavEventHandler) {
         openNavEventHandler = this._onBodyTouchStart;
