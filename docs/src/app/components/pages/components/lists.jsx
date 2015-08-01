@@ -45,8 +45,8 @@ class ListsPage extends React.Component {
         <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
         <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
         <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
-        <ListItem primaryText="Drafts"leftIcon={<ContentDrafts />} />
-        <ListItem primaryText="Inbox"leftIcon={<ContentInbox />} />
+        <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+        <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
       </List>
       <ListDivider />
       <List>
