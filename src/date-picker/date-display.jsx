@@ -1,8 +1,8 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let DateTime = require('../utils/date-time');
-let Transitions = require('../styles/transitions');
-let SlideInTransitionGroup = require('../transition-groups/slide-in');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const DateTime = require('../utils/date-time');
+const Transitions = require('../styles/transitions');
+const SlideInTransitionGroup = require('../transition-groups/slide-in');
 
 
 let DateDisplay = React.createClass({
@@ -55,14 +55,14 @@ let DateDisplay = React.createClass({
   },
 
   getStyles() {
-    let theme = this.getTheme();
-    let isLandscape = this.props.mode === 'landscape';
+    const theme = this.getTheme();
+    const isLandscape = this.props.mode === 'landscape';
 
-    let styles = {
+    const styles = {
       root: {
         backgroundColor: theme.selectColor,
         color: theme.textColor,
-        padding: 15,
+        padding: 20,
         height: 60,
       },
 
@@ -98,7 +98,7 @@ let DateDisplay = React.createClass({
           height: 16,
           opacity: this.state.selectedYear ? 1.0 : 0.7,
           transition: Transitions.easeOut(),
-          marginBottom: 5,
+          marginBottom: 10,
         },
 
         title: {

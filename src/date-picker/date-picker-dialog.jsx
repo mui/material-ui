@@ -55,7 +55,7 @@ let DatePickerDialog = React.createClass({
       },
 
       dialogContent: {
-        width: this.props.mode === 'landscape' ? 430 : 280,
+        width: this.props.mode === 'landscape' ? 480 : 320,
       },
 
       dialogBodyContent: {
