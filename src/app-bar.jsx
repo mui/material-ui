@@ -72,12 +72,12 @@ let AppBar = React.createClass({
     }
   },
 
-  componentWillReceiveProps: function(nextProps) {
-    if (nextProps.waterfall && nextProps.waterfall.onHeightChange) {
-      if (!(this.props.waterfall && this.props.waterfall.onHeightChange)) {
+  componentDidUpdate: function(prevProps) {
+    if (this.props.waterfall && this.props.waterfall.onHeightChange) {
+      if (!(prevProps.waterfall && prevProps.waterfall.onHeightChange)) {
         this.setupWaterfall();
       }
-    } else if (this.props.waterfall && this.props.waterfall.onHeightChange) {
+    } else if (prevProps.waterfall && prevProps.waterfall.onHeightChange) {
       this.removeWaterfall();
     }
   },
@@ -93,6 +93,9 @@ let AppBar = React.createClass({
     // after page reloaded and kept it's scroll
     // so we call the handler from the start
     this.waterfallScrollHandler();
+
+    React.findDOMNode(this.refs.slideEl).style.position = 'absolute';
+
     window.addEventListener("scroll", this.waterfallScrollHandler);
   },
 
@@ -303,10 +306,14 @@ let AppBar = React.createClass({
             })}
             zDepth={props.zDepth}>
           </Paper>
-          {/* this is the visual element that will slide */}
+          {/* this is the visual element that will slide.
+            position will be transformed to absolute in setupWaterfall
+          */}
           <div
+            ref="slideEl"
             style={{
-              position: 'absolute',
+              position: 'fixed',
+              top: 0,
               zIndex: paperElStyle.zIndex + 1,
               width: '100%',
               height: this.props.waterfall.maxHeight,
