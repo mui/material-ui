@@ -26,8 +26,6 @@ let SideNav = React.createClass({
       'overlay',
     ]),
     defaultOpen: React.PropTypes.bool,
-    width: React.PropTypes.number,
-    desktop: React.PropTypes.bool,
     header: React.PropTypes.element,
     onChange: React.PropTypes.func,
     onNavOpen: React.PropTypes.func,
@@ -100,8 +98,13 @@ let SideNav = React.createClass({
   },
 
   getTheme() {
-    /*here needs to add theme for sideNav*/
-    return this.context.muiTheme.component.leftNav;
+    if(this.context.muiTheme.component.sideNav)
+      return this.context.muiTheme.component.sideNav;
+    else
+      return {
+        width: 256,
+        backgroundColor: '#FFFFFF',
+      };
   },
 
   getStyles() {
@@ -110,16 +113,17 @@ let SideNav = React.createClass({
       root: {
         height: '100%',
         width: this.props.width? this.props.width : this.getTheme().width,
+        backgroundColor: this.props.backgroundColor? this.props.backgroundColor : this.getTheme().backgroundColor,
         position: 'fixed',
         zIndex: 10,
         left: 0,
         top: 0,
         transform: 'translate3d(' + x + 'px, 0, 0)',
         transition: !this.state.swiping && Transitions.easeOut(),
-        backgroundColor: this.getTheme().color,
         overflow: 'hidden',
       },
       menu: {
+        backgroundColor: this.props.backgroundColor? this.props.backgroundColor : this.getTheme().backgroundColor,
         overflowY: 'auto',
         overflowX: 'hidden',
         height: '100%',
@@ -128,6 +132,7 @@ let SideNav = React.createClass({
       },
       list: {
         width: this.props.width? this.props.width : this.getTheme().width,
+        paddingTop: 0,
       },
       rootWhenOpenRight: {
         left: 'auto',

@@ -11,21 +11,25 @@ let SideNavHeader = React.createClass({
   },
 
   propTypes: {
-    desktop: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
+    lineHeight: React.PropTypes.string,
     innerDivStyle: React.PropTypes.object,
     insetChildren: React.PropTypes.bool,
-    focusState: React.PropTypes.oneOf([
-      'none',
-      'focused',
-      'keyboard-focused',
-    ]),
+  },
+
+  getTheme() {
+    if(this.context.muiTheme.component.sideNav)
+      return this.context.muiTheme.component.sideNav;
+    else
+      return {
+        headerItemBackgroundColor: '#2196f3',
+        headerItemTextColor: Colors.black,
+      };
   },
 
   getDefaultProps() {
     return {
       disabled: true,
-      focusState: 'none',
     };
   },
 
@@ -33,15 +37,16 @@ let SideNavHeader = React.createClass({
     let {
       disabled,
       innerDivStyle,
-      desktop,
       style,
+      lineHeight,
       ...other,
     } = this.props;
 
     let mergedStyles = this.mergeAndPrefix({
-      color: this.context.muiTheme.palette.textColor,
-      backgroundColor: this.context.muiTheme.palette.primary1Color,
-      fontSize: desktop ? 18 : 20,
+      color: this.getTheme().headerItemTextColor,
+      backgroundColor: this.getTheme().headerItemBackgroundColor,
+      fontSize: 20,
+      lineHeight: lineHeight? lineHeight : '32px',
     }, style);
 
     let mergedInnerDivStyles = this.mergeAndPrefix({

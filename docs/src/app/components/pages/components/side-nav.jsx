@@ -1,5 +1,5 @@
 let React = require('react');
-let { SideNav, SideNavItem, SideNavHeader, SideNavDivider, RaisedButton } = require('material-ui');
+let { SideNav, SideNavItem, SideNavHeader, SideNavDivider, SideNavSubheader, RaisedButton } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 
 
@@ -107,12 +107,19 @@ class SideNavPage extends React.Component {
           <RaisedButton label="Show Overlay Side Nav" onTouchTap={this._showOverlaySideNavClick.bind(this)} />
 
           <SideNav ref="dockedSideNav" openType='docked' >
-            <SideNavHeader>
+            <SideNavHeader disabled={false} onTouchTap={() => console.log("yeahhhhhhhh!")}>
               Maps!!!
             </SideNavHeader>
-            <SideNavItem primaryText="Books" />
-            <SideNavDivider />
+            <SideNavItem primaryText="Flights" onTouchTap={() => console.log("it works!")}/>
             <SideNavItem primaryText="Flights" />
+            <SideNavItem primaryText="Flights" />
+            <SideNavSubheader>
+              Books
+            </SideNavSubheader>
+            <SideNavItem primaryText="Flights" />
+            <SideNavItem primaryText="Flights" />
+            <SideNavItem primaryText="Flights" />
+            <SideNavDivider />
             <SideNavItem primaryText="Apps" />
           </SideNav>
           <SideNav ref="sideNav" openType='overlay'>

@@ -1,8 +1,8 @@
 let React = require('react/addons');
 let StylePropable = require('../mixins/style-propable');
-let MenuItem = require('../menus/menu-item');
+let MenuItem = require('../lists/list-item');
 
-let SideNavItem = React.createClass({
+let SideNavSubheader = React.createClass({
 
   mixins: [StylePropable],
 
@@ -12,6 +12,7 @@ let SideNavItem = React.createClass({
 
   propTypes: {
     disabled: React.PropTypes.bool,
+    lineHeight: React.PropTypes.string,
     innerDivStyle: React.PropTypes.object,
     insetChildren: React.PropTypes.bool,
   },
@@ -21,14 +22,14 @@ let SideNavItem = React.createClass({
       return this.context.muiTheme.component.sideNav;
     else
       return {
-        navItemBackgroundColor: Colors.white,
-        navItemTextColor: Colors.black,
+        subheaderItemBackgroundColor: Colors.white,
+        subheaderItemTextColor: Colors.black,
       };
   },
 
   getDefaultProps() {
     return {
-      disabled: false,
+      disabled: true,
     };
   },
 
@@ -41,7 +42,10 @@ let SideNavItem = React.createClass({
     } = this.props;
 
     let mergedStyles = this.mergeAndPrefix({
-      color: this.getTheme().navItemTextColor,
+      color: this.getTheme().subheaderItemTextColor,
+      backgroundColor: this.getTheme().subheaderItemBackgroundColor,
+      fontSize: 16,
+      fontWeight: 'bold',
     }, style);
 
     let mergedInnerDivStyles = this.mergeAndPrefix({
@@ -49,7 +53,7 @@ let SideNavItem = React.createClass({
     }, innerDivStyle);
 
     return (
-      <MenuItem {...other} disabled={disabled} 
+      <MenuItem {...other} disabled={disabled}
          style={mergedStyles} innerDivStyle={mergedInnerDivStyles}>
         {this.props.children}
       </MenuItem>
@@ -57,4 +61,4 @@ let SideNavItem = React.createClass({
   },
 });
 
-module.exports = SideNavItem;
+module.exports = SideNavSubheader;
