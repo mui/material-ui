@@ -1,4 +1,10 @@
-#[Material-UI](http://callemall.github.io/material-ui/) [![Build Status](https://travis-ci.org/callemall/material-ui.svg?branch=master)](https://travis-ci.org/callemall/material-ui) [![npm version](https://badge.fury.io/js/material-ui.svg)](http://badge.fury.io/js/material-ui)
+#[Material-UI](http://callemall.github.io/material-ui/) 
+
+[![Build Status](https://travis-ci.org/callemall/material-ui.svg?branch=master)](https://travis-ci.org/callemall/material-ui)
+[![npm version](https://badge.fury.io/js/material-ui.svg)](http://badge.fury.io/js/material-ui)
+[![Dependencies](https://img.shields.io/david/callemall/material-ui.svg)](https://david-dm.org/callemall/material-ui)
+[![DevDependencies](https://img.shields.io/david/dev/callemall/material-ui.svg)](https://david-dm.org/callemall/material-ui#info=devDependencies&view=list)
+[![PeerDependencies](https://img.shields.io/david/peer/callemall/material-ui.svg)](https://david-dm.org/callemall/material-ui#info=peerDependencies&view=list)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Pair on this](https://tf-assets-staging.s3.amazonaws.com/badges/thinkful_repo_badge.svg)](http://start.thinkful.com/react/?utm_source=github&utm_medium=badge&utm_campaign=material-ui)
 
