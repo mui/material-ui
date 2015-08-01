@@ -33,6 +33,8 @@ let SideNav = React.createClass({
     onNavOpen: React.PropTypes.func,
     onNavClose: React.PropTypes.func,
     openRight: React.PropTypes.bool,
+    menuStyle: React.PropTypes.object,
+    listStyle: React.PropTypes.object,
     disableSwipeToOpen: React.PropTypes.bool,
     selectedNavItemStyle: React.PropTypes.object,
   },
@@ -121,7 +123,11 @@ let SideNav = React.createClass({
         overflowY: 'auto',
         overflowX: 'hidden',
         height: '100%',
+        width: this.props.width? this.props.width : this.getTheme().width,
         borderRadius: '0',
+      },
+      list: {
+        width: this.props.width? this.props.width : this.getTheme().width,
       },
       rootWhenOpenRight: {
         left: 'auto',
@@ -146,7 +152,8 @@ let SideNav = React.createClass({
       openRight,
       disableSwipeToOpen,
       style,
-      width,
+      listStyle,
+      menuStyle,
       zDepth,
       selectedNavItemStyle,
       ...other,
@@ -169,6 +176,7 @@ let SideNav = React.createClass({
         {overlay}
         <Paper
           ref="container"
+          className="paper"
           zDepth={2}
           rounded={false}
           transitionEnabled={!this.state.swiping}
@@ -180,11 +188,13 @@ let SideNav = React.createClass({
             <Menu
               {...other}
               ref="menu"
-              style={this.mergeAndPrefix(styles.menu)}
+              autoWidth={false}
+              style={this.mergeAndPrefix(styles.menu,menuStyle)}
+              listStyle={this.mergeAndPrefix(styles.list,listStyle)}
               zDepth={0}
               selectedMenuItemStyle={selectedNavItemStyle}
               onItemTouchTap={this._onMenuItemClick} >
-              {this.props.children};
+              {this.props.children}
             </Menu>
         </Paper>
       </div>
