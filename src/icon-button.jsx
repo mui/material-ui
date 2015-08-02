@@ -24,7 +24,7 @@ let IconButton = React.createClass({
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
-    tooltip: React.PropTypes.string,
+    tooltip: React.PropTypes.node,
     tooltipStyles: React.PropTypes.object,
     tooltipPosition: PropTypes.cornersAndCenter,
     touch: React.PropTypes.bool,
