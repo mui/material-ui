@@ -18,6 +18,8 @@ let GridTile = React.createClass({
     titleBackground: React.PropTypes.string,
     actionIcon: React.PropTypes.element,
     actionPosition: React.PropTypes.oneOf(['left', 'right']),
+    cols: React.PropTypes.number,
+    rows: React.PropTypes.number,
     rootClass: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.object,
@@ -27,8 +29,10 @@ let GridTile = React.createClass({
   getDefaultProps() {
     return {
       titlePosition: 'bottom',
-      actionPosition: 'right',
       titleBackground: 'rgba(0, 0, 0, 0.4)',
+      actionPosition: 'right',
+      cols: 1,
+      rows: 1,
       rootClass: 'div',
     };
   },
