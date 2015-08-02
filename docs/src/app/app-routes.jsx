@@ -26,6 +26,7 @@ let Cards = require('./components/pages/components/cards');
 let DatePicker = require('./components/pages/components/date-picker');
 let Dialog = require('./components/pages/components/dialog');
 let DropDownMenu = require('./components/pages/components/drop-down-menu');
+let GridList = require('./components/pages/components/grid-list');
 let Icons = require('./components/pages/components/icons');
 let IconButtons = require('./components/pages/components/icon-buttons');
 let IconMenus = require('./components/pages/components/icon-menus');
@@ -79,6 +80,7 @@ let AppRoutes = (
       <Route name="date-picker" handler={DatePicker} />
       <Route name="dialog" handler={Dialog} />
       <Route name="dropdown-menu" handler={DropDownMenu} />
+      <Route name="grid-list" handler={GridList} />
       <Route name="icons" handler={Icons} />
       <Route name="icon-buttons" handler={IconButtons} />
       <Route name="icon-menus" handler={IconMenus} />
