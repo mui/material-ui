@@ -22,8 +22,8 @@ let SideNavSubheader = React.createClass({
       return this.context.muiTheme.component.sideNav;
     else
       return {
-        subheaderItemBackgroundColor: Colors.white,
-        subheaderItemTextColor: Colors.black,
+        subheaderItemBackgroundColor: '#FFFFFF',
+        subheaderItemTextColor: '#000000',
       };
   },
 
@@ -44,17 +44,17 @@ let SideNavSubheader = React.createClass({
     let mergedStyles = this.mergeAndPrefix({
       color: this.getTheme().subheaderItemTextColor,
       backgroundColor: this.getTheme().subheaderItemBackgroundColor,
-      fontSize: 16,
+      fontSize: '13px',
       fontWeight: 'bold',
     }, style);
 
     let mergedInnerDivStyles = this.mergeAndPrefix({
       display: 'flex',
-    }, innerDivStyle);
+      alignItems: 'center',
+    }, mergedStyles, innerDivStyle);
 
     return (
-      <MenuItem {...other} disabled={disabled}
-         style={mergedStyles} innerDivStyle={mergedInnerDivStyles}>
+      <MenuItem {...other} disabled={disabled} style={mergedStyles} innerDivStyle={mergedInnerDivStyles}>
         {this.props.children}
       </MenuItem>
     );

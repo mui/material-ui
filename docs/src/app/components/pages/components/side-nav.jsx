@@ -1,21 +1,78 @@
 let React = require('react');
-let { SideNav, SideNavItem, SideNavHeader, SideNavDivider, SideNavSubheader, RaisedButton } = require('material-ui');
+let { Avatar, 
+      SideNav,
+      SideNavItem,
+      SideNavHeader,
+      SideNavDivider,
+      SideNavSubheader,
+      ListItem,
+      MenuItem,
+      Styles,      
+      RaisedButton,
+      FlatButton,
+      FontIcon,
+} = require('material-ui');
 let ComponentDoc = require('../../component-doc');
+
+let ActionAssignment = require('svg-icons/action/assignment');
+let ArrowDropRight = require('svg-icons/navigation-arrow-drop-right');
+let ContentInbox = require('svg-icons/content/inbox');
+let ActionInfo = require('svg-icons/action/info');
 
 
 class SideNavPage extends React.Component {
 
-  constructor() {
-    super();
-
-    this.state = {
-      isDocked: false
-    };
-  }
-
   render() {
-    let code =
-      '';
+    let code = '\n<SideNav ref="dockedSideNav" openType="docked" >'
+      +'\n  <SideNavHeader disabled={true} >'
+      +'\n    HEADER {/*same as primaryText="HEADER"*/}'
+      +'\n  </SideNavHeader>'
+      +'\n  <SideNavItem primaryText="plain text"/>'
+      +'\n  <SideNavItem active={true} primaryText="actived item" />'
+      +'\n  <SideNavItem primaryText="looks better?" />'
+      +'\n  <SideNavDivider />'
+      +'\n  <SideNavSubheader>'
+      +'\n    AWESOME SUBHEADER'
+      +'\n  </SideNavSubheader>'
+      +'\n  <SideNavItem primaryText="even icons" leftIcon={<ContentInbox />} />'
+      +'\n  <SideNavItem primaryText="are supported" rightIcon={<ActionInfo />} />'
+      +'\n  <SideNavItem'
+      +'\n    disabled={true}'
+      +'\n    rightIcon={<ArrowDropRight />}'
+      +'\n    primaryText="And" />'
+      +'\n  <ListItem '
+      +'\n    primaryText="ListItem" '
+      +'\n    secondaryText="is also supported!" />'
+      +'\n  <ListItem'
+      +'\n    primaryText="but, there are" '
+      +'\n    leftAvatar={<Avatar src="images/jsa-128.jpg" />} />'
+      +'\n  <ListItem primaryText="More Waiting" '
+      +'\n    leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor="#3f51b5"/>}/>'
+      +'\n  <ListItem '
+      +'\n    primaryText="For you" '
+      +'\n    secondaryText="to try and contribute!" />'
+      +'\n  <SideNavItem href="https://github.com/callemall/material-ui" style={{fontSize:18}}>'
+      +'\n    <FontIcon style={exampleFlatButtonIcon} className="muidocs-icon-custom-github"/> <div>GitHub</div>'
+      +'\n  </SideNavItem>'
+      +'\n</SideNav>\n'
+
+      +'\n<SideNav ref="sideNav" openType="overlay">'
+      +'\n  <SideNavHeader>'
+      +'\n    material ui'
+      +'\n  </SideNavHeader>'
+      +'\n  <SideNavItem primaryText="Get Started"/>'
+      +'\n  <SideNavItem primaryText="Customization" />'
+      +'\n  <SideNavItem active={true}>'
+      +'\n    Components'
+      +'\n  </SideNavItem>'
+      +'\n  <SideNavDivider />'
+      +'\n  <SideNavSubheader>'
+      +'\n    Resources'
+      +'\n  </SideNavSubheader>'
+      +'\n  <SideNavItem primaryText="GitHub" href="https://github.com/callemall/material-ui" />'
+      +'\n  <SideNavItem primaryText="React" href="http://facebook.github.io/react" />'
+      +'\n  <SideNavItem primaryText="Material Design" href="https://www.google.com/design/spec/material-design/introduction.html"/>'
+      +'\n</SideNav>'
 
     let componentInfo = [
       {
@@ -95,6 +152,15 @@ class SideNavPage extends React.Component {
       }
     ];
 
+    const exampleFlatButtonIcon = {
+        height: '100%',
+        display: 'inline-block',
+        verticalAlign: 'middle',
+        float: 'left',
+        paddingLeft: '12px',
+        lineHeight: '36px',
+        color: Styles.Colors.cyan500
+      };
     return (
       <ComponentDoc
         name="Side Nav"
@@ -107,26 +173,54 @@ class SideNavPage extends React.Component {
           <RaisedButton label="Show Overlay Side Nav" onTouchTap={this._showOverlaySideNavClick.bind(this)} />
 
           <SideNav ref="dockedSideNav" openType='docked' >
-            <SideNavHeader disabled={false} onTouchTap={() => console.log("yeahhhhhhhh!")}>
-              Maps!!!
+            <SideNavHeader disabled={true} >
+              HEADER {/*same as primaryText="HEADER"*/}
             </SideNavHeader>
-            <SideNavItem primaryText="Flights" onTouchTap={() => console.log("it works!")}/>
-            <SideNavItem primaryText="Flights" />
-            <SideNavItem primaryText="Flights" />
-            <SideNavSubheader>
-              Books
-            </SideNavSubheader>
-            <SideNavItem primaryText="Flights" />
-            <SideNavItem primaryText="Flights" />
-            <SideNavItem primaryText="Flights" />
+            <SideNavItem primaryText="plain text"/>
+            <SideNavItem active={true} primaryText="actived item" />
+            <SideNavItem primaryText="looks better?" />
             <SideNavDivider />
-            <SideNavItem primaryText="Apps" />
+            <SideNavSubheader>
+              AWESOME SUBHEADER
+            </SideNavSubheader>
+            <SideNavItem primaryText="even icons" leftIcon={<ContentInbox />} />
+            <SideNavItem primaryText="are supported" rightIcon={<ActionInfo />} />
+            <SideNavItem
+              disabled={true}
+              rightIcon={<ArrowDropRight />}
+              primaryText="And" />
+            <ListItem 
+              primaryText="ListItem" 
+              secondaryText="is also supported!" />
+            <ListItem
+              primaryText="but, there are" 
+              leftAvatar={<Avatar src="images/jsa-128.jpg" />} />
+            <ListItem primaryText="More Waiting" 
+              leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor="#3f51b5"/>}/>
+            <ListItem 
+              primaryText="For you" 
+              secondaryText="to try and contribute!" />
+            <SideNavItem href="https://github.com/callemall/material-ui" style={{fontSize:18}}>
+              <FontIcon style={exampleFlatButtonIcon} className="muidocs-icon-custom-github"/> <div>GitHub</div>
+            </SideNavItem>
+
           </SideNav>
           <SideNav ref="sideNav" openType='overlay'>
-            <SideNavItem primaryText="Maps" />
-            <SideNavItem primaryText="Books" />
-            <SideNavItem primaryText="Flights" />
-            <SideNavItem primaryText="Apps" />
+            <SideNavHeader>
+              material ui
+            </SideNavHeader>
+            <SideNavItem primaryText="Get Started"/>
+            <SideNavItem primaryText="Customization" />
+            <SideNavItem active={true}>
+              Components
+            </SideNavItem>
+            <SideNavDivider />
+            <SideNavSubheader>
+              Resources
+            </SideNavSubheader>
+            <SideNavItem primaryText="GitHub" href="https://github.com/callemall/material-ui" />
+            <SideNavItem primaryText="React" href="http://facebook.github.io/react" />
+            <SideNavItem primaryText="Material Design" href="https://www.google.com/design/spec/material-design/introduction.html"/>
           </SideNav>
         </div>
 
@@ -140,9 +234,6 @@ class SideNavPage extends React.Component {
 
   _toggleDockedSideNavClick() {
     this.refs.dockedSideNav.toggle();
-    this.setState({
-      isDocked: !this.state.isDocked
-    });
   }
 
 }

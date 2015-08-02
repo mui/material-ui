@@ -132,11 +132,12 @@ let LightTheme = {
       sideNav: {
         width: spacing.desktopKeylineIncrement * 4,
         backgroundColor: Colors.white,
-        //headerItemBackgroundColor: palette.primary1Color,
-        headerItemBackgroundColor: Colors.blue500,
+        headerItemBackgroundColor: palette.primary1Color,
         headerItemTextColor: Colors.white,
-        subheaderItemTextColor: palette.accent1Color,
+        subheaderItemTextColor: palette.primary2Color,
+        subheaderItemBackgroundColor: Colors.white,
         navItemTextColor: Colors.black,
+        navItemActiveTextColor: palette.accent1Color,
       },
       snackbar: {
         textColor: Colors.white,

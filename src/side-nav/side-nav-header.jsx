@@ -23,7 +23,7 @@ let SideNavHeader = React.createClass({
     else
       return {
         headerItemBackgroundColor: '#2196f3',
-        headerItemTextColor: Colors.black,
+        headerItemTextColor: '#000000',
       };
   },
 
@@ -45,7 +45,7 @@ let SideNavHeader = React.createClass({
     let mergedStyles = this.mergeAndPrefix({
       color: this.getTheme().headerItemTextColor,
       backgroundColor: this.getTheme().headerItemBackgroundColor,
-      fontSize: 20,
+      fontSize: '22px',
       lineHeight: lineHeight? lineHeight : '32px',
     }, style);
 
@@ -53,7 +53,7 @@ let SideNavHeader = React.createClass({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-    }, innerDivStyle);
+    }, mergedStyles, innerDivStyle);
 
     return (
       <MenuItem {...other} disabled={disabled}

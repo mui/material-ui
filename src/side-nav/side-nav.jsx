@@ -34,7 +34,6 @@ let SideNav = React.createClass({
     menuStyle: React.PropTypes.object,
     listStyle: React.PropTypes.object,
     disableSwipeToOpen: React.PropTypes.bool,
-    selectedNavItemStyle: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -47,6 +46,7 @@ let SideNav = React.createClass({
       openType:'docked',
       defaultOpen: false,
       disableSwipeToOpen: false,
+      zDepth: 0,
     };
   },
 
@@ -160,7 +160,6 @@ let SideNav = React.createClass({
       listStyle,
       menuStyle,
       zDepth,
-      selectedNavItemStyle,
       ...other,
     } = this.props;
 
@@ -196,8 +195,7 @@ let SideNav = React.createClass({
               autoWidth={false}
               style={this.mergeAndPrefix(styles.menu,menuStyle)}
               listStyle={this.mergeAndPrefix(styles.list,listStyle)}
-              zDepth={0}
-              selectedMenuItemStyle={selectedNavItemStyle}
+              zDepth={zDepth}
               onItemTouchTap={this._onMenuItemClick} >
               {this.props.children}
             </Menu>
