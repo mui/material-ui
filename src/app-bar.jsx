@@ -24,8 +24,21 @@ let AppBar = React.createClass({
     iconElementLeft: React.PropTypes.element,
     iconElementRight: React.PropTypes.element,
     iconStyleRight: React.PropTypes.object,
-    title: React.PropTypes.node,
+    title: React.PropTypes.oneOfType([
+      React.PropTypes.node,
+      React.PropTypes.func,
+    ]),
     zDepth: React.PropTypes.number,
+    position: React.PropTypes.oneOf(['fixed', 'static', 'waterfall']),
+    waterfall: React.PropTypes.shape({
+      minHeight: React.PropTypes.number,
+      maxHeight: React.PropTypes.number,
+      onHeightChange: React.PropTypes.func,
+      children: React.PropTypes.oneOfType([
+        React.PropTypes.node,
+        React.PropTypes.func,
+      ]),
+    }),
   },
 
   getDefaultProps() {
@@ -33,6 +46,7 @@ let AppBar = React.createClass({
       showMenuIconButton: true,
       title: '',
       zDepth: 1,
+      position: 'fixed',
     };
   },
 
@@ -52,6 +66,69 @@ let AppBar = React.createClass({
         );
       }
     }
+
+    if (this.props.waterfall && this.props.waterfall.onHeightChange) {
+      this.setupWaterfall();
+    }
+  },
+
+  componentDidUpdate: function(prevProps) {
+    if (this.props.waterfall && this.props.waterfall.onHeightChange) {
+      if (!(prevProps.waterfall && prevProps.waterfall.onHeightChange)) {
+        this.setupWaterfall();
+      }
+    } else if (prevProps.waterfall && prevProps.waterfall.onHeightChange) {
+      this.removeWaterfall();
+    }
+  },
+
+  componentWillUnmount: function() {
+    if (this.props.waterfall && this.props.waterfall.onHeightChange) {
+      this.removeWaterfall();
+    }
+  },
+
+  setupWaterfall() {
+    // in some cases scroll event is not triggered
+    // after page reloaded and kept it's scroll
+    // so we call the handler from the start
+    this.waterfallScrollHandler();
+
+    React.findDOMNode(this.refs.slideEl).style.position = 'absolute';
+
+    window.addEventListener("scroll", this.waterfallScrollHandler);
+  },
+
+  removeWaterfall() {
+    window.removeEventListener("scroll", this.waterfallScrollHandler);
+  },
+
+  waterfallScrollHandler() {
+    if (this.waterfallRunning) { return; }
+    this.waterfallRunning = true;
+    requestAnimationFrame(() => {
+      let waterfall = this.props.waterfall;
+
+      let waterfallHeight = this.calculateWaterfallHeight();
+      if (this.waterfallHeight !== waterfallHeight) {
+        this.waterfallHeight = waterfallHeight;
+        if (waterfall.onHeightChange) {
+          waterfall.onHeightChange({
+            height: waterfallHeight,
+            el: React.findDOMNode(this.refs.root),
+          });
+        }
+      }
+
+      this.waterfallRunning = false;
+    });
+
+  },
+
+  calculateWaterfallHeight() {
+    let waterfall = this.props.waterfall;
+    let windowScroll = window ? window.scrollY : 0;
+    return Math.max(waterfall.minHeight, waterfall.maxHeight - windowScroll);
   },
 
   getStyles() {
@@ -121,9 +198,18 @@ let AppBar = React.createClass({
     if (title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
-      titleElement = typeof title === 'string' || title instanceof String ?
-        <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement)}>{title}</h1> :
-        <div style={this.mergeAndPrefix(styles.mainElement)}>{title}</div>;
+      if (typeof title === 'string' || title instanceof String) {
+        titleElement =
+            <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement)}>{title}</h1>;
+      } else {
+        let titleNode = title;
+        if (typeof title === 'function') {
+          // pass styles, otherwise inaccesible
+          titleNode = title(this.getStyles());
+        }
+        titleElement =
+            <div style={this.mergeAndPrefix(styles.mainElement)}>{titleNode}</div>;
+      }
     }
 
     if (props.showMenuIconButton) {
@@ -139,7 +225,7 @@ let AppBar = React.createClass({
         }
 
         menuElementLeft = (
-          <div style={styles.iconButton.style}>
+          <div style={this.mergeAndPrefix(styles.iconButton.style)}>
             {iconElementLeft}
           </div>
         );
@@ -190,18 +276,90 @@ let AppBar = React.createClass({
       }
     }
 
-    return (
-      <Paper
+    let paperElStyle = this.mergeAndPrefix(styles.root, props.style);
+
+    if (this.props.position === 'fixed') {
+      paperElStyle.position = 'fixed';
+      paperElStyle.top = 0;
+    }
+
+    if (this.props.position === 'waterfall') {
+      let waterfallChildren;
+      if (typeof this.props.waterfall.children === 'function') {
+        waterfallChildren = this.props.waterfall.children(this.getStyles());
+      } else {
+        waterfallChildren = this.props.waterfall.children || null;
+      }
+      return (
+        <div
+          className={props.className}
+          ref="root"
+          style={{
+            height: this.props.waterfall.maxHeight,
+          }}>
+          <Paper
+            rounded={false}
+            style={this.mergeAndPrefix(styles.root, props.style, {
+              height: this.props.waterfall.minHeight,
+              position: 'fixed',
+              top: 0,
+            })}
+            zDepth={props.zDepth}>
+          </Paper>
+          {/* this is the visual element that will slide.
+            position will be transformed to absolute in setupWaterfall
+          */}
+          <div
+            ref="slideEl"
+            style={{
+              position: 'fixed',
+              top: 0,
+              zIndex: paperElStyle.zIndex + 1,
+              width: '100%',
+              height: this.props.waterfall.maxHeight,
+              paddingTop: this.props.waterfall.minHeight,
+              boxSizing: 'border-box',
+              backgroundColor: paperElStyle.backgroundColor,
+            }}>{waterfallChildren}</div>
+          {/* this is the container for icons and children
+           * same styles ar for root but with no background - transparent */}
+          <div style={this.mergeAndPrefix(styles.root, {
+              position: 'fixed',
+              top: 0,
+              zIndex: paperElStyle.zIndex + 2,
+              background: 'none',
+              boxSizing: 'border-box',
+            })}>
+            {menuElementLeft}
+            {titleElement}
+            {menuElementRight}
+            {props.children}
+          </div>
+        </div>
+      );
+    } else {
+      let paperEl = <Paper
         rounded={false}
         className={props.className}
-        style={this.mergeAndPrefix(styles.root, props.style)}
+        style={paperElStyle}
         zDepth={props.zDepth}>
           {menuElementLeft}
           {titleElement}
           {menuElementRight}
           {props.children}
-      </Paper>
-    );
+        </Paper>;
+
+      if (this.props.position === 'fixed') {
+        return (
+          <div style={{
+            height: paperElStyle.height,
+            minHeight: paperElStyle.minHeight,
+          }}>{paperEl}</div>
+        );
+      } else if (this.props.position === 'static') {
+        return paperEl;
+      }
+    }
   },
 
   _onLeftIconButtonTouchTap(event) {

@@ -18,12 +18,8 @@ let HomePage = React.createClass({
   },
 
   render() {
-    let style = {
-      paddingTop: Spacing.desktopKeylineIncrement
-    };
-
     return (
-      <div style={style}>
+      <div>
         {this._getHomePageHero()}
         {this._getHomePurpose()}
         {this._getHomeFeatures()}

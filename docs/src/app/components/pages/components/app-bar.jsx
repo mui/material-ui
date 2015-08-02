@@ -3,6 +3,7 @@ let { AppBar, DropDownMenu } = require('material-ui');
 let IconButton = require('icon-button');
 let NavigationClose = require('svg-icons/navigation/close');
 let FlatButton = require('flat-button');
+let RaisedButton = require('raised-button');
 let ComponentDoc = require('../../component-doc');
 
 
@@ -80,9 +81,12 @@ class AppBarPage extends React.Component {
           },
           {
             name: 'title',
-            type: 'node',
+            type: 'node|func',
             header: 'optional',
-            desc: 'The title to display on the app bar. Could be number, string, element or an array containing these types.'
+            desc: 'The title to display on the app bar. Could be number, string, ' +
+                  'element or an array containing these types. Could also be a function that ' +
+                  'will receive component styles object as argument and should return' +
+                  'an element to be rendered.'
           },
           {
             name: 'zDepth',
@@ -90,6 +94,30 @@ class AppBarPage extends React.Component {
             header: 'default: 1',
             desc: 'The zDepth of the app bar. The shadow of the app bar is also ' +
                   'dependent on this property.'
+          },
+          {
+            name: 'position',
+            type: '"fixed"|"static"|"waterfall"',
+            header: 'default: "fixed"',
+            desc: 'Specify position and behavior. Fixed - will have a fixed position at the top of viewport. ' +
+                  'Static - will have a static position. Waterfall - will have a fixed position at the top' +
+                  'of viewport and will decrease its height on window scroll down (see waterfall prop for ' +
+                  'additional settings).'
+          },
+          {
+            name: 'waterfall',
+            type: 'object',
+            header: 'required if position waterfall',
+            desc: <span>Settings object for position waterfall. Should at least have <code>minHeight</code>
+                  and <code>maxHeight</code> properties, both numeric. These specify min and max visual heigth
+                  of the component while window scrolling. Optional <code>children</code> property can be a node
+                  or a function (will receive component styles object as argument) returning a node. This node will
+                  be inserted in the slide (scrolled) element of the component. Optional <code>onHeightChange</code> property
+                  is a function called when visual height of the component changes on scroll. This function will
+                  receive as arguments an object with <code>height</code> and <code>el</code> (DOM element of
+                  the component) properties. Using <code>onHeightChange</code>, animation effects can be achieved
+                  by altering style properties of specific DOM elements.
+                  </span>
           }
         ]
       },
@@ -122,12 +150,18 @@ class AppBarPage extends React.Component {
         componentInfo={this.componentInfo}>
           <AppBar
             title="Title"
+            position="static"
             iconClassNameRight="muidocs-icon-navigation-expand-more" />
           <br />
           <AppBar
             title="Title"
+            position="static"
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             iconElementRight={<FlatButton label="Save" />} />
+          <br />
+          <RaisedButton label="View Waterfall example"
+            linkButton={true} href="/#/examples/app-bar-waterfall"
+            primary={true}/>
       </ComponentDoc>
     );
   }
