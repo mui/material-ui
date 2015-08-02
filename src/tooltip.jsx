@@ -14,7 +14,7 @@ let Tooltip = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
-    label: React.PropTypes.string.isRequired,
+    label: React.PropTypes.node.isRequired,
     show: React.PropTypes.bool,
     touch: React.PropTypes.bool,
     verticalPosition: React.PropTypes.oneOf(['top','bottom']),
