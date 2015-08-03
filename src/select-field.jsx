@@ -81,15 +81,6 @@ let SelectField = React.createClass({
     return styles;
   },
 
-  onChange(e, index, payload) {
-    if (payload) {
-      e.target.value = payload[this.props.valueMember] || payload;
-    }
-    if (this.props.onChange) {
-      this.props.onChange(e,index,payload);
-    }
-  },
-
   render() {
     let styles = this.getStyles();
     let {
@@ -98,7 +89,6 @@ let SelectField = React.createClass({
       iconStyle,
       underlineStyle,
       selectFieldRoot,
-      onChange,
       menuItems,
       disabled,
       floatingLabelText,
@@ -116,7 +106,6 @@ let SelectField = React.createClass({
       errorText: errorText,
     };
     let dropDownMenuProps = {
-      onChange: this.onChange,
       menuItems: menuItems,
       disabled: disabled,
       style: this.mergeAndPrefix(styles.root, selectFieldRoot),
