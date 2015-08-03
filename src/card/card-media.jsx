@@ -42,6 +42,11 @@ let CardMedia = React.createClass({
         background: Styles.Colors.lightBlack,
       },
       media: {},
+      mediaChild: {
+        verticalAlign: 'top',
+        maxWidth: '100%',
+        minWidth: '100%',
+      },
     };
   },
 
@@ -54,13 +59,7 @@ let CardMedia = React.createClass({
     let overlayStyle = this.mergeAndPrefix(styles.overlay, this.props.overlayStyle);
 
     let children = React.Children.map(this.props.children, (child) => {
-      return React.cloneElement(child, {
-        style: {
-          verticalAlign: 'top',
-          maxWidth: '100%',
-          minWidth: '100%',
-        },
-      });
+      return React.cloneElement(child, {style: this.mergeAndPrefix(styles.mediaChild, child.props.style)});
     });
 
     let overlayChildren = React.Children.map(this.props.overlay, (child) => {
