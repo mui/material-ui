@@ -212,7 +212,7 @@ const RefreshIndicator = React.createClass({
   },
 
   _scalePath(path, step) {
-    if (this.props.status !== 'loading') return;
+    if (this.props.status !== 'loading' || !this.isMounted()) return;
 
     const currStep = (step || 0) % 3;
 
@@ -239,7 +239,7 @@ const RefreshIndicator = React.createClass({
   },
 
   _rotateWrapper(wrapper) {
-    if (this.props.status !== 'loading') return;
+    if (this.props.status !== 'loading' || !this.isMounted()) return;
 
     clearTimeout(this._timer2);
     this._timer2 = setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
@@ -249,9 +249,11 @@ const RefreshIndicator = React.createClass({
     AutoPrefix.set(wrapper.style, "transitionDuration", "0ms");
 
     setTimeout(() => {
-      AutoPrefix.set(wrapper.style, "transform", "rotate(1800deg)");
-      wrapper.style.transitionDuration = "10s";
-      AutoPrefix.set(wrapper.style, "transitionTimingFunction", "linear");
+      if (this.isMounted()) {
+        AutoPrefix.set(wrapper.style, "transform", "rotate(1800deg)");
+        wrapper.style.transitionDuration = "10s";
+        AutoPrefix.set(wrapper.style, "transitionTimingFunction", "linear");
+      }
     }, 50);
   },
 
