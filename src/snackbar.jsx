@@ -1,12 +1,12 @@
-let React = require('react');
-let CssEvent = require('./utils/css-event');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let ClickAwayable = require('./mixins/click-awayable');
-let FlatButton = require('./flat-button');
+const React = require('react');
+const CssEvent = require('./utils/css-event');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
+const ClickAwayable = require('./mixins/click-awayable');
+const FlatButton = require('./flat-button');
 
 
-let Snackbar = React.createClass({
+const Snackbar = React.createClass({
 
   mixins: [StylePropable, ClickAwayable],
 
@@ -33,6 +33,12 @@ let Snackbar = React.createClass({
     };
   },
 
+  componentDidMount() {
+    if (this.props.openOnMount) {
+      this._bindClickAway();
+    }
+  },
+
   componentClickAway() {
     this.dismiss();
   },
@@ -53,6 +59,10 @@ let Snackbar = React.createClass({
     }
   },
 
+  componentWillUnmount() {
+    this._unbindClickAway();
+  },
+
   getTheme() {
     return this.context.muiTheme.component.snackbar;
   },
@@ -62,7 +72,7 @@ let Snackbar = React.createClass({
   },
 
   getStyles() {
-    let styles = {
+    const styles = {
       root: {
         color: this.getTheme().textColor,
         backgroundColor: this.getTheme().backgroundColor,
@@ -113,7 +123,11 @@ let Snackbar = React.createClass({
 
   render() {
     const {action, message, onActionTouchTap, style, ...others } = this.props;
-    let styles = this.getStyles();
+    const styles = this.getStyles();
+
+    const rootStyles = this.state.open ?
+      this.mergeStyles(styles.root, styles.rootWhenOpen, style) :
+      this.mergeStyles(styles.root, style);
 
     let actionButton;
     if (action) {
@@ -125,14 +139,10 @@ let Snackbar = React.createClass({
       );
     }
 
-    let rootStyles = this.state.open ?
-      this.mergeStyles(styles.root, styles.rootWhenOpen, style) :
-      this.mergeStyles(styles.root, style);
-
     return (
       <span {...others} style={rootStyles}>
-          <span>{message}</span>
-          {actionButton}
+        <span>{message}</span>
+        {actionButton}
       </span>
     );
   },
