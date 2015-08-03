@@ -20,6 +20,7 @@ let Tabs = React.createClass({
     tabItemContainerStyle: React.PropTypes.object,
     contentContainerStyle: React.PropTypes.object,
     inkBarStyle: React.PropTypes.object,
+    contentContainerClassName: React.PropTypes.string,
   },
 
   getInitialState(){
@@ -126,7 +127,7 @@ let Tabs = React.createClass({
           {tabs}
         </div>
         <InkBar left={left} width={width} style={this.props.inkBarStyle}/>
-        <div style={this.mergeAndPrefix(this.props.contentContainerStyle)}>
+        <div style={this.mergeAndPrefix(this.props.contentContainerStyle)} className={this.props.contentContainerClassName}>
           {tabContent}
         </div>
       </div>
