@@ -5,7 +5,9 @@
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
-    "test": "echo \"No test implemented\" && exit 0",
+    "test": "npm run test-base -- --single-run",
+    "test-watch": "npm run test-base -- --auto-watch",
+    "test-base": "./node_modules/.bin/karma start",
     "prebuild": "rm -rf lib",
     "eslint": "gulp eslint",
     "build": "npm run eslint && babel --stage 1 ./src --out-dir ./lib",
@@ -38,11 +40,25 @@
   "devDependencies": {
     "babel": "^5.4.3",
     "babel-eslint": "^3.1.17",
+    "babelify": "^6.1.3",
+    "browserify-istanbul": "^0.2.1",
+    "chai": "^3.2.0",
     "eslint": "^0.23.0",
     "eslint-plugin-react": "^2.5.2",
     "gulp": "^3.9.0",
     "gulp-eslint": "^0.15.0",
+    "karma": "^0.13.3",
+    "karma-browserify": "^4.2.1",
+    "karma-chai-sinon": "^0.1.5",
+    "karma-coverage": "^0.4.2",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^1.0.4",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "mocha": "^2.2.5",
+    "phantomjs": "^1.9.17",
     "react-router": "^0.13.3",
-    "react-tap-event-plugin": "^0.1.6"
+    "react-tap-event-plugin": "^0.1.6",
+    "sinon": "^1.15.4",
+    "sinon-chai": "^2.8.0"
   }
 }
