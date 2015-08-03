@@ -21,10 +21,10 @@ let RefreshIndicatorPage = React.createClass({
         name: 'Props',
         infoArray: [
           {
-            name: 'size',
+            name: 'left',
             type: 'number',
-            header: 'default: 40',
-            desc: 'Size in pixel.'
+            header: 'required',
+            desc: 'The absolute left position of the indicator in pixels.'
           },
           {
             name: 'percentage',
@@ -33,23 +33,29 @@ let RefreshIndicatorPage = React.createClass({
             desc: 'The confirmation progress to fetch data. Max value is 100'
           },
           {
-            name: 'left',
+            name: 'size',
             type: 'number',
-            header: 'required',
-            desc: 'The left position of the indicator. Be care, the component is absolute positioned'
+            header: 'default: 40',
+            desc: 'Size in pixels.'
+          },
+          {
+            name: 'status',
+            type: 'one of: ready, loading, hide',
+            header: 'default: hide',
+            desc: 'The display status of the indicator. If the status is "ready", the indicator will display the ready state arrow. If the status is "loading", it will display the loading progress indicator. If the status is "hide", the indicator will be hidden.'
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the indicator\'s root element.'
           },
           {
             name: 'top',
             type: 'number',
             header: 'required',
-            desc: 'The top position of the indicator. Be care, the component is absolute positioned'
+            desc: 'The absolute right position of the indicator in pixels.'
           },
-          {
-            name: 'statu',
-            type: 'one of: ready, loading, hide',
-            header: 'default: hide',
-            desc: 'ready: means at the confirmation phase\nloading: means at data loading phase\nhide: means all done and hide the indicator'
-          }
         ]
       },
     ];

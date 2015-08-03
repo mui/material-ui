@@ -9,17 +9,18 @@ const RefreshIndicator = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-    size: React.PropTypes.number,
-    percentage: React.PropTypes.number,
     left: React.PropTypes.number.isRequired,
-    top: React.PropTypes.number.isRequired,
+    percentage: React.PropTypes.number,
+    size: React.PropTypes.number,
     status: React.PropTypes.oneOf(['ready', 'loading', 'hide']),
+    style: React.PropTypes.object,
+    top: React.PropTypes.number.isRequired,
   },
 
   getDefaultProps() {
     return {
-      size: 40,
       percentage: 0,
+      size: 40,
       status: 'hide',
     };
   },
@@ -42,7 +43,7 @@ const RefreshIndicator = React.createClass({
     return (
       <Paper
         circle={true}
-        style={rootStyle}
+        style={this.mergeAndPrefix(rootStyle, this.props.style)}
         ref="indicatorCt"
       >
         {this._renderChildren()}
@@ -88,12 +89,12 @@ const RefreshIndicator = React.createClass({
           viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
         >
           <circle
-            style={circleStyle.style}
+            style={this.mergeAndPrefix(circleStyle.style)}
             {...circleStyle.attr}
           >
           </circle>
           <polygon
-            style={polygonStyle.style}
+            style={this.mergeAndPrefix(polygonStyle.style)}
             {...polygonStyle.attr}
           />
         </svg>
