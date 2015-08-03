@@ -35,6 +35,7 @@ const Snackbar = React.createClass({
 
   componentDidMount() {
     if (this.props.openOnMount) {
+      this._setAutoHideTimer();
       this._bindClickAway();
     }
   },
@@ -60,6 +61,7 @@ const Snackbar = React.createClass({
   },
 
   componentWillUnmount() {
+    this._clearAutoHideTimer();
     this._unbindClickAway();
   },
 
