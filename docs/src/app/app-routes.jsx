@@ -38,6 +38,7 @@ let Tabs = require('./components/pages/components/tabs');
 let TextFields = require('./components/pages/components/text-fields');
 let TimePicker = require('./components/pages/components/time-picker');
 let Toolbars = require('./components/pages/components/toolbars');
+let UploadButton = require('./components/pages/components/upload-button');
 
 
 /** Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
@@ -84,6 +85,7 @@ let AppRoutes = (
       <Route name="text-fields" handler={TextFields} />
       <Route name="time-picker" handler={TimePicker} />
       <Route name="toolbars" handler={Toolbars} />
+      <Route name="upload-button" handler={UploadButton} />
       <Redirect from="/components" to="appbar" />
     </Route>
 
