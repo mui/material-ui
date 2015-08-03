@@ -61,10 +61,8 @@ let Table = React.createClass({
   },
 
   getInitialState() {
-    let preSelectedRows = this._calculatePreselectedRows();
-
     return {
-      selectedRows: preSelectedRows,
+      selectedRows: this._calculatePreselectedRows(this.props),
     };
   },
 
@@ -102,12 +100,10 @@ let Table = React.createClass({
     }
   },
 
-  componentDidUpdate(oldProps) {
-    if (oldProps.rowData !== this.props.rowData) {
-      let preSelectedRows = this._calculatePreselectedRows();
-
+  componentWillReceiveProps(newProps) {
+    if (newProps.rowData !== this.props.rowData) {
       this.setState({
-        selectedRows: preSelectedRows,
+        selectedRows: this._calculatePreselectedRows(newProps),
       });
     }
   },
@@ -284,16 +280,16 @@ let Table = React.createClass({
     return columnData;
   },
 
-  _calculatePreselectedRows () {
+  _calculatePreselectedRows (props) {
     // Determine what rows are 'pre-selected'.
     let preSelectedRows = [];
-    if (this.props.selectable && this.props.preScanRowData) {
-      for (let idx = 0; idx < this.props.rowData.length; idx++) {
-        let row = this.props.rowData[idx];
+    if (props.selectable && props.preScanRowData) {
+      for (let idx = 0; idx < props.rowData.length; idx++) {
+        let row = props.rowData[idx];
         if (row.selected !== undefined && row.selected) {
           preSelectedRows.push(idx);
 
-          if (!this.props.multiSelectable) {
+          if (!props.multiSelectable) {
             break;
           }
         }
