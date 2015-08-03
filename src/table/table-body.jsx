@@ -53,8 +53,8 @@ let TableBody = React.createClass({
       let lastSelectedRow = (this.state.selectedRows.length) ?
         this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
 
-      this.setState({ 
-        selectedRows: [lastSelectedRow] 
+      this.setState({
+        selectedRows: [lastSelectedRow],
       });
     }
   },
