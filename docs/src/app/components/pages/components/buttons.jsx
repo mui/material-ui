@@ -242,6 +242,13 @@ class ButtonPage extends React.Component {
         name: 'Floating Action Button',
         infoArray: [
           {
+            name: 'backgroundColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'This value will override the default background color for the button. However it will not override the' +
+              'default disabled background color. This has to be set separately using the disabledColor attribute.'
+          },
+          {
             name: 'containerElement',
             type: 'oneOfType [string, element]',
             header: 'default: button',
@@ -254,6 +261,12 @@ class ButtonPage extends React.Component {
             type: 'bool',
             header: 'optional',
             desc: 'Disables the button if set to true.'
+          },
+          {
+            name: 'disabledColor',
+            type: 'string',
+            header: 'optional',
+            desc: 'This value will override the default background color for the button when it is disabled.'
           },
           {
             name: 'iconClassName',
