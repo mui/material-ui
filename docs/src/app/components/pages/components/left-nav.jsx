@@ -104,6 +104,24 @@ class LeftNavPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of LeftNav\'s root element.'
+          },
+          {
+            name: 'menuItemClassName',
+            type: 'string',
+            header: 'optional',
+            desc: 'Class name for the menuItem.'
+          },
+          {
+            name: 'menuItemClassNameSubheader',
+            type: 'string',
+            header: 'optional',
+            desc: 'Class name for the subheader menuItem.'
+          },
+          {
+            name: 'menuItemClassNameLink',
+            type: 'string',
+            header: 'optional',
+            desc: 'Class name for the link menuItem.'
           }
         ]
       },
