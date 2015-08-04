@@ -30,6 +30,7 @@ let Lists = require('./components/pages/components/lists');
 let Menus = require('./components/pages/components/menus');
 let Paper = require('./components/pages/components/paper');
 let Progress = require('./components/pages/components/progress');
+let RefreshIndicator = require('./components/pages/components/refresh-indicator');
 let Sliders = require('./components/pages/components/sliders');
 let Snackbar = require('./components/pages/components/snackbar');
 let Switches = require('./components/pages/components/switches');
@@ -76,6 +77,7 @@ let AppRoutes = (
       <Route name="menus" handler={Menus} />
       <Route name="paper" handler={Paper} />
       <Route name="progress" handler={Progress} />
+      <Route name="refresh-indicator" handler={RefreshIndicator} />
       <Route name="sliders" handler={Sliders} />
       <Route name="switches" handler={Switches} />
       <Route name="snackbar" handler={Snackbar} />

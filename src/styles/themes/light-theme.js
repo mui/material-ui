@@ -118,6 +118,10 @@ let LightTheme = {
         secondaryColor: palette.primary1Color,
         secondaryTextColor: Colors.white,
       },
+      refreshIndicator: {
+        strokeColor: Colors.grey300,
+        loadingStrokeColor: palette.primary1Color,
+      },
       slider: {
         trackSize: 2,
         trackColor: Colors.minBlack,
