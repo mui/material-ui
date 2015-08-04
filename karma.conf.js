@@ -8,12 +8,10 @@ module.exports = function(config) {
 
     files: [
       'node_modules/babel/node_modules/babel-core/browser-polyfill.js',
-//      'test/fixtures/react-parent-context-patch.js',
       'test/**/*spec.js'
     ],
 
     preprocessors: {
-//      'test/fixtures/react-parent-context-patch.js': [ 'browserify' ],
       'test/**/*spec.js': [ 'browserify' ]
     },
 
