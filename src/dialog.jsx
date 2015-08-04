@@ -17,6 +17,10 @@ let TransitionItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
+  propTypes: {
+    offsetTop: React.PropTypes.number,
+  },
+
   getInitialState() {
     return {
       style: {},
@@ -25,11 +29,11 @@ let TransitionItem = React.createClass({
 
   componentWillEnter(callback) {
     let spacing = this.context.muiTheme.spacing;
-
+    let offset = isNaN(this.props.offsetTop) ? Infinity : this.props.offsetTop;
     this.setState({
       style: {
         opacity: 1,
-        transform: 'translate3d(0, ' + spacing.desktopKeylineIncrement + 'px, 0)',
+        transform: 'translate3d(0, ' + Math.min(offset, spacing.desktopKeylineIncrement) + 'px, 0)',
       },
     });
 
@@ -80,6 +84,7 @@ let Dialog = React.createClass({
     openImmediately: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    offsetTop: React.PropTypes.number,
     onShow: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
     title: React.PropTypes.node,
@@ -197,6 +202,7 @@ let Dialog = React.createClass({
           {this.state.open &&
             <TransitionItem
               className={this.props.contentClassName}
+              offsetTop={this.props.offsetTop}
               style={styles.content}>
               <Paper
                 style={styles.paper}
@@ -307,13 +313,16 @@ let Dialog = React.createClass({
       let dialogWindow = this.refs.dialogWindow.getDOMNode();
       let dialogContent = this.refs.dialogContent.getDOMNode();
       let minPaddingTop = 16;
+      let spacing = this.context.muiTheme.spacing;
+      let offset = isNaN(this.props.offsetTop) ? Infinity : this.props.offsetTop;
+      let offsetTop = Math.min(offset, spacing.desktopKeylineIncrement);
 
       //Reset the height in case the window was resized.
       dialogWindow.style.height = '';
       dialogContent.style.height = '';
 
       let dialogWindowHeight = dialogWindow.offsetHeight;
-      let paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 64;
+      let paddingTop = ((clientHeight - dialogWindowHeight) / 2) - offsetTop;
       if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
 
       //Vertically center the dialog window, but make sure it doesn't
@@ -325,7 +334,7 @@ let Dialog = React.createClass({
       // Force a height if the dialog is taller than clientHeight
       if (this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) {
         let styles = this.getStyles();
-        let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + 64);
+        let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + offsetTop);
 
         if (this.props.title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
         if (this.props.actions) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
