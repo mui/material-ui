@@ -1,4 +1,4 @@
-const React = require('react');
+const React = require('react/addons');
 const PureRenderMixin = React.addons.PureRenderMixin;
 const ReactTransitionGroup = React.addons.TransitionGroup;
 const StylePropable = require('../mixins/style-propable');
