@@ -1,7 +1,7 @@
 let React = require('react/addons');
-let { ClearFix, Mixins, SelectField, TextField } = require('material-ui');
+let { ClearFix, Mixins, SelectField, TextField, Styles } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
-
+let { Colors } = Styles;
 let { StyleResizable } = Mixins;
 
 
@@ -57,6 +57,7 @@ let TextFieldsPage = React.createClass({
       <TextField
         hintText="Hint Text"
         value={this.state.propValue}
+        underlineStyle={{borderColor:Colors.green500}}
         onChange={this._handleInputChange} />
       <TextField
         hintText="Hint Text"
@@ -75,10 +76,11 @@ let TextFieldsPage = React.createClass({
         errorText={this.state.errorText}
         onChange={this._handleErrorInputChange} />
       <TextField
-        hintText="Hint Text"
+        hintText="Hint Text (custom error color)"
         errorText={this.state.error2Text}
+        errorStyle={{color:'orange'}}
         onChange={this._handleError2InputChange}
-        defaultValue="abc" />
+        defaultValue="Custom error color" />
       <TextField
         hintText="Disabled Hint Text"
         disabled={true} />
@@ -207,6 +209,12 @@ let TextFieldsPage = React.createClass({
             desc: 'Override the inline-styles of the TextField\'s root element.'
           },
           {
+            name: 'underlineStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the TextField\'s underline element.'
+          },
+          {
             name: 'type',
             type: 'string',
             header: 'optional',
@@ -308,8 +316,9 @@ let TextFieldsPage = React.createClass({
               defaultValue="Default Value" /><br/>
             <TextField
               style={styles.textfield}
-              hintText="Hint Text"
+              hintText="Custom Underline Color"
               value={this.state.propValue}
+              underlineStyle={{borderColor:Colors.green500}}
               onChange={this._handleInputChange} /><br/>
             <TextField
               style={styles.textfield}
@@ -334,10 +343,11 @@ let TextFieldsPage = React.createClass({
               onChange={this._handleErrorInputChange} /><br/>
             <TextField
               style={styles.textfield}
-              hintText="Hint Text"
+              hintText="Hint Text (custom error color)"
               errorText={this.state.error2Text}
+              errorStyle={{color:Colors.orange500}}
               onChange={this._handleError2InputChange}
-              defaultValue="abc" /><br/>
+              defaultValue="Custom error color" /><br/>
             <TextField
               style={styles.textfield}
               hintText="Disabled Hint Text"
