@@ -61,23 +61,8 @@ let Table = React.createClass({
   },
 
   getInitialState() {
-    // Determine what rows are 'pre-selected'.
-    let preSelectedRows = [];
-    if (this.props.selectable && this.props.preScanRowData) {
-      for (let idx = 0; idx < this.props.rowData.length; idx++) {
-        let row = this.props.rowData[idx];
-        if (row.selected !== undefined && row.selected) {
-          preSelectedRows.push(idx);
-
-          if (!this.props.multiSelectable) {
-            break;
-          }
-        }
-      }
-    }
-
     return {
-      selectedRows: preSelectedRows,
+      selectedRows: this._calculatePreselectedRows(this.props),
     };
   },
 
@@ -112,6 +97,14 @@ let Table = React.createClass({
   componentClickAway() {
     if (this.props.deselectOnClickaway && this.state.selectedRows.length) {
       this.setState({ selectedRows: [] });
+    }
+  },
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.rowData !== this.props.rowData) {
+      this.setState({
+        selectedRows: this._calculatePreselectedRows(newProps),
+      });
     }
   },
 
@@ -285,6 +278,25 @@ let Table = React.createClass({
     });
 
     return columnData;
+  },
+
+  _calculatePreselectedRows (props) {
+    // Determine what rows are 'pre-selected'.
+    let preSelectedRows = [];
+    if (props.selectable && props.preScanRowData) {
+      for (let idx = 0; idx < props.rowData.length; idx++) {
+        let row = props.rowData[idx];
+        if (row.selected !== undefined && row.selected) {
+          preSelectedRows.push(idx);
+
+          if (!props.multiSelectable) {
+            break;
+          }
+        }
+      }
+    }
+
+    return preSelectedRows;
   },
 
   _isRowSelected(rowNumber) {
