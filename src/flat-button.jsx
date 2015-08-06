@@ -127,7 +127,10 @@ const FlatButton = React.createClass({
     const labelElement = label ? (
       <FlatButtonLabel label={label} style={labelStyle} />
     ) : undefined;
-    const enhancedButtonChildren = Children.create(labelElement, children);
+    const enhancedButtonChildren = Children.create({
+      labelElement,
+      children,
+    });
 
     return (
       <EnhancedButton

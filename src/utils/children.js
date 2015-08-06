@@ -3,22 +3,25 @@ const createFragment = React.addons.createFragment;
 
 module.exports = {
 
-  create() {
-    let fragments = {};
+  create(fragments) {
+    let newFragments = {};
     let validChildrenCount = 0;
+    let firstKey;
 
-    //loop through each argument and create the fragments
-    for (let i = 0; i < arguments.length; i++) {
-      const currentChild = arguments[i];
+    //Only create non-empty key fragments
+    for (let key in fragments) {
+      const currentChild = fragments[key];
+
       if (currentChild) {
-        fragments['_' + validChildrenCount] = currentChild;
+        if (validChildrenCount === 0) firstKey = key;
+        newFragments[key] = currentChild;
         validChildrenCount++;
       }
     }
 
     if (validChildrenCount === 0) return undefined;
-    if (validChildrenCount === 1) return fragments._0;
-    return createFragment(fragments);
+    if (validChildrenCount === 1) return newFragments[firstKey];
+    return createFragment(newFragments);
   },
 
   extend(children, extendedProps, extendedChildren) {
