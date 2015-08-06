@@ -332,7 +332,7 @@ const ListItem = React.createClass({
     }
 
     return hasCheckbox ? this._createLabelElement(styles, contentChildren) :
-      disabled ? this._createDisabledElement(style, contentChildren) : (
+      disabled ? this._createDisabledElement(styles, contentChildren) : (
       <div>
         <EnhancedButton
           {...other}
