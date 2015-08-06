@@ -12,6 +12,10 @@ class CodeBlock extends React.Component {
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
   }
 
+  shouldComponentUpdate({children}, nextState){
+    return this.props.children !== children;
+  }
+
   componentDidMount() {
     hljs.highlightBlock(React.findDOMNode(this));
   }
