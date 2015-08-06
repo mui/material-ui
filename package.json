@@ -57,6 +57,7 @@
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.17",
     "react-router": "^0.13.3",
+    "react-stub-context": "^0.3.0",
     "react-tap-event-plugin": "^0.1.6",
     "sinon": "^1.15.4",
     "sinon-chai": "^2.8.0"
