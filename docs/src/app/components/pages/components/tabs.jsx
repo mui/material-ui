@@ -205,7 +205,7 @@ class TabsPage extends React.Component {
 }
 
 TabsPage.contextTypes = {
-  router: React.PropTypes.func
+  router: React.PropTypes.object
 };
 
 module.exports = TabsPage;

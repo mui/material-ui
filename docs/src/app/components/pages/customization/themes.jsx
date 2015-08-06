@@ -488,7 +488,7 @@ let ThemesPage = React.createClass({
     //Standard Actions
     let standardActions = [
       { text: 'Cancel' },
-      { text: 'Submit', onTouchTap: this._onDialogSubmit }
+      { text: 'Submit', onClick: this._onDialogSubmit }
     ];
 
     let menuItemsNav = [
@@ -607,7 +607,7 @@ let ThemesPage = React.createClass({
 
           <div style={styles.group}>
             <div style={styles.containerCentered}>
-              <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
+              <FlatButton label="View Dialog" onClick={this.handleTouchTapDialog} />
               <Dialog ref="dialog" title="Dialog With Standard Actions" actions={standardActions}>
                 The actions in this window are created from the json that&#39;s passed in.
               </Dialog>
@@ -617,7 +617,7 @@ let ThemesPage = React.createClass({
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton
-                  onTouchTap={this.handleClickNav}
+                  onClick={this.handleClickNav}
                   label="View LeftNav" />
               <LeftNav ref="leftNav" docked={false} menuItems={menuItemsNav} />
             </div>
@@ -626,13 +626,13 @@ let ThemesPage = React.createClass({
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton
-                onTouchTap={this.handleClickSnackbar}
+                onClick={this.handleClickSnackbar}
                 label="View Snackbar" />
               <Snackbar
                 ref="snackbar"
                 message="This is a snackbar"
                 action="Got It!"
-                onActionTouchTap={this.handleAction}/>
+                onActionClick={this.handleAction}/>
             </div>
           </div>
       </ClearFix>

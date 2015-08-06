@@ -4,16 +4,14 @@ let AppLeftNav = require('./app-left-nav');
 let FullWidthSection = require('./full-width-section');
 let { AppBar, AppCanvas, IconButton, Menu, Styles } = require('material-ui');
 
-let RouteHandler = Router.RouteHandler;
 let { Colors, Typography } = Styles;
 let ThemeManager = new Styles.ThemeManager();
-
 
 class Master extends React.Component {
 
   constructor() {
     super();
-    this._onLeftIconButtonTouchTap = this._onLeftIconButtonTouchTap.bind(this);
+    this._onLeftIconButtonClick = this._onLeftIconButtonClick.bind(this);
   }
 
   getChildContext() {
@@ -63,14 +61,14 @@ class Master extends React.Component {
       <AppCanvas>
 
         <AppBar
-          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
+          onLeftIconButtonClick={this._onLeftIconButtonClick}
           title={title}
           zDepth={0}
           iconElementRight={githubButton}/>
 
         <AppLeftNav ref="leftNav" />
 
-        <RouteHandler />
+        {this.props.children}
 
         <FullWidthSection style={styles.footer}>
           <p style={styles.p}>
@@ -84,13 +82,14 @@ class Master extends React.Component {
     );
   }
 
-  _onLeftIconButtonTouchTap() {
+  _onLeftIconButtonClick() {
     this.refs.leftNav.toggle();
   }
 }
 
+
 Master.contextTypes = {
-  router: React.PropTypes.func
+  router: React.PropTypes.object
 };
 
 Master.childContextTypes = {

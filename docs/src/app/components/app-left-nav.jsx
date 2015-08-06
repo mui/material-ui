@@ -41,7 +41,7 @@ class AppLeftNav extends React.Component {
 
   render() {
     let header = (
-      <div style={this.getStyles()} onTouchTap={this._onHeaderClick}>
+      <div style={this.getStyles()} onClick={this._onHeaderClick}>
         material ui
       </div>
     );
@@ -83,7 +83,7 @@ class AppLeftNav extends React.Component {
 }
 
 AppLeftNav.contextTypes = {
-  router: React.PropTypes.func
+  router: React.PropTypes.object
 };
 
 module.exports = AppLeftNav;

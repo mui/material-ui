@@ -229,15 +229,15 @@ Radio Button Group, Radio Button, Enhanced Switch Label, Text Field, Toggle, Che
 We've cleaned up some of our click/tap events. (#771) Upgrade should be straight forward, please see below:
 - DropDownIcon - closeOnMenuItemClick has been replaced with closeOnMenuItemTouchTap.
 - Menu - onItemClick has been removed; use onItemTap instead.
-- MenuItem - onClick event has been removed; use onTouchTap instead.
+- MenuItem - onClick event has been removed; use onClick instead.
 
 ##### General
-- ClickAwayable is now bound to onTouchTap instead of onClick (#766)
+- ClickAwayable is now bound to onClick instead of onClick (#766)
 
 ##### Components
 - AppBar will now render its children (#725)
 - DatePicker will now properly handle defaultDate prop changes (#722)
-- Dialog actions now respond to onTouchTap (#752)
+- Dialog actions now respond to onClick (#752)
 - LeftNav
   - Fixed line height style bug (#742)
   - Fixed a bug that caused the LeftNav to immediately close on iOS full screen mode (#751, #366)
@@ -504,7 +504,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Dialog
   - Actions can now be passed in as an array of react elements. (#241)
 - Menu Item
-  - Menu Items now respond to onTouchTap
+  - Menu Items now respond to onClick
 - Radio Button
   - Radio Button styling now matches material design specs
   - This component has been revamped and can now be controlled or uncontrolled.
@@ -650,9 +650,9 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - These buttons will replace the current PaperButton which will be
     depreciated in v.0.4.0.
   - They generate actual button tags, are keyboard focusable and listen
-    to onTouchTap. (#50, #61)
+    to onClick. (#50, #61)
 - Icon Button
-  - Pressing enter when the button is in focus now fires onTouchTap
+  - Pressing enter when the button is in focus now fires onClick
   - Added dark theme ripple colors
   - Focus and click animations now use Scale Transforms to improve performance.
 - Input
@@ -697,7 +697,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - LeftNav
   - Fixed left nav style when docked (#36)
   - Transition now uses translate3d instead of left
-  - Overlay now listens to onTouchTap
+  - Overlay now listens to onClick
 - Menu Items
   - Added user select none styles (#45)
 - Paper

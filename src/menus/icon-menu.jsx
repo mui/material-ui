@@ -1,5 +1,5 @@
-let React = require('react/addons');
-let ReactTransitionGroup = React.addons.TransitionGroup;
+let React = require('react');
+let ReactTransitionGroup = require('react-addons-transition-group');
 let ClickAwayable = require('../mixins/click-awayable');
 let StylePropable = require('../mixins/style-propable');
 let Events = require('../utils/events');
@@ -25,7 +25,7 @@ let IconMenu = React.createClass({
     onMouseLeave: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
+   onClick: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
     touchTapCloseDelay: React.PropTypes.number,
   },
@@ -40,7 +40,7 @@ let IconMenu = React.createClass({
       onMouseLeave: () => {},
       onMouseEnter: () => {},
       onMouseUp: () => {},
-      onTouchTap: () => {},
+     onClick: () => {},
       touchTapCloseDelay: 200,
     };
   },
@@ -72,7 +72,7 @@ let IconMenu = React.createClass({
       onMouseLeave,
       onMouseEnter,
       onMouseUp,
-      onTouchTap,
+     onClick,
       menuStyle,
       style,
       ...other,
@@ -101,9 +101,9 @@ let IconMenu = React.createClass({
 
     let iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: this.props.onKeyboardFocus,
-      onTouchTap: (e) => {
+     onClick: (e) => {
         this.open(Events.isKeyboard(e));
-        if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
+        if (iconButtonElement.props.onClick) iconButtonElement.props.onClick(e);
       }.bind(this),
       ref: this.state.iconButtonRef,
     });
@@ -127,7 +127,7 @@ let IconMenu = React.createClass({
         onMouseLeave={onMouseLeave}
         onMouseEnter={onMouseEnter}
         onMouseUp={onMouseUp}
-        onTouchTap={onTouchTap}
+       onClick={onClick}
         style={mergedRootStyles}>
         {iconButton}
         <ReactTransitionGroup>{menu}</ReactTransitionGroup>

@@ -25,7 +25,7 @@ class DialogPage extends React.Component {
       '//Standard Actions\n' +
       'let standardActions = [\n' +
       '  { text: \'Cancel\' },\n' +
-      '  { text: \'Submit\', onTouchTap: this._onDialogSubmit, ref: \'submit\' }\n' +
+      '  { text: \'Submit\', onClick: this._onDialogSubmit, ref: \'submit\' }\n' +
       '];\n\n' +
       '<Dialog\n' +
       '  title="Dialog With Standard Actions"\n' +
@@ -39,11 +39,11 @@ class DialogPage extends React.Component {
       '  <FlatButton\n' +
       '    label="Cancel"\n' +
       '    secondary={true}\n' +
-      '    onTouchTap={this._handleCustomDialogCancel} />,\n' +
+      '    onClick={this._handleCustomDialogCancel} />,\n' +
       '  <FlatButton\n' +
       '    label="Submit"\n' +
       '    primary={true}\n' +
-      '    onTouchTap={this._handleCustomDialogSubmit} />\n' +
+      '    onClick={this._handleCustomDialogSubmit} />\n' +
       '];\n\n' +
       '<Dialog\n' +
       '  title="Dialog With Custom Actions"\n' +
@@ -158,7 +158,7 @@ class DialogPage extends React.Component {
 
     let standardActions = [
       { text: 'Cancel' },
-      { text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit' }
+      { text: 'Submit', onClick: this._onDialogSubmit, ref: 'submit' }
     ];
 
     let customActions = [
@@ -166,24 +166,24 @@ class DialogPage extends React.Component {
         key={1}
         label="Cancel"
         secondary={true}
-        onTouchTap={this._handleCustomDialogCancel} />,
+        onClick={this._handleCustomDialogCancel} />,
       <FlatButton
         key={2}
         label="Submit"
         primary={true}
-        onTouchTap={this._handleCustomDialogSubmit} />
+        onClick={this._handleCustomDialogSubmit} />
     ];
     let scrollableCustomActions = [
       <FlatButton
         key={1}
         label="Cancel"
         secondary={true}
-        onTouchTap={this._handleScrollableDialogCancel} />,
+        onClick={this._handleScrollableDialogCancel} />,
       <FlatButton
         key={2}
         label="Submit"
         primary={true}
-        onTouchTap={this._handleScrollableDialogSubmit} />
+        onClick={this._handleScrollableDialogSubmit} />
     ];
 
     return (
@@ -192,11 +192,11 @@ class DialogPage extends React.Component {
         code={code}
         componentInfo={componentInfo}>
 
-        <RaisedButton label="Standard Actions" onTouchTap={this._handleStandardDialogTouchTap} />
+        <RaisedButton label="Standard Actions" onClick={this._handleStandardDialogTouchTap} />
         <br/><br/>
-        <RaisedButton label="Custom Actions" onTouchTap={this._handleCustomDialogTouchTap} />
+        <RaisedButton label="Custom Actions" onClick={this._handleCustomDialogTouchTap} />
         <br/><br/>
-        <RaisedButton label="Scrollable Content And Custom Actions" onTouchTap={this._handleScrollableDialogTouchTap} />
+        <RaisedButton label="Scrollable Content And Custom Actions" onClick={this._handleScrollableDialogTouchTap} />
 
         <Dialog
           ref="standardDialog"

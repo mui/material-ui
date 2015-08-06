@@ -1,5 +1,5 @@
-let React = require('react/addons');
-let update = React.addons.update;
+let React = require('react');
+let update = require('react-addons-update');
 let Controllable = require('../mixins/controllable');
 let StylePropable = require('../mixins/style-propable');
 let AutoPrefix = require('../styles/auto-prefix');
@@ -271,9 +271,9 @@ let Menu = React.createClass({
     return React.cloneElement(child, {
       desktop: desktop,
       focusState: focusState,
-      onTouchTap: (e) => {
+     onClick: (e) => {
         this._handleMenuItemTouchTap(e, child);
-        if (child.props.onTouchTap) child.props.onTouchTap(e);
+        if (child.props.onClick) child.props.onClick(e);
       },
       ref: isFocused ? 'focusedMenuItem' : null,
       style: mergedChildrenStyles,

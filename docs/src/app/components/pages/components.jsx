@@ -31,11 +31,21 @@ class Components extends React.Component {
       { route: 'toolbars', text: 'Toolbars'},
     ];
 
+    const {children} = this.props;
+    if(!children) {
+      this.context.router.transitionTo('/components/appbar');
+    }
     return (
-      <PageWithNav menuItems={menuItems} />
+      <PageWithNav menuItems={menuItems}>
+        {children}
+      </PageWithNav>
     );
   }
 
 }
+
+Components.contextTypes = {
+  router: React.PropTypes.object
+};
 
 module.exports = Components;
