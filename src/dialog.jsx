@@ -243,7 +243,6 @@ let Dialog = React.createClass({
     let props = {
       key: key,
       secondary: true,
-      onClick: actionJSON.onClick,
       onClick: () => {
         if (actionJSON.onClick) {
           actionJSON.onClick.call(undefined);
