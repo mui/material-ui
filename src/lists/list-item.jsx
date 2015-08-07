@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const ColorManipulator = require('../utils/color-manipulator');
 const StylePropable = require('../mixins/style-propable');
 const Colors = require('../styles/colors');
@@ -278,7 +278,7 @@ const ListItem = React.createClass({
         onKeyboardFocus: this._handleRightIconButtonKeyboardFocus,
         onMouseEnter: this._handleRightIconButtonMouseEnter,
         onMouseLeave: this._handleRightIconButtonMouseLeave,
-        onTouchTap: this._handleRightIconButtonTouchTap,
+       onClick: this._handleRightIconButtonClick,
         onMouseDown: this._handleRightIconButtonMouseUp,
         onMouseUp: this._handleRightIconButtonMouseUp,
       };
@@ -288,7 +288,7 @@ const ListItem = React.createClass({
         rightIconButtonElement = this.state.open ?
           <IconButton><OpenIcon /></IconButton> :
           <IconButton><CloseIcon /></IconButton>;
-        rightIconButtonHandlers.onTouchTap = this._handleNestedListToggle;
+        rightIconButtonHandlers.onClick = this._handleNestedListToggle;
       }
 
       this._pushElement(
@@ -481,12 +481,12 @@ const ListItem = React.createClass({
     if (iconButton && iconButton.props.onMouseUp) iconButton.props.onMouseUp(e);
   },
 
-  _handleRightIconButtonTouchTap(e) {
+  _handleRightIconButtonClick(e) {
     const iconButton = this.props.rightIconButton;
 
     //Stop the event from bubbling up to the list-item
     e.stopPropagation();
-    if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(e);
+    if (iconButton && iconButton.props.onClick) iconButton.props.onClick(e);
   },
 
   _handleTouchStart(e) {

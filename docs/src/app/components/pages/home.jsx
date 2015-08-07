@@ -14,7 +14,7 @@ let HomePage = React.createClass({
   mixins: [StylePropable, StyleResizable],
 
   contextTypes: {
-    router: React.PropTypes.func
+    router: React.PropTypes.object
   },
 
   render() {
@@ -107,7 +107,7 @@ let HomePage = React.createClass({
             <RaisedButton
               className="demo-button"
               label="Demo"
-              onTouchTap={this._onDemoClick}
+              onClick={this._onDemoClick}
               linkButton={true}
               style={styles.demoStyle}
               labelStyle={styles.label}/>

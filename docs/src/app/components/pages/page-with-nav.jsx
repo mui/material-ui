@@ -1,6 +1,5 @@
 let React = require('react');
 let Router = require('react-router');
-let RouteHandler = Router.RouteHandler;
 let { Menu, Mixins, Styles } = require('material-ui');
 
 let { Spacing, Colors } = Styles;
@@ -12,7 +11,7 @@ let PageWithNav = React.createClass({
   mixins: [StyleResizable, StylePropable],
 
   contextTypes: {
-    router: React.PropTypes.func
+    router: React.PropTypes.object
   },
 
   propTypes: {
@@ -65,7 +64,7 @@ let PageWithNav = React.createClass({
     return (
       <div style={styles.root}>
         <div style={styles.content}>
-          <RouteHandler />
+          {this.props.children}
         </div>
         <div style={styles.secondaryNav}>
           <Menu
@@ -79,18 +78,24 @@ let PageWithNav = React.createClass({
     );
   },
 
+  _getCurrentRoute(){
+    let pathname = this.context.router.state.location.pathname;
+    let currentRoute = pathname[0] === "/" ? pathname.split("/")[1] : pathname.split("/")[0];
+    return currentRoute;
+  },
+
   _getSelectedIndex() {
     let menuItems = this.props.menuItems;
     let currentItem;
 
     for (let i = menuItems.length - 1; i >= 0; i--) {
       currentItem = menuItems[i];
-      if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
+      if (currentItem.route && this.context.router.isActive(`/${this._getCurrentRoute()}/${currentItem.route}`)) return i;
     }
   },
 
   _onMenuItemClick(e, index, item) {
-    this.context.router.transitionTo(item.route);
+    this.context.router.transitionTo(`/${this._getCurrentRoute()}/${item.route}`);
   }
 
 });

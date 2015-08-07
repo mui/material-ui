@@ -21,7 +21,7 @@ class SnackbarPage extends React.Component {
       '  message="Event added to your calendar"\n' +
       '  action="undo"\n' +
       '  autoHideDuration={this.state.autoHideDuration}\n' +
-      '  onActionTouchTap={this._handleAction}/>\n\n' +
+      '  onActionClick={this._handleAction}/>\n\n' +
       '//Somewhere in our code\n' +
       '_handleAction() {\n' +
       '  //We can add more code to this function, but for now we\'ll just include an alert.\n' +
@@ -83,7 +83,7 @@ class SnackbarPage extends React.Component {
         name: 'Events',
         infoArray: [
           {
-            name: 'onActionTouchTap',
+            name: 'onActionClick',
             header: 'function(e)',
             desc: 'Fired when the action button is touchtapped.'
           }
@@ -98,7 +98,7 @@ class SnackbarPage extends React.Component {
         componentInfo={componentInfo}>
 
         <RaisedButton
-          onTouchTap={this._handleClick}
+          onClick={this._handleClick}
           label="Add to my calendar" />
 
         <br />
@@ -113,7 +113,7 @@ class SnackbarPage extends React.Component {
           message="Event added to your calendar"
           action="undo"
           autoHideDuration={this.state.autoHideDuration}
-          onActionTouchTap={this._handleAction} />
+          onActionClick={this._handleAction} />
 
       </ComponentDoc>
     );

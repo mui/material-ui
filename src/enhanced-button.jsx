@@ -1,6 +1,6 @@
-const React = require('react/addons');
-const createFragment = React.addons.createFragment;
-const PureRenderMixin = React.addons.PureRenderMixin;
+const React = require('react');
+const createFragment = require('react-addons-create-fragment');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const StylePropable = require('./mixins/style-propable');
 const Colors = require('./styles/colors');
 const KeyCode = require('./utils/key-code');
@@ -40,7 +40,7 @@ const EnhancedButton = React.createClass({
     onKeyboardFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
     onKeyUp: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
+    onClick: React.PropTypes.func,
     tabIndex: React.PropTypes.number,
   },
 
@@ -52,7 +52,7 @@ const EnhancedButton = React.createClass({
       onKeyboardFocus: () => {},
       onKeyDown: () => {},
       onKeyUp: () => {},
-      onTouchTap: () => {},
+      onClick: () => {},
       tabIndex: 0,
       type: 'button',
     };
@@ -111,7 +111,7 @@ const EnhancedButton = React.createClass({
       onFocus,
       onKeyUp,
       onKeyDown,
-      onTouchTap,
+      onClick,
       style,
       tabIndex,
       type,
@@ -148,7 +148,7 @@ const EnhancedButton = React.createClass({
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
-      onTouchTap: this._handleTouchTap,
+      onClick: this._handleTouchTap,
       onKeyUp: this._handleKeyUp,
       onKeyDown: this._handleKeyDown,
       tabIndex: tabIndex,
@@ -281,7 +281,7 @@ const EnhancedButton = React.createClass({
     if (!this.props.disabled) {
       tabPressed = false;
       this.removeKeyboardFocus(e);
-      this.props.onTouchTap(e);
+      this.props.onClick(e);
     }
   },
 

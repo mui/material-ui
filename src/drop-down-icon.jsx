@@ -88,7 +88,7 @@ let DropDownIcon = React.createClass({
 
     return (
       <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>
-          <div onTouchTap={this._onControlClick}>
+          <div onClick={this._onControlClick}>
               <FontIcon
                 className={iconClassName}
                 style={iconStyle}>{this.props.iconLigature}</FontIcon>

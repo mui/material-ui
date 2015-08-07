@@ -41,7 +41,7 @@ let Tab = React.createClass({
     if (this.props.selected) styles.opacity = '1';
 
     return (
-      <div style={styles} onTouchTap={this.handleTouchTap} routeName={this.props.route}>
+      <div style={styles} onClick={this.handleTouchTap} routeName={this.props.route}>
         {this.props.label}
       </div>
     );

@@ -1,5 +1,4 @@
-const React = require('react/addons');
-const update = React.addons.update;
+const update = require('react-addons-update');
 
 function mergeSingle(objA, objB) {
   if (!objA) return objB;

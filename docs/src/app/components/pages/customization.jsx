@@ -10,12 +10,21 @@ class Customization extends React.Component {
       { route: 'inline-styles', text: 'Inline Styles'},
       { route: 'colors', text: 'Colors'}
     ];
-
+    const {children} = this.props;
+    if(!children) {
+      this.context.router.transitionTo('/customization/themes');
+    }
     return (
-      <PageWithNav menuItems={menuItems} />
+      <PageWithNav menuItems={menuItems}>
+        {children}
+      </PageWithNav>
     );
   }
 
 }
+
+Customization.contextTypes = {
+  router: React.PropTypes.object
+};
 
 module.exports = Customization;

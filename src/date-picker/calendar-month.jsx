@@ -65,7 +65,7 @@ let CalendarMonth = React.createClass({
         <DayButton
           key={'db' + i + j}
           date={day}
-          onTouchTap={this._handleDayTouchTap}
+          onClick={this._handleDayTouchTap}
           selected={selected}
           disabled={disabled} />
       );

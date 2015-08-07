@@ -97,14 +97,14 @@ class AppBarPage extends React.Component {
         name: 'Events',
         infoArray: [
           {
-            name: 'onLeftIconButtonTouchTap',
-            header: 'AppBar.onLeftIconButtonTouchTap(e)',
+            name: 'onLeftIconButtonClick',
+            header: 'AppBar.onLeftIconButtonClick(e)',
             desc: 'Callback function for when the left icon is selected via ' +
                   'a touch tap.'
           },
           {
-            name: 'onRightIconButtonTouchTap',
-            header: 'AppBar.onRightIconButtonTouchTap(e)',
+            name: 'onRightIconButtonClick',
+            header: 'AppBar.onRightIconButtonClick(e)',
             desc: 'Callback function for when the right icon is selected via ' +
                   'a touch tap.'
           }
