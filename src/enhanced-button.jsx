@@ -204,8 +204,7 @@ const EnhancedButton = React.createClass({
     let childrenFragments = {};
 
     //Focus Ripple
-    if (isKeyboardFocused && !disabled &&
-      !disableFocusRipple && !disableKeyboardFocus) {
+    if (!disabled && !disableFocusRipple && !disableKeyboardFocus) {
       childrenFragments.focusRipple = (
         <FocusRipple
           color={focusRippleColor}
