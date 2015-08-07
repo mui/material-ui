@@ -3,6 +3,7 @@ const createFragment = React.addons.createFragment;
 const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('./mixins/style-propable');
 const Colors = require('./styles/colors');
+const Children = require('./utils/children');
 const KeyCode = require('./utils/key-code');
 const FocusRipple = require('./ripples/focus-ripple');
 const TouchRipple = require('./ripples/touch-ripple');
@@ -201,36 +202,31 @@ const EnhancedButton = React.createClass({
       touchRippleOpacity,
     } = this.props;
     const { isKeyboardFocused } = this.state;
-    let childrenFragments = {};
 
     //Focus Ripple
-    if (!disabled && !disableFocusRipple && !disableKeyboardFocus) {
-      childrenFragments.focusRipple = (
-        <FocusRipple
-          color={focusRippleColor}
-          opacity={focusRippleOpacity}
-          show={isKeyboardFocused}
-        />
-      );
-    }
+    const focusRipple = !disabled && !disableFocusRipple && !disableKeyboardFocus ? (
+      <FocusRipple
+        color={focusRippleColor}
+        opacity={focusRippleOpacity}
+        show={isKeyboardFocused}
+      />
+    ) : undefined;
 
     //Touch Ripple
-    if (!disabled && !disableTouchRipple) {
-      childrenFragments.touchRipple = (
-        <TouchRipple
-          centerRipple={centerRipple}
-          color={touchRippleColor}
-          opacity={touchRippleOpacity}>
-            {children}
-        </TouchRipple>
-      );
+    const touchRipple = !disabled && !disableTouchRipple ? (
+      <TouchRipple
+        centerRipple={centerRipple}
+        color={touchRippleColor}
+        opacity={touchRippleOpacity}>
+          {children}
+      </TouchRipple>
+    ) : undefined;
 
-    //Original Children
-    } else {
-      childrenFragments.originalChildren = children;
-    }
-
-    return createFragment(childrenFragments);
+    return Children.create({
+      focusRipple,
+      touchRipple,
+      children: touchRipple ? undefined : children,
+    });
   },
 
   _handleKeyDown(e) {
