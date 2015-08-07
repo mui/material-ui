@@ -69,7 +69,15 @@ class GetStarted extends React.Component {
         '@import "node_modules/material-ui/src/less/scaffolding.less";\n\n' +
         '//Define a custom less file to override\n//any variables defined in scaffolding.less\n' +
         '@import "my-custom-overrides.less";\n\n' +
-        '@import "node_modules/material-ui/src/less/components.less";';
+        '@import "node_modules/material-ui/src/less/components.less";',
+
+      usageNotesCode =
+        'let injectTapEventPlugin = require("react-tap-event-plugin");\n\n' +
+        '//Needed for onTouchTap\n' +
+        '//Can go away when react 1.0 release\n' +
+        '//Check this repo:\n' +
+        '//https://github.com/zilverline/react-tap-event-plugin\n' +
+        'injectTapEventPlugin();\n';
 
     let styles = this.getStyles();
 
@@ -90,6 +98,16 @@ class GetStarted extends React.Component {
             Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>.
             After npm install, you will find all the .jsx files in the /src folder and their compiled versions in the /lib folder.
           </p>
+
+          <h3 style={styles.title}>React-Tap-Event-Plugin</h3>
+          <p>
+            Some components use <a href="https://github.com/zilverline/react-tap-event-plugin">react-tap-event-plugin</a> to
+            listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
+            sure to inject this plugin at the start of your app.
+          </p>
+          <Paper style={styles.codeExample}>
+            <CodeBlock>{usageNotesCode}</CodeBlock>
+          </Paper>
 
           <h3 style={styles.title}>Roboto Font</h3>
           <p>
