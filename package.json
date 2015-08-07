@@ -1,7 +1,7 @@
 {
-  "name": "material-ui-io",
-  "author": "juhaelee",
-  "version": "0.0.2",
+  "name": "material-ui",
+  "author": "Call-em-all Engineering Team",
+  "version": "0.10.2",
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
@@ -22,11 +22,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/juhaelee/material-ui-io.git"
+    "url": "https://github.com/callemall/material-ui.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/juhaelee/material-ui-io/issues"
+    "url": "https://github.com/callemall/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
