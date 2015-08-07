@@ -1,6 +1,7 @@
 node_modules
 npm-debug.log
 build
+coverage
 
 # Exclude compiled files
 lib

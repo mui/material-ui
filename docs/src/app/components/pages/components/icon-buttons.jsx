@@ -39,7 +39,7 @@ class IconButtonsPage extends React.Component {
           <li>
             For svg icons: Insert the svg component as a child of icon
             buttons. This is the method we are using. <a title="Source
-            code for ActionGrade" href="https://github.com/mmrtnz/material-ui/blob/font-icon-components/docs/src/app/components/svg-icons/action-grade.jsx">
+            code for ActionGrade" href="https://github.com/callemall/material-ui/blob/master/src/svg-icons/action/grade.jsx">
             View our source</a> to see how ActionGrade was created
             using mui.SvgIcon.
           </li>
