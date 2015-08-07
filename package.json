@@ -1,7 +1,7 @@
 {
   "name": "material-ui-io",
   "author": "juhaelee",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
