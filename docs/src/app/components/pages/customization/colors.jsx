@@ -145,7 +145,8 @@ let ColorsPage = React.createClass({
     return (
       <li style={styles}>{blockTitle}{bgColorText}</li>
     );
-  };
+  }
+
 });
 
 module.exports = ColorsPage;
