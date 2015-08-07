@@ -1,5 +1,4 @@
 const React = require('react/addons');
-const createFragment = React.addons.createFragment;
 const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('./mixins/style-propable');
 const Colors = require('./styles/colors');
@@ -204,7 +203,7 @@ const EnhancedButton = React.createClass({
     const { isKeyboardFocused } = this.state;
 
     //Focus Ripple
-    const focusRipple = !disabled && !disableFocusRipple && !disableKeyboardFocus ? (
+    const focusRipple = isKeyboardFocused && !disabled && !disableFocusRipple && !disableKeyboardFocus ? (
       <FocusRipple
         color={focusRippleColor}
         opacity={focusRippleOpacity}
@@ -218,7 +217,7 @@ const EnhancedButton = React.createClass({
         centerRipple={centerRipple}
         color={touchRippleColor}
         opacity={touchRippleOpacity}>
-          {children}
+        {children}
       </TouchRipple>
     ) : undefined;
 

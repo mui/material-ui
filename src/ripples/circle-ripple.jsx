@@ -22,16 +22,20 @@ const CircleRipple = React.createClass({
     };
   },
 
-  componentDidEnter() {
-    let style = React.findDOMNode(this).style;
-    AutoPrefix.set(style, 'transform', 'scale(1)');
+  componentWillAppear(callback) {
+    this._initializeAnimation(callback);
   },
 
   componentWillEnter(callback) {
-    let style = React.findDOMNode(this).style;
-    style.opacity = this.props.opacity;
-    AutoPrefix.set(style, 'transform', 'scale(0)');
-    setTimeout(callback, 0);
+    this._initializeAnimation(callback);
+  },
+
+  componentDidAppear() {
+    this._animate();
+  },
+
+  componentDidEnter() {
+    this._animate();
   },
 
   componentWillLeave(callback) {
@@ -66,6 +70,18 @@ const CircleRipple = React.createClass({
     return (
       <div {...other} style={mergedStyles} />
     );
+  },
+
+  _animate() {
+    let style = React.findDOMNode(this).style;
+    AutoPrefix.set(style, 'transform', 'scale(1)');
+  },
+
+  _initializeAnimation(callback) {
+    let style = React.findDOMNode(this).style;
+    style.opacity = this.props.opacity;
+    AutoPrefix.set(style, 'transform', 'scale(0)');
+    setTimeout(callback, 0);
   },
 
 });
