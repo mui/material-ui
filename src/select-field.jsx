@@ -18,6 +18,7 @@ let SelectField = React.createClass({
     selectFieldRoot: React.PropTypes.string,
     underlineStyle: React.PropTypes.object,
     labelStyle: React.PropTypes.object,
+    errorStyle: React.PropTypes.object,
     hintText: React.PropTypes.string,
     id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
@@ -65,6 +66,7 @@ let SelectField = React.createClass({
         borderTop: 'none',
       },
       input: {},
+      error: {},
     };
 
     if (!this.props.floatingLabelText) {
@@ -77,6 +79,9 @@ let SelectField = React.createClass({
         styles.root.top = -8;
       }
     }
+    else {
+        styles.error.bottom = -15;
+    }
 
     return styles;
   },
@@ -88,6 +93,7 @@ let SelectField = React.createClass({
       labelStyle,
       iconStyle,
       underlineStyle,
+      errorStyle,
       selectFieldRoot,
       menuItems,
       disabled,
@@ -104,6 +110,7 @@ let SelectField = React.createClass({
       hintText: (!hintText && !floatingLabelText) ? ' ' : hintText,
       fullWidth: fullWidth,
       errorText: errorText,
+      errorStyle: this.mergeAndPrefix(styles.error, errorStyle),
     };
     let dropDownMenuProps = {
       menuItems: menuItems,
