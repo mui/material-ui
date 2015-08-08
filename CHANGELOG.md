@@ -1,3 +1,33 @@
+## 0.10.3
+###### _Aug 8, 2015_
+
+##### General
+- We've set up the project to perform automated tests - now we just need to increase our test coverage. :) (#1331)
+- The style auto-prefixer now caches browser test results so that it only has to perform them once.
+
+##### New Components
+- RefreshIndicator (#1312)
+
+##### Component Fixes / Enhancements
+- AppBar - showMenuIconButton now only affects the icon next to the title (#1295, #1182)
+- CardMedia - CardMedia children styles are now being properly merged (#1306)
+- Dialog - fixed a bug that caused the dialog height to be incorrect on window resize (#1305)
+- FloatingActionButton - Added backgroundColor and disabledColor props (#1329)
+- FocusRipples now only get rendered when needed.
+- IconMenu - Added isOpen() (#1288)
+- LeftNav
+  - Added menuItemClassName, menuItemClassNameSubheader, menuItemClassNameLink props (#1318)
+  - Fixed a display problem that cuased icons to not be the correct color (#1324)
+- ListItem - fixed incorrect styling on disabled list items (#1350)
+- SelectField
+  - Fixed a bug that happened when select field was controlled and the value was undefined (#1227)
+  - Fixed error text positioning (#1341, #1111)
+  - Added errorStyle prop (#1341)
+- Snackbar - Clickaway is now properly bound when openOnMount is true (#1327)
+- Tabs - Added contentContainerClassName prop (#1285)
+- TextField - Added underlineStyle prop (#1343)
+- TimePicker - Added pedantic prop (#1275, #1173)
+
 ## 0.10.2
 ###### _Jul 29, 2015_
 
