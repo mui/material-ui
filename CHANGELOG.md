@@ -1,3 +1,9 @@
+## 0.10.4
+###### _Aug 8, 2015_
+
+##### Component Fixes / Enhancements
+- TouchRipple - Fixed a bug that caused onClick to not fire on the first click (#1370)
+
 ## 0.10.3
 ###### _Aug 8, 2015_
 
