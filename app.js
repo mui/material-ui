@@ -55842,7 +55842,6 @@ var React = require('react/addons');
 var PureRenderMixin = React.addons.PureRenderMixin;
 var ReactTransitionGroup = React.addons.TransitionGroup;
 var StylePropable = require('../mixins/style-propable');
-var Children = require('../utils/children');
 var Dom = require('../utils/dom');
 var ImmutabilityHelper = require('../utils/immutability-helper');
 var CircleRipple = require('./circle-ripple');
@@ -55895,11 +55894,6 @@ var TouchRipple = React.createClass({
       );
     }
 
-    var divChildren = Children.create({
-      rippleGroup: rippleGroup,
-      children: children
-    });
-
     return React.createElement(
       'div',
       {
@@ -55908,7 +55902,8 @@ var TouchRipple = React.createClass({
         onMouseLeave: this._handleMouseLeave,
         onTouchStart: this._handleTouchStart,
         onTouchEnd: this._handleTouchEnd },
-      divChildren
+      rippleGroup,
+      children
     );
   },
 
@@ -56002,7 +55997,7 @@ var TouchRipple = React.createClass({
 
 module.exports = TouchRipple;
 
-},{"../mixins/style-propable":443,"../utils/children":539,"../utils/dom":543,"../utils/immutability-helper":546,"./circle-ripple":452,"react/addons":217}],456:[function(require,module,exports){
+},{"../mixins/style-propable":443,"../utils/dom":543,"../utils/immutability-helper":546,"./circle-ripple":452,"react/addons":217}],456:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
