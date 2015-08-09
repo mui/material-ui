@@ -2,7 +2,6 @@ const React = require('react/addons');
 const PureRenderMixin = React.addons.PureRenderMixin;
 const ReactTransitionGroup = React.addons.TransitionGroup;
 const StylePropable = require('../mixins/style-propable');
-const Children = require('../utils/children');
 const Dom = require('../utils/dom');
 const ImmutabilityHelper = require('../utils/immutability-helper');
 const CircleRipple = require('./circle-ripple');
@@ -59,11 +58,6 @@ const TouchRipple = React.createClass({
       );
     }
 
-    const divChildren = Children.create({
-      rippleGroup,
-      children,
-    });
-
     return (
       <div
         onMouseUp={this._handleMouseUp}
@@ -71,7 +65,8 @@ const TouchRipple = React.createClass({
         onMouseLeave={this._handleMouseLeave}
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}>
-        {divChildren}
+        {rippleGroup}
+        {children}
       </div>
     );
   },
