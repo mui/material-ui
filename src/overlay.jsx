@@ -43,7 +43,7 @@ let Overlay = React.createClass({
   getStyles() {
     let styles = {
       root: {
-        position: 'fixed',
+        position: 'absolute',
         height: '100%',
         width: '100%',
         zIndex: 9,

@@ -71,6 +71,7 @@ let Dialog = React.createClass({
 
   propTypes: {
     actions: React.PropTypes.array,
+    windowHeight: React.PropTypes.number,
     autoDetectWindowHeight: React.PropTypes.bool,
     autoScrollBodyContent: React.PropTypes.bool,
     bodyStyle: React.PropTypes.object,
@@ -122,7 +123,7 @@ let Dialog = React.createClass({
     let spacing = this.context.muiTheme.spacing;
 
     let main = {
-      position: 'fixed',
+      position: 'absolute',
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       zIndex: 10,
@@ -302,7 +303,13 @@ let Dialog = React.createClass({
 
   _positionDialog() {
     if (this.state.open) {
-      let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      let windowHeight = this.props.windowHeight;
+      let clientHeight = (
+        windowHeight ||
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeigh
+      );
       let container = this.getDOMNode();
       let dialogWindow = this.refs.dialogWindow.getDOMNode();
       let dialogContent = this.refs.dialogContent.getDOMNode();
@@ -328,7 +335,7 @@ let Dialog = React.createClass({
         let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + 64);
 
         if (this.props.title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
-        if (this.props.actions) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
+        if (this.props.actions.length) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
 
         dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
       }
