@@ -24,8 +24,10 @@ let CardActions = React.createClass({
       });
     });
 
+    let mergedStyles = this.mergeAndPrefix(styles.root, this.props.style);
+
     return (
-      <div {...this.props} style={styles.root}>
+      <div {...this.props} style={mergedStyles}>
         {children}
       </div>
     );
