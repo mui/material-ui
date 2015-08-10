@@ -7,7 +7,7 @@ module.exports = function(config) {
     frameworks: [ 'browserify', 'mocha', 'chai-sinon' ],
 
     files: [
-      'node_modules/babel/node_modules/babel-core/browser-polyfill.js',
+      'node_modules/babel-core/browser-polyfill.js',
       'test/**/*spec.js'
     ],
 
