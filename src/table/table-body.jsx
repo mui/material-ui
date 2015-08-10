@@ -45,18 +45,17 @@ let TableBody = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.rowData !== this.props.rowData) {
-      this.setState({
-        selectedRows: this._calculatePreselectedRows(nextProps),
-      });
-    } else if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
-      let lastSelectedRow = (this.state.selectedRows.length) ?
-        this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
+    let newState = {};
 
-      this.setState({
-        selectedRows: [lastSelectedRow],
-      });
+    if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
+      let lastSelectedRow = this.state.selectedRows.length ? this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
+
+      newState.selectedRows = [lastSelectedRow];
+    } else {
+      newState.selectedRows = this._calculatePreselectedRows(nextProps);
     }
+
+    this.setState(newState);
   },
 
   componentClickAway() {
