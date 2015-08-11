@@ -86,6 +86,16 @@ class SnackbarPage extends React.Component {
             name: 'onActionTouchTap',
             header: 'function(e)',
             desc: 'Fired when the action button is touchtapped.'
+          },
+          {
+            name: 'onDismiss',
+            header: 'function()',
+            desc: 'Fired when the snackbar is dismissed.'
+          },
+          {
+            name: 'onShow',
+            header: 'function()',
+            desc: 'Fired when the snackbar is shown.'
           }
         ]
       }
@@ -104,7 +114,7 @@ class SnackbarPage extends React.Component {
         <br />
 
         <TextField
-          floatingLabelText="Auto Hide Duration"
+          floatingLabelText="Auto Hide Duration in ms"
           value={this.state.autoHideDuration}
           onChange={this._updateAutoHideDuration} />
 
