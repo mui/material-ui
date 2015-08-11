@@ -42,6 +42,11 @@ let ThemeManager = () => {
     setComponentThemes(overrides) {
       this.component = Extend(this.component, overrides);
     },
+
+    setDirection(direction) {
+      const isRtl = direction === 'rtl';
+      this.isRtl = isRtl;
+    },
   };
 };
 
