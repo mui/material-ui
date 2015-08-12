@@ -298,7 +298,7 @@ let Menu = React.createClass({
     return (
       <Paper
         ref="paperContainer"
-        tabIndex='0'
+        tabIndex="0"
         onKeyDown={this._onKeyDown}
         zDepth={this.props.zDepth}
         style={this.mergeAndPrefix(
