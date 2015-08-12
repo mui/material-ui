@@ -7,13 +7,13 @@ const GrandChildComponent = React.createClass({
   mixins: [ContextPure],
 
   contextTypes: {
-    testContext: React.PropTypes.object,
+    muiTheme: React.PropTypes.object,
   },
 
   statics: {
     getContextProps(context) {
       return {
-        grandChildContextProp: context.testContext.grandChildContextProp,
+        grandChildThemeProp: context.muiTheme.grandChildThemeProp,
       }
     },
   },
@@ -34,7 +34,7 @@ const ChildComponent = React.createClass({
   mixins: [ContextPure],
 
   contextTypes: {
-    testContext: React.PropTypes.object,
+    muiTheme: React.PropTypes.object,
   },
 
   getInitialState: function() {
@@ -46,7 +46,7 @@ const ChildComponent = React.createClass({
   statics: {
     getContextProps(context) {
       return {
-        childContextProp: context.testContext.childContextProp,
+        childThemeProp: context.muiTheme.childThemeProp,
       }
     },
     getChildrenClasses() {
@@ -79,14 +79,15 @@ const ChildComponent = React.createClass({
 const ParentComponent = React.createClass({
 
   childContextTypes: {
-    testContext: React.PropTypes.object,
+    muiTheme: React.PropTypes.object,
   },
 
   getChildContext() {
     return {
-      testContext: {
-        childContextProp: this.state.childContextProp,
-        grandChildContextProp: this.state.grandChildContextProp,
+      muiTheme: {
+        childThemeProp: this.state.childThemeProp,
+        grandChildThemeProp: this.state.grandChildThemeProp,
+        static: this.state.staticTheme,
       },
     };
   },
@@ -94,8 +95,9 @@ const ParentComponent = React.createClass({
   getInitialState() {
     return {
       childProp: 0,
-      childContextProp: 0,
-      grandChildContextProp: 0,
+      childThemeProp: 0,
+      grandChildThemeProp: 0,
+      staticTheme: false,
     };
   },
 
@@ -118,16 +120,22 @@ const ParentComponent = React.createClass({
     return this.renderCount;
   },
 
+  setStaticTheme(value) {
+    this.setState({
+      staticTheme: value,
+    });
+  },
+
   updateChildState(childState) {
     this.refs.child.updateState(childState);
   },
 
-  updateChildContextProp(childContextProp) {
-    this.setState({childContextProp});
+  updateChildContextProp(childThemeProp) {
+    this.setState({childThemeProp});
   },
 
-  updateGrandChildContextProp(grandChildContextProp) {
-    this.setState({grandChildContextProp});
+  updateGrandChildContextProp(grandChildThemeProp) {
+    this.setState({grandChildThemeProp});
   },
 
   updateChildProp(childProp) {
@@ -142,53 +150,115 @@ describe('Mixin-ContextPure', () => {
     parentElement = TestUtils.renderIntoDocument(<ParentComponent />);
   });
 
-  it('should not render when context is updated but did not change', () => {
-    parentElement.updateChildContextProp(0);
-    parentElement.getRenderCount().should.equal(2);
-    parentElement.getChildRenderCount().should.equal(1);
-    parentElement.getGrandChildRenderCount().should.equal(1);
+  describe('when muiTheme.static not set', () => {
+
+    it('should not render when context is updated but did not change', () => {
+      parentElement.updateChildContextProp(0);
+      parentElement.getRenderCount().should.equal(2);
+      parentElement.getChildRenderCount().should.equal(1);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should not render when prop is updated but did not change', () => {
+      parentElement.updateChildProp(0);
+      parentElement.getRenderCount().should.equal(2);
+      parentElement.getChildRenderCount().should.equal(1);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should not render when state is updated but did not change', () => {
+      parentElement.updateChildState(0);
+      parentElement.getRenderCount().should.equal(1);
+      parentElement.getChildRenderCount().should.equal(1);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should render when context props change', () => {
+      parentElement.updateChildContextProp(1);
+      parentElement.getRenderCount().should.equal(2);
+      parentElement.getChildRenderCount().should.equal(2);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should render when props change', () => {
+      parentElement.updateChildProp(1);
+      parentElement.getRenderCount().should.equal(2);
+      parentElement.getChildRenderCount().should.equal(2);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should render when state change', () => {
+      parentElement.updateChildState(1);
+      parentElement.getRenderCount().should.equal(1);
+      parentElement.getChildRenderCount().should.equal(2);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should render grandchild when grandchild context props change', () => {
+      parentElement.updateGrandChildContextProp(1);
+      parentElement.getRenderCount().should.equal(2);
+      parentElement.getChildRenderCount().should.equal(2);
+      parentElement.getGrandChildRenderCount().should.equal(2);
+    });
   });
 
-  it('should not render when prop is updated but did not change', () => {
-    parentElement.updateChildProp(0);
-    parentElement.getRenderCount().should.equal(2);
-    parentElement.getChildRenderCount().should.equal(1);
-    parentElement.getGrandChildRenderCount().should.equal(1);
+  describe('when muiTheme.static is true', () => {
+    beforeEach(() => {
+      parentElement.setStaticTheme(true);
+    });
+
+    it('should not render when context is updated but did not change', () => {
+      parentElement.updateChildContextProp(1);
+      parentElement.getRenderCount().should.equal(3);
+      parentElement.getChildRenderCount().should.equal(1);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should not render when prop is updated but did not change', () => {
+      parentElement.updateChildProp(0);
+      parentElement.getRenderCount().should.equal(3);
+      parentElement.getChildRenderCount().should.equal(1);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should not render when state is updated but did not change', () => {
+      parentElement.updateChildState(0);
+      parentElement.getRenderCount().should.equal(2);
+      parentElement.getChildRenderCount().should.equal(1);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should not render when context props change', () => {
+      parentElement.updateChildContextProp(1);
+      parentElement.getRenderCount().should.equal(3);
+      parentElement.getChildRenderCount().should.equal(1);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should not render grandchild when grandchild context props change', () => {
+      parentElement.updateGrandChildContextProp(1);
+      parentElement.getRenderCount().should.equal(3);
+      parentElement.getChildRenderCount().should.equal(1);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should render when props change', () => {
+      parentElement.updateChildProp(1);
+      parentElement.getRenderCount().should.equal(3);
+      parentElement.getChildRenderCount().should.equal(2);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+    it('should render when state change', () => {
+      parentElement.updateChildState(1);
+      parentElement.getRenderCount().should.equal(2);
+      parentElement.getChildRenderCount().should.equal(2);
+      parentElement.getGrandChildRenderCount().should.equal(1);
+    });
+
+
   });
 
-  it('should not render when state is updated but did not change', () => {
-    parentElement.updateChildState(0);
-    parentElement.getRenderCount().should.equal(1);
-    parentElement.getChildRenderCount().should.equal(1);
-    parentElement.getGrandChildRenderCount().should.equal(1);
-  });
 
-  it('should render when context props change', () => {
-    parentElement.updateChildContextProp(1);
-    parentElement.getRenderCount().should.equal(2);
-    parentElement.getChildRenderCount().should.equal(2);
-    parentElement.getGrandChildRenderCount().should.equal(1);
-  });
-
-  it('should render when props change', () => {
-    parentElement.updateChildProp(1);
-    parentElement.getRenderCount().should.equal(2);
-    parentElement.getChildRenderCount().should.equal(2);
-    parentElement.getGrandChildRenderCount().should.equal(1);
-  });
-
-  it('should render when state change', () => {
-    parentElement.updateChildState(1);
-    parentElement.getRenderCount().should.equal(1);
-    parentElement.getChildRenderCount().should.equal(2);
-    parentElement.getGrandChildRenderCount().should.equal(1);
-  });
-
-  it('should render grandchild when grandchild context props change', () => {
-    parentElement.updateGrandChildContextProp(1);
-    parentElement.getRenderCount().should.equal(2);
-    parentElement.getChildRenderCount().should.equal(2);
-    parentElement.getGrandChildRenderCount().should.equal(2);
-  });
 
 });

@@ -29,10 +29,16 @@ module.exports = {
 
   //Don't update if state, prop, and context are equal
   shouldComponentUpdate(nextProps, nextState, nextContext) {
+
+    const staticTheme = (
+      this.context.muiTheme &&
+      this.context.muiTheme.static
+    );
+
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.state, nextState) ||
-      !contextPropsEqual(this.constructor, this.context, nextContext)
+      (!staticTheme && !contextPropsEqual(this.constructor, this.context, nextContext))
     );
   },
 
