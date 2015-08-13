@@ -1,7 +1,7 @@
 let React = require('react');
 let { RaisedButton, Snackbar, TextField } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
-
+let Code = require('snackbars-code');
 
 class SnackbarPage extends React.Component {
 
@@ -16,17 +16,6 @@ class SnackbarPage extends React.Component {
   }
 
   render() {
-    let code =
-      '<Snackbar\n' +
-      '  message="Event added to your calendar"\n' +
-      '  action="undo"\n' +
-      '  autoHideDuration={this.state.autoHideDuration}\n' +
-      '  onActionTouchTap={this._handleAction}/>\n\n' +
-      '//Somewhere in our code\n' +
-      '_handleAction() {\n' +
-      '  //We can add more code to this function, but for now we\'ll just include an alert.\n' +
-      '  alert("We removed the event from your calendar.");\n' +
-      '}';
 
     let componentInfo = [
       {
@@ -86,6 +75,16 @@ class SnackbarPage extends React.Component {
             name: 'onActionTouchTap',
             header: 'function(e)',
             desc: 'Fired when the action button is touchtapped.'
+          },
+          {
+            name: 'onDismiss',
+            header: 'function()',
+            desc: 'Fired when the snackbar is dismissed.'
+          },
+          {
+            name: 'onShow',
+            header: 'function()',
+            desc: 'Fired when the snackbar is shown.'
           }
         ]
       }
@@ -94,7 +93,7 @@ class SnackbarPage extends React.Component {
     return (
       <ComponentDoc
         name="Snackbar"
-        code={code}
+        code={Code}
         componentInfo={componentInfo}>
 
         <RaisedButton
@@ -104,7 +103,7 @@ class SnackbarPage extends React.Component {
         <br />
 
         <TextField
-          floatingLabelText="Auto Hide Duration"
+          floatingLabelText="Auto Hide Duration in ms"
           value={this.state.autoHideDuration}
           onChange={this._updateAutoHideDuration} />
 

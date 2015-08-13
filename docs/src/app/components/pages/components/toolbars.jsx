@@ -12,38 +12,11 @@ let {
   ToolbarSeparator,
   ToolbarTitle
 } = mui;
-
+let Code = require('toolbars-code');
 
 class ToolbarPage extends React.Component {
 
   render() {
-
-    let code =
-      'let filterOptions = [\n' +
-      '  { payload: \'1\', text: \'All Broadcasts\' },\n' +
-      '  { payload: \'2\', text: \'All Voice\' },\n' +
-      '  { payload: \'3\', text: \'All Text\' },\n' +
-      '  { payload: \'4\', text: \'Complete Voice\' },\n' +
-      '  { payload: \'5\', text: \'Complete Text\' },\n' +
-      '  { payload: \'6\', text: \'Active Voice\' },\n' +
-      '  { payload: \'7\', text: \'Active Text\' },\n' +
-      '];\n' +
-      'let iconMenuItems = [\n' +
-      '  { payload: \'1\', text: \'Download\' },\n' +
-      '  { payload: \'2\', text: \'More Info\' }\n' +
-      '];\n\n' +
-      '<Toolbar>\n' +
-      '  <ToolbarGroup key={0} float="left">\n' +
-      '    <DropDownMenu menuItems={filterOptions} />\n' +
-      '  </ToolbarGroup>\n' +
-      '  <ToolbarGroup key={1} float="right">\n' +
-      '    <ToolbarTitle text="Options" />\n' +
-      '    <FontIcon className="mui-icon-sort" />\n' +
-      '    <DropDownIcon iconClassName="icon-navigation-expand-more" menuItems={iconMenuItems} />\n' +
-      '    <ToolbarSeparator/>\n' +
-      '    <RaisedButton label="Create Broadcast" primary={true} />\n' +
-      '  </ToolbarGroup>\n' +
-      '</Toolbar>';
 
     let desc = 'Toolbars are collections of components stacked horizontally ' +
                'against each other. Toolbars provide greater versatility than ' +
@@ -114,7 +87,7 @@ class ToolbarPage extends React.Component {
     return (
       <ComponentDoc
         name="Toolbars"
-        code={code}
+        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
 

@@ -1,9 +1,12 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let ColorManipulator = require('./utils/color-manipulator');
-let Typography = require('./styles/typography');
-let EnhancedButton = require('./enhanced-button');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const Transitions = require('./styles/transitions');
+const Children = require('./utils/children');
+const ColorManipulator = require('./utils/color-manipulator');
+const ImmutabilityHelper = require('./utils/immutability-helper');
+const Typography = require('./styles/typography');
+const EnhancedButton = require('./enhanced-button');
+const FlatButtonLabel = require('./buttons/flat-button-label');
 
 
 function validateLabel (props, propName, componentName) {
@@ -13,10 +16,9 @@ function validateLabel (props, propName, componentName) {
   }
 }
 
+const FlatButton = React.createClass({
 
-let FlatButton = React.createClass({
-
-  mixins: [StylePropable],
+  mixins: [PureRenderMixin],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -28,8 +30,8 @@ let FlatButton = React.createClass({
     label: validateLabel,
     labelStyle: React.PropTypes.object,
     onKeyboardFocus: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     primary: React.PropTypes.bool,
     rippleColor: React.PropTypes.string,
@@ -39,6 +41,10 @@ let FlatButton = React.createClass({
   getDefaultProps() {
     return {
       labelStyle: {},
+      onKeyboardFocus: () => {},
+      onMouseEnter: () => {},
+      onMouseLeave: () => {},
+      onTouchStart: () => {},
     };
   },
 
@@ -50,8 +56,25 @@ let FlatButton = React.createClass({
     };
   },
 
+  getContextProps() {
+    const theme = this.context.muiTheme;
+    const buttonTheme = theme.component.button;
+    const flatButtonTheme = theme.component.flatButton;
+
+    return {
+      buttonColor: flatButtonTheme.color,
+      buttonHeight: buttonTheme.height,
+      buttonMinWidth: buttonTheme.minWidth,
+      disabledTextColor: flatButtonTheme.disabledTextColor,
+      primaryTextColor: flatButtonTheme.primaryTextColor,
+      secondaryTextColor: flatButtonTheme.secondaryTextColor,
+      textColor: flatButtonTheme.textColor,
+    };
+  },
+
   render() {
-    let {
+    const {
+      children,
       disabled,
       hoverColor,
       label,
@@ -67,22 +90,20 @@ let FlatButton = React.createClass({
       ...other,
       } = this.props;
 
-    let theme = this.context.muiTheme;
-    let buttonTheme = theme.component.button;
-    let flatButtonTheme = theme.component.flatButton;
+    const contextProps = this.getContextProps();
 
-    let defaultColor = disabled ? flatButtonTheme.disabledTextColor :
-      primary ? flatButtonTheme.primaryTextColor :
-      secondary ? flatButtonTheme.secondaryTextColor :
-      flatButtonTheme.textColor;
+    const defaultColor = disabled ? contextProps.disabledTextColor :
+      primary ? contextProps.primaryTextColor :
+      secondary ? contextProps.secondaryTextColor :
+      contextProps.textColor;
 
-    let defaultHoverColor = ColorManipulator.fade(ColorManipulator.lighten(defaultColor, 0.4), 0.15);
-    let defaultRippleColor = ColorManipulator.fade(defaultColor, 0.8);
-    let buttonHoverColor = hoverColor || defaultHoverColor;
-    let buttonRippleColor = rippleColor || defaultRippleColor;
-    let hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
+    const defaultHoverColor = ColorManipulator.fade(ColorManipulator.lighten(defaultColor, 0.4), 0.15);
+    const defaultRippleColor = ColorManipulator.fade(defaultColor, 0.8);
+    const buttonHoverColor = hoverColor || defaultHoverColor;
+    const buttonRippleColor = rippleColor || defaultRippleColor;
+    const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
 
-    let mergedRootStyles = this.mergeStyles({
+    const mergedRootStyles = ImmutabilityHelper.merge({
       color: defaultColor,
       transition: Transitions.easeOut(),
       fontSize: Typography.fontStyleButtonFontSize,
@@ -93,22 +114,23 @@ let FlatButton = React.createClass({
       userSelect: 'none',
       position: 'relative',
       overflow: 'hidden',
-      backgroundColor: hovered ? buttonHoverColor : flatButtonTheme.color,
-      lineHeight: buttonTheme.height + 'px',
-      minWidth: buttonTheme.minWidth,
+      backgroundColor: hovered ? buttonHoverColor : contextProps.buttonColor,
+      lineHeight: contextProps.buttonHeight + 'px',
+      minWidth: contextProps.buttonMinWidth,
       padding: 0,
       margin: 0,
       //This is need so that ripples do not bleed past border radius.
       //See: http://stackoverflow.com/questions/17298739
       transform: 'translate3d(0, 0, 0)',
-    }, this.props.style);
+    }, style);
 
-    let mergedLabelStyles = this.mergeAndPrefix({
-      position: 'relative',
-      padding: '0 ' + theme.spacing.desktopGutterLess + 'px',
-    }, labelStyle);
-
-    let labelElement = label ? <span style={mergedLabelStyles}>{label}</span> : null;
+    const labelElement = label ? (
+      <FlatButtonLabel label={label} style={labelStyle} />
+    ) : undefined;
+    const enhancedButtonChildren = Children.create({
+      labelElement,
+      children,
+    });
 
     return (
       <EnhancedButton
@@ -121,33 +143,30 @@ let FlatButton = React.createClass({
         onTouchStart={this._handleTouchStart}
         style={mergedRootStyles}
         touchRippleColor={buttonRippleColor}>
-        {labelElement}
-        {this.props.children}
+        {enhancedButtonChildren}
       </EnhancedButton>
     );
   },
 
   _handleKeyboardFocus(e, isKeyboardFocused) {
     this.setState({isKeyboardFocused: isKeyboardFocused});
-    if (this.props.onKeyboardFocus) {
-      this.props.onKeyboardFocus(e, isKeyboardFocused);
-    }
+    this.props.onKeyboardFocus(e, isKeyboardFocused);
   },
 
   _handleMouseEnter(e) {
     //Cancel hover styles for touch devices
     if (!this.state.touch) this.setState({hovered: true});
-    if (this.props.onMouseEnter) this.props.onMouseEnter(e);
+    this.props.onMouseEnter(e);
   },
 
   _handleMouseLeave(e) {
     this.setState({hovered: false});
-    if (this.props.onMouseLeave) this.props.onMouseLeave(e);
+    this.props.onMouseLeave(e);
   },
 
   _handleTouchStart(e) {
     this.setState({touch: true});
-    if (this.props.onTouchStart) this.props.onTouchStart(e);
+    this.props.onTouchStart(e);
   },
 
 });

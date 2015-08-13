@@ -3,6 +3,7 @@ let CodeExample = require('../../code-example/code-example');
 let {IconButton, Slider, Styles, Tab, Tabs } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let { Colors, Typography } = Styles;
+let Code = require('tabs-code');
 
 
 class TabsPage extends React.Component {
@@ -14,40 +15,6 @@ class TabsPage extends React.Component {
   }
 
   render(){
-    let code = `
-     //Uncontrolled Tabs
-     <Tabs>
-      <Tab label="Item One" >
-        (Tab content...)
-      </Tab>
-      <Tab label="Item Two" >
-        (Tab content...)
-      </Tab>
-      <Tab
-        label="Item Three"
-        route="home"
-        onActive={this._handleTabActive} />
-    </Tabs>
-
-    <IconButton
-      onClick={this._handleButtonClick.bind(this)}
-      iconClassName="material-icons">
-      home
-    </IconButton>
-
-    //Controlled Tabs using valueLink (passing value and onChange props works too!)
-    <Tabs
-      valueLink={{value: this.state.tabsValue, requestChange: this._handleTabsChange.bind(this)}}>
-      <Tab label="Tab A" value="a" >
-        (Tab content...)
-      </Tab>
-      <Tab label="Tab B" value="b">
-        (Tab content...)
-      </Tab>
-    </Tabs>
-
-    `;
-
     let desc = 'Tabs can now operate in two different modes: controlled and uncontrolled. ' +
       'The uncontrolled mode takes over automatically if no value prop is passed to your' +
       'Tabs and Tab components. If you want controllable tabs, passing a value to both the' +
@@ -182,7 +149,7 @@ class TabsPage extends React.Component {
     return (
       <ComponentDoc
         name="Tabs"
-        code={code}
+        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
           <Tabs>

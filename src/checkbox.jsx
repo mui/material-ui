@@ -15,10 +15,12 @@ let Checkbox = React.createClass({
   },
 
   propTypes: {
+    checked: React.PropTypes.bool,
+    checkedIcon: React.PropTypes.element,
+    defaultChecked: React.PropTypes.bool,
     iconStyle: React.PropTypes.object,
     labelStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func,
-    checkedIcon: React.PropTypes.element,
     unCheckedIcon: React.PropTypes.element,
   },
 
@@ -90,7 +92,6 @@ let Checkbox = React.createClass({
       unCheckedIcon,
       ...other,
     } = this.props;
-
     let styles = this.getStyles();
     let boxStyles =
       this.mergeAndPrefix(

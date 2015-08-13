@@ -1,7 +1,7 @@
 let React = require('react');
 let { Dialog, FlatButton, RaisedButton, Toggle } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
-
+let Code = require('dialog-code');
 
 class DialogPage extends React.Component {
 
@@ -21,40 +21,6 @@ class DialogPage extends React.Component {
   }
 
   render() {
-    let code =
-      '//Standard Actions\n' +
-      'let standardActions = [\n' +
-      '  { text: \'Cancel\' },\n' +
-      '  { text: \'Submit\', onTouchTap: this._onDialogSubmit, ref: \'submit\' }\n' +
-      '];\n\n' +
-      '<Dialog\n' +
-      '  title="Dialog With Standard Actions"\n' +
-      '  actions={standardActions}\n' +
-      '  actionFocus="submit"\n' +
-      '  modal={this.state.modal}>\n' +
-      '  The actions in this window are created from the json that\'s passed in. \n' +
-      '</Dialog>\n\n' +
-      '//Custom Actions\n' +
-      'let customActions = [\n' +
-      '  <FlatButton\n' +
-      '    label="Cancel"\n' +
-      '    secondary={true}\n' +
-      '    onTouchTap={this._handleCustomDialogCancel} />,\n' +
-      '  <FlatButton\n' +
-      '    label="Submit"\n' +
-      '    primary={true}\n' +
-      '    onTouchTap={this._handleCustomDialogSubmit} />\n' +
-      '];\n\n' +
-      '<Dialog\n' +
-      '  title="Dialog With Custom Actions"\n' +
-      '  actions={customActions}\n' +
-      '  modal={this.state.modal}>\n' +
-      '  The actions in this window were passed in as an array of react objects.\n' +
-      '</Dialog>\n\n' +
-      '<Dialog title="Dialog With Scrollable Content" actions={customActions}\n' +
-      '  autoDetectWindowHeight={true} autoScrollBodyContent={true}>\n' +
-      '    <div style={{height: \'2000px\'}}>Really long content</div>\n' +
-      '</Dialog>\n';
 
     let componentInfo = [
       {
@@ -189,7 +155,7 @@ class DialogPage extends React.Component {
     return (
       <ComponentDoc
         name="Dialog"
-        code={code}
+        code={Code}
         componentInfo={componentInfo}>
 
         <RaisedButton label="Standard Actions" onTouchTap={this._handleStandardDialogTouchTap} />

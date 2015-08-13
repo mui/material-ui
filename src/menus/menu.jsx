@@ -79,7 +79,9 @@ let Menu = React.createClass({
     AutoPrefix.set(rootStyle, 'transform', 'translate3d(0,-8px,0)');
     rootStyle.opacity = 0;
 
-    setTimeout(callback, 250);
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }.bind(this), 250);
   },
 
   componentWillReceiveProps(nextProps) {

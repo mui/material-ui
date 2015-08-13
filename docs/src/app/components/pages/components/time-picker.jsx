@@ -1,21 +1,12 @@
 let React = require('react');
 let { TimePicker } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
+let Code = require('time-picker-code');
 
 
 let TimePickerPage = React.createClass({
 
   render() {
-
-    let code =
-      '//The 12hr format \n' +
-      '<TimePicker\n' +
-      '  format="ampm" \n' +
-      '  hintText="12hr Format" />\n\n' +
-      '//The 24hr format \n' +
-      '<TimePicker\n' +
-      '  format="24hr" \n' +
-      '  hintText="24hr Format" /> ';
 
     let componentInfo = [
       {
@@ -32,6 +23,12 @@ let TimePickerPage = React.createClass({
             type: 'one of: ampm, 24hr',
             header: 'default: ampm',
             desc: 'Tells the component to display the picker in ampm (12hr) format or 24hr format.'
+          },
+          {
+            name: 'pedantic',
+            type: 'boolean',
+            header: 'default: false',
+            desc: 'It\'s technically more correct to refer to "12 noon" and "12 midnight" rather than "12 a.m." and "12 p.m." and it avoids real confusion between different locales. By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.'
           }
         ]
       },
@@ -55,7 +52,7 @@ let TimePickerPage = React.createClass({
     return (
       <ComponentDoc
         name="Time Picker"
-        code={code}
+        code={Code}
         componentInfo={componentInfo}>
 
         <TimePicker

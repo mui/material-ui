@@ -1,15 +1,15 @@
-let React = require('react/addons');
-let PureRenderMixin = React.addons.PureRenderMixin;
-let StylePropable = require('../mixins/style-propable');
-let AutoPrefix = require('../styles/auto-prefix');
-let Colors = require('../styles/colors');
-let Transitions = require('../styles/transitions');
-let ScaleInTransitionGroup = require('../transition-groups/scale-in');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const StylePropable = require('../mixins/style-propable');
+const AutoPrefix = require('../styles/auto-prefix');
+const Colors = require('../styles/colors');
+const Transitions = require('../styles/transitions');
+const ScaleInTransitionGroup = require('../transition-groups/scale-in');
 
 const pulsateDuration = 750;
 
 
-let FocusRipple = React.createClass({
+const FocusRipple = React.createClass({
 
   mixins: [PureRenderMixin, StylePropable],
 
@@ -44,15 +44,12 @@ let FocusRipple = React.createClass({
 
   render() {
 
-    let {
-      color,
-      innerStyle,
-      opacity,
+    const {
       show,
       style,
     } = this.props;
 
-    let mergedRootStyles = this.mergeStyles({
+    const mergedRootStyles = this.mergeStyles({
       height: '100%',
       width: '100%',
       position: 'absolute',
@@ -60,19 +57,7 @@ let FocusRipple = React.createClass({
       left: 0,
     }, style);
 
-    let innerStyles = this.mergeAndPrefix({
-      position: 'absolute',
-      height: '100%',
-      width: '100%',
-      borderRadius: '50%',
-      opacity: opacity ? opacity : 0.16,
-      backgroundColor: color,
-      transition: Transitions.easeOut(pulsateDuration + 'ms', 'transform', null, Transitions.easeInOutFunction),
-    }, innerStyle);
-
-    let ripple = show ? (
-      <div ref="innerCircle" style={innerStyles} />
-    ) : null;
+    const ripple = show ? this._getRippleElement(this.props) : null;
 
     return (
       <ScaleInTransitionGroup
@@ -83,14 +68,34 @@ let FocusRipple = React.createClass({
     );
   },
 
+  _getRippleElement(props) {
+    const {
+      color,
+      innerStyle,
+      opacity,
+    } = props;
+
+    const innerStyles = this.mergeAndPrefix({
+      position: 'absolute',
+      height: '100%',
+      width: '100%',
+      borderRadius: '50%',
+      opacity: opacity ? opacity : 0.16,
+      backgroundColor: color,
+      transition: Transitions.easeOut(pulsateDuration + 'ms', 'transform', null, Transitions.easeInOutFunction),
+    }, innerStyle);
+
+    return <div ref="innerCircle" style={innerStyles} />;
+  },
+
   _pulsate() {
     if (!this.isMounted()) return;
 
     let innerCircle = React.findDOMNode(this.refs.innerCircle);
     if (!innerCircle) return;
 
-    let startScale = 'scale(1)';
-    let endScale = 'scale(0.85)';
+    const startScale = 'scale(1)';
+    const endScale = 'scale(0.85)';
     let currentScale = innerCircle.style[AutoPrefix.single('transform')];
     let nextScale;
 
@@ -104,9 +109,9 @@ let FocusRipple = React.createClass({
 
   _setRippleSize() {
     let el = React.findDOMNode(this.refs.innerCircle);
-    let height = el.offsetHeight;
-    let width = el.offsetWidth;
-    let size = Math.max(height, width);
+    const height = el.offsetHeight;
+    const width = el.offsetWidth;
+    const size = Math.max(height, width);
 
     el.style.height = size + 'px';
     el.style.top = (size / 2 * -1) + (height / 2) + 'px';
