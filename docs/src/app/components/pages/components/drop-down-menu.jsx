@@ -83,6 +83,12 @@ class DropDownMenuPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Overrides the inline-styles of DropDownMenu\'s root element.'
+          },
+          {
+            name: 'disabled',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'Disables the menu.'
           }
         ]
       },
