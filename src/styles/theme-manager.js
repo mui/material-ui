@@ -9,6 +9,13 @@ const Types = {
 
 let ThemeManager = () => {
   return {
+
+    //In most cases, theme variables remain static thoughout the life of an
+    //app. If you plan on mutating theme variables after the theme has been
+    //intialized, set static to false. This will allow components to update
+    //when theme variables change. For more information see issue #1176
+    static: true,
+
     types: Types,
     template: Types.LIGHT,
 
