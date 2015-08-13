@@ -39,33 +39,23 @@ let TableBody = React.createClass({
   },
 
   getInitialState() {
-    // Determine what rows are 'pre-selected'.
-    let preSelectedRows = [];
-    if (this.props.selectable && this.props.preScanRows) {
-      let index = 0;
-      React.Children.forEach(this.props.children, (child) => {
-        if (React.isValidElement(child)) {
-          if (child.props.selected && (preSelectedRows.length === 0 || this.props.multiSelectable)) {
-            preSelectedRows.push(index);
-          }
-
-          index++;
-        }
-      });
-    }
-
     return {
-      selectedRows: preSelectedRows,
+      selectedRows: this._calculatePreselectedRows(this.props),
     };
   },
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
-      let lastSelectedRow = (this.state.selectedRows.length) ?
-        this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
+    let newState = {};
 
-      this.setState({ selectedRows: [lastSelectedRow] });
+    if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
+      let lastSelectedRow = this.state.selectedRows.length ? this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
+
+      newState.selectedRows = [lastSelectedRow];
+    } else {
+      newState.selectedRows = this._calculatePreselectedRows(nextProps);
     }
+
+    this.setState(newState);
   },
 
   componentClickAway() {
@@ -149,6 +139,26 @@ let TableBody = React.createClass({
         {checkbox}
       </TableRowColumn>
     );
+  },
+
+  _calculatePreselectedRows (props) {
+    // Determine what rows are 'pre-selected'.
+    let preSelectedRows = [];
+
+    if (props.selectable && props.preScanRows) {
+      let index = 0;
+      React.Children.forEach(props.children, (child) => {
+        if (React.isValidElement(child)) {
+          if (child.props.selected && (preSelectedRows.length === 0 || props.multiSelectable)) {
+            preSelectedRows.push(index);
+          }
+
+          index++;
+        }
+      });
+    }
+
+    return preSelectedRows;
   },
 
   _isRowSelected(rowNumber) {
