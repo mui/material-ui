@@ -37,8 +37,10 @@
 ## 0.10.2
 ###### _Jul 29, 2015_
 
-##### Breaking Changes
-- Changed `date-picker/index.js` to expose DatePicker and DatePickerDialog. Hence `require('material-ui/lib/date-picker')` does no longer works. Use `require('material-ui/lib/date-picker/date-picker')` instead.
+##### Breaking Changes (Missed in the original release notes.)
+- Changed `date-picker/index.js` to expose DatePicker and DatePickerDialog.
+  Hence `require('material-ui/lib/date-picker')` no longer works. Use
+  `require('material-ui/lib/date-picker/date-picker')` instead.
 
 ##### General
 - Replaced onMouseOver / onMouseOut with onMouseEnter / onMouseLeave to achieve hover affects.
