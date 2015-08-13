@@ -24,6 +24,8 @@ const Snackbar = React.createClass({
     action: React.PropTypes.string,
     autoHideDuration: React.PropTypes.number,
     onActionTouchTap: React.PropTypes.func,
+    onShow: React.PropTypes.func,
+    onDismiss: React.PropTypes.func,
     openOnMount: React.PropTypes.bool,
   },
 
@@ -151,11 +153,13 @@ const Snackbar = React.createClass({
 
   show() {
     this.setState({ open: true });
+    if (this.props.onShow) this.props.onShow();
   },
 
   dismiss() {
     this._clearAutoHideTimer();
     this.setState({ open: false });
+    if (this.props.onDismiss) this.props.onDismiss();
   },
 
   _clearAutoHideTimer() {
