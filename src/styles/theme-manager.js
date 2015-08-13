@@ -25,6 +25,7 @@ let ThemeManager = () => {
     // Component gets updated to reflect palette changes.
     setTheme(newTheme) {
       this.setSpacing(newTheme.spacing);
+      this.setContentFontFamily(newTheme.contentFontFamily);
       this.setPalette(newTheme.getPalette());
       this.setComponentThemes(newTheme.getComponentThemes(newTheme.getPalette()));
     },
@@ -32,6 +33,13 @@ let ThemeManager = () => {
     setSpacing(newSpacing) {
       this.spacing = Extend(this.spacing, newSpacing);
       this.component = Extend(this.component, this.template.getComponentThemes(this.palette, this.spacing));
+    },
+
+    setContentFontFamily(newContentFontFamily) {
+      if (typeof newContentFontFamily !== "undefined" && newContentFontFamily !== null) {
+        this.contentFontFamily = newContentFontFamily;
+        this.component = Extend(this.component, this.template.getComponentThemes(this.palette, this.spacing));
+      }
     },
 
     setPalette(newPalette) {
