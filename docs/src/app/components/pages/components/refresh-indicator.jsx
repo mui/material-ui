@@ -1,20 +1,12 @@
 let React = require('react');
 let { RefreshIndicator } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
+let Code = require('refresh-indicator-code');
 
 
 let RefreshIndicatorPage = React.createClass({
 
   render() {
-
-    let code =
-      '// Ready status \n' +
-      '<RefreshIndicator percentage={30} size={40} left={10} top={5} status="ready" />\n' +
-      '<RefreshIndicator percentage={60} size={40} left={10} top={5} status="ready" />\n' +
-      '<RefreshIndicator percentage={80} size={40} left={10} top={5} status="ready" />\n' +
-      '<RefreshIndicator percentage={100} size={40} left={10} top={5} status="ready" />\n' +
-      '// Loading status \n' +
-      '<RefreshIndicator size={40} left={80} top={5} status="loading" />\n';
 
     let componentInfo = [
       {
@@ -64,7 +56,7 @@ let RefreshIndicatorPage = React.createClass({
     return (
       <ComponentDoc
         name="RefreshIndicator"
-        code={code}
+        code={Code}
         componentInfo={componentInfo}>
         <div style={{ position: "relative" }}>
           <p>

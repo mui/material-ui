@@ -3,46 +3,11 @@ let { Avatar, FontIcon, List, ListItem, Styles } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let FileFolder = require('svg-icons/file/folder');
 let { Colors } = Styles;
+let Code = require('avatars-code');
 
 class AvatarsPage extends React.Component {
 
   render() {
-
-    let code = `
-      //image avatar
-      <Avatar src="images/uxceo-128.jpg" />
-
-      //SvgIcon avatar
-      <Avatar icon={<FileFolder />} />
-
-      //SvgIcon avatar with custom colors
-      <Avatar
-        icon={<FileFolder />}
-        color={Colors.orange200}
-        backgroundColor={Colors.pink400} />
-
-      //FontIcon avatar
-      <Avatar
-        icon={
-          <FontIcon className="muidocs-icon-communication-voicemail" />
-        } />
-
-      //FontIcon avatar with custom colors
-      <Avatar
-        icon={<FontIcon className="muidocs-icon-communication-voicemail" />}
-        color={Colors.blue300}
-        backgroundColor={Colors.indigo900} />
-
-      //Letter avatar
-      <Avatar>A</Avatar>
-
-      //Letter avatar with custom colors
-      <Avatar
-        color={Colors.deepOrange300}
-        backgroundColor={Colors.purple500}>
-        A
-      </Avatar>
-    `;
 
     let desc = null;
 
@@ -101,7 +66,7 @@ class AvatarsPage extends React.Component {
     return (
       <ComponentDoc
         name="Avatars"
-        code={code}
+        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
 

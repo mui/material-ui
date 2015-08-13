@@ -14,7 +14,7 @@ let Download = require('svg-icons/file/file-download');
 let MapsPlace = require('svg-icons/maps/place');
 let PersonAdd = require('svg-icons/social/person-add');
 let RemoveRedEye = require('svg-icons/image/remove-red-eye');
-
+let Code = require('icon-menus-code');
 
 class IconMenus extends React.Component {
 
@@ -35,23 +35,6 @@ class IconMenus extends React.Component {
   }
 
   render() {
-
-    let code = `
-    //We're working on migrating some of our components to use a new implementation of menus.
-    //If you'd like to use the new menu before our migration is complete, please directly
-    //require them like this:
-
-    let MenuItem = require('material-ui/lib/menus/menu-item');
-    let MenuDivider = require('material-ui/lib/menus/menu-divider');
-
-    <IconMenu iconButtonElement={iconButtonElement}>
-      <MenuItem primaryText="Refresh" />
-      <MenuItem primaryText="Send feedback" />
-      <MenuItem primaryText="Settings" />
-      <MenuItem primaryText="Help" />
-      <MenuItem primaryText="Sign out" />
-    </IconMenu>
-    `;
 
     let desc = null;
 
@@ -153,7 +136,7 @@ class IconMenus extends React.Component {
     return (
       <ComponentDoc
         name="Icon Menus"
-        code={code}
+        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
 

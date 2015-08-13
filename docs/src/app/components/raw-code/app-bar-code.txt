@@ -1,0 +1,8 @@
+<AppBar
+  title="Title"
+  iconClassNameRight="muidocs-icon-navigation-expand-more" />
+
+<AppBar
+  title="Title"
+  iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+  iconElementRight={<FlatButton label="Save" />} />;

@@ -1,6 +1,7 @@
 let React = require('react');
 let { Slider } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
+let Code = require('sliders-code');
 
 
 class SlidersPage extends React.Component {
@@ -10,17 +11,6 @@ class SlidersPage extends React.Component {
   }
 
   render() {
-
-    let code =
-      '// Default\n' +
-      '<Slider name="slider1" />\n\n' +
-      '// With starting value\n' +
-      '<Slider name="slider2" defaultValue={0.5} step={0.10} />\n' +
-      '<Slider name="slider3" defaultValue={1} />\n\n' +
-      '// Disabled with fixed value\n' +
-      '<Slider name="slider1" disabled={true} />\n' +
-      '<Slider name="slider2" disabled={true} value={0.5} />\n' +
-      '<Slider name="slider3" disabled={true} value={1} />';
 
     let componentInfo = [
       {
@@ -137,7 +127,7 @@ class SlidersPage extends React.Component {
     return (
       <ComponentDoc
         name="Sliders"
-        code={code}
+        code={Code}
         componentInfo={componentInfo}>
 
         <Slider name="slider1" />

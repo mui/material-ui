@@ -13,7 +13,7 @@ var config = {
   //Webpack config options on how to obtain modules
   resolve: {
     //When requiring, you don't need to add these extensions
-    extensions: ["", ".js", ".jsx"],
+    extensions: ["", ".js", ".jsx", ".txt"],
     alias: {
       //material-ui requires will be searched in src folder, not in node_modules
       'material-ui': path.resolve(__dirname, '../src')
@@ -23,7 +23,8 @@ var config = {
       "web_modules",
       "node_modules",
       path.resolve(__dirname, '../src'),
-      path.resolve(__dirname, '../node_modules')
+      path.resolve(__dirname, '../node_modules'),
+      path.resolve(__dirname, 'src/app/components/raw-code')
     ],
   },
   devtool: 'source-map',
@@ -68,7 +69,12 @@ var config = {
             loader: 'babel-loader?stage=0', //babel loads jsx and es6-7
             include: [__dirname, path.resolve(__dirname, '../src')], //include these files
             exclude: [nodeModulesPath]  //exclude node_modules so that they are not all compiled
-          }
+          },
+          {
+            test:/\.txt$/,
+            loader: 'raw-loader',
+            include: path.resolve(__dirname, 'src/app/components/raw-code')
+          },
         ]
   },
   eslint: {

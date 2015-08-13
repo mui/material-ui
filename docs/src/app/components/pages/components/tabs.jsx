@@ -4,7 +4,7 @@ let { Slider, Styles, Tab, Tabs } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 
 let { Typography } = Styles;
-
+let Code = require('tabs-code');
 
 class TabsPage extends React.Component {
 
@@ -28,38 +28,6 @@ class TabsPage extends React.Component {
   }
 
   render(){
-    let code =  '<Tabs> \n' +
-                '  <Tab label="Item One" > \n' +
-                '    <div> \n' +
-                '      <h2 style={this.getStyles().headline}>Tab One Template Example</h2> \n' +
-                '      <p> \n' +
-                '        This is an example of a tab template! \n' +
-                '      </p> \n' +
-                '      <p> \n' +
-                '        You can put any sort of HTML or react component in here. \n' +
-                '      </p> \n' +
-                '    </div> \n' +
-                '  </Tab> \n' +
-                '  <Tab label="Item Two" > \n' +
-                '    <div> \n' +
-                '      <h2 style={this.getStyles().headline}>Tab Two Template Example</h2> \n' +
-                '      <p> \n' +
-                '        This is another example of a tab template! \n' +
-                '      </p> \n' +
-                '      <p> \n' +
-                '        Fair warning - the next tab routes to home! \n' +
-                '      </p> \n' +
-                '    </div> \n' +
-                '  </Tab> \n' +
-                '  <Tab \n' +
-                '    label="Item Three" \n' +
-                '    route="home" \n' +
-                '    onActive={this._onActive} /> \n' +
-                '</Tabs> \n' +
-                '\n' +
-                '_onActive(tab){ \n' +
-                '  this.context.router.transitionTo(tab.props.route); \n' +
-                '}';
 
     let desc = 'Refs cannot be set on individual Tab components as cloneWithProps is being ' +
       'used to extend the individual tab components under the hood. However, ' +
@@ -159,7 +127,7 @@ class TabsPage extends React.Component {
     return (
       <ComponentDoc
         name="Tabs"
-        code={code}
+        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
 

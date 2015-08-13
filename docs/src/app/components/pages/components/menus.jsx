@@ -12,44 +12,12 @@ let Delete = require('svg-icons/action/delete');
 let Download = require('svg-icons/file/file-download');
 let PersonAdd = require('svg-icons/social/person-add');
 let RemoveRedEye = require('svg-icons/image/remove-red-eye');
+let Code = require('menus-code');
+
 
 class MenusPage extends React.Component {
 
   render() {
-
-    let code = `
-    //We're working on migrating some of our components to use a new implementation of menus.
-    //If you'd like to use the new menu before our migration is complete, please directly
-    //require them like this:
-
-    let Menu = require('material-ui/lib/menus/menu');
-    let MenuItem = require('material-ui/lib/menus/menu-item');
-    let MenuDivider = require('material-ui/lib/menus/menu-divider');
-
-    <Menu>
-      <MenuItem primaryText="Maps" />
-      <MenuItem primaryText="Books" />
-      <MenuItem primaryText="Flights" />
-      <MenuItem primaryText="Apps" />
-    </Menu>
-
-    <Menu desktop={true} width={320}>
-      <MenuItem primaryText="Bold" secondaryText="&#8984;B" />
-      <MenuItem primaryText="Italic" secondaryText="&#8984;I" />
-      <MenuItem primaryText="Underline" secondaryText="&#8984;U" />
-      <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />
-      <MenuItem primaryText="Superscript" secondaryText="&#8984;." />
-      <MenuItem primaryText="Subscript" secondaryText="&#8984;," />
-      <MenuDivider />
-      <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />
-      <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />
-      <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />
-      <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />
-      <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />
-      <MenuDivider />
-      <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
-    </Menu>
-    `;
 
     let desc = null;
 
@@ -232,7 +200,7 @@ class MenusPage extends React.Component {
     return (
       <ComponentDoc
         name="Menus"
-        code={code}
+        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
 

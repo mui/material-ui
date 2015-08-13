@@ -3,27 +3,12 @@ let { FontIcon, IconButton, NavigationMenu } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let ActionGrade = require('svg-icons/action/grade');
 let ActionHome = require('svg-icons/action/home');
+let Code = require('icon-buttons-code');
 
 
 class IconButtonsPage extends React.Component {
 
   render() {
-
-    let code =
-        '//Method 1: muidocs-icon-github is defined in a style sheet.\n' +
-        '<IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>\n\n' +
-        '//Method 2: ActionGrade is a component created using mui.SvgIcon.\n' +
-        '<IconButton tooltip="Star" touch={true}>\n' +
-        '  <ActionGrade/>\n' +
-        '</IconButton>\n\n' +
-        '//Method 3: Manually creating a mui.FontIcon component within ' +
-        'IconButton\n' +
-        '<IconButton tooltip="Sort" disabled={true}>\n' +
-        '  <FontIcon className="muidocs-icon-custom-sort"/>\n' +
-        '</IconButton>\n\n' +
-        '//Method 4: Using Google material-icons\n' + 
-        ' <IconButton iconClassName="material-icons" tooltipPosition="bottom-center" \n' + 
-        '  tooltip="Sky">settings_system_daydream</IconButton>';
 
     let desc = (
       <p>
@@ -51,7 +36,7 @@ class IconButtonsPage extends React.Component {
             handled.
           </li>
           <li>
-            Google Material Icons: Now also supported for iconButtons by passing "material-icons" in 
+            Google Material Icons: Now also supported for iconButtons by passing "material-icons" in
             iconClassName prop.
           </li>
         </ol>
@@ -127,7 +112,7 @@ class IconButtonsPage extends React.Component {
     return (
       <ComponentDoc
         name="Icon Buttons"
-        code={code}
+        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
 

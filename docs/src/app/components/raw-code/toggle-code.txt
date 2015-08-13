@@ -1,0 +1,16 @@
+<Toggle
+  name="toggleName1"
+  value="toggleValue1"
+  label="activate thrusters"/>
+
+<Toggle
+  name="toggleName2"
+  value="toggleValue2"
+  label="auto-pilot"
+  defaultToggled={true}/>
+
+<Toggle
+  name="toggleName3"
+  value="toggleValue3"
+  label="initiate self-destruct sequence"
+  disabled={true}/>

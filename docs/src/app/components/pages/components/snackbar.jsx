@@ -1,7 +1,7 @@
 let React = require('react');
 let { RaisedButton, Snackbar, TextField } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
-
+let Code = require('snackbars-code');
 
 class SnackbarPage extends React.Component {
 
@@ -16,17 +16,6 @@ class SnackbarPage extends React.Component {
   }
 
   render() {
-    let code =
-      '<Snackbar\n' +
-      '  message="Event added to your calendar"\n' +
-      '  action="undo"\n' +
-      '  autoHideDuration={this.state.autoHideDuration}\n' +
-      '  onActionTouchTap={this._handleAction}/>\n\n' +
-      '//Somewhere in our code\n' +
-      '_handleAction() {\n' +
-      '  //We can add more code to this function, but for now we\'ll just include an alert.\n' +
-      '  alert("We removed the event from your calendar.");\n' +
-      '}';
 
     let componentInfo = [
       {
@@ -94,7 +83,7 @@ class SnackbarPage extends React.Component {
     return (
       <ComponentDoc
         name="Snackbar"
-        code={code}
+        code={Code}
         componentInfo={componentInfo}>
 
         <RaisedButton

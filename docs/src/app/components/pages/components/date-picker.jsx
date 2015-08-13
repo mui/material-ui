@@ -1,7 +1,7 @@
 let React = require('react');
 let { DatePicker, TextField, Toggle } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
-
+let Code = require('date-picker-code');
 
 class DatePickerPage extends React.Component {
   constructor(props) {
@@ -24,27 +24,6 @@ class DatePickerPage extends React.Component {
   }
 
   render() {
-
-    let code =
-      '//Portrait Dialog\n' +
-      '<DatePicker\n' +
-      '  hintText="Portrait Dialog"\n\n' +
-      '//Landscape Dialog\n' +
-      '<DatePicker\n' +
-      '  hintText="Landscape Dialog"\n' +
-      '  mode="landscape"/>\n\n' +
-      '//Controlled Input\n' +
-      '<DatePicker\n' +
-      '  hintText="Controlled Date Input"\n' +
-      '  value={this.state.controlledDate}\n' +
-      '  onChange={this._handleChange} />\n\n' +
-      '// Ranged Date Picker\n' +
-      '<DatePicker\n' +
-      '  hintText="Ranged Date Picker"\n' +
-      '  autoOk={this.state.autoOk}\n' +
-      '  minDate={this.state.minDate}\n' +
-      '  maxDate={this.state.maxDate}\n' +
-      '  showYearSelector={this.state.showYearSelector} />';
 
     let componentInfo = [
       {
@@ -175,7 +154,7 @@ class DatePickerPage extends React.Component {
     return (
       <ComponentDoc
         name="Date Picker"
-        code={code}
+        code={Code}
         componentInfo={componentInfo}>
 
         <DatePicker
