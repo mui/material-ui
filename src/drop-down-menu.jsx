@@ -37,6 +37,7 @@ let DropDownMenu = React.createClass({
   getDefaultProps() {
     return {
       autoWidth: true,
+      disabled: false,
       valueMember: 'payload',
       displayMember: 'text',
     };
