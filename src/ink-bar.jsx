@@ -10,6 +10,7 @@ let InkBar = React.createClass({
   },
 
   propTypes: {
+    color: React.PropTypes.string,
     left: React.PropTypes.string.isRequired,
     width: React.PropTypes.string.isRequired,
   },
@@ -17,19 +18,26 @@ let InkBar = React.createClass({
   mixins: [StylePropable],
 
   render() {
-    let palette = this.context.muiTheme.palette;
+    let {
+      color,
+      left,
+      width,
+      style,
+      ...other,
+    } = this.props;
 
+    let colorStyle = color ? {backgroundColor: color} : undefined;
     let styles = this.mergeAndPrefix({
-      left: this.props.left,
-      width: this.props.width,
+      left: left,
+      width: width,
       bottom: 0,
       display: 'block',
-      backgroundColor: palette.accent1Color,
+      backgroundColor: this.context.muiTheme.component.inkBar.backgroundColor,
       height: 2,
       marginTop: -2,
       position: 'relative',
       transition: Transitions.easeOut('1s', 'left'),
-    }, this.props.style);
+    }, this.props.style, colorStyle);
 
     return (
       <div style={styles}>

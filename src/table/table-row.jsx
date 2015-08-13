@@ -1,7 +1,5 @@
 let React = require('react');
-let Checkbox = require('../checkbox');
 let StylePropable = require('../mixins/style-propable');
-let TableRowColumn = require('./table-row-column');
 
 
 let TableRow = React.createClass({
@@ -13,30 +11,29 @@ let TableRow = React.createClass({
   },
 
   propTypes: {
-    rowNumber: React.PropTypes.number.isRequired,
-    columns: React.PropTypes.array.isRequired,
-    onRowClick: React.PropTypes.func,
+    displayBorder: React.PropTypes.bool,
+    hoverable: React.PropTypes.bool,
     onCellClick: React.PropTypes.func,
-    onRowHover: React.PropTypes.func,
-    onRowHoverExit: React.PropTypes.func,
     onCellHover: React.PropTypes.func,
     onCellHoverExit: React.PropTypes.func,
-    selected: React.PropTypes.bool,
+    onRowClick: React.PropTypes.func,
+    onRowHover: React.PropTypes.func,
+    onRowHoverExit: React.PropTypes.func,
+    rowNumber: React.PropTypes.number,
     selectable: React.PropTypes.bool,
+    selected: React.PropTypes.bool,
     striped: React.PropTypes.bool,
-    hoverable: React.PropTypes.bool,
-    displayBorder: React.PropTypes.bool,
-    displayRowCheckbox: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
     return {
-      selected: false,
-      selectable: true,
-      striped: false,
-      hoverable: false,
       displayBorder: true,
       displayRowCheckbox: true,
+      hoverable: false,
+      selectable: true,
+      selected: false,
+      striped: false,
     };
   },
 
@@ -66,10 +63,10 @@ let TableRow = React.createClass({
     let styles = {
       root: {
         borderBottom: '1px solid ' + this.getTheme().borderColor,
+        color: this.getTheme().textColor,
       },
       cell: {
         backgroundColor: cellBgColor,
-        color: this.getTheme().textColor,
       },
     };
 
@@ -81,68 +78,65 @@ let TableRow = React.createClass({
   },
 
   render() {
-    let className = 'mui-table-row';
-    let columns = this.props.columns.slice();
-    if (this.props.displayRowCheckbox) {
-      columns.splice(0, 0, this._getRowCheckbox());
-    }
+    let {
+      className,
+      displayBorder,
+      hoverable,
+      onCellClick,
+      onCellHover,
+      onCellHoverExit,
+      onRowClick,
+      onRowHover,
+      onRowHoverExit,
+      rowNumber,
+      selectable,
+      selected,
+      striped,
+      style,
+      ...other,
+    } = this.props;
+    let classes = 'mui-table-row';
+    if (className) classes += ' ' + className;
+    let rowColumns = this._createColumns();
 
     return (
-      <tr className={className} style={this.getStyles().root}>
-        {this._getColumns(columns)}
+      <tr
+        className={classes}
+        style={this.mergeAndPrefix(this.getStyles().root, style)}
+        {...other}>
+        {rowColumns}
       </tr>
     );
   },
 
-  _getColumns(columns) {
-    let rowColumns = [];
-    let styles = this.getStyles();
-
-    for (let index = 0; index < columns.length; index++) {
-      let key = this.props.rowNumber + '-' + index;
-      let {
-        content,
-        style,
-      } = columns[index];
-      if (content === undefined) content = columns[index];
-
-      let columnComponent = (
-        <TableRowColumn
-          key={key}
-          columnNumber={index}
-          style={this.mergeStyles(styles.cell, style)}
-          hoverable={this.props.hoverable}
-          onClick={this._onCellClick}
-          onHover={this._onCellHover}
-          onHoverExit={this._onCellHoverExit}>
-          {content}
-        </TableRowColumn>
-      );
-
-      rowColumns.push(columnComponent);
-    }
-
-    return rowColumns;
+  _createColumns() {
+    let columnNumber = 1;
+    return React.Children.map(this.props.children, (child) => {
+      if (React.isValidElement(child)) {
+        return this._createColumn(child, columnNumber++);
+      }
+    });
   },
 
-  _getRowCheckbox() {
-    let key = this.props.rowNumber + '-cb';
-    let checkbox =
-      <Checkbox
-        ref='rowSelectCB'
-        name={key}
-        value='selected'
-        disabled={!this.props.selectable}
-        defaultChecked={this.props.selected} />;
-
-    return {
-      content: checkbox,
-      style: {
-        width: 72,
-        paddingLeft: 24,
-        paddingRight: 24,
-      },
+  _createColumn(child, columnNumber) {
+    let key = this.props.rowNumber + '-' + columnNumber;
+    let styles = this.getStyles();
+    const handlers = {
+      onClick: this._onCellClick,
+      onHover: this._onCellHover,
+      onHoverExit: this._onCellHoverExit,
     };
+
+    return React.cloneElement(
+      child,
+      {
+        columnNumber: columnNumber,
+        hoverable: this.props.hoverable,
+        key: child.props.key || key,
+        style: this.mergeAndPrefix(styles.cell, child.props.style),
+        ...handlers,
+      }
+    );
   },
 
   _onRowClick(e) {
@@ -159,10 +153,7 @@ let TableRow = React.createClass({
 
   _onCellClick(e, columnIndex) {
     if (this.props.selectable && this.props.onCellClick) this.props.onCellClick(e, this.props.rowNumber, columnIndex);
-    if (this.refs.rowSelectCB !== undefined) {
-      this.refs.rowSelectCB.setChecked(!this.refs.rowSelectCB.isChecked());
-      e.ctrlKey = true;
-    }
+    e.ctrlKey = true;
     this._onRowClick(e);
   },
 

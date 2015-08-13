@@ -1,44 +1,36 @@
 let React = require('react');
 let CodeExample = require('../../code-example/code-example');
-let { Slider, Styles, Tab, Tabs } = require('material-ui');
+let {IconButton, Slider, Styles, Tab, Tabs } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
-
-let { Typography } = Styles;
+let { Colors, Typography } = Styles;
 let Code = require('tabs-code');
+
 
 class TabsPage extends React.Component {
 
   constructor() {
     super();
-    this._onActive = this._onActive.bind(this);
-  }
-
-  getStyles() {
-    return {
-      headline: {
-        fontSize: '24px',
-        lineHeight: '32px',
-        paddingTop: '16px',
-        marginBottom: '12px',
-        letterSpacing: '0',
-        fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack
-      }
-    }
+    this._handleTabActive = this._handleTabActive.bind(this);
+    this.state = {tabsValue: 'a'};
   }
 
   render(){
-
-    let desc = 'Refs cannot be set on individual Tab components as cloneWithProps is being ' +
-      'used to extend the individual tab components under the hood. However, ' +
-      'refs can be passed to the Tabs container and to any element or component within the template. ' +
-      'If you need to access a tab directly - you can do so with the first argument of onActive or ' +
-      'by accessing the props.children array by passing refs to the Tabs container.';
+    let desc = 'Tabs can now operate in two different modes: controlled and uncontrolled. ' +
+      'The uncontrolled mode takes over automatically if no value prop is passed to your' +
+      'Tabs and Tab components. If you want controllable tabs, passing a value to both the' +
+      ' Tabs and Tab elements will let you programmatically adjust which one is selected. ' +
+      'ValueLink is now supported by Tabs.';
 
     let componentInfo = [
       {
         name: 'Tabs Props',
         infoArray: [
+          {
+            name: 'contentContainerStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the content\'s container.'
+          },
           {
             name: 'initialSelectedIndex',
             type: 'number',
@@ -64,23 +56,11 @@ class TabsPage extends React.Component {
             desc: 'Override the inline-styles of the tab-labels container.'
           },
           {
-            name: 'contentContainerStyle',
-            type: 'object',
+            name: 'value',
+            type: 'string or number',
             header: 'optional',
-            desc: 'Override the inline-styles of the content\'s container.'
+            desc: 'Makes Tabs controllable and selects the tab whose value prop matches this prop.'
           },
-          {
-            name: 'contentContainerClassName',
-            type: 'string',
-            header: 'optional',
-            desc: 'The className to add to the content\'s container.'
-          },
-          {
-            name: 'tabWidth',
-            type: 'number',
-            header: 'optional',
-            desc: 'Specifiy tabWidth to set each tab to a set number of pixels. Tab Width is set by default to an even distribution of the parent Tabs container. If tabWidth is set but the total width of all tabs is greater than the container, tabWidth will revert back to default'
-          }
         ]
       },
       {
@@ -88,9 +68,9 @@ class TabsPage extends React.Component {
         infoArray: [
           {
             name: 'onChange',
-            type: 'function(tabIndex, tab)',
+            type: 'function(value, e, tab)',
             header: 'optional',
-            desc: 'Fired on touch or tap of a tab.'
+            desc: 'Fired on touch or tap of a tab. Passes the value of the tab, the touchTap event and the tab element.'
           }
         ]
       },
@@ -104,10 +84,11 @@ class TabsPage extends React.Component {
             desc: 'Sets the text value of the tab item to the string specified.'
           },
           {
-            name: 'route',
+            name: 'value',
             type: 'string',
             header: 'optional',
-            desc: 'Specifies a router RouteName if included.'
+            desc: 'If value prop passed to Tabs component, this value prop is also required. It assigns a value ' +
+              'to the tab so that it can be selected by the Tabs.'
           }
         ]
       },
@@ -124,18 +105,57 @@ class TabsPage extends React.Component {
       }
     ];
 
+    let padding = 400;
+
+    let styles = {
+      contentContainerStyle: {
+        marginLeft: -padding,
+      },
+      div: {
+        position: 'absolute',
+        left: 48,
+        backgroundColor: Colors.cyan500,
+        width: padding,
+        height: 48,
+      },
+      headline: {
+        fontSize: 24,
+        lineHeight: '32px',
+        paddingTop: 16,
+        marginBottom: 12,
+        letterSpacing: 0,
+        fontWeight: Typography.fontWeightNormal,
+        color: Typography.textDarkBlack,
+      },
+      iconButton: {
+        position: 'absolute',
+        left: 0,
+        backgroundColor: Colors.cyan500,
+        color: 'white',
+        marginRight: padding,
+      },
+      iconStyle: {
+        color: Colors.white,
+      },
+      tabs: {
+        position: 'relative',
+      },
+      tabsContainer: {
+        position: 'relative',
+        paddingLeft: padding,
+      },
+    };
+
     return (
       <ComponentDoc
         name="Tabs"
         code={Code}
         desc={desc}
         componentInfo={componentInfo}>
-
-        <div>
-          <Tabs onChange={this._onChange}>
-            <Tab label='Item One' >
+          <Tabs>
+            <Tab label="Item One" >
               <div>
-                <h2 style={this.getStyles().headline}>Tab One Template Example</h2>
+                <h2 style={styles.headline}>Tab One Template Example</h2>
                 <p>
                   This is an example of a tab template!
                 </p>
@@ -145,9 +165,9 @@ class TabsPage extends React.Component {
                 <Slider name="slider0" defaultValue={0.5} />
               </div>
             </Tab>
-            <Tab label='Item Two' >
+            <Tab label="Item Two" >
               <div>
-                <h2 style={this.getStyles().headline}>Tab Two Template Example</h2>
+                <h2 style={styles.headline}>Tab Two Template Example</h2>
                 <p>
                   This is another example of a tab template!
                 </p>
@@ -157,18 +177,64 @@ class TabsPage extends React.Component {
               </div>
             </Tab>
             <Tab
-              label='Item Three'
-              route='home'
-              onActive={this._onActive} />
+              label="Item Three"
+              route="home"
+              onActive={this._handleTabActive} />
           </Tabs>
-        </div>
 
+          <div style={styles.tabsContainer}>
+            <IconButton
+              onClick={this._handleButtonClick.bind(this)}
+              iconClassName="material-icons"
+              style={styles.iconButton}
+              iconStyle={styles.iconStyle}>
+              home
+            </IconButton>
+            <div style={styles.div}/>
+              <Tabs
+                valueLink={{value: this.state.tabsValue, requestChange: this._handleTabsChange.bind(this)}}
+                style={styles.tabs}
+                contentContainerStyle={styles.contentContainerStyle}>
+                <Tab label="Tab A" value="a" >
+                  <div>
+                    <h2 style={styles.headline}>Controllable Tab Examples</h2>
+                    <p>
+                      Tabs are also controllable if you want to programmatically pass them their values.
+                      This allows for more functionality in Tabs such as not
+                      having any Tab selected or assigning them different values.
+                    </p>
+                    <p>(The home Icon Button will unselect all the tabs and hide their content.)</p>
+                  </div>
+                </Tab>
+                <Tab label="Tab B" value="b">
+                  <div>
+                    <h2 style={styles.headline}>Controllable Tab B</h2>
+                    <p>
+                      This is another example of a controllable tab. Remember, if you
+                      use controllable Tabs, you need to give all of your tabs values or else
+                      you wont be able to select them.
+                    </p>
+                    <p>
+                      To see one use for controlled Tabs, press the home button on the right.
+                    </p>
+                  </div>
+                </Tab>
+              </Tabs>
+        </div>
       </ComponentDoc>
     );
   }
 
-  _onActive(tab){
+  _handleButtonClick() {
+    this.setState({tabsValue: 'c'});
+  }
+
+  _handleTabActive(tab){
     this.context.router.transitionTo(tab.props.route);
+  }
+
+  _handleTabsChange(value, e, tab){
+    this.setState({tabsValue: value});
   }
 }
 

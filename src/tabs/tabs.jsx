@@ -2,34 +2,40 @@ let React = require('react/addons');
 let TabTemplate = require('./tabTemplate');
 let InkBar = require('../ink-bar');
 let StylePropable = require('../mixins/style-propable');
-let Events = require('../utils/events');
+let Controllable = require('../mixins/controllable');
 
 
 let Tabs = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [StylePropable, Controllable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
-    initialSelectedIndex: React.PropTypes.number,
-    onActive: React.PropTypes.func,
-    tabWidth: React.PropTypes.number,
-    tabItemContainerStyle: React.PropTypes.object,
     contentContainerStyle: React.PropTypes.object,
+    initialSelectedIndex: React.PropTypes.number,
     inkBarStyle: React.PropTypes.object,
-    contentContainerClassName: React.PropTypes.string,
+    tabItemContainerStyle: React.PropTypes.object,
+  },
+
+  getDefaultProps() {
+    return {
+      initialSelectedIndex : 0,
+    };
   },
 
   getInitialState(){
-    let selectedIndex = 0;
-    if (this.props.initialSelectedIndex && this.props.initialSelectedIndex < this.getTabCount()) {
-      selectedIndex = this.props.initialSelectedIndex;
-    }
+    let valueLink = this.getValueLink(this.props);
+    let initialIndex = this.props.initialSelectedIndex;
+
     return {
-      selectedIndex: selectedIndex,
+      selectedIndex: valueLink.value ?
+        this._getSelectedIndex(this.props) :
+        initialIndex < this.getTabCount() ?
+        initialIndex :
+        0,
     };
   },
 
@@ -45,116 +51,135 @@ let Tabs = React.createClass({
     return React.Children.count(this.props.children);
   },
 
-  componentDidMount() {
-    this._updateTabWidth();
-    Events.on(window, 'resize', this._updateTabWidth);
-  },
-
-  componentWillUnmount() {
-    Events.off(window, 'resize', this._updateTabWidth);
-  },
-
   componentWillReceiveProps(newProps) {
-    if (newProps.hasOwnProperty('style')) this._updateTabWidth();
-  },
+    let valueLink = this.getValueLink(newProps);
 
-  handleTouchTap(tabIndex, tab){
-    if (this.props.onChange && this.state.selectedIndex !== tabIndex) {
-      this.props.onChange(tabIndex, tab);
+    if (valueLink.value){
+      this.setState({selectedIndex: this._getSelectedIndex(newProps)});
     }
-
-    this.setState({selectedIndex: tabIndex});
-    //default CB is _onActive. Can be updated in tab.jsx
-    if (tab.props.onActive) tab.props.onActive(tab);
   },
 
-  getStyles() {
-    let themeVariables = this.context.muiTheme.component.tabs;
+  render() {
+    let {
+      children,
+      contentContainerStyle,
+      initialSelectedIndex,
+      inkBarStyle,
+      style,
+      tabWidth,
+      tabItemContainerStyle,
+      ...other,
+    } = this.props;
 
-    return {
+    let themeVariables = this.context.muiTheme.component.tabs;
+    let styles = {
       tabItemContainer: {
-        margin: '0',
-        padding: '0',
+        margin: 0,
+        padding: 0,
         width: '100%',
-        height: '48px',
+        height: 48,
         backgroundColor: themeVariables.backgroundColor,
         whiteSpace: 'nowrap',
         display: 'table',
       },
     };
-  },
 
-  render() {
-    let styles = this.getStyles();
-
+    let valueLink = this.getValueLink(this.props);
+    let tabValue = valueLink.value;
     let tabContent = [];
-    let width = this.state.fixedWidth ?
-      100 / this.getTabCount() +'%' :
-      this.props.tabWidth + 'px';
+
+    let width = 100 / this.getTabCount() +'%';
 
     let left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
 
-    let tabs = React.Children.map(this.props.children, (tab, index) => {
+    let tabs = React.Children.map(children, (tab, index) => {
       if (tab.type.displayName === "Tab") {
-        if (tab.props.children) {
-          tabContent.push(React.createElement(TabTemplate, {
-            key: index,
-            selected: this.state.selectedIndex === index,
-          }, tab.props.children));
-        }
-        else {
-          tabContent.push(undefined);
+        if (!tab.props.value && tabValue && process.env.NODE_ENV !== 'production') {
+          console.error('Tabs value prop has been passed, but Tab ' + index +
+          ' does not have a value prop. Needs value if Tabs is going' +
+          ' to be a controlled component.');
         }
 
-        return React.addons.cloneWithProps(tab, {
+        tabContent.push(tab.props.children ?
+          React.createElement(TabTemplate, {
+            key: index,
+            selected: this._getSelected(tab, index),
+          }, tab.props.children) : undefined);
+
+        return React.cloneElement(tab, {
           key: index,
-          selected: this.state.selectedIndex === index,
+          selected: this._getSelected(tab, index),
           tabIndex: index,
           width: width,
-          handleTouchTap: this.handleTouchTap,
+          onTouchTap: this._handleTabTouchTap,
         });
       }
       else {
         let type = tab.type.displayName || tab.type;
-        throw 'Tabs only accepts Tab Components as children. Found ' +
-              type + ' as child number ' + (index + 1) + ' of Tabs';
+        console.error('Tabs only accepts Tab Components as children. Found ' +
+              type + ' as child number ' + (index + 1) + ' of Tabs');
       }
     }, this);
 
+    let inkBar = this.state.selectedIndex !== -1 ? (
+      <InkBar
+        left={left}
+        width={width}
+        style={inkBarStyle}/>
+    ) : null;
+
+    let inkBarContainerWidth = tabItemContainerStyle ?
+      tabItemContainerStyle.width : '100%';
+
     return (
-      <div style={this.mergeAndPrefix(this.props.style)}>
-        <div style={this.mergeAndPrefix(styles.tabItemContainer, this.props.tabItemContainerStyle)}>
+      <div
+        {...other}
+        style={this.mergeAndPrefix(style)}>
+        <div style={this.mergeAndPrefix(styles.tabItemContainer, tabItemContainerStyle)}>
           {tabs}
         </div>
-        <InkBar left={left} width={width} style={this.props.inkBarStyle}/>
-        <div style={this.mergeAndPrefix(this.props.contentContainerStyle)} className={this.props.contentContainerClassName}>
+        <div style={{width: inkBarContainerWidth}}>
+         {inkBar}
+        </div>
+        <div style={this.mergeAndPrefix(contentContainerStyle)}>
           {tabContent}
         </div>
       </div>
     );
   },
 
-  _tabWidthPropIsValid() {
-    return this.props.tabWidth &&
-      (this.props.tabWidth * this.getTabCount() <= this.getEvenWidth());
+  _getSelectedIndex(props) {
+    let valueLink = this.getValueLink(props);
+    let selectedIndex = -1;
+
+    React.Children.forEach(props.children, (tab, index) => {
+      if (valueLink.value === tab.props.value) {
+        selectedIndex = index;
+      }
+    });
+
+    return selectedIndex;
   },
 
-  // Validates that the tabWidth can fit all tabs on the tab bar. If not, the
-  // tabWidth is recalculated and fixed.
-  _updateTabWidth() {
-    if (this._tabWidthPropIsValid()) {
-      this.setState({
-        fixedWidth: false,
-      });
+  _handleTabTouchTap(value, e, tab){
+    let valueLink = this.getValueLink(this.props);
+    let tabIndex = tab.props.tabIndex;
+
+    if ((valueLink.value && valueLink.value !== value) ||
+      this.state.selectedIndex !== tabIndex) {
+      valueLink.requestChange(value, e, tab);
     }
-    else {
-      this.setState({
-        fixedWidth: true,
-      });
-    }
+
+    this.setState({selectedIndex: tabIndex});
+    tab.props.onActive(tab);
+  },
+
+  _getSelected(tab, index) {
+    let valueLink = this.getValueLink(this.props);
+    return valueLink.value ? valueLink.value === tab.props.value :
+      this.state.selectedIndex === index;
   },
 
 });
 
 module.exports = Tabs;
-

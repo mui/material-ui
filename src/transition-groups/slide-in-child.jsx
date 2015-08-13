@@ -10,8 +10,8 @@ let SlideInChild = React.createClass({
 
   propTypes: {
     enterDelay: React.PropTypes.number,
-    //This callback is needed bacause the direction could change
-    //when leaving the dom
+    //This callback is needed bacause
+    //the direction could change when leaving the dom
     getLeaveDirection: React.PropTypes.func.isRequired,
   },
 
