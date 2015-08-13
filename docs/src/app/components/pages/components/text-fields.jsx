@@ -3,7 +3,7 @@ let { ClearFix, Mixins, SelectField, TextField, Styles } = require('material-ui'
 let ComponentDoc = require('../../component-doc');
 let { Colors } = Styles;
 let { StyleResizable } = Mixins;
-
+let Code = require('text-fields-code');
 
 let TextFieldsPage = React.createClass({
 
@@ -45,113 +45,6 @@ let TextFieldsPage = React.createClass({
   },
 
   render() {
-
-
-    let code = `
-      //In Line Hint Text
-      <TextField
-        hintText="Hint Text" />
-      <TextField
-        hintText="Hint Text"
-        defaultValue="Default Value" />
-      <TextField
-        hintText="Hint Text"
-        value={this.state.propValue}
-        underlineStyle={{borderColor:Colors.green500}}
-        onChange={this._handleInputChange} />
-      <TextField
-        hintText="Hint Text"
-        valueLink={this.linkState('valueLinkValue')} />
-      <TextField
-        hintText="Hint Text (MultiLine)"
-        multiLine={true} />
-      <TextField
-        hintText="The hint text can be as long as you want, it will wrap."
-        multiLine={true} />
-      <TextField
-        hintText="Hint Text"
-        errorText="The error text can be as long as you want, it will wrap." />
-      <TextField
-        hintText="Hint Text"
-        errorText={this.state.errorText}
-        onChange={this._handleErrorInputChange} />
-      <TextField
-        hintText="Hint Text (custom error color)"
-        errorText={this.state.error2Text}
-        errorStyle={{color:'orange'}}
-        onChange={this._handleError2InputChange}
-        defaultValue="Custom error color" />
-      <TextField
-        hintText="Disabled Hint Text"
-        disabled={true} />
-      <TextField
-        hintText="Disabled Hint Text"
-        disabled={true}
-        defaultValue="Disabled With Value" />
-
-      //Select Fields
-      <SelectField
-        value={this.state.selectValue}
-        onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
-        hintText="Hint Text"
-        menuItems={menuItems} />
-      <SelectField
-        valueLink={this.linkState('selectValueLinkValue')}
-        floatingLabelText="Float Label Text"
-        valueMember="id"
-        displayMember="name"
-        menuItems={arbitraryArrayMenuItems} />
-      <SelectField
-        value={this.state.selectValue2}
-        onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
-        menuItems={arbitraryArrayMenuItems} />
-
-      //Floating Hint Text Labels
-      <TextField
-        hintText="Hint Text"
-        floatingLabelText="Floating Label Text" />
-      <TextField
-        hintText="Hint Text"
-        defaultValue="Default Value"
-        floatingLabelText="Floating Label Text" />
-      <TextField
-        hintText="Hint Text"
-        floatingLabelText="Floating Label Text"
-        value={this.state.floatingPropValue}
-        onChange={this._handleFloatingInputChange} />
-      <TextField
-        hintText="Hint Text"
-        floatingLabelText="Floating Label Text"
-        valueLink={this.linkState('floatingValueLinkValue')} />
-      <TextField
-        hintText="Hint Text (MultiLine)"
-        floatingLabelText="Floating Label Text"
-        multiLine={true} />
-      <TextField
-        hintText="Hint Text"
-        errorText={this.state.floatingErrorText}
-        floatingLabelText="Floating Label Text"
-        onChange={this._handleFloatingErrorInputChange} />
-      <TextField
-        hintText="Hint Text"
-        errorText={this.state.floatingError2Text}
-        defaultValue="abc"
-        floatingLabelText="Floating Label Text"
-        onChange={this._handleFloating2ErrorInputChange} />
-      <TextField
-        hintText="Disabled Hint Text"
-        disabled={true}
-        floatingLabelText="Floating Label Text" />
-      <TextField
-        hintText="Disabled Hint Text"
-        disabled={true}
-        defaultValue="Disabled With Value"
-        floatingLabelText="Floating Label Text" />
-      <TextField
-        hintText="Password Field"
-        floatingLabelText="Password"
-        type="password" />
-    `;
 
     let desc = 'This component extends the current input element and will support all of its props and events. It supports ' +
       'valueLink and can be controlled or uncontrolled.' ;
@@ -301,7 +194,7 @@ let TextFieldsPage = React.createClass({
     return (
       <ComponentDoc
         name="Text Field"
-        code={code}
+        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
 

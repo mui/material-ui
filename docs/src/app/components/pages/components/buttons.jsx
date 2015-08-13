@@ -16,64 +16,15 @@ let {
 } = mui;
 let extend = Utils.Extend;
 let { Colors, Typography } = Styles;
+let RaisedButtonCode = require('raised-button-code');
+let FloatingActionButtonCode = require('floating-action-button-code');
+let FlatButtonCode = require('flat-button-code');
 
 
 class ButtonPage extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.codeFlatButton =
-      '//Flat Buttons\n' +
-      '<FlatButton label="Default" />\n' +
-      '<FlatButton label="Primary" primary={true} />\n' +
-      '<FlatButton label="Secondary" secondary={true} />\n' +
-      '<div style={styles.container}>\n' +
-      '  <FlatButton primary={true} label="Choose an Image">\n' +
-      '    <input type="file" id="imageButton" style={styles.exampleImageInput}></input>\n' +
-      '  </FlatButton>\n' +
-      '</div>\n' +
-      '<div style={styles.container}>\n' +
-      '  <FlatButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true} label="GitHub">\n' +
-      '    <FontIcon style={styles.exampleFlatButtonIcon} className="muidocs-icon-custom-github"/>\n' +
-      '  </FlatButton>\n' +
-      '</div>\n' +
-      '<FlatButton label="Disabled" disabled={true} />';
-
-    this.codeRaisedButton =
-      '//Raised Buttons\n' +
-      '<RaisedButton label="Default" />\n' +
-      '<RaisedButton label="Primary" primary={true} />\n' +
-      '<RaisedButton label="Secondary" secondary={true} />\n' +
-      '<div style={styles.container}>\n' +
-      '  <RaisedButton primary={true} label="Choose an Image">\n' +
-      '    <input type="file" style={styles.exampleImageInput}></input>\n' +
-      '  </RaisedButton>\n' +
-      '</div>\n' +
-      '<div style={styles.container}>\n' +
-      '  <RaisedButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true} label="Github">\n' +
-      '    <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>\n' +
-      '  </RaisedButton>\n' +
-      '</div>\n' +
-      '<RaisedButton label="Disabled" disabled={true} />';
-
-    this.codeFloatingActionButton =
-      '//Floating Action Buttons\n' +
-      '<FloatingActionButton>\n' +
-      '  <ToggleStar />\n' +
-      '</FloatingActionButton>\n' +
-      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />\n' +
-      '\n' +
-      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true}>\n' +
-      '<FloatingActionButton secondary={true} mini={true} linkButton={true}\n' +
-      '  href="https://github.com/callemall/material-ui" />\n' +
-      '  <ToggleStar />\n' +
-      '</FloatingActionButton>\n' +
-      '\n' +
-      '<FloatingActionButton disabled={true}>\n' +
-      '  <FontIcon className="muidocs-icon-action-grade" />\n' +
-      '</FloatingActionButton>\n' +
-      '<FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} mini={true} />\n';
 
     this.desc = 'This component generates a button element and all props except for ' +
                 'the custom props below will be passed down to the button element. Also, ' +
@@ -393,7 +344,7 @@ class ButtonPage extends React.Component {
           <Tab label="Flat Buttons">
             <ComponentDoc
               name=""
-              code={this.codeFlatButton}
+              code={FlatButtonCode}
               desc={this.desc}
               componentInfo={this.componentInfo.slice(0,1)}>
               <div style={styles.group}>
@@ -427,7 +378,7 @@ class ButtonPage extends React.Component {
           <Tab label="Raised Buttons">
             <ComponentDoc
               name=""
-              code={this.codeRaisedButton}
+              code={RaisedButtonCode}
               desc={this.desc}
               componentInfo={this.componentInfo.slice(1,2)}>
               <div style={styles.group}>
@@ -461,7 +412,7 @@ class ButtonPage extends React.Component {
           <Tab label="Floating Action Buttons">
             <ComponentDoc
               name=""
-              code={this.codeFloatingActionButton}
+              code={FloatingActionButtonCode}
               desc={this.desc}
               componentInfo={this.componentInfo.slice(2)}>
               <div style={styles.groupFloatingAction}>

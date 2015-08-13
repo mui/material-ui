@@ -15,6 +15,7 @@
     "highlight.js": "^8.4.0"
   },
   "devDependencies": {
+    "raw-loader": "^0.5.1",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
   }

@@ -1,6 +1,7 @@
 let React = require('react');
 let { CircularProgress, LinearProgress } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
+let Code = require('progress-code');
 
 
 let ProgressPage = React.createClass({
@@ -29,18 +30,6 @@ let ProgressPage = React.createClass({
   },
 
   render() {
-
-    let code =
-      '//Linear\n' +
-      '<LinearProgress mode="determinate" value={60} />\n' +
-      '<LinearProgress mode="indeterminate"  />\n\n' +
-      '//Circular\n'  +
-      '<CircularProgress mode="determinate" value={60} />\n' +
-      '<CircularProgress mode="determinate" value={60} size={1.5} />\n' +
-      '<CircularProgress mode="determinate" value={60} size={2} />\n' +
-      '<CircularProgress mode="indeterminate" />\n' +
-      '<CircularProgress mode="indeterminate" size={1.5} />\n' +
-      '<CircularProgress mode="indeterminate" size={2} />';
 
     let componentInfo = [
       {
@@ -84,7 +73,7 @@ let ProgressPage = React.createClass({
     return (
       <ComponentDoc
         name="Progress"
-        code={code}
+        code={Code}
         componentInfo={componentInfo}>
         <h2>Linear Progress</h2>
         <p>
