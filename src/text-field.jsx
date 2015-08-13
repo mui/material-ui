@@ -41,6 +41,7 @@ let TextField = React.createClass({
     rows: React.PropTypes.number,
     type: React.PropTypes.string,
     underlineStyle: React.PropTypes.object,
+    hintStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -161,6 +162,7 @@ let TextField = React.createClass({
 
     styles.error = this.mergeAndPrefix(styles.error, props.errorStyle);
     styles.underline = this.mergeAndPrefix(styles.underline, props.underlineStyle);
+    styles.hint = this.mergeAndPrefix(styles.hint, props.hintStyle);
 
     styles.floatingLabel = this.mergeStyles(styles.hint, {
       lineHeight: '22px',
