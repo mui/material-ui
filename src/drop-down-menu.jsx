@@ -66,8 +66,8 @@ let DropDownMenu = React.createClass({
   },
 
   getStyles(){
+    const {disabled} = this.props;
     let zIndex = 5; // As AppBar
-    let disabled = this.props.disabled;
     let spacing = this.context.muiTheme.spacing;
     let accentColor = this.context.muiTheme.component.dropDownMenu.accentColor;
     let backgroundColor = this.context.muiTheme.component.menu.backgroundColor;
