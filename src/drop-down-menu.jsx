@@ -24,6 +24,7 @@ let DropDownMenu = React.createClass({
     displayMember: React.PropTypes.string,
     valueMember: React.PropTypes.string,
     autoWidth: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     menuItemStyle: React.PropTypes.object,
@@ -36,6 +37,7 @@ let DropDownMenu = React.createClass({
   getDefaultProps() {
     return {
       autoWidth: true,
+      disabled: false,
       valueMember: 'payload',
       displayMember: 'text',
     };
@@ -64,6 +66,7 @@ let DropDownMenu = React.createClass({
   },
 
   getStyles(){
+    const {disabled} = this.props;
     let zIndex = 5; // As AppBar
     let spacing = this.context.muiTheme.spacing;
     let accentColor = this.context.muiTheme.component.dropDownMenu.accentColor;
@@ -78,7 +81,7 @@ let DropDownMenu = React.createClass({
         outline: 'none',
       },
       control: {
-        cursor: 'pointer',
+        cursor: disabled ? 'not-allowed' : 'pointer',
         position: 'static',
         height: '100%',
       },
@@ -102,7 +105,7 @@ let DropDownMenu = React.createClass({
         paddingLeft: spacing.desktopGutter,
         top: 0,
         opacity: 1,
-        color: this.context.muiTheme.palette.textColor,
+        color: disabled ? this.context.muiTheme.palette.disabledColor : this.context.muiTheme.palette.textColor,
       },
       underline: {
         borderTop: 'solid 1px ' + accentColor,
@@ -240,7 +243,9 @@ let DropDownMenu = React.createClass({
   },
 
   _onControlClick() {
-    this.setState({ open: !this.state.open });
+    if (!this.props.disabled) {
+      this.setState({ open: !this.state.open });
+    }
   },
 
   _onKeyDown(e) {
