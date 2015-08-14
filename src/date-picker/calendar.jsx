@@ -33,6 +33,7 @@ let Calendar = React.createClass({
 
   getDefaultProps() {
     return {
+      disableYearSelection: false,
       initialDate: new Date(),
       minDate: DateTime.addYears(new Date(), -100),
       maxDate: DateTime.addYears(new Date(), 100),
@@ -125,6 +126,7 @@ let Calendar = React.createClass({
       <ClearFix style={this.mergeAndPrefix(styles.root)}>
 
         <DateDisplay
+          disableYearSelection={this.props.disableYearSelection}
           style={styles.dateDisplay}
           selectedDate={this.state.selectedDate}
           handleMonthDayClick={this._handleMonthDayClick}

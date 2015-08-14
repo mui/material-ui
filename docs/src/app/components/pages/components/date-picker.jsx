@@ -184,8 +184,15 @@ class DatePickerPage extends React.Component {
               label="Auto Accept"
               defaultToggled={this.state.autoOk}
               onToggle={this._handleToggle.bind(this)} />
+
+            <Toggle
+              name="disableYearSelection"
+              value="disableYearSelection"
+              label="Disable Year Selection"
+              defaultToggled={this.state.disableYearSelection}
+              onToggle={this._handleToggle.bind(this)} />
           </div>
-          </CodeExample>
+        </CodeExample>
       </ComponentDoc>
     );
   }

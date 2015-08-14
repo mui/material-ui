@@ -50,8 +50,8 @@ let DatePickerDialog = React.createClass({
 
     let styles = {
       root: {
-        fontSize: 14,
         color: this.context.muiTheme.component.datePicker.calendarTextColor,
+        fontSize: 14,
       },
 
       dialogContent: {

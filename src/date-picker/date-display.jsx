@@ -61,9 +61,11 @@ let DateDisplay = React.createClass({
     const styles = {
       root: {
         backgroundColor: theme.selectColor,
+        borderTopLeftRadius: 2,
+        borderTopRightRadius: 2,
         color: theme.textColor,
-        padding: 20,
         height: 60,
+        padding: 20,
       },
 
       month: {
@@ -102,7 +104,7 @@ let DateDisplay = React.createClass({
         },
 
         title: {
-          cursor: (this.state.selectedYear && !this.props.disableYearSelection) ? 'default' : 'pointer',
+          cursor: (this.state.selectedYear && !this.props.disableYearSelection) ? 'pointer' : 'default',
         },
       },
     };
@@ -158,7 +160,9 @@ let DateDisplay = React.createClass({
       this.props.handleYearClick();
     }
 
-    this.setState({selectedYear: true});
+    if (!this.props.disableYearSelection) {
+      this.setState({selectedYear: true});
+    }
   },
 
 });
