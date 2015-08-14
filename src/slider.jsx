@@ -388,7 +388,7 @@ let Slider = React.createClass({
   },
 
   _onMouseDown(e) {
-    this._pos = e.clientX;
+    if (!this.props.disabled) this._pos = e.clientX;
   },
 
   _onMouseEnter() {
