@@ -47,7 +47,7 @@
     "chai": "^3.2.0",
     "eslint": "^0.23.0",
     "eslint-loader": "^0.14.2",
-    "eslint-plugin-react": "^2.5.2",
+    "eslint-plugin-react": "^3.2.2",
     "gulp": "^3.9.0",
     "gulp-eslint": "^0.15.0",
     "html-webpack-plugin": "^1.6.1",

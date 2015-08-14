@@ -163,7 +163,8 @@ let CircularProgress = React.createClass({
       <div {...other} style={this.mergeAndPrefix(styles.root, style)} >
         <div ref="wrapper" style={this.mergeAndPrefix(styles.wrapper, innerStyle)} >
           <svg style={this.mergeAndPrefix(styles.svg)} >
-            <circle ref="path" style={this.mergeAndPrefix(styles.path)} cx="25" cy="25" r="20" fill="none" strokeWidth="2.5" strokeMiterlimit="10"/>
+            <circle ref="path" style={this.mergeAndPrefix(styles.path)} cx="25" cy="25"
+              r="20" fill="none" strokeWidth="2.5" strokeMiterlimit="10" />
           </svg>
         </div>
       </div>
