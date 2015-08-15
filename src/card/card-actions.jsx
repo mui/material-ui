@@ -1,6 +1,10 @@
 let React = require('react');
+let StylePropable = require('../mixins/style-propable');
 
 let CardActions = React.createClass({
+
+  mixins: [StylePropable],
+
   getStyles() {
     return {
       root: {
@@ -20,7 +24,7 @@ let CardActions = React.createClass({
 
     let children = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, {
-        style: {marginRight: 8},
+        style: this.mergeAndPrefix({marginRight: 8}, child.props.style)
       });
     });
 
