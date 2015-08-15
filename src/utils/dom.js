@@ -61,7 +61,6 @@ module.exports = {
     let originalDisplay = el.style.display;
 
     el.style.display = 'none';
-    el.offsetHeight;
     el.style.display = originalDisplay;
   },
 

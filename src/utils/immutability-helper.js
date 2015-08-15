@@ -33,7 +33,7 @@ module.exports = {
   },
 
   shift(array) {
-    return update(array, {$splice: [[0,1]]});
+    return update(array, {$splice: [[0, 1]]});
   },
 
 };

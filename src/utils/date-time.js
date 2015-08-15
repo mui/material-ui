@@ -24,7 +24,7 @@ module.exports = {
 
   cloneAsDate(d) {
     let clonedDate = this.clone(d);
-    clonedDate.setHours(0,0,0,0);
+    clonedDate.setHours(0, 0, 0, 0);
     return clonedDate;
   },
 
