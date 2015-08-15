@@ -47,11 +47,7 @@ const CalendarMonth = React.createClass({
       const selected = !disabled && isSameDate;
 
       if (isSameDate) {
-        if (disabled) {
-          this._selectedDateDisabled = true;
-        } else {
-          this._selectedDateDisabled = false;
-        }
+        this._selectedDateDisabled = disabled;
       }
 
       return (
