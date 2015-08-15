@@ -20,6 +20,14 @@ const CalendarMonth = React.createClass({
     return this._selectedDateDisabled;
   },
 
+  isDateDisabled(day) {
+    if (day === null) return false;
+    let disabled = !DateTime.isBetweenDates(day, this.props.minDate, this.props.maxDate);
+    if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
+
+    return disabled;
+  },
+
   _getWeekElements() {
     const weekArray = DateTime.getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
 
