@@ -9,6 +9,9 @@
   hintText="Controlled Date Input"
   value={this.state.controlledDate}
   onChange={this._handleChange} />
+<DatePicker
+  hintText="With Disabled Dates"
+  shouldDisableDate={date => date.getTime() > Date.now()} />
 //Ranged Date Picker
 <DatePicker
   hintText="Ranged Date Picker"
