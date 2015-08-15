@@ -205,6 +205,10 @@ let Calendar = React.createClass({
     return this.refs.calendar.isSelectedDateDisabled();
   },
 
+  isDateDisabled(day) {
+    return this.refs.calendar.isDateDisabled(day);
+  },
+
   _addSelectedDays(days) {
     this._setSelectedDate(DateTime.addDays(this.state.selectedDate, days));
   },
@@ -231,22 +235,24 @@ let Calendar = React.createClass({
   },
 
   _setSelectedDate(date) {
-    let adjustedDate = date;
-    if (DateTime.isBeforeDate(date, this.props.minDate)) {
-      adjustedDate = this.props.minDate;
-    }
-    else if (DateTime.isAfterDate(date, this.props.maxDate)) {
-      adjustedDate = this.props.maxDate;
-    }
+    if (!this.isDateDisabled(date)) {
+      let adjustedDate = date;
+      if (DateTime.isBeforeDate(date, this.props.minDate)) {
+        adjustedDate = this.props.minDate;
+      }
+      else if (DateTime.isAfterDate(date, this.props.maxDate)) {
+        adjustedDate = this.props.maxDate;
+      }
 
-    let newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
-    if (newDisplayDate !== this.state.displayDate) {
-      this._setDisplayDate(newDisplayDate, adjustedDate);
-    }
-    else {
-      this.setState({
-        selectedDate: adjustedDate,
-      });
+      let newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
+      if (newDisplayDate !== this.state.displayDate) {
+        this._setDisplayDate(newDisplayDate, adjustedDate);
+      }
+      else {
+        this.setState({
+          selectedDate: adjustedDate,
+        });
+      }
     }
   },
 
