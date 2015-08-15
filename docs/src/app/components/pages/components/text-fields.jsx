@@ -108,6 +108,12 @@ let TextFieldsPage = React.createClass({
             desc: 'Override the inline-styles of the TextField\'s underline element.'
           },
           {
+            name: 'underlineFocusStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the TextField\'s underline element when focussed.'
+          },
+          {
             name: 'type',
             type: 'string',
             header: 'optional',
@@ -213,6 +219,10 @@ let TextFieldsPage = React.createClass({
               value={this.state.propValue}
               underlineStyle={{borderColor:Colors.green500}}
               onChange={this._handleInputChange} /><br/>
+            <TextField
+              style={styles.textfield}
+              hintText="Custom Underline Focus Color"
+              underlineFocusStyle={{borderColor: Colors.amber900}} /><br />
             <TextField
               style={styles.textfield}
               hintText="Hint Text"
