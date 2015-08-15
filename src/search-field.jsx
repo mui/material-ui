@@ -70,8 +70,6 @@ let SearchField = React.createClass({
       floatingLabelText,
       hintText,
       fullWidth,
-      errorText,
-      id,
       menuStyle,
       menuProps,
       ...other,
@@ -82,7 +80,6 @@ let SearchField = React.createClass({
 
     let styles = {
       input: {
-        width: this.props.fullWidth ? '100%' : 256,
       },
       error: {
 
@@ -95,12 +92,10 @@ let SearchField = React.createClass({
     };
 
     let textFieldProps = {
-      id: id,
       style: this.mergeAndPrefix(styles.input, style),
       floatingLabelText: floatingLabelText,
-      hintText: (!hintText && !floatingLabelText) ? ' ' : hintText,
+      hintText: (!hintText && !floatingLabelText) ? '' : hintText,
       fullWidth: fullWidth,
-      errorText: errorText,
       errorStyle: this.mergeAndPrefix(styles.error, errorStyle),
     };
 
@@ -118,20 +113,16 @@ let SearchField = React.createClass({
         style={mergedMenuStyles}>
         {
           requestsList.map(request => {
-            /*eslint-disable */
             switch(typeof request){
               case 'string':
                 return (<MenuItem
                           value={request}
                           primaryText={request} />);
               case 'object':
-                if(request.value)
-                  return request;
-                // fall through
+                return request;
               default:
                 return null;
             }
-            /*eslint-enable */
           })
         }
       </Menu>

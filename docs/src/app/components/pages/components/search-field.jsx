@@ -107,7 +107,6 @@ class SearchFields extends React.Component {
         <br/>
 
         <div>
-          {/*
           <SearchField>
             <MenuItem primaryText="Refresh" />
             <MenuItem primaryText="Send feedback" />
@@ -115,7 +114,6 @@ class SearchFields extends React.Component {
             <MenuItem primaryText="Help" />
             <MenuItem primaryText="Sign out" />
           </SearchField>
-          */}
 
         </div>
 
