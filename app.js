@@ -19275,8 +19275,8 @@ var GetStarted = (function (_React$Component) {
             'There are 2 projects that you can look at to help you get started. The first project can be found in the ',
             React.createElement(
               'a',
-              { href: 'https://github.com/callemall/material-ui/tree/master/example' },
-              'example folder'
+              { href: 'https://github.com/callemall/material-ui/tree/master/examples' },
+              'examples folder'
             ),
             '. This is a basic project that shows how you can consume material-ui components in your own project.'
           ),
