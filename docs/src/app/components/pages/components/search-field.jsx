@@ -99,7 +99,7 @@ class SearchFields extends React.Component {
 
     return (
       <ComponentDoc
-        name="Icon Menus"
+        name="Search Field"
         code={Code}
         desc={desc}
         componentInfo={componentInfo}>
@@ -107,12 +107,13 @@ class SearchFields extends React.Component {
         <br/>
 
         <div>
-          <SearchField>
+          <SearchField>{/*
             <MenuItem primaryText="Refresh" />
             <MenuItem primaryText="Send feedback" />
             <MenuItem primaryText="Settings" />
             <MenuItem primaryText="Help" />
             <MenuItem primaryText="Sign out" />
+            */}
           </SearchField>
 
         </div>
