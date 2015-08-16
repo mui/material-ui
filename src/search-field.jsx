@@ -246,9 +246,11 @@ let SearchField = React.createClass({
       this.close();
     }, this.props.touchTapCloseDelay);
 
-    let chosenRequest=this.state.requestsList[child.key];
+    let index=parseInt(child.key,10);
+
+    let chosenRequest=this.state.requestsList[index];
     this.setState({searchText:chosenRequest});
-    this.props.onNewRequest(chosenRequest);
+    this.props.onNewRequest(chosenRequest,index);
 
   },
 
