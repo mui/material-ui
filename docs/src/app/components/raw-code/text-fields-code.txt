@@ -10,6 +10,9 @@
   underlineStyle={{borderColor:Colors.green500}}
   onChange={this._handleInputChange} />
 <TextField
+  hintText="Custom Underline Focus Color"
+  underlineFocusStyle={{borderColor: Colors.amber900}} />
+<TextField
   hintText="Hint Text"
   valueLink={this.linkState('valueLinkValue')} />
 <TextField

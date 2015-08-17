@@ -41,6 +41,7 @@ let TextField = React.createClass({
     rows: React.PropTypes.number,
     type: React.PropTypes.string,
     underlineStyle: React.PropTypes.object,
+    underlineFocusStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -157,6 +158,12 @@ let TextField = React.createClass({
         bottom: 8,
         borderBottom: 'dotted 2px ' + theme.disabledTextColor,
       },
+      underlineFocus: {
+        borderBottom: 'solid 2px',
+        borderColor: theme.focusColor,
+        transform: 'scaleX(0)',
+        transition: Transitions.easeOut(),
+      },
     };
 
     styles.error = this.mergeAndPrefix(styles.error, props.errorStyle);
@@ -178,12 +185,7 @@ let TextField = React.createClass({
       font: 'inherit',
     });
 
-    styles.focusUnderline= this.mergeStyles(styles.underline, {
-      borderBottom: 'solid 2px',
-      borderColor: theme.focusColor,
-      transform: 'scaleX(0)',
-      transition: Transitions.easeOut(),
-    });
+    styles.focusUnderline = this.mergeStyles(styles.underline, styles.underlineFocus, props.underlineFocusStyle);
 
     if (this.state.isFocused) {
       styles.floatingLabel.color = theme.focusColor;
