@@ -81,10 +81,19 @@
 <List subheader="Nested List Items">
   <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
   <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
-  <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} open={true}>
-    <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
-    <ListItem primaryText="Sent Mail" leftIcon={<ContentSend />}>
-      <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
-    </ListItem>
-  </ListItem>
+  <ListItem
+    primaryText="Inbox"
+    leftIcon={<ContentInbox />}
+    initiallyOpen={true}
+    nestedItems={[
+      <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />,
+      <ListItem
+        primaryText="Sent Mail"
+        leftIcon={<ContentSend />}
+        nestedItems={[
+          <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+        ]}
+      />,
+    ]}
+  />
 </List>

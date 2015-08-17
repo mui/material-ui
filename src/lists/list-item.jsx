@@ -24,6 +24,7 @@ const ListItem = React.createClass({
     autoGenerateNestedIndicator: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     disableKeyboardFocus: React.PropTypes.bool,
+    initiallyOpen: React.PropTypes.bool,
     innerDivStyle: React.PropTypes.object,
     insetChildren: React.PropTypes.bool,
     innerStyle: React.PropTypes.object,
@@ -31,12 +32,12 @@ const ListItem = React.createClass({
     leftCheckbox: React.PropTypes.element,
     leftIcon: React.PropTypes.element,
     nestedLevel: React.PropTypes.number,
+    nestedItems: React.PropTypes.arrayOf(React.PropTypes.element),
     onKeyboardFocus: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
     onNestedListToggle: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
-    open: React.PropTypes.bool,
     rightAvatar: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
     rightIconButton: React.PropTypes.element,
@@ -49,13 +50,14 @@ const ListItem = React.createClass({
   getDefaultProps() {
     return {
       autoGenerateNestedIndicator: true,
+      initiallyOpen: false,
+      nestedItems: [],
       nestedLevel: 0,
       onKeyboardFocus: () => {},
       onMouseEnter: () => {},
       onMouseLeave: () => {},
       onNestedListToggle: () => {},
       onTouchStart: () => {},
-      open: false,
       secondaryTextLines: 1,
     };
   },
@@ -64,7 +66,7 @@ const ListItem = React.createClass({
     return {
       hovered: false,
       isKeyboardFocused: false,
-      open: this.props.open,
+      open: this.props.initiallyOpen,
       rightIconButtonHovered: false,
       rightIconButtonKeyboardFocused: false,
       touch: false,
@@ -82,6 +84,7 @@ const ListItem = React.createClass({
       leftAvatar,
       leftCheckbox,
       leftIcon,
+      nestedItems,
       nestedLevel,
       onKeyboardFocus,
       onMouseLeave,
@@ -213,19 +216,6 @@ const ListItem = React.createClass({
     };
 
     let contentChildren = [];
-    let nestedListItems = [];
-
-    React.Children.forEach(children, (child) => {
-
-      if (child === null) return;
-
-      if (React.isValidElement(child) && child.type.displayName === 'ListItem') {
-        nestedListItems.push(child);
-      }
-      else {
-        contentChildren.push(child);
-      }
-    });
 
     if (leftIcon) {
       this._pushElement(
@@ -268,7 +258,7 @@ const ListItem = React.createClass({
     }
 
     //RightIconButtonElement
-    const hasNestListItems = nestedListItems.length;
+    const hasNestListItems = nestedItems.length;
     const hasRightElement = rightAvatar || rightIcon || rightIconButton || rightToggle;
     const needsNestedIndicator = hasNestListItems && autoGenerateNestedIndicator && !hasRightElement;
 
@@ -307,12 +297,6 @@ const ListItem = React.createClass({
       );
     }
 
-    const nestedList = hasNestListItems ? (
-      <NestedList nestedLevel={nestedLevel + 1} open={this.state.open}>
-        {nestedListItems}
-      </NestedList>
-    ) : null;
-
     if (primaryText) {
       const secondaryTextElement = this._createTextElement(
         styles.primaryText,
@@ -330,6 +314,12 @@ const ListItem = React.createClass({
       );
       contentChildren.push(secondaryTextElement);
     }
+
+    const nestedList = nestedItems.length ? (
+      <NestedList nestedLevel={nestedLevel + 1} open={this.state.open}>
+        {nestedItems}
+      </NestedList>
+    ) : undefined;
 
     return hasCheckbox ? this._createLabelElement(styles, contentChildren) :
       disabled ? this._createDisabledElement(styles, contentChildren) : (
