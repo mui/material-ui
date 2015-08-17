@@ -83,7 +83,9 @@ const CircleRipple = React.createClass({
     let style = React.findDOMNode(this).style;
     style.opacity = this.props.opacity;
     AutoPrefix.set(style, 'transform', 'scale(0)');
-    setTimeout(callback, 0);
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }.bind(this), 0);
   },
 
 });
