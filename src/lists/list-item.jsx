@@ -9,7 +9,7 @@ const EnhancedButton = require('../enhanced-button');
 const IconButton = require('../icon-button');
 const OpenIcon = require('../svg-icons/navigation/arrow-drop-up');
 const CloseIcon = require('../svg-icons/navigation/arrow-drop-down');
-const ListNested = require('./list-nested');
+const NestedList = require('./nested-list');
 
 
 const ListItem = React.createClass({
@@ -308,9 +308,9 @@ const ListItem = React.createClass({
     }
 
     const nestedList = hasNestListItems ? (
-      <ListNested nestedLevel={nestedLevel + 1} open={this.state.open}>
+      <NestedList nestedLevel={nestedLevel + 1} open={this.state.open}>
         {nestedListItems}
-      </ListNested>
+      </NestedList>
     ) : null;
 
     if (primaryText) {
