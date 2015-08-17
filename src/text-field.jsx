@@ -29,7 +29,10 @@ let TextField = React.createClass({
     floatingLabelStyle: React.PropTypes.object,
     floatingLabelText: React.PropTypes.string,
     fullWidth: React.PropTypes.bool,
-    hintText: React.PropTypes.string,
+    hintText: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.element,
+    ]),
     id: React.PropTypes.string,
     inputStyle: React.PropTypes.object,
     multiLine: React.PropTypes.bool,
