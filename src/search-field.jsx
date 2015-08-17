@@ -41,9 +41,9 @@ let SearchField = React.createClass({
       menuCloseDelay: 100,
 
       onChange: () => {},
-      onUpdateRequests: (t) => {console.log(t); return [t,t+t,t+t+t];},
+//      onUpdateRequests: (t) => {console.log(t); return [t,t+t,t+t+t];},
 //      onNewRequest: (t) => {console.log('request:'+t);},
-//      onUpdateRequests: () => {},
+      onUpdateRequests: () => {},
       onNewRequest: () => {},
     };
   },

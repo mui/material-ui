@@ -107,14 +107,7 @@ class SearchFields extends React.Component {
         <br/>
 
         <div>
-          <SearchField>{/*
-            <MenuItem primaryText="Refresh" />
-            <MenuItem primaryText="Send feedback" />
-            <MenuItem primaryText="Settings" />
-            <MenuItem primaryText="Help" />
-            <MenuItem primaryText="Sign out" />
-            */}
-          </SearchField>
+          <SearchField onUpdateRequests={(t) => {console.log(t); return [t,t+t,t+t+t];}} />
 
         </div>
 
