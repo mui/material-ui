@@ -2,8 +2,12 @@ let React = require('react');
 let OpenIcon = require('../svg-icons/hardware/keyboard-arrow-up');
 let CloseIcon = require('../svg-icons/hardware/keyboard-arrow-down');
 let IconButton = require('../icon-button');
+let StylePropable = require('../mixins/style-propable');
+
 
 let CardExpandable = React.createClass({
+  mixins: [StylePropable],
+
   getStyles() {
     return {
       root: {
