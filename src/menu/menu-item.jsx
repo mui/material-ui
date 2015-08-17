@@ -184,7 +184,7 @@ let MenuItem = React.createClass({
   },
 
   _handleMouseLeave(e) {
-    if (!this.props.disabled && this.props.onMouseLeave) this.props.onMouseLeave(e,this.props.index);
+    if (!this.props.disabled && this.props.onMouseLeave) this.props.onMouseLeave(e, this.props.index);
   },
 });
 
