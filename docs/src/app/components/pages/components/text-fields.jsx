@@ -22,6 +22,7 @@ let TextFieldsPage = React.createClass({
       selectValue: undefined,
       selectValue2: undefined,
       selectValueLinkValue: 4,
+      selectValueLinkValue2: 3,
       floatingValueLinkValue: 'Value Link'
     };
   },
@@ -269,6 +270,13 @@ let TextFieldsPage = React.createClass({
               <SelectField
                 valueLink={this.linkState('selectValueLinkValue')}
                 floatingLabelText="Float Label Text"
+                valueMember="id"
+                displayMember="name"
+                menuItems={arbitraryArrayMenuItems} /><br/>
+              <SelectField
+                valueLink={this.linkState('selectValueLinkValue2')}
+                floatingLabelText="Float Custom Label Text"
+                floatingLabelStyle={{color: "red"}}
                 valueMember="id"
                 displayMember="name"
                 menuItems={arbitraryArrayMenuItems} /><br/>

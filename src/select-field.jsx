@@ -98,6 +98,7 @@ let SelectField = React.createClass({
       menuItems,
       disabled,
       floatingLabelText,
+      floatingLabelStyle,
       hintText,
       fullWidth,
       errorText,
@@ -107,6 +108,7 @@ let SelectField = React.createClass({
     let textFieldProps = {
       style: this.mergeAndPrefix(styles.input, style),
       floatingLabelText: floatingLabelText,
+      floatingLabelStyle: floatingLabelStyle,
       hintText: (!hintText && !floatingLabelText) ? ' ' : hintText,
       fullWidth: fullWidth,
       errorText: errorText,
