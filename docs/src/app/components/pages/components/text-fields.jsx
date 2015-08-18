@@ -273,6 +273,13 @@ let TextFieldsPage = React.createClass({
               displayMember="name"
               menuItems={arbitraryArrayMenuItems} /><br/>
             <SelectField
+              valueLink={this.linkState('selectValueLinkValue')}
+              floatingLabelText="Float Custom Label Text"
+              floatingLabelStyle={{color: "red"}}
+              valueMember="id"
+              displayMember="name"
+              menuItems={arbitraryArrayMenuItems} /><br/>
+            <SelectField
               style={styles.textfield}
               value={this.state.selectValue2}
               onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
