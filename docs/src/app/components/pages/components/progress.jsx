@@ -2,6 +2,7 @@ let React = require('react');
 let { CircularProgress, LinearProgress } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let Code = require('progress-code');
+let CodeExample = require('../../code-example/code-example');
 
 
 let ProgressPage = React.createClass({
@@ -73,32 +74,33 @@ let ProgressPage = React.createClass({
     return (
       <ComponentDoc
         name="Progress"
-        code={Code}
         componentInfo={componentInfo}>
-        <h2>Linear Progress</h2>
-        <p>
-          Determinate
-        </p>
-        <LinearProgress mode="determinate" value={this.state.completed} />
-        <p>
-          Indeterminate
-        </p>
-        <LinearProgress mode="indeterminate"  />
+        <CodeExample code={Code}>
+          <h2>Linear Progress</h2>
+          <p>
+            Determinate
+          </p>
+          <LinearProgress mode="determinate" value={this.state.completed} />
+          <p>
+            Indeterminate
+          </p>
+          <LinearProgress mode="indeterminate"  />
 
-        <br/><br/>
-        <h2>Circular Progress</h2>
-        <p>
-          Determinate
-        </p>
-        <CircularProgress mode="determinate" value={this.state.completed} />
-        <CircularProgress mode="determinate" value={this.state.completed} size={1.5} />
-        <CircularProgress mode="determinate" value={this.state.completed} size={2} />
-        <p>
-          Indeterminate
-        </p>
-        <CircularProgress mode="indeterminate"  />
-        <CircularProgress mode="indeterminate" size={1.5} />
-        <CircularProgress mode="indeterminate" size={2} />
+          <br/><br/>
+          <h2>Circular Progress</h2>
+          <p>
+            Determinate
+          </p>
+          <CircularProgress mode="determinate" value={this.state.completed} />
+          <CircularProgress mode="determinate" value={this.state.completed} size={1.5} />
+          <CircularProgress mode="determinate" value={this.state.completed} size={2} />
+          <p>
+            Indeterminate
+          </p>
+          <CircularProgress mode="indeterminate"  />
+          <CircularProgress mode="indeterminate" size={1.5} />
+          <CircularProgress mode="indeterminate" size={2} />
+        </CodeExample>
       </ComponentDoc>
     );
   }

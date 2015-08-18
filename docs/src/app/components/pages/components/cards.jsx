@@ -1,6 +1,7 @@
 let React = require('react');
 let mui = require('material-ui');
 let ComponentDoc = require('../../component-doc');
+let CodeExample = require('../../code-example/code-example');
 
 let {
   Avatar,
@@ -80,9 +81,9 @@ class CardPage extends React.Component {
     return (
       <ComponentDoc
         name="Card"
-        code={Code}
         desc={this.desc}
         componentInfo={this.componentInfo}>
+        <CodeExample code={Code}>
           <Card>
             <CardHeader
               title="Title"
@@ -132,6 +133,7 @@ class CardPage extends React.Component {
               Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
             </CardText>
           </Card>
+        </CodeExample>
       </ComponentDoc>
     );
   }

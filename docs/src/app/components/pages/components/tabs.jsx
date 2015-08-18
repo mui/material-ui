@@ -149,9 +149,9 @@ class TabsPage extends React.Component {
     return (
       <ComponentDoc
         name="Tabs"
-        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
+        <CodeExample code={Code}>
           <Tabs>
             <Tab label="Item One" >
               <div>
@@ -220,7 +220,8 @@ class TabsPage extends React.Component {
                   </div>
                 </Tab>
               </Tabs>
-        </div>
+          </div>
+        </CodeExample>
       </ComponentDoc>
     );
   }

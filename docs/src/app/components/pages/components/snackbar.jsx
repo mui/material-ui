@@ -2,6 +2,8 @@ let React = require('react');
 let { RaisedButton, Snackbar, TextField } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let Code = require('snackbars-code');
+let CodeExample = require('../../code-example/code-example');
+
 
 class SnackbarPage extends React.Component {
 
@@ -93,27 +95,26 @@ class SnackbarPage extends React.Component {
     return (
       <ComponentDoc
         name="Snackbar"
-        code={Code}
         componentInfo={componentInfo}>
+        <CodeExample code={Code}>
+          <RaisedButton
+            onTouchTap={this._handleClick}
+            label="Add to my calendar" />
 
-        <RaisedButton
-          onTouchTap={this._handleClick}
-          label="Add to my calendar" />
+          <br />
 
-        <br />
+          <TextField
+            floatingLabelText="Auto Hide Duration in ms"
+            value={this.state.autoHideDuration}
+            onChange={this._updateAutoHideDuration} />
 
-        <TextField
-          floatingLabelText="Auto Hide Duration in ms"
-          value={this.state.autoHideDuration}
-          onChange={this._updateAutoHideDuration} />
-
-        <Snackbar
-          ref="snackbar"
-          message="Event added to your calendar"
-          action="undo"
-          autoHideDuration={this.state.autoHideDuration}
-          onActionTouchTap={this._handleAction} />
-
+          <Snackbar
+            ref="snackbar"
+            message="Event added to your calendar"
+            action="undo"
+            autoHideDuration={this.state.autoHideDuration}
+            onActionTouchTap={this._handleAction} />
+        </CodeExample>
       </ComponentDoc>
     );
   }

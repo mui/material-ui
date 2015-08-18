@@ -4,6 +4,8 @@ let ComponentDoc = require('../../component-doc');
 let FileFolder = require('svg-icons/file/folder');
 let { Colors } = Styles;
 let Code = require('avatars-code');
+let CodeExample = require('../../code-example/code-example');
+
 
 class AvatarsPage extends React.Component {
 
@@ -66,20 +68,19 @@ class AvatarsPage extends React.Component {
     return (
       <ComponentDoc
         name="Avatars"
-        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
-
-        <List>
-          <ListItem leftAvatar={imageAvatar} disabled={true}>Image Avatar</ListItem>
-          <ListItem leftAvatar={svgAvatar} disabled={true}>SvgIcon Avatar</ListItem>
-          <ListItem leftAvatar={customSvgAvatar} disabled={true}>SvgIcon Avatar with custom colors</ListItem>
-          <ListItem leftAvatar={fontAvatar} disabled={true}>FontIcon Avatar</ListItem>
-          <ListItem leftAvatar={customFontAvatar} disabled={true}>FontIcon Avatar with custom colors</ListItem>
-          <ListItem leftAvatar={letterAvatar} disabled={true}>Letter Avatar</ListItem>
-          <ListItem leftAvatar={customLetterAvatar} disabled={true}>Letter Avatar with custom colors</ListItem>
-        </List>
-
+        <CodeExample code={Code}>
+          <List>
+            <ListItem leftAvatar={imageAvatar} disabled={true}>Image Avatar</ListItem>
+            <ListItem leftAvatar={svgAvatar} disabled={true}>SvgIcon Avatar</ListItem>
+            <ListItem leftAvatar={customSvgAvatar} disabled={true}>SvgIcon Avatar with custom colors</ListItem>
+            <ListItem leftAvatar={fontAvatar} disabled={true}>FontIcon Avatar</ListItem>
+            <ListItem leftAvatar={customFontAvatar} disabled={true}>FontIcon Avatar with custom colors</ListItem>
+            <ListItem leftAvatar={letterAvatar} disabled={true}>Letter Avatar</ListItem>
+            <ListItem leftAvatar={customLetterAvatar} disabled={true}>Letter Avatar with custom colors</ListItem>
+          </List>
+        </CodeExample>
       </ComponentDoc>
     );
 
