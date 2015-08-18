@@ -1,5 +1,6 @@
 let React = require('react');
-let { ClearFix, FontIcon, Styles } = require('material-ui');
+let { ClearFix, FontIcon, Styles, Paper } = require('material-ui');
+let CodeBlock = require('../../code-example/code-block');
 let ComponentDoc = require('../../component-doc');
 let ActionHome = require('svg-icons/action/home');
 
@@ -34,9 +35,15 @@ class FontIconPage extends React.Component {
         Icons</a> for our documentation site along with some custom icons. You can use
         sites like <a title="Icomoon website" href="https://icomoon.io/">IcoMoon</a> for
         generating custom font files. To use FontIcons, add your stylesheet to your project
-        and reference the icon&#39;s className in the "className" prop. We also support <a title="Google's
+        and reference the icon&#39;s className in the "className" prop. <br /><br />
+        We also support <a title="Google's
         Material Icons" href="https://google.github.io/material-design-icons">Google&#39;s
-        Material Icons</a> as seen in the third block of code.
+        Material Icons</a> as seen in the third block of code. If you're using the material icons, be sure to include the link to the font icon file in your head section:
+        <Paper>
+          <CodeBlock>
+            {'<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'}
+          </CodeBlock>
+        </Paper>
       </p>
     );
 
