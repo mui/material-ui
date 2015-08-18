@@ -2,6 +2,8 @@ let React = require('react');
 let { DropDownMenu } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let Code = require('drop-down-menu-code');
+let CodeExample = require('../../code-example/code-example');
+
 
 class DropDownMenuPage extends React.Component {
 
@@ -108,11 +110,10 @@ class DropDownMenuPage extends React.Component {
     return (
       <ComponentDoc
         name="Drop Down Menu"
-        code={Code}
         componentInfo={componentInfo}>
-
-        <DropDownMenu menuItems={menuItems} />
-
+        <CodeExample code={Code}>
+          <DropDownMenu menuItems={menuItems} />
+        </CodeExample>
       </ComponentDoc>
     );
   }

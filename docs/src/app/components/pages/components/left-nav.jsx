@@ -2,6 +2,7 @@ let React = require('react');
 let { LeftNav, MenuItem, RaisedButton } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let Code = require('left-nav-code');
+let CodeExample = require('../../code-example/code-example');
 
 
 class LeftNavPage extends React.Component {
@@ -139,16 +140,15 @@ class LeftNavPage extends React.Component {
     return (
       <ComponentDoc
         name="Left Nav"
-        code={Code}
         componentInfo={componentInfo}>
-
-        <div>
-          <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
-          <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
-          <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />
-          <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
-        </div>
-
+        <CodeExample code={Code}>
+          <div>
+            <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
+            <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
+            <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />
+            <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+          </div>
+        </CodeExample>
       </ComponentDoc>
     );
   }

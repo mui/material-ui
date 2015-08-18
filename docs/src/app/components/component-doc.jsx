@@ -14,7 +14,6 @@ let ComponentDoc = React.createClass({
   },
 
   propTypes: {
-    code: React.PropTypes.string.isRequired,
     desc: React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.element
@@ -96,12 +95,8 @@ let ComponentDoc = React.createClass({
 
     return (
       <ClearFix>
-
         {header}
-
-        <CodeExample code={this.props.code}>
-          {this.props.children}
-        </CodeExample>
+        {this.props.children}
 
         {desc}
 

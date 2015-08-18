@@ -21,6 +21,7 @@ class CodeExample extends React.Component {
     let {
       children,
       code,
+      layoutSideBySide,
     } = this.props;
 
     let palette = this.context.muiTheme.palette;
@@ -31,8 +32,8 @@ class CodeExample extends React.Component {
       root: {
         backgroundColor: canvasColor,
         marginBottom: 32,
+        overflow: 'hidden'
       },
-
       exampleLabel: {
         color: borderColor,
         padding: 8,
@@ -43,26 +44,27 @@ class CodeExample extends React.Component {
         textTransform: 'uppercase',
         fontWeight: Typography.fontWeightMedium,
       },
-
       exampleBlock: {
         borderRadius: '0 0 2px 0',
         padding: Spacing.desktopGutter,
         margin: 0,
+        width: layoutSideBySide ? '45%' : null,
+        float: layoutSideBySide ? 'right' : null,
       }
     };
 
     return (
       <Paper style={styles.root}>
-        <div style={styles.exampleLabel}>example</div>
         <ClearFix style={styles.exampleBlock}>{children}</ClearFix>
-        <CodeBlock>{code}</CodeBlock>
+        <CodeBlock style={styles.codeBlock}>{code}</CodeBlock>
       </Paper>
     );
   }
 }
 
 CodeExample.propTypes = {
-  code: React.PropTypes.string.isRequired
+  code: React.PropTypes.string.isRequired,
+  layoutSideBySide: React.PropTypes.bool,
 };
 
 CodeExample.contextTypes = {

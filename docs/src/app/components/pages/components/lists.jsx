@@ -31,6 +31,8 @@ let MenuItem = require('menus/menu-item');
 
 let { Colors } = Styles;
 let Code = require('lists-code');
+let CodeExample = require('../../code-example/code-example');
+
 
 
 class ListsPage extends React.Component {
@@ -221,409 +223,408 @@ class ListsPage extends React.Component {
     return (
       <ComponentDoc
         name="Lists"
-        code={Code}
         componentInfo={componentInfo}>
-
-        <MobileTearSheet>
-          <List>
-            <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
-            <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
-            <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
-            <ListItem primaryText="Drafts"leftIcon={<ContentDrafts />} />
-            <ListItem primaryText="Inbox"leftIcon={<ContentInbox />} />
-          </List>
-          <ListDivider />
-          <List>
-            <ListItem primaryText="All mail" rightIcon={<ActionInfo />} />
-            <ListItem primaryText="Trash" rightIcon={<ActionInfo />} />
-            <ListItem primaryText="Spam" rightIcon={<ActionInfo />} />
-            <ListItem primaryText="Follow up" rightIcon={<ActionInfo />} />
-          </List>
-        </MobileTearSheet>
-
-        <MobileTearSheet>
-          <List subheader="Recent chats">
-            <ListItem
-              primaryText="Brendan Lim"
-              leftAvatar={<Avatar src="images/ok-128.jpg" />}
-              rightIcon={<CommunicationChatBubble />} />
-            <ListItem
-              primaryText="Eric Hoffman"
-              leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              rightIcon={<CommunicationChatBubble />} />
-            <ListItem
-              primaryText="Grace Ng"
-              leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-              rightIcon={<CommunicationChatBubble />} />
-            <ListItem
-              primaryText="Kerem Suer"
-              leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-              rightIcon={<CommunicationChatBubble />} />
-            <ListItem
-              primaryText="Raquel Parrado"
-              leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-              rightIcon={<CommunicationChatBubble />} />
-          </List>
-          <ListDivider />
-          <List subheader="Previous chats">
-            <ListItem
-              primaryText="Chelsea Otakan"
-              leftAvatar={<Avatar src="images/chexee-128.jpg" />} />
-            <ListItem
-              primaryText="James Anderson"
-              leftAvatar={<Avatar src="images/jsa-128.jpg" />} />
-          </List>
-        </MobileTearSheet>
-
-        <MobileTearSheet>
-          <List>
-            <ListItem
-              primaryText="Chelsea Otakan"
-              leftIcon={<ActionGrade color={Colors.pinkA200} />}
-              rightAvatar={<Avatar src="images/chexee-128.jpg" />} />
-            <ListItem
-              primaryText="Eric Hoffman"
-              insetChildren={true}
-              rightAvatar={<Avatar src="images/kolage-128.jpg" />} />
-            <ListItem
-              primaryText="James Anderson"
-              insetChildren={true}
-              rightAvatar={<Avatar src="images/jsa-128.jpg" />} />
-            <ListItem
-              primaryText="Kerem Suer"
-              insetChildren={true}
-              rightAvatar={<Avatar src="images/kerem-128.jpg" />} />
-          </List>
-          <ListDivider inset={true} />
-          <List>
-            <ListItem
-              primaryText="Adelle Charles"
-              leftAvatar={<Avatar color={Colors.pinkA200} backgroundColor={Colors.transparent} style={{left:8}}>A</Avatar>}
-              rightAvatar={<Avatar src="images/adellecharles-128.jpg" />} />
-            <ListItem
-              primaryText="Adham Dannaway"
-              insetChildren={true}
-              rightAvatar={<Avatar src="images/adhamdannaway-128.jpg" />} />
-            <ListItem
-              primaryText="Allison Grayce"
-              insetChildren={true}
-              rightAvatar={<Avatar src="images/allisongrayce-128.jpg" />} />
-            <ListItem
-              primaryText="Angel Ceballos"
-              insetChildren={true}
-              rightAvatar={<Avatar src="images/angelceballos-128.jpg" />} />
-          </List>
-        </MobileTearSheet>
-
-        <MobileTearSheet>
-          <List subheader="Folders" insetSubheader={true}>
-            <ListItem
-              leftAvatar={<Avatar icon={<FileFolder />} />}
-              rightIcon={<ActionInfo />}
-              primaryText="Photos"
-              secondaryText="Jan 9, 2014" />
-            <ListItem
-              leftAvatar={<Avatar icon={<FileFolder />} />}
-              rightIcon={<ActionInfo />}
-              primaryText="Recipes"
-              secondaryText="Jan 17, 2014" />
-            <ListItem
-              leftAvatar={<Avatar icon={<FileFolder />} />}
-              rightIcon={<ActionInfo />}
-              primaryText="Work"
-              secondaryText="Jan 28, 2014" />
-          </List>
-          <ListDivider inset={true} />
-          <List subheader="Files" insetSubheader={true}>
-            <ListItem
-              leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={Colors.blue500} />}
-              rightIcon={<ActionInfo />}
-              primaryText="Vacation itinerary"
-              secondaryText="Jan 20, 2014" />
-            <ListItem
-              leftAvatar={<Avatar icon={<EditorInsertChart />} backgroundColor={Colors.yellow600} />}
-              rightIcon={<ActionInfo />}
-              primaryText="Kitchen remodel"
-              secondaryText="Jan 10, 2014" />
-          </List>
-        </MobileTearSheet>
-
-        <MobileTearSheet>
-          <List subheader="Nested List Items">
-            <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
-            <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
-            <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} open={true}>
+        <CodeExample code={Code}>
+          <MobileTearSheet>
+            <List>
+              <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
               <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
-              <ListItem primaryText="Sent Mail" leftIcon={<ContentSend />}>
-                <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+              <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
+              <ListItem primaryText="Drafts"leftIcon={<ContentDrafts />} />
+              <ListItem primaryText="Inbox"leftIcon={<ContentInbox />} />
+            </List>
+            <ListDivider />
+            <List>
+              <ListItem primaryText="All mail" rightIcon={<ActionInfo />} />
+              <ListItem primaryText="Trash" rightIcon={<ActionInfo />} />
+              <ListItem primaryText="Spam" rightIcon={<ActionInfo />} />
+              <ListItem primaryText="Follow up" rightIcon={<ActionInfo />} />
+            </List>
+          </MobileTearSheet>
+
+          <MobileTearSheet>
+            <List subheader="Recent chats">
+              <ListItem
+                primaryText="Brendan Lim"
+                leftAvatar={<Avatar src="images/ok-128.jpg" />}
+                rightIcon={<CommunicationChatBubble />} />
+              <ListItem
+                primaryText="Eric Hoffman"
+                leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+                rightIcon={<CommunicationChatBubble />} />
+              <ListItem
+                primaryText="Grace Ng"
+                leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+                rightIcon={<CommunicationChatBubble />} />
+              <ListItem
+                primaryText="Kerem Suer"
+                leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+                rightIcon={<CommunicationChatBubble />} />
+              <ListItem
+                primaryText="Raquel Parrado"
+                leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+                rightIcon={<CommunicationChatBubble />} />
+            </List>
+            <ListDivider />
+            <List subheader="Previous chats">
+              <ListItem
+                primaryText="Chelsea Otakan"
+                leftAvatar={<Avatar src="images/chexee-128.jpg" />} />
+              <ListItem
+                primaryText="James Anderson"
+                leftAvatar={<Avatar src="images/jsa-128.jpg" />} />
+            </List>
+          </MobileTearSheet>
+
+          <MobileTearSheet>
+            <List>
+              <ListItem
+                primaryText="Chelsea Otakan"
+                leftIcon={<ActionGrade color={Colors.pinkA200} />}
+                rightAvatar={<Avatar src="images/chexee-128.jpg" />} />
+              <ListItem
+                primaryText="Eric Hoffman"
+                insetChildren={true}
+                rightAvatar={<Avatar src="images/kolage-128.jpg" />} />
+              <ListItem
+                primaryText="James Anderson"
+                insetChildren={true}
+                rightAvatar={<Avatar src="images/jsa-128.jpg" />} />
+              <ListItem
+                primaryText="Kerem Suer"
+                insetChildren={true}
+                rightAvatar={<Avatar src="images/kerem-128.jpg" />} />
+            </List>
+            <ListDivider inset={true} />
+            <List>
+              <ListItem
+                primaryText="Adelle Charles"
+                leftAvatar={<Avatar color={Colors.pinkA200} backgroundColor={Colors.transparent} style={{left:8}}>A</Avatar>}
+                rightAvatar={<Avatar src="images/adellecharles-128.jpg" />} />
+              <ListItem
+                primaryText="Adham Dannaway"
+                insetChildren={true}
+                rightAvatar={<Avatar src="images/adhamdannaway-128.jpg" />} />
+              <ListItem
+                primaryText="Allison Grayce"
+                insetChildren={true}
+                rightAvatar={<Avatar src="images/allisongrayce-128.jpg" />} />
+              <ListItem
+                primaryText="Angel Ceballos"
+                insetChildren={true}
+                rightAvatar={<Avatar src="images/angelceballos-128.jpg" />} />
+            </List>
+          </MobileTearSheet>
+
+          <MobileTearSheet>
+            <List subheader="Folders" insetSubheader={true}>
+              <ListItem
+                leftAvatar={<Avatar icon={<FileFolder />} />}
+                rightIcon={<ActionInfo />}
+                primaryText="Photos"
+                secondaryText="Jan 9, 2014" />
+              <ListItem
+                leftAvatar={<Avatar icon={<FileFolder />} />}
+                rightIcon={<ActionInfo />}
+                primaryText="Recipes"
+                secondaryText="Jan 17, 2014" />
+              <ListItem
+                leftAvatar={<Avatar icon={<FileFolder />} />}
+                rightIcon={<ActionInfo />}
+                primaryText="Work"
+                secondaryText="Jan 28, 2014" />
+            </List>
+            <ListDivider inset={true} />
+            <List subheader="Files" insetSubheader={true}>
+              <ListItem
+                leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={Colors.blue500} />}
+                rightIcon={<ActionInfo />}
+                primaryText="Vacation itinerary"
+                secondaryText="Jan 20, 2014" />
+              <ListItem
+                leftAvatar={<Avatar icon={<EditorInsertChart />} backgroundColor={Colors.yellow600} />}
+                rightIcon={<ActionInfo />}
+                primaryText="Kitchen remodel"
+                secondaryText="Jan 10, 2014" />
+            </List>
+          </MobileTearSheet>
+
+          <MobileTearSheet>
+            <List subheader="Nested List Items">
+              <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
+              <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+              <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} open={true}>
+                <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
+                <ListItem primaryText="Sent Mail" leftIcon={<ContentSend />}>
+                  <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+                </ListItem>
               </ListItem>
-            </ListItem>
-          </List>
-        </MobileTearSheet>
+            </List>
+          </MobileTearSheet>
 
-        <MobileTearSheet>
-          <List subheader="General">
-            <ListItem
-              primaryText="Profile photo"
-              secondaryText="Change your Google+ profile photo" />
-            <ListItem
-              primaryText="Show your status"
-              secondaryText="Your status is visible to everyone you use with" />
-          </List>
-          <ListDivider />
-          <List subheader="Hangout notifications">
-            <ListItem
-              leftCheckbox={<Checkbox />}
-              primaryText="Notificaitons"
-              secondaryText="Allow notifications" />
-            <ListItem
-              leftCheckbox={<Checkbox />}
-              primaryText="Sounds"
-              secondaryText="Hangouts message" />
-            <ListItem
-              leftCheckbox={<Checkbox />}
-              primaryText="Video sounds"
-              secondaryText="Hangouts video call" />
-          </List>
-        </MobileTearSheet>
+          <MobileTearSheet>
+            <List subheader="General">
+              <ListItem
+                primaryText="Profile photo"
+                secondaryText="Change your Google+ profile photo" />
+              <ListItem
+                primaryText="Show your status"
+                secondaryText="Your status is visible to everyone you use with" />
+            </List>
+            <ListDivider />
+            <List subheader="Hangout notifications">
+              <ListItem
+                leftCheckbox={<Checkbox />}
+                primaryText="Notificaitons"
+                secondaryText="Allow notifications" />
+              <ListItem
+                leftCheckbox={<Checkbox />}
+                primaryText="Sounds"
+                secondaryText="Hangouts message" />
+              <ListItem
+                leftCheckbox={<Checkbox />}
+                primaryText="Video sounds"
+                secondaryText="Hangouts video call" />
+            </List>
+          </MobileTearSheet>
 
-        <MobileTearSheet>
-          <List>
-            <ListItem
-              primaryText="When calls and notifications arrive"
-              secondaryText="Always interrupt" />
-          </List>
-          <ListDivider />
-          <List subheader="Priority interruptions">
-            <ListItem primaryText="Events and reminders" rightToggle={<Toggle />} />
-            <ListItem primaryText="Calls" rightToggle={<Toggle />} />
-            <ListItem primaryText="Messages" rightToggle={<Toggle />} />
-          </List>
-          <ListDivider />
-          <List subheader="Hangout notifications">
-            <ListItem primaryText="Notifications" leftCheckbox={<Checkbox />} />
-            <ListItem primaryText="Sounds" leftCheckbox={<Checkbox />} />
-            <ListItem primaryText="Video sounds" leftCheckbox={<Checkbox />} />
-          </List>
-        </MobileTearSheet>
+          <MobileTearSheet>
+            <List>
+              <ListItem
+                primaryText="When calls and notifications arrive"
+                secondaryText="Always interrupt" />
+            </List>
+            <ListDivider />
+            <List subheader="Priority interruptions">
+              <ListItem primaryText="Events and reminders" rightToggle={<Toggle />} />
+              <ListItem primaryText="Calls" rightToggle={<Toggle />} />
+              <ListItem primaryText="Messages" rightToggle={<Toggle />} />
+            </List>
+            <ListDivider />
+            <List subheader="Hangout notifications">
+              <ListItem primaryText="Notifications" leftCheckbox={<Checkbox />} />
+              <ListItem primaryText="Sounds" leftCheckbox={<Checkbox />} />
+              <ListItem primaryText="Video sounds" leftCheckbox={<Checkbox />} />
+            </List>
+          </MobileTearSheet>
 
-        <MobileTearSheet>
-          <List>
-            <ListItem
-              leftIcon={<CommunicationCall color={Colors.indigo500} />}
-              rightIcon={<CommunicationChatBubble />}
-              primaryText="(650) 555 - 1234"
-              secondaryText="Mobile" />
-            <ListItem
-              insetChildren={true}
-              rightIcon={<CommunicationChatBubble />}
-              primaryText="(323) 555 - 6789"
-              secondaryText="Work" />
-          </List>
-          <ListDivider inset={true} />
-          <List>
-            <ListItem
-              leftIcon={<CommunicationEmail color={Colors.indigo500} />}
-              primaryText="aliconnors@example.com"
-              secondaryText="Personal" />
-            <ListItem
-              insetChildren={true}
-              primaryText="ali_connors@example.com"
-              secondaryText="Work" />
-          </List>
-        </MobileTearSheet>
+          <MobileTearSheet>
+            <List>
+              <ListItem
+                leftIcon={<CommunicationCall color={Colors.indigo500} />}
+                rightIcon={<CommunicationChatBubble />}
+                primaryText="(650) 555 - 1234"
+                secondaryText="Mobile" />
+              <ListItem
+                insetChildren={true}
+                rightIcon={<CommunicationChatBubble />}
+                primaryText="(323) 555 - 6789"
+                secondaryText="Work" />
+            </List>
+            <ListDivider inset={true} />
+            <List>
+              <ListItem
+                leftIcon={<CommunicationEmail color={Colors.indigo500} />}
+                primaryText="aliconnors@example.com"
+                secondaryText="Personal" />
+              <ListItem
+                insetChildren={true}
+                primaryText="ali_connors@example.com"
+                secondaryText="Work" />
+            </List>
+          </MobileTearSheet>
 
-        <MobileTearSheet>
-          <List subheader="Today">
-            <ListItem
-              leftAvatar={<Avatar src="images/ok-128.jpg" />}
-              primaryText="Brunch this weekend?"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Brendan Lim</span> --
-                  I&apos;ll be in your neighborhood this weekend.
-                </p>
-              } />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              primaryText={
-                <p>Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span></p>
-              }
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> --
-                  Wish I could but I can
-                </p>
-              } />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-              primaryText="Oui oui"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Grace Ng</span> --
-                  Do you have Paris recommendations?
-                </p>
-              } />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-              primaryText="Birthday gift"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Kerem Suer</span> --
-                  Do you have any ideas on what I
-                </p>
-              } />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-              primaryText="Recipe to try"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> --
-                  We should eat this: grated cheese
-                </p>
-              } />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/chexee-128.jpg" />}
-              primaryText="Giants game"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Chelsea Otakan</span> --
-                  Any interest in seeing the Giants
-                </p>
-              } />
-          </List>
-        </MobileTearSheet>
+          <MobileTearSheet>
+            <List subheader="Today">
+              <ListItem
+                leftAvatar={<Avatar src="images/ok-128.jpg" />}
+                primaryText="Brunch this weekend?"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Brendan Lim</span> --
+                    I&apos;ll be in your neighborhood this weekend.
+                  </p>
+                } />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+                primaryText={
+                  <p>Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span></p>
+                }
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> --
+                    Wish I could but I can
+                  </p>
+                } />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+                primaryText="Oui oui"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Grace Ng</span> --
+                    Do you have Paris recommendations?
+                  </p>
+                } />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+                primaryText="Birthday gift"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Kerem Suer</span> --
+                    Do you have any ideas on what I
+                  </p>
+                } />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+                primaryText="Recipe to try"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> --
+                    We should eat this: grated cheese
+                  </p>
+                } />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/chexee-128.jpg" />}
+                primaryText="Giants game"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Chelsea Otakan</span> --
+                    Any interest in seeing the Giants
+                  </p>
+                } />
+            </List>
+          </MobileTearSheet>
 
-        <MobileTearSheet>
-          <List subheader="Today">
-            <ListItem
-              leftAvatar={<Avatar src="images/ok-128.jpg" />}
-              primaryText="Brunch this weekend?"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Brendan Lim</span> --
-                  I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
-                </p>
-              }
-              secondaryTextLines={2} />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              primaryText={
-                <p>Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span></p>
-              }
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> --
-                  Wish I could come, but I&apos;m out of town this weekend.
-                </p>
-              }
-              secondaryTextLines={2} />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-              primaryText="Oui oui"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Grace Ng</span> --
-                  Do you have Paris recommendations? Have you ever been?
-                </p>
-              }
-              secondaryTextLines={2} />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-              primaryText="Birdthday gift"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Kerem Suer</span> --
-                  Do you have any ideas what we can get Heidi for her birthday? How about a pony?
-                </p>
-              }
-              secondaryTextLines={2} />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-              primaryText="Recipe to try"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> --
-                  We should eat this: grated squash. Corn and tomatillo tacos.
-                </p>
-              }
-              secondaryTextLines={2} />
-          </List>
-        </MobileTearSheet>
+          <MobileTearSheet>
+            <List subheader="Today">
+              <ListItem
+                leftAvatar={<Avatar src="images/ok-128.jpg" />}
+                primaryText="Brunch this weekend?"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Brendan Lim</span> --
+                    I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
+                  </p>
+                }
+                secondaryTextLines={2} />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+                primaryText={
+                  <p>Summer BBQ&nbsp;&nbsp;<span style={{color: Colors.lightBlack}}>4</span></p>
+                }
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>to me, Scott, Jennifer</span> --
+                    Wish I could come, but I&apos;m out of town this weekend.
+                  </p>
+                }
+                secondaryTextLines={2} />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+                primaryText="Oui oui"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Grace Ng</span> --
+                    Do you have Paris recommendations? Have you ever been?
+                  </p>
+                }
+                secondaryTextLines={2} />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+                primaryText="Birdthday gift"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Kerem Suer</span> --
+                    Do you have any ideas what we can get Heidi for her birthday? How about a pony?
+                  </p>
+                }
+                secondaryTextLines={2} />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+                primaryText="Recipe to try"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Raquel Parrado</span> --
+                    We should eat this: grated squash. Corn and tomatillo tacos.
+                  </p>
+                }
+                secondaryTextLines={2} />
+            </List>
+          </MobileTearSheet>
 
-        <MobileTearSheet>
-          <List subheader="Today">
-            <ListItem
-              leftAvatar={<Avatar src="images/ok-128.jpg" />}
-              rightIconButton={rightIconMenu}
-              primaryText="Brendan Lim"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>
-                  I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
-                </p>
-              }
-              secondaryTextLines={2} />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-              rightIconButton={rightIconMenu}
-              primaryText="me, Scott, Jennifer"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>
-                  Wish I could come, but I&apos;m out of town this weekend.
-                </p>
-              }
-              secondaryTextLines={2} />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-              rightIconButton={rightIconMenu}
-              primaryText="Grace Ng"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>
-                  Do you have any Paris recs? Have you ever been?
-                </p>
-              }
-              secondaryTextLines={2} />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-              rightIconButton={rightIconMenu}
-              primaryText="Kerem Suer"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>
-                  Do you have any ideas what we can get Heidi for her birthday? How about a pony?
-                </p>
-              }
-              secondaryTextLines={2} />
-            <ListDivider inset={true} />
-            <ListItem
-              leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-              rightIconButton={rightIconMenu}
-              primaryText="Raquel Parrado"
-              secondaryText={
-                <p>
-                  <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>
-                  We should eat this: grated squash. Corn and tomatillo tacos.
-                </p>
-              }
-              secondaryTextLines={2} />
-          </List>
-        </MobileTearSheet>
-
+          <MobileTearSheet>
+            <List subheader="Today">
+              <ListItem
+                leftAvatar={<Avatar src="images/ok-128.jpg" />}
+                rightIconButton={rightIconMenu}
+                primaryText="Brendan Lim"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Brunch this weekend?</span><br/>
+                    I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
+                  </p>
+                }
+                secondaryTextLines={2} />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+                rightIconButton={rightIconMenu}
+                primaryText="me, Scott, Jennifer"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Summer BBQ</span><br/>
+                    Wish I could come, but I&apos;m out of town this weekend.
+                  </p>
+                }
+                secondaryTextLines={2} />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+                rightIconButton={rightIconMenu}
+                primaryText="Grace Ng"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Oui oui</span><br/>
+                    Do you have any Paris recs? Have you ever been?
+                  </p>
+                }
+                secondaryTextLines={2} />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+                rightIconButton={rightIconMenu}
+                primaryText="Kerem Suer"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Birthday gift</span><br/>
+                    Do you have any ideas what we can get Heidi for her birthday? How about a pony?
+                  </p>
+                }
+                secondaryTextLines={2} />
+              <ListDivider inset={true} />
+              <ListItem
+                leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+                rightIconButton={rightIconMenu}
+                primaryText="Raquel Parrado"
+                secondaryText={
+                  <p>
+                    <span style={{color: Colors.darkBlack}}>Recipe to try</span><br/>
+                    We should eat this: grated squash. Corn and tomatillo tacos.
+                  </p>
+                }
+                secondaryTextLines={2} />
+            </List>
+          </MobileTearSheet>
+        </CodeExample>
       </ComponentDoc>
     );
   }
