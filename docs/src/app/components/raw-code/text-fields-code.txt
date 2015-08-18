@@ -55,6 +55,13 @@
   displayMember="name"
   menuItems={arbitraryArrayMenuItems} />
 <SelectField
+  valueLink={this.linkState('selectValueLinkValue2')}
+  floatingLabelText="Float Custom Label Text"
+  floatingLabelStyle={{color: "red"}}
+  valueMember="id"
+  displayMember="name"
+  menuItems={arbitraryArrayMenuItems} />
+<SelectField
   value={this.state.selectValue2}
   onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
   menuItems={arbitraryArrayMenuItems} />
