@@ -246,7 +246,7 @@ let Slider = React.createClass({
       this.props.disabled && styles.handleWhenDisabled
     );
 
-    let rippleStyle = {height: '12px', width: '12px'};
+    let rippleStyle = {height: '12px', width: '12px', overflow: 'visible'};
 
     if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
       remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
