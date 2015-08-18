@@ -120,11 +120,11 @@ let SearchField = React.createClass({
         initiallyKeyboardFocused={true}
         onEscKeyDown={()=>this.close()}
         onItemTouchTap={this._handleItemTouchTap}
-        listStyle={this.mergeAndPrefix(styles.list,listStyle)}
+        listStyle={this.mergeAndPrefix(styles.list, listStyle)}
         openDirection="bottom-left"
         style={mergedMenuStyles}>
         {
-          requestsList.map((request,index) => {
+          requestsList.map((request, index) => {
             switch(typeof request){
               case 'string':
                 return (<MenuItem
@@ -227,7 +227,7 @@ let SearchField = React.createClass({
   },
 
   updateRequests(searchText){
-    let requestsListPromise = new Promise(function(resolve,reject) {
+    let requestsListPromise = new Promise(function(resolve, reject) {
       let list = this.props.onUpdateRequests(searchText);
       if(list){
         resolve(list);
@@ -262,7 +262,7 @@ let SearchField = React.createClass({
 
     let chosenRequest=this.state.requestsList[index];
     this.setState({searchText:chosenRequest});
-    this.props.onNewRequest(chosenRequest,index,this.state.requestsList);
+    this.props.onNewRequest(chosenRequest, index, this.state.requestsList);
 
   },
 
