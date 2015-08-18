@@ -55,6 +55,14 @@ let TextField = React.createClass({
     };
   },
 
+  getContextProps() {
+    const theme = this.context.muiTheme;
+
+    return {
+      isRtl: theme.isRtl,
+    };
+  },
+
   getInitialState() {
     let props = (this.props.children) ? this.props.children.props : this.props;
 
@@ -101,6 +109,7 @@ let TextField = React.createClass({
   getStyles() {
     let props = this.props;
     let theme = this.getTheme();
+    const contextProps = this.getContextProps();
 
     let styles = {
       root: {
@@ -178,7 +187,7 @@ let TextField = React.createClass({
       bottom: 'none',
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
-      transformOrigin: 'left top',
+      transformOrigin: contextProps.isRtl ? 'right top' : 'left top',
     });
 
     styles.textarea = this.mergeStyles(styles.input, {
