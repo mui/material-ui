@@ -43,9 +43,8 @@ let ThemeManager = () => {
       this.component = Extend(this.component, overrides);
     },
 
-    setDirection(direction) {
-      const isRtl = direction === 'rtl';
-      this.isRtl = isRtl;
+    setIsRtl(isRtl) {
+      this.isRtl = !! isRtl;
     },
   };
 };
