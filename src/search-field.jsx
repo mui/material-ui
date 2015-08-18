@@ -244,7 +244,7 @@ let SearchField = React.createClass({
         searchText:searchText,
         requestsList:list,
       });
-    },()=>{
+    }, ()=>{
       this.setState({
         searchText:searchText,
         requestsList:null,
