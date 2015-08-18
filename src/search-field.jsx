@@ -209,6 +209,11 @@ let SearchField = React.createClass({
     });
   },
 
+  getValue() {
+    return this.state.searchText;
+    });
+  },
+
   close() {
     this.open = false;
     this.forceUpdate();
