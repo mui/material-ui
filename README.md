@@ -87,7 +87,7 @@ Material-UI components have their styles defined inline. There are two approache
 This allows you to override variables used by components without having to modify material-ui source files directly.
 
 ## Examples
-There are 2 projects that you can look at to help you get started. The first project can be found in the [example folder](https://github.com/callemall/material-ui/tree/master/example). This is a basic project that shows how you can consume material-ui components in your own project.
+There are 2 projects that you can look at to help you get started. The first project can be found in the [example folder](https://github.com/callemall/material-ui/tree/master/examples). This is a basic project that shows how you can consume material-ui components in your own project.
 
 The second project is the actual documentation site. This is a more complex project but will give examples of every component. Check out the [docs folder](https://github.com/callemall/material-ui/tree/master/docs) for build instructions.
 
