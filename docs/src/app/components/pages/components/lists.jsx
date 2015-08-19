@@ -107,13 +107,19 @@ class ListsPage extends React.Component {
             desc: 'This is the SvgIcon or FontIcon to be displayed on the left side.'
           },
           {
+            name: 'nestedItems',
+            type: 'Array of elements',
+            header: 'optional',
+            desc: 'An array of ListItems to nest underneath the current ListItem.'
+          },
+          {
             name: 'nestedLevel',
             type: 'integer',
             header: 'optional',
             desc: 'Controls how deep a ListItem appears. This property is automatically managed so modify at your own risk.'
           },
           {
-            name: 'open',
+            name: 'initiallyOpen',
             type: 'boolean',
             header: 'default: false',
             desc: 'Controls whether or not the child ListItems are initially displayed.'
@@ -348,20 +354,27 @@ class ListsPage extends React.Component {
                 secondaryText="Jan 10, 2014" />
             </List>
           </MobileTearSheet>
-
           <MobileTearSheet>
             <List subheader="Nested List Items">
               <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
               <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
-              <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} open={true}>
-                <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
-                <ListItem primaryText="Sent Mail" leftIcon={<ContentSend />}>
-                  <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
-                </ListItem>
-              </ListItem>
+              <ListItem
+                primaryText="Inbox"
+                leftIcon={<ContentInbox />}
+                initiallyOpen={true}
+                nestedItems={[
+                  <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />,
+                  <ListItem
+                    primaryText="Sent Mail"
+                    leftIcon={<ContentSend />}
+                    nestedItems={[
+                      <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+                    ]}
+                  />,
+                ]}
+              />
             </List>
           </MobileTearSheet>
-
           <MobileTearSheet>
             <List subheader="General">
               <ListItem
@@ -387,7 +400,6 @@ class ListsPage extends React.Component {
                 secondaryText="Hangouts video call" />
             </List>
           </MobileTearSheet>
-
           <MobileTearSheet>
             <List>
               <ListItem
