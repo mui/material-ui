@@ -222,7 +222,7 @@ let TextField = React.createClass({
     }
 
     if (this.state.errorText && this.state.isFocused) styles.floatingLabel.color = styles.error.color;
-    if (props.floatingLabelText && !props.multiLine) styles.input.paddingTop = 26;
+    if (props.floatingLabelText && !props.multiLine) styles.input.marginTop = 14;
 
     if (this.state.errorText) {
       styles.focusUnderline.borderColor = styles.error.color;
