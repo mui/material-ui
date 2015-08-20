@@ -80,14 +80,14 @@ let MedlifeTheme = {
       },
       leftNav: {
         width: spacing.desktopKeylineIncrement * 4,
-        color: Colors.blue900,
+        color: Colors.white,
       },
       listItem: {
         nestedLevelDepth: 18,
       },
       menu: {
-        backgroundColor: Colors.grey800,
-        containerBackgroundColor: Colors.grey800,
+        backgroundColor: Colors.white,
+        containerBackgroundColor: Colors.white,
       },
       menuItem: {
         dataHeight: 32,
@@ -102,7 +102,7 @@ let MedlifeTheme = {
         textColor: palette.primary1Color,
       },
       paper: {
-        backgroundColor: Colors.grey800,
+        backgroundColor: Colors.white,
       },
       radioButton: {
         borderColor:  palette.textColor,
@@ -192,7 +192,7 @@ let MedlifeTheme = {
         menuHoverColor: 'rgba(0, 0, 0, .10)',
       },
       tabs: {
-        backgroundColor: palette.primary1Color,
+        backgroundColor: palette.primary2Color,
       },
       textField: {
         textColor: palette.textColor2,

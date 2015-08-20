@@ -13,3 +13,7 @@ gulp.task('eslint', function () {
     // lint error, return the stream and pipe to failOnError last.
     .pipe(eslint.failOnError());
 });
+gulp.task('pushtoDevApps',function(){
+    return gulp.src('lib/**')
+        .pipe(gulp.dest('/Users/muthaiahthiagarajan/Git/ccx/doctor-app/node_modules/material-ui/lib/'));
+});

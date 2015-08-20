@@ -42,6 +42,12 @@ let TextField = React.createClass({
     type: React.PropTypes.string,
     alignCenter: React.PropTypes.bool,
     fontSize: React.PropTypes.number,
+    hintColor: React.PropTypes.string,
+    textColor: React.PropTypes.string,
+    borderColor: React.PropTypes.string,
+    focusColor: React.PropTypes.string,
+    floatingLabelColor : React.PropTypes.string,
+    overrideStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -123,7 +129,7 @@ let TextField = React.createClass({
         position: 'absolute',
         lineHeight: '22px',
         opacity: 1,
-        color: theme.hintColor,
+        color: (this.props.hintColor) ? this.props.hintColor : theme.hintColor,
         transition: Transitions.easeOut(),
         bottom: 12,
       },
@@ -136,12 +142,12 @@ let TextField = React.createClass({
         border: 'none',
         outline: 'none',
         backgroundColor: theme.backgroundColor,
-        color: props.disabled ? theme.disabledTextColor : theme.textColor,
+        color: props.disabled ? theme.disabledTextColor : ((this.props.textColor) ? this.props.textColor : theme.textColor),
         font: 'inherit',
       },
       underline: {
         border: 'none',
-        borderBottom: 'solid 1px ' + theme.borderColor,
+        borderBottom: 'solid 1px ' + ((this.props.borderColor) ? this.props.borderColor : theme.borderColor),
         position: 'absolute',
         width: '100%',
         bottom: 8,
@@ -180,19 +186,19 @@ let TextField = React.createClass({
 
     styles.focusUnderline= this.mergeStyles(styles.underline, {
       borderBottom: 'solid 2px',
-      borderColor: theme.focusColor,
+      borderColor: (this.props.focusColor) ? this.props.focusColor : theme.focusColor,
       transform: 'scaleX(0)',
       transition: Transitions.easeOut(),
     });
 
     if (this.state.isFocused) {
-      styles.floatingLabel.color = theme.focusColor;
+      styles.floatingLabel.color = (this.props.focusColor) ? this.props.focusColor : theme.focusColor;
       styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
     if (this.state.hasValue) {
-      styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? theme.disabledTextColor : theme.floatingLabelColor, 0.5);
+      styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? theme.disabledTextColor : ((this.props.floatingLabelColor) ? this.props.floatingLabelColor : theme.floatingLabelColor), 0.5);
       styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
       styles.hint.opacity = 0;
     }
@@ -234,6 +240,7 @@ let TextField = React.createClass({
       type,
       rows,
       alignCenter,
+      overrideStyle,
       ...other,
     } = this.props;
 
@@ -256,6 +263,8 @@ let TextField = React.createClass({
           styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(48px, -28px, 0)';
         }
     }
+    if(overrideStyle)
+        styles = this.mergeStyles(styles,overrideStyle);
     let inputId = id || this._uniqueId;
     let errorTextElement = this.state.errorText ? (
       <div style={this.mergeAndPrefix(styles.error, errorStyle)}>{this.state.errorText}</div>
@@ -310,8 +319,7 @@ let TextField = React.createClass({
       <hr style={this.mergeAndPrefix(styles.underline)}/>
     );
     let focusUnderlineElement = <hr style={this.mergeAndPrefix(styles.focusUnderline)} />;
-
-    return (
+return (
       <div className={className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
         {floatingLabelTextElement}
         {hintTextElement}

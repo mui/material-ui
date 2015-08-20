@@ -30,6 +30,7 @@ let Snackbar = React.createClass({
   getInitialState() {
     return {
       open: this.props.openOnMount || false,
+      message: (this.props.message) ? this.props.message : '',
     };
   },
 
@@ -71,14 +72,14 @@ let Snackbar = React.createClass({
         height: this.getSpacing().desktopSubheaderHeight,
         lineHeight: this.getSpacing().desktopSubheaderHeight + 'px',
         minWidth: 288,
-        maxWidth: 568,
+        //maxWidth: 568,
 
         position: 'fixed',
         zIndex: 10,
-        bottom: this.getSpacing().desktopGutter,
-        marginLeft: this.getSpacing().desktopGutter,
+        //bottom: this.getSpacing().desktopGutter,
+        //marginLeft: this.getSpacing().desktopGutter,
 
-        left: 0,
+        //left: 0,
         opacity: 0,
         visibility: 'hidden',
         transform: 'translate3d(0, 20px, 0)',
@@ -90,10 +91,13 @@ let Snackbar = React.createClass({
       },
       action: {
         color: this.getTheme().actionColor,
-        float: 'right',
-        marginTop: 6,
-        marginRight: -16,
-        marginLeft: this.getSpacing().desktopGutter,
+        position: 'absolute',
+        //float: 'right',
+        //marginTop: 6,
+        //marginRight: -16,
+        top:2,
+        right:-20,
+        //marginLeft: this.getSpacing().desktopGutter,
         backgroundColor: 'transparent',
       },
       rootWhenOpen: {
@@ -113,7 +117,8 @@ let Snackbar = React.createClass({
 
   render() {
     let styles = this.getStyles();
-
+    let{...other,
+    } = this.props;
     let action;
     if (this.props.action) {
       action = (
@@ -129,15 +134,15 @@ let Snackbar = React.createClass({
       this.mergeStyles(styles.root, this.props.style);
 
     return (
-      <span style={rootStyles}>
-          <span>{this.props.message}</span>
+      <span style={rootStyles} {...other}>
+          <span>{this.state.message}</span>
           {action}
       </span>
     );
   },
 
-  show() {
-    this.setState({ open: true });
+  show(message) {
+    this.setState({ open: true, message:message });
   },
 
   dismiss() {

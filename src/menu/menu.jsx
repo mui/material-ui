@@ -414,7 +414,7 @@ let Menu = React.createClass({
               onMouseEnter={this._onItemActivated}
               onMouseLeave={this._onItemDeactivated}
               >
-              {menuItem.text}
+              {menuItem.text}{(menuItem.count && menuItem.count > 0) ? (" ("+menuItem.count+")"):""}
             </MenuItem>
           );
       }
