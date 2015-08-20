@@ -114,7 +114,8 @@ const FocusRipple = React.createClass({
     const size = Math.max(height, width);
 
     let oldTop = 0;
-    if (el.style.top.endsWith('px')) {
+    // For browsers that don't support endsWith()
+    if (el.style.top.indexOf('px', el.style.top.length - 2) !== -1) {
       oldTop = parseInt(el.style.top);
     } 
     el.style.height = size + 'px';
