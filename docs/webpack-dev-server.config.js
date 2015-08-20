@@ -18,7 +18,8 @@ var config = {
     extensions: ["", ".js", ".jsx", ".txt"],
     alias: {
       //material-ui requires will be searched in src folder, not in node_modules
-      'material-ui': path.resolve(__dirname, '../src')
+      'material-ui': path.resolve(__dirname, '../src'),
+      codemirror: path.resolve(__dirname, 'node_modules/codemirror')
     },
     //Modules will be searched for in these directories
     modulesDirectories: [

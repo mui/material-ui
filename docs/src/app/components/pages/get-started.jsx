@@ -138,7 +138,7 @@ class GetStarted extends React.Component {
           <h2 style={styles.headline}>Examples</h2>
           <p>
             There are 2 projects that you can look at to help you get started. The first project can be found
-            in the <a href="https://github.com/callemall/material-ui/tree/master/example">example folder</a>. This
+            in the <a href="https://github.com/callemall/material-ui/tree/master/examples">examples folder</a>. This
             is a basic project that shows how you can consume material-ui components in your own project.
           </p>
           <p>

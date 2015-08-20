@@ -2,6 +2,7 @@ let React = require('react');
 let { TimePicker } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let Code = require('time-picker-code');
+let CodeExample = require('../../code-example/code-example');
 
 
 let TimePickerPage = React.createClass({
@@ -52,21 +53,20 @@ let TimePickerPage = React.createClass({
     return (
       <ComponentDoc
         name="Time Picker"
-        code={Code}
         componentInfo={componentInfo}>
+        <CodeExample code={Code}>
+          <TimePicker
+            ref="picker12hr"
+            format="ampm"
+            hintText="12hr Format"
+            onChange={this._changeTimePicker24} />
 
-        <TimePicker
-          ref="picker12hr"
-          format="ampm"
-          hintText="12hr Format"
-          onChange={this._changeTimePicker24} />
-
-        <TimePicker
-          ref="picker24hr"
-          format="24hr"
-          hintText="24hr Format"
-          onChange={this._changeTimePicker12}  />
-
+          <TimePicker
+            ref="picker24hr"
+            format="24hr"
+            hintText="24hr Format"
+            onChange={this._changeTimePicker12}  />
+        </CodeExample>
       </ComponentDoc>
     );
   },

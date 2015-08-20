@@ -4,6 +4,7 @@ let IconButton = require('icon-button');
 let NavigationClose = require('svg-icons/navigation/close');
 let FlatButton = require('flat-button');
 let ComponentDoc = require('../../component-doc');
+let CodeExample = require('../../code-example/code-example');
 let Code = require('app-bar-code');
 
 
@@ -108,9 +109,9 @@ class AppBarPage extends React.Component {
     return (
       <ComponentDoc
         name="AppBar"
-        code={Code}
         desc={this.desc}
         componentInfo={this.componentInfo}>
+        <CodeExample code={Code}>
           <AppBar
             title="Title"
             iconClassNameRight="muidocs-icon-navigation-expand-more" />
@@ -119,6 +120,7 @@ class AppBarPage extends React.Component {
             title="Title"
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             iconElementRight={<FlatButton label="Save" />} />
+        </CodeExample>
       </ComponentDoc>
     );
   }

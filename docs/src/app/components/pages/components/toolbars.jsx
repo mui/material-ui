@@ -13,6 +13,8 @@ let {
   ToolbarTitle
 } = mui;
 let Code = require('toolbars-code');
+let CodeExample = require('../../code-example/code-example');
+
 
 class ToolbarPage extends React.Component {
 
@@ -87,23 +89,22 @@ class ToolbarPage extends React.Component {
     return (
       <ComponentDoc
         name="Toolbars"
-        code={Code}
         desc={desc}
         componentInfo={componentInfo}>
-
-        <Toolbar>
-          <ToolbarGroup key={0} float="left">
-            <DropDownMenu menuItems={filterOptions} />
-          </ToolbarGroup>
-          <ToolbarGroup key={1} float="right">
-            <ToolbarTitle text="Options" />
-            <FontIcon className="muidocs-icon-custom-sort" />
-            <DropDownIcon iconClassName="muidocs-icon-navigation-expand-more" menuItems={iconMenuItems} />
-            <ToolbarSeparator/>
-            <RaisedButton label="Create Broadcast" primary={true} />
-          </ToolbarGroup>
-        </Toolbar>
-
+        <CodeExample code={Code}>
+          <Toolbar>
+            <ToolbarGroup key={0} float="left">
+              <DropDownMenu menuItems={filterOptions} />
+            </ToolbarGroup>
+            <ToolbarGroup key={1} float="right">
+              <ToolbarTitle text="Options" />
+              <FontIcon className="muidocs-icon-custom-sort" />
+              <DropDownIcon iconClassName="muidocs-icon-navigation-expand-more" menuItems={iconMenuItems} />
+              <ToolbarSeparator/>
+              <RaisedButton label="Create Broadcast" primary={true} />
+            </ToolbarGroup>
+          </Toolbar>
+        </CodeExample>
       </ComponentDoc>
     );
   }

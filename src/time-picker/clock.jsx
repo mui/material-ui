@@ -50,11 +50,11 @@ let Clock = React.createClass({
     let hours = this.state.selectedTime.getHours();
 
     if (affix === "am") {
-      this.handleChangeHours(hours - 12);
+      this.handleChangeHours(hours - 12, affix);
       return;
     }
 
-    this.handleChangeHours(hours + 12);
+    this.handleChangeHours(hours + 12, affix);
   },
 
   _getAffix() {
@@ -131,6 +131,19 @@ let Clock = React.createClass({
 
   handleChangeHours(hours, finished) {
     let time = new Date(this.state.selectedTime);
+    let affix;
+
+    if ( typeof finished === 'string' ) {
+      affix = finished;
+      finished = undefined;
+    }
+    if (!affix) {
+      affix = this._getAffix();
+    }
+    if (affix === 'pm' && hours < 12) {
+      hours += 12;
+    }
+
     time.setHours(hours);
     this.setState({
       selectedTime: time,

@@ -69,11 +69,12 @@ let DatePicker = React.createClass({
       mode,
       onDismiss,
       onFocus,
-      onTouchTap,
       onShow,
+      onTouchTap,
       showYearSelector,
       style,
       textFieldStyle,
+      valueLink,
       ...other,
     } = this.props;
 
