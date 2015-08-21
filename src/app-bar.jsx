@@ -61,6 +61,7 @@ let AppBar = React.createClass({
     let flatButtonSize = 36;
     let styles = {
       root: {
+        position: 'relative',
         zIndex: 5,
         width: '100%',
         display: '-webkit-box; display: -webkit-flex; display: flex',
