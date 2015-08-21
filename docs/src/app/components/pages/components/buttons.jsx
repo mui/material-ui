@@ -136,8 +136,8 @@ class ButtonPage extends React.Component {
           },
           {
             name: 'labelPosition',
-            type: 'string',
-            header: 'default: "right"',
+            type: 'oneOf ["before", "after"]',
+            header: 'default: "before"',
             desc: 'Place label before or after the passed children'
           },
           {

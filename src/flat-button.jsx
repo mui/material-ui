@@ -131,7 +131,7 @@ const FlatButton = React.createClass({
       <FlatButtonLabel label={label} style={labelStyle} />
     ) : undefined;
     // Place label before or after children.
-    const childrenFragment = labelPosition === 'before' ? { labelElement, children, } : { children, labelElement, };
+    const childrenFragment = labelPosition === 'before' ? { labelElement, children } : { children, labelElement };
     const enhancedButtonChildren = Children.create(childrenFragment);
 
 
