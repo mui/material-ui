@@ -7,9 +7,25 @@ const KeyCode = require('./utils/key-code');
 const FocusRipple = require('./ripples/focus-ripple');
 const TouchRipple = require('./ripples/touch-ripple');
 
-
 let styleInjected = false;
 let tabPressed = false;
+
+function injectStyle() {
+  if (!styleInjected) {
+    // Remove inner padding and border in Firefox 4+.
+    let style = document.createElement("style");
+    style.innerHTML = `
+      button::-moz-focus-inner,
+      input::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+      }
+    `;
+
+    document.body.appendChild(style);
+    styleInjected = true;
+  }
+}
 
 const EnhancedButton = React.createClass({
 
@@ -77,20 +93,7 @@ const EnhancedButton = React.createClass({
   },
 
   componentDidMount() {
-    if (!styleInjected) {
-      // Remove inner padding and border in Firefox 4+.
-      let style = document.createElement("style");
-      style.innerHTML = `
-        button::-moz-focus-inner,
-        input::-moz-focus-inner {
-          border: 0;
-          padding: 0;
-        }
-      `;
-
-      document.body.appendChild(style);
-      styleInjected = true;
-    }
+    injectStyle();
   },
 
   render() {
