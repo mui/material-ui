@@ -3,11 +3,13 @@ const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('./mixins/style-propable');
 const Colors = require('./styles/colors');
 const Children = require('./utils/children');
+const Events = require('./utils/events');
 const KeyCode = require('./utils/key-code');
 const FocusRipple = require('./ripples/focus-ripple');
 const TouchRipple = require('./ripples/touch-ripple');
 
 let styleInjected = false;
+let listening = false;
 let tabPressed = false;
 
 function injectStyle() {
@@ -24,6 +26,15 @@ function injectStyle() {
 
     document.body.appendChild(style);
     styleInjected = true;
+  }
+}
+
+function listenForTabPresses() {
+  if (!listening) {
+    Events.on(window, 'keydown', (e) =>{
+      tabPressed = e.keyCode === KeyCode.TAB;
+    });
+    listening = true;
   }
 }
 
@@ -94,6 +105,7 @@ const EnhancedButton = React.createClass({
 
   componentDidMount() {
     injectStyle();
+    listenForTabPresses();
   },
 
   render() {
@@ -233,9 +245,6 @@ const EnhancedButton = React.createClass({
 
   _handleKeyDown(e) {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
-      if (e.keyCode === KeyCode.TAB) {
-        tabPressed = true;
-      }
       if (e.keyCode === KeyCode.ENTER && this.state.isKeyboardFocused) {
         this._handleTouchTap(e);
       }
