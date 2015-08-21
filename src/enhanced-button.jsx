@@ -253,10 +253,13 @@ const EnhancedButton = React.createClass({
   },
 
   _handleKeyUp(e) {
-    if (!this.props.disabled &&
-      e.keyCode === KeyCode.SPACE &&
-      this.state.isKeyboardFocused) {
-      this._handleTouchTap(e);
+    if (!this.props.disabled) {
+      if (e.keyCode === KeyCode.SPACE &&
+        this.state.isKeyboardFocused) {
+          this._handleTouchTap(e);
+      } else if (e.keyCode === KeyCode.TAB) {
+        tabPressed = true;
+      }
     }
     this.props.onKeyUp(e);
   },
