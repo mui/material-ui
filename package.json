@@ -30,7 +30,6 @@
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
-    "classnames": "^1.2.0",
     "react-draggable2": "^0.5.1"
   },
   "peerDependencies": {
