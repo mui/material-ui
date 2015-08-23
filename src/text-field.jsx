@@ -111,7 +111,7 @@ let TextField = React.createClass({
       newState.valid = this.isValid(nextProps.defaultValue);
     }
 
-    newState.valid = newState.valid || this.isValid();
+    newState.valid = newState.hasOwnProperty('valid') ? newState.valid : this.isValid();
     newState.errorText = newState.valid ? '' : nextProps.errorText;
 
     if (newState) this.setState(newState);
