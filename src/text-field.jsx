@@ -11,7 +11,7 @@ let EnhancedTextarea = require('./enhanced-textarea');
  * @param The value to check.
  * @returns True if the string provided is valid, false otherwise.
  */
-function isValid(value) {
+function hasValue(value) {
   return value || value === 0;
 }
 
@@ -24,6 +24,8 @@ let TextField = React.createClass({
   },
 
   propTypes: {
+    required: React.PropTypes.bool,
+    validations: React.PropTypes.arrayOf(React.PropTypes.func),
     errorStyle: React.PropTypes.object,
     errorText: React.PropTypes.string,
     floatingLabelStyle: React.PropTypes.object,
@@ -49,6 +51,8 @@ let TextField = React.createClass({
 
   getDefaultProps() {
     return {
+      required: false,
+      validations: [],
       fullWidth: false,
       type: 'text',
       rows: 1,
@@ -65,11 +69,13 @@ let TextField = React.createClass({
 
   getInitialState() {
     let props = (this.props.children) ? this.props.children.props : this.props;
+    const isNotEmpty = hasValue(props.value) || hasValue(props.defaultValue) ||
+        (props.valueLink && hasValue(props.valueLink.value));
 
     return {
+      valid: isNotEmpty,
       errorText: this.props.errorText,
-      hasValue: isValid(props.value) || isValid(props.defaultValue) ||
-        (props.valueLink && isValid(props.valueLink.value)),
+      hasValue: isNotEmpty,
     };
   },
 
@@ -84,7 +90,6 @@ let TextField = React.createClass({
   componentWillReceiveProps(nextProps) {
     let newState = {};
 
-    newState.errorText = nextProps.errorText;
     if (nextProps.children && nextProps.children.props) {
       nextProps = nextProps.children.props;
     }
@@ -94,14 +99,20 @@ let TextField = React.createClass({
     let hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
 
     if (hasValueLinkProp) {
-      newState.hasValue = isValid(nextProps.valueLink.value);
+      newState.hasValue = hasValue(nextProps.valueLink.value);
+      newState.valid = this.isValid(nextProps.valueLink.value);
     }
     else if (hasValueProp) {
-      newState.hasValue = isValid(nextProps.value);
+      newState.hasValue = hasValue(nextProps.value);
+      newState.valid = this.isValid(nextProps.value);
     }
     else if (hasNewDefaultValue) {
-      newState.hasValue = isValid(nextProps.defaultValue);
+      newState.hasValue = hasValue(nextProps.defaultValue);
+      newState.valid = this.isValid(nextProps.defaultValue);
     }
+
+    newState.valid = newState.valid || this.isValid();
+    newState.errorText = newState.valid ? '' : nextProps.errorText;
 
     if (newState) this.setState(newState);
   },
@@ -361,8 +372,18 @@ let TextField = React.createClass({
         this._getInputNode().value = newValue;
       }
 
-      this.setState({hasValue: isValid(newValue)});
+      this.setState({
+        valid: this.isValid(newValue),
+        hasValue: hasValue(newValue),
+      });
     }
+  },
+
+  isValid(value=this.getValue()) {
+    if (hasValue(value)) {
+      return !this.props.validations.filter((validator) => !validator(value)).length;
+    }
+    return !this.props.required;
   },
 
   _getRef() {
@@ -380,7 +401,12 @@ let TextField = React.createClass({
   },
 
   _handleInputChange(e) {
-    this.setState({hasValue: isValid(e.target.value)});
+    const isValid = this.isValid(e.target.value);
+    this.setState({
+      valid: isValid,
+      errorText: isValid ? '' : this.props.errorText,
+      hasValue: hasValue(e.target.value),
+    });
     if (this.props.onChange) this.props.onChange(e);
   },
 

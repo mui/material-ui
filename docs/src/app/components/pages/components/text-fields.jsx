@@ -289,7 +289,9 @@ let TextFieldsPage = React.createClass({
             <div style={styles.group}>
               <TextField
                 hintText="Hint Text"
-                floatingLabelText="Floating Label Text" /><br/>
+                floatingLabelText="Floating Label Text"
+                errorText='Must be meow'
+                validations={[ function(value) { return value=='meow' } ]}/><br/>
               <TextField
                 hintText="Hint Text"
                 defaultValue="Default Value"
