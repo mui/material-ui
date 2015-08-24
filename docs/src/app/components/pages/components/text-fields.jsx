@@ -116,6 +116,12 @@ let TextFieldsPage = React.createClass({
             desc: 'Override the inline-styles of the TextField\'s underline element when focussed.'
           },
           {
+            name: 'underlineDisabledStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the TextField\'s underline element when disabled.'
+          },
+          {
             name: 'type',
             type: 'string',
             header: 'optional',
@@ -224,6 +230,11 @@ let TextFieldsPage = React.createClass({
                 style={styles.textfield}
                 hintText="Custom Underline Focus Color"
                 underlineFocusStyle={{borderColor: Colors.amber900}} /><br />
+              <TextField
+                style={styles.textfield}
+                disabled={true}
+                hintText="Custom Underline Disabled Style"
+                underlineDisabledStyle={{borderColor:Colors.purple500, borderBottom: 'solid 1px'}} /><br />
               <TextField
                 style={styles.textfield}
                 hintText="Hint Text"
