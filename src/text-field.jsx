@@ -45,7 +45,7 @@ let TextField = React.createClass({
     type: React.PropTypes.string,
     underlineStyle: React.PropTypes.object,
     underlineFocusStyle: React.PropTypes.object,
-    underlineDisabledStyle: React.PropTypes.object
+    underlineDisabledStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
