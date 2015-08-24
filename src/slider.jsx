@@ -106,11 +106,9 @@ let Slider = React.createClass({
   },
 
   getStyles() {
-    let size = this.getTheme().handleSize + this.getTheme().trackSize;
-    let gutter =
-      (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
-    let fillGutter =
-      this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
+    let fillGutter = this.getTheme().handleSize / 2;
+    let disabledGutter = this.getTheme().trackSize + this.getTheme().handleSizeDisabled / 2;
+    let calcDisabledSpacing = this.props.disabled ? ' - ' + disabledGutter + 'px' : '';
     let styles = {
       root: {
         touchCallout: 'none',
@@ -134,10 +132,6 @@ let Slider = React.createClass({
         height: '100%',
         transition: Transitions.easeOut(null, 'margin'),
       },
-      percentZeroRemaining: {
-        left: 1,
-        marginLeft: gutter,
-      },
       handle: {
         boxSizing: 'border-box',
         position: 'absolute',
@@ -155,7 +149,8 @@ let Slider = React.createClass({
         borderRadius: '50%',
         transform: 'translate(-50%, -50%)',
         transition:
-          Transitions.easeOut('450ms', 'border') + ',' +
+          Transitions.easeOut('450ms', 'background') + ',' +
+          Transitions.easeOut('450ms', 'border-color') + ',' +
           Transitions.easeOut('450ms', 'width') + ',' +
           Transitions.easeOut('450ms', 'height'),
         overflow: 'visible',
@@ -166,37 +161,40 @@ let Slider = React.createClass({
         backgroundColor: this.getTheme().trackColor,
         width: this.getTheme().handleSizeDisabled,
         height: this.getTheme().handleSizeDisabled,
-        border: '2px solid white',
+        border: 'none',
       },
       handleWhenPercentZero: {
-        border: this.getTheme().trackSize + 'px solid ' + this.getTheme().trackColor,
+        border: this.getTheme().trackSize + 'px solid ' + this.getTheme().handleColorZero,
         backgroundColor: this.getTheme().handleFillColor,
         boxShadow: 'none',
       },
+      handleWhenPercentZeroAndDisabled: {
+        cursor: 'not-allowed',
+        width: this.getTheme().handleSizeDisabled,
+        height: this.getTheme().handleSizeDisabled,
+      },
+      handleWhenPercentZeroAndFocused: {
+        border: this.getTheme().trackSize + 'px solid ' +
+          this.getTheme().trackColorSelected,
+      },
       handleWhenActive: {
-        borderColor: this.getTheme().trackColorSelected,
         width: this.getTheme().handleSizeActive,
         height: this.getTheme().handleSizeActive,
-        transition:
-          Transitions.easeOut('450ms', 'backgroundColor') + ',' +
-          Transitions.easeOut('450ms', 'width') + ',' +
-          Transitions.easeOut('450ms', 'height'),
       },
-      ripples: {
+      ripple: {
+        height: this.getTheme().handleSize, 
+        width: this.getTheme().handleSize, 
+        overflow: 'visible',
+      },
+      rippleWhenPercentZero: {
+        top: -this.getTheme().trackSize, 
+        left: -this.getTheme().trackSize,
+      },
+      rippleInner: {
         height: '300%',
         width: '300%',
-        top: '-12px',
-        left: '-12px',
-      },
-      handleWhenDisabledAndZero: {
-        width: (size / 2) + 'px',
-        height: (size /2) + 'px',
-      },
-      handleWhenPercentZeroAndHovered: {
-        border: this.getTheme().trackSize + 'px solid ' +
-          this.getTheme().handleColorZero,
-        width: size + 'px',
-        height: size + 'px',
+        top: -this.getTheme().handleSize,
+        left: -this.getTheme().handleSize,
       },
     };
     styles.filled = this.mergeAndPrefix(styles.filledAndRemaining, {
@@ -205,13 +203,13 @@ let Slider = React.createClass({
         this.getTheme().trackColor :
         this.getTheme().selectionColor,
       marginRight: fillGutter,
-      width: (this.state.percent * 100) + (this.props.disabled ? -1 : 0) + '%',
+      width: 'calc(' + (this.state.percent * 100) + '%' + calcDisabledSpacing + ')',
     });
     styles.remaining = this.mergeAndPrefix(styles.filledAndRemaining, {
       right: 0,
       backgroundColor: this.getTheme().trackColor,
       marginLeft: fillGutter,
-      width: ((1 - this.state.percent) * 100) + (this.props.disabled ? -1 : 0) + '%',
+      width: 'calc(' + ((1 - this.state.percent) * 100) + '%' + calcDisabledSpacing + ')',
     });
 
     return styles;
@@ -221,41 +219,33 @@ let Slider = React.createClass({
     let { ...others } = this.props;
     let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
-    let gutter = (this.getTheme().handleSizeDisabled + this.getTheme().trackSize) / 2;
-    let fillGutter = this.getTheme().handleSizeDisabled - this.getTheme().trackSize;
 
     let styles = this.getStyles();
     let sliderStyles = this.mergeAndPrefix(styles.root, this.props.style);
-    let trackStyles = styles.track;
-    let filledStyles = styles.filled;
-    let remainingStyles = this.mergeAndPrefix(
-      styles.remaining,
-      percent === 0 && styles.percentZeroRemaining
-    );
     let handleStyles = percent === 0 ? this.mergeAndPrefix(
       styles.handle,
       styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
       this.state.focused && {outline: 'none'},
-      this.state.hovered && styles.handleWhenPercentZeroAndHovered,
-      this.props.disabled && styles.handleWhenDisabledAndZero
+      (this.state.hovered || this.state.focused) && !this.props.disabled
+        && styles.handleWhenPercentZeroAndFocused,
+      this.props.disabled && styles.handleWhenPercentZeroAndDisabled,
     ) : this.mergeAndPrefix(
       styles.handle,
       this.state.active && styles.handleWhenActive,
       this.state.focused && {outline: 'none'},
       this.props.disabled && styles.handleWhenDisabled
     );
-
-    let rippleStyle = {height: '12px', width: '12px', overflow: 'visible'};
-
+    let rippleStyle = this.mergeAndPrefix(
+      styles.ripple,
+      percent === 0 && styles.rippleWhenPercentZero,
+    );
+    let remainingStyles = styles.remaining;
     if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
       remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
     }
 
-    if (percent === 0) filledStyles.marginRight = gutter;
-    if (this.state.percent === 0 && this.state.active) remainingStyles.marginLeft = fillGutter;
-
-    let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active && this.state.percent !== 0;
+    let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
     let rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
     let focusRipple;
     if (!this.props.disabled && !this.props.disableFocusRipple) {
@@ -264,12 +254,11 @@ let Slider = React.createClass({
           ref="focusRipple"
           key="focusRipple"
           style={rippleStyle}
-          innerStyle={styles.ripples}
+          innerStyle={styles.rippleInner}
           show={rippleShowCondition}
           color={rippleColor}/>
       );
     }
-
     return (
       <div {...others } style={this.props.style}>
         <span className="mui-input-highlight"></span>
@@ -283,8 +272,8 @@ let Slider = React.createClass({
           onMouseEnter={this._onMouseEnter}
           onMouseLeave={this._onMouseLeave}
           onMouseUp={this._onMouseUp} >
-          <div ref="track" style={trackStyles}>
-              <div style={filledStyles}></div>
+          <div ref="track" style={styles.track}>
+              <div style={styles.filled}></div>
               <div style={remainingStyles}></div>
               <Draggable axis="x" bound="point"
                 cancel={this.props.disabled ? '*' : null}

@@ -131,6 +131,7 @@ let LightTheme = {
         trackColorSelected: Colors.grey500,
         handleSize: 12,
         handleSizeDisabled: 8,
+        handleSizeActive: 18,
         handleColorZero: Colors.grey400,
         handleFillColor: Colors.white,
         selectionColor: palette.primary3Color,
@@ -215,7 +216,6 @@ let LightTheme = {
     obj.floatingActionButton.disabledTextColor = ColorManipulator.fade(palette.textColor, 0.3);
     obj.raisedButton.disabledColor = ColorManipulator.darken(obj.raisedButton.color, 0.1);
     obj.raisedButton.disabledTextColor = ColorManipulator.fade(obj.raisedButton.textColor, 0.3);
-    obj.slider.handleSizeActive = obj.slider.handleSize * 2;
     obj.toggle.trackRequiredColor = ColorManipulator.fade(obj.toggle.thumbRequiredColor, 0.5);
 
     return obj;
