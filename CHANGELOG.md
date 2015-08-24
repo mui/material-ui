@@ -13,13 +13,15 @@
   the `onChange` event to: `onChange(value, e, tab)`. Where value is the value of the tab that it was changed
   to, e is the event, and tab is the actual tab component. (#1232, #1235)
 - Added a new `static` flag to the ThemeManager that defaults to `true`. If you're mutating your theme variables
-  after the app initializes, set this flag to `false`. This will allow us to perform some optimations to
+  after the app initializes, set this flag to `false`. This will allow us to perform some optimizations to
   components that require theme variables. (#1397)
 - ListItem (#1438, #1105)
   - Nested list items should no longer be passed in as children. Use the `nestedItems` prop instead.
   - The `open` prop has been renamed to `initiallyOpen`.
 - Removed classable mixin
-  - This mixin was no longer used in the library. Removing it allowed us to get rid of the `classnames` dependency. If you were using this mixin in your own projects, you'll need to pull the source and manually include it.
+  - This mixin was no longer used in the library. Removing it allowed us to get rid of the `classnames`
+    dependency. If you were using this mixin in your own projects, you'll need to pull the source and manually
+    include it.
 
 ##### Component Fixes / Enhancements
 - Buttons - Fixed a bug that caused buttons to not gain keyboard focus in some cases (#1485, #1453, #1458)
