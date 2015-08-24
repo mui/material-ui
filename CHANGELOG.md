@@ -4,8 +4,8 @@
 ##### Breaking Changes
 - The Table component is now composable. (#1199)
   - JSON objects to create the table and the table component will no longer generate the table for you.
-    The docs site provides a complete example of how a table might look: http://material-ui.com/#/components/
-    table. The example also includes a 'super header' and 'super footer' row.
+    The docs site provides a complete example of how a table might look: http://material-ui.com/#/components/table.
+    The example also includes a 'super header' and 'super footer' row.
   - **Upgrade Path:** Instead of passing in the raw JSON data, you'll need to generate the appropriate
     TableHeader/TableRow/TableHeaderColumn components and pass them in as children. The same should be applied
     to the rowData and the footer.
