@@ -13,7 +13,7 @@
   the `onChange` event to: `onChange(value, e, tab)`. Where value is the value of the tab that it was changed
   to, e is the event, and tab is the actual tab component. (#1232, #1235)
 - Added a new `static` flag to the ThemeManager that defaults to `true`. If you're mutating your theme variables
-  after the app initializes, set this flag to `true`. This will allow us to perform some optimations to
+  after the app initializes, set this flag to `false`. This will allow us to perform some optimations to
   components that require theme variables. (#1397)
 - ListItem (#1438, #1105)
   - Nested list items should no longer be passed in as children. Use the `nestedItems` prop instead.
