@@ -4,8 +4,10 @@
 /* hightlight.js for syntax highlighting */
 @import "github.css";
 
+@import "codemirror.css";
+
 a {
-  color: #ff4081; //pinkA200
+  color: #ff4081;
   text-decoration: none;
 }
 
@@ -27,7 +29,7 @@ body {
 }
 
 /* Used in our inline-styles.jsx as an example */
-.muidocs-checkbox-example { 
+.muidocs-checkbox-example {
   border: 2px solid #FF9800;
   background-color: #4CAF50;
 }
