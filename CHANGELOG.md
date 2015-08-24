@@ -1,3 +1,55 @@
+## 0.11.0
+###### _Aug 24, 2015_
+
+##### Breaking Changes
+- The Table component is now composable. (#1199)
+  - JSON objects to create the table and the table component will no longer generate the table for you.
+    The docs site provides a complete example of how a table might look: http://material-ui.com/#/components/
+    table. The example also includes a 'super header' and 'super footer' row.
+  - **Upgrade Path:** Instead of passing in the raw JSON data, you'll need to generate the appropriate
+    TableHeader/TableRow/TableHeaderColumn components and pass them in as children. The same should be applied
+    to the rowData and the footer.
+- Tabs can now be controlled. In order to make this work we had to change the parameters being passed back to
+  the `onChange` event to: `onChange(value, e, tab)`. Where value is the value of the tab that it was changed
+  to, e is the event, and tab is the actual tab component. (#1232, #1235)
+- Added a new `static` flag to the ThemeManager that defaults to `true`. If you're mutating your theme variables
+  after the app initializes, set this flag to `true`. This will allow us to perform some optimations to
+  components that require theme variables. (#1397)
+- ListItem (#1438, #1105)
+  - Nested list items should no longer be passed in as children. Use the `nestedItems` prop instead.
+  - The `open` prop has been renamed to `initiallyOpen`.
+- Removed classable mixin
+  - This mixin was no longer used in the library. Removing it allowed us to get rid of the `classnames` dependency. If you were using this mixin in your own projects, you'll need to pull the source and manually include it.
+
+##### Component Fixes / Enhancements
+- Buttons - Fixed a bug that caused buttons to not gain keyboard focus in some cases (#1485, #1453, #1458)
+- Card
+  - Properly merge `CardAction` and `CardExpandable` styles. (#1376)
+  - Added Right-To-Left support to `CardExpandable`. To use this, set `isRtl` to `true` in the theme. (#1408)
+- DatePicker - Fixed an error that occurred when using valueLink (#1400)
+- DropDownMenu - Added `disabled` prop (#1406)
+- FlatButton - Added `labelPosition` prop. (#1286)
+- InkBar - Added color prop and inkBar.backgroundColor to theme variables. (#1244)
+- Ripple
+  - Fixed display glitch on Safari (#1420)
+  - Fixed an error when ripples were unMounted (#1416)
+- SelectField
+  - Added `floatingLabelStyle` prop (#1463 #1450)
+- Slider
+  - Fixed a bug when setting the width attr (#1368)
+  - Fixed a bug with disabled sliders (#1417)
+  - Fixed a focus style glitch and other style problems (#1448, #1451, #1468)
+- Snackbar - Added onShow and onDismiss (#1390)
+- Table - Ensure that the table component properly keeps track of selected rows (#1325)
+- TextField
+  - Added `underlineFocusStyle` prop (#1422, #1419)
+  - `hintText` can now be a `string` or `element` (#1424, #1202)
+- TimePicker
+  - Fixed a bug that caused the am/pm selector to switch (#1440)
+  - Fixed a bug that caused defaultTime to not be set (#1466)
+- Tooltip - Probably center tooltips when tooltip text changes (#1205)
+- Theme - Added `setContentFontFamily` (#1405)
+
 ## 0.10.4
 ###### _Aug 8, 2015_
 
