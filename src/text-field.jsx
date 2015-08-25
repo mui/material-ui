@@ -33,6 +33,7 @@ let TextField = React.createClass({
       React.PropTypes.string,
       React.PropTypes.element,
     ]),
+    hintStyle: React.PropTypes.object,
     id: React.PropTypes.string,
     inputStyle: React.PropTypes.object,
     multiLine: React.PropTypes.bool,
@@ -240,6 +241,7 @@ let TextField = React.createClass({
       floatingLabelText,
       fullWidth,
       hintText,
+      hintStyle,
       id,
       multiLine,
       onBlur,
@@ -259,7 +261,7 @@ let TextField = React.createClass({
     ) : null;
 
     let hintTextElement = hintText ? (
-      <div style={this.mergeAndPrefix(styles.hint)}>{hintText}</div>
+      <div style={this.mergeAndPrefix(styles.hint, this.props.hintStyle)}>{hintText}</div>
     ) : null;
 
     let floatingLabelTextElement = floatingLabelText ? (
