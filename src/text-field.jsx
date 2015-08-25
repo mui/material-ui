@@ -25,6 +25,7 @@ let TextField = React.createClass({
 
   propTypes: {
     required: React.PropTypes.bool,
+    requiredText: React.PropTypes.string,
     validations: React.PropTypes.arrayOf(React.PropTypes.func),
     errorStyle: React.PropTypes.object,
     errorText: React.PropTypes.string,
@@ -52,6 +53,7 @@ let TextField = React.createClass({
   getDefaultProps() {
     return {
       required: false,
+      requiredText: 'This field is required',
       validations: [],
       fullWidth: false,
       type: 'text',
@@ -74,7 +76,7 @@ let TextField = React.createClass({
 
     return {
       valid: isNotEmpty,
-      errorText: this.props.errorText,
+      errorText: '',
       hasValue: isNotEmpty,
     };
   },
@@ -112,7 +114,14 @@ let TextField = React.createClass({
     }
 
     newState.valid = newState.hasOwnProperty('valid') ? newState.valid : this.isValid();
-    newState.errorText = newState.valid ? '' : nextProps.errorText;
+
+    if (newState.valid) {
+      newState.errorText = '';
+    } else if (newState.hasValue) {
+      newState.errorText = nextProps.errorText
+    } else {
+      newState.errorText = nextProps.requiredText;
+    }
 
     if (newState) this.setState(newState);
   },
