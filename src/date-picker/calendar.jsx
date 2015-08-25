@@ -98,7 +98,7 @@ let Calendar = React.createClass({
       },
       dateDisplay: {
         width: isLandscape ? 280 : '100%',
-        height: '100%',
+        height: 'auto',
         float: isLandscape ? 'left' : 'none',
       },
       weekTitle: {
