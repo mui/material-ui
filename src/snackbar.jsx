@@ -27,6 +27,7 @@ const Snackbar = React.createClass({
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     openOnMount: React.PropTypes.bool,
+    messageStyles: React.PropTypes.string,
   },
 
   getInitialState() {
@@ -91,6 +92,9 @@ const Snackbar = React.createClass({
         zIndex: 10,
         bottom: this.getSpacing().desktopGutter,
         marginLeft: this.getSpacing().desktopGutter,
+        marginRight: this.getSpacing().desktopGutter,
+        display: 'flex',
+        alignItems: 'center',
 
         left: 0,
         opacity: 0,
@@ -104,10 +108,6 @@ const Snackbar = React.createClass({
       },
       action: {
         color: this.getTheme().actionColor,
-        float: 'right',
-        marginTop: 6,
-        marginRight: -16,
-        marginLeft: this.getSpacing().desktopGutter,
         backgroundColor: 'transparent',
       },
       rootWhenOpen: {
@@ -119,6 +119,14 @@ const Snackbar = React.createClass({
           Transitions.easeOut('400ms', 'opacity', '0ms') + ',' +
           Transitions.easeOut('400ms', 'transform', '0ms') + ',' +
           Transitions.easeOut('400ms', 'visibility', '0ms'),
+      },
+      message :{
+        fontSize: '12px',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        lineHeight: '17px',
+        padding: '8px 0',
+        flex: 1,
       },
     };
 
@@ -133,6 +141,8 @@ const Snackbar = React.createClass({
       this.mergeStyles(styles.root, styles.rootWhenOpen, style) :
       this.mergeStyles(styles.root, style);
 
+    const messageStyles = this.mergeStyles(styles.message, this.props.messageStyle);
+
     let actionButton;
     if (action) {
       actionButton = (
@@ -145,7 +155,7 @@ const Snackbar = React.createClass({
 
     return (
       <span {...others} style={rootStyles}>
-        <span>{message}</span>
+        <span style={messageStyles}>{message}</span>
         {actionButton}
       </span>
     );
