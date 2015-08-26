@@ -26,7 +26,10 @@ let TextField = React.createClass({
   propTypes: {
     required: React.PropTypes.bool,
     requiredText: React.PropTypes.string,
-    validations: React.PropTypes.arrayOf(React.PropTypes.func),
+    validations: React.PropTypes.oneOfType([
+      React.PropTypes.func,
+      React.PropTypes.arrayOf(React.PropTypes.func),
+    ]),
     errorStyle: React.PropTypes.object,
     errorText: React.PropTypes.string,
     floatingLabelStyle: React.PropTypes.object,
@@ -53,7 +56,7 @@ let TextField = React.createClass({
   getDefaultProps() {
     return {
       required: false,
-      requiredText: 'This field is required',
+      requiredText: 'This field is required.',
       validations: [],
       fullWidth: false,
       type: 'text',
@@ -117,7 +120,7 @@ let TextField = React.createClass({
 
     if (newState.valid) {
       newState.errorText = '';
-    } else if (newState.hasValue) {
+    } else if (newState.hasValue || hasValue(nextProps.defaultValue)) {
       newState.errorText = nextProps.errorText
     } else {
       newState.errorText = nextProps.requiredText;
@@ -390,7 +393,11 @@ let TextField = React.createClass({
 
   isValid(value=this.getValue()) {
     if (hasValue(value)) {
-      return !this.props.validations.filter((validator) => !validator(value)).length;
+      const validations = this.props.validations;
+      if (Array.isArray(validations)) {
+        return !validations.filter((validator) => !validator(value)).length;
+      }
+      return validations(value);
     }
     return !this.props.required;
   },
@@ -411,9 +418,10 @@ let TextField = React.createClass({
 
   _handleInputChange(e) {
     const isValid = this.isValid(e.target.value);
+    const errorText = hasValue(e.target.value) ? this.props.errorText : this.props.requiredText;
     this.setState({
       valid: isValid,
-      errorText: isValid ? '' : this.props.errorText,
+      errorText: isValid ? '' : errorText,
       hasValue: hasValue(e.target.value),
     });
     if (this.props.onChange) this.props.onChange(e);

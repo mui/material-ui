@@ -27,13 +27,18 @@
 <TextField
   hintText="Hint Text"
   errorText={this.state.errorText}
-  onChange={this._handleErrorInputChange} />
+  required={true} />
 <TextField
   hintText="Hint Text (custom error color)"
   errorText={this.state.error2Text}
   errorStyle={{color:'orange'}}
-  onChange={this._handleError2InputChange}
+  validations={this._mustBeNumber}
   defaultValue="Custom error color" />
+<TextField
+  hintText="Custom Required Message"
+  floatingLabelText="Custom Required Message"
+  required={true}
+  requiredText='This field cannot be blank.' />
 <TextField
   hintText="Disabled Hint Text"
   disabled={true} />
@@ -89,15 +94,14 @@
   multiLine={true} />
 <TextField
   hintText="Hint Text"
-  errorText={this.state.floatingErrorText}
   floatingLabelText="Floating Label Text"
-  onChange={this._handleFloatingErrorInputChange} />
+  required={true} />
 <TextField
   hintText="Hint Text"
-  errorText={this.state.floatingError2Text}
+  errorText="This field must be numeric."
   defaultValue="abc"
   floatingLabelText="Floating Label Text"
-  onChange={this._handleFloating2ErrorInputChange} />
+  validations={this._mustBeNumber} />
 <TextField
   hintText="Disabled Hint Text"
   disabled={true}
