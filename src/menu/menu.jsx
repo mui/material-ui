@@ -544,8 +544,8 @@ let Menu = React.createClass({
     this.setState({activeIndex: index});
   },
   _onItemDeactivated(e, index) {
-    if (this.state.activeKey === index)
-      this.setState({activeIndex: 0});
+    if (this.state.activeIndex === index)
+      this.setState({activeIndex: 100000});
   },
 
   _onKeyDown(e) {
