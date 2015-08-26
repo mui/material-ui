@@ -384,8 +384,12 @@ let TextField = React.createClass({
         this._getInputNode().value = newValue;
       }
 
+      const isValid = this.isValid(newValue);
+      const errorText = hasValue(newValue) ? this.props.errorText : this.props.requiredText
+
       this.setState({
-        valid: this.isValid(newValue),
+        valid: isValid,
+        errorText: isValid ? '' : errorText,
         hasValue: hasValue(newValue),
       });
     }
