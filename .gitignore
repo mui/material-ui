@@ -3,11 +3,6 @@ npm-debug.log
 build
 coverage
 
-# Exclude compiled files
-lib
-icon-builder/js
-icon-builder/jsx
-
 # Exclude IDE project folders
 .idea
 
