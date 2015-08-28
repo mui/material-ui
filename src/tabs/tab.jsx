@@ -38,7 +38,7 @@ let Tab = React.createClass({
       ...other,
     } = this.props;
 
-    let themeVariables = this.context.muiTheme.component.tab;
+    const themeVariables = this.context.muiTheme.component.tab;
     let styles = this.mergeAndPrefix({
       display: 'table-cell',
       cursor: 'pointer',
