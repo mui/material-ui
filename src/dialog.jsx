@@ -86,8 +86,11 @@ let Dialog = React.createClass({
   },
 
   windowListeners: {
-    keyup: '_handleWindowKeyUp',
     resize: '_positionDialog',
+  },
+
+  stackWindowListeners: {
+    keyup: '_handleWindowKeyUp',
   },
 
   getDefaultProps() {
