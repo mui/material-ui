@@ -45,7 +45,7 @@ let Tab = React.createClass({
       textAlign: 'center',
       verticalAlign: 'middle',
       height: 48,
-      color: selected ? tab.selectedTextColor : tab.textColor,
+      color: selected ? themeVariables.selectedTextColor : themeVariables.textColor,
       outline: 'none',
       fontSize: 14,
       fontWeight: 500,
