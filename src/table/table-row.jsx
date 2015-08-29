@@ -62,7 +62,7 @@ let TableRow = React.createClass({
 
     let styles = {
       root: {
-        borderBottom: '1px solid ' + this.getTheme().borderColor,
+        borderBottom: '1px solid ' + theme.borderColor,
         color: theme.textColor,
         height: theme.height,
       },
