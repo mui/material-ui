@@ -136,8 +136,8 @@ let Table = React.createClass({
     return (
       <div className="mui-table-wrapper" style={styles.tableWrapper}>
         {headerTable}
-        <div className="mui-body-table" style={styles.bodyTable}>
-          <table className={classes} style={mergedTableStyle}>
+        <div className="mui-body-table" style={styles.bodyTable} ref="tableDiv">
+          <table className={classes} style={mergedTableStyle} ref="tableBody">
             {inlineHeader}
             {inlineFooter}
             {tBody}
@@ -146,6 +146,13 @@ let Table = React.createClass({
         {footerTable}
       </div>
     );
+  },
+
+  isScrollbarVisible() {
+    const tableDivHeight = React.findDOMNode(this.refs.tableDiv).clientHeight;
+    const tableBodyHeight = React.findDOMNode(this.refs.tableBody).clientHeight;
+
+    return tableBodyHeight > tableDivHeight;
   },
 
   _createTableHeader(base) {
