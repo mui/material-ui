@@ -1,5 +1,6 @@
 const React = require('react');
 const StylePropable = require('./mixins/style-propable');
+const ContextPure = require('./mixins/context-pure');
 const Transitions = require('./styles/transitions');
 const PropTypes = require('./utils/prop-types');
 const EnhancedButton = require('./enhanced-button');
@@ -11,7 +12,10 @@ const ThemeManager = require('./styles/theme-manager');
 
 const IconButton = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+    ContextPure,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -26,6 +30,26 @@ const IconButton = React.createClass({
     return {
       muiTheme: this.state.muiTheme,
     };
+  },
+
+  statics: {
+    getRelevantContextKeys(muiTheme) {
+      const spacing = muiTheme.rawTheme.spacing;
+      const palette = muiTheme.rawTheme.palette;
+
+      return {
+        iconSize: spacing.iconSize,
+        textColor: palette.textColor,
+        disabledColor: palette.disabledColor,
+      }
+    },
+    getChildrenClasses() {
+      return [
+        EnhancedButton,
+        FontIcon,
+        Tooltip,
+      ];
+    },
   },
 
   propTypes: {
@@ -64,36 +88,39 @@ const IconButton = React.createClass({
   },
 
   getStyles() {
-    let spacing = this.state.muiTheme.rawTheme.spacing;
-    let palette = this.state.muiTheme.rawTheme.palette;
+    const {
+      iconSize,
+      textColor,
+      disabledColor,
+    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
     let styles = {
       root: {
         position: 'relative',
         boxSizing: 'border-box',
         transition: Transitions.easeOut(),
-        padding: spacing.iconSize / 2,
-        width: spacing.iconSize * 2,
-        height: spacing.iconSize * 2,
+        padding: iconSize / 2,
+        width: iconSize * 2,
+        height: iconSize * 2,
         fontSize: 0,
       },
       tooltip: {
         boxSizing: 'border-box',
       },
       icon: {
-        color: palette.textColor,
-        fill: palette.textColor,
+        color: textColor,
+        fill: textColor,
       },
       overlay: {
         position: 'relative',
         top: 0,
         width: '100%',
         height: '100%',
-        background: palette.disabledColor,
+        background: disabledColor,
       },
       disabled: {
-        color: palette.disabledColor,
-        fill: palette.disabledColor,
+        color: disabledColor,
+        fill: disabledColor,
       },
     };
 
