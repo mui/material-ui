@@ -25,6 +25,7 @@ let AppBar = React.createClass({
     iconElementRight: React.PropTypes.element,
     iconStyleRight: React.PropTypes.object,
     title: React.PropTypes.node,
+    titleStyle: React.PropTypes.object,
     zDepth: React.PropTypes.number,
   },
 
@@ -116,14 +117,15 @@ let AppBar = React.createClass({
       marginRight: -16,
       marginLeft: 'auto',
     }, props.iconStyleRight);
+    let titleStyle = this.props.titleStyle;
     let titleElement;
 
     if (title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
       titleElement = typeof title === 'string' || title instanceof String ?
-        <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement)}>{title}</h1> :
-        <div style={this.mergeAndPrefix(styles.mainElement)}>{title}</div>;
+        <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement, titleStyle)}>{title}</h1> :
+        <div style={this.mergeAndPrefix(styles.mainElement, titleStyle)}>{title}</div>;
     }
 
     if (props.showMenuIconButton) {
