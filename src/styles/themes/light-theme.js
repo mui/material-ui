@@ -163,6 +163,7 @@ let LightTheme = {
         selectedColor: Colors.grey300,
         textColor: Colors.darkBlack,
         borderColor: palette.borderColor,
+        height: 48,
       },
       tableRowColumn: {
         height: 48,
