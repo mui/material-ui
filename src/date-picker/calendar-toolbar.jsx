@@ -63,7 +63,7 @@ let CalendarToolbar = React.createClass({
         top: '17px',
         lineHeight: '14px',
         fontSize: '14px',
-        height: '14px',
+        height: '15px',
         width: '100%',
         fontWeight: '500',
         textAlign: 'center',
