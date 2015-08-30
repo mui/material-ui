@@ -82,8 +82,8 @@ let Calendar = React.createClass({
       },
       calendarContainer: {
         width: isLandscape ? 280 : '100%',
-        height: weekCount === 5 ? 268 :
-          weekCount === 6 ? 308 : 228,
+        height: weekCount === 5 ? 272 :
+          weekCount === 6 ? 312 : 232,
         float: isLandscape ? 'right' : 'none',
         transition: Transitions.easeOut('150ms', 'height'),
         overflow: 'hidden',
@@ -91,9 +91,9 @@ let Calendar = React.createClass({
       yearContainer: {
         width: 280,
         overflow: 'hidden',
-        height: yearCount < 6 ? yearCount * 56 + 10 :
-          weekCount === 5 ? 268 :
-          weekCount === 6 ? 308 : 228,
+        height: yearCount < 6 ? yearCount * 56 + 14 :
+          weekCount === 5 ? 272 :
+          weekCount === 6 ? 312 : 232,
         float: isLandscape ? 'right' : 'none',
       },
       dateDisplay: {
