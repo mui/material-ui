@@ -204,7 +204,13 @@ class ListsPage extends React.Component {
             type: 'function(e)',
             header: 'optional',
             desc: 'Called when touches start.'
-          }
+          },
+          {
+            name: 'onTouchTap',
+            type: 'function(event)',
+            header: 'optional',
+            desc: 'Called when a touch tap event occures on the component.'
+          },
         ]
       }
     ];
