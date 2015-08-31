@@ -1,4 +1,4 @@
-var storedEvents = {};
+let storedEvents = {};
 
 module.exports = {
 
@@ -29,7 +29,7 @@ module.exports = {
     if (storedEvents[el] === undefined) return;
     if (!storedEvents[el][type] === undefined) return;
 
-    var idx = storedEvents[el][type].indexOf(callback);
+    let idx = storedEvents[el][type].indexOf(callback);
 
     if (idx >= 0) {
       storedEvents[el][type].splice(idx, 1);
