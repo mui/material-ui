@@ -110,6 +110,7 @@ const FlatButton = React.createClass({
       children,
       disabled,
       hoverColor,
+      backgroundColor,
       label,
       labelStyle,
       labelPosition,
@@ -145,6 +146,7 @@ const FlatButton = React.createClass({
     const buttonHoverColor = hoverColor || defaultHoverColor;
     const buttonRippleColor = rippleColor || defaultRippleColor;
     const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
+    const buttonBackgroundColor = backgroundColor || buttonColor;
 
     const mergedRootStyles = ImmutabilityHelper.merge({
       color: defaultColor,
@@ -157,7 +159,7 @@ const FlatButton = React.createClass({
       userSelect: 'none',
       position: 'relative',
       overflow: 'hidden',
-      backgroundColor: hovered ? buttonHoverColor : buttonColor,
+      backgroundColor: hovered ? buttonHoverColor : buttonBackgroundColor,
       lineHeight: buttonHeight + 'px',
       minWidth: buttonMinWidth,
       padding: 0,
