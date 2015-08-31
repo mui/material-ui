@@ -296,7 +296,7 @@ let TextField = React.createClass({
           {...inputProps}
         rows={rows}
           onHeightChange={this._handleTextAreaHeightChange}
-          textareaStyle={this.mergeAndPrefix(styles.textarea)} />
+          textareaStyle={this.mergeAndPrefix(styles.textarea, this.props.inputStyle)} />
       ) : (
         <input
           {...other}
