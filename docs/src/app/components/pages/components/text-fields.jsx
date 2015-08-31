@@ -98,6 +98,18 @@ let TextFieldsPage = React.createClass({
             desc: 'If true, a textarea element will be rendered. The textarea also grows and shrinks according to the number of lines.'
           },
           {
+            name: 'rows',
+            type: 'string',
+            header: 'default: 1',
+            desc: 'Number of rows to display when multiLine option is set to true.'
+          },
+          {
+            name: 'rowsMax',
+            type: 'string',
+            header: 'default: null',
+            desc: 'Maximum number of rows to display when multiLine option is set to true.'
+          },
+          {
             name: 'onEnterKeyDown',
             type: 'function',
             header: 'optional',
@@ -256,6 +268,12 @@ let TextFieldsPage = React.createClass({
               <TextField
                 style={styles.textfield}
                 hintText="The hint text can be as long as you want, it will wrap."
+                multiLine={true} /><br/>
+              <TextField
+                style={styles.textfield}
+                rows={2}
+                rowsMax={4}
+                hintText="Hint Text (MultiLine) with rows: 2 and rowsMax: 4."
                 multiLine={true} /><br/>
               <TextField
                 style={styles.textfield}

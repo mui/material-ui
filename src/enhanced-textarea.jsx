@@ -2,6 +2,28 @@ const React = require('react');
 const StylePropable = require('./mixins/style-propable');
 const AutoPrefix = require('./styles/auto-prefix');
 
+const rowsHeight = 24;
+
+const styles = {
+  textarea: {
+    width: '100%',
+    resize: 'none',
+    font: 'inherit',
+    padding: 0,
+  },
+  shadow: {
+    width: '100%',
+    resize: 'none',
+    // Overflow also needed to here to remove the extra row
+    // added to textareas in Firefox.
+    overflow: 'hidden',
+    font: 'inherit',
+    padding: 0,
+    position: 'absolute',
+    opacity: 0,
+  },
+};
+
 const EnhancedTextarea = React.createClass({
 
   mixins: [StylePropable],
@@ -11,6 +33,7 @@ const EnhancedTextarea = React.createClass({
     onHeightChange: React.PropTypes.func,
     textareaStyle: React.PropTypes.object,
     rows: React.PropTypes.number,
+    rowsMax: React.PropTypes.number,
   },
 
   getDefaultProps() {
@@ -21,25 +44,12 @@ const EnhancedTextarea = React.createClass({
 
   getInitialState() {
     return {
-      height: this.props.rows * 24,
+      height: this.props.rows * rowsHeight,
     };
   },
 
   componentDidMount() {
     this._syncHeightWithShadow();
-  },
-
-  getStyles() {
-    let styles = {
-      root: {
-        width: '100%',
-        resize: 'none',
-        overflow: 'hidden',
-        font: 'inherit',
-        padding: 0,
-      },
-    };
-    return styles;
   },
 
   render() {
@@ -53,33 +63,16 @@ const EnhancedTextarea = React.createClass({
       ...other,
     } = this.props;
 
-    let styles = this.getStyles().root;
-
-    let textAreaStyles = {
-      width: '100%',
-      resize: 'none',
-      overflow: 'hidden',
-      font: 'inherit',
-      padding: 0,
-    };
-
-    let inputStyles = this.mergeAndPrefix(styles, {
-      height: this.state.height + 'px',
+    const textareaStyles = this.mergeAndPrefix(styles.textarea, textareaStyle, {
+      height: this.state.height,
     });
 
-    inputStyles = this.mergeAndPrefix(inputStyles, textareaStyle);
-
-
-    // Overflow also needed to here to remove the extra row
-    // added to textareas in Firefox.
-    let shadowStyles = this.mergeAndPrefix(textAreaStyles, {
-      position: 'absolute',
-      opacity: 0,
-    });
+    const shadowStyles = this.mergeAndPrefix(styles.shadow);
 
     if (this.props.hasOwnProperty('valueLink')) {
       other.value = this.props.valueLink.value;
     }
+
     if (this.props.disabled) {
       style.cursor = 'default';
     }
@@ -99,7 +92,7 @@ const EnhancedTextarea = React.createClass({
           {...other}
           ref="input"
           rows={this.props.rows}
-          style={AutoPrefix.all(inputStyles)}
+          style={AutoPrefix.all(textareaStyles)}
           onChange={this._handleChange} />
       </div>
     );
@@ -116,16 +109,22 @@ const EnhancedTextarea = React.createClass({
 
   _syncHeightWithShadow(newValue, e) {
     let shadow = React.findDOMNode(this.refs.shadow);
-    let currentHeight = this.state.height;
-    let newHeight;
 
     if (newValue !== undefined) {
       shadow.value = newValue;
     }
-    newHeight = shadow.scrollHeight;
 
-    if (currentHeight !== newHeight) {
-      this.setState({height: newHeight});
+    let newHeight = shadow.scrollHeight;
+
+    if (this.props.rowsMax > this.props.rows) {
+      newHeight = Math.min(this.props.rowsMax * rowsHeight, newHeight);
+    }
+
+    if (this.state.height !== newHeight) {
+      this.setState({
+        height: newHeight,
+      });
+
       if (this.props.onHeightChange) {
         this.props.onHeightChange(e, newHeight);
       }
