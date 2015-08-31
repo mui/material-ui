@@ -196,8 +196,8 @@ let LightTheme = {
         menuHoverColor: 'rgba(0, 0, 0, .10)',
       },
       tab: {
-        color: Colors.white,
-        selectedColor: ColorManipulator.fade(Colors.white, 0.6),
+        color: Colors.lightWhite,
+        selectedColor: Colors.fullWhite,
       },
       tabs: {
         backgroundColor: palette.primary1Color,
