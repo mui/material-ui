@@ -40,7 +40,7 @@ class Installation extends React.Component {
           'let React = require(\'react\'),\n' +
           '  mui = require(\'material-ui\'),\n' +
           '  RaisedButton = mui.RaisedButton;\n\n' +
-          'let SomeAwesomeComponent = React.createClass({\n\n' +
+          'let MyAwesomeReactComponent = React.createClass({\n\n' +
           '  childContextTypes: {\n' +
           '    muiTheme: React.PropTypes.object\n' +
           '  },\n\n' +
