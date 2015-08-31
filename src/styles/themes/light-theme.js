@@ -195,6 +195,10 @@ let LightTheme = {
         separatorColor: 'rgba(0, 0, 0, .175)',
         menuHoverColor: 'rgba(0, 0, 0, .10)',
       },
+      tab: {
+          textColor: Colors.lightWhite,
+          selectedTextColor: Colors.fullWhite,
+      },
       tabs: {
         backgroundColor: palette.primary1Color,
       },
