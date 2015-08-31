@@ -172,7 +172,7 @@ let Dialog = React.createClass({
       main: this.mergeAndPrefix(main, this.props.style),
       content: this.mergeAndPrefix(content, this.props.contentStyle),
       paper: {
-        background: this.context.muiTheme.canvasColor,
+        background: this.context.muiTheme.palette.canvasColor,
       },
       body: this.mergeStyles(body, this.props.bodyStyle),
       title: this.mergeStyles(title, this.props.titleStyle),
