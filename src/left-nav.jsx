@@ -1,4 +1,4 @@
-const isBrowser = !!(
+let isBrowser = !!(
   typeof window !== 'undefined' &&
   window.document &&
   window.document.createElement
