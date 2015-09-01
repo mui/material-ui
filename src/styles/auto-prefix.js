@@ -1,4 +1,9 @@
-const isBrowser = typeof window !== 'undefined';
+const isBrowser = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);
+
 const Modernizr = isBrowser ? require('../utils/modernizr.custom') : undefined;
 
 //Keep track of already prefixed keys so we can skip Modernizr prefixing
