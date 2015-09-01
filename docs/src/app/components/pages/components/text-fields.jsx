@@ -116,6 +116,12 @@ let TextFieldsPage = React.createClass({
             desc: 'Override the inline-styles of the TextField\'s underline element when focussed.'
           },
           {
+            name: 'inputStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the TextField\'s input (textarea) element.'
+          },
+          {
             name: 'type',
             type: 'string',
             header: 'optional',
