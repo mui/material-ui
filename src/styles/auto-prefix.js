@@ -1,8 +1,4 @@
-const isBrowser = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
-);
+const isBrowser = require('../utils/is-browser');
 
 const Modernizr = isBrowser ? require('../utils/modernizr.custom') : undefined;
 
