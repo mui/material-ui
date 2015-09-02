@@ -41,17 +41,17 @@ class DialogPage extends React.Component {
             desc: 'The ref of the action to focus on when the dialog is displayed.'
           },
           {
+            name: 'bodyStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the dialog container under the title.'
+          },
+          {
             name: 'contentClassName',
             type: 'string',
             header: 'optional',
             desc: 'The className to add to the dialog window content container. This is the Paper ' +
                   'element that is seen when the dialog is shown.'
-          },
-          {
-            name: 'contentInnerStyle',
-            type: 'object',
-            header: 'optional',
-            desc: 'Overrides the inline-styles of the dialog container under the title.'
           },
           {
             name: 'contentStyle',
