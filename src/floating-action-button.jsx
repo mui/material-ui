@@ -207,7 +207,8 @@ const FloatingActionButton = React.createClass({
           disabled={disabled}
           style={this.mergeStyles(
             styles.container,
-            this.props.mini && styles.containerWhenMini
+            this.props.mini && styles.containerWhenMini,
+            iconStyle
           )}
           focusRippleColor={styles.icon.color}
           touchRippleColor={styles.icon.color}>
