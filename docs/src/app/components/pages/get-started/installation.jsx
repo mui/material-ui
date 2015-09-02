@@ -36,11 +36,17 @@ class Installation extends React.Component {
 
   render() {
     let usageCode =
-          '/** MyAwesomeReactComponent.jsx */\n\n' +
-          'let React = require(\'react\'),\n' +
-          '  mui = require(\'material-ui\'),\n' +
-          '  RaisedButton = mui.RaisedButton;\n\n' +
-          'let MyAwesomeReactComponent = React.createClass({\n\n' +
+          '// get constant references to React and Material-UI\n' +
+          '// components, as we will not be modifying these\n\n' +
+          'const React = require(\'react\');\n\n' +
+          '// it is good practice to require only those components of\n' +
+          '// Material-UI that your app needs, instead of requiring all of\n' +
+          '// Material-UI. This will make your build process faster and\n' + 
+          '// your build output smaller\n\n' +
+          'const RaisedButton = require(\'material-ui/lib/raised-button\');\n\n' +
+          '// see node_modules/material-ui/lib/index.js for a mapping of\n' +
+          '// Material-UI components to require() calls\n\n' +
+          'const MyAwesomeReactComponent = React.createClass({\n\n' +
           '  childContextTypes: {\n' +
           '    muiTheme: React.PropTypes.object\n' +
           '  },\n\n' +

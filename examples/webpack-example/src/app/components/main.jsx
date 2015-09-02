@@ -1,11 +1,10 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
 let React = require('react');
-let mui = require('material-ui');
-let RaisedButton = mui.RaisedButton;
-let Dialog = mui.Dialog;
-let ThemeManager = new mui.Styles.ThemeManager();
-let Colors = mui.Styles.Colors;
+let RaisedButton = require('material-ui/lib/raised-button');
+let Dialog = require('material-ui/lib/dialog');
+let ThemeManager = new (require('material-ui/lib/styles/theme-manager'))();
+let Colors = require('material-ui/lib/styles/colors');
 
 let Main = React.createClass({
 
