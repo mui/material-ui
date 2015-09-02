@@ -1,4 +1,4 @@
-let isBrowser = require('./utils/is-browser');
+const isBrowser = require('./utils/is-browser');
 
 let Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
 
