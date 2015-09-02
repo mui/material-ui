@@ -118,7 +118,7 @@ let ThemesPage = React.createClass({
 
     let usageCodeES6 =
           'let React = require(\'react\');\n' +
-          'let mui = require(\'mui\');\n' +
+          'let mui = require(\'material-ui\');\n' +
           'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
           'class OuterMostParentComponent extends React.Component {\n' +
           '  // Important!\n' +
@@ -136,7 +136,7 @@ let ThemesPage = React.createClass({
 
     let usageCodeES5 =
           'let React = require(\'react\');\n' +
-          'let mui = require(\'mui\');\n' +
+          'let mui = require(\'material-ui\');\n' +
           'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
           'let OuterMostParentComponent = React.createClass ({\n' +
           '  // Important!\n' +
