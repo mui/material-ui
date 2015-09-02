@@ -127,6 +127,7 @@ let ThemesPage = React.createClass({
           '      muiTheme: ThemeManager.getCurrentTheme()\n' +
           '    };\n' +
           '  }\n' +
+          '  // the rest of your code (render(), etc) here\n' +
           '};\n\n' +
           '// Important!\n' +
           'OuterMostParentComponent.childContextTypes = {\n' +
@@ -149,6 +150,7 @@ let ThemesPage = React.createClass({
           '      muiTheme: ThemeManager.getCurrentTheme()\n' +
           '    };\n' +
           '  }\n' +
+          '  // the rest of your code (render(), etc) here\n' +
           '});\n\n' +
           'module.exports = OuterMostParentComponent;';
 
