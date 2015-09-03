@@ -57,6 +57,12 @@ class IconMenus extends React.Component {
             desc: 'Indicates if the menu should render with compact desktop styles.'
           },
           {
+            name: 'iconStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'The style object to use to override underlying icon style.'
+          },
+          {
             name: 'iconButtonElement',
             type: 'element: IconButton',
             header: 'required',

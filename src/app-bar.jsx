@@ -187,6 +187,7 @@ const AppBar = React.createClass({
       let iconElementRight = props.iconElementRight;
 
       switch (iconElementRight.type.displayName) {
+        case 'IconMenu':
         case 'IconButton':
           iconElementRight = React.cloneElement(iconElementRight, {
             iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
