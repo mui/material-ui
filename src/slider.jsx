@@ -51,7 +51,6 @@ const Slider = React.createClass({
 
   propTypes: {
     name: React.PropTypes.string.isRequired,
-    defaultValue: valueInRangePropType,
     description: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     error: React.PropTypes.string,
@@ -80,7 +79,6 @@ const Slider = React.createClass({
 
   getDefaultProps() {
     return {
-      defaultValue: 0,
       disabled: false,
       max: 1,
       min: 0,
@@ -92,7 +90,7 @@ const Slider = React.createClass({
   getInitialState() {
     let value = this.props.value;
     if (value === undefined) {
-      value = this.props.defaultValue;
+      value = this.props.min;
     }
     let percent = (value - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;

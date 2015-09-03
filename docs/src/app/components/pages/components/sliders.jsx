@@ -24,12 +24,6 @@ class SlidersPage extends React.Component {
             desc: 'The name of the slider. Behaves like the name attribute of an input element.'
           },
           {
-            name: 'defaultValue',
-            type: 'number',
-            header: 'default: 0',
-            desc: 'The default value of the slider.'
-          },
-          {
             name: 'description',
             type: 'string',
             header: 'optional',
@@ -131,8 +125,8 @@ class SlidersPage extends React.Component {
         componentInfo={componentInfo}>
         <CodeExample code={Code}>
           <Slider name="slider1" />
-          <Slider name="slider2" defaultValue={0.5} step={0.10} />
-          <Slider name="slider3" defaultValue={1}/>
+          <Slider name="slider2" value={0.5} step={0.10} />
+          <Slider name="slider3" value={1}/>
           <Slider name="slider1" disabled={true} />
           <Slider name="slider2" disabled={true} value={0.5} />
           <Slider name="slider3" disabled={true} value={1} />
