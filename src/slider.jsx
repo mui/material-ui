@@ -330,36 +330,17 @@ let Slider = React.createClass({
 
   _alignValue(val) {
     let { step, min } = this.props;
-
-    let valModStep = (val - min) % step;
-    let alignValue = val - valModStep;
-
-    if (Math.abs(valModStep) * 2 >= step) {
-      alignValue += (valModStep > 0) ? step : (-step);
-    }
-
+    let alignValue = Math.round((val - min) / step) * step;
     return parseFloat(alignValue.toFixed(5));
   },
 
   _constrain() {
     let { min, max, step } = this.props;
+    let steps = (max - min) / step;
     return (pos) => {
       let pixelMax = React.findDOMNode(this.refs.track).clientWidth;
-      let pixelStep = pixelMax / ((max - min) / step);
-
-      let cursor = min;
-      let i;
-      for (i = 0; i < (max - min) / step; i++) {
-        let distance = (pos.left - cursor);
-        let nextDistance = (cursor + pixelStep) - pos.left;
-        if (Math.abs(distance) > Math.abs(nextDistance)) {
-          cursor += pixelStep;
-        }
-        else {
-          break;
-        }
-      }
-
+      let pixelStep = pixelMax / steps;
+      let cursor = Math.round(pos.left / pixelStep) * pixelStep;
       return {
         left: cursor,
       };
