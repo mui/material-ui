@@ -392,6 +392,7 @@ let Slider = React.createClass({
     if (!this.props.disabled) this.setState({active: false});
     if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
       let pos = e.clientX - React.findDOMNode(this).getBoundingClientRect().left;
+      pos = this._constrain()({left: pos}).left;
       this._dragX(e, pos);
     }
 
