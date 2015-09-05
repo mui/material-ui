@@ -63,6 +63,7 @@ let IconMenu = React.createClass({
 
   render() {
     let {
+      className,
       closeOnItemTouchTap,
       iconButtonElement,
       openDirection,
@@ -123,6 +124,7 @@ let IconMenu = React.createClass({
 
     return (
       <div
+        className={className}
         onMouseDown={onMouseDown}
         onMouseLeave={onMouseLeave}
         onMouseEnter={onMouseEnter}
