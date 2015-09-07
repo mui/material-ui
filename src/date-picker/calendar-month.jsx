@@ -8,19 +8,19 @@ let CalendarMonth = React.createClass({
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
-    onDayTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
-    shouldDisableDate: React.PropTypes.func,
     autoOk: React.PropTypes.bool,
+    maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
+    onDayTouchTap: React.PropTypes.func,
+    shouldDisableDate: React.PropTypes.func,
   },
 
   render() {
     let styles = {
       lineHeight: '32px',
       textAlign: 'center',
-      padding: '8px 14px 0 14px',
+      padding: '16px 14px 0 14px',
     };
 
     return (

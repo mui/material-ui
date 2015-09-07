@@ -20,13 +20,11 @@ class DatePickerPage extends React.Component {
       minDate: minDate,
       maxDate: maxDate,
       autoOk: false,
-      showYearSelector: false,
       controlledDate: new Date('2015/07/15')
     };
   }
 
   render() {
-
     let componentInfo = [
       {
         name: 'Props',
@@ -45,18 +43,17 @@ class DatePickerPage extends React.Component {
             'is provided they will override this prop with `value` taking precedence.'
           },
           {
+            name: 'disableYearSelection',
+            type: 'bool',
+            header: 'optional',
+            desc: 'If true, year selection will be disabled, otherwise, year selection will be enabled.'
+          },
+          {
             name: 'formatDate',
             type: 'function',
             header: 'default: formats to M/D/YYYY',
             desc: 'This function is called to format the date to display in ' +
               'the input box. By default, date objects are formatted to M/D/YYYY.'
-          },
-          {
-            name: 'hideToolbarYearChange',
-            type: 'boolean',
-            header: 'optional',
-            desc: 'Hide year change buttons on calendar; good for short time spans. Clicking ' +
-              'the year will always result in selecting a year.'
           },
           {
             name: 'maxDate',
@@ -84,13 +81,6 @@ class DatePickerPage extends React.Component {
             header: 'optional',
             desc: 'Called during render time of a given day. If this method returns false ' +
               'the day is disabled otherwise it is displayed normally.'
-          },
-          {
-            name: 'showYearSelector',
-            type: 'boolean',
-            header: 'default: false',
-            desc: 'Determines whether or not a DatePicker has a year selection capability. ' +
-              'If false, the year change buttons in the toolbar are hidden.'
           },
           {
             name: 'style',
@@ -195,12 +185,12 @@ class DatePickerPage extends React.Component {
               defaultToggled={this.state.autoOk}
               onToggle={this._handleToggle.bind(this)} />
 
-              <Toggle
-                name="showYearSelector"
-                value="showYearSelector"
-                label="Show Year Selector"
-                defaultToggled={this.state.showYearSelector}
-                onToggle={this._handleToggle.bind(this)} />
+            <Toggle
+              name="disableYearSelection"
+              value="disableYearSelection"
+              label="Disable Year Selection"
+              defaultToggled={this.state.disableYearSelection}
+              onToggle={this._handleToggle.bind(this)} />
           </div>
         </CodeExample>
       </ComponentDoc>

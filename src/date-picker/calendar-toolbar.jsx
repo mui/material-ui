@@ -4,9 +4,7 @@ let IconButton = require('../icon-button');
 let Toolbar = require('../toolbar/toolbar');
 let ToolbarGroup = require('../toolbar/toolbar-group');
 let NavigationChevronLeft = require('../svg-icons/navigation/chevron-left');
-let NavigationChevronLeftDouble = require('../svg-icons/navigation-chevron-left-double');
 let NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
-let NavigationChevronRightDouble = require('../svg-icons/navigation-chevron-right-double');
 let SlideInTransitionGroup = require('../transition-groups/slide-in');
 
 
@@ -14,22 +12,15 @@ let CalendarToolbar = React.createClass({
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
-    onMonthChange: React.PropTypes.func,
-    onYearChange: React.PropTypes.func,
-    prevYear: React.PropTypes.bool,
-    nextYear: React.PropTypes.bool,
-    prevMonth: React.PropTypes.bool,
     nextMonth: React.PropTypes.bool,
-    hideYearChangeButtons: React.PropTypes.bool,
+    onMonthChange: React.PropTypes.func,
+    prevMonth: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
-      prevYear: true,
-      nextYear: true,
-      prevMonth: true,
       nextMonth: true,
-      hideYearChangeButtons: false,
+      prevMonth: true,
     };
   },
 
@@ -74,8 +65,6 @@ let CalendarToolbar = React.createClass({
   render() {
     let month = DateTime.getFullMonth(this.props.displayDate);
     let year = this.props.displayDate.getFullYear();
-    let prevYearChangeButton = this._getPrevYearChangeButton();
-    let nextYearChangeButton = this._getNextYearChangeButton();
     let styles = this._styles();
 
     return (
@@ -87,8 +76,6 @@ let CalendarToolbar = React.createClass({
         </SlideInTransitionGroup>
 
         <ToolbarGroup key={0} float="left">
-          {prevYearChangeButton}
-
           <IconButton
             style={styles.button}
             disabled={!this.props.prevMonth}
@@ -104,49 +91,9 @@ let CalendarToolbar = React.createClass({
             onTouchTap={this._nextMonthTouchTap}>
               <NavigationChevronRight />
           </IconButton>
-
-          {nextYearChangeButton}
         </ToolbarGroup>
       </Toolbar>
     );
-  },
-
-  _getPrevYearChangeButton() {
-    let style = {
-      display: this.props.hideYearChangeButtons ? 'none' : '',
-    };
-
-    return (
-      <IconButton
-        style={style}
-        disabled={!this.props.prevYear}
-        onTouchTap={this._prevYearTouchTap}>
-          <NavigationChevronLeftDouble />
-      </IconButton>
-    );
-  },
-
-  _getNextYearChangeButton() {
-    let style = {
-      display: this.props.hideYearChangeButtons ? 'none' : '',
-    };
-
-    return (
-      <IconButton
-        style={style}
-        disabled={!this.props.nextYear}
-        onTouchTap={this._nextYearTouchTap}>
-          <NavigationChevronRightDouble />
-      </IconButton>
-    );
-  },
-
-  _prevYearTouchTap() {
-    if (this.props.onYearChange && this.props.prevYear) this.props.onYearChange(-1);
-  },
-
-  _nextYearTouchTap() {
-    if (this.props.onYearChange && this.props.nextYear) this.props.onYearChange(1);
   },
 
   _prevMonthTouchTap() {
