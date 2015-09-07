@@ -3,13 +3,40 @@ const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('./mixins/style-propable');
 const Colors = require('./styles/colors');
 const Children = require('./utils/children');
+const Events = require('./utils/events');
 const KeyCode = require('./utils/key-code');
 const FocusRipple = require('./ripples/focus-ripple');
 const TouchRipple = require('./ripples/touch-ripple');
 
-
 let styleInjected = false;
+let listening = false;
 let tabPressed = false;
+
+function injectStyle() {
+  if (!styleInjected) {
+    // Remove inner padding and border in Firefox 4+.
+    let style = document.createElement("style");
+    style.innerHTML = `
+      button::-moz-focus-inner,
+      input::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+      }
+    `;
+
+    document.body.appendChild(style);
+    styleInjected = true;
+  }
+}
+
+function listenForTabPresses() {
+  if (!listening) {
+    Events.on(window, 'keydown', (e) =>{
+      tabPressed = e.keyCode === KeyCode.TAB;
+    });
+    listening = true;
+  }
+}
 
 const EnhancedButton = React.createClass({
 
@@ -77,20 +104,8 @@ const EnhancedButton = React.createClass({
   },
 
   componentDidMount() {
-    if (!styleInjected) {
-      // Remove inner padding and border in Firefox 4+.
-      let style = document.createElement("style");
-      style.innerHTML = `
-        button::-moz-focus-inner,
-        input::-moz-focus-inner {
-          border: 0;
-          padding: 0;
-        }
-      `;
-
-      document.body.appendChild(style);
-      styleInjected = true;
-    }
+    injectStyle();
+    listenForTabPresses();
   },
 
   render() {
@@ -230,9 +245,6 @@ const EnhancedButton = React.createClass({
 
   _handleKeyDown(e) {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
-      if (e.keyCode === KeyCode.TAB) {
-        tabPressed = true;
-      }
       if (e.keyCode === KeyCode.ENTER && this.state.isKeyboardFocused) {
         this._handleTouchTap(e);
       }

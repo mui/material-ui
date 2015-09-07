@@ -1,3 +1,6 @@
+const isBrowser = typeof window !== 'undefined';
+let Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
+
 let React = require('react');
 let KeyCode = require('./utils/key-code');
 let StylePropable = require('./mixins/style-propable');
@@ -106,7 +109,7 @@ let LeftNav = React.createClass({
         width: this.getTheme().width,
         position: 'fixed',
         zIndex: 10,
-        left: 0,
+        left: isBrowser && Modernizr.csstransforms3d ? 0 : x,
         top: 0,
         transform: 'translate3d(' + x + 'px, 0, 0)',
         transition: !this.state.swiping && Transitions.easeOut(),
@@ -128,6 +131,7 @@ let LeftNav = React.createClass({
         right: 0,
       },
     };
+
     styles.menuItemLink = this.mergeAndPrefix(styles.menuItem, {
       display: 'block',
       textDecoration: 'none',

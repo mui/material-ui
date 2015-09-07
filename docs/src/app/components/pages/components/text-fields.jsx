@@ -22,6 +22,7 @@ let TextFieldsPage = React.createClass({
       selectValue: undefined,
       selectValue2: undefined,
       selectValueLinkValue: 4,
+      selectValueLinkValue2: 3,
       floatingValueLinkValue: 'Value Link'
     };
   },
@@ -113,6 +114,12 @@ let TextFieldsPage = React.createClass({
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of the TextField\'s underline element when focussed.'
+          },
+          {
+            name: 'underlineDisabledStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the TextField\'s underline element when disabled.'
           },
           {
             name: 'type',
@@ -225,6 +232,11 @@ let TextFieldsPage = React.createClass({
                 underlineFocusStyle={{borderColor: Colors.amber900}} /><br />
               <TextField
                 style={styles.textfield}
+                disabled={true}
+                hintText="Custom Underline Disabled Style"
+                underlineDisabledStyle={{borderColor:Colors.purple500, borderBottom: 'solid 1px'}} /><br />
+              <TextField
+                style={styles.textfield}
                 hintText="Hint Text"
                 valueLink={this.linkState('valueLinkValue')} /><br/>
               <TextField
@@ -269,6 +281,13 @@ let TextFieldsPage = React.createClass({
               <SelectField
                 valueLink={this.linkState('selectValueLinkValue')}
                 floatingLabelText="Float Label Text"
+                valueMember="id"
+                displayMember="name"
+                menuItems={arbitraryArrayMenuItems} /><br/>
+              <SelectField
+                valueLink={this.linkState('selectValueLinkValue2')}
+                floatingLabelText="Float Custom Label Text"
+                floatingLabelStyle={{color: "red"}}
                 valueMember="id"
                 displayMember="name"
                 menuItems={arbitraryArrayMenuItems} /><br/>
