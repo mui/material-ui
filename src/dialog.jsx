@@ -299,6 +299,9 @@ let Dialog = React.createClass({
       props.ref = actionJSON.ref;
       props.keyboardFocused = actionJSON.ref === this.props.actionFocus;
     }
+    if (actionJSON.id) {
+      props.id = actionJSON.id;
+    }
 
     return (
       <FlatButton
