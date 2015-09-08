@@ -80,6 +80,12 @@ let TextFieldsPage = React.createClass({
             desc: 'If true, the field receives the property width 100%.'
           },
           {
+            name: 'hintStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the TextField\'s hint text element.'
+          },
+          {
             name: 'hintText',
             type: 'string',
             header: 'optional',
