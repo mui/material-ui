@@ -1,18 +1,43 @@
-let React = require('react');
-let Transitions = require('./styles/transitions');
-let StylePropable = require('./mixins/style-propable');
+const React = require('react');
+const Transitions = require('./styles/transitions');
+const StylePropable = require('./mixins/style-propable');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
-
-let InkBar = React.createClass({
+const InkBar = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   propTypes: {
     color: React.PropTypes.string,
     left: React.PropTypes.string.isRequired,
     width: React.PropTypes.string.isRequired,
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   mixins: [StylePropable],
@@ -32,7 +57,7 @@ let InkBar = React.createClass({
       width: width,
       bottom: 0,
       display: 'block',
-      backgroundColor: this.context.muiTheme.component.inkBar.backgroundColor,
+      backgroundColor: this.state.muiTheme.inkBar.backgroundColor,
       height: 2,
       marginTop: -2,
       position: 'relative',

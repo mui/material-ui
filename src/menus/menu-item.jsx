@@ -4,7 +4,8 @@ const StylePropable = require('../mixins/style-propable');
 const Colors = require('../styles/colors');
 const CheckIcon = require('../svg-icons/navigation/check');
 const ListItem = require('../lists/list-item');
-
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
 const MenuItem = React.createClass({
 
@@ -29,6 +30,30 @@ const MenuItem = React.createClass({
     rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
     value: React.PropTypes.string,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   getDefaultProps() {
@@ -62,8 +87,8 @@ const MenuItem = React.createClass({
       ...other,
     } = this.props;
 
-    const disabledColor = this.context.muiTheme.palette.disabledColor;
-    const textColor = this.context.muiTheme.palette.textColor;
+    const disabledColor = this.state.muiTheme.rawTheme.palette.disabledColor;
+    const textColor = this.state.muiTheme.rawTheme.palette.textColor;
     const leftIndent = desktop ? 64 : 72;
     const sidePadding = desktop ? 24 : 16;
 

@@ -47,7 +47,7 @@ const ScaleInChild = React.createClass({
 
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), 450);
+    }, 450);
   },
 
   render() {
@@ -89,7 +89,7 @@ const ScaleInChild = React.createClass({
 
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), this.props.enterDelay);
+    }, this.props.enterDelay);
   },
 
 });
