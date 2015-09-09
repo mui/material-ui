@@ -52,6 +52,17 @@ const IconButton = React.createClass({
     },
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   propTypes: {
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
