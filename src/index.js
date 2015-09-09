@@ -58,7 +58,6 @@ module.exports = {
   TableHeaderColumn: require('./table/table-header-column'),
   TableRow: require('./table/table-row'),
   TableRowColumn: require('./table/table-row-column'),
-  Theme: require('./theme'),
   Toggle: require('./toggle'),
   TimePicker: require('./time-picker'),
   TextField: require('./text-field'),

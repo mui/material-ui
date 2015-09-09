@@ -1,8 +1,8 @@
-let React = require('react');
-let RadioButton = require('./radio-button');
+const React = require('react');
+const RadioButton = require('./radio-button');
 
 
-let RadioButtonGroup = React.createClass({
+const RadioButtonGroup = React.createClass({
 
   propTypes: {
     name: React.PropTypes.string.isRequired,

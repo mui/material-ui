@@ -1,17 +1,30 @@
-let React = require('react');
-let EnhancedSwitch = require('./enhanced-switch');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let CheckboxOutline = require('./svg-icons/toggle/check-box-outline-blank');
-let CheckboxChecked = require('./svg-icons/toggle/check-box');
+const React = require('react');
+const EnhancedSwitch = require('./enhanced-switch');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
+const CheckboxOutline = require('./svg-icons/toggle/check-box-outline-blank');
+const CheckboxChecked = require('./svg-icons/toggle/check-box');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 
-let Checkbox = React.createClass({
+const Checkbox = React.createClass({
 
   mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   propTypes: {
@@ -31,11 +44,19 @@ let Checkbox = React.createClass({
         this.props.defaultChecked ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getTheme() {
-    return this.context.muiTheme.component.checkbox;
+    return this.state.muiTheme.checkbox;
   },
 
   getStyles() {

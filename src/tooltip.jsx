@@ -1,10 +1,11 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let Colors = require('./styles/colors');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
+const Colors = require('./styles/colors');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
-
-let Tooltip = React.createClass({
+const Tooltip = React.createClass({
 
   mixins: [StylePropable],
 
@@ -21,15 +22,31 @@ let Tooltip = React.createClass({
     horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center']),
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   componentDidMount() {
     this._setRippleSize();
     this._setTooltipPosition();
   },
 
-  componentWillReceiveProps() {
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
     this._setTooltipPosition();
+    
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
-
+  
   componentDidUpdate() {
     this._setRippleSize();
   },
@@ -37,6 +54,7 @@ let Tooltip = React.createClass({
   getInitialState() {
     return {
       offsetWidth: null,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -51,7 +69,7 @@ let Tooltip = React.createClass({
     let styles = {
       root: {
         position: 'absolute',
-        fontFamily: this.context.muiTheme.contentFontFamily,
+        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
         fontSize: '10px',
         lineHeight: '22px',
         padding: '0 8px',

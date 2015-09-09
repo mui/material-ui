@@ -1,19 +1,31 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let PropTypes = require('./utils/prop-types');
-let EnhancedButton = require('./enhanced-button');
-let FontIcon = require('./font-icon');
-let Tooltip = require('./tooltip');
-let Children = require('./utils/children');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
+const PropTypes = require('./utils/prop-types');
+const EnhancedButton = require('./enhanced-button');
+const FontIcon = require('./font-icon');
+const Tooltip = require('./tooltip');
+const Children = require('./utils/children');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
-
-let IconButton = React.createClass({
+const IconButton = React.createClass({
 
   mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   propTypes: {
@@ -33,7 +45,15 @@ let IconButton = React.createClass({
   getInitialState() {
     return {
       tooltipShown: false,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   getDefaultProps() {
@@ -44,8 +64,8 @@ let IconButton = React.createClass({
   },
 
   getStyles() {
-    let spacing = this.context.muiTheme.spacing;
-    let palette = this.context.muiTheme.palette;
+    let spacing = this.state.muiTheme.rawTheme.spacing;
+    let palette = this.state.muiTheme.rawTheme.palette;
 
     let styles = {
       root: {
