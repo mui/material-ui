@@ -1,10 +1,11 @@
-let React = require('react');
-let Checkbox = require('../checkbox');
-let StylePropable = require('../mixins/style-propable');
-let TableHeaderColumn = require('./table-header-column');
+const React = require('react');
+const Checkbox = require('../checkbox');
+const StylePropable = require('../mixins/style-propable');
+const TableHeaderColumn = require('./table-header-column');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
-
-let TableHeader = React.createClass({
+const TableHeader = React.createClass({
 
   mixins: [StylePropable],
 
@@ -21,6 +22,30 @@ let TableHeader = React.createClass({
     style: React.PropTypes.object,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getDefaultProps() {
     return {
       adjustForCheckbox: true,
@@ -31,7 +56,7 @@ let TableHeader = React.createClass({
   },
 
   getTheme() {
-    return this.context.muiTheme.component.tableHeader;
+    return this.state.muiTheme.tableHeader;
   },
 
   getStyles() {

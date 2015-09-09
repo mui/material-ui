@@ -1,14 +1,16 @@
-let React = require('react');
-let DateTime = require('../utils/date-time');
-let IconButton = require('../icon-button');
-let Toolbar = require('../toolbar/toolbar');
-let ToolbarGroup = require('../toolbar/toolbar-group');
-let NavigationChevronLeft = require('../svg-icons/navigation/chevron-left');
-let NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
-let SlideInTransitionGroup = require('../transition-groups/slide-in');
+const React = require('react');
+const DateTime = require('../utils/date-time');
+const IconButton = require('../icon-button');
+const Toolbar = require('../toolbar/toolbar');
+const ToolbarGroup = require('../toolbar/toolbar-group');
+const NavigationChevronLeft = require('../svg-icons/navigation/chevron-left');
+const NavigationChevronLeftDouble = require('../svg-icons/navigation-chevron-left-double');
+const NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
+const NavigationChevronRightDouble = require('../svg-icons/navigation-chevron-right-double');
+const SlideInTransitionGroup = require('../transition-groups/slide-in');
 
 
-let CalendarToolbar = React.createClass({
+const CalendarToolbar = React.createClass({
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,

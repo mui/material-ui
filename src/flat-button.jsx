@@ -7,7 +7,8 @@ const ImmutabilityHelper = require('./utils/immutability-helper');
 const Typography = require('./styles/typography');
 const EnhancedButton = require('./enhanced-button');
 const FlatButtonLabel = require('./buttons/flat-button-label');
-
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 function validateLabel (props, propName, componentName) {
   if (!props.children && !props.label) {
@@ -22,6 +23,17 @@ const FlatButton = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   propTypes: {
@@ -55,13 +67,21 @@ const FlatButton = React.createClass({
       hovered: false,
       isKeyboardFocused: false,
       touch: false,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getContextProps() {
-    const theme = this.context.muiTheme;
-    const buttonTheme = theme.component.button;
-    const flatButtonTheme = theme.component.flatButton;
+    const theme = this.state.muiTheme;
+    const buttonTheme = theme.button;
+    const flatButtonTheme = theme.flatButton;
 
     return {
       buttonColor: flatButtonTheme.color,

@@ -1,12 +1,12 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let WindowListenable = require('../mixins/window-listenable');
-let DateTime = require('../utils/date-time');
-let DatePickerDialog = require('./date-picker-dialog');
-let TextField = require('../text-field');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const WindowListenable = require('../mixins/window-listenable');
+const DateTime = require('../utils/date-time');
+const DatePickerDialog = require('./date-picker-dialog');
+const TextField = require('../text-field');
 
 
-let DatePicker = React.createClass({
+const DatePicker = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 

@@ -1,9 +1,8 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let AutoPrefix = require('./styles/auto-prefix');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const AutoPrefix = require('./styles/auto-prefix');
 
-
-let EnhancedTextarea = React.createClass({
+const EnhancedTextarea = React.createClass({
 
   mixins: [StylePropable],
 

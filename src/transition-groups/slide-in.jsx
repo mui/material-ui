@@ -1,10 +1,10 @@
-let React = require('react/addons');
-let ReactTransitionGroup = React.addons.TransitionGroup;
-let StylePropable = require('../mixins/style-propable');
-let SlideInChild = require('./slide-in-child');
+const React = require('react/addons');
+const ReactTransitionGroup = React.addons.TransitionGroup;
+const StylePropable = require('../mixins/style-propable');
+const SlideInChild = require('./slide-in-child');
 
 
-let SlideIn = React.createClass({
+const SlideIn = React.createClass({
 
   mixins: [StylePropable],
 
