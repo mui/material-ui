@@ -1,12 +1,12 @@
-let React = require('react');
-let { Checkbox, Styles } = require('material-ui');
-let CodeBlock = require('../../code-example/code-block');
-let CodeExample = require('../../code-example/code-example');
+const React = require('react');
+const { Checkbox, Styles } = require('material-ui');
+const CodeBlock = require('../../code-example/code-block');
+const CodeExample = require('../../code-example/code-example');
 
-let { Typography } = Styles;
+const { Typography } = Styles;
 
 
-class InlineStyles extends React.Component {
+const InlineStyles = React.createClass({
 
   getStyles() {
     return {
@@ -29,7 +29,7 @@ class InlineStyles extends React.Component {
         color: Typography.textDarkBlack
       }
     }
-  }
+  },
 
   render() {
     let codeOverrideStyles =
@@ -124,8 +124,8 @@ class InlineStyles extends React.Component {
 
       </div>
     );
-  }
+  },
 
-}
+});
 
 module.exports = InlineStyles;
