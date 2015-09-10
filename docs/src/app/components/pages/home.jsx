@@ -1,15 +1,16 @@
-let React = require('react');
-let Router = require('react-router');
-let { Mixins, RaisedButton, Styles } = require('material-ui');
-let HomeFeature = require('./home-feature');
-let FullWidthSection = require('../full-width-section');
+const React = require('react');
+const Router = require('react-router');
+const { Mixins, RaisedButton, Styles } = require('material-ui');
+const HomeFeature = require('./home-feature');
+const FullWidthSection = require('../full-width-section');
 
-let { StylePropable, StyleResizable } = Mixins;
-let { Colors, Spacing, Typography } = Styles;
-let ThemeManager = new Styles.ThemeManager().getCurrentTheme();
+const { StylePropable, StyleResizable } = Mixins;
+const { Colors, Spacing, Typography } = Styles;
+const ThemeManager = Styles.ThemeManager;
+const DefaultRawTheme = Styles.LightRawTheme;
 
 
-let HomePage = React.createClass({
+const HomePage = React.createClass({
 
   mixins: [StylePropable, StyleResizable],
 
@@ -48,7 +49,7 @@ let HomePage = React.createClass({
         maxWidth: 575,
       },
       label: {
-        color: ThemeManager.palette.primary1Color,
+        color: DefaultRawTheme.palette.primary1Color,
       },
       githubStyle: {
         margin: '16px 32px 0px 8px'
