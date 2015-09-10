@@ -1,8 +1,8 @@
-let React = require('react');
-let Router = require('react-router');
-let AppLeftNav = require('./app-left-nav');
-let FullWidthSection = require('./full-width-section');
-let { AppBar,
+const React = require('react');
+const Router = require('react-router');
+const AppLeftNav = require('./app-left-nav');
+const FullWidthSection = require('./full-width-section');
+const { AppBar,
       AppCanvas,
       FontIcon,
       IconButton,
@@ -15,22 +15,32 @@ let { AppBar,
       Tabs,
       Paper} = require('material-ui');
 
-let RouteHandler = Router.RouteHandler;
-let { Colors, Spacing, Typography } = Styles;
-let ThemeManager = new Styles.ThemeManager();
+const RouteHandler = Router.RouteHandler;
+const { Colors, Spacing, Typography } = Styles;
+const ThemeManager = Styles.ThemeManager;
+const DefaultRawTheme = Styles.LightRawTheme;
 
 
-class Master extends React.Component {
+const Master = React.createClass({
+  getInitialState () {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
 
-  constructor() {
-    super();
-  }
+  contextTypes : {
+    router: React.PropTypes.func
+  },
+
+  childContextTypes : {
+    muiTheme: React.PropTypes.object
+  },
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    }
-  }
+      muiTheme: this.state.muiTheme,
+    };
+  },
 
   getStyles() {
     let darkWhite = Colors.darkWhite;
@@ -59,25 +69,27 @@ class Master extends React.Component {
         color: darkWhite
       },
     };
-  }
+  },
 
-  componentWillMount(){
-    ThemeManager.setComponentThemes({
-      inkBar: {
-        backgroundColor: Colors.yellow200,
-      },
-    });
-    this.setState({tabIndex: this._getSelectedIndex()});
+  componentWillMount() {
+    let newMuiTheme = this.state.muiTheme;
+    newMuiTheme.inkBar.backgroundColor = Colors.yellow200;
+    this.setState({
+      muiTheme: newMuiTheme,
+      tabIndex: this._getSelectedIndex()});
     let setTabsState = function() {
       this.setState({renderTabs: !(document.body.clientWidth <= 647)});
     }.bind(this);
     setTabsState();
     window.onresize = setTabsState;
-  }
+  },
 
-  componentWillReceiveProps() {
-    this.setState({tabIndex: this._getSelectedIndex()});
-  }
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({
+      tabIndex: this._getSelectedIndex(),
+      muiTheme: newMuiTheme,});
+  },
 
   render() {
     let styles = this.getStyles();
@@ -119,7 +131,7 @@ class Master extends React.Component {
         </FullWidthSection>
       </AppCanvas>
     );
-  }
+  },
 
  _getTabs() {
     let styles = {
@@ -186,7 +198,7 @@ class Master extends React.Component {
             <Tabs
               style={styles.tabs}
               value={this.state.tabIndex}
-              onChange={this._handleTabChange.bind(this)}>
+              onChange={this._handleTabChange}>
               <Tab
                 value="1"
                 label="GETTING STARTED"
@@ -207,18 +219,18 @@ class Master extends React.Component {
         </Paper>
       </div>
     );
-  }
+  },
 
   _getSelectedIndex() {
     return this.context.router.isActive('get-started') ? '1' :
       this.context.router.isActive('customization') ? '2' :
       this.context.router.isActive('components') ? '3' : '0';
-  }
+  },
 
   _handleTabChange(value, e, tab) {
     this.context.router.transitionTo(tab.props.route);
     this.setState({tabIndex: this._getSelectedIndex()});
-  }
+  },
 
   _getAppBar() {
     let title =
@@ -236,25 +248,17 @@ class Master extends React.Component {
     return (
       <div>
         <AppBar
-          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap.bind(this)}
+          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
           title={title}
           zDepth={0}
           iconElementRight={githubButton}
           style={{position: 'absolute', top: 0}}/>
       </div>);
-  }
+  },
 
   _onLeftIconButtonTouchTap() {
     this.refs.leftNav.toggle();
   }
-}
-
-Master.contextTypes = {
-  router: React.PropTypes.func
-};
-
-Master.childContextTypes = {
-  muiTheme: React.PropTypes.object
-};
+});
 
 module.exports = Master;

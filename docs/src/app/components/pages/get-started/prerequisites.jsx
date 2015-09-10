@@ -1,11 +1,40 @@
-let React = require('react');
-let { Paper, Styles } = require('material-ui');
-let CodeBlock = require('../../code-example/code-block');
+const React = require('react');
+const { Paper, Styles } = require('material-ui');
+const CodeBlock = require('../../code-example/code-block');
 
-let { Spacing, Typography } = Styles;
+const { Spacing, Typography } = Styles;
+const ThemeManager = Styles.ThemeManager;
+const DefaultRawTheme = Styles.LightRawTheme;
 
+const Prerequisites = React.createClass({
 
-class Prerequisites extends React.Component {
+  contextTypes : {
+    muiTheme: React.PropTypes.object
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
 
   getStyles() {
     return {
@@ -28,14 +57,14 @@ class Prerequisites extends React.Component {
         color: Typography.textDarkBlack
       },
       codeExample: {
-        backgroundColor: this.context.muiTheme.palette.canvasColor,
+        backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
         marginBottom: '32px'
       },
       inlineCode: {
         backgroundColor: '#F8F8F8'
       }
     };
-  }
+  },
 
   render() {
 
@@ -123,12 +152,8 @@ class Prerequisites extends React.Component {
 
       </div>
     );
-  }
+  },
 
-}
-
-Prerequisites.contextTypes = {
-  muiTheme: React.PropTypes.object
-};
+});
 
 module.exports = Prerequisites;

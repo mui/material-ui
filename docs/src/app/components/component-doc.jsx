@@ -1,11 +1,13 @@
-let React = require('react');
-let { ClearFix, Mixins, Styles } = require('material-ui');
-let CodeExample = require('./code-example/code-example');
-let ComponentInfo = require('./component-info');
-let Typography = Styles.Typography;
-let { Classable, StylePropable } = Mixins;
+const React = require('react');
+const { ClearFix, Mixins, Styles } = require('material-ui');
+const CodeExample = require('./code-example/code-example');
+const ComponentInfo = require('./component-info');
+const Typography = Styles.Typography;
+const { Classable, StylePropable } = Mixins;
+const ThemeManager = Styles.ThemeManager;
+const DefaultRawTheme = Styles.LightRawTheme;
 
-let ComponentDoc = React.createClass({
+const ComponentDoc = React.createClass({
 
   mixins: [StylePropable],
 
@@ -22,8 +24,32 @@ let ComponentDoc = React.createClass({
     componentInfo: React.PropTypes.array.isRequired
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getStyles() {
-    let borderColor = this.context.muiTheme.palette.borderColor;
+    let borderColor = this.state.muiTheme.rawTheme.palette.borderColor;
     return {
       desc: {
         borderBottom: 'solid 1px ' + borderColor,
