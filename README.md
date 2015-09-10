@@ -67,32 +67,41 @@ Material-UI was designed with the [Roboto](http://www.google.com/fonts/specimen/
 
 Once material-ui is included in your project, you can use the components this way:
 ```js
-/** MyAwesomeReactComponent.jsx */
+// get constant references to React and Material-UI
+// components, as we will not be modifying these
 
-let React = require('react'),
-  mui = require('material-ui'),
-  ThemeManager = new mui.Styles.ThemeManager(),
-  RaisedButton = mui.RaisedButton;
+const React = require(\'react\');
 
-let MyAwesomeReactComponent = React.createClass({
+// it is good practice to require only those components of
+// Material-UI that your app needs, instead of requiring all of
+// Material-UI. This will make your build process faster and
+// your build output smaller
+
+const RaisedButton = require(\'material-ui/lib/raised-button\');
+
+// see node_modules/material-ui/lib/index.js for a mapping of
+// Material-UI components to require() calls
+
+const MyAwesomeReactComponent = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object
   },
 
-  getChildContext: function() {
+  getChildContext() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme()
+      muiTheme: ThemeManager.getCurrentTheme()\
     };
   },
 
-  render: function() {
+  render() {
     return (
         <RaisedButton label="Default" />
     );
   }
 
 });
+
 
 module.exports = MyAwesomeReactComponent;
 
