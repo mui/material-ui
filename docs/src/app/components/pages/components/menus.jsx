@@ -218,12 +218,12 @@ class MenusPage extends React.Component {
             <MenuItem primaryText="Sign out" />
           </Menu>
 
-          <Menu style={styles.menu} desktop={true}>
+          <Menu style={styles.menu} desktop>
             <MenuItem primaryText="Back" />
-            <MenuItem primaryText="Forward" disabled={true} />
+            <MenuItem primaryText="Forward" disabled />
             <MenuDivider />
-            <MenuItem primaryText="Recently closed" disabled={true} />
-            <MenuItem primaryText="Google" disabled={true} />
+            <MenuItem primaryText="Recently closed" disabled />
+            <MenuItem primaryText="Google" disabled />
             <MenuItem primaryText="YouTube" />
           </Menu>
 
@@ -238,40 +238,40 @@ class MenusPage extends React.Component {
             <MenuItem primaryText="Remove" leftIcon={<Delete />} />
           </Menu>
 
-          <Menu style={styles.menu} desktop={true}>
+          <Menu style={styles.menu} desktop>
             <MenuItem primaryText="Undo" />
-            <MenuItem primaryText="Redo" disabled={true} />
+            <MenuItem primaryText="Redo" disabled />
             <MenuDivider />
-            <MenuItem primaryText="Cut" disabled={true} />
-            <MenuItem primaryText="Copy" disabled={true} />
+            <MenuItem primaryText="Cut" disabled />
+            <MenuItem primaryText="Copy" disabled />
             <MenuItem primaryText="Paste" />
           </Menu>
 
-          <Menu style={styles.menu} desktop={true}>
+          <Menu style={styles.menu} desktop>
             <MenuItem primaryText="Untitled" />
             <MenuItem primaryText="Using the z-axis to Solve Design Challenges" />
             <MenuItem primaryText="An Extensive History of Dimensionality" />
           </Menu>
 
-          <Menu style={styles.menu} desktop={true}>
+          <Menu style={styles.menu} desktop>
             <MenuItem primaryText="Untitled" />
             <MenuItem primaryText="Using the z-axis to Solve Design Challenges" />
             <MenuItem primaryText="An Extensive History of Dimensionality: the Abridged Edition" />
           </Menu>
 
-          <Menu style={styles.menu} desktop={true} width={320}>
+          <Menu style={styles.menu} desktop width={320}>
             <MenuItem primaryText="Open" secondaryText="Cmnd + O" />
             <MenuItem primaryText="Paste in place" secondaryText="Shift + V" />
             <MenuItem primaryText="Research" secondaryText="Opt + Shift + Cmnd + I" />
           </Menu>
 
-          <Menu style={styles.menu} desktop={true} width={320}>
+          <Menu style={styles.menu} desktop width={320}>
             <MenuItem primaryText="Open" secondaryText="&#8984;O" />
             <MenuItem primaryText="Paste in place" secondaryText="&#8679;&#8984;V" />
             <MenuItem primaryText="Research" secondaryText="&#8997;&#8679;&#8984;I" />
           </Menu>
 
-          <Menu style={styles.menu} desktop={true} width={320}>
+          <Menu style={styles.menu} desktop width={320}>
             <MenuItem primaryText="Bold" secondaryText="&#8984;B" />
             <MenuItem primaryText="Italic" secondaryText="&#8984;I" />
             <MenuItem primaryText="Underline" secondaryText="&#8984;U" />
@@ -288,11 +288,11 @@ class MenusPage extends React.Component {
             <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
           </Menu>
 
-          <Menu style={styles.menu} desktop={true} width={320}>
-            <MenuItem primaryText="Single" insetChildren={true} />
-            <MenuItem primaryText="1.15" insetChildren={true} />
-            <MenuItem primaryText="Double" insetChildren={true} />
-            <MenuItem primaryText="Custom: 1.2" checked={true} rightIcon={<ArrowDropRight />} />
+          <Menu style={styles.menu} desktop width={320}>
+            <MenuItem primaryText="Single" insetChildren />
+            <MenuItem primaryText="1.15" insetChildren />
+            <MenuItem primaryText="Double" insetChildren />
+            <MenuItem primaryText="Custom: 1.2" checked rightIcon={<ArrowDropRight />} />
             <MenuDivider />
             <MenuItem primaryText="Add space before paragraph" />
             <MenuItem primaryText="Add space after paragraph" />
@@ -300,11 +300,11 @@ class MenusPage extends React.Component {
             <MenuItem primaryText="Custom spacing..." />
           </Menu>
 
-          <Menu style={styles.menu} desktop={true}>
+          <Menu style={styles.menu} desktop>
             <MenuItem primaryText="Show" />
-            <MenuItem primaryText="Grid lines" checked={true} />
-            <MenuItem primaryText="Page breaks" insetChildren={true} />
-            <MenuItem primaryText="Rules" checked={true} />
+            <MenuItem primaryText="Grid lines" checked />
+            <MenuItem primaryText="Page breaks" insetChildren />
+            <MenuItem primaryText="Rules" checked />
           </Menu>
         </CodeExample>
       </ComponentDoc>

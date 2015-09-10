@@ -129,7 +129,7 @@ let IconButton = React.createClass({
     return (
       <EnhancedButton {...other}
         ref="button"
-        centerRipple={true}
+        centerRipple
         disabled={disabled}
         style={this.mergeStyles(styles.root, this.props.style)}
         onBlur={this._handleBlur}

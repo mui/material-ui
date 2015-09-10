@@ -232,7 +232,7 @@ let TextFieldsPage = React.createClass({
                 underlineFocusStyle={{borderColor: Colors.amber900}} /><br />
               <TextField
                 style={styles.textfield}
-                disabled={true}
+                disabled
                 hintText="Custom Underline Disabled Style"
                 underlineDisabledStyle={{borderColor:Colors.purple500, borderBottom: 'solid 1px'}} /><br />
               <TextField
@@ -242,11 +242,11 @@ let TextFieldsPage = React.createClass({
               <TextField
                 style={styles.textfield}
                 hintText="Hint Text (MultiLine)"
-                multiLine={true} /><br/>
+                multiLine /><br/>
               <TextField
                 style={styles.textfield}
                 hintText="The hint text can be as long as you want, it will wrap."
-                multiLine={true} /><br/>
+                multiLine /><br/>
               <TextField
                 style={styles.textfield}
                 hintText="Hint Text"
@@ -266,11 +266,11 @@ let TextFieldsPage = React.createClass({
               <TextField
                 style={styles.textfield}
                 hintText="Disabled Hint Text"
-                disabled={true} /><br/>
+                disabled /><br/>
               <TextField
                 style={styles.textfield}
                 hintText="Disabled Hint Text"
-                disabled={true}
+                disabled
                 defaultValue="Disabled With Value" /><br/>
               <SelectField
                 style={styles.textfield}
@@ -317,7 +317,7 @@ let TextFieldsPage = React.createClass({
               <TextField
                 hintText="Hint Text (MultiLine)"
                 floatingLabelText="Floating Label Text"
-                multiLine={true} /><br/>
+                multiLine /><br/>
               <TextField
                 hintText="Hint Text"
                 errorText={this.state.floatingErrorText}
@@ -331,11 +331,11 @@ let TextFieldsPage = React.createClass({
                 onChange={this._handleFloating2ErrorInputChange} /><br/>
               <TextField
                 hintText="Disabled Hint Text"
-                disabled={true}
+                disabled
                 floatingLabelText="Floating Label Text" /><br/>
               <TextField
                 hintText="Disabled Hint Text"
-                disabled={true}
+                disabled
                 defaultValue="Disabled With Value"
                 floatingLabelText="Floating Label Text" /><br/>
               <TextField

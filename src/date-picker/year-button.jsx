@@ -90,8 +90,8 @@ let YearButton = React.createClass({
     return (
       <EnhancedButton {...other}
         style={styles.root}
-        disableFocusRipple={true}
-        disableTouchRipple={true}
+        disableFocusRipple
+        disableTouchRipple
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
         onTouchTap={this._handleTouchTap}>

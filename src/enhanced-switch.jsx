@@ -246,7 +246,7 @@ let EnhancedSwitch = React.createClass({
         key="touchRipple"
         style={rippleStyle}
         color={rippleColor}
-        centerRipple={true} />
+        centerRipple />
     );
 
     let focusRipple = (
@@ -272,7 +272,7 @@ let EnhancedSwitch = React.createClass({
       ) : (
         <div style={wrapStyles}>
           <div style={this.props.trackStyle}/>
-          <Paper style={this.props.thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
+          <Paper style={this.props.thumbStyle} zDepth={1} circle> {ripples} </Paper>
         </div>
     );
 

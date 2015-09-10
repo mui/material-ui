@@ -29,7 +29,7 @@ class CodeBlock extends React.Component {
 
   render() {
     return (
-      <textarea ref="code" value={this.props.children} readOnly={true}/>
+      <textarea ref="code" value={this.props.children} readOnly/>
     );
   }
 }

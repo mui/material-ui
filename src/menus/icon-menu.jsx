@@ -111,7 +111,7 @@ let IconMenu = React.createClass({
     let menu = open ? (
       <Menu
         {...other}
-        animated={true}
+        animated
         initiallyKeyboardFocused={this.state.menuInitiallyKeyboardFocused}
         onEscKeyDown={this._handleMenuEscKeyDown}
         onItemTouchTap={this._handleItemTouchTap}

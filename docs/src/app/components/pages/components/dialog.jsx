@@ -133,24 +133,24 @@ class DialogPage extends React.Component {
       <FlatButton
         key={1}
         label="Cancel"
-        secondary={true}
+        secondary
         onTouchTap={this._handleCustomDialogCancel} />,
       <FlatButton
         key={2}
         label="Submit"
-        primary={true}
+        primary
         onTouchTap={this._handleCustomDialogSubmit} />
     ];
     let scrollableCustomActions = [
       <FlatButton
         key={1}
         label="Cancel"
-        secondary={true}
+        secondary
         onTouchTap={this._handleScrollableDialogCancel} />,
       <FlatButton
         key={2}
         label="Submit"
-        primary={true}
+        primary
         onTouchTap={this._handleScrollableDialogSubmit} />
     ];
 
@@ -192,8 +192,8 @@ class DialogPage extends React.Component {
             title="Dialog With Scrollable Content"
             actions={scrollableCustomActions}
             modal={this.state.modal}
-            autoDetectWindowHeight={true}
-            autoScrollBodyContent={true}>
+            autoDetectWindowHeight
+            autoScrollBodyContent>
             <div style={{height: '1000px'}}>
               Really long content
             </div>

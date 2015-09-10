@@ -359,25 +359,25 @@ class ButtonPage extends React.Component {
                     <FlatButton label="Default" />
                   </div>
                   <div style={styles.container}>
-                    <FlatButton label="Primary" primary={true} />
+                    <FlatButton label="Primary" primary />
                   </div>
                   <div style={styles.container}>
-                    <FlatButton label="Secondary" secondary={true} />
+                    <FlatButton label="Secondary" secondary />
                   </div>
                 </div>
                 <div style={styles.group}>
                   <div style={styles.container}>
-                    <FlatButton primary={true} label="Choose an Image">
+                    <FlatButton primary label="Choose an Image">
                       <input type="file" id="imageButton" style={styles.exampleImageInput}></input>
                     </FlatButton>
                   </div>
                   <div style={styles.container}>
-                    <FlatButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true} label="GitHub" labelStyle={styles.buttonLabel}>
+                    <FlatButton linkButton href="https://github.com/callemall/material-ui" secondary label="GitHub" labelStyle={styles.buttonLabel}>
                       <FontIcon style={styles.exampleFlatButtonIcon} className="muidocs-icon-custom-github"/>
                     </FlatButton>
                   </div>
                   <div style={styles.container}>
-                    <FlatButton label="Disabled" disabled={true} />
+                    <FlatButton label="Disabled" disabled />
                   </div>
                 </div>
               </CodeExample>
@@ -394,25 +394,25 @@ class ButtonPage extends React.Component {
                     <RaisedButton label="Default" />
                   </div>
                   <div style={styles.container}>
-                    <RaisedButton label="Primary" primary={true} />
+                    <RaisedButton label="Primary" primary />
                   </div>
                   <div style={styles.container}>
-                    <RaisedButton label="Secondary" secondary={true} />
+                    <RaisedButton label="Secondary" secondary />
                   </div>
                 </div>
                 <div style={styles.group}>
                   <div style={styles.container}>
-                    <RaisedButton primary={true} label="Choose an Image">
+                    <RaisedButton primary label="Choose an Image">
                       <input type="file" style={styles.exampleImageInput}></input>
                     </RaisedButton>
                   </div>
                   <div style={styles.container}>
-                    <RaisedButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true} label="Github" labelStyle={styles.buttonLabel}>
+                    <RaisedButton linkButton href="https://github.com/callemall/material-ui" secondary label="Github" labelStyle={styles.buttonLabel}>
                       <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>
                     </RaisedButton>
                   </div>
                   <div style={styles.container}>
-                    <RaisedButton label="Disabled" disabled={true} />
+                    <RaisedButton label="Disabled" disabled />
                   </div>
                 </div>
               </CodeExample>
@@ -431,27 +431,27 @@ class ButtonPage extends React.Component {
                     </FloatingActionButton>
                   </div>
                   <div style={styles.container}>
-                    <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />
+                    <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini />
                   </div>
                 </div>
                 <div style={styles.groupFloatingAction}>
                   <div style={styles.container}>
-                    <FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />
+                    <FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary />
                   </div>
                   <div style={styles.container}>
-                    <FloatingActionButton mini={true} secondary={true}>
+                    <FloatingActionButton mini secondary>
                       <ToggleStar />
                     </FloatingActionButton>
                   </div>
                 </div>
                 <div style={styles.groupFloatingAction}>
                   <div style={styles.container}>
-                    <FloatingActionButton disabled={true}>
+                    <FloatingActionButton disabled>
                       <FontIcon className="muidocs-icon-action-grade" />
                     </FloatingActionButton>
                   </div>
                   <div style={styles.container}>
-                    <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} disabled={true} />
+                    <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini disabled />
                   </div>
                 </div>
               </CodeExample>

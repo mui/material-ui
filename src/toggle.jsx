@@ -116,7 +116,7 @@ let Toggle = React.createClass({
     let toggleElement = (
       <div style={toggleElementStyles}>
         <div style={trackStyles} />
-        <Paper style={thumbStyles} circle={true} zDepth={1} />
+        <Paper style={thumbStyles} circle zDepth={1} />
       </div>
     );
 

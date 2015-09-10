@@ -369,7 +369,7 @@ class TablePage extends React.Component {
                 deselectOnClickaway={this.state.deselectOnClickaway}
                 showRowHover={this.state.showRowHover}
                 stripedRows={this.state.stripedRows}>
-              <TableRow selected={true}>
+              <TableRow selected>
                   <TableRowColumn>1</TableRowColumn>
                   <TableRowColumn>John Smith</TableRowColumn>
                   <TableRowColumn>Employed</TableRowColumn>
@@ -379,7 +379,7 @@ class TablePage extends React.Component {
                   <TableRowColumn>Randal White</TableRowColumn>
                   <TableRowColumn>Unemployed</TableRowColumn>
                 </TableRow>
-                <TableRow selected={true}>
+                <TableRow selected>
                   <TableRowColumn>3</TableRowColumn>
                   <TableRowColumn>Stephanie Sanders</TableRowColumn>
                   <TableRowColumn>Employed</TableRowColumn>
