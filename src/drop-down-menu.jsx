@@ -214,7 +214,7 @@ let DropDownMenu = React.createClass({
             menuItems={menuItems}
             style={styles.menu}
             menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.menuItemStyle)}
-            hideable={true}
+            hideable
             visible={this.state.open}
             onRequestClose={this._onMenuRequestClose}
             onItemTap={this._onMenuItemClick} />

@@ -56,12 +56,12 @@ let TimePickerDialog = React.createClass({
       <FlatButton
         key={0}
         label="Cancel"
-        secondary={true}
+        secondary
         onTouchTap={this._handleCancelTouchTap} />,
       <FlatButton
         key={1}
         label="OK"
-        secondary={true}
+        secondary
         onTouchTap={this._handleOKTouchTap} />,
     ];
 

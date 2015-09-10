@@ -109,24 +109,24 @@ class CardPage extends React.Component {
             </CardText>
           </Card>
           <br />
-          <Card initiallyExpanded={true}>
+          <Card initiallyExpanded>
             <CardHeader
               title="Title"
               subtitle="Subtitle"
               avatar={<Avatar style={{color:'red'}}>A</Avatar>}
-              showExpandableButton={true}>
+              showExpandableButton>
             </CardHeader>
-            <CardText expandable={true}>
+            <CardText expandable>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
               Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
               Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
             </CardText>
-            <CardActions expandable={true}>
+            <CardActions expandable>
               <FlatButton label="Action1"/>
               <FlatButton label="Action2"/>
             </CardActions>
-            <CardText expandable={true}>
+            <CardText expandable>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
               Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.

@@ -211,7 +211,7 @@ class IconMenus extends React.Component {
 
             <IconMenu
               iconButtonElement={filterButtonElement}
-              multiple={true}
+              multiple
               onChange={this._handleIconMenuMultiChange}
               openDirection="bottom-right"
               value={this.state.iconMenuMultiValue}>
@@ -231,10 +231,10 @@ class IconMenus extends React.Component {
               openDirection="bottom-right">
               <MenuItem primaryText="Home" />
               <MenuItem primaryText="Back" />
-              <MenuItem primaryText="Forward" disabled={true} />
+              <MenuItem primaryText="Forward" disabled />
               <MenuDivider />
-              <MenuItem primaryText="Recently closed" disabled={true} />
-              <MenuItem primaryText="Google" disabled={true} />
+              <MenuItem primaryText="Recently closed" disabled />
+              <MenuItem primaryText="Google" disabled />
               <MenuItem primaryText="YouTube" />
             </IconMenu>
 

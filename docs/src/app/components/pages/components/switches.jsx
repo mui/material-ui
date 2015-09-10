@@ -406,7 +406,7 @@ class SwitchesPage extends React.Component {
             name="checkboxName2"
             value="checkboxValue2"
             label="fed the dog"
-            defaultChecked={true}/>
+            defaultChecked/>
         </div>
         <div style={styles.container}>
           <Checkbox
@@ -414,7 +414,7 @@ class SwitchesPage extends React.Component {
             name="checkboxName3"
             value="checkboxValue3"
             label="built a house on the moon"
-            disabled={true}/>
+            disabled/>
         </div>
         <div style={styles.container}>
           <Checkbox
@@ -445,7 +445,7 @@ class SwitchesPage extends React.Component {
             name="toggleName2"
             value="toggleValue2"
             label="auto-pilot"
-            defaultToggled={true}/>
+            defaultToggled/>
         </div>
         <div style={styles.container}>
           <Toggle
@@ -453,7 +453,7 @@ class SwitchesPage extends React.Component {
             name="toggleName3"
             value="toggleValue3"
             label="initiate self-destruct sequence"
-            disabled={true}/>
+            disabled/>
         </div>
       </div>
     );
@@ -479,7 +479,7 @@ class SwitchesPage extends React.Component {
             value="ludicrous"
             label="go to ludicrous speed"
             style={{marginBottom:16}}
-            disabled={true}/>
+            disabled/>
         </RadioButtonGroup>
       </div>
     );

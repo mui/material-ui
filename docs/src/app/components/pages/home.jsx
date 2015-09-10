@@ -106,7 +106,7 @@ let HomePage = React.createClass({
               className="demo-button"
               label="Demo"
               onTouchTap={this._onDemoClick}
-              linkButton={true}
+              linkButton
               style={styles.demoStyle}
               labelStyle={styles.label}/>
           </div>
@@ -136,7 +136,7 @@ let HomePage = React.createClass({
     return (
       <FullWidthSection
         style={styles.root}
-        useContent={true}
+        useContent
         contentStyle={styles.content}
         contentType="p"
         className="home-purpose">
@@ -154,12 +154,12 @@ let HomePage = React.createClass({
   _getHomeFeatures() {
     let styles = {maxWidth: '906px'};
     return (
-      <FullWidthSection useContent={true} contentStyle={styles}>
+      <FullWidthSection useContent contentStyle={styles}>
         <HomeFeature
           heading="Get Started"
           route="get-started"
           img="images/get-started.svg"
-          firstChild={true}/>
+          firstChild/>
         <HomeFeature
           heading="Customization"
           route="customization"
@@ -168,7 +168,7 @@ let HomePage = React.createClass({
           heading="Components"
           route="components"
           img="images/components.svg"
-          lastChild={true}/>
+          lastChild/>
       </FullWidthSection>
     );
   },
@@ -191,15 +191,15 @@ let HomePage = React.createClass({
     };
 
     return (
-      <FullWidthSection useContent={true} style={styles.root}>
+      <FullWidthSection useContent style={styles.root}>
         <h3 style={styles.h3}>
           Want to help make this <span style={styles.nowrap}>project awesome? </span>
           <span style={styles.nowrap}>Check out our repo.</span>
         </h3>
         <RaisedButton
           label="GitHub"
-          primary={true}
-          linkButton={true}
+          primary
+          linkButton
           href="https://github.com/callemall/material-ui"
           style={styles.button}/>
       </FullWidthSection>

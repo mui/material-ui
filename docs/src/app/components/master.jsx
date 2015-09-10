@@ -91,7 +91,7 @@ class Master extends React.Component {
         iconStyle={styles.iconButton}
         iconClassName="muidocs-icon-custom-github"
         href="https://github.com/callemall/material-ui"
-        linkButton={true}
+        linkButton
         style={styles.github} />
     );
 
@@ -100,7 +100,7 @@ class Master extends React.Component {
         iconStyle={styles.iconButton}
         iconClassName="muidocs-icon-custom-github"
         href="https://github.com/callemall/material-ui"
-        linkButton={true}/>
+        linkButton/>
     );
 
     return (
@@ -169,7 +169,7 @@ class Master extends React.Component {
     let materialIcon= this.state.tabIndex !== '0' ? (
       <EnhancedButton
         style={styles.svgLogoContainer}
-        linkButton={true}
+        linkButton
         href="/#/home">
         <img style={styles.svgLogo} src="images/material-ui-logo.svg"/>
         <span style={styles.span}>material ui</span>
@@ -230,7 +230,7 @@ class Master extends React.Component {
       <IconButton
         iconClassName="muidocs-icon-custom-github"
         href="https://github.com/callemall/material-ui"
-        linkButton={true}/>
+        linkButton/>
     );
 
     return (

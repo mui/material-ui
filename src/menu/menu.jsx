@@ -141,7 +141,7 @@ let NestedMenuItem = React.createClass({
           menuItems={this.props.menuItems}
           menuItemStyle={menuItemStyle}
           onItemTap={this._onMenuItemTap}
-          hideable={true}
+          hideable
           visible={this.state.open}
           onRequestClose={this._closeNestedMenu}
           zDepth={this.props.zDepth + 1} />
@@ -379,7 +379,7 @@ let Menu = React.createClass({
               ref={i}
               key={i}
               index={i}
-              nested={true}
+              nested
               active={this.state.activeIndex === i}
               text={menuItem.text}
               disabled={isDisabled}

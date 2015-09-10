@@ -101,7 +101,7 @@ class ToolbarPage extends React.Component {
               <FontIcon className="muidocs-icon-custom-sort" />
               <DropDownIcon iconClassName="muidocs-icon-navigation-expand-more" menuItems={iconMenuItems} />
               <ToolbarSeparator/>
-              <RaisedButton label="Create Broadcast" primary={true} />
+              <RaisedButton label="Create Broadcast" primary />
             </ToolbarGroup>
           </Toolbar>
         </CodeExample>

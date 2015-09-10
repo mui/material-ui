@@ -328,7 +328,7 @@ const ListItem = React.createClass({
           {...other}
           disabled={disabled}
           disableKeyboardFocus={disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused}
-          linkButton={true}
+          linkButton
           onKeyboardFocus={this._handleKeyboardFocus}
           onMouseLeave={this._handleMouseLeave}
           onMouseEnter={this._handleMouseEnter}

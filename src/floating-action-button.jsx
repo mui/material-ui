@@ -181,7 +181,7 @@ let FloatingActionButton = React.createClass({
       <Paper
         style={this.mergeAndPrefix(styles.root, this.props.style)}
         zDepth={this.state.zDepth}
-        circle={true}>
+        circle>
 
         <EnhancedButton
           {...other}

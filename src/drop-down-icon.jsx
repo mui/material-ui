@@ -99,7 +99,7 @@ let DropDownIcon = React.createClass({
             style={this.mergeAndPrefix(styles.menu)}
             menuItems={menuItems}
             menuItemStyle={styles.menuItem}
-            hideable={true}
+            hideable
             visible={this.state.open}
             onItemTap={this._onMenuItemClick} />
         </div>

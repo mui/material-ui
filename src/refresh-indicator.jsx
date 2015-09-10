@@ -42,7 +42,7 @@ const RefreshIndicator = React.createClass({
     const rootStyle = this._getRootStyle();
     return (
       <Paper
-        circle={true}
+        circle
         style={this.mergeAndPrefix(rootStyle, this.props.style)}
         ref="indicatorCt"
       >

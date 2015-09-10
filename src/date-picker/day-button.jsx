@@ -97,8 +97,8 @@ let DayButton = React.createClass({
         style={styles.root}
         hoverStyle={styles.hover}
         disabled={this.props.disabled}
-        disableFocusRipple={true}
-        disableTouchRipple={true}
+        disableFocusRipple
+        disableTouchRipple
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
         onTouchTap={this._handleTouchTap}

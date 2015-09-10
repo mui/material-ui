@@ -129,32 +129,32 @@ class IconButtonsPage extends React.Component {
           <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-left" tooltipPosition = "top-left" />
           <br/><br/><br/><br/>
 
-          <IconButton tooltip="bottom-right" touch={true} tooltipPosition="bottom-right">
+          <IconButton tooltip="bottom-right" touch tooltipPosition="bottom-right">
             <ActionGrade/>
           </IconButton>
 
-          <IconButton tooltip="bottom-center" touch={true} tooltipPosition="bottom-center">
+          <IconButton tooltip="bottom-center" touch tooltipPosition="bottom-center">
             <ActionGrade/>
           </IconButton>
 
-          <IconButton tooltip="bottom-left" touch={true} tooltipPosition="bottom-left">
+          <IconButton tooltip="bottom-left" touch tooltipPosition="bottom-left">
             <ActionGrade/>
           </IconButton>
 
-          <IconButton tooltip="top-right" touch={true} tooltipPosition="top-right">
+          <IconButton tooltip="top-right" touch tooltipPosition="top-right">
             <ActionGrade/>
           </IconButton>
 
-          <IconButton tooltip="top-center" touch={true} tooltipPosition="top-center">
+          <IconButton tooltip="top-center" touch tooltipPosition="top-center">
             <ActionGrade/>
           </IconButton>
 
-          <IconButton tooltip="top-left" touch={true} tooltipPosition="top-left">
+          <IconButton tooltip="top-left" touch tooltipPosition="top-left">
             <ActionGrade/>
           </IconButton>
           <br/><br/><br/>
 
-          <IconButton tooltip="Sort" disabled={true}>
+          <IconButton tooltip="Sort" disabled>
             <FontIcon className="muidocs-icon-custom-sort"/>
           </IconButton>
           <br/><br/><br/>

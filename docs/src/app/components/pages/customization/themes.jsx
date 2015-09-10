@@ -531,13 +531,13 @@ let ThemesPage = React.createClass({
 
           <div style={styles.group}>
             <div style={styles.containerCentered}>
-              <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true}/>
+              <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled/>
             </div>
             <div style={styles.containerCentered}>
-              <RaisedButton label="Secondary" secondary={true} />
+              <RaisedButton label="Secondary" secondary />
             </div>
             <div style={styles.containerCentered}>
-              <RaisedButton label="Primary"  primary={true}/>
+              <RaisedButton label="Primary"  primary/>
             </div>
             <div style={styles.containerCentered}>
               <RaisedButton label="Default"/>
@@ -554,7 +554,7 @@ let ThemesPage = React.createClass({
                 name="checkboxName2"
                 value="checkboxValue2"
                 label="disabled checkbox"
-                disabled={true} />
+                disabled />
             </div>
             <div style={styles.container}>
               <RadioButtonGroup
@@ -566,11 +566,11 @@ let ThemesPage = React.createClass({
                   <RadioButton
                     value="euro"
                     label="Euro"
-                    defaultChecked={true} />
+                    defaultChecked />
                  <RadioButton
                     value="mxn"
                     label="MXN"
-                    disabled={true}/>
+                    disabled/>
               </RadioButtonGroup>
             </div>
             <div style={styles.container}>
@@ -582,8 +582,8 @@ let ThemesPage = React.createClass({
                 name="toggleName2"
                 value="toggleValue2"
                 label="disabled toggle"
-                defaultToggled={true}
-                disabled={true} />
+                defaultToggled
+                disabled />
             </div>
           </div>
 

@@ -182,7 +182,7 @@ let ClockHours = React.createClass({
 
     return (
       <div ref="clock" style={this.mergeAndPrefix(styles.root)} >
-        <ClockPointer hasSelected={true} value={hours} type="hour" />
+        <ClockPointer hasSelected value={hours} type="hour" />
         {numbers}
         <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} onTouchMove={this.handleTouchMove}
           onTouchEnd={this.handleTouchEnd} onMouseUp={this.handleUp} onMouseMove={this.handleMove}/>

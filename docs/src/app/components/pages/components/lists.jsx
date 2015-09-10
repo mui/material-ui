@@ -211,7 +211,7 @@ class ListsPage extends React.Component {
 
     let iconButtonElement = (
       <IconButton
-        touch={true}
+        touch
         tooltip="more"
         tooltipPosition="bottom-left">
         <MoreVertIcon color={Colors.grey400} />
@@ -290,18 +290,18 @@ class ListsPage extends React.Component {
                 rightAvatar={<Avatar src="images/chexee-128.jpg" />} />
               <ListItem
                 primaryText="Eric Hoffman"
-                insetChildren={true}
+                insetChildren
                 rightAvatar={<Avatar src="images/kolage-128.jpg" />} />
               <ListItem
                 primaryText="James Anderson"
-                insetChildren={true}
+                insetChildren
                 rightAvatar={<Avatar src="images/jsa-128.jpg" />} />
               <ListItem
                 primaryText="Kerem Suer"
-                insetChildren={true}
+                insetChildren
                 rightAvatar={<Avatar src="images/kerem-128.jpg" />} />
             </List>
-            <ListDivider inset={true} />
+            <ListDivider inset />
             <List>
               <ListItem
                 primaryText="Adelle Charles"
@@ -309,21 +309,21 @@ class ListsPage extends React.Component {
                 rightAvatar={<Avatar src="images/adellecharles-128.jpg" />} />
               <ListItem
                 primaryText="Adham Dannaway"
-                insetChildren={true}
+                insetChildren
                 rightAvatar={<Avatar src="images/adhamdannaway-128.jpg" />} />
               <ListItem
                 primaryText="Allison Grayce"
-                insetChildren={true}
+                insetChildren
                 rightAvatar={<Avatar src="images/allisongrayce-128.jpg" />} />
               <ListItem
                 primaryText="Angel Ceballos"
-                insetChildren={true}
+                insetChildren
                 rightAvatar={<Avatar src="images/angelceballos-128.jpg" />} />
             </List>
           </MobileTearSheet>
 
           <MobileTearSheet>
-            <List subheader="Folders" insetSubheader={true}>
+            <List subheader="Folders" insetSubheader>
               <ListItem
                 leftAvatar={<Avatar icon={<FileFolder />} />}
                 rightIcon={<ActionInfo />}
@@ -340,8 +340,8 @@ class ListsPage extends React.Component {
                 primaryText="Work"
                 secondaryText="Jan 28, 2014" />
             </List>
-            <ListDivider inset={true} />
-            <List subheader="Files" insetSubheader={true}>
+            <ListDivider inset />
+            <List subheader="Files" insetSubheader>
               <ListItem
                 leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={Colors.blue500} />}
                 rightIcon={<ActionInfo />}
@@ -361,7 +361,7 @@ class ListsPage extends React.Component {
               <ListItem
                 primaryText="Inbox"
                 leftIcon={<ContentInbox />}
-                initiallyOpen={true}
+                initiallyOpen
                 nestedItems={[
                   <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />,
                   <ListItem
@@ -428,19 +428,19 @@ class ListsPage extends React.Component {
                 primaryText="(650) 555 - 1234"
                 secondaryText="Mobile" />
               <ListItem
-                insetChildren={true}
+                insetChildren
                 rightIcon={<CommunicationChatBubble />}
                 primaryText="(323) 555 - 6789"
                 secondaryText="Work" />
             </List>
-            <ListDivider inset={true} />
+            <ListDivider inset />
             <List>
               <ListItem
                 leftIcon={<CommunicationEmail color={Colors.indigo500} />}
                 primaryText="aliconnors@example.com"
                 secondaryText="Personal" />
               <ListItem
-                insetChildren={true}
+                insetChildren
                 primaryText="ali_connors@example.com"
                 secondaryText="Work" />
             </List>
@@ -457,7 +457,7 @@ class ListsPage extends React.Component {
                     I&apos;ll be in your neighborhood this weekend.
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/kolage-128.jpg" />}
                 primaryText={
@@ -469,7 +469,7 @@ class ListsPage extends React.Component {
                     Wish I could but I can
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
                 primaryText="Oui oui"
@@ -479,7 +479,7 @@ class ListsPage extends React.Component {
                     Do you have Paris recommendations?
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />}
                 primaryText="Birthday gift"
@@ -489,7 +489,7 @@ class ListsPage extends React.Component {
                     Do you have any ideas on what I
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 primaryText="Recipe to try"
@@ -499,7 +499,7 @@ class ListsPage extends React.Component {
                     We should eat this: grated cheese
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/chexee-128.jpg" />}
                 primaryText="Giants game"
@@ -524,7 +524,7 @@ class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/kolage-128.jpg" />}
                 primaryText={
@@ -537,7 +537,7 @@ class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
                 primaryText="Oui oui"
@@ -548,7 +548,7 @@ class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />}
                 primaryText="Birdthday gift"
@@ -559,7 +559,7 @@ class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 primaryText="Recipe to try"
@@ -586,7 +586,7 @@ class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/kolage-128.jpg" />}
                 rightIconButton={rightIconMenu}
@@ -598,7 +598,7 @@ class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
                 rightIconButton={rightIconMenu}
@@ -610,7 +610,7 @@ class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />}
                 rightIconButton={rightIconMenu}
@@ -622,7 +622,7 @@ class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <ListDivider inset />
               <ListItem
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 rightIconButton={rightIconMenu}

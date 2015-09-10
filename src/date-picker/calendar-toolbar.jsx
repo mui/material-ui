@@ -68,7 +68,7 @@ let CalendarToolbar = React.createClass({
     let styles = this._styles();
 
     return (
-      <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root} noGutter={true}>
+      <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root} noGutter>
         <SlideInTransitionGroup
           style={styles.title}
           direction={this.state.transitionDirection}>
