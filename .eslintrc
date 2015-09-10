@@ -30,7 +30,7 @@
     "consistent-return": 0,
     "strict": 0,
 
-    "react/jsx-boolean-value": 2,
+    "react/jsx-boolean-value": 0,
     "react/jsx-curly-spacing": 2,
     "react/jsx-max-props-per-line": [2, {maximum: 4}],
     "react/jsx-no-duplicate-props": 2,
