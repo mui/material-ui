@@ -27,6 +27,7 @@ let DatePicker = React.createClass({
     showYearSelector: React.PropTypes.bool,
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
+    dialogDate:  React.PropTypes.object
   },
 
   windowListeners: {
@@ -44,7 +45,7 @@ let DatePicker = React.createClass({
   getInitialState() {
     return {
       date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
-      dialogDate: new Date(),
+      dialogDate: this.props.dialogDate || new Date()
     };
   },
 
@@ -123,7 +124,7 @@ let DatePicker = React.createClass({
    */
   openDialog() {
     this.setState({
-      dialogDate: this.getDate(),
+      dialogDate: this.getDate() || this.state.dialogDate,
     }, this.refs.dialogWindow.show);
   },
 
