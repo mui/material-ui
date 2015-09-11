@@ -47,6 +47,7 @@ class GetStarted extends React.Component {
           '/** MyAwesomeReactComponent.jsx */\n\n' +
           'let React = require(\'react\'),\n' +
           '  mui = require(\'material-ui\'),\n' +
+          '  ThemeManager = new mui.Styles.ThemeManager(),\n' +
           '  RaisedButton = mui.RaisedButton;\n\n' +
           'let SomeAwesomeComponent = React.createClass({\n\n' +
           '  childContextTypes: {\n' +
