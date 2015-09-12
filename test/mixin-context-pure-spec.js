@@ -1,10 +1,10 @@
-import React from 'react/addons';
+import React from 'react';
+import TestUtils from 'react/lib/ReactTestUtils';
+import update from 'react/lib/update';
 import ContextPure from 'mixins/context-pure';
 import ThemeManager from 'styles/theme-manager';
 import DefaultRawTheme from 'styles/raw-themes/light-raw-theme';
 
-const TestUtils = React.addons.TestUtils;
-const update = React.addons.update;
 
 const GrandChildComponent = React.createClass({
   mixins: [ContextPure],

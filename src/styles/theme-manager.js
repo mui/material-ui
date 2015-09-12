@@ -1,10 +1,10 @@
 const Colors = require('./colors');
 const ColorManipulator = require('../utils/color-manipulator');
 const Extend = require('../utils/extend');
-const update = require('react').addons.update;
+const update = require('react/lib/update');
 
 module.exports = {
-  
+
   //get the MUI theme corresponding to a raw theme
   getMuiTheme: function (rawTheme) {
     let returnObj = {

@@ -1,4 +1,5 @@
-let React = require('react/addons');
+let React = require('react');
+const LinkedStateMixin = require('react/lib/LinkedStateMixin');
 let { ClearFix, Mixins, SelectField, TextField, Styles } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let { Colors } = Styles;
@@ -8,7 +9,10 @@ let CodeExample = require('../../code-example/code-example');
 
 let TextFieldsPage = React.createClass({
 
-  mixins: [StyleResizable, React.addons.LinkedStateMixin],
+  mixins: [
+    StyleResizable,
+    LinkedStateMixin,
+  ],
 
   getInitialState() {
     return {

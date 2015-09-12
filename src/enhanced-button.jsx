@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
+const React = require('react');
+const PureRenderMixin = require('react/lib/ReactComponentWithPureRenderMixin');
 const StylePropable = require('./mixins/style-propable');
 const Colors = require('./styles/colors');
 const Children = require('./utils/children');
