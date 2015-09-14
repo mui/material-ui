@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDom = require('react-dom');
 const PureRenderMixin = require('react-addons-pure-render-mixin');
 const StylePropable = require('../mixins/style-propable');
 const AutoPrefix = require('../styles/auto-prefix');
@@ -39,7 +40,7 @@ const CircleRipple = React.createClass({
   },
 
   componentWillLeave(callback) {
-    let style = React.findDOMNode(this).style;
+    let style = ReactDom.findDOMNode(this).style;
     style.opacity = 0;
     setTimeout(() => {
       if (this.isMounted()) callback();
@@ -70,7 +71,7 @@ const CircleRipple = React.createClass({
   },
 
   _animate() {
-    let style = React.findDOMNode(this).style;
+    let style = ReactDom.findDOMNode(this).style;
     const transitionValue = (
       Transitions.easeOut('2s', 'opacity') + ',' +
       Transitions.easeOut('1s', 'transform')
@@ -80,7 +81,7 @@ const CircleRipple = React.createClass({
   },
 
   _initializeAnimation(callback) {
-    let style = React.findDOMNode(this).style;
+    let style = ReactDom.findDOMNode(this).style;
     style.opacity = this.props.opacity;
     AutoPrefix.set(style, 'transform', 'scale(0)');
     setTimeout(() => {

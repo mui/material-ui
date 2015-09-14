@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDom = require('react-dom');
 let Events = require('../utils/events');
 let Dom = require('../utils/dom');
 
@@ -16,7 +17,7 @@ module.exports = {
   },
 
   _checkClickAway(event) {
-    let el = React.findDOMNode(this);
+    let el = ReactDom.findDOMNode(this);
 
     // Check if the target is inside the current component
     if (event.target !== el &&

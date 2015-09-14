@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDom = require('react-dom');
 let CssEvent = require('../utils/css-event');
 let KeyLine = require('../utils/key-line');
 let KeyCode = require('../utils/key-code');
@@ -158,8 +159,8 @@ let NestedMenuItem = React.createClass({
   },
 
   _positionNestedMenu() {
-    let el = React.findDOMNode(this);
-    let nestedMenu = React.findDOMNode(this.refs.nestedMenu);
+    let el = ReactDom.findDOMNode(this);
+    let nestedMenu = ReactDom.findDOMNode(this.refs.nestedMenu);
     nestedMenu.style.left = el.offsetWidth + 'px';
   },
 
@@ -169,7 +170,7 @@ let NestedMenuItem = React.createClass({
 
   _closeNestedMenu() {
     this.setState({ open: false });
-    React.findDOMNode(this).focus();
+    ReactDom.findDOMNode(this).focus();
   },
 
   _onParentItemTap() {
@@ -238,7 +239,7 @@ let Menu = React.createClass({
   },
 
   componentDidMount() {
-    let el = React.findDOMNode(this);
+    let el = ReactDom.findDOMNode(this);
 
     //Set the menu width
     this._setKeyWidth(el);
@@ -255,7 +256,7 @@ let Menu = React.createClass({
 
   componentWillReceiveProps() {
     //Set the menu width
-    this._setKeyWidth(React.findDOMNode(this));
+    this._setKeyWidth(ReactDom.findDOMNode(this));
   },
 
   getTheme() {
@@ -444,8 +445,8 @@ let Menu = React.createClass({
   },
 
   _expandHideableMenu() {
-    let el = React.findDOMNode(this);
-    let container = React.findDOMNode(this.refs.paperContainer);
+    let el = ReactDom.findDOMNode(this);
+    let container = ReactDom.findDOMNode(this.refs.paperContainer);
     let padding = this.getSpacing().desktopGutterMini;
     let height = this._getHiddenMenuHeight(el, padding);
 
@@ -494,8 +495,8 @@ let Menu = React.createClass({
   },
 
   _collapseHideableMenu() {
-    let el = React.findDOMNode(this);
-    let container = React.findDOMNode(this.refs.paperContainer);
+    let el = ReactDom.findDOMNode(this);
+    let container = ReactDom.findDOMNode(this.refs.paperContainer);
     let originalOpacity = el.style.opacity;
 
     //Add transition

@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDom = require('react-dom');
 let StylePropable = require('./mixins/style-propable');
 let Draggable = require('react-draggable2');
 let Transitions = require('./styles/transitions');
@@ -182,12 +183,12 @@ let Slider = React.createClass({
         height: this.getTheme().handleSizeActive,
       },
       ripple: {
-        height: this.getTheme().handleSize, 
-        width: this.getTheme().handleSize, 
+        height: this.getTheme().handleSize,
+        width: this.getTheme().handleSize,
         overflow: 'visible',
       },
       rippleWhenPercentZero: {
-        top: -this.getTheme().trackSize, 
+        top: -this.getTheme().trackSize,
         left: -this.getTheme().trackSize,
       },
       rippleInner: {
@@ -344,7 +345,7 @@ let Slider = React.createClass({
   _constrain() {
     let { min, max, step } = this.props;
     return (pos) => {
-      let pixelMax = React.findDOMNode(this.refs.track).clientWidth;
+      let pixelMax = ReactDom.findDOMNode(this.refs.track).clientWidth;
       let pixelStep = pixelMax / ((max - min) / step);
 
       let cursor = min;
@@ -391,7 +392,7 @@ let Slider = React.createClass({
   _onMouseUp(e) {
     if (!this.props.disabled) this.setState({active: false});
     if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
-      let pos = e.clientX - React.findDOMNode(this).getBoundingClientRect().left;
+      let pos = e.clientX - ReactDom.findDOMNode(this).getBoundingClientRect().left;
       this._dragX(e, pos);
     }
 
@@ -424,7 +425,7 @@ let Slider = React.createClass({
   },
 
   _dragX(e, pos) {
-    let max = React.findDOMNode(this.refs.track).clientWidth;
+    let max = ReactDom.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
     if (pos === this.props.min) {
       return this._updateWithChangeEvent(e, 0);
