@@ -3,7 +3,7 @@ import ContextPure from 'mixins/context-pure';
 import ThemeManager from 'styles/theme-manager';
 
 const TestUtils = React.addons.TestUtils;
-const update = React.addons.update;
+const update = require('react-addons-update');
 
 const GrandChildComponent = React.createClass({
   mixins: [ContextPure],

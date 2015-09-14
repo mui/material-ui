@@ -1,5 +1,5 @@
 let React = require('react/addons');
-let update = React.addons.update;
+let update = require('react-addons-update');
 let Controllable = require('../mixins/controllable');
 let StylePropable = require('../mixins/style-propable');
 let AutoPrefix = require('../styles/auto-prefix');

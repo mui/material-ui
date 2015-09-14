@@ -30,9 +30,11 @@
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
+    "react-addons-create-fragment": "^0.14.0-rc1",
     "react-addons-linked-state-mixin": "^0.14.0-rc1",
     "react-addons-pure-render-mixin": "^0.14.0-rc1",
     "react-addons-transition-group": "^0.14.0-rc1",
+    "react-addons-update": "^0.14.0-rc1",
     "react-draggable2": "^0.5.1"
   },
   "peerDependencies": {
