@@ -30,6 +30,7 @@
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
+    "react-addons-transition-group": "^0.14.0-rc1",
     "react-draggable2": "^0.5.1"
   },
   "peerDependencies": {
@@ -60,7 +61,7 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.17",
-    "react": "^0.13.3",
+    "react": "^0.14.0-rc1",
     "react-hot-loader": "^1.2.8",
     "react-router": "^0.13.3",
     "react-stub-context": "^0.3.0",

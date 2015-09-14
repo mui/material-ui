@@ -8,7 +8,7 @@ let FlatButton = require('./flat-button');
 let Overlay = require('./overlay');
 let Paper = require('./paper');
 
-let ReactTransitionGroup = React.addons.TransitionGroup;
+let ReactTransitionGroup = require('react-addons-transition-group')
 
 let TransitionItem = React.createClass({
   mixins: [StylePropable],

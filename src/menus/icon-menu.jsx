@@ -1,5 +1,5 @@
 let React = require('react/addons');
-let ReactTransitionGroup = React.addons.TransitionGroup;
+let ReactTransitionGroup = require('react-addons-transition-group')
 let ClickAwayable = require('../mixins/click-awayable');
 let StylePropable = require('../mixins/style-propable');
 let Events = require('../utils/events');
