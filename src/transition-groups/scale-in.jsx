@@ -1,5 +1,5 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const ReactTransitionGroup = require('react-addons-transition-group')
 const StylePropable = require('../mixins/style-propable');
 const ScaleInChild = require('./scale-in-child');
