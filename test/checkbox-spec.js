@@ -2,7 +2,7 @@ import React from 'react/addons';
 import Checkbox from 'checkbox';
 import injectTheme from './fixtures/inject-theme';
 
-const TestUtils = React.addons.TestUtils;
+const TestUtils = require('react-addons-test-utils');
 
 
 describe('Checkbox', () => {
