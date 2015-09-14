@@ -4,11 +4,8 @@ const IconButton = require('../icon-button');
 const Toolbar = require('../toolbar/toolbar');
 const ToolbarGroup = require('../toolbar/toolbar-group');
 const NavigationChevronLeft = require('../svg-icons/navigation/chevron-left');
-const NavigationChevronLeftDouble = require('../svg-icons/navigation-chevron-left-double');
 const NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
-const NavigationChevronRightDouble = require('../svg-icons/navigation-chevron-right-double');
 const SlideInTransitionGroup = require('../transition-groups/slide-in');
-
 
 const CalendarToolbar = React.createClass({
 
