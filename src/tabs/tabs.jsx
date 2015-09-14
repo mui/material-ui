@@ -1,4 +1,4 @@
-let React = require('react/addons');
+let React = require('react');
 let TabTemplate = require('./tabTemplate');
 let InkBar = require('../ink-bar');
 let StylePropable = require('../mixins/style-propable');

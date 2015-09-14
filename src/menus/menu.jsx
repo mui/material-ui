@@ -1,4 +1,4 @@
-let React = require('react/addons');
+let React = require('react');
 let update = require('react-addons-update');
 let Controllable = require('../mixins/controllable');
 let StylePropable = require('../mixins/style-propable');

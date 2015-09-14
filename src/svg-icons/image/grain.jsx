@@ -1,4 +1,4 @@
-const React = require('react/addons');
+const React = require('react');
 const PureRenderMixin = require('react-addons-pure-render-mixin');
 const SvgIcon = require('../../svg-icon');
 

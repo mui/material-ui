@@ -1,4 +1,4 @@
-let React = require('react/addons');
+let React = require('react');
 let ReactTransitionGroup = require('react-addons-transition-group')
 let Menu = require('menus/menu');
 let MenuItem = require('menus/menu-item');

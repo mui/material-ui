@@ -1,4 +1,4 @@
-const React = require('react/addons');
+const React = require('react');
 const PureRenderMixin = require('react-addons-pure-render-mixin');
 const PropTypes = require('../utils/prop-types');
 const StylePropable = require('../mixins/style-propable');

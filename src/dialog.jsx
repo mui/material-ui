@@ -1,4 +1,4 @@
-let React = require('react/addons');
+let React = require('react');
 let WindowListenable = require('./mixins/window-listenable');
 let CssEvent = require('./utils/css-event');
 let KeyCode = require('./utils/key-code');

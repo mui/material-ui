@@ -1,4 +1,4 @@
-let React = require('react/addons');
+let React = require('react');
 let LinkedStateMixin = require('react-addons-linked-state-mixin');
 let { ClearFix, Mixins, SelectField, TextField, Styles } = require('material-ui');
 let ComponentDoc = require('../../component-doc');

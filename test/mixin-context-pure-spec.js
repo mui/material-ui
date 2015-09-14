@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import ContextPure from 'mixins/context-pure';
 import ThemeManager from 'styles/theme-manager';
 

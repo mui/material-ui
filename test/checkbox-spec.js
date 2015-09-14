@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import Checkbox from 'checkbox';
 import injectTheme from './fixtures/inject-theme';
 
