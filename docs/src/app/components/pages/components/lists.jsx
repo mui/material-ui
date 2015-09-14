@@ -362,6 +362,7 @@ class ListsPage extends React.Component {
                 primaryText="Inbox"
                 leftIcon={<ContentInbox />}
                 initiallyOpen={true}
+                primaryTogglesNestedList={true}
                 nestedItems={[
                   <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />,
                   <ListItem
