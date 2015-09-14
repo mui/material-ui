@@ -4,6 +4,7 @@ import Transitions from './styles/transitions';
 import CheckboxOutline from './svg-icons/toggle/check-box-outline-blank';
 import CheckboxChecked from './svg-icons/toggle/check-box';
 import getMuiTheme from './styles/getMuiTheme';
+import deprecated from './utils/deprecatedPropType';
 
 function getStyles(props, state) {
   const {
@@ -114,7 +115,14 @@ const Checkbox = React.createClass({
      * The SvgIcon to use for the unchecked state.
      * This is useful to create icon toggles.
      */
-    unCheckedIcon: React.PropTypes.element,
+    unCheckedIcon: deprecated(React.PropTypes.element,
+      'Use uncheckedIcon instead.'),
+
+    /**
+     * The SvgIcon to use for the unchecked state.
+     * This is useful to create icon toggles.
+     */
+    uncheckedIcon: React.PropTypes.element,
 
     /**
      * ValueLink for when using controlled checkbox.
@@ -185,6 +193,7 @@ const Checkbox = React.createClass({
       iconStyle,
       onCheck,
       checkedIcon,
+      uncheckedIcon,
       unCheckedIcon,
       ...other,
     } = this.props;
@@ -208,8 +217,8 @@ const Checkbox = React.createClass({
       style: checkStyles,
     });
 
-    let unCheckedElement = unCheckedIcon ? React.cloneElement(unCheckedIcon, {
-      style: Object.assign(boxStyles, unCheckedIcon.props.style),
+    let unCheckedElement = (unCheckedIcon || uncheckedIcon) ? React.cloneElement((unCheckedIcon || uncheckedIcon), {
+      style: Object.assign(boxStyles, (unCheckedIcon || uncheckedIcon).props.style),
     }) : React.createElement(CheckboxOutline, {
       style: boxStyles,
     });
