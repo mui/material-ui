@@ -60,6 +60,7 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.17",
+    "react": "^0.13.3",
     "react-hot-loader": "^1.2.8",
     "react-router": "^0.13.3",
     "react-stub-context": "^0.3.0",
