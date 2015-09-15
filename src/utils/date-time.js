@@ -1,9 +1,15 @@
 
+const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
+  'Oct', 'Nov', 'Dec'];
+const monthLongList = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'];
+
 function DateTimeFormat(locale, options) {
   this.options = options;
 
   if (process.env.NODE_ENV !== 'production' && locale !== 'en-US') {
-    console.warn('Wrong usage of DateTimeFormat');
+    console.warn('Wrong usage of DateTimeFormat. The ' + locale +' locale is not supported.');
   }
 
   this.format = function(date) {
@@ -13,116 +19,13 @@ function DateTimeFormat(locale, options) {
       options.weekday === 'short' &&
       options.day === '2-digit') {
 
-      const day = date.getDay();
-      switch (day) {
-        case 0:
-          output = 'Sun';
-          break;
-        case 1:
-          output = 'Mon';
-          break;
-        case 2:
-          output = 'Tue';
-          break;
-        case 3:
-          output = 'Wed';
-          break;
-        case 4:
-          output = 'Thu';
-          break;
-        case 5:
-          output = 'Fri';
-          break;
-        case 6:
-          output = 'Sat';
-          break;
-      }
-
-      output += ', ';
-
-      const month = date.getMonth();
-      switch (month) {
-        case 0:
-          output += 'Jan';
-          break;
-        case 1:
-          output += 'Feb';
-          break;
-        case 2:
-          output += 'Mar';
-          break;
-        case 3:
-          output += 'Apr';
-          break;
-        case 4:
-          output += 'May';
-          break;
-        case 5:
-          output += 'Jun';
-          break;
-        case 6:
-          output += 'Jul';
-          break;
-        case 7:
-          output += 'Aug';
-          break;
-        case 8:
-          output += 'Sep';
-          break;
-        case 9:
-          output += 'Oct';
-          break;
-        case 10:
-          output += 'Nov';
-          break;
-        case 11:
-          output += 'Dec';
-          break;
-      }
-
-      output += ' ' + date.getDate()
+      output = dayList[date.getDay()] + ', ';
+      output += monthList[date.getMonth()] + ' ';
+      output += date.getDate();
     } else if (options.month === 'long'
         && options.year === 'numeric') {
 
-      switch (date.getMonth()) {
-        case 0:
-          output = 'January';
-          break;
-        case 1:
-          output = 'February';
-          break;
-        case 2:
-          output = 'March';
-          break;
-        case 3:
-          output = 'April';
-          break;
-        case 4:
-          output = 'May';
-          break;
-        case 5:
-          output = 'June';
-          break;
-        case 6:
-          output = 'July';
-          break;
-        case 7:
-          output = 'August';
-          break;
-        case 8:
-          output = 'September';
-          break;
-        case 9:
-          output = 'October';
-          break;
-        case 10:
-          output = 'November';
-          break;
-        case 11:
-          output = 'December';
-          break;
-      }
-
+      output = monthLongList[date.getMonth()];
       output += ' ' + date.getFullYear();
     } else if (process.env.NODE_ENV !== 'production') {
       console.warn('Wrong usage of DateTimeFormat');
