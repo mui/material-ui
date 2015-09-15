@@ -1,3 +1,11 @@
+## 0.11.1
+###### _Sep 15, 2015_
+
+##### Component Fixes / Enhancements
+- DatePicker - Updated to new design specs (#1266)
+- LeftNav - Fix sidebar position for browsers that don't support transform3d (#1269)
+- TextField - Added props to override underlineStyle when disabled (#1493)
+
 ## 0.11.0
 ###### _Aug 24, 2015_
 
