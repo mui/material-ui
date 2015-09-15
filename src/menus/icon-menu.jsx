@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDom = require('react-dom');
 let ReactTransitionGroup = require('react-addons-transition-group')
 let ClickAwayable = require('../mixins/click-awayable');
 let StylePropable = require('../mixins/style-propable');
@@ -145,7 +146,7 @@ let IconMenu = React.createClass({
         //Set focus on the icon button when the menu close
         if (isKeyboard) {
           let iconButton = this.refs[this.state.iconButtonRef];
-          React.findDOMNode(iconButton).focus();
+          ReactDom.findDOMNode(iconButton).focus();
           iconButton.setKeyboardFocus();
         }
       });
