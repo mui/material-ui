@@ -30,6 +30,27 @@ export default class DatePickerPage extends React.Component {
         name: 'Props',
         infoArray: [
           {
+            name: 'DateTimeFormat',
+            type: 'func',
+            header: 'default: custom one that only support en-US locale',
+            desc: 'Constructor for time formatting. Follow this specificaction: ' +
+            'ECMAScript Internationalization API 1.0 (ECMA-402).',
+          },
+          {
+            name: 'locale',
+            type: 'string',
+            header: 'default: en-US',
+            desc: 'Locale used for formating date. If you are not using the default value, ' +
+            'you have to provide a DateTimeFormat that support it. You can use Intl.DateTimeFormat' +
+            ' if it\'s supported by your environment. https://github.com/andyearnshaw/Intl.js is a good polyfill.',
+          },
+          {
+            name: 'wording',
+            type: 'object',
+            header: 'default: {ok: \'OK\', cancel: \'Cancel\' }',
+            desc: 'Wording used inside the button of the dialog.',
+          },
+          {
             name: 'autoOk',
             type: 'bool',
             header: 'default: false',

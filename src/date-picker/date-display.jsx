@@ -1,8 +1,6 @@
 const React = require('react');
 const StylePropable = require('../mixins/style-propable');
-const DateTime = require('../utils/date-time');
 const Transitions = require('../styles/transitions');
-const AutoPrefix = require('../styles/auto-prefix');
 const SlideInTransitionGroup = require('../transition-groups/slide-in');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
@@ -16,6 +14,8 @@ const DateDisplay = React.createClass({
   },
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func.isRequired,
+    locale: React.PropTypes.string.isRequired,
     disableYearSelection: React.PropTypes.bool,
     monthDaySelected: React.PropTypes.bool,
     selectedDate: React.PropTypes.object.isRequired,
@@ -125,6 +125,8 @@ const DateDisplay = React.createClass({
 
   render() {
     let {
+      DateTimeFormat,
+      locale,
       selectedDate,
       style,
       ...other,
@@ -132,7 +134,7 @@ const DateDisplay = React.createClass({
     const year = this.props.selectedDate.getFullYear();
     const styles = this.getStyles();
 
-    const dateTimeFormated = new DateTime.DateTimeFormat('en-US', {
+    const dateTimeFormated = new DateTimeFormat(locale, {
       month: 'short',
       weekday: 'short',
       day: '2-digit',

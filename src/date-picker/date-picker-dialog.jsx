@@ -10,6 +10,7 @@ const Dialog = require('../dialog');
 const FlatButton = require('../flat-button');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
+const DateTime = require('../utils/date-time');
 
 const DatePickerDialog = React.createClass({
 
@@ -38,6 +39,9 @@ const DatePickerDialog = React.createClass({
   },
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func,
+    locale: React.PropTypes.string,
+    wordings: React.PropTypes.object,
     disableYearSelection: React.PropTypes.bool,
     initialDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
@@ -61,6 +65,17 @@ const DatePickerDialog = React.createClass({
     };
   },
 
+  getDefaultProps: function() {
+    return {
+      DateTimeFormat: DateTime.DateTimeFormat,
+      locale: 'en-US',
+      wordings: {
+        ok: 'OK',
+        cancel: 'Cancel',
+      },
+    };
+  },
+
   windowListeners: {
     keyup: '_handleWindowKeyUp',
   },
@@ -81,6 +96,9 @@ const DatePickerDialog = React.createClass({
 
   render() {
     let {
+      DateTimeFormat,
+      locale,
+      wordings,
       initialDate,
       onAccept,
       style,
@@ -113,7 +131,7 @@ const DatePickerDialog = React.createClass({
     let actions = [
       <FlatButton
         key={0}
-        label="Cancel"
+        label={wordings.cancel}
         secondary={true}
         style={styles.actions}
         onTouchTap={this._handleCancelTouchTap} />,
@@ -123,7 +141,7 @@ const DatePickerDialog = React.createClass({
       actions.push(
         <FlatButton
           key={1}
-          label="OK"
+          label={wordings.ok}
           secondary={true}
           disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
           style={styles.actions}
@@ -143,6 +161,8 @@ const DatePickerDialog = React.createClass({
         onClickAway={this._handleDialogClickAway}
         repositionOnUpdate={false}>
         <Calendar
+          DateTimeFormat={DateTimeFormat}
+          locale={locale}
           ref="calendar"
           onDayTouchTap={this._onDayTouchTap}
           initialDate={this.props.initialDate}

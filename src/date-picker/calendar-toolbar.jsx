@@ -1,5 +1,4 @@
 const React = require('react');
-const DateTime = require('../utils/date-time');
 const IconButton = require('../icon-button');
 const Toolbar = require('../toolbar/toolbar');
 const ToolbarGroup = require('../toolbar/toolbar-group');
@@ -44,6 +43,8 @@ const CalendarToolbar = React.createClass({
   },
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func.isRequired,
+    locale: React.PropTypes.string.isRequired,
     displayDate: React.PropTypes.object.isRequired,
     nextMonth: React.PropTypes.bool,
     onMonthChange: React.PropTypes.func,
@@ -81,10 +82,16 @@ const CalendarToolbar = React.createClass({
   },
 
   render() {
-    const dateTimeFormated = new DateTime.DateTimeFormat('en-US', {
+    const {
+      DateTimeFormat,
+      locale,
+      displayDate,
+    } = this.props
+
+    const dateTimeFormated = new DateTimeFormat(locale, {
       month: 'long',
       year: 'numeric',
-    }).format(this.props.displayDate);
+    }).format(displayDate);
 
     const nextButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
     const prevButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
