@@ -108,7 +108,7 @@ let EnhancedTextarea = React.createClass({
   },
 
   getInputNode() {
-    return ReactDom.findDOMNode(this.refs.input);
+    return this.refs.input;
   },
 
   setValue(value) {
@@ -117,7 +117,7 @@ let EnhancedTextarea = React.createClass({
   },
 
   _syncHeightWithShadow(newValue, e) {
-    let shadow = ReactDom.findDOMNode(this.refs.shadow);
+    let shadow = this.refs.shadow;
     let currentHeight = this.state.height;
     let newHeight;
 

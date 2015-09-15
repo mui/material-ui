@@ -35,8 +35,8 @@ let CircularProgress = React.createClass({
   },
 
   componentDidMount() {
-    let wrapper = ReactDom.findDOMNode(this.refs.wrapper);
-    let path = ReactDom.findDOMNode(this.refs.path);
+    let wrapper = this.refs.wrapper;
+    let path = this.refs.path;
 
     this._scalePath(path);
     this._rotateWrapper(wrapper);

@@ -250,11 +250,11 @@ let FloatingActionButton = React.createClass({
   _handleKeyboardFocus(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
-      ReactDom.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
+      this.refs.overlay.style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
     }
     else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      ReactDom.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
+      this.refs.overlay.style.backgroundColor = 'transparent';
     }
   },
 

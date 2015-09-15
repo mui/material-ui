@@ -138,7 +138,7 @@ let Tooltip = React.createClass({
   },
 
   _setRippleSize() {
-    let ripple = ReactDom.findDOMNode(this.refs.ripple);
+    let ripple = this.refs.ripple;
     let tooltip = window.getComputedStyle(ReactDom.findDOMNode(this));
     let tooltipWidth = parseInt(tooltip.getPropertyValue("width"), 10) /
       (this.props.horizontalPosition === 'center' ? 2 : 1);

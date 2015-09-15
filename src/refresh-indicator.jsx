@@ -34,8 +34,8 @@ const RefreshIndicator = React.createClass({
   },
 
   componentDidUpdate() {
-    this._scalePath(React.findDOMNode(this.refs.path), 0);
-    this._rotateWrapper(React.findDOMNode(this.refs.wrapper));
+    this._scalePath(this.refs.path, 0);
+    this._rotateWrapper(this.refs.wrapper);
   },
 
   render() {
