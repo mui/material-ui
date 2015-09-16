@@ -16,3 +16,10 @@
   minDate={this.state.minDate}
   maxDate={this.state.maxDate}
   showYearSelector={this.state.showYearSelector} />
+
+<DatePicker
+  hintText="fr version"
+  // Intl is defined by the browser see http://caniuse.com/#search=intl
+  DateTimeFormat={Intl.DateTimeFormat}
+  wordings={{ok: 'OK', cancel: 'Annuler'}}
+  locale="fr" />
