@@ -196,8 +196,11 @@ module.exports = {
     returnObj.raisedButton.disabledTextColor = ColorManipulator.fade(returnObj.raisedButton.textColor, 0.3);
     returnObj.toggle.trackRequiredColor = ColorManipulator.fade(returnObj.toggle.thumbRequiredColor, 0.5);
 
-    //finally, append the raw theme object to 'returnObj'
+    //append the raw theme object to 'returnObj'
     returnObj.rawTheme = rawTheme;
+
+    //set 'static' key as true (by default) on return object. This is to support the ContextPure mixin.
+    returnObj.static = true;
 
     return returnObj;
   },
