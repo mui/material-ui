@@ -134,7 +134,7 @@ const DateDisplay = React.createClass({
     const year = this.props.selectedDate.getFullYear();
     const styles = this.getStyles();
 
-    const dateTimeFormated = new DateTimeFormat(locale, {
+    const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'short',
       weekday: 'short',
       day: '2-digit',
@@ -152,10 +152,10 @@ const DateDisplay = React.createClass({
           style={styles.monthDay.root}
           direction={this.state.transitionDirection}>
             <div
-              key={dateTimeFormated}
+              key={dateTimeFormatted}
               style={styles.monthDay.title}
               onTouchTap={this._handleMonthDayClick}>
-                {dateTimeFormated}
+                {dateTimeFormatted}
             </div>
         </SlideInTransitionGroup>
       </div>

@@ -88,7 +88,7 @@ const CalendarToolbar = React.createClass({
       displayDate,
     } = this.props
 
-    const dateTimeFormated = new DateTimeFormat(locale, {
+    const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'long',
       year: 'numeric',
     }).format(displayDate);
@@ -101,7 +101,7 @@ const CalendarToolbar = React.createClass({
         <SlideInTransitionGroup
           style={styles.title}
           direction={this.state.transitionDirection}>
-          <div key={dateTimeFormated}>{dateTimeFormated}</div>
+          <div key={dateTimeFormatted}>{dateTimeFormatted}</div>
         </SlideInTransitionGroup>
 
         <ToolbarGroup key={0} float="left">
