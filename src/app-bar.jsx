@@ -133,7 +133,7 @@ let AppBar = React.createClass({
         switch (iconElementLeft.type.displayName) {
           case 'IconButton':
             iconElementLeft = React.cloneElement(iconElementLeft, {
-              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
+              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle, iconElementLeft.props.iconStyle),
             });
             break;
         }
@@ -163,7 +163,7 @@ let AppBar = React.createClass({
       switch (iconElementRight.type.displayName) {
         case 'IconButton':
           iconElementRight = React.cloneElement(iconElementRight, {
-            iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
+            iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle, iconElementRight.props.iconStyle),
           });
           break;
 
