@@ -7,7 +7,11 @@ let DefaultRoute = Router.DefaultRoute;
 // Here we define all our material-ui ReactComponents.
 let Master = require('./components/master');
 let Home = require('./components/pages/home');
+
 let GetStarted = require('./components/pages/get-started');
+let Prerequisites = require('./components/pages/get-started/prerequisites');
+let Installation = require('./components/pages/get-started/installation');
+let Examples = require('./components/pages/get-started/examples');
 
 let Customization = require('./components/pages/customization');
 let Colors = require('./components/pages/customization/colors');
@@ -53,7 +57,13 @@ let Toolbars = require('./components/pages/components/toolbars');
 let AppRoutes = (
   <Route name="root" path="/" handler={Master}>
     <Route name="home" handler={Home} />
-    <Route name="get-started" handler={GetStarted} />
+    <Route name="get-started" handler={GetStarted}>
+      <Route name="prerequisites" handler={Prerequisites} />
+      <Route name="installation" handler={Installation} />
+      <Route name="examples" handler={Examples} />
+      <Redirect from="/get-started" to="prerequisites" />
+    </Route>
+
     <Route name="customization" handler={Customization}>
       <Route name="colors" handler={Colors} />
       <Route name="themes" handler={Themes} />
