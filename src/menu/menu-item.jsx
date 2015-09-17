@@ -83,6 +83,14 @@ const MenuItem = React.createClass({
   },
 
   getStyles() {
+    const isRtl = this.context.muiTheme.isRtl;
+
+    const right = isRtl ? 'left' : 'right';
+    const left  = isRtl ? 'right' : 'left';
+
+    const marginRight = isRtl ? 'marginLeft': 'marginRight';
+    const paddingLeft = isRtl ? 'paddingRight': 'paddingLeft';
+
     let styles = {
       root: {
         userSelect: 'none',
@@ -93,25 +101,25 @@ const MenuItem = React.createClass({
         color: this.state.muiTheme.rawTheme.palette.textColor,
       },
       number: {
-        float: 'right',
+        float: right,
         width: 24,
         textAlign: 'center',
       },
       attribute: {
-        float: 'right',
+        float: right,
       },
       iconRight: {
         lineHeight: this.getTheme().height + 'px',
-        float: 'right',
+        float: right,
       },
       icon: {
-        float: 'left',
+        float: left,
         lineHeight: this.getTheme().height + 'px',
-        marginRight: this.getSpacing().desktopGutter,
+        [marginRight]: this.getSpacing().desktopGutter,
       },
       data: {
         display: 'block',
-        paddingLeft: this.getSpacing().desktopGutter * 2,
+        [paddingLeft]: this.getSpacing().desktopGutter * 2,
         lineHeight: this.getTheme().dataHeight + 'px',
         height: this.getTheme().dataHeight + 'px',
         verticalAlign: 'top',
@@ -121,8 +129,8 @@ const MenuItem = React.createClass({
         color: this.state.muiTheme.rawTheme.palette.textColor,
       },
       toggle: {
-        marginTop: ((this.getTheme().height - this.state.muiTheme.radioButton.size) / 2),
-        float: 'right',
+        marginTop: ((this.getTheme().height - this.context.muiTheme.component.radioButton.size) / 2),
+        float: right,
         width: 42,
       },
       rootWhenHovered: {
