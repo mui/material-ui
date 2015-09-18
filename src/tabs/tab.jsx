@@ -37,18 +37,19 @@ let Tab = React.createClass({
       width,
       ...other,
     } = this.props;
+    let muiTheme = this.context.muiTheme;
     let styles = this.mergeAndPrefix({
       display: 'table-cell',
       cursor: 'pointer',
       textAlign: 'center',
       verticalAlign: 'middle',
       height: 48,
-      color: selected ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.6)',
+      color: selected ? muiTheme.component.tab.selectedColor : muiTheme.component.tab.color,
       outline: 'none',
       fontSize: 14,
       fontWeight: 500,
       whiteSpace: 'initial',
-      fontFamily: this.context.muiTheme.contentFontFamily,
+      fontFamily: muiTheme.contentFontFamily,
       boxSizing: 'border-box',
       width: width,
     }, style);
