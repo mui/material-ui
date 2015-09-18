@@ -3,7 +3,7 @@ const mui = require('material-ui');
 const CodeBlock = require('../../code-example/code-block');
 const ComponentDoc = require('../../component-doc');
 const ComponentInfo = require('../../component-info');
-const ComponentExample = require('../../code-example/code-example');
+const CodeExample = require('../../code-example/code-example');
 
 const {
   Checkbox,
@@ -70,6 +70,7 @@ const ThemesPage = React.createClass({
 
   getStyles() {
     let canvasColor = this.state.muiTheme.rawTheme.palette.canvasColor;
+    let borderColor = this.state.muiTheme.rawTheme.palette.borderColor;
     let styles = {
       group: {
         float: 'left',
@@ -115,6 +116,32 @@ const ThemesPage = React.createClass({
         letterSpacing: '0',
         fontWeight: Typography.fontWeightMedium,
         color: Typography.textDarkBlack
+      },
+      liveExamplePaper: {
+        backgroundColor: canvasColor,
+        marginBottom: 32,
+        overflow: 'hidden'
+      },
+      liveExampleBlock: {
+        borderRadius: '0 0 2px 0',
+        padding: this.state.muiTheme.rawTheme.spacing.desktopGutter,
+        margin: 0,
+      },
+      headline: {
+        fontSize: '24px',
+        lineHeight: '32px',
+        paddingTop: '16px',
+        marginBottom: '12px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightNormal,
+        color: Typography.textDarkBlack
+      },
+      pTextWrapper: {
+        borderBottom: 'solid 1px ' + borderColor,
+        paddingBottom: '10px',
+      },
+      inlineCode: {
+        backgroundColor: '#F8F8F8'
       }
     };
 
@@ -171,84 +198,120 @@ const ThemesPage = React.createClass({
           '  muiTheme: React.PropTypes.object\n' +
           '}';
 
-    let desc = 'ThemeManager allows you to manipulate the current theme of your website. Themes are ' +
-               'Javascript objects made up of two getter functions: getPalette() and ' +
-               'getComponentThemes(palette). ThemeManager is composed of two objects: palette and ' +
-               'component. Each contain a collection of variables used by Material-UI components. ' +
-               'Themes give you further customization across your entire website or for specific ' +
-               'pages.';
+    let lightRawTheme = 
+      'let Colors = require(\'..\/colors\');\n' +
+      'let ColorManipulator = require(\'..\/..\/utils\/color-manipulator\');\n' +
+      'let Spacing = require(\'..\/spacing\');\n\n' +
+      'module.exports = {\n' +
+      '  spacing: Spacing,\n' +
+      '  fontFamily: \'Roboto, sans-serif\',\n' +
+      '  palette: {\n' +
+      '    primary1Color: Colors.cyan500,\n' +
+      '    primary2Color: Colors.cyan700,\n' +
+      '    primary3Color: Colors.cyan100,\n' +
+      '    accent1Color: Colors.pinkA200,\n' +
+      '    accent2Color: Colors.pinkA400,\n' +
+      '    accent3Color: Colors.pinkA100,\n' +
+      '    textColor: Colors.darkBlack,\n' +
+      '    canvasColor: Colors.white,\n' +
+      '    borderColor: Colors.grey300,\n' +
+      '    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),\n' +
+      '  },\n' +
+      '};\n';
+
+    let reactContextExampleCode =
+      'const React = require(\'react\');\n' +
+      'const AppBar = require(\'material-ui\/lib\/app-bar\');\n' +
+      'const RaisedButton = require(\'material-ui\/lib\/raised-button\');\n\n' +
+
+      'const ThemeManager = require(\'material-ui\/lib\/styles\/theme-manager\');\n' +
+      'const MyRawTheme = require(\'path\/to\/your\/raw\/theme\/file\');\n\n' +
+
+      'const MySampleAppComponent = React.createClass({\n\n' +
+
+      '  //the key passed through context must be called \"muiTheme\"\n' +
+      '  childContextTypes : {\n' +
+      '    muiTheme: React.PropTypes.object,\n' +
+      '  },\n\n' + 
+
+      '  getChildContext() {\n' +
+      '    return {\n' +
+      '      muiTheme: ThemeManager.getMuiTheme(MyRawTheme),\n' +
+      '    };\n' +
+      '  },\n\n' +
+
+      '  //the app bar and button will receive our theme through\n' +
+      '  //context and style accordingly\n' +
+      '  render () {\n' +
+      '    return (\n' +
+      '      <div>\n' +
+      '        <AppBar title=\"My AppBar\" \/>\n' +
+      '        <RaisedButton label=\"My Button\" primary={true} \/>\n' +
+      '      </div>\n' +
+      '    );\n' +
+      '  },\n' +
+      '});\n\n' +
+      'module.exports = MySampleAppComponent;\n';
+
+    let decoratorExampleCode =
+      'const React = require(\'react\');\n' +
+      'const AppBar = require(\'material-ui\/lib\/app-bar\');\n' +
+      'const RaisedButton = require(\'material-ui\/lib\/raised-button\');\n\n' +
+
+      'const MyRawTheme = require(\'path\/to\/your\/raw\/theme\/file\');\n' +
+      'const ThemeManager = require(\'material-ui\/lib\/styles\/theme-manager\');\n' +
+      'const ThemeDecorator = require(\'material-ui\/lib\/styles\/theme-decorator\');\n\n' +
+
+      '@ThemeDecorator(ThemeManager.getMuiTheme(MyRawTheme))\n' +
+      'class MySampleAppComponent extends React.Component {\n\n' +
+
+      '  render() {\n' +
+      '    return (\n' +
+      '      <div>\n' +
+      '        <AppBar title=\"My AppBar\" \/>\n' +
+      '        <RaisedButton label=\"My Button\" primary={true} onCilck={this.handleClick} \/>\n' +
+      '      </div>\n' +
+      '    );\n' +
+      '  }\n\n' +
+
+      '  //arrow function automatically binds lexical \"this\"\n' +
+      '  handleClick = () => {\n' +
+      '    //do something in response to button click\n' +
+      '  }\n' +
+      '}\n\n' +
+
+      'module.exports = MySampleAppComponent;\n';
 
     let info = [
       {
-        name: 'ThemeManager Props',
+        name: 'ThemeManager functions',
         infoArray: [
           {
-            name: 'spacing',
-            type: 'object',
-            desc: 'The spacing object is a set of variables used by all ' +
-            'Material-UI components. It should not be modified directly.'
+            name: 'getMuiTheme(rawTheme)',
+            header: 'returns: calculated muiTheme object',
+            desc: 'Accepts one argument which is a reference to a raw theme object, and returns the calculated mui theme object'
           },
           {
-            name: 'palette',
-            type: 'object',
-            desc: 'The palette object is a set of color variables used by all ' +
-                  'Material-UI components. It should not be modified directly.'
+            name: 'modifyRawThemeSpacing(muiTheme, newSpacing)',
+            header: 'returns: new muiTheme object with modified spacing',
+            desc: 'Accepts two arguments: the current mui theme object and the new spacing to be applied. ' +
+                  'This function creates a new raw theme by overriding the spacing of the existing raw theme, ' +
+                  'and returns a new mui theme object calculated from the new raw theme'
           },
           {
-            name: 'component',
-            type: 'object',
-            desc: 'The component object is a collection of nested objects for ' +
-                  'each Material-UI component that use theme variables. Inside ' +
-                  'each nested object is a set of variables utilized only by ' +
-                  'a specific component. It should not be modified directly.'
+            name: 'modifyRawThemePalette(muiTheme, newPaletteKeys)',
+            header: 'returns: new muiTheme object with modified palette',
+            desc: 'Accepts two arguments: the current mui theme object and the new palette keys to be applied. ' +
+                  'This function creates a new raw theme object by overriding the palette keys in the existing raw ' +
+                  'theme object, and returns a new mui theme object calculated from the new raw theme'
           },
           {
-            name: 'types',
-            type: 'object',
-            desc: 'Contains the following predefined themes:\n' +
-                  '  - LIGHT (Default)\n' +
-                  '  - DARK'
-          }
-        ]
-      },
-      {
-        name: 'ThemeManager Methods',
-        infoArray: [
-          {
-            name: 'getCurrentTheme',
-            header: 'ThemeManager.getCurrentTheme()',
-            desc: 'Returns the current theme being used by the context.'
+            name: 'modifyRawThemeFontFamily(muiTheme, newFontFamily)',
+            header: 'returns: new muiTheme object with modified font Family',
+            desc: 'Accepts two arguments: the current mui theme object and the new font family to be applied. ' +
+                  'This function creates a new raw theme by overriding the font family of the existing raw theme, ' +
+                  'and returns a new mui theme object calculated from the new raw theme'
           },
-          {
-            name: 'setTheme',
-            header: 'ThemeManager.setTheme(newTheme)',
-            desc: 'Sets the properties of the current theme with those defined ' +
-                  'from the overrides object argument. Overriding properties of ' +
-                  'ThemeManager.palette (your primary and accent colors) will signal ' +
-                  'all component to update their theme variables in order to ' +
-                  'use the new changes. Thus, overrides to component properties ' +
-                  'made before '
-          },
-          {
-            name: 'setSpacing',
-            header: 'ThemeManager.setSpacing(newSpacing)',
-            desc: 'Updates the spacing object of the current theme to use the ' +
-            'properties defined in newSpacing.'
-          },
-          {
-            name: 'setPalette',
-            header: 'ThemeManager.setPalette(newPalette)',
-            desc: 'Updates the palette object of the current theme to use the ' +
-                  'properties defined in newPalette. Calling this method also ' +
-                  'calls the getCurrentThemes function of the currentTheme, ' +
-                  'which updates their values to use the new palette.'
-          },
-          {
-            name: 'setComponentThemes',
-            header: 'ThemeManager.setComponentThemes(overrides)',
-            desc: 'Updates the component object of the current theme to use the ' +
-                  'properties defined in overrides.'
-          }
         ]
       }
     ];
@@ -270,45 +333,84 @@ const ThemesPage = React.createClass({
     return (
       <div>
 
+        <h2 style={styles.headline}>Themes</h2>
+
+        <Paper style={styles.liveExamplePaper}>
+          <ClearFix style={styles.liveExampleBlock}>{this.getThemeExamples()}</ClearFix>
+        </Paper>
+
+        <div style={styles.pTextWrapper}>
+          <p>
+            There are two kinds of themes in Material-UI: &quot;raw theme&quot; and &quot;mui theme&quot;.
+            The raw theme is a plain JS object containing three keys: spacing, palette and fontFamily.
+            The mui theme, on the other hand, is a much bigger object. It contains a key for every material-ui
+            component, and the value corresponding to that key describes the styling of that particular component
+            under the current raw theme. In this sense, the mui theme is <i>produced</i> from the raw theme.
+            The raw theme acts as a basis for styling components, whereas the mui theme contains specific values
+            (that are calculated based on the raw theme) for styling each component.
+          </p>
+
+          <p>
+            We ship two raw themes with Material-UI: light and dark. They are located under <code style={styles.inlineCode}>
+            &#47;lib&#47;styles&#47;raw-themes&#47;</code> in the Material-UI root directory. Custom themes may be
+            defined similarly. The ThemeManager module calculates the mui theme and acts as an interface to modify the theme.
+            Before we discuss how to apply custom themes to an application, let&#39;s look at the functions provided by ThemeManager.
+          </p>
+        </div>
+
         <ComponentDoc
-          name="Themes"
-          code={code}
-          desc={desc}
-          componentInfo={info}>
-          <ComponentExample code={code}>
-            {this.getThemeExamples()}
-          </ComponentExample>
-        </ComponentDoc>
+          name=""
+          componentInfo={info} />
 
 
-        <h3 style={styles.title}>Usage</h3>
+        <h2 style={styles.headline}>Custom Themes</h2>
         <p>
-          Material-UI&#39;s <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme-manager.js">
-          ThemeManager component</a> uses React&#39;s <a href="https://facebook.github.io/react/blog/2014/03/28/the-road-to-1.0.html#context">
-          context</a> feature to manage Theme objects. Contexts in React propogates values down from one
-          component down to all of its children and grandchildren. Insert the following code in your
-          outermost component, so that all Material-UI components used through-out the site have
-          access to the theme.
+          All Material-UI components use the light theme by default so you can start including them in your project
+          without having to worry about theming. However, it is quite straightforward to style components to your liking.
+        </p>
+
+        <p>
+          Internally, Material-UI components use React&#39;s <a href="https://facebook.github.io/react/blog/2014/03/28/the-road-to-1.0.html#context">
+          context</a> feature to implement theming. Context is a way to pass down values through the component
+          hierarchy without having to use props at every level. In fact, context is very convenient for concepts like theming,
+          which are usually implemented in a hierarchical manner. 
+        </p>
+
+        <p>
+          There are two recommended ways to apply custom themes: using React lifecycle methods with the context feature, <b>or</b>, 
+          using an ES7-style decorator. To start off, define your own raw theme in a JS file like so:
+        </p>
+
+        <Paper style={styles.codeExample}>
+          <CodeBlock>{lightRawTheme}</CodeBlock>
+        </Paper>
+
+        <h3 style={styles.title}>1. Using React Lifecycle Methods with Context</h3>
+
+        <p>
+          Once you have defined your raw theme in a JS file, you can use React lifecycle methods
+          and the context feature to apply your custom theme as follows:
         </p>
         <Paper style={styles.codeExample}>
-          <Tabs>
-            <Tab label="ES6">
-              <CodeBlock>{usageCodeES6}</CodeBlock>
-            </Tab>
-            <Tab label="ES5">
-              <CodeBlock>{usageCodeES5}</CodeBlock>
-            </Tab>
-          </Tabs>
+          <CodeBlock>{reactContextExampleCode}</CodeBlock>
+        </Paper>
+
+        <h3 style={styles.title}>2. Using ES7-style Decorator</h3>
+        <p>
+          Alternatively, we have provided an ES7-style theme decorator that you can use to apply your
+          custom theme. Keep in mind that in order to use the decorator, you must use the ES6-style <i>class</i> syntax
+          to declare your app component. Moreover, React may not be able to automatically bind event handlers
+          to your component&#39;s <i>this</i>. Arrow functions allow you to overcome this limitation.
+        </p>
+        <Paper style={styles.codeExample}>
+          <CodeBlock>{decoratorExampleCode}</CodeBlock>
         </Paper>
         <p>
-          <b>Important:</b> The code above is <u>required</u> when using Material-UI. Without it,
-          Material-UI components will not have access to the default theme and will not render as
-          a result. Keep in mind that the user is responsible for updating CSS classes to be in
-          sync with theme properties, because Material-UI components only use inline-styles.
+          It is worth pointing out that underneath the covers, the decorator is also using React lifecycle methods
+          with the context feature.
         </p>
 
-
-        <h3 style={styles.title}>Overriding Theme Variables</h3>
+        <h2 style={styles.headline}>Overriding Theme Variables</h2>
 
         <p>
           If you would like to make changes to the Theme for a specific pages, include the code
