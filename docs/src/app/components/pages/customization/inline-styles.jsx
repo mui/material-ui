@@ -91,7 +91,7 @@ const InlineStyles = React.createClass({
         <p>
           If you would like to override a style property that has been defined
           inline, define your override via the style prop as demonstrated in
-          the example above. These overrides take precedence over the theme that is used
+          the example above. These overrides take precedence over the theme (if any) that is used
           to render the component. The style prop is an object that applies its
           properties to the <b>root/outermost element</b> of the component. Some
           components provide additional style properties for greater styling

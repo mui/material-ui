@@ -136,7 +136,7 @@ const ThemesPage = React.createClass({
         fontWeight: Typography.fontWeightNormal,
         color: Typography.textDarkBlack
       },
-      pTextWrapper: {
+      bottomBorderWrapper: {
         borderBottom: 'solid 1px ' + borderColor,
         paddingBottom: '10px',
       },
@@ -324,7 +324,7 @@ const ThemesPage = React.createClass({
           <ClearFix style={styles.liveExampleBlock}>{this.getThemeExamples()}</ClearFix>
         </Paper>
 
-        <div style={styles.pTextWrapper}>
+        <div style={styles.bottomBorderWrapper}>
           <p>
             We changed how themes work in v0.12 (check out <a href="https://github.com/callemall/material-ui/releases/tag/v0.12">release log</a> for more details). 
             There are now two kinds of themes in Material-UI: <b>raw theme</b> and <b>mui theme</b>.
@@ -343,11 +343,12 @@ const ThemesPage = React.createClass({
             Before we discuss how to apply custom themes to an application, let&#39;s look at the functions provided by ThemeManager.
           </p>
         </div>
-
-        <ComponentDoc
-          name=""
-          componentInfo={info} />
-
+        
+        <div style={styles.bottomBorderWrapper}>
+          <ComponentDoc
+            name=""
+            componentInfo={info} />
+        </div>
 
         <h2 style={styles.headline}>Custom Themes</h2>
         <p>
