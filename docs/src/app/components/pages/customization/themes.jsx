@@ -157,47 +157,6 @@ const ThemesPage = React.createClass({
 
   render() {
 
-    let usageCodeES6 =
-          'let React = require(\'react\');\n' +
-          'let mui = require(\'mui\');\n' +
-          'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
-          'class OuterMostParentComponent extends React.Component {\n' +
-          '  // Important!\n' +
-          '  getChildContext() { \n' +
-          '    return {\n' +
-          '      muiTheme: ThemeManager.getCurrentTheme()\n' +
-          '    };\n' +
-          '  }\n' +
-          '};\n\n' +
-          '// Important!\n' +
-          'OuterMostParentComponent.childContextTypes = {\n' +
-          '  muiTheme: React.PropTypes.object\n' +
-          '};\n\n' +
-          'module.exports = OuterMostParentComponent;';
-
-    let usageCodeES5 =
-          'let React = require(\'react\');\n' +
-          'let mui = require(\'mui\');\n' +
-          'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
-          'let OuterMostParentComponent = React.createClass ({\n' +
-          '  // Important!\n' +
-          '  childContextTypes: {\n' +
-          '    muiTheme: React.PropTypes.object\n' +
-          '  },\n\n' +
-          '  // Important!\n' +
-          '  getChildContext() { \n' +
-          '    return {\n' +
-          '      muiTheme: ThemeManager.getCurrentTheme()\n' +
-          '    };\n' +
-          '  }\n' +
-          '});\n\n' +
-          'module.exports = OuterMostParentComponent;';
-
-    let customComponentCode =
-          'CustomReactComponent.contextTypes = {\n' +
-          '  muiTheme: React.PropTypes.object\n' +
-          '}';
-
     let lightRawTheme = 
       'let Colors = require(\'..\/colors\');\n' +
       'let ColorManipulator = require(\'..\/..\/utils\/color-manipulator\');\n' +
@@ -269,7 +228,8 @@ const ThemesPage = React.createClass({
       '    return (\n' +
       '      <div>\n' +
       '        <AppBar title=\"My AppBar\" \/>\n' +
-      '        <RaisedButton label=\"My Button\" primary={true} onCilck={this.handleClick} \/>\n' +
+      '        <RaisedButton label=\"My Button\" primary={true}\n' +
+      '           onClick={this.handleClick} \/>\n' +
       '      </div>\n' +
       '    );\n' +
       '  }\n\n' +
@@ -281,6 +241,43 @@ const ThemesPage = React.createClass({
       '}\n\n' +
 
       'module.exports = MySampleAppComponent;\n';
+
+    let receiveThemeInContextCode = 
+      'const SpecificPageInApp = React.createClass({\n\n' +
+
+      '...\n\n' +
+
+      '//contextTypes declares the keys that this component expects\n' +
+      '//to receive through context, and their corresponding value types\n' +
+      'contextTypes: {\n' +
+      '  muiTheme: React.PropTypes.object,\n' +
+      '},\n\n' +
+
+      'getInitialState () {\n' +
+      '  return {\n' +
+      '    muiTheme: this.context.muiTheme,\n' +
+      '  };\n' +
+      '},\n\n' +
+
+      '...\n';
+
+    let overrideAppBarTextColorCode =
+      '//update theme here\n' +
+      'componentWillMount () {\n' +
+      '  let newMuiTheme = this.state.muiTheme;\n' +
+      '  newMuiTheme.appBar.textColor = Colors.deepPurpleA700;\n\n' +
+
+      '  this.setState({\n' +
+      '    muiTheme: newMuiTheme,\n' +
+      '  });\n' +
+      '},\n\n' +
+
+      '//pass down updated theme to children\n' +
+      'getChildContext () {\n' +
+      '  return {\n' +
+      '    muiTheme: this.state.muiTheme,\n' +
+      '  };\n' +
+      '},\n';
 
     let info = [
       {
@@ -316,18 +313,6 @@ const ThemesPage = React.createClass({
       }
     ];
 
-    let code =
-      '// Toggles between light and dark themes\n' +
-      '// This function is passed as the \'onChange\' prop for Tabs\n' +
-      'onTabChange(tabIndex, tab) {\n' +
-      '  if (this.state.isThemeDark) {\n' +
-      '    ThemeManager.setTheme(ThemeManager.types.LIGHT);\n' +
-      '  } else {\n' +
-      '    ThemeManager.setTheme(ThemeManager.types.DARK);\n' +
-      '  }\n' +
-      '  this.setState({isThemeDark: !this.state.isThemeDark});\n' +
-      '}';
-
     let styles = this.getStyles();
 
     return (
@@ -341,7 +326,8 @@ const ThemesPage = React.createClass({
 
         <div style={styles.pTextWrapper}>
           <p>
-            There are two kinds of themes in Material-UI: &quot;raw theme&quot; and &quot;mui theme&quot;.
+            We changed how themes work in v0.12 (check out <a href="https://github.com/callemall/material-ui/releases/tag/v0.12">release log</a> for more details). 
+            There are now two kinds of themes in Material-UI: <b>raw theme</b> and <b>mui theme</b>.
             The raw theme is a plain JS object containing three keys: spacing, palette and fontFamily.
             The mui theme, on the other hand, is a much bigger object. It contains a key for every material-ui
             component, and the value corresponding to that key describes the styling of that particular component
@@ -413,194 +399,44 @@ const ThemesPage = React.createClass({
         <h2 style={styles.headline}>Overriding Theme Variables</h2>
 
         <p>
-          If you would like to make changes to the Theme for a specific pages, include the code
-          below in said page. All components defined on this page along with there children will
-          use your Theme overrides. The toggle buttons in the <a href="#/components/menus">Menus
-          page</a> is an example of this. Notice how these changes do not bleed over on to sibling
-          pages such as the <a href="#/components/switches">Switches page</a>.
+          Once you have obtained the calculated mui theme in your app component, you can easily
+          override specific attributes for particular components. These overrides can be performed at any level
+          in the hierarchy and will only apply from that point downward. 
         </p>
-        <Paper style={styles.codeExample}>
-          <CodeBlock>{this.getOverrideExamplePage()}</CodeBlock>
-        </Paper>
 
-
-        <h3 style={styles.title}>Giving Custom React Components Access to Theme</h3>
         <p>
-          If you would only like to create a React component with access to Theme, include the code
-          below at the end of your component&#39;s class definition. This is valid because the usage
-          code mentioned earlier had been inserted in the outer most component. <a href='https://github.com/callemall/material-ui/blob/master/docs/src/app/components/code-example/code-example.jsx'>
-          CodeExample</a> is an example of a custom component using ThemeManager.
+          For instance, let&#39;s say that a specific page (component) in your app expects to receive the theme
+          from its parent/ancestors. However, in that page, the app bar text color should be different.
         </p>
+
         <Paper style={styles.codeExample}>
-          <CodeBlock>{customComponentCode}</CodeBlock>
+          <CodeBlock>{receiveThemeInContextCode}</CodeBlock>
         </Paper>
 
-
-        <h3 style={styles.title}>Custom Themes</h3>
         <p>
-          To see an example containing all theme variables, checkout our <a href="https://github.com/callemall/material-ui/blob/master/src/styles/themes/light-theme.js">
-          light-theme</a>. The code-block below defines the structure needed to have a valid custom
-          theme. Note that if a property is not defined in the custom theme, the default will be
-          what is defined in our light theme.
+          We recommend that you use state for intermediary storage of the theme, and always access the theme 
+          using <code style={styles.inlineCode}>this.state</code>. Then, to modify the theme,
+          use <code style={styles.inlineCode}>this.setState()</code> in an appropriate React lifecycle method. This is good practice because
+          React componenets re-render every time the state of the component is updated.
         </p>
+
+        <p>
+          Coming back to our example, let&#39;s say that inside <code style={styles.inlineCode}>SpecificPageInApp</code> and
+          all of its children, the text color of the app bar should be deep purple. This can be accomplished as follows:
+        </p>
+
         <Paper style={styles.codeExample}>
-          <CodeBlock>{this.getThemeStructure()}</CodeBlock>
+          <CodeBlock>{overrideAppBarTextColorCode}</CodeBlock>
         </Paper>
+
+        <p>
+          <b>Never</b> directly modify the raw theme (spacing / palette / fontFamily) of an mui theme object.
+          Doing so will result in styling inconsistencies across your components. Always use the modifiers provided in the
+          ThemeManager module.
+        </p>
 
       </div>
     );
-  },
-
-  getThemeStructure() {
-    let text =
-      'let CustomTheme = {\n' +
-      '  getPalette() {\n' +
-      '    return {\n' +
-      '      primary1Color: String,\n' +
-      '      primary2Color: String,\n' +
-      '      primary3Color: String,\n' +
-      '      accent1Color: String,\n' +
-      '      accent2Color: String,\n' +
-      '      accent3Color: String,\n' +
-      '      textColor: String,\n' +
-      '      canvasColor: String,\n' +
-      '      borderColor: String,\n' +
-      '      disabledColor: String\n' +
-      '    };\n' +
-      '  },\n' +
-      '  getComponentThemes(palette) {\n' +
-      '    return {\n' +
-      '      appBar: {\n' +
-      '        color: String,\n' +
-      '        textColor: String,\n' +
-      '        height: Number\n' +
-      '      },\n' +
-      '      button: {\n' +
-      '        height: Number,\n' +
-      '        minWidth: Number,\n' +
-      '        iconButtonSize: Number\n' +
-      '      },\n' +
-      '      checkbox: {\n' +
-      '        boxColor: String,\n' +
-      '        checkedColor: String,\n' +
-      '        requiredColor: String,\n' +
-      '        disabledColor: String,\n' +
-      '        labelColor: String,\n' +
-      '        labelDisabledColor: String\n' +
-      '      },\n' +
-      '      datePicker: {\n' +
-      '        color: String,\n' +
-      '        textColor: String,\n' +
-      '        calendarTextColor: String,\n' +
-      '        selectColor: String,\n' +
-      '        selectTextColor: String,\n' +
-      '      },\n' +
-      '      dropDownMenu: {\n' +
-      '        accentColor: String,\n' +
-      '      },\n' +
-      '      flatButton: {\n' +
-      '        color: String,\n' +
-      '        textColor: String,\n' +
-      '        primaryTextColor: String,\n' +
-      '        secondaryTextColor: String,\n' +
-      '        disabledColor: String\n' +
-      '      },\n' +
-      '      floatingActionButton: {\n' +
-      '        buttonSize: Number,\n' +
-      '        miniSize: Number,\n' +
-      '        color: String,\n' +
-      '        iconColor: String,\n' +
-      '        secondaryColor: String,\n' +
-      '        secondaryIconColor: String,\n' +
-      '        disabledColor: String,\n' +
-      '        disabledTextColor: String\n' +
-      '      },\n' +
-      '      leftNav: {\n' +
-      '        width: Number,\n' +
-      '        color: String,\n' +
-      '      },\n' +
-      '      menu: {\n' +
-      '        backgroundColor: String,\n' +
-      '        containerBackgroundColor: String,\n' +
-      '      },\n' +
-      '      menuItem: {\n' +
-      '        dataHeight: Number,\n' +
-      '        height: Number,\n' +
-      '        hoverColor: String,\n' +
-      '        padding: Number,\n' +
-      '        selectedTextColor: String,\n' +
-      '      },\n' +
-      '      menuSubheader: {\n' +
-      '        padding: Number,\n' +
-      '        borderColor: String,\n' +
-      '        textColor: String,\n' +
-      '      },\n' +
-      '      paper: {\n' +
-      '        backgroundColor: String,\n' +
-      '      },\n' +
-      '      radioButton: {\n' +
-      '        borderColor: String,\n' +
-      '        backgroundColor: String,\n' +
-      '        checkedColor: String,\n' +
-      '        requiredColor: String,\n' +
-      '        disabledColor: String,\n' +
-      '        size: Number,\n' +
-      '        labelColor: String,\n' +
-      '        labelDisabledColor: String\n' +
-      '      },\n' +
-      '      raisedButton: {\n' +
-      '        color: String,\n' +
-      '        textColor: String,\n' +
-      '        primaryColor: String,\n' +
-      '        primaryTextColor: String,\n' +
-      '        secondaryColor: String,\n' +
-      '        secondaryTextColor: String,\n' +
-      '        disabledColor: String,\n' +
-      '        disabledTextColor: String\n'
-      '      },\n' +
-      '      slider: {\n' +
-      '        trackSize: Number,\n' +
-      '        trackColor: String,\n' +
-      '        trackColorSelected: String,\n' +
-      '        handleSize: Number,\n' +
-      '        handleSizeActive: Number,\n' +
-      '        handleSizeDisabled: Number,\n' +
-      '        handleColorZero: String,\n' +
-      '        handleFillColor: String,\n' +
-      '        selectionColor: String,\n' +
-      '        rippleColor: String,\n' +
-      '      },\n' +
-      '      snackbar: {\n' +
-      '        textColor: String,\n' +
-      '        backgroundColor: String,\n' +
-      '        actionColor: String,\n' +
-      '      },\n' +
-      '      toggle: {\n' +
-      '        thumbOnColor: String,\n' +
-      '        thumbOffColor: String,\n' +
-      '        thumbDisabledColor: String,\n' +
-      '        thumbRequiredColor: String,\n' +
-      '        trackOnColor: String,\n' +
-      '        trackOffColor: String,\n' +
-      '        trackDisabledColor: String,\n' +
-      '        trackRequiredColor: String,\n' +
-      '        labelColor: String,\n' +
-      '        labelDisabledColor: String\n' +
-      '      },\n' +
-      '      toolbar: {\n' +
-      '        backgroundColor: String,\n' +
-      '        height: Number,\n' +
-      '        titleFontSize: Number,\n' +
-      '        iconColor: String,\n' +
-      '        separatorColor: String,\n' +
-      '        menuHoverColor: String,\n' +
-      '        menuHoverColor: String,\n' +
-      '      }\n' +
-      '    };\n' +
-      '  }\n' +
-      '}\n\n' +
-      'module.exports = CustomTheme;';
-      return text;
   },
 
   getComponentGroup() {
@@ -768,32 +604,6 @@ const ThemesPage = React.createClass({
           {this.getComponentGroup()}
         </Tab>
       </Tabs>
-    );
-  },
-
-  getOverrideExamplePage() {
-    return (
-      'let React = require(\'react\');\n' +
-      'let mui = require(\'mui\');\n' +
-      'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
-      'class MenusPage extends React.Component {\n\n' +
-      '  getChildContext() { \n' +
-      '    return {\n' +
-      '      muiTheme: ThemeManager.getCurrentTheme()\n' +
-      '    }\n' +
-      '  }\n\n' +
-      '  componentWillMount() {\n' +
-      '    ThemeManager.setComponentThemes({\n' +
-      '      toggle: {\n' +
-      '        thumbOnColor: String,\n' +
-      '        trackOnColor: String,\n' +
-      '      }\n' +
-      '    });\n' +
-      '  }\n' +
-      '}\n\n' +
-      'MenusPage.childContextTypes = {\n' +
-      '  muiTheme: React.PropTypes.object\n' +
-      '};'
     );
   },
 
