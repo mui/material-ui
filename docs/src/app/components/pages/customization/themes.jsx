@@ -440,7 +440,7 @@ let ThemesPage = React.createClass({
       '        secondaryColor: String,\n' +
       '        secondaryTextColor: String,\n' +
       '        disabledColor: String,\n' +
-      '        disabledTextColor: String\n'
+      '        disabledTextColor: String\n' +
       '      },\n' +
       '      slider: {\n' +
       '        trackSize: Number,\n' +
