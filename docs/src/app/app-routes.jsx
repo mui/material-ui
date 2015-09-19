@@ -7,7 +7,11 @@ let DefaultRoute = Router.DefaultRoute;
 // Here we define all our material-ui ReactComponents.
 let Master = require('./components/master');
 let Home = require('./components/pages/home');
+
 let GetStarted = require('./components/pages/get-started');
+let Prerequisites = require('./components/pages/get-started/prerequisites');
+let Installation = require('./components/pages/get-started/installation');
+let Examples = require('./components/pages/get-started/examples');
 
 let Customization = require('./components/pages/customization');
 let Colors = require('./components/pages/customization/colors');
@@ -30,6 +34,7 @@ let Lists = require('./components/pages/components/lists');
 let Menus = require('./components/pages/components/menus');
 let Paper = require('./components/pages/components/paper');
 let Progress = require('./components/pages/components/progress');
+let RefreshIndicator = require('./components/pages/components/refresh-indicator');
 let Sliders = require('./components/pages/components/sliders');
 let SideNav = require('./components/pages/components/side-nav');
 let Snackbar = require('./components/pages/components/snackbar');
@@ -53,7 +58,13 @@ let Toolbars = require('./components/pages/components/toolbars');
 let AppRoutes = (
   <Route name="root" path="/" handler={Master}>
     <Route name="home" handler={Home} />
-    <Route name="get-started" handler={GetStarted} />
+    <Route name="get-started" handler={GetStarted}>
+      <Route name="prerequisites" handler={Prerequisites} />
+      <Route name="installation" handler={Installation} />
+      <Route name="examples" handler={Examples} />
+      <Redirect from="/get-started" to="prerequisites" />
+    </Route>
+
     <Route name="customization" handler={Customization}>
       <Route name="colors" handler={Colors} />
       <Route name="themes" handler={Themes} />
@@ -77,6 +88,7 @@ let AppRoutes = (
       <Route name="menus" handler={Menus} />
       <Route name="paper" handler={Paper} />
       <Route name="progress" handler={Progress} />
+      <Route name="refresh-indicator" handler={RefreshIndicator} />
       <Route name="sliders" handler={Sliders} />
       <Route name="side-nav" handler={SideNav} />
       <Route name="switches" handler={Switches} />

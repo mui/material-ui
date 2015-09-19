@@ -1,6 +1,8 @@
 let React = require('react');
 let { RaisedButton, Snackbar, TextField } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
+let Code = require('snackbars-code');
+let CodeExample = require('../../code-example/code-example');
 
 
 class SnackbarPage extends React.Component {
@@ -16,17 +18,6 @@ class SnackbarPage extends React.Component {
   }
 
   render() {
-    let code =
-      '<Snackbar\n' +
-      '  message="Event added to your calendar"\n' +
-      '  action="undo"\n' +
-      '  autoHideDuration={this.state.autoHideDuration}\n' +
-      '  onActionTouchTap={this._handleAction}/>\n\n' +
-      '//Somewhere in our code\n' +
-      '_handleAction() {\n' +
-      '  //We can add more code to this function, but for now we\'ll just include an alert.\n' +
-      '  alert("We removed the event from your calendar.");\n' +
-      '}';
 
     let componentInfo = [
       {
@@ -86,6 +77,16 @@ class SnackbarPage extends React.Component {
             name: 'onActionTouchTap',
             header: 'function(e)',
             desc: 'Fired when the action button is touchtapped.'
+          },
+          {
+            name: 'onDismiss',
+            header: 'function()',
+            desc: 'Fired when the snackbar is dismissed.'
+          },
+          {
+            name: 'onShow',
+            header: 'function()',
+            desc: 'Fired when the snackbar is shown.'
           }
         ]
       }
@@ -94,27 +95,26 @@ class SnackbarPage extends React.Component {
     return (
       <ComponentDoc
         name="Snackbar"
-        code={code}
         componentInfo={componentInfo}>
+        <CodeExample code={Code}>
+          <RaisedButton
+            onTouchTap={this._handleClick}
+            label="Add to my calendar" />
 
-        <RaisedButton
-          onTouchTap={this._handleClick}
-          label="Add to my calendar" />
+          <br />
 
-        <br />
+          <TextField
+            floatingLabelText="Auto Hide Duration in ms"
+            value={this.state.autoHideDuration}
+            onChange={this._updateAutoHideDuration} />
 
-        <TextField
-          floatingLabelText="Auto Hide Duration"
-          value={this.state.autoHideDuration}
-          onChange={this._updateAutoHideDuration} />
-
-        <Snackbar
-          ref="snackbar"
-          message="Event added to your calendar"
-          action="undo"
-          autoHideDuration={this.state.autoHideDuration}
-          onActionTouchTap={this._handleAction} />
-
+          <Snackbar
+            ref="snackbar"
+            message="Event added to your calendar"
+            action="undo"
+            autoHideDuration={this.state.autoHideDuration}
+            onActionTouchTap={this._handleAction} />
+        </CodeExample>
       </ComponentDoc>
     );
   }

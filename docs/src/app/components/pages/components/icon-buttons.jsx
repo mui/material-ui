@@ -3,27 +3,13 @@ let { FontIcon, IconButton, NavigationMenu } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let ActionGrade = require('svg-icons/action/grade');
 let ActionHome = require('svg-icons/action/home');
+let Code = require('icon-buttons-code');
+let CodeExample = require('../../code-example/code-example');
 
 
 class IconButtonsPage extends React.Component {
 
   render() {
-
-    let code =
-        '//Method 1: muidocs-icon-github is defined in a style sheet.\n' +
-        '<IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>\n\n' +
-        '//Method 2: ActionGrade is a component created using mui.SvgIcon.\n' +
-        '<IconButton tooltip="Star" touch={true}>\n' +
-        '  <ActionGrade/>\n' +
-        '</IconButton>\n\n' +
-        '//Method 3: Manually creating a mui.FontIcon component within ' +
-        'IconButton\n' +
-        '<IconButton tooltip="Sort" disabled={true}>\n' +
-        '  <FontIcon className="muidocs-icon-custom-sort"/>\n' +
-        '</IconButton>\n\n' +
-        '//Method 4: Using Google material-icons\n' + 
-        ' <IconButton iconClassName="material-icons" tooltipPosition="bottom-center" \n' + 
-        '  tooltip="Sky">settings_system_daydream</IconButton>';
 
     let desc = (
       <p>
@@ -39,7 +25,7 @@ class IconButtonsPage extends React.Component {
           <li>
             For svg icons: Insert the svg component as a child of icon
             buttons. This is the method we are using. <a title="Source
-            code for ActionGrade" href="https://github.com/mmrtnz/material-ui/blob/font-icon-components/docs/src/app/components/svg-icons/action-grade.jsx">
+            code for ActionGrade" href="https://github.com/callemall/material-ui/blob/master/src/svg-icons/action/grade.jsx">
             View our source</a> to see how ActionGrade was created
             using mui.SvgIcon.
           </li>
@@ -51,7 +37,7 @@ class IconButtonsPage extends React.Component {
             handled.
           </li>
           <li>
-            Google Material Icons: Now also supported for iconButtons by passing "material-icons" in 
+            Google Material Icons: Now also supported for iconButtons by passing "material-icons" in
             iconClassName prop.
           </li>
         </ol>
@@ -127,54 +113,54 @@ class IconButtonsPage extends React.Component {
     return (
       <ComponentDoc
         name="Icon Buttons"
-        code={code}
         desc={desc}
         componentInfo={componentInfo}>
+        <CodeExample code={Code}>
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-right"  tooltipPosition = "bottom-right" />
 
-        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-right"  tooltipPosition = "bottom-right" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-center" tooltipPosition = "bottom-center" />
 
-        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-center" tooltipPosition = "bottom-center" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-left" tooltipPosition = "bottom-left" />
 
-        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-left" tooltipPosition = "bottom-left" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-right" tooltipPosition = "top-right" />
 
-        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-right" tooltipPosition = "top-right" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-center" tooltipPosition = "top-center" />
 
-        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-center" tooltipPosition = "top-center" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-left" tooltipPosition = "top-left" />
+          <br/><br/><br/><br/>
 
-        <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-left" tooltipPosition = "top-left" />
-        <br/><br/><br/><br/>
+          <IconButton tooltip="bottom-right" touch={true} tooltipPosition="bottom-right">
+            <ActionGrade/>
+          </IconButton>
 
-        <IconButton tooltip="bottom-right" touch={true} tooltipPosition="bottom-right">
-          <ActionGrade/>
-        </IconButton>
+          <IconButton tooltip="bottom-center" touch={true} tooltipPosition="bottom-center">
+            <ActionGrade/>
+          </IconButton>
 
-        <IconButton tooltip="bottom-center" touch={true} tooltipPosition="bottom-center">
-          <ActionGrade/>
-        </IconButton>
+          <IconButton tooltip="bottom-left" touch={true} tooltipPosition="bottom-left">
+            <ActionGrade/>
+          </IconButton>
 
-        <IconButton tooltip="bottom-left" touch={true} tooltipPosition="bottom-left">
-          <ActionGrade/>
-        </IconButton>
+          <IconButton tooltip="top-right" touch={true} tooltipPosition="top-right">
+            <ActionGrade/>
+          </IconButton>
 
-        <IconButton tooltip="top-right" touch={true} tooltipPosition="top-right">
-          <ActionGrade/>
-        </IconButton>
+          <IconButton tooltip="top-center" touch={true} tooltipPosition="top-center">
+            <ActionGrade/>
+          </IconButton>
 
-        <IconButton tooltip="top-center" touch={true} tooltipPosition="top-center">
-          <ActionGrade/>
-        </IconButton>
+          <IconButton tooltip="top-left" touch={true} tooltipPosition="top-left">
+            <ActionGrade/>
+          </IconButton>
+          <br/><br/><br/>
 
-        <IconButton tooltip="top-left" touch={true} tooltipPosition="top-left">
-          <ActionGrade/>
-        </IconButton>
-        <br/><br/><br/>
+          <IconButton tooltip="Sort" disabled={true}>
+            <FontIcon className="muidocs-icon-custom-sort"/>
+          </IconButton>
+          <br/><br/><br/>
 
-        <IconButton tooltip="Sort" disabled={true}>
-          <FontIcon className="muidocs-icon-custom-sort"/>
-        </IconButton>
-        <br/><br/><br/>
-
-        <IconButton iconClassName="material-icons" tooltip="Sky">settings_system_daydream</IconButton>
+          <IconButton iconClassName="material-icons" tooltip="Sky">settings_system_daydream</IconButton>
+        </CodeExample>
       </ComponentDoc>
     );
 

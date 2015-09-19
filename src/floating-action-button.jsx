@@ -26,7 +26,9 @@ let FloatingActionButton = React.createClass({
   },
 
   propTypes: {
+    backgroundColor: React.PropTypes.string,
     disabled: React.PropTypes.bool,
+    disabledColor: React.PropTypes.string,
     iconClassName: React.PropTypes.string,
     iconStyle: React.PropTypes.object,
     mini: React.PropTypes.bool,
@@ -70,7 +72,8 @@ let FloatingActionButton = React.createClass({
   },
 
   _getBackgroundColor() {
-    return this.props.disabled ? this.getTheme().disabledColor :
+    return this.props.disabled ? ( this.props.disabledColor || this.getTheme().disabledColor) :
+      this.props.backgroundColor ? this.props.backgroundColor :
       this.props.secondary ? this.getTheme().secondaryColor :
       this.getTheme().color;
   },

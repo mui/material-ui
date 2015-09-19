@@ -1,6 +1,8 @@
 let React = require('react');
 let { DropDownMenu } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
+let Code = require('drop-down-menu-code');
+let CodeExample = require('../../code-example/code-example');
 
 
 class DropDownMenuPage extends React.Component {
@@ -14,16 +16,6 @@ class DropDownMenuPage extends React.Component {
       { payload: '4', text: 'Weekends' },
       { payload: '5', text: 'Weekly' },
     ];
-
-    let code =
-      "let menuItems = [\n" +
-      "   { payload: '1', text: 'Never' },\n" +
-      "   { payload: '2', text: 'Every Night' },\n" +
-      "   { payload: '3', text: 'Weeknights' },\n" +
-      "   { payload: '4', text: 'Weekends' },\n" +
-      "   { payload: '5', text: 'Weekly' },\n" +
-      "];\n\n" +
-      "<DropDownMenu menuItems={menuItems} />";
 
     let componentInfo = [
       {
@@ -93,6 +85,12 @@ class DropDownMenuPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Overrides the inline-styles of DropDownMenu\'s root element.'
+          },
+          {
+            name: 'disabled',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'Disables the menu.'
           }
         ]
       },
@@ -112,11 +110,10 @@ class DropDownMenuPage extends React.Component {
     return (
       <ComponentDoc
         name="Drop Down Menu"
-        code={code}
         componentInfo={componentInfo}>
-
-        <DropDownMenu menuItems={menuItems} />
-
+        <CodeExample code={Code}>
+          <DropDownMenu menuItems={menuItems} />
+        </CodeExample>
       </ComponentDoc>
     );
   }

@@ -123,7 +123,7 @@ let MenuItem = React.createClass({
     let toggleElement;
     let styles = this.getStyles();
 
-    if (this.props.iconClassName) icon = <FontIcon style={this.mergeAndPrefix(styles.icon, this.props.iconStyle)} className={this.props.iconClassName} />;
+    if (this.props.iconClassName) icon = <FontIcon style={this.mergeAndPrefix(styles.icon, this.props.iconStyle, this.props.selected && styles.rootWhenSelected)} className={this.props.iconClassName} />;
     if (this.props.iconRightClassName) iconRight = <FontIcon style={this.mergeAndPrefix(styles.iconRight, this.props.iconRightStyle)} className={this.props.iconRightClassName} />;
     if (this.props.data) data = <span style={this.mergeAndPrefix(styles.data)}>{this.props.data}</span>;
     if (this.props.number !== undefined) number = <span style={this.mergeAndPrefix(styles.number)}>{this.props.number}</span>;
@@ -184,7 +184,7 @@ let MenuItem = React.createClass({
   },
 
   _handleMouseLeave(e) {
-    if (!this.props.disabled && this.props.onMouseLeave) this.props.onMouseLeave(e,this.props.index);
+    if (!this.props.disabled && this.props.onMouseLeave) this.props.onMouseLeave(e, this.props.index);
   },
 });
 

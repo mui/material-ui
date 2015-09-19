@@ -27,7 +27,7 @@
     // This is our callback function, whenever the url changes it will be called again.
     // Handler: The ReactComponent class that will be rendered
     .run(function (Handler) {
-      React.render(<Handler/>, document.body);
+      React.render(<Handler/>, document.getElementById('app'));
     });
 
 })();

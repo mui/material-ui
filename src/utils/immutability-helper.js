@@ -1,10 +1,24 @@
 const React = require('react/addons');
 const update = React.addons.update;
 
+function mergeSingle(objA, objB) {
+  if (!objA) return objB;
+  if (!objB) return objA;
+  return update(objA, {$merge: objB});
+}
+
 module.exports = {
 
-  merge(obj1, obj2) {
-    return update(obj1, {$merge: obj2});
+  merge() {
+    const args = Array.prototype.slice.call(arguments, 0);
+    let base = args[0];
+
+    for (let i = 1; i < args.length; i++) {
+      if (args[i]) {
+        base = mergeSingle(base, args[i]);
+      }
+    }
+    return base;
   },
 
   mergeItem(obj, key, newValueObject) {
@@ -19,7 +33,7 @@ module.exports = {
   },
 
   shift(array) {
-    return update(array, {$splice: [[0,1]]});
+    return update(array, {$splice: [[0, 1]]});
   },
 
 };

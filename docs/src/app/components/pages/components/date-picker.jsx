@@ -1,6 +1,8 @@
 let React = require('react');
 let { DatePicker, TextField, Toggle } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
+let Code = require('date-picker-code');
+let CodeExample = require('../../code-example/code-example');
 
 
 class DatePickerPage extends React.Component {
@@ -18,34 +20,11 @@ class DatePickerPage extends React.Component {
       minDate: minDate,
       maxDate: maxDate,
       autoOk: false,
-      showYearSelector: false,
       controlledDate: new Date('2015/07/15')
     };
   }
 
   render() {
-
-    let code =
-      '//Portrait Dialog\n' +
-      '<DatePicker\n' +
-      '  hintText="Portrait Dialog"\n\n' +
-      '//Landscape Dialog\n' +
-      '<DatePicker\n' +
-      '  hintText="Landscape Dialog"\n' +
-      '  mode="landscape"/>\n\n' +
-      '//Controlled Input\n' +
-      '<DatePicker\n' +
-      '  hintText="Controlled Date Input"\n' +
-      '  value={this.state.controlledDate}\n' +
-      '  onChange={this._handleChange} />\n\n' +
-      '// Ranged Date Picker\n' +
-      '<DatePicker\n' +
-      '  hintText="Ranged Date Picker"\n' +
-      '  autoOk={this.state.autoOk}\n' +
-      '  minDate={this.state.minDate}\n' +
-      '  maxDate={this.state.maxDate}\n' +
-      '  showYearSelector={this.state.showYearSelector} />';
-
     let componentInfo = [
       {
         name: 'Props',
@@ -64,18 +43,17 @@ class DatePickerPage extends React.Component {
             'is provided they will override this prop with `value` taking precedence.'
           },
           {
+            name: 'disableYearSelection',
+            type: 'bool',
+            header: 'optional',
+            desc: 'If true, year selection will be disabled, otherwise, year selection will be enabled.'
+          },
+          {
             name: 'formatDate',
             type: 'function',
             header: 'default: formats to M/D/YYYY',
             desc: 'This function is called to format the date to display in ' +
               'the input box. By default, date objects are formatted to M/D/YYYY.'
-          },
-          {
-            name: 'hideToolbarYearChange',
-            type: 'boolean',
-            header: 'optional',
-            desc: 'Hide year change buttons on calendar; good for short time spans. Clicking ' +
-              'the year will always result in selecting a year.'
           },
           {
             name: 'maxDate',
@@ -103,13 +81,6 @@ class DatePickerPage extends React.Component {
             header: 'optional',
             desc: 'Called during render time of a given day. If this method returns false ' +
               'the day is disabled otherwise it is displayed normally.'
-          },
-          {
-            name: 'showYearSelector',
-            type: 'boolean',
-            header: 'default: false',
-            desc: 'Determines whether or not a DatePicker has a year selection capability. ' +
-              'If false, the year change buttons in the toolbar are hidden.'
           },
           {
             name: 'style',
@@ -175,53 +146,53 @@ class DatePickerPage extends React.Component {
     return (
       <ComponentDoc
         name="Date Picker"
-        code={code}
         componentInfo={componentInfo}>
+        <CodeExample code={Code}>
+          <DatePicker
+            hintText="Portrait Dialog" />
 
-        <DatePicker
-          hintText="Portrait Dialog" />
+          <DatePicker
+            hintText="Landscape Dialog"
+            mode="landscape" />
 
-        <DatePicker
-          hintText="Landscape Dialog"
-          mode="landscape" />
+          <DatePicker
+            hintText="Controlled Date Input"
+            value={this.state.controlledDate}
+            onChange={this._handleChange.bind(this)} />
 
-        <DatePicker
-          hintText="Controlled Date Input"
-          value={this.state.controlledDate}
-          onChange={this._handleChange.bind(this)} />
+          <DatePicker
+            hintText="Ranged Date Picker"
+            autoOk={this.state.autoOk}
+            minDate={this.state.minDate}
+            maxDate={this.state.maxDate}
+            showYearSelector={this.state.showYearSelector} />
 
-        <DatePicker
-          hintText="Ranged Date Picker"
-          autoOk={this.state.autoOk}
-          minDate={this.state.minDate}
-          maxDate={this.state.maxDate}
-          showYearSelector={this.state.showYearSelector} />
+          <div style={optionsStyle}>
+            <TextField
+              floatingLabelText="Min Date"
+              defaultValue={this.state.minDate.toDateString()}
+              onChange={this._updateMinDate.bind(this)} />
 
-        <div style={optionsStyle}>
-          <TextField
-            floatingLabelText="Min Date"
-            defaultValue={this.state.minDate.toDateString()}
-            onChange={this._updateMinDate.bind(this)} />
-
-          <TextField
-            floatingLabelText="Max Date"
-            defaultValue={this.state.maxDate.toDateString()}
-            onChange={this._updateMaxDate.bind(this)} />
-
-          <Toggle
-            name="autoOk"
-            value="autoOk"
-            label="Auto Accept"
-            defaultToggled={this.state.autoOk}
-            onToggle={this._handleToggle.bind(this)} />
+            <TextField
+              floatingLabelText="Max Date"
+              defaultValue={this.state.maxDate.toDateString()}
+              onChange={this._updateMaxDate.bind(this)} />
 
             <Toggle
-              name="showYearSelector"
-              value="showYearSelector"
-              label="Show Year Selector"
-              defaultToggled={this.state.showYearSelector}
+              name="autoOk"
+              value="autoOk"
+              label="Auto Accept"
+              defaultToggled={this.state.autoOk}
               onToggle={this._handleToggle.bind(this)} />
-        </div>
+
+            <Toggle
+              name="disableYearSelection"
+              value="disableYearSelection"
+              label="Disable Year Selection"
+              defaultToggled={this.state.disableYearSelection}
+              onToggle={this._handleToggle.bind(this)} />
+          </div>
+        </CodeExample>
       </ComponentDoc>
     );
   }

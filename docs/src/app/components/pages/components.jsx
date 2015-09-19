@@ -20,6 +20,7 @@ class Components extends React.Component {
       { route: 'menus', text: 'Menus'},
       { route: 'paper', text: 'Paper'},
       { route: 'progress', text: 'Progress'},
+      { route: 'refresh-indicator', text: 'Refresh Indicator'},
       { route: 'sliders', text: 'Sliders'},
       { route: 'side-nav', text: 'Side Nav'},
       { route: 'switches', text: 'Switches'},

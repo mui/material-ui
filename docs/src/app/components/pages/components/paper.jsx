@@ -3,6 +3,8 @@ let { ClearFix, Mixins, Paper } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 
 let { StyleResizable } = Mixins;
+let Code = require('paper-code');
+let CodeExample = require('../../code-example/code-example');
 
 
 let PaperPage = React.createClass ({
@@ -36,57 +38,6 @@ let PaperPage = React.createClass ({
   },
 
   render() {
-
-    let code = [
-      '//Rounded Corners',
-      '<Paper zDepth={1}>',
-      '  <p>zDepth=1</p>',
-      '</Paper>',
-      '<Paper zDepth={2}>',
-      '  <p>zDepth=2</p>',
-      '</Paper>',
-      '<Paper zDepth={3}>',
-      '  <p>zDepth=3</p>',
-      '</Paper>',
-      '<Paper zDepth={4}>',
-      '  <p>zDepth=4</p>',
-      '</Paper>',
-      '<Paper zDepth={5}>',
-      '  <p>zDepth=5</p>',
-      '</Paper>',
-      '//Sharp Corners',
-      '<Paper zDepth={1} rounded={false}>',
-      '  <p>rounded=false</p>',
-      '</Paper>',
-      '<Paper zDepth={2} rounded={false}>',
-      '  <p>rounded=false</p>',
-      '</Paper>',
-      '<Paper zDepth={3} rounded={false}>',
-      '  <p>rounded=false</p>',
-      '</Paper>',
-      '<Paper zDepth={4} rounded={false}>',
-      '  <p>rounded=false</p>',
-      '</Paper>',
-      '<Paper zDepth={5} rounded={false}>',
-      '  <p>rounded=false</p>',
-      '</Paper>',
-      '//Circular',
-      '<Paper zDepth={1} circle={true}>',
-      '  <p>circle=true</p>',
-      '</Paper>',
-      '<Paper zDepth={2} circle={true}>',
-      '  <p>circle=true</p>',
-      '</Paper>',
-      '<Paper zDepth={3} circle={true}>',
-      '  <p>circle=true</p>',
-      '</Paper>',
-      '<Paper zDepth={4} circle={true}>',
-      '  <p>circle=true</p>',
-      '</Paper>',
-      '<Paper zDepth={5} circle={true}>',
-      '  <p>circle=true</p>',
-      '</Paper>'
-      ].join('\n');
 
     let componentInfo = [
       {
@@ -132,21 +83,20 @@ let PaperPage = React.createClass ({
     return (
       <ComponentDoc
         name="Paper"
-        code={code}
         componentInfo={componentInfo}>
-
-        <div>
-          <ClearFix style={groupStyle}>
-            {this._getGroupDefault()}
-          </ClearFix>
-          <ClearFix style={groupStyle}>
-            {this._getGroupRounded()}
-          </ClearFix>
-          <ClearFix style={groupStyle}>
-            {this._getGroupCircle()}
-          </ClearFix>
-        </div>
-
+        <CodeExample code={Code}>
+          <div>
+            <ClearFix style={groupStyle}>
+              {this._getGroupDefault()}
+            </ClearFix>
+            <ClearFix style={groupStyle}>
+              {this._getGroupRounded()}
+            </ClearFix>
+            <ClearFix style={groupStyle}>
+              {this._getGroupCircle()}
+            </ClearFix>
+          </div>
+        </CodeExample>
       </ComponentDoc>
     );
   },

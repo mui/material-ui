@@ -1,7 +1,8 @@
 const React = require('react');
-const AutoPrefix = require('../styles/auto-prefix');
 const ImmutabilityHelper = require('../utils/immutability-helper');
+const Styles = require('../utils/styles');
 
+// This mixin isn't necessary and will be removed in v0.11
 
 /**
  *	@params:
@@ -14,26 +15,13 @@ module.exports = {
     style: React.PropTypes.object,
   },
 
+  //Moved this function to ImmutabilityHelper.merge
   mergeStyles() {
-
-    const args = Array.prototype.slice.call(arguments, 0);
-    let base = args[0];
-
-    for (let i = 1; i < args.length; i++) {
-      if (args[i]) {
-        base = ImmutabilityHelper.merge(base, args[i]);
-      }
-    }
-
-    return base;
+    return ImmutabilityHelper.merge.apply(this, arguments);
   },
 
-  /**
-   * loops through all properties defined in the first argument, so overrides
-   * of undefined properties will not take place.
-   */
+  //Moved this function to /utils/styles.js
   mergeAndPrefix() {
-    let mergedStyles = this.mergeStyles.apply(this, arguments);
-    return AutoPrefix.all(mergedStyles);
+    return Styles.mergeAndPrefix.apply(this, arguments);
   },
 };

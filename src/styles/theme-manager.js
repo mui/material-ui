@@ -9,6 +9,13 @@ const Types = {
 
 let ThemeManager = () => {
   return {
+
+    //In most cases, theme variables remain static thoughout the life of an
+    //app. If you plan on mutating theme variables after the theme has been
+    //intialized, set static to false. This will allow components to update
+    //when theme variables change. For more information see issue #1176
+    static: true,
+
     types: Types,
     template: Types.LIGHT,
 
@@ -25,6 +32,7 @@ let ThemeManager = () => {
     // Component gets updated to reflect palette changes.
     setTheme(newTheme) {
       this.setSpacing(newTheme.spacing);
+      this.setContentFontFamily(newTheme.contentFontFamily);
       this.setPalette(newTheme.getPalette());
       this.setComponentThemes(newTheme.getComponentThemes(newTheme.getPalette()));
     },
@@ -34,6 +42,13 @@ let ThemeManager = () => {
       this.component = Extend(this.component, this.template.getComponentThemes(this.palette, this.spacing));
     },
 
+    setContentFontFamily(newContentFontFamily) {
+      if (typeof newContentFontFamily !== "undefined" && newContentFontFamily !== null) {
+        this.contentFontFamily = newContentFontFamily;
+        this.component = Extend(this.component, this.template.getComponentThemes(this.palette, this.spacing));
+      }
+    },
+
     setPalette(newPalette) {
       this.palette = Extend(this.palette, newPalette);
       this.component = Extend(this.component, this.template.getComponentThemes(this.palette));
@@ -41,6 +56,10 @@ let ThemeManager = () => {
 
     setComponentThemes(overrides) {
       this.component = Extend(this.component, overrides);
+    },
+
+    setIsRtl(isRtl) {
+      this.isRtl = !! isRtl;
     },
   };
 };

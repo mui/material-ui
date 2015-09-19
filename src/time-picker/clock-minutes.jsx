@@ -159,7 +159,9 @@ let ClockMinutes = React.createClass({
       <div ref="clock" style={this.mergeAndPrefix(styles.root)} >
         <ClockPointer value={minutes.selected} type="minute" />
         {minutes.numbers}
-        <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} hasSelected={minutes.hasSelected} onTouchMove={this.handleTouch} onTouchEnd={this.handleTouch} onMouseUp={this.handleUp} onMouseMove={this.handleMove} />
+        <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} hasSelected={minutes.hasSelected}
+          onTouchMove={this.handleTouch} onTouchEnd={this.handleTouch}
+          onMouseUp={this.handleUp} onMouseMove={this.handleMove} />
       </div>
     );
   },

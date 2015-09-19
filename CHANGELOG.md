@@ -1,5 +1,108 @@
+## 0.11.1
+###### _Sep 15, 2015_
+
+##### Component Fixes / Enhancements
+- DatePicker - Updated to new design specs (#1266)
+- LeftNav - Fix sidebar position for browsers that don't support transform3d (#1269)
+- TextField - Added props to override underlineStyle when disabled (#1493)
+
+## 0.11.0
+###### _Aug 24, 2015_
+
+##### Breaking Changes
+- The Table component is now composable. (#1199)
+  - JSON objects to create the table and the table component will no longer generate the table for you.
+    The docs site provides a complete example of how a table might look: http://material-ui.com/#/components/table.
+    The example also includes a 'super header' and 'super footer' row.
+  - **Upgrade Path:** Instead of passing in the raw JSON data, you'll need to generate the appropriate
+    TableHeader/TableRow/TableHeaderColumn components and pass them in as children. The same should be applied
+    to the rowData and the footer.
+- Tabs can now be controlled. In order to make this work we had to change the parameters being passed back to
+  the `onChange` event to: `onChange(value, e, tab)`. Where value is the value of the tab that it was changed
+  to, e is the event, and tab is the actual tab component. (#1232, #1235)
+- Added a new `static` flag to the ThemeManager that defaults to `true`. If you're mutating your theme variables
+  after the app initializes, set this flag to `false`. This will allow us to perform some optimizations to
+  components that require theme variables. (#1397)
+- ListItem (#1438, #1105)
+  - Nested list items should no longer be passed in as children. Use the `nestedItems` prop instead.
+  - The `open` prop has been renamed to `initiallyOpen`.
+- Removed classable mixin
+  - This mixin was no longer used in the library. Removing it allowed us to get rid of the `classnames`
+    dependency. If you were using this mixin in your own projects, you'll need to pull the source and manually
+    include it.
+
+##### Component Fixes / Enhancements
+- Buttons - Fixed a bug that caused buttons to not gain keyboard focus in some cases (#1485, #1453, #1458)
+- Card
+  - Properly merge `CardAction` and `CardExpandable` styles. (#1376)
+  - Added Right-To-Left support to `CardExpandable`. To use this, set `isRtl` to `true` in the theme. (#1408)
+- DatePicker - Fixed an error that occurred when using valueLink (#1400)
+- DropDownMenu - Added `disabled` prop (#1406)
+- FlatButton - Added `labelPosition` prop. (#1286)
+- InkBar - Added color prop and inkBar.backgroundColor to theme variables. (#1244)
+- Ripple
+  - Fixed display glitch on Safari (#1420)
+  - Fixed an error when ripples were unMounted (#1416)
+- SelectField
+  - Added `floatingLabelStyle` prop (#1463 #1450)
+- Slider
+  - Fixed a bug when setting the width attr (#1368)
+  - Fixed a bug with disabled sliders (#1417)
+  - Fixed a focus style glitch and other style problems (#1448, #1451, #1468)
+- Snackbar - Added onShow and onDismiss (#1390)
+- Table - Ensure that the table component properly keeps track of selected rows (#1325)
+- TextField
+  - Added `underlineFocusStyle` prop (#1422, #1419)
+  - `hintText` can now be a `string` or `element` (#1424, #1202)
+- TimePicker
+  - Fixed a bug that caused the am/pm selector to switch (#1440)
+  - Fixed a bug that caused defaultTime to not be set (#1466)
+- Tooltip - Probably center tooltips when tooltip text changes (#1205)
+- Theme - Added `setContentFontFamily` (#1405)
+
+## 0.10.4
+###### _Aug 8, 2015_
+
+##### Component Fixes / Enhancements
+- TouchRipple - Fixed a bug that caused onClick to not fire on the first click (#1370)
+
+## 0.10.3
+###### _Aug 8, 2015_
+
+##### General
+- We've set up the project to perform automated tests - now we just need to increase our test coverage. :) (#1331)
+- The style auto-prefixer now caches browser test results so that it only has to perform them once.
+
+##### New Components
+- RefreshIndicator (#1312)
+
+##### Component Fixes / Enhancements
+- AppBar - showMenuIconButton now only affects the icon next to the title (#1295, #1182)
+- CardMedia - CardMedia children styles are now being properly merged (#1306)
+- Dialog - fixed a bug that caused the dialog height to be incorrect on window resize (#1305)
+- FloatingActionButton - Added backgroundColor and disabledColor props (#1329)
+- FocusRipples now only get rendered when needed.
+- IconMenu - Added isOpen() (#1288)
+- LeftNav
+  - Added menuItemClassName, menuItemClassNameSubheader, menuItemClassNameLink props (#1318)
+  - Fixed a display problem that cuased icons to not be the correct color (#1324)
+- ListItem - fixed incorrect styling on disabled list items (#1350)
+- SelectField
+  - Fixed a bug that happened when select field was controlled and the value was undefined (#1227)
+  - Fixed error text positioning (#1341, #1111)
+  - Added errorStyle prop (#1341)
+- Snackbar - Clickaway is now properly bound when openOnMount is true (#1327)
+- Tabs - Added contentContainerClassName prop (#1285)
+- TextField - Added underlineStyle prop (#1343)
+- TimePicker - Added pedantic prop (#1275, #1173)
+
 ## 0.10.2
 ###### _Jul 29, 2015_
+
+##### Breaking Changes (Missed in the original release notes.)
+- Changed `date-picker/index.js` to expose DatePicker and DatePickerDialog.
+  Hence `require('material-ui/lib/date-picker')` no longer works. Use
+  `require('material-ui/lib/date-picker/date-picker')` instead.
 
 ##### General
 - Replaced onMouseOver / onMouseOut with onMouseEnter / onMouseLeave to achieve hover affects.

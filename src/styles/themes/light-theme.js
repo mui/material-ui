@@ -74,6 +74,9 @@ let LightTheme = {
         secondaryColor: palette.primary1Color,
         secondaryIconColor: Colors.white,
       },
+      inkBar: {
+        backgroundColor: palette.accent1Color,
+      },
       leftNav: {
         width: spacing.desktopKeylineIncrement * 4,
         color: Colors.white,
@@ -118,12 +121,17 @@ let LightTheme = {
         secondaryColor: palette.primary1Color,
         secondaryTextColor: Colors.white,
       },
+      refreshIndicator: {
+        strokeColor: Colors.grey300,
+        loadingStrokeColor: palette.primary1Color,
+      },
       slider: {
         trackSize: 2,
         trackColor: Colors.minBlack,
         trackColorSelected: Colors.grey500,
         handleSize: 12,
         handleSizeDisabled: 8,
+        handleSizeActive: 18,
         handleColorZero: Colors.grey400,
         handleFillColor: Colors.white,
         selectionColor: palette.primary3Color,
@@ -153,7 +161,7 @@ let LightTheme = {
       tableHeaderColumn: {
         textColor: Colors.lightBlack,
         height: 56,
-        spacing: 28,
+        spacing: 24,
       },
       tableFooter: {
         borderColor: palette.borderColor,
@@ -168,7 +176,7 @@ let LightTheme = {
       },
       tableRowColumn: {
         height: 48,
-        spacing: 28,
+        spacing: 24,
       },
       timePicker: {
         color: Colors.white,
@@ -218,7 +226,6 @@ let LightTheme = {
     obj.floatingActionButton.disabledTextColor = ColorManipulator.fade(palette.textColor, 0.3);
     obj.raisedButton.disabledColor = ColorManipulator.darken(obj.raisedButton.color, 0.1);
     obj.raisedButton.disabledTextColor = ColorManipulator.fade(obj.raisedButton.textColor, 0.3);
-    obj.slider.handleSizeActive = obj.slider.handleSize * 2;
     obj.toggle.trackRequiredColor = ColorManipulator.fade(obj.toggle.thumbRequiredColor, 0.5);
 
     return obj;

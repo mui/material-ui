@@ -49,6 +49,10 @@ let DarkTheme = {
         trackOffColor: 'rgba(255, 255, 255, 0.3)',
         trackDisabledColor: 'rgba(255, 255, 255, 0.1)',
       },
+      refreshIndicator: {
+        strokeColor: Colors.grey700,
+        loadingStrokeColor: Colors.teal300,
+      },
       slider: {
         trackColor: Colors.minBlack,
         handleColorZero: cardColor,

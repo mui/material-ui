@@ -1,3 +1,6 @@
+const isBrowser = typeof window !== 'undefined';
+let Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
+
 let React = require('react');
 let KeyCode = require('./utils/key-code');
 let StylePropable = require('./mixins/style-propable');
@@ -30,6 +33,9 @@ let LeftNav = React.createClass({
     onNavClose: React.PropTypes.func,
     openRight: React.PropTypes.bool,
     selectedIndex: React.PropTypes.number,
+    menuItemClassName: React.PropTypes.string,
+    menuItemClassNameSubheader: React.PropTypes.string,
+    menuItemClassNameLink: React.PropTypes.string,
   },
 
   windowListeners: {
@@ -103,7 +109,7 @@ let LeftNav = React.createClass({
         width: this.getTheme().width,
         position: 'fixed',
         zIndex: 10,
-        left: 0,
+        left: isBrowser && Modernizr.csstransforms3d ? 0 : x,
         top: 0,
         transform: 'translate3d(' + x + 'px, 0, 0)',
         transition: !this.state.swiping && Transitions.easeOut(),
@@ -125,6 +131,7 @@ let LeftNav = React.createClass({
         right: 0,
       },
     };
+
     styles.menuItemLink = this.mergeAndPrefix(styles.menuItem, {
       display: 'block',
       textDecoration: 'none',
@@ -174,6 +181,9 @@ let LeftNav = React.createClass({
               menuItemStyle={this.mergeAndPrefix(styles.menuItem)}
               menuItemStyleLink={this.mergeAndPrefix(styles.menuItemLink)}
               menuItemStyleSubheader={this.mergeAndPrefix(styles.menuItemSubheader)}
+              menuItemClassName={this.props.menuItemClassName}
+              menuItemClassNameSubheader={this.props.menuItemClassNameSubheader}
+              menuItemClassNameLink={this.props.menuItemClassNameLink}
               selectedIndex={selectedIndex}
               onItemTap={this._onMenuItemClick} />
         </Paper>

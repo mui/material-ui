@@ -1,9 +1,13 @@
 let React = require('react');
-let { ClearFix, FontIcon, Styles } = require('material-ui');
+let { ClearFix, FontIcon, Styles, Paper } = require('material-ui');
+let CodeBlock = require('../../code-example/code-block');
 let ComponentDoc = require('../../component-doc');
 let ActionHome = require('svg-icons/action/home');
 
 let { Colors, Typography } = Styles;
+let IconButtonCode = require('icons-code');
+let SvgIconsCode = require('svg-icons-code');
+let CodeExample = require('../../code-example/code-example');
 
 
 class FontIconPage extends React.Component {
@@ -22,47 +26,6 @@ class FontIconPage extends React.Component {
   }
 
   render() {
-    let fontIconCode = `
-<FontIcon className="muidocs-icon-action-home" />
-<FontIcon className="muidocs-icon-action-home" color={Colors.red500} />
-<FontIcon className="muidocs-icon-action-home" color={Colors.yellow500} />
-<FontIcon className="muidocs-icon-action-home" color={Colors.blue500} />
-
-<FontIcon className="muidocs-icon-action-home"
-  hoverColor={Colors.greenA200} />
-<FontIcon className="muidocs-icon-action-home" color={Colors.red500}
-  hoverColor={Colors.greenA200} />
-<FontIcon className="muidocs-icon-action-home" color={Colors.yellow500}
-  hoverColor={Colors.greenA200} />
-<FontIcon className="muidocs-icon-action-home" color={Colors.blue500}
-  hoverColor={Colors.greenA200} />
-
-<FontIcon className="material-icons">home</FontIcon>
-<FontIcon className="material-icons" color={Colors.red500}>home</FontIcon>
-<FontIcon className="material-icons" color={Colors.yellow500}>home</FontIcon>
-<FontIcon className="material-icons" color={Colors.blue500}>home</FontIcon> 
-    `;
-
-    let svgIconCode =
-      '/** action-home.jsx */\n' +
-      'let React = require(\'react\');\n' +
-      'let mui = require(\'mui\');\n' +
-      'let SvgIcon = mui.SvgIcon;\n\n' +
-      'let ActionHome = React.createClass({\n' +
-      '  render: function() {\n' +
-      '    return (\n' +
-      '      <SvgIcon {...this.props}>\n' +
-      '        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>\n' +
-      '      </SvgIcon>\n' +
-      '    );\n' +
-      '  }\n' +
-      '});\n\n' +
-      'module.exports = ActionHome;\n\n\n' +
-      '/** Some other component. */\n' +
-      'let ActionHome = require(\'./path/to/action-home.jsx\');\n' +
-      '...\n' +
-      '<ActionHome/>\n' +
-      '...';
 
     let fontIconDesc = (
       <p style={this.getStyles()}>
@@ -72,9 +35,15 @@ class FontIconPage extends React.Component {
         Icons</a> for our documentation site along with some custom icons. You can use
         sites like <a title="Icomoon website" href="https://icomoon.io/">IcoMoon</a> for
         generating custom font files. To use FontIcons, add your stylesheet to your project
-        and reference the icon&#39;s className in the "className" prop. We also support <a title="Google's 
-        Material Icons" href="https://google.github.io/material-design-icons">Google&#39;s 
-        Material Icons</a> as seen in the thrid block of code.
+        and reference the icon&#39;s className in the "className" prop. <br /><br />
+        We also support <a title="Google's
+        Material Icons" href="https://google.github.io/material-design-icons">Google&#39;s
+        Material Icons</a> as seen in the third block of code. If you're using the material icons, be sure to include the link to the font icon file in your head section:
+        <Paper>
+          <CodeBlock>
+            {'<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'}
+          </CodeBlock>
+        </Paper>
       </p>
     );
 
@@ -136,38 +105,40 @@ class FontIconPage extends React.Component {
       <div>
         <ComponentDoc
           name="Font Icons"
-          code={fontIconCode}
           desc={fontIconDesc}
           componentInfo={componentInfo.slice(0,1)}>
-          <FontIcon className="muidocs-icon-action-home" style={iconStyles} />
-          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.red500} />
-          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.yellow500} />
-          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.blue500} />
-          <br/><br/>
-          <FontIcon className="muidocs-icon-action-home" style={iconStyles} hoverColor={Colors.greenA200} />
-          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
-          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.yellow500} hoverColor={Colors.greenA200} />
-          <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.blue500} hoverColor={Colors.greenA200} />
-          <br/><br/>
-          <FontIcon className="material-icons" style={iconStyles} >home</FontIcon>
-          <FontIcon className="material-icons" style={iconStyles} color={Colors.red500}>home</FontIcon>
-          <FontIcon className="material-icons" style={iconStyles} color={Colors.yellow500}>home</FontIcon>
-          <FontIcon className="material-icons" style={iconStyles} color={Colors.blue500}>home</FontIcon> 
+          <CodeExample code={IconButtonCode}>
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles} />
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.red500} />
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.yellow500} />
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.blue500} />
+            <br/><br/>
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles} hoverColor={Colors.greenA200} />
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.yellow500} hoverColor={Colors.greenA200} />
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.blue500} hoverColor={Colors.greenA200} />
+            <br/><br/>
+            <FontIcon className="material-icons" style={iconStyles} >home</FontIcon>
+            <FontIcon className="material-icons" style={iconStyles} color={Colors.red500}>home</FontIcon>
+            <FontIcon className="material-icons" style={iconStyles} color={Colors.yellow500}>home</FontIcon>
+            <FontIcon className="material-icons" style={iconStyles} color={Colors.blue500}>home</FontIcon>
+          </CodeExample>
         </ComponentDoc>
         <ComponentDoc
           name="SVG Icons"
-          code={svgIconCode}
           desc={svgIconDesc}
           componentInfo={componentInfo.slice(1,2)}>
-          <ActionHome style={iconStyles} />
-          <ActionHome style={iconStyles} color={Colors.red500} />
-          <ActionHome style={iconStyles} color={Colors.yellow500} />
-          <ActionHome style={iconStyles} color={Colors.blue500} />
-          <br/><br/>
-          <ActionHome style={iconStyles} hoverColor={Colors.greenA200} />
-          <ActionHome style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
-          <ActionHome style={iconStyles} color={Colors.yellow500} hoverColor={Colors.greenA200} />
-          <ActionHome style={iconStyles} color={Colors.blue500} hoverColor={Colors.greenA200} />
+          <CodeExample code={SvgIconsCode}>
+            <ActionHome style={iconStyles} />
+            <ActionHome style={iconStyles} color={Colors.red500} />
+            <ActionHome style={iconStyles} color={Colors.yellow500} />
+            <ActionHome style={iconStyles} color={Colors.blue500} />
+            <br/><br/>
+            <ActionHome style={iconStyles} hoverColor={Colors.greenA200} />
+            <ActionHome style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
+            <ActionHome style={iconStyles} color={Colors.yellow500} hoverColor={Colors.greenA200} />
+            <ActionHome style={iconStyles} color={Colors.blue500} hoverColor={Colors.greenA200} />
+          </CodeExample>
         </ComponentDoc>
       </div>
     );

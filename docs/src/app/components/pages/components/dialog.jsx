@@ -1,6 +1,8 @@
 let React = require('react');
 let { Dialog, FlatButton, RaisedButton, Toggle } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
+let Code = require('dialog-code');
+let CodeExample = require('../../code-example/code-example');
 
 
 class DialogPage extends React.Component {
@@ -21,40 +23,6 @@ class DialogPage extends React.Component {
   }
 
   render() {
-    let code =
-      '//Standard Actions\n' +
-      'let standardActions = [\n' +
-      '  { text: \'Cancel\' },\n' +
-      '  { text: \'Submit\', onTouchTap: this._onDialogSubmit, ref: \'submit\' }\n' +
-      '];\n\n' +
-      '<Dialog\n' +
-      '  title="Dialog With Standard Actions"\n' +
-      '  actions={standardActions}\n' +
-      '  actionFocus="submit"\n' +
-      '  modal={this.state.modal}>\n' +
-      '  The actions in this window are created from the json that\'s passed in. \n' +
-      '</Dialog>\n\n' +
-      '//Custom Actions\n' +
-      'let customActions = [\n' +
-      '  <FlatButton\n' +
-      '    label="Cancel"\n' +
-      '    secondary={true}\n' +
-      '    onTouchTap={this._handleCustomDialogCancel} />,\n' +
-      '  <FlatButton\n' +
-      '    label="Submit"\n' +
-      '    primary={true}\n' +
-      '    onTouchTap={this._handleCustomDialogSubmit} />\n' +
-      '];\n\n' +
-      '<Dialog\n' +
-      '  title="Dialog With Custom Actions"\n' +
-      '  actions={customActions}\n' +
-      '  modal={this.state.modal}>\n' +
-      '  The actions in this window were passed in as an array of react objects.\n' +
-      '</Dialog>\n\n' +
-      '<Dialog title="Dialog With Scrollable Content" actions={customActions}\n' +
-      '  autoDetectWindowHeight={true} autoScrollBodyContent={true}>\n' +
-      '    <div style={{height: \'2000px\'}}>Really long content</div>\n' +
-      '</Dialog>\n';
 
     let componentInfo = [
       {
@@ -189,49 +157,48 @@ class DialogPage extends React.Component {
     return (
       <ComponentDoc
         name="Dialog"
-        code={code}
         componentInfo={componentInfo}>
+        <CodeExample code={Code}>
+          <RaisedButton label="Standard Actions" onTouchTap={this._handleStandardDialogTouchTap} />
+          <br/><br/>
+          <RaisedButton label="Custom Actions" onTouchTap={this._handleCustomDialogTouchTap} />
+          <br/><br/>
+          <RaisedButton label="Scrollable Content And Custom Actions" onTouchTap={this._handleScrollableDialogTouchTap} />
 
-        <RaisedButton label="Standard Actions" onTouchTap={this._handleStandardDialogTouchTap} />
-        <br/><br/>
-        <RaisedButton label="Custom Actions" onTouchTap={this._handleCustomDialogTouchTap} />
-        <br/><br/>
-        <RaisedButton label="Scrollable Content And Custom Actions" onTouchTap={this._handleScrollableDialogTouchTap} />
+          <Dialog
+            ref="standardDialog"
+            title="Dialog With Standard Actions"
+            actions={standardActions}
+            actionFocus="submit"
+            modal={this.state.modal}>
+            The actions in this window are created from the json that&#39;s passed in.
+          </Dialog>
 
-        <Dialog
-          ref="standardDialog"
-          title="Dialog With Standard Actions"
-          actions={standardActions}
-          actionFocus="submit"
-          modal={this.state.modal}>
-          The actions in this window are created from the json that&#39;s passed in.
-        </Dialog>
-
-        <Dialog
-          ref="customDialog"
-          title="Dialog With Custom Actions"
-          actions={customActions}
-          modal={this.state.modal}>
-          The actions in this window were passed in as an array of react objects.
-        </Dialog>
-        <div style={{width: '300px', margin: '0 auto', paddingTop: '20px'}}>
-          <Toggle
-            label="Is Modal"
-            onToggle={this._handleToggleChange}
-            defaultToggled={this.state.modal}/>
-        </div>
-        <Dialog
-          ref="scrollableContentDialog"
-          title="Dialog With Scrollable Content"
-          actions={scrollableCustomActions}
-          modal={this.state.modal}
-          autoDetectWindowHeight={true}
-          autoScrollBodyContent={true}>
-          <div style={{height: '1000px'}}>
-            Really long content
+          <Dialog
+            ref="customDialog"
+            title="Dialog With Custom Actions"
+            actions={customActions}
+            modal={this.state.modal}>
+            The actions in this window were passed in as an array of react objects.
+          </Dialog>
+          <div style={{width: '300px', margin: '0 auto', paddingTop: '20px'}}>
+            <Toggle
+              label="Is Modal"
+              onToggle={this._handleToggleChange}
+              defaultToggled={this.state.modal}/>
           </div>
-        </Dialog>
-
+          <Dialog
+            ref="scrollableContentDialog"
+            title="Dialog With Scrollable Content"
+            actions={scrollableCustomActions}
+            modal={this.state.modal}
+            autoDetectWindowHeight={true}
+            autoScrollBodyContent={true}>
+            <div style={{height: '1000px'}}>
+              Really long content
+            </div>
+          </Dialog>
+        </CodeExample>
       </ComponentDoc>
     );
 

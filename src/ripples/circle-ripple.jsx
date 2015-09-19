@@ -22,22 +22,28 @@ const CircleRipple = React.createClass({
     };
   },
 
-  componentDidEnter() {
-    let style = React.findDOMNode(this).style;
-    AutoPrefix.set(style, 'transform', 'scale(1)');
+  componentWillAppear(callback) {
+    this._initializeAnimation(callback);
   },
 
   componentWillEnter(callback) {
-    let style = React.findDOMNode(this).style;
-    style.opacity = this.props.opacity;
-    AutoPrefix.set(style, 'transform', 'scale(0)');
-    setTimeout(callback, 0);
+    this._initializeAnimation(callback);
+  },
+
+  componentDidAppear() {
+    this._animate();
+  },
+
+  componentDidEnter() {
+    this._animate();
   },
 
   componentWillLeave(callback) {
     let style = React.findDOMNode(this).style;
     style.opacity = 0;
-    setTimeout(callback, 2000);
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }.bind(this), 2000);
   },
 
   render() {
@@ -56,14 +62,30 @@ const CircleRipple = React.createClass({
       width: '100%',
       borderRadius: '50%',
       backgroundColor: color,
-      transition:
-        Transitions.easeOut('2s', 'opacity') + ',' +
-        Transitions.easeOut('1s', 'transform'),
     }, style);
 
     return (
       <div {...other} style={mergedStyles} />
     );
+  },
+
+  _animate() {
+    let style = React.findDOMNode(this).style;
+    const transitionValue = (
+      Transitions.easeOut('2s', 'opacity') + ',' +
+      Transitions.easeOut('1s', 'transform')
+    );
+    AutoPrefix.set(style, 'transition', transitionValue);
+    AutoPrefix.set(style, 'transform', 'scale(1)');
+  },
+
+  _initializeAnimation(callback) {
+    let style = React.findDOMNode(this).style;
+    style.opacity = this.props.opacity;
+    AutoPrefix.set(style, 'transform', 'scale(0)');
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }.bind(this), 0);
   },
 
 });

@@ -1,5 +1,4 @@
 let React = require('react');
-let hljs = require('highlight.js');
 let { Styles } = require('material-ui');
 let { Spacing } = Styles;
 
@@ -9,32 +8,28 @@ class CodeBlock extends React.Component {
   constructor() {
     super();
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentDidUpdate = this.componentDidUpdate.bind(this);
   }
 
   componentDidMount() {
-    hljs.highlightBlock(React.findDOMNode(this));
+    var code = React.findDOMNode(this.refs.code);
+    require([
+      "codemirror/lib/codemirror.js",
+      "codemirror/mode/htmlmixed/htmlmixed.js",
+    ], function(Codemirror){
+      Codemirror.fromTextArea(code, {
+        mode: "htmlmixed",
+        readOnly: true,
+      });
+    });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    hljs.highlightBlock(React.findDOMNode(this));
+  shouldComponentUpdate({children}, nextState){
+    return this.props.children !== children;
   }
 
   render() {
-
-    let borderColor = this.context.muiTheme.palette.borderColor;
-
-    let styles = {
-      padding: Spacing.desktopGutter,
-      margin: 0,
-      borderRadius: '0 0 2px 2px',
-      borderTop: 'solid 1px ' + borderColor,
-    };
-
     return (
-      <pre style={styles}>
-        <code>{this.props.children}</code>
-      </pre>
+      <textarea ref="code" value={this.props.children} readOnly={true}/>
     );
   }
 }

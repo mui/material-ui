@@ -1,6 +1,5 @@
 let React = require('react');
 let StylePropable = require('../mixins/style-propable');
-let Colors = require('../styles/colors.js');
 
 
 let Tab = React.createClass({
@@ -12,39 +11,60 @@ let Tab = React.createClass({
   },
 
   propTypes: {
-    handleTouchTap: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
+    label: React.PropTypes.string,
+    onActive: React.PropTypes.func,
     selected: React.PropTypes.bool,
     width: React.PropTypes.string,
+    value: React.PropTypes.string,
   },
 
-  handleTouchTap() {
-    this.props.handleTouchTap(this.props.tabIndex, this);
+  getDefaultProps(){
+    return {
+      onActive: () => {},
+      onTouchTap: () => {},
+    };
   },
 
   render() {
+    let {
+      label,
+      onActive,
+      onTouchTap,
+      selected,
+      style,
+      value,
+      width,
+      ...other,
+    } = this.props;
     let styles = this.mergeAndPrefix({
       display: 'table-cell',
       cursor: 'pointer',
       textAlign: 'center',
       verticalAlign: 'middle',
       height: 48,
-      color: Colors.white,
-      opacity: 0.6,
+      color: selected ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.6)',
+      outline: 'none',
       fontSize: 14,
-      fontWeight: '500',
+      fontWeight: 500,
       whiteSpace: 'initial',
       fontFamily: this.context.muiTheme.contentFontFamily,
       boxSizing: 'border-box',
-      width: this.props.width,
-    }, this.props.style);
-
-    if (this.props.selected) styles.opacity = '1';
+      width: width,
+    }, style);
 
     return (
-      <div style={styles} onTouchTap={this.handleTouchTap} routeName={this.props.route}>
-        {this.props.label}
+      <div
+        {...other}
+        style={styles}
+        onTouchTap={this._handleTouchTap}>
+        {label}
       </div>
     );
+  },
+
+   _handleTouchTap(e) {
+    this.props.onTouchTap(this.props.value, e, this);
   },
 
 });

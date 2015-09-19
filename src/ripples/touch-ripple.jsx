@@ -1,4 +1,4 @@
-const React = require('react');
+const React = require('react/addons');
 const PureRenderMixin = React.addons.PureRenderMixin;
 const ReactTransitionGroup = React.addons.TransitionGroup;
 const StylePropable = require('../mixins/style-propable');
@@ -19,6 +19,10 @@ const TouchRipple = React.createClass({
 
   getInitialState() {
     return {
+      //This prop allows us to only render the ReactTransitionGroup
+      //on the first click of the component, making the inital
+      //render faster
+      hasRipples: false,
       nextKey: 0,
       ripples: [],
     };
@@ -31,14 +35,28 @@ const TouchRipple = React.createClass({
       style,
     } = this.props;
 
-    const mergedStyles = this.mergeAndPrefix({
-      height: '100%',
-      width: '100%',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      overflow: 'hidden',
-    }, style);
+    const {
+      hasRipples,
+      ripples,
+    } = this.state;
+
+    let rippleGroup;
+    if (hasRipples) {
+      const mergedStyles = this.mergeAndPrefix({
+        height: '100%',
+        width: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        overflow: 'hidden',
+      }, style);
+
+      rippleGroup = (
+        <ReactTransitionGroup style={mergedStyles}>
+          {ripples}
+        </ReactTransitionGroup>
+      );
+    }
 
     return (
       <div
@@ -47,9 +65,7 @@ const TouchRipple = React.createClass({
         onMouseLeave={this._handleMouseLeave}
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}>
-        <ReactTransitionGroup style={mergedStyles}>
-          {this.state.ripples}
-        </ReactTransitionGroup>
+        {rippleGroup}
         {children}
       </div>
     );
@@ -77,6 +93,7 @@ const TouchRipple = React.createClass({
     ));
 
     this.setState({
+      hasRipples: true,
       nextKey: this.state.nextKey + 1,
       ripples: ripples,
     });

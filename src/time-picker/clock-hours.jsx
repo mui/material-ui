@@ -154,7 +154,8 @@ let ClockHours = React.createClass({
 
     return hours.map((hour) => {
       let isSelected = this._getSelected() === hour;
-      return <ClockNumber key={hour} style={style} isSelected={isSelected} type="hour" value={hour} />;
+      return <ClockNumber key={hour} style={style} isSelected={isSelected} type="hour"
+        value={hour} />;
     });
   },
 
@@ -183,7 +184,8 @@ let ClockHours = React.createClass({
       <div ref="clock" style={this.mergeAndPrefix(styles.root)} >
         <ClockPointer hasSelected={true} value={hours} type="hour" />
         {numbers}
-        <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} onTouchMove={this.handleTouchMove} onTouchEnd={this.handleTouchEnd} onMouseUp={this.handleUp} onMouseMove={this.handleMove}/>
+        <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} onTouchMove={this.handleTouchMove}
+          onTouchEnd={this.handleTouchEnd} onMouseUp={this.handleUp} onMouseMove={this.handleMove}/>
       </div>
     );
   },

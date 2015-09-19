@@ -1,6 +1,10 @@
 let React = require('react');
+let StylePropable = require('../mixins/style-propable');
+
 
 let CardActions = React.createClass({
+  mixins: [StylePropable],
+
   getStyles() {
     return {
       root: {
@@ -24,8 +28,10 @@ let CardActions = React.createClass({
       });
     });
 
+    let mergedStyles = this.mergeAndPrefix(styles.root, this.props.style);
+
     return (
-      <div {...this.props} style={styles.root}>
+      <div {...this.props} style={mergedStyles}>
         {children}
       </div>
     );

@@ -1,0 +1,3 @@
+--require chai
+--reporter html
+--ui bdd

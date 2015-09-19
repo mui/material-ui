@@ -3,46 +3,13 @@ let { Avatar, FontIcon, List, ListItem, Styles } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let FileFolder = require('svg-icons/file/folder');
 let { Colors } = Styles;
+let Code = require('avatars-code');
+let CodeExample = require('../../code-example/code-example');
+
 
 class AvatarsPage extends React.Component {
 
   render() {
-
-    let code = `
-      //image avatar
-      <Avatar src="images/uxceo-128.jpg" />
-
-      //SvgIcon avatar
-      <Avatar icon={<FileFolder />} />
-
-      //SvgIcon avatar with custom colors
-      <Avatar
-        icon={<FileFolder />}
-        color={Colors.orange200}
-        backgroundColor={Colors.pink400} />
-
-      //FontIcon avatar
-      <Avatar
-        icon={
-          <FontIcon className="muidocs-icon-communication-voicemail" />
-        } />
-
-      //FontIcon avatar with custom colors
-      <Avatar
-        icon={<FontIcon className="muidocs-icon-communication-voicemail" />}
-        color={Colors.blue300}
-        backgroundColor={Colors.indigo900} />
-
-      //Letter avatar
-      <Avatar>A</Avatar>
-
-      //Letter avatar with custom colors
-      <Avatar
-        color={Colors.deepOrange300}
-        backgroundColor={Colors.purple500}>
-        A
-      </Avatar>
-    `;
 
     let desc = null;
 
@@ -101,20 +68,19 @@ class AvatarsPage extends React.Component {
     return (
       <ComponentDoc
         name="Avatars"
-        code={code}
         desc={desc}
         componentInfo={componentInfo}>
-
-        <List>
-          <ListItem leftAvatar={imageAvatar} disabled={true}>Image Avatar</ListItem>
-          <ListItem leftAvatar={svgAvatar} disabled={true}>SvgIcon Avatar</ListItem>
-          <ListItem leftAvatar={customSvgAvatar} disabled={true}>SvgIcon Avatar with custom colors</ListItem>
-          <ListItem leftAvatar={fontAvatar} disabled={true}>FontIcon Avatar</ListItem>
-          <ListItem leftAvatar={customFontAvatar} disabled={true}>FontIcon Avatar with custom colors</ListItem>
-          <ListItem leftAvatar={letterAvatar} disabled={true}>Letter Avatar</ListItem>
-          <ListItem leftAvatar={customLetterAvatar} disabled={true}>Letter Avatar with custom colors</ListItem>
-        </List>
-
+        <CodeExample code={Code}>
+          <List>
+            <ListItem leftAvatar={imageAvatar} disabled={true}>Image Avatar</ListItem>
+            <ListItem leftAvatar={svgAvatar} disabled={true}>SvgIcon Avatar</ListItem>
+            <ListItem leftAvatar={customSvgAvatar} disabled={true}>SvgIcon Avatar with custom colors</ListItem>
+            <ListItem leftAvatar={fontAvatar} disabled={true}>FontIcon Avatar</ListItem>
+            <ListItem leftAvatar={customFontAvatar} disabled={true}>FontIcon Avatar with custom colors</ListItem>
+            <ListItem leftAvatar={letterAvatar} disabled={true}>Letter Avatar</ListItem>
+            <ListItem leftAvatar={customLetterAvatar} disabled={true}>Letter Avatar with custom colors</ListItem>
+          </List>
+        </CodeExample>
       </ComponentDoc>
     );
 

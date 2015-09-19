@@ -1,4 +1,4 @@
-let React = require('react');
+let React = require('react/addons');
 let WindowListenable = require('./mixins/window-listenable');
 let CssEvent = require('./utils/css-event');
 let KeyCode = require('./utils/key-code');
@@ -44,7 +44,9 @@ let TransitionItem = React.createClass({
       },
     });
 
-    setTimeout(callback, 450); // matches transition duration
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }.bind(this), 450); // matches transition duration
   },
 
   render() {
@@ -323,7 +325,7 @@ let Dialog = React.createClass({
       // Force a height if the dialog is taller than clientHeight
       if (this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) {
         let styles = this.getStyles();
-        let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + paddingTop + 64);
+        let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + 64);
 
         if (this.props.title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
         if (this.props.actions) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
