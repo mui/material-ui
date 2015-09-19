@@ -57,6 +57,10 @@ let ThemeManager = () => {
     setComponentThemes(overrides) {
       this.component = Extend(this.component, overrides);
     },
+
+    setIsRtl(isRtl) {
+      this.isRtl = !! isRtl;
+    },
   };
 };
 

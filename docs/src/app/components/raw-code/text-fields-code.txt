@@ -10,6 +10,9 @@
   underlineStyle={{borderColor:Colors.green500}}
   onChange={this._handleInputChange} />
 <TextField
+  hintText="Custom Underline Focus Color"
+  underlineFocusStyle={{borderColor: Colors.amber900}} />
+<TextField
   hintText="Hint Text"
   valueLink={this.linkState('valueLinkValue')} />
 <TextField
@@ -48,6 +51,13 @@
 <SelectField
   valueLink={this.linkState('selectValueLinkValue')}
   floatingLabelText="Float Label Text"
+  valueMember="id"
+  displayMember="name"
+  menuItems={arbitraryArrayMenuItems} />
+<SelectField
+  valueLink={this.linkState('selectValueLinkValue2')}
+  floatingLabelText="Float Custom Label Text"
+  floatingLabelStyle={{color: "red"}}
   valueMember="id"
   displayMember="name"
   menuItems={arbitraryArrayMenuItems} />

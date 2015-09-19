@@ -43,9 +43,9 @@ module.exports = {
   singleHyphened(key) {
     let str = this.single(key);
 
-    return !str ? key : str.replace(/([A-Z])/g, (str,m1) => {
+    return !str ? key : str.replace(/([A-Z])/g, (str, m1) => {
       return '-' + m1.toLowerCase();
-    }).replace(/^ms-/,'-ms-');
+    }).replace(/^ms-/, '-ms-');
   },
 
 };

@@ -31,7 +31,9 @@ let SlideInChild = React.createClass({
     style.opacity = '0';
     AutoPrefix.set(style, 'transform', 'translate3d(' + x + ',' + y + ',0)');
 
-    setTimeout(callback, this.props.enterDelay);
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }.bind(this), this.props.enterDelay);
   },
 
   componentDidEnter() {

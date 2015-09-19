@@ -31,7 +31,7 @@ let TimePicker = React.createClass({
 
   getDefaultProps() {
     return {
-      defaultTime: emptyTime,
+      defaultTime: null,
       format: 'ampm',
       pedantic: false,
     };
@@ -39,7 +39,7 @@ let TimePicker = React.createClass({
 
   getInitialState() {
     return {
-      time: this.props.defaultTime,
+      time: this.props.defaultTime || emptyTime,
       dialogTime: new Date(),
     };
   },

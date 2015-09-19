@@ -4,6 +4,8 @@ let ComponentDoc = require('../../component-doc');
 
 let { StyleResizable } = Mixins;
 let Code = require('paper-code');
+let CodeExample = require('../../code-example/code-example');
+
 
 let PaperPage = React.createClass ({
 
@@ -81,21 +83,20 @@ let PaperPage = React.createClass ({
     return (
       <ComponentDoc
         name="Paper"
-        code={Code}
         componentInfo={componentInfo}>
-
-        <div>
-          <ClearFix style={groupStyle}>
-            {this._getGroupDefault()}
-          </ClearFix>
-          <ClearFix style={groupStyle}>
-            {this._getGroupRounded()}
-          </ClearFix>
-          <ClearFix style={groupStyle}>
-            {this._getGroupCircle()}
-          </ClearFix>
-        </div>
-
+        <CodeExample code={Code}>
+          <div>
+            <ClearFix style={groupStyle}>
+              {this._getGroupDefault()}
+            </ClearFix>
+            <ClearFix style={groupStyle}>
+              {this._getGroupRounded()}
+            </ClearFix>
+            <ClearFix style={groupStyle}>
+              {this._getGroupCircle()}
+            </ClearFix>
+          </div>
+        </CodeExample>
       </ComponentDoc>
     );
   },

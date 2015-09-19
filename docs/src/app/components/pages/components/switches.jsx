@@ -351,34 +351,37 @@ class SwitchesPage extends React.Component {
         <Tab label="Checkbox">
           <ComponentDoc
             name=""
-            code={CheckboxCode}
             desc={this.desc}
             componentInfo={this.componentInfo.slice(0,3)}>
-            <ClearFix elementType="form">
-              {this._getCheckboxExample()}
-            </ClearFix>
+            <CodeExample code={CheckboxCode}>
+              <ClearFix elementType="form">
+                {this._getCheckboxExample()}
+              </ClearFix>
+            </CodeExample>
           </ComponentDoc>
         </Tab>
         <Tab label="RadioButtons">
           <ComponentDoc
             name=""
-            code={RadioButtonCode}
             desc={this.desc}
             componentInfo={this.componentInfo.slice(3,7)}>
-            <ClearFix elementType="form">
-              {this._getRadioButtonExample()}
-            </ClearFix>
+            <CodeExample code={RadioButtonCode}>
+              <ClearFix elementType="form">
+                {this._getRadioButtonExample()}
+              </ClearFix>
+            </CodeExample>
           </ComponentDoc>
         </Tab>
         <Tab label="Toggle">
           <ComponentDoc
             name=""
-            code={ToggleCode}
             desc={this.desc}
             componentInfo={this.componentInfo.slice(7)}>
-            <ClearFix elementType="form">
-              {this._getToggleExample()}
-            </ClearFix>
+            <CodeExample code={ToggleCode}>
+              <ClearFix elementType="form">
+                {this._getToggleExample()}
+              </ClearFix>
+            </CodeExample>
           </ComponentDoc>
         </Tab>
       </Tabs>

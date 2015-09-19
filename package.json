@@ -1,7 +1,7 @@
 {
   "name": "material-ui",
   "author": "Call-em-all Engineering Team",
-  "version": "0.10.4",
+  "version": "0.11.1",
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
@@ -30,7 +30,6 @@
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
-    "classnames": "^1.2.0",
     "react-draggable2": "^0.5.1"
   },
   "peerDependencies": {
@@ -45,11 +44,11 @@
     "babelify": "^6.1.3",
     "browserify-istanbul": "^0.2.1",
     "chai": "^3.2.0",
-    "eslint": "^0.23.0",
-    "eslint-loader": "^0.14.2",
+    "eslint": "^1.1.0",
+    "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^3.2.2",
     "gulp": "^3.9.0",
-    "gulp-eslint": "^0.15.0",
+    "gulp-eslint": "^1.0.0",
     "html-webpack-plugin": "^1.6.1",
     "karma": "^0.13.3",
     "karma-browserify": "^4.2.1",

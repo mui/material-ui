@@ -51,7 +51,7 @@ let DayButton = React.createClass({
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
         position: 'relative',
         float: 'left',
-        width: 36,
+        width: 41,
         padding: '4px 2px',
       },
 
@@ -62,8 +62,9 @@ let DayButton = React.createClass({
 
       buttonState: {
         position: 'absolute',
-        height: 32,
-        width: 32,
+        height: 36,
+        width: 36,
+        top: 2,
         opacity: 0,
         borderRadius: '50%',
         transform: 'scale(0)',

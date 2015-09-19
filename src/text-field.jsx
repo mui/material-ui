@@ -29,7 +29,10 @@ let TextField = React.createClass({
     floatingLabelStyle: React.PropTypes.object,
     floatingLabelText: React.PropTypes.string,
     fullWidth: React.PropTypes.bool,
-    hintText: React.PropTypes.string,
+    hintText: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.element,
+    ]),
     id: React.PropTypes.string,
     inputStyle: React.PropTypes.object,
     multiLine: React.PropTypes.bool,
@@ -41,6 +44,8 @@ let TextField = React.createClass({
     rows: React.PropTypes.number,
     type: React.PropTypes.string,
     underlineStyle: React.PropTypes.object,
+    underlineFocusStyle: React.PropTypes.object,
+    underlineDisabledStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -48,6 +53,14 @@ let TextField = React.createClass({
       fullWidth: false,
       type: 'text',
       rows: 1,
+    };
+  },
+
+  getContextProps() {
+    const theme = this.context.muiTheme;
+
+    return {
+      isRtl: theme.isRtl,
     };
   },
 
@@ -97,6 +110,7 @@ let TextField = React.createClass({
   getStyles() {
     let props = this.props;
     let theme = this.getTheme();
+    const contextProps = this.getContextProps();
 
     let styles = {
       root: {
@@ -157,10 +171,17 @@ let TextField = React.createClass({
         bottom: 8,
         borderBottom: 'dotted 2px ' + theme.disabledTextColor,
       },
+      underlineFocus: {
+        borderBottom: 'solid 2px',
+        borderColor: theme.focusColor,
+        transform: 'scaleX(0)',
+        transition: Transitions.easeOut(),
+      },
     };
 
     styles.error = this.mergeAndPrefix(styles.error, props.errorStyle);
     styles.underline = this.mergeAndPrefix(styles.underline, props.underlineStyle);
+    styles.underlineAfter = this.mergeAndPrefix(styles.underlineAfter, props.underlineDisabledStyle);
 
     styles.floatingLabel = this.mergeStyles(styles.hint, {
       lineHeight: '22px',
@@ -168,7 +189,7 @@ let TextField = React.createClass({
       bottom: 'none',
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
-      transformOrigin: 'left top',
+      transformOrigin: contextProps.isRtl ? 'right top' : 'left top',
     });
 
     styles.textarea = this.mergeStyles(styles.input, {
@@ -178,12 +199,7 @@ let TextField = React.createClass({
       font: 'inherit',
     });
 
-    styles.focusUnderline= this.mergeStyles(styles.underline, {
-      borderBottom: 'solid 2px',
-      borderColor: theme.focusColor,
-      transform: 'scaleX(0)',
-      transition: Transitions.easeOut(),
-    });
+    styles.focusUnderline = this.mergeStyles(styles.underline, styles.underlineFocus, props.underlineFocusStyle);
 
     if (this.state.isFocused) {
       styles.floatingLabel.color = theme.focusColor;

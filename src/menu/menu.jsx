@@ -41,7 +41,7 @@ let NestedMenuItem = React.createClass({
 
   getInitialState() {
     return {
-      open: false ,
+      open: false,
       activeIndex: 0,
     };
   },
@@ -185,7 +185,7 @@ let NestedMenuItem = React.createClass({
   },
 
   _handleMouseOut(e) {
-    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e,this.props.index);
+    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e, this.props.index);
   },
 
 });

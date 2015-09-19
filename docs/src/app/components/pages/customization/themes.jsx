@@ -3,6 +3,7 @@ let mui = require('material-ui');
 let CodeBlock = require('../../code-example/code-block');
 let ComponentDoc = require('../../component-doc');
 let ComponentInfo = require('../../component-info');
+let ComponentExample = require('../../code-example/code-example');
 
 let {
   Checkbox,
@@ -260,7 +261,9 @@ let ThemesPage = React.createClass({
           code={code}
           desc={desc}
           componentInfo={info}>
-              {this.getThemeExamples()}
+          <ComponentExample code={code}>
+            {this.getThemeExamples()}
+          </ComponentExample>
         </ComponentDoc>
 
 
