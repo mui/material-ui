@@ -330,7 +330,7 @@ let Slider = React.createClass({
 
   _alignValue(val) {
     let { step, min } = this.props;
-    let alignValue = Math.round((val - min) / step) * step;
+    let alignValue = Math.round((val - min) / step) * step + min;
     return parseFloat(alignValue.toFixed(5));
   },
 
@@ -407,9 +407,6 @@ let Slider = React.createClass({
   _dragX(e, pos) {
     let max = React.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
-    if (pos === this.props.min) {
-      return this._updateWithChangeEvent(e, 0);
-    }
     this._updateWithChangeEvent(e, pos / max);
   },
 
