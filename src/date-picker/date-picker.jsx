@@ -9,7 +9,7 @@ let TextField = require('../text-field');
 let DatePicker = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
-
+  
   propTypes: {
     autoOk: React.PropTypes.bool,
     defaultDate: React.PropTypes.object,

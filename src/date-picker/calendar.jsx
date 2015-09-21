@@ -10,7 +10,8 @@ let CalendarToolbar = require('./calendar-toolbar');
 let DateDisplay = require('./date-display');
 let SlideInTransitionGroup = require('../transition-groups/slide-in');
 let ClearFix = require('../clearfix');
-
+let Counterpart = require('counterpart');
+let Translate   = require('react-translate-component');
 
 let Calendar = React.createClass({
 
@@ -145,13 +146,13 @@ let Calendar = React.createClass({
           <ClearFix
             elementType="ul"
             style={styles.weekTitle}>
-            <li style={styles.weekTitleDay}>S</li>
-            <li style={styles.weekTitleDay}>M</li>
-            <li style={styles.weekTitleDay}>T</li>
-            <li style={styles.weekTitleDay}>W</li>
-            <li style={styles.weekTitleDay}>T</li>
-            <li style={styles.weekTitleDay}>F</li>
-            <li style={styles.weekTitleDay}>S</li>
+            <li style={styles.weekTitleDay}><Translate content="days.sunday.firstLetter"/></li>
+            <li style={styles.weekTitleDay}><Translate content="days.monday.firstLetter"/></li>
+            <li style={styles.weekTitleDay}><Translate content="days.tuesday.firstLetter"/></li>
+            <li style={styles.weekTitleDay}><Translate content="days.wednesday.firstLetter"/></li>
+            <li style={styles.weekTitleDay}><Translate content="days.thursday.firstLetter"/></li>
+            <li style={styles.weekTitleDay}><Translate content="days.friday.firstLetter"/></li>
+            <li style={styles.weekTitleDay}><Translate content="days.saturday.firstLetter"/></li>
           </ClearFix>
 
           <SlideInTransitionGroup

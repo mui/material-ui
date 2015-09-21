@@ -15,8 +15,9 @@
     "codemirror": "^5.5.0"
   },
   "devDependencies": {
+    "json-loader": "^0.5.3",
     "raw-loader": "^0.5.1",
-    "webpack": "^1.11.0",
-    "webpack-dev-server": "^1.10.1"
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.11.0"
   }
 }
