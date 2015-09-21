@@ -92,6 +92,12 @@ export default class DropDownMenuPage extends React.Component {
             header: 'default: false',
             desc: 'Disables the menu.',
           },
+          {
+            name: 'openImmediately',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'Set to true to have the DropDownMenu automatically open on mount.',
+          },
         ],
       },
       {
