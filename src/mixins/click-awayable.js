@@ -22,7 +22,7 @@ module.exports = {
     if (event.target !== el &&
         !Dom.isDescendant(el, event.target) &&
         document.documentElement.contains(event.target)) {
-      if (this.componentClickAway) this.componentClickAway();
+      if (this.componentClickAway) this.componentClickAway(event);
     }
   },
 
