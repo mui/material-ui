@@ -19,7 +19,7 @@ let { AppBar,
 let RouteHandler = Router.RouteHandler;
 let { Colors, Spacing, Typography } = Styles;
 let ThemeManager = new Styles.ThemeManager();
-LocaleManager.setLocale('es');
+LocaleManager.setLocale('en');
 
 class Master extends React.Component {
 
