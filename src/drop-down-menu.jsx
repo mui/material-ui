@@ -46,6 +46,7 @@ const DropDownMenu = React.createClass({
     iconStyle:React.PropTypes.object,
     labelStyle:React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
+    openImmediately: React.PropTypes.bool,
   },
 
   getDefaultProps() {
@@ -54,12 +55,13 @@ const DropDownMenu = React.createClass({
       disabled: false,
       valueMember: 'payload',
       displayMember: 'text',
+      openImmediately: false,
     };
   },
 
   getInitialState() {
     return {
-      open: false,
+      open: this.props.openImmediately,
       selectedIndex: this._isControlled() ? null : (this.props.selectedIndex || 0),
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
