@@ -26,6 +26,11 @@ const RadioButton = React.createClass({
     iconStyle: React.PropTypes.object,
 
     /**
+    * Overrides the inline-styles of the input element.
+    */
+    inputStyle: React.PropTypes.object,
+
+    /**
      * Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
      */
     /* Where the label will be placed next to the radio button. */
