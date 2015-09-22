@@ -13,12 +13,13 @@ let { AppBar,
       Styles,
       Tab,
       Tabs,
-      Paper} = require('material-ui');
+      Paper,
+      LocaleManager } = require('material-ui');
 
 let RouteHandler = Router.RouteHandler;
 let { Colors, Spacing, Typography } = Styles;
 let ThemeManager = new Styles.ThemeManager();
-
+LocaleManager.setLocale('en');
 
 class Master extends React.Component {
 
@@ -28,7 +29,8 @@ class Master extends React.Component {
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme()
+      muiTheme: ThemeManager.getCurrentTheme(),
+      muiLocale: LocaleManager.getLocale()
     }
   }
 
@@ -254,7 +256,8 @@ Master.contextTypes = {
 };
 
 Master.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: React.PropTypes.object,
+  muiLocale: React.PropTypes.string
 };
 
 module.exports = Master;

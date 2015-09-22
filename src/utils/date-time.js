@@ -1,4 +1,13 @@
+let translate = require('counterpart');
+
+translate.registerTranslations('en', require('../locales/en'));
+translate.registerTranslations('es', require('../locales/es'));
+
 module.exports = {
+
+  setLocale(l) {
+    translate.setLocale(l);
+  },
 
   addDays(d, days) {
     let newDate = this.clone(d);
@@ -11,7 +20,7 @@ module.exports = {
     newDate.setMonth(d.getMonth() + months);
     return newDate;
   },
-
+  
   addYears(d, years) {
     let newDate = this.clone(d);
     newDate.setFullYear(d.getFullYear() + years);
@@ -44,49 +53,49 @@ module.exports = {
   getFullMonth(d) {
     let month = d.getMonth();
     switch (month) {
-      case 0: return 'January';
-      case 1: return 'February';
-      case 2: return 'March';
-      case 3: return 'April';
-      case 4: return 'May';
-      case 5: return 'June';
-      case 6: return 'July';
-      case 7: return 'August';
-      case 8: return 'September';
-      case 9: return 'October';
-      case 10: return 'November';
-      case 11: return 'December';
+      case 0: return translate('months.full.january');
+      case 1: return translate('months.full.february');
+      case 2: return translate('months.full.march');
+      case 3: return translate('months.full.april');
+      case 4: return translate('months.full.may');
+      case 5: return translate('months.full.june');
+      case 6: return translate('months.full.july');
+      case 7: return translate('months.full.august');
+      case 8: return translate('months.full.september');
+      case 9: return translate('months.full.october');
+      case 10: return translate('months.full.november');
+      case 11: return translate('months.full.december');
     }
   },
 
   getShortMonth(d) {
     let month = d.getMonth();
     switch (month) {
-      case 0: return 'Jan';
-      case 1: return 'Feb';
-      case 2: return 'Mar';
-      case 3: return 'Apr';
-      case 4: return 'May';
-      case 5: return 'Jun';
-      case 6: return 'Jul';
-      case 7: return 'Aug';
-      case 8: return 'Sep';
-      case 9: return 'Oct';
-      case 10: return 'Nov';
-      case 11: return 'Dec';
+      case 0: return translate('months.short.jan');
+      case 1: return translate('months.short.feb');
+      case 2: return translate('months.short.mar');
+      case 3: return translate('months.short.apr');
+      case 4: return translate('months.short.may');
+      case 5: return translate('months.short.jun');
+      case 6: return translate('months.short.jul');
+      case 7: return translate('months.short.aug');
+      case 8: return translate('months.short.sep');
+      case 9: return translate('months.short.oct');
+      case 10: return translate('months.short.nov');
+      case 11: return translate('months.short.dec');
     }
   },
 
   getDayOfWeek(d) {
     let dow = d.getDay();
     switch (dow) {
-      case 0: return 'Sun';
-      case 1: return 'Mon';
-      case 2: return 'Tue';
-      case 3: return 'Wed';
-      case 4: return 'Thu';
-      case 5: return 'Fri';
-      case 6: return 'Sat';
+      case 0: return translate('days.sunday.short');
+      case 1: return translate('days.monday.short');
+      case 2: return translate('days.tuesday.short');
+      case 3: return translate('days.wednesday.short');
+      case 4: return translate('days.thursday.short');
+      case 5: return translate('days.friday.short');
+      case 6: return translate('days.saturday.short');
     }
   },
 
@@ -112,10 +121,8 @@ module.exports = {
       for (let i = 0; i < emptyDays; i++) {
         week.unshift(null);
       }
-
       weekArray.push(week);
     }
-
     return weekArray;
   },
 

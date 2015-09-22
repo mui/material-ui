@@ -29,6 +29,7 @@ module.exports = {
   List: require('./lists/list'),
   ListDivider: require('./lists/list-divider'),
   ListItem: require('./lists/list-item'),
+  LocaleManager: require('./locales/LocaleManager'),
   Menu: require('./menu/menu'),
   MenuItem: require('./menu/menu-item'),
   Mixins: require('./mixins/'),
