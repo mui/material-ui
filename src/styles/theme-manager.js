@@ -31,6 +31,7 @@ let ThemeManager = () => {
 
     // Component gets updated to reflect palette changes.
     setTheme(newTheme) {
+      this.template = newTheme;
       this.setSpacing(newTheme.spacing);
       this.setContentFontFamily(newTheme.contentFontFamily);
       this.setPalette(newTheme.getPalette());
