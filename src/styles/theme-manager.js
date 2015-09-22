@@ -52,7 +52,7 @@ let ThemeManager = () => {
 
     setPalette(newPalette) {
       this.palette = Extend(this.palette, newPalette);
-      this.component = Extend(this.component, this.template.getComponentThemes(this.palette));
+      this.component = Extend(Types.LIGHT.getComponentThemes(this.palette), this.template.getComponentThemes(this.palette));
     },
 
     setComponentThemes(overrides) {
