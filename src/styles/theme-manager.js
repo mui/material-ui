@@ -31,10 +31,11 @@ let ThemeManager = () => {
 
     // Component gets updated to reflect palette changes.
     setTheme(newTheme) {
+      this.template = newTheme;
       this.setSpacing(newTheme.spacing);
       this.setContentFontFamily(newTheme.contentFontFamily);
       this.setPalette(newTheme.getPalette());
-      this.setComponentThemes(newTheme.getComponentThemes(newTheme.getPalette()));
+      this.setComponentThemes(newTheme.getComponentThemes(this.palette));
     },
 
     setSpacing(newSpacing) {
@@ -51,11 +52,11 @@ let ThemeManager = () => {
 
     setPalette(newPalette) {
       this.palette = Extend(this.palette, newPalette);
-      this.component = Extend(this.component, this.template.getComponentThemes(this.palette));
+      this.component = Extend(Types.LIGHT.getComponentThemes(this.palette), this.template.getComponentThemes(this.palette));
     },
 
     setComponentThemes(overrides) {
-      this.component = Extend(this.component, overrides);
+      this.component = Extend(Types.LIGHT.getComponentThemes(this.palette), overrides);
     },
 
     setIsRtl(isRtl) {
