@@ -41,6 +41,11 @@ module.exports = {
   Ripples: require('./ripples/'),
   SelectField: require('./select-field'),
   Slider: require('./slider'),
+  SideNav: require('./side-nav/side-nav'),
+  SideNavDivider: require('./side-nav/side-nav-divider'),
+  SideNavItem: require('./side-nav/side-nav-item'),
+  SideNavHeader: require('./side-nav/side-nav-header'),
+  SideNavSubheader: require('./side-nav/side-nav-subheader'),
   SvgIcon: require('./svg-icon'),
   Icons: {
     NavigationMenu: require('./svg-icons/navigation/menu'),

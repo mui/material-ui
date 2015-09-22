@@ -137,6 +137,16 @@ let LightTheme = {
         selectionColor: palette.primary3Color,
         rippleColor: palette.primary1Color,
       },
+      sideNav: {
+        width: spacing.desktopKeylineIncrement * 4,
+        backgroundColor: Colors.white,
+        headerItemBackgroundColor: palette.primary1Color,
+        headerItemTextColor: Colors.white,
+        subheaderItemTextColor: palette.primary2Color,
+        subheaderItemBackgroundColor: Colors.white,
+        navItemTextColor: Colors.black,
+        navItemActiveTextColor: palette.accent1Color,
+      },
       snackbar: {
         textColor: Colors.white,
         backgroundColor: '#323232',
