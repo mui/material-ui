@@ -35,7 +35,7 @@ let ThemeManager = () => {
       this.setSpacing(newTheme.spacing);
       this.setContentFontFamily(newTheme.contentFontFamily);
       this.setPalette(newTheme.getPalette());
-      this.setComponentThemes(newTheme.getComponentThemes(newTheme.getPalette()));
+      this.setComponentThemes(newTheme.getComponentThemes(this.palette));
     },
 
     setSpacing(newSpacing) {
