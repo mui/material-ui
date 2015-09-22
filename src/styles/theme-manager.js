@@ -56,7 +56,7 @@ let ThemeManager = () => {
     },
 
     setComponentThemes(overrides) {
-      this.component = Extend(this.component, overrides);
+      this.component = Extend(Types.LIGHT.getComponentThemes(this.palette), overrides);
     },
 
     setIsRtl(isRtl) {
