@@ -229,7 +229,7 @@ let Slider = React.createClass({
       this.state.focused && {outline: 'none'},
       (this.state.hovered || this.state.focused) && !this.props.disabled
         && styles.handleWhenPercentZeroAndFocused,
-      this.props.disabled && styles.handleWhenPercentZeroAndDisabled,
+      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
     ) : this.mergeAndPrefix(
       styles.handle,
       this.state.active && styles.handleWhenActive,
@@ -238,7 +238,7 @@ let Slider = React.createClass({
     );
     let rippleStyle = this.mergeAndPrefix(
       styles.ripple,
-      percent === 0 && styles.rippleWhenPercentZero,
+      percent === 0 && styles.rippleWhenPercentZero
     );
     let remainingStyles = styles.remaining;
     if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
