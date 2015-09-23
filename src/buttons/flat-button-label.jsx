@@ -41,7 +41,7 @@ const FlatButtonLabel = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
-  getContextProps() {
+  getRelevantContextKeys() {
     const theme = this.state.muiTheme;
 
     return {
@@ -55,11 +55,11 @@ const FlatButtonLabel = React.createClass({
       style,
     } = this.props;
 
-    const contextProps = this.getContextProps();
+    const contextKeys = this.getRelevantContextKeys();
 
     const mergedRootStyles = Styles.mergeAndPrefix({
       position: 'relative',
-      padding: '0 ' + contextProps.spacingDesktopGutterLess + 'px',
+      padding: '0 ' + contextKeys.spacingDesktopGutterLess + 'px',
     }, style);
 
     return (

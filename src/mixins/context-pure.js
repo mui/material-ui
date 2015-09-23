@@ -1,27 +1,28 @@
 const shallowEqual = require('../utils/shallow-equal');
 
-function contextPropsEqual(classObject, currentContext, nextContext) {
+function relevantContextKeysEqual(classObject, currentContext, nextContext) {
 
-  //Check if current object's context props changed
-  if (classObject.getContextProps) {
-    const currentContextProps = classObject.getContextProps(currentContext);
-    const nextContextProps = classObject.getContextProps(nextContext);
-    if (!shallowEqual(currentContextProps, nextContextProps)) {
+  //Get those keys from current object's context that we care
+  //about and check whether those keys have changed or not
+  if (classObject.getRelevantContextKeys) {
+    const currentContextKeys = classObject.getRelevantContextKeys(currentContext);
+    const nextContextKeys = classObject.getRelevantContextKeys(nextContext);
+    if (!shallowEqual(currentContextKeys, nextContextKeys)) {
       return false;
     }
   }
 
-  //Check if children context props changed
+  //Check if children context keys changed
   if (classObject.getChildrenClasses) {
     const childrenArray = classObject.getChildrenClasses();
     for (let i = 0; i < childrenArray.length; i++) {
-      if (!contextPropsEqual(childrenArray[i], currentContext, nextContext)) {
+      if (!relevantContextKeysEqual(childrenArray[i], currentContext, nextContext)) {
         return false;
       }
     }
   }
 
-  //Props are equal
+  //context keys are equal
   return true;
 }
 
@@ -38,7 +39,7 @@ module.exports = {
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.state, nextState) ||
-      (!staticTheme && !contextPropsEqual(this.constructor, this.context, nextContext))
+      (!staticTheme && !relevantContextKeysEqual(this.constructor, this.context, nextContext))
     );
   },
 

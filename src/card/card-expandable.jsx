@@ -11,9 +11,9 @@ const CardExpandable = React.createClass({
   mixins: [StylePropable],
 
   getStyles() {
-    const contextProps = this.getContextProps();
+    const contextKeys = this.getRelevantContextKeys();
 
-    const directionStyle = contextProps.isRtl ? {
+    const directionStyle = contextKeys.isRtl ? {
       left: 4,
     } : {
       right: 4,
@@ -49,7 +49,7 @@ const CardExpandable = React.createClass({
     };
   },
 
-  getContextProps() {
+  getRelevantContextKeys() {
     const theme = this.state.muiTheme;
 
     return {
