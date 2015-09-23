@@ -1,10 +1,11 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let EnhancedButton = require('../enhanced-button');
-let Transitions = require('../styles/transitions');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const EnhancedButton = require('../enhanced-button');
+const Transitions = require('../styles/transitions');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
-
-let ClockButton = React.createClass({
+const ClockButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -14,6 +15,30 @@ let ClockButton = React.createClass({
 
   propTypes: {
     position: React.PropTypes.oneOf(['left', 'right']),
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   getDefaultProps() {
@@ -30,7 +55,7 @@ let ClockButton = React.createClass({
   },
 
   getTheme() {
-    return this.context.muiTheme.component.timePicker;
+    return this.state.muiTheme.timePicker;
   },
 
   render() {

@@ -1,10 +1,10 @@
-let React = require('react/addons');
-let StylePropable = require('../mixins/style-propable');
-let AutoPrefix = require('../styles/auto-prefix');
-let Transitions = require('../styles/transitions');
+const React = require('react/addons');
+const StylePropable = require('../mixins/style-propable');
+const AutoPrefix = require('../styles/auto-prefix');
+const Transitions = require('../styles/transitions');
 
 
-let SlideInChild = React.createClass({
+const SlideInChild = React.createClass({
 
   mixins: [StylePropable],
 
@@ -33,7 +33,7 @@ let SlideInChild = React.createClass({
 
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), this.props.enterDelay);
+    }, this.props.enterDelay);
   },
 
   componentDidEnter() {
@@ -55,7 +55,7 @@ let SlideInChild = React.createClass({
 
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), 450);
+    }, 450);
   },
 
   render() {

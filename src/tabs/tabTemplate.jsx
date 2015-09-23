@@ -1,7 +1,7 @@
-let React = require('react');
+const React = require('react');
 
 
-let TabTemplate = React.createClass({
+const TabTemplate = React.createClass({
 
   render() {
     let styles = {

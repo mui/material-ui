@@ -1,11 +1,12 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let Transition = require('../styles/transitions');
-let DateTime = require('../utils/date-time');
-let EnhancedButton = require('../enhanced-button');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const Transition = require('../styles/transitions');
+const DateTime = require('../utils/date-time');
+const EnhancedButton = require('../enhanced-button');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
-
-let DayButton = React.createClass({
+const DayButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -20,6 +21,17 @@ let DayButton = React.createClass({
     disabled: React.PropTypes.bool,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   getDefaultProps() {
     return {
       selected: false,
@@ -30,11 +42,19 @@ let DayButton = React.createClass({
   getInitialState() {
     return {
       hover: false,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getTheme() {
-    return this.context.muiTheme.component.datePicker;
+    return this.state.muiTheme.datePicker;
   },
 
   render() {
@@ -57,7 +77,7 @@ let DayButton = React.createClass({
 
       label: {
         position: 'relative',
-        color: this.context.muiTheme.palette.textColor,
+        color: this.state.muiTheme.rawTheme.palette.textColor,
       },
 
       buttonState: {

@@ -1,10 +1,10 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let Colors = require('./styles/colors');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
+const Colors = require('./styles/colors');
 
 
-let Overlay = React.createClass({
+const Overlay = React.createClass({
 
   _originalBodyOverflow: '',
 

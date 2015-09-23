@@ -3,7 +3,8 @@ const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('./mixins/style-propable');
 const PropTypes = require('./utils/prop-types');
 const Transitions = require('./styles/transitions');
-
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 const Paper = React.createClass({
 
@@ -11,6 +12,30 @@ const Paper = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   propTypes: {
@@ -41,10 +66,10 @@ const Paper = React.createClass({
     } = this.props;
 
     const styles = {
-      backgroundColor: this.context.muiTheme.component.paper.backgroundColor,
+      backgroundColor: this.state.muiTheme.paper.backgroundColor,
       transition: transitionEnabled && Transitions.easeOut(),
       boxSizing: 'border-box',
-      fontFamily: this.context.muiTheme.contentFontFamily,
+      fontFamily: this.state.muiTheme.rawTheme.fontFamily,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       boxShadow: this._getZDepthShadows(zDepth),
       borderRadius: circle ? '50%' : rounded ? '2px' : '0px',

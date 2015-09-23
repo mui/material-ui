@@ -1,9 +1,9 @@
-let React = require('react');
-let Styles = require('../styles');
-let StylePropable = require('../mixins/style-propable');
+const React = require('react');
+const Styles = require('../styles');
+const StylePropable = require('../mixins/style-propable');
 
 
-let CardMedia = React.createClass({
+const CardMedia = React.createClass({
 
   mixins:[StylePropable],
 

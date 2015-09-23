@@ -1,30 +1,51 @@
-let React = require('react/addons');
-let WindowListenable = require('./mixins/window-listenable');
-let CssEvent = require('./utils/css-event');
-let KeyCode = require('./utils/key-code');
-let Transitions = require('./styles/transitions');
-let StylePropable = require('./mixins/style-propable');
-let FlatButton = require('./flat-button');
-let Overlay = require('./overlay');
-let Paper = require('./paper');
+const React = require('react/addons');
+const WindowListenable = require('./mixins/window-listenable');
+const CssEvent = require('./utils/css-event');
+const KeyCode = require('./utils/key-code');
+const Transitions = require('./styles/transitions');
+const StylePropable = require('./mixins/style-propable');
+const FlatButton = require('./flat-button');
+const Overlay = require('./overlay');
+const Paper = require('./paper');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
-let ReactTransitionGroup = React.addons.TransitionGroup;
+const ReactTransitionGroup = React.addons.TransitionGroup;
 
-let TransitionItem = React.createClass({
+const TransitionItem = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getInitialState() {
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
     return {
-      style: {},
+      muiTheme: this.state.muiTheme,
     };
   },
 
+  getInitialState() {
+    return {
+      style: {},
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   componentWillEnter(callback) {
-    let spacing = this.context.muiTheme.spacing;
+    let spacing = this.state.muiTheme.rawTheme.spacing;
 
     this.setState({
       style: {
@@ -46,7 +67,7 @@ let TransitionItem = React.createClass({
 
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), 450); // matches transition duration
+    }, 450); // matches transition duration
   },
 
   render() {
@@ -67,6 +88,17 @@ let Dialog = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   propTypes: {
@@ -103,7 +135,15 @@ let Dialog = React.createClass({
   getInitialState() {
     return {
       open: this.props.openImmediately || false,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   componentDidMount() {
@@ -119,7 +159,7 @@ let Dialog = React.createClass({
   },
 
   getStyles() {
-    let spacing = this.context.muiTheme.spacing;
+    let spacing = this.state.muiTheme.rawTheme.spacing;
 
     let main = {
       position: 'fixed',
@@ -154,7 +194,7 @@ let Dialog = React.createClass({
     let title = {
         margin: 0,
         padding: gutter + gutter + '0 ' + gutter,
-        color: this.context.muiTheme.palette.textColor,
+        color: this.state.muiTheme.rawTheme.palette.textColor,
         fontSize: 24,
         lineHeight: '32px',
         fontWeight: '400',
@@ -172,7 +212,7 @@ let Dialog = React.createClass({
       main: this.mergeAndPrefix(main, this.props.style),
       content: this.mergeAndPrefix(content, this.props.contentStyle),
       paper: {
-        background: this.context.muiTheme.canvasColor,
+        background: this.state.muiTheme.rawTheme.palette.canvasColor,
       },
       body: this.mergeStyles(body, this.props.bodyStyle),
       title: this.mergeStyles(title, this.props.titleStyle),
@@ -227,7 +267,7 @@ let Dialog = React.createClass({
   dismiss() {
     CssEvent.onTransitionEnd(this.getDOMNode(), () => {
       this.refs.dialogOverlay.allowScrolling();
-    }.bind(this));
+    });
 
     this.setState({ open: false });
     this._onDismiss();

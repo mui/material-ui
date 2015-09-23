@@ -1,8 +1,9 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
-
-let Tab = React.createClass({
+const Tab = React.createClass({
 
   mixins: [StylePropable],
 
@@ -19,11 +20,35 @@ let Tab = React.createClass({
     value: React.PropTypes.string,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   getDefaultProps(){
     return {
       onActive: () => {},
       onTouchTap: () => {},
     };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
@@ -48,7 +73,7 @@ let Tab = React.createClass({
       fontSize: 14,
       fontWeight: 500,
       whiteSpace: 'initial',
-      fontFamily: this.context.muiTheme.contentFontFamily,
+      fontFamily: this.state.muiTheme.rawTheme.fontFamily,
       boxSizing: 'border-box',
       width: width,
     }, style);
