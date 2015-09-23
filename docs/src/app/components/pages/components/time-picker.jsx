@@ -38,13 +38,40 @@ let TimePickerPage = React.createClass({
         infoArray: [
           {
             name: 'getTime',
-            header: 'DatePicker.getTime()',
+            header: 'TimePicker.getTime()',
             desc: 'Returns the current time value.'
           },
           {
             name: 'setTime',
-            header: 'DatePicker.setTime(t)',
+            header: 'TimePicker.setTime(t)',
             desc: 'Sets the time value to t, where t is a date object.'
+          }
+        ]
+      },
+      {
+        name: 'Events',
+        infoArray: [
+          {
+            name: 'onChange',
+            header: 'function(null, time)',
+            desc: 'Callback function that is fired when the time value ' +
+            'changes. The time value is passed in a Date Object.'
+          },
+          {
+            name: 'onFocus',
+            header: 'function(e)',
+            desc: 'Callback function that is fired when the timepicker field ' +
+                  'gains focus.'
+          },
+          {
+            name: 'onDismiss',
+            header: 'function()',
+            desc: 'Fired when the timepicker dialog is dismissed.'
+          },
+          {
+            name: 'onShow',
+            header: 'function()',
+            desc: 'Fired when the timepicker dialog is shown.'
           }
         ]
       }
