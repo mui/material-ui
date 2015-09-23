@@ -27,10 +27,12 @@ const ListItem = React.createClass({
     initiallyOpen: React.PropTypes.bool,
     innerDivStyle: React.PropTypes.object,
     insetChildren: React.PropTypes.bool,
-    innerStyle: React.PropTypes.object,
     leftAvatar: React.PropTypes.element,
+    leftAvatarStyle: React.PropTypes.object,
     leftCheckbox: React.PropTypes.element,
+    leftCheckboxStyle: React.PropTypes.object,
     leftIcon: React.PropTypes.element,
+    leftIconStyle: React.PropTypes.object,
     nestedLevel: React.PropTypes.number,
     nestedItems: React.PropTypes.arrayOf(React.PropTypes.element),
     onKeyboardFocus: React.PropTypes.func,
@@ -39,7 +41,9 @@ const ListItem = React.createClass({
     onNestedListToggle: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     rightAvatar: React.PropTypes.element,
+    rightAvatarStyle: React.PropTypes.object,
     rightIcon: React.PropTypes.element,
+    rightIconStyle: React.PropTypes.object,
     rightIconButton: React.PropTypes.element,
     rightToggle: React.PropTypes.element,
     primaryText: React.PropTypes.node,
@@ -221,7 +225,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         leftIcon,
-        this.mergeStyles(styles.icons, styles.leftIcon),
+        this.mergeStyles(styles.icons, styles.leftIcon, this.props.leftIconStyle),
       );
     }
 
@@ -229,7 +233,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         rightIcon,
-        this.mergeStyles(styles.icons, styles.rightIcon),
+        this.mergeStyles(styles.icons, styles.rightIcon, this.props.rightIconStyle),
       );
     }
 
@@ -237,7 +241,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         leftAvatar,
-        this.mergeStyles(styles.avatars, styles.leftAvatar),
+        this.mergeStyles(styles.avatars, styles.leftAvatar, this.props.leftAvatarStyle),
       );
     }
 
@@ -245,7 +249,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         rightAvatar,
-        this.mergeStyles(styles.avatars, styles.rightAvatar),
+        this.mergeStyles(styles.avatars, styles.rightAvatar, this.props.rightAvatarStyle),
       );
     }
 
@@ -253,7 +257,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         leftCheckbox,
-        this.mergeStyles(styles.leftCheckbox),
+        this.mergeStyles(styles.leftCheckbox, this.props.leftCheckboxStyle),
       );
     }
 
