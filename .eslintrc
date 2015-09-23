@@ -15,6 +15,7 @@
     "dot-location": [2, "property"],
     "no-undef": 2,
     "comma-spacing": 2,
+    "jsx-quotes": [2, "prefer-double"],
 
     "key-spacing": 0,
     "no-underscore-dangle": 0,
@@ -35,7 +36,6 @@
     "react/jsx-max-props-per-line": [2, {maximum: 4}],
     "react/jsx-no-duplicate-props": 2,
     "react/jsx-no-undef": 2,
-    "react/jsx-quotes": [2, "double"]
   },
   "parser": "babel-eslint",
   "plugins": [
