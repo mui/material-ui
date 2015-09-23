@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDOM = require('react-dom');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require("./styles/transitions");
 
@@ -30,8 +31,8 @@ let LinearProgress = React.createClass({
   },
 
   componentDidMount() {
-    let bar1 = React.findDOMNode(this.refs.bar1);
-    let bar2 = React.findDOMNode(this.refs.bar2);
+    let bar1 = ReactDOM.findDOMNode(this.refs.bar1);
+    let bar2 = ReactDOM.findDOMNode(this.refs.bar2);
 
     this._barUpdate(0, bar1, [
       [-35, 100],

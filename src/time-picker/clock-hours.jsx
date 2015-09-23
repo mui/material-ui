@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDOM = require('react-dom');
 let StylePropable = require('../mixins/style-propable');
 let ClockNumber = require("./clock-number");
 let ClockPointer = require("./clock-pointer");
@@ -51,7 +52,7 @@ let ClockHours = React.createClass({
   },
 
   componentDidMount() {
-    let clockElement = React.findDOMNode(this.refs.mask);
+    let clockElement = ReactDOM.findDOMNode(this.refs.mask);
 
     this.center = {
       x: clockElement.offsetWidth / 2,

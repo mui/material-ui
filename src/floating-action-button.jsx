@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDOM = require('react-dom');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
 let ColorManipulator = require('./utils/color-manipulator');
@@ -249,11 +250,11 @@ let FloatingActionButton = React.createClass({
   _handleKeyboardFocus(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
-      React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
     }
     else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
 

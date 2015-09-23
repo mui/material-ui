@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDOM = require('react-dom');
 let StylePropable = require('../mixins/style-propable');
 let WindowListenable = require('../mixins/window-listenable');
 let CssEvent = require('../utils/css-event');
@@ -149,7 +150,7 @@ let DatePickerDialog = React.createClass({
   },
 
   _handleDialogDismiss() {
-    CssEvent.onTransitionEnd(this.refs.dialog.getDOMNode(), () => {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this.refs.dialog), () => {
       this.setState({
         isCalendarActive: false,
         showMonthDayPicker: true,
@@ -160,7 +161,7 @@ let DatePickerDialog = React.createClass({
   },
 
   _handleDialogClickAway() {
-    CssEvent.onTransitionEnd(this.refs.dialog.getDOMNode(), () => {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this.refs.dialog), () => {
       this.setState({
         isCalendarActive: false,
         showMonthDayPicker: true,

@@ -1,4 +1,5 @@
-let React = require('react/addons');
+let React = require('react');
+let ReactDOM = require('react-dom');
 let StylePropable = require('../mixins/style-propable');
 let AutoPrefix = require('../styles/auto-prefix');
 let Transitions = require('../styles/transitions');
@@ -22,7 +23,7 @@ let SlideInChild = React.createClass({
   },
 
   componentWillEnter(callback) {
-    let style = React.findDOMNode(this).style;
+    let style = ReactDOM.findDOMNode(this).style;
     let x = this.props.direction === 'left' ? '100%' :
       this.props.direction === 'right' ? '-100%' : '0';
     let y = this.props.direction === 'up' ? '100%' :
@@ -37,13 +38,13 @@ let SlideInChild = React.createClass({
   },
 
   componentDidEnter() {
-    let style = React.findDOMNode(this).style;
+    let style = ReactDOM.findDOMNode(this).style;
     style.opacity = '1';
     AutoPrefix.set(style, 'transform', 'translate3d(0,0,0)');
   },
 
   componentWillLeave(callback) {
-    let style = React.findDOMNode(this).style;
+    let style = ReactDOM.findDOMNode(this).style;
     let direction = this.props.getLeaveDirection();
     let x = direction === 'left' ? '-100%' :
       direction === 'right' ? '100%' : '0';
