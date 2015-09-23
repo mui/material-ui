@@ -43,7 +43,7 @@ const CircleRipple = React.createClass({
     style.opacity = 0;
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), 2000);
+    }, 2000);
   },
 
   render() {
@@ -85,7 +85,7 @@ const CircleRipple = React.createClass({
     AutoPrefix.set(style, 'transform', 'scale(0)');
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), 0);
+    }, 0);
   },
 
 });

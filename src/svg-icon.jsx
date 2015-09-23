@@ -1,7 +1,8 @@
 const React = require('react');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
-
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 const SvgIcon = React.createClass({
 
@@ -19,9 +20,21 @@ const SvgIcon = React.createClass({
     viewBox: React.PropTypes.string,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   getInitialState() {
     return {
       hovered: false,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -31,6 +44,13 @@ const SvgIcon = React.createClass({
       onMouseLeave: () => {},
       viewBox: '0 0 24 24',
     };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
@@ -47,7 +67,7 @@ const SvgIcon = React.createClass({
 
     const offColor = color ? color :
       style && style.fill ? style.fill :
-      this.context.muiTheme.palette.textColor;
+      this.state.muiTheme.rawTheme.palette.textColor;
     const onColor = hoverColor ? hoverColor : offColor;
 
     const mergedStyles = this.mergeAndPrefix({

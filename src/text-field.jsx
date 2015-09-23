@@ -1,9 +1,11 @@
-let React = require('react');
-let ColorManipulator = require('./utils/color-manipulator');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let UniqueId = require('./utils/unique-id');
-let EnhancedTextarea = require('./enhanced-textarea');
+const React = require('react');
+const ColorManipulator = require('./utils/color-manipulator');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
+const UniqueId = require('./utils/unique-id');
+const EnhancedTextarea = require('./enhanced-textarea');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 /**
  * Check if a value is valid to be displayed inside an input.
@@ -15,7 +17,7 @@ function isValid(value) {
   return value || value === 0;
 }
 
-let TextField = React.createClass({
+const TextField = React.createClass({
 
   mixins: [StylePropable],
 
@@ -48,6 +50,17 @@ let TextField = React.createClass({
     underlineDisabledStyle: React.PropTypes.object,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   getDefaultProps() {
     return {
       fullWidth: false,
@@ -57,7 +70,7 @@ let TextField = React.createClass({
   },
 
   getContextProps() {
-    const theme = this.context.muiTheme;
+    const theme = this.state.muiTheme;
 
     return {
       isRtl: theme.isRtl,
@@ -71,19 +84,21 @@ let TextField = React.createClass({
       errorText: this.props.errorText,
       hasValue: isValid(props.value) || isValid(props.defaultValue) ||
         (props.valueLink && isValid(props.valueLink.value)),
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
   getTheme() {
-    return this.context.muiTheme.component.textField;
+    return this.state.muiTheme.textField;
   },
 
   componentDidMount() {
     this._uniqueId = UniqueId.generate();
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newState = {};
+    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     newState.errorText = nextProps.errorText;
     if (nextProps.children && nextProps.children.props) {
@@ -120,7 +135,7 @@ let TextField = React.createClass({
         height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
         display: 'inline-block',
         position: 'relative',
-        fontFamily: this.context.muiTheme.contentFontFamily,
+        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
         transition: Transitions.easeOut('200ms', 'height'),
       },
       error: {

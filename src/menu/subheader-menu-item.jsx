@@ -1,9 +1,10 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let Typography = require('../styles/typography');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const Typography = require('../styles/typography');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
-
-let SubheaderMenuItem = React.createClass({
+const SubheaderMenuItem = React.createClass({
 
   mixins: [StylePropable],
 
@@ -18,12 +19,36 @@ let SubheaderMenuItem = React.createClass({
       className: React.PropTypes.string,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getTheme() {
-    return this.context.muiTheme.component.menuSubheader;
+    return this.state.muiTheme.menuSubheader;
   },
 
   getSpacing() {
-    return this.context.muiTheme.spacing;
+    return this.state.muiTheme.rawTheme.spacing;
   },
 
   getStyles() {

@@ -1,11 +1,11 @@
-let React = require('react');
-let mui = require('material-ui');
-let CodeBlock = require('../../code-example/code-block');
-let ComponentDoc = require('../../component-doc');
-let ComponentInfo = require('../../component-info');
-let ComponentExample = require('../../code-example/code-example');
+const React = require('react');
+const mui = require('material-ui');
+const CodeBlock = require('../../code-example/code-block');
+const ComponentDoc = require('../../component-doc');
+const ComponentInfo = require('../../component-info');
+const ComponentExample = require('../../code-example/code-example');
 
-let {
+const {
   Checkbox,
   ClearFix,
   DatePicker,
@@ -28,34 +28,48 @@ let {
   TextField,
   Toggle
 } = mui;
-let { StylePropable, StyleResizable } = Mixins;
-let { Typography } = Styles;
-let ThemeManager = new Styles.ThemeManager();
 
+const { StylePropable, StyleResizable } = Mixins;
+const { Typography } = Styles;
+const ThemeManager = Styles.ThemeManager;
+const DefaultRawTheme = Styles.LightRawTheme;
+const DarkRawTheme = Styles.DarkRawTheme;
 
-let ThemesPage = React.createClass({
+const ThemesPage = React.createClass({
 
   mixins: [StylePropable, StyleResizable],
 
-  childContextTypes: {
+  contextTypes : {
     muiTheme: React.PropTypes.object
   },
 
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    }
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
-  getInitialState() {
+  getChildContext () {
     return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
       isThemeDark: false
     };
   },
 
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
 
   getStyles() {
-    let canvasColor = ThemeManager.getCurrentTheme().palette.canvasColor;
+    let canvasColor = this.state.muiTheme.rawTheme.palette.canvasColor;
     let styles = {
       group: {
         float: 'left',
@@ -684,12 +698,18 @@ let ThemesPage = React.createClass({
 
   // Toggles between light and dark themes
   onTabChange(tabIndex, tab) {
-    if (this.state.isThemeDark) {
-      ThemeManager.setTheme(ThemeManager.types.LIGHT);
-    } else {
-      ThemeManager.setTheme(ThemeManager.types.DARK);
+    let newMuiTheme = null;
+
+    if (!this.state.isThemeDark) {
+      newMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
+      
+    } 
+    else {
+      newMuiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
     }
-    this.setState({isThemeDark: !this.state.isThemeDark});
+
+    this.setState({muiTheme: newMuiTheme,
+      isThemeDark: !this.state.isThemeDark});
   },
 
   handleAction(e) {

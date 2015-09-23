@@ -1,6 +1,7 @@
 import React from 'react/addons';
 import ContextPure from 'mixins/context-pure';
 import ThemeManager from 'styles/theme-manager';
+import DefaultRawTheme from 'styles/raw-themes/light-raw-theme';
 
 const TestUtils = React.addons.TestUtils;
 const update = React.addons.update;
@@ -98,7 +99,7 @@ const ParentComponent = React.createClass({
 
   getChildContext() {
     return {
-      muiTheme: this.theme.getCurrentTheme(),
+      muiTheme: this.theme,
     };
   },
 
@@ -109,7 +110,7 @@ const ParentComponent = React.createClass({
   },
 
   componentWillMount() {
-    this.theme = new ThemeManager();
+    this.theme = ThemeManager.getMuiTheme(DefaultRawTheme);
     this.theme.static = this.props.staticTheme;
     this.theme.childThemeProp = 0;
     this.theme.grandChildThemeProp = 0;

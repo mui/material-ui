@@ -1,9 +1,9 @@
-let React = require('react');
-let Paper = require('../paper');
-let StylePropable = require('../mixins/style-propable');
-let CardExpandable = require('./card-expandable');
+const React = require('react');
+const Paper = require('../paper');
+const StylePropable = require('../mixins/style-propable');
+const CardExpandable = require('./card-expandable');
 
-let Card = React.createClass({
+const Card = React.createClass({
   mixins:[StylePropable],
 
   getInitialState() {
