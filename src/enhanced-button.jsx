@@ -7,6 +7,8 @@ const Events = require('./utils/events');
 const KeyCode = require('./utils/key-code');
 const FocusRipple = require('./ripples/focus-ripple');
 const TouchRipple = require('./ripples/touch-ripple');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 let styleInjected = false;
 let listening = false;
@@ -44,6 +46,17 @@ const EnhancedButton = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   propTypes: {
@@ -90,10 +103,14 @@ const EnhancedButton = React.createClass({
       isKeyboardFocused: !this.props.disabled &&
         this.props.keyboardFocused &&
         !this.props.disableKeyboardFocus,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
     if ((nextProps.disabled || nextProps.disableKeyboardFocus) &&
       this.state.isKeyboardFocused) {
       this.setState({isKeyboardFocused: false});
@@ -139,7 +156,7 @@ const EnhancedButton = React.createClass({
       boxSizing: 'border-box',
       display: 'inline-block',
       font: 'inherit',
-      fontFamily: this.context.muiTheme.contentFontFamily,
+      fontFamily: this.state.muiTheme.rawTheme.fontFamily,
       tapHighlightColor: Colors.transparent,
       appearance: linkButton ? null : 'button',
       cursor: disabled ? 'default' : 'pointer',

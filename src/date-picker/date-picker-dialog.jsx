@@ -1,14 +1,15 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let WindowListenable = require('../mixins/window-listenable');
-let CssEvent = require('../utils/css-event');
-let KeyCode = require('../utils/key-code');
-let Calendar = require('./calendar');
-let Dialog = require('../dialog');
-let FlatButton = require('../flat-button');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const WindowListenable = require('../mixins/window-listenable');
+const CssEvent = require('../utils/css-event');
+const KeyCode = require('../utils/key-code');
+const Calendar = require('./calendar');
+const Dialog = require('../dialog');
+const FlatButton = require('../flat-button');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
-
-let DatePickerDialog = React.createClass({
+const DatePickerDialog = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
@@ -29,6 +30,17 @@ let DatePickerDialog = React.createClass({
     showYearSelector: React.PropTypes.bool,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   windowListeners: {
     keyup: '_handleWindowKeyUp',
   },
@@ -37,7 +49,15 @@ let DatePickerDialog = React.createClass({
     return {
       isCalendarActive: false,
       showMonthDayPicker: true,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
@@ -50,8 +70,8 @@ let DatePickerDialog = React.createClass({
 
     let styles = {
       root: {
-        color: this.context.muiTheme.component.datePicker.calendarTextColor,
         fontSize: 14,
+        color: this.state.muiTheme.datePicker.calendarTextColor,
       },
 
       dialogContent: {

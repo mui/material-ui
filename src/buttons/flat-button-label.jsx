@@ -1,7 +1,8 @@
 const React = require('react/addons');
 const PureRenderMixin = React.addons.PureRenderMixin;
 const Styles = require('../utils/styles');
-
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
 const FlatButtonLabel = React.createClass({
 
@@ -16,11 +17,35 @@ const FlatButtonLabel = React.createClass({
     style: React.PropTypes.object,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getContextProps() {
-    const theme = this.context.muiTheme;
+    const theme = this.state.muiTheme;
 
     return {
-      spacingDesktopGutterLess: theme.spacing.desktopGutterLess,
+      spacingDesktopGutterLess: theme.rawTheme.spacing.desktopGutterLess,
     };
   },
 

@@ -1,13 +1,14 @@
-let React = require('react/addons');
-let ReactTransitionGroup = React.addons.TransitionGroup;
-let ClickAwayable = require('../mixins/click-awayable');
-let StylePropable = require('../mixins/style-propable');
-let Events = require('../utils/events');
-let PropTypes = require('../utils/prop-types');
-let Menu = require('../menus/menu');
+const React = require('react/addons');
+const ReactTransitionGroup = React.addons.TransitionGroup;
+const ClickAwayable = require('../mixins/click-awayable');
+const StylePropable = require('../mixins/style-propable');
+const Events = require('../utils/events');
+const PropTypes = require('../utils/prop-types');
+const Menu = require('../menus/menu');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
-
-let IconMenu = React.createClass({
+const IconMenu = React.createClass({
 
   mixins: [StylePropable, ClickAwayable],
 
@@ -45,12 +46,31 @@ let IconMenu = React.createClass({
     };
   },
 
-  getInitialState() {
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
     return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
       menuInitiallyKeyboardFocused: false,
       open: false,
     };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   componentWillUnmount() {
@@ -104,7 +124,7 @@ let IconMenu = React.createClass({
       onTouchTap: (e) => {
         this.open(Events.isKeyboard(e));
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
-      }.bind(this),
+      },
       ref: this.state.iconButtonRef,
     });
 

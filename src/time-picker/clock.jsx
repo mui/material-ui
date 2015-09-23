@@ -1,12 +1,12 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let TimeDisplay = require("./time-display");
-let ClockButton = require("./clock-button");
-let ClockHours = require("./clock-hours");
-let ClockMinutes = require("./clock-minutes");
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const TimeDisplay = require("./time-display");
+const ClockButton = require("./clock-button");
+const ClockHours = require("./clock-hours");
+const ClockMinutes = require("./clock-minutes");
 
 
-let Clock = React.createClass({
+const Clock = React.createClass({
 
   mixins: [StylePropable],
 
