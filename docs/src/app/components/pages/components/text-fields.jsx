@@ -12,10 +12,6 @@ let TextFieldsPage = React.createClass({
 
   getInitialState() {
     return {
-      errorText: 'This field is required.',
-      error2Text: 'This field must be numeric.',
-      floatingErrorText: 'This field is required.',
-      floatingError2Text: 'This field must be numeric.',
       propValue: 'Prop Value',
       floatingPropValue: 'Prop Value',
       valueLinkValue: 'Value Link',
@@ -55,6 +51,24 @@ let TextFieldsPage = React.createClass({
       {
         name: 'Props',
         infoArray: [
+          {
+            name: 'required',
+            type: 'boolean',
+            header: 'default: false',
+            desc: 'Whether the field is optional or not.'
+          },
+          {
+            name: 'requiredText',
+            type: 'string',
+            header: 'default: "This field is required."',
+            desc: 'The text string to use when the required field is empty.'
+          },
+          {
+            name: 'validations',
+            type: 'oneOfType [function, function[]]',
+            header: 'optional',
+            desc: 'A function or array of functions to determine whether the field is valid.'
+          },
           {
             name: 'errorStyle',
             type: 'object',
@@ -254,15 +268,18 @@ let TextFieldsPage = React.createClass({
               <TextField
                 style={styles.textfield}
                 hintText="Hint Text"
-                errorText={this.state.errorText}
-                onChange={this._handleErrorInputChange} /><br/>
+                required={true} /><br/>
               <TextField
                 style={styles.textfield}
                 hintText="Hint Text (custom error color)"
-                errorText={this.state.error2Text}
                 errorStyle={{color:Colors.orange500}}
-                onChange={this._handleError2InputChange}
+                validations={this._mustBeNumber}
                 defaultValue="Custom error color" /><br/>
+              <TextField
+                hintText="Custom Required Message"
+                floatingLabelText="Custom Required Message"
+                required={true}
+                requiredText='This field cannot be blank.' /><br/>
               <TextField
                 style={styles.textfield}
                 hintText="Disabled Hint Text"
@@ -320,15 +337,14 @@ let TextFieldsPage = React.createClass({
                 multiLine={true} /><br/>
               <TextField
                 hintText="Hint Text"
-                errorText={this.state.floatingErrorText}
-                floatingLabelText="Floating Label Text"
-                onChange={this._handleFloatingErrorInputChange} /><br/>
+                required={true}
+                floatingLabelText="Floating Label Text" /><br/>
               <TextField
                 hintText="Hint Text"
-                errorText={this.state.floatingError2Text}
+                errorText="This field must be numeric."
                 defaultValue="abc"
                 floatingLabelText="Floating Label Text"
-                onChange={this._handleFloating2ErrorInputChange} /><br/>
+                validations={this._mustBeNumber} /><br/>
               <TextField
                 hintText="Disabled Hint Text"
                 disabled={true}
@@ -349,32 +365,8 @@ let TextFieldsPage = React.createClass({
     );
   },
 
-  _handleErrorInputChange(e) {
-    this.setState({
-      errorText: e.target.value ? '' : 'This field is required.'
-    });
-  },
-
-  _handleError2InputChange(e) {
-    let value = e.target.value;
-    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
-    this.setState({
-      error2Text: isNumeric ? '' : 'This field must be numeric.'
-    });
-  },
-
-  _handleFloatingErrorInputChange(e) {
-    this.setState({
-      floatingErrorText: e.target.value ? '' : 'This field is required.'
-    });
-  },
-
-  _handleFloating2ErrorInputChange(e) {
-    let value = e.target.value;
-    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
-    this.setState({
-      floatingError2Text: isNumeric ? '' : 'This field must be numeric.'
-    });
+  _mustBeNumber(value) {
+    return !isNaN(value);
   },
 
   _handleInputChange(e) {
