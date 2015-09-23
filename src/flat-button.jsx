@@ -91,6 +91,8 @@ const FlatButton = React.createClass({
       primaryTextColor: flatButtonTheme.primaryTextColor,
       secondaryTextColor: flatButtonTheme.secondaryTextColor,
       textColor: flatButtonTheme.textColor,
+      textTransform: flatButtonTheme.textTransform ? flatButtonTheme.textTransform :
+                    (buttonTheme.textTransform ? buttonTheme.textTransform : 'uppercase'),
     };
   },
 
@@ -131,7 +133,7 @@ const FlatButton = React.createClass({
       transition: Transitions.easeOut(),
       fontSize: Typography.fontStyleButtonFontSize,
       letterSpacing: 0,
-      textTransform: 'uppercase',
+      textTransform: contextProps.textTransform,
       fontWeight: Typography.fontWeightMedium,
       borderRadius: 2,
       userSelect: 'none',

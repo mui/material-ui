@@ -106,6 +106,7 @@ const RaisedButton = React.createClass({
   },
 
   getStyles() {
+
     let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
     let styles = {
       root: {
@@ -135,7 +136,8 @@ const RaisedButton = React.createClass({
         opacity: 1,
         fontSize: '14px',
         letterSpacing: 0,
-        textTransform: 'uppercase',
+        textTransform: this.getTheme().textTransform ? this.getTheme().textTransform :
+                    (this.getThemeButton().textTransform ? this.getThemeButton().textTransform : 'uppercase'),
         fontWeight: Typography.fontWeightMedium,
         margin: 0,
         padding: '0px ' + this.state.muiTheme.rawTheme.spacing.desktopGutterLess + 'px',
