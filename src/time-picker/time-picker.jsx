@@ -19,7 +19,7 @@ let TimePicker = React.createClass({
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     pedantic: React.PropTypes.bool,
     onFocus: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
+    onClick: React.PropTypes.func,
     onChange: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
@@ -78,7 +78,7 @@ let TimePicker = React.createClass({
     let {
       format,
       onFocus,
-      onTouchTap,
+      onClick,
       onShow,
       onDismiss,
       ...other,
@@ -97,7 +97,7 @@ let TimePicker = React.createClass({
           ref="input"
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}
-          onTouchTap={this._handleInputTouchTap} />
+          onClick={this._handleInputClick} />
         <TimePickerDialog
           ref="dialogWindow"
           initialTime={this.state.dialogTime}
@@ -130,7 +130,7 @@ let TimePicker = React.createClass({
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
-  _handleInputTouchTap(e) {
+  _handleInputClick(e) {
     e.preventDefault();
 
     this.setState({
@@ -138,7 +138,7 @@ let TimePicker = React.createClass({
     });
 
     this.refs.dialogWindow.show();
-    if (this.props.onTouchTap) this.props.onTouchTap(e);
+    if (this.props.onClick) this.props.onClick(e);
   },
 });
 

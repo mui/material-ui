@@ -133,7 +133,7 @@ let NestedMenuItem = React.createClass({
           disabled={this.props.disabled}
           iconRightStyle={iconCustomArrowDropRight}
           iconRightClassName="muidocs-icon-custom-arrow-drop-right"
-          onTouchTap={this._onParentItemTap}>
+          onClick={this._onParentItemTap}>
             {this.props.text}
         </MenuItem>
         <Menu {...other}
@@ -331,7 +331,7 @@ let Menu = React.createClass({
         attribute,
         number,
         toggle,
-        onTouchTap,
+        onClick,
         ...other,
       } = menuItem;
 
@@ -410,7 +410,7 @@ let Menu = React.createClass({
               toggle={menuItem.toggle}
               onToggle={this.props.onToggle}
               disabled={isDisabled}
-              onTouchTap={this._onItemTap}
+              onClick={this._onItemTap}
               onMouseEnter={this._onItemActivated}
               onMouseLeave={this._onItemDeactivated}
               >

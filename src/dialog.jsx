@@ -215,7 +215,7 @@ let Dialog = React.createClass({
           ref="dialogOverlay"
           show={this.state.open}
           autoLockScrolling={false}
-          onTouchTap={this._handleOverlayTouchTap} />
+          onClick={this._handleOverlayClick} />
       </div>
     );
   },
@@ -244,11 +244,11 @@ let Dialog = React.createClass({
       key: key,
       secondary: true,
       onClick: actionJSON.onClick,
-      onTouchTap: () => {
-        if (actionJSON.onTouchTap) {
-          actionJSON.onTouchTap.call(undefined);
+      onClick: () => {
+        if (actionJSON.onClick) {
+          actionJSON.onClick.call(undefined);
         }
-        if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
+        if (!(actionJSON.onClick || actionJSON.onClick)) {
           this.dismiss();
         }
       },
@@ -343,7 +343,7 @@ let Dialog = React.createClass({
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
-  _handleOverlayTouchTap(e) {
+  _handleOverlayClick(e) {
     if (this.props.modal) {
       e.stopPropagation();
     }

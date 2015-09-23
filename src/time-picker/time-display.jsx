@@ -103,9 +103,9 @@ let TimeDisplay = React.createClass({
       <div {...other} style={this.mergeAndPrefix(styles.root)}>
         <div style={this.mergeAndPrefix(styles.box)}>
           <div style={this.mergeAndPrefix(styles.time)}>
-            <span style={this.mergeAndPrefix(styles.hour)} onTouchTap={this.props.onSelectHour}>{hour}</span>
+            <span style={this.mergeAndPrefix(styles.hour)} onClick={this.props.onSelectHour}>{hour}</span>
             <span>:</span>
-            <span style={this.mergeAndPrefix(styles.minute)} onTouchTap={this.props.onSelectMin}>{min}</span>
+            <span style={this.mergeAndPrefix(styles.minute)} onClick={this.props.onSelectMin}>{min}</span>
           </div>
 
          <span key={"affix"}>{this.props.affix.toUpperCase()}</span>

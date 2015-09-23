@@ -57,12 +57,12 @@ let TimePickerDialog = React.createClass({
         key={0}
         label="Cancel"
         secondary={true}
-        onTouchTap={this._handleCancelTouchTap} />,
+        onClick={this._handleCancelClick} />,
       <FlatButton
         key={1}
         label="OK"
         secondary={true}
-        onTouchTap={this._handleOKTouchTap} />,
+        onClick={this._handleOKClick} />,
     ];
 
     return (
@@ -91,11 +91,11 @@ let TimePickerDialog = React.createClass({
     this.refs.dialogWindow.dismiss();
   },
 
-  _handleCancelTouchTap() {
+  _handleCancelClick() {
     this.dismiss();
   },
 
-  _handleOKTouchTap() {
+  _handleOKClick() {
     this.dismiss();
     if (this.props.onAccept) {
       this.props.onAccept(this.refs.clock.getSelectedTime());
@@ -118,7 +118,7 @@ let TimePickerDialog = React.createClass({
     if (this.refs.dialogWindow.isOpen()) {
       switch (e.keyCode) {
         case KeyCode.ENTER:
-          this._handleOKTouchTap();
+          this._handleOKClick();
           break;
       }
     }

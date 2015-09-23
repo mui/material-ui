@@ -27,7 +27,7 @@ let Menu = React.createClass({
     maxHeight: React.PropTypes.number,
     multiple: React.PropTypes.bool,
     onEscKeyDown: React.PropTypes.func,
-    onItemTouchTap: React.PropTypes.func,
+    onItemClick: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
     openDirection: PropTypes.corners,
     selectedMenuItemStyle: React.PropTypes.object,
@@ -41,7 +41,7 @@ let Menu = React.createClass({
       autoWidth: true,
       maxHeight: null,
       onEscKeyDown: () => {},
-      onItemTouchTap: () => {},
+      onItemClick: () => {},
       onKeyDown: () => {},
       openDirection: 'bottom-left',
       zDepth: 1,
@@ -271,9 +271,9 @@ let Menu = React.createClass({
     return React.cloneElement(child, {
       desktop: desktop,
       focusState: focusState,
-      onTouchTap: (e) => {
-        this._handleMenuItemTouchTap(e, child);
-        if (child.props.onTouchTap) child.props.onTouchTap(e);
+      onClick: (e) => {
+        this._handleMenuItemClick(e, child);
+        if (child.props.onClick) child.props.onClick(e);
       },
       ref: isFocused ? 'focusedMenuItem' : null,
       style: mergedChildrenStyles,
@@ -370,7 +370,7 @@ let Menu = React.createClass({
     this.props.onKeyDown(e);
   },
 
-  _handleMenuItemTouchTap(e, item) {
+  _handleMenuItemClick(e, item) {
     let multiple = this.props.multiple;
     let valueLink = this.getValueLink(this.props);
     let menuValue = valueLink.value;
@@ -388,7 +388,7 @@ let Menu = React.createClass({
       valueLink.requestChange(e, itemValue);
     }
 
-    this.props.onItemTouchTap(e, item);
+    this.props.onItemClick(e, item);
   },
 
   _incrementKeyboardFocusIndex() {
