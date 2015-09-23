@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDom = require('react-dom');
 let KeyCode = require('./utils/key-code');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
@@ -57,13 +58,13 @@ let EnhancedSwitch = React.createClass({
   getEvenWidth(){
     return (
       parseInt(window
-        .getComputedStyle(React.findDOMNode(this.refs.root))
+        .getComputedStyle(this.refs.root)
         .getPropertyValue('width'), 10)
     );
   },
 
   componentDidMount() {
-    let inputNode = React.findDOMNode(this.refs.checkbox);
+    let inputNode = this.refs.checkbox;
     if (!this.props.switched || inputNode.checked !== this.props.switched) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
@@ -302,14 +303,14 @@ let EnhancedSwitch = React.createClass({
 
 
   isSwitched() {
-    return React.findDOMNode(this.refs.checkbox).checked;
+    return this.refs.checkbox.checked;
   },
 
   // no callback here because there is no event
   setSwitched(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
       this.props.onParentShouldUpdate(newSwitchedValue);
-      React.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
+      this.refs.checkbox = newSwitchedValue;
     }
     else if (process.env.NODE_ENV !== 'production') {
       let message = 'Cannot call set method while checked is defined as a property.';
@@ -318,7 +319,7 @@ let EnhancedSwitch = React.createClass({
   },
 
   getValue() {
-    return React.findDOMNode(this.refs.checkbox).value;
+    return this.refs.checkbox.value;
   },
 
   isKeyboardFocused() {
@@ -331,7 +332,7 @@ let EnhancedSwitch = React.createClass({
       isKeyboardFocused: false,
     });
 
-    let isInputChecked = React.findDOMNode(this.refs.checkbox).checked;
+    let isInputChecked = this.refs.checkbox.checked;
 
     if (!this.props.hasOwnProperty('checked')) {
       this.props.onParentShouldUpdate(isInputChecked);
