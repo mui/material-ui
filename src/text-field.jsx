@@ -69,7 +69,7 @@ const TextField = React.createClass({
     };
   },
 
-  getContextProps() {
+  getRelevantContextKeys() {
     const theme = this.state.muiTheme;
 
     return {
@@ -125,7 +125,7 @@ const TextField = React.createClass({
   getStyles() {
     let props = this.props;
     let theme = this.getTheme();
-    const contextProps = this.getContextProps();
+    const contextKeys = this.getRelevantContextKeys();
 
     let styles = {
       root: {
@@ -204,7 +204,7 @@ const TextField = React.createClass({
       bottom: 'none',
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
-      transformOrigin: contextProps.isRtl ? 'right top' : 'left top',
+      transformOrigin: contextKeys.isRtl ? 'right top' : 'left top',
     });
 
     styles.textarea = this.mergeStyles(styles.input, {

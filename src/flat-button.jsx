@@ -78,7 +78,7 @@ const FlatButton = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
-  getContextProps() {
+  getRelevantContextKeys() {
     const theme = this.state.muiTheme;
     const buttonTheme = theme.button;
     const flatButtonTheme = theme.flatButton;
@@ -115,12 +115,12 @@ const FlatButton = React.createClass({
       ...other,
       } = this.props;
 
-    const contextProps = this.getContextProps();
+    const contextKeys = this.getRelevantContextKeys();
 
-    const defaultColor = disabled ? contextProps.disabledTextColor :
-      primary ? contextProps.primaryTextColor :
-      secondary ? contextProps.secondaryTextColor :
-      contextProps.textColor;
+    const defaultColor = disabled ? contextKeys.disabledTextColor :
+      primary ? contextKeys.primaryTextColor :
+      secondary ? contextKeys.secondaryTextColor :
+      contextKeys.textColor;
 
     const defaultHoverColor = ColorManipulator.fade(ColorManipulator.lighten(defaultColor, 0.4), 0.15);
     const defaultRippleColor = ColorManipulator.fade(defaultColor, 0.8);
@@ -133,15 +133,15 @@ const FlatButton = React.createClass({
       transition: Transitions.easeOut(),
       fontSize: Typography.fontStyleButtonFontSize,
       letterSpacing: 0,
-      textTransform: contextProps.textTransform,
+      textTransform: contextKeys.textTransform,
       fontWeight: Typography.fontWeightMedium,
       borderRadius: 2,
       userSelect: 'none',
       position: 'relative',
       overflow: 'hidden',
-      backgroundColor: hovered ? buttonHoverColor : contextProps.buttonColor,
-      lineHeight: contextProps.buttonHeight + 'px',
-      minWidth: contextProps.buttonMinWidth,
+      backgroundColor: hovered ? buttonHoverColor : contextKeys.buttonColor,
+      lineHeight: contextKeys.buttonHeight + 'px',
+      minWidth: contextKeys.buttonMinWidth,
       padding: 0,
       margin: 0,
       //This is need so that ripples do not bleed past border radius.

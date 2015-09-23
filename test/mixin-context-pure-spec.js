@@ -14,7 +14,7 @@ const GrandChildComponent = React.createClass({
   },
 
   statics: {
-    getContextProps(context) {
+    getRelevantContextKeys(context) {
       return {
         grandChildThemeProp: context.muiTheme.grandChildThemeProp,
       }
@@ -47,7 +47,7 @@ const ChildComponent = React.createClass({
   },
 
   statics: {
-    getContextProps(context) {
+    getRelevantContextKeys(context) {
       return {
         childThemeProp: context.muiTheme.childThemeProp,
       }
@@ -137,14 +137,14 @@ const ParentComponent = React.createClass({
     this.refs.child.updateState(childState);
   },
 
-  updateChildContextProp(childThemeProp) {
+  updateChildContextKey(childThemeProp) {
     this.theme = update(this.theme, {
       childThemeProp: { $set: childThemeProp },
     });
     this.forceUpdate();
   },
 
-  updateGrandChildContextProp(grandChildThemeProp) {
+  updateGrandChildContextKey(grandChildThemeProp) {
     this.theme = update(this.theme, {
       grandChildThemeProp: { $set: grandChildThemeProp },
     });
@@ -170,7 +170,7 @@ describe('Mixin-ContextPure', () => {
     });
 
     it('should not render when context is updated but did not change', () => {
-      parentElement.updateChildContextProp(0);
+      parentElement.updateChildContextKey(0);
       parentElement.getRenderCount().should.equal(2);
       parentElement.getChildRenderCount().should.equal(1);
       parentElement.getGrandChildRenderCount().should.equal(1);
@@ -191,7 +191,7 @@ describe('Mixin-ContextPure', () => {
     });
 
     it('should render when context props change', () => {
-      parentElement.updateChildContextProp(1);
+      parentElement.updateChildContextKey(1);
       parentElement.getRenderCount().should.equal(2);
       parentElement.getChildRenderCount().should.equal(2);
       parentElement.getGrandChildRenderCount().should.equal(1);
@@ -212,7 +212,7 @@ describe('Mixin-ContextPure', () => {
     });
 
     it('should render grandchild when grandchild context props change', () => {
-      parentElement.updateGrandChildContextProp(1);
+      parentElement.updateGrandChildContextKey(1);
       parentElement.getRenderCount().should.equal(2);
       parentElement.getChildRenderCount().should.equal(2);
       parentElement.getGrandChildRenderCount().should.equal(2);
@@ -228,7 +228,7 @@ describe('Mixin-ContextPure', () => {
     });
 
     it('should not render when context is updated but did not change', () => {
-      parentElement.updateChildContextProp(1);
+      parentElement.updateChildContextKey(1);
       parentElement.getRenderCount().should.equal(2);
       parentElement.getChildRenderCount().should.equal(1);
       parentElement.getGrandChildRenderCount().should.equal(1);
@@ -249,14 +249,14 @@ describe('Mixin-ContextPure', () => {
     });
 
     it('should not render when context props change', () => {
-      parentElement.updateChildContextProp(1);
+      parentElement.updateChildContextKey(1);
       parentElement.getRenderCount().should.equal(2);
       parentElement.getChildRenderCount().should.equal(1);
       parentElement.getGrandChildRenderCount().should.equal(1);
     });
 
     it('should not render grandchild when grandchild context props change', () => {
-      parentElement.updateGrandChildContextProp(1);
+      parentElement.updateGrandChildContextKey(1);
       parentElement.getRenderCount().should.equal(2);
       parentElement.getChildRenderCount().should.equal(1);
       parentElement.getGrandChildRenderCount().should.equal(1);
