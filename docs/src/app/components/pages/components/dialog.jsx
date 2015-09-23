@@ -104,6 +104,11 @@ class DialogPage extends React.Component {
             name: 'show',
             header: 'Dialog.show()',
             desc: 'Shows the dialog.'
+          },
+          {
+            name: 'isOpen',
+            header: 'Dialog.isOpen()',
+            desc: 'Get the dialog open state.'
           }
         ]
       },
