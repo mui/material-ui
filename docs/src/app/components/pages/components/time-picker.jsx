@@ -45,6 +45,11 @@ let TimePickerPage = React.createClass({
             name: 'setTime',
             header: 'TimePicker.setTime(t)',
             desc: 'Sets the time value to t, where t is a date object.'
+          },
+          {
+            name: 'formatTime',
+            header: 'TimePicker.formatTime(time)',
+            desc: 'Formats the Date object to a current component\'s time format.'
           }
         ]
       },
