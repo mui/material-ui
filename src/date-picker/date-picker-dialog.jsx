@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDOM = require('react-dom');
 let StylePropable = require('../mixins/style-propable');
 let WindowListenable = require('../mixins/window-listenable');
 let CssEvent = require('../utils/css-event');
@@ -73,7 +74,7 @@ let DatePickerDialog = React.createClass({
         label="Cancel"
         secondary={true}
         style={styles.actions}
-        onTouchTap={this._handleCancelTouchTap} />,
+        onClick={this._handleCancelClick} />,
     ];
 
     if (!this.props.autoOk) {
@@ -84,7 +85,7 @@ let DatePickerDialog = React.createClass({
           secondary={true}
           disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
           style={styles.actions}
-          onTouchTap={this._handleOKTouchTap} />
+          onClick={this._handleOKClick} />
       );
     }
 
@@ -101,7 +102,7 @@ let DatePickerDialog = React.createClass({
         repositionOnUpdate={false}>
         <Calendar
           ref="calendar"
-          onDayTouchTap={this._onDayTouchTap}
+          onDayClick={this._onDayClick}
           initialDate={this.props.initialDate}
           isActive={this.state.isCalendarActive}
           minDate={this.props.minDate}
@@ -122,17 +123,17 @@ let DatePickerDialog = React.createClass({
     this.refs.dialog.dismiss();
   },
 
-  _onDayTouchTap() {
+  _onDayClick() {
     if (this.props.autoOk) {
-      setTimeout(this._handleOKTouchTap, 300);
+      setTimeout(this._handleOKClick, 300);
     }
   },
 
-  _handleCancelTouchTap() {
+  _handleCancelClick() {
     this.dismiss();
   },
 
-  _handleOKTouchTap() {
+  _handleOKClick() {
     if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
@@ -149,7 +150,7 @@ let DatePickerDialog = React.createClass({
   },
 
   _handleDialogDismiss() {
-    CssEvent.onTransitionEnd(this.refs.dialog.getDOMNode(), () => {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this.refs.dialog), () => {
       this.setState({
         isCalendarActive: false,
         showMonthDayPicker: true,
@@ -160,7 +161,7 @@ let DatePickerDialog = React.createClass({
   },
 
   _handleDialogClickAway() {
-    CssEvent.onTransitionEnd(this.refs.dialog.getDOMNode(), () => {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this.refs.dialog), () => {
       this.setState({
         isCalendarActive: false,
         showMonthDayPicker: true,
@@ -174,7 +175,7 @@ let DatePickerDialog = React.createClass({
     if (this.state.isCalendarActive) {
       switch (e.keyCode) {
         case KeyCode.ENTER:
-          this._handleOKTouchTap();
+          this._handleOKClick();
           break;
       }
     }

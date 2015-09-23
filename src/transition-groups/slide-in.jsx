@@ -1,5 +1,5 @@
-let React = require('react/addons');
-let ReactTransitionGroup = React.addons.TransitionGroup;
+let React = require('react');
+let ReactTransitionGroup = require('react-addons-transition-group');
 let StylePropable = require('../mixins/style-propable');
 let SlideInChild = require('./slide-in-child');
 

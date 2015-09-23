@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDOM = require('react-dom');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
 let Colors = require('./styles/colors');
@@ -137,8 +138,8 @@ let Tooltip = React.createClass({
   },
 
   _setRippleSize() {
-    let ripple = React.findDOMNode(this.refs.ripple);
-    let tooltip = window.getComputedStyle(React.findDOMNode(this));
+    let ripple = ReactDOM.findDOMNode(this.refs.ripple);
+    let tooltip = window.getComputedStyle(ReactDOM.findDOMNode(this));
     let tooltipWidth = parseInt(tooltip.getPropertyValue("width"), 10) /
       (this.props.horizontalPosition === 'center' ? 2 : 1);
     let tooltipHeight = parseInt(tooltip.getPropertyValue("height"), 10);
@@ -156,7 +157,7 @@ let Tooltip = React.createClass({
   },
 
   _setTooltipPosition() {
-    let tooltip = React.findDOMNode(this);
+    let tooltip = ReactDOM.findDOMNode(this);
     this.setState({offsetWidth: tooltip.offsetWidth});
   },
 

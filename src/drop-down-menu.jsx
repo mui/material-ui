@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDOM = require('react-dom');
 let StylePropable = require('./mixins/style-propable');
 let Transitions = require('./styles/transitions');
 let KeyCode = require('./utils/key-code');
@@ -198,7 +199,7 @@ let DropDownMenu = React.createClass({
           this.state.open && styles.rootWhenOpen,
           this.props.style)} >
 
-          <ClearFix style={this.mergeAndPrefix(styles.control)} onTouchTap={this._onControlClick}>
+          <ClearFix style={this.mergeAndPrefix(styles.control)} onClick={this._onControlClick}>
             <Paper style={this.mergeAndPrefix(styles.controlBg)} zDepth={0} />
             <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen, this.props.labelStyle)}>
               {displayValue}
@@ -218,14 +219,14 @@ let DropDownMenu = React.createClass({
             visible={this.state.open}
             onRequestClose={this._onMenuRequestClose}
             onItemTap={this._onMenuItemClick} />
-          {this.state.open && <div style={styles.overlay} onTouchTap={this._handleOverlayTouchTap} />}
+          {this.state.open && <div style={styles.overlay} onClick={this._handleOverlayClick} />}
       </div>
     );
   },
 
   _setWidth() {
-    let el = React.findDOMNode(this);
-    let menuItemsDom = React.findDOMNode(this.refs.menuItems);
+    let el = ReactDOM.findDOMNode(this);
+    let menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
       el.style.width = 'auto';
       el.style.width = menuItemsDom.offsetWidth + 'px';
@@ -314,7 +315,7 @@ let DropDownMenu = React.createClass({
     this.setState({selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1)});
   },
 
-  _handleOverlayTouchTap() {
+  _handleOverlayClick() {
     this.setState({
       open: false,
     });

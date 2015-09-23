@@ -12,7 +12,7 @@ let CalendarMonth = React.createClass({
     autoOk: React.PropTypes.bool,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
-    onDayTouchTap: React.PropTypes.func,
+    onDayClick: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
   },
 
@@ -65,15 +65,15 @@ let CalendarMonth = React.createClass({
         <DayButton
           key={'db' + i + j}
           date={day}
-          onTouchTap={this._handleDayTouchTap}
+          onClick={this._handleDayClick}
           selected={selected}
           disabled={disabled} />
       );
     }, this);
   },
 
-  _handleDayTouchTap(e, date) {
-    if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
+  _handleDayClick(e, date) {
+    if (this.props.onDayClick) this.props.onDayClick(e, date);
   },
 
   _shouldDisableDate(day) {

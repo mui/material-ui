@@ -1,4 +1,5 @@
-let React = require('react/addons');
+let React = require('react');
+let ReactDOM = require('react-dom');
 let TabTemplate = require('./tabTemplate');
 let InkBar = require('../ink-bar');
 let StylePropable = require('../mixins/style-propable');
@@ -42,7 +43,7 @@ let Tabs = React.createClass({
   getEvenWidth(){
     return (
       parseInt(window
-        .getComputedStyle(React.findDOMNode(this))
+        .getComputedStyle(ReactDOM.findDOMNode(this))
         .getPropertyValue('width'), 10)
     );
   },
@@ -111,7 +112,7 @@ let Tabs = React.createClass({
           selected: this._getSelected(tab, index),
           tabIndex: index,
           width: width,
-          onTouchTap: this._handleTabTouchTap,
+          onClick: this._handleTabClick,
         });
       }
       else {
@@ -161,7 +162,7 @@ let Tabs = React.createClass({
     return selectedIndex;
   },
 
-  _handleTabTouchTap(value, e, tab){
+  _handleTabClick(value, e, tab){
     let valueLink = this.getValueLink(this.props);
     let tabIndex = tab.props.tabIndex;
 

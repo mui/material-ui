@@ -1,4 +1,5 @@
 let React = require('react');
+let ReactDOM = require('react-dom');
 let StylePropable = require('./mixins/style-propable');
 let AutoPrefix = require('./styles/auto-prefix');
 
@@ -107,7 +108,7 @@ let EnhancedTextarea = React.createClass({
   },
 
   getInputNode() {
-    return React.findDOMNode(this.refs.input);
+    return ReactDOM.findDOMNode(this.refs.input);
   },
 
   setValue(value) {
@@ -116,7 +117,7 @@ let EnhancedTextarea = React.createClass({
   },
 
   _syncHeightWithShadow(newValue, e) {
-    let shadow = React.findDOMNode(this.refs.shadow);
+    let shadow = ReactDOM.findDOMNode(this.refs.shadow);
     let currentHeight = this.state.height;
     let newHeight;
 

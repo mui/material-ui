@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "material-ui": ">=0.8",
-    "react": ">=0.13",
-    "react-tap-event-plugin": "^0.1.3"
+    "react": ">=0.14.0-rc1",
+    "react-dom": "^0.14.0-rc1"
   }
 }

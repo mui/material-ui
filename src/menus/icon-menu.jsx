@@ -1,5 +1,6 @@
-let React = require('react/addons');
-let ReactTransitionGroup = React.addons.TransitionGroup;
+let React = require('react');
+let ReactDOM = require('react-dom');
+let ReactTransitionGroup = require('react-addons-transition-group');
 let ClickAwayable = require('../mixins/click-awayable');
 let StylePropable = require('../mixins/style-propable');
 let Events = require('../utils/events');
@@ -16,32 +17,32 @@ let IconMenu = React.createClass({
   },
 
   propTypes: {
-    closeOnItemTouchTap: React.PropTypes.bool,
+    closeOnItemClick: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
     openDirection: PropTypes.corners,
-    onItemTouchTap: React.PropTypes.func,
+    onItemClick: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
     onMouseDown: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
+    onClick: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
-    touchTapCloseDelay: React.PropTypes.number,
+    clickCloseDelay: React.PropTypes.number,
   },
 
   getDefaultProps() {
     return {
-      closeOnItemTouchTap: true,
+      closeOnItemClick: true,
       openDirection: 'bottom-left',
-      onItemTouchTap: () => {},
+      onItemClick: () => {},
       onKeyboardFocus: () => {},
       onMouseDown: () => {},
       onMouseLeave: () => {},
       onMouseEnter: () => {},
       onMouseUp: () => {},
-      onTouchTap: () => {},
-      touchTapCloseDelay: 200,
+      onClick: () => {},
+      clickCloseDelay: 200,
     };
   },
 
@@ -63,16 +64,16 @@ let IconMenu = React.createClass({
 
   render() {
     let {
-      closeOnItemTouchTap,
+      closeOnItemClick,
       iconButtonElement,
       openDirection,
-      onItemTouchTap,
+      onItemClick,
       onKeyboardFocus,
       onMouseDown,
       onMouseLeave,
       onMouseEnter,
       onMouseUp,
-      onTouchTap,
+      onClick,
       menuStyle,
       style,
       ...other,
@@ -101,9 +102,9 @@ let IconMenu = React.createClass({
 
     let iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: this.props.onKeyboardFocus,
-      onTouchTap: (e) => {
+      onClick: (e) => {
         this.open(Events.isKeyboard(e));
-        if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
+        if (iconButtonElement.props.onClick) iconButtonElement.props.onClick(e);
       }.bind(this),
       ref: this.state.iconButtonRef,
     });
@@ -114,7 +115,7 @@ let IconMenu = React.createClass({
         animated={true}
         initiallyKeyboardFocused={this.state.menuInitiallyKeyboardFocused}
         onEscKeyDown={this._handleMenuEscKeyDown}
-        onItemTouchTap={this._handleItemTouchTap}
+        onItemClick={this._handleItemClick}
         openDirection={openDirection}
         style={mergedMenuStyles}>
         {this.props.children}
@@ -127,7 +128,7 @@ let IconMenu = React.createClass({
         onMouseLeave={onMouseLeave}
         onMouseEnter={onMouseEnter}
         onMouseUp={onMouseUp}
-        onTouchTap={onTouchTap}
+        onClick={onClick}
         style={mergedRootStyles}>
         {iconButton}
         <ReactTransitionGroup>{menu}</ReactTransitionGroup>
@@ -145,7 +146,7 @@ let IconMenu = React.createClass({
         //Set focus on the icon button when the menu close
         if (isKeyboard) {
           let iconButton = this.refs[this.state.iconButtonRef];
-          React.findDOMNode(iconButton).focus();
+          ReactDOM.findDOMNode(iconButton).focus();
           iconButton.setKeyboardFocus();
         }
       });
@@ -161,17 +162,17 @@ let IconMenu = React.createClass({
     }
   },
 
-  _handleItemTouchTap(e, child) {
+  _handleItemClick(e, child) {
 
-    if (this.props.closeOnItemTouchTap) {
+    if (this.props.closeOnItemClick) {
       let isKeyboard = Events.isKeyboard(e);
 
       this._timeout = setTimeout(() => {
         this.close(isKeyboard);
-      }, this.props.touchTapCloseDelay);
+      }, this.props.clickCloseDelay);
     }
 
-    this.props.onItemTouchTap(e, child);
+    this.props.onItemClick(e, child);
   },
 
   _handleMenuEscKeyDown() {

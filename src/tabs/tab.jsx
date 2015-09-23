@@ -11,7 +11,7 @@ let Tab = React.createClass({
   },
 
   propTypes: {
-    onTouchTap: React.PropTypes.func,
+    onClick: React.PropTypes.func,
     label: React.PropTypes.string,
     onActive: React.PropTypes.func,
     selected: React.PropTypes.bool,
@@ -22,7 +22,7 @@ let Tab = React.createClass({
   getDefaultProps(){
     return {
       onActive: () => {},
-      onTouchTap: () => {},
+      onClick: () => {},
     };
   },
 
@@ -30,7 +30,7 @@ let Tab = React.createClass({
     let {
       label,
       onActive,
-      onTouchTap,
+      onClick,
       selected,
       style,
       value,
@@ -57,14 +57,14 @@ let Tab = React.createClass({
       <div
         {...other}
         style={styles}
-        onTouchTap={this._handleTouchTap}>
+        onClick={this._handleClick}>
         {label}
       </div>
     );
   },
 
-   _handleTouchTap(e) {
-    this.props.onTouchTap(this.props.value, e, this);
+   _handleClick(e) {
+    this.props.onClick(this.props.value, e, this);
   },
 
 });

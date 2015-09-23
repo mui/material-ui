@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const CssEvent = require('./utils/css-event');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
@@ -23,7 +24,7 @@ const Snackbar = React.createClass({
     message: React.PropTypes.string.isRequired,
     action: React.PropTypes.string,
     autoHideDuration: React.PropTypes.number,
-    onActionTouchTap: React.PropTypes.func,
+    onActionClick: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     openOnMount: React.PropTypes.bool,
@@ -52,7 +53,7 @@ const Snackbar = React.createClass({
         this._setAutoHideTimer();
 
         //Only Bind clickaway after transition finishes
-        CssEvent.onTransitionEnd(React.findDOMNode(this), () => {
+        CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), () => {
           this._bindClickAway();
         });
       }
@@ -126,7 +127,7 @@ const Snackbar = React.createClass({
   },
 
   render() {
-    const {action, message, onActionTouchTap, style, ...others } = this.props;
+    const {action, message, onActionClick, style, ...others } = this.props;
     const styles = this.getStyles();
 
     const rootStyles = this.state.open ?
@@ -139,7 +140,7 @@ const Snackbar = React.createClass({
         <FlatButton
           style={styles.action}
           label={action}
-          onTouchTap={onActionTouchTap} />
+          onClick={onActionClick} />
       );
     }
 

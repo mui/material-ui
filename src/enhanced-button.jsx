@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const StylePropable = require('./mixins/style-propable');
 const Colors = require('./styles/colors');
 const Children = require('./utils/children');
@@ -67,7 +67,7 @@ const EnhancedButton = React.createClass({
     onKeyboardFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
     onKeyUp: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
+    onClick: React.PropTypes.func,
     tabIndex: React.PropTypes.number,
   },
 
@@ -79,7 +79,7 @@ const EnhancedButton = React.createClass({
       onKeyboardFocus: () => {},
       onKeyDown: () => {},
       onKeyUp: () => {},
-      onTouchTap: () => {},
+      onClick: () => {},
       tabIndex: 0,
       type: 'button',
     };
@@ -126,7 +126,7 @@ const EnhancedButton = React.createClass({
       onFocus,
       onKeyUp,
       onKeyDown,
-      onTouchTap,
+      onClick,
       style,
       tabIndex,
       type,
@@ -163,7 +163,7 @@ const EnhancedButton = React.createClass({
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
-      onTouchTap: this._handleTouchTap,
+      onClick: this._handleClick,
       onKeyUp: this._handleKeyUp,
       onKeyDown: this._handleKeyDown,
       tabIndex: tabIndex,
@@ -246,7 +246,7 @@ const EnhancedButton = React.createClass({
   _handleKeyDown(e) {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       if (e.keyCode === KeyCode.ENTER && this.state.isKeyboardFocused) {
-        this._handleTouchTap(e);
+        this._handleClick(e);
       }
     }
     this.props.onKeyDown(e);
@@ -256,7 +256,7 @@ const EnhancedButton = React.createClass({
     if (!this.props.disabled &&
       e.keyCode === KeyCode.SPACE &&
       this.state.isKeyboardFocused) {
-      this._handleTouchTap(e);
+      this._handleClick(e);
     }
     this.props.onKeyUp(e);
   },
@@ -282,12 +282,12 @@ const EnhancedButton = React.createClass({
     }
   },
 
-  _handleTouchTap(e) {
+  _handleClick(e) {
     this._cancelFocusTimeout();
     if (!this.props.disabled) {
       tabPressed = false;
       this.removeKeyboardFocus(e);
-      this.props.onTouchTap(e);
+      this.props.onClick(e);
     }
   },
 
