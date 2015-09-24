@@ -6,12 +6,16 @@ const IconButton = require('../icon-button');
 const StylePropable = require('../mixins/style-propable');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
+const ContextPure = require('../mixins/context-pure');
 
 const CardExpandable = React.createClass({
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+    ContextPure,
+  ],
 
   getStyles() {
-    const contextKeys = this.getRelevantContextKeys();
+    const contextKeys = this.getRelevantContextKeys(this.state.muiTheme);
 
     const directionStyle = contextKeys.isRtl ? {
       left: 4,
@@ -49,12 +53,17 @@ const CardExpandable = React.createClass({
     };
   },
 
-  getRelevantContextKeys() {
-    const theme = this.state.muiTheme;
-
-    return {
-      isRtl: theme.isRtl,
-    };
+  static: {
+    getRelevantContextKeys(muiTheme) {
+      return {
+        isRtl: muiTheme.isRtl,
+      };
+    },
+    getChildrenClasses() {
+      return [
+        IconButton,
+      ];
+    },
   },
 
   getInitialState() {

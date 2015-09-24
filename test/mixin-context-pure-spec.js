@@ -14,9 +14,9 @@ const GrandChildComponent = React.createClass({
   },
 
   statics: {
-    getRelevantContextKeys(context) {
+    getRelevantContextKeys(muiTheme) {
       return {
-        grandChildThemeProp: context.muiTheme.grandChildThemeProp,
+        grandChildThemeProp: muiTheme.grandChildThemeProp,
       }
     },
   },
@@ -47,9 +47,9 @@ const ChildComponent = React.createClass({
   },
 
   statics: {
-    getRelevantContextKeys(context) {
+    getRelevantContextKeys(muiTheme) {
       return {
-        childThemeProp: context.muiTheme.childThemeProp,
+        childThemeProp: muiTheme.childThemeProp,
       }
     },
     getChildrenClasses() {
@@ -158,7 +158,6 @@ const ParentComponent = React.createClass({
 
 describe('Mixin-ContextPure', () => {
   let parentElement;
-
 
   describe('when muiTheme.static is false', () => {
 
