@@ -1,5 +1,5 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
+const ContextPure = require('./mixins/context-pure');
 const Transitions = require('./styles/transitions');
 const Children = require('./utils/children');
 const ColorManipulator = require('./utils/color-manipulator');
@@ -19,7 +19,34 @@ function validateLabel (props, propName, componentName) {
 
 const FlatButton = React.createClass({
 
-  mixins: [PureRenderMixin],
+  mixins: [
+    ContextPure,
+  ],
+
+  statics: {
+    getRelevantContextKeys(muiTheme) {
+      const buttonTheme = muiTheme.button;
+      const flatButtonTheme = muiTheme.flatButton;
+
+      return {
+        buttonColor: flatButtonTheme.color,
+        buttonHeight: buttonTheme.height,
+        buttonMinWidth: buttonTheme.minWidth,
+        disabledTextColor: flatButtonTheme.disabledTextColor,
+        primaryTextColor: flatButtonTheme.primaryTextColor,
+        secondaryTextColor: flatButtonTheme.secondaryTextColor,
+        textColor: flatButtonTheme.textColor,
+        textTransform: flatButtonTheme.textTransform ? flatButtonTheme.textTransform :
+                      (buttonTheme.textTransform ? buttonTheme.textTransform : 'uppercase'),
+      };
+    },
+    getChildrenClasses() {
+      return [
+        EnhancedButton,
+        FlatButtonLabel,
+      ];
+    },
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -78,24 +105,6 @@ const FlatButton = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
-  getRelevantContextKeys() {
-    const theme = this.state.muiTheme;
-    const buttonTheme = theme.button;
-    const flatButtonTheme = theme.flatButton;
-
-    return {
-      buttonColor: flatButtonTheme.color,
-      buttonHeight: buttonTheme.height,
-      buttonMinWidth: buttonTheme.minWidth,
-      disabledTextColor: flatButtonTheme.disabledTextColor,
-      primaryTextColor: flatButtonTheme.primaryTextColor,
-      secondaryTextColor: flatButtonTheme.secondaryTextColor,
-      textColor: flatButtonTheme.textColor,
-      textTransform: flatButtonTheme.textTransform ? flatButtonTheme.textTransform :
-                    (buttonTheme.textTransform ? buttonTheme.textTransform : 'uppercase'),
-    };
-  },
-
   render() {
     const {
       children,
@@ -115,12 +124,21 @@ const FlatButton = React.createClass({
       ...other,
       } = this.props;
 
-    const contextKeys = this.getRelevantContextKeys();
+    const {
+      buttonColor,
+      buttonHeight,
+      buttonMinWidth,
+      disabledTextColor,
+      primaryTextColor,
+      secondaryTextColor,
+      textColor,
+      textTransform,
+    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
-    const defaultColor = disabled ? contextKeys.disabledTextColor :
-      primary ? contextKeys.primaryTextColor :
-      secondary ? contextKeys.secondaryTextColor :
-      contextKeys.textColor;
+    const defaultColor = disabled ? disabledTextColor :
+      primary ? primaryTextColor :
+      secondary ? secondaryTextColor :
+      textColor;
 
     const defaultHoverColor = ColorManipulator.fade(ColorManipulator.lighten(defaultColor, 0.4), 0.15);
     const defaultRippleColor = ColorManipulator.fade(defaultColor, 0.8);
@@ -133,15 +151,15 @@ const FlatButton = React.createClass({
       transition: Transitions.easeOut(),
       fontSize: Typography.fontStyleButtonFontSize,
       letterSpacing: 0,
-      textTransform: contextKeys.textTransform,
+      textTransform: textTransform,
       fontWeight: Typography.fontWeightMedium,
       borderRadius: 2,
       userSelect: 'none',
       position: 'relative',
       overflow: 'hidden',
-      backgroundColor: hovered ? buttonHoverColor : contextKeys.buttonColor,
-      lineHeight: contextKeys.buttonHeight + 'px',
-      minWidth: contextKeys.buttonMinWidth,
+      backgroundColor: hovered ? buttonHoverColor : buttonColor,
+      lineHeight: buttonHeight + 'px',
+      minWidth: buttonMinWidth,
       padding: 0,
       margin: 0,
       //This is need so that ripples do not bleed past border radius.
