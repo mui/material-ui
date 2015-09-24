@@ -41,60 +41,33 @@ Material-UI was designed with the [Roboto](http://www.google.com/fonts/specimen/
 
 ## Usage
 
-Once material-ui is included in your project, you can use the components this way:
+Using material-ui components is very straightforward. Once material-ui is included in your project, you can use the components this way:
+
 ```js
-// get constant references to React and Material-UI
-// components, as we will not be modifying these
+//Basic React component that renders a material-ui
+//raised button with the text "Default"
 
 const React = require('react');
-
-// it is good practice to require only those components of
-// Material-UI that your app needs, instead of requiring all of
-// Material-UI. This will make your build process faster and
-// your build output smaller
-
 const RaisedButton = require('material-ui/lib/raised-button');
 
-// see node_modules/material-ui/lib/index.js for a mapping of
-// Material-UI components to require() calls
-
 const MyAwesomeReactComponent = React.createClass({
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
-  },
-
   render() {
     return (
         <RaisedButton label="Default" />
     );
-  }
-
+  },
 });
-
 
 module.exports = MyAwesomeReactComponent;
 
 ```
 
-### Theme
-
-**Please note that since v0.8.0, you also need to define a theme for components to start working.** For instructions on implementing and using themes, visit our [documentation](http://material-ui.com/#/customization/themes).
-
 ## Customization
 
-Material-UI components have their styles defined inline. There are two approaches to overriding these styles:
+We have implemented a default theme to render all Material-UI components. Styling components to your liking is simple and hassle-free. This can be achieved in the following two ways:
 
-* Override individual component styles via the `style` prop
-* Define a Theme to apply overarching style changes
-
-This allows you to override variables used by components without having to modify material-ui source files directly.
+* [Use a custom theme to style components](http://material-ui.com/#/customization/themes)
+* [Override individual component styles via the `style` prop](http://material-ui.com/#/customization/inline-styles)
 
 ## Examples
 
