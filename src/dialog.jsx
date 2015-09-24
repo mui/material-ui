@@ -299,6 +299,9 @@ let Dialog = React.createClass({
       props.ref = actionJSON.ref;
       props.keyboardFocused = actionJSON.ref === this.props.actionFocus;
     }
+    if (actionJSON.id) {
+      props.id = actionJSON.id;
+    }
 
     return (
       <FlatButton
@@ -368,7 +371,7 @@ let Dialog = React.createClass({
         let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + 64);
 
         if (this.props.title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
-        if (this.props.actions) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
+        if (this.props.actions.length) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
 
         dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
       }
