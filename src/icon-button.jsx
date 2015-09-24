@@ -41,7 +41,7 @@ const IconButton = React.createClass({
         iconSize: spacing.iconSize,
         textColor: palette.textColor,
         disabledColor: palette.disabledColor,
-      }
+      };
     },
     getChildrenClasses() {
       return [

@@ -38,7 +38,7 @@ const ToolbarGroup = React.createClass({
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
-  }, 
+  },
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
