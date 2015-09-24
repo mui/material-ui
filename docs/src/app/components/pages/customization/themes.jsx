@@ -431,6 +431,17 @@ const ThemesPage = React.createClass({
         </Paper>
 
         <p>
+          Check out the <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme-manager.js"><code style={styles.inlineCode}>theme-manager.js</code></a> file for a complete list of
+          component-specific theme values that may be overridden.
+        </p>
+
+        <p>
+          The mui theme object also contains a key called <code style={styles.inlineCode}>static</code> that is set to <code style={styles.inlineCode}>true</code> by 
+          default. This allows for some optimization when rendering Material-UI components. Change this to <code style={styles.inlineCode}>false</code> iff
+          the <code style={styles.inlineCode}>muiTheme</code> object in your app can change during runtime.
+        </p>
+
+        <p>
           <b>Never</b> directly modify the raw theme (spacing / palette / fontFamily) of an mui theme object.
           Doing so will result in styling inconsistencies across your components. Always use the modifiers provided in the
           ThemeManager module.
