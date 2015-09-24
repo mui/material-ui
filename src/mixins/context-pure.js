@@ -7,6 +7,7 @@ function relevantContextKeysEqual(classObject, currentContext, nextContext) {
   if (classObject.getRelevantContextKeys) {
     const currentContextKeys = classObject.getRelevantContextKeys(currentContext);
     const nextContextKeys = classObject.getRelevantContextKeys(nextContext);
+
     if (!shallowEqual(currentContextKeys, nextContextKeys)) {
       return false;
     }
@@ -30,16 +31,14 @@ module.exports = {
 
   //Don't update if state, prop, and context are equal
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-
-    const staticTheme = (
-      this.context.muiTheme &&
-      this.context.muiTheme.static
-    );
+    const staticTheme = this.context.muiTheme && this.context.muiTheme.static;
+    const isExactlyOneThemeUndefined = (!this.context.muiTheme && nextContext.muiTheme) || (this.context.muiTheme && !nextContext.muiTheme);
 
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.state, nextState) ||
-      (!staticTheme && !relevantContextKeysEqual(this.constructor, this.context, nextContext))
+      isExactlyOneThemeUndefined ||
+      (!staticTheme && !relevantContextKeysEqual(this.constructor, this.context.muiTheme, nextContext.muiTheme))
     );
   },
 

@@ -6,6 +6,7 @@ const UniqueId = require('./utils/unique-id');
 const EnhancedTextarea = require('./enhanced-textarea');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
+const ContextPure = require('./mixins/context-pure');
 
 /**
  * Check if a value is valid to be displayed inside an input.
@@ -19,7 +20,10 @@ function isValid(value) {
 
 const TextField = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    ContextPure,
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -69,12 +73,27 @@ const TextField = React.createClass({
     };
   },
 
-  getRelevantContextKeys() {
-    const theme = this.state.muiTheme;
+  statics: {
+    getRelevantContextKeys(muiTheme) {
+      const textFieldTheme = this.state.muiTheme.textField
 
-    return {
-      isRtl: theme.isRtl,
-    };
+      return {
+        floatingLabelColor: textFieldTheme.floatingLabelColor,
+        focusColor: textFieldTheme.focusColor,
+        borderColor: textFieldTheme.borderColor,
+        textColor: textFieldTheme.textColor,
+        disabledTextColor: textFieldTheme.disabledTextColor,
+        backgroundColor: textFieldTheme.backgroundColor,
+        hintColor: textFieldTheme.hintColor,
+        errorColor: textFieldTheme.errorColor,
+        isRtl: muiTheme.isRtl,
+      };
+    },
+    getChildrenClasses() {
+      return [
+        EnhancedTextarea,
+      ];
+    },
   },
 
   getInitialState() {
@@ -86,10 +105,6 @@ const TextField = React.createClass({
         (props.valueLink && isValid(props.valueLink.value)),
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
-  },
-
-  getTheme() {
-    return this.state.muiTheme.textField;
   },
 
   componentDidMount() {
@@ -123,9 +138,18 @@ const TextField = React.createClass({
   },
 
   getStyles() {
-    let props = this.props;
-    let theme = this.getTheme();
-    const contextKeys = this.getRelevantContextKeys();
+    const props = this.props;
+    const {
+      floatingLabelColor,
+      focusColor,
+      borderColor,
+      textColor,
+      disabledTextColor,
+      backgroundColor,
+      hintColor,
+      errorColor,
+      isRtl,
+    } = this.getRelevantContextKeys(this.state.muiTheme);
 
     let styles = {
       root: {
@@ -143,14 +167,14 @@ const TextField = React.createClass({
         bottom: 5,
         fontSize: 12,
         lineHeight: '12px',
-        color: theme.errorColor,
+        color: errorColor,
         transition: Transitions.easeOut(),
       },
       hint: {
         position: 'absolute',
         lineHeight: '22px',
         opacity: 1,
-        color: theme.hintColor,
+        color: hintColor,
         transition: Transitions.easeOut(),
         bottom: 12,
       },
@@ -162,13 +186,13 @@ const TextField = React.createClass({
         height: '100%',
         border: 'none',
         outline: 'none',
-        backgroundColor: theme.backgroundColor,
-        color: props.disabled ? theme.disabledTextColor : theme.textColor,
+        backgroundColor: backgroundColor,
+        color: props.disabled ? disabledTextColor : textColor,
         font: 'inherit',
       },
       underline: {
         border: 'none',
-        borderBottom: 'solid 1px ' + theme.borderColor,
+        borderBottom: 'solid 1px ' + borderColor,
         position: 'absolute',
         width: '100%',
         bottom: 8,
@@ -184,11 +208,11 @@ const TextField = React.createClass({
         userSelect: 'none',
         cursor: 'default',
         bottom: 8,
-        borderBottom: 'dotted 2px ' + theme.disabledTextColor,
+        borderBottom: 'dotted 2px ' + disabledTextColor,
       },
       underlineFocus: {
         borderBottom: 'solid 2px',
-        borderColor: theme.focusColor,
+        borderColor: focusColor,
         transform: 'scaleX(0)',
         transition: Transitions.easeOut(),
       },
@@ -204,7 +228,7 @@ const TextField = React.createClass({
       bottom: 'none',
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
-      transformOrigin: contextKeys.isRtl ? 'right top' : 'left top',
+      transformOrigin: isRtl ? 'right top' : 'left top',
     });
 
     styles.textarea = this.mergeStyles(styles.input, {
@@ -217,13 +241,13 @@ const TextField = React.createClass({
     styles.focusUnderline = this.mergeStyles(styles.underline, styles.underlineFocus, props.underlineFocusStyle);
 
     if (this.state.isFocused) {
-      styles.floatingLabel.color = theme.focusColor;
+      styles.floatingLabel.color = focusColor;
       styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
     if (this.state.hasValue) {
-      styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? theme.disabledTextColor : theme.floatingLabelColor, 0.5);
+      styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
       styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
       styles.hint.opacity = 0;
     }
@@ -311,7 +335,7 @@ const TextField = React.createClass({
         <EnhancedTextarea
           {...other}
           {...inputProps}
-        rows={rows}
+          rows={rows}
           onHeightChange={this._handleTextAreaHeightChange}
           textareaStyle={this.mergeAndPrefix(styles.textarea)} />
       ) : (
