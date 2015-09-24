@@ -44,7 +44,7 @@ const AppBar = React.createClass({
   getInitialState () {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };    
+    };
   },
 
   //to update theme inside state whenever a new theme is passed down

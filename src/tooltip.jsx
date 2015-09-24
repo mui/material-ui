@@ -42,11 +42,10 @@ const Tooltip = React.createClass({
   //from the parent / owner using context
   componentWillReceiveProps (nextProps, nextContext) {
     this._setTooltipPosition();
-    
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
-  
+
   componentDidUpdate() {
     this._setRippleSize();
   },

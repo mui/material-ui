@@ -2,7 +2,6 @@ const React = require('react');
 const StylePropable = require('../mixins/style-propable');
 const DateTime = require('../utils/date-time');
 const Transitions = require('../styles/transitions');
-const AutoPrefix = require('../styles/auto-prefix');
 const SlideInTransitionGroup = require('../transition-groups/slide-in');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
