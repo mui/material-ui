@@ -95,7 +95,7 @@ const Calendar = React.createClass({
         height: isLandscape ?
           weekCount === 5 ? 238 :
           weekCount === 6 ? 278 :
-          198 : '100%',
+          198 : 64,
         float: isLandscape ? 'left' : 'none',
       },
       weekTitle: {
