@@ -75,7 +75,7 @@ const TextField = React.createClass({
 
   statics: {
     getRelevantContextKeys(muiTheme) {
-      const textFieldTheme = this.state.muiTheme.textField
+      const textFieldTheme = muiTheme.textField
 
       return {
         floatingLabelColor: textFieldTheme.floatingLabelColor,
@@ -149,7 +149,7 @@ const TextField = React.createClass({
       hintColor,
       errorColor,
       isRtl,
-    } = this.getRelevantContextKeys(this.state.muiTheme);
+    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
     let styles = {
       root: {

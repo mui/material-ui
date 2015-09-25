@@ -31,15 +31,25 @@ module.exports = {
 
   //Don't update if state, prop, and context are equal
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-    const staticTheme = this.context.muiTheme && this.context.muiTheme.static;
-    const isExactlyOneThemeUndefined = (!this.context.muiTheme && nextContext.muiTheme) || (this.context.muiTheme && !nextContext.muiTheme);
 
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState) ||
-      isExactlyOneThemeUndefined ||
-      (!staticTheme && !relevantContextKeysEqual(this.constructor, this.context.muiTheme, nextContext.muiTheme))
-    );
+    //If either the props or state have changed, component should update
+    if(!shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState)) {
+      return true;
+    }
+
+    //If current theme and next theme are both undefined, do not update
+    if(!this.context.muiTheme && !nextContext.muiTheme) {
+      return false;
+    }
+
+    //If both themes exist, compare keys only if current theme is not static
+    if(this.context.muiTheme && nextContext.muiTheme) {
+      return !this.context.muiTheme.static &&
+        !relevantContextKeysEqual(this.constructor, this.context.muiTheme, nextContext.muiTheme);
+    }
+
+    //At this point it is guaranteed that exactly one theme is undefined so simply update
+    return true;
   },
 
 };

@@ -43,7 +43,7 @@ const FlatButtonLabel = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
-  static: {
+  statics: {
     getRelevantContextKeys(muiTheme) {
       return {
         spacingDesktopGutterLess: muiTheme.rawTheme.spacing.desktopGutterLess,
@@ -57,7 +57,7 @@ const FlatButtonLabel = React.createClass({
       style,
     } = this.props;
 
-    const contextKeys = this.getRelevantContextKeys(this.state.muiTheme);
+    const contextKeys = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
     const mergedRootStyles = Styles.mergeAndPrefix({
       position: 'relative',
