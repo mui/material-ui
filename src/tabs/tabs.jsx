@@ -1,4 +1,4 @@
-const React = require('react/addons');
+const React = require('react');
 const TabTemplate = require('./tabTemplate');
 const InkBar = require('../ink-bar');
 const StylePropable = require('../mixins/style-propable');

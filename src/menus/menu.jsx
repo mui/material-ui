@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const update = React.addons.update;
+const React = require('react');
+const update = require('react/lib/update');
 const Controllable = require('../mixins/controllable');
 const StylePropable = require('../mixins/style-propable');
 const AutoPrefix = require('../styles/auto-prefix');
