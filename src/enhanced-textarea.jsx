@@ -29,6 +29,10 @@ const EnhancedTextarea = React.createClass({
     this._syncHeightWithShadow();
   },
 
+  componentDidUpdate() {
+    this._syncHeightWithShadow();
+  },
+
   getStyles() {
     let styles = {
       root: {
@@ -111,7 +115,7 @@ const EnhancedTextarea = React.createClass({
 
   setValue(value) {
     this.getInputNode().value = value;
-    this._syncHeightWithShadow(value);
+    this.forceUpdate();
   },
 
   _syncHeightWithShadow(newValue, e) {
@@ -133,20 +137,12 @@ const EnhancedTextarea = React.createClass({
   },
 
   _handleChange(e) {
-    this._syncHeightWithShadow(e.target.value);
-
     if (this.props.hasOwnProperty('valueLink')) {
       this.props.valueLink.requestChange(e.target.value);
     }
 
     if (this.props.onChange) {
       this.props.onChange(e);
-    }
-  },
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this._syncHeightWithShadow(nextProps.value);
     }
   },
 });
