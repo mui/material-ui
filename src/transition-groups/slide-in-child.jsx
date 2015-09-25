@@ -1,4 +1,4 @@
-const React = require('react/addons');
+const React = require('react');
 const StylePropable = require('../mixins/style-propable');
 const AutoPrefix = require('../styles/auto-prefix');
 const Transitions = require('../styles/transitions');
