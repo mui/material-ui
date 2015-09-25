@@ -2,6 +2,8 @@ node_modules
 npm-debug.log
 build
 coverage
+.DS_Store
+docs
 
 # Exclude compiled files
 lib
