@@ -1,3 +1,25 @@
+## 0.12.0
+###### _Sep 25, 2015_
+
+##### Breaking Changes
+- Theming has been re-done so that material-ui components can be used without having to worry about passing a theme (all components implement a default theme) (#1662)
+  - There's now a concept of `mui theme` and `raw theme`, `mui theme` is produced from `raw theme`
+  - `ThemeManager` has been changed, no longer needs `new` in call
+  - `ThemeManager` produces `mui theme` from `raw theme`. Raw themes may be user-defined.
+  - Functions in `ThemeManager` allow to modify theme variables. Component-level styles may be overriden in the `mui theme`.
+  - See new documentation [here](http://material-ui.com/#/customization/themes)
+- Function names in the context-pure mixin have been changed (#1711)
+  - `getContextProps()` has been changed to `getRelevantContextKeys()`
+
+##### General
+- Updated dependency of `react-tap-event-plugin` (#1714)
+
+##### Component Fixes / Enhancements
+- Dialog component (#1717)
+  - `actions` now has `id` property
+  - Fixed a bug in dialog where a faulty check caused an error in console
+  - Text field ipad scrolling in dialog
+
 ## 0.11.1
 ###### _Sep 15, 2015_
 
