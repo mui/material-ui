@@ -69,6 +69,7 @@
     "phantomjs": "^1.9.17",
     "react-hot-loader": "^1.2.8",
     "react-router": "^1.0.0-beta4",
+    "react-tap-event-plugin": "^0.2.0",
     "sinon": "^1.15.4",
     "sinon-chai": "^2.8.0",
     "transfer-webpack-plugin": "^0.1.4",
