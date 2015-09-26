@@ -608,11 +608,11 @@ const ThemesPage = React.createClass({
 
   getThemeExamples() {
     return (
-      <Tabs onChange={this.onTabChange}>
-        <Tab label='Light Theme (Default)'>
+      <Tabs>
+        <Tab label='Light Theme (Default)' onClick={this.onTabChange.bind(this, false)}>
           {this.getComponentGroup()}
         </Tab>
-        <Tab label='Dark Theme'>
+        <Tab label='Dark Theme' onClick={this.onTabChange.bind(this, true)}>
           {this.getComponentGroup()}
         </Tab>
       </Tabs>
@@ -621,19 +621,21 @@ const ThemesPage = React.createClass({
 
 
   // Toggles between light and dark themes
-  onTabChange(tabIndex, tab) {
+  onTabChange(isDark) {
+    if(this.state.isThemeDark === isDark){
+      return;
+    }
     let newMuiTheme = null;
 
     if (!this.state.isThemeDark) {
       newMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
-      
-    } 
+    }
     else {
       newMuiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
     }
 
     this.setState({muiTheme: newMuiTheme,
-      isThemeDark: !this.state.isThemeDark});
+      isThemeDark: isDark});
   },
 
   handleAction(e) {

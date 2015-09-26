@@ -1,4 +1,5 @@
 import React from 'react';
+const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const AutoPrefix = require('./styles/auto-prefix');
 const Transitions = require("./styles/transitions");
@@ -60,8 +61,8 @@ const RefreshIndicator = React.createClass({
   },
 
   componentDidUpdate() {
-    this._scalePath(React.findDOMNode(this.refs.path), 0);
-    this._rotateWrapper(React.findDOMNode(this.refs.wrapper));
+    this._scalePath(ReactDOM.findDOMNode(this.refs.path), 0);
+    this._rotateWrapper(ReactDOM.findDOMNode(this.refs.wrapper));
   },
 
   render() {
