@@ -22,7 +22,7 @@ let Calendar = React.createClass({
     isActive: React.PropTypes.bool,
     minDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
-    onDayClick: React.PropTypes.func,
+    onDayTouchTap: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
     shouldShowMonthDayPickerFirst: React.PropTypes.bool,
   },
@@ -160,7 +160,7 @@ let Calendar = React.createClass({
               key={this.state.displayDate.toDateString()}
               ref="calendar"
               displayDate={this.state.displayDate}
-              onDayClick={this._handleDayClick}
+              onDayTouchTap={this._handleDayTouchTap}
               selectedDate={this.state.selectedDate}
               minDate={this.props.minDate}
               maxDate={this.props.maxDate}
@@ -183,7 +183,7 @@ let Calendar = React.createClass({
       <CalendarYear
         key={'years'}
         displayDate={this.state.displayDate}
-        onYearClick={this._handleYearClick}
+        onYearTouchTap={this._handleYearTouchTap}
         selectedDate={this.state.selectedDate}
         minDate={this.props.minDate}
         maxDate={this.props.maxDate} />
@@ -243,16 +243,16 @@ let Calendar = React.createClass({
     }
   },
 
-  _handleDayClick(e, date) {
+  _handleDayTouchTap(e, date) {
     this._setSelectedDate(date);
-    if (this.props.onDayClick) this.props.onDayClick(e, date);
+    if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
   },
 
   _handleMonthChange(months) {
     this.setState({displayDate: DateTime.addMonths(this.state.displayDate, months)});
   },
 
-  _handleYearClick(e, year) {
+  _handleYearTouchTap(e, year) {
     let date = DateTime.clone(this.state.selectedDate);
     date.setFullYear(year);
     this._setSelectedDate(date, e);

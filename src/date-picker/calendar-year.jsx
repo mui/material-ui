@@ -12,7 +12,7 @@ let CalendarYear = React.createClass({
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
-    onYearClick: React.PropTypes.func,
+    onYearTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
     minDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
@@ -65,7 +65,7 @@ let CalendarYear = React.createClass({
         <YearButton
           key={'yb' + year}
           year={year}
-          onClick={this._handleYearClick}
+          onTouchTap={this._handleYearTouchTap}
           selected={selected}
           {...selectedProps} />
       );
@@ -89,8 +89,8 @@ let CalendarYear = React.createClass({
     container.scrollTop = scrollYOffset;
   },
 
-  _handleYearClick(e, year) {
-    if (this.props.onYearClick) this.props.onYearClick(e, year);
+  _handleYearTouchTap(e, year) {
+    if (this.props.onYearTouchTap) this.props.onYearTouchTap(e, year);
   },
 
 });

@@ -74,7 +74,7 @@ let DatePickerDialog = React.createClass({
         label="Cancel"
         secondary={true}
         style={styles.actions}
-        onClick={this._handleCancelClick} />,
+        onTouchTap={this._handleCancelTouchTap} />,
     ];
 
     if (!this.props.autoOk) {
@@ -85,7 +85,7 @@ let DatePickerDialog = React.createClass({
           secondary={true}
           disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
           style={styles.actions}
-          onClick={this._handleOKClick} />
+          onTouchTap={this._handleOKTouchTap} />
       );
     }
 
@@ -102,7 +102,7 @@ let DatePickerDialog = React.createClass({
         repositionOnUpdate={false}>
         <Calendar
           ref="calendar"
-          onDayClick={this._onDayClick}
+          onDayTouchTap={this._onDayTouchTap}
           initialDate={this.props.initialDate}
           isActive={this.state.isCalendarActive}
           minDate={this.props.minDate}
@@ -123,17 +123,17 @@ let DatePickerDialog = React.createClass({
     this.refs.dialog.dismiss();
   },
 
-  _onDayClick() {
+  _onDayTouchTap() {
     if (this.props.autoOk) {
-      setTimeout(this._handleOKClick, 300);
+      setTimeout(this._handleOKTouchTap, 300);
     }
   },
 
-  _handleCancelClick() {
+  _handleCancelTouchTap() {
     this.dismiss();
   },
 
-  _handleOKClick() {
+  _handleOKTouchTap() {
     if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
@@ -175,7 +175,7 @@ let DatePickerDialog = React.createClass({
     if (this.state.isCalendarActive) {
       switch (e.keyCode) {
         case KeyCode.ENTER:
-          this._handleOKClick();
+          this._handleOKTouchTap();
           break;
       }
     }

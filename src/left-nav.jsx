@@ -156,7 +156,7 @@ let LeftNav = React.createClass({
           ref="overlay"
           show={this.state.open || !!this.state.swiping}
           transitionEnabled={!this.state.swiping}
-          onClick={this._onOverlayClick}
+          onTouchTap={this._onOverlayTouchTap}
         />
       );
     }
@@ -208,7 +208,7 @@ let LeftNav = React.createClass({
     if (!this.props.docked) this.close();
   },
 
-  _onOverlayClick() {
+  _onOverlayTouchTap() {
     this.close();
   },
 

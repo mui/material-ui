@@ -13,7 +13,7 @@ let YearButton = React.createClass({
 
   propTypes: {
     year: React.PropTypes.number,
-    onClick: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
   },
 
@@ -37,7 +37,7 @@ let YearButton = React.createClass({
     let {
       className,
       year,
-      onClick,
+      onTouchTap,
       selected,
       ...other,
     } = this.props;
@@ -94,7 +94,7 @@ let YearButton = React.createClass({
         disableTouchRipple={true}
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
-        onClick={this._handleClick}>
+        onTouchTap={this._handleTouchTap}>
         <div style={styles.buttonState} />
         <span style={styles.label}>{year}</span>
       </EnhancedButton>
@@ -109,8 +109,8 @@ let YearButton = React.createClass({
     this.setState({hover: false});
   },
 
-  _handleClick(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.year);
+  _handleTouchTap(e) {
+    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.year);
   },
 
 });

@@ -17,32 +17,32 @@ let IconMenu = React.createClass({
   },
 
   propTypes: {
-    closeOnItemClick: React.PropTypes.bool,
+    closeOnItemTouchTap: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
     openDirection: PropTypes.corners,
-    onItemClick: React.PropTypes.func,
+    onItemTouchTap: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
     onMouseDown: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
-    onClick: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
-    clickCloseDelay: React.PropTypes.number,
+    touchTapCloseDelay: React.PropTypes.number,
   },
 
   getDefaultProps() {
     return {
-      closeOnItemClick: true,
+      closeOnItemTouchTap: true,
       openDirection: 'bottom-left',
-      onItemClick: () => {},
+      onItemTouchTap: () => {},
       onKeyboardFocus: () => {},
       onMouseDown: () => {},
       onMouseLeave: () => {},
       onMouseEnter: () => {},
       onMouseUp: () => {},
-      onClick: () => {},
-      clickCloseDelay: 200,
+      onTouchTap: () => {},
+      touchTapCloseDelay: 200,
     };
   },
 
@@ -64,16 +64,16 @@ let IconMenu = React.createClass({
 
   render() {
     let {
-      closeOnItemClick,
+      closeOnItemTouchTap,
       iconButtonElement,
       openDirection,
-      onItemClick,
+      onItemTouchTap,
       onKeyboardFocus,
       onMouseDown,
       onMouseLeave,
       onMouseEnter,
       onMouseUp,
-      onClick,
+      onTouchTap,
       menuStyle,
       style,
       ...other,
@@ -102,9 +102,9 @@ let IconMenu = React.createClass({
 
     let iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: this.props.onKeyboardFocus,
-      onClick: (e) => {
+      onTouchTap: (e) => {
         this.open(Events.isKeyboard(e));
-        if (iconButtonElement.props.onClick) iconButtonElement.props.onClick(e);
+        if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
       }.bind(this),
       ref: this.state.iconButtonRef,
     });
@@ -115,7 +115,7 @@ let IconMenu = React.createClass({
         animated={true}
         initiallyKeyboardFocused={this.state.menuInitiallyKeyboardFocused}
         onEscKeyDown={this._handleMenuEscKeyDown}
-        onItemClick={this._handleItemClick}
+        onItemTouchTap={this._handleItemTouchTap}
         openDirection={openDirection}
         style={mergedMenuStyles}>
         {this.props.children}
@@ -128,7 +128,7 @@ let IconMenu = React.createClass({
         onMouseLeave={onMouseLeave}
         onMouseEnter={onMouseEnter}
         onMouseUp={onMouseUp}
-        onClick={onClick}
+        onTouchTap={onTouchTap}
         style={mergedRootStyles}>
         {iconButton}
         <ReactTransitionGroup>{menu}</ReactTransitionGroup>
@@ -162,17 +162,17 @@ let IconMenu = React.createClass({
     }
   },
 
-  _handleItemClick(e, child) {
+  _handleItemTouchTap(e, child) {
 
-    if (this.props.closeOnItemClick) {
+    if (this.props.closeOnItemTouchTap) {
       let isKeyboard = Events.isKeyboard(e);
 
       this._timeout = setTimeout(() => {
         this.close(isKeyboard);
-      }, this.props.clickCloseDelay);
+      }, this.props.touchTapCloseDelay);
     }
 
-    this.props.onItemClick(e, child);
+    this.props.onItemTouchTap(e, child);
   },
 
   _handleMenuEscKeyDown() {

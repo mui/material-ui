@@ -24,7 +24,7 @@ const Snackbar = React.createClass({
     message: React.PropTypes.string.isRequired,
     action: React.PropTypes.string,
     autoHideDuration: React.PropTypes.number,
-    onActionClick: React.PropTypes.func,
+    onActionTouchTap: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     openOnMount: React.PropTypes.bool,
@@ -127,7 +127,7 @@ const Snackbar = React.createClass({
   },
 
   render() {
-    const {action, message, onActionClick, style, ...others } = this.props;
+    const {action, message, onActionTouchTap, style, ...others } = this.props;
     const styles = this.getStyles();
 
     const rootStyles = this.state.open ?
@@ -140,7 +140,7 @@ const Snackbar = React.createClass({
         <FlatButton
           style={styles.action}
           label={action}
-          onClick={onActionClick} />
+          onTouchTap={onActionTouchTap} />
       );
     }
 

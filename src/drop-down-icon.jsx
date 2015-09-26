@@ -17,7 +17,7 @@ let DropDownIcon = React.createClass({
   propTypes: {
     onChange: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
-    closeOnMenuItemClick: React.PropTypes.bool,
+    closeOnMenuItemTouchTap: React.PropTypes.bool,
     iconStyle: React.PropTypes.object,
     iconClassName: React.PropTypes.string,
     iconLigature: React.PropTypes.string,
@@ -31,7 +31,7 @@ let DropDownIcon = React.createClass({
 
   getDefaultProps() {
     return {
-      closeOnMenuItemClick: true,
+      closeOnMenuItemTouchTap: true,
     };
   },
 
@@ -78,7 +78,7 @@ let DropDownIcon = React.createClass({
       style,
       children,
       menuItems,
-      closeOnMenuItemClick,
+      closeOnMenuItemTouchTap,
       iconStyle,
       iconClassName,
       ...other,
@@ -88,7 +88,7 @@ let DropDownIcon = React.createClass({
 
     return (
       <div {...other} style={this.mergeAndPrefix(styles.root, this.props.style)}>
-          <div onClick={this._onControlClick}>
+          <div onTouchTap={this._onControlClick}>
               <FontIcon
                 className={iconClassName}
                 style={iconStyle}>{this.props.iconLigature}</FontIcon>
@@ -113,7 +113,7 @@ let DropDownIcon = React.createClass({
   _onMenuItemClick(e, key, payload) {
     if (this.props.onChange) this.props.onChange(e, key, payload);
 
-    if (this.props.closeOnMenuItemClick) {
+    if (this.props.closeOnMenuItemTouchTap) {
       this.setState({ open: false });
     }
   },
