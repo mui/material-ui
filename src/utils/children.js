@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const createFragment = React.addons.createFragment;
+const React = require('react');
+const createFragment = require('react-addons-create-fragment');
 
 module.exports = {
 
