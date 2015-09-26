@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const ColorManipulator = require('./utils/color-manipulator');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
@@ -417,7 +418,7 @@ const TextField = React.createClass({
 
   _getInputNode() {
     return (this.props.children || this.props.multiLine) ?
-      this.refs[this._getRef()].getInputNode() : React.findDOMNode(this.refs[this._getRef()]);
+      this.refs[this._getRef()].getInputNode() : ReactDOM.findDOMNode(this.refs[this._getRef()]);
   },
 
   _handleInputBlur(e) {
@@ -445,7 +446,7 @@ const TextField = React.createClass({
   _handleTextAreaHeightChange(e, height) {
     let newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
-    React.findDOMNode(this).style.height = newHeight + 'px';
+    ReactDOM.findDOMNode(this).style.height = newHeight + 'px';
   },
 
   _isControlled() {
