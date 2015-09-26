@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
@@ -116,7 +117,7 @@ const EnhancedTextarea = React.createClass({
   },
 
   getInputNode() {
-    return React.findDOMNode(this.refs.input);
+    return ReactDOM.findDOMNode(this.refs.input);
   },
 
   setValue(value) {
@@ -125,7 +126,7 @@ const EnhancedTextarea = React.createClass({
   },
 
   _syncHeightWithShadow(newValue, e) {
-    let shadow = React.findDOMNode(this.refs.shadow);
+    let shadow = ReactDOM.findDOMNode(this.refs.shadow);
 
     if (newValue !== undefined) {
       shadow.value = newValue;

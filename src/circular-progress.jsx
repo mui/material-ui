@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const AutoPrefix = require('./styles/auto-prefix');
 const Transitions = require("./styles/transitions");
@@ -59,8 +60,8 @@ const CircularProgress = React.createClass({
   },
 
   componentDidMount() {
-    let wrapper = React.findDOMNode(this.refs.wrapper);
-    let path = React.findDOMNode(this.refs.path);
+    let wrapper = ReactDOM.findDOMNode(this.refs.wrapper);
+    let path = ReactDOM.findDOMNode(this.refs.path);
 
     this._scalePath(path);
     this._rotateWrapper(wrapper);

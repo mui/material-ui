@@ -1,4 +1,4 @@
-const React = require('react/addons');
+const React = require('react');
 const WindowListenable = require('./mixins/window-listenable');
 const CssEvent = require('./utils/css-event');
 const KeyCode = require('./utils/key-code');
@@ -10,7 +10,7 @@ const Paper = require('./paper');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 
-const ReactTransitionGroup = React.addons.TransitionGroup;
+const ReactTransitionGroup = require('react-addons-transition-group');
 
 const TransitionItem = React.createClass({
   mixins: [StylePropable],
