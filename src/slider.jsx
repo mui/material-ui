@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const Draggable = require('react-draggable2');
 const Transitions = require('./styles/transitions');
@@ -360,7 +361,7 @@ const Slider = React.createClass({
   _constrain() {
     let { min, max, step } = this.props;
     return (pos) => {
-      let pixelMax = React.findDOMNode(this.refs.track).clientWidth;
+      let pixelMax = ReactDOM.findDOMNode(this.refs.track).clientWidth;
       let pixelStep = pixelMax / ((max - min) / step);
 
       let cursor = min;
@@ -407,7 +408,7 @@ const Slider = React.createClass({
   _onMouseUp(e) {
     if (!this.props.disabled) this.setState({active: false});
     if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
-      let pos = e.clientX - React.findDOMNode(this).getBoundingClientRect().left;
+      let pos = e.clientX - ReactDOM.findDOMNode(this).getBoundingClientRect().left;
       this._dragX(e, pos);
     }
 
@@ -440,7 +441,7 @@ const Slider = React.createClass({
   },
 
   _dragX(e, pos) {
-    let max = React.findDOMNode(this.refs.track).clientWidth;
+    let max = ReactDOM.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
     if (pos === this.props.min) {
       return this._updateWithChangeEvent(e, 0);
