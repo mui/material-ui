@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
 const ActionViewCarousel = React.createClass({
-
-  mixins: [PureRenderMixin],
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 
   render() {
     return (
@@ -12,8 +12,7 @@ const ActionViewCarousel = React.createClass({
         <path d="M7 19h10V4H7v15zm-5-2h4V6H2v11zM18 6v11h4V6h-4z"/>
       </SvgIcon>
     );
-  }
-
+  },
 });
 
 module.exports = ActionViewCarousel;

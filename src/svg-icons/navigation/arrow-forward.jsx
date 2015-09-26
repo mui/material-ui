@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
 const NavigationArrowForward = React.createClass({
-
-  mixins: [PureRenderMixin],
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 
   render() {
     return (
@@ -12,8 +12,7 @@ const NavigationArrowForward = React.createClass({
         <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
       </SvgIcon>
     );
-  }
-
+  },
 });
 
 module.exports = NavigationArrowForward;

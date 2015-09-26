@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
 const ImageDehaze = React.createClass({
-
-  mixins: [PureRenderMixin],
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 
   render() {
     return (
@@ -12,8 +12,7 @@ const ImageDehaze = React.createClass({
         <path d="M2 15.5v2h20v-2H2zm0-5v2h20v-2H2zm0-5v2h20v-2H2z"/>
       </SvgIcon>
     );
-  }
-
+  },
 });
 
 module.exports = ImageDehaze;

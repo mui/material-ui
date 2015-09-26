@@ -1,5 +1,4 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const ColorManipulator = require('../utils/color-manipulator');
 const StylePropable = require('../mixins/style-propable');
 const Colors = require('../styles/colors');
@@ -14,8 +13,7 @@ const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
 
 const ListItem = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -517,6 +515,9 @@ const ListItem = React.createClass({
     }
   },
 
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 });
 
 module.exports = ListItem;

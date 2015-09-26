@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
 const ActionViewStream = React.createClass({
-
-  mixins: [PureRenderMixin],
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 
   render() {
     return (
@@ -12,8 +12,7 @@ const ActionViewStream = React.createClass({
         <path d="M4 18h17v-6H4v6zM4 5v6h17V5H4z"/>
       </SvgIcon>
     );
-  }
-
+  },
 });
 
 module.exports = ActionViewStream;

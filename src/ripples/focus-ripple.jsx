@@ -1,5 +1,4 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('../mixins/style-propable');
 const AutoPrefix = require('../styles/auto-prefix');
 const Colors = require('../styles/colors');
@@ -10,8 +9,7 @@ const pulsateDuration = 750;
 
 
 const FocusRipple = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [StylePropable],
 
   propTypes: {
     color: React.PropTypes.string,
@@ -122,6 +120,9 @@ const FocusRipple = React.createClass({
     el.style.top = (height / 2) - (size / 2 ) + oldTop + 'px';
   },
 
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 });
 
 module.exports = FocusRipple;

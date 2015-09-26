@@ -1,5 +1,4 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('./mixins/style-propable');
 const Colors = require('./styles/colors');
 const Children = require('./utils/children');
@@ -41,8 +40,7 @@ function listenForTabPresses() {
 }
 
 const EnhancedButton = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -308,6 +306,9 @@ const EnhancedButton = React.createClass({
     }
   },
 
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 });
 
 module.exports = EnhancedButton;

@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
 const ImageAssistantPhoto = React.createClass({
-
-  mixins: [PureRenderMixin],
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 
   render() {
     return (
@@ -12,8 +12,7 @@ const ImageAssistantPhoto = React.createClass({
         <path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/>
       </SvgIcon>
     );
-  }
-
+  },
 });
 
 module.exports = ImageAssistantPhoto;

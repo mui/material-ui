@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
 const AvPlayArrow = React.createClass({
-
-  mixins: [PureRenderMixin],
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 
   render() {
     return (
@@ -12,8 +12,7 @@ const AvPlayArrow = React.createClass({
         <path d="M8 5v14l11-7z"/>
       </SvgIcon>
     );
-  }
-
+  },
 });
 
 module.exports = AvPlayArrow;

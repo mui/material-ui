@@ -1,5 +1,4 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('../mixins/style-propable');
 const AutoPrefix = require('../styles/auto-prefix');
 const Transitions = require('../styles/transitions');
@@ -7,8 +6,7 @@ const Colors = require('../styles/colors');
 
 
 const CircleRipple = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [StylePropable],
 
   propTypes: {
     color: React.PropTypes.string,
@@ -88,6 +86,9 @@ const CircleRipple = React.createClass({
     }, 0);
   },
 
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 });
 
 module.exports = CircleRipple;
