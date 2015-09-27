@@ -39,6 +39,7 @@ const TextField = React.createClass({
       React.PropTypes.string,
       React.PropTypes.element,
     ]),
+    placeholder: React.PropTypes.string,
     id: React.PropTypes.string,
     inputStyle: React.PropTypes.object,
     multiLine: React.PropTypes.bool,
@@ -281,6 +282,7 @@ const TextField = React.createClass({
       floatingLabelText,
       fullWidth,
       hintText,
+      placeholder,
       id,
       multiLine,
       onBlur,
@@ -324,6 +326,9 @@ const TextField = React.createClass({
       onKeyDown: this._handleInputKeyDown,
     };
 
+    if (placeholder) {
+      inputProps.placeholder = placeholder;
+    }
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
     }
