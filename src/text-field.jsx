@@ -160,7 +160,7 @@ const TextField = React.createClass({
         display: 'inline-block',
         position: 'relative',
         fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-        transition: Transitions.easeOut('200ms', 'height'),
+        transition: this.isMounted() ? Transitions.easeOut('200ms', 'height') : '',
       },
       error: {
         position: 'relative',
