@@ -1,11 +1,12 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let Paper = require('./paper');
-let EnhancedSwitch = require('./enhanced-switch');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
+const Paper = require('./paper');
+const EnhancedSwitch = require('./enhanced-switch');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
-
-let Toggle = React.createClass({
+const Toggle = React.createClass({
 
   mixins: [StylePropable],
 
@@ -21,6 +22,17 @@ let Toggle = React.createClass({
     defaultToggled: React.PropTypes.bool,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   getInitialState() {
     return {
       switched:
@@ -28,11 +40,19 @@ let Toggle = React.createClass({
         this.props.defaultToggled ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getTheme() {
-    return this.context.muiTheme.component.toggle;
+    return this.state.muiTheme.toggle;
   },
 
   getStyles() {
@@ -126,7 +146,7 @@ let Toggle = React.createClass({
     }, this.props.rippleStyle);
 
     let rippleColor = this.state.switched ?
-      this.getTheme().thumbOnColor : this.context.muiTheme.component.textColor;
+      this.getTheme().thumbOnColor : this.state.muiTheme.textColor;
 
     let iconStyle = this.mergeAndPrefix(
       styles.icon,

@@ -1,15 +1,29 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let TextField = require('./text-field');
-let DropDownMenu = require('./drop-down-menu');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const TextField = require('./text-field');
+const DropDownMenu = require('./drop-down-menu');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
+const ContextPure = require('./mixins/context-pure');
 
+const SelectField = React.createClass({
 
-let SelectField = React.createClass({
-
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+    ContextPure,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  statics: {
+    getChildrenClasses() {
+      return [
+        TextField,
+        DropDownMenu,
+      ];
+    },
   },
 
   propTypes: {
@@ -38,10 +52,34 @@ let SelectField = React.createClass({
     selectedIndex: React.PropTypes.number,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
   getDefaultProps() {
     return {
       fullWidth: false,
     };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   getStyles() {
@@ -80,15 +118,15 @@ let SelectField = React.createClass({
       }
     }
     else {
-        styles.error.bottom = -15;
+      styles.error.bottom = -15;
     }
 
     return styles;
   },
 
   render() {
-    let styles = this.getStyles();
-    let {
+    const styles = this.getStyles();
+    const {
       style,
       labelStyle,
       iconStyle,
@@ -105,7 +143,7 @@ let SelectField = React.createClass({
       ...other,
     } = this.props;
 
-    let textFieldProps = {
+    const textFieldProps = {
       style: this.mergeAndPrefix(styles.input, style),
       floatingLabelText: floatingLabelText,
       floatingLabelStyle: floatingLabelStyle,
@@ -114,7 +152,7 @@ let SelectField = React.createClass({
       errorText: errorText,
       errorStyle: this.mergeAndPrefix(styles.error, errorStyle),
     };
-    let dropDownMenuProps = {
+    const dropDownMenuProps = {
       menuItems: menuItems,
       disabled: disabled,
       style: this.mergeAndPrefix(styles.root, selectFieldRoot),

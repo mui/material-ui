@@ -1,8 +1,8 @@
-let React = require('react');
-let BeforeAfterWrapper = require('./before-after-wrapper');
+const React = require('react');
+const BeforeAfterWrapper = require('./before-after-wrapper');
 
 
-let ClearFix = React.createClass({
+const ClearFix = React.createClass({
 
   render() {
     let {

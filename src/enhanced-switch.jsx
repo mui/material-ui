@@ -1,21 +1,33 @@
-let React = require('react');
-let KeyCode = require('./utils/key-code');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let UniqueId = require('./utils/unique-id');
-let WindowListenable = require('./mixins/window-listenable');
-let ClearFix = require('./clearfix');
-let FocusRipple = require('./ripples/focus-ripple');
-let TouchRipple = require('./ripples/touch-ripple');
-let Paper = require('./paper');
+const React = require('react');
+const KeyCode = require('./utils/key-code');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
+const UniqueId = require('./utils/unique-id');
+const WindowListenable = require('./mixins/window-listenable');
+const ClearFix = require('./clearfix');
+const FocusRipple = require('./ripples/focus-ripple');
+const TouchRipple = require('./ripples/touch-ripple');
+const Paper = require('./paper');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
-
-let EnhancedSwitch = React.createClass({
+const EnhancedSwitch = React.createClass({
 
   mixins: [WindowListenable, StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   propTypes: {
@@ -51,6 +63,7 @@ let EnhancedSwitch = React.createClass({
     return {
       isKeyboardFocused: false,
       parentWidth: 100,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -77,7 +90,7 @@ let EnhancedSwitch = React.createClass({
     window.removeEventListener("resize", this._handleResize);
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
     let hasCheckedProp = nextProps.hasOwnProperty('checked');
     let hasToggledProp = nextProps.hasOwnProperty('toggled');
@@ -85,6 +98,7 @@ let EnhancedSwitch = React.createClass({
       (nextProps.hasOwnProperty('defaultSwitched') &&
       (nextProps.defaultSwitched !== this.props.defaultSwitched));
     let newState = {};
+    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     if (hasCheckedProp) {
       newState.switched = nextProps.checked;
@@ -102,14 +116,16 @@ let EnhancedSwitch = React.createClass({
     if (newState.switched !== undefined && (newState.switched !== this.props.switched)) {
       this.props.onParentShouldUpdate(newState.switched);
     }
+
+    this.setState(newState);
   },
 
   getTheme() {
-    return this.context.muiTheme.palette;
+    return this.state.muiTheme.rawTheme.palette;
   },
 
   getStyles() {
-    let spacing = this.context.muiTheme.spacing;
+    let spacing = this.state.muiTheme.rawTheme.spacing;
     let switchWidth = 60 - spacing.desktopGutterLess;
     let labelWidth = 'calc(100% - 60px)';
     let styles = {

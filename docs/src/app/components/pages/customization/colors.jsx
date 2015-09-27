@@ -1,12 +1,12 @@
-let React = require('react');
-let { ClearFix, Mixins, Styles, Utils } = require('material-ui');
+const React = require('react');
+const { ClearFix, Mixins, Styles, Utils } = require('material-ui');
 
-let { ColorManipulator } = Utils;
-let { StyleResizable, StylePropable } = Mixins;
-let { Colors, Typography } = Styles;
+const { ColorManipulator } = Utils;
+const { StyleResizable, StylePropable } = Mixins;
+const { Colors, Typography } = Styles;
 
 
-let ColorsPage = React.createClass({
+const ColorsPage = React.createClass({
 
   mixins: [StyleResizable, StylePropable],
 

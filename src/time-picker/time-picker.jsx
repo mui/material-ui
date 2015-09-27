@@ -1,8 +1,8 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let WindowListenable = require('../mixins/window-listenable');
-let TimePickerDialog = require('./time-picker-dialog');
-let TextField = require('../text-field');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const WindowListenable = require('../mixins/window-listenable');
+const TimePickerDialog = require('./time-picker-dialog');
+const TextField = require('../text-field');
 
 
 let emptyTime = new Date();
@@ -10,7 +10,7 @@ emptyTime.setHours(0);
 emptyTime.setMinutes(0);
 
 
-let TimePicker = React.createClass({
+const TimePicker = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 

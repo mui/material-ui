@@ -3,10 +3,16 @@ const StylePropable = require('./mixins/style-propable');
 const AutoPrefix = require('./styles/auto-prefix');
 const Transitions = require("./styles/transitions");
 const Paper = require('./paper');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 const VIEWBOX_SIZE = 32;
 const RefreshIndicator = React.createClass({
   mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
 
   propTypes: {
     left: React.PropTypes.number.isRequired,
@@ -25,8 +31,28 @@ const RefreshIndicator = React.createClass({
     };
   },
 
-  contextTypes: {
+  //for passing default theme context to children
+  childContextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   componentDidMount() {
@@ -105,7 +131,7 @@ const RefreshIndicator = React.createClass({
   },
 
   _getTheme() {
-    return this.context.muiTheme.component.refreshIndicator;
+    return this.state.muiTheme.refreshIndicator;
   },
 
   _getPaddingSize() {

@@ -1,9 +1,10 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Draggable = require('react-draggable2');
-let Transitions = require('./styles/transitions');
-let FocusRipple = require('./ripples/focus-ripple');
-
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const Draggable = require('react-draggable2');
+const Transitions = require('./styles/transitions');
+const FocusRipple = require('./ripples/focus-ripple');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 /**
   * Verifies min/max range.
@@ -40,7 +41,7 @@ let valueInRangePropType = (props, propName, componentName) => {
 };
 
 
-let Slider = React.createClass({
+const Slider = React.createClass({
 
   mixins: [StylePropable],
 
@@ -64,6 +65,17 @@ let Slider = React.createClass({
     onDragStop: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     value: valueInRangePropType,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   getDefaultProps() {
@@ -92,17 +104,21 @@ let Slider = React.createClass({
       hovered: false,
       percent: percent,
       value: value,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
     if (nextProps.value !== undefined) {
       this.setValue(nextProps.value);
     }
   },
 
   getTheme() {
-    return this.context.muiTheme.component.slider;
+    return this.state.muiTheme.slider;
   },
 
   getStyles() {
@@ -229,7 +245,7 @@ let Slider = React.createClass({
       this.state.focused && {outline: 'none'},
       (this.state.hovered || this.state.focused) && !this.props.disabled
         && styles.handleWhenPercentZeroAndFocused,
-      this.props.disabled && styles.handleWhenPercentZeroAndDisabled,
+      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
     ) : this.mergeAndPrefix(
       styles.handle,
       this.state.active && styles.handleWhenActive,
@@ -238,7 +254,7 @@ let Slider = React.createClass({
     );
     let rippleStyle = this.mergeAndPrefix(
       styles.ripple,
-      percent === 0 && styles.rippleWhenPercentZero,
+      percent === 0 && styles.rippleWhenPercentZero
     );
     let remainingStyles = styles.remaining;
     if ((this.state.hovered || this.state.focused) && !this.props.disabled) {

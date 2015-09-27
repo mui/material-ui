@@ -1,27 +1,36 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
-let React = require('react');
-let RaisedButton = require('material-ui/lib/raised-button');
-let Dialog = require('material-ui/lib/dialog');
-let ThemeManager = new (require('material-ui/lib/styles/theme-manager'))();
-let Colors = require('material-ui/lib/styles/colors');
+const React = require('react');
+const RaisedButton = require('material-ui/lib/raised-button');
+const Dialog = require('material-ui/lib/dialog');
+const ThemeManager = require('material-ui/lib/styles/theme-manager');
+const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
+const Colors = require('material-ui/lib/styles/colors');
 
-let Main = React.createClass({
+const Main = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
+  getInitialState () {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
+    };
+  },
+
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme(),
+      muiTheme: this.state.muiTheme,
     };
   },
 
   componentWillMount() {
-    ThemeManager.setPalette({
+    let newMuiTheme = ThemeManager.modifyRawThemePalette(this.state.muiTheme, {
       accent1Color: Colors.deepOrange500,
     });
+    
+    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {

@@ -1,7 +1,7 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let ClockNumber = require("./clock-number");
-let ClockPointer = require("./clock-pointer");
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const ClockNumber = require("./clock-number");
+const ClockPointer = require("./clock-pointer");
 
 
 function rad2deg(rad) {
@@ -21,7 +21,7 @@ function getTouchEventOffsetValues(e) {
 }
 
 
-let ClockHours = React.createClass({
+const ClockHours = React.createClass({
 
   mixins: [StylePropable],
 

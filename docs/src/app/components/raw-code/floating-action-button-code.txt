@@ -4,9 +4,9 @@
 </FloatingActionButton>
 <FloatingActionButton iconClassName="muidocs-icon-action-grade" mini={true} />
 
-<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true}>
+<FloatingActionButton iconClassName="muidocs-icon-action-grade" secondary={true} />
 <FloatingActionButton secondary={true} mini={true} linkButton={true}
-  href="https://github.com/callemall/material-ui" />
+  href="https://github.com/callemall/material-ui">
   <ToggleStar />
 </FloatingActionButton>
 
