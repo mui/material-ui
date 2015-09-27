@@ -109,6 +109,11 @@ const TextField = React.createClass({
 
   componentDidMount() {
     this._uniqueId = UniqueId.generate();
+    this._mounted = true;
+  },
+
+  componentWillUnmount() {
+    this._mounted = false;
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -160,7 +165,7 @@ const TextField = React.createClass({
         display: 'inline-block',
         position: 'relative',
         fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-        transition: this.isMounted() ? Transitions.easeOut('200ms', 'height') : '',
+        transition: this._mounted ? Transitions.easeOut('200ms', 'height') : '',
       },
       error: {
         position: 'relative',
