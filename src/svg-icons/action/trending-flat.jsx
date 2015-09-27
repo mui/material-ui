@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const ActionTrendingFlat = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class ActionTrendingFlat extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const ActionTrendingFlat = React.createClass({
         <path d="M22 12l-4-4v3H3v2h15v3z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = ActionTrendingFlat;

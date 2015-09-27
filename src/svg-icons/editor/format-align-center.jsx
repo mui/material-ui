@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const EditorFormatAlignCenter = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class EditorFormatAlignCenter extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const EditorFormatAlignCenter = React.createClass({
         <path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = EditorFormatAlignCenter;

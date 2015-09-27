@@ -2,8 +2,7 @@ const React = require('react');
 const BeforeAfterWrapper = require('./before-after-wrapper');
 
 
-const ClearFix = React.createClass({
-
+class ClearFix extends React.Component {
   render() {
     let {
       style,
@@ -29,7 +28,7 @@ const ClearFix = React.createClass({
           {this.props.children}
       </BeforeAfterWrapper>
     );
-  },
-});
+  }
+}
 
 module.exports = ClearFix;

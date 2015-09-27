@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const ImageLooksTwo = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class ImageLooksTwo extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const ImageLooksTwo = React.createClass({
         <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4 8c0 1.11-.9 2-2 2h-2v2h4v2H9v-4c0-1.11.9-2 2-2h2V9H9V7h4c1.1 0 2 .89 2 2v2z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = ImageLooksTwo;

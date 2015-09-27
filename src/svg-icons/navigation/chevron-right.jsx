@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const NavigationChevronRight = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class NavigationChevronRight extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const NavigationChevronRight = React.createClass({
         <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = NavigationChevronRight;

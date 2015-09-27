@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const DeviceNetworkCell = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class DeviceNetworkCell extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const DeviceNetworkCell = React.createClass({
         <path fill-opacity=".3" d="M2 22h20V2z"/><path d="M17 7L2 22h15z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = DeviceNetworkCell;

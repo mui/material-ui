@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const NavigationArrowDropDown = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class NavigationArrowDropDown extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const NavigationArrowDropDown = React.createClass({
         <path d="M7 10l5 5 5-5z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = NavigationArrowDropDown;

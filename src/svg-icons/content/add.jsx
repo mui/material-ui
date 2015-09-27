@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const ContentAdd = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class ContentAdd extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const ContentAdd = React.createClass({
         <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = ContentAdd;

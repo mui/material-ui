@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const FileFileDownload = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class FileFileDownload extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const FileFileDownload = React.createClass({
         <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = FileFileDownload;

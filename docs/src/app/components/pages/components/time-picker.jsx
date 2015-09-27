@@ -5,7 +5,12 @@ let Code = require('time-picker-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-let TimePickerPage = React.createClass({
+class TimePickerPage extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this._changeTimePicker12 = this._changeTimePicker12.bind(this);
+    this._changeTimePicker24 = this._changeTimePicker24.bind(this);
+  }
 
   render() {
 
@@ -101,14 +106,15 @@ let TimePickerPage = React.createClass({
         </CodeExample>
       </ComponentDoc>
     );
-  },
-  _changeTimePicker24(err, t){
-    this.refs.picker24hr.setTime(t);
-  },
-  _changeTimePicker12(err, t){
-    this.refs.picker12hr.setTime(t);
   }
 
-});
+  _changeTimePicker24(err, t) {
+    this.refs.picker24hr.setTime(t);
+  }
+
+  _changeTimePicker12(err, t) {
+    this.refs.picker12hr.setTime(t);
+  }
+}
 
 module.exports = TimePickerPage;

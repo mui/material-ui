@@ -2,27 +2,21 @@ const React = require('react');
 const RadioButton = require('./radio-button');
 
 
-const RadioButtonGroup = React.createClass({
+class RadioButtonGroup extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this._onChange = this._onChange.bind(this);
 
-  propTypes: {
-    name: React.PropTypes.string.isRequired,
-    valueSelected: React.PropTypes.string,
-    defaultSelected: React.PropTypes.string,
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
-    onChange: React.PropTypes.func,
-  },
+    this.state = {
+      numberCheckedRadioButtons: 0,
+      selected: props.valueSelected || props.defaultSelected || '',
+    };
+  }
 
   _hasCheckAttribute(radioButton) {
     return radioButton.props.hasOwnProperty('checked') &&
       radioButton.props.checked;
-  },
-
-  getInitialState() {
-    return {
-      numberCheckedRadioButtons: 0,
-      selected: this.props.valueSelected || this.props.defaultSelected || '',
-    };
-  },
+  }
 
   componentWillMount() {
     let cnt = 0;
@@ -32,13 +26,13 @@ const RadioButtonGroup = React.createClass({
     }, this);
 
     this.setState({numberCheckedRadioButtons: cnt});
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.hasOwnProperty('valueSelected')) {
       this.setState({selected: nextProps.valueSelected});
     }
-  },
+  }
 
   render() {
     let options = React.Children.map(this.props.children, (option) => {
@@ -70,7 +64,7 @@ const RadioButtonGroup = React.createClass({
         {options}
       </div>
     );
-  },
+  }
 
   _updateRadioButtons(newSelection) {
     if (this.state.numberCheckedRadioButtons === 0) {
@@ -81,7 +75,7 @@ const RadioButtonGroup = React.createClass({
                     "has the 'checked' property set to true.";
       console.error(message);
     }
-  },
+  }
 
   _onChange(e, newSelection) {
     this._updateRadioButtons(newSelection);
@@ -90,20 +84,27 @@ const RadioButtonGroup = React.createClass({
     if (this.state.numberCheckedRadioButtons === 0) {
       if (this.props.onChange) this.props.onChange(e, newSelection);
     }
-  },
+  }
 
   getSelectedValue() {
     return this.state.selected;
-  },
+  }
 
   setSelectedValue(newSelectionValue) {
     this._updateRadioButtons(newSelectionValue);
-  },
+  }
 
   clearValue() {
     this.setSelectedValue('');
-  },
+  }
+}
 
-});
+RadioButtonGroup.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  valueSelected: React.PropTypes.string,
+  defaultSelected: React.PropTypes.string,
+  labelPosition: React.PropTypes.oneOf(['left', 'right']),
+  onChange: React.PropTypes.func,
+};
 
 module.exports = RadioButtonGroup;

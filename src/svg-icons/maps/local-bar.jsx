@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const MapsLocalBar = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class MapsLocalBar extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const MapsLocalBar = React.createClass({
         <path d="M11 13v6H6v2h12v-2h-5v-6l8-8V3H3v2l8 8zM7.5 7l-2-2h13l-2 2h-9z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = MapsLocalBar;

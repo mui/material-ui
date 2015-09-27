@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const AvPlayArrow = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class AvPlayArrow extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const AvPlayArrow = React.createClass({
         <path d="M8 5v14l11-7z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = AvPlayArrow;

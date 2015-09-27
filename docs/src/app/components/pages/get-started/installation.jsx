@@ -6,35 +6,27 @@ const { Spacing, Typography } = Styles;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 
-const Installation = React.createClass({
+class Installation extends React.Component {
+  constructor(props, context) {
+    super(props, context);
 
-  contextTypes : {
-    muiTheme: React.PropTypes.object
-  },
+    this.state = {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  }
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
-  },
-
-  getInitialState () {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
+  }
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
+  }
 
   getStyles() {
     return {
@@ -64,7 +56,7 @@ const Installation = React.createClass({
         backgroundColor: '#F8F8F8'
       },
     };
-  },
+  }
 
   render() {
     let usageCode =
@@ -164,8 +156,16 @@ const Installation = React.createClass({
 
       </div>
     );
-  },
+  }
+}
 
-});
+//for passing default theme context to children
+Installation.childContextTypes = {
+  muiTheme: React.PropTypes.object,
+};
+
+Installation.contextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 module.exports = Installation;

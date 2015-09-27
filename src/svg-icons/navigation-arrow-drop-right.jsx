@@ -1,8 +1,7 @@
 let React = require('react');
 let SvgIcon = require('../svg-icon');
 
-let NavigationArrowDropRight = React.createClass({
-
+class NavigationArrowDropRight extends React.Component {
   render() {
     return (
       <SvgIcon {...this.props}>
@@ -10,7 +9,6 @@ let NavigationArrowDropRight = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = NavigationArrowDropRight;

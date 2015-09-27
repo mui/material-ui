@@ -15,38 +15,25 @@ const CodeBlock = require('./code-block');
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 
-const CodeExample = React.createClass({
+class CodeExample extends React.Component {
+  constructor(props, context) {
+    super(props, context);
 
-  propTypes : {
-    code: React.PropTypes.string.isRequired,
-    layoutSideBySide: React.PropTypes.bool,
-  },
+    this.state = {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  }
 
-  contextTypes : {
-    muiTheme: React.PropTypes.object
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
-  },
+  }
 
-  getInitialState () {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
+  }
 
   render() {
 
@@ -91,7 +78,21 @@ const CodeExample = React.createClass({
         <CodeBlock style={styles.codeBlock}>{code}</CodeBlock>
       </Paper>
     );
-  },
-});
+  }
+}
+
+//for passing default theme context to children
+CodeExample.childContextTypes = {
+  muiTheme: React.PropTypes.object,
+};
+
+CodeExample.contextTypes = {
+  muiTheme: React.PropTypes.object
+};
+
+CodeExample.propTypes = {
+  code: React.PropTypes.string.isRequired,
+  layoutSideBySide: React.PropTypes.bool,
+};
 
 module.exports = CodeExample;

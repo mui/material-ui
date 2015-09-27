@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const DeviceSignalCellularNull = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class DeviceSignalCellularNull extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const DeviceSignalCellularNull = React.createClass({
         <path d="M20 6.83V20H6.83L20 6.83M22 2L2 22h20V2z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = DeviceSignalCellularNull;

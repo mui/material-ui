@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const ContentForward = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class ContentForward extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const ContentForward = React.createClass({
         <path d="M12 8V4l8 8-8 8v-4H4V8z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = ContentForward;

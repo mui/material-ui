@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const ImageLens = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class ImageLens extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const ImageLens = React.createClass({
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = ImageLens;

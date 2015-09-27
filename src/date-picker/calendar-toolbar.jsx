@@ -7,27 +7,16 @@ const NavigationChevronLeft = require('../svg-icons/navigation/chevron-left');
 const NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
 const SlideInTransitionGroup = require('../transition-groups/slide-in');
 
-const CalendarToolbar = React.createClass({
+class CalendarToolbar extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this._nextMonthTouchTap = this._nextMonthTouchTap.bind(this);
+    this._prevMonthTouchTap = this._prevMonthTouchTap.bind(this);
 
-  propTypes: {
-    displayDate: React.PropTypes.object.isRequired,
-    nextMonth: React.PropTypes.bool,
-    onMonthChange: React.PropTypes.func,
-    prevMonth: React.PropTypes.bool,
-  },
-
-  getDefaultProps() {
-    return {
-      nextMonth: true,
-      prevMonth: true,
-    };
-  },
-
-  getInitialState() {
-    return {
+    this.state = {
       transitionDirection: 'up',
     };
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     let direction;
@@ -38,7 +27,7 @@ const CalendarToolbar = React.createClass({
         transitionDirection: direction,
       });
     }
-  },
+  }
 
   _styles() {
     return {
@@ -59,7 +48,7 @@ const CalendarToolbar = React.createClass({
         textAlign: 'center',
       },
     };
-  },
+  }
 
   render() {
     let month = DateTime.getFullMonth(this.props.displayDate);
@@ -93,16 +82,27 @@ const CalendarToolbar = React.createClass({
         </ToolbarGroup>
       </Toolbar>
     );
-  },
+  }
 
   _prevMonthTouchTap() {
     if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
-  },
+  }
 
   _nextMonthTouchTap() {
     if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
-  },
+  }
+}
 
-});
+CalendarToolbar.defaultProps = {
+  nextMonth: true,
+  prevMonth: true,
+};
+
+CalendarToolbar.propTypes = {
+  displayDate: React.PropTypes.object.isRequired,
+  nextMonth: React.PropTypes.bool,
+  onMonthChange: React.PropTypes.func,
+  prevMonth: React.PropTypes.bool,
+};
 
 module.exports = CalendarToolbar;

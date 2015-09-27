@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const HardwareKeyboardArrowUp = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class HardwareKeyboardArrowUp extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const HardwareKeyboardArrowUp = React.createClass({
         <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = HardwareKeyboardArrowUp;

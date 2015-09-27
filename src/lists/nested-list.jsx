@@ -3,20 +3,7 @@ const ImmutabilityHelper = require('../utils/immutability-helper');
 const List = require('./list');
 
 
-const NestedList = React.createClass({
-
-  propTypes: {
-    nestedLevel: React.PropTypes.number,
-    open: React.PropTypes.bool,
-  },
-
-  getDefaultProps() {
-    return {
-      nestedLevel: 1,
-      open: false,
-    };
-  },
-
+class NestedList extends React.Component {
   render() {
 
     const {
@@ -45,8 +32,17 @@ const NestedList = React.createClass({
         }
       </List>
     );
-  },
+  }
+}
 
-});
+NestedList.defaultProps = {
+  nestedLevel: 1,
+  open: false,
+};
+
+NestedList.propTypes = {
+  nestedLevel: React.PropTypes.number,
+  open: React.PropTypes.bool,
+};
 
 module.exports = NestedList;

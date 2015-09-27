@@ -1,10 +1,10 @@
 const React = require('react/addons');
 const SvgIcon = require('../../svg-icon');
 
-const CommunicationClearAll = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
+class CommunicationClearAll extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
     return React.addons.shallowCompare(this, nextProps, nextState);
-  },
+  }
 
   render() {
     return (
@@ -12,7 +12,7 @@ const CommunicationClearAll = React.createClass({
         <path d="M5 13h14v-2H5v2zm-2 4h14v-2H3v2zM7 7v2h14V7H7z"/>
       </SvgIcon>
     );
-  },
-});
+  }
+}
 
 module.exports = CommunicationClearAll;
