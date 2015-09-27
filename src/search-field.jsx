@@ -1,12 +1,12 @@
-let React = require('react/addons');
-let ReactTransitionGroup = React.addons.TransitionGroup;
-let StylePropable = require('./mixins/style-propable');
-let ClickAwayable = require('./mixins/click-awayable');
-let TextField = require('./text-field');
-let Menu = require('./menus/menu');
-let MenuItem = require('./menus/menu-item');
+const React = require('react/addons');
+const ReactTransitionGroup = React.addons.TransitionGroup;
+const StylePropable = require('./mixins/style-propable');
+const ClickAwayable = require('./mixins/click-awayable');
+const TextField = require('./text-field');
+const Menu = require('./menus/menu');
+const MenuItem = require('./menus/menu-item');
 
-let SearchField = React.createClass({
+const SearchField = React.createClass({
 
   mixins: [
     StylePropable,
