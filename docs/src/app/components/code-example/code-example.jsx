@@ -58,11 +58,11 @@ const CodeExample = React.createClass({
 
     let palette = this.state.muiTheme.rawTheme.palette;
     let borderColor = palette.borderColor;
-    let canvasColor = palette.canvasColor;
+    let alternateTextColor = palette.alternateTextColor;
 
     let styles = {
       root: {
-        backgroundColor: canvasColor,
+        backgroundColor: alternateTextColor,
         marginBottom: 32,
         overflow: 'hidden'
       },
