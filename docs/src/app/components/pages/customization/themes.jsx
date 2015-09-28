@@ -158,9 +158,9 @@ const ThemesPage = React.createClass({
   render() {
 
     let lightRawTheme = 
-      'let Colors = require(\'..\/colors\');\n' +
-      'let ColorManipulator = require(\'..\/..\/utils\/color-manipulator\');\n' +
-      'let Spacing = require(\'..\/spacing\');\n\n' +
+      'let Colors = require(\'material-ui/lib/styles/colors\');\n' +
+      'let ColorManipulator = require(\'material-ui/lib/utils/color-manipulator\');\n' +
+      'let Spacing = require(\'material-ui/lib/styles/spacing\');\n\n' +
       'module.exports = {\n' +
       '  spacing: Spacing,\n' +
       '  fontFamily: \'Roboto, sans-serif\',\n' +
