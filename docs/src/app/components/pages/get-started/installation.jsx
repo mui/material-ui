@@ -57,7 +57,7 @@ const Installation = React.createClass({
         color: Typography.textDarkBlack
       },
       codeExample: {
-        backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
+        backgroundColor: this.state.muiTheme.rawTheme.palette.alternateTextColor,
         marginBottom: '32px'
       },
       inlineCode: {

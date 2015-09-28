@@ -69,7 +69,7 @@ const ThemesPage = React.createClass({
   },
 
   getStyles() {
-    let canvasColor = this.state.muiTheme.rawTheme.palette.canvasColor;
+    let alternateTextColor = this.state.muiTheme.rawTheme.palette.alternateTextColor;
     let borderColor = this.state.muiTheme.rawTheme.palette.borderColor;
     let styles = {
       group: {
@@ -105,7 +105,7 @@ const ThemesPage = React.createClass({
         marginBottom: '0px'
       },
       codeExample: {
-        backgroundColor: canvasColor,
+        backgroundColor: alternateTextColor,
         marginBottom: '32px'
       },
       title: {
@@ -118,7 +118,7 @@ const ThemesPage = React.createClass({
         color: Typography.textDarkBlack
       },
       liveExamplePaper: {
-        backgroundColor: canvasColor,
+        backgroundColor: alternateTextColor,
         marginBottom: 32,
         overflow: 'hidden'
       },
@@ -167,12 +167,12 @@ const ThemesPage = React.createClass({
       '  palette: {\n' +
       '    primary1Color: Colors.cyan500,\n' +
       '    primary2Color: Colors.cyan700,\n' +
-      '    primary3Color: Colors.cyan100,\n' +
+      '    primary3Color: Colors.lightBlack,\n' +
       '    accent1Color: Colors.pinkA200,\n' +
-      '    accent2Color: Colors.pinkA400,\n' +
-      '    accent3Color: Colors.pinkA100,\n' +
+      '    accent2Color: Colors.grey100,\n' +
+      '    accent3Color: Colors.grey500,\n' +
       '    textColor: Colors.darkBlack,\n' +
-      '    canvasColor: Colors.white,\n' +
+      '    alternateTextColor: Colors.white,\n' +
       '    borderColor: Colors.grey300,\n' +
       '    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),\n' +
       '  },\n' +
