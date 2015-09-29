@@ -67,9 +67,13 @@ var config = {
         loaders: [
           {
             test: /\.(js|jsx)$/, //All .js and .jsx files
-            loader: 'babel-loader?stage=0', //babel loads jsx and es6-7
+            loader: 'babel-loader', //babel loads jsx and es6-7
             include: [__dirname, path.resolve(__dirname, '../src')], //include these files
-            exclude: [nodeModulesPath]  //exclude node_modules so that they are not all compiled
+            exclude: [nodeModulesPath],  //exclude node_modules so that they are not all compiled
+            query: {
+              optional: ['runtime'],
+              stage: 0,
+            },
           },
           {
             test:/\.txt$/,
