@@ -38,7 +38,7 @@ const AppCanvas = React.createClass({
   render() {
     let styles = {
       height: '100%',
-      backgroundColor: this.state.muiTheme.rawTheme.palette.alternateTextColor,
+      backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
       WebkitFontSmoothing: 'antialiased',
     };
 

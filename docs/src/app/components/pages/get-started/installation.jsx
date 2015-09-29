@@ -57,7 +57,7 @@ const Installation = React.createClass({
         color: Typography.textDarkBlack
       },
       codeExample: {
-        backgroundColor: this.state.muiTheme.rawTheme.palette.alternateTextColor,
+        backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
         marginBottom: '32px'
       },
       inlineCode: {
@@ -95,10 +95,10 @@ const Installation = React.createClass({
         '//https://github.com/zilverline/react-tap-event-plugin\n' +
         'injectTapEventPlugin();\n',
 
-      noticeCode1 = 
+      noticeCode1 =
         'const RaisedButton = require(\'material-ui/lib/raised-button\');\n',
 
-      noticeCode2 = 
+      noticeCode2 =
         'const Mui = require(\'material-ui\');\n' +
         'const RaisedButton = Mui.RaisedButton;\n';
 
@@ -106,7 +106,7 @@ const Installation = React.createClass({
 
     return (
       <div>
-        
+
         <h2 style={styles.headline}>Installation</h2>
         <p>
           Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>.
@@ -157,7 +157,7 @@ const Installation = React.createClass({
         </p>
 
         <h2 style={styles.headline}>Customization</h2>
-        <p>We have implemented a default theme to render all Material-UI components. Styling components to your liking is simple and hassle-free. 
+        <p>We have implemented a default theme to render all Material-UI components. Styling components to your liking is simple and hassle-free.
         This can be achieved in the following two ways:</p>
         <li><a href="#/customization/themes">Use a custom theme to style components</a></li>
         <li><a href="#/customization/inline-styles">Override individual component styles via the style prop</a></li>

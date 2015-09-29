@@ -4,7 +4,7 @@ const Extend = require('../utils/extend');
 const update = require('react/lib/update');
 
 module.exports = {
-  
+
   //get the MUI theme corresponding to a raw theme
   getMuiTheme: function (rawTheme) {
     let returnObj = {
@@ -59,14 +59,14 @@ module.exports = {
       },
       leftNav: {
         width: rawTheme.spacing.desktopKeylineIncrement * 4,
-        color: rawTheme.palette.alternateTextColor,
+        color: rawTheme.palette.canvasColor,
       },
       listItem: {
         nestedLevelDepth: 18,
       },
       menu: {
-        backgroundColor: rawTheme.palette.alternateTextColor,
-        containerBackgroundColor: rawTheme.palette.alternateTextColor,
+        backgroundColor: rawTheme.palette.canvasColor,
+        containerBackgroundColor: rawTheme.palette.canvasColor,
       },
       menuItem: {
         dataHeight: 32,
@@ -81,7 +81,7 @@ module.exports = {
         textColor: rawTheme.palette.primary1Color,
       },
       paper: {
-        backgroundColor: rawTheme.palette.alternateTextColor,
+        backgroundColor: rawTheme.palette.canvasColor,
       },
       radioButton: {
         borderColor:  rawTheme.palette.textColor,
@@ -123,7 +123,7 @@ module.exports = {
         actionColor: rawTheme.palette.accent1Color,
       },
       table: {
-        backgroundColor: rawTheme.palette.alternateTextColor,
+        backgroundColor: rawTheme.palette.canvasColor,
       },
       tableHeader: {
         borderColor: rawTheme.palette.borderColor,

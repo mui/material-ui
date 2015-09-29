@@ -14,6 +14,7 @@ module.exports = {
     accent3Color: Colors.pinkA100,
     textColor: Colors.fullWhite,
     alternateTextColor: '#303030',
+    canvasColor: '#303030',
     borderColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
     disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
   },

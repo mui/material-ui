@@ -69,7 +69,7 @@ const ThemesPage = React.createClass({
   },
 
   getStyles() {
-    let alternateTextColor = this.state.muiTheme.rawTheme.palette.alternateTextColor;
+    let canvasColor = this.state.muiTheme.rawTheme.palette.canvasColor;
     let borderColor = this.state.muiTheme.rawTheme.palette.borderColor;
     let styles = {
       group: {
@@ -105,7 +105,7 @@ const ThemesPage = React.createClass({
         marginBottom: '0px'
       },
       codeExample: {
-        backgroundColor: alternateTextColor,
+        backgroundColor: canvasColor,
         marginBottom: '32px'
       },
       title: {
@@ -118,7 +118,7 @@ const ThemesPage = React.createClass({
         color: Typography.textDarkBlack
       },
       liveExamplePaper: {
-        backgroundColor: alternateTextColor,
+        backgroundColor: canvasColor,
         marginBottom: 32,
         overflow: 'hidden'
       },
@@ -157,7 +157,7 @@ const ThemesPage = React.createClass({
 
   render() {
 
-    let lightRawTheme = 
+    let lightRawTheme =
       'let Colors = require(\'material-ui/lib/styles/colors\');\n' +
       'let ColorManipulator = require(\'material-ui/lib/utils/color-manipulator\');\n' +
       'let Spacing = require(\'material-ui/lib/styles/spacing\');\n\n' +
@@ -173,6 +173,7 @@ const ThemesPage = React.createClass({
       '    accent3Color: Colors.grey500,\n' +
       '    textColor: Colors.darkBlack,\n' +
       '    alternateTextColor: Colors.white,\n' +
+      '    canvasColor: Colors.white,\n' +
       '    borderColor: Colors.grey300,\n' +
       '    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),\n' +
       '  },\n' +
@@ -191,7 +192,7 @@ const ThemesPage = React.createClass({
       '  //the key passed through context must be called \"muiTheme\"\n' +
       '  childContextTypes : {\n' +
       '    muiTheme: React.PropTypes.object,\n' +
-      '  },\n\n' + 
+      '  },\n\n' +
 
       '  getChildContext() {\n' +
       '    return {\n' +
@@ -242,7 +243,7 @@ const ThemesPage = React.createClass({
 
       'module.exports = MySampleAppComponent;\n';
 
-    let receiveThemeInContextCode = 
+    let receiveThemeInContextCode =
       'const SpecificPageInApp = React.createClass({\n\n' +
 
       '...\n\n' +
@@ -326,7 +327,7 @@ const ThemesPage = React.createClass({
 
         <div style={styles.bottomBorderWrapper}>
           <p>
-            We changed how themes work in v0.12.0 (check out <a href="https://github.com/callemall/material-ui/releases/tag/v0.12.0">release log</a> for more details). 
+            We changed how themes work in v0.12.0 (check out <a href="https://github.com/callemall/material-ui/releases/tag/v0.12.0">release log</a> for more details).
             There are now two kinds of themes in Material-UI: <b>raw theme</b> and <b>mui theme</b>.
             The raw theme is a plain JS object containing three keys: spacing, palette and fontFamily.
             The mui theme, on the other hand, is a much bigger object. It contains a key for every material-ui
@@ -343,7 +344,7 @@ const ThemesPage = React.createClass({
             Before we discuss how to apply custom themes to an application, let&#39;s look at the functions provided by ThemeManager.
           </p>
         </div>
-        
+
         <div style={styles.bottomBorderWrapper}>
           <ComponentDoc
             name=""
@@ -360,11 +361,11 @@ const ThemesPage = React.createClass({
           Internally, Material-UI components use React&#39;s <a href="https://facebook.github.io/react/blog/2014/03/28/the-road-to-1.0.html#context">
           context</a> feature to implement theming. Context is a way to pass down values through the component
           hierarchy without having to use props at every level. In fact, context is very convenient for concepts like theming,
-          which are usually implemented in a hierarchical manner. 
+          which are usually implemented in a hierarchical manner.
         </p>
 
         <p>
-          There are two recommended ways to apply custom themes: using React lifecycle methods with the context feature, <b>or</b>, 
+          There are two recommended ways to apply custom themes: using React lifecycle methods with the context feature, <b>or</b>,
           using an ES7-style decorator. To start off, define your own raw theme in a JS file like so:
         </p>
 
@@ -402,7 +403,7 @@ const ThemesPage = React.createClass({
         <p>
           Once you have obtained the calculated mui theme in your app component, you can easily
           override specific attributes for particular components. These overrides can be performed at any level
-          in the hierarchy and will only apply from that point downward. 
+          in the hierarchy and will only apply from that point downward.
         </p>
 
         <p>
@@ -415,7 +416,7 @@ const ThemesPage = React.createClass({
         </Paper>
 
         <p>
-          We recommend that you use state for intermediary storage of the theme, and always access the theme 
+          We recommend that you use state for intermediary storage of the theme, and always access the theme
           using <code style={styles.inlineCode}>this.state</code>. Then, to modify the theme,
           use <code style={styles.inlineCode}>this.setState()</code> in an appropriate React lifecycle method. This is good practice because
           React componenets re-render every time the state of the component is updated.
@@ -436,7 +437,7 @@ const ThemesPage = React.createClass({
         </p>
 
         <p>
-          The mui theme object also contains a key called <code style={styles.inlineCode}>static</code> that is set to <code style={styles.inlineCode}>true</code> by 
+          The mui theme object also contains a key called <code style={styles.inlineCode}>static</code> that is set to <code style={styles.inlineCode}>true</code> by
           default. This allows for some optimization when rendering Material-UI components. Change this to <code style={styles.inlineCode}>false</code> iff
           the <code style={styles.inlineCode}>muiTheme</code> object in your app can change during runtime.
         </p>
