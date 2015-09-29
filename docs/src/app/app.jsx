@@ -4,6 +4,9 @@
     Router = require('react-router'),
     AppRoutes = require('./app-routes.jsx'),
     injectTapEventPlugin = require("react-tap-event-plugin");
+    
+  //Needed to emulate ES6 enviorment
+  require("babel/polyfill");
 
   //Needed for React Developer Tools
   window.React = React;
