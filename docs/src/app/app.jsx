@@ -2,7 +2,9 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const {Router} = require('react-router');
 const AppRoutes = require('./app-routes.jsx');
-const injectTapEventPlugin = require("react-tap-event-plugin");
+const injectTapEventPlugin = require('react-tap-event-plugin');
+const createBrowserHistory = require('history/lib/createBrowserHistory');
+const history = createBrowserHistory()
 
 //Needed for React Developer Tools
 window.React = React;
@@ -17,6 +19,6 @@ injectTapEventPlugin();
  * Render the main app component. You can read more about the react-router here:
  * https://github.com/rackt/react-router/blob/master/docs/guides/overview.md
  */
-ReactDOM.render(<Router>
+ReactDOM.render(<Router history={history}>
   {AppRoutes}
 </Router>, document.getElementById('app'));
