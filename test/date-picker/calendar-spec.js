@@ -20,4 +20,13 @@ describe('Calendar', function() {
 
         expect(dateDisplay.style.height).to.equal('64px');
     });
+
+    it(`should set the DateDisplay height to 64 if the mode prop is set to
+        potrait`, function() {
+            let render = TestUtils.renderIntoDocument(<ThemedCalendar mode='potrait'/>);
+            let dateDisplay = React.findDOMNode(
+                TestUtils.findRenderedComponentWithType(render, DateDisplay));
+
+            expect(dateDisplay.style.height).to.equal('64px');
+        });
 });
