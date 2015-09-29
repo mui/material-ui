@@ -29,7 +29,7 @@ const SelectField = React.createClass({
   propTypes: {
     errorText: React.PropTypes.string,
     floatingLabelText: React.PropTypes.string,
-    selectFieldRoot: React.PropTypes.string,
+    selectFieldRoot: React.PropTypes.object,
     underlineStyle: React.PropTypes.object,
     labelStyle: React.PropTypes.object,
     errorStyle: React.PropTypes.object,
