@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
 const KeyCode = require('./utils/key-code');
@@ -241,8 +242,8 @@ const DropDownMenu = React.createClass({
   },
 
   _setWidth() {
-    let el = React.findDOMNode(this);
-    let menuItemsDom = React.findDOMNode(this.refs.menuItems);
+    let el = ReactDOM.findDOMNode(this);
+    let menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
       el.style.width = 'auto';
       el.style.width = menuItemsDom.offsetWidth + 'px';
