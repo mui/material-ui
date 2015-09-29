@@ -201,7 +201,6 @@ const ListItem = React.createClass({
       },
 
       primaryText: {
-        margin: 0,
       },
 
       rightIconButton: {
