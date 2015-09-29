@@ -15,7 +15,6 @@ const { AppBar,
       Tabs,
       Paper} = require('material-ui');
 
-const RouteHandler = Router.RouteHandler;
 const { StylePropable } = Mixins;
 const { Colors, Spacing, Typography } = Styles;
 const ThemeManager = Styles.ThemeManager;
@@ -100,9 +99,9 @@ const Master = React.createClass({
   render() {
     let styles = this.getStyles();
     let title =
-      this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('customization') ? 'Customization' :
-      this.context.router.isActive('components') ? 'Components' : '';
+      this.props.history.isActive('get-started') ? 'Get Started' :
+      this.props.history.isActive('customization') ? 'Customization' :
+      this.props.history.isActive('components') ? 'Components' : '';
 
     let githubButton = (
       <IconButton
@@ -126,8 +125,8 @@ const Master = React.createClass({
         {githubButton}
         {this.state.renderTabs ? this._getTabs(): this._getAppBar()}
 
-        <RouteHandler />
-        <AppLeftNav ref="leftNav" />
+        {this.props.children}
+        <AppLeftNav ref="leftNav" history={this.props.history} />
         <FullWidthSection style={styles.footer}>
           <p style={this.prepareStyles(styles.p)}>
             Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
@@ -228,21 +227,21 @@ const Master = React.createClass({
   },
 
   _getSelectedIndex() {
-    return this.context.router.isActive('get-started') ? '1' :
-      this.context.router.isActive('customization') ? '2' :
-      this.context.router.isActive('components') ? '3' : '0';
+    return this.props.history.isActive('get-started') ? '1' :
+      this.props.history.isActive('customization') ? '2' :
+      this.props.history.isActive('components') ? '3' : '0';
   },
 
   _handleTabChange(value, e, tab) {
-    this.context.router.transitionTo(tab.props.route);
+    this.props.history.transitionTo(tab.props.route);
     this.setState({tabIndex: this._getSelectedIndex()});
   },
 
   _getAppBar() {
     let title =
-      this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('customization') ? 'Customization' :
-      this.context.router.isActive('components') ? 'Components' : '';
+      this.props.history.isActive('get-started') ? 'Get Started' :
+      this.props.history.isActive('customization') ? 'Customization' :
+      this.props.history.isActive('components') ? 'Components' : '';
 
     let githubButton = (
       <IconButton
