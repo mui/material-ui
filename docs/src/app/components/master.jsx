@@ -208,17 +208,17 @@ const Master = React.createClass({
                 value="1"
                 label="GETTING STARTED"
                 style={styles.tab}
-                route="get-started" />
+                route="/get-started" />
               <Tab
                 value="2"
                 label="CUSTOMIZATION"
                 style={styles.tab}
-                route="customization"/>
+                route="/customization"/>
               <Tab
                 value="3"
                 label="COMPONENTS"
                 style={styles.tab}
-                route="components"/>
+                route="/components"/>
             </Tabs>
           </div>
         </Paper>

@@ -13,7 +13,8 @@
     "prd": "webpack-dev-server --config webpack-production.config.js --progress --colors --profile"
   },
   "dependencies": {
-    "codemirror": "^5.5.0"
+    "codemirror": "^5.5.0",
+    "history": "^1.11.1"
   },
   "devDependencies": {
     "raw-loader": "^0.5.1",
