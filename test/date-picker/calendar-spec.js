@@ -9,6 +9,7 @@ import DateDisplay  from 'date-picker/date-display';
 import DateTime from 'utils/date-time';
 
 import injectTheme from '../fixtures/inject-theme';
+ import DateDisplay  from 'date-picker/date-display';
 
 const TestUtils = React.addons.TestUtils;
 
@@ -252,5 +253,14 @@ describe(`Calendar`, () => {
             let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
             expect(calendarToolbar.props.prevMonth).to.be.false;
         });
+    });
+
+    it(`should set the DateDisplay height to 64 if the mode prop is not provided 
+        (default mode is potrait)`, () => {
+        let render = TestUtils.renderIntoDocument(<ThemedCalendar />);
+        let dateDisplay = React.findDOMNode(
+            TestUtils.findRenderedComponentWithType(render, DateDisplay));
+
+        expect(dateDisplay.style.height).to.equal('64px');
     });
 });
