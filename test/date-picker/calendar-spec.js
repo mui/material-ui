@@ -46,4 +46,19 @@ describe('Calendar', function() {
 
         expect(dateDisplay.style.height).to.equal('198px');
     });
+
+    it(`should set the DateDisplay height to 238 if the weekCount is equal to
+        5 and the mode prop is landscape`, () => {
+        let initialDate = new Date('March 01, 2015');
+        let weekCount = DateTime.getWeekArray(initialDate).length;
+
+        expect(weekCount).to.equal(5);
+
+        let render = TestUtils.renderIntoDocument(
+            <ThemedCalendar mode='landscape' initialDate={initialDate} />);
+        let dateDisplay = React.findDOMNode(
+            TestUtils.findRenderedComponentWithType(render, DateDisplay));
+
+        expect(dateDisplay.style.height).to.equal('238px');
+    });
 });
