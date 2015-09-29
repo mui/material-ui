@@ -158,7 +158,7 @@ const SelectField = React.createClass({
       style: this.mergeAndPrefix(styles.root, selectFieldRoot),
       labelStyle: this.mergeAndPrefix(styles.label, labelStyle),
       iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
-      underlineStyle: this.mergeAndPrefix(styles.underline),
+      underlineStyle: this.mergeAndPrefix(styles.underline, underlineStyle),
       autoWidth: false,
     };
 
