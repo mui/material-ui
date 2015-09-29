@@ -46,15 +46,15 @@ const TimePicker = require('./components/pages/components/time-picker');
 const Toolbars = require('./components/pages/components/toolbars');
 
 
-/** Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
-  *
-  * Routes are used to declare your view hierarchy.
-  *
-  * Say you go to http://material-ui.com/#/components/paper
-  * The react router will search for a route named 'paper' and will recursively render its
-  * handler and its parent handler like so: Paper > Components > Master
-  */
-
+/**
+ * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
+ *
+ * Routes are used to declare your view hierarchy.
+ *
+ * Say you go to http://material-ui.com/#/components/paper
+ * The react router will search for a route named 'paper' and will recursively render its
+ * handler and its parent handler like so: Paper > Components > Master
+ */
 const AppRoutes = (
   <Route path="/" component={Master}>
     <Route path="home" component={Home} />
