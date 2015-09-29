@@ -13,8 +13,7 @@ describe('Calendar', function() {
         ThemedCalendar = injectTheme(Calendar);
     });
 
-    it(`should set the DateDisplay height to 64 if the mode prop is not provided 
-        (default mode is potrait)`, () => {
+    it(`should set the DateDisplay height to 64 if the mode prop is not provided (default mode is potrait)`, () => {
         let render = TestUtils.renderIntoDocument(<ThemedCalendar />);
         let dateDisplay = React.findDOMNode(
             TestUtils.findRenderedComponentWithType(render, DateDisplay));
@@ -22,8 +21,7 @@ describe('Calendar', function() {
         expect(dateDisplay.style.height).to.equal('64px');
     });
 
-    it(`should set the DateDisplay height to 64 if the mode prop is set to
-        potrait`, function() {
+    it(`should set the DateDisplay height to 64 if the mode prop is set to potrait`, function() {
         let render = TestUtils.renderIntoDocument(<ThemedCalendar mode='potrait'/>);
         let dateDisplay = React.findDOMNode(
             TestUtils.findRenderedComponentWithType(render, DateDisplay));
@@ -31,8 +29,7 @@ describe('Calendar', function() {
         expect(dateDisplay.style.height).to.equal('64px');
     });
 
-    it(`should set the DateDisplay height to 198 if the weekCount is not equal 
-        to 5 or 6 and the mode prop is landscape`, () => {
+    it(`should set the DateDisplay height to 198 if the weekCount is not equal to 5 or 6 and the mode prop is landscape`, () => {
         let initialDate = new Date('February 01, 2015');
         let weekCount = DateTime.getWeekArray(initialDate);
 
@@ -47,8 +44,7 @@ describe('Calendar', function() {
         expect(dateDisplay.style.height).to.equal('198px');
     });
 
-    it(`should set the DateDisplay height to 238 if the weekCount is equal to
-        5 and the mode prop is landscape`, () => {
+    it(`should set the DateDisplay height to 238 if the weekCount is equal to 5 and the mode prop is landscape`, () => {
         let initialDate = new Date('March 01, 2015');
         let weekCount = DateTime.getWeekArray(initialDate).length;
 
@@ -62,8 +58,7 @@ describe('Calendar', function() {
         expect(dateDisplay.style.height).to.equal('238px');
     });
 
-    it(`should set the DateDisplay height to 278 if the weekCount is equal to
-        6 and the mode prop is landscape`, () => {
+    it(`should set the DateDisplay height to 278 if the weekCount is equal to 6 and the mode prop is landscape`, () => {
         let initialDate = new Date('May 01, 2015');
         let weekCount = DateTime.getWeekArray(initialDate).length;
 
