@@ -1,47 +1,50 @@
-{
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true
-  },
-  "rules": {
-    "comma-dangle": [2, "always-multiline"],
-    "no-var": 2,
-    "eqeqeq": [2, "allow-null"],
-    "eol-last": 2,
-    "yoda": 2,
-    "no-unused-expressions": 2,
-    "dot-notation": 2,
-    "dot-location": [2, "property"],
-    "no-undef": 2,
-    "comma-spacing": 2,
-    "jsx-quotes": [2, "prefer-double"],
+env:
+  es6: true
+  browser: true
+  node: true
 
-    "key-spacing": 0,
-    "no-underscore-dangle": 0,
-    "no-shadow": 0,
-    "no-shadow-restricted-names": 0,
-    "no-extend-native": 0,
-    "curly": 0,
-    "new-cap": 0,
-    "quotes": 0,
-    "semi-spacing": 0,
-    "space-unary-ops": 0,
-    "space-infix-ops": 0,
-    "consistent-return": 0,
-    "strict": 0,
+rules:
+  # Errors
+  comma-dangle: [2, always-multiline]
+  no-var: 2
+  eqeqeq: [2, allow-null]
+  eol-last: 2
+  yoda: 2
+  no-unused-expressions: 2
+  dot-notation: 2
+  dot-location: [2, property]
+  no-undef: 2
+  comma-spacing: 2
+  jsx-quotes: [2, prefer-double]
 
-    "react/jsx-boolean-value": 0,
-    "react/jsx-curly-spacing": 2,
-    "react/jsx-max-props-per-line": [2, {maximum: 4}],
-    "react/jsx-no-duplicate-props": 2,
-    "react/jsx-no-undef": 2,
-  },
-  "parser": "babel-eslint",
-  "plugins": [
-    "react"
-  ],
-  "ecmaFeatures": {
-    "jsx": true
-  }
-}
+  # Disabled
+  key-spacing: 0
+  no-underscore-dangle: 0
+  no-shadow: 0
+  no-shadow-restricted-names: 0
+  no-extend-native: 0
+  curly: 0
+  new-cap: 0
+  quotes: 0
+  semi-spacing: 0
+  space-unary-ops: 0
+  space-infix-ops: 0
+  consistent-return: 0
+  strict: 0
+
+  # React
+  react/jsx-curly-spacing: 2
+  react/jsx-max-props-per-line: [2, {maximum: 4}]
+  react/jsx-no-duplicate-props: 2
+  react/jsx-no-undef: 2
+
+  # React disabled
+  react/jsx-boolean-value: 0
+
+parser: babel-eslint
+
+plugins:
+  - react
+
+ecmaFeatures:
+  jsx: true
