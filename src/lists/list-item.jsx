@@ -235,7 +235,7 @@ const ListItem = React.createClass({
       },
     };
 
-    let contentChildren = [];
+    let contentChildren = [children];
 
     if (leftIcon) {
       this._pushElement(
