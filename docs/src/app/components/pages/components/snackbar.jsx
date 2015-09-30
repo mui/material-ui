@@ -5,7 +5,7 @@ let Code = require('snackbars-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class SnackbarPage extends React.Component {
+export default class SnackbarPage extends React.Component {
 
   constructor() {
     super();
@@ -13,7 +13,7 @@ class SnackbarPage extends React.Component {
     this._updateAutoHideDuration = this._updateAutoHideDuration.bind(this);
 
     this.state = {
-      autoHideDuration: 0
+      autoHideDuration: 0,
     };
   }
 
@@ -27,33 +27,33 @@ class SnackbarPage extends React.Component {
             name: 'action',
             type: 'string',
             header: 'optional',
-            desc: 'The name of the action on the snackbar.'
+            desc: 'The name of the action on the snackbar.',
           },
           {
             name: 'autoHideDuration',
             type: 'number',
             header: 'optional',
-            desc: 'The number of milliseconds to wait before automatically dismissing. If no value is specified the snackbar will dismiss normally. If a value is provided the snackbar can still be dismissed normally. If a snackbar is dismissed before the timer expires, the timer will be cleared.'
+            desc: 'The number of milliseconds to wait before automatically dismissing. If no value is specified the snackbar will dismiss normally. If a value is provided the snackbar can still be dismissed normally. If a snackbar is dismissed before the timer expires, the timer will be cleared.',
           },
           {
             name: 'message',
             type: 'string',
             header: 'required',
-            desc: 'The message to be displayed on the snackbar.'
+            desc: 'The message to be displayed on the snackbar.',
           },
           {
             name: 'openOnMount',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the snackbar will open once mounted.'
+            desc: 'If true, the snackbar will open once mounted.',
           },
           {
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the Snackbar\'s root element.'
-          }
-        ]
+            desc: 'Override the inline-styles of the Snackbar\'s root element.',
+          },
+        ],
       },
       {
         name: 'Methods',
@@ -61,14 +61,14 @@ class SnackbarPage extends React.Component {
           {
             name: 'dismiss',
             header: 'Snackbar.dismiss()',
-            desc: 'Hides the snackbar.'
+            desc: 'Hides the snackbar.',
           },
           {
             name: 'show',
             header: 'Snackbar.show()',
-            desc: 'Shows the snackbar.'
-          }
-        ]
+            desc: 'Shows the snackbar.',
+          },
+        ],
       },
       {
         name: 'Events',
@@ -76,20 +76,20 @@ class SnackbarPage extends React.Component {
           {
             name: 'onActionTouchTap',
             header: 'function(event)',
-            desc: 'Fired when the action button is touchtapped.'
+            desc: 'Fired when the action button is touchtapped.',
           },
           {
             name: 'onDismiss',
             header: 'function()',
-            desc: 'Fired when the snackbar is dismissed.'
+            desc: 'Fired when the snackbar is dismissed.',
           },
           {
             name: 'onShow',
             header: 'function()',
-            desc: 'Fired when the snackbar is shown.'
-          }
-        ]
-      }
+            desc: 'Fired when the snackbar is shown.',
+          },
+        ],
+      },
     ];
 
     return (
@@ -119,7 +119,7 @@ class SnackbarPage extends React.Component {
     );
   }
 
-  _handleClick(e) {
+  _handleClick() {
     this.refs.snackbar.show();
   }
 
@@ -131,10 +131,7 @@ class SnackbarPage extends React.Component {
   _updateAutoHideDuration(e) {
     let value = e.target.value;
     this.setState({
-      autoHideDuration: value.length > 0 ? parseInt(value) : undefined
+      autoHideDuration: value.length > 0 ? parseInt(value) : undefined,
     });
   }
-
 }
-
-module.exports = SnackbarPage;

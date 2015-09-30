@@ -26,7 +26,7 @@ const {
   Tabs,
   Tab,
   TextField,
-  Toggle
+  Toggle,
 } = mui;
 
 const { StylePropable, StyleResizable } = Mixins;
@@ -40,7 +40,7 @@ const ThemesPage = React.createClass({
   mixins: [StylePropable, StyleResizable],
 
   contextTypes : {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -57,7 +57,7 @@ const ThemesPage = React.createClass({
   getInitialState () {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
-      isThemeDark: false
+      isThemeDark: false,
     };
   },
 
@@ -77,36 +77,36 @@ const ThemesPage = React.createClass({
         width: '100%',
         marginTop: '16px',
         padding: '0 50px',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
       },
       groupSlider: {
         marginTop: '0px',
-        width: '100%'
+        width: '100%',
       },
       container: {
         marginBottom: '16px',
         minHeight: '24px',
-        textAlign: 'left'
+        textAlign: 'left',
       },
       containerCentered: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       paper: {
         height: '100px',
         width: '100px',
         margin: '0 auto',
-        marginBottom: '64px'
+        marginBottom: '64px',
       },
       textfield: {
-        width: '100%'
+        width: '100%',
       },
       slider: {
         marginTop: '0px',
-        marginBottom: '0px'
+        marginBottom: '0px',
       },
       codeExample: {
         backgroundColor: canvasColor,
-        marginBottom: '32px'
+        marginBottom: '32px',
       },
       title: {
         fontSize: '20px',
@@ -115,12 +115,12 @@ const ThemesPage = React.createClass({
         marginBottom: '13px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
       liveExamplePaper: {
         backgroundColor: canvasColor,
         marginBottom: 32,
-        overflow: 'hidden'
+        overflow: 'hidden',
       },
       liveExampleBlock: {
         borderRadius: '0 0 2px 0',
@@ -134,15 +134,15 @@ const ThemesPage = React.createClass({
         marginBottom: '12px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
       bottomBorderWrapper: {
         borderBottom: 'solid 1px ' + borderColor,
         paddingBottom: '10px',
       },
       inlineCode: {
-        backgroundColor: '#F8F8F8'
-      }
+        backgroundColor: '#F8F8F8',
+      },
     };
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
@@ -287,31 +287,31 @@ const ThemesPage = React.createClass({
           {
             name: 'getMuiTheme(rawTheme)',
             header: 'returns: calculated muiTheme object',
-            desc: 'Accepts one argument which is a reference to a raw theme object, and returns the calculated mui theme object'
+            desc: 'Accepts one argument which is a reference to a raw theme object, and returns the calculated mui theme object',
           },
           {
             name: 'modifyRawThemeSpacing(muiTheme, newSpacing)',
             header: 'returns: new muiTheme object with modified spacing',
             desc: 'Accepts two arguments: the current mui theme object and the new spacing to be applied. ' +
                   'This function creates a new raw theme by overriding the spacing of the existing raw theme, ' +
-                  'and returns a new mui theme object calculated from the new raw theme'
+                  'and returns a new mui theme object calculated from the new raw theme',
           },
           {
             name: 'modifyRawThemePalette(muiTheme, newPaletteKeys)',
             header: 'returns: new muiTheme object with modified palette',
             desc: 'Accepts two arguments: the current mui theme object and the new palette keys to be applied. ' +
                   'This function creates a new raw theme object by overriding the palette keys in the existing raw ' +
-                  'theme object, and returns a new mui theme object calculated from the new raw theme'
+                  'theme object, and returns a new mui theme object calculated from the new raw theme',
           },
           {
             name: 'modifyRawThemeFontFamily(muiTheme, newFontFamily)',
             header: 'returns: new muiTheme object with modified font Family',
             desc: 'Accepts two arguments: the current mui theme object and the new font family to be applied. ' +
                   'This function creates a new raw theme by overriding the font family of the existing raw theme, ' +
-                  'and returns a new mui theme object calculated from the new raw theme'
+                  'and returns a new mui theme object calculated from the new raw theme',
           },
-        ]
-      }
+        ],
+      },
     ];
 
     let styles = this.getStyles();
@@ -456,7 +456,7 @@ const ThemesPage = React.createClass({
     //Standard Actions
     let standardActions = [
       { text: 'Cancel' },
-      { text: 'Submit', onTouchTap: this._onDialogSubmit }
+      { text: 'Submit', onTouchTap: this._onDialogSubmit },
     ];
 
     let menuItemsNav = [
@@ -467,18 +467,18 @@ const ThemesPage = React.createClass({
       {
          type: MenuItem.Types.LINK,
          payload: 'https://github.com/callemall/material-ui',
-         text: 'GitHub'
+         text: 'GitHub',
       },
       {
          text: 'Disabled',
-         disabled: true
+         disabled: true,
       },
       {
          type: MenuItem.Types.LINK,
          payload: 'https://www.google.com',
          text: 'Disabled Link',
-         disabled: true
-      }
+         disabled: true,
+      },
     ];
 
     let styles = this.getStyles();
@@ -488,7 +488,7 @@ const ThemesPage = React.createClass({
        { payload: '2', text: 'Every Night' },
        { payload: '3', text: 'Weeknights' },
        { payload: '4', text: 'Weekends' },
-       { payload: '5', text: 'Weekly' }
+       { payload: '5', text: 'Weekly' },
     ];
 
     return (
@@ -610,10 +610,10 @@ const ThemesPage = React.createClass({
   getThemeExamples() {
     return (
       <Tabs>
-        <Tab label='Light Theme (Default)' onClick={this.onTabChange.bind(this, false)}>
+        <Tab label="Light Theme (Default)" onClick={this.onTabChange.bind(this, false)}>
           {this.getComponentGroup()}
         </Tab>
-        <Tab label='Dark Theme' onClick={this.onTabChange.bind(this, true)}>
+        <Tab label="Dark Theme" onClick={this.onTabChange.bind(this, true)}>
           {this.getComponentGroup()}
         </Tab>
       </Tabs>
@@ -639,25 +639,25 @@ const ThemesPage = React.createClass({
       isThemeDark: isDark});
   },
 
-  handleAction(e) {
+  handleAction() {
     this.refs.snackbar.dismiss();
   },
 
-  handleClickNav(e) {
+  handleClickNav() {
     this.refs.leftNav.toggle();
   },
 
-  handleClickSnackbar(e) {
+  handleClickSnackbar() {
     this.refs.snackbar.show();
   },
 
-  handleTouchTapDialog(e) {
+  handleTouchTapDialog() {
     this.refs.dialog.show();
   },
 
   _onDialogSubmit() {
     console.log('Submitting');
-  }
+  },
 });
 
 module.exports = ThemesPage;

@@ -7,7 +7,7 @@ let Code = require('avatars-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class AvatarsPage extends React.Component {
+export default class AvatarsPage extends React.Component {
 
   render() {
 
@@ -21,40 +21,40 @@ class AvatarsPage extends React.Component {
             name: 'icon',
             type: 'element',
             header: 'optional',
-            desc: 'This is the SvgIcon or FontIcon to be used inside the avatar.'
+            desc: 'This is the SvgIcon or FontIcon to be used inside the avatar.',
           },
           {
             name: 'backgroundColor',
             type: 'string',
             header: 'default: grey400',
-            desc: 'The backgroundColor of the avatar. Does not apply to image avatars.'
+            desc: 'The backgroundColor of the avatar. Does not apply to image avatars.',
           },
           {
             name: 'color',
             type: 'string',
             header: 'default: white',
-            desc: 'The icon or letter color.'
+            desc: 'The icon or letter color.',
           },
           {
             name: 'size',
             type: 'number',
             header: 'default: 40',
-            desc: 'This is the size of the avatar in pixels'
+            desc: 'This is the size of the avatar in pixels',
           },
           {
             name: 'src',
             type: 'string',
             header: 'optional',
-            desc: 'If passed in, this component will render an img element. Otherwise, a div will be rendered.'
+            desc: 'If passed in, this component will render an img element. Otherwise, a div will be rendered.',
           },
           {
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the root element.'
+            desc: 'Override the inline-styles of the root element.',
           },
-        ]
-      }
+        ],
+      },
     ];
 
     let imageAvatar = <Avatar src="images/uxceo-128.jpg" />;
@@ -87,5 +87,3 @@ class AvatarsPage extends React.Component {
   }
 
 }
-
-module.exports = AvatarsPage;

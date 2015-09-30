@@ -12,11 +12,11 @@ let {
   CardMedia,
   CardText,
   CardTitle,
-  FlatButton
+  FlatButton,
 } = mui;
 let Code = require('cards-code');
 
-class CardPage extends React.Component {
+export default class CardPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -77,7 +77,7 @@ class CardPage extends React.Component {
             name: 'onExpandChange',
             type: 'function(isExpanded)',
             header: 'optional',
-            desc: 'Fired when the expandable state changes.'
+            desc: 'Fired when the expandable state changes.',
           },
         ],
       },
@@ -147,5 +147,3 @@ class CardPage extends React.Component {
   }
 
 }
-
-module.exports = CardPage;

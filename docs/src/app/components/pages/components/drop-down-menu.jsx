@@ -5,7 +5,7 @@ let Code = require('drop-down-menu-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class DropDownMenuPage extends React.Component {
+export default class DropDownMenuPage extends React.Component {
 
   render() {
 
@@ -26,14 +26,14 @@ class DropDownMenuPage extends React.Component {
             type: 'string',
             header: 'default: text',
             desc: 'DropDownMenu will use text as default value, with this ' +
-              'property you can choose another name.'
+              'property you can choose another name.',
           },
           {
             name: 'valueMember',
             type: 'string',
             header: 'default: payload',
             desc: 'DropDownMenu will use payload as default value, with this ' +
-              'property you can choose another name.'
+              'property you can choose another name.',
           },
           {
             name: 'autoWidth',
@@ -41,58 +41,58 @@ class DropDownMenuPage extends React.Component {
             header: 'default: true',
             desc: 'The width will automatically be set according to the items ' +
               'inside the menu. To control this width in Css instead, set this ' +
-              'prop to false.'
+              'prop to false.',
           },
           {
             name: 'menuItems',
             type: 'array',
             header: 'required',
-            desc: 'JSON data representing all menu items in the dropdown.'
+            desc: 'JSON data representing all menu items in the dropdown.',
           },
           {
             name: 'menuItemStyle',
             type: 'array',
             header: 'required',
             desc: 'Overrides the inline-styles of the MenuItems when the ' +
-                  'DropDownMenu is expanded.'
+                  'DropDownMenu is expanded.',
           },
           {
             name: 'selectedIndex',
             type: 'number',
             header: 'default: 0',
-            desc: 'Index of the item selected.'
+            desc: 'Index of the item selected.',
           },
           {
             name: 'underlineStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Overrides the styles of DropDownMenu\'s underline.'
+            desc: 'Overrides the styles of DropDownMenu\'s underline.',
           },
           {
             name: 'iconStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Overrides the styles of DropDownMenu\'s icon element.'
+            desc: 'Overrides the styles of DropDownMenu\'s icon element.',
           },
           {
             name: 'labelStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Overrides the styles of DropDownMenu\'s label when the DropDownMenu is inactive.'
+            desc: 'Overrides the styles of DropDownMenu\'s label when the DropDownMenu is inactive.',
           },
           {
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Overrides the inline-styles of DropDownMenu\'s root element.'
+            desc: 'Overrides the inline-styles of DropDownMenu\'s root element.',
           },
           {
             name: 'disabled',
             type: 'bool',
             header: 'default: false',
-            desc: 'Disables the menu.'
-          }
-        ]
+            desc: 'Disables the menu.',
+          },
+        ],
       },
       {
         name: 'Events',
@@ -101,10 +101,10 @@ class DropDownMenuPage extends React.Component {
             name: 'onChange',
             header: 'function(event, selectedIndex, menuItem)',
             desc: 'Fired when a menu item is clicked that is not the one currently ' +
-              'selected.'
-          }
-        ]
-      }
+              'selected.',
+          },
+        ],
+      },
     ];
 
     return (
@@ -119,5 +119,3 @@ class DropDownMenuPage extends React.Component {
   }
 
 }
-
-module.exports = DropDownMenuPage;
