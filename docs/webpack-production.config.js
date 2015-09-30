@@ -26,9 +26,13 @@ var config = {
       path.resolve(__dirname, '../src'),
       path.resolve(__dirname, '../node_modules'),
       path.resolve(__dirname, 'src/app/components/raw-code')
-    ],
+    ]
   },
   devtool: 'source-map',
+  //Configuration for server
+  devServer: {
+    contentBase: 'build'
+  },
   //Output file config
   output: {
     path: buildPath,    //Path of output file
@@ -49,7 +53,7 @@ var config = {
     new webpack.NoErrorsPlugin(),
     //Transfer Files
     new TransferWebpackPlugin([
-      {from: 'css'},
+      {from: 'www/css', to: 'css'},
       {from: 'www/images', to: 'images'}
     ], path.resolve(__dirname,"src"))
   ],
