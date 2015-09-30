@@ -7,7 +7,7 @@ let Code = require('avatars-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class AvatarsPage extends React.Component {
+export default class AvatarsPage extends React.Component {
 
   render() {
 
@@ -52,7 +52,7 @@ class AvatarsPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of the root element.'
-          },
+          }
         ]
       }
     ];
@@ -87,5 +87,3 @@ class AvatarsPage extends React.Component {
   }
 
 }
-
-module.exports = AvatarsPage;

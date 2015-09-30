@@ -10,7 +10,7 @@ let SvgIconsCode = require('svg-icons-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class FontIconPage extends React.Component {
+export default class FontIconPage extends React.Component {
 
   getStyles() {
     return {
@@ -93,7 +93,7 @@ class FontIconPage extends React.Component {
             header: 'optional',
             desc: 'This is the icon color when the mouse hovers over the icon.'
           }
-        ],
+        ]
       }
     ];
 
@@ -145,5 +145,3 @@ class FontIconPage extends React.Component {
   }
 
 }
-
-module.exports = FontIconPage;

@@ -18,7 +18,7 @@ let Code = require('icon-menus-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class IconMenus extends React.Component {
+export default class IconMenus extends React.Component {
 
   constructor(props) {
     super(props);
@@ -106,7 +106,7 @@ class IconMenus extends React.Component {
             type: 'number',
             header: 'default: 200',
             desc: 'Sets the delay in milliseconds before closing the menu when an item is clicked.'
-          },
+          }
         ]
       },
       {
@@ -523,5 +523,3 @@ class IconMenus extends React.Component {
   }
 
 }
-
-module.exports = IconMenus;

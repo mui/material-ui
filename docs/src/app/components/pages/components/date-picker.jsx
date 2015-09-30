@@ -5,7 +5,8 @@ let Code = require('date-picker-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class DatePickerPage extends React.Component {
+export default class DatePickerPage extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -133,7 +134,7 @@ class DatePickerPage extends React.Component {
             'changes. Since there is no particular event associated with ' +
             'the change the first argument will always be null and the second ' +
             'argument will be the new Date instance.'
-          },
+          }
         ]
       }
     ];
@@ -196,7 +197,6 @@ class DatePickerPage extends React.Component {
       </ComponentDoc>
     );
   }
-
   _updateMinDate(e) {
     this.setState({
       minDate: new Date(e.target.value)
@@ -219,5 +219,3 @@ class DatePickerPage extends React.Component {
     this.setState({controlledDate: date});
   }
 }
-
-module.exports = DatePickerPage;

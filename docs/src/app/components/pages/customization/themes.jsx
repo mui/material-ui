@@ -45,12 +45,12 @@ const ThemesPage = React.createClass({
 
   //for passing default theme context to children
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object
   },
 
   getChildContext () {
     return {
-      muiTheme: this.state.muiTheme,
+      muiTheme: this.state.muiTheme
     };
   },
 
@@ -125,7 +125,7 @@ const ThemesPage = React.createClass({
       liveExampleBlock: {
         borderRadius: '0 0 2px 0',
         padding: this.state.muiTheme.rawTheme.spacing.desktopGutter,
-        margin: 0,
+        margin: 0
       },
       headline: {
         fontSize: '24px',
@@ -138,7 +138,7 @@ const ThemesPage = React.createClass({
       },
       bottomBorderWrapper: {
         borderBottom: 'solid 1px ' + borderColor,
-        paddingBottom: '10px',
+        paddingBottom: '10px'
       },
       inlineCode: {
         backgroundColor: '#F8F8F8'
@@ -309,7 +309,7 @@ const ThemesPage = React.createClass({
             desc: 'Accepts two arguments: the current mui theme object and the new font family to be applied. ' +
                   'This function creates a new raw theme by overriding the font family of the existing raw theme, ' +
                   'and returns a new mui theme object calculated from the new raw theme'
-          },
+          }
         ]
       }
     ];
@@ -639,19 +639,19 @@ const ThemesPage = React.createClass({
       isThemeDark: isDark});
   },
 
-  handleAction(e) {
+  handleAction() {
     this.refs.snackbar.dismiss();
   },
 
-  handleClickNav(e) {
+  handleClickNav() {
     this.refs.leftNav.toggle();
   },
 
-  handleClickSnackbar(e) {
+  handleClickSnackbar() {
     this.refs.snackbar.show();
   },
 
-  handleTouchTapDialog(e) {
+  handleTouchTapDialog() {
     this.refs.dialog.show();
   },
 

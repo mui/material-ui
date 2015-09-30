@@ -16,7 +16,7 @@ let Code = require('menus-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class MenusPage extends React.Component {
+export default class MenusPage extends React.Component {
 
   render() {
 
@@ -313,5 +313,3 @@ class MenusPage extends React.Component {
   }
 
 }
-
-module.exports = MenusPage;

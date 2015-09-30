@@ -10,7 +10,7 @@ const IconMenu = require('menus/icon-menu');
 const MenuItem = require('menus/menu-item');
 const MoreVertIcon = require('svg-icons/navigation/more-vert');
 
-class AppBarPage extends React.Component {
+export default class AppBarPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -141,5 +141,3 @@ class AppBarPage extends React.Component {
   }
 
 }
-
-module.exports = AppBarPage;

@@ -125,7 +125,7 @@ const InlineStyles = React.createClass({
 
       </div>
     );
-  },
+  }
 
 });
 

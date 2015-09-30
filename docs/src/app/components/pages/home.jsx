@@ -37,19 +37,19 @@ const HomePage = React.createClass({
     let styles = {
       root: {
         backgroundColor: Colors.cyan500,
-        overflow: 'hidden',
+        overflow: 'hidden'
       },
       svgLogo: {
         marginLeft: (window.innerWidth * 0.5) - 130 + 'px',
-        width: 420,
+        width: 420
       },
       tagline: {
         margin: '16px auto 0 auto',
         textAlign: 'center',
-        maxWidth: 575,
+        maxWidth: 575
       },
       label: {
-        color: DefaultRawTheme.palette.primary1Color,
+        color: DefaultRawTheme.palette.primary1Color
       },
       githubStyle: {
         margin: '16px 32px 0px 8px'
@@ -59,14 +59,14 @@ const HomePage = React.createClass({
       },
       h1: {
         color: Colors.darkWhite,
-        fontWeight: Typography.fontWeightLight,
+        fontWeight: Typography.fontWeightLight
       },
       h2: {
         fontSize: 20,
         lineHeight: '28px',
         paddingTop: 19,
         marginBottom: 13,
-        letterSpacing: 0,
+        letterSpacing: 0
       },
       nowrap: {
         whiteSpace: 'nowrap'
@@ -81,7 +81,7 @@ const HomePage = React.createClass({
         fontSize: 24,
         lineHeight: '32px',
         paddingTop: 16,
-        marginBottom: 12,
+        marginBottom: 12
       }
     };
 
@@ -130,7 +130,7 @@ const HomePage = React.createClass({
         paddingTop: 19,
         marginBottom: 13,
         letterSpacing: 0,
-        color: Typography.textDarkBlack,
+        color: Typography.textDarkBlack
       }
     };
 
@@ -178,13 +178,13 @@ const HomePage = React.createClass({
     let styles = {
       root: {
         backgroundColor: Colors.grey200,
-        textAlign: 'center',
+        textAlign: 'center'
       },
       h3: {
         margin: 0,
         padding: 0,
         fontWeight: Typography.fontWeightLight,
-        fontSize: 22,
+        fontSize: 22
       },
       button: {
         marginTop: 32

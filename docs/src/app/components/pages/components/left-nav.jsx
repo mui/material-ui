@@ -5,7 +5,7 @@ let Code = require('left-nav-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class LeftNavPage extends React.Component {
+export default class LeftNavPage extends React.Component {
 
   constructor() {
     super();
@@ -165,5 +165,3 @@ class LeftNavPage extends React.Component {
   }
 
 }
-
-module.exports = LeftNavPage;

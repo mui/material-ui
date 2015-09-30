@@ -5,7 +5,7 @@ let Code = require('dialog-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class DialogPage extends React.Component {
+export default class DialogPage extends React.Component {
 
   constructor() {
     super();
@@ -246,5 +246,3 @@ class DialogPage extends React.Component {
   }
 
 }
-
-module.exports = DialogPage;
