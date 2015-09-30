@@ -177,7 +177,7 @@ class TabsPage extends React.Component {
               </div>
             </Tab>
             <Tab
-              label="Item Three"
+              label="Home (non-content example)"
               route="home"
               onActive={this._handleTabActive} />
           </Tabs>
