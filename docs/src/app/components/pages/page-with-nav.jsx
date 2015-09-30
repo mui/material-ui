@@ -1,6 +1,5 @@
 let React = require('react');
-let Router = require('react-router');
-let RouteHandler = Router.RouteHandler;
+let {State, History} = require('react-router');
 let { Menu, Mixins, Styles } = require('material-ui');
 
 let { Spacing, Colors } = Styles;
@@ -9,11 +8,7 @@ let { StyleResizable, StylePropable } = Mixins;
 
 let PageWithNav = React.createClass({
 
-  mixins: [StyleResizable, StylePropable],
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
+  mixins: [StyleResizable, StylePropable, History],
 
   propTypes: {
     menuItems: React.PropTypes.array
@@ -65,7 +60,7 @@ let PageWithNav = React.createClass({
     return (
       <div style={styles.root}>
         <div style={styles.content}>
-          <RouteHandler />
+          {this.props.children}
         </div>
         <div style={styles.secondaryNav}>
           <Menu
@@ -85,12 +80,12 @@ let PageWithNav = React.createClass({
 
     for (let i = menuItems.length - 1; i >= 0; i--) {
       currentItem = menuItems[i];
-      if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
+      if (currentItem.route && this.history.isActive(currentItem.route)) return i;
     }
   },
 
   _onMenuItemClick(e, index, item) {
-    this.context.router.transitionTo(item.route);
+    this.history.pushState(null, item.route);
   }
 
 });
