@@ -18,10 +18,6 @@ const HomePage = React.createClass({
     History,
   ],
 
-  contextTypes: {
-    router: React.PropTypes.func
-  },
-
   render() {
     let style = {
       paddingTop: Spacing.desktopKeylineIncrement

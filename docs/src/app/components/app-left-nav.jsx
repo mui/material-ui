@@ -71,13 +71,14 @@ let AppLeftNav = React.createClass({
   },
 
   _onLeftNavChange(e, key, payload) {
-    this.context.router.transitionTo(payload.route);
+    this.props.history.pushState(null, payload.route);
   },
 
   _onHeaderClick() {
-    this.context.router.transitionTo('root');
+    this.props.history.pushState(null, '/');
     this.refs.leftNav.close();
   },
+  
 });
 
 module.exports = AppLeftNav;
