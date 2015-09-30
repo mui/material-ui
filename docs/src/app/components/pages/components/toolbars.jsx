@@ -16,7 +16,7 @@ let Code = require('toolbars-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class ToolbarPage extends React.Component {
+export default class ToolbarPage extends React.Component {
 
   render() {
 
@@ -25,7 +25,7 @@ class ToolbarPage extends React.Component {
                'appBars. AppBars are a subset of toolbars. The following ' +
                'toolbar components can help organize your layout. Note that ' +
                'every component listed here (including Toolbar) have a style ' +
-               'prop which overrides the inline-styles of their root element.'
+               'prop which overrides the inline-styles of their root element.';
 
     let componentInfo = [
       {
@@ -69,7 +69,7 @@ class ToolbarPage extends React.Component {
               desc: 'The text to be displayed for the element.'
             }
           ]
-      },
+      }
     ];
 
     let filterOptions = [
@@ -79,7 +79,7 @@ class ToolbarPage extends React.Component {
       { payload: '4', text: 'Complete Voice' },
       { payload: '5', text: 'Complete Text' },
       { payload: '6', text: 'Active Voice' },
-      { payload: '7', text: 'Active Text' },
+      { payload: '7', text: 'Active Text' }
     ];
     let iconMenuItems = [
       { payload: '1', text: 'Download' },
@@ -110,5 +110,3 @@ class ToolbarPage extends React.Component {
   }
 
 }
-
-module.exports = ToolbarPage;

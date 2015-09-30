@@ -7,7 +7,7 @@ let Code = require('icon-buttons-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class IconButtonsPage extends React.Component {
+export default class IconButtonsPage extends React.Component {
 
   render() {
 
@@ -167,5 +167,3 @@ class IconButtonsPage extends React.Component {
   }
 
 }
-
-module.exports = IconButtonsPage;

@@ -5,7 +5,7 @@ let Code = require('drop-down-menu-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class DropDownMenuPage extends React.Component {
+export default class DropDownMenuPage extends React.Component {
 
   render() {
 
@@ -14,7 +14,7 @@ class DropDownMenuPage extends React.Component {
       { payload: '2', text: 'Every Night' },
       { payload: '3', text: 'Weeknights' },
       { payload: '4', text: 'Weekends' },
-      { payload: '5', text: 'Weekly' },
+      { payload: '5', text: 'Weekly' }
     ];
 
     let componentInfo = [
@@ -119,5 +119,3 @@ class DropDownMenuPage extends React.Component {
   }
 
 }
-
-module.exports = DropDownMenuPage;

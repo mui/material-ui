@@ -5,7 +5,7 @@ let Code = require('snackbars-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class SnackbarPage extends React.Component {
+export default class SnackbarPage extends React.Component {
 
   constructor() {
     super();
@@ -136,5 +136,3 @@ class SnackbarPage extends React.Component {
   }
 
 }
-
-module.exports = SnackbarPage;

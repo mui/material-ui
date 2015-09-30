@@ -67,7 +67,7 @@ let ProgressPage = React.createClass({
             desc: 'The size of the progress.'
           }
         ]
-      },
+      }
     ];
 
 

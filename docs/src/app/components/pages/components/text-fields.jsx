@@ -202,7 +202,7 @@ let TextFieldsPage = React.createClass({
             header: 'function(e)',
             desc: 'Callback function that is fired when the textfield gains ' +
                   'focus.'
-          },
+          }
         ]
       }
     ];
@@ -213,7 +213,7 @@ let TextFieldsPage = React.createClass({
       { payload: '2', text: 'Every Night' },
       { payload: '3', text: 'Weeknights' },
       { payload: '4', text: 'Weekends' },
-      { payload: '5', text: 'Weekly' },
+      { payload: '5', text: 'Weekly' }
     ];
     let arbitraryArrayMenuItems = [
       {id:1, name:'Never'},

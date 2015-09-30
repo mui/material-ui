@@ -19,7 +19,7 @@ const CodeExample = React.createClass({
 
   propTypes : {
     code: React.PropTypes.string.isRequired,
-    layoutSideBySide: React.PropTypes.bool,
+    layoutSideBySide: React.PropTypes.bool
   },
 
   contextTypes : {
@@ -28,18 +28,18 @@ const CodeExample = React.createClass({
 
   //for passing default theme context to children
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object
   },
 
   getChildContext () {
     return {
-      muiTheme: this.state.muiTheme,
+      muiTheme: this.state.muiTheme
     };
   },
 
   getInitialState () {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme)
     };
   },
 
@@ -74,14 +74,14 @@ const CodeExample = React.createClass({
         lineHeight: '20px',
         letterSpacing: 0,
         textTransform: 'uppercase',
-        fontWeight: Typography.fontWeightMedium,
+        fontWeight: Typography.fontWeightMedium
       },
       exampleBlock: {
         borderRadius: '0 0 2px 0',
         padding: Spacing.desktopGutter,
         margin: 0,
         width: layoutSideBySide ? '45%' : null,
-        float: layoutSideBySide ? 'right' : null,
+        float: layoutSideBySide ? 'right' : null
       }
     };
 

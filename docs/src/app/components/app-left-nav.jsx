@@ -14,7 +14,11 @@ let menuItems = [
   ];
 
 
-class AppLeftNav extends React.Component {
+export default class AppLeftNav extends React.Component {
+
+  static contextTypes = {
+    router: React.PropTypes.func
+  };
 
   constructor() {
     super();
@@ -81,9 +85,3 @@ class AppLeftNav extends React.Component {
   }
 
 }
-
-AppLeftNav.contextTypes = {
-  router: React.PropTypes.func
-};
-
-module.exports = AppLeftNav;

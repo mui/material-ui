@@ -17,7 +17,7 @@ let {
 let Code = require('table-code');
 
 
-class TablePage extends React.Component {
+export default class TablePage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -86,7 +86,7 @@ class TablePage extends React.Component {
             header: 'optional',
             desc: 'If true, table rows can be selected. If multiple row selection is desired, enable multiSelectable. ' +
               'The default value is true.'
-          },
+          }
         ]
       },
       {
@@ -119,7 +119,7 @@ class TablePage extends React.Component {
             header: 'default: true',
             desc: 'If set to true the select all checkbox will be programmatically checked and will not trigger the select ' +
               'all event.'
-          },
+          }
         ]
       },
       {
@@ -176,7 +176,7 @@ class TablePage extends React.Component {
             type: 'boolean',
             header: 'optional',
             desc: 'If true, every other table row starting with the first row will be striped. The default value is false.'
-          },
+          }
         ]
       },
       {
@@ -189,7 +189,7 @@ class TablePage extends React.Component {
             desc: 'Controls whether or not header rows should be adjusted for a checkbox column. If the select all checkbox ' +
               'is true, this property will not influence the number of columns. This is mainly useful for "super header" ' +
               'rows so that the checkbox column does not create an offset that needs to be accounted for manually.'
-          },
+          }
         ]
       },
       {
@@ -231,7 +231,7 @@ class TablePage extends React.Component {
             type: 'boolean',
             header: 'default: false',
             desc: 'Indicates whether or not the row is striped.'
-          },
+          }
         ]
       },
       {
@@ -271,7 +271,7 @@ class TablePage extends React.Component {
             type: 'boolean',
             header: 'default: false',
             desc: 'If true, this column responds to hover events.'
-          },
+          }
         ]
       },
       {
@@ -327,10 +327,10 @@ class TablePage extends React.Component {
             name: 'onSelectAll',
             type: 'function(checked)',
             header: 'optional',
-            desc: 'Called when the select all checkbox has been toggled.',
-          },
+            desc: 'Called when the select all checkbox has been toggled.'
+          }
         ]
-      },
+      }
     ];
 
     let propContainerStyle = {
@@ -495,5 +495,3 @@ class TablePage extends React.Component {
     console.log(rows);
   }
 }
-
-module.exports = TablePage;

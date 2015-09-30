@@ -22,7 +22,7 @@ let RadioButtonCode = require('radio-buttons-code');
 let ToggleCode = require('toggle-code');
 
 
-class SwitchesPage extends React.Component {
+export default class SwitchesPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -315,7 +315,7 @@ class SwitchesPage extends React.Component {
           desc: 'Callback function that is fired when the toggle switch is toggled.'
         }
       ]
-    },
+    }
     ];
   }
 
@@ -497,5 +497,3 @@ class SwitchesPage extends React.Component {
     console.log('Selected: ', selected);
   }
 }
-
-module.exports = SwitchesPage;

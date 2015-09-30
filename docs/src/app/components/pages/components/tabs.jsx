@@ -6,10 +6,14 @@ let { Colors, Typography } = Styles;
 let Code = require('tabs-code');
 
 
-class TabsPage extends React.Component {
+export default class TabsPage extends React.Component {
 
-  constructor() {
-    super();
+  static contextTypes = {
+    router: React.PropTypes.func
+  };
+
+  constructor(props) {
+    super(props);
     this._handleTabActive = this._handleTabActive.bind(this);
     this.state = {tabsValue: 'a'};
   }
@@ -60,7 +64,7 @@ class TabsPage extends React.Component {
             type: 'string or number',
             header: 'optional',
             desc: 'Makes Tabs controllable and selects the tab whose value prop matches this prop.'
-          },
+          }
         ]
       },
       {
@@ -109,14 +113,14 @@ class TabsPage extends React.Component {
 
     let styles = {
       contentContainerStyle: {
-        marginLeft: -padding,
+        marginLeft: -padding
       },
       div: {
         position: 'absolute',
         left: 48,
         backgroundColor: Colors.cyan500,
         width: padding,
-        height: 48,
+        height: 48
       },
       headline: {
         fontSize: 24,
@@ -125,25 +129,25 @@ class TabsPage extends React.Component {
         marginBottom: 12,
         letterSpacing: 0,
         fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack,
+        color: Typography.textDarkBlack
       },
       iconButton: {
         position: 'absolute',
         left: 0,
         backgroundColor: Colors.cyan500,
         color: 'white',
-        marginRight: padding,
+        marginRight: padding
       },
       iconStyle: {
-        color: Colors.white,
+        color: Colors.white
       },
       tabs: {
-        position: 'relative',
+        position: 'relative'
       },
       tabsContainer: {
         position: 'relative',
-        paddingLeft: padding,
-      },
+        paddingLeft: padding
+      }
     };
 
     return (
@@ -234,13 +238,7 @@ class TabsPage extends React.Component {
     this.context.router.transitionTo(tab.props.route);
   }
 
-  _handleTabsChange(value, e, tab){
+  _handleTabsChange(value, tab){
     this.setState({tabsValue: value});
   }
 }
-
-TabsPage.contextTypes = {
-  router: React.PropTypes.func
-};
-
-module.exports = TabsPage;

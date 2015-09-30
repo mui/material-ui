@@ -5,7 +5,7 @@ let Code = require('sliders-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class SlidersPage extends React.Component {
+export default class SlidersPage extends React.Component {
 
   handleMouseDown(e) {
     console.log('hmd', e);
@@ -84,7 +84,7 @@ class SlidersPage extends React.Component {
             type: 'number',
             header: 'optional',
             desc: 'The value of the slider.'
-          },
+          }
         ]
       },
       {
@@ -120,9 +120,9 @@ class SlidersPage extends React.Component {
             type: 'function(e)',
             header: 'optional',
             desc: 'Callback fired when the user has focused on the slider.'
-          },
+          }
         ]
-      },
+      }
     ];
 
     return (
@@ -142,5 +142,3 @@ class SlidersPage extends React.Component {
   }
 
 }
-
-module.exports = SlidersPage;

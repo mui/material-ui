@@ -11,18 +11,18 @@ const CodeBlock = React.createClass({
 
   //for passing default theme context to children
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object
   },
 
   getChildContext () {
     return {
-      muiTheme: this.state.muiTheme,
+      muiTheme: this.state.muiTheme
     };
   },
 
   getInitialState () {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme)
     };
   },
 
@@ -35,11 +35,11 @@ const CodeBlock = React.createClass({
     var code = React.findDOMNode(this.refs.code);
     require([
       "codemirror/lib/codemirror.js",
-      "codemirror/mode/htmlmixed/htmlmixed.js",
+      "codemirror/mode/htmlmixed/htmlmixed.js"
     ], function(Codemirror){
       Codemirror.fromTextArea(code, {
         mode: "htmlmixed",
-        readOnly: true,
+        readOnly: true
       });
     });
   },
@@ -52,7 +52,7 @@ const CodeBlock = React.createClass({
     return (
       <textarea ref="code" value={this.props.children} readOnly={true}/>
     );
-  },
+  }
 });
 
 module.exports = CodeBlock;

@@ -22,7 +22,7 @@ let FlatButtonCode = require('flat-button-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class ButtonPage extends React.Component {
+export default class ButtonPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -463,5 +463,3 @@ class ButtonPage extends React.Component {
   }
 
 }
-
-module.exports = ButtonPage;

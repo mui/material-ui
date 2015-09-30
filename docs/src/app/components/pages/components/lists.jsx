@@ -35,7 +35,7 @@ let CodeExample = require('../../code-example/code-example');
 
 
 
-class ListsPage extends React.Component {
+export default class ListsPage extends React.Component {
 
   constructor() {
     super();
@@ -210,7 +210,7 @@ class ListsPage extends React.Component {
             type: 'function(event)',
             header: 'optional',
             desc: 'Called when a touch tap event occures on the component.'
-          },
+          }
         ]
       }
     ];
@@ -374,9 +374,9 @@ class ListsPage extends React.Component {
                     primaryText="Sent Mail"
                     leftIcon={<ContentSend />}
                     nestedItems={[
-                      <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+                      <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
                     ]}
-                  />,
+                  />
                 ]}
               />
             </List>
@@ -648,5 +648,3 @@ class ListsPage extends React.Component {
   }
 
 }
-
-module.exports = ListsPage;

@@ -48,9 +48,9 @@ let RefreshIndicatorPage = React.createClass({
             type: 'number',
             header: 'required',
             desc: 'The absolute right position of the indicator in pixels.'
-          },
+          }
         ]
-      },
+      }
     ];
 
 

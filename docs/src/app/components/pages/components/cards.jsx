@@ -16,7 +16,7 @@ let {
 } = mui;
 let Code = require('cards-code');
 
-class CardPage extends React.Component {
+export default class CardPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -40,9 +40,9 @@ class CardPage extends React.Component {
             name: 'initiallyExpanded',
             type: 'bool',
             header: 'optional',
-            desc: 'Whether this card is initially expanded.',
-          },
-        ],
+            desc: 'Whether this card is initially expanded.'
+          }
+        ]
       },
       {
         name: 'Props',
@@ -51,7 +51,7 @@ class CardPage extends React.Component {
             name: 'expandable',
             type: 'bool',
             header: 'optional',
-            desc: 'Whether this card component is expandable. Can be set on any child of the Card component.',
+            desc: 'Whether this card component is expandable. Can be set on any child of the Card component.'
           },
           {
             name: 'showExpandableButton',
@@ -59,9 +59,9 @@ class CardPage extends React.Component {
             header: 'optional',
             desc: 'Whether this card component include a button to expand the card. CardTitle, CardHeader ' +
                   'and CardActions implement showExpandableButton. Any child component of Card can implements ' +
-                  'showExpandableButton or forwards the property to a child component supporting it.',
-          },
-        ],
+                  'showExpandableButton or forwards the property to a child component supporting it.'
+          }
+        ]
       },
       {
         name: 'Card.Events',
@@ -71,9 +71,9 @@ class CardPage extends React.Component {
             type: 'function(isExpanded)',
             header: 'optional',
             desc: 'Fired when the expandable state changes.'
-          },
-        ],
-      },
+          }
+        ]
+      }
     ];
   }
 
@@ -139,5 +139,3 @@ class CardPage extends React.Component {
   }
 
 }
-
-module.exports = CardPage;
