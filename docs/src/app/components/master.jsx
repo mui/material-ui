@@ -33,10 +33,6 @@ const Master = React.createClass({
     };
   },
 
-  contextTypes : {
-    router: React.PropTypes.func
-  },
-
   childContextTypes : {
     muiTheme: React.PropTypes.object
   },
@@ -233,7 +229,7 @@ const Master = React.createClass({
   },
 
   _handleTabChange(value, e, tab) {
-    this.props.history.transitionTo(tab.props.route);
+    this.props.history.pushState(null, tab.props.route);
     this.setState({tabIndex: this._getSelectedIndex()});
   },
 
