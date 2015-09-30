@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-var buildPath = path.resolve(__dirname, 'build');
+var buildPath = path.resolve(__dirname, 'src/www');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var TransferWebpackPlugin = require('transfer-webpack-plugin');
@@ -28,11 +28,11 @@ var config = {
       path.resolve(__dirname, '../src'),
       path.resolve(__dirname, '../node_modules'),
       path.resolve(__dirname, 'src/app/components/raw-code')
-    ],
+    ]
   },
   //Configuration for dev server
   devServer: {
-    contentBase: '',
+    contentBase: 'src/www',
     devtool: 'eval',
     hot: true,
     inline: true,
@@ -53,12 +53,7 @@ var config = {
     //Allows for sync with browser while developing (like BorwserSync)
     new webpack.HotModuleReplacementPlugin(),
     //Allows error warninggs but does not stop compiling. Will remove when eslint is added
-    new webpack.NoErrorsPlugin(),
-    //Transfer Files
-    new TransferWebpackPlugin([
-      {from: 'css'},
-      {from: 'www/images', to: 'images'}
-    ], path.resolve(__dirname,"src"))
+    new webpack.NoErrorsPlugin()
   ],
   module: {
         //eslint loader
