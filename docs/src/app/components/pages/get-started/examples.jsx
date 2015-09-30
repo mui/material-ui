@@ -8,7 +8,7 @@ const DefaultRawTheme = Styles.LightRawTheme;
 const Examples = React.createClass({
 
   contextTypes : {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -44,7 +44,7 @@ const Examples = React.createClass({
         marginBottom: '12px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
     };
   },

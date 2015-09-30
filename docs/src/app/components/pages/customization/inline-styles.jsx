@@ -17,7 +17,7 @@ const InlineStyles = React.createClass({
         marginBottom: '12px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
       title: {
         fontSize: '20px',
@@ -26,8 +26,8 @@ const InlineStyles = React.createClass({
         marginBottom: '13px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack
-      }
+        color: Typography.textDarkBlack,
+      },
     }
   },
 
@@ -82,10 +82,10 @@ const InlineStyles = React.createClass({
             label="Checked the mail"
             style={{
               width: '50%',
-              margin: '0 auto'
+              margin: '0 auto',
             }}
             iconStyle={{
-              fill: '#FF4081'
+              fill: '#FF4081',
             }}/>
         </CodeExample>
         <p>
@@ -110,7 +110,7 @@ const InlineStyles = React.createClass({
             label="Currently a UTD student"
             className="muidocs-checkbox-example"
             iconStyle={{
-              fill: '#FF9800'
+              fill: '#FF9800',
             }}/>
         </CodeExample>
         <p>

@@ -10,13 +10,13 @@ let {
   Toolbar,
   ToolbarGroup,
   ToolbarSeparator,
-  ToolbarTitle
+  ToolbarTitle,
 } = mui;
 let Code = require('toolbars-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class ToolbarPage extends React.Component {
+export default class ToolbarPage extends React.Component {
 
   render() {
 
@@ -25,50 +25,50 @@ class ToolbarPage extends React.Component {
                'appBars. AppBars are a subset of toolbars. The following ' +
                'toolbar components can help organize your layout. Note that ' +
                'every component listed here (including Toolbar) have a style ' +
-               'prop which overrides the inline-styles of their root element.'
+               'prop which overrides the inline-styles of their root element.';
 
     let componentInfo = [
       {
         name: 'ToolbarGroup',
-          infoArray: [
-            {
-              name: 'Description',
-              desc: 'Toolbar Group contains a collection of components for you. ' +
-                    'It is recommended that all components in a Toolbar are ' +
-                    'contained within a ToolbarGroup.'
-            },
-            {
-              name: 'float',
-              type: 'string',
-              header: 'optional',
-              desc: 'Optional pull "left" or "right"'
-            }
-          ]
+        infoArray: [
+          {
+            name: 'Description',
+            desc: 'Toolbar Group contains a collection of components for you. ' +
+                  'It is recommended that all components in a Toolbar are ' +
+                  'contained within a ToolbarGroup.',
+          },
+          {
+            name: 'float',
+            type: 'string',
+            header: 'optional',
+            desc: 'Optional pull "left" or "right"',
+          },
+        ],
       },
       {
         name: 'ToolbarSeparator',
-          infoArray: [
-            {
-              name: 'Description',
-              desc: 'A vertical bar used to separate groups of components. It ' +
-                    'is used to easily organize components.'
-            }
-          ]
+        infoArray: [
+          {
+            name: 'Description',
+            desc: 'A vertical bar used to separate groups of components. It ' +
+                  'is used to easily organize components.',
+          },
+        ],
       },
       {
         name: 'ToolbarTitle',
-          infoArray: [
-            {
-              name: 'Description',
-              desc: 'Simply a string of text that is displayed in the Toolbar.'
-            },
-            {
-              name: 'text',
-              type: 'string',
-              header: 'optional',
-              desc: 'The text to be displayed for the element.'
-            }
-          ]
+        infoArray: [
+          {
+            name: 'Description',
+            desc: 'Simply a string of text that is displayed in the Toolbar.',
+          },
+          {
+            name: 'text',
+            type: 'string',
+            header: 'optional',
+            desc: 'The text to be displayed for the element.',
+          },
+        ],
       },
     ];
 
@@ -83,7 +83,7 @@ class ToolbarPage extends React.Component {
     ];
     let iconMenuItems = [
       { payload: '1', text: 'Download' },
-      { payload: '2', text: 'More Info' }
+      { payload: '2', text: 'More Info' },
     ];
 
     return (
@@ -108,7 +108,4 @@ class ToolbarPage extends React.Component {
       </ComponentDoc>
     );
   }
-
 }
-
-module.exports = ToolbarPage;

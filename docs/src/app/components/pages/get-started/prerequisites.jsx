@@ -9,7 +9,7 @@ const DefaultRawTheme = Styles.LightRawTheme;
 const Prerequisites = React.createClass({
 
   contextTypes : {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -45,7 +45,7 @@ const Prerequisites = React.createClass({
         marginBottom: '12px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
       title: {
         fontSize: '20px',
@@ -54,15 +54,15 @@ const Prerequisites = React.createClass({
         marginBottom: '13px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
       codeExample: {
         backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
-        marginBottom: '32px'
+        marginBottom: '32px',
       },
       inlineCode: {
-        backgroundColor: '#F8F8F8'
-      }
+        backgroundColor: '#F8F8F8',
+      },
     };
   },
 

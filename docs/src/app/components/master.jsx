@@ -34,7 +34,7 @@ const Master = React.createClass({
   },
 
   childContextTypes : {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   getChildContext() {
@@ -48,26 +48,26 @@ const Master = React.createClass({
     return {
       footer: {
         backgroundColor: Colors.grey900,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       a: {
-        color: darkWhite
+        color: darkWhite,
       },
       p: {
         margin: '0 auto',
         padding: 0,
         color: Colors.lightWhite,
-        maxWidth: 335
+        maxWidth: 335,
       },
       github: {
         position: 'fixed',
         right: Spacing.desktopGutter/2,
         top: 8,
         zIndex: 5,
-        color: 'white'
+        color: 'white',
       },
        iconButton: {
-        color: darkWhite
+        color: darkWhite,
       },
     };
   },
@@ -89,7 +89,8 @@ const Master = React.createClass({
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
       tabIndex: this._getSelectedIndex(),
-      muiTheme: newMuiTheme,});
+      muiTheme: newMuiTheme,
+    });
   },
 
   render() {
@@ -174,8 +175,8 @@ const Master = React.createClass({
         bottom:0,
       },
       tab: {
-        height: 64
-      }
+        height: 64,
+      },
 
     };
 
@@ -259,7 +260,7 @@ const Master = React.createClass({
 
   _onLeftIconButtonTouchTap() {
     this.refs.leftNav.toggle();
-  }
+  },
 });
 
 module.exports = Master;

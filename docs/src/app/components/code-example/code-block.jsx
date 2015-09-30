@@ -7,7 +7,7 @@ const { Spacing } = Styles;
 const CodeBlock = React.createClass({
 
   contextTypes : {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -33,7 +33,7 @@ const CodeBlock = React.createClass({
   },
 
   componentDidMount() {
-    var code = ReactDOM.findDOMNode(this.refs.code);
+    let code = ReactDOM.findDOMNode(this.refs.code);
     require([
       "codemirror/lib/codemirror.js",
       "codemirror/mode/htmlmixed/htmlmixed.js",

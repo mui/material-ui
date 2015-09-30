@@ -18,7 +18,7 @@ let Code = require('icon-menus-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class IconMenus extends React.Component {
+export default class IconMenus extends React.Component {
 
   constructor(props) {
     super(props);
@@ -32,7 +32,7 @@ class IconMenus extends React.Component {
       iconMenuValue: '1',
       iconMenuMultiValue: ['2', '4'],
       iconMenuValueLink: '1',
-      usState: 'TX'
+      usState: 'TX',
     };
   }
 
@@ -48,50 +48,50 @@ class IconMenus extends React.Component {
             name: 'closeOnItemTouchTap',
             type: 'bool',
             header: 'default: true',
-            desc: 'If true, menu will close after an item is touchTapped.'
+            desc: 'If true, menu will close after an item is touchTapped.',
           },
           {
             name: 'desktop',
             type: 'bool',
             header: 'default: false',
-            desc: 'Indicates if the menu should render with compact desktop styles.'
+            desc: 'Indicates if the menu should render with compact desktop styles.',
           },
           {
             name: 'iconStyle',
             type: 'object',
             header: 'optional',
-            desc: 'The style object to use to override underlying icon style.'
+            desc: 'The style object to use to override underlying icon style.',
           },
           {
             name: 'iconButtonElement',
             type: 'element: IconButton',
             header: 'required',
-            desc: 'This is the IconButton to render. This button will open the menu.'
+            desc: 'This is the IconButton to render. This button will open the menu.',
           },
           {
             name: 'openDirection',
             type: 'oneOf [bottom-left, bottom-right, top-left, top-right]',
             header: 'default: bottom-left',
-            desc: 'This is the placement of the menu relative to the IconButton.'
+            desc: 'This is the placement of the menu relative to the IconButton.',
           },
           {
             name: 'menuStyle',
             type: 'object',
             header: 'optional',
-            desc: 'The style object to use to override underlying menu style.'
+            desc: 'The style object to use to override underlying menu style.',
           },
           {
             name: 'multiple',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the value can an array and allow the menu to be a multi-select.'
+            desc: 'If true, the value can an array and allow the menu to be a multi-select.',
           },
           {
             name: 'value',
             type: 'string or array',
             header: 'optional',
             desc: 'The value of the selected menu item. If passed in, this will make the menu ' +
-              'a controlled component. This component also supports valueLink.'
+              'a controlled component. This component also supports valueLink.',
           },
           {
             name: 'width',
@@ -99,15 +99,15 @@ class IconMenus extends React.Component {
             header: 'optional',
             desc: 'Sets the width of the menu. If not specified, the menu width ' +
               'will be dictated by its children. The rendered width will always be ' +
-              'a keyline increment (64px for desktop, 56px otherwise).'
+              'a keyline increment (64px for desktop, 56px otherwise).',
           },
           {
             name: 'touchTapCloseDelay',
             type: 'number',
             header: 'default: 200',
-            desc: 'Sets the delay in milliseconds before closing the menu when an item is clicked.'
+            desc: 'Sets the delay in milliseconds before closing the menu when an item is clicked.',
           },
-        ]
+        ],
       },
       {
         name: 'Events',
@@ -115,16 +115,16 @@ class IconMenus extends React.Component {
           {
             name: 'onItemTouchTap',
             header: 'function(event, item)',
-            desc: 'Fired when a menu item is touchTapped.'
+            desc: 'Fired when a menu item is touchTapped.',
           },
           {
             name: 'onChange',
             header: 'function(event, value)',
             desc: 'Fired when a menu item is touchTapped and the menu item value ' +
-              'is not equal to the current menu value.'
-          }
-        ]
-      }
+              'is not equal to the current menu value.',
+          },
+        ],
+      },
     ];
 
     let iconButtonElement = <IconButton><MoreVertIcon /></IconButton>;
@@ -133,12 +133,12 @@ class IconMenus extends React.Component {
 
     let iconMenuValueLink = {
       value: this.state.iconMenuValueLink,
-      requestChange: this._handleIconMenuValueLinkChange
+      requestChange: this._handleIconMenuValueLinkChange,
     };
 
     let usStateValueLink = {
       value: this.state.usState,
-      requestChange: this._handleIconMenuUsStateChange
+      requestChange: this._handleIconMenuUsStateChange,
     };
 
     return (
@@ -500,28 +500,26 @@ class IconMenus extends React.Component {
 
   _handleIconMenuChange(e, value) {
     this.setState({
-      iconMenuValue: value
+      iconMenuValue: value,
     });
   }
 
   _handleIconMenuMultiChange(e, value) {
     this.setState({
-      iconMenuMultiValue: value
+      iconMenuMultiValue: value,
     });
   }
 
   _handleIconMenuUsStateChange(e, value) {
     this.setState({
-      usState: value
+      usState: value,
     });
   }
 
   _handleIconMenuValueLinkChange(e, value) {
     this.setState({
-      iconMenuValueLink: value
+      iconMenuValueLink: value,
     });
   }
 
 }
-
-module.exports = IconMenus;

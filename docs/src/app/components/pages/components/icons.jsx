@@ -10,7 +10,7 @@ let SvgIconsCode = require('svg-icons-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class FontIconPage extends React.Component {
+export default class FontIconPage extends React.Component {
 
   getStyles() {
     return {
@@ -21,7 +21,7 @@ class FontIconPage extends React.Component {
       color: Typography.textDarkBlack,
       lineHeight: '24px',
       paddingTop: '3px',
-      marginBottom: '13px'
+      marginBottom: '13px',
     };
   }
 
@@ -67,15 +67,15 @@ class FontIconPage extends React.Component {
             type: 'string',
             header: 'optional',
             desc: 'This is the font color of the font icon. If not specified, ' +
-              'this component will default to muiTheme.palette.textColor.'
+              'this component will default to muiTheme.palette.textColor.',
           },
           {
             name: 'hoverColor',
             type: 'string',
             header: 'optional',
-            desc: 'This is the icon color when the mouse hovers over the icon.'
-          }
-        ]
+            desc: 'This is the icon color when the mouse hovers over the icon.',
+          },
+        ],
       },
       {
         name: 'Properties',
@@ -85,20 +85,20 @@ class FontIconPage extends React.Component {
             type: 'string',
             header: 'optional',
             desc: 'This is the fill color of the svg icon. If not specified, ' +
-              'this component will default to muiTheme.palette.textColor.'
+              'this component will default to muiTheme.palette.textColor.',
           },
           {
             name: 'hoverColor',
             type: 'string',
             header: 'optional',
-            desc: 'This is the icon color when the mouse hovers over the icon.'
-          }
+            desc: 'This is the icon color when the mouse hovers over the icon.',
+          },
         ],
-      }
+      },
     ];
 
     let iconStyles = {
-      marginRight: 24
+      marginRight: 24,
     };
 
     return (
@@ -106,7 +106,7 @@ class FontIconPage extends React.Component {
         <ComponentDoc
           name="Font Icons"
           desc={fontIconDesc}
-          componentInfo={componentInfo.slice(0,1)}>
+          componentInfo={componentInfo.slice(0, 1)}>
           <CodeExample code={IconButtonCode}>
             <FontIcon className="muidocs-icon-action-home" style={iconStyles} />
             <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.red500} />
@@ -127,7 +127,7 @@ class FontIconPage extends React.Component {
         <ComponentDoc
           name="SVG Icons"
           desc={svgIconDesc}
-          componentInfo={componentInfo.slice(1,2)}>
+          componentInfo={componentInfo.slice(1, 2)}>
           <CodeExample code={SvgIconsCode}>
             <ActionHome style={iconStyles} />
             <ActionHome style={iconStyles} color={Colors.red500} />
@@ -145,5 +145,3 @@ class FontIconPage extends React.Component {
   }
 
 }
-
-module.exports = FontIconPage;
