@@ -178,7 +178,7 @@ class TabsPage extends React.Component {
             </Tab>
             <Tab
               label="Item Three"
-              route="home"
+              route="/home"
               onActive={this._handleTabActive} />
           </Tabs>
 
@@ -231,16 +231,12 @@ class TabsPage extends React.Component {
   }
 
   _handleTabActive(tab){
-    this.context.router.transitionTo(tab.props.route);
+    this.props.history.pushState(null, tab.props.route);
   }
 
   _handleTabsChange(value, e, tab){
     this.setState({tabsValue: value});
   }
 }
-
-TabsPage.contextTypes = {
-  router: React.PropTypes.func
-};
 
 module.exports = TabsPage;

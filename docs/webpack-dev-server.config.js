@@ -24,7 +24,7 @@ var config = {
     //Modules will be searched for in these directories
     modulesDirectories: [
       "web_modules",
-      "node_modules",
+      path.resolve(__dirname, "node_modules"),
       path.resolve(__dirname, '../src'),
       path.resolve(__dirname, '../node_modules'),
       path.resolve(__dirname, 'src/app/components/raw-code')

@@ -1,5 +1,4 @@
 let React = require('react');
-let Router = require('react-router');
 let { MenuItem, LeftNav, Styles } = require('material-ui');
 let { Colors, Spacing, Typography } = Styles;
 
@@ -72,18 +71,14 @@ class AppLeftNav extends React.Component {
   }
 
   _onLeftNavChange(e, key, payload) {
-    this.context.router.transitionTo(payload.route);
+    this.props.history.pushState(null, payload.route);
   }
 
   _onHeaderClick() {
-    this.context.router.transitionTo('root');
+    this.props.history.pushState(null, '/');
     this.refs.leftNav.close();
   }
 
 }
-
-AppLeftNav.contextTypes = {
-  router: React.PropTypes.func
-};
 
 module.exports = AppLeftNav;

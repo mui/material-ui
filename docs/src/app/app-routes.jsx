@@ -58,46 +58,46 @@ const Toolbars = require('./components/pages/components/toolbars');
 const AppRoutes = (
   <Route path="/" component={Master}>
     <Route path="home" component={Home} />
+    <Redirect from="get-started" to="/get-started/prerequisites" />
     <Route path="get-started" component={GetStarted}>
       <Route path="prerequisites" component={Prerequisites} />
       <Route path="installation" component={Installation} />
       <Route path="examples" component={Examples} />
-      <Redirect from="/get-started" to="/prerequisites" />
     </Route>
 
+    <Redirect from="customization" to="/customization/themes" />
     <Route path="customization" component={Customization}>
       <Route path="colors" component={Colors} />
       <Route path="themes" component={Themes} />
       <Route path="inline-styles" component={InlineStyles} />
-      <Redirect from="/customization" to="/themes" />
     </Route>
 
-    <Route name="components" component={Components}>
-      <Route name="appbar" component={AppBar} />
-      <Route name="avatars" component={Avatars} />
-      <Route name="buttons" component={Buttons} />
-      <Route name="cards" component={Cards} />
-      <Route name="date-picker" component={DatePicker} />
-      <Route name="dialog" component={Dialog} />
-      <Route name="dropdown-menu" component={DropDownMenu} />
-      <Route name="icons" component={Icons} />
-      <Route name="icon-buttons" component={IconButtons} />
-      <Route name="icon-menus" component={IconMenus} />
-      <Route name="left-nav" component={LeftNav} />
-      <Route name="lists" component={Lists} />
-      <Route name="menus" component={Menus} />
-      <Route name="paper" component={Paper} />
-      <Route name="progress" component={Progress} />
-      <Route name="refresh-indicator" component={RefreshIndicator} />
-      <Route name="sliders" component={Sliders} />
-      <Route name="switches" component={Switches} />
-      <Route name="snackbar" component={Snackbar} />
-      <Route name="table" component={Table} />
-      <Route name="tabs" component={Tabs} />
-      <Route name="text-fields" component={TextFields} />
-      <Route name="time-picker" component={TimePicker} />
-      <Route name="toolbars" component={Toolbars} />
-      <Redirect from="/components" to="/appbar" />
+    <Redirect from="components" to="/components/appbar" />
+    <Route path="components" component={Components}>
+      <Route path="appbar" component={AppBar} />
+      <Route path="avatars" component={Avatars} />
+      <Route path="buttons" component={Buttons} />
+      <Route path="cards" component={Cards} />
+      <Route path="date-picker" component={DatePicker} />
+      <Route path="dialog" component={Dialog} />
+      <Route path="dropdown-menu" component={DropDownMenu} />
+      <Route path="icons" component={Icons} />
+      <Route path="icon-buttons" component={IconButtons} />
+      <Route path="icon-menus" component={IconMenus} />
+      <Route path="left-nav" component={LeftNav} />
+      <Route path="lists" component={Lists} />
+      <Route path="menus" component={Menus} />
+      <Route path="paper" component={Paper} />
+      <Route path="progress" component={Progress} />
+      <Route path="refresh-indicator" component={RefreshIndicator} />
+      <Route path="sliders" component={Sliders} />
+      <Route path="switches" component={Switches} />
+      <Route path="snackbar" component={Snackbar} />
+      <Route path="table" component={Table} />
+      <Route path="tabs" component={Tabs} />
+      <Route path="text-fields" component={TextFields} />
+      <Route path="time-picker" component={TimePicker} />
+      <Route path="toolbars" component={Toolbars} />
     </Route>
 
     <IndexRoute component={Home}/>
