@@ -304,7 +304,7 @@ const TextField = React.createClass({
     ) : null;
 
     let hintTextElement = hintText ? (
-      <div style={this.mergeAndPrefix(styles.hint, this.props.hintStyle)}>{hintText}</div>
+      <div style={this.mergeAndPrefix(styles.hint, hintStyle)}>{hintText}</div>
     ) : null;
 
     let floatingLabelTextElement = floatingLabelText ? (
