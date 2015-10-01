@@ -92,7 +92,7 @@ const AppBarNew = React.createClass({
 	},
 
 	_getNavIcon () {
-		if((this.props.children[0]).props.type === "navIcon")
+		if((this.props.children[0]).props["data-type"] === "navIcon")
 		{
 			let navIconElement = (this.props.children[0]).props.children;
 			return React.cloneElement(navIconElement, {style: this.mergeAndPrefix(this._getStyles().navIcon, navIconElement.props.style)});
@@ -102,8 +102,8 @@ const AppBarNew = React.createClass({
 	_getContainer () {
 		let pos = -1;
 		if(
-			((this.props.children[0]).props.type === "container" && (pos = 0)) ||
-			((this.props.children[1]).props.type === "container" && (pos = 1))
+			((this.props.children[0]).props["data-type"] === "container" && (pos = 0)) ||
+			((this.props.children[1]).props["data-type"] === "container" && (pos = 1))
 			)
 		{
 			let containerElement = (this.props.children[pos]).props.children;
@@ -114,9 +114,9 @@ const AppBarNew = React.createClass({
 	_getActionsIcons () {
 		let pos = -1;
 		if(
-			((this.props.children[0]).props.type === "actionIcons" && (pos = 0)) ||
-			((this.props.children[1]).props.type === "actionIcons" && (pos = 1)) ||
-			((this.props.children[2]).props.type === "actionIcons" && (pos = 2))
+			((this.props.children[0]).props["data-type"] === "actionIcons" && (pos = 0)) ||
+			((this.props.children[1]).props["data-type"] === "actionIcons" && (pos = 1)) ||
+			((this.props.children[2]).props["data-type"] === "actionIcons" && (pos = 2))
 			)
 		{
 			let actionIconElement = (this.props.children[pos]).props.children;
@@ -127,10 +127,10 @@ const AppBarNew = React.createClass({
 	_getMenuIcon () {
 		let pos = -1;
 		if(
-			((this.props.children[0]).props.type === "menuIcon" && (pos = 0)) ||
-			((this.props.children[1]).props.type === "menuIcon" && (pos = 1)) ||
-			((this.props.children[2]).props.type === "menuIcon" && (pos = 2)) ||
-			((this.props.children[3]).props.type === "menuIcon" && (pos = 3))
+			((this.props.children[0]).props["data-type"] === "menuIcon" && (pos = 0)) ||
+			((this.props.children[1]).props["data-type"] === "menuIcon" && (pos = 1)) ||
+			((this.props.children[2]).props["data-type"] === "menuIcon" && (pos = 2)) ||
+			((this.props.children[3]).props["data-type"] === "menuIcon" && (pos = 3))
 			)
 		{
 			let menuIconElement = (this.props.children[pos]).props.children;

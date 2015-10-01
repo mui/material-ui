@@ -1,5 +1,5 @@
 let React = require('react');
-let { AppBar, DropDownMenu, AppBarNew, AppBarSubComponent } = require('material-ui');
+let { AppBar, DropDownMenu, AppBarNew } = require('material-ui');
 let IconButton = require('icon-button');
 let NavigationClose = require('svg-icons/navigation/close');
 let FlatButton = require('flat-button');
@@ -139,19 +139,17 @@ class AppBarPage extends React.Component {
 
           <AppBarNew>
             
-            <AppBarSubComponent type="navIcon">
+            <div data-type="navIcon">
               <IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub" style={{height: 24, width: 24}}/>
-            </AppBarSubComponent>
+            </div>
 
-            <AppBarSubComponent type="container">
+            <div data-type="container">
               <p>Title</p>
-            </AppBarSubComponent>
+            </div>
 
-            <AppBarSubComponent type="menuIcon">
-              
+            <div data-type="menuIcon">
                 <IconButton style={{height: 24, width: 24}}><MoreVertIcon /></IconButton>
-              
-            </AppBarSubComponent>
+            </div>
 
           </AppBarNew>
         </CodeExample>
