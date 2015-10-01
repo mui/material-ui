@@ -1,3 +1,17 @@
+## 0.12.1
+###### _Sep 28, 2015_
+
+##### Component Fixes / Enhancements
+- Fix broken documentation site
+  - Fix theme display switch problem in doc (#1696)
+  - Fix typo in src/card-expandable.jsx (#1724)
+  - Fix broken link to v0.12.0 release tag
+- Use correct require calls 
+  - for react addons (#1729)
+  - for raw themes (#1742)
+- Remove hard-coded color values from theme-manager
+  - Use consistent values from raw theme (#1746)
+
 ## 0.12.0
 ###### _Sep 25, 2015_
 
