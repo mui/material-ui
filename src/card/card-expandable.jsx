@@ -53,7 +53,7 @@ const CardExpandable = React.createClass({
     };
   },
 
-  static: {
+  statics: {
     getRelevantContextKeys(muiTheme) {
       return {
         isRtl: muiTheme.isRtl,
