@@ -40,6 +40,7 @@ const ListItem = React.createClass({
     onMouseLeave: React.PropTypes.func,
     onNestedListToggle: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
     rightAvatar: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
     rightIconButton: React.PropTypes.element,
@@ -111,6 +112,7 @@ const ListItem = React.createClass({
       onMouseLeave,
       onMouseEnter,
       onTouchStart,
+      onTouchTap,
       rightAvatar,
       rightIcon,
       rightIconButton,
@@ -200,7 +202,6 @@ const ListItem = React.createClass({
       },
 
       primaryText: {
-        margin: 0,
       },
 
       rightIconButton: {
@@ -236,7 +237,7 @@ const ListItem = React.createClass({
       },
     };
 
-    let contentChildren = [];
+    let contentChildren = [children];
 
     if (leftIcon) {
       this._pushElement(
@@ -354,6 +355,7 @@ const ListItem = React.createClass({
           onMouseLeave={this._handleMouseLeave}
           onMouseEnter={this._handleMouseEnter}
           onTouchStart={this._handleTouchStart}
+          onTouchTap={onTouchTap}
           ref="enhancedButton"
           style={this.mergeAndPrefix(styles.root, style)}>
           <div style={this.mergeAndPrefix(styles.innerDiv, innerDivStyle)}>

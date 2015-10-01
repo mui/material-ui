@@ -26,9 +26,13 @@ var config = {
       path.resolve(__dirname, '../src'),
       path.resolve(__dirname, '../node_modules'),
       path.resolve(__dirname, 'src/app/components/raw-code')
-    ],
+    ]
   },
   devtool: 'source-map',
+  //Configuration for server
+  devServer: {
+    contentBase: 'build'
+  },
   //Output file config
   output: {
     path: buildPath,    //Path of output file
@@ -49,7 +53,7 @@ var config = {
     new webpack.NoErrorsPlugin(),
     //Transfer Files
     new TransferWebpackPlugin([
-      {from: 'css'},
+      {from: 'www/css', to: 'css'},
       {from: 'www/images', to: 'images'}
     ], path.resolve(__dirname,"src"))
   ],
@@ -67,7 +71,7 @@ var config = {
         loaders: [
           {
             test: /\.(js|jsx)$/, //All .js and .jsx files
-            loader: 'babel-loader?stage=0', //babel loads jsx and es6-7
+            loader: 'babel-loader?optional=runtime&stage=0', //babel loads jsx and es6-7
             include: [__dirname, path.resolve(__dirname, '../src')], //include these files
             exclude: [nodeModulesPath]  //exclude node_modules so that they are not all compiled
           },

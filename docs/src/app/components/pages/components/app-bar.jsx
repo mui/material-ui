@@ -6,7 +6,9 @@ let FlatButton = require('flat-button');
 let ComponentDoc = require('../../component-doc');
 let CodeExample = require('../../code-example/code-example');
 let Code = require('app-bar-code');
-
+const IconMenu = require('menus/icon-menu');
+const MenuItem = require('menus/menu-item');
+const MoreVertIcon = require('svg-icons/navigation/more-vert');
 
 class AppBarPage extends React.Component {
 
@@ -120,6 +122,19 @@ class AppBarPage extends React.Component {
             title="Title"
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             iconElementRight={<FlatButton label="Save" />} />
+          <br />
+          <AppBar
+            title="Title"
+            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+            iconElementRight={
+              <IconMenu iconButtonElement={
+                <IconButton><MoreVertIcon /></IconButton>
+              }>
+                <MenuItem primaryText="Refresh" />
+                <MenuItem primaryText="Help" />
+                <MenuItem primaryText="Sign out" />
+              </IconMenu>
+          } />
         </CodeExample>
       </ComponentDoc>
     );
