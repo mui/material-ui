@@ -11,7 +11,7 @@ describe('DropDownMenu', () => {
         ThemedDropdownMenu = injectTheme(DropDownMenu);
     });
 
-    it(`Issue #1761`, () => {
+    it(`displays the text field of menuItems prop at index x when value prop is x`, () => {
         let menuItems = [
             {
                 text: 'Text1',
