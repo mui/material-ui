@@ -39,8 +39,8 @@ let GridTile = React.createClass({
 
   getStyles()
   {
-    let spacing = this.context.muiTheme.spacing;
-    let themeVariables = this.context.muiTheme.component.gridTile;
+    let spacing = this.context.muiTheme.rawTheme.spacing;
+    let themeVariables = this.context.muiTheme.gridTile;
     let actionPos = this.props.actionIcon ? this.props.actionPosition : null;
     let gutterLess = spacing.desktopGutterLess;
 
