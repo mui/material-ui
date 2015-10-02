@@ -124,7 +124,7 @@ const IconMenu = React.createClass({
     let iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: this.props.onKeyboardFocus,
       iconStyle: this.mergeStyles(iconStyle, iconButtonElement.props.iconStyle),
-      onMouseDown(e): => {
+      onMouseDown: (e) => {
         this.open(Events.isKeyboard(e));
         if (iconButtonElement.props.onMouseDown) iconButtonElement.props.onMouseDown(e);
       },
