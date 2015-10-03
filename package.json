@@ -29,6 +29,9 @@
     "url": "https://github.com/callemall/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
+  "dependencies": {
+    "react-draggable2": "github:Cavitt/react-draggable"
+  },
   "peerDependencies": {
     "react": ">=0.14.0-rc1",
     "react-dom": ">=0.14.0-rc1",
