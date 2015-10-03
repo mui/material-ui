@@ -8,7 +8,7 @@
     "test": "npm run test-base -- --single-run",
     "test-watch": "npm run test-base -- --auto-watch",
     "test-base": "./node_modules/.bin/karma start",
-    "prebuild": "rm -rf lib",
+    "prebuild": "rimraf lib",
     "eslint": "gulp eslint",
     "build": "npm run eslint && babel --stage 1 ./src --out-dir ./lib",
     "prepublish": "npm run build"
@@ -30,6 +30,13 @@
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
+    "react": ">=0.14.0-rc1",
+    "react-dom": ">=0.14.0-rc1",
+    "react-tap-event-plugin": "^0.2.0",
+    "react-addons-transition-group": "^0.14.0-rc1",
+    "react-addons-update": "^0.14.0-rc1",
+    "react-addons-create-fragment": "^0.14.0-rc1",
+    "react-addons-pure-render-mixin": "^0.14.0-rc1",
     "react-draggable2": "github:Cavitt/react-draggable"
   },
   "peerDependencies": {
@@ -68,6 +75,7 @@
     "phantomjs": "^1.9.17",
     "react-hot-loader": "^1.2.8",
     "react-router": "^1.0.0-rc1",
+    "rimraf": "^2.4.3",
     "sinon": "^1.15.4",
     "sinon-chai": "^2.8.0",
     "transfer-webpack-plugin": "^0.1.4",
