@@ -110,7 +110,6 @@ describe(`Calendar`, () => {
         let initialDate = new Date();
         let minDate = new Date(initialDate.toDateString());
 
-
         let render = TestUtils.renderIntoDocument(
             <ThemedCalendar 
                 initialDate={initialDate}
@@ -154,5 +153,24 @@ describe(`Calendar`, () => {
 
         let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
         expect(calendarToolbar.props.prevMonth).to.be.true;
+    });
+
+    it(`should disable the previous month button when the current month is before or the same as the minDate month prop on pressing the prevMonth button`, () => {
+        let initialDate = new Date();
+        let minDate = new Date(initialDate.toDateString());
+        minDate.setMonth(minDate.getMonth() - 1);
+
+        let render = TestUtils.renderIntoDocument(
+            <ThemedCalendar 
+                initialDate={initialDate}
+                minDate={minDate} 
+            />
+        );
+
+        let prevMonthIconButton = React.findDOMNode(TestUtils.scryRenderedComponentsWithType(render, IconButton)[0]);
+        TestUtils.Simulate.touchTap(prevMonthIconButton);
+
+        let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+        expect(calendarToolbar.props.prevMonth).to.be.false;
     });
 });
