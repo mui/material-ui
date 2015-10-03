@@ -30,7 +30,7 @@
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
-    "react-draggable2": "^0.5.1"
+    "react-draggable2": "github:Cavitt/react-draggable"
   },
   "peerDependencies": {
     "react": ">=0.14.0-rc1",
