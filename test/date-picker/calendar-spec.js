@@ -121,6 +121,22 @@ describe(`Calendar`, () => {
         expect(calendarToolbar.props.prevMonth).to.be.false;
     });
 
+    it(`should disable the previous month button is the current month is before the minDate month prop`, () => {
+        let initialDate = new Date();
+        let minDate = new Date(initialDate.toDateString());
+        minDate.setMonth(initialDate.getMonth() + 1);
+
+        let render = TestUtils.renderIntoDocument(
+            <ThemedCalendar 
+                initialDate={initialDate}
+                minDate={minDate} 
+            />
+        );
+        let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+
+        expect(calendarToolbar.props.prevMonth).to.be.false;
+    });
+
     it(`should enable the previous month button if the current month is after the minDate month prop`, () => {
         let initialDate = new Date();
         let minDate = new Date(initialDate.toDateString());
