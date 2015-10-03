@@ -105,4 +105,19 @@ describe(`Calendar`, () => {
             expect(renderedCalendarToolbar.props.nextMonth).to.be.false;
         });
     });
+
+    it(`should disable the previous month button if the current month is the same as the minDate month prop`, () => {
+        let initialDate = new Date();
+        let minDate = new Date(initialDate.toDateString());
+
+        let render = TestUtils.renderIntoDocument(
+            <ThemedCalendar 
+                initialDate={initialDate}
+                minDate={minDate} 
+            />
+        );
+        let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+
+        expect(calendarToolbar.props.prevMonth).to.be.false;
+    });
 });
