@@ -260,8 +260,8 @@ const Calendar = React.createClass({
 
   _getToolbarInteractions() {
     return {
-      prevMonth: DateTime.monthDiff(this.state.selectedDate, this.props.minDate) > 0,
-      nextMonth: DateTime.monthDiff(this.state.displayDate, this.props.maxDate) < 0,
+      prevMonth: DateTime.monthDiff(this.state.displayDate, this.props.minDate) > 0,
+      nextMonth: DateTime.monthDiff(this.state.displayDate, this.props.maxDate) < 0
     };
   },
 
