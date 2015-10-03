@@ -1,13 +1,14 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+import React from 'react/addons';
 import Calendar from 'date-picker/calendar';
-import injectTheme from '../fixtures/inject-theme';
-import React from 'react';
 import CalendarToolbar from 'date-picker/calendar-toolbar';
 import IconButton from 'icon-button';
 import DateDisplay  from 'date-picker/date-display';
 import DateTime from 'utils/date-time';
+
+import injectTheme from '../fixtures/inject-theme';
 
 const TestUtils = React.addons.TestUtils;
 
@@ -171,6 +172,7 @@ describe(`Calendar`, () => {
         let initialDate = new Date();
         let minDate = new Date(initialDate.toDateString());
 
+
         let render = TestUtils.renderIntoDocument(
             <ThemedCalendar 
                 initialDate={initialDate}
@@ -195,6 +197,24 @@ describe(`Calendar`, () => {
         );
         let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
+        expect(calendarToolbar.props.prevMonth).to.be.true;
+    });
+
+    it(`should reenable the previous month button when the current month is after the minDate month prop`, () => {
+        let initialDate = new Date();
+        let minDate = new Date(initialDate.toDateString());
+
+        let render = TestUtils.renderIntoDocument(
+            <ThemedCalendar 
+                initialDate={initialDate}
+                minDate={minDate} 
+            />
+        );
+
+        let nextMonthIconButton = React.findDOMNode(TestUtils.scryRenderedComponentsWithType(render, IconButton)[1]);
+        TestUtils.Simulate.touchTap(nextMonthIconButton);
+
+        let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
         expect(calendarToolbar.props.prevMonth).to.be.true;
     });
 });
