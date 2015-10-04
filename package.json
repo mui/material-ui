@@ -37,7 +37,7 @@
     "react-addons-update": "^0.14.0-rc1",
     "react-addons-create-fragment": "^0.14.0-rc1",
     "react-addons-pure-render-mixin": "^0.14.0-rc1",
-    "react-draggable2": "github:Cavitt/react-draggable"
+    "react-draggable2": "^0.7.0-alpha1"
   },
   "peerDependencies": {
     "react": ">=0.14.0-rc1",
