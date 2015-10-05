@@ -443,6 +443,7 @@ const Menu = React.createClass({
               onTouchTap={this._onItemTap}
               onMouseEnter={this._onItemActivated}
               onMouseLeave={this._onItemDeactivated}
+              title={menuItem.title}
               >
               {menuItem.text}
             </MenuItem>

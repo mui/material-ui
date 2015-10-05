@@ -36,6 +36,7 @@ const MenuItem = React.createClass({
     onToggle: React.PropTypes.func,
     selected: React.PropTypes.bool,
     active: React.PropTypes.bool,
+    title: React.PropTypes.string,
   },
 
   //for passing default theme context to children
@@ -178,6 +179,7 @@ const MenuItem = React.createClass({
         onTouchTap={this._handleTouchTap}
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
+        title={this.props.title}
         style={this.mergeAndPrefix(
           styles.root,
           this.props.selected && styles.rootWhenSelected,
