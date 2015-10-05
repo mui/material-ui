@@ -1,6 +1,6 @@
 {
   "name": "material-ui-docs",
-  "version": "0.11.1",
+  "version": "0.12.1",
   "description": "Documentation site for material-ui",
   "repository": {
     "type": "git",
@@ -9,7 +9,8 @@
   "scripts": {
     "prestart": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --inline",
     "start": "open http://localhost:3000",
-    "build": "webpack --config webpack-production.config.js --progress --colors --profile"
+    "build": "webpack --config webpack-production.config.js --progress --colors --profile",
+    "prd": "webpack-dev-server --config webpack-production.config.js --progress --colors --profile"
   },
   "dependencies": {
     "codemirror": "^5.5.0"

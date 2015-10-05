@@ -1,11 +1,11 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let Colors = require('../styles/colors');
-let DateTime = require('../utils/date-time');
-let YearButton = require('./year-button');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const Colors = require('../styles/colors');
+const DateTime = require('../utils/date-time');
+const YearButton = require('./year-button');
 
 
-let CalendarYear = React.createClass({
+const CalendarYear = React.createClass({
 
   mixins: [StylePropable],
 

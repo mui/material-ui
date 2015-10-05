@@ -2,6 +2,10 @@
 <TextField
   hintText="Hint Text" />
 <TextField
+  style={styles.textField}
+  hintText="Styled Hint Text"
+  hintStyle={{color: 'red'}} />
+<TextField
   hintText="Hint Text"
   defaultValue="Default Value" />
 <TextField

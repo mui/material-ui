@@ -1,6 +1,6 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let AutoPrefix = require('./styles/auto-prefix');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const AutoPrefix = require('./styles/auto-prefix');
 
 /**
  *  BeforeAfterWrapper
@@ -36,7 +36,7 @@ let AutoPrefix = require('./styles/auto-prefix');
  *  and afterElement have a defined style position.
  */
 
-let BeforeAfterWrapper = React.createClass({
+const BeforeAfterWrapper = React.createClass({
 
   mixins: [StylePropable],
 

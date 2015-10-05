@@ -1,17 +1,30 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Typography = require('./styles/typography');
-let IconButton = require('./icon-button');
-let NavigationMenu = require('./svg-icons/navigation/menu');
-let Paper = require('./paper');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const Typography = require('./styles/typography');
+const IconButton = require('./icon-button');
+const NavigationMenu = require('./svg-icons/navigation/menu');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
+const Paper = require('./paper');
 
 
-let AppBar = React.createClass({
+const AppBar = React.createClass({
 
   mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   propTypes: {
@@ -26,6 +39,19 @@ let AppBar = React.createClass({
     iconStyleRight: React.PropTypes.object,
     title: React.PropTypes.node,
     zDepth: React.PropTypes.number,
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };    
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   getDefaultProps() {
@@ -55,9 +81,9 @@ let AppBar = React.createClass({
   },
 
   getStyles() {
-    let spacing = this.context.muiTheme.spacing;
-    let themeVariables = this.context.muiTheme.component.appBar;
-    let iconButtonSize = this.context.muiTheme.component.button.iconButtonSize;
+    let spacing = this.state.muiTheme.rawTheme.spacing;
+    let themeVariables = this.state.muiTheme.appBar;
+    let iconButtonSize = this.state.muiTheme.button.iconButtonSize;
     let flatButtonSize = 36;
     let styles = {
       root: {
@@ -161,6 +187,7 @@ let AppBar = React.createClass({
       let iconElementRight = props.iconElementRight;
 
       switch (iconElementRight.type.displayName) {
+        case 'IconMenu':
         case 'IconButton':
           iconElementRight = React.cloneElement(iconElementRight, {
             iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle, iconElementRight.props.iconStyle),

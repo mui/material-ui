@@ -1,11 +1,11 @@
-let React = require('react');
-let Checkbox = require('../checkbox');
-let TableRowColumn = require('./table-row-column');
-let ClickAwayable = require('../mixins/click-awayable');
-let StylePropable = require('../mixins/style-propable');
+const React = require('react');
+const Checkbox = require('../checkbox');
+const TableRowColumn = require('./table-row-column');
+const ClickAwayable = require('../mixins/click-awayable');
+const StylePropable = require('../mixins/style-propable');
 
 
-let TableBody = React.createClass({
+const TableBody = React.createClass({
 
   mixins: [ClickAwayable, StylePropable],
 

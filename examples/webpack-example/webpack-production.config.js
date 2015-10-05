@@ -45,7 +45,7 @@ var config = {
     loaders: [
       {
         test: /\.(js|jsx)$/, //All .js and .jsx files
-        loader: 'babel-loader?stage=0', //react-hot is like browser sync and babel loads jsx and es6-7
+        loader: 'babel-loader?optional=runtime&stage=0', //react-hot is like browser sync and babel loads jsx and es6-7
         exclude: [nodeModulesPath]
       }
     ]

@@ -1,17 +1,42 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let EnhancedSwitch = require('./enhanced-switch');
-let RadioButtonOff = require('./svg-icons/toggle/radio-button-unchecked');
-let RadioButtonOn = require('./svg-icons/toggle/radio-button-checked');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
+const EnhancedSwitch = require('./enhanced-switch');
+const RadioButtonOff = require('./svg-icons/toggle/radio-button-unchecked');
+const RadioButtonOn = require('./svg-icons/toggle/radio-button-checked');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
-
-let RadioButton = React.createClass({
+const RadioButton = React.createClass({
 
   mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   propTypes: {
@@ -21,7 +46,7 @@ let RadioButton = React.createClass({
   },
 
   getTheme() {
-    return this.context.muiTheme.component.radioButton;
+    return this.state.muiTheme.radioButton;
   },
 
   getStyles() {

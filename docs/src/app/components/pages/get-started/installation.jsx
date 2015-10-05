@@ -1,11 +1,40 @@
-let React = require('react');
-let { Paper, Styles } = require('material-ui');
-let CodeBlock = require('../../code-example/code-block');
+const React = require('react');
+const { Paper, Styles } = require('material-ui');
+const CodeBlock = require('../../code-example/code-block');
 
-let { Spacing, Typography } = Styles;
+const { Spacing, Typography } = Styles;
+const ThemeManager = Styles.ThemeManager;
+const DefaultRawTheme = Styles.LightRawTheme;
 
+const Installation = React.createClass({
 
-class Installation extends React.Component {
+  contextTypes : {
+    muiTheme: React.PropTypes.object
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
 
   getStyles() {
     return {
@@ -28,40 +57,29 @@ class Installation extends React.Component {
         color: Typography.textDarkBlack
       },
       codeExample: {
-        backgroundColor: this.context.muiTheme.palette.canvasColor,
+        backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
         marginBottom: '32px'
-      }
+      },
+      inlineCode: {
+        backgroundColor: '#F8F8F8'
+      },
     };
-  }
+  },
 
   render() {
     let usageCode =
-          '// get constant references to React and Material-UI\n' +
-          '// components, as we will not be modifying these\n\n' +
-          'const React = require(\'react\');\n\n' +
-          '// it is good practice to require only those components of\n' +
-          '// Material-UI that your app needs, instead of requiring all of\n' +
-          '// Material-UI. This will make your build process faster and\n' + 
-          '// your build output smaller\n\n' +
-          'const RaisedButton = require(\'material-ui/lib/raised-button\');\n\n' +
-          '// see node_modules/material-ui/lib/index.js for a mapping of\n' +
-          '// Material-UI components to require() calls\n\n' +
-          'const MyAwesomeReactComponent = React.createClass({\n\n' +
-          '  childContextTypes: {\n' +
-          '    muiTheme: React.PropTypes.object\n' +
-          '  },\n\n' +
-          '  getChildContext() {\n' +
-          '    return {\n' +
-          '      muiTheme: ThemeManager.getCurrentTheme()\n' +
-          '    };\n' +
-          '  },\n\n' +
-          '  render() {\n' +
-          '    return (\n' +
-          '        <RaisedButton label="Default" />\n' +
-          '    );\n' +
-          '  }\n\n' +
-          '});\n\n' +
-          'module.exports = MyAwesomeReactComponent;\n\n\n',
+        '//Basic React component that renders a material-ui\n' +
+        '//raised button with the text \"Default\"\n\n' +
+        'const React = require(\'react\');\n' +
+        'const RaisedButton = require(\'material-ui/lib/raised-button\');\n\n' +
+        'const MyAwesomeReactComponent = React.createClass({\n' +
+        '  render() {\n' +
+        '    return (\n' +
+        '        <RaisedButton label="Default" />\n' +
+        '    );\n' +
+        '  },\n' +
+        '});\n\n' +
+        'module.exports = MyAwesomeReactComponent;\n',
 
       customizationCode =
         '@import "node_modules/material-ui/src/less/scaffolding.less";\n\n' +
@@ -75,13 +93,20 @@ class Installation extends React.Component {
         '//Can go away when react 1.0 release\n' +
         '//Check this repo:\n' +
         '//https://github.com/zilverline/react-tap-event-plugin\n' +
-        'injectTapEventPlugin();\n';
+        'injectTapEventPlugin();\n',
+
+      noticeCode1 =
+        'const RaisedButton = require(\'material-ui/lib/raised-button\');\n',
+
+      noticeCode2 =
+        'const Mui = require(\'material-ui\');\n' +
+        'const RaisedButton = Mui.RaisedButton;\n';
 
     let styles = this.getStyles();
 
     return (
       <div>
-        
+
         <h2 style={styles.headline}>Installation</h2>
         <p>
           Material-UI is available as an <a href="https://www.npmjs.org/package/material-ui">npm package</a>.
@@ -107,32 +132,40 @@ class Installation extends React.Component {
 
         <h2 style={styles.headline}>Usage</h2>
         <p>
-          Once material-ui is included in your project, you can use the components this way:
+          Using material-ui components is very straightforward. Once material-ui is included in your project, you can use the components this way:
         </p>
         <Paper style={styles.codeExample}>
           <CodeBlock>{usageCode}</CodeBlock>
         </Paper>
-        <h3 style={styles.title}>Theme</h3>
         <p>
-          Please note that since v0.8.0, you also need to <a href="#/customization/themes">define a theme</a> for components to start working.
+          Notice that in the above example, we called:
+        </p>
+        <Paper style={styles.codeExample}>
+          <CodeBlock>{noticeCode1}</CodeBlock>
+        </Paper>
+        <p>
+        instead of
+        </p>
+        <Paper style={styles.codeExample}>
+          <CodeBlock>{noticeCode2}</CodeBlock>
+        </Paper>
+        <p>
+          It is good practice to require only those components of Material-UI that your app needs, instead of requiring all of
+          Material-UI. This will make your build process faster and your build output smaller. For a complete mapping of Material-UI
+          components to <code style={styles.inlineCode}>require()</code> calls, see /lib/index.js inside the Material-UI
+          root directory.
         </p>
 
         <h2 style={styles.headline}>Customization</h2>
-        <p>Material-UI components have their styles defined inline. There are two approaches to overriding these styles:</p>
+        <p>We have implemented a default theme to render all Material-UI components. Styling components to your liking is simple and hassle-free.
+        This can be achieved in the following two ways:</p>
+        <li><a href="#/customization/themes">Use a custom theme to style components</a></li>
         <li><a href="#/customization/inline-styles">Override individual component styles via the style prop</a></li>
-        <li><a href="#/customization/themes">Define a Theme to apply overarching style changes</a></li>
-        <p>
-          This allows you to override any variables used without having to modify material-ui source files directly.
-        </p>
 
       </div>
     );
-  }
+  },
 
-}
-
-Installation.contextTypes = {
-  muiTheme: React.PropTypes.object
-};
+});
 
 module.exports = Installation;
