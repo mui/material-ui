@@ -79,13 +79,6 @@ const CardExpandable = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
-  _onExpanding() {
-    if (this.props.expanded === true)
-      this.props.onExpanding(false);
-    else
-      this.props.onExpanding(true);
-  },
-
   render() {
     let styles = this.getStyles();
 
@@ -100,7 +93,7 @@ const CardExpandable = React.createClass({
     let expandableBtn = (
       <IconButton
         style={mergedStyles}
-        onClick={this._onExpanding}>
+        onClick={this.props.onExpanding}>
         {expandable}
       </IconButton>
     );

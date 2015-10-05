@@ -17,6 +17,7 @@ const CardHeader = React.createClass({
     subtitleStyle: React.PropTypes.object,
     textStyle: React.PropTypes.object,
     expandable: React.PropTypes.bool,
+    expander: React.PropTypes.bool,
     showExpandableButton: React.PropTypes.bool,
   },
 
