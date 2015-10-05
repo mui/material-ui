@@ -190,6 +190,8 @@ const TextField = React.createClass({
         outline: 'none',
         backgroundColor: backgroundColor,
         color: props.disabled ? disabledTextColor : textColor,
+		WebkitTextFillColor: props.disabled ? disabledTextColor : textColor,
+		WebkitOpacity: '1',
         font: 'inherit',
       },
       underline: {
