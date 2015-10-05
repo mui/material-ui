@@ -1,15 +1,13 @@
-let React = require('react/addons');
-let StylePropable = require('../mixins/style-propable');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
-let AutoPrefix = require('../styles/auto-prefix');
+const AutoPrefix = require('../styles/auto-prefix');
 
-let GridTile = React.createClass({
+const GridTile = React.createClass({
 
   mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     title: React.PropTypes.string,
@@ -26,6 +24,17 @@ let GridTile = React.createClass({
     ]),
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   getDefaultProps() {
     return {
       titlePosition: 'bottom',
@@ -37,12 +46,25 @@ let GridTile = React.createClass({
     };
   },
 
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getStyles()
   {
-    let spacing = this.context.muiTheme.rawTheme.spacing;
-    let themeVariables = this.context.muiTheme.gridTile;
-    let actionPos = this.props.actionIcon ? this.props.actionPosition : null;
-    let gutterLess = spacing.desktopGutterLess;
+    const spacing = this.state.muiTheme.rawTheme.spacing;
+    const themeVariables = this.state.muiTheme.gridTile;
+    const actionPos = this.props.actionIcon ? this.props.actionPosition : null;
+    const gutterLess = spacing.desktopGutterLess;
 
     let styles = {
       root: {
@@ -129,7 +151,7 @@ let GridTile = React.createClass({
 
 
   render() {
-    let {
+    const {
       title,
       subtitle,
       titlePosition,
@@ -142,9 +164,9 @@ let GridTile = React.createClass({
       ...other,
       } = this.props;
 
-    let styles = this.getStyles();
+    const styles = this.getStyles();
 
-    let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    const mergedRootStyles = this.mergeAndPrefix(styles.root, style);
 
     let titleBar = null;
 
@@ -164,10 +186,12 @@ let GridTile = React.createClass({
       );
     }
 
+    let newChildren = children;
+
     // if there is an image passed as children
     // clone it an put our styles
     if (React.Children.count(children) === 1) {
-      children = React.Children.map(children, (child) => {
+      newChildren = React.Children.map(children, (child) => {
         if (child.type === 'img') {
           return React.cloneElement(child, {
             ref: 'img',
@@ -179,10 +203,10 @@ let GridTile = React.createClass({
       });
     }
 
-    let RootTag = rootClass;
+    const RootTag = rootClass;
     return (
       <RootTag style={mergedRootStyles} {...other}>
-        {children}
+        {newChildren}
         {titleBar}
       </RootTag>
     );
