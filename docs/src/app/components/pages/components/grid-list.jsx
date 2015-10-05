@@ -192,7 +192,7 @@ class GridListPage extends React.Component {
       },
     ];
 
-    let gradientBg = '-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,.7)), color-stop(70%,rgba(0,0,0,.3)), color-stop(100%,rgba(0,0,0,0)))';
+    let gradientBg = 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);';
 
     return (
       <ComponentDoc
