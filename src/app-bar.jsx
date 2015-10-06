@@ -81,6 +81,10 @@ const AppBar = React.createClass({
   },
 
   getStyles() {
+    const isRtl = this.state.muiTheme.isRtl;
+    const marginRight = isRtl ? 'marginLeft' : 'marginRight';
+    const marginLeft = isRtl ? 'marginRight' : 'marginLeft';
+
     let spacing = this.state.muiTheme.rawTheme.spacing;
     let themeVariables = this.state.muiTheme.appBar;
     let iconButtonSize = this.state.muiTheme.button.iconButtonSize;
@@ -114,8 +118,13 @@ const AppBar = React.createClass({
       iconButton: {
         style: {
           marginTop: (themeVariables.height - iconButtonSize) / 2,
-          marginRight: 8,
-          marginLeft: -16,
+          [marginRight]: 8,
+          [marginLeft]: -16,
+        },
+        rightStyle: {
+          marginTop: (themeVariables.height - iconButtonSize) / 2,
+          [marginRight]: -16,
+          [marginLeft]: 'auto',
         },
         iconStyle: {
           fill: themeVariables.textColor,
@@ -138,10 +147,7 @@ const AppBar = React.createClass({
     let menuElementRight;
     let styles = this.getStyles();
     let title = props.title;
-    let iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
-      marginRight: -16,
-      marginLeft: 'auto',
-    }, props.iconStyleRight);
+    let iconRightStyle = this.mergeAndPrefix(styles.iconButton.rightStyle, props.iconStyleRight);
     let titleElement;
 
     if (title) {
