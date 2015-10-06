@@ -33,6 +33,7 @@ const NestedMenuItem = React.createClass({
     active: React.PropTypes.bool,
     onItemTap: React.PropTypes.func,
     menuItemStyle: React.PropTypes.object,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -222,6 +223,7 @@ const Menu = React.createClass({
     onRequestClose: React.PropTypes.func,
     menuItems: React.PropTypes.array.isRequired,
     selectedIndex: React.PropTypes.number,
+    style: React.PropTypes.object,
     hideable: React.PropTypes.bool,
     visible: React.PropTypes.bool,
     zDepth: React.PropTypes.number,

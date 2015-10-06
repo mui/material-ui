@@ -15,6 +15,7 @@ const GridList = React.createClass({
     cols: React.PropTypes.number,
     padding: React.PropTypes.number,
     cellHeight: React.PropTypes.number,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children

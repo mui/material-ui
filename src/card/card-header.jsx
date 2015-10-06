@@ -42,7 +42,12 @@ const CardHeader = React.createClass({
     title: React.PropTypes.node,
     titleColor: React.PropTypes.string,
     titleStyle: React.PropTypes.object,
+<<<<<<< HEAD
     subtitle: React.PropTypes.node,
+=======
+    style: React.PropTypes.object,
+    subtitle: React.PropTypes.string,
+>>>>>>> 6536097... Added style prop to many components that needed it
     subtitleColor: React.PropTypes.string,
     subtitleStyle: React.PropTypes.object,
     textStyle: React.PropTypes.object,

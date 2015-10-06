@@ -8,6 +8,7 @@ const NestedList = React.createClass({
   propTypes: {
     nestedLevel: React.PropTypes.number,
     open: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

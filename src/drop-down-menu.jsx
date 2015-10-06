@@ -47,6 +47,7 @@ const DropDownMenu = React.createClass({
     labelStyle:React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
     openImmediately: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
