@@ -16,6 +16,7 @@ const TouchRipple = React.createClass({
     centerRipple: React.PropTypes.bool,
     color: React.PropTypes.string,
     opacity: React.PropTypes.number,
+    style: React.PropTypes.object,
   },
 
   getInitialState() {

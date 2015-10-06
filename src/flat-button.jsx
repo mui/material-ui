@@ -79,6 +79,7 @@ const FlatButton = React.createClass({
     primary: React.PropTypes.bool,
     rippleColor: React.PropTypes.string,
     secondary: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

@@ -65,6 +65,7 @@ const Slider = React.createClass({
     onDragStop: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     value: valueInRangePropType,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children

@@ -43,6 +43,12 @@ class GridListPage extends React.Component {
             header: 'optional',
             desc: 'Number of px for one cell height. Defaults to 180.',
           },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the grid list\'s root element.',
+          },
         ],
       },
       {
@@ -95,6 +101,12 @@ class GridListPage extends React.Component {
             type: 'number',
             header: 'optional',
             desc: 'Height of the tile in number of grid cells. Defaults to 1.',
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the grid tile\'s root element.',
           },
           {
             name: 'rootClass',

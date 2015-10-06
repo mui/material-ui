@@ -63,7 +63,7 @@ export default class AppBarPage extends React.Component {
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the app bars\'s root element.',
+            desc: 'Override the inline-styles of the app bar\'s root element.',
           },
           {
             name: 'showMenuIconButton',

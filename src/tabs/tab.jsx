@@ -18,6 +18,7 @@ const Tab = React.createClass({
     selected: React.PropTypes.bool,
     width: React.PropTypes.string,
     value: React.PropTypes.string,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children

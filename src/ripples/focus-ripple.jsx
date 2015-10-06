@@ -19,6 +19,7 @@ const FocusRipple = React.createClass({
     innerStyle: React.PropTypes.object,
     opacity: React.PropTypes.number,
     show: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

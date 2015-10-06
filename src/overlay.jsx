@@ -45,6 +45,7 @@ const Overlay = React.createClass({
     autoLockScrolling: React.PropTypes.bool,
     show: React.PropTypes.bool,
     transitionEnabled: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

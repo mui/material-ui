@@ -75,6 +75,12 @@ export default class FontIconPage extends React.Component {
             header: 'optional',
             desc: 'This is the icon color when the mouse hovers over the icon.',
           },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the font icon\'s root element.',
+          },
         ],
       },
       {
@@ -92,6 +98,12 @@ export default class FontIconPage extends React.Component {
             type: 'string',
             header: 'optional',
             desc: 'This is the icon color when the mouse hovers over the icon.',
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the svg icon\'s root element.',
           },
         ],
       },

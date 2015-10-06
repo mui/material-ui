@@ -32,6 +32,7 @@ const Menu = React.createClass({
     onItemTouchTap: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
     openDirection: PropTypes.corners,
+    style: React.PropTypes.object,
     selectedMenuItemStyle: React.PropTypes.object,
     width: PropTypes.stringOrNumber,
     zDepth: PropTypes.zDepth,
