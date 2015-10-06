@@ -65,5 +65,24 @@ describe.only(`Calendar`, () => {
 
             expect(renderedCalendarToolbar.props.nextMonth).to.be.true;
         });
+
+        it(`should reenable the next month button when the current month is before the maxDate prop`, () => {
+            let initialDate = new Date();
+            let maxDate = new Date(initialDate.toDateString());
+
+            let render = TestUtils.renderIntoDocument(
+                <ThemedCalendar 
+                    initialDate={initialDate}
+                    maxDate={maxDate} />
+            );
+            let prevMonthButton = React.findDOMNode(
+                TestUtils.scryRenderedComponentsWithType(render, IconButton)[0]);
+            TestUtils.Simulate.touchTap(prevMonthButton);
+
+            let renderedCalendarToolbar = 
+                TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+
+            expect(renderedCalendarToolbar.props.nextMonth).to.be.true;
+        });
     });
 });
