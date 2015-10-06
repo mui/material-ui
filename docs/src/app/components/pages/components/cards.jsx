@@ -54,7 +54,7 @@ class CardPage extends React.Component {
             desc: 'Whether this card component is expandable. Can be set on any child of the Card component.',
           },
           {
-            name: 'expander',
+            name: 'actAsExpander',
             type: 'bool',
             header: 'optional',
             desc: 'Whether a click on this card component expands the card. ' +
@@ -121,7 +121,7 @@ class CardPage extends React.Component {
               title="Title"
               subtitle="Subtitle"
               avatar={<Avatar style={{color:'red'}}>A</Avatar>}
-              expander={true}
+              actAsExpander={true}
               showExpandableButton={true}>
             </CardHeader>
             <CardText expandable={true}>

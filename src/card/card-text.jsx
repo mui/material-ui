@@ -11,7 +11,7 @@ const CardText = React.createClass({
     color: React.PropTypes.string,
     style: React.PropTypes.object,
     expandable: React.PropTypes.bool,
-    expander: React.PropTypes.bool,
+    actAsExpander: React.PropTypes.bool,
   },
 
   getDefaultProps() {
