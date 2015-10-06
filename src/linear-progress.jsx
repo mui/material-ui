@@ -13,6 +13,7 @@ const LinearProgress = React.createClass({
     value: React.PropTypes.number,
     min:  React.PropTypes.number,
     max:  React.PropTypes.number,
+    style: React.PropTypes.object,
   },
 
   contextTypes: {

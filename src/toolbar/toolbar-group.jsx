@@ -15,6 +15,7 @@ const ToolbarGroup = React.createClass({
   propTypes: {
     className: React.PropTypes.string,
     float: React.PropTypes.string,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -38,7 +39,7 @@ const ToolbarGroup = React.createClass({
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
-  }, 
+  },
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context

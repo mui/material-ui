@@ -40,6 +40,7 @@ const CardExpandable = React.createClass({
   propTypes: {
     onExpanding: React.PropTypes.func.isRequired,
     expanded: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children

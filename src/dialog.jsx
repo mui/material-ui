@@ -114,6 +114,7 @@ let Dialog = React.createClass({
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
+    style: React.PropTypes.object,
     title: React.PropTypes.node,
   },
 

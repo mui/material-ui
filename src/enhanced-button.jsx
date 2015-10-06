@@ -82,6 +82,7 @@ const EnhancedButton = React.createClass({
     onKeyUp: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     tabIndex: React.PropTypes.number,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

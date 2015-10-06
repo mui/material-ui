@@ -13,6 +13,7 @@ const ListDivider = React.createClass({
 
   propTypes: {
     inset: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children

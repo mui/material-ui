@@ -29,6 +29,7 @@ const MenuItem = React.createClass({
     leftIcon: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
+    style: React.PropTypes.object,
     value: React.PropTypes.string,
   },
 

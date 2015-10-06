@@ -20,6 +20,7 @@ const Tooltip = React.createClass({
     touch: React.PropTypes.bool,
     verticalPosition: React.PropTypes.oneOf(['top', 'bottom']),
     horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center']),
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -42,11 +43,11 @@ const Tooltip = React.createClass({
   //from the parent / owner using context
   componentWillReceiveProps (nextProps, nextContext) {
     this._setTooltipPosition();
-    
+
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
-  
+
   componentDidUpdate() {
     this._setRippleSize();
   },

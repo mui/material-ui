@@ -17,6 +17,7 @@ const CardActions = React.createClass({
   propTypes: {
     expandable: React.PropTypes.bool,
     showExpandableButton: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   render() {

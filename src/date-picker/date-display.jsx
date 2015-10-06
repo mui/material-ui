@@ -19,6 +19,7 @@ const DateDisplay = React.createClass({
     disableYearSelection: React.PropTypes.bool,
     monthDaySelected: React.PropTypes.bool,
     selectedDate: React.PropTypes.object.isRequired,
+    style: React.PropTypes.object,
     weekCount: React.PropTypes.number,
   },
 

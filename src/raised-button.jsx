@@ -52,6 +52,7 @@ const RaisedButton = React.createClass({
     disabledBackgroundColor: React.PropTypes.string,
     disabledLabelColor: React.PropTypes.string,
     fullWidth: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getInitialState() {
