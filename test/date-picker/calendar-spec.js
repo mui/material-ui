@@ -2,6 +2,7 @@ import Calendar from 'date-picker/calendar';
 import injectTheme from '../fixtures/inject-theme';
 import React from 'react';
 import CalendarToolbar from 'date-picker/calendar-toolbar';
+import IconButton from 'icon-button';
 
 const TestUtils = React.addons.TestUtils;
 
@@ -43,6 +44,25 @@ describe(`Calendar`, () => {
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
             expect(renderedCalendarToolbar.props.nextMonth).to.be.false;
+        });
+
+        it.only(`should reenable the next month button when the current month is before the maxDate prop`, () => {
+            let initialDate = new Date();
+            let maxDate = new Date(initialDate.toDateString());
+
+            let render = TestUtils.renderIntoDocument(
+                <ThemedCalendar 
+                    initialDate={initialDate}
+                    maxDate={maxDate} />
+            );
+            let prevMonthButton = React.findDOMNode(
+                TestUtils.scryRenderedComponentWithType(render, IconButton)[0]);
+            TestUtils.Simulate.touchTap(prevMonthButton);
+
+            let CalendarToolbar = 
+                TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+
+            expect(CalendarToolbar.props.nextButton).to.be.true;
         });
     });
 });
