@@ -32,8 +32,8 @@ const Card = React.createClass({
       }
       if (this.state.expanded === false && currentChild.props.expandable === true)
         return;
-      if (currentChild.props.expander === true) {
-        currentChild.props.onClick = this._onExpandable;
+      if (currentChild.props.actAsExpander === true) {
+        currentChild.props.onTouchTap = this._onExpandable;
         currentChild.props.style = this.mergeStyles({ cursor: 'pointer' }, currentChild.props.style);
       }
       if (currentChild.props.showExpandableButton === true) {

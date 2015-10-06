@@ -93,7 +93,7 @@ const CardExpandable = React.createClass({
     let expandableBtn = (
       <IconButton
         style={mergedStyles}
-        onClick={this.props.onExpanding}>
+        onTouchTap={this.props.onExpanding}>
         {expandable}
       </IconButton>
     );
