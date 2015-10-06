@@ -140,20 +140,20 @@ class AppBarPage extends React.Component {
           <AppBarNew>
 
             <div data-position="navIcon">
-              <IconButton style={{height: 24, width: 24, padding: 0}} iconStyle = {{fill: 'white'}}><NavigationClose /></IconButton>
+              <IconButton iconStyle = {{fill: 'white'}}><NavigationClose /></IconButton>
             </div>
 
             <div data-position="container">
-              <p style = {{margin: 0}}>Title</p>
+              <p>Title</p>
             </div>
 
             <div data-position="actionIcons">
-              <IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub" style={{height: 24, width: 24, padding: 0}} iconStyle = {{color: 'white'}}/>
-              <IconButton iconClassName="muidocs-icon-custom-sort" tooltip="GitHub" style={{height: 24, width: 24, padding: 0}} iconStyle = {{color: 'white'}}/>
+              <IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub" iconStyle = {{color: 'white'}}/>
+              <IconButton iconClassName="muidocs-icon-custom-sort" tooltip="GitHub" iconStyle = {{color: 'white'}}/>
             </div>
 
             <div data-position="menuIcon">
-              <IconButton style={{height: 24, width: 24, padding: 0}} iconStyle = {{fill: 'white'}}><MoreVertIcon /></IconButton>
+              <IconButton iconStyle = {{fill: 'white'}}><MoreVertIcon /></IconButton>
             </div>
 
           </AppBarNew>

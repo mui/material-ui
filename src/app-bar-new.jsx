@@ -48,31 +48,51 @@ const AppBarNew = React.createClass({
 				paddingTop: 20,
 				paddingBottom: 20,
 			},
-			navIcon: {
+
+			navIconsGroup: {
 				maxWidth: spacing.iconSize,
 				overflow: 'hidden',
 				position: 'absolute',
 			},
+			navIcon: {
+				padding: 0,
+				width: 24,
+				height: 24,
+			},
+
 			container: {
 				position: 'absolute',
 				left: 56,
 				color: appBarStyle.textColor,
 				fontSize: 24,
 			},
-			actionIconsContainer: {
+			containerElement: {
+				margin: 0,
+			},
+
+			actionIconsGroup: {
 				position: 'absolute',
 				right: 48,
 			},
 			actionIcon: {
+				padding: 0,
+				width: 24,
+				height: 24,
 				marginLeft: 24,
 				maxWidth: spacing.iconSize,
 				overflow: 'hidden',
 			},
-			menuIcon: {
+
+			menuIconsGroup: {
 				maxWidth: spacing.iconSize,
 				overflow: 'hidden',
 				position: 'absolute',
 				right: 0,
+			},
+			menuIcon: {
+				padding: 0,
+				width: 24,
+				height: 24,
 			},
 		};
 	},
@@ -85,40 +105,58 @@ const AppBarNew = React.createClass({
         style={this.mergeAndPrefix(this._getStyles().root, this.props.style)}
         zDepth={this.props.zDepth}>
         <div style = {{position: 'relative'}}>
-          {this._getNavIcon()}
+          {this._getNavIconsGroup()}
           {this._getContainer()}
-          {this._getActionsIcons()}
-          {this._getMenuIcon()}
+          {this._getActionsIconsGroup()}
+          {this._getMenuIconsGroup()}
         </div>
       </Paper>
     );
 	},
 
-	_getNavIcon () {
+	_getNavIconsGroup () {
 		if(this.props.children)
 		{
 			//is children an array
 			if(this.props.children.constructor === Array)
 			{
 				//iterate through children until "navIcon" position is found
-				let found = false, navIconElement = null;
+				let found = false, navIconsGroup = null;
 				for(let index = 0; index < this.props.children.length && !found; index++)
 				{
 					if ((this.props.children[index]).props["data-position"] === "navIcon")
 					{
 						found = true;
-						navIconElement = this.props.children[index];
+						navIconsGroup = this.props.children[index];
 					}
 				}
 
 				if(found)
-					return React.cloneElement(navIconElement, {style: this.mergeAndPrefix(this._getStyles().navIcon, navIconElement.props.style)});	
+				{
+					let childElements = React.Children.map(navIconsGroup.props.children, function (child){
+						return React.cloneElement(child, {style: this.mergeAndPrefix(this._getStyles().navIcon, child.props.style)});
+					}, this);
+
+					return (
+						<div style = {this.mergeAndPrefix(this._getStyles().navIconsGroup, navIconsGroup.props.style)}>
+							{childElements}
+						</div>
+					);
+				}
 			}
 
 			//otherwise it is a single element
 			else if ((this.props.children).props["data-position"] === "navIcon")
 			{
-				return React.cloneElement(this.props.children, {style: this.mergeAndPrefix(this._getStyles().navIcon, (this.props.children).props.style)});	
+				let childElements = React.Children.map((this.props.children).props.children, function (child){
+					return React.cloneElement(child, {style: this.mergeAndPrefix(this._getStyles().navIcon, child.props.style)});
+				}, this);
+
+				return (
+					<div style = {this.mergeAndPrefix(this._getStyles().navIconsGroup, (this.props.children).props.style)}>
+					{childElements}
+					</div>
+				);
 			}
 		}
 	},
@@ -130,52 +168,71 @@ const AppBarNew = React.createClass({
 			if(this.props.children.constructor === Array)
 			{
 				//iterate through children until "container" position is found
-				let found = false, containerElement = null;
+				let found = false, container = null;
 				for(let index = 0; index < this.props.children.length && !found; index++)
 				{
 					if ((this.props.children[index]).props["data-position"] === "container")
 					{
 						found = true;
-						containerElement = this.props.children[index];
+						container = this.props.children[index];
 					}
 				}
 
 				if(found)
-					return React.cloneElement(containerElement, {style: this.mergeAndPrefix(this._getStyles().container, containerElement.props.style)});	
+				{
+					let childElements = React.Children.map(container.props.children, function (child){
+						return React.cloneElement(child, {style: this.mergeAndPrefix(this._getStyles().containerElement, child.props.style)});
+					}, this);
+
+					return (
+						<div style = {this.mergeAndPrefix(this._getStyles().container, container.props.style)}>
+						{childElements}
+						</div>
+					);
+				}
 			}
 
 			//otherwise it is a single element
 			else if ((this.props.children).props["data-position"] === "container")
 			{
-				return React.cloneElement(this.props.children, {style: this.mergeAndPrefix(this._getStyles().container, (this.props.children).props.style)});	
+				let childElements = React.Children.map((this.props.children).props.children, function (child){
+					return React.cloneElement(child, {style: this.mergeAndPrefix(this._getStyles().containerElement, child.props.style)});
+				}, this);
+
+				return (
+					<div style = {this.mergeAndPrefix(this._getStyles().container, (this.props.children).props.style)}>
+					{childElements}
+					</div>
+				);
 			}
 		}
 	},
 
-	_getActionsIcons () {
+	_getActionsIconsGroup () {
 		if(this.props.children)
 		{
 			//is children an array
 			if(this.props.children.constructor === Array)
 			{
 				//iterate through children until "actionIcons" position is found
-				let found = false, actionIconsContainer = null;
+				let found = false, actionIconsGroup = null;
 				for(let index = 0; index < this.props.children.length && !found; index++)
 				{
 					if ((this.props.children[index]).props["data-position"] === "actionIcons")
 					{
 						found = true;
-						actionIconsContainer = this.props.children[index];
+						actionIconsGroup = this.props.children[index];
 					}
 				}
 
 				if(found)
 				{
-					let childElements = React.Children.map(actionIconsContainer.props.children, function(child) {
-									return React.cloneElement(child, {style: this.mergeAndPrefix(this._getStyles().actionIcon, child.props.style)});
-								}, this);
+					let childElements = React.Children.map(actionIconsGroup.props.children, function(child) {
+						return React.cloneElement(child, {style: this.mergeAndPrefix(this._getStyles().actionIcon, child.props.style)});
+					}, this);
+
 					return (
-						<div style = {this.mergeAndPrefix(this._getStyles().actionIconsContainer, actionIconsContainer.props.style)}>
+						<div style = {this.mergeAndPrefix(this._getStyles().actionIconsGroup, actionIconsGroup.props.style)}>
 							{childElements}
 						</div>
 					);
@@ -186,42 +243,61 @@ const AppBarNew = React.createClass({
 			else if ((this.props.children).props["data-position"] === "actionIcons")
 			{
 				let childElements = React.Children.map((this.props.children).props.children, function(child){
-								return React.cloneElement(child, {style: this.mergeAndPrefix(this._getStyles().actionIcon, child.props.style)})
-							}, this);
+					return React.cloneElement(child, {style: this.mergeAndPrefix(this._getStyles().actionIcon, child.props.style)})
+				}, this);
+
 				return (
-						<div style = {this.mergeAndPrefix(this._getStyles().actionIconsContainer, (this.props.children).props.style)}>
-							{childElements}
-						</div>
-					);
+					<div style = {this.mergeAndPrefix(this._getStyles().actionIconsGroup, (this.props.children).props.style)}>
+						{childElements}
+					</div>
+				);
 			}
 		}
 	},
 
-	_getMenuIcon () {
+	_getMenuIconsGroup () {
 		if(this.props.children)
 		{
 			//is children an array
 			if(this.props.children.constructor === Array)
 			{
 				//iterate through children until "menuIcon" position is found
-				let found = false, menuIconElement = null;
+				let found = false, menuIconsGroup = null;
 				for(let index = 0; index < this.props.children.length && !found; index++)
 				{
 					if ((this.props.children[index]).props["data-position"] === "menuIcon")
 					{
 						found = true;
-						menuIconElement = this.props.children[index];
+						menuIconsGroup = this.props.children[index];
 					}
 				}
 
 				if(found)
-					return React.cloneElement(menuIconElement, {style: this.mergeAndPrefix(this._getStyles().menuIcon, menuIconElement.props.style)});	
+				{
+					let childElements = React.Children.map(menuIconsGroup.props.children, function(child) {
+						return React.cloneElement(child, {style: this.mergeAndPrefix(this._getStyles().menuIcon, child.props.style)});
+					}, this);
+
+					return (
+						<div style = {this.mergeAndPrefix(this._getStyles().menuIconsGroup, menuIconsGroup.props.style)}>
+							{childElements}
+						</div>
+					);
+				}
 			}
 
 			//otherwise it is a single element
 			else if ((this.props.children).props["data-position"] === "menuIcon")
 			{
-				return React.cloneElement(this.props.children, {style: this.mergeAndPrefix(this._getStyles().menuIcon, (this.props.children).props.style)});	
+				let childElements = React.Children.map((this.props.children).props.children, function(child){
+					return React.cloneElement(child, {style: this.mergeAndPrefix(this._getStyles().menuIcon, child.props.style)})
+				}, this);
+
+				return (
+					<div style = {this.mergeAndPrefix(this._getStyles().menuIconsGroup, (this.props.children).props.style)}>
+						{childElements}
+					</div>
+				);
 			}
 		}
 	},
