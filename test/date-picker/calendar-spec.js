@@ -9,7 +9,7 @@ import IconButton from 'icon-button';
 
 const TestUtils = React.addons.TestUtils;
 
-describe.only(`Calendar`, () => {
+describe(`Calendar`, () => {
     let ThemedCalendar;
 
     beforeEach(() => {
@@ -83,6 +83,26 @@ describe.only(`Calendar`, () => {
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
             expect(renderedCalendarToolbar.props.nextMonth).to.be.true;
+        });
+
+        it(`should redisable the next month button when the current month is the same as the maxDate prop`, () => {
+            let initialDate = new Date();
+            let maxDate = new Date(initialDate.toDateString());
+            maxDate.setMonth(maxDate.getMonth() + 1);
+
+            let render = TestUtils.renderIntoDocument(
+                <ThemedCalendar 
+                    initialDate={initialDate}
+                    maxDate={maxDate} />
+            );
+            let nextMonthButton = React.findDOMNode(
+                TestUtils.scryRenderedComponentsWithType(render, IconButton)[1]);
+            TestUtils.Simulate.touchTap(nextMonthButton);
+
+            let renderedCalendarToolbar = 
+                TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+
+            expect(renderedCalendarToolbar.props.nextMonth).to.be.false;
         });
     });
 });
