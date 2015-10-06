@@ -28,5 +28,21 @@ describe(`Calendar`, () => {
 
             expect(renderedCalendarToolbar.props.nextMonth).to.be.false;
         });
+
+        it(`should initially be disabled if the current month is after the month in the maxDate prop`, () => {
+            let initialDate = new Date();
+            let maxDate = new Date(initialDate.toDateString());
+            maxDate.setMonth(maxDate.getMonth() - 1);
+
+            let render = TestUtils.renderIntoDocument(
+                <ThemedCalendar
+                    initialDate={initialDate}
+                    maxDate={maxDate} />
+            );
+            let renderedCalendarToolbar = 
+                TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+
+            expect(renderedCalendarToolbar.props.nextMonth).to.be.false;
+        });
     });
 });
