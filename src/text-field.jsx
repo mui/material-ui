@@ -39,6 +39,7 @@ const TextField = React.createClass({
       React.PropTypes.string,
       React.PropTypes.element,
     ]),
+    hintStyle: React.PropTypes.object,
     id: React.PropTypes.string,
     inputStyle: React.PropTypes.object,
     multiLine: React.PropTypes.bool,
@@ -48,6 +49,7 @@ const TextField = React.createClass({
     onFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
     rows: React.PropTypes.number,
+    rowsMax: React.PropTypes.number,
     type: React.PropTypes.string,
     underlineStyle: React.PropTypes.object,
     underlineFocusStyle: React.PropTypes.object,
@@ -281,6 +283,7 @@ const TextField = React.createClass({
       floatingLabelText,
       fullWidth,
       hintText,
+      hintStyle,
       id,
       multiLine,
       onBlur,
@@ -288,6 +291,7 @@ const TextField = React.createClass({
       onFocus,
       type,
       rows,
+      rowsMax,
       ...other,
     } = this.props;
 
@@ -300,7 +304,7 @@ const TextField = React.createClass({
     ) : null;
 
     let hintTextElement = hintText ? (
-      <div style={this.mergeAndPrefix(styles.hint)}>{hintText}</div>
+      <div style={this.mergeAndPrefix(styles.hint, hintStyle)}>{hintText}</div>
     ) : null;
 
     let floatingLabelTextElement = floatingLabelText ? (
@@ -336,6 +340,7 @@ const TextField = React.createClass({
           {...other}
           {...inputProps}
           rows={rows}
+          rowsMax={rowsMax}
           onHeightChange={this._handleTextAreaHeightChange}
           textareaStyle={this.mergeAndPrefix(styles.textarea)} />
       ) : (

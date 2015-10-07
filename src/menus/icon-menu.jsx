@@ -19,6 +19,7 @@ const IconMenu = React.createClass({
   propTypes: {
     closeOnItemTouchTap: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
+    iconStyle: React.PropTypes.object,
     openDirection: PropTypes.corners,
     onItemTouchTap: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
@@ -83,8 +84,10 @@ const IconMenu = React.createClass({
 
   render() {
     let {
+      className,
       closeOnItemTouchTap,
       iconButtonElement,
+      iconStyle,
       openDirection,
       onItemTouchTap,
       onKeyboardFocus,
@@ -121,6 +124,7 @@ const IconMenu = React.createClass({
 
     let iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: this.props.onKeyboardFocus,
+      iconStyle: this.mergeStyles(iconStyle, iconButtonElement.props.iconStyle),
       onTouchTap: (e) => {
         this.open(Events.isKeyboard(e));
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
@@ -143,6 +147,7 @@ const IconMenu = React.createClass({
 
     return (
       <div
+        className={className}
         onMouseDown={onMouseDown}
         onMouseLeave={onMouseLeave}
         onMouseEnter={onMouseEnter}

@@ -151,9 +151,12 @@ const DatePicker = React.createClass({
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
-  _handleInputTouchTap(e) {
-    this.openDialog();
-    if (this.props.onTouchTap) this.props.onTouchTap(e);
+  _handleInputTouchTap: function _handleInputTouchTap(event) {
+    if (this.props.onTouchTap) this.props.onTouchTap(event);
+
+    setTimeout(() => {
+      this.openDialog();
+    }, 0);
   },
 
   _handleWindowKeyUp() {

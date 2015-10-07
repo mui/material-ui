@@ -182,7 +182,7 @@ const DropDownMenu = React.createClass({
     else {
       if (this.props.valueMember && this._isControlled()) {
         let value = this.props.hasOwnProperty('value') ? this.props.value : this.props.valueLink.value;
-        if (value) {
+        if (value !== null && value !== undefined) {
           for (let i = 0; i < this.props.menuItems.length; i++) {
             if (this.props.menuItems[i][this.props.valueMember] === value) {
               selectedIndex = i;

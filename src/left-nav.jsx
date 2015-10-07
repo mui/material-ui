@@ -1,4 +1,5 @@
-const isBrowser = typeof window !== 'undefined';
+const isBrowser = require('./utils/is-browser');
+
 let Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
 
 const React = require('react');

@@ -1,3 +1,33 @@
+## 0.12.2
+###### _Oct 6, 2015_
+
+##### General
+- NEW GridList component and documentation! Thanks to @igorbt (#1320)
+
+##### Component Fixes / Enhancements
+- Added back canvasColor to theme palette (#1762)
+- Added hintStyle prop to TextField (#1510)
+- Add isScrollbarVisible function to table (#1539)
+- Add rowsMax prop to EnhancedTextarea (#1562)
+- Tab "item three" renamed on docs site (#1775)
+- Fixed docs server to run on Windows (#1774)
+- FlatButton now has a backgroundColor prop (#1561)
+- Fixed DropdownMenu buggy value prop check (#1768)
+
+## 0.12.1
+###### _Sep 28, 2015_
+
+##### Component Fixes / Enhancements
+- Fix broken documentation site
+  - Fix theme display switch problem in doc (#1696)
+  - Fix typo in src/card-expandable.jsx (#1724)
+  - Fix broken link to v0.12.0 release tag
+- Use correct require calls 
+  - for react addons (#1729)
+  - for raw themes (#1742)
+- Remove hard-coded color values from theme-manager
+  - Use consistent values from raw theme (#1746)
+
 ## 0.12.0
 ###### _Sep 25, 2015_
 

@@ -59,7 +59,7 @@ describe('Theming', () => {
 				let appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
 				let firstDiv = appbarDivs[0].getDOMNode();
 
-				expect(firstDiv.style.backgroundColor).to.equal('rgb(158, 158, 158)');
+				expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
 			});
 
 			it('should display with passed down dark theme and overriden specific attribute', () => {
@@ -71,7 +71,7 @@ describe('Theming', () => {
 				let appbarH1s = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'h1');
 				let firstH1 = appbarH1s[0].getDOMNode();
 
-				expect(firstDiv.style.backgroundColor).to.equal('rgb(158, 158, 158)');
+				expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
 				expect(firstH1.style.color).to.equal('rgb(98, 0, 234)');
 			});
 
@@ -85,7 +85,7 @@ describe('Theming', () => {
 				let appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
 				let firstDiv = appbarDivs[0].getDOMNode();
 
-				expect(firstDiv.style.backgroundColor).to.equal('rgb(158, 158, 158)');
+				expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
 			});
 
 			it('should display with passed down dark theme and overriden specific attribute', () => {
@@ -97,7 +97,7 @@ describe('Theming', () => {
 				let appbarH1s = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'h1');
 				let firstH1 = appbarH1s[0].getDOMNode();
 
-				expect(firstDiv.style.backgroundColor).to.equal('rgb(158, 158, 158)');
+				expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
 				expect(firstH1.style.color).to.equal('rgb(98, 0, 234)');
 			});
 
@@ -115,8 +115,8 @@ describe('Theming', () => {
 			let appbarH1s = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'h1');
 			let firstH1 = appbarH1s[0].getDOMNode();
 
-			expect(appbarDiv.style.backgroundColor).to.equal('rgb(158, 158, 158)');
-			expect(firstH1.style.color).to.equal('rgba(255, 255, 255, 0.867188)');
+			expect(appbarDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
+			expect(firstH1.style.color).to.equal('rgb(48, 48, 48)');
 
 			//simulate button click
 			TestUtils.Simulate.click(buttonNode);
