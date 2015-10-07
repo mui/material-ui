@@ -1,7 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
-const Draggable = require('react-draggable2');
 const Transitions = require('./styles/transitions');
 const FocusRipple = require('./ripples/focus-ripple');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
@@ -155,7 +154,7 @@ const Slider = React.createClass({
         position: 'absolute',
         cursor: 'pointer',
         pointerEvents: 'inherit',
-        top: ((this.getTheme().handleSizeActive - this.getTheme().trackSize) / 2) + 'px',
+        top: 0,
         left: '0%',
         zIndex: 1,
         margin: (this.getTheme().trackSize / 2) + 'px 0 0 0',
@@ -252,7 +251,10 @@ const Slider = React.createClass({
       styles.handle,
       this.state.active && styles.handleWhenActive,
       this.state.focused && {outline: 'none'},
-      this.props.disabled && styles.handleWhenDisabled
+      this.props.disabled && styles.handleWhenDisabled,
+      {
+        left: (percent * 100) + '%',
+      }
     );
     let rippleStyle = this.mergeAndPrefix(
       styles.ripple,
@@ -277,6 +279,16 @@ const Slider = React.createClass({
           color={rippleColor}/>
       );
     }
+
+    let handleDragProps = {};
+
+    if (!this.props.disabled) {
+      handleDragProps = {
+          onTouchStart: this._onHandleTouchStart,
+          onMouseDown: this._onHandleMouseDown,
+      }
+    }
+
     return (
       <div {...others } style={this.prepareStyles(this.props.style)}>
         <span className="mui-input-highlight"></span>
@@ -293,18 +305,9 @@ const Slider = React.createClass({
           <div ref="track" style={this.prepareStyles(styles.track)}>
               <div style={this.prepareStyles(styles.filled)}></div>
               <div style={this.prepareStyles(remainingStyles)}></div>
-              <Draggable axis="x" bound="point"
-                cancel={this.props.disabled ? '*' : null}
-                start={{x: (percent * 100) + '%'}}
-                constrain={this._constrain()}
-                onStart={this._onDragStart}
-                onStop={this._onDragStop}
-                onDrag={this._onDragUpdate}
-                onMouseDown={this._onMouseDownKnob}>
-                  <div style={handleStyles} tabIndex={0}>
-                    {focusRipple}
-                  </div>
-              </Draggable>
+              <div style={handleStyles} tabIndex={0} {...handleDragProps}>
+                {focusRipple}
+              </div>
             </div>
         </div>
         <input ref="input" type="hidden"
@@ -316,6 +319,62 @@ const Slider = React.createClass({
           step={this.props.step} />
       </div>
     );
+  },
+
+  _onHandleTouchStart(e) {
+    if (document) {
+      document.addEventListener('touchmove', this._dragTouchHandler, false);
+      document.addEventListener('touchup', this._dragTouchEndHandler, false);
+      document.addEventListener('touchend', this._dragTouchEndHandler, false);
+      document.addEventListener('touchcancel', this._dragTouchEndHandler, false);
+    }
+    this._onDragStart(e);
+  },
+
+  _onHandleMouseDown(e) {
+    if (document) {
+      document.addEventListener('mousemove', this._dragHandler, false);
+      document.addEventListener('mouseup', this._dragEndHandler, false);
+    }
+    this._onDragStart(e);
+  },
+
+  _dragHandler(e) {
+    if (this._dragRunning) { return; }
+    this._dragRunning = true;
+    requestAnimationFrame(() => {
+      this._onDragUpdate(e, e.clientX - this._getTrackLeft());
+      this._dragRunning = false;
+    });
+  },
+
+  _dragTouchHandler(e) {
+    if (this._dragRunning) { return; }
+    this._dragRunning = true;
+    requestAnimationFrame(() => {
+      this._onDragUpdate(e, e.touches[0].clientX - this._getTrackLeft());
+      this._dragRunning = false;
+    });
+  },
+
+  _dragEndHandler(e) {
+    if (document) {
+      document.removeEventListener('mousemove', this._dragHandler, false);
+      document.removeEventListener('mouseup', this._dragEndHandler, false);
+    }
+
+    this._onDragStop(e);
+  },
+
+  _dragTouchEndHandler(e) {
+    if (document) {
+      document.removeEventListener('touchmove', this._dragTouchHandler, false);
+      document.removeEventListener('touchup', this._dragTouchEndHandler, false);
+      document.removeEventListener('touchend', this._dragTouchEndHandler, false);
+      document.removeEventListener('touchcancel', this._dragTouchEndHandler, false);
+    }
+
+    this._onDragStop(e);
   },
 
   getValue() {
@@ -339,7 +398,9 @@ const Slider = React.createClass({
 
   setPercent(percent) {
     let value = this._alignValue(this._percentToValue(percent));
-    this.setState({value: value, percent: percent});
+    let { min, max } = this.props;
+    let alignedPercent = (value - min) / (max - min);
+    this.setState({value: value, percent: alignedPercent});
   },
 
   clearValue() {
@@ -350,20 +411,6 @@ const Slider = React.createClass({
     let { step, min } = this.props;
     let alignValue = Math.round((val - min) / step) * step + min;
     return parseFloat(alignValue.toFixed(5));
-  },
-
-  _constrain() {
-    let { min, max, step } = this.props;
-    let steps = (max - min) / step;
-    return (pos) => {
-      let pixelMax = ReactDOM.findDOMNode(this.refs.track).clientWidth;
-      let pixelStep = pixelMax / steps;
-      let cursor = Math.round(pos.left / pixelStep) * pixelStep;
-
-      return {
-        left: cursor,
-      };
-    };
   },
 
   _onFocus(e) {
@@ -388,39 +435,39 @@ const Slider = React.createClass({
     this.setState({hovered: false});
   },
 
+  _getTrackLeft() {
+    return ReactDOM.findDOMNode(this.refs.track).getBoundingClientRect().left;
+  },
+
   _onMouseUp(e) {
     if (!this.props.disabled) this.setState({active: false});
     if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
-      let pos = e.clientX - ReactDOM.findDOMNode(this).getBoundingClientRect().left;
+      let pos = e.clientX - this._getTrackLeft();
       this._dragX(e, pos);
     }
 
     this._pos = undefined;
   },
 
-  _onMouseDownKnob() {
-    if (!this.props.disabled) this.setState({active: true});
-  },
-
-  _onDragStart(e, ui) {
+  _onDragStart(e) {
     this.setState({
       dragging: true,
       active: true,
     });
-    if (this.props.onDragStart) this.props.onDragStart(e, ui);
+    if (this.props.onDragStart) this.props.onDragStart(e);
   },
 
-  _onDragStop(e, ui) {
+  _onDragStop(e) {
     this.setState({
       dragging: false,
       active: false,
     });
-    if (this.props.onDragStop) this.props.onDragStop(e, ui);
+    if (this.props.onDragStop) this.props.onDragStop(e);
   },
 
-  _onDragUpdate(e, ui) {
+  _onDragUpdate(e, pos) {
     if (!this.state.dragging) return;
-    if (!this.props.disabled) this._dragX(e, ui.position.left);
+    if (!this.props.disabled) this._dragX(e, pos);
   },
 
   _dragX(e, pos) {
@@ -432,8 +479,7 @@ const Slider = React.createClass({
   _updateWithChangeEvent(e, percent) {
     if (this.state.percent === percent) return;
     this.setPercent(percent);
-    let value = this._alignValue(this._percentToValue(percent));
-    if (this.props.onChange) this.props.onChange(e, value);
+    if (this.props.onChange) this.props.onChange(e, this.state.value);
   },
 
   _percentToValue(percent) {
