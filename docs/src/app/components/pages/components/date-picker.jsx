@@ -61,6 +61,11 @@ class DatePickerPage extends React.Component {
             desc: 'This function is called to format the date to display in ' +
               'the input box. By default, date objects are formatted to M/D/YYYY.'
           },
+          {name: 'hintText',
+          type: 'string',
+          header: 'optional',
+          desc: 'The hint text string to display. Note, floatingLabelText will overide this.'
+          },
           {
             name: 'maxDate',
             type: 'date object',
