@@ -105,15 +105,15 @@ class SlidersPage extends React.Component {
           },
           {
             name: 'onDragStart',
-            type: 'function(e, ui)',
+            type: 'function(e)',
             header: 'optional',
-            desc: 'Callback function that is fired when the slider has begun to move. ui contains the position information.'
+            desc: 'Callback function that is fired when the slider has begun to move.'
           },
           {
             name: 'onDragStop',
-            type: 'function(e, ui)',
+            type: 'function(e)',
             header: 'optional',
-            desc: 'Callback function that is fried when teh slide has stopped moving. ui contains the position information.'
+            desc: 'Callback function that is fried when teh slide has stopped moving.'
           },
           {
             name: 'onFocus',

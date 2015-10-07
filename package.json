@@ -29,9 +29,6 @@
     "url": "https://github.com/callemall/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
-  "dependencies": {
-    "react-draggable2": "^0.5.1"
-  },
   "peerDependencies": {
     "react": ">=0.13",
     "react-tap-event-plugin": "^0.1.3"
