@@ -305,18 +305,9 @@ const Slider = React.createClass({
           <div ref="track" style={this.prepareStyles(styles.track)}>
               <div style={this.prepareStyles(styles.filled)}></div>
               <div style={this.prepareStyles(remainingStyles)}></div>
-              <Draggable axis="x" bound="point"
-                cancel={this.props.disabled ? '*' : null}
-                start={{x: (percent * 100) + '%'}}
-                constrain={this._constrain()}
-                onStart={this._onDragStart}
-                onStop={this._onDragStop}
-                onDrag={this._onDragUpdate}
-                onMouseDown={this._onMouseDownKnob}>
-                  <div style={handleStyles} tabIndex={0}>
-                    {focusRipple}
-                  </div>
-              </Draggable>
+              <div style={handleStyles} tabIndex={0} {...handleDragProps}>
+                {focusRipple}
+              </div>
             </div>
         </div>
         <input ref="input" type="hidden"
@@ -409,9 +400,7 @@ const Slider = React.createClass({
     let value = this._alignValue(this._percentToValue(percent));
     let { min, max } = this.props;
     let alignedPercent = (value - min) / (max - min);
-    if (this.state.value !== value) {
-      this.setState({value: value, percent: alignedPercent}, callback);
-    }
+    this.setState({value: value, percent: alignedPercent});
   },
 
   clearValue() {
@@ -422,20 +411,6 @@ const Slider = React.createClass({
     let { step, min } = this.props;
     let alignValue = Math.round((val - min) / step) * step + min;
     return parseFloat(alignValue.toFixed(5));
-  },
-
-  _constrain() {
-    let { min, max, step } = this.props;
-    let steps = (max - min) / step;
-    return (pos) => {
-      let pixelMax = ReactDOM.findDOMNode(this.refs.track).clientWidth;
-      let pixelStep = pixelMax / steps;
-      let cursor = Math.round(pos.left / pixelStep) * pixelStep;
-
-      return {
-        left: cursor,
-      };
-    };
   },
 
   _onFocus(e) {
@@ -461,13 +436,13 @@ const Slider = React.createClass({
   },
 
   _getTrackLeft() {
-    return React.findDOMNode(this.refs.track).getBoundingClientRect().left;
+    return ReactDOM.findDOMNode(this.refs.track).getBoundingClientRect().left;
   },
 
   _onMouseUp(e) {
     if (!this.props.disabled) this.setState({active: false});
     if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
-      let pos = e.clientX - ReactDOM.findDOMNode(this).getBoundingClientRect().left;
+      let pos = e.clientX - this._getTrackLeft();
       this._dragX(e, pos);
     }
 
@@ -502,9 +477,9 @@ const Slider = React.createClass({
   },
 
   _updateWithChangeEvent(e, percent) {
-    this.setPercent(percent, () => {
-      if (this.props.onChange) this.props.onChange(e, this.state.value);
-    });
+    if (this.state.percent === percent) return;
+    this.setPercent(percent);
+    if (this.props.onChange) this.props.onChange(e, this.state.value);
   },
 
   _percentToValue(percent) {
