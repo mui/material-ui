@@ -20,10 +20,22 @@ let TimePickerPage = React.createClass({
             desc: 'This is the initial time value of the component.'
           },
           {
+            name: 'floatingLabelText',
+            type: 'string',
+            header: 'optional',
+            desc: 'The text string to use for the floating label element.'
+          },
+          {
             name: 'format',
             type: 'one of: ampm, 24hr',
             header: 'default: ampm',
             desc: 'Tells the component to display the picker in ampm (12hr) format or 24hr format.'
+          },
+          {
+            name: 'hintText',
+            type: 'string',
+            header: 'optional',
+            desc: 'The hint text string to display. Note, floatingLabelText will overide this.'
           },
           {
             name: 'pedantic',
