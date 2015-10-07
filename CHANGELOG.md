@@ -1,3 +1,10 @@
+## 0.12.3
+###### _Oct 7, 2015_
+
+##### Component Fixes / Enhancements
+- Quick-fix version until react 0.14 support is somewhat stable
+  - Changed react dependency to ~0.13 in package.json (#1836)
+
 ## 0.12.2
 ###### _Oct 6, 2015_
 
