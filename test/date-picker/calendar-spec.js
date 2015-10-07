@@ -1,11 +1,11 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+import React from 'react/addons';
 import Calendar from 'date-picker/calendar';
-import injectTheme from '../fixtures/inject-theme';
-import React from 'react';
 import CalendarToolbar from 'date-picker/calendar-toolbar';
 import IconButton from 'icon-button';
+import injectTheme from '../fixtures/inject-theme';
 
 const TestUtils = React.addons.TestUtils;
 
@@ -103,6 +103,92 @@ describe(`Calendar`, () => {
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
             expect(renderedCalendarToolbar.props.nextMonth).to.be.false;
+        });
+    });
+
+    describe('Previous Month Button', () => {
+        it(`should initially disable the previous month button if the current month is the same as the minDate month prop`, () => {
+            let initialDate = new Date();
+            let minDate = new Date(initialDate.toDateString());
+
+            let render = TestUtils.renderIntoDocument(
+                <ThemedCalendar 
+                    initialDate={initialDate}
+                    minDate={minDate} 
+                />
+            );
+            let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+
+            expect(calendarToolbar.props.prevMonth).to.be.false;
+        });
+
+        it(`should initially disable the previous month button if the current month is before the minDate month prop`, () => {
+            let initialDate = new Date();
+            let minDate = new Date(initialDate.toDateString());
+            minDate.setMonth(initialDate.getMonth() + 1);
+
+            let render = TestUtils.renderIntoDocument(
+                <ThemedCalendar 
+                    initialDate={initialDate}
+                    minDate={minDate} 
+                />
+            );
+            let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+
+            expect(calendarToolbar.props.prevMonth).to.be.false;
+        });
+
+        it(`should initially enable the previous month button if the current month is after the minDate month prop`, () => {
+            let initialDate = new Date();
+            let minDate = new Date(initialDate.toDateString());
+            minDate.setMonth(initialDate.getMonth() - 1);
+
+            let render = TestUtils.renderIntoDocument(
+                <ThemedCalendar 
+                    initialDate={initialDate}
+                    minDate={minDate} 
+                />
+            );
+            let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+
+            expect(calendarToolbar.props.prevMonth).to.be.true;
+        });
+
+        it(`should enable the previous month button when the current month is after the minDate month prop`, () => {
+            let initialDate = new Date();
+            let minDate = new Date(initialDate.toDateString());
+
+            let render = TestUtils.renderIntoDocument(
+                <ThemedCalendar 
+                    initialDate={initialDate}
+                    minDate={minDate} 
+                />
+            );
+
+            let nextMonthIconButton = React.findDOMNode(TestUtils.scryRenderedComponentsWithType(render, IconButton)[1]);
+            TestUtils.Simulate.touchTap(nextMonthIconButton);
+
+            let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+            expect(calendarToolbar.props.prevMonth).to.be.true;
+        });
+
+        it(`should disable the previous month button when the current month is the same as the minDate month prop`, () => {
+            let initialDate = new Date();
+            let minDate = new Date(initialDate.toDateString());
+            minDate.setMonth(minDate.getMonth() - 1);
+
+            let render = TestUtils.renderIntoDocument(
+                <ThemedCalendar 
+                    initialDate={initialDate}
+                    minDate={minDate} 
+                />
+            );
+
+            let prevMonthIconButton = React.findDOMNode(TestUtils.scryRenderedComponentsWithType(render, IconButton)[0]);
+            TestUtils.Simulate.touchTap(prevMonthIconButton);
+
+            let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
+            expect(calendarToolbar.props.prevMonth).to.be.false;
         });
     });
 });
