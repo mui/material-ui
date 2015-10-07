@@ -17,10 +17,11 @@ const Card = React.createClass({
     onExpandChange: React.PropTypes.func,
   },
 
-  _onExpandable(value) {
-    this.setState({expanded: value});
+  _onExpandable() {
+    let newExpandedState = !(this.state.expanded === true);
+    this.setState({expanded: newExpandedState});
     if (this.props.onExpandChange)
-      this.props.onExpandChange(value);
+      this.props.onExpandChange(newExpandedState);
   },
 
   render() {
@@ -31,6 +32,10 @@ const Card = React.createClass({
       }
       if (this.state.expanded === false && currentChild.props.expandable === true)
         return;
+      if (currentChild.props.actAsExpander === true) {
+        currentChild.props.onTouchTap = this._onExpandable;
+        currentChild.props.style = this.mergeStyles({ cursor: 'pointer' }, currentChild.props.style);
+      }
       if (currentChild.props.showExpandableButton === true) {
         lastElement = React.cloneElement(currentChild, {},
           currentChild.props.children,
