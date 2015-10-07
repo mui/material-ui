@@ -2,7 +2,6 @@ node_modules
 npm-debug.log
 build
 coverage
-muiReadmeMaster
 
 # Exclude compiled files
 lib

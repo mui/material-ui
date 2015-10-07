@@ -139,7 +139,7 @@ class AppBarPage extends React.Component {
 
           <AppBarNew>
 
-            <div data-position="navIcon">
+            <div data-position="navIconsGroup">
               <IconButton iconStyle = {{fill: 'white'}}><NavigationClose /></IconButton>
             </div>
 
@@ -147,12 +147,12 @@ class AppBarPage extends React.Component {
               <p>Title</p>
             </div>
 
-            <div data-position="actionIcons">
+            <div data-position="actionIconsGroup">
               <IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub" iconStyle = {{color: 'white'}}/>
               <IconButton iconClassName="muidocs-icon-custom-sort" tooltip="GitHub" iconStyle = {{color: 'white'}}/>
             </div>
 
-            <div data-position="menuIcon">
+            <div data-position="menuIconsGroup">
               <IconButton iconStyle = {{fill: 'white'}}><MoreVertIcon /></IconButton>
             </div>
 
