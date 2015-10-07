@@ -77,6 +77,7 @@ const CardMedia = React.createClass({
         verticalAlign: 'top',
         maxWidth: '100%',
         minWidth: '100%',
+        width:'100%',
       },
     };
   },
