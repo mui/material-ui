@@ -60,7 +60,10 @@ let TimePickerPage = React.createClass({
             name: 'onChange',
             header: 'function(null, time)',
             desc: 'Callback function that is fired when the time value ' +
-            'changes. The time value is passed in a Date Object.'
+            'changes. The time value is passed in a Date Object.' +
+            'Since there is no particular event associated with ' +
+            'the change the first argument will always be null and the second ' +
+            'argument will be the new Date instance.'
           },
           {
             name: 'onFocus',
