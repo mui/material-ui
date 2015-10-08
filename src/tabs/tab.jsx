@@ -13,7 +13,7 @@ const Tab = React.createClass({
 
   propTypes: {
     onTouchTap: React.PropTypes.func,
-    label: React.PropTypes.string,
+    label: React.PropTypes.node,
     onActive: React.PropTypes.func,
     selected: React.PropTypes.bool,
     width: React.PropTypes.string,

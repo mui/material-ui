@@ -49,6 +49,12 @@ class DatePickerPage extends React.Component {
             desc: 'If true, year selection will be disabled, otherwise, year selection will be enabled.'
           },
           {
+            name: 'floatingLabelText',
+            type: 'string',
+            header: 'optional',
+            desc: 'The text string to use for the floating label element.'
+          },
+          {
             name: 'formatDate',
             type: 'function',
             header: 'default: formats to M/D/YYYY',
