@@ -1,8 +1,7 @@
 let React = require('react');
 let SvgIcon = require('../../svg-icon');
 
-let ActionAccessibility = React.createClass({
-
+class ActionAccessibility extends React.Component {
   render() {
     return (
       <SvgIcon {...this.props}>
@@ -10,7 +9,6 @@ let ActionAccessibility = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = ActionAccessibility;

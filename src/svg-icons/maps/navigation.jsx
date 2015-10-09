@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
-const MapsNavigation = React.createClass({
-
-  mixins: [PureRenderMixin],
+class MapsNavigation extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     return (
@@ -13,7 +13,6 @@ const MapsNavigation = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = MapsNavigation;

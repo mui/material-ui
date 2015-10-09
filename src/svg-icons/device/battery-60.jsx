@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
-const DeviceBattery60 = React.createClass({
-
-  mixins: [PureRenderMixin],
+class DeviceBattery60 extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     return (
@@ -13,7 +13,6 @@ const DeviceBattery60 = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = DeviceBattery60;

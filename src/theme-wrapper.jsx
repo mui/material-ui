@@ -1,21 +1,21 @@
 const React = require('react');
 
-module.exports = React.createClass({
-	propTypes: {
-		theme: React.PropTypes.object.isRequired,
-	},
-
-	childContextTypes: {
-		muiTheme: React.PropTypes.object,
-	},
-
-	getChildContext() {
+module.exports = class extends React.Component {
+    getChildContext() {
 		return {
 			muiTheme: this.props.theme,
 		};
-	},
+	}
 
-	render() {
+    render() {
 		return this.props.children();
-	},
-});
+	}
+};
+
+module.exports.propTypes = {
+    theme: React.PropTypes.object.isRequired,
+};
+
+module.exports.childContextTypes = {
+    muiTheme: React.PropTypes.object,
+};

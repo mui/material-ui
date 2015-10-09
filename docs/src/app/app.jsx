@@ -3,7 +3,16 @@
   let React = require('react'),
     Router = require('react-router'),
     AppRoutes = require('./app-routes.jsx'),
-    injectTapEventPlugin = require("react-tap-event-plugin");
+    injectTapEventPlugin = require("react-tap-event-plugin"),
+    shallowEqual = require('react/lib/shallowEqual');
+
+  // Remove after upgrading to React 0.14.
+  React.addons.shallowCompare = function(instance, nextProps, nextState) {
+    return (
+      !shallowEqual(instance.props, nextProps) ||
+      !shallowEqual(instance.state, nextState)
+    );
+  }
 
   //Needed for React Developer Tools
   window.React = React;

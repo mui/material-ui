@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
-const AlertWarning = React.createClass({
-
-  mixins: [PureRenderMixin],
+class AlertWarning extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     return (
@@ -13,7 +13,6 @@ const AlertWarning = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = AlertWarning;

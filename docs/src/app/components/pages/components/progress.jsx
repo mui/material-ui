@@ -5,13 +5,14 @@ let Code = require('progress-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-let ProgressPage = React.createClass({
+class ProgressPage extends React.Component {
+  constructor(props, context) {
+    super(props, context);
 
-  getInitialState () {
-    return {
+    this.state = {
       completed: 0
     };
-  },
+  }
 
   componentDidMount() {
     let self = this;
@@ -28,7 +29,7 @@ let ProgressPage = React.createClass({
         window.clearInterval(id);
       }
     }, 1000);
-  },
+  }
 
   render() {
 
@@ -104,7 +105,6 @@ let ProgressPage = React.createClass({
       </ComponentDoc>
     );
   }
-
-});
+}
 
 module.exports = ProgressPage;

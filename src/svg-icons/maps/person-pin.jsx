@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
-const MapsPersonPin = React.createClass({
-
-  mixins: [PureRenderMixin],
+class MapsPersonPin extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     return (
@@ -13,7 +13,6 @@ const MapsPersonPin = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = MapsPersonPin;

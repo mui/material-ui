@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
-const AvPlayCircleOutline = React.createClass({
-
-  mixins: [PureRenderMixin],
+class AvPlayCircleOutline extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     return (
@@ -13,7 +13,6 @@ const AvPlayCircleOutline = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = AvPlayCircleOutline;

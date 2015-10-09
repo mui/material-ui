@@ -3,33 +3,25 @@ const { Styles } = require('material-ui');
 const { Spacing } = Styles;
 
 
-const CodeBlock = React.createClass({
+class CodeBlock extends React.Component {
+  constructor(props, context) {
+    super(props, context);
 
-  contextTypes : {
-    muiTheme: React.PropTypes.object
-  },
+    this.state = {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  }
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
-  },
+  }
 
-  getInitialState () {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
+  }
 
   componentDidMount() {
     var code = React.findDOMNode(this.refs.code);
@@ -42,17 +34,26 @@ const CodeBlock = React.createClass({
         readOnly: true,
       });
     });
-  },
+  }
 
-  shouldComponentUpdate({children}, nextState){
+  shouldComponentUpdate({children}, nextState) {
     return this.props.children !== children;
-  },
+  }
 
   render() {
     return (
       <textarea ref="code" value={this.props.children} readOnly={true}/>
     );
-  },
-});
+  }
+}
+
+//for passing default theme context to children
+CodeBlock.childContextTypes = {
+  muiTheme: React.PropTypes.object,
+};
+
+CodeBlock.contextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 module.exports = CodeBlock;

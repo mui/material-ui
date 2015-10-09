@@ -7,23 +7,21 @@ const ThemeManager = require('material-ui/lib/styles/theme-manager');
 const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
 const Colors = require('material-ui/lib/styles/colors');
 
-const Main = React.createClass({
+class Main extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this._handleTouchTap = this._handleTouchTap.bind(this);
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-
-  getInitialState () {
-    return {
+    this.state = {
       muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
     };
-  },
+  }
 
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
-  },
+  }
 
   componentWillMount() {
     let newMuiTheme = ThemeManager.modifyRawThemePalette(this.state.muiTheme, {
@@ -31,7 +29,7 @@ const Main = React.createClass({
     });
 
     this.setState({muiTheme: newMuiTheme});
-  },
+  }
 
   render() {
 
@@ -60,12 +58,15 @@ const Main = React.createClass({
 
       </div>
     );
-  },
+  }
 
   _handleTouchTap() {
     this.refs.superSecretPasswordDialog.show();
   }
+}
 
-});
+Main.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 module.exports = Main;

@@ -4,17 +4,11 @@ const DayButton = require('./day-button');
 const ClearFix = require('../clearfix');
 
 
-const CalendarMonth = React.createClass({
-
-  propTypes: {
-    displayDate: React.PropTypes.object.isRequired,
-    selectedDate: React.PropTypes.object.isRequired,
-    autoOk: React.PropTypes.bool,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onDayTouchTap: React.PropTypes.func,
-    shouldDisableDate: React.PropTypes.func,
-  },
+class CalendarMonth extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this._handleDayTouchTap = this._handleDayTouchTap.bind(this);
+  }
 
   render() {
     let styles = {
@@ -28,11 +22,11 @@ const CalendarMonth = React.createClass({
         {this._getWeekElements()}
       </div>
     );
-  },
+  }
 
   isSelectedDateDisabled() {
     return this._selectedDateDisabled;
-  },
+  }
 
   _getWeekElements() {
     let weekArray = DateTime.getWeekArray(this.props.displayDate);
@@ -44,7 +38,7 @@ const CalendarMonth = React.createClass({
         </ClearFix>
       );
     }, this);
-  },
+  }
 
   _getDayElements(week, i) {
     return week.map((day, j) => {
@@ -70,11 +64,11 @@ const CalendarMonth = React.createClass({
           disabled={disabled} />
       );
     }, this);
-  },
+  }
 
   _handleDayTouchTap(e, date) {
     if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
-  },
+  }
 
   _shouldDisableDate(day) {
     if (day === null) return false;
@@ -82,8 +76,17 @@ const CalendarMonth = React.createClass({
     if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
 
     return disabled;
-  },
+  }
+}
 
-});
+CalendarMonth.propTypes = {
+  displayDate: React.PropTypes.object.isRequired,
+  selectedDate: React.PropTypes.object.isRequired,
+  autoOk: React.PropTypes.bool,
+  maxDate: React.PropTypes.object,
+  minDate: React.PropTypes.object,
+  onDayTouchTap: React.PropTypes.func,
+  shouldDisableDate: React.PropTypes.func,
+};
 
 module.exports = CalendarMonth;

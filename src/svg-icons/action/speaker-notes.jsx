@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
-const ActionSpeakerNotes = React.createClass({
-
-  mixins: [PureRenderMixin],
+class ActionSpeakerNotes extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     return (
@@ -13,7 +13,6 @@ const ActionSpeakerNotes = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = ActionSpeakerNotes;

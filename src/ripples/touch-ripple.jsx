@@ -1,5 +1,4 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const ReactTransitionGroup = React.addons.TransitionGroup;
 const StylePropable = require('../mixins/style-propable');
 const Dom = require('../utils/dom');
@@ -8,8 +7,7 @@ const CircleRipple = require('./circle-ripple');
 
 
 const TouchRipple = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [StylePropable],
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
@@ -161,6 +159,9 @@ const TouchRipple = React.createClass({
     return Math.sqrt((a * a) + (b * b));
   },
 
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 });
 
 module.exports = TouchRipple;

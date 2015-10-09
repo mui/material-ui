@@ -1,8 +1,7 @@
 const React = require('react');
 
 
-const TabTemplate = React.createClass({
-
+class TabTemplate extends React.Component {
   render() {
     let styles = {
       'height': 0,
@@ -22,7 +21,7 @@ const TabTemplate = React.createClass({
         {this.props.children}
       </div>
     );
-  },
-});
+  }
+}
 
 module.exports = TabTemplate;

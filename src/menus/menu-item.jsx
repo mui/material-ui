@@ -1,5 +1,4 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('../mixins/style-propable');
 const Colors = require('../styles/colors');
 const CheckIcon = require('../svg-icons/navigation/check');
@@ -8,8 +7,7 @@ const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
 
 const MenuItem = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -173,6 +171,10 @@ const MenuItem = React.createClass({
 
   _applyFocusState() {
     this.refs.listItem.applyFocusState(this.props.focusState);
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
   },
 });
 

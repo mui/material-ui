@@ -1,5 +1,4 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const PropTypes = require('../utils/prop-types');
 const StylePropable = require('../mixins/style-propable');
 const Typography = require('../styles/typography');
@@ -8,8 +7,7 @@ const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
 
 const List = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -50,6 +48,10 @@ const List = React.createClass({
   componentWillReceiveProps (nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
   },
 
   render() {

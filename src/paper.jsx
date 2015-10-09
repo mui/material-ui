@@ -1,5 +1,4 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const StylePropable = require('./mixins/style-propable');
 const PropTypes = require('./utils/prop-types');
 const Transitions = require('./styles/transitions');
@@ -7,8 +6,7 @@ const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 
 const Paper = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -95,6 +93,9 @@ const Paper = React.createClass({
     return shadows[zDepth];
   },
 
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  },
 });
 
 module.exports = Paper;

@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
-const AvMicNone = React.createClass({
-
-  mixins: [PureRenderMixin],
+class AvMicNone extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     return (
@@ -13,7 +13,6 @@ const AvMicNone = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = AvMicNone;

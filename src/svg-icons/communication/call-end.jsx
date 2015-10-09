@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
-const CommunicationCallEnd = React.createClass({
-
-  mixins: [PureRenderMixin],
+class CommunicationCallEnd extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     return (
@@ -13,7 +13,6 @@ const CommunicationCallEnd = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = CommunicationCallEnd;

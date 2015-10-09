@@ -1,10 +1,10 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const SvgIcon = require('../../svg-icon');
 
-const EditorStrikethroughS = React.createClass({
-
-  mixins: [PureRenderMixin],
+class EditorStrikethroughS extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     return (
@@ -13,7 +13,6 @@ const EditorStrikethroughS = React.createClass({
       </SvgIcon>
     );
   }
-
-});
+}
 
 module.exports = EditorStrikethroughS;

@@ -5,8 +5,7 @@ let Code = require('refresh-indicator-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-let RefreshIndicatorPage = React.createClass({
-
+class RefreshIndicatorPage extends React.Component {
   render() {
 
     let componentInfo = [
@@ -76,7 +75,6 @@ let RefreshIndicatorPage = React.createClass({
       </ComponentDoc>
     );
   }
-
-});
+}
 
 module.exports = RefreshIndicatorPage;

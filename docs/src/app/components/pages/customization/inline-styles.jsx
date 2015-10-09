@@ -6,8 +6,7 @@ const CodeExample = require('../../code-example/code-example');
 const { Typography } = Styles;
 
 
-const InlineStyles = React.createClass({
-
+class InlineStyles extends React.Component {
   getStyles() {
     return {
       headline: {
@@ -29,7 +28,7 @@ const InlineStyles = React.createClass({
         color: Typography.textDarkBlack
       }
     }
-  },
+  }
 
   render() {
     let codeOverrideStyles =
@@ -125,8 +124,7 @@ const InlineStyles = React.createClass({
 
       </div>
     );
-  },
-
-});
+  }
+}
 
 module.exports = InlineStyles;

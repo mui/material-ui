@@ -1,13 +1,11 @@
 const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
 const ReactTransitionGroup = React.addons.TransitionGroup;
 const StylePropable = require('../mixins/style-propable');
 const ScaleInChild = require('./scale-in-child');
 
 
 const ScaleIn = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [StylePropable],
 
   propTypes: {
     childStyle: React.PropTypes.object,
@@ -20,6 +18,10 @@ const ScaleIn = React.createClass({
     return {
       enterDelay: 0,
     };
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return React.addons.shallowCompare(this, nextProps, nextState);
   },
 
   render() {
@@ -61,7 +63,6 @@ const ScaleIn = React.createClass({
       </ReactTransitionGroup>
     );
   },
-
 });
 
 module.exports = ScaleIn;
