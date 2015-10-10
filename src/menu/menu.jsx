@@ -66,8 +66,7 @@ const NestedMenuItem = React.createClass({
 
   componentDidMount() {
     this._positionNestedMenu();
-    let el = this.getDOMNode();
-    el.focus();
+    this.findDOMNode().focus();
   },
 
   componentDidUpdate() {
