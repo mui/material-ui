@@ -12,6 +12,7 @@ let PageWithNav = React.createClass({
   mixins: [StyleResizable, StylePropable],
 
   contextTypes: {
+    muiTheme: React.PropTypes.object,
     router: React.PropTypes.func
   },
 
@@ -63,11 +64,11 @@ let PageWithNav = React.createClass({
   render() {
     let styles = this.getStyles();
     return (
-      <div style={styles.root}>
-        <div style={styles.content}>
+      <div style={this.prepareStyles(styles.root)}>
+        <div style={this.prepareStyles(styles.content)}>
           <RouteHandler />
         </div>
-        <div style={styles.secondaryNav}>
+        <div style={this.prepareStyles(styles.secondaryNav)}>
           <Menu
             ref="menuItems"
             zDepth={0}

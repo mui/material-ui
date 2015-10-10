@@ -52,7 +52,7 @@ const InkBar = React.createClass({
     } = this.props;
 
     let colorStyle = color ? {backgroundColor: color} : undefined;
-    let styles = this.mergeAndPrefix({
+    let styles = this.prepareStyles({
       left: left,
       width: width,
       bottom: 0,

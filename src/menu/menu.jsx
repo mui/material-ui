@@ -116,7 +116,7 @@ const NestedMenuItem = React.createClass({
 
   render() {
     let styles = this.getStyles();
-    styles = this.mergeAndPrefix(styles.root,
+    styles = this.prepareStyles(styles.root,
       (this.props.active && !this.props.disabled) && styles.rootWhenHovered, {
       position: 'relative',
     }, this.props.style);

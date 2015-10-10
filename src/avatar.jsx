@@ -85,7 +85,7 @@ const Avatar = React.createClass({
         });
       }
 
-      return <img {...other} src={src} style={this.mergeAndPrefix(styles.root, style)} />;
+      return <img {...other} src={src} style={this.prepareStyles(styles.root, style)} />;
     } else {
       styles.root = this.mergeStyles(styles.root, {
         backgroundColor: backgroundColor,
@@ -104,7 +104,7 @@ const Avatar = React.createClass({
         style: this.mergeStyles(styleIcon, icon.props.style),
       }) : null;
 
-      return <div {...other} style={this.mergeAndPrefix(styles.root, style)}>
+      return <div {...other} style={this.prepareStyles(styles.root, style)}>
         {iconElement}
         {this.props.children}
       </div>;

@@ -84,7 +84,7 @@ const SubheaderMenuItem = React.createClass({
         <div
           key={this.props.index}
           className={this.props.className}
-          style={this.mergeAndPrefix(
+          style={this.prepareStyles(
             this.getStyles().root,
             this.props.firstChild && this.getStyles().rootWhenFirstChild,
             this.props.style

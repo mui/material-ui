@@ -357,7 +357,7 @@ const ListItem = React.createClass({
           onTouchTap={onTouchTap}
           ref="enhancedButton"
           style={this.mergeAndPrefix(styles.root, style)}>
-          <div style={this.mergeAndPrefix(styles.innerDiv, innerDivStyle)}>
+          <div style={this.prepareStyles(styles.innerDiv, innerDivStyle)}>
             {contentChildren}
           </div>
         </EnhancedButton>
@@ -393,7 +393,7 @@ const ListItem = React.createClass({
       style,
     } = this.props;
 
-    const mergedDivStyles = this.mergeAndPrefix(
+    const mergedDivStyles = this.prepareStyles(
       styles.root,
       styles.innerDiv,
       innerDivStyle,
@@ -409,7 +409,7 @@ const ListItem = React.createClass({
       style,
     } = this.props;
 
-    const mergedLabelStyles = this.mergeAndPrefix(
+    const mergedLabelStyles = this.prepareStyles(
       styles.root,
       styles.innerDiv,
       innerDivStyle,
@@ -423,7 +423,7 @@ const ListItem = React.createClass({
   _createTextElement(styles, data, key) {
     const isAnElement = React.isValidElement(data);
     const mergedStyles = isAnElement ?
-      this.mergeStyles(styles, data.props.style) : null;
+      this.prepareStyles(styles, data.props.style) : null;
 
     return isAnElement ? (
       React.cloneElement(data, {
@@ -431,7 +431,7 @@ const ListItem = React.createClass({
         style: mergedStyles,
       })
     ) : (
-      <div key={key} style={styles}>
+      <div key={key} style={this.prepareStyles(styles)}>
         {data}
       </div>
     );

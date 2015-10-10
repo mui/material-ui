@@ -91,7 +91,7 @@ const TimePicker = React.createClass({
     }
 
     return (
-      <div >
+      <div>
         <TextField
           {...other}
           ref="input"

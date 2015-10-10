@@ -18,4 +18,5 @@ module.exports = {
     borderColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
     disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
   },
+  isRtl: false,
 };

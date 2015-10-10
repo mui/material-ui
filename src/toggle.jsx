@@ -134,8 +134,8 @@ const Toggle = React.createClass({
     let toggleElementStyles = this.mergeAndPrefix(styles.toggleElement, this.props.elementStyle);
 
     let toggleElement = (
-      <div style={toggleElementStyles}>
-        <div style={trackStyles} />
+      <div style={this.prepareStyles(toggleElementStyles)}>
+        <div style={this.prepareStyles(trackStyles)} />
         <Paper style={thumbStyles} circle={true} zDepth={1} />
       </div>
     );

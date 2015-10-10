@@ -78,16 +78,19 @@ const LinearProgress = React.createClass({
     if (!this.isMounted()) return;
     if (this.props.mode !== "indeterminate") return;
 
+    const right = this.state.muiTheme.styleConstants.right;
+    const left  = this.state.muiTheme.styleConstants.left ;
+
     if (step === 0) {
-      barElement.style.left = stepValues[0][0] + "%";
-      barElement.style.right = stepValues[0][1] + "%";
+      barElement.style[left] = stepValues[0][0] + "%";
+      barElement.style[right] = stepValues[0][1] + "%";
     }
     else if (step === 1) {
       barElement.style.transitionDuration = "840ms";
     }
     else if (step === 2) {
-      barElement.style.left = stepValues[1][0] + "%";
-      barElement.style.right = stepValues[1][1] + "%";
+      barElement.style[left] = stepValues[1][0] + "%";
+      barElement.style[right] = stepValues[1][1] + "%";
     }
     else if (step === 3) {
       barElement.style.transitionDuration = "0ms";
@@ -163,10 +166,10 @@ const LinearProgress = React.createClass({
     let styles = this.getStyles();
 
     return (
-      <div {...other} style={this.mergeAndPrefix(styles.root, style)}>
-        <div style={this.mergeAndPrefix(styles.bar)}>
-          <div ref="bar1" style={this.mergeAndPrefix(styles.barFragment1)}></div>
-          <div ref="bar2" style={this.mergeAndPrefix(styles.barFragment2)}></div>
+      <div {...other} style={this.prepareStyles(styles.root, style)}>
+        <div style={this.prepareStyles(styles.bar)}>
+          <div ref="bar1" style={this.prepareStyles(styles.barFragment1)}></div>
+          <div ref="bar2" style={this.prepareStyles(styles.barFragment2)}></div>
         </div>
       </div>
     );

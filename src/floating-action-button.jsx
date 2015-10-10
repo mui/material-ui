@@ -170,14 +170,14 @@ const FloatingActionButton = React.createClass({
       iconElement =
         <FontIcon
           className={iconClassName}
-          style={this.mergeAndPrefix(
+          style={this.mergeStyles(
             styles.icon,
             mini && styles.iconWhenMini,
             iconStyle)}/>;
     }
 
     let children = Children.extend(this.props.children, {
-      style: this.mergeAndPrefix(
+      style: this.mergeStyles(
         styles.icon,
         mini && styles.iconWhenMini,
         iconStyle),
@@ -195,7 +195,7 @@ const FloatingActionButton = React.createClass({
 
     return (
       <Paper
-        style={this.mergeAndPrefix(styles.root, this.props.style)}
+        style={this.mergeStyles(styles.root, this.props.style)}
         zDepth={this.state.zDepth}
         circle={true}>
 
@@ -204,7 +204,7 @@ const FloatingActionButton = React.createClass({
           {...buttonEventHandlers}
           ref="container"
           disabled={disabled}
-          style={this.mergeAndPrefix(
+          style={this.mergeStyles(
             styles.container,
             this.props.mini && styles.containerWhenMini
           )}
@@ -212,7 +212,7 @@ const FloatingActionButton = React.createClass({
           touchRippleColor={styles.icon.color}>
             <div
               ref="overlay"
-              style={this.mergeAndPrefix(
+              style={this.prepareStyles(
                 styles.overlay,
                 (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
               )}>

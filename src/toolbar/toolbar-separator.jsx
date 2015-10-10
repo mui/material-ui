@@ -44,7 +44,7 @@ const ToolbarSeparator = React.createClass({
   },
 
   render() {
-    let styles = this.mergeAndPrefix({
+    let styles = this.prepareStyles({
       backgroundColor: this.getTheme().separatorColor,
       display: 'inline-block',
       height: this.getSpacing().desktopGutterMore,

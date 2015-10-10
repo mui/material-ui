@@ -150,8 +150,8 @@ const Snackbar = React.createClass({
     const styles = this.getStyles();
 
     const rootStyles = this.state.open ?
-      this.mergeStyles(styles.root, styles.rootWhenOpen, style) :
-      this.mergeStyles(styles.root, style);
+      this.prepareStyles(styles.root, styles.rootWhenOpen, style) :
+      this.prepareStyles(styles.root, style);
 
     let actionButton;
     if (action) {

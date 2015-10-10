@@ -108,12 +108,12 @@ const ClockButton = React.createClass({
 
     return (
         <EnhancedButton {...other}
-          style={this.mergeAndPrefix(styles.root)}
+          style={this.mergeStyles(styles.root)}
           disableFocusRipple={true}
           disableTouchRipple={true}
           onTouchTap={this._handleTouchTap}>
-          <span style={this.mergeAndPrefix(styles.select)} />
-          <span style={this.mergeAndPrefix(styles.label)} >{this.props.children}</span>
+          <span style={this.prepareStyles(styles.select)} />
+          <span style={this.prepareStyles(styles.label)} >{this.props.children}</span>
         </EnhancedButton>
     );
   },

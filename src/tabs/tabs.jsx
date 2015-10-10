@@ -150,14 +150,14 @@ const Tabs = React.createClass({
     return (
       <div
         {...other}
-        style={this.mergeAndPrefix(style)}>
-        <div style={this.mergeAndPrefix(styles.tabItemContainer, tabItemContainerStyle)}>
+        style={this.prepareStyles(style)}>
+        <div style={this.prepareStyles(styles.tabItemContainer, tabItemContainerStyle)}>
           {tabs}
         </div>
         <div style={{width: inkBarContainerWidth}}>
          {inkBar}
         </div>
-        <div style={this.mergeAndPrefix(contentContainerStyle)}>
+        <div style={this.prepareStyles(contentContainerStyle)}>
           {tabContent}
         </div>
       </div>

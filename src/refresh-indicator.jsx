@@ -69,7 +69,7 @@ const RefreshIndicator = React.createClass({
     return (
       <Paper
         circle={true}
-        style={this.mergeAndPrefix(rootStyle, this.props.style)}
+        style={this.mergeStyles(rootStyle, this.props.style)}
         ref="indicatorCt"
       >
         {this._renderChildren()}
@@ -83,7 +83,7 @@ const RefreshIndicator = React.createClass({
     if (this.props.status !== 'ready') {
       const circleStyle = this._getCircleStyle(paperSize);
       childrenCmp = (
-        <div ref="wrapper" style={this.mergeAndPrefix({
+        <div ref="wrapper" style={this.prepareStyles({
             transition: Transitions.create('transform', '20s', null, 'linear'),
             width: '100%',
             height: '100%',
@@ -96,7 +96,7 @@ const RefreshIndicator = React.createClass({
             viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
           >
             <circle ref="path"
-              style={this.mergeAndPrefix(circleStyle.style, {
+              style={this.prepareStyles(circleStyle.style, {
                 transition: Transitions.create('all', '1.5s', null, 'ease-in-out'),
               })}
               {...circleStyle.attr}
@@ -115,12 +115,12 @@ const RefreshIndicator = React.createClass({
           viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
         >
           <circle
-            style={this.mergeAndPrefix(circleStyle.style)}
+            style={this.prepareStyles(circleStyle.style)}
             {...circleStyle.attr}
           >
           </circle>
           <polygon
-            style={this.mergeAndPrefix(polygonStyle.style)}
+            style={this.prepareStyles(polygonStyle.style)}
             {...polygonStyle.attr}
           />
         </svg>

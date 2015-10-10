@@ -56,7 +56,7 @@ const ListDivider = React.createClass({
     }, style);
 
     return (
-      <hr {...other} style={mergedStyles} />
+      <hr {...other} style={this.prepareStyles(mergedStyles)} />
     );
   },
 });
