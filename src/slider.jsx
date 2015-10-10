@@ -479,7 +479,6 @@ const Slider = React.createClass({
   },
 
   _updateWithChangeEvent(e, percent) {
-    if (this.state.percent === percent) return;
     this.setPercent(percent, () => {
       if (this.props.onChange) this.props.onChange(e, this.state.value);
     });
