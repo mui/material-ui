@@ -398,7 +398,9 @@ const Slider = React.createClass({
     let value = this._alignValue(this._percentToValue(percent));
     let { min, max } = this.props;
     let alignedPercent = (value - min) / (max - min);
-    this.setState({value: value, percent: alignedPercent}, callback);
+    if (this.state.value !== value) {
+      this.setState({value: value, percent: alignedPercent}, callback);
+    }
   },
 
   clearValue() {
