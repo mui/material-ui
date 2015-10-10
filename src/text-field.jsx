@@ -88,7 +88,6 @@ const TextField = React.createClass({
         backgroundColor: textFieldTheme.backgroundColor,
         hintColor: textFieldTheme.hintColor,
         errorColor: textFieldTheme.errorColor,
-        isRtl: muiTheme.isRtl,
       };
     },
     getChildrenClasses() {
@@ -150,7 +149,6 @@ const TextField = React.createClass({
       backgroundColor,
       hintColor,
       errorColor,
-      isRtl,
     } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
     let styles = {
@@ -230,7 +228,7 @@ const TextField = React.createClass({
       bottom: 'none',
       opacity: 1,
       transform: 'scale(1) translate3d(0, 0, 0)',
-      transformOrigin: isRtl ? 'right top' : 'left top',
+      transformOrigin: 'left top',
     });
 
     styles.textarea = this.mergeStyles(styles.input, {
@@ -300,16 +298,16 @@ const TextField = React.createClass({
     let inputId = id || this._uniqueId;
 
     let errorTextElement = this.state.errorText ? (
-      <div style={styles.error}>{this.state.errorText}</div>
+      <div style={this.prepareStyles(styles.error)}>{this.state.errorText}</div>
     ) : null;
 
     let hintTextElement = hintText ? (
-      <div style={this.mergeAndPrefix(styles.hint, hintStyle)}>{hintText}</div>
+      <div style={this.prepareStyles(styles.hint, hintStyle)}>{hintText}</div>
     ) : null;
 
     let floatingLabelTextElement = floatingLabelText ? (
       <label
-        style={this.mergeAndPrefix(styles.floatingLabel, this.props.floatingLabelStyle)}
+        style={this.prepareStyles(styles.floatingLabel, this.props.floatingLabelStyle)}
         htmlFor={inputId}>
         {floatingLabelText}
       </label>
@@ -321,12 +319,12 @@ const TextField = React.createClass({
     inputProps = {
       id: inputId,
       ref: this._getRef(),
-      style: this.mergeAndPrefix(styles.input, this.props.inputStyle),
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
       disabled: this.props.disabled,
       onKeyDown: this._handleInputKeyDown,
     };
+    const inputStyle = this.mergeStyles(styles.input, this.props.inputStyle);
 
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
@@ -339,6 +337,7 @@ const TextField = React.createClass({
         <EnhancedTextarea
           {...other}
           {...inputProps}
+          style={inputStyle}
           rows={rows}
           rowsMax={rowsMax}
           onHeightChange={this._handleTextAreaHeightChange}
@@ -347,19 +346,20 @@ const TextField = React.createClass({
         <input
           {...other}
           {...inputProps}
+          style={this.prepareStyles(inputStyle)}
           type={type} />
       );
     }
 
     let underlineElement = this.props.disabled ? (
-      <div style={this.mergeAndPrefix(styles.underlineAfter)}></div>
+      <div style={this.prepareStyles(styles.underlineAfter)}></div>
     ) : (
-      <hr style={this.mergeAndPrefix(styles.underline)}/>
+      <hr style={this.prepareStyles(styles.underline)}/>
     );
-    let focusUnderlineElement = <hr style={this.mergeAndPrefix(styles.focusUnderline)} />;
+    let focusUnderlineElement = <hr style={this.prepareStyles(styles.focusUnderline)} />;
 
     return (
-      <div className={className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div className={className} style={this.prepareStyles(styles.root, this.props.style)}>
         {floatingLabelTextElement}
         {hintTextElement}
         {inputElement}

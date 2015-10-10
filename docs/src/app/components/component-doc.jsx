@@ -108,15 +108,15 @@ const ComponentDoc = React.createClass({
 
     if (this.props.desc) {
       if ((typeof this.props.desc) == "string") {
-        desc = <p style={styles.desc}>{this.props.desc}</p>
+        desc = <p style={this.prepareStyles(styles.desc)}>{this.props.desc}</p>
       } else {
-        desc = <div style={styles.desc}>{this.props.desc}</div>
+        desc = <div style={this.prepareStyles(styles.desc)}>{this.props.desc}</div>
       }
     }
 
     let header;
     if (this.props.name.length > 0) {
-      header = <h2 style={styles.headline}>{this.props.name}</h2>
+      header = <h2 style={this.prepareStyles(styles.headline)}>{this.props.name}</h2>
     }
 
     return (

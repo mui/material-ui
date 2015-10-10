@@ -157,11 +157,11 @@ const MenuItem = React.createClass({
     let toggleElement;
     let styles = this.getStyles();
 
-    if (this.props.iconClassName) icon = <FontIcon style={this.mergeAndPrefix(styles.icon, this.props.iconStyle, this.props.selected && styles.rootWhenSelected)} className={this.props.iconClassName} />;
-    if (this.props.iconRightClassName) iconRight = <FontIcon style={this.mergeAndPrefix(styles.iconRight, this.props.iconRightStyle)} className={this.props.iconRightClassName} />;
-    if (this.props.data) data = <span style={this.mergeAndPrefix(styles.data)}>{this.props.data}</span>;
-    if (this.props.number !== undefined) number = <span style={this.mergeAndPrefix(styles.number)}>{this.props.number}</span>;
-    if (this.props.attribute !== undefined) attribute = <span style={this.mergeAndPrefix(styles.style)}>{this.props.attribute}</span>;
+    if (this.props.iconClassName) icon = <FontIcon style={this.mergeStyles(styles.icon, this.props.iconStyle, this.props.selected && styles.rootWhenSelected)} className={this.props.iconClassName} />;
+    if (this.props.iconRightClassName) iconRight = <FontIcon style={this.mergeStyles(styles.iconRight, this.props.iconRightStyle)} className={this.props.iconRightClassName} />;
+    if (this.props.data) data = <span style={this.prepareStyles(styles.data)}>{this.props.data}</span>;
+    if (this.props.number !== undefined) number = <span style={this.prepareStyles(styles.number)}>{this.props.number}</span>;
+    if (this.props.attribute !== undefined) attribute = <span style={this.prepareStyles(styles.style)}>{this.props.attribute}</span>;
     if (this.props.icon) icon = this.props.icon;
 
     if (this.props.toggle) {
@@ -186,7 +186,7 @@ const MenuItem = React.createClass({
         onTouchTap={this._handleTouchTap}
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
-        style={this.mergeAndPrefix(
+        style={this.prepareStyles(
           styles.root,
           this.props.selected && styles.rootWhenSelected,
           (this.props.active && !this.props.disabled) && styles.rootWhenHovered,

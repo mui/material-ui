@@ -40,6 +40,7 @@ const AppCanvas = React.createClass({
       height: '100%',
       backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
       WebkitFontSmoothing: 'antialiased',
+      direction: 'ltr',
     };
 
     let newChildren = React.Children.map(this.props.children, (currentChild) => {
@@ -60,7 +61,7 @@ const AppCanvas = React.createClass({
     }, this);
 
     return (
-      <div style={styles}>
+      <div style={this.prepareStyles(styles)}>
         {newChildren}
       </div>
     );

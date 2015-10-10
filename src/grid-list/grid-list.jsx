@@ -7,6 +7,10 @@ const GridList = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   propTypes: {
     cols: React.PropTypes.number,
     padding: React.PropTypes.number,
@@ -83,11 +87,11 @@ const GridList = React.createClass({
         height: cellHeight * childRows + padding,
       });
 
-      return <div style={itemStyle}>{currentChild}</div>;
+      return <div style={this.prepareStyles(itemStyle)}>{currentChild}</div>;
     });
 
     return (
-      <div style={mergedRootStyles} {...other}>{wrappedChildren}</div>
+      <div style={this.prepareStyles(mergedRootStyles)} {...other}>{wrappedChildren}</div>
     );
   },
 });

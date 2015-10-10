@@ -86,6 +86,7 @@ const Slider = React.createClass({
       min: 0,
       required: true,
       step: 0.01,
+      style: {},
     };
   },
 
@@ -237,8 +238,8 @@ const Slider = React.createClass({
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
     let styles = this.getStyles();
-    let sliderStyles = this.mergeAndPrefix(styles.root, this.props.style);
-    let handleStyles = percent === 0 ? this.mergeAndPrefix(
+    const sliderStyles = this.prepareStyles(styles.root, this.props.style);
+    const handleStyles = percent === 0 ? this.prepareStyles(
       styles.handle,
       styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
@@ -246,7 +247,7 @@ const Slider = React.createClass({
       (this.state.hovered || this.state.focused) && !this.props.disabled
         && styles.handleWhenPercentZeroAndFocused,
       this.props.disabled && styles.handleWhenPercentZeroAndDisabled
-    ) : this.mergeAndPrefix(
+    ) : this.prepareStyles(
       styles.handle,
       this.state.active && styles.handleWhenActive,
       this.state.focused && {outline: 'none'},
@@ -276,7 +277,7 @@ const Slider = React.createClass({
       );
     }
     return (
-      <div {...others } style={this.props.style}>
+      <div {...others } style={this.prepareStyles(this.props.style)}>
         <span className="mui-input-highlight"></span>
         <span className="mui-input-bar"></span>
         <span className="mui-input-description">{this.props.description}</span>
@@ -288,9 +289,9 @@ const Slider = React.createClass({
           onMouseEnter={this._onMouseEnter}
           onMouseLeave={this._onMouseLeave}
           onMouseUp={this._onMouseUp} >
-          <div ref="track" style={styles.track}>
-              <div style={styles.filled}></div>
-              <div style={remainingStyles}></div>
+          <div ref="track" style={this.prepareStyles(styles.track)}>
+              <div style={this.prepareStyles(styles.filled)}></div>
+              <div style={this.prepareStyles(remainingStyles)}></div>
               <Draggable axis="x" bound="point"
                 cancel={this.props.disabled ? '*' : null}
                 start={{x: (percent * 100) + '%'}}

@@ -115,8 +115,8 @@ const ClockPointer = React.createClass({
     }
 
     return (
-        <div style={this.mergeAndPrefix(styles.root)} >
-          <div style={styles.mark} />
+        <div style={this.prepareStyles(styles.root)} >
+          <div style={this.prepareStyles(styles.mark)} />
         </div>
     );
   },

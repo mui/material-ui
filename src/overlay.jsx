@@ -2,6 +2,8 @@ const React = require('react');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
 const Colors = require('./styles/colors');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 
 const Overlay = React.createClass({
@@ -9,6 +11,34 @@ const Overlay = React.createClass({
   _originalBodyOverflow: '',
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
 
   propTypes: {
     autoLockScrolling: React.PropTypes.bool,
@@ -87,7 +117,7 @@ const Overlay = React.createClass({
       ...other,
     } = this.props;
 
-    let styles = this.mergeAndPrefix(this.getStyles().root, this.props.style, this.props.show && this.getStyles().rootWhenShown);
+    let styles = this.prepareStyles(this.getStyles().root, this.props.style, this.props.show && this.getStyles().rootWhenShown);
 
     return (
       <div {...other} style={styles} />

@@ -152,7 +152,7 @@ const MenuItem = React.createClass({
 
       secondaryTextElement = secondaryTextIsAnElement ?
         React.cloneElement(secondaryText, {style: mergedSecondaryTextStyles}) :
-        <div style={styles.secondaryText}>{secondaryText}</div>;
+        <div style={this.prepareStyles(styles.secondaryText)}>{secondaryText}</div>;
     }
 
     return (

@@ -1,7 +1,14 @@
-let React = require('react');
+const React = require('react');
+const {Mixins} = require('material-ui');
+const { StylePropable } = Mixins;
 
 
-let MobileTearSheet = React.createClass({
+const MobileTearSheet = React.createClass({
+  mixins: [StylePropable],
+
+  contextTypes : {
+    muiTheme: React.PropTypes.func
+  },
 
   propTypes: {
     height: React.PropTypes.number
@@ -21,7 +28,6 @@ let MobileTearSheet = React.createClass({
         marginBottom: 24,
         marginRight: 24,
         width: 360
-
       },
 
       container: {
@@ -40,11 +46,11 @@ let MobileTearSheet = React.createClass({
     };
 
     return (
-      <div style={styles.root}>
-        <div style={styles.container}>
+      <div style={this.prepareStyles(styles.root)}>
+        <div style={this.prepareStyles(styles.container)}>
           {this.props.children}
         </div>
-        <img style={styles.bottomTear} src="images/bottom-tear.svg" />
+        <img style={this.prepareStyles(styles.bottomTear)} src="images/bottom-tear.svg" />
       </div>
     );
   }

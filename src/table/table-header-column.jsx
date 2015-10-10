@@ -105,7 +105,7 @@ const TableHeaderColumn = React.createClass({
       <th
         key={this.props.key}
         className={classes}
-        style={this.mergeAndPrefix(styles.root, style)}
+        style={this.prepareStyles(styles.root, style)}
         {...handlers}
         {...other}>
         {tooltip}

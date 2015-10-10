@@ -154,12 +154,12 @@ const LeftNav = React.createClass({
       },
     };
 
-    styles.menuItemLink = this.mergeAndPrefix(styles.menuItem, {
+    styles.menuItemLink = this.mergeStyles(styles.menuItem, {
       display: 'block',
       textDecoration: 'none',
       color: this.getThemePalette().textColor,
     });
-    styles.menuItemSubheader = this.mergeAndPrefix(styles.menuItem, {
+    styles.menuItemSubheader = this.mergeStyles(styles.menuItem, {
       overflow: 'hidden',
     });
 
@@ -189,19 +189,19 @@ const LeftNav = React.createClass({
           zDepth={2}
           rounded={false}
           transitionEnabled={!this.state.swiping}
-          style={this.mergeAndPrefix(
+          style={this.mergeStyles(
             styles.root,
             this.props.openRight && styles.rootWhenOpenRight,
             this.props.style)}>
             {this.props.header}
             <Menu
               ref="menuItems"
-              style={this.mergeAndPrefix(styles.menu)}
+              style={this.mergeStyles(styles.menu)}
               zDepth={0}
               menuItems={this.props.menuItems}
-              menuItemStyle={this.mergeAndPrefix(styles.menuItem)}
-              menuItemStyleLink={this.mergeAndPrefix(styles.menuItemLink)}
-              menuItemStyleSubheader={this.mergeAndPrefix(styles.menuItemSubheader)}
+              menuItemStyle={this.mergeStyles(styles.menuItem)}
+              menuItemStyleLink={this.mergeStyles(styles.menuItemLink)}
+              menuItemStyleSubheader={this.mergeStyles(styles.menuItemSubheader)}
               menuItemClassName={this.props.menuItemClassName}
               menuItemClassNameSubheader={this.props.menuItemClassNameSubheader}
               menuItemClassNameLink={this.props.menuItemClassNameLink}

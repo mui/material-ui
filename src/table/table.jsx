@@ -123,7 +123,7 @@ const Table = React.createClass({
     // If we could not find a table-header and a table-body, do not attempt to display anything.
     if (!tBody && !tHead) return null;
 
-    let mergedTableStyle = this.mergeAndPrefix(styles.root, style);
+    let mergedTableStyle = this.prepareStyles(styles.root, style);
     let headerTable, footerTable;
     let inlineHeader, inlineFooter;
     if (fixedHeader) {
@@ -154,9 +154,9 @@ const Table = React.createClass({
     }
 
     return (
-      <div className="mui-table-wrapper" style={styles.tableWrapper}>
+      <div className="mui-table-wrapper" style={this.prepareStyles(styles.tableWrapper)}>
         {headerTable}
-        <div className="mui-body-table" style={styles.bodyTable} ref="tableDiv">
+        <div className="mui-body-table" style={this.prepareStyles(styles.bodyTable)} ref="tableDiv">
           <table className={classes} style={mergedTableStyle} ref="tableBody">
             {inlineHeader}
             {inlineFooter}

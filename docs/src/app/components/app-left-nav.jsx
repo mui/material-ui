@@ -1,7 +1,8 @@
 let React = require('react');
 let Router = require('react-router');
-let { MenuItem, LeftNav, Styles } = require('material-ui');
+let { MenuItem, LeftNav, Mixins, Styles } = require('material-ui');
 let { Colors, Spacing, Typography } = Styles;
+let { StylePropable } = Mixins;
 
 let menuItems = [
     { route: 'get-started', text: 'Get Started' },
@@ -14,15 +15,13 @@ let menuItems = [
   ];
 
 
-class AppLeftNav extends React.Component {
-
-  constructor() {
-    super();
-    this.toggle = this.toggle.bind(this);
-    this._getSelectedIndex = this._getSelectedIndex.bind(this);
-    this._onLeftNavChange = this._onLeftNavChange.bind(this);
-    this._onHeaderClick = this._onHeaderClick.bind(this);
-  }
+let AppLeftNav = React.createClass({
+  mixins: [StylePropable],
+  
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+    router: React.PropTypes.func
+  },
 
   getStyles() {
     return {
@@ -37,11 +36,11 @@ class AppLeftNav extends React.Component {
       paddingTop: '0px',
       marginBottom: '8px'
     };
-  }
+  },
 
   render() {
     let header = (
-      <div style={this.getStyles()} onTouchTap={this._onHeaderClick}>
+      <div style={this.prepareStyles(this.getStyles())} onTouchTap={this._onHeaderClick}>
         material ui
       </div>
     );
@@ -56,11 +55,11 @@ class AppLeftNav extends React.Component {
         selectedIndex={this._getSelectedIndex()}
         onChange={this._onLeftNavChange} />
     );
-  }
+  },
 
   toggle() {
     this.refs.leftNav.toggle();
-  }
+  },
 
   _getSelectedIndex() {
     let currentItem;
@@ -69,21 +68,16 @@ class AppLeftNav extends React.Component {
       currentItem = menuItems[i];
       if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
     }
-  }
+  },
 
   _onLeftNavChange(e, key, payload) {
     this.context.router.transitionTo(payload.route);
-  }
+  },
 
   _onHeaderClick() {
     this.context.router.transitionTo('root');
     this.refs.leftNav.close();
-  }
-
-}
-
-AppLeftNav.contextTypes = {
-  router: React.PropTypes.func
-};
+  },
+});
 
 module.exports = AppLeftNav;
