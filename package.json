@@ -33,13 +33,13 @@
     "react-draggable2": "^0.7.0-alpha1"
   },
   "peerDependencies": {
-    "react": ">=0.14.0-rc1",
-    "react-dom": ">=0.14.0-rc1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
     "react-tap-event-plugin": "^0.2.0",
-    "react-addons-transition-group": "^0.14.0-rc1",
-    "react-addons-update": "^0.14.0-rc1",
-    "react-addons-create-fragment": "^0.14.0-rc1",
-    "react-addons-pure-render-mixin": "^0.14.0-rc1"
+    "react-addons-transition-group": "^0.14.0",
+    "react-addons-update": "^0.14.0",
+    "react-addons-create-fragment": "^0.14.0",
+    "react-addons-pure-render-mixin": "^0.14.0"
   },
   "devDependencies": {
     "babel": "^5.4.3",
@@ -53,6 +53,7 @@
     "eslint": "^1.1.0",
     "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^3.2.2",
+    "fbjs": "^0.2.1",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
     "html-webpack-plugin": "^1.6.1",
@@ -66,19 +67,19 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.17",
+    "react": "^0.14.0",
+    "react-addons-create-fragment": "^0.14.0",
+    "react-addons-pure-render-mixin": "^0.14.0",
+    "react-addons-transition-group": "^0.14.0",
+    "react-addons-update": "^0.14.0",
+    "react-dom": "^0.14.0",
     "react-hot-loader": "^1.2.8",
     "react-router": "^1.0.0-rc1",
+    "react-tap-event-plugin": "^0.2.0",
     "rimraf": "^2.4.3",
     "sinon": "^1.15.4",
     "sinon-chai": "^2.8.0",
     "transfer-webpack-plugin": "^0.1.4",
-    "webpack": "^1.11.0",
-    "react": ">=0.14.0-rc1",
-    "react-dom": ">=0.14.0-rc1",
-    "react-tap-event-plugin": "^0.2.0",
-    "react-addons-transition-group": "^0.14.0-rc1",
-    "react-addons-update": "^0.14.0-rc1",
-    "react-addons-create-fragment": "^0.14.0-rc1",
-    "react-addons-pure-render-mixin": "^0.14.0-rc1"
+    "webpack": "^1.11.0"
   }
 }

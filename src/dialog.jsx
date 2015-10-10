@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const WindowListenable = require('./mixins/window-listenable');
 const CssEvent = require('./utils/css-event');
 const KeyCode = require('./utils/key-code');
@@ -265,7 +266,7 @@ let Dialog = React.createClass({
   },
 
   dismiss() {
-    CssEvent.onTransitionEnd(this.getDOMNode(), () => {
+    CssEvent.onTransitionEnd(this.findDOMNode(), () => {
       this.refs.dialogOverlay.allowScrolling();
     });
 
@@ -346,9 +347,9 @@ let Dialog = React.createClass({
   _positionDialog() {
     if (this.state.open) {
       let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-      let container = this.getDOMNode();
-      let dialogWindow = this.refs.dialogWindow.getDOMNode();
-      let dialogContent = this.refs.dialogContent.getDOMNode();
+      let container = this.findDOMNode();
+      let dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
+      let dialogContent = ReactDOM.findDOMNode(this.refs.dialogContent);
       let minPaddingTop = 16;
 
       //Reset the height in case the window was resized.
