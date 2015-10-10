@@ -1,9 +1,10 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let EnhancedButton = require('../enhanced-button');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const EnhancedButton = require('../enhanced-button');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
-
-let YearButton = React.createClass({
+const YearButton = React.createClass({
 
   mixins: [StylePropable],
 
@@ -17,6 +18,17 @@ let YearButton = React.createClass({
     selected: React.PropTypes.bool,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   getDefaultProps() {
     return {
       selected: false,
@@ -26,11 +38,19 @@ let YearButton = React.createClass({
   getInitialState() {
     return {
       hover: false,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getTheme() {
-    return this.context.muiTheme.component.datePicker;
+    return this.state.muiTheme.datePicker;
   },
 
   render() {
@@ -57,7 +77,7 @@ let YearButton = React.createClass({
       label: {
         position: 'relative',
         top: -1,
-        color: this.context.muiTheme.palette.textColor,
+        color: this.state.muiTheme.rawTheme.palette.textColor,
       },
 
       buttonState: {

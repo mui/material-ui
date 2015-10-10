@@ -12,6 +12,7 @@ class Components extends React.Component {
       { route: 'date-picker', text: 'Date Picker'},
       { route: 'dialog', text: 'Dialog'},
       { route: 'dropdown-menu', text: 'Dropdown Menu'},
+      { route: 'grid-list', text: 'Grid List'},
       { route: 'icons', text: 'Icons'},
       { route: 'icon-buttons', text: 'Icon Buttons'},
       { route: 'icon-menus', text: 'Icon Menus'},

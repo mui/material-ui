@@ -1,9 +1,10 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Draggable = require('react-draggable2');
-let Transitions = require('./styles/transitions');
-let FocusRipple = require('./ripples/focus-ripple');
-
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const Draggable = require('react-draggable2');
+const Transitions = require('./styles/transitions');
+const FocusRipple = require('./ripples/focus-ripple');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 /**
   * Verifies min/max range.
@@ -40,7 +41,7 @@ let valueInRangePropType = (props, propName, componentName) => {
 };
 
 
-let Slider = React.createClass({
+const Slider = React.createClass({
 
   mixins: [StylePropable],
 
@@ -64,6 +65,17 @@ let Slider = React.createClass({
     onDragStop: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     value: valueInRangePropType,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   getDefaultProps() {
@@ -92,17 +104,21 @@ let Slider = React.createClass({
       hovered: false,
       percent: percent,
       value: value,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
     if (nextProps.value !== undefined) {
       this.setValue(nextProps.value);
     }
   },
 
   getTheme() {
-    return this.context.muiTheme.component.slider;
+    return this.state.muiTheme.slider;
   },
 
   getStyles() {
@@ -182,12 +198,12 @@ let Slider = React.createClass({
         height: this.getTheme().handleSizeActive,
       },
       ripple: {
-        height: this.getTheme().handleSize, 
-        width: this.getTheme().handleSize, 
+        height: this.getTheme().handleSize,
+        width: this.getTheme().handleSize,
         overflow: 'visible',
       },
       rippleWhenPercentZero: {
-        top: -this.getTheme().trackSize, 
+        top: -this.getTheme().trackSize,
         left: -this.getTheme().trackSize,
       },
       rippleInner: {
@@ -229,7 +245,7 @@ let Slider = React.createClass({
       this.state.focused && {outline: 'none'},
       (this.state.hovered || this.state.focused) && !this.props.disabled
         && styles.handleWhenPercentZeroAndFocused,
-      this.props.disabled && styles.handleWhenPercentZeroAndDisabled,
+      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
     ) : this.mergeAndPrefix(
       styles.handle,
       this.state.active && styles.handleWhenActive,
@@ -238,7 +254,7 @@ let Slider = React.createClass({
     );
     let rippleStyle = this.mergeAndPrefix(
       styles.ripple,
-      percent === 0 && styles.rippleWhenPercentZero,
+      percent === 0 && styles.rippleWhenPercentZero
     );
     let remainingStyles = styles.remaining;
     if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
@@ -330,36 +346,17 @@ let Slider = React.createClass({
 
   _alignValue(val) {
     let { step, min } = this.props;
-
-    let valModStep = (val - min) % step;
-    let alignValue = val - valModStep;
-
-    if (Math.abs(valModStep) * 2 >= step) {
-      alignValue += (valModStep > 0) ? step : (-step);
-    }
-
+    let alignValue = Math.round((val - min) / step) * step + min;
     return parseFloat(alignValue.toFixed(5));
   },
 
   _constrain() {
     let { min, max, step } = this.props;
+    let steps = (max - min) / step;
     return (pos) => {
       let pixelMax = React.findDOMNode(this.refs.track).clientWidth;
-      let pixelStep = pixelMax / ((max - min) / step);
-
-      let cursor = min;
-      let i;
-      for (i = 0; i < (max - min) / step; i++) {
-        let distance = (pos.left - cursor);
-        let nextDistance = (cursor + pixelStep) - pos.left;
-        if (Math.abs(distance) > Math.abs(nextDistance)) {
-          cursor += pixelStep;
-        }
-        else {
-          break;
-        }
-      }
-
+      let pixelStep = pixelMax / steps;
+      let cursor = Math.round(pos.left / pixelStep) * pixelStep;
       return {
         left: cursor,
       };
@@ -426,9 +423,6 @@ let Slider = React.createClass({
   _dragX(e, pos) {
     let max = React.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
-    if (pos === this.props.min) {
-      return this._updateWithChangeEvent(e, 0);
-    }
     this._updateWithChangeEvent(e, pos / max);
   },
 

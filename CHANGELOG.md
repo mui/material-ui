@@ -1,3 +1,62 @@
+## 0.12.3
+###### _Oct 7, 2015_
+
+##### Component Fixes / Enhancements
+- Quick-fix version until react 0.14 support is somewhat stable
+  - Changed react dependency to ~0.13 in package.json (#1836)
+
+## 0.12.2
+###### _Oct 6, 2015_
+
+##### General
+- NEW GridList component and documentation! Thanks to @igorbt (#1320)
+
+##### Component Fixes / Enhancements
+- Added back canvasColor to theme palette (#1762)
+- Added hintStyle prop to TextField (#1510)
+- Add isScrollbarVisible function to table (#1539)
+- Add rowsMax prop to EnhancedTextarea (#1562)
+- Tab "item three" renamed on docs site (#1775)
+- Fixed docs server to run on Windows (#1774)
+- FlatButton now has a backgroundColor prop (#1561)
+- Fixed DropdownMenu buggy value prop check (#1768)
+
+## 0.12.1
+###### _Sep 28, 2015_
+
+##### Component Fixes / Enhancements
+- Fix broken documentation site
+  - Fix theme display switch problem in doc (#1696)
+  - Fix typo in src/card-expandable.jsx (#1724)
+  - Fix broken link to v0.12.0 release tag
+- Use correct require calls 
+  - for react addons (#1729)
+  - for raw themes (#1742)
+- Remove hard-coded color values from theme-manager
+  - Use consistent values from raw theme (#1746)
+
+## 0.12.0
+###### _Sep 25, 2015_
+
+##### Breaking Changes
+- Theming has been re-done so that material-ui components can be used without having to worry about passing a theme (all components implement a default theme) (#1662)
+  - There's now a concept of `mui theme` and `raw theme`, `mui theme` is produced from `raw theme`
+  - `ThemeManager` has been changed, no longer needs `new` in call
+  - `ThemeManager` produces `mui theme` from `raw theme`. Raw themes may be user-defined.
+  - Functions in `ThemeManager` allow to modify theme variables. Component-level styles may be overriden in the `mui theme`.
+  - See new documentation [here](http://material-ui.com/#/customization/themes)
+- Function names in the context-pure mixin have been changed (#1711)
+  - `getContextProps()` has been changed to `getRelevantContextKeys()`
+
+##### General
+- Updated dependency of `react-tap-event-plugin` (#1714)
+
+##### Component Fixes / Enhancements
+- Dialog component (#1717)
+  - `actions` now has `id` property
+  - Fixed a bug in dialog where a faulty check caused an error in console
+  - Text field ipad scrolling in dialog
+
 ## 0.11.1
 ###### _Sep 15, 2015_
 

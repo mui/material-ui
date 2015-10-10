@@ -1,19 +1,32 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let KeyCode = require('./utils/key-code');
-let DropDownArrow = require('./svg-icons/navigation/arrow-drop-down');
-let Paper = require('./paper');
-let Menu = require('./menu/menu');
-let ClearFix = require('./clearfix');
+const React = require('react');
+const StylePropable = require('./mixins/style-propable');
+const Transitions = require('./styles/transitions');
+const KeyCode = require('./utils/key-code');
+const DropDownArrow = require('./svg-icons/navigation/arrow-drop-down');
+const Paper = require('./paper');
+const Menu = require('./menu/menu');
+const ClearFix = require('./clearfix');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 
-let DropDownMenu = React.createClass({
+const DropDownMenu = React.createClass({
 
   mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   // The nested styles for drop-down-menu are modified by toolbar and possibly
@@ -47,6 +60,7 @@ let DropDownMenu = React.createClass({
     return {
       open: false,
       selectedIndex: this._isControlled() ? null : (this.props.selectedIndex || 0),
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -55,7 +69,10 @@ let DropDownMenu = React.createClass({
     if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(this.props);
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
     if (this.props.autoWidth) this._setWidth();
     if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
       return;
@@ -68,9 +85,9 @@ let DropDownMenu = React.createClass({
   getStyles(){
     const {disabled} = this.props;
     let zIndex = 5; // As AppBar
-    let spacing = this.context.muiTheme.spacing;
-    let accentColor = this.context.muiTheme.component.dropDownMenu.accentColor;
-    let backgroundColor = this.context.muiTheme.component.menu.backgroundColor;
+    let spacing = this.state.muiTheme.rawTheme.spacing;
+    let accentColor = this.state.muiTheme.dropDownMenu.accentColor;
+    let backgroundColor = this.state.muiTheme.menu.backgroundColor;
     let styles = {
       root: {
         transition: Transitions.easeOut(),
@@ -96,7 +113,7 @@ let DropDownMenu = React.createClass({
         position: 'absolute',
         top: ((spacing.desktopToolbarHeight - 24) / 2),
         right: spacing.desktopGutterLess,
-        fill: this.context.muiTheme.component.dropDownMenu.accentColor,
+        fill: this.state.muiTheme.dropDownMenu.accentColor,
       },
       label: {
         transition: Transitions.easeOut(),
@@ -105,7 +122,7 @@ let DropDownMenu = React.createClass({
         paddingLeft: spacing.desktopGutter,
         top: 0,
         opacity: 1,
-        color: disabled ? this.context.muiTheme.palette.disabledColor : this.context.muiTheme.palette.textColor,
+        color: disabled ? this.state.muiTheme.rawTheme.palette.disabledColor : this.state.muiTheme.rawTheme.palette.textColor,
       },
       underline: {
         borderTop: 'solid 1px ' + accentColor,
@@ -165,7 +182,7 @@ let DropDownMenu = React.createClass({
     else {
       if (this.props.valueMember && this._isControlled()) {
         let value = this.props.hasOwnProperty('value') ? this.props.value : this.props.valueLink.value;
-        if (value) {
+        if (value !== null && value !== undefined) {
           for (let i = 0; i < this.props.menuItems.length; i++) {
             if (this.props.menuItems[i][this.props.valueMember] === value) {
               selectedIndex = i;

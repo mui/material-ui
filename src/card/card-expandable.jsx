@@ -1,18 +1,23 @@
-let React = require('react');
-let Extend = require('../utils/extend');
-let OpenIcon = require('../svg-icons/hardware/keyboard-arrow-up');
-let CloseIcon = require('../svg-icons/hardware/keyboard-arrow-down');
-let IconButton = require('../icon-button');
-let StylePropable = require('../mixins/style-propable');
+const React = require('react');
+const Extend = require('../utils/extend');
+const OpenIcon = require('../svg-icons/hardware/keyboard-arrow-up');
+const CloseIcon = require('../svg-icons/hardware/keyboard-arrow-down');
+const IconButton = require('../icon-button');
+const StylePropable = require('../mixins/style-propable');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
+const ContextPure = require('../mixins/context-pure');
 
-
-let CardExpandable = React.createClass({
-  mixins: [StylePropable],
+const CardExpandable = React.createClass({
+  mixins: [
+    StylePropable,
+    ContextPure,
+  ],
 
   getStyles() {
-    const contextProps = this.getContextProps();
+    const contextKeys = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
-    const directionStyle = contextProps.isRtl ? {
+    const directionStyle = contextKeys.isRtl ? {
       left: 4,
     } : {
       right: 4,
@@ -37,19 +42,41 @@ let CardExpandable = React.createClass({
     expanded: React.PropTypes.bool,
   },
 
-  getContextProps() {
-    const theme = this.context.muiTheme;
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
 
+  getChildContext () {
     return {
-      isRtl: theme.isRtl,
+      muiTheme: this.state.muiTheme,
     };
   },
 
-  _onExpanding() {
-    if (this.props.expanded === true)
-      this.props.onExpanding(false);
-    else
-      this.props.onExpanding(true);
+  statics: {
+    getRelevantContextKeys(muiTheme) {
+      return {
+        isRtl: muiTheme.isRtl,
+      };
+    },
+    getChildrenClasses() {
+      return [
+        IconButton,
+      ];
+    },
+  },
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
@@ -66,7 +93,7 @@ let CardExpandable = React.createClass({
     let expandableBtn = (
       <IconButton
         style={mergedStyles}
-        onClick={this._onExpanding}>
+        onTouchTap={this.props.onExpanding}>
         {expandable}
       </IconButton>
     );

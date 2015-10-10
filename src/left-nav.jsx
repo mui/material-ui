@@ -1,25 +1,39 @@
-const isBrowser = typeof window !== 'undefined';
+const isBrowser = require('./utils/is-browser');
+
 let Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
 
-let React = require('react');
-let KeyCode = require('./utils/key-code');
-let StylePropable = require('./mixins/style-propable');
-let AutoPrefix = require('./styles/auto-prefix');
-let Transitions = require('./styles/transitions');
-let WindowListenable = require('./mixins/window-listenable');
-let Overlay = require('./overlay');
-let Paper = require('./paper');
-let Menu = require('./menu/menu');
+const React = require('react');
+const KeyCode = require('./utils/key-code');
+const StylePropable = require('./mixins/style-propable');
+const AutoPrefix = require('./styles/auto-prefix');
+const Transitions = require('./styles/transitions');
+const WindowListenable = require('./mixins/window-listenable');
+const Overlay = require('./overlay');
+const Paper = require('./paper');
+const Menu = require('./menu/menu');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 let openNavEventHandler = null;
 
 
-let LeftNav = React.createClass({
+const LeftNav = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   propTypes: {
@@ -59,7 +73,15 @@ let LeftNav = React.createClass({
     return {
       open: this.props.docked,
       swiping: null,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   componentDidMount() {
@@ -94,11 +116,11 @@ let LeftNav = React.createClass({
   },
 
   getThemePalette() {
-    return this.context.muiTheme.palette;
+    return this.state.muiTheme.rawTheme.palette;
   },
 
   getTheme() {
-    return this.context.muiTheme.component.leftNav;
+    return this.state.muiTheme.leftNav;
   },
 
   getStyles() {
@@ -123,8 +145,8 @@ let LeftNav = React.createClass({
         borderRadius: '0',
       },
       menuItem: {
-        height: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight,
-        lineHeight: this.context.muiTheme.spacing.desktopLeftNavMenuItemHeight + 'px',
+        height: this.state.muiTheme.rawTheme.spacing.desktopLeftNavMenuItemHeight,
+        lineHeight: this.state.muiTheme.rawTheme.spacing.desktopLeftNavMenuItemHeight + 'px',
       },
       rootWhenOpenRight: {
         left: 'auto',
@@ -155,8 +177,7 @@ let LeftNav = React.createClass({
           ref="overlay"
           show={this.state.open || !!this.state.swiping}
           transitionEnabled={!this.state.swiping}
-          onTouchTap={this._onOverlayTouchTap}
-        />
+          onTouchTap={this._onOverlayTouchTap} />
       );
     }
 

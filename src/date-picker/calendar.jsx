@@ -1,18 +1,18 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let WindowListenable = require('../mixins/window-listenable');
-let DateTime = require('../utils/date-time');
-let KeyCode = require('../utils/key-code');
-let Transitions = require('../styles/transitions');
-let CalendarMonth = require('./calendar-month');
-let CalendarYear = require('./calendar-year');
-let CalendarToolbar = require('./calendar-toolbar');
-let DateDisplay = require('./date-display');
-let SlideInTransitionGroup = require('../transition-groups/slide-in');
-let ClearFix = require('../clearfix');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
+const WindowListenable = require('../mixins/window-listenable');
+const DateTime = require('../utils/date-time');
+const KeyCode = require('../utils/key-code');
+const Transitions = require('../styles/transitions');
+const CalendarMonth = require('./calendar-month');
+const CalendarYear = require('./calendar-year');
+const CalendarToolbar = require('./calendar-toolbar');
+const DateDisplay = require('./date-display');
+const SlideInTransitionGroup = require('../transition-groups/slide-in');
+const ClearFix = require('../clearfix');
 
 
-let Calendar = React.createClass({
+const Calendar = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
@@ -260,8 +260,8 @@ let Calendar = React.createClass({
 
   _getToolbarInteractions() {
     return {
-      prevMonth: DateTime.monthDiff(this.state.selectedDate, this.props.minDate) > 0,
-      nextMonth: DateTime.monthDiff(this.state.selectedDate, this.props.maxDate) < 0,
+      prevMonth: DateTime.monthDiff(this.state.displayDate, this.props.minDate) > 0,
+      nextMonth: DateTime.monthDiff(this.state.displayDate, this.props.maxDate) < 0,
     };
   },
 

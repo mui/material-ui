@@ -33,10 +33,10 @@ module.exports = {
   },
 
   _updateDeviceSize() {
-    let width = window.innerWidth;
+    const width = window.innerWidth;
     if (width >= 992) this.setState({deviceSize: Sizes.LARGE});
     else if (width >= 768) this.setState({deviceSize: Sizes.MEDIUM});
-    else this.setState({deviceSize: Sizes.SMALL}); // width >= 375
+    else this.setState({deviceSize: Sizes.SMALL}); // width < 768
   },
 
   _bindResize() {

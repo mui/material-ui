@@ -1,16 +1,17 @@
-let React = require('react/addons');
-let update = React.addons.update;
-let Controllable = require('../mixins/controllable');
-let StylePropable = require('../mixins/style-propable');
-let AutoPrefix = require('../styles/auto-prefix');
-let Transitions = require('../styles/transitions');
-let KeyCode = require('../utils/key-code');
-let PropTypes = require('../utils/prop-types');
-let List = require('../lists/list');
-let Paper = require('../paper');
+const React = require('react/addons');
+const update = React.addons.update;
+const Controllable = require('../mixins/controllable');
+const StylePropable = require('../mixins/style-propable');
+const AutoPrefix = require('../styles/auto-prefix');
+const Transitions = require('../styles/transitions');
+const KeyCode = require('../utils/key-code');
+const PropTypes = require('../utils/prop-types');
+const List = require('../lists/list');
+const Paper = require('../paper');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
-
-let Menu = React.createClass({
+const Menu = React.createClass({
 
   mixins: [StylePropable, Controllable],
 
@@ -48,6 +49,17 @@ let Menu = React.createClass({
     };
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   getInitialState() {
     let selectedIndex = this._getSelectedIndex(this.props);
 
@@ -55,6 +67,7 @@ let Menu = React.createClass({
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
       isKeyboardFocused: this.props.initiallyKeyboardFocused,
       keyWidth: this.props.desktop ? 64 : 56,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -81,15 +94,17 @@ let Menu = React.createClass({
 
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), 250);
+    }, 250);
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let selectedIndex = this._getSelectedIndex(nextProps);
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     this.setState({
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
       keyWidth: nextProps.desktop ? 64 : 56,
+      muiTheme: newMuiTheme,
     });
   },
 
@@ -154,7 +169,7 @@ let Menu = React.createClass({
       },
 
       selectedMenuItem: {
-        color: this.context.muiTheme.palette.accent1Color,
+        color: this.state.muiTheme.rawTheme.palette.accent1Color,
       },
     };
 
@@ -201,7 +216,7 @@ let Menu = React.createClass({
         <div style={childrenContainerStyles}>{clonedChild}</div>
       ) : clonedChild;
 
-    }.bind(this));
+    });
 
     return (
       <div
@@ -258,7 +273,7 @@ let Menu = React.createClass({
 
     let mergedChildrenStyles = this.mergeStyles(
       child.props.style || {},
-      selectedChildrenStyles,
+      selectedChildrenStyles
     );
 
     let isFocused = childIndex === this.state.focusIndex;
@@ -339,7 +354,7 @@ let Menu = React.createClass({
 
       if (this._isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;
-    }.bind(this));
+    });
 
     return selectedIndex;
   },

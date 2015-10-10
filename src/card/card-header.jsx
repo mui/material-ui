@@ -1,10 +1,10 @@
-let React = require('react');
-let Styles = require('../styles');
-let Avatar = require('../avatar');
-let StylePropable = require('../mixins/style-propable');
+const React = require('react');
+const Styles = require('../styles');
+const Avatar = require('../avatar');
+const StylePropable = require('../mixins/style-propable');
 
 
-let CardHeader = React.createClass({
+const CardHeader = React.createClass({
 
   mixins: [StylePropable],
 
@@ -17,6 +17,7 @@ let CardHeader = React.createClass({
     subtitleStyle: React.PropTypes.object,
     textStyle: React.PropTypes.object,
     expandable: React.PropTypes.bool,
+    actAsExpander: React.PropTypes.bool,
     showExpandableButton: React.PropTypes.bool,
   },
 

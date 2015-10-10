@@ -28,6 +28,7 @@
     title="Title"
     subtitle="Subtitle"
     avatar={<Avatar style={{color:'red'}}>A</Avatar>}
+    actAsExpander={true}
     showExpandableButton={true}>
   </CardHeader>
   <CardText expandable={true}>

@@ -1,8 +1,8 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
+const React = require('react');
+const StylePropable = require('../mixins/style-propable');
 
 
-let CardActions = React.createClass({
+const CardActions = React.createClass({
   mixins: [StylePropable],
 
   getStyles() {
@@ -16,6 +16,7 @@ let CardActions = React.createClass({
 
   propTypes: {
     expandable: React.PropTypes.bool,
+    actAsExpander: React.PropTypes.bool,
     showExpandableButton: React.PropTypes.bool,
   },
 

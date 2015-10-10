@@ -1,12 +1,12 @@
-let React = require('react');
-let { Checkbox, Styles } = require('material-ui');
-let CodeBlock = require('../../code-example/code-block');
-let CodeExample = require('../../code-example/code-example');
+const React = require('react');
+const { Checkbox, Styles } = require('material-ui');
+const CodeBlock = require('../../code-example/code-block');
+const CodeExample = require('../../code-example/code-example');
 
-let { Typography } = Styles;
+const { Typography } = Styles;
 
 
-class InlineStyles extends React.Component {
+const InlineStyles = React.createClass({
 
   getStyles() {
     return {
@@ -29,7 +29,7 @@ class InlineStyles extends React.Component {
         color: Typography.textDarkBlack
       }
     }
-  }
+  },
 
   render() {
     let codeOverrideStyles =
@@ -91,7 +91,8 @@ class InlineStyles extends React.Component {
         <p>
           If you would like to override a style property that has been defined
           inline, define your override via the style prop as demonstrated in
-          the example above. The style prop is an object that applies its
+          the example above. These overrides take precedence over the theme (if any) that is used
+          to render the component. The style prop is an object that applies its
           properties to the <b>root/outermost element</b> of the component. Some
           components provide additional style properties for greater styling
           control. If you need to override the inline styles of an element
@@ -124,8 +125,8 @@ class InlineStyles extends React.Component {
 
       </div>
     );
-  }
+  },
 
-}
+});
 
 module.exports = InlineStyles;
