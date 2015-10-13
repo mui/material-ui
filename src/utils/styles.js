@@ -27,15 +27,26 @@ module.exports = {
     // Left to right is the default. No need to flip anything.
     if (!muiTheme.isRtl) return style; 
 
+    const flippedAttributes = {
+      // Keys and their replacements.
+      right: 'left',
+      left: 'right',
+      marginRight: 'marginLeft',
+      marginLeft: 'marginRight',
+      paddingRight: 'paddingLeft',
+      paddingLeft: 'paddingRight',
+      borderRight: 'borderLeft',
+      borderLeft: 'borderRight',
+    };
+
     let newStyle = {};
-    const styleConstants = muiTheme.styleConstants;
 
     Object.keys(style).forEach(function(attribute) {
       let value = style[attribute];
       let key = attribute;
       
-      if (styleConstants.hasOwnProperty(attribute)) {
-        key = styleConstants[attribute];
+      if (flippedAttributes.hasOwnProperty(attribute)) {
+        key = flippedAttributes[attribute];
       }
 
       switch (attribute) {

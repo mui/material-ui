@@ -28,7 +28,7 @@ const Master = React.createClass({
   getInitialState () {
     let muiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
     // To switch to RTL...
-    // muiTheme = ThemeManager.modifyRawThemeDirection(muiTheme, 'rtl');
+    // muiTheme.isRtl = true;
     return {
       muiTheme,
     };
