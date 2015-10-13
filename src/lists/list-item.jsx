@@ -37,6 +37,7 @@ const ListItem = React.createClass({
     onKeyboardFocus: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
+    primaryTogglesNestedList: React.PropTypes.bool,
     onNestedListToggle: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
@@ -120,6 +121,7 @@ const ListItem = React.createClass({
       secondaryText,
       secondaryTextLines,
       style,
+      primaryTogglesNestedList,
       ...other,
     } = this.props;
 
@@ -342,6 +344,11 @@ const ListItem = React.createClass({
       </NestedList>
     ) : undefined;
 
+    let extraAttributes = {};
+    if (primaryTogglesNestedList) {
+      extraAttributes.onTouchTap = this._handleNestedListToggle;
+    }
+
     return hasCheckbox ? this._createLabelElement(styles, contentChildren) :
       disabled ? this._createDisabledElement(styles, contentChildren) : (
       <div>
@@ -356,7 +363,8 @@ const ListItem = React.createClass({
           onTouchStart={this._handleTouchStart}
           onTouchTap={onTouchTap}
           ref="enhancedButton"
-          style={this.mergeAndPrefix(styles.root, style)}>
+          style={this.mergeAndPrefix(styles.root, style)}
+          {...extraAttributes}>
           <div style={this.mergeAndPrefix(styles.innerDiv, innerDivStyle)}>
             {contentChildren}
           </div>
