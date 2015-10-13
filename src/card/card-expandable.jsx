@@ -88,7 +88,7 @@ const CardExpandable = React.createClass({
     else
       expandable = <CloseIcon/>;
 
-    let mergedStyles = this.mergeAndPrefix(styles.root, this.props.style);
+    let mergedStyles = this.mergeStyles(styles.root, this.props.style);
 
     let expandableBtn = (
       <IconButton

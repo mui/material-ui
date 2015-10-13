@@ -331,7 +331,7 @@ const Menu = React.createClass({
         tabIndex="0"
         onKeyDown={this._onKeyDown}
         zDepth={this.props.zDepth}
-        style={this.mergeAndPrefix(
+        style={this.mergeStyles(
           styles.root,
           this.props.hideable && styles.hideable,
           this.props.style)}>
@@ -388,7 +388,7 @@ const Menu = React.createClass({
               key={i}
               index={i}
               className={this.props.menuItemClassNameSubheader}
-              style={this.mergeAndPrefix(styles.subheader, this.props.menuItemStyleSubheader)}
+              style={this.mergeStyles(styles.subheader, this.props.menuItemStyleSubheader)}
               firstChild={i === 0}
               text={menuItem.text} />
           );

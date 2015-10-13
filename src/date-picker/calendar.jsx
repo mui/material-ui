@@ -148,7 +148,7 @@ const Calendar = React.createClass({
     const weekTitleDayStyle = this.prepareStyles(styles.weekTitleDay);
 
     return (
-      <ClearFix style={this.mergeAndPrefix(styles.root)}>
+      <ClearFix style={this.mergeStyles(styles.root)}>
 
         <DateDisplay
           disableYearSelection={this.props.disableYearSelection}
