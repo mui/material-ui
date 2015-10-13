@@ -117,7 +117,7 @@ const DropDownIcon = React.createClass({
           </div>
           <Menu
             ref="menuItems"
-            style={this.mergeAndPrefix(styles.menu)}
+            style={styles.menu}
             menuItems={menuItems}
             menuItemStyle={styles.menuItem}
             hideable={true}

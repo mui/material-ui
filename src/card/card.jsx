@@ -55,7 +55,7 @@ const Card = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedStyles = this.mergeAndPrefix({
+    let mergedStyles = this.mergeStyles({
       overflow: 'hidden',
       zIndex: 1,
     }, style);

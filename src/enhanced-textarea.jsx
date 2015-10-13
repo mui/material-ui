@@ -80,11 +80,11 @@ const EnhancedTextarea = React.createClass({
       ...other,
     } = this.props;
 
-    const textareaStyles = this.mergeAndPrefix(styles.textarea, textareaStyle, {
+    const textareaStyles = this.mergeStyles(styles.textarea, textareaStyle, {
       height: this.state.height,
     });
 
-    const shadowStyles = this.mergeAndPrefix(styles.shadow);
+    const shadowStyles = styles.shadow;
 
     if (this.props.hasOwnProperty('valueLink')) {
       other.value = this.props.valueLink.value;

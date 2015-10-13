@@ -356,7 +356,7 @@ const ListItem = React.createClass({
           onTouchStart={this._handleTouchStart}
           onTouchTap={onTouchTap}
           ref="enhancedButton"
-          style={this.mergeAndPrefix(styles.root, style)}>
+          style={this.mergeStyles(styles.root, style)}>
           <div style={this.prepareStyles(styles.innerDiv, innerDivStyle)}>
             {contentChildren}
           </div>
