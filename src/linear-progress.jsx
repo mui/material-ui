@@ -78,8 +78,8 @@ const LinearProgress = React.createClass({
     if (!this.isMounted()) return;
     if (this.props.mode !== "indeterminate") return;
 
-    const right = this.state.muiTheme.styleConstants.right;
-    const left  = this.state.muiTheme.styleConstants.left ;
+    const right = this.state.muiTheme.isRtl ? 'left' : 'right';
+    const left  = this.state.muiTheme.isRtl ? 'right' : 'left';
 
     if (step === 0) {
       barElement.style[left] = stepValues[0][0] + "%";

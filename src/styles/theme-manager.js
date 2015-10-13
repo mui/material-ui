@@ -191,34 +191,8 @@ module.exports = {
         backgroundColor: 'transparent',
         borderColor: rawTheme.palette.borderColor,
       },
-      isRtl: rawTheme.isRtl,
-      styleConstants: null,
+      isRtl: false,
     };
-
-    // Add style constants related to the theme direction.
-    if (rawTheme.isRtl) {
-      returnObj.styleConstants = {
-        right: 'left',
-        left: 'right',
-        marginRight: 'marginLeft',
-        marginLeft: 'marginRight',
-        paddingRight: 'paddingLeft',
-        paddingLeft: 'paddingRight',
-        borderRight: 'borderLeft',
-        borderLeft: 'borderRight',
-      };
-    } else {
-      returnObj.styleConstants = {
-        right: 'right',
-        left: 'left',
-        marginRight: 'marginRight',
-        marginLeft: 'marginLeft',
-        paddingRight: 'paddingRight',
-        paddingLeft: 'paddingLeft',
-        borderRight: 'borderRight',
-        borderLeft: 'borderLeft',
-      };
-    }
 
     //add properties to objects inside 'returnObj' that depend on existing properties
     returnObj.flatButton.disabledTextColor = ColorManipulator.fade(returnObj.flatButton.textColor, 0.3);
@@ -260,13 +234,6 @@ module.exports = {
   //the MUI theme and returns it based on the new raw theme.
   modifyRawThemeFontFamily: function (muiTheme, newFontFamily) {
     let newRawTheme = update (muiTheme.rawTheme, {fontFamily: {$set: newFontFamily}});
-    return this.getMuiTheme(newRawTheme);
-  },
-
-  //function to modify the direction of the raw theme. (ltr vs rtl)
-  modifyRawThemeDirection: function (muiTheme, direction) {
-    const isRtl = direction.toLowerCase() === 'rtl';
-    const newRawTheme = update (muiTheme.rawTheme, {isRtl: {$set: isRtl }});
     return this.getMuiTheme(newRawTheme);
   },
 
