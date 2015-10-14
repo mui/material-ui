@@ -79,7 +79,7 @@ const CalendarYear = React.createClass({
   _scrollToSelectedYear() {
     if (this.refs.selectedYearButton === undefined) return;
 
-    let container = this.findDOMNode();
+    let container = ReactDOM.findDOMNode(this);
     let yearButtonNode = ReactDOM.findDOMNode(this.refs.selectedYearButton);
 
     let containerHeight = container.clientHeight;
