@@ -3,11 +3,13 @@ const StylePropable = require('../mixins/style-propable');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
 
-const AutoPrefix = require('../styles/auto-prefix');
-
 const GridTile = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
 
   propTypes: {
     title: React.PropTypes.string,
@@ -112,9 +114,6 @@ const GridTile = React.createClass({
         left: '50%',
       },
     };
-    styles.titleBar = AutoPrefix.all(styles.titleBar);
-    styles.titleWrap = AutoPrefix.all(styles.titleWrap);
-    styles.actionIcon = AutoPrefix.all(styles.actionIcon);
     return styles;
   },
 
@@ -166,21 +165,21 @@ const GridTile = React.createClass({
 
     const styles = this.getStyles();
 
-    const mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    const mergedRootStyles = this.prepareStyles(styles.root, style);
 
     let titleBar = null;
 
     if (title) {
       titleBar = (
-        <div style={styles.titleBar}>
-          <div style={styles.titleWrap}>
-            <div style={styles.title}>{title}</div>
+        <div style={this.prepareStyles(styles.titleBar)}>
+          <div style={this.prepareStyles(styles.titleWrap)}>
+            <div style={this.prepareStyles(styles.title)}>{title}</div>
             {
-              subtitle ? (<div style={styles.subtitle}>{subtitle}</div>) : null
+              subtitle ? (<div style={this.prepareStyles(styles.subtitle)}>{subtitle}</div>) : null
             }
           </div>
           {
-            actionIcon ? (<div style={styles.actionIcon}>{actionIcon}</div>) : null
+            actionIcon ? (<div style={this.prepareStyles(styles.actionIcon)}>{actionIcon}</div>) : null
           }
         </div>
       );
@@ -195,7 +194,7 @@ const GridTile = React.createClass({
         if (child.type === 'img') {
           return React.cloneElement(child, {
             ref: 'img',
-            style: this.mergeStyles(styles.childImg, child.props.style),
+            style: this.prepareStyles(styles.childImg, child.props.style),
           });
         } else {
           return child;

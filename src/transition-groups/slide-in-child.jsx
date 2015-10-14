@@ -2,11 +2,41 @@ const React = require('react/addons');
 const StylePropable = require('../mixins/style-propable');
 const AutoPrefix = require('../styles/auto-prefix');
 const Transitions = require('../styles/transitions');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
 
 const SlideInChild = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
 
   propTypes: {
     enterDelay: React.PropTypes.number,
@@ -67,7 +97,7 @@ const SlideInChild = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedRootStyles = this.mergeAndPrefix({
+    let mergedRootStyles = this.prepareStyles({
       position: 'absolute',
       height: '100%',
       width: '100%',

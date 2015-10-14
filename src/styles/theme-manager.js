@@ -191,6 +191,7 @@ module.exports = {
         backgroundColor: 'transparent',
         borderColor: rawTheme.palette.borderColor,
       },
+      isRtl: false,
     };
 
     //add properties to objects inside 'returnObj' that depend on existing properties

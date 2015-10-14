@@ -1,6 +1,7 @@
 const React = require('react');
 const StylePropable = require('./mixins/style-propable');
-const AutoPrefix = require('./styles/auto-prefix');
+const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
+const ThemeManager = require('./styles/theme-manager');
 
 const rowsHeight = 24;
 
@@ -28,6 +29,21 @@ const EnhancedTextarea = React.createClass({
 
   mixins: [StylePropable],
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   propTypes: {
     onChange: React.PropTypes.func,
     onHeightChange: React.PropTypes.func,
@@ -45,6 +61,7 @@ const EnhancedTextarea = React.createClass({
   getInitialState() {
     return {
       height: this.props.rows * rowsHeight,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -63,11 +80,11 @@ const EnhancedTextarea = React.createClass({
       ...other,
     } = this.props;
 
-    const textareaStyles = this.mergeAndPrefix(styles.textarea, textareaStyle, {
+    const textareaStyles = this.mergeStyles(styles.textarea, textareaStyle, {
       height: this.state.height,
     });
 
-    const shadowStyles = this.mergeAndPrefix(styles.shadow);
+    const shadowStyles = styles.shadow;
 
     if (this.props.hasOwnProperty('valueLink')) {
       other.value = this.props.valueLink.value;
@@ -78,10 +95,10 @@ const EnhancedTextarea = React.createClass({
     }
 
     return (
-      <div style={this.props.style}>
+      <div style={this.prepareStyles(this.props.style)}>
         <textarea
           ref="shadow"
-          style={AutoPrefix.all(shadowStyles)}
+          style={this.prepareStyles(shadowStyles)}
           tabIndex="-1"
           rows={this.props.rows}
           defaultValue={this.props.defaultValue}
@@ -92,7 +109,7 @@ const EnhancedTextarea = React.createClass({
           {...other}
           ref="input"
           rows={this.props.rows}
-          style={AutoPrefix.all(textareaStyles)}
+          style={this.prepareStyles(textareaStyles)}
           onChange={this._handleChange} />
       </div>
     );
@@ -143,10 +160,12 @@ const EnhancedTextarea = React.createClass({
     }
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
     if (nextProps.value !== this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
     }
+    let newState = {};
+    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
   },
 });
 

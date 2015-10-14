@@ -40,13 +40,13 @@ const ListDivider = React.createClass({
   },
 
   render() {
-    let {
+    const {
       inset,
       style,
       ...other,
     } = this.props;
 
-    let mergedStyles = this.mergeAndPrefix({
+    const mergedStyles = this.mergeStyles({
       margin: 0,
       marginTop: -1,
       marginLeft: inset ? 72 : 0,
@@ -56,7 +56,7 @@ const ListDivider = React.createClass({
     }, style);
 
     return (
-      <hr {...other} style={mergedStyles} />
+      <hr {...other} style={this.prepareStyles(mergedStyles)} />
     );
   },
 });

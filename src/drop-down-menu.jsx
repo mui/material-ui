@@ -210,18 +210,18 @@ const DropDownMenu = React.createClass({
         onFocus={this.props.onFocus}
         onBlur={this.props.onBlur}
         className={this.props.className}
-        style={this.mergeAndPrefix(
+        style={this.prepareStyles(
           styles.root,
           this.state.open && styles.rootWhenOpen,
           this.props.style)} >
 
-          <ClearFix style={this.mergeAndPrefix(styles.control)} onTouchTap={this._onControlClick}>
-            <Paper style={this.mergeAndPrefix(styles.controlBg)} zDepth={0} />
-            <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen, this.props.labelStyle)}>
+          <ClearFix style={this.mergeStyles(styles.control)} onTouchTap={this._onControlClick}>
+            <Paper style={this.mergeStyles(styles.controlBg)} zDepth={0} />
+            <div style={this.prepareStyles(styles.label, this.state.open && styles.labelWhenOpen, this.props.labelStyle)}>
               {displayValue}
             </div>
-            <DropDownArrow style={this.mergeAndPrefix(styles.icon, this.props.iconStyle)}/>
-            <div style={this.mergeAndPrefix(styles.underline, this.props.underlineStyle)}/>
+            <DropDownArrow style={this.mergeStyles(styles.icon, this.props.iconStyle)}/>
+            <div style={this.prepareStyles(styles.underline, this.props.underlineStyle)}/>
           </ClearFix>
 
           <Menu
@@ -230,12 +230,12 @@ const DropDownMenu = React.createClass({
             selectedIndex={selectedIndex}
             menuItems={menuItems}
             style={styles.menu}
-            menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.menuItemStyle)}
+            menuItemStyle={this.mergeStyles(styles.menuItem, this.props.menuItemStyle)}
             hideable={true}
             visible={this.state.open}
             onRequestClose={this._onMenuRequestClose}
             onItemTap={this._onMenuItemClick} />
-          {this.state.open && <div style={styles.overlay} onTouchTap={this._handleOverlayTouchTap} />}
+          {this.state.open && <div style={this.prepareStyles(styles.overlay)} onTouchTap={this._handleOverlayTouchTap} />}
       </div>
     );
   },

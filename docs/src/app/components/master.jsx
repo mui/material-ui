@@ -16,15 +16,21 @@ const { AppBar,
       Paper} = require('material-ui');
 
 const RouteHandler = Router.RouteHandler;
+const { StylePropable } = Mixins;
 const { Colors, Spacing, Typography } = Styles;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 
 
 const Master = React.createClass({
+  mixins: [StylePropable],
+
   getInitialState () {
+    let muiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
+    // To switch to RTL...
+    // muiTheme.isRtl = true;
     return {
-      muiTheme: ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme,
     };
   },
 
@@ -123,9 +129,9 @@ const Master = React.createClass({
         <RouteHandler />
         <AppLeftNav ref="leftNav" />
         <FullWidthSection style={styles.footer}>
-          <p style={styles.p}>
+          <p style={this.prepareStyles(styles.p)}>
             Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
-            awesome <a style={styles.a} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
+            awesome <a style={this.prepareStyles(styles.a)} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
           </p>
           {githubButton2}
         </FullWidthSection>
@@ -183,8 +189,8 @@ const Master = React.createClass({
         style={styles.svgLogoContainer}
         linkButton={true}
         href="/#/home">
-        <img style={styles.svgLogo} src="images/material-ui-logo.svg"/>
-        <span style={styles.span}>material ui</span>
+        <img style={this.prepareStyles(styles.svgLogo)} src="images/material-ui-logo.svg"/>
+        <span style={this.prepareStyles(styles.span)}>material ui</span>
       </EnhancedButton>) : null;
 
     return(
@@ -194,7 +200,7 @@ const Master = React.createClass({
           rounded={false}
           style={styles.root}>
           {materialIcon}
-          <div style={styles.container}>
+          <div style={this.prepareStyles(styles.container)}>
             <Tabs
               style={styles.tabs}
               value={this.state.tabIndex}

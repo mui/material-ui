@@ -147,7 +147,7 @@ const ComponentInfo = React.createClass({
     let styles = this.getStyles();
     this.props.infoArray.forEach(function(info, i) {
 
-      if (info.type) typesSpan = <span style={styles.type}>{info.type}</span>;
+      if (info.type) typesSpan = <span style={this.prepareStyles(styles.type)}>{info.type}</span>;
 
       if (i == this.props.infoArray.length - 1) {
         styles.desc = this.mergeStyles(styles.desc, styles.descWhenLastChild);
@@ -155,19 +155,19 @@ const ComponentInfo = React.createClass({
 
       propElements.push(
         <tr key={i}>
-          <td style={styles.name}>{info.name}</td>
-          <td style={styles.desc}>
-            <p style={styles.header}>{typesSpan}{info.header}</p>
-            <p style={styles.p}>{info.desc}</p>
+          <td style={this.prepareStyles(styles.name)}>{info.name}</td>
+          <td style={this.prepareStyles(styles.desc)}>
+            <p style={this.prepareStyles(styles.header)}>{typesSpan}{info.header}</p>
+            <p style={this.prepareStyles(styles.p)}>{info.desc}</p>
           </td>
         </tr>
       );
     }, this);
 
     return (
-      <div style={this.mergeAndPrefix(styles.root, this.props.style)}>
-        <h3 style={styles.h3}>{this.props.name}</h3>
-        <table style={styles.table}>
+      <div style={this.prepareStyles(styles.root, this.props.style)}>
+        <h3 style={this.prepareStyles(styles.h3)}>{this.props.name}</h3>
+        <table style={this.prepareStyles(styles.table)}>
           <tbody>
             {propElements}
           </tbody>

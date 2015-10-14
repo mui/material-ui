@@ -42,7 +42,7 @@ const MenuDivider = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedStyles = this.mergeAndPrefix({
+    let mergedStyles = this.mergeStyles({
       marginTop: 7,
       marginBottom: 8,
     }, style);

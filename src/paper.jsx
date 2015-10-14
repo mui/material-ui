@@ -76,7 +76,7 @@ const Paper = React.createClass({
     };
 
     return (
-      <div {...other} style={this.mergeAndPrefix(styles, style)}>
+      <div {...other} style={this.prepareStyles(styles, style)}>
         {children}
       </div>
     );

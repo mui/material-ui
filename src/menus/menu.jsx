@@ -173,7 +173,7 @@ const Menu = React.createClass({
       },
     };
 
-    let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    let mergedRootStyles = this.prepareStyles(styles.root, style);
     let mergedListStyles = this.mergeStyles(styles.list, listStyle);
 
     //Cascade children opacity
@@ -201,7 +201,7 @@ const Menu = React.createClass({
           transitionDelay = cumulativeDelay;
         }
 
-        childrenContainerStyles = this.mergeAndPrefix(styles.menuItemContainer, {
+        childrenContainerStyles = this.prepareStyles(styles.menuItemContainer, {
           transitionDelay: transitionDelay + 'ms',
         });
       }

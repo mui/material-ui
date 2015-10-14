@@ -3,11 +3,41 @@ const PureRenderMixin = React.addons.PureRenderMixin;
 const ReactTransitionGroup = React.addons.TransitionGroup;
 const StylePropable = require('../mixins/style-propable');
 const ScaleInChild = require('./scale-in-child');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
 
 const ScaleIn = React.createClass({
 
   mixins: [PureRenderMixin, StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
 
   propTypes: {
     childStyle: React.PropTypes.object,
@@ -33,7 +63,7 @@ const ScaleIn = React.createClass({
       ...other,
     } = this.props;
 
-    const mergedRootStyles = this.mergeAndPrefix({
+    const mergedRootStyles = this.prepareStyles({
       position: 'relative',
       overflow: 'hidden',
       height: '100%',

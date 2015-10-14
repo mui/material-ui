@@ -150,7 +150,7 @@ const EnhancedButton = React.createClass({
       ...other,
     } = this.props;
 
-    const mergedStyles = this.mergeAndPrefix({
+    const mergedStyles = this.prepareStyles({
       border: 10,
       background: 'none',
       boxSizing: 'border-box',

@@ -76,7 +76,7 @@ const TransitionItem = React.createClass({
       ...other,
     } = this.props;
 
-    return <div {...other} style={this.mergeAndPrefix(this.state.style, style)}>
+    return <div {...other} style={this.prepareStyles(this.state.style, style)}>
         {this.props.children}
       </div>;
   },
@@ -202,15 +202,15 @@ let Dialog = React.createClass({
 
 
     if (this.state.open) {
-      main = this.mergeAndPrefix(main, {
+      main = this.mergeStyles(main, {
         left: 0,
         transition: Transitions.easeOut('0ms', 'left', '0ms'),
       });
     }
 
     return {
-      main: this.mergeAndPrefix(main, this.props.style),
-      content: this.mergeAndPrefix(content, this.props.contentStyle),
+      main: this.mergeStyles(main, this.props.style),
+      content: this.mergeStyles(content, this.props.contentStyle),
       paper: {
         background: this.state.muiTheme.rawTheme.palette.canvasColor,
       },
@@ -227,12 +227,12 @@ let Dialog = React.createClass({
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.
       title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
-        <h3 style={styles.title}>{this.props.title}</h3> :
+        <h3 style={this.prepareStyles(styles.title)}>{this.props.title}</h3> :
         this.props.title;
     }
 
     return (
-      <div ref="container" style={styles.main}>
+      <div ref="container" style={this.prepareStyles(styles.main)}>
         <ReactTransitionGroup component="div" ref="dialogWindow">
           {this.state.open &&
             <TransitionItem
@@ -243,7 +243,7 @@ let Dialog = React.createClass({
                 zDepth={4}>
                 {title}
 
-                <div ref="dialogContent" style={styles.body}>
+                <div ref="dialogContent" style={this.prepareStyles(styles.body)}>
                   {this.props.children}
                 </div>
 
@@ -334,7 +334,7 @@ let Dialog = React.createClass({
       }
 
       actionContainer = (
-        <div style={actionStyle}>
+        <div style={this.prepareStyles(actionStyle)}>
           {actionObjects}
         </div>
       );

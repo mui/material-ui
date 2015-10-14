@@ -70,7 +70,7 @@ const SvgIcon = React.createClass({
       this.state.muiTheme.rawTheme.palette.textColor;
     const onColor = hoverColor ? hoverColor : offColor;
 
-    const mergedStyles = this.mergeAndPrefix({
+    const mergedStyles = this.prepareStyles({
       display: 'inline-block',
       height: 24,
       width: 24,

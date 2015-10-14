@@ -10,11 +10,28 @@ const CalendarToolbar = require('./calendar-toolbar');
 const DateDisplay = require('./date-display');
 const SlideInTransitionGroup = require('../transition-groups/slide-in');
 const ClearFix = require('../clearfix');
+const ThemeManager = require('../styles/theme-manager');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 
 
 const Calendar = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
 
   propTypes: {
     disableYearSelection: React.PropTypes.bool,
@@ -43,6 +60,7 @@ const Calendar = React.createClass({
 
   getInitialState() {
     return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
       displayMonthDay: this.props.shouldShowMonthDayPickerFirst || true,
       selectedDate: this.props.initialDate,
@@ -51,7 +69,12 @@ const Calendar = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
     if (nextProps.initialDate !== this.props.initialDate) {
       let d = nextProps.initialDate || new Date();
       this.setState({
@@ -122,8 +145,10 @@ const Calendar = React.createClass({
       styles.calendarContainer.display = 'none';
     }
 
+    const weekTitleDayStyle = this.prepareStyles(styles.weekTitleDay);
+
     return (
-      <ClearFix style={this.mergeAndPrefix(styles.root)}>
+      <ClearFix style={this.mergeStyles(styles.root)}>
 
         <DateDisplay
           disableYearSelection={this.props.disableYearSelection}
@@ -135,7 +160,7 @@ const Calendar = React.createClass({
           mode={this.props.mode}
           weekCount={weekCount} />
 
-        <div style={styles.calendarContainer}>
+        <div style={this.prepareStyles(styles.calendarContainer)}>
           <CalendarToolbar
             displayDate={this.state.displayDate}
             onMonthChange={this._handleMonthChange}
@@ -145,13 +170,13 @@ const Calendar = React.createClass({
           <ClearFix
             elementType="ul"
             style={styles.weekTitle}>
-            <li style={styles.weekTitleDay}>S</li>
-            <li style={styles.weekTitleDay}>M</li>
-            <li style={styles.weekTitleDay}>T</li>
-            <li style={styles.weekTitleDay}>W</li>
-            <li style={styles.weekTitleDay}>T</li>
-            <li style={styles.weekTitleDay}>F</li>
-            <li style={styles.weekTitleDay}>S</li>
+            <li style={weekTitleDayStyle}>S</li>
+            <li style={weekTitleDayStyle}>M</li>
+            <li style={weekTitleDayStyle}>T</li>
+            <li style={weekTitleDayStyle}>W</li>
+            <li style={weekTitleDayStyle}>T</li>
+            <li style={weekTitleDayStyle}>F</li>
+            <li style={weekTitleDayStyle}>S</li>
           </ClearFix>
 
           <SlideInTransitionGroup
@@ -168,7 +193,7 @@ const Calendar = React.createClass({
           </SlideInTransitionGroup>
         </div>
 
-        <div style={styles.yearContainer}>
+        <div style={this.prepareStyles(styles.yearContainer)}>
           {this._yearSelector()}
         </div>
 

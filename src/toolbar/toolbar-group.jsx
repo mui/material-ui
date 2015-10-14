@@ -149,7 +149,7 @@ const ToolbarGroup = React.createClass({
     }, this);
 
     return (
-      <div className={this.props.className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div className={this.props.className} style={this.prepareStyles(styles.root, this.props.style)}>
         {newChildren}
       </div>
     );
