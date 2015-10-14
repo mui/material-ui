@@ -54,6 +54,9 @@ module.exports = {
         secondaryIconColor: rawTheme.palette.alternateTextColor,
         disabledTextColor: rawTheme.palette.disabledColor,
       },
+      gridTile: {
+        textColor: Colors.white,
+      },
       inkBar: {
         backgroundColor: rawTheme.palette.accent1Color,
       },

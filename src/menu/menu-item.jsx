@@ -187,9 +187,9 @@ const MenuItem = React.createClass({
 
         {icon}
         {this.props.children}
-        {data}
-        {attribute}
         {number}
+        {attribute}
+        {data}
         {toggleElement}
         {iconRight}
 
