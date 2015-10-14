@@ -5,35 +5,34 @@ class Components extends React.Component {
 
   render() {
     let menuItems = [
-      { route: 'appbar', text: 'AppBar'},
-      { route: 'avatars', text: 'Avatars'},
-      { route: 'buttons', text: 'Buttons'},
-      { route: 'cards', text: 'Cards'},
-      { route: 'date-picker', text: 'Date Picker'},
-      { route: 'dialog', text: 'Dialog'},
-      { route: 'dropdown-menu', text: 'Dropdown Menu'},
-      { route: 'grid-list', text: 'Grid List'},
-      { route: 'icons', text: 'Icons'},
-      { route: 'icon-buttons', text: 'Icon Buttons'},
-      { route: 'icon-menus', text: 'Icon Menus'},
-      { route: 'left-nav', text: 'Left Nav'},
-      { route: 'lists', text: 'Lists'},
-      { route: 'menus', text: 'Menus'},
-      { route: 'paper', text: 'Paper'},
-      { route: 'progress', text: 'Progress'},
-      { route: 'refresh-indicator', text: 'Refresh Indicator'},
-      { route: 'sliders', text: 'Sliders'},
-      { route: 'switches', text: 'Switches'},
-      { route: 'snackbar', text: 'Snackbar'},
-      { route: 'table', text: 'Table'},
-      { route: 'tabs', text: 'Tabs'},
-      { route: 'text-fields', text: 'Text Fields'},
-      { route: 'time-picker', text: 'Time Picker'},
-      { route: 'toolbars', text: 'Toolbars'},
+      { route: '/components/appbar', text: 'AppBar'},
+      { route: '/components/avatars', text: 'Avatars'},
+      { route: '/components/buttons', text: 'Buttons'},
+      { route: '/components/cards', text: 'Cards'},
+      { route: '/components/date-picker', text: 'Date Picker'},
+      { route: '/components/dialog', text: 'Dialog'},
+      { route: '/components/dropdown-menu', text: 'Dropdown Menu'},
+      { route: '/components/icons', text: 'Icons'},
+      { route: '/components/icon-buttons', text: 'Icon Buttons'},
+      { route: '/components/icon-menus', text: 'Icon Menus'},
+      { route: '/components/left-nav', text: 'Left Nav'},
+      { route: '/components/lists', text: 'Lists'},
+      { route: '/components/menus', text: 'Menus'},
+      { route: '/components/paper', text: 'Paper'},
+      { route: '/components/progress', text: 'Progress'},
+      { route: '/components/refresh-indicator', text: 'Refresh Indicator'},
+      { route: '/components/sliders', text: 'Sliders'},
+      { route: '/components/switches', text: 'Switches'},
+      { route: '/components/snackbar', text: 'Snackbar'},
+      { route: '/components/table', text: 'Table'},
+      { route: '/components/tabs', text: 'Tabs'},
+      { route: '/components/text-fields', text: 'Text Fields'},
+      { route: '/components/time-picker', text: 'Time Picker'},
+      { route: '/components/toolbars', text: 'Toolbars'},
     ];
 
     return (
-      <PageWithNav menuItems={menuItems} />
+      <PageWithNav menuItems={menuItems}>{this.props.children}</PageWithNav>
     );
   }
 
