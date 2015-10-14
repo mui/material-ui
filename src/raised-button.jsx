@@ -122,8 +122,8 @@ const RaisedButton = React.createClass({
         width: '100%',
         padding: 0,
         overflow: 'hidden',
-// This is because we want to set this ourselves
-//        borderRadius: 2,
+        // This is because we want to set this ourselves
+        //        borderRadius: 2,
         transition: Transitions.easeOut(),
         backgroundColor: this._getBackgroundColor(),
 

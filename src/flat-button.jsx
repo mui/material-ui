@@ -155,7 +155,8 @@ const FlatButton = React.createClass({
       letterSpacing: 0,
       textTransform: textTransform,
       fontWeight: Typography.fontWeightMedium,
-      borderRadius: 2,
+      // This is because we want to set this ourselves
+      //        borderRadius: 2,
       userSelect: 'none',
       position: 'relative',
       overflow: 'hidden',
