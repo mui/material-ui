@@ -266,7 +266,7 @@ let Dialog = React.createClass({
   },
 
   dismiss() {
-    CssEvent.onTransitionEnd(this.findDOMNode(), () => {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), () => {
       this.refs.dialogOverlay.allowScrolling();
     });
 
@@ -347,7 +347,7 @@ let Dialog = React.createClass({
   _positionDialog() {
     if (this.state.open) {
       let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-      let container = this.findDOMNode();
+      let container = ReactDOM.findDOMNode(this);
       let dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
       let dialogContent = ReactDOM.findDOMNode(this.refs.dialogContent);
       let minPaddingTop = 16;
