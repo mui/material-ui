@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const ReactTransitionGroup = React.addons.TransitionGroup;
+const React = require('react');
+const ReactTransitionGroup = require('react-addons-transition-group');
 const StylePropable = require('../mixins/style-propable');
 const SlideInChild = require('./slide-in-child');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
