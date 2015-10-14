@@ -13,10 +13,19 @@
     "prd": "webpack-dev-server --config webpack-production.config.js --progress --colors --profile"
   },
   "dependencies": {
-    "codemirror": "^5.5.0"
+    "codemirror": "^5.5.0",
+    "history": "^1.11.1",
+    "react-addons-create-fragment": "^0.14.0",
+    "react-addons-pure-render-mixin": "^0.14.0",
+    "react-addons-transition-group": "^0.14.0",
+    "react-addons-update": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-tap-event-plugin": "^0.2.0"
   },
   "devDependencies": {
     "raw-loader": "^0.5.1",
+    "react": "^0.14.0",
+    "react-addons-linked-state-mixin": "^0.14.0",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
   }

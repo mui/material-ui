@@ -1,5 +1,5 @@
 const React = require('react');
-const Router = require('react-router');
+const {History} = require('react-router');
 const { Mixins, RaisedButton, Styles } = require('material-ui');
 const HomeFeature = require('./home-feature');
 const FullWidthSection = require('../full-width-section');
@@ -12,11 +12,11 @@ const DefaultRawTheme = Styles.LightRawTheme;
 
 const HomePage = React.createClass({
 
-  mixins: [StylePropable, StyleResizable],
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
+  mixins: [
+    StylePropable,
+    StyleResizable,
+    History,
+  ],
 
   render() {
     let style = {
@@ -208,8 +208,8 @@ const HomePage = React.createClass({
   },
 
   _onDemoClick() {
-    this.context.router.transitionTo('components');
-  }
+    this.history.pushState(null, '/components');
+  },
 });
 
 module.exports = HomePage;

@@ -1,7 +1,7 @@
 const Colors = require('./colors');
 const ColorManipulator = require('../utils/color-manipulator');
 const Extend = require('../utils/extend');
-const update = require('react/lib/update');
+const update = require('react-addons-update');
 
 module.exports = {
 

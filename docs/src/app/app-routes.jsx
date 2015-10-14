@@ -1,8 +1,9 @@
 let React = require('react');
-let Router = require('react-router');
-let Route = Router.Route;
-let Redirect = Router.Redirect;
-let DefaultRoute = Router.DefaultRoute;
+let {
+  Route,
+  Redirect,
+  IndexRoute,
+} = require('react-router');
 
 // Here we define all our material-ui ReactComponents.
 let Master = require('./components/master');
@@ -46,62 +47,63 @@ let TimePicker = require('./components/pages/components/time-picker');
 let Toolbars = require('./components/pages/components/toolbars');
 
 
-/** Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
-  *
-  * Routes are used to declare your view hierarchy.
-  *
-  * Say you go to http://material-ui.com/#/components/paper
-  * The react router will search for a route named 'paper' and will recursively render its
-  * handler and its parent handler like so: Paper > Components > Master
-  */
 
+/**
+ * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
+ *
+ * Routes are used to declare your view hierarchy.
+ *
+ * Say you go to http://material-ui.com/#/components/paper
+ * The react router will search for a route named 'paper' and will recursively render its
+ * handler and its parent handler like so: Paper > Components > Master
+ */
 let AppRoutes = (
-  <Route name="root" path="/" handler={Master}>
-    <Route name="home" handler={Home} />
-    <Route name="get-started" handler={GetStarted}>
-      <Route name="prerequisites" handler={Prerequisites} />
-      <Route name="installation" handler={Installation} />
-      <Route name="examples" handler={Examples} />
-      <Redirect from="/get-started" to="prerequisites" />
+  <Route path="/" component={Master}>
+    <Route path="home" component={Home} />
+    <Redirect from="get-started" to="/get-started/prerequisites" />
+    <Route path="get-started" component={GetStarted}>
+      <Route path="prerequisites" component={Prerequisites} />
+      <Route path="installation" component={Installation} />
+      <Route path="examples" component={Examples} />
     </Route>
 
-    <Route name="customization" handler={Customization}>
-      <Route name="colors" handler={Colors} />
-      <Route name="themes" handler={Themes} />
-      <Route name="inline-styles" handler={InlineStyles} />
-      <Redirect from="/customization" to="themes" />
+    <Redirect from="customization" to="/customization/themes" />
+    <Route path="customization" component={Customization}>
+      <Route path="colors" component={Colors} />
+      <Route path="themes" component={Themes} />
+      <Route path="inline-styles" component={InlineStyles} />
     </Route>
 
-    <Route name="components" handler={Components}>
-      <Route name="appbar" handler={AppBar} />
-      <Route name="avatars" handler={Avatars} />
-      <Route name="buttons" handler={Buttons} />
-      <Route name="cards" handler={Cards} />
-      <Route name="date-picker" handler={DatePicker} />
-      <Route name="dialog" handler={Dialog} />
-      <Route name="dropdown-menu" handler={DropDownMenu} />
-      <Route name="grid-list" handler={GridList} />
-      <Route name="icons" handler={Icons} />
-      <Route name="icon-buttons" handler={IconButtons} />
-      <Route name="icon-menus" handler={IconMenus} />
-      <Route name="left-nav" handler={LeftNav} />
-      <Route name="lists" handler={Lists} />
-      <Route name="menus" handler={Menus} />
-      <Route name="paper" handler={Paper} />
-      <Route name="progress" handler={Progress} />
-      <Route name="refresh-indicator" handler={RefreshIndicator} />
-      <Route name="sliders" handler={Sliders} />
-      <Route name="switches" handler={Switches} />
-      <Route name="snackbar" handler={Snackbar} />
-      <Route name="table" handler={Table} />
-      <Route name="tabs" handler={Tabs} />
-      <Route name="text-fields" handler={TextFields} />
-      <Route name="time-picker" handler={TimePicker} />
-      <Route name="toolbars" handler={Toolbars} />
-      <Redirect from="/components" to="appbar" />
+    <Redirect from="components" to="/components/appbar" />
+    <Route path="components" component={Components}>
+      <Route path="appbar" component={AppBar} />
+      <Route path="avatars" component={Avatars} />
+      <Route path="buttons" component={Buttons} />
+      <Route path="cards" component={Cards} />
+      <Route path="date-picker" component={DatePicker} />
+      <Route path="dialog" component={Dialog} />
+      <Route path="dropdown-menu" component={DropDownMenu} />
+      <Route path="grid-list" component={GridList} />
+      <Route path="icons" component={Icons} />
+      <Route path="icon-buttons" component={IconButtons} />
+      <Route path="icon-menus" component={IconMenus} />
+      <Route path="left-nav" component={LeftNav} />
+      <Route path="lists" component={Lists} />
+      <Route path="menus" component={Menus} />
+      <Route path="paper" component={Paper} />
+      <Route path="progress" component={Progress} />
+      <Route path="refresh-indicator" component={RefreshIndicator} />
+      <Route path="sliders" component={Sliders} />
+      <Route path="switches" component={Switches} />
+      <Route path="snackbar" component={Snackbar} />
+      <Route path="table" component={Table} />
+      <Route path="tabs" component={Tabs} />
+      <Route path="text-fields" component={TextFields} />
+      <Route path="time-picker" component={TimePicker} />
+      <Route path="toolbars" component={Toolbars} />
     </Route>
 
-    <DefaultRoute handler={Home}/>
+    <IndexRoute component={Home}/>
   </Route>
 );
 
