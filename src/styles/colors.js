@@ -4,6 +4,27 @@
 
 module.exports = {
 
+  // TCNE Specific colors
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  // NAVIGATION COLOR
+  pesca: '#f29400',
+
+  // INTENSE CAMPAIGN COLOURS
+  puffo: '#56b8b9',
+  pinkdrago: '#DA3666',
+  // ... and pesca from above!
+
+  // SOBER CAMPAIGN COLOURS
+  caffelatte: '#b4a67a',
+  mirtilloblue: '#004a5f',
+
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
   red50:    '#ffebee',
   red100:   '#ffcdd2',
   red200:   '#ef9a9a',
