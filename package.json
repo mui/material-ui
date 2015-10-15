@@ -10,7 +10,7 @@
     "test-base": "./node_modules/.bin/karma start",
     "prebuild": "rimraf lib",
     "eslint": "gulp eslint",
-    "build": "npm run eslint && babel --stage 1 ./src --out-dir ./lib",
+    "build": "babel --stage 1 ./src --out-dir ./lib",
     "prepublish": "npm run build"
   },
   "keywords": [
