@@ -83,21 +83,24 @@ const SelectField = React.createClass({
   },
 
   getStyles() {
+    let spacing = this.state.muiTheme.rawTheme.spacing;
     let styles = {
       root: {
-        height: 46,
+        height: spacing.desktopSubheaderHeight,
         position: 'relative',
         width: '100%',
         top: 16,
         fontSize: 16,
+        overflow:'hidden',
       },
       label: {
         paddingLeft: 0,
-        top: 4,
+        top: 0,
         width: '100%',
+        lineHeight: spacing.desktopSubheaderHeight + 'px',
       },
       icon: {
-        top: 20,
+        top: 12,
         right: 0,
       },
       underline: {
@@ -107,18 +110,9 @@ const SelectField = React.createClass({
       error: {},
     };
 
-    if (!this.props.floatingLabelText) {
-      if(this.props.hintText) {
-        styles.root.top = -5;
-        styles.label.top = 1;
-        styles.icon.top = 17;
-      }
-      else {
-        styles.root.top = -8;
-      }
-    }
-    else {
-      styles.error.bottom = -15;
+    if (this.props.floatingLabelText) {
+      styles.label.top = 10;
+      styles.icon.top = 22;
     }
 
     return styles;

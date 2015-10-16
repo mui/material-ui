@@ -22,6 +22,7 @@ export default class Components extends React.Component {
       { route: '/components/paper', text: 'Paper'},
       { route: '/components/progress', text: 'Progress'},
       { route: '/components/refresh-indicator', text: 'Refresh Indicator'},
+      { route: '/components/popover', text: 'Popover'},
       { route: '/components/sliders', text: 'Sliders'},
       { route: '/components/switches', text: 'Switches'},
       { route: '/components/snackbar', text: 'Snackbar'},

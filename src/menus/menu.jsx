@@ -45,7 +45,7 @@ const Menu = React.createClass({
       onEscKeyDown: () => {},
       onItemTouchTap: () => {},
       onKeyDown: () => {},
-      openDirection: 'bottom-left',
+      openDirection: 'top-left',
       zDepth: 1,
     };
   },
@@ -184,7 +184,7 @@ const Menu = React.createClass({
     let menuItemIndex = 0;
     let newChildren = React.Children.map(children, (child) => {
 
-      let childIsADivider = child.type.displayName === 'MenuDivider';
+      let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
       let childIsDisabled = child.props.disabled;
       let childrenContainerStyles = {};
 
@@ -321,7 +321,7 @@ const Menu = React.createClass({
     //max menu height
     React.Children.forEach(children, (child) => {
       if (currentHeight < maxHeight) {
-        let childIsADivider = child.type.displayName === 'MenuDivider';
+        let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
 
         currentHeight += childIsADivider ? 16 : menuItemHeight;
         count++;
@@ -335,7 +335,7 @@ const Menu = React.createClass({
   _getMenuItemCount() {
     let menuItemCount = 0;
     React.Children.forEach(this.props.children, (child) => {
-      let childIsADivider = child.type.displayName === 'MenuDivider';
+      let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
       let childIsDisabled = child.props.disabled;
       if (!childIsADivider && !childIsDisabled) menuItemCount++;
     });
@@ -350,7 +350,7 @@ const Menu = React.createClass({
     let menuItemIndex = 0;
 
     React.Children.forEach(children, (child) => {
-      let childIsADivider = child.type.displayName === 'MenuDivider';
+      let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
 
       if (this._isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;

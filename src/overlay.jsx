@@ -31,6 +31,7 @@ const Overlay = React.createClass({
   getInitialState () {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      show:false,
     };
   },
 
@@ -51,20 +52,20 @@ const Overlay = React.createClass({
     return {
       autoLockScrolling: true,
       transitionEnabled: true,
+      style:{},
     };
   },
 
   componentDidMount() {
     this._originalBodyOverflow = document.getElementsByTagName('body')[0].style.overflow;
+    if (this.state.show !== this.props.show) {
+      this.setState({show:this.props.show}, this._applyAutoLockScrolling);
+    }
   },
 
   componentDidUpdate() {
-    if (this.props.autoLockScrolling) {
-      if (this.props.show) {
-        this._preventScrolling();
-      } else {
-        this._allowScrolling();
-      }
+    if (this.state.show !== this.props.show) {
+      this.setState({show:this.props.show}, this._applyAutoLockScrolling);
     }
   },
 
@@ -131,6 +132,16 @@ const Overlay = React.createClass({
 
   allowScrolling() {
     if (!this.props.autoLockScrolling) this._allowScrolling();
+  },
+
+  _applyAutoLockScrolling() {
+    if (this.props.autoLockScrolling) {
+      if (this.state.show) {
+        this._preventScrolling();
+      } else {
+        this._allowScrolling();
+      }
+    }
   },
 
   _preventScrolling() {

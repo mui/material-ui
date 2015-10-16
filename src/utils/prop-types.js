@@ -1,5 +1,8 @@
 let React = require('react');
 
+const horizontal = React.PropTypes.oneOf(['left', 'middle', 'right']);
+const vertical = React.PropTypes.oneOf(['top', 'center', 'bottom']);
+
 module.exports = {
 
   corners: React.PropTypes.oneOf([
@@ -8,6 +11,21 @@ module.exports = {
     'top-left',
     'top-right',
   ]),
+  popOverPositions: React.PropTypes.oneOf([
+    'bottom-left',
+    'bottom-right',
+    'top-left',
+    'top-right',
+    'above',
+    'below',
+  ]),
+  horizontal:horizontal,
+  vertical:vertical,
+
+  origin: React.PropTypes.shape({
+      horizontal: horizontal,
+      vertical:vertical,
+  }),
 
   cornersAndCenter: React.PropTypes.oneOf([
     'bottom-center',

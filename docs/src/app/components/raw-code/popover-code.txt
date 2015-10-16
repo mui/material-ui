@@ -1,0 +1,16 @@
+<span style={{cursor:'pointer'}} onClick={this.show}>
+  Click on me to show a popover
+</span>
+
+<Popover ref="pop" 
+  show={true} 
+  anchorEl={this.anchorEl}>
+  <div style={{padding:20}}>
+    <h2>Here is an arbitrary popover</h2>
+    <p>Hi - here is some content</p>
+  </div>
+</Popover>
+
+show(e) {
+  this.refs.pop.show(e.currentTarget)
+}

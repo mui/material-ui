@@ -1,11 +1,14 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const PureRenderMixin = require('react-addons-pure-render-mixin');
 const StylePropable = require('../mixins/style-propable');
 const Colors = require('../styles/colors');
+const Popover = require('../popover/popover');
 const CheckIcon = require('../svg-icons/navigation/check');
 const ListItem = require('../lists/list-item');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
+const Menu = require('./menu');
 
 const MenuItem = React.createClass({
 
@@ -46,6 +49,7 @@ const MenuItem = React.createClass({
   getInitialState () {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      open:false,
     };
   },
 
@@ -80,12 +84,14 @@ const MenuItem = React.createClass({
       innerDivStyle,
       insetChildren,
       leftIcon,
+      menuItems,
       rightIcon,
       secondaryText,
       style,
       value,
       ...other,
     } = this.props;
+
 
     const disabledColor = this.state.muiTheme.rawTheme.palette.disabledColor;
     const textColor = this.state.muiTheme.rawTheme.palette.textColor;
@@ -154,6 +160,21 @@ const MenuItem = React.createClass({
         React.cloneElement(secondaryText, {style: mergedSecondaryTextStyles}) :
         <div style={this.prepareStyles(styles.secondaryText)}>{secondaryText}</div>;
     }
+    let childMenuPopover;
+    if (menuItems) {
+      childMenuPopover = (
+        <Popover
+          anchorOrigin={{horizontal:'right', vertical:'top'}}
+          anchorEl={this.state.anchorEl}
+          open={this.state.open}
+          onRequestClose={this._onRequestClose}>
+          <Menu desktop={desktop} disabled={disabled} style={{position:'relative'}}>
+            {React.Children.map(menuItems, this._cloneMenuItem)}
+          </Menu>
+        </Popover>
+      );
+      other.onTouchTap = this._onClick;
+    }
 
     return (
       <ListItem
@@ -167,12 +188,47 @@ const MenuItem = React.createClass({
         style={mergedRootStyles}>
         {children}
         {secondaryTextElement}
+        {childMenuPopover}
       </ListItem>
     );
   },
 
   _applyFocusState() {
     this.refs.listItem.applyFocusState(this.props.focusState);
+  },
+
+  _cloneMenuItem(item) {
+    let props = {
+      onTouchTap: (e) =>
+      {
+        this._onRequestClose();
+        if (item.props.onClick) {
+          item.props.onClick(e);
+        }
+        if (this.props.onClick) {
+          this.props.onClick(e);
+        }
+      },
+      onRequestClose: this._onRequestClose,
+    };
+    return React.cloneElement(item, props);
+  },
+
+  _onClick(e) {
+    this.setState({
+      open:true,
+      anchorEl:ReactDOM.findDOMNode(this),
+    });
+    if (this.props.onClick) {
+      this.props.onClick(e);
+    }
+  },
+
+  _onRequestClose() {
+     this.setState({
+      open:false,
+      anchorEl:null,
+    });
   },
 });
 
