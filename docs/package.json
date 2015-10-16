@@ -16,6 +16,7 @@
     "codemirror": "^5.5.0",
     "history": "^1.11.1",
     "react-addons-create-fragment": "^0.14.0",
+    "react-addons-perf": "^0.14.0",
     "react-addons-pure-render-mixin": "^0.14.0",
     "react-addons-transition-group": "^0.14.0",
     "react-addons-update": "^0.14.0",
