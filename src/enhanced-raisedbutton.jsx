@@ -151,7 +151,8 @@ const EnhancedButton = React.createClass({
     } = this.props;
 
     const mergedStyles = this.mergeAndPrefix({
-      border: 10,
+      // We want to set this ourselves...
+      // border: 10,
       background: 'none',
       boxSizing: 'border-box',
       display: 'inline-block',
