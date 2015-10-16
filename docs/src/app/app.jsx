@@ -5,8 +5,9 @@ const AppRoutes = require('./app-routes.jsx');
 const injectTapEventPlugin = require('react-tap-event-plugin');
 const createHistory = require('history/lib/createHashHistory');
 
-//Needed for React Developer Tools
+//Helpers for debugging
 window.React = React;
+window.Perf = require('react-addons-perf');
 
 //Needed for onTouchTap
 //Can go away when react 1.0 release
