@@ -102,7 +102,7 @@ module.exports = {
         primaryColor: rawTheme.palette.accent1Color,
         primaryTextColor: rawTheme.palette.primaryTextColor,
         secondaryColor: rawTheme.palette.primary1Color,
-        secondaryTextColor: rawTheme.palette.secondaryColor,
+        secondaryTextColor: rawTheme.palette.secondaryTextColor,
       },
       refreshIndicator: {
         strokeColor: rawTheme.palette.borderColor,
