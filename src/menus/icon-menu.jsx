@@ -133,7 +133,7 @@ const IconMenu = React.createClass({
       ref: this.state.iconButtonRef,
     });
 
-    let menu = open ? (
+    let menu = open && this.props.children.length > 0 ? (
       <Menu
         {...other}
         animated={true}
