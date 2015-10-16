@@ -100,9 +100,9 @@ module.exports = {
         color: rawTheme.palette.alternateTextColor,
         textColor: rawTheme.palette.textColor,
         primaryColor: rawTheme.palette.accent1Color,
-        primaryTextColor: rawTheme.palette.alternateTextColor,
+        primaryTextColor: rawTheme.palette.primaryTextColor,
         secondaryColor: rawTheme.palette.primary1Color,
-        secondaryTextColor: rawTheme.palette.alternateTextColor,
+        secondaryTextColor: rawTheme.palette.secondaryColor,
       },
       refreshIndicator: {
         strokeColor: rawTheme.palette.borderColor,
