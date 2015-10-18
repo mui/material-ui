@@ -44,7 +44,7 @@ const AppBar = React.createClass({
   getInitialState () {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };    
+    };
   },
 
   //to update theme inside state whenever a new theme is passed down
@@ -133,15 +133,28 @@ const AppBar = React.createClass({
   },
 
   render() {
-    let props = this.props;
+    let {
+      title,
+      iconStyleRight,
+      showMenuIconButton,
+      iconElementLeft,
+      iconElementRight,
+      iconClassNameLeft,
+      iconClassNameRight,
+      className,
+      style,
+      zDepth,
+      children,
+      ...other,
+    } = this.props;
+
     let menuElementLeft;
     let menuElementRight;
     let styles = this.getStyles();
-    let title = props.title;
     let iconRightStyle = this.mergeStyles(styles.iconButton.style, {
       marginRight: -16,
       marginLeft: 'auto',
-    }, props.iconStyleRight);
+    }, iconStyleRight);
     let titleElement;
 
     if (title) {
@@ -152,9 +165,7 @@ const AppBar = React.createClass({
         <div style={this.prepareStyles(styles.mainElement)}>{title}</div>;
     }
 
-    if (props.showMenuIconButton) {
-      let iconElementLeft = props.iconElementLeft;
-
+    if (showMenuIconButton) {
       if (iconElementLeft) {
         switch (iconElementLeft.type.displayName) {
           case 'IconButton':
@@ -170,12 +181,12 @@ const AppBar = React.createClass({
           </div>
         );
       } else {
-        let child = (props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeStyles(styles.iconButton.iconStyle)}/>;
+        let child = (iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeStyles(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
             style={this.mergeStyles(styles.iconButton.style)}
             iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
-            iconClassName={props.iconClassNameLeft}
+            iconClassName={iconClassNameLeft}
             onTouchTap={this._onLeftIconButtonTouchTap}>
               {child}
           </IconButton>
@@ -183,9 +194,7 @@ const AppBar = React.createClass({
       }
     }
 
-    if (props.iconElementRight) {
-      let iconElementRight = props.iconElementRight;
-
+    if (iconElementRight) {
       switch (iconElementRight.type.displayName) {
         case 'IconMenu':
         case 'IconButton':
@@ -206,12 +215,12 @@ const AppBar = React.createClass({
           {iconElementRight}
         </div>
       );
-    } else if (props.iconClassNameRight) {
+    } else if (iconClassNameRight) {
       menuElementRight = (
         <IconButton
           style={iconRightStyle}
           iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
-          iconClassName={props.iconClassNameRight}
+          iconClassName={iconClassNameRight}
           onTouchTap={this._onRightIconButtonTouchTap}>
         </IconButton>
       );
@@ -219,14 +228,15 @@ const AppBar = React.createClass({
 
     return (
       <Paper
+        {...other}
         rounded={false}
-        className={props.className}
-        style={this.mergeStyles(styles.root, props.style)}
-        zDepth={props.zDepth}>
+        className={className}
+        style={this.mergeStyles(styles.root, style)}
+        zDepth={zDepth}>
           {menuElementLeft}
           {titleElement}
           {menuElementRight}
-          {props.children}
+          {children}
       </Paper>
     );
   },
