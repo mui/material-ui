@@ -171,7 +171,22 @@ const DropDownMenu = React.createClass({
   },
 
   render() {
-    let _this = this;
+    const {
+      autoWidth,
+      className,
+      onFocus,
+      onBlur,
+      style,
+      displayMember,
+      valueMember,
+      valueLink,
+      labelStyle,
+      iconStyle,
+      underlineStyle,
+      menuItemStyle,
+      ...other,
+    } = this.props;
+
     let styles = this.getStyles();
     let selectedIndex = this._isControlled() ? null : this.state.selectedIndex;
     let displayValue = "";
@@ -180,14 +195,12 @@ const DropDownMenu = React.createClass({
         console.assert(!!this.props.menuItems[selectedIndex], 'SelectedIndex of ' + selectedIndex + ' does not exist in menuItems.');
       }
     }
-    else {
-      if (this.props.valueMember && this._isControlled()) {
-        let value = this.props.hasOwnProperty('value') ? this.props.value : this.props.valueLink.value;
-        if (value !== null && value !== undefined) {
-          for (let i = 0; i < this.props.menuItems.length; i++) {
-            if (this.props.menuItems[i][this.props.valueMember] === value) {
-              selectedIndex = i;
-            }
+    else if (valueMember && this._isControlled()) {
+      let value = this.props.hasOwnProperty('value') ? this.props.value : valueLink.value;
+      if (value !== null && value !== undefined) {
+        for (let i = 0; i < this.props.menuItems.length; i++) {
+          if (this.props.menuItems[i][valueMember] === value) {
+            selectedIndex = i;
           }
         }
       }
@@ -195,43 +208,44 @@ const DropDownMenu = React.createClass({
 
     let selectedItem = this.props.menuItems[selectedIndex];
     if (selectedItem) {
-      displayValue = selectedItem[this.props.displayMember];
+      displayValue = selectedItem[displayMember];
     }
 
     let menuItems = this.props.menuItems.map((item) => {
-      item.text = item[_this.props.displayMember];
-      item.payload = item[_this.props.valueMember];
+      item.text = item[displayMember];
+      item.payload = item[valueMember];
       return item;
     });
 
     return (
       <div
+        {...other}
         ref="root"
         onKeyDown={this._onKeyDown}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
-        className={this.props.className}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        className={className}
         style={this.prepareStyles(
           styles.root,
           this.state.open && styles.rootWhenOpen,
-          this.props.style)} >
+          style)} >
 
           <ClearFix style={this.mergeStyles(styles.control)} onTouchTap={this._onControlClick}>
             <Paper style={this.mergeStyles(styles.controlBg)} zDepth={0} />
-            <div style={this.prepareStyles(styles.label, this.state.open && styles.labelWhenOpen, this.props.labelStyle)}>
+            <div style={this.prepareStyles(styles.label, this.state.open && styles.labelWhenOpen, labelStyle)}>
               {displayValue}
             </div>
-            <DropDownArrow style={this.mergeStyles(styles.icon, this.props.iconStyle)}/>
-            <div style={this.prepareStyles(styles.underline, this.props.underlineStyle)}/>
+            <DropDownArrow style={this.mergeStyles(styles.icon, iconStyle)}/>
+            <div style={this.prepareStyles(styles.underline, underlineStyle)}/>
           </ClearFix>
 
           <Menu
             ref="menuItems"
-            autoWidth={this.props.autoWidth}
+            autoWidth={autoWidth}
             selectedIndex={selectedIndex}
             menuItems={menuItems}
             style={styles.menu}
-            menuItemStyle={this.mergeStyles(styles.menuItem, this.props.menuItemStyle)}
+            menuItemStyle={this.mergeStyles(styles.menuItem, menuItemStyle)}
             hideable={true}
             visible={this.state.open}
             onRequestClose={this._onMenuRequestClose}
