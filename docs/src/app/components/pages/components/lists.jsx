@@ -177,19 +177,19 @@ class ListsPage extends React.Component {
         infoArray: [
           {
             name: 'onKeyboardFocus',
-            type: 'function(e, isKeyboardFocused)',
+            type: 'function(event, isKeyboardFocused)',
             header: 'optional',
             desc: 'Called when the ListItem has keyboard focus.'
           },
           {
             name: 'onMouseLeave',
-            type: 'function(e)',
+            type: 'function(event)',
             header: 'optional',
             desc: 'Called when the mouse is no longer over the ListItem.'
           },
           {
             name: 'onMouseEnter',
-            type: 'function(e)',
+            type: 'function(event)',
             header: 'optional',
             desc: 'Called when the mouse is over the ListItem.'
           },
@@ -201,7 +201,7 @@ class ListsPage extends React.Component {
           },
           {
             name: 'onTouchStart',
-            type: 'function(e)',
+            type: 'function(event)',
             header: 'optional',
             desc: 'Called when touches start.'
           },
