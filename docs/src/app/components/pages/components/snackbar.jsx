@@ -75,7 +75,7 @@ class SnackbarPage extends React.Component {
         infoArray: [
           {
             name: 'onActionTouchTap',
-            header: 'function(e)',
+            header: 'function(event)',
             desc: 'Fired when the action button is touchtapped.'
           },
           {
