@@ -115,7 +115,7 @@ const Clock = React.createClass({
     }
 
     return (
-      <div style={this.prepareStyles(styles.root)}>
+      <div style={this.mergeStyles(styles.root)}>
         <TimeDisplay
           selectedTime={this.state.selectedTime}
           mode={this.state.mode}
@@ -124,7 +124,7 @@ const Clock = React.createClass({
           onSelectHour={this._setMode.bind(this, 'hour')}
           onSelectMin={this._setMode.bind(this, 'minute')} />
 
-        <div style={this.prepareStyles(styles.container)} >
+        <div style={this.mergeStyles(styles.container)} >
           {clock}
         </div>
 
