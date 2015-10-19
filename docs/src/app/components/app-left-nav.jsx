@@ -81,3 +81,4 @@ let AppLeftNav = React.createClass({
   
 });
 
+module.exports = AppLeftNav;
