@@ -18,6 +18,11 @@ injectTapEventPlugin();
  * Render the main app component. You can read more about the react-router here:
  * https://github.com/rackt/react-router/blob/master/docs/guides/overview.md
  */
-ReactDOM.render(<Router history={createHistory({queryKey: false})}>
-  {AppRoutes}
-</Router>, document.getElementById('app'));
+ReactDOM.render(
+  <Router
+    history={createHistory({queryKey: false})}
+    onUpdate={() => window.scrollTo(0, 0)}
+  >
+    {AppRoutes}
+  </Router>
+, document.getElementById('app'));
