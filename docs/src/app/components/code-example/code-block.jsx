@@ -2,6 +2,8 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const { Styles } = require('material-ui');
 const { Spacing } = Styles;
+const { ThemeManager } = Styles;
+const DefaultRawTheme = Styles.LightRawTheme;
 
 
 const CodeBlock = React.createClass({

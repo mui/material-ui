@@ -52,7 +52,7 @@ export default class DatePickerPage extends React.Component {
             name: 'floatingLabelText',
             type: 'string',
             header: 'optional',
-            desc: 'The text string to use for the floating label element.'
+            desc: 'The text string to use for the floating label element.',
           },
           {
             name: 'formatDate',
@@ -65,7 +65,7 @@ export default class DatePickerPage extends React.Component {
             name: 'hintText',
             type: 'string',
             header: 'optional',
-            desc: 'The hint text string to display. Note, floatingLabelText will overide this.'
+            desc: 'The hint text string to display. Note, floatingLabelText will overide this.',
           },
           {
             name: 'maxDate',

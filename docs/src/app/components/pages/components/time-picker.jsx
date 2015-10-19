@@ -23,7 +23,7 @@ let TimePickerPage = React.createClass({
             name: 'floatingLabelText',
             type: 'string',
             header: 'optional',
-            desc: 'The text string to use for the floating label element.'
+            desc: 'The text string to use for the floating label element.',
           },
           {
             name: 'format',
@@ -35,7 +35,7 @@ let TimePickerPage = React.createClass({
             name: 'hintText',
             type: 'string',
             header: 'optional',
-            desc: 'The hint text string to display. Note, floatingLabelText will overide this.'
+            desc: 'The hint text string to display. Note, floatingLabelText will overide this.',
           },
           {
             name: 'pedantic',

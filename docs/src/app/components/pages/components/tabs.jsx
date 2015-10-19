@@ -182,8 +182,6 @@ export default class TabsPage extends React.Component {
             </Tab>
             <Tab
               label="Home (non-content example)"
-              route="home"
-              label="Home (non-content example)"
               route="/home"
               onActive={this._handleTabActive} />
           </Tabs>
