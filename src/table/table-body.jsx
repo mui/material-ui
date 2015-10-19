@@ -15,11 +15,6 @@ const TableBody = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  propTypes: {
-    label: React.PropTypes.node,
-    style: React.PropTypes.object,
-  },
-
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
