@@ -373,10 +373,10 @@ export default class ButtonPage extends React.Component {
                   </div>
                   <div style={styles.container}>
                     <FlatButton
-                    linkButton={true}
-                    href="https://github.com/callemall/material-ui"
-                    secondary={true} label="GitHub"
-                    labelStyle={styles.buttonLabel}>
+                      linkButton={true}
+                      href="https://github.com/callemall/material-ui"
+                      secondary={true} label="GitHub"
+                      labelStyle={styles.buttonLabel}>
                       <FontIcon style={styles.exampleFlatButtonIcon} className="muidocs-icon-custom-github"/>
                     </FlatButton>
                   </div>
