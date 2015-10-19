@@ -142,7 +142,7 @@ class DatePickerPage extends React.Component {
           },
           {
             name: 'onFocus',
-            header: 'function(e)',
+            header: 'function(event)',
             desc: 'Callback function that is fired when the datepicker field ' +
                   'gains focus.'
           },
