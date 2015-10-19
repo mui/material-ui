@@ -19,9 +19,9 @@ describe('Checkbox', () => {
     let render = TestUtils.renderIntoDocument(<ThemedCheckbox defaultChecked={true} />);
     let input = TestUtils.findRenderedDOMComponentWithTag(render, 'input');
     let svgs = TestUtils.scryRenderedDOMComponentsWithTag(render, 'svg');
-    let checkMarkNode = svgs[1].getDOMNode();
+    let checkMarkNode = svgs[1];
 
-    expect(input.getDOMNode().hasAttribute('checked')).to.be.true;
+    expect(input.hasAttribute('checked')).to.be.true;
     expect(checkMarkNode.style.opacity).to.equal('1');
     expect(checkMarkNode.firstChild.getAttribute('d')).to.equal(CHECKMARK_PATH);
   });
@@ -31,9 +31,9 @@ describe('Checkbox', () => {
     let render = TestUtils.renderIntoDocument(<ThemedCheckbox defaultChecked={false} />);
     let input = TestUtils.findRenderedDOMComponentWithTag(render, 'input');
     let svgs = TestUtils.scryRenderedDOMComponentsWithTag(render, 'svg');
-    let checkMarkNode = svgs[1].getDOMNode();
+    let checkMarkNode = svgs[1];
 
-    expect(input.getDOMNode().hasAttribute('checked')).to.be.false;
+    expect(input.hasAttribute('checked')).to.be.false;
     expect(checkMarkNode.style.opacity).to.equal('0');
     expect(checkMarkNode.firstChild.getAttribute('d')).to.equal(CHECKMARK_PATH);
   });
@@ -50,12 +50,12 @@ describe('Checkbox', () => {
 
     it('should display checkmark when clicked once', () => {
       let input = TestUtils.findRenderedDOMComponentWithTag(renderedCheckbox, 'input');
-      let inputNode = input.getDOMNode();
+      let inputNode = input;
       inputNode.checked = !inputNode.checked;
       TestUtils.Simulate.change(input);
 
       let svgs = TestUtils.scryRenderedDOMComponentsWithTag(renderedCheckbox, 'svg');
-      let checkMarkNode = svgs[1].getDOMNode();
+      let checkMarkNode = svgs[1];
       expect(checkMarkNode.style.opacity).to.equal('1');
       expect(checkMarkNode.firstChild.getAttribute('d')).to.equal(CHECKMARK_PATH);
     });
@@ -63,7 +63,7 @@ describe('Checkbox', () => {
 
     it('should NOT display checkmark when clicked twice', () => {
       let input = TestUtils.findRenderedDOMComponentWithTag(renderedCheckbox, 'input');
-      let inputNode = input.getDOMNode();
+      let inputNode = input;
       // Simulate events
       inputNode.checked = !inputNode.checked;
       TestUtils.Simulate.change(input);
@@ -71,7 +71,7 @@ describe('Checkbox', () => {
       TestUtils.Simulate.change(input);
 
       let svgs = TestUtils.scryRenderedDOMComponentsWithTag(renderedCheckbox, 'svg');
-      let checkMarkNode = svgs[1].getDOMNode();
+      let checkMarkNode = svgs[1];
       expect(checkMarkNode.style.opacity).to.equal('0');
       expect(checkMarkNode.firstChild.getAttribute('d')).to.equal(CHECKMARK_PATH);
     });
