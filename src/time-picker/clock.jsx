@@ -17,6 +17,10 @@ const Clock = React.createClass({
     isActive: React.PropTypes.bool,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   getDefaultProps() {
     return {
       initialTime: new Date(),
