@@ -20,7 +20,7 @@ let AppLeftNav = React.createClass({
   
   contextTypes: {
     muiTheme: React.PropTypes.object,
-    router: React.PropTypes.func
+    router: React.PropTypes.func,
   },
 
   getStyles() {
