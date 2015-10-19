@@ -143,7 +143,10 @@ const ColorsPage = React.createClass({
     };
 
     return (
-      <li style={styles}>{blockTitle} {bgColorText}</li>
+      <li style={styles}>
+        {blockTitle}
+        {bgColorText}
+      </li>
     );
   },
 
