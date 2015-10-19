@@ -57,7 +57,7 @@ class SwitchesPage extends React.Component {
           name: 'label',
           type: 'string',
           header: 'optional',
-          desc: 'The text that is displayed to the right of the checkbox.'
+          desc: 'The text that is displayed beside the checkbox.'
         },
         {
           name: 'labelStyle',
@@ -70,7 +70,7 @@ class SwitchesPage extends React.Component {
           type: 'string',
           header: 'default:"right"',
           desc: 'Where the label will be placed next to the checkbox. Options include ' +
-                '"left" and "right" (case-sensitive). Default option is "left".'
+                '"left" and "right" (case-sensitive). Default option is "right".'
         },
         {
           name: 'style',
@@ -132,7 +132,7 @@ class SwitchesPage extends React.Component {
           name: 'label',
           type: 'string',
           header: 'optional',
-          desc: 'The text that is displayed to the right of the radio button.'
+          desc: 'The text that is displayed beside the radio button.'
         },
         {
           name: 'labelStyle',
@@ -145,7 +145,7 @@ class SwitchesPage extends React.Component {
           type: 'string',
           header: 'default:"right"',
           desc: 'Where the label will be placed next to the radio button. Options include ' +
-                '"left" and "right" (case-sensitive). Default option is "left".'
+                '"left" and "right" (case-sensitive). Default option is "right".'
         },
         {
           name: 'style',
@@ -254,7 +254,7 @@ class SwitchesPage extends React.Component {
           name: 'label',
           type: 'string',
           header: 'optional',
-          desc: 'The text that is displayed to the right of the toggle switch.'
+          desc: 'The text that is displayed beside the toggle switch.'
         },
         {
           name: 'labelStyle',
