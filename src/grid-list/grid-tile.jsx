@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const StylePropable = require('../mixins/style-propable');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
@@ -126,7 +127,7 @@ const GridTile = React.createClass({
   },
 
   _ensureImageCover() {
-    let imgEl = React.findDOMNode(this.refs.img);
+    let imgEl = ReactDOM.findDOMNode(this.refs.img);
 
     if (imgEl) {
       let fit = () => {
