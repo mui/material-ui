@@ -95,9 +95,9 @@ const Master = React.createClass({
   render() {
     let styles = this.getStyles();
     let title =
-      this.props.history.isActive('get-started') ? 'Get Started' :
-      this.props.history.isActive('customization') ? 'Customization' :
-      this.props.history.isActive('components') ? 'Components' : '';
+      this.props.history.isActive('/get-started') ? 'Get Started' :
+      this.props.history.isActive('/customization') ? 'Customization' :
+      this.props.history.isActive('/components') ? 'Components' : '';
 
     let githubButton = (
       <IconButton
@@ -223,9 +223,9 @@ const Master = React.createClass({
   },
 
   _getSelectedIndex() {
-    return this.props.history.isActive('get-started') ? '1' :
-      this.props.history.isActive('customization') ? '2' :
-      this.props.history.isActive('components') ? '3' : '0';
+    return this.props.history.isActive('/get-started') ? '1' :
+      this.props.history.isActive('/customization') ? '2' :
+      this.props.history.isActive('/components') ? '3' : '0';
   },
 
   _handleTabChange(value, e, tab) {
@@ -235,9 +235,9 @@ const Master = React.createClass({
 
   _getAppBar() {
     let title =
-      this.props.history.isActive('get-started') ? 'Get Started' :
-      this.props.history.isActive('customization') ? 'Customization' :
-      this.props.history.isActive('components') ? 'Components' : '';
+      this.props.history.isActive('/get-started') ? 'Get Started' :
+      this.props.history.isActive('/customization') ? 'Customization' :
+      this.props.history.isActive('/components') ? 'Components' : '';
 
     let githubButton = (
       <IconButton
