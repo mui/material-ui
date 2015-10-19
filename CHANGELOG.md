@@ -1,3 +1,14 @@
+## 0.12.4
+###### _Oct 19, 2015_
+
+##### General
+- React 0.14 compatible
+
+##### Component Fixes / Enhancements
+- ThemeDecorator supports props (#1841)
+- Full RTL support included (#1674)
+- react-draggable dependency removed for Slider (#1825)
+
 ## 0.12.3
 ###### _Oct 7, 2015_
 
