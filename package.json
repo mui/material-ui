@@ -9,7 +9,8 @@
     "test-watch": "npm run test-base -- --auto-watch",
     "test-base": "./node_modules/.bin/karma start",
     "build": "babel --stage 1 ./src --out-dir ./lib",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "install": "npm run build"
   },
   "keywords": [
     "react",
