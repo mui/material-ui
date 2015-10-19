@@ -158,16 +158,16 @@ const HomePage = React.createClass({
       <FullWidthSection useContent={true} contentStyle={styles}>
         <HomeFeature
           heading="Get Started"
-          route="get-started"
+          route="/get-started"
           img="images/get-started.svg"
           firstChild={true}/>
         <HomeFeature
           heading="Customization"
-          route="customization"
+          route="/customization"
           img="images/css-framework.svg" />
         <HomeFeature
           heading="Components"
-          route="components"
+          route="/components"
           img="images/components.svg"
           lastChild={true}/>
       </FullWidthSection>
