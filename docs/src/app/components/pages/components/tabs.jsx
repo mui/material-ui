@@ -8,10 +8,6 @@ let Code = require('tabs-code');
 
 export default class TabsPage extends React.Component {
 
-  static contextTypes = {
-    router: React.PropTypes.func,
-  };
-
   constructor(props) {
     super(props);
     this._handleTabActive = this._handleTabActive.bind(this);
