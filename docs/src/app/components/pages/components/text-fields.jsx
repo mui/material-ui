@@ -188,19 +188,19 @@ let TextFieldsPage = React.createClass({
         infoArray: [
           {
             name: 'onBlur',
-            header: 'function(e)',
+            header: 'function(event)',
             desc: 'Callback function that is fired when the textfield loses' +
                   'focus.'
           },
           {
             name: 'onChange',
-            header: 'function(e)',
+            header: 'function(event)',
             desc: 'Callback function that is fired when the textfield\'s value ' +
                   'changes.'
           },
           {
             name: 'onFocus',
-            header: 'function(e)',
+            header: 'function(event)',
             desc: 'Callback function that is fired when the textfield gains ' +
                   'focus.'
           },

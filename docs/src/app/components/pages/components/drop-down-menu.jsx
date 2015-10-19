@@ -99,7 +99,7 @@ class DropDownMenuPage extends React.Component {
         infoArray: [
           {
             name: 'onChange',
-            header: 'function(e, selectedIndex, menuItem)',
+            header: 'function(event, selectedIndex, menuItem)',
             desc: 'Fired when a menu item is clicked that is not the one currently ' +
               'selected.'
           }
