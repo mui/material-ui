@@ -99,7 +99,7 @@ const Toggle = React.createClass({
       },
       label: {
         color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
-        width: 'calc(100% - 46px)',
+        width: 'calc(100% - ' + (toggleTrackWidth + 10) + 'px)',
       },
     };
 
