@@ -93,7 +93,7 @@ module.exports = {
 
   prepareStyles(muiTheme, ...styles) {
     styles = styles.length > 1 ? ImmutabilityHelper.merge.apply(this, styles) : (styles[0] || {});
-    const flipped = this.ensureDirection(muiTheme, styles);
+    const flipped = muiTheme ? this.ensureDirection(muiTheme, styles) : styles;
     return AutoPrefix.all(flipped);
   },
 };
