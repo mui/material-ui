@@ -41,7 +41,6 @@ const Calendar = React.createClass({
     maxDate: React.PropTypes.object,
     onDayTouchTap: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
-    shouldShowMonthDayPickerFirst: React.PropTypes.bool,
   },
 
   windowListeners: {
@@ -54,7 +53,6 @@ const Calendar = React.createClass({
       initialDate: new Date(),
       minDate: DateTime.addYears(new Date(), -100),
       maxDate: DateTime.addYears(new Date(), 100),
-      shouldShowMonthDayPickerFirst: true,
     };
   },
 
@@ -62,7 +60,7 @@ const Calendar = React.createClass({
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
-      displayMonthDay: this.props.shouldShowMonthDayPickerFirst || true,
+      displayMonthDay: true,
       selectedDate: this.props.initialDate,
       transitionDirection: 'left',
       transitionEnter: true,
@@ -81,10 +79,6 @@ const Calendar = React.createClass({
         displayDate: DateTime.getFirstDayOfMonth(d),
         selectedDate: d,
       });
-    }
-
-    if (nextProps.shouldShowMonthDayPickerFirst) {
-      this.setState({displayMonthDay: nextProps.shouldShowMonthDayPickerFirst});
     }
   },
 
@@ -138,18 +132,10 @@ const Calendar = React.createClass({
       },
     };
 
-    if (this.state.displayMonthDay) {
-      styles.yearContainer.display = 'none';
-    }
-    else {
-      styles.calendarContainer.display = 'none';
-    }
-
     const weekTitleDayStyle = this.prepareStyles(styles.weekTitleDay);
 
     return (
       <ClearFix style={this.mergeStyles(styles.root)}>
-
         <DateDisplay
           disableYearSelection={this.props.disableYearSelection}
           style={styles.dateDisplay}
@@ -159,14 +145,13 @@ const Calendar = React.createClass({
           monthDaySelected={this.state.displayMonthDay}
           mode={this.props.mode}
           weekCount={weekCount} />
-
+        {this.state.displayMonthDay &&
         <div style={this.prepareStyles(styles.calendarContainer)}>
           <CalendarToolbar
             displayDate={this.state.displayDate}
             onMonthChange={this._handleMonthChange}
             prevMonth={toolbarInteractions.prevMonth}
             nextMonth={toolbarInteractions.nextMonth} />
-
           <ClearFix
             elementType="ul"
             style={styles.weekTitle}>
@@ -178,7 +163,6 @@ const Calendar = React.createClass({
             <li style={weekTitleDayStyle}>F</li>
             <li style={weekTitleDayStyle}>S</li>
           </ClearFix>
-
           <SlideInTransitionGroup
             direction={this.state.transitionDirection}>
             <CalendarMonth
@@ -191,12 +175,11 @@ const Calendar = React.createClass({
               maxDate={this.props.maxDate}
               shouldDisableDate={this.props.shouldDisableDate} />
           </SlideInTransitionGroup>
-        </div>
-
+        </div>}
+        {!this.state.displayMonthDay &&
         <div style={this.prepareStyles(styles.yearContainer)}>
           {this._yearSelector()}
-        </div>
-
+        </div>}
       </ClearFix>
     );
   },
@@ -291,11 +274,15 @@ const Calendar = React.createClass({
   },
 
   _handleMonthDayClick() {
-    this.setState({displayMonthDay: true});
+    this.setState({
+      displayMonthDay: true,
+    });
   },
 
   _handleYearClick() {
-    this.setState({displayMonthDay: false});
+    this.setState({
+      displayMonthDay: false,
+    });
   },
 
   _handleWindowKeyDown(e) {
