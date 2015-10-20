@@ -1,7 +1,7 @@
 let React = require('react');
 let PageWithNav = require('./page-with-nav');
 
-class Components extends React.Component {
+export default class Components extends React.Component {
 
   render() {
     let menuItems = [
@@ -37,5 +37,3 @@ class Components extends React.Component {
   }
 
 }
-
-module.exports = Components;

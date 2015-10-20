@@ -6,10 +6,10 @@ let { Colors, Typography } = Styles;
 let Code = require('tabs-code');
 
 
-class TabsPage extends React.Component {
+export default class TabsPage extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this._handleTabActive = this._handleTabActive.bind(this);
     this.state = {tabsValue: 'a'};
   }
@@ -29,39 +29,39 @@ class TabsPage extends React.Component {
             name: 'contentContainerStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the content\'s container.'
+            desc: 'Override the inline-styles of the content\'s container.',
           },
           {
             name: 'initialSelectedIndex',
             type: 'number',
             header: 'optional',
-            desc: 'Specify initial visible tab index. Initial selected index is set by default to 0. If initialSelectedIndex is set but larger than the total amount of specified tabs, initialSelectedIndex will revert back to default'
+            desc: 'Specify initial visible tab index. Initial selected index is set by default to 0. If initialSelectedIndex is set but larger than the total amount of specified tabs, initialSelectedIndex will revert back to default',
           },
           {
             name: 'inkBarStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the InkBar.'
+            desc: 'Override the inline-styles of the InkBar.',
           },
           {
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the Tabs\' root element.'
+            desc: 'Override the inline-styles of the Tabs\' root element.',
           },
           {
             name: 'tabItemContainerStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the tab-labels container.'
+            desc: 'Override the inline-styles of the tab-labels container.',
           },
           {
             name: 'value',
             type: 'string or number',
             header: 'optional',
-            desc: 'Makes Tabs controllable and selects the tab whose value prop matches this prop.'
+            desc: 'Makes Tabs controllable and selects the tab whose value prop matches this prop.',
           },
-        ]
+        ],
       },
       {
         name: 'Tabs Events',
@@ -70,9 +70,9 @@ class TabsPage extends React.Component {
             name: 'onChange',
             type: 'function(value, e, tab)',
             header: 'optional',
-            desc: 'Fired on touch or tap of a tab. Passes the value of the tab, the touchTap event and the tab element.'
-          }
-        ]
+            desc: 'Fired on touch or tap of a tab. Passes the value of the tab, the touchTap event and the tab element.',
+          },
+        ],
       },
       {
         name: 'Tab Props',
@@ -81,16 +81,16 @@ class TabsPage extends React.Component {
             name: 'label',
             type: 'string',
             header: 'optional',
-            desc: 'Sets the text value of the tab item to the string specified.'
+            desc: 'Sets the text value of the tab item to the string specified.',
           },
           {
             name: 'value',
             type: 'string',
             header: 'optional',
             desc: 'If value prop passed to Tabs component, this value prop is also required. It assigns a value ' +
-              'to the tab so that it can be selected by the Tabs.'
-          }
-        ]
+              'to the tab so that it can be selected by the Tabs.',
+          },
+        ],
       },
       {
         name: 'Tab Events',
@@ -99,10 +99,10 @@ class TabsPage extends React.Component {
             name: 'onActive',
             type: 'function(tab)',
             header: 'optional',
-            desc: 'Fired when the active tab changes by touch or tap. Use this event to specify any functionality when an active tab changes. For example - we are using this to route to home when the third tab becomes active. This function will always recieve the active tab as it\'s first argument.'
-          }
-        ]
-      }
+            desc: 'Fired when the active tab changes by touch or tap. Use this event to specify any functionality when an active tab changes. For example - we are using this to route to home when the third tab becomes active. This function will always recieve the active tab as it\'s first argument.',
+          },
+        ],
+      },
     ];
 
     let padding = 400;
@@ -178,8 +178,6 @@ class TabsPage extends React.Component {
             </Tab>
             <Tab
               label="Home (non-content example)"
-              route="home"
-              label="Home (non-content example)"
               route="/home"
               onActive={this._handleTabActive} />
           </Tabs>
@@ -240,5 +238,3 @@ class TabsPage extends React.Component {
     this.setState({tabsValue: value});
   }
 }
-
-module.exports = TabsPage;

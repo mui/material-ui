@@ -11,7 +11,7 @@ let menuItems = [
     { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
     { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
     { type: MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
-    { type: MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
+    { type: MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' },
   ];
 
 
@@ -20,7 +20,7 @@ let AppLeftNav = React.createClass({
   
   contextTypes: {
     muiTheme: React.PropTypes.object,
-    router: React.PropTypes.func
+    router: React.PropTypes.func,
   },
 
   getStyles() {
@@ -34,7 +34,7 @@ let AppLeftNav = React.createClass({
       backgroundColor: Colors.cyan500,
       paddingLeft: Spacing.desktopGutter,
       paddingTop: '0px',
-      marginBottom: '8px'
+      marginBottom: '8px',
     };
   },
 

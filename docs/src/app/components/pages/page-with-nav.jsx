@@ -10,44 +10,44 @@ let PageWithNav = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
-    router: React.PropTypes.func
+    router: React.PropTypes.func,
   },
 
   mixins: [StyleResizable, StylePropable, History],
 
   propTypes: {
-    menuItems: React.PropTypes.array
+    menuItems: React.PropTypes.array,
   },
 
   getStyles(){
     let subNavWidth = Spacing.desktopKeylineIncrement * 3 + 'px';
     let styles = {
       root: {
-        paddingTop: Spacing.desktopKeylineIncrement + 'px'
+        paddingTop: Spacing.desktopKeylineIncrement + 'px',
       },
       rootWhenMedium: {
-        position: 'relative'
+        position: 'relative',
       },
       secondaryNav: {
         borderTop: 'solid 1px ' + Colors.grey300,
-        overflow: 'hidden'
+        overflow: 'hidden',
       },
       content: {
         boxSizing: 'border-box',
         padding: Spacing.desktopGutter + 'px',
-        maxWidth: (Spacing.desktopKeylineIncrement * 14) + 'px'
+        maxWidth: (Spacing.desktopKeylineIncrement * 14) + 'px',
       },
       secondaryNavWhenMedium: {
         borderTop: 'none',
         position: 'absolute',
         top: '64px',
-        width: subNavWidth
+        width: subNavWidth,
       },
       contentWhenMedium: {
         marginLeft: subNavWidth,
         borderLeft: 'solid 1px ' + Colors.grey300,
-        minHeight: '800px'
-      }
+        minHeight: '800px',
+      },
     };
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
@@ -91,7 +91,7 @@ let PageWithNav = React.createClass({
 
   _onMenuItemClick(e, index, item) {
     this.history.pushState(null, item.route);
-  }
+  },
 
 });
 

@@ -23,7 +23,7 @@ const CodeExample = React.createClass({
   },
 
   contextTypes : {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -64,7 +64,7 @@ const CodeExample = React.createClass({
       root: {
         backgroundColor: canvasColor,
         marginBottom: 32,
-        overflow: 'hidden'
+        overflow: 'hidden',
       },
       exampleLabel: {
         color: borderColor,
@@ -82,7 +82,7 @@ const CodeExample = React.createClass({
         margin: 0,
         width: layoutSideBySide ? '45%' : null,
         float: layoutSideBySide ? 'right' : null,
-      }
+      },
     };
 
     return (

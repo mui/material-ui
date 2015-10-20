@@ -20,7 +20,7 @@ const HomePage = React.createClass({
 
   render() {
     let style = {
-      paddingTop: Spacing.desktopKeylineIncrement
+      paddingTop: Spacing.desktopKeylineIncrement,
     };
 
     return (
@@ -52,10 +52,10 @@ const HomePage = React.createClass({
         color: DefaultRawTheme.palette.primary1Color,
       },
       githubStyle: {
-        margin: '16px 32px 0px 8px'
+        margin: '16px 32px 0px 8px',
       },
       demoStyle: {
-        margin: '16px 32px 0px 32px'
+        margin: '16px 32px 0px 32px',
       },
       h1: {
         color: Colors.darkWhite,
@@ -69,20 +69,20 @@ const HomePage = React.createClass({
         letterSpacing: 0,
       },
       nowrap: {
-        whiteSpace: 'nowrap'
+        whiteSpace: 'nowrap',
       },
       taglineWhenLarge: {
-        marginTop: 32
+        marginTop: 32,
       },
       h1WhenLarge: {
-        fontSize: 56
+        fontSize: 56,
       },
       h2WhenLarge: {
         fontSize: 24,
         lineHeight: '32px',
         paddingTop: 16,
         marginBottom: 12,
-      }
+      },
     };
 
     styles.h2 = this.mergeStyles(styles.h1, styles.h2);
@@ -118,7 +118,7 @@ const HomePage = React.createClass({
   _getHomePurpose() {
     let styles = {
       root: {
-        backgroundColor: Colors.grey200
+        backgroundColor: Colors.grey200,
       },
       content: {
         maxWidth: 700,
@@ -131,7 +131,7 @@ const HomePage = React.createClass({
         marginBottom: 13,
         letterSpacing: 0,
         color: Typography.textDarkBlack,
-      }
+      },
     };
 
     return (
@@ -187,8 +187,8 @@ const HomePage = React.createClass({
         fontSize: 22,
       },
       button: {
-        marginTop: 32
-      }
+        marginTop: 32,
+      },
     };
 
     return (

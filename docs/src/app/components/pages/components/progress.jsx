@@ -9,7 +9,7 @@ let ProgressPage = React.createClass({
 
   getInitialState () {
     return {
-      completed: 0
+      completed: 0,
     };
   },
 
@@ -21,7 +21,7 @@ let ProgressPage = React.createClass({
       let diff = Math.random() * 10;
 
       self.setState({
-        completed: self.state.completed + diff
+        completed: self.state.completed + diff,
       });
 
       if (self.state.completed > 100) {
@@ -40,33 +40,33 @@ let ProgressPage = React.createClass({
             name: 'mode',
             type: 'one of: determinate, indeterminate',
             header: 'default: indeterminate',
-            desc: 'The mode of show your progress, indeterminate for when there is no value for progress. '
+            desc: 'The mode of show your progress, indeterminate for when there is no value for progress. ',
           },
           {
             name: 'value',
             type: 'number',
             header: 'default: 0',
-            desc: 'The value of progress, only works in determinate mode. '
+            desc: 'The value of progress, only works in determinate mode. ',
           },
           {
             name: 'max',
             type: 'number',
             header: 'default: 100',
-            desc: 'The max value of progress, only works in determinate mode. '
+            desc: 'The max value of progress, only works in determinate mode. ',
           },
           {
             name: 'min',
             type: 'number',
             header: 'default: 0',
-            desc: 'The min value of progress, only works in determinate mode. '
+            desc: 'The min value of progress, only works in determinate mode. ',
           },
           {
             name: 'size',
             type: 'number',
             header: 'default: 1',
-            desc: 'The size of the progress.'
-          }
-        ]
+            desc: 'The size of the progress.',
+          },
+        ],
       },
     ];
 
@@ -103,7 +103,7 @@ let ProgressPage = React.createClass({
         </CodeExample>
       </ComponentDoc>
     );
-  }
+  },
 
 });
 
