@@ -17,6 +17,7 @@ const TimePickerDialog = React.createClass({
   },
 
   propTypes: {
+    autoOk: React.PropTypes.bool,
     initialTime: React.PropTypes.object,
     onAccept: React.PropTypes.func,
     onShow: React.PropTypes.func,
@@ -61,6 +62,7 @@ const TimePickerDialog = React.createClass({
       initialTime,
       onAccept,
       format,
+      autoOk,
       ...other,
     } = this.props;
 
@@ -89,7 +91,9 @@ const TimePickerDialog = React.createClass({
         secondary={true}
         onTouchTap={this._handleOKTouchTap} />,
     ];
-
+    
+    let onClockChangeMinutes = (autoOk === true ? this._handleOKTouchTap : undefined);
+    
     return (
       <Dialog {...other}
         ref="dialogWindow"
@@ -103,7 +107,8 @@ const TimePickerDialog = React.createClass({
         <Clock
           ref="clock"
           format={format}
-          initialTime={initialTime} />
+          initialTime={initialTime}
+          onChangeMinutes={onClockChangeMinutes} />
       </Dialog>
     );
   },
