@@ -146,6 +146,22 @@ export default class DatePickerPage extends React.Component {
             'the change the first argument will always be null and the second ' +
             'argument will be the new Date instance.',
           },
+          {
+            name: 'onDismiss',
+            header: 'function()',
+            desc: 'Fired when the datepicker dialog is dismissed.',
+          },
+          {
+            name: 'onFocus',
+            header: 'function(event)',
+            desc: 'Callback function that is fired when the datepicker field ' +
+            'gains focus.',
+          },
+          {
+            name: 'onShow',
+            header: 'function()',
+            desc: 'Fired when the datepicker dialog is shown.',
+          },
         ],
       },
     ];
