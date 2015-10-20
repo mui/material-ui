@@ -25,7 +25,7 @@ module.exports = {
     }
 
     // Left to right is the default. No need to flip anything.
-    if (!muiTheme.isRtl) return style; 
+    if (!muiTheme || muiTheme.isRtl) return style; 
 
     const flippedAttributes = {
       // Keys and their replacements.
