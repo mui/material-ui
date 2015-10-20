@@ -53,7 +53,7 @@ const GridList = React.createClass({
   {
     return {
       root: {
-        display: 'flex',
+        display: '-webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex',
         flexWrap: 'wrap',
         margin: `-${this.props.padding/2}px`,
       },
@@ -84,7 +84,7 @@ const GridList = React.createClass({
       const childRows = currentChild.props.rows || 1;
       const itemStyle = this.mergeStyles(styles.item, {
         width: (100 / cols * childCols) + '%',
-        height: cellHeight * childRows + padding,
+        height: parseInt(cellHeight) * childRows + padding,
       });
 
       return <div style={this.prepareStyles(itemStyle)}>{currentChild}</div>;
