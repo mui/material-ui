@@ -15,6 +15,7 @@ const TimePicker = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   propTypes: {
+    autoOk: React.PropTypes.bool,
     defaultTime: React.PropTypes.object,
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     pedantic: React.PropTypes.bool,
@@ -76,6 +77,7 @@ const TimePicker = React.createClass({
 
   render() {
     let {
+      autoOk,
       format,
       onFocus,
       onTouchTap,
@@ -104,7 +106,8 @@ const TimePicker = React.createClass({
           onAccept={this._handleDialogAccept}
           onShow={onShow}
           onDismiss={onDismiss}
-          format={format} />
+          format={format}
+          autoOk={autoOk} />
       </div>
     );
   },
