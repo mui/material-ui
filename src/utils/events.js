@@ -1,7 +1,7 @@
 module.exports = {
 
   once(el, type, callback) {
-    let typeArray = type.split(' ');
+    let typeArray = type ? type.split(' ') : [];
     let recursiveFunction = (e) => {
       e.target.removeEventListener(e.type, recursiveFunction);
       return callback(e);
