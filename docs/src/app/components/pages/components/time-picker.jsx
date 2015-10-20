@@ -78,15 +78,15 @@ let TimePickerPage = React.createClass({
             'argument will be the new Date instance.',
           },
           {
+            name: 'onDismiss',
+            header: 'function()',
+            desc: 'Fired when the timepicker dialog is dismissed.',
+          },
+          {
             name: 'onFocus',
             header: 'function(event)',
             desc: 'Callback function that is fired when the timepicker field ' +
                   'gains focus.',
-          },
-          {
-            name: 'onDismiss',
-            header: 'function()',
-            desc: 'Fired when the timepicker dialog is dismissed.',
           },
           {
             name: 'onShow',
