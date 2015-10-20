@@ -92,32 +92,32 @@ class SlidersPage extends React.Component {
         infoArray: [
           {
             name: 'onBlur',
-            type: 'function(e)',
+            type: 'function(event)',
             header: 'optional',
             desc: 'Callback function that is fired when the focus has left the slider.'
           },
           {
             name: 'onChange',
-            type: 'function(e, value)',
+            type: 'function(event, value)',
             header: 'optional',
             desc: 'Callback function that is fired when the user changes the ' +
                   'slider\'s value.'
           },
           {
             name: 'onDragStart',
-            type: 'function(e)',
+            type: 'function(event)',
             header: 'optional',
             desc: 'Callback function that is fired when the slider has begun to move.'
           },
           {
             name: 'onDragStop',
-            type: 'function(e)',
+            type: 'function(event)',
             header: 'optional',
             desc: 'Callback function that is fried when teh slide has stopped moving.'
           },
           {
             name: 'onFocus',
-            type: 'function(e)',
+            type: 'function(event)',
             header: 'optional',
             desc: 'Callback fired when the user has focused on the slider.'
           },

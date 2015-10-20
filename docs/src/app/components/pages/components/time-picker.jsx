@@ -79,7 +79,7 @@ let TimePickerPage = React.createClass({
           },
           {
             name: 'onFocus',
-            header: 'function(e)',
+            header: 'function(event)',
             desc: 'Callback function that is fired when the timepicker field ' +
                   'gains focus.'
           },

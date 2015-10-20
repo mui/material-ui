@@ -114,12 +114,12 @@ class IconMenus extends React.Component {
         infoArray: [
           {
             name: 'onItemTouchTap',
-            header: 'function(e, item)',
+            header: 'function(event, item)',
             desc: 'Fired when a menu item is touchTapped.'
           },
           {
             name: 'onChange',
-            header: 'function(e, value)',
+            header: 'function(event, value)',
             desc: 'Fired when a menu item is touchTapped and the menu item value ' +
               'is not equal to the current menu value.'
           }
