@@ -46,6 +46,7 @@ module.exports = {
   SvgIcon: require('./svg-icon'),
   Icons: {
     NavigationMenu: require('./svg-icons/navigation/menu'),
+    NavigationClose: require('./svg-icons/navigation/close'),
     NavigationChevronLeft: require('./svg-icons/navigation/chevron-left'),
     NavigationChevronRight: require('./svg-icons/navigation/chevron-right'),
   },
