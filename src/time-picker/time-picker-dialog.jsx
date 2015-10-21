@@ -92,7 +92,7 @@ const TimePickerDialog = React.createClass({
         onTouchTap={this._handleOKTouchTap} />,
     ];
     
-    let onClockChangeMinutes = (autoOk === true ? this._handleOKTouchTap : undefined);
+    const onClockChangeMinutes = (autoOk === true ? this._handleOKTouchTap : undefined);
     
     return (
       <Dialog {...other}

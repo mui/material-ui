@@ -14,6 +14,12 @@ let TimePickerPage = React.createClass({
         name: 'Props',
         infoArray: [
           {
+            name: 'autoOk',
+            type: 'boolean',
+            header: 'default: false',
+            desc: 'If true, automatically accept and close the picker on set minutes.',
+          },
+          {
             name: 'defaultTime',
             type: 'date object',
             header: 'optional',
@@ -125,6 +131,12 @@ let TimePickerPage = React.createClass({
             format="24hr"
             hintText="24hr Format"
             onChange={this._changeTimePicker12}  />
+
+          <TimePicker
+            ref="pickerAutoOk"
+            format="24hr"
+            hintText="AutoOk"
+            autoOk={true} />
         </CodeExample>
       </ComponentDoc>
     );
