@@ -1,6 +1,6 @@
 {
-  "name": "material-ui",
-  "author": "Call-em-all Engineering Team",
+  "name": "tcne-ui-kit",
+  "author": "Call-em-all Engineering Team & TCNE Web Team 1",
   "version": "0.12.3",
   "description": "Material Design UI components built with React",
   "main": "./lib",
@@ -21,11 +21,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
+    "url": "https://github.com/ThomasCookNE/tcne-ui-kit"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/callemall/material-ui/issues"
+    "url": "https://github.com/ThomasCookNE/tcne-ui-kit/issues"
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
