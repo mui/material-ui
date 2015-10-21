@@ -151,14 +151,14 @@ const Clock = React.createClass({
       selectedTime: time,
     });
     
-    let { onChangeHours } = this.props;
+    const { onChangeHours } = this.props;
     
     if (finished) {
       setTimeout(() => {
         this.setState({
           mode: 'minute',
         });
-        if (typeof(onChangeHours === 'function')) {
+        if (typeof(onChangeHours) === 'function') {
           onChangeHours(time);
         }
       }, 100);
@@ -172,8 +172,8 @@ const Clock = React.createClass({
       selectedTime: time,
     });
 
-    let { onChangeMinutes } = this.props;
-    if (typeof(onChangeMinutes === 'function')) {
+    const { onChangeMinutes } = this.props;
+    if (typeof(onChangeMinutes) === 'function') {
         onChangeMinutes(time);
       }
   },
