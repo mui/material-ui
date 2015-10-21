@@ -32,7 +32,7 @@ const GridList = React.createClass({
     return {
       cols: 2,
       padding: 4,
-      cellHeight: '180px',
+      cellHeight: 180,
     };
   },
 
@@ -53,7 +53,7 @@ const GridList = React.createClass({
   {
     return {
       root: {
-        display: 'flex',
+        display: '-webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex',
         flexWrap: 'wrap',
         margin: `-${this.props.padding/2}px`,
       },
