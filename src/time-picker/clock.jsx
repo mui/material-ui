@@ -174,7 +174,7 @@ const Clock = React.createClass({
 
     const { onChangeMinutes } = this.props;
     if (typeof(onChangeMinutes) === 'function') {
-        onChangeMinutes(time);
+        setTimeout(() => { onChangeMinutes(time); }, 0);
       }
   },
 
