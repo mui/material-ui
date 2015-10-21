@@ -35,6 +35,4 @@ rrs('./').forEach(function(file) {
 
 outArray.push('\n};')
 
-// console.log(outArray.join(''));
-
 fs.writeFileSync('index.js', outArray.join(''));
