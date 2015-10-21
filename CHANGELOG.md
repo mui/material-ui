@@ -1,3 +1,13 @@
+## 0.12.5
+###### _Oct 21, 2015_
+
+v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.13.3. This version fixes that. We reverted some commits (related to React 0.14.0 support) from v0.12.4 to bring to you v0.12.5 that works as expected.
+
+##### Component Fixes / Enhancements
+- DatePicker performance has been improved (#1905)
+- Docs code now follows ESLint rules more strictly (#1778)
+- Removed duplicate keys in component definitions (#1933)
+
 ## 0.12.4
 ###### _Oct 19, 2015_
 
