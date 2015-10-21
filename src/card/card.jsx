@@ -31,7 +31,7 @@ const Card = React.createClass({
       let newChild = undefined;
       let newProps = {};
       let element = currentChild;
-      if (!currentChild) {
+      if (!currentChild || !currentChild.props) {
         return null;
       }
       if (this.state.expanded === false && currentChild.props.expandable === true)
