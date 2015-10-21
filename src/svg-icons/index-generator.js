@@ -1,7 +1,7 @@
 const fs = require('fs');
 const rrs = require('recursive-readdir-sync');
 
-var outArray = [];
+const outArray = [];
 outArray.push('module.exports = {\n');
 
 rrs('./').forEach(function(file) {
@@ -33,6 +33,6 @@ rrs('./').forEach(function(file) {
 	}
 });
 
-outArray.push('\n};')
+outArray.push('\n};\n')
 
 fs.writeFileSync('index.js', outArray.join(''));
