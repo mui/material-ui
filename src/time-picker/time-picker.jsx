@@ -120,6 +120,13 @@ const TimePicker = React.createClass({
     this.refs.input.setValue(this.formatTime(t));
   },
 
+  /**
+   * Alias for `openDialog()` for an api consistent with TextField.
+   */
+  focus() {
+    this.openDialog();
+  },
+
   openDialog() {
     this.setState({
       dialogTime: this.getTime(),
