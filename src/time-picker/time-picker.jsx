@@ -24,6 +24,12 @@ const TimePicker = React.createClass({
     onChange: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    style: React.PropTypes.object,
+    textFieldStyle: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -36,6 +42,7 @@ const TimePicker = React.createClass({
       format: 'ampm',
       pedantic: false,
       autoOk: false,
+      style: {},
     };
   },
 
@@ -84,6 +91,8 @@ const TimePicker = React.createClass({
       onTouchTap,
       onShow,
       onDismiss,
+      style,
+      textFieldStyle,
       ...other,
     } = this.props;
 
@@ -94,9 +103,10 @@ const TimePicker = React.createClass({
     }
 
     return (
-      <div>
+      <div style={this.prepareStyles(style)}>
         <TextField
           {...other}
+          style={textFieldStyle}
           ref="input"
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}
