@@ -12,6 +12,10 @@ module.exports = {
   spacing: Spacing,
   fontFamily: 'Roboto, sans-serif',
   palette: {
+    primaryTextColor: Colors.white,
+    secondaryTextColor: Colors.pesca,
+    transparent: Colors.transparent,
+
     primary1Color: Colors.cyan500,
     primary2Color: Colors.cyan700,
     primary3Color: Colors.lightBlack,
