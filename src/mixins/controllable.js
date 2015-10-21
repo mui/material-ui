@@ -1,4 +1,4 @@
-let React = require('react');
+let React = require('react/addons');
 
 module.exports = {
 

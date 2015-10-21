@@ -1,5 +1,4 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 const { Styles } = require('material-ui');
 const { Spacing } = Styles;
 const { ThemeManager } = Styles;
@@ -35,7 +34,7 @@ const CodeBlock = React.createClass({
   },
 
   componentDidMount() {
-    let code = ReactDOM.findDOMNode(this.refs.code);
+    let code = React.findDOMNode(this.refs.code);
     require([
       "codemirror/lib/codemirror.js",
       "codemirror/mode/htmlmixed/htmlmixed.js",

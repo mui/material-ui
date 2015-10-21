@@ -3,7 +3,6 @@ const isBrowser = require('./utils/is-browser');
 let Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
 
 const React = require('react');
-const ReactDOM = require('react-dom');
 const KeyCode = require('./utils/key-code');
 const StylePropable = require('./mixins/style-propable');
 const AutoPrefix = require('./styles/auto-prefix');
@@ -215,8 +214,8 @@ const LeftNav = React.createClass({
 
   _updateMenuHeight() {
     if (this.props.header) {
-      let container = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-      let menu = ReactDOM.findDOMNode(this.refs.menuItems);
+      let container = React.findDOMNode(this.refs.clickAwayableElement);
+      let menu = React.findDOMNode(this.refs.menuItems);
       let menuHeight = container.clientHeight - menu.offsetTop;
       menu.style.height = menuHeight + 'px';
     }
@@ -292,7 +291,7 @@ const LeftNav = React.createClass({
   },
 
   _setPosition(translateX) {
-    let leftNav = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
+    let leftNav = React.findDOMNode(this.refs.clickAwayableElement);
     leftNav.style[AutoPrefix.single('transform')] =
       'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());

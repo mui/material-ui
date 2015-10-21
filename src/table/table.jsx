@@ -1,5 +1,4 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 const StylePropable = require('../mixins/style-propable');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
@@ -170,8 +169,8 @@ const Table = React.createClass({
   },
 
   isScrollbarVisible() {
-    const tableDivHeight = ReactDOM.findDOMNode(this.refs.tableDiv).clientHeight;
-    const tableBodyHeight = ReactDOM.findDOMNode(this.refs.tableBody).clientHeight;
+    const tableDivHeight = React.findDOMNode(this.refs.tableDiv).clientHeight;
+    const tableBodyHeight = React.findDOMNode(this.refs.tableBody).clientHeight;
 
     return tableBodyHeight > tableDivHeight;
   },

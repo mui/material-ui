@@ -1,6 +1,5 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
 const ColorManipulator = require('../utils/color-manipulator');
 const StylePropable = require('../mixins/style-propable');
 const Colors = require('../styles/colors');
@@ -370,7 +369,7 @@ const ListItem = React.createClass({
 
   applyFocusState(focusState) {
     const button = this.refs.enhancedButton;
-    const buttonEl = ReactDOM.findDOMNode(button);
+    const buttonEl = React.findDOMNode(button);
 
     if (button) {
       switch(focusState) {

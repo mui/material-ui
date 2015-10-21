@@ -1,6 +1,5 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const update = require('react-addons-update');
+const React = require('react/addons');
+const update = React.addons.update;
 const Controllable = require('../mixins/controllable');
 const StylePropable = require('../mixins/style-propable');
 const AutoPrefix = require('../styles/auto-prefix');
@@ -87,7 +86,7 @@ const Menu = React.createClass({
   },
 
   componentWillLeave(callback) {
-    let rootStyle = ReactDOM.findDOMNode(this).style;
+    let rootStyle = React.findDOMNode(this).style;
 
     AutoPrefix.set(rootStyle, 'transition', Transitions.easeOut('250ms', ['opacity', 'transform']));
     AutoPrefix.set(rootStyle, 'transform', 'translate3d(0,-8px,0)');
@@ -245,9 +244,9 @@ const Menu = React.createClass({
   },
 
   _animateOpen() {
-    let rootStyle = ReactDOM.findDOMNode(this).style;
-    let scrollContainerStyle = ReactDOM.findDOMNode(this.refs.scrollContainer).style;
-    let menuContainers = ReactDOM.findDOMNode(this.refs.list).childNodes;
+    let rootStyle = React.findDOMNode(this).style;
+    let scrollContainerStyle = React.findDOMNode(this.refs.scrollContainer).style;
+    let menuContainers = React.findDOMNode(this.refs.list).childNodes;
 
     AutoPrefix.set(rootStyle, 'transform', 'scaleX(1)');
     AutoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)');
@@ -439,20 +438,20 @@ const Menu = React.createClass({
     let menuItemHeight = desktop ? 32 : 48;
 
     if (focusedMenuItem) {
-      let selectedOffSet = ReactDOM.findDOMNode(focusedMenuItem).offsetTop;
+      let selectedOffSet = React.findDOMNode(focusedMenuItem).offsetTop;
 
       //Make the focused item be the 2nd item in the list the
       //user sees
       let scrollTop = selectedOffSet - menuItemHeight;
       if (scrollTop < menuItemHeight) scrollTop = 0;
 
-      ReactDOM.findDOMNode(this.refs.scrollContainer).scrollTop = scrollTop;
+      React.findDOMNode(this.refs.scrollContainer).scrollTop = scrollTop;
     }
   },
 
   _setWidth() {
-    let el = ReactDOM.findDOMNode(this);
-    let listEl = ReactDOM.findDOMNode(this.refs.list);
+    let el = React.findDOMNode(this);
+    let listEl = React.findDOMNode(this.refs.list);
     let elWidth = el.offsetWidth;
     let keyWidth = this.state.keyWidth;
     let minWidth = keyWidth * 1.5;

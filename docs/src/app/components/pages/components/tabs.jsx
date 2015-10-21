@@ -6,7 +6,7 @@ let { Colors, Typography } = Styles;
 let Code = require('tabs-code');
 
 
-export default class TabsPage extends React.Component {
+class TabsPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -178,7 +178,7 @@ export default class TabsPage extends React.Component {
             </Tab>
             <Tab
               label="Home (non-content example)"
-              route="/home"
+              route="home"
               onActive={this._handleTabActive} />
           </Tabs>
 
@@ -231,10 +231,16 @@ export default class TabsPage extends React.Component {
   }
 
   _handleTabActive(tab){
-    this.props.history.pushState(null, tab.props.route);
+    this.context.router.transitionTo(tab.props.route);
   }
 
   _handleTabsChange(value, e, tab){
     this.setState({tabsValue: value});
   }
 }
+
+TabsPage.contextTypes = {
+  router: React.PropTypes.func,
+};
+
+module.exports = TabsPage;

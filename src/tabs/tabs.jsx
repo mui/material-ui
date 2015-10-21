@@ -1,5 +1,4 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+const React = require('react/addons');
 const TabTemplate = require('./tabTemplate');
 const InkBar = require('../ink-bar');
 const StylePropable = require('../mixins/style-propable');
@@ -56,7 +55,7 @@ const Tabs = React.createClass({
   getEvenWidth(){
     return (
       parseInt(window
-        .getComputedStyle(ReactDOM.findDOMNode(this))
+        .getComputedStyle(React.findDOMNode(this))
         .getPropertyValue('width'), 10)
     );
   },

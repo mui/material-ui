@@ -1,6 +1,5 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const ReactTransitionGroup = require('react-addons-transition-group');
+const React = require('react/addons');
+const ReactTransitionGroup = React.addons.TransitionGroup;
 const ClickAwayable = require('../mixins/click-awayable');
 const StylePropable = require('../mixins/style-propable');
 const Events = require('../utils/events');
@@ -171,7 +170,7 @@ const IconMenu = React.createClass({
         //Set focus on the icon button when the menu close
         if (isKeyboard) {
           let iconButton = this.refs[this.state.iconButtonRef];
-          ReactDOM.findDOMNode(iconButton).focus();
+          React.findDOMNode(iconButton).focus();
           iconButton.setKeyboardFocus();
         }
       });

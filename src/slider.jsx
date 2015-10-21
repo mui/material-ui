@@ -1,5 +1,4 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
 const FocusRipple = require('./ripples/focus-ripple');
@@ -438,7 +437,7 @@ const Slider = React.createClass({
   },
 
   _getTrackLeft() {
-    return ReactDOM.findDOMNode(this.refs.track).getBoundingClientRect().left;
+    return React.findDOMNode(this.refs.track).getBoundingClientRect().left;
   },
 
   _onMouseUp(e) {
@@ -473,7 +472,7 @@ const Slider = React.createClass({
   },
 
   _dragX(e, pos) {
-    let max = ReactDOM.findDOMNode(this.refs.track).clientWidth;
+    let max = React.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
     this._updateWithChangeEvent(e, pos / max);
   },

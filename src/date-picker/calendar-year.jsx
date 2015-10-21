@@ -1,5 +1,4 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 const StylePropable = require('../mixins/style-propable');
 const Colors = require('../styles/colors');
 const DateTime = require('../utils/date-time');
@@ -79,8 +78,8 @@ const CalendarYear = React.createClass({
   _scrollToSelectedYear() {
     if (this.refs.selectedYearButton === undefined) return;
 
-    let container = ReactDOM.findDOMNode(this);
-    let yearButtonNode = ReactDOM.findDOMNode(this.refs.selectedYearButton);
+    let container = this.getDOMNode();
+    let yearButtonNode = this.refs.selectedYearButton.getDOMNode();
 
     let containerHeight = container.clientHeight;
     let yearButtonNodeHeight = yearButtonNode.clientHeight || 32;

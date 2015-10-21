@@ -36,7 +36,7 @@ describe('DropDownMenu', () => {
                 value={value}/>
         );
         let divWithSelectedText = 
-            TestUtils.scryRenderedDOMComponentsWithTag(render, 'div')[1];
+            TestUtils.scryRenderedDOMComponentsWithTag(render, 'div')[1].getDOMNode();
             
         expect(divWithSelectedText.textContent).to.be.equal(expectedSelectedText);
     });

@@ -1,4 +1,4 @@
-const React = require('react');
+const React = require('react/addons');
 const StylePropable = require('./mixins/style-propable');
 const Colors = require('./styles/colors');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');

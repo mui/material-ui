@@ -1,4 +1,4 @@
-const React = require('react');
+const React = require('react/addons');
 const ContextPure = require('../mixins/context-pure');
 const StylePropable = require('../mixins/style-propable');
 const Styles = require('../utils/styles');

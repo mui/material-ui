@@ -1,5 +1,4 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 const CssEvent = require('../utils/css-event');
 const KeyLine = require('../utils/key-line');
 const KeyCode = require('../utils/key-code');
@@ -66,7 +65,8 @@ const NestedMenuItem = React.createClass({
 
   componentDidMount() {
     this._positionNestedMenu();
-    ReactDOM.findDOMNode(this).focus();
+    let el = this.getDOMNode();
+    el.focus();
   },
 
   componentDidUpdate() {
@@ -171,8 +171,8 @@ const NestedMenuItem = React.createClass({
   },
 
   _positionNestedMenu() {
-    let el = ReactDOM.findDOMNode(this);
-    let nestedMenu = ReactDOM.findDOMNode(this.refs.nestedMenu);
+    let el = React.findDOMNode(this);
+    let nestedMenu = React.findDOMNode(this.refs.nestedMenu);
     nestedMenu.style.left = el.offsetWidth + 'px';
   },
 
@@ -182,7 +182,7 @@ const NestedMenuItem = React.createClass({
 
   _closeNestedMenu() {
     this.setState({ open: false });
-    ReactDOM.findDOMNode(this).focus();
+    React.findDOMNode(this).focus();
   },
 
   _onParentItemTap() {
@@ -263,7 +263,7 @@ const Menu = React.createClass({
   },
 
   componentDidMount() {
-    let el = ReactDOM.findDOMNode(this);
+    let el = React.findDOMNode(this);
 
     //Set the menu width
     this._setKeyWidth(el);
@@ -285,7 +285,7 @@ const Menu = React.createClass({
     this.setState({muiTheme: newMuiTheme});
 
     //Set the menu width
-    this._setKeyWidth(ReactDOM.findDOMNode(this));
+    this._setKeyWidth(React.findDOMNode(this));
   },
 
   getTheme() {
@@ -474,8 +474,8 @@ const Menu = React.createClass({
   },
 
   _expandHideableMenu() {
-    let el = ReactDOM.findDOMNode(this);
-    let container = ReactDOM.findDOMNode(this.refs.paperContainer);
+    let el = React.findDOMNode(this);
+    let container = React.findDOMNode(this.refs.paperContainer);
     let padding = this.getSpacing().desktopGutterMini;
     let height = this._getHiddenMenuHeight(el, padding);
 
@@ -524,8 +524,8 @@ const Menu = React.createClass({
   },
 
   _collapseHideableMenu() {
-    let el = ReactDOM.findDOMNode(this);
-    let container = ReactDOM.findDOMNode(this.refs.paperContainer);
+    let el = React.findDOMNode(this);
+    let container = React.findDOMNode(this.refs.paperContainer);
     let originalOpacity = el.style.opacity;
 
     //Add transition

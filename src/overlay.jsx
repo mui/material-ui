@@ -1,5 +1,4 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
 const Colors = require('./styles/colors');
@@ -73,7 +72,7 @@ const Overlay = React.createClass({
   },
 
   setOpacity(opacity) {
-    let overlay = ReactDOM.findDOMNode(this);
+    let overlay = React.findDOMNode(this);
     overlay.style.opacity = opacity;
   },
 

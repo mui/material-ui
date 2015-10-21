@@ -1,7 +1,6 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const ReactTransitionGroup = require('react-addons-transition-group');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const ReactTransitionGroup = React.addons.TransitionGroup;
 const StylePropable = require('../mixins/style-propable');
 const Dom = require('../utils/dom');
 const ImmutabilityHelper = require('../utils/immutability-helper');
@@ -130,7 +129,7 @@ const TouchRipple = React.createClass({
 
   _getRippleStyle(e) {
     let style = {};
-    const el = ReactDOM.findDOMNode(this);
+    const el = React.findDOMNode(this);
     const elHeight = el.offsetHeight;
     const elWidth = el.offsetWidth;
     const offset = Dom.offset(el);
