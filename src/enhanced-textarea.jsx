@@ -138,6 +138,8 @@ const EnhancedTextarea = React.createClass({
       newHeight = Math.min(this.props.rowsMax * rowsHeight, newHeight);
     }
 
+    newHeight = Math.max(newHeight, rowsHeight);
+
     if (this.state.height !== newHeight) {
       this.setState({
         height: newHeight,
