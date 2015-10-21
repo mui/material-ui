@@ -35,6 +35,7 @@ const TimePicker = React.createClass({
       defaultTime: null,
       format: 'ampm',
       pedantic: false,
+      autoOk: false,
     };
   },
 
