@@ -63,6 +63,18 @@ let TimePickerPage = React.createClass({
             header: 'TimePicker.formatTime(time)',
             desc: 'Formats the Date object to a current component\'s time format.',
           },
+          {
+            name: 'openDialog',
+            header: 'TimePicker.openDialog()',
+            desc: 'Opens the time-picker dialog programmatically. Use this if you want to open the ' +
+            'dialog in response to some event other than focus/tap on the input field, such as an ' +
+            'external button click.',
+          },
+          {
+            name: 'focus',
+            header: 'TimePicker.focus()',
+            desc: 'An alias for the `openDialog()` method to allow more generic use alongside `TextField`.',
+          },
         ],
       },
       {
