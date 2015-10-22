@@ -291,6 +291,7 @@ const ListItem = React.createClass({
         onMouseEnter: this._handleRightIconButtonMouseEnter,
         onMouseLeave: this._handleRightIconButtonMouseLeave,
         onTouchTap: this._handleRightIconButtonTouchTap,
+        onClick: this._handleRightIconButtonTouchTap,
         onMouseDown: this._handleRightIconButtonMouseUp,
         onMouseUp: this._handleRightIconButtonMouseUp,
       };
