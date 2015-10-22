@@ -97,3 +97,12 @@
     ]}
   />
 </List>
+
+// List with selected indicator
+<List
+  selectedLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}}
+  subheader="Contacts">
+  <ListItem index={1} primaryText="Brendan Lim" />
+  <ListItem index={2} primaryText="Grace Ng" />
+  <ListItem index={3} primaryText="Kerem Suer" />
+</List>

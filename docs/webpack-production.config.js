@@ -85,6 +85,10 @@ var config = {
             loader: 'raw-loader',
             include: path.resolve(__dirname, 'src/app/components/raw-code')
           },
+          {
+            test: /\.css$/, // Only .css files
+            loader: 'style!css' // Run both loaders
+          },
         ]
   },
   eslint: {

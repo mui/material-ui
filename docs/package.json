@@ -15,7 +15,9 @@
   },
   "dependencies": {
     "codemirror": "^5.5.0",
+    "github-markdown-css": "^2.1.0",
     "history": "^1.11.1",
+    "marked": "^0.3.5",
     "react-addons-perf": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-motion": "^0.3.1",
