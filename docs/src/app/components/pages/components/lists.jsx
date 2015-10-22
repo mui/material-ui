@@ -394,7 +394,7 @@ export default class ListsPage extends React.Component {
             <List subheader="Hangout notifications">
               <ListItem
                 leftCheckbox={<Checkbox />}
-                primaryText="Notificaitons"
+                primaryText="Notifications"
                 secondaryText="Allow notifications" />
               <ListItem
                 leftCheckbox={<Checkbox />}
