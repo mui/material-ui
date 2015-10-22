@@ -9,8 +9,6 @@ import DateDisplay  from 'date-picker/date-display';
 import DateTime from 'utils/date-time';
 
 import injectTheme from '../fixtures/inject-theme';
-import DateDisplay  from 'date-picker/date-display';
-import DateTime from 'utils/date-time';
 
 const TestUtils = React.addons.TestUtils;
 
