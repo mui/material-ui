@@ -223,6 +223,8 @@ const LeftNav = React.createClass({
   },
 
   _onMenuItemClick(e, key, payload) {
+    e.preventDefault();
+    e.stopPropagation();
     if (this.props.onChange && this.props.selectedIndex !== key) {
       this.props.onChange(e, key, payload);
     }
