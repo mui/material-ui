@@ -1,8 +1,6 @@
 const React = require('react');
 const StylePropable = require('../mixins/style-propable');
-const DateTime = require('../utils/date-time');
 const Transitions = require('../styles/transitions');
-const AutoPrefix = require('../styles/auto-prefix');
 const SlideInTransitionGroup = require('../transition-groups/slide-in');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
@@ -16,6 +14,8 @@ const DateDisplay = React.createClass({
   },
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func.isRequired,
+    locale: React.PropTypes.string.isRequired,
     disableYearSelection: React.PropTypes.bool,
     monthDaySelected: React.PropTypes.bool,
     selectedDate: React.PropTypes.object.isRequired,
@@ -85,12 +85,6 @@ const DateDisplay = React.createClass({
         padding: 20,
       },
 
-      month: {
-        display: isLandscape ? 'block' : undefined,
-        marginLeft: isLandscape ? undefined : 8,
-        marginTop: isLandscape ? 5 : undefined,
-      },
-
       monthDay: {
         root: {
           display: 'inline-block',
@@ -131,15 +125,20 @@ const DateDisplay = React.createClass({
 
   render() {
     let {
+      DateTimeFormat,
+      locale,
       selectedDate,
       style,
       ...other,
     } = this.props;
-    let dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
-    let month = DateTime.getShortMonth(this.props.selectedDate);
-    let day = this.props.selectedDate.getDate();
-    let year = this.props.selectedDate.getFullYear();
-    let styles = this.getStyles();
+    const year = this.props.selectedDate.getFullYear();
+    const styles = this.getStyles();
+
+    const dateTimeFormatted = new DateTimeFormat(locale, {
+      month: 'short',
+      weekday: 'short',
+      day: '2-digit',
+    }).format(this.props.selectedDate);
 
     return (
     <div {...other} style={this.prepareStyles(styles.root, this.props.style)}>
@@ -153,11 +152,10 @@ const DateDisplay = React.createClass({
           style={styles.monthDay.root}
           direction={this.state.transitionDirection}>
             <div
-              key={dayOfWeek + month + day}
+              key={dateTimeFormatted}
               style={styles.monthDay.title}
               onTouchTap={this._handleMonthDayClick}>
-                <span>{dayOfWeek},</span>
-                <span style={styles.month}>{month} {day}</span>
+                {dateTimeFormatted}
             </div>
         </SlideInTransitionGroup>
       </div>

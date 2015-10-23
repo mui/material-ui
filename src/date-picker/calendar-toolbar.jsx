@@ -1,5 +1,4 @@
 const React = require('react');
-const DateTime = require('../utils/date-time');
 const IconButton = require('../icon-button');
 const Toolbar = require('../toolbar/toolbar');
 const ToolbarGroup = require('../toolbar/toolbar-group');
@@ -8,6 +7,24 @@ const NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
 const SlideInTransitionGroup = require('../transition-groups/slide-in');
 const ThemeManager = require('../styles/theme-manager');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+
+const styles = {
+  root: {
+    position: 'relative',
+    padding: 0,
+    backgroundColor: 'inherit',
+  },
+  title: {
+    position: 'absolute',
+    top: 17,
+    lineHeight: '14px',
+    fontSize: 14,
+    height: 14,
+    width: '100%',
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+};
 
 const CalendarToolbar = React.createClass({
   contextTypes: {
@@ -26,6 +43,8 @@ const CalendarToolbar = React.createClass({
   },
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func.isRequired,
+    locale: React.PropTypes.string.isRequired,
     displayDate: React.PropTypes.object.isRequired,
     nextMonth: React.PropTypes.bool,
     onMonthChange: React.PropTypes.func,
@@ -62,31 +81,17 @@ const CalendarToolbar = React.createClass({
     }
   },
 
-  _styles() {
-    return {
-      root: {
-        position: 'relative',
-        padding: 0,
-        backgroundColor: 'inherit',
-      },
-
-      title: {
-        position: 'absolute',
-        top: '17px',
-        lineHeight: '14px',
-        fontSize: '14px',
-        height: '14px',
-        width: '100%',
-        fontWeight: '500',
-        textAlign: 'center',
-      },
-    };
-  },
-
   render() {
-    let month = DateTime.getFullMonth(this.props.displayDate);
-    let year = this.props.displayDate.getFullYear();
-    let styles = this._styles();
+    const {
+      DateTimeFormat,
+      locale,
+      displayDate,
+    } = this.props
+
+    const dateTimeFormatted = new DateTimeFormat(locale, {
+      month: 'long',
+      year: 'numeric',
+    }).format(displayDate);
 
     const nextButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
     const prevButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
@@ -96,7 +101,7 @@ const CalendarToolbar = React.createClass({
         <SlideInTransitionGroup
           style={styles.title}
           direction={this.state.transitionDirection}>
-          <div key={month + '_' + year}>{month} {year}</div>
+          <div key={dateTimeFormatted}>{dateTimeFormatted}</div>
         </SlideInTransitionGroup>
 
         <ToolbarGroup key={0} float="left">

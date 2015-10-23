@@ -28,6 +28,9 @@ const DatePicker = React.createClass({
   },
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func,
+    locale: React.PropTypes.string,
+    wordings: React.PropTypes.object,
     autoOk: React.PropTypes.bool,
     defaultDate: React.PropTypes.object,
     formatDate: React.PropTypes.func,
@@ -80,6 +83,9 @@ const DatePicker = React.createClass({
 
   render() {
     let {
+      DateTimeFormat,
+      locale,
+      wordings,
       autoOk,
       defaultDate,
       formatDate,
@@ -108,6 +114,9 @@ const DatePicker = React.createClass({
           onTouchTap={this._handleInputTouchTap}/>
         <DatePickerDialog
           ref="dialogWindow"
+          DateTimeFormat={DateTimeFormat}
+          locale={locale}
+          wordings={wordings}
           mode={mode}
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}

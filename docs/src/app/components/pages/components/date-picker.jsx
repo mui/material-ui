@@ -30,6 +30,27 @@ export default class DatePickerPage extends React.Component {
         name: 'Props',
         infoArray: [
           {
+            name: 'DateTimeFormat',
+            type: 'func',
+            header: 'default: custom function defined inside utils/date-time.js that only supports en-US locale',
+            desc: 'Constructor for time formatting. Follow this specificaction: ' +
+            'ECMAScript Internationalization API 1.0 (ECMA-402).',
+          },
+          {
+            name: 'locale',
+            type: 'string',
+            header: 'default: en-US',
+            desc: 'Locale used for formatting date. If you are not using the default value, ' +
+            'you have to provide a DateTimeFormat that supports it. You can use Intl.DateTimeFormat' +
+            ' if it\'s supported by your environment. https://github.com/andyearnshaw/Intl.js is a good polyfill.',
+          },
+          {
+            name: 'wordings',
+            type: 'object',
+            header: 'default: {ok: \'OK\', cancel: \'Cancel\' }',
+            desc: 'Wordings used inside the button of the dialog.',
+          },
+          {
             name: 'autoOk',
             type: 'bool',
             header: 'default: false',
@@ -194,6 +215,13 @@ export default class DatePickerPage extends React.Component {
             minDate={this.state.minDate}
             maxDate={this.state.maxDate}
             showYearSelector={this.state.showYearSelector} />
+
+          <DatePicker
+            hintText="fr version"
+            DateTimeFormat={Intl.DateTimeFormat}
+            // Intl is defined by the browser see http://caniuse.com/#search=intl
+            wordings={{ok: 'OK', cancel: 'Annuler'}}
+            locale="fr" />
 
           <div style={optionsStyle}>
             <TextField

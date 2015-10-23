@@ -7,6 +7,7 @@ import Calendar from 'date-picker/calendar';
 import CalendarToolbar from 'date-picker/calendar-toolbar';
 import IconButton from 'icon-button';
 import injectTheme from '../fixtures/inject-theme';
+import DateTime from 'utils/date-time';
 
 const TestUtils = React.addons.TestUtils;
 
@@ -25,6 +26,8 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     maxDate={maxDate}
                 />
             );
@@ -42,6 +45,8 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     maxDate={maxDate} />
             );
             let renderedCalendarToolbar =
@@ -58,6 +63,8 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     maxDate={maxDate} />
             );
 
@@ -74,6 +81,8 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     maxDate={maxDate} />
             );
             let prevMonthButton = ReactDOM.findDOMNode(
@@ -94,6 +103,8 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     maxDate={maxDate} />
             );
             let nextMonthButton = ReactDOM.findDOMNode(
@@ -115,6 +126,8 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     minDate={minDate}
                 />
             );
@@ -131,6 +144,8 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     minDate={minDate}
                 />
             );
@@ -147,6 +162,8 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     minDate={minDate}
                 />
             );
@@ -162,6 +179,8 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     minDate={minDate}
                 />
             );
@@ -181,6 +200,8 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     minDate={minDate}
                 />
             );

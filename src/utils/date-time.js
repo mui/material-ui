@@ -1,19 +1,55 @@
+
+const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
+  'Oct', 'Nov', 'Dec'];
+const monthLongList = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'];
+
+function DateTimeFormat(locale, options) {
+  if (process.env.NODE_ENV !== 'production' && locale !== 'en-US') {
+    console.warn('Wrong usage of DateTimeFormat. The ' + locale +' locale is not supported.');
+  }
+
+  this.format = function(date) {
+    let output;
+
+    if (options.month === 'short' &&
+      options.weekday === 'short' &&
+      options.day === '2-digit') {
+
+      output = dayList[date.getDay()] + ', ';
+      output += monthList[date.getMonth()] + ' ';
+      output += date.getDate();
+    } else if (options.month === 'long'
+        && options.year === 'numeric') {
+
+      output = monthLongList[date.getMonth()];
+      output += ' ' + date.getFullYear();
+    } else if (process.env.NODE_ENV !== 'production') {
+      console.warn('Wrong usage of DateTimeFormat');
+    }
+
+    return output;
+  };
+}
+
 module.exports = {
+  DateTimeFormat: DateTimeFormat,
 
   addDays(d, days) {
-    let newDate = this.clone(d);
+    const newDate = this.clone(d);
     newDate.setDate(d.getDate() + days);
     return newDate;
   },
 
   addMonths(d, months) {
-    let newDate = this.clone(d);
+    const newDate = this.clone(d);
     newDate.setMonth(d.getMonth() + months);
     return newDate;
   },
 
   addYears(d, years) {
-    let newDate = this.clone(d);
+    const newDate = this.clone(d);
     newDate.setFullYear(d.getFullYear() + years);
     return newDate;
   },
@@ -23,7 +59,7 @@ module.exports = {
   },
 
   cloneAsDate(d) {
-    let clonedDate = this.clone(d);
+    const clonedDate = this.clone(d);
     clonedDate.setHours(0, 0, 0, 0);
     return clonedDate;
   },
@@ -39,55 +75,6 @@ module.exports = {
 
   getFirstDayOfMonth(d) {
     return new Date(d.getFullYear(), d.getMonth(), 1);
-  },
-
-  getFullMonth(d) {
-    let month = d.getMonth();
-    switch (month) {
-      case 0: return 'January';
-      case 1: return 'February';
-      case 2: return 'March';
-      case 3: return 'April';
-      case 4: return 'May';
-      case 5: return 'June';
-      case 6: return 'July';
-      case 7: return 'August';
-      case 8: return 'September';
-      case 9: return 'October';
-      case 10: return 'November';
-      case 11: return 'December';
-    }
-  },
-
-  getShortMonth(d) {
-    let month = d.getMonth();
-    switch (month) {
-      case 0: return 'Jan';
-      case 1: return 'Feb';
-      case 2: return 'Mar';
-      case 3: return 'Apr';
-      case 4: return 'May';
-      case 5: return 'Jun';
-      case 6: return 'Jul';
-      case 7: return 'Aug';
-      case 8: return 'Sep';
-      case 9: return 'Oct';
-      case 10: return 'Nov';
-      case 11: return 'Dec';
-    }
-  },
-
-  getDayOfWeek(d) {
-    let dow = d.getDay();
-    switch (dow) {
-      case 0: return 'Sun';
-      case 1: return 'Mon';
-      case 2: return 'Tue';
-      case 3: return 'Wed';
-      case 4: return 'Thu';
-      case 5: return 'Fri';
-      case 6: return 'Sat';
-    }
   },
 
   getWeekArray(d) {
@@ -120,9 +107,9 @@ module.exports = {
   },
 
   format(date) {
-    let m = date.getMonth() + 1;
-    let d = date.getDate();
-    let y = date.getFullYear();
+    const m = date.getMonth() + 1;
+    const d = date.getDate();
+    const y = date.getFullYear();
     return m + '/' + d + '/' + y;
   },
 
@@ -134,15 +121,15 @@ module.exports = {
   },
 
   isBeforeDate(d1, d2) {
-    let date1 = this.cloneAsDate(d1);
-    let date2 = this.cloneAsDate(d2);
+    const date1 = this.cloneAsDate(d1);
+    const date2 = this.cloneAsDate(d2);
 
     return (date1.getTime() < date2.getTime());
   },
 
   isAfterDate(d1, d2) {
-    let date1 = this.cloneAsDate(d1);
-    let date2 = this.cloneAsDate(d2);
+    const date1 = this.cloneAsDate(d1);
+    const date2 = this.cloneAsDate(d2);
 
     return (date1.getTime() > date2.getTime());
   },
