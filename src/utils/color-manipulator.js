@@ -79,7 +79,7 @@ module.exports = {
 
   // Returns the type and values of a color of any given type.
   _decomposeColor(color) {
-    color = String(color);
+    color = new String(color);
 
     if (color.charAt(0) === '#') {
       return this._decomposeColor(this._convertHexToRGB(color));
