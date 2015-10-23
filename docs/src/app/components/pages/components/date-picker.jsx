@@ -30,6 +30,12 @@ export default class DatePickerPage extends React.Component {
         name: 'Props',
         infoArray: [
           {
+            name: 'container',
+            type: 'one of: dialog, container',
+            header: 'default: dialog',
+            desc: 'The date pickers container type',
+          },
+          {
             name: 'DateTimeFormat',
             type: 'func',
             header: 'default: custom function defined inside utils/date-time.js that only supports en-US locale',
@@ -214,6 +220,15 @@ export default class DatePickerPage extends React.Component {
           <DatePicker
             hintText="Landscape Dialog"
             mode="landscape" />
+
+          <DatePicker
+            hintText="Inline"
+            container="inline" />
+
+          <DatePicker
+            hintText="Inline (AutoOk)"
+            container="inline"
+            autoOk={true} />
 
           <DatePicker
             hintText="Controlled Date Input"
