@@ -28,3 +28,9 @@ this.refs.leftNav.toggle();
 
 //Hideable Left Nav
 <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+
+//Hideable Left Nav with Nested Children
+<LeftNav ref="leftNavChildren" docked={false}>
+  <MenuItem index={0}>Menu Item</MenuItem>
+  <MenuItem index={1}><a href="/link">Link</a></MenuItem>
+</LeftNav>
