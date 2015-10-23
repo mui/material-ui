@@ -93,6 +93,12 @@ let TextFieldsPage = React.createClass({
             desc: 'The hint text string to display.',
           },
           {
+            name: 'inputStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the TextField\'s input element.',
+          },
+          {
             name: 'multiLine',
             type: 'bool',
             header: 'default: false',
