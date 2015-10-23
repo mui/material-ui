@@ -7,6 +7,7 @@ const CssEvent = require('../utils/css-event');
 const KeyCode = require('../utils/key-code');
 const Calendar = require('./calendar');
 const Dialog = require('../dialog');
+const DatePickerInline = require('./date-picker-inline');
 const FlatButton = require('../flat-button');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
@@ -39,6 +40,7 @@ const DatePickerDialog = React.createClass({
   },
 
   propTypes: {
+    container: React.PropTypes.oneOf(['dialog', 'inline']),
     DateTimeFormat: React.PropTypes.func,
     locale: React.PropTypes.string,
     wordings: React.PropTypes.object,
@@ -68,6 +70,7 @@ const DatePickerDialog = React.createClass({
   getDefaultProps: function() {
     return {
       DateTimeFormat: DateTime.DateTimeFormat,
+      container: 'dialog',
       locale: 'en-US',
       wordings: {
         ok: 'OK',
@@ -82,6 +85,7 @@ const DatePickerDialog = React.createClass({
 
   getInitialState() {
     return {
+      open: false,
       isCalendarActive: false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -102,6 +106,7 @@ const DatePickerDialog = React.createClass({
       initialDate,
       onAccept,
       style,
+      container,
       ...other,
     } = this.props;
 
@@ -148,9 +153,11 @@ const DatePickerDialog = React.createClass({
           onTouchTap={this._handleOKTouchTap} />
       );
     }
-
+    // will change later when Popover is available.
+    const Container = (container === 'inline' ? DatePickerInline : Dialog);
     return (
-      <Dialog {...other}
+      <Container 
+        {...other}
         ref="dialog"
         style={styles.root}
         contentStyle={styles.dialogContent}
@@ -159,7 +166,9 @@ const DatePickerDialog = React.createClass({
         onDismiss={this._handleDialogDismiss}
         onShow={this._handleDialogShow}
         onClickAway={this._handleDialogClickAway}
-        repositionOnUpdate={false}>
+        repositionOnUpdate={false}
+        open={this.state.open}
+      >
         <Calendar
           DateTimeFormat={DateTimeFormat}
           locale={locale}
@@ -172,15 +181,21 @@ const DatePickerDialog = React.createClass({
           shouldDisableDate={this.props.shouldDisableDate}
           showYearSelector={this.props.showYearSelector}
           mode={this.props.mode} />
-      </Dialog>
+      </Container>
     );
   },
 
   show() {
+    if (this.props.container === 'inline') {
+      return this.setState({'open': true});
+    }
     this.refs.dialog.show();
   },
 
   dismiss() {
+    if (this.props.container === 'inline') {
+      return this.setState({'open': false});
+    }
     this.refs.dialog.dismiss();
   },
 
