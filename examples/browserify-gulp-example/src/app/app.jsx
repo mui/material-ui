@@ -12,8 +12,8 @@
   //https://github.com/zilverline/react-tap-event-plugin
   injectTapEventPlugin();
 
-  // Render the main app react component into the document body.
+  // Render the main app react component into the app div.
   // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
-  React.render(<Main />, document.body);
+  React.render(<Main />, document.getElementById('app'));
 
 })();
