@@ -37,6 +37,7 @@ const Menus = require('./components/pages/components/menus');
 const Paper = require('./components/pages/components/paper');
 const Progress = require('./components/pages/components/progress');
 const RefreshIndicator = require('./components/pages/components/refresh-indicator');
+const SearchField = require('./components/pages/components/search-field');
 const Sliders = require('./components/pages/components/sliders');
 const Snackbar = require('./components/pages/components/snackbar');
 const Switches = require('./components/pages/components/switches');
@@ -92,6 +93,7 @@ const AppRoutes = (
       <Route path="paper" component={Paper} />
       <Route path="progress" component={Progress} />
       <Route path="refresh-indicator" component={RefreshIndicator} />
+      <Route path="search-field" component={SearchField} />
       <Route path="sliders" component={Sliders} />
       <Route path="switches" component={Switches} />
       <Route path="snackbar" component={Snackbar} />
