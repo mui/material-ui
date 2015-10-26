@@ -12,7 +12,6 @@
     "build": "babel --stage 1 ./src --out-dir ./lib",
     "prepublish": "npm run build",
     "install": "npm run build",
-    "prebuild": "rimraf lib",
     "prepublish": "npm run build"
   },
   "keywords": [
