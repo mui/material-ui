@@ -25,7 +25,7 @@ module.exports = {
     }
 
     // Left to right is the default. No need to flip anything.
-    if (!muiTheme.isRtl) return style; 
+    if (!muiTheme || !muiTheme.isRtl) return style; 
 
     const flippedAttributes = {
       // Keys and their replacements.
@@ -93,7 +93,7 @@ module.exports = {
 
   prepareStyles(muiTheme, ...styles) {
     styles = styles.length > 1 ? ImmutabilityHelper.merge.apply(this, styles) : (styles[0] || {});
-    const flipped = this.ensureDirection(muiTheme, styles);
+    const flipped = muiTheme ? this.ensureDirection(muiTheme, styles) : styles;
     return AutoPrefix.all(flipped);
   },
 };
