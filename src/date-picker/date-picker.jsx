@@ -4,13 +4,33 @@ const WindowListenable = require('../mixins/window-listenable');
 const DateTime = require('../utils/date-time');
 const DatePickerDialog = require('./date-picker-dialog');
 const TextField = require('../text-field');
+const ThemeManager = require('../styles/theme-manager');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 
 
 const DatePicker = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   propTypes: {
+    DateTimeFormat: React.PropTypes.func,
+    locale: React.PropTypes.string,
+    wordings: React.PropTypes.object,
     autoOk: React.PropTypes.bool,
     defaultDate: React.PropTypes.object,
     formatDate: React.PropTypes.func,
@@ -38,6 +58,7 @@ const DatePicker = React.createClass({
       formatDate: DateTime.format,
       autoOk: false,
       showYearSelector: false,
+      style: {},
     };
   },
 
@@ -45,6 +66,7 @@ const DatePicker = React.createClass({
     return {
       date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
       dialogDate: new Date(),
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -61,6 +83,9 @@ const DatePicker = React.createClass({
 
   render() {
     let {
+      DateTimeFormat,
+      locale,
+      wordings,
       autoOk,
       defaultDate,
       formatDate,
@@ -79,7 +104,7 @@ const DatePicker = React.createClass({
     } = this.props;
 
     return (
-      <div style={style}>
+      <div style={this.prepareStyles(style)}>
         <TextField
           {...other}
           style={textFieldStyle}
@@ -89,6 +114,9 @@ const DatePicker = React.createClass({
           onTouchTap={this._handleInputTouchTap}/>
         <DatePickerDialog
           ref="dialogWindow"
+          DateTimeFormat={DateTimeFormat}
+          locale={locale}
+          wordings={wordings}
           mode={mode}
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}

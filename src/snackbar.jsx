@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const CssEvent = require('./utils/css-event');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
@@ -72,7 +73,7 @@ const Snackbar = React.createClass({
         this._setAutoHideTimer();
 
         //Only Bind clickaway after transition finishes
-        CssEvent.onTransitionEnd(React.findDOMNode(this), () => {
+        CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), () => {
           this._bindClickAway();
         });
       }
@@ -150,8 +151,8 @@ const Snackbar = React.createClass({
     const styles = this.getStyles();
 
     const rootStyles = this.state.open ?
-      this.mergeStyles(styles.root, styles.rootWhenOpen, style) :
-      this.mergeStyles(styles.root, style);
+      this.prepareStyles(styles.root, styles.rootWhenOpen, style) :
+      this.prepareStyles(styles.root, style);
 
     let actionButton;
     if (action) {

@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
 const KeyCode = require('./utils/key-code');
@@ -45,6 +46,7 @@ const DropDownMenu = React.createClass({
     iconStyle:React.PropTypes.object,
     labelStyle:React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
+    openImmediately: React.PropTypes.bool,
   },
 
   getDefaultProps() {
@@ -53,12 +55,13 @@ const DropDownMenu = React.createClass({
       disabled: false,
       valueMember: 'payload',
       displayMember: 'text',
+      openImmediately: false,
     };
   },
 
   getInitialState() {
     return {
-      open: false,
+      open: this.props.openImmediately,
       selectedIndex: this._isControlled() ? null : (this.props.selectedIndex || 0),
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -170,7 +173,22 @@ const DropDownMenu = React.createClass({
   },
 
   render() {
-    let _this = this;
+    const {
+      autoWidth,
+      className,
+      onFocus,
+      onBlur,
+      style,
+      displayMember,
+      valueMember,
+      valueLink,
+      labelStyle,
+      iconStyle,
+      underlineStyle,
+      menuItemStyle,
+      ...other,
+    } = this.props;
+
     let styles = this.getStyles();
     let selectedIndex = this._isControlled() ? null : this.state.selectedIndex;
     let displayValue = "";
@@ -179,14 +197,12 @@ const DropDownMenu = React.createClass({
         console.assert(!!this.props.menuItems[selectedIndex], 'SelectedIndex of ' + selectedIndex + ' does not exist in menuItems.');
       }
     }
-    else {
-      if (this.props.valueMember && this._isControlled()) {
-        let value = this.props.hasOwnProperty('value') ? this.props.value : this.props.valueLink.value;
-        if (value !== null && value !== undefined) {
-          for (let i = 0; i < this.props.menuItems.length; i++) {
-            if (this.props.menuItems[i][this.props.valueMember] === value) {
-              selectedIndex = i;
-            }
+    else if (valueMember && this._isControlled()) {
+      let value = this.props.hasOwnProperty('value') ? this.props.value : valueLink.value;
+      if (value !== null && value !== undefined) {
+        for (let i = 0; i < this.props.menuItems.length; i++) {
+          if (this.props.menuItems[i][valueMember] === value) {
+            selectedIndex = i;
           }
         }
       }
@@ -194,55 +210,56 @@ const DropDownMenu = React.createClass({
 
     let selectedItem = this.props.menuItems[selectedIndex];
     if (selectedItem) {
-      displayValue = selectedItem[this.props.displayMember];
+      displayValue = selectedItem[displayMember];
     }
 
     let menuItems = this.props.menuItems.map((item) => {
-      item.text = item[_this.props.displayMember];
-      item.payload = item[_this.props.valueMember];
+      item.text = item[displayMember];
+      item.payload = item[valueMember];
       return item;
     });
 
     return (
       <div
+        {...other}
         ref="root"
         onKeyDown={this._onKeyDown}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
-        className={this.props.className}
-        style={this.mergeAndPrefix(
+        onFocus={onFocus}
+        onBlur={onBlur}
+        className={className}
+        style={this.prepareStyles(
           styles.root,
           this.state.open && styles.rootWhenOpen,
-          this.props.style)} >
+          style)} >
 
-          <ClearFix style={this.mergeAndPrefix(styles.control)} onTouchTap={this._onControlClick}>
-            <Paper style={this.mergeAndPrefix(styles.controlBg)} zDepth={0} />
-            <div style={this.mergeAndPrefix(styles.label, this.state.open && styles.labelWhenOpen, this.props.labelStyle)}>
+          <ClearFix style={this.mergeStyles(styles.control)} onTouchTap={this._onControlClick}>
+            <Paper style={this.mergeStyles(styles.controlBg)} zDepth={0} />
+            <div style={this.prepareStyles(styles.label, this.state.open && styles.labelWhenOpen, labelStyle)}>
               {displayValue}
             </div>
-            <DropDownArrow style={this.mergeAndPrefix(styles.icon, this.props.iconStyle)}/>
-            <div style={this.mergeAndPrefix(styles.underline, this.props.underlineStyle)}/>
+            <DropDownArrow style={this.mergeStyles(styles.icon, iconStyle)}/>
+            <div style={this.prepareStyles(styles.underline, underlineStyle)}/>
           </ClearFix>
 
           <Menu
             ref="menuItems"
-            autoWidth={this.props.autoWidth}
+            autoWidth={autoWidth}
             selectedIndex={selectedIndex}
             menuItems={menuItems}
             style={styles.menu}
-            menuItemStyle={this.mergeAndPrefix(styles.menuItem, this.props.menuItemStyle)}
+            menuItemStyle={this.mergeStyles(styles.menuItem, menuItemStyle)}
             hideable={true}
             visible={this.state.open}
             onRequestClose={this._onMenuRequestClose}
             onItemTap={this._onMenuItemClick} />
-          {this.state.open && <div style={styles.overlay} onTouchTap={this._handleOverlayTouchTap} />}
+          {this.state.open && <div style={this.prepareStyles(styles.overlay)} onTouchTap={this._handleOverlayTouchTap} />}
       </div>
     );
   },
 
   _setWidth() {
-    let el = React.findDOMNode(this);
-    let menuItemsDom = React.findDOMNode(this.refs.menuItems);
+    let el = ReactDOM.findDOMNode(this);
+    let menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
       el.style.width = 'auto';
       el.style.width = menuItemsDom.offsetWidth + 'px';

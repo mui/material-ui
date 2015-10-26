@@ -1,7 +1,7 @@
 const Colors = require('./colors');
 const ColorManipulator = require('../utils/color-manipulator');
 const Extend = require('../utils/extend');
-const update = require('react/lib/update');
+const update = require('react-addons-update');
 
 module.exports = {
 
@@ -191,6 +191,7 @@ module.exports = {
         backgroundColor: 'transparent',
         borderColor: rawTheme.palette.borderColor,
       },
+      isRtl: false,
     };
 
     //add properties to objects inside 'returnObj' that depend on existing properties

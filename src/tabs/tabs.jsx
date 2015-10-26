@@ -1,4 +1,5 @@
-const React = require('react/addons');
+const React = require('react');
+const ReactDOM = require('react-dom');
 const TabTemplate = require('./tabTemplate');
 const InkBar = require('../ink-bar');
 const StylePropable = require('../mixins/style-propable');
@@ -55,7 +56,7 @@ const Tabs = React.createClass({
   getEvenWidth(){
     return (
       parseInt(window
-        .getComputedStyle(React.findDOMNode(this))
+        .getComputedStyle(ReactDOM.findDOMNode(this))
         .getPropertyValue('width'), 10)
     );
   },
@@ -150,14 +151,14 @@ const Tabs = React.createClass({
     return (
       <div
         {...other}
-        style={this.mergeAndPrefix(style)}>
-        <div style={this.mergeAndPrefix(styles.tabItemContainer, tabItemContainerStyle)}>
+        style={this.prepareStyles(style)}>
+        <div style={this.prepareStyles(styles.tabItemContainer, tabItemContainerStyle)}>
           {tabs}
         </div>
         <div style={{width: inkBarContainerWidth}}>
          {inkBar}
         </div>
-        <div style={this.mergeAndPrefix(contentContainerStyle)}>
+        <div style={this.prepareStyles(contentContainerStyle)}>
           {tabContent}
         </div>
       </div>

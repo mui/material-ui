@@ -1,7 +1,10 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const StylePropable = require('../mixins/style-propable');
 const ClockNumber = require("./clock-number");
 const ClockPointer = require("./clock-pointer");
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
 
 function rad2deg(rad) {
@@ -24,6 +27,34 @@ function getTouchEventOffsetValues(e) {
 const ClockHours = React.createClass({
 
   mixins: [StylePropable],
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
 
   propTypes: {
     initialHours: React.PropTypes.number,
@@ -51,7 +82,7 @@ const ClockHours = React.createClass({
   },
 
   componentDidMount() {
-    let clockElement = React.findDOMNode(this.refs.mask);
+    let clockElement = ReactDOM.findDOMNode(this.refs.mask);
 
     this.center = {
       x: clockElement.offsetWidth / 2,
@@ -181,10 +212,10 @@ const ClockHours = React.createClass({
     let numbers = this._getHourNumbers();
 
     return (
-      <div ref="clock" style={this.mergeAndPrefix(styles.root)} >
+      <div ref="clock" style={this.prepareStyles(styles.root)} >
         <ClockPointer hasSelected={true} value={hours} type="hour" />
         {numbers}
-        <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} onTouchMove={this.handleTouchMove}
+        <div ref="mask" style={this.prepareStyles(styles.hitMask)} onTouchMove={this.handleTouchMove}
           onTouchEnd={this.handleTouchEnd} onMouseUp={this.handleUp} onMouseMove={this.handleMove}/>
       </div>
     );

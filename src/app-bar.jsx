@@ -44,7 +44,7 @@ const AppBar = React.createClass({
   getInitialState () {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };    
+    };
   },
 
   //to update theme inside state whenever a new theme is passed down
@@ -133,49 +133,60 @@ const AppBar = React.createClass({
   },
 
   render() {
-    let props = this.props;
+    let {
+      title,
+      iconStyleRight,
+      showMenuIconButton,
+      iconElementLeft,
+      iconElementRight,
+      iconClassNameLeft,
+      iconClassNameRight,
+      className,
+      style,
+      zDepth,
+      children,
+      ...other,
+    } = this.props;
+
     let menuElementLeft;
     let menuElementRight;
     let styles = this.getStyles();
-    let title = props.title;
-    let iconRightStyle = this.mergeAndPrefix(styles.iconButton.style, {
+    let iconRightStyle = this.mergeStyles(styles.iconButton.style, {
       marginRight: -16,
       marginLeft: 'auto',
-    }, props.iconStyleRight);
+    }, iconStyleRight);
     let titleElement;
 
     if (title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
       titleElement = typeof title === 'string' || title instanceof String ?
-        <h1 style={this.mergeAndPrefix(styles.title, styles.mainElement)}>{title}</h1> :
-        <div style={this.mergeAndPrefix(styles.mainElement)}>{title}</div>;
+        <h1 style={this.prepareStyles(styles.title, styles.mainElement)}>{title}</h1> :
+        <div style={this.prepareStyles(styles.mainElement)}>{title}</div>;
     }
 
-    if (props.showMenuIconButton) {
-      let iconElementLeft = props.iconElementLeft;
-
+    if (showMenuIconButton) {
       if (iconElementLeft) {
         switch (iconElementLeft.type.displayName) {
           case 'IconButton':
             iconElementLeft = React.cloneElement(iconElementLeft, {
-              iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
+              iconStyle: this.mergeStyles(styles.iconButton.iconStyle),
             });
             break;
         }
 
         menuElementLeft = (
-          <div style={styles.iconButton.style}>
+          <div style={this.prepareStyles(styles.iconButton.style)}>
             {iconElementLeft}
           </div>
         );
       } else {
-        let child = (props.iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeAndPrefix(styles.iconButton.iconStyle)}/>;
+        let child = (iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeStyles(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
-            style={this.mergeAndPrefix(styles.iconButton.style)}
-            iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
-            iconClassName={props.iconClassNameLeft}
+            style={this.mergeStyles(styles.iconButton.style)}
+            iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
+            iconClassName={iconClassNameLeft}
             onTouchTap={this._onLeftIconButtonTouchTap}>
               {child}
           </IconButton>
@@ -183,14 +194,12 @@ const AppBar = React.createClass({
       }
     }
 
-    if (props.iconElementRight) {
-      let iconElementRight = props.iconElementRight;
-
+    if (iconElementRight) {
       switch (iconElementRight.type.displayName) {
         case 'IconMenu':
         case 'IconButton':
           iconElementRight = React.cloneElement(iconElementRight, {
-            iconStyle: this.mergeAndPrefix(styles.iconButton.iconStyle),
+            iconStyle: this.mergeStyles(styles.iconButton.iconStyle),
           });
           break;
 
@@ -202,16 +211,16 @@ const AppBar = React.createClass({
       }
 
       menuElementRight = (
-        <div style={iconRightStyle}>
+        <div style={this.prepareStyles(iconRightStyle)}>
           {iconElementRight}
         </div>
       );
-    } else if (props.iconClassNameRight) {
+    } else if (iconClassNameRight) {
       menuElementRight = (
         <IconButton
           style={iconRightStyle}
-          iconStyle={this.mergeAndPrefix(styles.iconButton.iconStyle)}
-          iconClassName={props.iconClassNameRight}
+          iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
+          iconClassName={iconClassNameRight}
           onTouchTap={this._onRightIconButtonTouchTap}>
         </IconButton>
       );
@@ -219,14 +228,15 @@ const AppBar = React.createClass({
 
     return (
       <Paper
+        {...other}
         rounded={false}
-        className={props.className}
-        style={this.mergeAndPrefix(styles.root, props.style)}
-        zDepth={props.zDepth}>
+        className={className}
+        style={this.mergeStyles(styles.root, style)}
+        zDepth={zDepth}>
           {menuElementLeft}
           {titleElement}
           {menuElementRight}
-          {props.children}
+          {children}
       </Paper>
     );
   },

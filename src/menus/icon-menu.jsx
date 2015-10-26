@@ -1,5 +1,6 @@
-const React = require('react/addons');
-const ReactTransitionGroup = React.addons.TransitionGroup;
+const React = require('react');
+const ReactDOM = require('react-dom');
+const ReactTransitionGroup = require('react-addons-transition-group');
 const ClickAwayable = require('../mixins/click-awayable');
 const StylePropable = require('../mixins/style-propable');
 const Events = require('../utils/events');
@@ -119,7 +120,7 @@ const IconMenu = React.createClass({
       },
     };
 
-    let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    let mergedRootStyles = this.prepareStyles(styles.root, style);
     let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
     let iconButton = React.cloneElement(iconButtonElement, {
@@ -170,7 +171,7 @@ const IconMenu = React.createClass({
         //Set focus on the icon button when the menu close
         if (isKeyboard) {
           let iconButton = this.refs[this.state.iconButtonRef];
-          React.findDOMNode(iconButton).focus();
+          ReactDOM.findDOMNode(iconButton).focus();
           iconButton.setKeyboardFocus();
         }
       });

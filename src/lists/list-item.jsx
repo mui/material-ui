@@ -1,5 +1,6 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
+const React = require('react');
+const ReactDOM = require('react-dom');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const ColorManipulator = require('../utils/color-manipulator');
 const StylePropable = require('../mixins/style-propable');
 const Colors = require('../styles/colors');
@@ -356,8 +357,8 @@ const ListItem = React.createClass({
           onTouchStart={this._handleTouchStart}
           onTouchTap={onTouchTap}
           ref="enhancedButton"
-          style={this.mergeAndPrefix(styles.root, style)}>
-          <div style={this.mergeAndPrefix(styles.innerDiv, innerDivStyle)}>
+          style={this.mergeStyles(styles.root, style)}>
+          <div style={this.prepareStyles(styles.innerDiv, innerDivStyle)}>
             {contentChildren}
           </div>
         </EnhancedButton>
@@ -369,7 +370,7 @@ const ListItem = React.createClass({
 
   applyFocusState(focusState) {
     const button = this.refs.enhancedButton;
-    const buttonEl = React.findDOMNode(button);
+    const buttonEl = ReactDOM.findDOMNode(button);
 
     if (button) {
       switch(focusState) {
@@ -393,7 +394,7 @@ const ListItem = React.createClass({
       style,
     } = this.props;
 
-    const mergedDivStyles = this.mergeAndPrefix(
+    const mergedDivStyles = this.prepareStyles(
       styles.root,
       styles.innerDiv,
       innerDivStyle,
@@ -409,7 +410,7 @@ const ListItem = React.createClass({
       style,
     } = this.props;
 
-    const mergedLabelStyles = this.mergeAndPrefix(
+    const mergedLabelStyles = this.prepareStyles(
       styles.root,
       styles.innerDiv,
       innerDivStyle,
@@ -423,7 +424,7 @@ const ListItem = React.createClass({
   _createTextElement(styles, data, key) {
     const isAnElement = React.isValidElement(data);
     const mergedStyles = isAnElement ?
-      this.mergeStyles(styles, data.props.style) : null;
+      this.prepareStyles(styles, data.props.style) : null;
 
     return isAnElement ? (
       React.cloneElement(data, {
@@ -431,7 +432,7 @@ const ListItem = React.createClass({
         style: mergedStyles,
       })
     ) : (
-      <div key={key} style={styles}>
+      <div key={key} style={this.prepareStyles(styles)}>
         {data}
       </div>
     );

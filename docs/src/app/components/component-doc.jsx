@@ -12,16 +12,16 @@ const ComponentDoc = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
     desc: React.PropTypes.oneOfType([
         React.PropTypes.string,
-        React.PropTypes.element
+        React.PropTypes.element,
     ]),
     name: React.PropTypes.string.isRequired,
-    componentInfo: React.PropTypes.array.isRequired
+    componentInfo: React.PropTypes.array.isRequired,
   },
 
   //for passing default theme context to children
@@ -60,21 +60,21 @@ const ComponentDoc = React.createClass({
         fontSize: '15px',
         letterSpacing: '0',
         lineHeight: '24px',
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
       ol: {
         fontSize: '13px',
-        paddingLeft: '48px'
+        paddingLeft: '48px',
       },
       componentInfo: {
         borderTop: 'solid 1px ' + borderColor,
         paddingTop: '24px',
-        marginTop: '24px'
+        marginTop: '24px',
       },
       componentInfoWhenFirstChild: {
         borderTop: 'none',
         marginTop: '0',
-        paddingTop: '0'
+        paddingTop: '0',
       },
       headline: {
         //headline
@@ -84,8 +84,8 @@ const ComponentDoc = React.createClass({
         marginBottom: '12px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack
-      }
+        color: Typography.textDarkBlack,
+      },
     };
   },
 
@@ -107,16 +107,16 @@ const ComponentDoc = React.createClass({
     let desc = null;
 
     if (this.props.desc) {
-      if ((typeof this.props.desc) == "string") {
-        desc = <p style={styles.desc}>{this.props.desc}</p>
+      if ((typeof this.props.desc) === "string") {
+        desc = <p style={this.prepareStyles(styles.desc)}>{this.props.desc}</p>
       } else {
-        desc = <div style={styles.desc}>{this.props.desc}</div>
+        desc = <div style={this.prepareStyles(styles.desc)}>{this.props.desc}</div>
       }
     }
 
     let header;
     if (this.props.name.length > 0) {
-      header = <h2 style={styles.headline}>{this.props.name}</h2>
+      header = <h2 style={this.prepareStyles(styles.headline)}>{this.props.name}</h2>
     }
 
     return (
@@ -132,7 +132,7 @@ const ComponentDoc = React.createClass({
 
       </ClearFix>
     );
-  }
+  },
 
 });
 

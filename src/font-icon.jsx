@@ -60,7 +60,7 @@ const FontIcon = React.createClass({
       this.state.muiTheme.rawTheme.palette.textColor;
     let onColor = hoverColor ? hoverColor : offColor;
 
-    let mergedStyles = this.mergeAndPrefix({
+    let mergedStyles = this.prepareStyles({
       position: 'relative',
       fontSize: spacing.iconSize,
       display: 'inline-block',

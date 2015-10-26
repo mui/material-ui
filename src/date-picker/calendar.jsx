@@ -10,13 +10,32 @@ const CalendarToolbar = require('./calendar-toolbar');
 const DateDisplay = require('./date-display');
 const SlideInTransitionGroup = require('../transition-groups/slide-in');
 const ClearFix = require('../clearfix');
+const ThemeManager = require('../styles/theme-manager');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 
 
 const Calendar = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   propTypes: {
+    DateTimeFormat: React.PropTypes.func.isRequired,
+    locale: React.PropTypes.string.isRequired,
     disableYearSelection: React.PropTypes.bool,
     initialDate: React.PropTypes.object,
     isActive: React.PropTypes.bool,
@@ -24,7 +43,6 @@ const Calendar = React.createClass({
     maxDate: React.PropTypes.object,
     onDayTouchTap: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
-    shouldShowMonthDayPickerFirst: React.PropTypes.bool,
   },
 
   windowListeners: {
@@ -37,31 +55,32 @@ const Calendar = React.createClass({
       initialDate: new Date(),
       minDate: DateTime.addYears(new Date(), -100),
       maxDate: DateTime.addYears(new Date(), 100),
-      shouldShowMonthDayPickerFirst: true,
     };
   },
 
   getInitialState() {
     return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
-      displayMonthDay: this.props.shouldShowMonthDayPickerFirst || true,
+      displayMonthDay: true,
       selectedDate: this.props.initialDate,
       transitionDirection: 'left',
       transitionEnter: true,
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
     if (nextProps.initialDate !== this.props.initialDate) {
       let d = nextProps.initialDate || new Date();
       this.setState({
         displayDate: DateTime.getFirstDayOfMonth(d),
         selectedDate: d,
       });
-    }
-
-    if (nextProps.shouldShowMonthDayPickerFirst) {
-      this.setState({displayMonthDay: nextProps.shouldShowMonthDayPickerFirst});
     }
   },
 
@@ -115,17 +134,17 @@ const Calendar = React.createClass({
       },
     };
 
-    if (this.state.displayMonthDay) {
-      styles.yearContainer.display = 'none';
-    }
-    else {
-      styles.calendarContainer.display = 'none';
-    }
+    const weekTitleDayStyle = this.prepareStyles(styles.weekTitleDay);
+    const {
+      DateTimeFormat,
+      locale,
+    } = this.props;
 
     return (
-      <ClearFix style={this.mergeAndPrefix(styles.root)}>
-
+      <ClearFix style={this.mergeStyles(styles.root)}>
         <DateDisplay
+          DateTimeFormat={DateTimeFormat}
+          locale={locale}
           disableYearSelection={this.props.disableYearSelection}
           style={styles.dateDisplay}
           selectedDate={this.state.selectedDate}
@@ -134,26 +153,26 @@ const Calendar = React.createClass({
           monthDaySelected={this.state.displayMonthDay}
           mode={this.props.mode}
           weekCount={weekCount} />
-
-        <div style={styles.calendarContainer}>
+        {this.state.displayMonthDay &&
+        <div style={this.prepareStyles(styles.calendarContainer)}>
           <CalendarToolbar
+            DateTimeFormat={DateTimeFormat}
+            locale={locale}
             displayDate={this.state.displayDate}
             onMonthChange={this._handleMonthChange}
             prevMonth={toolbarInteractions.prevMonth}
             nextMonth={toolbarInteractions.nextMonth} />
-
           <ClearFix
             elementType="ul"
             style={styles.weekTitle}>
-            <li style={styles.weekTitleDay}>S</li>
-            <li style={styles.weekTitleDay}>M</li>
-            <li style={styles.weekTitleDay}>T</li>
-            <li style={styles.weekTitleDay}>W</li>
-            <li style={styles.weekTitleDay}>T</li>
-            <li style={styles.weekTitleDay}>F</li>
-            <li style={styles.weekTitleDay}>S</li>
+            <li style={weekTitleDayStyle}>S</li>
+            <li style={weekTitleDayStyle}>M</li>
+            <li style={weekTitleDayStyle}>T</li>
+            <li style={weekTitleDayStyle}>W</li>
+            <li style={weekTitleDayStyle}>T</li>
+            <li style={weekTitleDayStyle}>F</li>
+            <li style={weekTitleDayStyle}>S</li>
           </ClearFix>
-
           <SlideInTransitionGroup
             direction={this.state.transitionDirection}>
             <CalendarMonth
@@ -166,12 +185,11 @@ const Calendar = React.createClass({
               maxDate={this.props.maxDate}
               shouldDisableDate={this.props.shouldDisableDate} />
           </SlideInTransitionGroup>
-        </div>
-
-        <div style={styles.yearContainer}>
+        </div>}
+        {!this.state.displayMonthDay &&
+        <div style={this.prepareStyles(styles.yearContainer)}>
           {this._yearSelector()}
-        </div>
-
+        </div>}
       </ClearFix>
     );
   },
@@ -266,11 +284,15 @@ const Calendar = React.createClass({
   },
 
   _handleMonthDayClick() {
-    this.setState({displayMonthDay: true});
+    this.setState({
+      displayMonthDay: true,
+    });
   },
 
   _handleYearClick() {
-    this.setState({displayMonthDay: false});
+    this.setState({
+      displayMonthDay: false,
+    });
   },
 
   _handleWindowKeyDown(e) {

@@ -27,23 +27,28 @@ const Card = React.createClass({
   render() {
     let lastElement;
     let newChildren = React.Children.map(this.props.children, (currentChild) => {
-      if (!currentChild) {
+      let doClone = false;
+      let newChild = undefined;
+      let newProps = {};
+      let element = currentChild;
+      if (!currentChild || !currentChild.props) {
         return null;
       }
       if (this.state.expanded === false && currentChild.props.expandable === true)
         return;
       if (currentChild.props.actAsExpander === true) {
-        currentChild.props.onTouchTap = this._onExpandable;
-        currentChild.props.style = this.mergeStyles({ cursor: 'pointer' }, currentChild.props.style);
+        doClone = true;
+        newProps.onTouchTap = this._onExpandable;
+        newProps.style = this.mergeStyles({ cursor: 'pointer' }, currentChild.props.style);
       }
       if (currentChild.props.showExpandableButton === true) {
-        lastElement = React.cloneElement(currentChild, {},
-          currentChild.props.children,
-          <CardExpandable expanded={this.state.expanded} onExpanding={this._onExpandable}/>);
-      } else {
-        lastElement = currentChild;
+        doClone = true;
+        newChild = <CardExpandable expanded={this.state.expanded} onExpanding={this._onExpandable}/>;
       }
-      return lastElement;
+      if (doClone) {
+        element = React.cloneElement(currentChild, newProps, currentChild.props.children, newChild);
+      }
+      return element;
     }, this);
 
     // If the last element is text or a title we should add
@@ -55,7 +60,7 @@ const Card = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedStyles = this.mergeAndPrefix({
+    let mergedStyles = this.mergeStyles({
       overflow: 'hidden',
       zIndex: 1,
     }, style);

@@ -17,16 +17,16 @@ const ColorsPage = React.createClass({
       },
       name: {
         display: 'block',
-        marginBottom: '60px'
+        marginBottom: '60px',
       },
       hex: {
-        float: 'right'
+        float: 'right',
       },
       colorGroup: {
         float: 'left',
         padding: '16px 0',
         display: 'block',
-        margin: '0'
+        margin: '0',
       },
       headline: {
         //mui-font-style-headline
@@ -36,17 +36,17 @@ const ColorsPage = React.createClass({
         marginBottom: '12px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
       colorGroupWhenSmall: {
-        width: '50%'
+        width: '50%',
       },
       colorGroupWhenMedium: {
-        width: '33%'
+        width: '33%',
       },
       colorGroupWhenLarge: {
-        width: '25%'
-      }
+        width: '25%',
+      },
     };
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
@@ -63,7 +63,7 @@ const ColorsPage = React.createClass({
   render() {
     let mainColors = [
         'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue',
-        'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange'
+        'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange',
       ],
       neutralColors = ['Brown', 'Blue Grey', 'Grey'],
       colorGroups = [],
@@ -101,8 +101,8 @@ const ColorsPage = React.createClass({
   },
 
   _getColorGroup(color, showAltPalette) {
-    let mainPalette = [50,100,200,300,400,500,600,700,800,900];
-    let altPalette = ['A100','A200','A400','A700'];
+    let mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+    let altPalette = ['A100', 'A200', 'A400', 'A700'];
     let cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
     let colors = [];
     let colorGroupStyle = this.getStyles().colorGroup;
@@ -139,13 +139,16 @@ const ColorsPage = React.createClass({
       backgroundColor: bgColor,
       color: fgColor,
       listStyle: 'none',
-      padding: '15px'
+      padding: '15px',
     };
 
     return (
-      <li style={styles}>{blockTitle}{bgColorText}</li>
+      <li style={styles}>
+        {blockTitle}
+        {bgColorText}
+      </li>
     );
-  }
+  },
 
 });
 

@@ -15,6 +15,7 @@ const TimePicker = React.createClass({
   mixins: [StylePropable, WindowListenable],
 
   propTypes: {
+    autoOk: React.PropTypes.bool,
     defaultTime: React.PropTypes.object,
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     pedantic: React.PropTypes.bool,
@@ -34,6 +35,7 @@ const TimePicker = React.createClass({
       defaultTime: null,
       format: 'ampm',
       pedantic: false,
+      autoOk: false,
     };
   },
 
@@ -76,6 +78,7 @@ const TimePicker = React.createClass({
 
   render() {
     let {
+      autoOk,
       format,
       onFocus,
       onTouchTap,
@@ -91,7 +94,7 @@ const TimePicker = React.createClass({
     }
 
     return (
-      <div >
+      <div>
         <TextField
           {...other}
           ref="input"
@@ -104,7 +107,8 @@ const TimePicker = React.createClass({
           onAccept={this._handleDialogAccept}
           onShow={onShow}
           onDismiss={onDismiss}
-          format={format} />
+          format={format}
+          autoOk={autoOk} />
       </div>
     );
   },
@@ -120,6 +124,21 @@ const TimePicker = React.createClass({
     this.refs.input.setValue(this.formatTime(t));
   },
 
+  /**
+   * Alias for `openDialog()` for an api consistent with TextField.
+   */
+  focus() {
+    this.openDialog();
+  },
+
+  openDialog() {
+    this.setState({
+      dialogTime: this.getTime(),
+    });
+
+    this.refs.dialogWindow.show();
+  },
+
   _handleDialogAccept(t) {
     this.setTime(t);
     if (this.props.onChange) this.props.onChange(null, t);
@@ -133,11 +152,8 @@ const TimePicker = React.createClass({
   _handleInputTouchTap(e) {
     e.preventDefault();
 
-    this.setState({
-      dialogTime: this.getTime(),
-    });
+    this.openDialog();
 
-    this.refs.dialogWindow.show();
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   },
 });

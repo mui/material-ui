@@ -2,10 +2,12 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import React from 'react/addons';
+import ReactDOM from 'react-dom';
 import Calendar from 'date-picker/calendar';
 import CalendarToolbar from 'date-picker/calendar-toolbar';
 import IconButton from 'icon-button';
 import injectTheme from '../fixtures/inject-theme';
+import DateTime from 'utils/date-time';
 
 const TestUtils = React.addons.TestUtils;
 
@@ -22,12 +24,14 @@ describe(`Calendar`, () => {
             let maxDate = new Date(initialDate.toDateString());
 
             let render = TestUtils.renderIntoDocument(
-                <ThemedCalendar 
+                <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     maxDate={maxDate}
                 />
             );
-            let renderedCalendarToolbar = 
+            let renderedCalendarToolbar =
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
             expect(renderedCalendarToolbar.props.nextMonth).to.be.false;
@@ -41,9 +45,11 @@ describe(`Calendar`, () => {
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     maxDate={maxDate} />
             );
-            let renderedCalendarToolbar = 
+            let renderedCalendarToolbar =
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
             expect(renderedCalendarToolbar.props.nextMonth).to.be.false;
@@ -55,12 +61,14 @@ describe(`Calendar`, () => {
             maxDate.setMonth(maxDate.getMonth() + 1);
 
             let render = TestUtils.renderIntoDocument(
-                <ThemedCalendar 
+                <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     maxDate={maxDate} />
             );
 
-            let renderedCalendarToolbar = 
+            let renderedCalendarToolbar =
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
             expect(renderedCalendarToolbar.props.nextMonth).to.be.true;
@@ -71,15 +79,17 @@ describe(`Calendar`, () => {
             let maxDate = new Date(initialDate.toDateString());
 
             let render = TestUtils.renderIntoDocument(
-                <ThemedCalendar 
+                <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     maxDate={maxDate} />
             );
-            let prevMonthButton = React.findDOMNode(
+            let prevMonthButton = ReactDOM.findDOMNode(
                 TestUtils.scryRenderedComponentsWithType(render, IconButton)[0]);
             TestUtils.Simulate.touchTap(prevMonthButton);
 
-            let renderedCalendarToolbar = 
+            let renderedCalendarToolbar =
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
             expect(renderedCalendarToolbar.props.nextMonth).to.be.true;
@@ -91,15 +101,17 @@ describe(`Calendar`, () => {
             maxDate.setMonth(maxDate.getMonth() + 1);
 
             let render = TestUtils.renderIntoDocument(
-                <ThemedCalendar 
+                <ThemedCalendar
                     initialDate={initialDate}
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
                     maxDate={maxDate} />
             );
-            let nextMonthButton = React.findDOMNode(
+            let nextMonthButton = ReactDOM.findDOMNode(
                 TestUtils.scryRenderedComponentsWithType(render, IconButton)[1]);
             TestUtils.Simulate.touchTap(nextMonthButton);
 
-            let renderedCalendarToolbar = 
+            let renderedCalendarToolbar =
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
             expect(renderedCalendarToolbar.props.nextMonth).to.be.false;
@@ -112,9 +124,11 @@ describe(`Calendar`, () => {
             let minDate = new Date(initialDate.toDateString());
 
             let render = TestUtils.renderIntoDocument(
-                <ThemedCalendar 
+                <ThemedCalendar
                     initialDate={initialDate}
-                    minDate={minDate} 
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
+                    minDate={minDate}
                 />
             );
             let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
@@ -128,9 +142,11 @@ describe(`Calendar`, () => {
             minDate.setMonth(initialDate.getMonth() + 1);
 
             let render = TestUtils.renderIntoDocument(
-                <ThemedCalendar 
+                <ThemedCalendar
                     initialDate={initialDate}
-                    minDate={minDate} 
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
+                    minDate={minDate}
                 />
             );
             let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
@@ -144,9 +160,11 @@ describe(`Calendar`, () => {
             minDate.setMonth(initialDate.getMonth() - 1);
 
             let render = TestUtils.renderIntoDocument(
-                <ThemedCalendar 
+                <ThemedCalendar
                     initialDate={initialDate}
-                    minDate={minDate} 
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
+                    minDate={minDate}
                 />
             );
             let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
@@ -159,13 +177,15 @@ describe(`Calendar`, () => {
             let minDate = new Date(initialDate.toDateString());
 
             let render = TestUtils.renderIntoDocument(
-                <ThemedCalendar 
+                <ThemedCalendar
                     initialDate={initialDate}
-                    minDate={minDate} 
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
+                    minDate={minDate}
                 />
             );
 
-            let nextMonthIconButton = React.findDOMNode(TestUtils.scryRenderedComponentsWithType(render, IconButton)[1]);
+            let nextMonthIconButton = ReactDOM.findDOMNode(TestUtils.scryRenderedComponentsWithType(render, IconButton)[1]);
             TestUtils.Simulate.touchTap(nextMonthIconButton);
 
             let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
@@ -178,13 +198,15 @@ describe(`Calendar`, () => {
             minDate.setMonth(minDate.getMonth() - 1);
 
             let render = TestUtils.renderIntoDocument(
-                <ThemedCalendar 
+                <ThemedCalendar
                     initialDate={initialDate}
-                    minDate={minDate} 
+                    DateTimeFormat={DateTime.DateTimeFormat}
+                    locale="en-US"
+                    minDate={minDate}
                 />
             );
 
-            let prevMonthIconButton = React.findDOMNode(TestUtils.scryRenderedComponentsWithType(render, IconButton)[0]);
+            let prevMonthIconButton = ReactDOM.findDOMNode(TestUtils.scryRenderedComponentsWithType(render, IconButton)[0]);
             TestUtils.Simulate.touchTap(prevMonthIconButton);
 
             let calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);

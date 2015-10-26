@@ -15,25 +15,26 @@ const { AppBar,
       Tabs,
       Paper} = require('material-ui');
 
-const RouteHandler = Router.RouteHandler;
+const { StylePropable } = Mixins;
 const { Colors, Spacing, Typography } = Styles;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 
 
 const Master = React.createClass({
+  mixins: [StylePropable],
+
   getInitialState () {
+    let muiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
+    // To switch to RTL...
+    // muiTheme.isRtl = true;
     return {
-      muiTheme: ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme,
     };
   },
 
-  contextTypes : {
-    router: React.PropTypes.func
-  },
-
   childContextTypes : {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   getChildContext() {
@@ -47,26 +48,26 @@ const Master = React.createClass({
     return {
       footer: {
         backgroundColor: Colors.grey900,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       a: {
-        color: darkWhite
+        color: darkWhite,
       },
       p: {
         margin: '0 auto',
         padding: 0,
         color: Colors.lightWhite,
-        maxWidth: 335
+        maxWidth: 335,
       },
       github: {
         position: 'fixed',
         right: Spacing.desktopGutter/2,
         top: 8,
         zIndex: 5,
-        color: 'white'
+        color: 'white',
       },
        iconButton: {
-        color: darkWhite
+        color: darkWhite,
       },
     };
   },
@@ -88,15 +89,16 @@ const Master = React.createClass({
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
       tabIndex: this._getSelectedIndex(),
-      muiTheme: newMuiTheme,});
+      muiTheme: newMuiTheme,
+    });
   },
 
   render() {
     let styles = this.getStyles();
     let title =
-      this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('customization') ? 'Customization' :
-      this.context.router.isActive('components') ? 'Components' : '';
+      this.props.history.isActive('/get-started') ? 'Get Started' :
+      this.props.history.isActive('/customization') ? 'Customization' :
+      this.props.history.isActive('/components') ? 'Components' : '';
 
     let githubButton = (
       <IconButton
@@ -120,12 +122,12 @@ const Master = React.createClass({
         {githubButton}
         {this.state.renderTabs ? this._getTabs(): this._getAppBar()}
 
-        <RouteHandler />
-        <AppLeftNav ref="leftNav" />
+        {this.props.children}
+        <AppLeftNav ref="leftNav" history={this.props.history} />
         <FullWidthSection style={styles.footer}>
-          <p style={styles.p}>
+          <p style={this.prepareStyles(styles.p)}>
             Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
-            awesome <a style={styles.a} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
+            awesome <a style={this.prepareStyles(styles.a)} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
           </p>
           {githubButton2}
         </FullWidthSection>
@@ -173,8 +175,8 @@ const Master = React.createClass({
         bottom:0,
       },
       tab: {
-        height: 64
-      }
+        height: 64,
+      },
 
     };
 
@@ -183,8 +185,8 @@ const Master = React.createClass({
         style={styles.svgLogoContainer}
         linkButton={true}
         href="/#/home">
-        <img style={styles.svgLogo} src="images/material-ui-logo.svg"/>
-        <span style={styles.span}>material ui</span>
+        <img style={this.prepareStyles(styles.svgLogo)} src="images/material-ui-logo.svg"/>
+        <span style={this.prepareStyles(styles.span)}>material ui</span>
       </EnhancedButton>) : null;
 
     return(
@@ -194,7 +196,7 @@ const Master = React.createClass({
           rounded={false}
           style={styles.root}>
           {materialIcon}
-          <div style={styles.container}>
+          <div style={this.prepareStyles(styles.container)}>
             <Tabs
               style={styles.tabs}
               value={this.state.tabIndex}
@@ -203,17 +205,17 @@ const Master = React.createClass({
                 value="1"
                 label="GETTING STARTED"
                 style={styles.tab}
-                route="get-started" />
+                route="/get-started" />
               <Tab
                 value="2"
                 label="CUSTOMIZATION"
                 style={styles.tab}
-                route="customization"/>
+                route="/customization"/>
               <Tab
                 value="3"
                 label="COMPONENTS"
                 style={styles.tab}
-                route="components"/>
+                route="/components"/>
             </Tabs>
           </div>
         </Paper>
@@ -222,21 +224,21 @@ const Master = React.createClass({
   },
 
   _getSelectedIndex() {
-    return this.context.router.isActive('get-started') ? '1' :
-      this.context.router.isActive('customization') ? '2' :
-      this.context.router.isActive('components') ? '3' : '0';
+    return this.props.history.isActive('/get-started') ? '1' :
+      this.props.history.isActive('/customization') ? '2' :
+      this.props.history.isActive('/components') ? '3' : '0';
   },
 
   _handleTabChange(value, e, tab) {
-    this.context.router.transitionTo(tab.props.route);
+    this.props.history.pushState(null, tab.props.route);
     this.setState({tabIndex: this._getSelectedIndex()});
   },
 
   _getAppBar() {
     let title =
-      this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('customization') ? 'Customization' :
-      this.context.router.isActive('components') ? 'Components' : '';
+      this.props.history.isActive('/get-started') ? 'Get Started' :
+      this.props.history.isActive('/customization') ? 'Customization' :
+      this.props.history.isActive('/components') ? 'Components' : '';
 
     let githubButton = (
       <IconButton
@@ -258,7 +260,7 @@ const Master = React.createClass({
 
   _onLeftIconButtonTouchTap() {
     this.refs.leftNav.toggle();
-  }
+  },
 });
 
 module.exports = Master;

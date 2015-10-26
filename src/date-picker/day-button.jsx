@@ -123,11 +123,11 @@ const DayButton = React.createClass({
         onMouseLeave={this._handleMouseLeave}
         onTouchTap={this._handleTouchTap}
         onKeyboardFocus={this._handleKeyboardFocus}>
-        <div style={styles.buttonState} />
-        <span style={styles.label}>{this.props.date.getDate()}</span>
+        <div style={this.prepareStyles(styles.buttonState)} />
+        <span style={this.prepareStyles(styles.label)}>{this.props.date.getDate()}</span>
       </EnhancedButton>
     ) : (
-      <span style={styles.root} />
+      <span style={this.prepareStyles(styles.root)} />
     );
   },
 

@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const StylePropable = require('../mixins/style-propable');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
@@ -123,7 +124,7 @@ const Table = React.createClass({
     // If we could not find a table-header and a table-body, do not attempt to display anything.
     if (!tBody && !tHead) return null;
 
-    let mergedTableStyle = this.mergeAndPrefix(styles.root, style);
+    let mergedTableStyle = this.prepareStyles(styles.root, style);
     let headerTable, footerTable;
     let inlineHeader, inlineFooter;
     if (fixedHeader) {
@@ -154,9 +155,9 @@ const Table = React.createClass({
     }
 
     return (
-      <div className="mui-table-wrapper" style={styles.tableWrapper}>
+      <div className="mui-table-wrapper" style={this.prepareStyles(styles.tableWrapper)}>
         {headerTable}
-        <div className="mui-body-table" style={styles.bodyTable} ref="tableDiv">
+        <div className="mui-body-table" style={this.prepareStyles(styles.bodyTable)} ref="tableDiv">
           <table className={classes} style={mergedTableStyle} ref="tableBody">
             {inlineHeader}
             {inlineFooter}
@@ -169,8 +170,8 @@ const Table = React.createClass({
   },
 
   isScrollbarVisible() {
-    const tableDivHeight = React.findDOMNode(this.refs.tableDiv).clientHeight;
-    const tableBodyHeight = React.findDOMNode(this.refs.tableBody).clientHeight;
+    const tableDivHeight = ReactDOM.findDOMNode(this.refs.tableDiv).clientHeight;
+    const tableBodyHeight = ReactDOM.findDOMNode(this.refs.tableBody).clientHeight;
 
     return tableBodyHeight > tableDivHeight;
   },

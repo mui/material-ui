@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const CssEvent = require('../utils/css-event');
 const KeyLine = require('../utils/key-line');
 const KeyCode = require('../utils/key-code');
@@ -65,8 +66,7 @@ const NestedMenuItem = React.createClass({
 
   componentDidMount() {
     this._positionNestedMenu();
-    let el = this.getDOMNode();
-    el.focus();
+    ReactDOM.findDOMNode(this).focus();
   },
 
   componentDidUpdate() {
@@ -116,7 +116,7 @@ const NestedMenuItem = React.createClass({
 
   render() {
     let styles = this.getStyles();
-    styles = this.mergeAndPrefix(styles.root,
+    styles = this.prepareStyles(styles.root,
       (this.props.active && !this.props.disabled) && styles.rootWhenHovered, {
       position: 'relative',
     }, this.props.style);
@@ -171,8 +171,8 @@ const NestedMenuItem = React.createClass({
   },
 
   _positionNestedMenu() {
-    let el = React.findDOMNode(this);
-    let nestedMenu = React.findDOMNode(this.refs.nestedMenu);
+    let el = ReactDOM.findDOMNode(this);
+    let nestedMenu = ReactDOM.findDOMNode(this.refs.nestedMenu);
     nestedMenu.style.left = el.offsetWidth + 'px';
   },
 
@@ -182,7 +182,7 @@ const NestedMenuItem = React.createClass({
 
   _closeNestedMenu() {
     this.setState({ open: false });
-    React.findDOMNode(this).focus();
+    ReactDOM.findDOMNode(this).focus();
   },
 
   _onParentItemTap() {
@@ -263,7 +263,7 @@ const Menu = React.createClass({
   },
 
   componentDidMount() {
-    let el = React.findDOMNode(this);
+    let el = ReactDOM.findDOMNode(this);
 
     //Set the menu width
     this._setKeyWidth(el);
@@ -285,7 +285,7 @@ const Menu = React.createClass({
     this.setState({muiTheme: newMuiTheme});
 
     //Set the menu width
-    this._setKeyWidth(React.findDOMNode(this));
+    this._setKeyWidth(ReactDOM.findDOMNode(this));
   },
 
   getTheme() {
@@ -331,7 +331,7 @@ const Menu = React.createClass({
         tabIndex="0"
         onKeyDown={this._onKeyDown}
         zDepth={this.props.zDepth}
-        style={this.mergeAndPrefix(
+        style={this.mergeStyles(
           styles.root,
           this.props.hideable && styles.hideable,
           this.props.style)}>
@@ -388,7 +388,7 @@ const Menu = React.createClass({
               key={i}
               index={i}
               className={this.props.menuItemClassNameSubheader}
-              style={this.mergeAndPrefix(styles.subheader, this.props.menuItemStyleSubheader)}
+              style={this.mergeStyles(styles.subheader, this.props.menuItemStyleSubheader)}
               firstChild={i === 0}
               text={menuItem.text} />
           );
@@ -474,8 +474,8 @@ const Menu = React.createClass({
   },
 
   _expandHideableMenu() {
-    let el = React.findDOMNode(this);
-    let container = React.findDOMNode(this.refs.paperContainer);
+    let el = ReactDOM.findDOMNode(this);
+    let container = ReactDOM.findDOMNode(this.refs.paperContainer);
     let padding = this.getSpacing().desktopGutterMini;
     let height = this._getHiddenMenuHeight(el, padding);
 
@@ -524,8 +524,8 @@ const Menu = React.createClass({
   },
 
   _collapseHideableMenu() {
-    let el = React.findDOMNode(this);
-    let container = React.findDOMNode(this.refs.paperContainer);
+    let el = ReactDOM.findDOMNode(this);
+    let container = ReactDOM.findDOMNode(this.refs.paperContainer);
     let originalOpacity = el.style.opacity;
 
     //Add transition

@@ -82,7 +82,7 @@ const TableHeader = React.createClass({
     let baseHeaderRow = this._createBaseHeaderRow();
 
     return (
-      <thead className={classes} style={this.mergeAndPrefix(this.getStyles().root, style)}>
+      <thead className={classes} style={this.prepareStyles(this.getStyles().root, style)}>
         {superHeaderRows}
         {baseHeaderRow}
       </thead>

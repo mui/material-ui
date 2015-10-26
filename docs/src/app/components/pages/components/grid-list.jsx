@@ -63,21 +63,21 @@ class GridListPage extends React.Component {
             name: 'cols',
             type: 'number',
             header: 'optional',
-            desc: 'Number of columns. Defaults to 2.'
+            desc: 'Number of columns. Defaults to 2.',
           },
           {
             name: 'padding',
             type: 'number',
             header: 'optional',
-            desc: 'Number of px for the padding/spacing between items. Defaults to 4.'
+            desc: 'Number of px for the padding/spacing between items. Defaults to 4.',
           },
           {
             name: 'cellHeight',
             type: 'number',
             header: 'optional',
-            desc: 'Number of px for one cell height. Defaults to 180.'
-          }
-        ]
+            desc: 'Number of px for one cell height. Defaults to 180.',
+          },
+        ],
       },
       {
         name: 'GridTile Props',
@@ -86,49 +86,49 @@ class GridListPage extends React.Component {
             name: 'title',
             type: 'string',
             header: 'optional',
-            desc: 'Title to be displayed on tile.'
+            desc: 'Title to be displayed on tile.',
           },
           {
             name: 'subtitle',
             type: 'node',
             header: 'optional',
-            desc: 'String or element serving as subtitle (support text).'
+            desc: 'String or element serving as subtitle (support text).',
           },
           {
             name: 'titlePosition',
             type: '"top"|"bottom"',
             header: 'optional',
-            desc: 'Position of the title bar (container of title, subtitle and action icon). Defaults to "bottom".'
+            desc: 'Position of the title bar (container of title, subtitle and action icon). Defaults to "bottom".',
           },
           {
             name: 'titleBackground',
             type: 'string',
             header: 'optional',
-            desc: 'Style used for title bar background. Defaults to "rgba(0, 0, 0, 0.4)". Useful for setting custom gradients for example'
+            desc: 'Style used for title bar background. Defaults to "rgba(0, 0, 0, 0.4)". Useful for setting custom gradients for example',
           },
           {
             name: 'actionIcon',
             type: 'element',
             header: 'optional',
-            desc: 'An IconButton element to be used as secondary action target (primary action target is the tile itself).'
+            desc: 'An IconButton element to be used as secondary action target (primary action target is the tile itself).',
           },
           {
             name: 'actionPosition',
             type: '"left"|"right"',
             header: 'optional',
-            desc: 'Position of secondary action IconButton. Defaults to "right".'
+            desc: 'Position of secondary action IconButton. Defaults to "right".',
           },
           {
             name: 'cols',
             type: 'number',
             header: 'optional',
-            desc: 'Width of the tile in number of grid cells. Defaults to 1.'
+            desc: 'Width of the tile in number of grid cells. Defaults to 1.',
           },
           {
             name: 'rows',
             type: 'number',
             header: 'optional',
-            desc: 'Height of the tile in number of grid cells. Defaults to 1.'
+            desc: 'Height of the tile in number of grid cells. Defaults to 1.',
           },
           {
             name: 'rootClass',
@@ -137,7 +137,7 @@ class GridListPage extends React.Component {
             desc: 'Either a string used as tag name for the tile root element, or a ReactComponent. Defaults to "div".' +
                   'This is useful when you have, for example, a custom implementation of a navigation link (that knows' +
                   'about your routes) and you want to use it as primary tile action. In case you pass a ReactComponent' +
-                  ', please make sure that it passes all props, accepts styles overrides and render it\'s children.'
+                  ', please make sure that it passes all props, accepts styles overrides and render it\'s children.',
 
           },
           {
@@ -146,10 +146,10 @@ class GridListPage extends React.Component {
             header: 'required',
             desc: 'Theoretically you can pass any node as children, but the main use case is to pass an img, in which' +
                   'case GridTile takes care of making the image "cover" available space (similar to background-size: cover' +
-                  ' or to object-fit:cover)'
-          }
-        ]
-      }
+                  ' or to object-fit:cover)',
+          },
+        ],
+      },
     ];
   }
 
@@ -160,35 +160,42 @@ class GridListPage extends React.Component {
         title: 'Breakfast',
         author: 'jill111',
         featured: true,
-      },{
+      },
+      {
         img: 'images/grid-list/burger-827309_640.jpg',
         title: 'Tasty burger',
-        author: 'pashminu'
-      },{
+        author: 'pashminu',
+      },
+      {
         img: 'images/grid-list/camera-813814_640.jpg',
         title: 'Camera',
-        author: 'Danson67'
-      },{
+        author: 'Danson67',
+      },
+      {
         img: 'images/grid-list/morning-819362_640.jpg',
         title: 'Morning',
         author: 'fancycrave1',
-        featured: true
-      },{
+        featured: true,
+      },
+      {
         img: 'images/grid-list/hats-829509_640.jpg',
         title: 'Hats',
-        author: 'Hans'
-      },{
+        author: 'Hans',
+      },
+      {
         img: 'images/grid-list/honey-823614_640.jpg',
         title: 'Honey',
-        author: 'fancycravel'
-      },{
+        author: 'fancycravel',
+      },
+      {
         img: 'images/grid-list/vegetables-790022_640.jpg',
         title: 'Vegetables',
-        author: 'jill111'
-      },{
+        author: 'jill111',
+      },
+      {
         img: 'images/grid-list/water-plant-821293_640.jpg',
         title: 'Water plant',
-        author: 'BkrmadtyaKarki'
+        author: 'BkrmadtyaKarki',
       },
     ];
 

@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const KeyCode = require('./utils/key-code');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
@@ -70,13 +71,13 @@ const EnhancedSwitch = React.createClass({
   getEvenWidth(){
     return (
       parseInt(window
-        .getComputedStyle(React.findDOMNode(this.refs.root))
+        .getComputedStyle(ReactDOM.findDOMNode(this.refs.root))
         .getPropertyValue('width'), 10)
     );
   },
 
   componentDidMount() {
-    let inputNode = React.findDOMNode(this.refs.checkbox);
+    let inputNode = ReactDOM.findDOMNode(this.refs.checkbox);
     if (!this.props.switched || inputNode.checked !== this.props.switched) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
@@ -206,8 +207,8 @@ const EnhancedSwitch = React.createClass({
     } = this.props;
 
     let styles = this.getStyles();
-    let wrapStyles = this.mergeAndPrefix(styles.wrap, this.props.iconStyle);
-    let rippleStyle = this.mergeAndPrefix(styles.ripple, this.props.rippleStyle);
+    let wrapStyles = this.prepareStyles(styles.wrap, this.props.iconStyle);
+    let rippleStyle = this.prepareStyles(styles.ripple, this.props.rippleStyle);
     let rippleColor = this.props.hasOwnProperty('rippleColor') ? this.props.rippleColor :
                       this.getTheme().primary1Color;
 
@@ -218,7 +219,7 @@ const EnhancedSwitch = React.createClass({
 
     let inputId = this.props.id || UniqueId.generate();
 
-    let labelStyle = this.mergeAndPrefix(styles.label, this.props.labelStyle);
+    let labelStyle = this.prepareStyles(styles.label, this.props.labelStyle);
     let labelElement = this.props.label ? (
       <label style={labelStyle} htmlFor={inputId}>
         {this.props.label}
@@ -228,7 +229,7 @@ const EnhancedSwitch = React.createClass({
     let inputProps = {
       ref: "checkbox",
       type: this.props.inputType,
-      style: this.mergeAndPrefix(styles.input),
+      style: this.prepareStyles(styles.input),
       name: this.props.name,
       value: this.props.value,
       defaultChecked: this.props.defaultSwitched,
@@ -287,7 +288,7 @@ const EnhancedSwitch = React.createClass({
         </div>
       ) : (
         <div style={wrapStyles}>
-          <div style={this.props.trackStyle}/>
+          <div style={this.prepareStyles(this.props.trackStyle)}/>
           <Paper style={this.props.thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
         </div>
     );
@@ -297,19 +298,19 @@ const EnhancedSwitch = React.createClass({
     // Position is left if not defined or invalid.
     let elementsInOrder = (labelPositionExist &&
       (this.props.labelPosition.toUpperCase() === "RIGHT")) ? (
-        <ClearFix style={this.mergeAndPrefix(styles.controls)}>
+        <ClearFix style={styles.controls}>
           {switchElement}
           {labelElement}
         </ClearFix>
       ) : (
-        <ClearFix style={this.mergeAndPrefix(styles.controls)}>
+        <ClearFix style={styles.controls}>
           {labelElement}
           {switchElement}
         </ClearFix>
     );
 
     return (
-      <div ref="root" className={className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div ref="root" className={className} style={this.prepareStyles(styles.root, this.props.style)}>
           {inputElement}
           {elementsInOrder}
       </div>
@@ -318,14 +319,14 @@ const EnhancedSwitch = React.createClass({
 
 
   isSwitched() {
-    return React.findDOMNode(this.refs.checkbox).checked;
+    return ReactDOM.findDOMNode(this.refs.checkbox).checked;
   },
 
   // no callback here because there is no event
   setSwitched(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
       this.props.onParentShouldUpdate(newSwitchedValue);
-      React.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
+      ReactDOM.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
     }
     else if (process.env.NODE_ENV !== 'production') {
       let message = 'Cannot call set method while checked is defined as a property.';
@@ -334,7 +335,7 @@ const EnhancedSwitch = React.createClass({
   },
 
   getValue() {
-    return React.findDOMNode(this.refs.checkbox).value;
+    return ReactDOM.findDOMNode(this.refs.checkbox).value;
   },
 
   isKeyboardFocused() {
@@ -347,7 +348,7 @@ const EnhancedSwitch = React.createClass({
       isKeyboardFocused: false,
     });
 
-    let isInputChecked = React.findDOMNode(this.refs.checkbox).checked;
+    let isInputChecked = ReactDOM.findDOMNode(this.refs.checkbox).checked;
 
     if (!this.props.hasOwnProperty('checked')) {
       this.props.onParentShouldUpdate(isInputChecked);

@@ -1,4 +1,6 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
+const ContextPure = require('../mixins/context-pure');
 const StylePropable = require('../mixins/style-propable');
 const WindowListenable = require('../mixins/window-listenable');
 const CssEvent = require('../utils/css-event');
@@ -8,16 +10,38 @@ const Dialog = require('../dialog');
 const FlatButton = require('../flat-button');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
+const DateTime = require('../utils/date-time');
 
 const DatePickerDialog = React.createClass({
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [
+    StylePropable,
+    WindowListenable,
+    ContextPure,
+  ],
+
+  statics: {
+    getRelevantContextKeys(muiTheme) {
+      return {
+        buttonColor: muiTheme.datePicker.calendarTextColor,
+      };
+    },
+    getChildrenClasses() {
+      return [
+        Calendar,
+        Dialog,
+      ];
+    },
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func,
+    locale: React.PropTypes.string,
+    wordings: React.PropTypes.object,
     disableYearSelection: React.PropTypes.bool,
     initialDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
@@ -41,6 +65,17 @@ const DatePickerDialog = React.createClass({
     };
   },
 
+  getDefaultProps: function() {
+    return {
+      DateTimeFormat: DateTime.DateTimeFormat,
+      locale: 'en-US',
+      wordings: {
+        ok: 'OK',
+        cancel: 'Cancel',
+      },
+    };
+  },
+
   windowListeners: {
     keyup: '_handleWindowKeyUp',
   },
@@ -48,7 +83,6 @@ const DatePickerDialog = React.createClass({
   getInitialState() {
     return {
       isCalendarActive: false,
-      showMonthDayPicker: true,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
@@ -62,16 +96,23 @@ const DatePickerDialog = React.createClass({
 
   render() {
     let {
+      DateTimeFormat,
+      locale,
+      wordings,
       initialDate,
       onAccept,
       style,
       ...other,
     } = this.props;
 
+    const {
+      calendarTextColor,
+    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+
     let styles = {
       root: {
         fontSize: 14,
-        color: this.state.muiTheme.datePicker.calendarTextColor,
+        color: calendarTextColor,
       },
 
       dialogContent: {
@@ -90,7 +131,7 @@ const DatePickerDialog = React.createClass({
     let actions = [
       <FlatButton
         key={0}
-        label="Cancel"
+        label={wordings.cancel}
         secondary={true}
         style={styles.actions}
         onTouchTap={this._handleCancelTouchTap} />,
@@ -100,7 +141,7 @@ const DatePickerDialog = React.createClass({
       actions.push(
         <FlatButton
           key={1}
-          label="OK"
+          label={wordings.ok}
           secondary={true}
           disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
           style={styles.actions}
@@ -120,6 +161,8 @@ const DatePickerDialog = React.createClass({
         onClickAway={this._handleDialogClickAway}
         repositionOnUpdate={false}>
         <Calendar
+          DateTimeFormat={DateTimeFormat}
+          locale={locale}
           ref="calendar"
           onDayTouchTap={this._onDayTouchTap}
           initialDate={this.props.initialDate}
@@ -127,7 +170,6 @@ const DatePickerDialog = React.createClass({
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
           shouldDisableDate={this.props.shouldDisableDate}
-          shouldShowMonthDayPickerFirst={this.state.showMonthDayPicker}
           showYearSelector={this.props.showYearSelector}
           mode={this.props.mode} />
       </Dialog>
@@ -169,10 +211,9 @@ const DatePickerDialog = React.createClass({
   },
 
   _handleDialogDismiss() {
-    CssEvent.onTransitionEnd(this.refs.dialog.getDOMNode(), () => {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this.refs.dialog), () => {
       this.setState({
         isCalendarActive: false,
-        showMonthDayPicker: true,
       });
     });
 
@@ -180,10 +221,9 @@ const DatePickerDialog = React.createClass({
   },
 
   _handleDialogClickAway() {
-    CssEvent.onTransitionEnd(this.refs.dialog.getDOMNode(), () => {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this.refs.dialog), () => {
       this.setState({
         isCalendarActive: false,
-        showMonthDayPicker: true,
       });
     });
 

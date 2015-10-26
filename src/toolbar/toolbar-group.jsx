@@ -115,6 +115,9 @@ const ToolbarGroup = React.createClass({
       if (!currentChild) {
         return null;
       }
+      if (!currentChild.type) {
+        return currentChild;
+      }
       switch (currentChild.type.displayName) {
         case 'DropDownMenu' :
           return React.cloneElement(currentChild, {
@@ -149,7 +152,7 @@ const ToolbarGroup = React.createClass({
     }, this);
 
     return (
-      <div className={this.props.className} style={this.mergeAndPrefix(styles.root, this.props.style)}>
+      <div className={this.props.className} style={this.prepareStyles(styles.root, this.props.style)}>
         {newChildren}
       </div>
     );

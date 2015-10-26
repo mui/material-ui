@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
 const ColorManipulator = require('./utils/color-manipulator');
@@ -170,14 +171,14 @@ const FloatingActionButton = React.createClass({
       iconElement =
         <FontIcon
           className={iconClassName}
-          style={this.mergeAndPrefix(
+          style={this.mergeStyles(
             styles.icon,
             mini && styles.iconWhenMini,
             iconStyle)}/>;
     }
 
     let children = Children.extend(this.props.children, {
-      style: this.mergeAndPrefix(
+      style: this.mergeStyles(
         styles.icon,
         mini && styles.iconWhenMini,
         iconStyle),
@@ -195,7 +196,7 @@ const FloatingActionButton = React.createClass({
 
     return (
       <Paper
-        style={this.mergeAndPrefix(styles.root, this.props.style)}
+        style={this.mergeStyles(styles.root, this.props.style)}
         zDepth={this.state.zDepth}
         circle={true}>
 
@@ -204,15 +205,16 @@ const FloatingActionButton = React.createClass({
           {...buttonEventHandlers}
           ref="container"
           disabled={disabled}
-          style={this.mergeAndPrefix(
+          style={this.mergeStyles(
             styles.container,
-            this.props.mini && styles.containerWhenMini
+            this.props.mini && styles.containerWhenMini,
+            iconStyle
           )}
           focusRippleColor={styles.icon.color}
           touchRippleColor={styles.icon.color}>
             <div
               ref="overlay"
-              style={this.mergeAndPrefix(
+              style={this.prepareStyles(
                 styles.overlay,
                 (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
               )}>
@@ -265,11 +267,11 @@ const FloatingActionButton = React.createClass({
   _handleKeyboardFocus(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({ zDepth: this.state.initialZDepth + 1 });
-      React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
     }
     else if (!this.state.hovered) {
       this.setState({ zDepth: this.state.initialZDepth });
-      React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
 

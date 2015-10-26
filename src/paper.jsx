@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const StylePropable = require('./mixins/style-propable');
 const PropTypes = require('./utils/prop-types');
 const Transitions = require('./styles/transitions');
@@ -76,7 +76,7 @@ const Paper = React.createClass({
     };
 
     return (
-      <div {...other} style={this.mergeAndPrefix(styles, style)}>
+      <div {...other} style={this.prepareStyles(styles, style)}>
         {children}
       </div>
     );

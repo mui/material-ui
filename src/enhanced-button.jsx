@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const StylePropable = require('./mixins/style-propable');
 const Colors = require('./styles/colors');
 const Children = require('./utils/children');
@@ -150,7 +150,7 @@ const EnhancedButton = React.createClass({
       ...other,
     } = this.props;
 
-    const mergedStyles = this.mergeAndPrefix({
+    const mergedStyles = this.prepareStyles({
       border: 10,
       background: 'none',
       boxSizing: 'border-box',

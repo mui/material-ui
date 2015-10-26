@@ -1,4 +1,5 @@
-const React = require('react/addons');
+const React = require('react');
+const ReactDOM = require('react-dom');
 const WindowListenable = require('./mixins/window-listenable');
 const CssEvent = require('./utils/css-event');
 const KeyCode = require('./utils/key-code');
@@ -10,7 +11,7 @@ const Paper = require('./paper');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 
-const ReactTransitionGroup = React.addons.TransitionGroup;
+const ReactTransitionGroup = require('react-addons-transition-group');
 
 const TransitionItem = React.createClass({
   mixins: [StylePropable],
@@ -76,7 +77,7 @@ const TransitionItem = React.createClass({
       ...other,
     } = this.props;
 
-    return <div {...other} style={this.mergeAndPrefix(this.state.style, style)}>
+    return <div {...other} style={this.prepareStyles(this.state.style, style)}>
         {this.props.children}
       </div>;
   },
@@ -202,15 +203,15 @@ let Dialog = React.createClass({
 
 
     if (this.state.open) {
-      main = this.mergeAndPrefix(main, {
+      main = this.mergeStyles(main, {
         left: 0,
         transition: Transitions.easeOut('0ms', 'left', '0ms'),
       });
     }
 
     return {
-      main: this.mergeAndPrefix(main, this.props.style),
-      content: this.mergeAndPrefix(content, this.props.contentStyle),
+      main: this.mergeStyles(main, this.props.style),
+      content: this.mergeStyles(content, this.props.contentStyle),
       paper: {
         background: this.state.muiTheme.rawTheme.palette.canvasColor,
       },
@@ -227,12 +228,12 @@ let Dialog = React.createClass({
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.
       title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
-        <h3 style={styles.title}>{this.props.title}</h3> :
+        <h3 style={this.prepareStyles(styles.title)}>{this.props.title}</h3> :
         this.props.title;
     }
 
     return (
-      <div ref="container" style={styles.main}>
+      <div ref="container" style={this.prepareStyles(styles.main)}>
         <ReactTransitionGroup component="div" ref="dialogWindow">
           {this.state.open &&
             <TransitionItem
@@ -243,7 +244,7 @@ let Dialog = React.createClass({
                 zDepth={4}>
                 {title}
 
-                <div ref="dialogContent" style={styles.body}>
+                <div ref="dialogContent" style={this.prepareStyles(styles.body)}>
                   {this.props.children}
                 </div>
 
@@ -265,7 +266,7 @@ let Dialog = React.createClass({
   },
 
   dismiss() {
-    CssEvent.onTransitionEnd(this.getDOMNode(), () => {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), () => {
       this.refs.dialogOverlay.allowScrolling();
     });
 
@@ -334,7 +335,7 @@ let Dialog = React.createClass({
       }
 
       actionContainer = (
-        <div style={actionStyle}>
+        <div style={this.prepareStyles(actionStyle)}>
           {actionObjects}
         </div>
       );
@@ -346,9 +347,9 @@ let Dialog = React.createClass({
   _positionDialog() {
     if (this.state.open) {
       let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-      let container = this.getDOMNode();
-      let dialogWindow = this.refs.dialogWindow.getDOMNode();
-      let dialogContent = this.refs.dialogContent.getDOMNode();
+      let container = ReactDOM.findDOMNode(this);
+      let dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
+      let dialogContent = ReactDOM.findDOMNode(this.refs.dialogContent);
       let minPaddingTop = 16;
 
       //Reset the height in case the window was resized.
