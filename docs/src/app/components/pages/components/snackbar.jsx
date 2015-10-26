@@ -10,10 +10,12 @@ export default class SnackbarPage extends React.Component {
   constructor() {
     super();
     this._handleClick = this._handleClick.bind(this);
+    this._handleClickDouble = this._handleClickDouble.bind(this);
     this._updateAutoHideDuration = this._updateAutoHideDuration.bind(this);
 
     this.state = {
       autoHideDuration: 0,
+      message: 'Event added to your calendar',
     };
   }
 
@@ -102,6 +104,13 @@ export default class SnackbarPage extends React.Component {
             label="Add to my calendar" />
 
           <br />
+          <br />
+
+          <RaisedButton
+            onTouchTap={this._handleClickDouble}
+            label="Add to my calendar two times" />
+
+          <br />
 
           <TextField
             floatingLabelText="Auto Hide Duration in ms"
@@ -110,7 +119,7 @@ export default class SnackbarPage extends React.Component {
 
           <Snackbar
             ref="snackbar"
-            message="Event added to your calendar"
+            message={this.state.message}
             action="undo"
             autoHideDuration={this.state.autoHideDuration}
             onActionTouchTap={this._handleAction} />
@@ -121,6 +130,18 @@ export default class SnackbarPage extends React.Component {
 
   _handleClick() {
     this.refs.snackbar.show();
+  }
+
+  _handleClickDouble() {
+    this.refs.snackbar.show();
+
+    const duration = this.state.autoHideDuration / 2 || 2000;
+
+    setTimeout(() => {
+      this.setState({
+        message: 'Event ' + Math.round(Math.random() * 100) + ' added to your calendar',
+      });
+    }, duration);
   }
 
   _handleAction() {
