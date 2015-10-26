@@ -9,7 +9,7 @@
     "test": "npm run test-base -- --single-run",
     "test-watch": "npm run test-base -- --auto-watch",
     "test-base": "./node_modules/.bin/karma start",
-    "build": "babel --stage 1 ./src --out-dir ./lib",
+    "build": "./node_modules/.bin/babel --stage 1 ./src --out-dir ./lib",
     "install": "npm run build",
     "prepublish": "npm run build"
   },
