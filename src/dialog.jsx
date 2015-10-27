@@ -109,13 +109,12 @@ let Dialog = React.createClass({
     bodyStyle: React.PropTypes.object,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
-    modal: React.PropTypes.bool,
     openImmediately: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
     title: React.PropTypes.node,
+    defaultIsOpen: React.PropTypes.bool,
+    isOpen: React.PropTypes.bool,
   },
 
   windowListeners: {
@@ -128,14 +127,20 @@ let Dialog = React.createClass({
       autoDetectWindowHeight: false,
       autoScrollBodyContent: false,
       actions: [],
-      modal: false,
       repositionOnUpdate: true,
+      defaultIsOpen: false,
+      isOpen: null,
     };
   },
 
   getInitialState() {
+    let open = this.props.isOpen;
+
+    if (open === null)
+      open = (this.props.openImmediately || this.props.defaultIsOpen);
+
     return {
-      open: this.props.openImmediately || false,
+      open: open,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
@@ -145,13 +150,19 @@ let Dialog = React.createClass({
   componentWillReceiveProps (nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+
+    if (nextProps.isOpen !== this.props.isOpen) {
+      if (nextProps.isOpen && !this.state.open)
+        this._show();
+      else if (!nextProps.isOpen && this.state.open)
+        this._dismiss();
+    }
   },
 
   componentDidMount() {
     this._positionDialog();
-    if (this.props.openImmediately) {
+    if (this.isOpen()) {
       this.refs.dialogOverlay.preventScrolling();
-      this._onShow();
     }
   },
 
@@ -265,20 +276,6 @@ let Dialog = React.createClass({
     return this.state.open;
   },
 
-  dismiss() {
-    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), () => {
-      this.refs.dialogOverlay.allowScrolling();
-    });
-
-    this.setState({ open: false });
-    this._onDismiss();
-  },
-
-  show() {
-    this.refs.dialogOverlay.preventScrolling();
-    this.setState({ open: true }, this._onShow);
-  },
-
   _getAction(actionJSON, key) {
     let styles = {marginRight: 8};
     let props = {
@@ -290,7 +287,7 @@ let Dialog = React.createClass({
           actionJSON.onTouchTap.call(undefined);
         }
         if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
-          this.dismiss();
+          this._requestClose(true);
         }
       },
       label: actionJSON.text,
@@ -379,27 +376,32 @@ let Dialog = React.createClass({
     }
   },
 
-  _onShow() {
-    if (this.props.onShow) this.props.onShow();
+  _show() {
+    this.refs.dialogOverlay.preventScrolling();
+    this.setState({ open: true });
   },
 
-  _onDismiss() {
-    if (this.props.onDismiss) this.props.onDismiss();
+  _dismiss() {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), () => {
+      this.refs.dialogOverlay.allowScrolling();
+    });
+
+    this.setState({ open: false });
+  },
+
+  _requestClose(buttonClicked) {
+    // Close the dialog if the isOpen state is not explicitly set.
+    if (this.props.isOpen === null) this._dismiss();
+    if (this.props.onRequestClose) this.props.onRequestClose(!!buttonClicked);
   },
 
   _handleOverlayTouchTap(e) {
-    if (this.props.modal) {
-      e.stopPropagation();
-    }
-    else {
-      this.dismiss();
-      if (this.props.onClickAway) this.props.onClickAway();
-    }
+    this._requestClose(false);
   },
 
   _handleWindowKeyUp(e) {
-    if (e.keyCode === KeyCode.ESC && !this.props.modal) {
-      this.dismiss();
+    if (e.keyCode === KeyCode.ESC) {
+      this._requestClose(false);
     }
   },
 
