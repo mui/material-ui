@@ -135,7 +135,7 @@ const LeftNav = React.createClass({
           for (let s = 0; s < document.styleSheets.length; s++) {
             let curStyleSheetRules = document.styleSheets[s].rules || document.styleSheets[s].cssRules;
             for (let r = 0; r < curStyleSheetRules.length; r++) {
-              var curRule = curStyleSheetRules[r];
+              let curRule = curStyleSheetRules[r];
               if (curRule.selectorText !== curClass) continue;
               let ruleValue = curRule.style.getPropertyValue(defaultProp);
               if (!ruleValue) continue;
