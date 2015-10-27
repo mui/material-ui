@@ -25,7 +25,7 @@ const CardText = React.createClass({
   },
 
   getInitialState() {
-    return { 
+    return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
@@ -45,7 +45,7 @@ const CardText = React.createClass({
   },
 
   getStyles() {
-    let themeVariables = this.state.muiTheme.cardText;
+    const themeVariables = this.state.muiTheme.cardText;
     return {
       root: {
         padding: 16,

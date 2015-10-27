@@ -183,6 +183,8 @@ module.exports = {
       },
       tabs: {
         backgroundColor: rawTheme.palette.primary1Color,
+        textColor: ColorManipulator.fade(rawTheme.palette.alternateTextColor, 0.6),
+        selectedTextColor: rawTheme.palette.alternateTextColor,
       },
       textField: {
         textColor: rawTheme.palette.textColor,
