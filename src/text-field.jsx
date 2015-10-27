@@ -332,7 +332,8 @@ const TextField = React.createClass({
       inputProps.onChange = this._handleInputChange;
     }
     if (this.props.children) {
-      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props});
+      let childInputStyle = this.mergeStyles(inputStyle, this.props.children.style);
+      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props, style:childInputStyle});
     }
     else {
       inputElement = multiLine ? (
