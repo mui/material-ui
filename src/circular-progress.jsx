@@ -17,6 +17,7 @@ const CircularProgress = React.createClass({
       max:  React.PropTypes.number,
       size: React.PropTypes.number,
       color: React.PropTypes.string,
+      style: React.PropTypes.object,
       innerStyle: React.PropTypes.object,
   },
 

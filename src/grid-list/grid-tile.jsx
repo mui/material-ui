@@ -21,6 +21,7 @@ const GridTile = React.createClass({
     actionPosition: React.PropTypes.oneOf(['left', 'right']),
     cols: React.PropTypes.number,
     rows: React.PropTypes.number,
+    style: React.PropTypes.object,
     rootClass: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.object,
