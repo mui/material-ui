@@ -1,8 +1,7 @@
 let React = require('react');
-let Router = require('react-router');
+let {Link} = require('react-router');
 let { Paper, Mixins, Styles } = require('material-ui');
 
-let Link = Router.Link;
 let { StylePropable, StyleResizable } = Mixins;
 let { Colors, Spacing, Transitions, Typography } = Styles;
 
@@ -16,19 +15,19 @@ let HomeFeature = React.createClass({
     route: React.PropTypes.string,
     img: React.PropTypes.string,
     firstChild: React.PropTypes.bool,
-    lastChild: React.PropTypes.bool
+    lastChild: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       firstChild: false,
-      lastChild: false
+      lastChild: false,
     };
   },
 
   getInitialState() {
     return {
-      zDepth: 0
+      zDepth: 0,
     };
   },
 
@@ -39,13 +38,13 @@ let HomeFeature = React.createClass({
       root: {
         transition: Transitions.easeOut(),
         maxWidth: '300px',
-        margin: '0 auto ' + desktopGutter + ' auto'
+        margin: '0 auto ' + desktopGutter + ' auto',
       },
       rootWhenMedium: {
         float: 'left',
         width: '33%',
         marginRight: '4px',
-        marginBottom: '0px'
+        marginBottom: '0px',
       },
       image: {
         //Not sure why this is needed but it fixes a display
@@ -63,18 +62,18 @@ let HomeFeature = React.createClass({
         textAlign: 'center',
         margin: '0px',
         padding: '0px',
-        lineHeight: desktopKeylineIncrement + 'px'
+        lineHeight: desktopKeylineIncrement + 'px',
       },
       rootWhenLastChild: {
-        marginBottom: '0px'
+        marginBottom: '0px',
       },
       rootWhenMediumAndLastChild: {
         marginRight: '0px',
-        marginBottom: '0px'
+        marginBottom: '0px',
       },
       rootWhenMediumAndFirstChild: {
-        marginLeft: '0px'
-      }
+        marginLeft: '0px',
+      },
     };
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
@@ -111,15 +110,15 @@ let HomeFeature = React.createClass({
 
   _onMouseEnter() {
     this.setState({
-      zDepth: 4
+      zDepth: 4,
     });
   },
 
   _onMouseLeave() {
     this.setState({
-      zDepth: 0
+      zDepth: 0,
     });
-  }
+  },
 
 });
 

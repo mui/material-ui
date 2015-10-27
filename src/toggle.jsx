@@ -99,6 +99,7 @@ const Toggle = React.createClass({
       },
       label: {
         color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
+        width: 'calc(100% - ' + (toggleTrackWidth + 10) + 'px)',
       },
     };
 
@@ -113,14 +114,14 @@ const Toggle = React.createClass({
 
     let styles = this.getStyles();
 
-    let trackStyles = this.mergeAndPrefix(
+    let trackStyles = this.mergeStyles(
       styles.track,
       this.props.trackStyle,
       this.state.switched && styles.trackWhenSwitched,
       this.props.disabled && styles.trackWhenDisabled
     );
 
-    let thumbStyles = this.mergeAndPrefix(
+    let thumbStyles = this.mergeStyles(
       styles.thumb,
       this.props.thumbStyle,
       this.state.switched && styles.thumbWhenSwitched,
@@ -131,16 +132,16 @@ const Toggle = React.createClass({
       thumbStyles.marginLeft = '-' + thumbStyles.width;
     }
 
-    let toggleElementStyles = this.mergeAndPrefix(styles.toggleElement, this.props.elementStyle);
+    let toggleElementStyles = this.mergeStyles(styles.toggleElement, this.props.elementStyle);
 
     let toggleElement = (
-      <div style={toggleElementStyles}>
-        <div style={trackStyles} />
+      <div style={this.prepareStyles(toggleElementStyles)}>
+        <div style={this.prepareStyles(trackStyles)} />
         <Paper style={thumbStyles} circle={true} zDepth={1} />
       </div>
     );
 
-    let customRippleStyle = this.mergeAndPrefix({
+    let customRippleStyle = this.mergeStyles({
       top: -10,
       left: -10,
     }, this.props.rippleStyle);
@@ -148,12 +149,12 @@ const Toggle = React.createClass({
     let rippleColor = this.state.switched ?
       this.getTheme().thumbOnColor : this.state.muiTheme.textColor;
 
-    let iconStyle = this.mergeAndPrefix(
+    let iconStyle = this.mergeStyles(
       styles.icon,
       this.props.iconStyle
     );
 
-    let labelStyle = this.mergeAndPrefix(
+    let labelStyle = this.mergeStyles(
       styles.label,
       this.props.labelStyle
     );

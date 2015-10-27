@@ -1,12 +1,15 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const { Styles } = require('material-ui');
 const { Spacing } = Styles;
+const { ThemeManager } = Styles;
+const DefaultRawTheme = Styles.LightRawTheme;
 
 
 const CodeBlock = React.createClass({
 
   contextTypes : {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -32,7 +35,7 @@ const CodeBlock = React.createClass({
   },
 
   componentDidMount() {
-    var code = React.findDOMNode(this.refs.code);
+    let code = ReactDOM.findDOMNode(this.refs.code);
     require([
       "codemirror/lib/codemirror.js",
       "codemirror/mode/htmlmixed/htmlmixed.js",

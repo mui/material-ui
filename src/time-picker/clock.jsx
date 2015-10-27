@@ -11,10 +11,16 @@ const Clock = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
+    onChangeMinutes: React.PropTypes.func,
+    onChangeHours: React.PropTypes.func,
     initialTime: React.PropTypes.object,
     mode: React.PropTypes.oneOf(['hour', 'minute']),
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     isActive: React.PropTypes.bool,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -111,7 +117,7 @@ const Clock = React.createClass({
     }
 
     return (
-      <div style={styles.root}>
+      <div style={this.prepareStyles(styles.root)}>
         <TimeDisplay
           selectedTime={this.state.selectedTime}
           mode={this.state.mode}
@@ -120,7 +126,7 @@ const Clock = React.createClass({
           onSelectHour={this._setMode.bind(this, 'hour')}
           onSelectMin={this._setMode.bind(this, 'minute')} />
 
-        <div style={styles.container} >
+        <div style={this.prepareStyles(styles.container)} >
           {clock}
         </div>
 
@@ -148,12 +154,17 @@ const Clock = React.createClass({
     this.setState({
       selectedTime: time,
     });
-
+    
+    const { onChangeHours } = this.props;
+    
     if (finished) {
       setTimeout(() => {
         this.setState({
           mode: 'minute',
         });
+        if (typeof(onChangeHours) === 'function') {
+          onChangeHours(time);
+        }
       }, 100);
     }
   },
@@ -164,6 +175,11 @@ const Clock = React.createClass({
     this.setState({
       selectedTime: time,
     });
+
+    const { onChangeMinutes } = this.props;
+    if (typeof(onChangeMinutes) === 'function') {
+        setTimeout(() => { onChangeMinutes(time); }, 0);
+      }
   },
 
   getSelectedTime() {

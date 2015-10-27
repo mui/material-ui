@@ -5,15 +5,17 @@ let Code = require('snackbars-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class SnackbarPage extends React.Component {
+export default class SnackbarPage extends React.Component {
 
   constructor() {
     super();
     this._handleClick = this._handleClick.bind(this);
+    this._handleClickDouble = this._handleClickDouble.bind(this);
     this._updateAutoHideDuration = this._updateAutoHideDuration.bind(this);
 
     this.state = {
-      autoHideDuration: 0
+      autoHideDuration: 0,
+      message: 'Event added to your calendar',
     };
   }
 
@@ -27,33 +29,33 @@ class SnackbarPage extends React.Component {
             name: 'action',
             type: 'string',
             header: 'optional',
-            desc: 'The name of the action on the snackbar.'
+            desc: 'The name of the action on the snackbar.',
           },
           {
             name: 'autoHideDuration',
             type: 'number',
             header: 'optional',
-            desc: 'The number of milliseconds to wait before automatically dismissing. If no value is specified the snackbar will dismiss normally. If a value is provided the snackbar can still be dismissed normally. If a snackbar is dismissed before the timer expires, the timer will be cleared.'
+            desc: 'The number of milliseconds to wait before automatically dismissing. If no value is specified the snackbar will dismiss normally. If a value is provided the snackbar can still be dismissed normally. If a snackbar is dismissed before the timer expires, the timer will be cleared.',
           },
           {
             name: 'message',
             type: 'string',
             header: 'required',
-            desc: 'The message to be displayed on the snackbar.'
+            desc: 'The message to be displayed on the snackbar.',
           },
           {
             name: 'openOnMount',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the snackbar will open once mounted.'
+            desc: 'If true, the snackbar will open once mounted.',
           },
           {
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the Snackbar\'s root element.'
-          }
-        ]
+            desc: 'Override the inline-styles of the Snackbar\'s root element.',
+          },
+        ],
       },
       {
         name: 'Methods',
@@ -61,35 +63,35 @@ class SnackbarPage extends React.Component {
           {
             name: 'dismiss',
             header: 'Snackbar.dismiss()',
-            desc: 'Hides the snackbar.'
+            desc: 'Hides the snackbar.',
           },
           {
             name: 'show',
             header: 'Snackbar.show()',
-            desc: 'Shows the snackbar.'
-          }
-        ]
+            desc: 'Shows the snackbar.',
+          },
+        ],
       },
       {
         name: 'Events',
         infoArray: [
           {
             name: 'onActionTouchTap',
-            header: 'function(e)',
-            desc: 'Fired when the action button is touchtapped.'
+            header: 'function(event)',
+            desc: 'Fired when the action button is touchtapped.',
           },
           {
             name: 'onDismiss',
             header: 'function()',
-            desc: 'Fired when the snackbar is dismissed.'
+            desc: 'Fired when the snackbar is dismissed.',
           },
           {
             name: 'onShow',
             header: 'function()',
-            desc: 'Fired when the snackbar is shown.'
-          }
-        ]
-      }
+            desc: 'Fired when the snackbar is shown.',
+          },
+        ],
+      },
     ];
 
     return (
@@ -102,6 +104,13 @@ class SnackbarPage extends React.Component {
             label="Add to my calendar" />
 
           <br />
+          <br />
+
+          <RaisedButton
+            onTouchTap={this._handleClickDouble}
+            label="Add to my calendar two times" />
+
+          <br />
 
           <TextField
             floatingLabelText="Auto Hide Duration in ms"
@@ -110,7 +119,7 @@ class SnackbarPage extends React.Component {
 
           <Snackbar
             ref="snackbar"
-            message="Event added to your calendar"
+            message={this.state.message}
             action="undo"
             autoHideDuration={this.state.autoHideDuration}
             onActionTouchTap={this._handleAction} />
@@ -119,8 +128,20 @@ class SnackbarPage extends React.Component {
     );
   }
 
-  _handleClick(e) {
+  _handleClick() {
     this.refs.snackbar.show();
+  }
+
+  _handleClickDouble() {
+    this.refs.snackbar.show();
+
+    const duration = this.state.autoHideDuration / 2 || 2000;
+
+    setTimeout(() => {
+      this.setState({
+        message: 'Event ' + Math.round(Math.random() * 100) + ' added to your calendar',
+      });
+    }, duration);
   }
 
   _handleAction() {
@@ -131,10 +152,7 @@ class SnackbarPage extends React.Component {
   _updateAutoHideDuration(e) {
     let value = e.target.value;
     this.setState({
-      autoHideDuration: value.length > 0 ? parseInt(value) : undefined
+      autoHideDuration: value.length > 0 ? parseInt(value) : undefined,
     });
   }
-
 }
-
-module.exports = SnackbarPage;

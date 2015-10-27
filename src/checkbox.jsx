@@ -115,26 +115,26 @@ const Checkbox = React.createClass({
     } = this.props;
     let styles = this.getStyles();
     let boxStyles =
-      this.mergeAndPrefix(
+      this.mergeStyles(
         styles.box,
         this.state.switched && styles.boxWhenSwitched,
         iconStyle,
         this.props.disabled && styles.boxWhenDisabled);
     let checkStyles =
-      this.mergeAndPrefix(
+      this.mergeStyles(
         styles.check,
         this.state.switched && styles.checkWhenSwitched,
         iconStyle,
         this.props.disabled && styles.checkWhenDisabled);
 
     let checkedElement = checkedIcon ? React.cloneElement(checkedIcon, {
-      style: this.mergeAndPrefix(checkStyles, checkedIcon.props.style),
+      style: this.mergeStyles(checkStyles, checkedIcon.props.style),
     }) : React.createElement(CheckboxChecked, {
       style: checkStyles,
     });
 
     let unCheckedElement = unCheckedIcon ? React.cloneElement(unCheckedIcon, {
-      style: this.mergeAndPrefix(boxStyles, unCheckedIcon.props.style),
+      style: this.mergeStyles(boxStyles, unCheckedIcon.props.style),
     }) : React.createElement(CheckboxOutline, {
       style: boxStyles,
     });
@@ -147,9 +147,9 @@ const Checkbox = React.createClass({
     );
 
     let rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
-    let mergedIconStyle = this.mergeAndPrefix(styles.icon, iconStyle);
+    let mergedIconStyle = this.mergeStyles(styles.icon, iconStyle);
 
-    let labelStyle = this.mergeAndPrefix(
+    let labelStyle = this.mergeStyles(
       styles.label,
       this.props.labelStyle
     );

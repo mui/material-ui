@@ -1,5 +1,5 @@
 const React = require('react');
-const Router = require('react-router');
+const {History} = require('react-router');
 const { Mixins, RaisedButton, Styles } = require('material-ui');
 const HomeFeature = require('./home-feature');
 const FullWidthSection = require('../full-width-section');
@@ -12,15 +12,15 @@ const DefaultRawTheme = Styles.LightRawTheme;
 
 const HomePage = React.createClass({
 
-  mixins: [StylePropable, StyleResizable],
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
+  mixins: [
+    StylePropable,
+    StyleResizable,
+    History,
+  ],
 
   render() {
     let style = {
-      paddingTop: Spacing.desktopKeylineIncrement
+      paddingTop: Spacing.desktopKeylineIncrement,
     };
 
     return (
@@ -52,10 +52,10 @@ const HomePage = React.createClass({
         color: DefaultRawTheme.palette.primary1Color,
       },
       githubStyle: {
-        margin: '16px 32px 0px 8px'
+        margin: '16px 32px 0px 8px',
       },
       demoStyle: {
-        margin: '16px 32px 0px 32px'
+        margin: '16px 32px 0px 32px',
       },
       h1: {
         color: Colors.darkWhite,
@@ -69,20 +69,20 @@ const HomePage = React.createClass({
         letterSpacing: 0,
       },
       nowrap: {
-        whiteSpace: 'nowrap'
+        whiteSpace: 'nowrap',
       },
       taglineWhenLarge: {
-        marginTop: 32
+        marginTop: 32,
       },
       h1WhenLarge: {
-        fontSize: 56
+        fontSize: 56,
       },
       h2WhenLarge: {
         fontSize: 24,
         lineHeight: '32px',
         paddingTop: 16,
         marginBottom: 12,
-      }
+      },
     };
 
     styles.h2 = this.mergeStyles(styles.h1, styles.h2);
@@ -118,7 +118,7 @@ const HomePage = React.createClass({
   _getHomePurpose() {
     let styles = {
       root: {
-        backgroundColor: Colors.grey200
+        backgroundColor: Colors.grey200,
       },
       content: {
         maxWidth: 700,
@@ -131,7 +131,7 @@ const HomePage = React.createClass({
         marginBottom: 13,
         letterSpacing: 0,
         color: Typography.textDarkBlack,
-      }
+      },
     };
 
     return (
@@ -158,16 +158,16 @@ const HomePage = React.createClass({
       <FullWidthSection useContent={true} contentStyle={styles}>
         <HomeFeature
           heading="Get Started"
-          route="get-started"
+          route="/get-started"
           img="images/get-started.svg"
           firstChild={true}/>
         <HomeFeature
           heading="Customization"
-          route="customization"
+          route="/customization"
           img="images/css-framework.svg" />
         <HomeFeature
           heading="Components"
-          route="components"
+          route="/components"
           img="images/components.svg"
           lastChild={true}/>
       </FullWidthSection>
@@ -187,8 +187,8 @@ const HomePage = React.createClass({
         fontSize: 22,
       },
       button: {
-        marginTop: 32
-      }
+        marginTop: 32,
+      },
     };
 
     return (
@@ -208,8 +208,8 @@ const HomePage = React.createClass({
   },
 
   _onDemoClick() {
-    this.context.router.transitionTo('components');
-  }
+    this.history.pushState(null, '/components');
+  },
 });
 
 module.exports = HomePage;

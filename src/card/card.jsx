@@ -17,28 +17,38 @@ const Card = React.createClass({
     onExpandChange: React.PropTypes.func,
   },
 
-  _onExpandable(value) {
-    this.setState({expanded: value});
+  _onExpandable() {
+    let newExpandedState = !(this.state.expanded === true);
+    this.setState({expanded: newExpandedState});
     if (this.props.onExpandChange)
-      this.props.onExpandChange(value);
+      this.props.onExpandChange(newExpandedState);
   },
 
   render() {
     let lastElement;
     let newChildren = React.Children.map(this.props.children, (currentChild) => {
-      if (!currentChild) {
+      let doClone = false;
+      let newChild = undefined;
+      let newProps = {};
+      let element = currentChild;
+      if (!currentChild || !currentChild.props) {
         return null;
       }
       if (this.state.expanded === false && currentChild.props.expandable === true)
         return;
-      if (currentChild.props.showExpandableButton === true) {
-        lastElement = React.cloneElement(currentChild, {},
-          currentChild.props.children,
-          <CardExpandable expanded={this.state.expanded} onExpanding={this._onExpandable}/>);
-      } else {
-        lastElement = currentChild;
+      if (currentChild.props.actAsExpander === true) {
+        doClone = true;
+        newProps.onTouchTap = this._onExpandable;
+        newProps.style = this.mergeStyles({ cursor: 'pointer' }, currentChild.props.style);
       }
-      return lastElement;
+      if (currentChild.props.showExpandableButton === true) {
+        doClone = true;
+        newChild = <CardExpandable expanded={this.state.expanded} onExpanding={this._onExpandable}/>;
+      }
+      if (doClone) {
+        element = React.cloneElement(currentChild, newProps, currentChild.props.children, newChild);
+      }
+      return element;
     }, this);
 
     // If the last element is text or a title we should add
@@ -50,7 +60,7 @@ const Card = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedStyles = this.mergeAndPrefix({
+    let mergedStyles = this.mergeStyles({
       overflow: 'hidden',
       zIndex: 1,
     }, style);

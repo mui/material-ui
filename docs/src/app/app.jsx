@@ -1,33 +1,29 @@
-(function () {
+const React = require('react');
+const ReactDOM = require('react-dom');
+const {Router} = require('react-router');
+const AppRoutes = require('./app-routes.jsx');
+const injectTapEventPlugin = require('react-tap-event-plugin');
+const createHistory = require('history/lib/createHashHistory');
 
-  let React = require('react'),
-    Router = require('react-router'),
-    AppRoutes = require('./app-routes.jsx'),
-    injectTapEventPlugin = require("react-tap-event-plugin");
+//Helpers for debugging
+window.React = React;
+window.Perf = require('react-addons-perf');
 
-  //Needed for React Developer Tools
-  window.React = React;
+//Needed for onTouchTap
+//Can go away when react 1.0 release
+//Check this repo:
+//https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
-  //Needed for onTouchTap
-  //Can go away when react 1.0 release
-  //Check this repo:
-  //https://github.com/zilverline/react-tap-event-plugin
-  injectTapEventPlugin();
-
-  /** Render the main app component. You can read more about the react-router here:
-    *  https://github.com/rackt/react-router/blob/master/docs/guides/overview.md
-    */
-  Router
-    // Runs the router, similiar to the Router.run method. You can think of it as an
-    // initializer/constructor method.
-    .create({
-      routes: AppRoutes,
-      scrollBehavior: Router.ScrollToTopBehavior
-    })
-    // This is our callback function, whenever the url changes it will be called again.
-    // Handler: The ReactComponent class that will be rendered
-    .run(function (Handler) {
-      React.render(<Handler/>, document.getElementById('app'));
-    });
-
-})();
+/**
+ * Render the main app component. You can read more about the react-router here:
+ * https://github.com/rackt/react-router/blob/master/docs/guides/overview.md
+ */
+ReactDOM.render(
+  <Router
+    history={createHistory({queryKey: false})}
+    onUpdate={() => window.scrollTo(0, 0)}
+  >
+    {AppRoutes}
+  </Router>
+, document.getElementById('app'));

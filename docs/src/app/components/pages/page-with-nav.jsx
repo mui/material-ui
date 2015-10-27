@@ -1,6 +1,5 @@
 let React = require('react');
-let Router = require('react-router');
-let RouteHandler = Router.RouteHandler;
+let {State, History} = require('react-router');
 let { Menu, Mixins, Styles } = require('material-ui');
 
 let { Spacing, Colors } = Styles;
@@ -9,45 +8,46 @@ let { StyleResizable, StylePropable } = Mixins;
 
 let PageWithNav = React.createClass({
 
-  mixins: [StyleResizable, StylePropable],
-
   contextTypes: {
-    router: React.PropTypes.func
+    muiTheme: React.PropTypes.object,
+    router: React.PropTypes.func,
   },
 
+  mixins: [StyleResizable, StylePropable, History],
+
   propTypes: {
-    menuItems: React.PropTypes.array
+    menuItems: React.PropTypes.array,
   },
 
   getStyles(){
     let subNavWidth = Spacing.desktopKeylineIncrement * 3 + 'px';
     let styles = {
       root: {
-        paddingTop: Spacing.desktopKeylineIncrement + 'px'
+        paddingTop: Spacing.desktopKeylineIncrement + 'px',
       },
       rootWhenMedium: {
-        position: 'relative'
+        position: 'relative',
       },
       secondaryNav: {
         borderTop: 'solid 1px ' + Colors.grey300,
-        overflow: 'hidden'
+        overflow: 'hidden',
       },
       content: {
         boxSizing: 'border-box',
         padding: Spacing.desktopGutter + 'px',
-        maxWidth: (Spacing.desktopKeylineIncrement * 14) + 'px'
+        maxWidth: (Spacing.desktopKeylineIncrement * 14) + 'px',
       },
       secondaryNavWhenMedium: {
         borderTop: 'none',
         position: 'absolute',
         top: '64px',
-        width: subNavWidth
+        width: subNavWidth,
       },
       contentWhenMedium: {
         marginLeft: subNavWidth,
         borderLeft: 'solid 1px ' + Colors.grey300,
-        minHeight: '800px'
-      }
+        minHeight: '800px',
+      },
     };
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
@@ -63,11 +63,11 @@ let PageWithNav = React.createClass({
   render() {
     let styles = this.getStyles();
     return (
-      <div style={styles.root}>
-        <div style={styles.content}>
-          <RouteHandler />
+      <div style={this.prepareStyles(styles.root)}>
+        <div style={this.prepareStyles(styles.content)}>
+          {this.props.children}
         </div>
-        <div style={styles.secondaryNav}>
+        <div style={this.prepareStyles(styles.secondaryNav)}>
           <Menu
             ref="menuItems"
             zDepth={0}
@@ -85,13 +85,13 @@ let PageWithNav = React.createClass({
 
     for (let i = menuItems.length - 1; i >= 0; i--) {
       currentItem = menuItems[i];
-      if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
+      if (currentItem.route && this.history.isActive(currentItem.route)) return i;
     }
   },
 
   _onMenuItemClick(e, index, item) {
-    this.context.router.transitionTo(item.route);
-  }
+    this.history.pushState(null, item.route);
+  },
 
 });
 

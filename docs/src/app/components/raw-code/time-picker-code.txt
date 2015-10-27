@@ -7,3 +7,8 @@
 <TimePicker
   format="24hr"
   hintText="24hr Format" />
+
+//Auto OK
+<TimePicker
+  hintText="AutoOk"
+  autoOk={true} />

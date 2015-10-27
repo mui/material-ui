@@ -1,4 +1,4 @@
-const React = require('react/addons');
+const React = require('react');
 const ContextPure = require('./mixins/context-pure');
 const Transitions = require('./styles/transitions');
 const Children = require('./utils/children');

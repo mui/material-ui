@@ -45,7 +45,7 @@ const Toolbar = React.createClass({
   },
 
   getStyles() {
-    return this.mergeAndPrefix({
+    return this.mergeStyles({
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       backgroundColor: this.getTheme().backgroundColor,
@@ -57,7 +57,7 @@ const Toolbar = React.createClass({
 
   render() {
     return (
-      <div className={this.props.className} style={this.getStyles()}>
+      <div className={this.props.className} style={this.prepareStyles(this.getStyles())}>
         {this.props.children}
       </div>
     );

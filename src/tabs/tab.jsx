@@ -63,7 +63,7 @@ const Tab = React.createClass({
       width,
       ...other,
     } = this.props;
-    let styles = this.mergeAndPrefix({
+    let styles = this.prepareStyles({
       display: 'table-cell',
       cursor: 'pointer',
       textAlign: 'center',

@@ -1,3 +1,59 @@
+## 0.13.0
+###### _Oct 21, 2015_
+
+##### Breaking Changes
+- Material-UI for React 0.14.x
+
+##### Component Fixes / Enhancements
+- FloatingActionButton now has iconStyle prop (#1575)
+- Card title and subtitle props can be any node (#1950)
+
+## 0.12.5
+###### _Oct 21, 2015_
+
+v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.13.3. This version fixes that. We reverted some commits (related to React 0.14.0 support) from v0.12.4 to bring to you v0.12.5 that works as expected.
+
+##### Component Fixes / Enhancements
+- DatePicker performance has been improved (#1905)
+- Docs code now follows ESLint rules more strictly (#1778)
+- Removed duplicate keys in component definitions (#1933)
+
+## 0.12.4
+###### _Oct 19, 2015_
+
+**This version is not compatible with React 0.13.x.** If you're on React 0.13.x, use Material-UI v0.12.5 instead.
+
+##### General
+- React 0.14 compatible
+
+##### Component Fixes / Enhancements
+- ThemeDecorator supports props (#1841)
+- Full RTL support included (#1674)
+- react-draggable dependency removed for Slider (#1825)
+
+## 0.12.3
+###### _Oct 7, 2015_
+
+##### Component Fixes / Enhancements
+- Quick-fix version until react 0.14 support is somewhat stable
+  - Changed react dependency to ~0.13 in package.json (#1836)
+
+## 0.12.2
+###### _Oct 6, 2015_
+
+##### General
+- NEW GridList component and documentation! Thanks to @igorbt (#1320)
+
+##### Component Fixes / Enhancements
+- Added back canvasColor to theme palette (#1762)
+- Added hintStyle prop to TextField (#1510)
+- Add isScrollbarVisible function to table (#1539)
+- Add rowsMax prop to EnhancedTextarea (#1562)
+- Tab "item three" renamed on docs site (#1775)
+- Fixed docs server to run on Windows (#1774)
+- FlatButton now has a backgroundColor prop (#1561)
+- Fixed DropdownMenu buggy value prop check (#1768)
+
 ## 0.12.1
 ###### _Sep 28, 2015_
 

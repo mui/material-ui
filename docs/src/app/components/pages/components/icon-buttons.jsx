@@ -7,7 +7,7 @@ let Code = require('icon-buttons-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class IconButtonsPage extends React.Component {
+export default class IconButtonsPage extends React.Component {
 
   render() {
 
@@ -53,45 +53,45 @@ class IconButtonsPage extends React.Component {
             type: 'string',
             header: 'optional',
             desc: 'If you are using a stylesheet for your icons, enter the ' +
-                  'class name for the icon to be used here.'
+                  'class name for the icon to be used here.',
           },
           {
             name: 'iconStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Overrides the inline-styles of the icon element.'
+            desc: 'Overrides the inline-styles of the icon element.',
           },
           {
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the button\'s root element.'
+            desc: 'Override the inline-styles of the button\'s root element.',
           },
           {
             name: 'tooltip',
             type: 'string',
             header: 'optional',
-            desc: 'The tooltip text to show.'
+            desc: 'The tooltip text to show.',
           },
           {
             name: 'tooltipPosition',
             type: 'string',
             header: 'default: bottom-center',
-            desc: 'Allows the tooltip to be viewed with different alignments: "bottom-center", "top-center", "bottom-right", "top-right", "bottom-left" and "top-left"'
+            desc: 'Allows the tooltip to be viewed with different alignments: "bottom-center", "top-center", "bottom-right", "top-right", "bottom-left" and "top-left"',
           },
           {
             name: 'tooltipStyles',
             type: 'object',
             header: 'optional',
-            desc: 'Allows modification of tooltip styles.'
+            desc: 'Allows modification of tooltip styles.',
           },
           {
             name: 'touch',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, this component will render the touch sized tooltip.'
-          }
-        ]
+            desc: 'If true, this component will render the touch sized tooltip.',
+          },
+        ],
       },
       {
         name: 'Events',
@@ -99,15 +99,15 @@ class IconButtonsPage extends React.Component {
           {
             name: 'onBlur',
             header: 'IconButton.onBlur(e)',
-            desc: 'Callback function for when the component loses focus.'
+            desc: 'Callback function for when the component loses focus.',
           },
           {
             name: 'onFocus',
             header: 'IconButton.onFocus(e)',
-            desc: 'Callback function for when the component gains focus.'
-          }
-        ]
-      }
+            desc: 'Callback function for when the component gains focus.',
+          },
+        ],
+      },
     ];
 
     return (
@@ -167,5 +167,3 @@ class IconButtonsPage extends React.Component {
   }
 
 }
-
-module.exports = IconButtonsPage;

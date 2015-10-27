@@ -14,24 +14,42 @@ let TimePickerPage = React.createClass({
         name: 'Props',
         infoArray: [
           {
+            name: 'autoOk',
+            type: 'boolean',
+            header: 'default: false',
+            desc: 'If true, automatically accept and close the picker on set minutes.',
+          },
+          {
             name: 'defaultTime',
             type: 'date object',
             header: 'optional',
-            desc: 'This is the initial time value of the component.'
+            desc: 'This is the initial time value of the component.',
+          },
+          {
+            name: 'floatingLabelText',
+            type: 'string',
+            header: 'optional',
+            desc: 'The text string to use for the floating label element.',
           },
           {
             name: 'format',
             type: 'one of: ampm, 24hr',
             header: 'default: ampm',
-            desc: 'Tells the component to display the picker in ampm (12hr) format or 24hr format.'
+            desc: 'Tells the component to display the picker in ampm (12hr) format or 24hr format.',
+          },
+          {
+            name: 'hintText',
+            type: 'string',
+            header: 'optional',
+            desc: 'The hint text string to display. Note, floatingLabelText will overide this.',
           },
           {
             name: 'pedantic',
             type: 'boolean',
             header: 'default: false',
-            desc: 'It\'s technically more correct to refer to "12 noon" and "12 midnight" rather than "12 a.m." and "12 p.m." and it avoids real confusion between different locales. By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.'
-          }
-        ]
+            desc: 'It\'s technically more correct to refer to "12 noon" and "12 midnight" rather than "12 a.m." and "12 p.m." and it avoids real confusion between different locales. By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.',
+          },
+        ],
       },
       {
         name: 'Methods',
@@ -39,19 +57,31 @@ let TimePickerPage = React.createClass({
           {
             name: 'getTime',
             header: 'TimePicker.getTime()',
-            desc: 'Returns the current time value.'
+            desc: 'Returns the current time value.',
           },
           {
             name: 'setTime',
             header: 'TimePicker.setTime(t)',
-            desc: 'Sets the time value to t, where t is a date object.'
+            desc: 'Sets the time value to t, where t is a date object.',
           },
           {
             name: 'formatTime',
             header: 'TimePicker.formatTime(time)',
-            desc: 'Formats the Date object to a current component\'s time format.'
-          }
-        ]
+            desc: 'Formats the Date object to a current component\'s time format.',
+          },
+          {
+            name: 'openDialog',
+            header: 'TimePicker.openDialog()',
+            desc: 'Opens the time-picker dialog programmatically. Use this if you want to open the ' +
+            'dialog in response to some event other than focus/tap on the input field, such as an ' +
+            'external button click.',
+          },
+          {
+            name: 'focus',
+            header: 'TimePicker.focus()',
+            desc: 'An alias for the `openDialog()` method to allow more generic use alongside `TextField`.',
+          },
+        ],
       },
       {
         name: 'Events',
@@ -60,26 +90,29 @@ let TimePickerPage = React.createClass({
             name: 'onChange',
             header: 'function(null, time)',
             desc: 'Callback function that is fired when the time value ' +
-            'changes. The time value is passed in a Date Object.'
-          },
-          {
-            name: 'onFocus',
-            header: 'function(e)',
-            desc: 'Callback function that is fired when the timepicker field ' +
-                  'gains focus.'
+            'changes. The time value is passed in a Date Object.' +
+            'Since there is no particular event associated with ' +
+            'the change the first argument will always be null and the second ' +
+            'argument will be the new Date instance.',
           },
           {
             name: 'onDismiss',
             header: 'function()',
-            desc: 'Fired when the timepicker dialog is dismissed.'
+            desc: 'Fired when the timepicker dialog is dismissed.',
+          },
+          {
+            name: 'onFocus',
+            header: 'function(event)',
+            desc: 'Callback function that is fired when the timepicker field ' +
+                  'gains focus.',
           },
           {
             name: 'onShow',
             header: 'function()',
-            desc: 'Fired when the timepicker dialog is shown.'
-          }
-        ]
-      }
+            desc: 'Fired when the timepicker dialog is shown.',
+          },
+        ],
+      },
     ];
 
     return (
@@ -98,6 +131,12 @@ let TimePickerPage = React.createClass({
             format="24hr"
             hintText="24hr Format"
             onChange={this._changeTimePicker12}  />
+
+          <TimePicker
+            ref="pickerAutoOk"
+            format="24hr"
+            hintText="AutoOk"
+            autoOk={true} />
         </CodeExample>
       </ComponentDoc>
     );
@@ -107,7 +146,7 @@ let TimePickerPage = React.createClass({
   },
   _changeTimePicker12(err, t){
     this.refs.picker12hr.setTime(t);
-  }
+  },
 
 });
 

@@ -1,14 +1,13 @@
-const React = require('react/addons');
+const React = require('react');
 const ContextPure = require('../mixins/context-pure');
+const StylePropable = require('../mixins/style-propable');
 const Styles = require('../utils/styles');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
 
 const FlatButtonLabel = React.createClass({
 
-  mixins: [
-    ContextPure,
-  ],
+  mixins: [ContextPure, StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -59,13 +58,13 @@ const FlatButtonLabel = React.createClass({
 
     const contextKeys = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
-    const mergedRootStyles = Styles.mergeAndPrefix({
+    const mergedRootStyles = this.mergeStyles({
       position: 'relative',
       padding: '0 ' + contextKeys.spacingDesktopGutterLess + 'px',
     }, style);
 
     return (
-      <span style={mergedRootStyles}>{label}</span>
+      <span style={this.prepareStyles(mergedRootStyles)}>{label}</span>
     );
   },
 

@@ -1,3 +1,6 @@
+# So parent files don't get applied
+root: true 
+
 env:
   es6: true
   browser: true
@@ -7,6 +10,7 @@ rules:
   # Errors
   comma-dangle: [2, always-multiline]
   no-var: 2
+  no-dupe-keys: 2
   eqeqeq: [2, allow-null]
   eol-last: 2
   yoda: 2

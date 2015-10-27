@@ -93,7 +93,7 @@ const LinkMenuItem = React.createClass({
     let styles = this.getStyles();
 
     let linkStyles =
-      this.mergeAndPrefix(
+      this.prepareStyles(
         styles.root,
         this.props.selected && styles.rootWhenSelected,
         this.props.selected && styles.rootWhenSelected,

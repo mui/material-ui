@@ -115,12 +115,12 @@ const TimeDisplay = React.createClass({
     styles[mode].color = this.getTheme().accentColor;
 
     return (
-      <div {...other} style={this.mergeAndPrefix(styles.root)}>
-        <div style={this.mergeAndPrefix(styles.box)}>
-          <div style={this.mergeAndPrefix(styles.time)}>
-            <span style={this.mergeAndPrefix(styles.hour)} onTouchTap={this.props.onSelectHour}>{hour}</span>
+      <div {...other} style={this.prepareStyles(styles.root)}>
+        <div style={this.prepareStyles(styles.box)}>
+          <div style={this.prepareStyles(styles.time)}>
+            <span style={this.prepareStyles(styles.hour)} onTouchTap={this.props.onSelectHour}>{hour}</span>
             <span>:</span>
-            <span style={this.mergeAndPrefix(styles.minute)} onTouchTap={this.props.onSelectMin}>{min}</span>
+            <span style={this.prepareStyles(styles.minute)} onTouchTap={this.props.onSelectMin}>{min}</span>
           </div>
 
          <span key={"affix"}>{this.props.affix.toUpperCase()}</span>

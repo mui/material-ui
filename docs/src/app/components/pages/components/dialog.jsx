@@ -5,12 +5,12 @@ let Code = require('dialog-code');
 let CodeExample = require('../../code-example/code-example');
 
 
-class DialogPage extends React.Component {
+export default class DialogPage extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      modal: false
+      modal: false,
     };
     this._handleCustomDialogCancel = this._handleCustomDialogCancel.bind(this);
     this._handleCustomDialogSubmit = this._handleCustomDialogSubmit.bind(this);
@@ -32,65 +32,65 @@ class DialogPage extends React.Component {
             name: 'actions',
             type: 'array',
             header: 'optional',
-            desc: 'This prop can be either a JSON object containing the actions to render, or an array of react objects.'
+            desc: 'This prop can be either a JSON object containing the actions to render, or an array of react objects.',
           },
           {
             name: 'actionFocus',
             type: 'string',
             header: 'optional',
-            desc: 'The ref of the action to focus on when the dialog is displayed.'
+            desc: 'The ref of the action to focus on when the dialog is displayed.',
           },
           {
             name: 'bodyStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Overrides the inline-styles of the dialog container under the title.'
+            desc: 'Overrides the inline-styles of the dialog container under the title.',
           },
           {
             name: 'contentClassName',
             type: 'string',
             header: 'optional',
             desc: 'The className to add to the dialog window content container. This is the Paper ' +
-                  'element that is seen when the dialog is shown.'
+                  'element that is seen when the dialog is shown.',
           },
           {
             name: 'contentStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Overrides the inline-styles of the dialog window content container.'
+            desc: 'Overrides the inline-styles of the dialog window content container.',
           },
           {
             name: 'modal',
             type: 'boolean',
             header: 'default: false',
-            desc: 'Force the user to use one of the actions in the dialog. Clicking outside the dialog will not dismiss the dialog.'
+            desc: 'Force the user to use one of the actions in the dialog. Clicking outside the dialog will not dismiss the dialog.',
           },
           {
             name: 'openImmediately',
             type: 'bool',
             header: 'default: false',
-            desc: 'Set to true to have the dialog automatically open on mount.'
+            desc: 'Set to true to have the dialog automatically open on mount.',
           },
           {
             name: 'title',
             type: 'node',
             header: 'optional',
-            desc: 'The title to display on the dialog. Could be number, string, element or an array containing these types.'
+            desc: 'The title to display on the dialog. Could be number, string, element or an array containing these types.',
           },
           {
             name: 'autoDetectWindowHeight',
             type: 'bool',
             header: 'default: true',
             desc: 'If set to true, the height of the dialog will be auto detected. A max height will be enforced so that the '
-              + 'content does not extend beyond the viewport.'
+              + 'content does not extend beyond the viewport.',
           },
           {
             name: 'autoScrollBodyContent',
             type: 'bool',
             header: 'default: false',
-            desc: 'If set to true, the body content of the dialog will be scrollable.'
-          }
-        ]
+            desc: 'If set to true, the body content of the dialog will be scrollable.',
+          },
+        ],
       },
       {
         name: 'Methods',
@@ -98,19 +98,19 @@ class DialogPage extends React.Component {
           {
             name: 'dismiss',
             header: 'Dialog.dismiss()',
-            desc: 'Hides the dialog.'
+            desc: 'Hides the dialog.',
           },
           {
             name: 'show',
             header: 'Dialog.show()',
-            desc: 'Shows the dialog.'
+            desc: 'Shows the dialog.',
           },
           {
             name: 'isOpen',
             header: 'Dialog.isOpen()',
-            desc: 'Get the dialog open state.'
-          }
-        ]
+            desc: 'Get the dialog open state.',
+          },
+        ],
       },
       {
         name: 'Events',
@@ -118,20 +118,20 @@ class DialogPage extends React.Component {
           {
             name: 'onDismiss',
             header: 'function()',
-            desc: 'Fired when the dialog is dismissed.'
+            desc: 'Fired when the dialog is dismissed.',
           },
           {
             name: 'onShow',
             header: 'function()',
-            desc: 'Fired when the dialog is shown.'
-          }
-        ]
-      }
+            desc: 'Fired when the dialog is shown.',
+          },
+        ],
+      },
     ];
 
     let standardActions = [
       { text: 'Cancel' },
-      { text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit' }
+      { text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit' },
     ];
 
     let customActions = [
@@ -144,7 +144,7 @@ class DialogPage extends React.Component {
         key={2}
         label="Submit"
         primary={true}
-        onTouchTap={this._handleCustomDialogSubmit} />
+        onTouchTap={this._handleCustomDialogSubmit} />,
     ];
     let scrollableCustomActions = [
       <FlatButton
@@ -156,7 +156,7 @@ class DialogPage extends React.Component {
         key={2}
         label="Submit"
         primary={true}
-        onTouchTap={this._handleScrollableDialogSubmit} />
+        onTouchTap={this._handleScrollableDialogSubmit} />,
     ];
 
     return (
@@ -246,5 +246,3 @@ class DialogPage extends React.Component {
   }
 
 }
-
-module.exports = DialogPage;

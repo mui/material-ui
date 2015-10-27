@@ -17,7 +17,7 @@ module.exports = (customTheme) => {
       },
 
       render() {
-        return React.createElement(Component, null);
+        return React.createElement(Component, this.props);
       },
     });
 

@@ -122,7 +122,7 @@ const TableRow = React.createClass({
     return (
       <tr
         className={classes}
-        style={this.mergeAndPrefix(this.getStyles().root, style)}
+        style={this.prepareStyles(this.getStyles().root, style)}
         {...other}>
         {rowColumns}
       </tr>
