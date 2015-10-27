@@ -44,18 +44,13 @@ const CardText = React.createClass({
     actAsExpander: React.PropTypes.bool,
   },
 
-  getDefaultProps() {
-    return {
-      color: Styles.Colors.ck,
-    };
-  },
-
   getStyles() {
+    let themeVariables = this.state.muiTheme.cardText;
     return {
       root: {
         padding: 16,
         fontSize: '14px',
-        color: this.props.color,
+        color: this.props.color ? this.props.color : themeVariables.textColor,
       },
     };
   },

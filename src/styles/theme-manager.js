@@ -21,6 +21,9 @@ module.exports = {
         minWidth: 88,
         iconButtonSize: rawTheme.spacing.iconSize * 2,
       },
+      cardText: {
+        textColor: rawTheme.palette.textColor,
+      },
       checkbox: {
         boxColor: rawTheme.palette.textColor,
         checkedColor: rawTheme.palette.primary1Color,
