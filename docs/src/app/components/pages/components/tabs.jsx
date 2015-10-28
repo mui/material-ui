@@ -56,6 +56,12 @@ export default class TabsPage extends React.Component {
             desc: 'Override the inline-styles of the tab-labels container.',
           },
           {
+            name: 'tabTemplate',
+            type: 'ReactClass',
+            header: 'optional',
+            desc: 'Override the default tab template used to wrap the content of each tab element.',
+          },
+          {
             name: 'value',
             type: 'string or number',
             header: 'optional',
