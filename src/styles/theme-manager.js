@@ -21,6 +21,9 @@ module.exports = {
         minWidth: 88,
         iconButtonSize: rawTheme.spacing.iconSize * 2,
       },
+      cardText: {
+        textColor: rawTheme.palette.textColor,
+      },
       checkbox: {
         boxColor: rawTheme.palette.textColor,
         checkedColor: rawTheme.palette.primary1Color,
@@ -180,6 +183,8 @@ module.exports = {
       },
       tabs: {
         backgroundColor: rawTheme.palette.primary1Color,
+        textColor: ColorManipulator.fade(rawTheme.palette.alternateTextColor, 0.6),
+        selectedTextColor: rawTheme.palette.alternateTextColor,
       },
       textField: {
         textColor: rawTheme.palette.textColor,
