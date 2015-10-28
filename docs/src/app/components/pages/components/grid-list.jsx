@@ -165,7 +165,7 @@ class GridListPage extends React.Component {
       },
     ];
 
-    let gradientBg = 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);';
+    let gradientBg = 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)';
 
     return (
       <ComponentDoc
@@ -182,6 +182,7 @@ class GridListPage extends React.Component {
               >
               {
                 tilesData.map(tile => <GridTile
+                  key={tile.img}
                   title={tile.title}
                   subtitle={<span>by <b>{tile.author}</b></span>}
                   actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
@@ -197,6 +198,7 @@ class GridListPage extends React.Component {
               >
               {
                 tilesData.map(tile => <GridTile
+                  key={tile.img}
                   title={tile.title}
                   actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
                   actionPosition="left"
