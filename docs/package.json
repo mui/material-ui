@@ -21,6 +21,8 @@
     "react-addons-transition-group": "^0.14.0",
     "react-addons-update": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-motion": "^0.3.1",
+    "react-swipeable-views": "^0.3.0",
     "react-tap-event-plugin": "^0.2.0"
   },
   "devDependencies": {

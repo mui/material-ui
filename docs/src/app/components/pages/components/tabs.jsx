@@ -4,14 +4,17 @@ let {IconButton, Slider, Styles, Tab, Tabs } = require('material-ui');
 let ComponentDoc = require('../../component-doc');
 let { Colors, Typography } = Styles;
 let Code = require('tabs-code');
-
+const SwipeableViews = require('react-swipeable-views');
 
 export default class TabsPage extends React.Component {
 
   constructor(props) {
     super(props);
     this._handleTabActive = this._handleTabActive.bind(this);
-    this.state = {tabsValue: 'a'};
+    this.state = {
+      tabsValue: 'a',
+      slideIndex: 0,
+    };
   }
 
   render(){
@@ -150,6 +153,9 @@ export default class TabsPage extends React.Component {
         position: 'relative',
         paddingLeft: padding,
       },
+      slide: {
+        padding: 10,
+      },
     };
 
     return (
@@ -227,9 +233,39 @@ export default class TabsPage extends React.Component {
                 </Tab>
               </Tabs>
           </div>
+          <br />
+          <Tabs onChange={this._handleChangeTabs.bind(this)} value={this.state.slideIndex + ''}>
+            <Tab label="Tab One" value="0" />
+            <Tab label="Tab Two" value="1" />
+            <Tab label="Tab Three" value="2" />
+          </Tabs>
+          <SwipeableViews index={this.state.slideIndex} onChangeIndex={this._handleChangeIndex.bind(this)}>
+            <div>
+              <h2 style={styles.headline}>Tabs with slide effect</h2>
+              Swipe to see the next slide.<br />
+            </div>
+            <div style={styles.slide}>
+              slide n°2
+            </div>
+            <div style={styles.slide}>
+              slide n°3
+            </div>
+          </SwipeableViews>
         </CodeExample>
       </ComponentDoc>
     );
+  }
+
+  _handleChangeIndex(index) {
+    this.setState({
+      slideIndex: index,
+    });
+  }
+
+  _handleChangeTabs(value) {
+    this.setState({
+      slideIndex: parseInt(value, 10),
+    });
   }
 
   _handleButtonClick() {
