@@ -5,47 +5,13 @@ let StarBorder = require('svg-icons/toggle/star-border');
 let IconButton = require('icon-button');
 
 let ComponentDoc = require('../../component-doc');
-
+let Code = require('grid-list-code');
+let CodeExample = require('../../code-example/code-example');
 
 class GridListPage extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.code = `
-{/* Basic grid list with mostly default options */}
-<GridList
-  cellHeight={200}
-  style={{width: 320, height: 640, overflowY: 'auto'}}
-  >
-  {
-    tilesData.map(tile => <GridTile
-      title={tile.title}
-      subtitle={<span>by <b>{tile.author}</b></span>}
-      actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-      ><img src={tile.img} /></GridTile>)
-  }
-</GridList>
-{/* Grid list with all possible overrides */}
-<GridList
-  cols={2}
-  cellHeight={200}
-  padding={1}
-  style={{width: 320, height: 640, overflowY: 'auto'}}
-  >
-  {
-    tilesData.map(tile => <GridTile
-      title={tile.title}
-      actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-      actionPosition="left"
-      titlePosition="top"
-      titleBackground={gradientBg}
-      cols={tile.featured ? 2 : 1}
-      rows={tile.featured ? 2 : 1}
-      ><img src={tile.img} /></GridTile>)
-  }
-</GridList>
-    `;
 
     this.desc = <p>Simple flex-box based <a
                   href="https://www.google.com/design/spec/components/grid-lists.html"
@@ -199,7 +165,7 @@ class GridListPage extends React.Component {
       },
     ];
 
-    let gradientBg = 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);';
+    let gradientBg = 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)';
 
     return (
       <ComponentDoc
@@ -207,40 +173,44 @@ class GridListPage extends React.Component {
         code={this.code}
         desc={this.desc}
         componentInfo={this.componentInfo}>
-        <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-          {/* Basic grid list with mostly default options */}
-          <GridList
-            cellHeight={200}
-            style={{width: 320, height: 640, overflowY: 'auto', marginBottom: 24}}
-            >
-            {
-              tilesData.map(tile => <GridTile
-                title={tile.title}
-                subtitle={<span>by <b>{tile.author}</b></span>}
-                actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-                ><img src={tile.img} /></GridTile>)
-            }
-          </GridList>
-          {/* Grid list with all possible overrides */}
-          <GridList
-            cols={2}
-            cellHeight={200}
-            padding={1}
-            style={{width: 320, height: 640, overflowY: 'auto', marginBottom: 24}}
-            >
-            {
-              tilesData.map(tile => <GridTile
-                title={tile.title}
-                actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-                actionPosition="left"
-                titlePosition="top"
-                titleBackground={gradientBg}
-                cols={tile.featured ? 2 : 1}
-                rows={tile.featured ? 2 : 1}
-                ><img src={tile.img} /></GridTile>)
-            }
-          </GridList>
-        </div>
+        <CodeExample code={Code}>
+          <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+            {/* Basic grid list with mostly default options */}
+            <GridList
+              cellHeight={200}
+              style={{width: 320, height: 640, overflowY: 'auto', marginBottom: 24}}
+              >
+              {
+                tilesData.map(tile => <GridTile
+                  key={tile.img}
+                  title={tile.title}
+                  subtitle={<span>by <b>{tile.author}</b></span>}
+                  actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
+                  ><img src={tile.img} /></GridTile>)
+              }
+            </GridList>
+            {/* Grid list with all possible overrides */}
+            <GridList
+              cols={2}
+              cellHeight={200}
+              padding={1}
+              style={{width: 320, height: 640, overflowY: 'auto', marginBottom: 24}}
+              >
+              {
+                tilesData.map(tile => <GridTile
+                  key={tile.img}
+                  title={tile.title}
+                  actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
+                  actionPosition="left"
+                  titlePosition="top"
+                  titleBackground={gradientBg}
+                  cols={tile.featured ? 2 : 1}
+                  rows={tile.featured ? 2 : 1}
+                  ><img src={tile.img} /></GridTile>)
+              }
+            </GridList>
+          </div>
+        </CodeExample>
       </ComponentDoc>
     );
   }
