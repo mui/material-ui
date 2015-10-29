@@ -30,6 +30,7 @@
   },
   "homepage": "http://material-ui.com/",
   "peerDependencies": {
+    "inline-style-prefixer": "^0.3.3",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-tap-event-plugin": "^0.2.0",
@@ -54,6 +55,7 @@
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
     "html-webpack-plugin": "^1.6.1",
+    "inline-style-prefixer": "^0.3.3",
     "karma": "^0.13.3",
     "karma-browserify": "^4.2.1",
     "karma-chai-sinon": "^0.1.5",
