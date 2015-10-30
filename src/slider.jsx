@@ -80,7 +80,6 @@ const Slider = React.createClass({
 
   getDefaultProps() {
     return {
-      defaultValue: 0,
       disabled: false,
       max: 1,
       min: 0,
@@ -93,7 +92,7 @@ const Slider = React.createClass({
   getInitialState() {
     let value = this.props.value;
     if (value === undefined) {
-      value = this.props.defaultValue;
+      value = this.props.defaultValue !== undefined ? this.props.defaultValue : this.props.min;
     }
     let percent = (value - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
@@ -113,7 +112,7 @@ const Slider = React.createClass({
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
-    if (nextProps.value !== undefined) {
+    if (nextProps.value !== undefined && !this.state.dragging) {
       this.setValue(nextProps.value);
     }
   },
