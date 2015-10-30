@@ -67,7 +67,10 @@ const FlatButton = React.createClass({
     disabled: React.PropTypes.bool,
     hoverColor: React.PropTypes.string,
     label: validateLabel,
-    labelPosition: React.PropTypes.oneOf(['before', 'after']),
+    labelPosition: React.PropTypes.oneOf([
+      'before',
+      'after',
+    ]),
     labelStyle: React.PropTypes.object,
     onKeyboardFocus: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
@@ -81,7 +84,7 @@ const FlatButton = React.createClass({
   getDefaultProps() {
     return {
       labelStyle: {},
-      labelPosition: 'before',
+      labelPosition: 'before', // Should be after but we keep it like for now (prevent breaking changes)
       onKeyboardFocus: () => {},
       onMouseEnter: () => {},
       onMouseLeave: () => {},
@@ -123,7 +126,7 @@ const FlatButton = React.createClass({
       secondary,
       style,
       ...other,
-      } = this.props;
+    } = this.props;
 
     const {
       buttonColor,
@@ -172,10 +175,13 @@ const FlatButton = React.createClass({
     const labelElement = label ? (
       <FlatButtonLabel label={label} style={labelStyle} />
     ) : undefined;
-    // Place label before or after children.
-    const childrenFragment = labelPosition === 'before' ? { labelElement, children } : { children, labelElement };
-    const enhancedButtonChildren = Children.create(childrenFragment);
 
+    // Place label before or after children.
+    const childrenFragment = labelPosition === 'before' ?
+      { labelElement, children }
+      :
+      { children, labelElement };
+    const enhancedButtonChildren = Children.create(childrenFragment);
 
     return (
       <EnhancedButton

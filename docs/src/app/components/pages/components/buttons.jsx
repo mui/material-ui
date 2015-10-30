@@ -71,6 +71,12 @@ export default class ButtonPage extends React.Component {
             desc: 'Override the inline-styles of the button\'s label element.',
           },
           {
+            name: 'labelPosition',
+            type: 'oneOf ["before", "after"]',
+            header: 'default: "before"',
+            desc: 'Place label before or after the passed children',
+          },
+          {
             name: 'linkButton',
             type: 'bool',
             header: 'default: false',
@@ -319,7 +325,6 @@ export default class ButtonPage extends React.Component {
         height: '100%',
         display: 'inline-block',
         verticalAlign: 'middle',
-        float: 'left',
         paddingLeft: '12px',
         lineHeight: '36px',
         color: Colors.cyan500,
@@ -375,7 +380,17 @@ export default class ButtonPage extends React.Component {
                     <FlatButton
                       linkButton={true}
                       href="https://github.com/callemall/material-ui"
-                      secondary={true} label="GitHub"
+                      secondary={true}
+                      label="GitHub"
+                      labelStyle={styles.buttonLabel}>
+                      <FontIcon style={styles.exampleFlatButtonIcon} className="muidocs-icon-custom-github"/>
+                    </FlatButton>
+                  </div>
+                  <div style={styles.container}>
+                    <FlatButton
+                      secondary={true}
+                      label="Label after"
+                      labelPosition="after"
                       labelStyle={styles.buttonLabel}>
                       <FontIcon style={styles.exampleFlatButtonIcon} className="muidocs-icon-custom-github"/>
                     </FlatButton>
@@ -416,6 +431,15 @@ export default class ButtonPage extends React.Component {
                       href="https://github.com/callemall/material-ui"
                       secondary={true}
                       label="Github"
+                      labelStyle={styles.buttonLabel}>
+                      <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>
+                    </RaisedButton>
+                  </div>
+                  <div style={styles.container}>
+                    <RaisedButton
+                      secondary={true}
+                      label="Label after"
+                      labelPosition="after"
                       labelStyle={styles.buttonLabel}>
                       <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>
                     </RaisedButton>
