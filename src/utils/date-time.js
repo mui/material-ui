@@ -120,6 +120,12 @@ module.exports = {
       (d1.getDate() === d2.getDate());
   },
 
+  isEqualTime(t1, t2) {
+    return t1 && t2 &&
+      (t1.getHours() === t2.getHours()) &&
+      (t1.getMinutes() === t2.getMinutes());
+  },
+
   isBeforeDate(d1, d2) {
     const date1 = this.cloneAsDate(d1);
     const date2 = this.cloneAsDate(d2);

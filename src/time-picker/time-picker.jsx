@@ -57,7 +57,7 @@ const TimePicker = React.createClass({
   componentWillReceiveProps(nextProps) {
     if (this._isControlled()) {
       let newTime = this._getControlledTime(nextProps);
-      if (!DateTime.isEqualDate(this.state.time, newTime)) {
+      if (!DateTime.isEqualTime(this.state.time, newTime)) {
         this.setState({
           time: newTime,
         });
