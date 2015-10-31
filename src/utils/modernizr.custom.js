@@ -2,8 +2,10 @@
  * Build: http://modernizr.com/download/#-borderradius-boxshadow-opacity-csstransforms-csstransforms3d-csstransitions-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes
  */
 
-module.exports = (function( window, document, undefined ) {
+const isBrowser = require('./is-browser');
 
+// Importing this module outside of a browser will result in undefined.
+module.exports = !isBrowser ? undefined : (function( window, document, undefined ) {
     let version = '2.8.3',
 
     Modernizr = {},
