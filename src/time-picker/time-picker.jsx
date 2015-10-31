@@ -49,7 +49,7 @@ const TimePicker = React.createClass({
 
   getInitialState() {
     return {
-      time: this._isControlled() ? this._getControlledDate() : (this.props.defaultTime || emptyTime),
+      time: this._isControlled() ? this._getControlledTime() : (this.props.defaultTime || emptyTime),
       dialogTime: new Date(),
     };
   },
@@ -166,8 +166,11 @@ const TimePicker = React.createClass({
   },
 
   _handleDialogAccept(t) {
-    this.setTime(t);
+    if (!this._isControlled()) {
+      this.setTime(t)
+    }
     if (this.props.onChange) this.props.onChange(null, t);
+    if (this.props.valueLink) this.props.valueLink.requestChange(t);
   },
 
   _handleInputFocus(e) {
