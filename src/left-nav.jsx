@@ -121,22 +121,50 @@ const LeftNav = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.leftNav;
+    let initState = this.state.muiTheme.leftNav;
+    let newState = Object.assign({}, initState);
+    if (this.props.className) {
+      //prepare for css-file override
+      let initStateProps = Object.keys(initState);
+      let classes = this.props.className.split(' ');
+      for (let c = 0; c < classes.length; c++) { //for each class
+        let curClass = '.' + classes[c];
+        for (let p = 0; p < initStateProps.length; p++) { //for each default prop
+          let defaultProp = initStateProps[p]; //OK if undefined
+          let isImportant = false;
+          for (let s = 0; s < document.styleSheets.length; s++) {
+            let curStyleSheetRules = document.styleSheets[s].rules || document.styleSheets[s].cssRules;
+            for (let r = 0; r < curStyleSheetRules.length; r++) {
+              let curRule = curStyleSheetRules[r];
+              if (curRule.selectorText !== curClass) continue;
+              let ruleValue = curRule.style.getPropertyValue(defaultProp);
+              if (!ruleValue) continue;
+              let ruleImportance = curRule.style.getPropertyPriority(defaultProp);
+              if (isImportant && !ruleImportance) continue; //we already found an important one
+              isImportant = !!ruleImportance;
+              newState[defaultProp] = ruleValue;
+            }
+          }
+        }
+      }
+    }
+    return newState;
   },
 
   getStyles() {
     let x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
+    let {width, color} = this.getTheme();
     let styles = {
       root: {
         height: '100%',
-        width: this.getTheme().width,
+        width: width,
         position: 'fixed',
         zIndex: 10,
         left: isBrowser && Modernizr.csstransforms3d ? 0 : x,
         top: 0,
         transform: 'translate3d(' + x + 'px, 0, 0)',
         transition: !this.state.swiping && Transitions.easeOut(),
-        backgroundColor: this.getTheme().color,
+        backgroundColor: color,
         overflow: 'hidden',
       },
       menu: {
