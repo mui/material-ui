@@ -6,6 +6,7 @@ export default class Components extends React.Component {
   render() {
     let menuItems = [
       { route: '/components/appbar', text: 'AppBar'},
+      { route: '/components/auto-complete', text: 'Auto Complete'},
       { route: '/components/avatars', text: 'Avatars'},
       { route: '/components/buttons', text: 'Buttons'},
       { route: '/components/cards', text: 'Cards'},
@@ -22,7 +23,6 @@ export default class Components extends React.Component {
       { route: '/components/paper', text: 'Paper'},
       { route: '/components/progress', text: 'Progress'},
       { route: '/components/refresh-indicator', text: 'Refresh Indicator'},
-      { route: '/components/search-field', text: 'Search Field'},
       { route: '/components/sliders', text: 'Sliders'},
       { route: '/components/switches', text: 'Switches'},
       { route: '/components/snackbar', text: 'Snackbar'},

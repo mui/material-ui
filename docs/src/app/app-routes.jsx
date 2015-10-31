@@ -21,6 +21,7 @@ const InlineStyles = require('./components/pages/customization/inline-styles');
 
 const Components = require('./components/pages/components');
 const AppBar = require('./components/pages/components/app-bar');
+const AutoComplete = require('./components/pages/components/auto-complete');
 const Avatars = require('./components/pages/components/avatars');
 const Buttons = require('./components/pages/components/buttons');
 const Cards = require('./components/pages/components/cards');
@@ -37,7 +38,6 @@ const Menus = require('./components/pages/components/menus');
 const Paper = require('./components/pages/components/paper');
 const Progress = require('./components/pages/components/progress');
 const RefreshIndicator = require('./components/pages/components/refresh-indicator');
-const SearchField = require('./components/pages/components/search-field');
 const Sliders = require('./components/pages/components/sliders');
 const Snackbar = require('./components/pages/components/snackbar');
 const Switches = require('./components/pages/components/switches');
@@ -77,6 +77,7 @@ const AppRoutes = (
     <Redirect from="components" to="/components/appbar" />
     <Route path="components" component={Components}>
       <Route path="appbar" component={AppBar} />
+      <Route path="auto-complete" component={AutoComplete} />
       <Route path="avatars" component={Avatars} />
       <Route path="buttons" component={Buttons} />
       <Route path="cards" component={Cards} />
@@ -93,7 +94,6 @@ const AppRoutes = (
       <Route path="paper" component={Paper} />
       <Route path="progress" component={Progress} />
       <Route path="refresh-indicator" component={RefreshIndicator} />
-      <Route path="search-field" component={SearchField} />
       <Route path="sliders" component={Sliders} />
       <Route path="switches" component={Switches} />
       <Route path="snackbar" component={Snackbar} />

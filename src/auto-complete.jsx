@@ -2,11 +2,13 @@ const React = require('react');
 const ReactTransitionGroup = require('react-addons-transition-group');
 const StylePropable = require('./mixins/style-propable');
 const ClickAwayable = require('./mixins/click-awayable');
+const KeyCode = require('./utils/key-code');
 const TextField = require('./text-field');
 const Menu = require('./menus/menu');
 const MenuItem = require('./menus/menu-item');
+const MenuDivider = require('./menus/menu-divider');
 
-const SearchField = React.createClass({
+const AutoComplete = React.createClass({
 
   mixins: [
     StylePropable,
@@ -22,8 +24,11 @@ const SearchField = React.createClass({
     floatingLabelText: React.PropTypes.string,
     errorStyle: React.PropTypes.object,
     hintText: React.PropTypes.string,
+    searchText: React.PropTypes.string,
+    dataSource: React.PropTypes.array,
+    updateWhenFocused: React.PropTypes.bool,
+    auto: React.PropTypes.bool,
     id: React.PropTypes.string,
-    onChange: React.PropTypes.func,
     autoWidth: React.PropTypes.bool,
     menuStyle: React.PropTypes.object,
     listStyle: React.PropTypes.object,
@@ -31,16 +36,18 @@ const SearchField = React.createClass({
     menuCloseDelay: React.PropTypes.number,
     onUpdateRequests: React.PropTypes.func,
     onNewSearchRequest: React.PropTypes.func,
+    disableFocusRipple: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       fullWidth: false,
       open: false,
+      auto: false,
       searchText: '',
       menuCloseDelay: 100,
-
-      onChange: () => {},
+      disableFocusRipple: true,
+      updateWhenFocused: false,
       onUpdateRequests: () => {},
       onNewRequest: () => {},
     };
@@ -49,11 +56,12 @@ const SearchField = React.createClass({
   getInitialState() {
     return {
       searchText: this.props.searchText,
-      requestsList: null,
+      requestsList: this.props.dataSource && this.props.auto
+                      ? this.props.dataSource : null,
       open: this.props.open,
     };
   },
-
+  
   componentWillMount(){
     this.focusOnInput = false;
   },
@@ -72,6 +80,7 @@ const SearchField = React.createClass({
       menuStyle,
       menuProps,
       listStyle,
+      auto,
       ...other,
     } = this.props;
 
@@ -88,7 +97,7 @@ const SearchField = React.createClass({
       error: {
       },
       menu: {
-        top: 40,
+        top: this.props.floatingLabelText? 64 : 40,
         left: 0,
         width: '100%',
       },
@@ -111,7 +120,8 @@ const SearchField = React.createClass({
     let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
 
-    let menu = this.state.open && this.state.searchText !== '' && requestsList ? (
+    let menu = this.state.open && (this.state.searchText !== '' || auto)
+               && requestsList && requestsList.length > 0 ? (
       <Menu
         {...menuProps}
         ref="menu"
@@ -129,13 +139,17 @@ const SearchField = React.createClass({
             switch(typeof request){
               case 'string':
                 return (<MenuItem
-                          disableFocusRipple={true}
+                          disableFocusRipple={this.props.disableFocusRipple}
+                          innerDivStyle={{overflow:'hidden'}}
                           key={index}
                           value={request}
                           primaryText={request}
                           />);
               case 'object':
-                return request;
+                return React.cloneElement(request, {
+                        key: index,
+                        disableFocusRipple: this.props.disableFocusRipple,
+                      });
               default:
                 return null;
             }
@@ -146,25 +160,10 @@ const SearchField = React.createClass({
 
     return (
       <div style={mergedRootStyles}
-           onKeyDown={(e)=>{
-            switch(e.keyCode){
-              case 27: //esc
-                this.setState({open:false});
-                break;
-              case 40: //down arrow
-                if(this.focusOnInput && this.state.open){
-                  e.preventDefault();
-                  this.focusOnInput = false;
-                  this.setState({open:true});
-                }
-                break;
-              default:
-                break;
-            }
-          }}>
+           onKeyDown={this._handleKeyDown}>
         <div
           style={{
-            widht:'100%',
+            width:'100%',
           }}>
           <TextField
             {...other}
@@ -172,20 +171,22 @@ const SearchField = React.createClass({
             value={this.state.searchText}
             onEnterKeyDown={()=>{
                  setTimeout(() => {
-                   this.state({open:false});
+                   this.setState({open:false});
                  }, this.props.touchTapCloseDelay);
                 this.props.onNewRequest(this.state.searchText);
             }}
-            onChange={
-              this._handleSearchTextChange
-            }
+            onChange={(e)=>{
+                let searchText = e.target.value;
+                this._updateRequests(searchText);
+            }}
             onBlur={()=>{
               if(this.focusOnInput && this.state.open)
                 this.refs.searchTextField.focus();
             }}
             onFocus={()=>{
-              if(!this.state.open && this.searchText !== ''){
-                this.updateRequests(this.state.searchText);
+              if(!this.state.open && ( auto ||
+                  this.props.updateWhenFocused || this.state.searchText !== '')){
+                this._updateRequests(this.state.searchText);
               }
               this.focusOnInput = true;
             }}
@@ -207,14 +208,30 @@ const SearchField = React.createClass({
     return this.state.searchText;
   },
 
-  _handleSearchTextChange(e){
+  _updateRequests(searchText){
 
-    let searchText = e.target.value;
+    this.setState({
+      searchText:searchText,
+    });
+    this.focusOnInput = true;
 
-    this.updateRequests(searchText);
-  },
+    if(this.props.dataSource){
+      this.props.onUpdateRequests(searchText);
 
-  updateRequests(searchText){
+      let list = this.props.dataSource.filter((v) => v.includes(searchText));
+
+      if(this.props.auto && searchText === ''){
+        list = this.props.dataSource;
+      }
+      this.setState({
+        requestsList: list,
+        open: true,
+      })
+
+      return;
+    }
+
+
     let requestsListPromise = new Promise((resolve, reject) => {
       let list = this.props.onUpdateRequests(searchText);
       if(list){
@@ -226,15 +243,12 @@ const SearchField = React.createClass({
     });
 
     requestsListPromise.then(list => {
-      this.focusOnInput = true;
       this.setState({
-        searchText:searchText,
         requestsList:list,
         open: true,
       });
     }, ()=>{
       this.setState({
-        searchText:searchText,
         requestsList:null,
         open: false,
       });
@@ -255,6 +269,27 @@ const SearchField = React.createClass({
 
   },
 
+  _handleKeyDown(e){
+   switch(e.keyCode){
+     case KeyCode.ESC:
+       this.setState({open:false});
+       break;
+     case KeyCode.DOWN:
+       if(this.focusOnInput && this.state.open){
+         e.preventDefault();
+         this.focusOnInput = false;
+         this.setState({open:true});
+       }
+       break;
+     default:
+       break;
+    }
+  },
+
+
 });
 
-module.exports = SearchField;
+AutoComplete.Item = MenuItem;
+AutoComplete.Divider = MenuDivider;
+
+module.exports = AutoComplete;
