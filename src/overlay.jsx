@@ -54,7 +54,7 @@ const Overlay = React.createClass({
     };
   },
 
-  componentWillMount() {
+  componentDidMount() {
     this._originalBodyOverflow = document.getElementsByTagName('body')[0].style.overflow;
   },
 
