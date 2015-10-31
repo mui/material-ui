@@ -90,7 +90,7 @@ const Snackbar = React.createClass({
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
-    if (this.state.open) {
+    if (this.state.open && (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
       this.setState({
         open: false,
       });
