@@ -3,6 +3,7 @@ const StylePropable = require('../mixins/style-propable');
 const WindowListenable = require('../mixins/window-listenable');
 const TimePickerDialog = require('./time-picker-dialog');
 const TextField = require('../text-field');
+const DateTime = require('../utils/date-time');
 
 
 let emptyTime = new Date();
@@ -48,9 +49,20 @@ const TimePicker = React.createClass({
 
   getInitialState() {
     return {
-      time: this.props.defaultTime || emptyTime,
+      time: this._isControlled() ? this._getControlledDate() : (this.props.defaultTime || emptyTime),
       dialogTime: new Date(),
     };
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (this._isControlled()) {
+      let newTime = this._getControlledTime(nextProps);
+      if (!DateTime.isEqualDate(this.state.time, newTime)) {
+        this.setState({
+          time: newTime,
+        });
+      }
+    }
   },
 
   formatTime(date) {
@@ -93,6 +105,7 @@ const TimePicker = React.createClass({
       onDismiss,
       style,
       textFieldStyle,
+      valueLink,
       ...other,
     } = this.props;
 
@@ -108,6 +121,7 @@ const TimePicker = React.createClass({
           {...other}
           style={textFieldStyle}
           ref="input"
+          value={this.state.time ? this.formatTime(this.state.time) : undefined}
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}
           onTouchTap={this._handleInputTouchTap} />
@@ -128,10 +142,12 @@ const TimePicker = React.createClass({
   },
 
   setTime(t) {
+    if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
+      console.error('Cannot call TimePicker.setTime when value or valueLink is defined as a property.');
+    }
     this.setState({
       time: t,
     });
-    this.refs.input.setValue(this.formatTime(t));
   },
 
   /**
@@ -165,6 +181,19 @@ const TimePicker = React.createClass({
     this.openDialog();
 
     if (this.props.onTouchTap) this.props.onTouchTap(e);
+  },
+
+  _isControlled() {
+    return this.props.hasOwnProperty('value') ||
+      this.props.hasOwnProperty('valueLink');
+  },
+
+  _getControlledTime(props = this.props) {
+    if (DateTime.isDateObject(props.value)) {
+      return props.value;
+    } else if (props.valueLink && DateTime.isDateObject(props.valueLink.value)) {
+      return props.valueLink.value;
+    }
   },
 });
 
