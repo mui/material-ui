@@ -105,9 +105,13 @@ const TimeDisplay = React.createClass({
         color: this.getTheme().textColor,
       },
 
-      hour: {},
+      hour: {
+        cursor: this.props.mode === 'minute' ? 'pointer' : 'default',
+      },
 
-      minute: {},
+      minute: {
+        cursor: this.props.mode === 'hour' ? 'pointer' : 'default',
+      },
     };
 
     let [hour, min] = this.sanitizeTime();
