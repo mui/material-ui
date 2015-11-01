@@ -250,19 +250,24 @@ const RefreshIndicator = React.createClass({
     const perimeter = Math.PI * 2 * circle.radiu;
     const arcLen = perimeter * 0.64;
 
+    let strokeDasharray, strokeDashoffset, transitionDuration;
     if (currStep === 0) {
-      path.style.strokeDasharray = '1, 200';
-      path.style.strokeDashoffset = 0;
-      path.style[this.prefixed('transitionDuration')] = '0ms';
+      strokeDasharray = '1, 200';
+      strokeDashoffset = 0;
+      transitionDuration = '0ms';
     } else if (currStep === 1) {
-      path.style.strokeDasharray = arcLen + ', 200';
-      path.style.strokeDashoffset = -15;
-      path.style[this.prefixed('transitionDuration')] = '750ms';
+      strokeDasharray = arcLen + ', 200';
+      strokeDashoffset = -15;
+      transitionDuration = '750ms';
     } else {
-      path.style.strokeDasharray = arcLen + ',200';
-      path.style.strokeDashoffset = -(perimeter - 1);
-      path.style[this.prefixed('transitionDuration')] = '850ms';
+      strokeDasharray = arcLen + ',200';
+      strokeDashoffset = -(perimeter - 1);
+      transitionDuration = '850ms';
     }
+
+    AutoPrefix.set(path.style, "strokeDasharray", strokeDasharray);
+    AutoPrefix.set(path.style, "strokeDashoffset", strokeDashoffset);
+    AutoPrefix.set(path.style, "transitionDuration", transitionDuration);
   },
 
   _rotateWrapper(wrapper) {
@@ -278,7 +283,7 @@ const RefreshIndicator = React.createClass({
     setTimeout(() => {
       if (this.isMounted()) {
         AutoPrefix.set(wrapper.style, "transform", "rotate(1800deg)");
-        wrapper.style.transitionDuration = "10s";
+        AutoPrefix.set(wrapper.style, "transitionDuration", "10s");
         AutoPrefix.set(wrapper.style, "transitionTimingFunction", "linear");
       }
     }, 50);

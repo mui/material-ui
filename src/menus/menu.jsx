@@ -88,11 +88,10 @@ const Menu = React.createClass({
 
   componentWillLeave(callback) {
     let rootStyle = ReactDOM.findDOMNode(this).style;
-
-    AutoPrefix.set(rootStyle, 'transition', Transitions.easeOut('250ms', ['opacity', 'transform']));
-    AutoPrefix.set(rootStyle, 'transform', 'translate3d(0,-8px,0)');
+    rootStyle.transition = Transitions.easeOut('250ms', ['opacity', 'transform']);
+    rootStyle.transform = 'translate3d(0,-8px,0)';
     rootStyle.opacity = 0;
-
+    rootStyle = AutoPrefix.all(rootStyle);
     setTimeout(() => {
       if (this.isMounted()) callback();
     }, 250);

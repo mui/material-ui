@@ -23,7 +23,8 @@
     "react-dom": "^0.14.0",
     "react-motion": "^0.3.1",
     "react-swipeable-views": "^0.3.0",
-    "react-tap-event-plugin": "^0.2.0"
+    "react-tap-event-plugin": "^0.2.0",
+    "inline-style-prefixer": "^0.3.3"
   },
   "devDependencies": {
     "raw-loader": "^0.5.1",

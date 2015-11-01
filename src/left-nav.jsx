@@ -301,9 +301,9 @@ const LeftNav = React.createClass({
 
   _setPosition(translateX) {
     let leftNav = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-    leftNav.style[AutoPrefix.single('transform')] =
-      'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
+    let transformCSS = 'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
+    AutoPrefix.set(leftNav.style, 'transform', transformCSS);
   },
 
   _getTranslateX(currentX) {
