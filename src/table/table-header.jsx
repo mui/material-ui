@@ -152,11 +152,10 @@ const TableHeader = React.createClass({
   },
 
   _getSelectAllCheckboxColumn(props) {
-  if (!this.props.displaySelectAll) return this._getCheckboxPlaceholder(props);
+    if (!this.props.displaySelectAll) return this._getCheckboxPlaceholder(props); 
 
     const checkbox =
       <Checkbox
-        key="selectallcb"
         name="selectallcb"
         value="selected"
         disabled={!this.props.enableSelectAll}
@@ -164,7 +163,8 @@ const TableHeader = React.createClass({
         onCheck={this._onSelectAll} />;
 
     return (
-      <TableHeaderColumn style={{width: 24}}>
+      <TableHeaderColumn style={{width: 24}}
+        key="selectallcb">
         {checkbox}
       </TableHeaderColumn>
     );
