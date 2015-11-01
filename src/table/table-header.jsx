@@ -120,7 +120,6 @@ const TableHeader = React.createClass({
       children.push(child);
     });
 
-    console.log('key is ', props.key)
     return React.cloneElement(child, props, children);
   },
 
@@ -154,7 +153,7 @@ const TableHeader = React.createClass({
 
   _getSelectAllCheckboxColumn(props) {
     if (!this.props.displaySelectAll) return this._getCheckboxPlaceholder(props);
-    
+
     const checkbox =
       <Checkbox
         key="selectallcb"
