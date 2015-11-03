@@ -16,6 +16,14 @@ module.exports = {
       avatar: {
         borderColor: 'rgba(0, 0, 0, 0.08)',
       },
+      badge: {
+        color: rawTheme.palette.alternateTextColor,
+        textColor: rawTheme.palette.textColor,
+        primaryColor: rawTheme.palette.accent1Color,
+        primaryTextColor: rawTheme.palette.alternateTextColor,
+        secondaryColor: rawTheme.palette.primary1Color,
+        secondaryTextColor: rawTheme.palette.alternateTextColor,
+      },
       button: {
         height: 36,
         minWidth: 88,

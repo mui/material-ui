@@ -7,6 +7,7 @@ export default class Components extends React.Component {
     let menuItems = [
       { route: '/components/appbar', text: 'AppBar'},
       { route: '/components/avatars', text: 'Avatars'},
+      { route: '/components/badge', text: 'Badge'},
       { route: '/components/buttons', text: 'Buttons'},
       { route: '/components/cards', text: 'Cards'},
       { route: '/components/date-picker', text: 'Date Picker'},

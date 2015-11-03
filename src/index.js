@@ -2,6 +2,7 @@ module.exports = {
   AppBar: require('./app-bar'),
   AppCanvas: require('./app-canvas'),
   Avatar: require('./avatar'),
+  Badge: require('./badge'),
   BeforeAfterWrapper: require('./before-after-wrapper'),
   Card: require('./card/card'),
   CardActions: require('./card/card-actions'),
