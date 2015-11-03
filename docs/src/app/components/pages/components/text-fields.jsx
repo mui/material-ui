@@ -242,7 +242,7 @@ let TextFieldsPage = React.createClass({
                 style={styles.textfield}
                 hintText="Hint Text" /><br/>
               <TextField
-                style={styles.textField}
+                style={styles.textfield}
                 hintText="Styled Hint Text"
                 hintStyle={{color: 'red'}} /><br/>
               <TextField
