@@ -26,6 +26,8 @@ module.exports = {
   },
 
   all(styles) {
+    if (!styles)
+      return {};
     return this.getPrefixer().prefix(styles);
   },
 
