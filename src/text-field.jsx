@@ -55,6 +55,7 @@ const TextField = React.createClass({
     underlineStyle: React.PropTypes.object,
     underlineFocusStyle: React.PropTypes.object,
     underlineDisabledStyle: React.PropTypes.object,
+    isValid: React.PropTypes.func,
   },
 
   //for passing default theme context to children
@@ -100,11 +101,12 @@ const TextField = React.createClass({
 
   getInitialState() {
     let props = (this.props.children) ? this.props.children.props : this.props;
+    this.isValid = this.props.isValid || isValid;
 
     return {
       errorText: this.props.errorText,
-      hasValue: isValid(props.value) || isValid(props.defaultValue) ||
-        (props.valueLink && isValid(props.valueLink.value)),
+      hasValue: this.isValid(props.value) || this.isValid(props.defaultValue) ||
+        (props.valueLink && this.isValid(props.valueLink.value)),
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
@@ -127,13 +129,13 @@ const TextField = React.createClass({
     let hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
 
     if (hasValueLinkProp) {
-      newState.hasValue = isValid(nextProps.valueLink.value);
+      newState.hasValue = this.isValid(nextProps.valueLink.value);
     }
     else if (hasValueProp) {
-      newState.hasValue = isValid(nextProps.value);
+      newState.hasValue = this.isValid(nextProps.value);
     }
     else if (hasNewDefaultValue) {
-      newState.hasValue = isValid(nextProps.defaultValue);
+      newState.hasValue = this.isValid(nextProps.defaultValue);
     }
 
     if (newState) this.setState(newState);
@@ -410,7 +412,7 @@ const TextField = React.createClass({
         this._getInputNode().value = newValue;
       }
 
-      this.setState({hasValue: isValid(newValue)});
+      this.setState({hasValue: this.isValid(newValue)});
     }
   },
 
@@ -429,7 +431,7 @@ const TextField = React.createClass({
   },
 
   _handleInputChange(e) {
-    this.setState({hasValue: isValid(e.target.value)});
+    this.setState({hasValue: this.isValid(e.target.value)});
     if (this.props.onChange) this.props.onChange(e);
   },
 
