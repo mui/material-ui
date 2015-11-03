@@ -114,3 +114,9 @@
   hintText="Password Field"
   floatingLabelText="Password"
   type="password" />
+<TextField
+  style={{
+    fontSize: 24
+  }}
+  hintText="Custom Size"
+  floatingLabelText="Custom Size" />

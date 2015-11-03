@@ -155,10 +155,10 @@ const TextField = React.createClass({
 
     let styles = {
       root: {
-        fontSize: 16,
-        lineHeight: '24px',
-        width: props.fullWidth ? '100%' : 256,
-        height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
+        fontSize: this._getFontSize(),
+        lineHeight: '1.5em',
+        width: props.fullWidth ? '100%' : '16em',
+        height: (props.rows - 1) * 1.5 + (props.floatingLabelText ? 4.5 : 3) + 'em',
         display: 'inline-block',
         position: 'relative',
         backgroundColor: backgroundColor,
@@ -167,19 +167,19 @@ const TextField = React.createClass({
       },
       error: {
         position: 'relative',
-        bottom: 5,
-        fontSize: 12,
-        lineHeight: '12px',
+        bottom: '0.417em',
+        fontSize: '0.75em',
+        lineHeight: '1em',
         color: errorColor,
         transition: Transitions.easeOut(),
       },
       hint: {
         position: 'absolute',
-        lineHeight: '22px',
+        lineHeight: '1.375em',
         opacity: 1,
         color: hintColor,
         transition: Transitions.easeOut(),
-        bottom: 12,
+        bottom: '0.545em',
       },
       input: {
         tapHighlightColor: 'rgba(0,0,0,0)',
@@ -198,7 +198,7 @@ const TextField = React.createClass({
         borderBottom: 'solid 1px ' + borderColor,
         position: 'absolute',
         width: '100%',
-        bottom: 8,
+        bottom: '0.5em',
         margin: 0,
         MozBoxSizing: 'content-box',
         boxSizing: 'content-box',
@@ -210,7 +210,7 @@ const TextField = React.createClass({
         overflow: 'hidden',
         userSelect: 'none',
         cursor: 'default',
-        bottom: 8,
+        bottom: '0.5em',
         borderBottom: 'dotted 2px ' + disabledTextColor,
       },
       underlineFocus: {
@@ -226,8 +226,8 @@ const TextField = React.createClass({
     styles.underlineAfter = this.mergeAndPrefix(styles.underlineAfter, props.underlineDisabledStyle);
 
     styles.floatingLabel = this.mergeStyles(styles.hint, {
-      lineHeight: '22px',
-      top: 38,
+      lineHeight: '1.375em',
+      top: '2.375em',
       bottom: 'none',
       opacity: 1,
       zIndex: 1, // Needed to display label above Chrome's autocomplete field background
@@ -236,8 +236,8 @@ const TextField = React.createClass({
     });
 
     styles.textarea = this.mergeStyles(styles.input, {
-      marginTop: props.floatingLabelText ? 36 : 12,
-      marginBottom: props.floatingLabelText ? -36 : -12,
+      marginTop: props.floatingLabelText ? '2.25em' : '0.75em',
+      marginBottom: props.floatingLabelText ? '-2.25em' : '-0.75em',
       boxSizing: 'border-box',
       font: 'inherit',
     });
@@ -246,13 +246,13 @@ const TextField = React.createClass({
 
     if (this.state.isFocused) {
       styles.floatingLabel.color = focusColor;
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0.125em, -1.75em, 0)';
       styles.focusUnderline.transform = 'scaleX(1)';
     }
 
     if (this.state.hasValue) {
       styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0.125em, -1.75em, 0)';
       styles.hint.opacity = 0;
     }
 
@@ -267,7 +267,7 @@ const TextField = React.createClass({
     }
 
     if (this.state.errorText && this.state.isFocused) styles.floatingLabel.color = styles.error.color;
-    if (props.floatingLabelText && !props.multiLine) styles.input.marginTop = 14;
+    if (props.floatingLabelText && !props.multiLine) styles.input.marginTop = '0.875em';
 
     if (this.state.errorText) {
       styles.focusUnderline.borderColor = styles.error.color;
@@ -416,6 +416,10 @@ const TextField = React.createClass({
     }
   },
 
+  _getFontSize() {
+    return this.props.style && this.props.style.fontSize ? this.props.style.fontSize : 16;
+  },
+
   _getRef() {
     return this.props.ref ? this.props.ref : 'input';
   },
@@ -448,9 +452,9 @@ const TextField = React.createClass({
   },
 
   _handleTextAreaHeightChange(e, height) {
-    let newHeight = height + 24;
-    if (this.props.floatingLabelText) newHeight += 24;
-    ReactDOM.findDOMNode(this).style.height = newHeight + 'px';
+    let newHeight = (height / this._getFontSize()) + 1.5;
+    if (this.props.floatingLabelText) newHeight += 1.5;
+    ReactDOM.findDOMNode(this).style.height = newHeight + 'em';
   },
 
   _isControlled() {

@@ -389,6 +389,12 @@ let TextFieldsPage = React.createClass({
                 hintText="Password Field"
                 floatingLabelText="Password"
                 type="password" /><br/>
+              <TextField
+                style={{
+                  fontSize: 24,
+                }}
+                hintText="Custom Size"
+                floatingLabelText="Custom Size" /><br/>
             </div>
           </ClearFix>
         </CodeExample>
