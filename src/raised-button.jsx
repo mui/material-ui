@@ -116,6 +116,7 @@ const RaisedButton = React.createClass({
         minWidth: this.props.fullWidth ? '100%' : this.getThemeButton().minWidth,
         height: this.getThemeButton().height,
         transition: Transitions.easeOut(),
+        borderRadius: '25px',
       },
       container: {
         position: 'relative',
@@ -123,8 +124,8 @@ const RaisedButton = React.createClass({
         width: '100%',
         padding: 0,
         overflow: 'hidden',
-        // This is because we want to set this ourselves
-        //        borderRadius: 2,
+        border: `2px solid ${this.getTheme().secondaryTextColor}`,
+        borderRadius: '25px',
         transition: Transitions.easeOut(),
         backgroundColor: this._getBackgroundColor(),
 
