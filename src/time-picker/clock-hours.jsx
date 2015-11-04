@@ -32,6 +32,9 @@ const ClockHours = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
+    format: React.PropTypes.oneOf(['ampm', '24hr']),
+    initialHours: React.PropTypes.number,
+    onChange: React.PropTypes.func,
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
@@ -54,12 +57,6 @@ const ClockHours = React.createClass({
   componentWillReceiveProps (nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
-
-  propTypes: {
-    initialHours: React.PropTypes.number,
-    onChange: React.PropTypes.func,
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
   },
 
   center: {x: 0, y: 0},

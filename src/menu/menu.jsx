@@ -498,7 +498,7 @@ const Menu = React.createClass({
       CssEvent.onTransitionEnd(el, () => {
         //Make sure the menu is open before setting the overflow.
         //This is to accout for fast clicks
-        if (this.props.visible) container.style.overflow = 'visible';
+        if (this.props.visible) container.style.overflow = 'auto';
         el.style.transition = null;
         el.focus();
       });

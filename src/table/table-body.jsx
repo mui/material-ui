@@ -15,21 +15,11 @@ const TableBody = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext () {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  propTypes: {
+  propTypes:{
     allRowsSelected: React.PropTypes.bool,
     deselectOnClickaway: React.PropTypes.bool,
     displayRowCheckbox: React.PropTypes.bool,
+    label: React.PropTypes.node,
     multiSelectable: React.PropTypes.bool,
     onCellClick: React.PropTypes.func,
     onCellHover: React.PropTypes.func,
@@ -42,6 +32,17 @@ const TableBody = React.createClass({
     showRowHover: React.PropTypes.bool,
     stripedRows: React.PropTypes.bool,
     style: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   getDefaultProps() {

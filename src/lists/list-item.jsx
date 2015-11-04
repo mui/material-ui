@@ -339,7 +339,7 @@ const ListItem = React.createClass({
 
     const nestedList = nestedItems.length ? (
       <NestedList nestedLevel={nestedLevel + 1} open={this.state.open}>
-        {nestedItems}
+        {React.Children.toArray(nestedItems)}
       </NestedList>
     ) : undefined;
 

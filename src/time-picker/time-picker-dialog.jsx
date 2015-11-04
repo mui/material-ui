@@ -7,10 +7,16 @@ const Dialog = require('../dialog');
 const FlatButton = require('../flat-button');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
+const ContextPure = require('../mixins/context-pure');
+
 
 const TimePickerDialog = React.createClass({
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [
+    StylePropable, 
+    WindowListenable, 
+    ContextPure,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -22,6 +28,8 @@ const TimePickerDialog = React.createClass({
     onAccept: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    onRequestClose: React.PropTypes.func,
+    open: React.PropTypes.bool,
   },
 
   //for passing default theme context to children
@@ -38,6 +46,14 @@ const TimePickerDialog = React.createClass({
   getInitialState () {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getDefaultProps() {
+    return {
+      onRequestClose: () => {},
+      onShow: () => {},
+      onDismiss: () => {},
     };
   },
 
@@ -93,16 +109,15 @@ const TimePickerDialog = React.createClass({
     ];
     
     const onClockChangeMinutes = (autoOk === true ? this._handleOKTouchTap : undefined);
-    
     return (
       <Dialog {...other}
-        ref="dialogWindow"
         style={this.mergeAndPrefix(styles.root)}
         bodyStyle={this.mergeAndPrefix(styles.body)}
         actions={actions}
         contentStyle={styles.dialogContent}
+        open={this.props.open}
         onDismiss={this._handleDialogDismiss}
-        onShow={this._handleDialogShow}
+        onShow={this.props.onShow}
         repositionOnUpdate={false}>
         <Clock
           ref="clock"
@@ -113,39 +128,25 @@ const TimePickerDialog = React.createClass({
     );
   },
 
-  show() {
-    this.refs.dialogWindow.show();
-  },
-
-  dismiss() {
-    this.refs.dialogWindow.dismiss();
-  },
-
   _handleCancelTouchTap() {
-    this.dismiss();
+    this.props.onRequestClose();
   },
 
   _handleOKTouchTap() {
-    this.dismiss();
+    this.props.onRequestClose();
     if (this.props.onAccept) {
       this.props.onAccept(this.refs.clock.getSelectedTime());
     }
   },
 
-  _handleDialogShow() {
-    if (this.props.onShow) {
-      this.props.onShow();
-    }
-  },
-
   _handleDialogDismiss() {
-    if (this.props.onDismiss) {
-      this.props.onDismiss();
-    }
+    this.setState({open:false});  
+    this.props.onRequestClose();
+    this.props.onDismiss();
   },
 
   _handleWindowKeyUp(e) {
-    if (this.refs.dialogWindow.isOpen()) {
+    if (this.props.open) {
       switch (e.keyCode) {
         case KeyCode.ENTER:
           this._handleOKTouchTap();

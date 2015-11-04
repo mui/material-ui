@@ -36,6 +36,7 @@ const Lists = require('./components/pages/components/lists');
 const Menus = require('./components/pages/components/menus');
 const Paper = require('./components/pages/components/paper');
 const Progress = require('./components/pages/components/progress');
+const Popover = require('./components/pages/components/popover');
 const RefreshIndicator = require('./components/pages/components/refresh-indicator');
 const Sliders = require('./components/pages/components/sliders');
 const Snackbar = require('./components/pages/components/snackbar');
@@ -90,6 +91,7 @@ const AppRoutes = (
       <Route path="lists" component={Lists} />
       <Route path="menus" component={Menus} />
       <Route path="paper" component={Paper} />
+      <Route path="popover" component={Popover} />
       <Route path="progress" component={Progress} />
       <Route path="refresh-indicator" component={RefreshIndicator} />
       <Route path="sliders" component={Sliders} />

@@ -11,7 +11,8 @@ const Transitions = require('./styles/transitions');
 const WindowListenable = require('./mixins/window-listenable');
 const Overlay = require('./overlay');
 const Paper = require('./paper');
-const Menu = require('./menu/menu');
+const Menu = require('./menus/menu');
+const MenuItem = require('./menus/menu-item');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 

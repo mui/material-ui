@@ -3,6 +3,7 @@ const StylePropable = require('../mixins/style-propable');
 const WindowListenable = require('../mixins/window-listenable');
 const TimePickerDialog = require('./time-picker-dialog');
 const TextField = require('../text-field');
+const ContextPure = require('../mixins/context-pure');
 
 
 let emptyTime = new Date();
@@ -12,7 +13,11 @@ emptyTime.setMinutes(0);
 
 const TimePicker = React.createClass({
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [
+    StylePropable, 
+    WindowListenable,
+    ContextPure,
+  ],
 
   propTypes: {
     autoOk: React.PropTypes.bool,
@@ -50,6 +55,7 @@ const TimePicker = React.createClass({
     return {
       time: this.props.defaultTime || emptyTime,
       dialogTime: new Date(),
+      dialogOpen:false,
     };
   },
 
@@ -112,11 +118,12 @@ const TimePicker = React.createClass({
           onFocus={this._handleInputFocus}
           onTouchTap={this._handleInputTouchTap} />
         <TimePickerDialog
-          ref="dialogWindow"
+          open={this.state.dialogOpen}
           initialTime={this.state.dialogTime}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
           onDismiss={onDismiss}
+          onRequestClose={this._handleDialogClose}
           format={format}
           autoOk={autoOk} />
       </div>
@@ -144,14 +151,18 @@ const TimePicker = React.createClass({
   openDialog() {
     this.setState({
       dialogTime: this.getTime(),
+      dialogOpen:true,
     });
-
-    this.refs.dialogWindow.show();
   },
 
   _handleDialogAccept(t) {
+    this.setState({dialogOpen:false});
     this.setTime(t);
     if (this.props.onChange) this.props.onChange(null, t);
+  },
+
+  _handleDialogClose() {
+    this.setState({dialogOpen:false});
   },
 
   _handleInputFocus(e) {
@@ -161,9 +172,7 @@ const TimePicker = React.createClass({
 
   _handleInputTouchTap(e) {
     e.preventDefault();
-
     this.openDialog();
-
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   },
 });

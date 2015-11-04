@@ -50,6 +50,7 @@ const DatePickerDialog = React.createClass({
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
+    open:React.PropTypes.bool,
     shouldDisableDate: React.PropTypes.func,
     showYearSelector: React.PropTypes.bool,
   },
@@ -69,6 +70,7 @@ const DatePickerDialog = React.createClass({
     return {
       DateTimeFormat: DateTime.DateTimeFormat,
       locale: 'en-US',
+      open:false,
       wordings: {
         ok: 'OK',
         cancel: 'Cancel',
@@ -83,6 +85,7 @@ const DatePickerDialog = React.createClass({
   getInitialState() {
     return {
       isCalendarActive: false,
+      open:this.props.open,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
@@ -159,6 +162,7 @@ const DatePickerDialog = React.createClass({
         onDismiss={this._handleDialogDismiss}
         onShow={this._handleDialogShow}
         onClickAway={this._handleDialogClickAway}
+        open={this.state.open}
         repositionOnUpdate={false}>
         <Calendar
           DateTimeFormat={DateTimeFormat}
@@ -177,11 +181,11 @@ const DatePickerDialog = React.createClass({
   },
 
   show() {
-    this.refs.dialog.show();
+    this.setState({open:true});
   },
 
   dismiss() {
-    this.refs.dialog.dismiss();
+    this.setState({open:false});
   },
 
   _onDayTouchTap() {
@@ -211,20 +215,17 @@ const DatePickerDialog = React.createClass({
   },
 
   _handleDialogDismiss() {
-    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this.refs.dialog), () => {
-      this.setState({
-        isCalendarActive: false,
-      });
+    this.setState({
+      isCalendarActive: false,
+      open:false,
     });
-
     if (this.props.onDismiss) this.props.onDismiss();
   },
 
   _handleDialogClickAway() {
-    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this.refs.dialog), () => {
-      this.setState({
-        isCalendarActive: false,
-      });
+    this.setState({
+      isCalendarActive: false,
+      open:false,
     });
 
     if (this.props.onClickAway) this.props.onClickAway();

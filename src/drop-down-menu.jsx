@@ -5,10 +5,12 @@ const Transitions = require('./styles/transitions');
 const KeyCode = require('./utils/key-code');
 const DropDownArrow = require('./svg-icons/navigation/arrow-drop-down');
 const Paper = require('./paper');
-const Menu = require('./menu/menu');
+const Menu = require('./menus/menu');
+const MenuItem = require('./menus/menu-item');
 const ClearFix = require('./clearfix');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
+const Popover = require('./popover/popover');
 
 
 const DropDownMenu = React.createClass({
@@ -102,8 +104,10 @@ const DropDownMenu = React.createClass({
       },
       control: {
         cursor: disabled ? 'not-allowed' : 'pointer',
-        position: 'static',
+        position: 'relative',
         height: '100%',
+        width:'100%',
+
       },
       controlBg: {
         transition: Transitions.easeOut(),
@@ -121,18 +125,19 @@ const DropDownMenu = React.createClass({
       label: {
         transition: Transitions.easeOut(),
         lineHeight: spacing.desktopToolbarHeight + 'px',
-        position: 'absolute',
+        position: 'relative',
         paddingLeft: spacing.desktopGutter,
-        top: 0,
+        paddingRight: spacing.desktopGutter * 2,
         opacity: 1,
+        width:'auto',
         color: disabled ? this.state.muiTheme.rawTheme.palette.disabledColor : this.state.muiTheme.rawTheme.palette.textColor,
       },
       underline: {
         borderTop: 'solid 1px ' + accentColor,
-        margin: '-1px ' + spacing.desktopGutter + 'px',
+        margin: '-9px ' + spacing.desktopGutter + 'px',
       },
       menu: {
-        zIndex: zIndex + 1,
+        position:'relative',
       },
       menuItem: {
         paddingRight: spacing.iconSize +
@@ -143,19 +148,11 @@ const DropDownMenu = React.createClass({
         whiteSpace: 'nowrap',
       },
       rootWhenOpen: {
-        opacity: 1,
+        opacity:1,
       },
       labelWhenOpen: {
         opacity: 0,
         top: spacing.desktopToolbarHeight / 2,
-      },
-      overlay: {
-        height: '100%',
-        width: '100%',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        zIndex: zIndex,
       },
     };
 
@@ -213,10 +210,12 @@ const DropDownMenu = React.createClass({
       displayValue = selectedItem[displayMember];
     }
 
-    let menuItems = this.props.menuItems.map((item) => {
-      item.text = item[displayMember];
-      item.payload = item[valueMember];
-      return item;
+    let menuItems = this.props.menuItems.map((item, idx) => {
+      return <MenuItem 
+        key={idx} 
+        primaryText={item[displayMember]} 
+        value={item[valueMember]} 
+        onClick={this._onMenuItemClick.bind(this, idx, item[valueMember])} />
     });
 
     return (
@@ -232,37 +231,39 @@ const DropDownMenu = React.createClass({
           this.state.open && styles.rootWhenOpen,
           style)} >
 
-          <ClearFix style={this.mergeStyles(styles.control)} onTouchTap={this._onControlClick}>
-            <Paper style={this.mergeStyles(styles.controlBg)} zDepth={0} />
-            <div style={this.prepareStyles(styles.label, this.state.open && styles.labelWhenOpen, labelStyle)}>
+          <div style={this.mergeStyles(styles.control)} onTouchTap={this._onControlClick}>
+            <div style={this.prepareStyles(styles.label, labelStyle)}>
               {displayValue}
             </div>
             <DropDownArrow style={this.mergeStyles(styles.icon, iconStyle)}/>
             <div style={this.prepareStyles(styles.underline, underlineStyle)}/>
-          </ClearFix>
-
-          <Menu
-            ref="menuItems"
-            autoWidth={autoWidth}
-            selectedIndex={selectedIndex}
-            menuItems={menuItems}
-            style={styles.menu}
-            menuItemStyle={this.mergeStyles(styles.menuItem, menuItemStyle)}
-            hideable={true}
-            visible={this.state.open}
-            onRequestClose={this._onMenuRequestClose}
-            onItemTap={this._onMenuItemClick} />
-          {this.state.open && <div style={this.prepareStyles(styles.overlay)} onTouchTap={this._handleOverlayTouchTap} />}
+          </div>
+          <Popover
+            anchorOrigin={{horizontal:'left', vertical:'top'}}
+            anchorEl={this.state.anchorEl}
+            open={this.state.open}
+            onRequestClose={this._onMenuRequestClose} >
+            <Menu
+              ref="menuItems"
+              autoWidth={this.props.autoWidth}
+              desktop={true}
+              selectedIndex={selectedIndex}
+              style={styles.menu}
+              menuItemStyle={this.mergeStyles(styles.menuItem, this.props.menuItemStyle)}
+              hideable={true}
+              onRequestClose={this._onMenuRequestClose}
+              >
+              {menuItems}
+            </Menu>
+          </Popover>
       </div>
     );
   },
 
   _setWidth() {
     let el = ReactDOM.findDOMNode(this);
-    let menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
       el.style.width = 'auto';
-      el.style.width = menuItemsDom.offsetWidth + 'px';
     }
   },
 
@@ -278,7 +279,10 @@ const DropDownMenu = React.createClass({
 
   _onControlClick() {
     if (!this.props.disabled) {
-      this.setState({ open: !this.state.open });
+      this.setState({
+        open: !this.state.open,
+        anchorEl: ReactDOM.findDOMNode(this),
+      });
     }
   },
 
@@ -314,7 +318,7 @@ const DropDownMenu = React.createClass({
     e.preventDefault();
   },
 
-  _onMenuItemClick(e, key, payload) {
+  _onMenuItemClick(key, payload, e) {
     if (this.props.onChange && this.state.selectedIndex !== key) {
       let selectedItem = this.props.menuItems[key];
       if (selectedItem) {
@@ -327,17 +331,22 @@ const DropDownMenu = React.createClass({
       else {
         this.props.onChange(e, key, payload);
       }
+      this._onMenuRequestClose();
     }
 
     this.setState({
       selectedIndex: key,
       value: e.target.value,
       open: false,
+      anchorEl:null,
     });
   },
 
   _onMenuRequestClose() {
-    this.setState({open:false});
+    this.setState({
+      open:false,
+      anchorEl:null,
+    });
   },
 
   _selectPreviousItem() {
@@ -346,12 +355,6 @@ const DropDownMenu = React.createClass({
 
   _selectNextItem() {
     this.setState({selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1)});
-  },
-
-  _handleOverlayTouchTap() {
-    this.setState({
-      open: false,
-    });
   },
 
   _isControlled() {
