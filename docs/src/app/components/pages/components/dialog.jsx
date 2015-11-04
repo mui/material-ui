@@ -11,6 +11,9 @@ export default class DialogPage extends React.Component {
     super();
     this.state = {
       modal: false,
+      showDialogStandardActions: false,
+      showDialogCustomActions: false,
+      showDialogScrollable: false,
     };
     this._handleCustomDialogCancel = this._handleCustomDialogCancel.bind(this);
     this._handleCustomDialogSubmit = this._handleCustomDialogSubmit.bind(this);
@@ -19,6 +22,7 @@ export default class DialogPage extends React.Component {
     this._handleCustomDialogTouchTap = this._handleCustomDialogTouchTap.bind(this);
     this._handleStandardDialogTouchTap = this._handleStandardDialogTouchTap.bind(this);
     this._handleScrollableDialogTouchTap = this._handleScrollableDialogTouchTap.bind(this);
+    this._handleRequestClose = this._handleRequestClose.bind(this);
     this._handleToggleChange = this._handleToggleChange.bind(this);
   }
 
@@ -69,7 +73,19 @@ export default class DialogPage extends React.Component {
             name: 'openImmediately',
             type: 'bool',
             header: 'default: false',
+            desc: 'Deprecated: Set to true to have the dialog automatically open on mount.',
+          },
+          {
+            name: 'defaultIsOpen',
+            type: 'bool',
+            header: 'default: false',
             desc: 'Set to true to have the dialog automatically open on mount.',
+          },
+          {
+            name: 'isOpen',
+            type: 'bool',
+            header: 'default: null',
+            desc: 'Controls whether the Dialog is opened or not.',
           },
           {
             name: 'title',
@@ -96,16 +112,6 @@ export default class DialogPage extends React.Component {
         name: 'Methods',
         infoArray: [
           {
-            name: 'dismiss',
-            header: 'Dialog.dismiss()',
-            desc: 'Hides the dialog.',
-          },
-          {
-            name: 'show',
-            header: 'Dialog.show()',
-            desc: 'Shows the dialog.',
-          },
-          {
             name: 'isOpen',
             header: 'Dialog.isOpen()',
             desc: 'Get the dialog open state.',
@@ -116,14 +122,9 @@ export default class DialogPage extends React.Component {
         name: 'Events',
         infoArray: [
           {
-            name: 'onDismiss',
-            header: 'function()',
-            desc: 'Fired when the dialog is dismissed.',
-          },
-          {
-            name: 'onShow',
-            header: 'function()',
-            desc: 'Fired when the dialog is shown.',
+            name: 'onRequestClose',
+            header: 'function(buttonClicked)',
+            desc: 'Fired when the dialog is requested to be closed by a click outside the dialog or on the buttons.',
           },
         ],
       },
@@ -175,7 +176,8 @@ export default class DialogPage extends React.Component {
             title="Dialog With Standard Actions"
             actions={standardActions}
             actionFocus="submit"
-            modal={this.state.modal}>
+            isOpen={this.state.showDialogStandardActions}
+            onRequestClose={this._handleRequestClose}>
             The actions in this window are created from the json that&#39;s passed in.
           </Dialog>
 
@@ -183,7 +185,8 @@ export default class DialogPage extends React.Component {
             ref="customDialog"
             title="Dialog With Custom Actions"
             actions={customActions}
-            modal={this.state.modal}>
+            isOpen={this.state.showDialogCustomActions}
+            onRequestClose={this._handleRequestClose}>
             The actions in this window were passed in as an array of react objects.
           </Dialog>
           <div style={{width: '300px', margin: '0 auto', paddingTop: '20px'}}>
@@ -196,9 +199,10 @@ export default class DialogPage extends React.Component {
             ref="scrollableContentDialog"
             title="Dialog With Scrollable Content"
             actions={scrollableCustomActions}
-            modal={this.state.modal}
             autoDetectWindowHeight={true}
-            autoScrollBodyContent={true}>
+            autoScrollBodyContent={true}
+            isOpen={this.state.showDialogScrollable}
+            onRequestClose={this._handleRequestClose}>
             <div style={{height: '1000px'}}>
               Really long content
             </div>
@@ -214,11 +218,15 @@ export default class DialogPage extends React.Component {
   }
 
   _handleCustomDialogCancel() {
-    this.refs.customDialog.dismiss();
+    this.setState({
+      showDialogCustomActions: true,
+    });
   }
 
   _handleCustomDialogSubmit() {
-    this.refs.customDialog.dismiss();
+    this.setState({
+      showDialogCustomActions: true,
+    });
   }
 
   _handleToggleChange(e, toggled) {
@@ -226,23 +234,42 @@ export default class DialogPage extends React.Component {
   }
 
   _handleScrollableDialogCancel() {
-    this.refs.scrollableContentDialog.dismiss();
+    this.setState({
+      showDialogScrollable: false,
+    });
   }
 
   _handleScrollableDialogSubmit() {
-    this.refs.scrollableContentDialog.dismiss();
+    this.setState({
+      showDialogScrollable: false,
+    });
   }
 
   _handleCustomDialogTouchTap() {
-    this.refs.customDialog.show();
+    this.setState({
+      showDialogScrollable: true,
+    });
   }
 
   _handleStandardDialogTouchTap() {
-    this.refs.standardDialog.show();
+    this.setState({
+      showDialogStandardActions: true,
+    });
   }
 
   _handleScrollableDialogTouchTap() {
-    this.refs.scrollableContentDialog.show();
+    this.setState({
+      showDialogScrollable: true,
+    });
+  }
+
+  _handleRequestClose(buttonClicked) {
+    if (!buttonClicked && this.state.modal) return;
+    this.setState({
+      showDialogStandardActions: false,
+      showDialogCustomActions: false,
+      showDialogScrollable: false,
+    });
   }
 
 }

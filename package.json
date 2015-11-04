@@ -31,7 +31,8 @@
   "homepage": "http://material-ui.com/",
   "dependencies": {
     "lodash.throttle": "~3.0.4",
-    "lodash.debounce": "~3.1.1"
+    "lodash.debounce": "~3.1.1",
+    "warning": "^2.1.0"
   },
   "peerDependencies": {
     "inline-style-prefixer": "^0.3.3",

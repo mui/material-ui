@@ -45,6 +45,11 @@ var config = {
         warnings: false
       }
     }),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
+      }
+    }),
     new HtmlWebpackPlugin({
         inject: false,
         template: path.join(__dirname, '/src/www/index.html')

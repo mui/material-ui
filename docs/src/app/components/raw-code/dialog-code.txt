@@ -8,7 +8,8 @@ let standardActions = [
   title="Dialog With Standard Actions"
   actions={standardActions}
   actionFocus="submit"
-  modal={this.state.modal}>
+  isOpen={this.state.showDialogStandardActions}
+  onRequestClose={this._handleRequestClose}>
   The actions in this window are created from the json that's passed in.
 </Dialog>
 
@@ -27,11 +28,19 @@ let customActions = [
 <Dialog
   title="Dialog With Custom Actions"
   actions={customActions}
-  modal={this.state.modal}>
+  isOpen={this.state.showDialogCustomActions}
+  onRequestClose={this._handleRequestClose}>
   The actions in this window were passed in as an array of react objects.
 </Dialog>
 
-<Dialog title="Dialog With Scrollable Content" actions={customActions}
-  autoDetectWindowHeight={true} autoScrollBodyContent={true}>
-    <div style={{height: '2000px'}}>Really long content</div>
+<Dialog
+  title="Dialog With Scrollable Content"
+  actions={customActions}
+  autoDetectWindowHeight={true}
+  autoScrollBodyContent={true}
+  isOpen={this.state.showDialogScrollable}
+  onRequestClose={this._handleRequestClose}>
+  <div style={{height: '1000px'}}>
+    Really long content
+  </div>
 </Dialog>
