@@ -85,6 +85,7 @@ const TableBody = React.createClass({
   componentClickAway() {
     if (this.props.deselectOnClickaway && this.state.selectedRows.length) {
       this.setState({ selectedRows: [] });
+      if (this.props.onRowSelection) this.props.onRowSelection([]);
     }
   },
 
