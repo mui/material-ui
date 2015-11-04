@@ -2,6 +2,8 @@ let Colors = require('../colors');
 let ColorManipulator = require('../../utils/color-manipulator');
 let Spacing = require('../spacing');
 
+// Original dark theme from Material UI.
+
 module.exports = {
   spacing: Spacing,
   fontFamily: 'Roboto, sans-serif',
