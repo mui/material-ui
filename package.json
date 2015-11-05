@@ -12,8 +12,10 @@
     "eslint": "gulp eslint",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "lint": "gulp eslint",
-    "build": "babel ./src --out-dir ./lib",
-    "prepublish": "npm run build"
+    "build": "babel --stage 1 ./src --out-dir ./lib",
+    "eslint": "gulp eslint",
+    "prepublish": "npm run build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [
     "react",
