@@ -50,7 +50,7 @@ class GridListPage extends React.Component {
         infoArray: [
           {
             name: 'title',
-            type: 'string',
+            type: 'node',
             header: 'optional',
             desc: 'Title to be displayed on tile.',
           },

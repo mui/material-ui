@@ -55,7 +55,7 @@ export default class ListsPage extends React.Component {
           },
           {
             name: 'subheader',
-            type: 'string',
+            type: 'node',
             header: 'optional',
             desc: 'The subheader string that will be displayed at the top of the list.',
           },
