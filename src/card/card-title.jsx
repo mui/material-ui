@@ -38,10 +38,10 @@ const CardTitle = React.createClass({
   },
 
   propTypes: {
-    title: React.PropTypes.string,
+    title: React.PropTypes.node,
     titleColor: React.PropTypes.string,
     titleStyle: React.PropTypes.object,
-    subtitle: React.PropTypes.string,
+    subtitle: React.PropTypes.node,
     subtitleColor: React.PropTypes.string,
     subtitleStyle: React.PropTypes.object,
     expandable: React.PropTypes.bool,
