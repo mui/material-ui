@@ -223,10 +223,12 @@ const LeftNav = React.createClass({
 
   _updateMenuHeight() {
     if (this.props.header) {
-      let container = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-      let menu = ReactDOM.findDOMNode(this.refs.menuItems);
-      let menuHeight = container.clientHeight - menu.offsetTop;
-      menu.style.height = menuHeight + 'px';
+      const menu = ReactDOM.findDOMNode(this.refs.menuItems);
+      if (menu){
+        const container = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
+        const menuHeight = container.clientHeight - menu.offsetTop;
+        menu.style.height = menuHeight + 'px';
+      }
     }
   },
 
