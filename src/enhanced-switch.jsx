@@ -45,7 +45,7 @@ const EnhancedSwitch = React.createClass({
       labelStyle: React.PropTypes.object,
       name: React.PropTypes.string,
       value: React.PropTypes.string,
-      label: React.PropTypes.string,
+      label: React.PropTypes.node,
       onSwitch: React.PropTypes.func,
       required: React.PropTypes.bool,
       disabled: React.PropTypes.bool,
