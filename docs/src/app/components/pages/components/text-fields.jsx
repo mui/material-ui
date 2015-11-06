@@ -57,7 +57,7 @@ let TextFieldsPage = React.createClass({
         name: 'Props',
         infoArray: [
           {
-            name: 'defaultText',
+            name: 'defaultValue',
             type: 'string',
             header: 'optional',
             desc: 'The text string to use for the default value.',
