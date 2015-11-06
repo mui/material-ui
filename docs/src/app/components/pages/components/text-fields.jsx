@@ -57,6 +57,12 @@ let TextFieldsPage = React.createClass({
         name: 'Props',
         infoArray: [
           {
+            name: 'defaultValue',
+            type: 'string',
+            header: 'optional',
+            desc: 'The text string to use for the default value.',
+          },
+          {
             name: 'errorStyle',
             type: 'object',
             header: 'optional',
@@ -67,6 +73,12 @@ let TextFieldsPage = React.createClass({
             type: 'string',
             header: 'optional',
             desc: 'The error text string to display.',
+          },
+          {
+            name: 'floatingLabelStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'The style object to use to override floating label styles.',
           },
           {
             name: 'floatingLabelText',
