@@ -229,6 +229,7 @@ const TextField = React.createClass({
       top: 38,
       bottom: 'none',
       opacity: 1,
+      zIndex: 1, // Needed to display label above Chrome's autocomplete field background
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top',
     });
