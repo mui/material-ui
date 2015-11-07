@@ -16,3 +16,6 @@ branches:
   except:
     # ignore git tags created by semantic-release, like "v1.2.3"
     - /^v\d+\.\d+\.\d+$/
+script:
+  - npm run lint
+  - npm test

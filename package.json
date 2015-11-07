@@ -10,9 +10,10 @@
     "test-base": "./node_modules/.bin/karma start",
     "prebuild": "rimraf lib",
     "eslint": "gulp eslint",
-    "build": "npm run eslint && babel --stage 1 ./src --out-dir ./lib",
-    "prepublish": "npm run build",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "lint": "gulp eslint",
+    "build": "babel ./src --out-dir ./lib",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "react",
