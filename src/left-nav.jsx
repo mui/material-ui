@@ -42,7 +42,7 @@ const LeftNav = React.createClass({
     disableSwipeToOpen: React.PropTypes.bool,
     docked: React.PropTypes.bool,
     header: React.PropTypes.element,
-    menuItems: React.PropTypes.array.isRequired,
+    menuItems: React.PropTypes.array,
     onChange: React.PropTypes.func,
     onNavOpen: React.PropTypes.func,
     onNavClose: React.PropTypes.func,
@@ -181,7 +181,27 @@ const LeftNav = React.createClass({
           onTouchTap={this._onOverlayTouchTap} />
       );
     }
-
+    let children;
+    if (this.props.menuItems === undefined) {
+      children = this.props.children;
+    }
+    else {
+       children = (
+        <Menu
+          ref="menuItems"
+          style={this.mergeStyles(styles.menu)}
+          zDepth={0}
+          menuItems={this.props.menuItems}
+          menuItemStyle={this.mergeStyles(styles.menuItem)}
+          menuItemStyleLink={this.mergeStyles(styles.menuItemLink)}
+          menuItemStyleSubheader={this.mergeStyles(styles.menuItemSubheader)}
+          menuItemClassName={this.props.menuItemClassName}
+          menuItemClassNameSubheader={this.props.menuItemClassNameSubheader}
+          menuItemClassNameLink={this.props.menuItemClassNameLink}
+          selectedIndex={selectedIndex}
+          onItemTap={this._onMenuItemClick} />
+        );
+    }
     return (
       <div className={this.props.className}>
         {overlay}
@@ -195,19 +215,7 @@ const LeftNav = React.createClass({
             this.props.openRight && styles.rootWhenOpenRight,
             this.props.style)}>
             {this.props.header}
-            <Menu
-              ref="menuItems"
-              style={this.mergeStyles(styles.menu)}
-              zDepth={0}
-              menuItems={this.props.menuItems}
-              menuItemStyle={this.mergeStyles(styles.menuItem)}
-              menuItemStyleLink={this.mergeStyles(styles.menuItemLink)}
-              menuItemStyleSubheader={this.mergeStyles(styles.menuItemSubheader)}
-              menuItemClassName={this.props.menuItemClassName}
-              menuItemClassNameSubheader={this.props.menuItemClassNameSubheader}
-              menuItemClassNameLink={this.props.menuItemClassNameLink}
-              selectedIndex={selectedIndex}
-              onItemTap={this._onMenuItemClick} />
+            {children}
         </Paper>
       </div>
     );
@@ -215,10 +223,12 @@ const LeftNav = React.createClass({
 
   _updateMenuHeight() {
     if (this.props.header) {
-      let container = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-      let menu = ReactDOM.findDOMNode(this.refs.menuItems);
-      let menuHeight = container.clientHeight - menu.offsetTop;
-      menu.style.height = menuHeight + 'px';
+      const menu = ReactDOM.findDOMNode(this.refs.menuItems);
+      if (menu){
+        const container = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
+        const menuHeight = container.clientHeight - menu.offsetTop;
+        menu.style.height = menuHeight + 'px';
+      }
     }
   },
 
@@ -293,9 +303,9 @@ const LeftNav = React.createClass({
 
   _setPosition(translateX) {
     let leftNav = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-    leftNav.style[AutoPrefix.single('transform')] =
-      'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
+    let transformCSS = 'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
+    AutoPrefix.set(leftNav.style, 'transform', transformCSS);
   },
 
   _getTranslateX(currentX) {

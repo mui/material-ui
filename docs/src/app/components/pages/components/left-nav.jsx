@@ -11,7 +11,7 @@ export default class LeftNavPage extends React.Component {
     super();
     this._showLeftNavClick = this._showLeftNavClick.bind(this);
     this._toggleDockedLeftNavClick = this._toggleDockedLeftNavClick.bind(this);
-
+    this._showLeftNavChildrenClick = this._showLeftNavChildrenClick.bind(this);
     this.state = {
       isDocked: false,
     };
@@ -56,7 +56,7 @@ export default class LeftNavPage extends React.Component {
           {
             name: 'menuItems',
             type: 'array',
-            header: 'required',
+            header: 'optional',
             desc: 'JSON data representing all menu items to render.',
           },
           {
@@ -143,10 +143,18 @@ export default class LeftNavPage extends React.Component {
         componentInfo={componentInfo}>
         <CodeExample code={Code}>
           <div>
-            <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
-            <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
+            <div>
+              <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
+              <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} /><br/><br/>
+              <RaisedButton label="Show Hideable Children Left Nav" onTouchTap={this._showLeftNavChildrenClick} /><br/><br/>
+            </div>
+
             <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />
             <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+            <LeftNav ref="leftNavChildren" docked={false}>
+              <MenuItem index={0}>Menu Item</MenuItem>
+              <MenuItem index={1}><a href="/link">Link</a></MenuItem>
+            </LeftNav>
           </div>
         </CodeExample>
       </ComponentDoc>
@@ -156,7 +164,9 @@ export default class LeftNavPage extends React.Component {
   _showLeftNavClick() {
     this.refs.leftNav.toggle();
   }
-
+  _showLeftNavChildrenClick() {
+    this.refs.leftNavChildren.toggle();
+  }
   _toggleDockedLeftNavClick() {
     this.refs.dockedLeftNav.toggle();
     this.setState({

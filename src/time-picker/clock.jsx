@@ -80,8 +80,8 @@ const Clock = React.createClass({
 
     if (this.props.format === 'ampm'){
       buttons = [
-        <ClockButton position="left" onTouchTap={this._setAffix.bind(this, "am")} selected={isAM} >{"AM"}</ClockButton>,
-        <ClockButton position="right" onTouchTap={this._setAffix.bind(this, "pm")} selected={!isAM} >{"PM"}</ClockButton>,
+        <ClockButton key="AM" position="left" onTouchTap={this._setAffix.bind(this, "am")} selected={isAM} >{"AM"}</ClockButton>,
+        <ClockButton key="PM" position="right" onTouchTap={this._setAffix.bind(this, "pm")} selected={!isAM} >{"PM"}</ClockButton>,
       ];
     }
     return buttons;

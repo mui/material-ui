@@ -99,26 +99,24 @@ const CircularProgress = React.createClass({
     if (!this.isMounted()) return;
     if (this.props.mode !== "indeterminate") return;
 
-    AutoPrefix.set(wrapper.style, "transform", null);
-    AutoPrefix.set(wrapper.style, "transform", "rotate(0deg)");
-    wrapper.style.transitionDuration = "0ms";
+    AutoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
+    AutoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
 
     setTimeout(() => {
-      AutoPrefix.set(wrapper.style, "transform", "rotate(1800deg)");
-      wrapper.style.transitionDuration = "10s";
-      //wrapper.style.webkitTransitionTimingFunction = "linear";
-      AutoPrefix.set(wrapper.style, "transitionTimingFunction", "linear");
+      AutoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
+      AutoPrefix.set(wrapper.style, 'transitionDuration', '10s');
+      AutoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
   },
 
   getDefaultProps() {
-      return {
-          mode: "indeterminate",
-          value: 0,
-          min: 0,
-          max: 100,
-          size: 1,
-      };
+    return {
+      mode: "indeterminate",
+      value: 0,
+      min: 0,
+      max: 100,
+      size: 1,
+    };
   },
 
   getTheme() {

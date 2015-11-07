@@ -1,3 +1,21 @@
+## 0.13.1
+###### _Oct 29, 2015_
+
+##### General
+- [SVGIcons] added index.js and index-generator script (#1959)
+- [TimePicker] openDialog() function (#1939) and autoOk prop (#1940) added
+- [DatePicker] i18n support added (#1658)
+- [LeftNav] supports nested children (w/o menuItems) (#1982)
+- [Snackbar] updated for new specification (#1668)
+- [Tabs] added tabTemplate prop (#1691)
+
+##### Component Fixes / Enhancements
+- [TextArea] height issue fixed (#1875)
+- [GridList] doc added (#1948) with code examples (#1988)
+- [TextField] fixed custom theme color hiding backgroundColor (#1989)
+- [TimePicker] added style and textFieldStyle props (#1949)
+- [Card] text color is now pulled from theme (#1995)
+
 ## 0.13.0
 ###### _Oct 21, 2015_
 

@@ -55,7 +55,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'label',
-          type: 'string',
+          type: 'node',
           header: 'optional',
           desc: 'The text that is displayed beside the checkbox.',
         },
@@ -130,7 +130,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'label',
-          type: 'string',
+          type: 'node',
           header: 'optional',
           desc: 'The text that is displayed beside the radio button.',
         },
@@ -252,7 +252,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'label',
-          type: 'string',
+          type: 'node',
           header: 'optional',
           desc: 'The text that is displayed beside the toggle switch.',
         },

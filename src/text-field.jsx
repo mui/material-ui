@@ -160,6 +160,7 @@ const TextField = React.createClass({
         height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
         display: 'inline-block',
         position: 'relative',
+        backgroundColor: backgroundColor,
         fontFamily: this.state.muiTheme.rawTheme.fontFamily,
         transition: Transitions.easeOut('200ms', 'height'),
       },
@@ -187,7 +188,7 @@ const TextField = React.createClass({
         height: '100%',
         border: 'none',
         outline: 'none',
-        backgroundColor: backgroundColor,
+        backgroundColor: 'transparent',
         color: props.disabled ? disabledTextColor : textColor,
         font: 'inherit',
       },
@@ -331,7 +332,8 @@ const TextField = React.createClass({
       inputProps.onChange = this._handleInputChange;
     }
     if (this.props.children) {
-      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props});
+      let childInputStyle = this.mergeStyles(inputStyle, this.props.children.style);
+      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props, style:childInputStyle});
     }
     else {
       inputElement = multiLine ? (

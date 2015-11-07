@@ -49,6 +49,18 @@ let TimePickerPage = React.createClass({
             header: 'default: false',
             desc: 'It\'s technically more correct to refer to "12 noon" and "12 midnight" rather than "12 a.m." and "12 p.m." and it avoids real confusion between different locales. By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.',
           },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of TimePicker\'s root element.',
+          },
+          {
+            name: 'textFieldStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of TimePicker\'s TextField element.',
+          },
         ],
       },
       {
@@ -137,6 +149,20 @@ let TimePickerPage = React.createClass({
             format="24hr"
             hintText="AutoOk"
             autoOk={true} />
+
+          <TimePicker
+            ref="pickerTextfieldStyle"
+            format="24hr"
+            hintText="Override text field style"
+            textFieldStyle={{ fontSize: 'x-large' }} />
+
+          <TimePicker
+            ref="pickerStyle"
+            format="24hr"
+            hintText="Override style"
+            textFieldStyle={{ width: '80%' }}
+            style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#d1d1d1' }} />
+
         </CodeExample>
       </ComponentDoc>
     );
