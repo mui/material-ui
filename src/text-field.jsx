@@ -16,7 +16,7 @@ const ContextPure = require('./mixins/context-pure');
  * @returns True if the string provided is valid, false otherwise.
  */
 function isValid(value) {
-  return value || value === 0;
+  return Boolean(value || value === 0);
 }
 
 const TextField = React.createClass({
