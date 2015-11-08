@@ -21,6 +21,7 @@ const Tabs = React.createClass({
     inkBarStyle: React.PropTypes.object,
     tabItemContainerStyle: React.PropTypes.object,
     tabTemplate: React.PropTypes.func,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children

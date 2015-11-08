@@ -66,6 +66,12 @@ let ProgressPage = React.createClass({
             header: 'default: 1',
             desc: 'The size of the progress.',
           },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the progress\'s root element.',
+          },
         ],
       },
     ];

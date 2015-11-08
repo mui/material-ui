@@ -51,6 +51,7 @@ const LeftNav = React.createClass({
     menuItemClassName: React.PropTypes.string,
     menuItemClassNameSubheader: React.PropTypes.string,
     menuItemClassNameLink: React.PropTypes.string,
+    style: React.PropTypes.object,
   },
 
   windowListeners: {

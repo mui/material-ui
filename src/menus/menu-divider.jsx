@@ -12,6 +12,10 @@ const MenuDivider = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
+  propTypes: {
+    style: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,

@@ -50,6 +50,7 @@ const DatePickerDialog = React.createClass({
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
+    style: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
     showYearSelector: React.PropTypes.bool,
   },

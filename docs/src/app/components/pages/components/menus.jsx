@@ -47,6 +47,12 @@ export default class MenusPage extends React.Component {
             desc: 'Indicates if the menu should render with compact desktop styles.',
           },
           {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the menu\'s root element.',
+          },
+          {
             name: 'listStyle',
             type: 'object',
             header: 'optional',
@@ -113,6 +119,12 @@ export default class MenusPage extends React.Component {
             type: 'bool',
             header: 'default: false',
             desc: 'Disables a menu item.',
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the menu item\'s root element.',
           },
           {
             name: 'innerDivStyle',

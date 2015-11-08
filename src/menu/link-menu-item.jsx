@@ -19,6 +19,7 @@ const LinkMenuItem = React.createClass({
     active: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     className: React.PropTypes.string,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

@@ -35,6 +35,7 @@ const MenuItem = React.createClass({
     onTouchTap: React.PropTypes.func,
     onToggle: React.PropTypes.func,
     selected: React.PropTypes.bool,
+    style: React.PropTypes.object,
     active: React.PropTypes.bool,
   },
 

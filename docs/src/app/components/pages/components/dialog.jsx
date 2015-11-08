@@ -45,6 +45,12 @@ export default class DialogPage extends React.Component {
             desc: 'The ref of the action to focus on when the dialog is displayed.',
           },
           {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the dialog\'s root element.',
+          },
+          {
             name: 'bodyStyle',
             type: 'object',
             header: 'optional',

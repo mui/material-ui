@@ -17,6 +17,7 @@ const List = React.createClass({
 
   propTypes: {
     insetSubheader: React.PropTypes.bool,
+    style: React.PropTypes.object,
     subheader: React.PropTypes.node,
     subheaderStyle: React.PropTypes.object,
     zDepth: PropTypes.zDepth,

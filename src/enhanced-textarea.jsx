@@ -52,6 +52,7 @@ const EnhancedTextarea = React.createClass({
     textareaStyle: React.PropTypes.object,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

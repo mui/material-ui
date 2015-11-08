@@ -50,6 +50,7 @@ const SelectField = React.createClass({
     menuItems: React.PropTypes.array.isRequired,
     menuItemStyle: React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children

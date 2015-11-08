@@ -113,6 +113,7 @@ let Dialog = React.createClass({
     openImmediately: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
+    style: React.PropTypes.object,
     title: React.PropTypes.node,
     defaultIsOpen: React.PropTypes.bool,
     isOpen: React.PropTypes.bool,

@@ -54,6 +54,12 @@ export default class ListsPage extends React.Component {
             desc: 'If true, the subheader will be indented by 72px.',
           },
           {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the list\'s root element.',
+          },
+          {
             name: 'subheader',
             type: 'node',
             header: 'optional',
@@ -169,6 +175,12 @@ export default class ListsPage extends React.Component {
             type: 'oneOf [1,2]',
             header: 'default: 1',
             desc: 'Can be 1 or 2. This is the number of secondary text lines before ellipsis will show.',
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the list item\'s root element.',
           },
         ],
       },

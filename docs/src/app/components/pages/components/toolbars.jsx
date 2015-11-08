@@ -43,6 +43,12 @@ export default class ToolbarPage extends React.Component {
             header: 'optional',
             desc: 'Optional pull "left" or "right"',
           },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the toolbar group\'s root element.',
+          },
         ],
       },
       {
@@ -52,6 +58,12 @@ export default class ToolbarPage extends React.Component {
             name: 'Description',
             desc: 'A vertical bar used to separate groups of components. It ' +
                   'is used to easily organize components.',
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the toolbar separator\'s root element.',
           },
         ],
       },
@@ -67,6 +79,12 @@ export default class ToolbarPage extends React.Component {
             type: 'string',
             header: 'optional',
             desc: 'The text to be displayed for the element.',
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the toolbar title\'s root element.',
           },
         ],
       },

@@ -68,6 +68,12 @@ export default class CardPage extends React.Component {
                   'and CardActions implement showExpandableButton. Any child component of Card can implements ' +
                   'showExpandableButton or forwards the property to a child component supporting it.',
           },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the card\'s root element.',
+          },
         ],
       },
       {
