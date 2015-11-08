@@ -73,20 +73,20 @@ export default class MenusPage extends React.Component {
           },
           {
             name: 'openDirection',
-            type: 'oneOf [bottom-left, bottom-right, top-left, top-right]',
+            type: 'oneOf ["bottom-left", "bottom-right", "top-left", "top-right"]',
             header: 'default: bottom-left',
             desc: 'This is the placement of the menu relative to the IconButton.',
           },
           {
             name: 'value',
-            type: 'string or array',
+            type: 'oneOfType [string, array]',
             header: 'optional',
             desc: 'The value of the selected menu item. If passed in, this will make the menu ' +
               'a controlled component. This component also supports valueLink.',
           },
           {
             name: 'width',
-            type: 'string or number',
+            type: 'oneOfType [string, integer]',
             header: 'optional',
             desc: 'Sets the width of the menu. If not specified, the menu width will be dictated by its ' +
               'children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).',

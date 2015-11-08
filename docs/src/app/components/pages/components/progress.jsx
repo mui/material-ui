@@ -38,7 +38,7 @@ const ProgressPage = React.createClass({
         infoArray: [
           {
             name: 'mode',
-            type: 'one of: determinate, indeterminate',
+            type: 'oneOf ["determinate", "indeterminate"]',
             header: 'default: indeterminate',
             desc: 'The mode of show your progress, indeterminate for when there is no value for progress. ',
           },

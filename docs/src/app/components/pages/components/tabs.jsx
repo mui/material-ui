@@ -67,7 +67,7 @@ export default class TabsPage extends React.Component {
           },
           {
             name: 'value',
-            type: 'string or number',
+            type: 'oneOfType [string, number]',
             header: 'optional',
             desc: 'Makes Tabs controllable and selects the tab whose value prop matches this prop.',
           },

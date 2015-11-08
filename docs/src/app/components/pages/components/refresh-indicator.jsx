@@ -33,7 +33,7 @@ let RefreshIndicatorPage = React.createClass({
           },
           {
             name: 'status',
-            type: 'one of: ready, loading, hide',
+            type: 'oneOf ["ready", "loading", "hide"]',
             header: 'default: hide',
             desc: 'The display status of the indicator. If the status is "ready", the indicator will display the ready state arrow. If the status is "loading", it will display the loading progress indicator. If the status is "hide", the indicator will be hidden.',
           },

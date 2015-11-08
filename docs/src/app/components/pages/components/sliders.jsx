@@ -37,7 +37,7 @@ export default class SlidersPage extends React.Component {
           },
           {
             name: 'disabled',
-            type: 'boolean',
+            type: 'bool',
             header: 'default: false',
             desc: 'If true, the slider will not be interactable.',
           },
@@ -63,7 +63,7 @@ export default class SlidersPage extends React.Component {
           },
           {
             name: 'required',
-            type: 'boolean',
+            type: 'bool',
             header: 'default: true',
             desc: 'Whether or not the slider is required in a form.',
           },

@@ -61,7 +61,7 @@ export default class LeftNavPage extends React.Component {
           },
           {
             name: 'openRight',
-            type: 'boole',
+            type: 'bool',
             header: 'default: false',
             desc: 'Positions the LeftNav to open from the right side.',
           },
