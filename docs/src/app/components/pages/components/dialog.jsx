@@ -1,9 +1,9 @@
-let React = require('react');
-let { Dialog, FlatButton, RaisedButton, Toggle } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let Code = require('dialog-code');
-let CodeExample = require('../../code-example/code-example');
-
+const React = require('react');
+const { Dialog, FlatButton, RaisedButton, Paper, Toggle } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const Code = require('dialog-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class DialogPage extends React.Component {
 
@@ -170,6 +170,16 @@ export default class DialogPage extends React.Component {
       <ComponentDoc
         name="Dialog"
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst Dialog = require(\'material-ui/lib/dialog\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <RaisedButton label="Standard Actions" onTouchTap={this._handleStandardDialogTouchTap} />
           <br/><br/>

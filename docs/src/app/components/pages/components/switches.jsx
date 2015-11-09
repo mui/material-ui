@@ -1,11 +1,11 @@
-let React = require('react');
-let mui = require('material-ui');
-let CodeExample = require('../../code-example/code-example');
-let ComponentDoc = require('../../component-doc');
-let ToggleStar = require('svg-icons/toggle/star');
-let ToggleStarBorder = require('svg-icons/toggle/star-border');
+const React = require('react');
+const mui = require('material-ui');
+const CodeExample = require('../../code-example/code-example');
+const ComponentDoc = require('../../component-doc');
+const ToggleStar = require('svg-icons/toggle/star');
+const ToggleStarBorder = require('svg-icons/toggle/star-border');
 
-let {
+const {
   Checkbox,
   ClearFix,
   RadioButton,
@@ -15,12 +15,13 @@ let {
   Tab,
   Tabs,
   Toggle,
+  Paper,
 } = mui;
-let { Typography } = Styles;
-let CheckboxCode = require('checkbox-code');
-let RadioButtonCode = require('radio-buttons-code');
-let ToggleCode = require('toggle-code');
-
+const { Typography } = Styles;
+const CheckboxCode = require('checkbox-code');
+const RadioButtonCode = require('radio-buttons-code');
+const ToggleCode = require('toggle-code');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class SwitchesPage extends React.Component {
 
@@ -347,6 +348,19 @@ export default class SwitchesPage extends React.Component {
     return (
       <div>
       <h2 style={this.getStyles().headline}>Switches</h2>
+
+      <Paper style = {{marginBottom: '22px'}}>
+        <CodeBlock>
+        {
+          '//Import statements:\nconst Checkbox = require(\'material-ui/lib/checkbox\');\n' +
+          'const RadioButton = require(\'material-ui/lib/radio-button\');\n' +
+          'const RadioButtonGroup = require(\'material-ui/lib/radio-button-group\');\n' +
+          'const Toggle = require(\'material-ui/lib/toggle\');\n\n' +
+          '//See material-ui/lib/index.js for more\n'
+        }
+        </CodeBlock>
+      </Paper>
+
       <Tabs>
         <Tab label="Checkbox">
           <ComponentDoc

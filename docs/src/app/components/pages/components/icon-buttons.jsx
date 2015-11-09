@@ -1,11 +1,11 @@
-let React = require('react');
-let { FontIcon, IconButton, NavigationMenu } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let ActionGrade = require('svg-icons/action/grade');
-let ActionHome = require('svg-icons/action/home');
-let Code = require('icon-buttons-code');
-let CodeExample = require('../../code-example/code-example');
-
+const React = require('react');
+const { FontIcon, IconButton, NavigationMenu, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const ActionGrade = require('svg-icons/action/grade');
+const ActionHome = require('svg-icons/action/home');
+const Code = require('icon-buttons-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class IconButtonsPage extends React.Component {
 
@@ -115,6 +115,16 @@ export default class IconButtonsPage extends React.Component {
         name="Icon Buttons"
         desc={desc}
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst IconButton = require(\'material-ui/lib/icon-button\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-right"  tooltipPosition = "bottom-right" />
 

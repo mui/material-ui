@@ -1,13 +1,14 @@
-let React = require('react');
-let { ClearFix, Mixins, SelectField, TextField, Styles } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let { Colors } = Styles;
-let { StyleResizable } = Mixins;
-let Code = require('text-fields-code');
-let CodeExample = require('../../code-example/code-example');
+const React = require('react');
+const { ClearFix, Mixins, SelectField, TextField, Styles, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const { Colors } = Styles;
+const { StyleResizable } = Mixins;
+const Code = require('text-fields-code');
+const CodeExample = require('../../code-example/code-example');
 const LinkedStateMixin = require('react-addons-linked-state-mixin');
+const CodeBlock = require('../../code-example/code-block');
 
-let TextFieldsPage = React.createClass({
+const TextFieldsPage = React.createClass({
 
   mixins: [StyleResizable, LinkedStateMixin],
 
@@ -247,6 +248,17 @@ let TextFieldsPage = React.createClass({
         name="Text Field"
         desc={desc}
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst TextField = require(\'material-ui/lib/text-field\');\n' +
+            'const SelectField = require(\'material-ui/lib/select-field\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <ClearFix>
             <div style={styles.group}>

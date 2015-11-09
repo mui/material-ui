@@ -1,11 +1,12 @@
-let React = require('react');
-let { AppBar, DropDownMenu } = require('material-ui');
-let IconButton = require('icon-button');
-let NavigationClose = require('svg-icons/navigation/close');
-let FlatButton = require('flat-button');
-let ComponentDoc = require('../../component-doc');
-let CodeExample = require('../../code-example/code-example');
-let Code = require('app-bar-code');
+const React = require('react');
+const { AppBar, DropDownMenu, Paper } = require('material-ui');
+const IconButton = require('icon-button');
+const NavigationClose = require('svg-icons/navigation/close');
+const FlatButton = require('flat-button');
+const ComponentDoc = require('../../component-doc');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
+const Code = require('app-bar-code');
 const IconMenu = require('menus/icon-menu');
 const MenuItem = require('menus/menu-item');
 const MoreVertIcon = require('svg-icons/navigation/more-vert');
@@ -113,6 +114,16 @@ export default class AppBarPage extends React.Component {
         name="AppBar"
         desc={this.desc}
         componentInfo={this.componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst AppBar = require(\'material-ui/lib/app-bar\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <AppBar
             title="Title"

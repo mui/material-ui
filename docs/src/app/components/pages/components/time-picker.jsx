@@ -1,11 +1,11 @@
-let React = require('react');
-let { TimePicker } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let Code = require('time-picker-code');
-let CodeExample = require('../../code-example/code-example');
+const React = require('react');
+const { TimePicker, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const Code = require('time-picker-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
-
-let TimePickerPage = React.createClass({
+const TimePickerPage = React.createClass({
 
   render() {
 
@@ -131,6 +131,16 @@ let TimePickerPage = React.createClass({
       <ComponentDoc
         name="Time Picker"
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst TimePicker = require(\'material-ui/lib/time-picker\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <TimePicker
             ref="picker12hr"

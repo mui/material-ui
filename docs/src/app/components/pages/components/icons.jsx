@@ -1,13 +1,13 @@
-let React = require('react');
-let { ClearFix, FontIcon, Styles, Paper } = require('material-ui');
-let CodeBlock = require('../../code-example/code-block');
-let ComponentDoc = require('../../component-doc');
-let ActionHome = require('svg-icons/action/home');
+const React = require('react');
+const { ClearFix, FontIcon, Styles, Paper } = require('material-ui');
+const CodeBlock = require('../../code-example/code-block');
+const ComponentDoc = require('../../component-doc');
+const ActionHome = require('svg-icons/action/home');
 
-let { Colors, Typography } = Styles;
-let IconButtonCode = require('icons-code');
-let SvgIconsCode = require('svg-icons-code');
-let CodeExample = require('../../code-example/code-example');
+const { Colors, Typography } = Styles;
+const IconButtonCode = require('icons-code');
+const SvgIconsCode = require('svg-icons-code');
+const CodeExample = require('../../code-example/code-example');
 
 
 export default class FontIconPage extends React.Component {
@@ -38,7 +38,7 @@ export default class FontIconPage extends React.Component {
         and reference the icon&#39;s className in the "className" prop. <br /><br />
         We also support <a title="Google's
         Material Icons" href="https://google.github.io/material-design-icons">Google&#39;s
-        Material Icons</a> as seen in the third block of code. If you're using the material icons, be sure to include the link to the font icon file in your head section:
+        Material Icons</a> as seen in the third block of code. If you&#39;re using the material icons, be sure to include the link to the font icon file in your head section:
         <Paper>
           <CodeBlock>
             {'<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'}
@@ -119,6 +119,16 @@ export default class FontIconPage extends React.Component {
           name="Font Icons"
           desc={fontIconDesc}
           componentInfo={componentInfo.slice(0, 1)}>
+
+          <Paper style = {{marginBottom: '22px'}}>
+            <CodeBlock>
+            {
+              '//Import statement:\nconst FontIcon = require(\'material-ui/lib/font-icon\');\n\n' +
+              '//See material-ui/lib/index.js for more\n'
+            }
+            </CodeBlock>
+          </Paper>
+
           <CodeExample code={IconButtonCode}>
             <FontIcon className="muidocs-icon-action-home" style={iconStyles} />
             <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.red500} />

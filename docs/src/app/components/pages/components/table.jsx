@@ -1,8 +1,8 @@
-let React = require('react');
-let CodeExample = require('../../code-example/code-example');
-let Router = require('react-router');
-let ComponentDoc = require('../../component-doc');
-let {
+const React = require('react');
+const CodeExample = require('../../code-example/code-example');
+const Router = require('react-router');
+const ComponentDoc = require('../../component-doc');
+const {
   Table,
   TableBody,
   TableHeader,
@@ -12,10 +12,11 @@ let {
   TableRowColumn,
   TextField,
   Toggle,
+  Paper,
 } = require('material-ui');
 
-let Code = require('table-code');
-
+const Code = require('table-code');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class TablePage extends React.Component {
 
@@ -386,6 +387,22 @@ export default class TablePage extends React.Component {
         name="Table"
         desc={desc}
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statements:\nconst Table = require(\'material-ui/lib/table/table\');\n' +
+            'const TableBody = require(\'material-ui/lib/table/table-body\');\n' +
+            'const TableFooter = require(\'material-ui/lib/table/table-footer\');\n' +
+            'const TableHeader = require(\'material-ui/lib/table/table-header\');\n' +
+            'const TableHeaderColumn = require(\'material-ui/lib/table/table-header-column\');\n' +
+            'const TableRow = require(\'material-ui/lib/table/table-row\');\n' +
+            'const TableRowColumn = require(\'material-ui/lib/table/table-row-column\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <div className="table-examples">
             <Table
