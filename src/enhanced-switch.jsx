@@ -329,7 +329,7 @@ const EnhancedSwitch = React.createClass({
       this.props.onParentShouldUpdate(newSwitchedValue);
       ReactDOM.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
     }
-    else if (process.env.NODE_ENV !== 'production') {
+    else if (__DEV__) {
       let message = 'Cannot call set method while checked is defined as a property.';
       console.error(message);
     }

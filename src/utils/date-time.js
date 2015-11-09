@@ -6,7 +6,7 @@ const monthLongList = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
 
 function DateTimeFormat(locale, options) {
-  if (process.env.NODE_ENV !== 'production' && locale !== 'en-US') {
+  if (__DEV__ && locale !== 'en-US') {
     console.warn('Wrong usage of DateTimeFormat. The ' + locale +' locale is not supported.');
   }
 
@@ -25,7 +25,7 @@ function DateTimeFormat(locale, options) {
 
       output = monthLongList[date.getMonth()];
       output += ' ' + date.getFullYear();
-    } else if (process.env.NODE_ENV !== 'production') {
+    } else if (__DEV__) {
       console.warn('Wrong usage of DateTimeFormat');
     }
 

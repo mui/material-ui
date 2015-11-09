@@ -115,7 +115,7 @@ const Tabs = React.createClass({
 
     let tabs = React.Children.map(children, (tab, index) => {
       if (tab.type.displayName === "Tab") {
-        if (!tab.props.value && tabValue && process.env.NODE_ENV !== 'production') {
+        if (!tab.props.value && tabValue && __DEV__) {
           console.error('Tabs value prop has been passed, but Tab ' + index +
           ' does not have a value prop. Needs value if Tabs is going' +
           ' to be a controlled component.');

@@ -59,7 +59,7 @@ const DropDownIcon = React.createClass({
 
   componentDidMount() {
     // This component can be deprecated once ./menu/menu has been deprecated.
-    // if (process.env.NODE_ENV !== 'production') {
+    // if (__DEV__) {
     //   console.warn('DropDownIcon has been deprecated. Use IconMenu instead.');
     // }
   },

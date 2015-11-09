@@ -20,10 +20,7 @@ module.exports = function(config) {
       extensions: [ '.js', '.jsx' ],
       paths: [ './node_modules', './src' ],
       transform: [
-        ['babelify', {
-          stage: 1,
-          sourceMap: 'inline'
-        }],
+        'babelify',
         'browserify-istanbul'
       ]
     },

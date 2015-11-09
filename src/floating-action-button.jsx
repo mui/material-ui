@@ -79,7 +79,7 @@ const FloatingActionButton = React.createClass({
   },
 
   componentDidMount() {
-    if (process.env.NODE_ENV !== 'production') {
+    if (__DEV__) {
       if (this.props.iconClassName && this.props.children) {
         let warning = 'You have set both an iconClassName and a child icon. ' +
           'It is recommended you use only one method when adding ' +

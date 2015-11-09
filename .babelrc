@@ -1,0 +1,9 @@
+{
+  "plugins": ["dev-expression"],
+  "stage": 1,
+  "env": {
+    "development": {
+      "sourceMap": "inline"
+    }
+  }
+}

@@ -15,7 +15,7 @@ module.exports = {
   // This function ensures that `style` supports both ltr and rtl directions by checking 
   //   `styleConstants` in `muiTheme` and replacing attribute keys if necessary.
   ensureDirection(muiTheme, style) {
-    if (process.env.NODE_ENV !== 'production') {
+    if (__DEV__) {
       if (style.didFlip) {
         console.warn(new Error('You\'re calling `ensureDirection` on the same style object twice.'));
       }

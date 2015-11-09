@@ -10,7 +10,7 @@ const Overlay = require('./overlay');
 const Paper = require('./paper');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
-const warning = (process.env.NODE_ENV !== 'production') ? require('warning') : function(){};
+const warning = require('warning');
 
 const ReactTransitionGroup = require('react-addons-transition-group');
 
@@ -136,7 +136,7 @@ let Dialog = React.createClass({
   },
 
   getInitialState() {
-    if (process.env.NODE_ENV !== 'production') this._testDeprecations();
+    if (__DEV__) this._testDeprecations();
 
     let open = this.props.isOpen;
 
@@ -155,7 +155,7 @@ let Dialog = React.createClass({
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
-    if (process.env.NODE_ENV !== 'production') this._testDeprecations();
+    if (__DEV__) this._testDeprecations();
 
     if (nextProps.isOpen !== this.props.isOpen) {
       if (nextProps.isOpen && !this.state.open)
@@ -283,19 +283,17 @@ let Dialog = React.createClass({
   },
 
   _testDeprecations() {
-    if (process.env.NODE_ENV !== 'production') {
-      warning(!this.props.hasOwnProperty('openImmediately'),
-        'openImmediately has been deprecated in favor of defaultIsOpen');
+    warning(!this.props.hasOwnProperty('openImmediately'),
+      'openImmediately has been deprecated in favor of defaultIsOpen');
 
-      warning(!this.props.hasOwnProperty('onShow'),
-        'onShow will be removed in favor of explicitly setting isOpen');
+    warning(!this.props.hasOwnProperty('onShow'),
+      'onShow will be removed in favor of explicitly setting isOpen');
 
-      warning(!this.props.hasOwnProperty('onDismiss'),
-        'onDismiss will be removed in favor of explicitly setting isOpen and can be replaced by onRequestClose');
+    warning(!this.props.hasOwnProperty('onDismiss'),
+      'onDismiss will be removed in favor of explicitly setting isOpen and can be replaced by onRequestClose');
 
-      warning(!this.props.hasOwnProperty('modal'),
-        'modal will be removed in favor of explicitly setting isOpen and onRequestClose');
-    }
+    warning(!this.props.hasOwnProperty('modal'),
+      'modal will be removed in favor of explicitly setting isOpen and onRequestClose');
   },
 
   _getAction(actionJSON, key) {
@@ -399,8 +397,7 @@ let Dialog = React.createClass({
   },
 
   show() {
-    if (process.env.NODE_ENV !== 'production')
-      warning(false, 'show has been deprecated in favor of explicitly setting the isOpen property.');
+    warning(false, 'show has been deprecated in favor of explicitly setting the isOpen property.');
 
     this._show();
   },
@@ -415,8 +412,7 @@ let Dialog = React.createClass({
   },
 
   dismiss() {
-    if (process.env.NODE_ENV !== 'production')
-      warning(false, 'dismiss has been deprecated in favor of explicitly setting the isOpen property.');
+    warning(false, 'dismiss has been deprecated in favor of explicitly setting the isOpen property.');
 
     this._dismiss();
   },
@@ -434,9 +430,8 @@ let Dialog = React.createClass({
   },
 
   _requestClose(buttonClicked) {
-    if (process.env.NODE_ENV !== 'production')
-      warning(!this.props.hasOwnProperty('modal'),
-        'modal will be removed in favor of explicitly setting isOpen and onRequestClose');
+    warning(!this.props.hasOwnProperty('modal'),
+      'modal will be removed in favor of explicitly setting isOpen and onRequestClose');
 
     if (!buttonClicked && this.props.modal) return;
 
