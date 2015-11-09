@@ -8,6 +8,8 @@ const TextField = require('../text-field');
 let emptyTime = new Date();
 emptyTime.setHours(0);
 emptyTime.setMinutes(0);
+emptyTime.setSeconds(0);
+emptyTime.setMilliseconds(0);
 
 
 const TimePicker = React.createClass({
@@ -128,10 +130,19 @@ const TimePicker = React.createClass({
   },
 
   setTime(t) {
-    this.setState({
-      time: t,
-    });
-    this.refs.input.setValue(this.formatTime(t));
+    if (t){
+      this.setState({
+        time: t,
+      });
+      
+      this.refs.input.setValue(this.formatTime(t));
+    }else{
+      this.setState({
+        time: emptyTime,
+      });
+      
+      this.refs.input.setValue(null);
+    }
   },
 
   /**
