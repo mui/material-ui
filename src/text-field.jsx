@@ -8,6 +8,7 @@ const EnhancedTextarea = require('./enhanced-textarea');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 const ContextPure = require('./mixins/context-pure');
+const warning = require('warning');
 
 /**
  * Check if a value is valid to be displayed inside an input.
@@ -417,7 +418,14 @@ const TextField = React.createClass({
   },
 
   _getFontSize() {
-    return this.props.style && this.props.style.fontSize ? this.props.style.fontSize : 16;
+    if (this.props.style && this.props.style.fontSize) {
+        if (process.env.NODE_ENV !== 'production') {
+            warning(typeof this.props.style.fontSize === 'number',
+              'style.fontSize property does not support non-integer values');
+        }
+        return this.props.style.fontSize;
+    }
+    return 16;
   },
 
   _getRef() {
