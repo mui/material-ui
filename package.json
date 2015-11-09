@@ -7,10 +7,10 @@
   "scripts": {
     "test": "npm run test-base -- --single-run",
     "test-watch": "npm run test-base -- --auto-watch",
-    "test-base": "./node_modules/.bin/karma start",
+    "test-base": "BABEL_ENV=development ./node_modules/.bin/karma start",
     "prebuild": "rimraf lib",
     "lint": "gulp eslint",
-    "build": "babel --stage 1 ./src --out-dir ./lib",
+    "build": "babel ./src --out-dir ./lib",
     "prepublish": "npm run build"
   },
   "keywords": [
