@@ -138,7 +138,7 @@ const DatePicker = React.createClass({
   },
 
   setDate(d) {
-    if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
+    if (__DEV__ && this._isControlled()) {
       console.error('Cannot call DatePicker.setDate when value or valueLink is defined as a property.');
     }
     this.setState({

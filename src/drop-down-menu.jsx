@@ -194,7 +194,7 @@ const DropDownMenu = React.createClass({
     let selectedIndex = this._isControlled() ? null : this.state.selectedIndex;
     let displayValue = "";
     if (selectedIndex) {
-      if (process.env.NODE_ENV !== 'production') {
+      if (__DEV__) {
         console.assert(!!this.props.menuItems[selectedIndex], 'SelectedIndex of ' + selectedIndex + ' does not exist in menuItems.');
       }
     }
@@ -270,7 +270,7 @@ const DropDownMenu = React.createClass({
   _setSelectedIndex(props) {
     let selectedIndex = props.selectedIndex;
 
-    if (process.env.NODE_ENV !== 'production' && selectedIndex < 0) {
+    if (__DEV__ && selectedIndex < 0) {
       console.warn('Cannot set selectedIndex to a negative index.', selectedIndex);
     }
 

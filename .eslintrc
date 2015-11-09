@@ -52,3 +52,7 @@ plugins:
 
 ecmaFeatures:
   jsx: true
+
+globals:
+  __DEV__: true
+
