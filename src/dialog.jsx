@@ -289,6 +289,7 @@ let Dialog = React.createClass({
     warning(!this.props.hasOwnProperty('openImmediately'),
       'openImmediately has been deprecated in favor of defaultOpen');
 
+<<<<<<< 5674fb19bdb700e09ce85593fcb38c351125a689
     warning(!(typeof this.props.onShow === 'function'),
       'onShow will be removed in favor of explicitly setting open');
 
