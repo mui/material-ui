@@ -83,6 +83,7 @@ const DatePickerDialog = React.createClass({
 
   getInitialState() {
     return {
+      open: false,
       isCalendarActive: false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -160,7 +161,9 @@ const DatePickerDialog = React.createClass({
         onDismiss={this._handleDialogDismiss}
         onShow={this._handleDialogShow}
         onClickAway={this._handleDialogClickAway}
-        repositionOnUpdate={false}>
+        repositionOnUpdate={false}
+        open={this.state.open}
+        onRequestClose={this.dismiss}>
         <Calendar
           DateTimeFormat={DateTimeFormat}
           locale={locale}
@@ -178,11 +181,15 @@ const DatePickerDialog = React.createClass({
   },
 
   show() {
-    this.refs.dialog.show();
+    this.setState({
+      open: true,
+    });
   },
 
   dismiss() {
-    this.refs.dialog.dismiss();
+    this.setState({
+      open: false,
+    });
   },
 
   _onDayTouchTap() {
