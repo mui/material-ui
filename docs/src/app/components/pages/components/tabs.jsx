@@ -1,10 +1,11 @@
-let React = require('react');
-let CodeExample = require('../../code-example/code-example');
-let {IconButton, Slider, Styles, Tab, Tabs } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let { Colors, Typography } = Styles;
-let Code = require('tabs-code');
+const React = require('react');
+const CodeExample = require('../../code-example/code-example');
+const {IconButton, Slider, Styles, Tab, Tabs, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const { Colors, Typography } = Styles;
+const Code = require('tabs-code');
 const SwipeableViews = require('react-swipeable-views');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class TabsPage extends React.Component {
 
@@ -163,6 +164,17 @@ export default class TabsPage extends React.Component {
         name="Tabs"
         desc={desc}
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst Tabs = require(\'material-ui/lib/tabs/tabs\');\n' +
+            'const Tab = require(\'material-ui/lib/tabs/tab\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <Tabs>
             <Tab label="Item One" >

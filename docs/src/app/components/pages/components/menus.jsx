@@ -1,20 +1,21 @@
-let React = require('react');
+const React = require('react');
 const ReactTransitionGroup = require('react-addons-transition-group');
-let Menu = require('menus/menu');
-let MenuItem = require('menus/menu-item');
-let MenuDivider = require('menus/menu-divider');
-let ComponentDoc = require('../../component-doc');
+const Paper = require('paper');
+const Menu = require('menus/menu');
+const MenuItem = require('menus/menu-item');
+const MenuDivider = require('menus/menu-divider');
+const ComponentDoc = require('../../component-doc');
 
-let ArrowDropRight = require('svg-icons/navigation-arrow-drop-right');
-let ContentCopy = require('svg-icons/content/content-copy');
-let ContentLink = require('svg-icons/content/link');
-let Delete = require('svg-icons/action/delete');
-let Download = require('svg-icons/file/file-download');
-let PersonAdd = require('svg-icons/social/person-add');
-let RemoveRedEye = require('svg-icons/image/remove-red-eye');
-let Code = require('menus-code');
-let CodeExample = require('../../code-example/code-example');
-
+const ArrowDropRight = require('svg-icons/navigation-arrow-drop-right');
+const ContentCopy = require('svg-icons/content/content-copy');
+const ContentLink = require('svg-icons/content/link');
+const Delete = require('svg-icons/action/delete');
+const Download = require('svg-icons/file/file-download');
+const PersonAdd = require('svg-icons/social/person-add');
+const RemoveRedEye = require('svg-icons/image/remove-red-eye');
+const Code = require('menus-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class MenusPage extends React.Component {
 
@@ -215,6 +216,18 @@ export default class MenusPage extends React.Component {
         name="Menus"
         desc={desc}
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst Menu = require(\'material-ui/lib/menus/menu\');\n' +
+            'const MenuItem = require(\'material-ui/lib/menus/menu-item\');\n' +
+            'const MenuDivider = require(\'material-ui/lib/menus/menu-divider\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <Menu style={styles.menu}>
             <MenuItem primaryText="Maps" />

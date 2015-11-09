@@ -1,13 +1,13 @@
-let React = require('react');
-let { ClearFix, Mixins, Paper } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
+const React = require('react');
+const { ClearFix, Mixins, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
 
-let { StyleResizable } = Mixins;
-let Code = require('paper-code');
-let CodeExample = require('../../code-example/code-example');
+const { StyleResizable } = Mixins;
+const Code = require('paper-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
-
-let PaperPage = React.createClass ({
+const PaperPage = React.createClass ({
 
   mixins: [StyleResizable],
 
@@ -84,6 +84,16 @@ let PaperPage = React.createClass ({
       <ComponentDoc
         name="Paper"
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst Paper = require(\'material-ui/lib/paper\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <div>
             <ClearFix style={groupStyle}>

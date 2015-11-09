@@ -1,9 +1,9 @@
-let React = require('react');
-let { RefreshIndicator } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let Code = require('refresh-indicator-code');
-let CodeExample = require('../../code-example/code-example');
-
+const React = require('react');
+const { RefreshIndicator, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const Code = require('refresh-indicator-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
 let RefreshIndicatorPage = React.createClass({
 
@@ -58,6 +58,16 @@ let RefreshIndicatorPage = React.createClass({
       <ComponentDoc
         name="RefreshIndicator"
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst RefreshIndicator = require(\'material-ui/lib/refresh-indicator\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <div style={{ position: "relative" }}>
             <p>
