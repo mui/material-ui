@@ -10,7 +10,7 @@ const Overlay = require('./overlay');
 const Paper = require('./paper');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
-const warning = (process.env.NODE_ENV !== 'production') ? require('warning') : function(){};
+const warning = require('warning');
 
 const ReactTransitionGroup = require('react-addons-transition-group');
 
@@ -115,8 +115,8 @@ let Dialog = React.createClass({
     repositionOnUpdate: React.PropTypes.bool,
     style: React.PropTypes.object,
     title: React.PropTypes.node,
-    defaultIsOpen: React.PropTypes.bool,
-    isOpen: React.PropTypes.bool,
+    defaultOpen: React.PropTypes.bool,
+    open: React.PropTypes.bool,
   },
 
   windowListeners: {
@@ -130,18 +130,21 @@ let Dialog = React.createClass({
       autoScrollBodyContent: false,
       actions: [],
       repositionOnUpdate: true,
-      defaultIsOpen: false,
-      isOpen: null,
+      defaultOpen: false,
+      open: null,
     };
   },
 
   getInitialState() {
-    if (process.env.NODE_ENV !== 'production') this._testDeprecations();
+    if (process.env.NODE_ENV !== 'production') {
+      this._testDeprecations();
+    }
 
-    let open = this.props.isOpen;
+    let open = this.props.open;
 
-    if (open === null)
-      open = (this.props.openImmediately || this.props.defaultIsOpen);
+    if (open === null) {
+      open = (this.props.openImmediately || this.props.defaultOpen);
+    }
 
     return {
       open: open,
@@ -152,22 +155,25 @@ let Dialog = React.createClass({
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps (nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
-    if (process.env.NODE_ENV !== 'production') this._testDeprecations();
+    if (process.env.NODE_ENV !== 'production') {
+      this._testDeprecations();
+    }
 
-    if (nextProps.isOpen !== this.props.isOpen) {
-      if (nextProps.isOpen && !this.state.open)
+    if (nextProps.open !== this.props.open) {
+      if (nextProps.open && !this.state.open) {
         this._show();
-      else if (!nextProps.isOpen && this.state.open)
+      } else if (!nextProps.open && this.state.open) {
         this._dismiss();
+      }
     }
   },
 
   componentDidMount() {
     this._positionDialog();
-    if (this.isOpen()) {
+    if (this.state.open) {
       this.refs.dialogOverlay.preventScrolling();
     }
   },
@@ -260,11 +266,9 @@ let Dialog = React.createClass({
                 style={styles.paper}
                 zDepth={4}>
                 {title}
-
                 <div ref="dialogContent" style={this.prepareStyles(styles.body)}>
                   {this.props.children}
                 </div>
-
                 {actions}
             </Paper>
           </TransitionItem>}
@@ -283,23 +287,20 @@ let Dialog = React.createClass({
   },
 
   _testDeprecations() {
-    if (process.env.NODE_ENV !== 'production') {
-      warning(!this.props.hasOwnProperty('openImmediately'),
-        'openImmediately has been deprecated in favor of defaultIsOpen');
+    warning(!this.props.hasOwnProperty('openImmediately'),
+      'openImmediately has been deprecated in favor of defaultOpen');
 
-      warning(!this.props.hasOwnProperty('onShow'),
-        'onShow will be removed in favor of explicitly setting isOpen');
+    warning(!this.props.hasOwnProperty('onShow'),
+      'onShow will be removed in favor of explicitly setting open');
 
-      warning(!this.props.hasOwnProperty('onDismiss'),
-        'onDismiss will be removed in favor of explicitly setting isOpen and can be replaced by onRequestClose');
+    warning(!this.props.hasOwnProperty('onDismiss'),
+      'onDismiss will be removed in favor of explicitly setting open and can be replaced by onRequestClose');
 
-      warning(!this.props.hasOwnProperty('modal'),
-        'modal will be removed in favor of explicitly setting isOpen and onRequestClose');
-    }
+    warning(!this.props.hasOwnProperty('modal'),
+      'modal will be removed in favor of explicitly setting open and onRequestClose');
   },
 
   _getAction(actionJSON, key) {
-    let styles = {marginRight: 8};
     let props = {
       key: key,
       secondary: true,
@@ -313,8 +314,11 @@ let Dialog = React.createClass({
         }
       },
       label: actionJSON.text,
-      style: styles,
+      style: {
+        marginRight: 8,
+      },
     };
+
     if (actionJSON.ref) {
       props.ref = actionJSON.ref;
       props.keyboardFocused = actionJSON.ref === this.props.actionFocus;
@@ -324,15 +328,14 @@ let Dialog = React.createClass({
     }
 
     return (
-      <FlatButton
-        {...props} />
+      <FlatButton {...props} />
     );
   },
 
   _getActionsContainer(actions) {
     let actionContainer;
     let actionObjects = [];
-    let actionStyle = {
+    const actionStyle = {
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       padding: 8,
@@ -399,30 +402,34 @@ let Dialog = React.createClass({
   },
 
   show() {
-    if (process.env.NODE_ENV !== 'production')
-      warning(false, 'show has been deprecated in favor of explicitly setting the isOpen property.');
+    warning(false, 'show has been deprecated in favor of explicitly setting the open property.');
 
     this._show();
   },
 
   _onShow() {
-    if (this.props.onShow) this.props.onShow();
+    if (this.props.onShow) {
+      this.props.onShow();
+    }
   },
 
   _show() {
     this.refs.dialogOverlay.preventScrolling();
-    this.setState({ open: true }, this._onShow);
+    this.setState({
+      open: true,
+    }, this._onShow);
   },
 
   dismiss() {
-    if (process.env.NODE_ENV !== 'production')
-      warning(false, 'dismiss has been deprecated in favor of explicitly setting the isOpen property.');
+    warning(false, 'dismiss has been deprecated in favor of explicitly setting the open property.');
 
     this._dismiss();
   },
 
   _onDismiss() {
-    if (this.props.onDismiss) this.props.onDismiss();
+    if (this.props.onDismiss) {
+      this.props.onDismiss();
+    }
   },
 
   _dismiss() {
@@ -430,27 +437,34 @@ let Dialog = React.createClass({
       this.refs.dialogOverlay.allowScrolling();
     });
 
-    this.setState({ open: false }, this._onDismiss);
+    this.setState({
+      open: false,
+    }, this._onDismiss);
   },
 
   _requestClose(buttonClicked) {
-    if (process.env.NODE_ENV !== 'production')
-      warning(!this.props.hasOwnProperty('modal'),
-        'modal will be removed in favor of explicitly setting isOpen and onRequestClose');
+    warning(!this.props.hasOwnProperty('modal'),
+      'modal will be removed in favor of explicitly setting open and onRequestClose');
 
-    if (!buttonClicked && this.props.modal) return;
+    if (!buttonClicked && this.props.modal) {
+      return;
+    }
 
-    // Close the dialog if the isOpen state is not explicitly set.
-    if (this.props.isOpen === null) this._dismiss();
-    if (this.props.onRequestClose) this.props.onRequestClose(!!buttonClicked);
+    // Close the dialog if the open state is not explicitly set.
+    if (this.props.open === null) {
+      this._dismiss();
+    }
+    if (this.props.onRequestClose) {
+      this.props.onRequestClose(!!buttonClicked);
+    }
   },
 
-  _handleOverlayTouchTap(e) {
+  _handleOverlayTouchTap() {
     this._requestClose(false);
   },
 
-  _handleWindowKeyUp(e) {
-    if (e.keyCode === KeyCode.ESC) {
+  _handleWindowKeyUp(event) {
+    if (event.keyCode === KeyCode.ESC) {
       this._requestClose(false);
     }
   },
