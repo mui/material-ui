@@ -1,5 +1,5 @@
 let React = require('react');
-let { AppBar, DropDownMenu } = require('material-ui');
+let { AppBar, DropDownMenu, AppBarNew } = require('material-ui');
 let IconButton = require('icon-button');
 let NavigationClose = require('svg-icons/navigation/close');
 let FlatButton = require('flat-button');
@@ -135,6 +135,29 @@ export default class AppBarPage extends React.Component {
                 <MenuItem primaryText="Sign out" />
               </IconMenu>
           } />
+          <br />
+
+          <AppBarNew>
+
+            <div data-position="navIconsGroup">
+              <IconButton iconStyle = {{fill: 'white'}}><NavigationClose /></IconButton>
+            </div>
+
+            <div data-position="container">
+              <p>Title</p>
+            </div>
+
+            <div data-position="actionIconsGroup">
+              <IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub" iconStyle = {{color: 'white'}}/>
+              <IconButton iconClassName="muidocs-icon-custom-sort" tooltip="GitHub" iconStyle = {{color: 'white'}}/>
+            </div>
+
+            <div data-position="menuIconsGroup">
+              <IconButton iconStyle = {{fill: 'white'}}><MoreVertIcon /></IconButton>
+            </div>
+
+          </AppBarNew>
+
         </CodeExample>
       </ComponentDoc>
     );
