@@ -6,6 +6,7 @@
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
   },
+  "private": true,
   "scripts": {
     "prestart": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --inline",
     "start": "open http://localhost:3000",
