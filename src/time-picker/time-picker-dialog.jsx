@@ -85,13 +85,18 @@ const TimePickerDialog = React.createClass({
         key={0}
         label="Cancel"
         secondary={true}
-        onTouchTap={this._handleCancelTouchTap} />,
-      <FlatButton
-        key={1}
-        label="OK"
-        secondary={true}
-        onTouchTap={this._handleOKTouchTap} />,
+        onTouchTap={this._handleCancelTouchTap} />
     ];
+
+    if (!this.props.autoOk) {
+      actions.push(
+        <FlatButton
+          key={1}
+          label="OK"
+          secondary={true}
+          onTouchTap={this._handleOKTouchTap} />
+      );
+    }
 
     const onClockChangeMinutes = (autoOk === true ? this._handleOKTouchTap : undefined);
 
