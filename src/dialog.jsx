@@ -121,7 +121,7 @@ let Dialog = React.createClass({
 
   windowListeners: {
     keyup: '_handleWindowKeyUp',
-    resize: '_positionDialog',
+    resize: '_handleResize',
   },
 
   getDefaultProps() {
@@ -466,6 +466,13 @@ let Dialog = React.createClass({
   _handleWindowKeyUp(event) {
     if (event.keyCode === KeyCode.ESC) {
       this._requestClose(false);
+    }
+  },
+
+  _handleResize() {
+    if (this.state.open) {
+      this.refs.dialogOverlay.preventScrolling();
+      this._positionDialog();
     }
   },
 
