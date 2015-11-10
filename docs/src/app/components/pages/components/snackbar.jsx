@@ -55,6 +55,12 @@ export default class SnackbarPage extends React.Component {
             header: 'optional',
             desc: 'Override the inline-styles of the Snackbar\'s root element.',
           },
+          {
+            name: 'bodyStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the Snackbar\'s body element.',
+          },
         ],
       },
       {
