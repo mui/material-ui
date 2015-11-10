@@ -1,3 +1,26 @@
+## 0.13.2
+###### _Nov 9, 2015_
+
+##### General
+- Add tabs with slide effect (#1907)
+- Universal rendering support (#2007) (thanks @Cavitt)
+- Add labelPosition prop to buttons (#2014)
+- Add RenderToLayer component (#2042) (thanks @chrismcv)
+- Open state of of dialog now controlled through props (#1996)
+  - openImmediately, show(), dismiss() deprecated
+- Update TextField docs (#2070)
+- New Badge component (#2045) (thanks @rhythnic)
+- Add import statements to components' docs pages (#2113)
+
+##### Component Fixes / Enhancements
+- Fix server side rendering (#2021)
+- Add key to TableHeaderColumn for selectAll (#2030)
+- Fix Circular Progress transition (#2047)
+- Fix Snackbar getting stuck when receiving new props (#2024)
+- iPad enhanced textarea fix (#1720)
+- Table clickAway triggers onRowSelection (#2054)
+- Theme color fixes for Slider and Toggle (#2016)
+
 ## 0.13.1
 ###### _Oct 29, 2015_
 
