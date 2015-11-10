@@ -137,7 +137,7 @@ const LeftNav = React.createClass({
         width: this.getTheme().width,
         position: 'fixed',
         zIndex: 10,
-        left: isBrowser && Modernizr.csstransforms3d ? 0 : x,
+        left: 0,
         top: 0,
         transform: 'translate3d(' + x + 'px, 0, 0)',
         transition: !this.state.swiping && Transitions.easeOut(),
