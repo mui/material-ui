@@ -16,7 +16,7 @@ const ContextPure = require('./mixins/context-pure');
  * @returns True if the string provided is valid, false otherwise.
  */
 function isValid(value) {
-  return value || value === 0;
+  return Boolean(value || value === 0);
 }
 
 const TextField = React.createClass({
@@ -55,6 +55,7 @@ const TextField = React.createClass({
     underlineStyle: React.PropTypes.object,
     underlineFocusStyle: React.PropTypes.object,
     underlineDisabledStyle: React.PropTypes.object,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -229,6 +230,7 @@ const TextField = React.createClass({
       top: 38,
       bottom: 'none',
       opacity: 1,
+      zIndex: 1, // Needed to display label above Chrome's autocomplete field background
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top',
     });

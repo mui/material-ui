@@ -14,6 +14,7 @@ const CircleRipple = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     opacity: React.PropTypes.number,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

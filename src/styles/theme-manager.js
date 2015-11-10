@@ -16,6 +16,14 @@ module.exports = {
       avatar: {
         borderColor: 'rgba(0, 0, 0, 0.08)',
       },
+      badge: {
+        color: rawTheme.palette.alternateTextColor,
+        textColor: rawTheme.palette.textColor,
+        primaryColor: rawTheme.palette.accent1Color,
+        primaryTextColor: rawTheme.palette.alternateTextColor,
+        secondaryColor: rawTheme.palette.primary1Color,
+        secondaryTextColor: rawTheme.palette.alternateTextColor,
+      },
       button: {
         height: 36,
         minWidth: 88,
@@ -118,7 +126,7 @@ module.exports = {
         handleSize: 12,
         handleSizeDisabled: 8,
         handleSizeActive: 18,
-        handleColorZero: rawTheme.palette.borderColor,
+        handleColorZero: rawTheme.palette.primary3Color,
         handleFillColor: rawTheme.palette.alternateTextColor,
         selectionColor: rawTheme.palette.primary1Color,
         rippleColor: rawTheme.palette.primary1Color,
@@ -135,13 +143,13 @@ module.exports = {
         borderColor: rawTheme.palette.borderColor,
       },
       tableHeaderColumn: {
-        textColor: rawTheme.palette.primary3Color,
+        textColor: rawTheme.palette.accent3Color,
         height: 56,
         spacing: 24,
       },
       tableFooter: {
         borderColor: rawTheme.palette.borderColor,
-        textColor: rawTheme.palette.primary3Color,
+        textColor: rawTheme.palette.accent3Color,
       },
       tableRow: {
         hoverColor: rawTheme.palette.accent2Color,
@@ -158,7 +166,7 @@ module.exports = {
         color: rawTheme.palette.alternateTextColor,
         textColor: rawTheme.palette.accent3Color,
         accentColor: rawTheme.palette.primary1Color,
-        clockColor: rawTheme.palette.primary3Color,
+        clockColor: rawTheme.palette.textColor,
         selectColor: rawTheme.palette.primary2Color,
         selectTextColor: rawTheme.palette.alternateTextColor,
       },

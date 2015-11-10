@@ -1,11 +1,11 @@
-let React = require('react');
-let { CircularProgress, LinearProgress } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let Code = require('progress-code');
-let CodeExample = require('../../code-example/code-example');
+const React = require('react');
+const { CircularProgress, LinearProgress, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const Code = require('progress-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
-
-let ProgressPage = React.createClass({
+const ProgressPage = React.createClass({
 
   getInitialState () {
     return {
@@ -66,6 +66,12 @@ let ProgressPage = React.createClass({
             header: 'default: 1',
             desc: 'The size of the progress.',
           },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the progress\'s root element.',
+          },
         ],
       },
     ];
@@ -75,6 +81,17 @@ let ProgressPage = React.createClass({
       <ComponentDoc
         name="Progress"
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst CircularProgress = require(\'material-ui/lib/circular-progress\');\n' +
+            'const LinearProgress = require(\'material-ui/lib/linear-progress\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <h2>Linear Progress</h2>
           <p>

@@ -44,6 +44,7 @@ const ScaleIn = React.createClass({
     enterDelay: React.PropTypes.number,
     maxScale: React.PropTypes.number,
     minScale: React.PropTypes.number,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

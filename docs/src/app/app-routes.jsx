@@ -22,6 +22,7 @@ const InlineStyles = require('./components/pages/customization/inline-styles');
 const Components = require('./components/pages/components');
 const AppBar = require('./components/pages/components/app-bar');
 const Avatars = require('./components/pages/components/avatars');
+const Badge = require('./components/pages/components/badge');
 const Buttons = require('./components/pages/components/buttons');
 const Cards = require('./components/pages/components/cards');
 const DatePicker = require('./components/pages/components/date-picker');
@@ -77,6 +78,7 @@ const AppRoutes = (
     <Route path="components" component={Components}>
       <Route path="appbar" component={AppBar} />
       <Route path="avatars" component={Avatars} />
+      <Route path="badge" component={Badge} />
       <Route path="buttons" component={Buttons} />
       <Route path="cards" component={Cards} />
       <Route path="date-picker" component={DatePicker} />

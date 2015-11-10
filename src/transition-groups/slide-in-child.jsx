@@ -44,6 +44,7 @@ const SlideInChild = React.createClass({
     //This callback is needed bacause
     //the direction could change when leaving the dom
     getLeaveDirection: React.PropTypes.func.isRequired,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps: function() {

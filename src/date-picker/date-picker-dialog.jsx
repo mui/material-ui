@@ -52,6 +52,7 @@ const DatePickerDialog = React.createClass({
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
+    style: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
     showYearSelector: React.PropTypes.bool,
   },
@@ -168,7 +169,7 @@ const DatePickerDialog = React.createClass({
         onClickAway={this._handleDialogClickAway}
         repositionOnUpdate={false}
         open={this.state.open}
-      >
+        onRequestClose={this.dismiss}>
         <Calendar
           DateTimeFormat={DateTimeFormat}
           locale={locale}
@@ -186,17 +187,15 @@ const DatePickerDialog = React.createClass({
   },
 
   show() {
-    if (this.props.container === 'inline') {
-      return this.setState({'open': true});
-    }
-    this.refs.dialog.show();
+    this.setState({
+      open: true,
+    });
   },
 
   dismiss() {
-    if (this.props.container === 'inline') {
-      return this.setState({'open': false});
-    }
-    this.refs.dialog.dismiss();
+    this.setState({
+      open: false,
+    });
   },
 
   _onDayTouchTap() {

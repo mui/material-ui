@@ -1,13 +1,14 @@
-let React = require('react');
-let { ClearFix, Mixins, SelectField, TextField, Styles } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let { Colors } = Styles;
-let { StyleResizable } = Mixins;
-let Code = require('text-fields-code');
-let CodeExample = require('../../code-example/code-example');
+const React = require('react');
+const { ClearFix, Mixins, SelectField, TextField, Styles, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const { Colors } = Styles;
+const { StyleResizable } = Mixins;
+const Code = require('text-fields-code');
+const CodeExample = require('../../code-example/code-example');
 const LinkedStateMixin = require('react-addons-linked-state-mixin');
+const CodeBlock = require('../../code-example/code-block');
 
-let TextFieldsPage = React.createClass({
+const TextFieldsPage = React.createClass({
 
   mixins: [StyleResizable, LinkedStateMixin],
 
@@ -57,6 +58,12 @@ let TextFieldsPage = React.createClass({
         name: 'Props',
         infoArray: [
           {
+            name: 'defaultValue',
+            type: 'string',
+            header: 'optional',
+            desc: 'The text string to use for the default value.',
+          },
+          {
             name: 'errorStyle',
             type: 'object',
             header: 'optional',
@@ -67,6 +74,12 @@ let TextFieldsPage = React.createClass({
             type: 'string',
             header: 'optional',
             desc: 'The error text string to display.',
+          },
+          {
+            name: 'floatingLabelStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'The style object to use to override floating label styles.',
           },
           {
             name: 'floatingLabelText',
@@ -235,6 +248,17 @@ let TextFieldsPage = React.createClass({
         name="Text Field"
         desc={desc}
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst TextField = require(\'material-ui/lib/text-field\');\n' +
+            'const SelectField = require(\'material-ui/lib/select-field\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <ClearFix>
             <div style={styles.group}>
@@ -242,7 +266,7 @@ let TextFieldsPage = React.createClass({
                 style={styles.textfield}
                 hintText="Hint Text" /><br/>
               <TextField
-                style={styles.textField}
+                style={styles.textfield}
                 hintText="Styled Hint Text"
                 hintStyle={{color: 'red'}} /><br/>
               <TextField

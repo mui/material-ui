@@ -1,0 +1,19 @@
+<Badge badgeContent={4} primary={true}>
+  <NotificationsIcon />
+</Badge>
+
+//override badgeStyle to account for padding of child element
+<Badge badgeContent={10} secondary={true} badgeStyle={{top:12, right:12}}>
+  <IconButton tooltip="Go To Cart">
+    <ShoppingCartIcon/>
+  </IconButton>
+</Badge>
+
+<Badge backgroundColor="#d8d8d8"
+       badgeContent={<IconButton tooltip="Backup"><UploadIcon/></IconButton>}>
+  <FolderIcon />
+</Badge>
+
+<Badge badgeContent="&copy;" badgeStyle={{fontSize:20}}>
+  <h3>Company Name</h3>
+</Badge>

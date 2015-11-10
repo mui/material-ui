@@ -51,6 +51,7 @@ const LeftNav = React.createClass({
     menuItemClassName: React.PropTypes.string,
     menuItemClassNameSubheader: React.PropTypes.string,
     menuItemClassNameLink: React.PropTypes.string,
+    style: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -82,7 +83,10 @@ const LeftNav = React.createClass({
   //from the parent / owner using context
   componentWillReceiveProps (nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: newMuiTheme,
+      open: (this.props.docked !== nextProps.docked) ? nextProps.docked : this.state.open,
+    });
   },
 
   componentDidMount() {
@@ -223,10 +227,12 @@ const LeftNav = React.createClass({
 
   _updateMenuHeight() {
     if (this.props.header) {
-      let container = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-      let menu = ReactDOM.findDOMNode(this.refs.menuItems);
-      let menuHeight = container.clientHeight - menu.offsetTop;
-      menu.style.height = menuHeight + 'px';
+      const menu = ReactDOM.findDOMNode(this.refs.menuItems);
+      if (menu){
+        const container = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
+        const menuHeight = container.clientHeight - menu.offsetTop;
+        menu.style.height = menuHeight + 'px';
+      }
     }
   },
 
@@ -301,9 +307,9 @@ const LeftNav = React.createClass({
 
   _setPosition(translateX) {
     let leftNav = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-    leftNav.style[AutoPrefix.single('transform')] =
-      'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
+    let transformCSS = 'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
+    AutoPrefix.set(leftNav.style, 'transform', transformCSS);
   },
 
   _getTranslateX(currentX) {

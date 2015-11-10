@@ -2,7 +2,6 @@
 <TextField
   hintText="Hint Text" />
 <TextField
-  style={styles.textField}
   hintText="Styled Hint Text"
   hintStyle={{color: 'red'}} />
 <TextField

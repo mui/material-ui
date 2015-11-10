@@ -1,3 +1,44 @@
+## 0.13.2
+###### _Nov 9, 2015_
+
+##### General
+- Add tabs with slide effect (#1907)
+- Universal rendering support (#2007) (thanks @Cavitt)
+- Add labelPosition prop to buttons (#2014)
+- Add RenderToLayer component (#2042) (thanks @chrismcv)
+- Open state of of dialog now controlled through props (#1996)
+  - openImmediately, show(), dismiss() deprecated
+- Update TextField docs (#2070)
+- New Badge component (#2045) (thanks @rhythnic)
+- Add import statements to components' docs pages (#2113)
+
+##### Component Fixes / Enhancements
+- Fix server side rendering (#2021)
+- Add key to TableHeaderColumn for selectAll (#2030)
+- Fix Circular Progress transition (#2047)
+- Fix Snackbar getting stuck when receiving new props (#2024)
+- iPad enhanced textarea fix (#1720)
+- Table clickAway triggers onRowSelection (#2054)
+- Theme color fixes for Slider and Toggle (#2016)
+
+## 0.13.1
+###### _Oct 29, 2015_
+
+##### General
+- [SVGIcons] added index.js and index-generator script (#1959)
+- [TimePicker] openDialog() function (#1939) and autoOk prop (#1940) added
+- [DatePicker] i18n support added (#1658)
+- [LeftNav] supports nested children (w/o menuItems) (#1982)
+- [Snackbar] updated for new specification (#1668)
+- [Tabs] added tabTemplate prop (#1691)
+
+##### Component Fixes / Enhancements
+- [TextArea] height issue fixed (#1875)
+- [GridList] doc added (#1948) with code examples (#1988)
+- [TextField] fixed custom theme color hiding backgroundColor (#1989)
+- [TimePicker] added style and textFieldStyle props (#1949)
+- [Card] text color is now pulled from theme (#1995)
+
 ## 0.13.0
 ###### _Oct 21, 2015_
 
