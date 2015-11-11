@@ -31,7 +31,7 @@ export default class DatePickerPage extends React.Component {
         infoArray: [
           {
             name: 'container',
-            type: 'one of: dialog, container',
+            type: 'one of: dialog, inline',
             header: 'default: dialog',
             desc: 'The date pickers container type',
           },
