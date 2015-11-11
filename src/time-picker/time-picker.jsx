@@ -52,7 +52,7 @@ const TimePicker = React.createClass({
     return {
       time: this.props.defaultTime || emptyTime,
       dialogTime: new Date(),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme)
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
