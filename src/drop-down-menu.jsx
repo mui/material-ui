@@ -127,7 +127,7 @@ const DropDownMenu = React.createClass({
         lineHeight: spacing.desktopToolbarHeight + 'px',
         position: 'relative',
         paddingLeft: spacing.desktopGutter,
-        paddingRight: spacing.desktopGutter * 2,
+        paddingRight: spacing.desktopGutter,
         opacity: 1,
         width:'auto',
         color: disabled ? this.state.muiTheme.rawTheme.palette.disabledColor : this.state.muiTheme.rawTheme.palette.textColor,
@@ -211,10 +211,10 @@ const DropDownMenu = React.createClass({
     }
 
     let menuItems = this.props.menuItems.map((item, idx) => {
-      return <MenuItem 
-        key={idx} 
-        primaryText={item[displayMember]} 
-        value={item[valueMember]} 
+      return <MenuItem
+        key={idx}
+        primaryText={item[displayMember]}
+        value={item[valueMember]}
         onClick={this._onMenuItemClick.bind(this, idx, item[valueMember])} />
     });
 
