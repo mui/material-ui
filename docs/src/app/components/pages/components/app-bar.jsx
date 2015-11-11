@@ -11,6 +11,12 @@ const IconMenu = require('menus/icon-menu');
 const MenuItem = require('menus/menu-item');
 const MoreVertIcon = require('svg-icons/navigation/more-vert');
 
+const styles = {
+  title: {
+    cursor: 'pointer',
+  },
+};
+
 export default class AppBarPage extends React.Component {
 
   constructor(props) {
@@ -136,7 +142,7 @@ export default class AppBarPage extends React.Component {
             iconClassNameRight="muidocs-icon-navigation-expand-more" />
           <br />
           <AppBar
-            title="Title"
+            title={<span style={styles.title} onTouchTap={this._onTouchTap}>Title</span>}
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             iconElementRight={<FlatButton label="Save" />} />
           <br />
@@ -155,6 +161,10 @@ export default class AppBarPage extends React.Component {
         </CodeExample>
       </ComponentDoc>
     );
+  }
+
+  _onTouchTap() {
+    alert('onTouchTap triggered on the title component');
   }
 
 }

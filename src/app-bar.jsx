@@ -164,7 +164,7 @@ const AppBar = React.createClass({
       // If not, just use it as a node.
       titleElement = typeof title === 'string' || title instanceof String ?
         <h1 onTouchTap={this._onTitleTouchTap} style={this.prepareStyles(styles.title, styles.mainElement)}>{title}</h1> :
-        <div onTouchTap={this._onTitleTouchTap} style={this.prepareStyles(styles.mainElement)}>{title}</div>;
+        <div onTouchTap={this._onTitleTouchTap} style={this.prepareStyles(styles.title, styles.mainElement)}>{title}</div>;
     }
 
     if (showMenuIconButton) {
