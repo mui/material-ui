@@ -221,6 +221,13 @@ export default class TablePage extends React.Component {
         name: 'Table Row Props',
         infoArray: [
           {
+            name: 'onCellClick',
+            type: 'function(rowNumber, columnId)',
+            header: 'optional',
+            desc: 'Called when a row cell is clicked. rowNumber is the row number and columnId is the column number ' +
+              'or the column key. This method can also be set on <Table>, which would catch cell clicks from the table body.',
+          },
+          {
             name: 'displayBorder',
             type: 'boolean',
             header: 'default: true',
@@ -332,7 +339,8 @@ export default class TablePage extends React.Component {
             type: 'function(rowNumber, columnId)',
             header: 'optional',
             desc: 'Called when a row cell is clicked. rowNumber is the row number and columnId is the column number ' +
-              'or the column key.',
+              'or the column key. This method can also be set on <TableRow>, usefull to catch events from ' +
+              'the table header or from specific rows of the table body.',
           },
           {
             name: 'onRowHover',
