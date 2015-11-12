@@ -38,7 +38,7 @@ const Calendar = React.createClass({
     locale: React.PropTypes.string.isRequired,
     disableYearSelection: React.PropTypes.bool,
     initialDate: React.PropTypes.object,
-    isActive: React.PropTypes.bool,
+    open: React.PropTypes.bool,
     minDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
     onDayTouchTap: React.PropTypes.func,
@@ -296,7 +296,7 @@ const Calendar = React.createClass({
   },
 
   _handleWindowKeyDown(e) {
-    if (this.props.isActive) {
+    if (this.props.open) {
 
       switch (e.keyCode) {
         case KeyCode.UP:

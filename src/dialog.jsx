@@ -111,7 +111,6 @@ let Dialog = React.createClass({
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
     openImmediately: React.PropTypes.bool,
-    onClickAway: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
     style: React.PropTypes.object,
     title: React.PropTypes.node,
@@ -290,10 +289,10 @@ let Dialog = React.createClass({
     warning(!this.props.hasOwnProperty('openImmediately'),
       'openImmediately has been deprecated in favor of defaultOpen');
 
-    warning(!this.props.hasOwnProperty('onShow'),
+    warning(!(typeof this.props.onShow === 'function'),
       'onShow will be removed in favor of explicitly setting open');
 
-    warning(!this.props.hasOwnProperty('onDismiss'),
+    warning(!(typeof this.props.onDismiss === 'function'),
       'onDismiss will be removed in favor of explicitly setting open and can be replaced by onRequestClose');
 
     warning(!this.props.hasOwnProperty('modal'),

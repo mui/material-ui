@@ -64,6 +64,8 @@ const TimePickerDialog = React.createClass({
       onAccept,
       format,
       autoOk,
+      onShow,
+      onDismiss,
       ...other,
     } = this.props;
 
@@ -85,7 +87,7 @@ const TimePickerDialog = React.createClass({
         key={0}
         label="Cancel"
         secondary={true}
-        onTouchTap={this._handleCancelTouchTap} />,
+        onTouchTap={this.dismiss} />,
       <FlatButton
         key={1}
         label="OK"
@@ -102,8 +104,8 @@ const TimePickerDialog = React.createClass({
         bodyStyle={this.mergeAndPrefix(styles.body)}
         actions={actions}
         contentStyle={styles.dialogContent}
-        onDismiss={this._handleDialogDismiss}
-        onShow={this._handleDialogShow}
+        onDismiss={typeof onDismiss === 'function' && onDismiss}
+        onShow={typeof onShow === 'function' && onShow}
         repositionOnUpdate={false}
         open={this.state.open}
         onRequestClose={this.dismiss}>
@@ -128,10 +130,6 @@ const TimePickerDialog = React.createClass({
     });
   },
 
-  _handleCancelTouchTap() {
-    this.dismiss();
-  },
-
   _handleOKTouchTap() {
     this.dismiss();
     if (this.props.onAccept) {
@@ -139,20 +137,8 @@ const TimePickerDialog = React.createClass({
     }
   },
 
-  _handleDialogShow() {
-    if (this.props.onShow) {
-      this.props.onShow();
-    }
-  },
-
-  _handleDialogDismiss() {
-    if (this.props.onDismiss) {
-      this.props.onDismiss();
-    }
-  },
-
   _handleWindowKeyUp(event) {
-    if (this.refs.dialogWindow.isOpen()) {
+    if (this.state.open) {
       switch (event.keyCode) {
         case KeyCode.ENTER:
           this._handleOKTouchTap();
