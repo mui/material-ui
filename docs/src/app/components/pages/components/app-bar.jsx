@@ -103,6 +103,12 @@ export default class AppBarPage extends React.Component {
             desc: 'Callback function for when the right icon is selected via ' +
                   'a touch tap.',
           },
+          {
+            name: 'onTitleTouchTap',
+            header: 'AppBar.onTitleTouchTap(e)',
+            desc: 'Callback function for when the title text is selected via ' +
+                  'a touch tap.',
+          },
         ],
       },
     ];
