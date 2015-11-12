@@ -7,6 +7,7 @@ const Transitions = require('./styles/transitions');
 const StylePropable = require('./mixins/style-propable');
 const FlatButton = require('./flat-button');
 const Overlay = require('./overlay');
+const RenderToLayer = require('./render-to-layer');
 const Paper = require('./paper');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
@@ -46,7 +47,7 @@ const TransitionItem = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
-  componentWillEnter(callback) {
+  componentWillAppear(callback) {
     let spacing = this.state.muiTheme.rawTheme.spacing;
 
     this.setState({
@@ -84,7 +85,7 @@ const TransitionItem = React.createClass({
   },
 });
 
-let Dialog = React.createClass({
+const DialogInline = React.createClass({
 
   mixins: [WindowListenable, StylePropable],
 
@@ -110,23 +111,21 @@ let Dialog = React.createClass({
     bodyStyle: React.PropTypes.object,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
-    openImmediately: React.PropTypes.bool,
     repositionOnUpdate: React.PropTypes.bool,
     style: React.PropTypes.object,
     title: React.PropTypes.node,
-    defaultOpen: React.PropTypes.bool,
-    open: React.PropTypes.bool,
-    modal: React.PropTypes.bool,
-    onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    onRequestClose: React.PropTypes.func,
-    actionFocus: React.PropTypes.string, 
-    titleStyle: React.PropTypes.object,
+    open: React.PropTypes.bool.isRequired,
   },
 
   windowListeners: {
     keyup: '_handleWindowKeyUp',
     resize: '_handleResize',
+  },
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
   },
 
   getDefaultProps() {
@@ -135,52 +134,12 @@ let Dialog = React.createClass({
       autoScrollBodyContent: false,
       actions: [],
       repositionOnUpdate: true,
-      defaultOpen: false,
       open: null,
     };
   },
 
-  getInitialState() {
-    if (process.env.NODE_ENV !== 'production') {
-      this._testDeprecations();
-    }
-
-    let open = this.props.open;
-
-    if (open === null) {
-      open = (this.props.openImmediately || this.props.defaultOpen);
-    }
-
-    return {
-      open: open,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
-    if (process.env.NODE_ENV !== 'production') {
-      this._testDeprecations();
-    }
-
-    if (nextProps.open !== this.props.open) {
-      if (nextProps.open && !this.state.open) {
-        this._show();
-      } else if (!nextProps.open && this.state.open) {
-        this._dismiss();
-      }
-    }
-  },
-
   componentDidMount() {
     this._positionDialog();
-    if (this.state.open) {
-      this.refs.dialogOverlay.preventScrolling();
-    }
   },
 
   componentDidUpdate() {
@@ -230,7 +189,7 @@ let Dialog = React.createClass({
     };
 
 
-    if (this.state.open) {
+    if (this.props.open) {
       main = this.mergeStyles(main, {
         left: 0,
         transition: Transitions.easeOut('0ms', 'left', '0ms'),
@@ -262,8 +221,8 @@ let Dialog = React.createClass({
 
     return (
       <div ref="container" style={this.prepareStyles(styles.main)}>
-        <ReactTransitionGroup component="div" ref="dialogWindow">
-          {this.state.open &&
+        <ReactTransitionGroup component="div" ref="dialogWindow" transitionAppear={true} transitionAppearTimeout={450}>
+          {this.props.open &&
             <TransitionItem
               className={this.props.contentClassName}
               style={styles.content}>
@@ -279,30 +238,10 @@ let Dialog = React.createClass({
           </TransitionItem>}
         </ReactTransitionGroup>
         <Overlay
-          ref="dialogOverlay"
-          show={this.state.open}
-          autoLockScrolling={false}
+          show={this.props.open}
           onTouchTap={this._handleOverlayTouchTap} />
       </div>
     );
-  },
-
-  isOpen() {
-    return this.state.open;
-  },
-
-  _testDeprecations() {
-    warning(!this.props.hasOwnProperty('openImmediately'),
-      'openImmediately has been deprecated in favor of defaultOpen');
-
-    warning(!(typeof this.props.onShow === 'function'),
-      'onShow will be removed in favor of explicitly setting open');
-
-    warning(!(typeof this.props.onDismiss === 'function'),
-      'onDismiss will be removed in favor of explicitly setting open and can be replaced by onRequestClose');
-
-    warning(!this.props.hasOwnProperty('modal'),
-      'modal will be removed in favor of explicitly setting open and onRequestClose');
   },
 
   _getAction(actionJSON, key) {
@@ -372,39 +311,158 @@ let Dialog = React.createClass({
   },
 
   _positionDialog() {
-    if (this.state.open) {
-      let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-      let container = ReactDOM.findDOMNode(this);
-      let dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
-      let dialogContent = ReactDOM.findDOMNode(this.refs.dialogContent);
-      let minPaddingTop = 16;
+    if (!this.props.open) {
+      return;
+    }
 
-      //Reset the height in case the window was resized.
-      dialogWindow.style.height = '';
-      dialogContent.style.height = '';
+    let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    let container = ReactDOM.findDOMNode(this);
+    let dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
+    let dialogContent = ReactDOM.findDOMNode(this.refs.dialogContent);
+    let minPaddingTop = 16;
 
-      let dialogWindowHeight = dialogWindow.offsetHeight;
-      let paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 64;
-      if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
+    //Reset the height in case the window was resized.
+    dialogWindow.style.height = '';
+    dialogContent.style.height = '';
 
-      //Vertically center the dialog window, but make sure it doesn't
-      //transition to that position.
-      if (this.props.repositionOnUpdate || !container.style.paddingTop) {
-        container.style.paddingTop = paddingTop + 'px';
-      }
+    let dialogWindowHeight = dialogWindow.offsetHeight;
+    let paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 64;
+    if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
 
-      // Force a height if the dialog is taller than clientHeight
-      if (this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) {
-        let styles = this.getStyles();
-        let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + 64);
+    //Vertically center the dialog window, but make sure it doesn't
+    //transition to that position.
+    if (this.props.repositionOnUpdate || !container.style.paddingTop) {
+      container.style.paddingTop = paddingTop + 'px';
+    }
 
-        if (this.props.title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
-        if (this.props.actions.length) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
+    // Force a height if the dialog is taller than clientHeight
+    if (this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) {
+      let styles = this.getStyles();
+      let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + 64);
 
-        dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
+      if (this.props.title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
+      if (this.props.actions.length) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
+
+      dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
+    }
+  },
+
+  _requestClose(buttonClicked) {
+    if (!buttonClicked || this.props.modal) {
+      return;
+    }
+
+    if (this.props.onRequestClose) {
+      this.props.onRequestClose(!!buttonClicked);
+    }
+  },
+
+  _handleOverlayTouchTap() {
+    this._requestClose(false);
+  },
+
+  _handleWindowKeyUp(event) {
+    if (event.keyCode === KeyCode.ESC) {
+      this._requestClose(false);
+    }
+  },
+
+  _handleResize() {
+    if (this.props.open) {
+      this._positionDialog();
+    }
+  },
+
+});
+
+
+const wrapperStyle = {position:'fixed', top:0, left:0, zIndex:20};
+const Dialog = React.createClass({
+
+  propTypes: {
+    actions: React.PropTypes.array,
+    autoDetectWindowHeight: React.PropTypes.bool,
+    autoScrollBodyContent: React.PropTypes.bool,
+    bodyStyle: React.PropTypes.object,
+    contentClassName: React.PropTypes.string,
+    contentStyle: React.PropTypes.object,
+    openImmediately: React.PropTypes.bool,
+    onClickAway: React.PropTypes.func,
+    repositionOnUpdate: React.PropTypes.bool,
+    style: React.PropTypes.object,
+    title: React.PropTypes.node,
+    defaultOpen: React.PropTypes.bool,
+    open: React.PropTypes.bool,
+  },
+
+  getInitialState() {
+    if (process.env.NODE_ENV !== 'production') {
+      this._testDeprecations();
+    }
+
+    let open = this.props.open;
+
+    if (open === null) {
+      open = (this.props.openImmediately || this.props.defaultOpen);
+    }
+
+    return {
+      open: open,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getDefaultProps() {
+    return {
+      open:null,
+      defaultOpen:false,
+    }
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps (nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
+    if (process.env.NODE_ENV !== 'production') {
+      this._testDeprecations();
+    }
+    if (nextProps.open !== this.props.open) {
+      if (nextProps.open && !this.state.open) {
+        this._show();
+      } else if (!nextProps.open && this.state.open) {
+        this._dismiss();
       }
     }
   },
+
+  render() {
+    return (
+      <RenderToLayer render={this.renderLayer} open={this.state.open} />
+    );
+  },
+
+  renderLayer() {
+    return (
+      <div style={wrapperStyle}>
+          <DialogInline {...this.props} onRequestClose={this.props.onRequestClose} open={this.props.open} />
+      </div>
+    );
+  },
+
+  _testDeprecations() {
+    warning(!this.props.hasOwnProperty('openImmediately'),
+      'openImmediately has been deprecated in favor of defaultOpen');
+
+    warning(!(typeof this.props.onShow === 'function'),
+      'onShow will be removed in favor of explicitly setting open');
+
+    warning(!(typeof this.props.onDismiss === 'function'),
+      'onDismiss will be removed in favor of explicitly setting open and can be replaced by onRequestClose');
+
+  },
+
 
   show() {
     warning(false, 'show has been deprecated in favor of explicitly setting the open property.');
@@ -419,7 +477,6 @@ let Dialog = React.createClass({
   },
 
   _show() {
-    this.refs.dialogOverlay.preventScrolling();
     this.setState({
       open: true,
     }, this._onShow);
@@ -438,47 +495,17 @@ let Dialog = React.createClass({
   },
 
   _dismiss() {
-    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), () => {
-      this.refs.dialogOverlay.allowScrolling();
-    });
-
     this.setState({
       open: false,
     }, this._onDismiss);
   },
 
-  _requestClose(buttonClicked) {
-    warning(!this.props.hasOwnProperty('modal'),
-      'modal will be removed in favor of explicitly setting open and onRequestClose');
-
-    if (!buttonClicked && this.props.modal) {
-      return;
-    }
-
-    // Close the dialog if the open state is not explicitly set.
-    if (this.props.open === null) {
-      this._dismiss();
-    }
-    if (this.props.onRequestClose) {
-      this.props.onRequestClose(!!buttonClicked);
-    }
+  layerWillUnmount() {
+    if (this.props.onDismiss) this.props.onDismiss();
   },
 
-  _handleOverlayTouchTap() {
-    this._requestClose(false);
-  },
-
-  _handleWindowKeyUp(event) {
-    if (event.keyCode === KeyCode.ESC) {
-      this._requestClose(false);
-    }
-  },
-
-  _handleResize() {
-    if (this.state.open) {
-      this.refs.dialogOverlay.preventScrolling();
-      this._positionDialog();
-    }
+  isOpen() {
+    return this.state.openImmediately;
   },
 
 });
