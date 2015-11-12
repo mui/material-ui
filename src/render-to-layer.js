@@ -110,16 +110,12 @@ const RenderToLayer = React.createClass({
     Events.on(window, 'focus', this._checkClickAway);
     Events.on(document, 'mousedown', this._checkClickAway);
     Events.on(document, 'touchend', this._checkClickAway);
-    Events.on(document, 'popOverOnShow', this._preventClickAway);
-    Events.on(document, 'popOverOnHide', this._allowClickAway);
   },
 
   _unbindClickAway() {
     Events.off(window, 'focus', this._checkClickAway);
     Events.off(document, 'mousedown', this._checkClickAway);
     Events.off(document, 'touchend', this._checkClickAway);
-    Events.off(document, 'popOverOnShow', this._preventClickAway);
-    Events.off(document, 'popOverOnHide', this._allowClickAway);
   },
 });
 
