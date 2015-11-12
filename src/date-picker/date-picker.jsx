@@ -124,7 +124,7 @@ const DatePicker = React.createClass({
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
-          onDismiss={this._handleDialogDismiss}
+          onDismiss={onDismiss}
           minDate={minDate}
           maxDate={maxDate}
           autoOk={autoOk}
@@ -171,10 +171,6 @@ const DatePicker = React.createClass({
     }
     if (this.props.onChange) this.props.onChange(null, d);
     if (this.props.valueLink) this.props.valueLink.requestChange(d);
-  },
-
-  _handleDialogDismiss() {
-    if (this.props.onDismiss) this.props.onDismiss();
   },
 
   _handleInputFocus(e) {
