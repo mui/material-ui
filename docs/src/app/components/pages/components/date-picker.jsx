@@ -33,7 +33,9 @@ export default class DatePickerPage extends React.Component {
             name: 'container',
             type: 'one of: dialog, inline',
             header: 'default: dialog',
-            desc: 'The date pickers container type',
+            desc: 'Used to control how the DatePicker will be displayed when a user tries to set ' +
+            'a date. `dialog` (default) displays the DatePicker as a dialog with a modal. `inline` '+
+            'displays the DatePicker below the input field (similar to auto complete)',
           },
           {
             name: 'DateTimeFormat',
