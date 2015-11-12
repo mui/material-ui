@@ -11,7 +11,7 @@ const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 
 let getZDepth = function(disabled) {
-  let zDepth = disabled ? 0 : 2;
+  let zDepth = disabled ? 0 : (this.props.zDepth ? this.props.zDepth : 2);
   return {
     zDepth: zDepth,
     initialZDepth: zDepth,
@@ -52,15 +52,16 @@ const FloatingActionButton = React.createClass({
     onTouchStart: React.PropTypes.func,
     secondary: React.PropTypes.bool,
     style: React.PropTypes.object,
+    zDepth: React.PropTypes.number,
   },
 
   getInitialState() {
-    let zDepth = this.props.disabled ? 0 : 2;
+    let zDepth = this.props.zDepth ? this.props.zDepth : 2;
     return {
       hovered: false,
       initialZDepth: zDepth,
       touch: false,
-      zDepth: zDepth,
+      zDepth: this.props.disabled ? 0 : zDepth,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
