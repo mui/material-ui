@@ -84,6 +84,12 @@ const Popover = React.createClass({
     this.setPlacement();
   },
 
+  componentWillUnmount() {
+    if (this.state.open) {
+      this.props.onRequestClose();
+    }
+  },
+
   render() {
     return <RenderToLayer
       ref="layer"
@@ -180,7 +186,7 @@ const Popover = React.createClass({
   },
 
   _animateClose() {
-    if (!this.refs.layer.getLayer()){
+    if (!this.refs.layer || !this.refs.layer.getLayer()){
       return;
     }
     let el = this.refs.layer.getLayer().children[0];

@@ -1,12 +1,16 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const PureRenderMixin = require('react-addons-pure-render-mixin');
 const StylePropable = require('../mixins/style-propable');
 const Colors = require('../styles/colors');
+const Popover = require('../popover/popover');
 const CheckIcon = require('../svg-icons/navigation/check');
 const ListItem = require('../lists/list-item');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
+const Menu = require('./menu');
 
+const nestedMenuStyle = {position:'relative'};
 const MenuItem = React.createClass({
 
   mixins: [PureRenderMixin, StylePropable],
@@ -28,6 +32,7 @@ const MenuItem = React.createClass({
     ]),
     leftIcon: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
+    onTouchTap: React.PropTypes.func,
     secondaryText: React.PropTypes.node,
     style: React.PropTypes.object,
     value: React.PropTypes.string,
@@ -47,6 +52,7 @@ const MenuItem = React.createClass({
   getInitialState () {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      open:false,
     };
   },
 
@@ -55,6 +61,9 @@ const MenuItem = React.createClass({
   componentWillReceiveProps (nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+    if (this.state.open && nextProps.focusState === "none") {
+      this._onRequestClose();
+    }
   },
 
   getDefaultProps() {
@@ -71,6 +80,12 @@ const MenuItem = React.createClass({
     this._applyFocusState();
   },
 
+  componentWillUnmount() {
+    if (this.state.open) {
+      this.setState({open:false});
+    }
+  },
+
   render() {
     const {
       checked,
@@ -81,6 +96,7 @@ const MenuItem = React.createClass({
       innerDivStyle,
       insetChildren,
       leftIcon,
+      menuItems,
       rightIcon,
       secondaryText,
       style,
@@ -155,6 +171,21 @@ const MenuItem = React.createClass({
         React.cloneElement(secondaryText, {style: mergedSecondaryTextStyles}) :
         <div style={this.prepareStyles(styles.secondaryText)}>{secondaryText}</div>;
     }
+    let childMenuPopover;
+    if (menuItems) {
+      childMenuPopover = (
+        <Popover
+          anchorOrigin={{horizontal:'right', vertical:'top'}}
+          anchorEl={this.state.anchorEl}
+          open={this.state.open}
+          onRequestClose={this._onRequestClose}>
+          <Menu desktop={desktop} disabled={disabled} style={nestedMenuStyle}>
+            {React.Children.map(menuItems, this._cloneMenuItem)}
+          </Menu>
+        </Popover>
+      );
+      other.onTouchTap = this._onTouchTap;
+    }
 
     return (
       <ListItem
@@ -168,12 +199,51 @@ const MenuItem = React.createClass({
         style={mergedRootStyles}>
         {children}
         {secondaryTextElement}
+        {childMenuPopover}
       </ListItem>
     );
   },
 
   _applyFocusState() {
     this.refs.listItem.applyFocusState(this.props.focusState);
+  },
+
+  _cloneMenuItem(item) {
+    let props = {
+      onTouchTap: (e) =>
+      {
+        this._onRequestClose();
+        if (item.props.onTouchTap) {
+          item.props.onTouchTap(e);
+        }
+        if (this.props.onTouchTap) {
+          this.props.onTouchTap(e);
+        }
+      },
+      onRequestClose: this._onRequestClose,
+    };
+    return React.cloneElement(item, props);
+  },
+
+  _onTouchTap(e) {
+    e.preventDefault();
+    this.setState({
+      open:true,
+      anchorEl:ReactDOM.findDOMNode(this),
+    });
+    if (this.props.onClick) {
+      this.props.onClick(e);
+    }
+  },
+
+  _onRequestClose() {
+    if (!this.isMounted()) {
+      return;
+    }
+    this.setState({
+      open:false,
+      anchorEl:null,
+    });
   },
 });
 
