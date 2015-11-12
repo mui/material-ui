@@ -6,7 +6,7 @@ const NavigationMenu = require('./svg-icons/navigation/menu');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 const Paper = require('./paper');
-
+const PropTypes = require('./utils/prop-types');
 
 const AppBar = React.createClass({
 
@@ -38,7 +38,7 @@ const AppBar = React.createClass({
     iconElementRight: React.PropTypes.element,
     iconStyleRight: React.PropTypes.object,
     title: React.PropTypes.node,
-    zDepth: React.PropTypes.number,
+    zDepth: PropTypes.zDepth,
   },
 
   getInitialState () {
