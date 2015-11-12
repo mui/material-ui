@@ -109,16 +109,15 @@ const SelectField = React.createClass({
     };
 
     if (!this.props.floatingLabelText) {
+      styles.label.top = -6;
+      styles.icon.top = 11;
+
       if(this.props.hintText) {
         styles.root.top = -5;
-        styles.label.top = 1;
-        styles.icon.top = 17;
-      }
-      else {
+      } else {
         styles.root.top = -8;
       }
-    }
-    else {
+    } else {
       styles.error.bottom = -15;
     }
 
