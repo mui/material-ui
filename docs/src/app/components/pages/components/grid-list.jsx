@@ -69,7 +69,7 @@ class GridListPage extends React.Component {
           },
           {
             name: 'titlePosition',
-            type: '"top"|"bottom"',
+            type: 'oneOf ["top", "bottom"]',
             header: 'optional',
             desc: 'Position of the title bar (container of title, subtitle and action icon). Defaults to "bottom".',
           },
@@ -87,7 +87,7 @@ class GridListPage extends React.Component {
           },
           {
             name: 'actionPosition',
-            type: '"left"|"right"',
+            type: 'oneOf ["left", "right"]',
             header: 'optional',
             desc: 'Position of secondary action IconButton. Defaults to "right".',
           },

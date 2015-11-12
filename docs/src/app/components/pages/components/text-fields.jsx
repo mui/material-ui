@@ -58,6 +58,12 @@ const TextFieldsPage = React.createClass({
         name: 'Props',
         infoArray: [
           {
+            name: 'disabled',
+            type: 'bool',
+            header: 'optional',
+            desc: 'Disables the text field if set to true.',
+          },
+          {
             name: 'defaultValue',
             type: 'string',
             header: 'optional',
@@ -119,13 +125,13 @@ const TextFieldsPage = React.createClass({
           },
           {
             name: 'rows',
-            type: 'string',
+            type: 'number',
             header: 'default: 1',
             desc: 'Number of rows to display when multiLine option is set to true.',
           },
           {
             name: 'rowsMax',
-            type: 'string',
+            type: 'number',
             header: 'default: null',
             desc: 'Maximum number of rows to display when multiLine option is set to true.',
           },

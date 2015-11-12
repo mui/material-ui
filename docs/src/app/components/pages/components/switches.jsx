@@ -44,7 +44,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'defaultChecked',
-          type: 'boolean',
+          type: 'bool',
           header: 'default:false',
           desc: 'The default state of our checkbox component.',
         },
@@ -68,7 +68,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'labelPosition',
-          type: 'string',
+          type: 'oneOf ["left", "right"]',
           header: 'default:"right"',
           desc: 'Where the label will be placed next to the checkbox. Options include ' +
                 '"left" and "right" (case-sensitive). Default option is "right".',
@@ -119,7 +119,7 @@ export default class SwitchesPage extends React.Component {
       infoArray: [
         {
           name: 'defaultChecked',
-          type: 'boolean',
+          type: 'bool',
           header: 'default:false',
           desc: 'The default value of the radio button when the page finishes loading.',
         },
@@ -143,7 +143,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'labelPosition',
-          type: 'string',
+          type: 'oneOf ["left", "right"]',
           header: 'default:"right"',
           desc: 'Where the label will be placed next to the radio button. Options include ' +
                 '"left" and "right" (case-sensitive). Default option is "right".',
@@ -175,7 +175,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'labelPosition',
-          type: 'string',
+          type: 'oneOf ["left", "right"]',
           header: 'optional',
           desc: 'Where the label will be placed for all radio buttons. Options include ' +
                 '"left" and "right" (case-sensitive). This will override any labelPosition ' +
@@ -240,7 +240,7 @@ export default class SwitchesPage extends React.Component {
       infoArray: [
         {
           name: 'defaultToggled',
-          type: 'boolean',
+          type: 'bool',
           header: 'default:false',
           desc: 'The value of the toggle button. Is true when toggle has been turned on. ' +
             'False otherwise.',
@@ -265,7 +265,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'labelPosition',
-          type: 'string',
+          type: 'oneOf ["left", "right"]',
           header: 'default:"left"',
           desc: 'Where the label will be placed next to the toggle switch. Options include ' +
                 '"left" and "right" (case-sensitive). Default option is "left".',

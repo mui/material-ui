@@ -71,7 +71,7 @@ export default class DialogPage extends React.Component {
           },
           {
             name: 'modal',
-            type: 'boolean',
+            type: 'bool',
             header: 'default: false',
             desc: 'Force the user to use one of the actions in the dialog. Clicking outside the dialog will not dismiss the dialog.',
           },

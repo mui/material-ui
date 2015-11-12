@@ -64,7 +64,7 @@ const PaperPage = React.createClass ({
           },
           {
             name: 'zDepth',
-            type: 'number (0-5)',
+            type: 'oneOf [0,1,2,3,4,5]',
             header: 'default: 1',
             desc: 'This number represents the zDepth of the paper shadow.',
           },

@@ -74,7 +74,7 @@ export default class AppBarPage extends React.Component {
           },
           {
             name: 'showMenuIconButton',
-            type: 'boolean',
+            type: 'bool',
             header: 'default: true',
             desc: 'Determines whether or not to display the Menu icon next to ' +
                   'the title. Setting this prop to false will hide the icon.',
@@ -87,7 +87,7 @@ export default class AppBarPage extends React.Component {
           },
           {
             name: 'zDepth',
-            type: 'number',
+            type: 'oneOf [0,1,2,3,4,5]',
             header: 'default: 1',
             desc: 'The zDepth of the app bar. The shadow of the app bar is also ' +
                   'dependent on this property.',

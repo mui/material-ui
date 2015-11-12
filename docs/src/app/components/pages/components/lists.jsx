@@ -120,13 +120,13 @@ export default class ListsPage extends React.Component {
           },
           {
             name: 'nestedLevel',
-            type: 'integer',
+            type: 'number',
             header: 'optional',
             desc: 'Controls how deep a ListItem appears. This property is automatically managed so modify at your own risk.',
           },
           {
             name: 'initiallyOpen',
-            type: 'boolean',
+            type: 'bool',
             header: 'default: false',
             desc: 'Controls whether or not the child ListItems are initially displayed.',
           },

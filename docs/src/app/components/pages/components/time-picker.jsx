@@ -15,13 +15,13 @@ const TimePickerPage = React.createClass({
         infoArray: [
           {
             name: 'autoOk',
-            type: 'boolean',
+            type: 'bool',
             header: 'default: false',
             desc: 'If true, automatically accept and close the picker on set minutes.',
           },
           {
             name: 'defaultTime',
-            type: 'date object',
+            type: 'instanceOf(Date)',
             header: 'optional',
             desc: 'This is the initial time value of the component.',
           },
@@ -33,7 +33,7 @@ const TimePickerPage = React.createClass({
           },
           {
             name: 'format',
-            type: 'one of: ampm, 24hr',
+            type: 'oneOf ["ampm", "24hr"]',
             header: 'default: ampm',
             desc: 'Tells the component to display the picker in ampm (12hr) format or 24hr format.',
           },
@@ -45,7 +45,7 @@ const TimePickerPage = React.createClass({
           },
           {
             name: 'pedantic',
-            type: 'boolean',
+            type: 'bool',
             header: 'default: false',
             desc: 'It\'s technically more correct to refer to "12 noon" and "12 midnight" rather than "12 a.m." and "12 p.m." and it avoids real confusion between different locales. By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.',
           },

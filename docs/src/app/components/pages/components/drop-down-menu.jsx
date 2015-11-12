@@ -51,8 +51,8 @@ export default class DropDownMenuPage extends React.Component {
           },
           {
             name: 'menuItemStyle',
-            type: 'array',
-            header: 'required',
+            type: 'object',
+            header: 'optional',
             desc: 'Overrides the inline-styles of the MenuItems when the ' +
                   'DropDownMenu is expanded.',
           },
