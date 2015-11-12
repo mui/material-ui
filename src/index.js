@@ -37,6 +37,7 @@ module.exports = {
   Mixins: require('./mixins/'),
   Overlay: require('./overlay'),
   Paper: require('./paper'),
+  Popover:require('./popover/popover'),
   RadioButton: require('./radio-button'),
   RadioButtonGroup: require('./radio-button-group'),
   RaisedButton: require('./raised-button'),
