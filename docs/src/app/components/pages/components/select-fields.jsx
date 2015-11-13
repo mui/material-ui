@@ -14,7 +14,7 @@ const SelectFieldsPage = React.createClass({
   getInitialState() {
     return {
       selectValue: undefined,
-      selectValue2: undefined,
+      selectValue2: 1,
       selectValueLinkValue: 4,
       selectValueLinkValue2: 3,
     };
@@ -43,13 +43,14 @@ const SelectFieldsPage = React.createClass({
             name: 'disabled',
             type: 'bool',
             header: 'optional',
-            desc: 'Disables the text field if set to true.',
+            desc: 'Disables the select field if set to true.',
           },
           {
-            name: 'defaultValue',
+            name: 'displayMember',
             type: 'string',
-            header: 'optional',
-            desc: 'The text string to use for the default value.',
+            header: 'default: text',
+            desc: 'SelectField will use text as default value, with this ' +
+              'property you can choose another name.',
           },
           {
             name: 'errorStyle',
@@ -82,113 +83,72 @@ const SelectFieldsPage = React.createClass({
             desc: 'If true, the field receives the property width 100%.',
           },
           {
-            name: 'hintStyle',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of the TextField\'s hint text element.',
-          },
-          {
             name: 'hintText',
             type: 'string',
             header: 'optional',
             desc: 'The hint text string to display.',
           },
           {
-            name: 'inputStyle',
+            name: 'iconStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the TextField\'s input element.',
+            desc: 'Overrides the styles of SelectField\'s icon element.',
           },
           {
-            name: 'multiLine',
-            type: 'bool',
-            header: 'default: false',
-            desc: 'If true, a textarea element will be rendered. The textarea also grows and shrinks according to the number of lines.',
-          },
-          {
-            name: 'rows',
-            type: 'number',
-            header: 'default: 1',
-            desc: 'Number of rows to display when multiLine option is set to true.',
-          },
-          {
-            name: 'rowsMax',
-            type: 'number',
-            header: 'default: null',
-            desc: 'Maximum number of rows to display when multiLine option is set to true.',
-          },
-          {
-            name: 'onEnterKeyDown',
-            type: 'function',
+            name: 'labelStyle',
+            type: 'object',
             header: 'optional',
-            desc: 'The function to call when the user presses the Enter key.',
+            desc: 'Overrides the styles of SelectField\'s label when the SelectField is inactive.',
+          },
+          {
+            name: 'valueMember',
+            type: 'string',
+            header: 'default: payload',
+            desc: 'SelectField will use payload as default value, with this ' +
+                'property you can choose another name.',
+          },
+          {
+            name: 'menuItemStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the MenuItems when the ' +
+                  'SelectField is expanded.',
+          },
+          {
+            name: 'selectedIndex',
+            type: 'number',
+            header: 'default: 0',
+            desc: 'Index of the item selected.',
+          },
+          {
+            name: 'selectFieldRoot',
+            type: 'object',
+            header: 'optional',
+            desc: 'The style object to use to override the drop-down menu',
           },
           {
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the TextField\'s root element.',
-          },
-          {
-            name: 'underlineStyle',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of the TextField\'s underline element.',
-          },
-          {
-            name: 'underlineFocusStyle',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of the TextField\'s underline element when focussed.',
+            desc: 'Override the inline-styles of the SelectField\'s root element.',
           },
           {
             name: 'underlineDisabledStyle',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the TextField\'s underline element when disabled.',
+            desc: 'Override the inline-styles of the SelectField\'s underline element when disabled.',
           },
           {
-            name: 'type',
-            type: 'string',
+            name: 'underlineStyle',
+            type: 'object',
             header: 'optional',
-            desc: 'Specifies the type of input to display such as "password" or "text".',
+            desc: 'Overrides the styles of SelectField\'s underline.',
           },
         ],
       },
       {
         name: 'Methods',
-        infoArray: [
-          {
-            name: 'blur',
-            header: 'TextField.blur()',
-            desc: 'Removes focus on the input element.',
-          },
-          {
-            name: 'clearValue',
-            header: 'TextField.clearValue()',
-            desc: 'Clears the value on the input element.',
-          },
-          {
-            name: 'focus',
-            header: 'TextField.focus()',
-            desc: 'Sets the focus on the input element.',
-          },
-          {
-            name: 'getValue',
-            header: 'TextField.getValue()',
-            desc: 'Returns the value of the input.',
-          },
-          {
-            name: 'setErrorText',
-            header: 'TextField.setErrorText(newErrorText)',
-            desc: 'Sets the error text on the input element.',
-          },
-          {
-            name: 'setValue',
-            header: 'TextField.setValue(newValue)',
-            desc: 'Sets the value of the input element.',
-          },
-        ],
+        infoArray: [],
       },
       {
         name: 'Events',
@@ -196,19 +156,19 @@ const SelectFieldsPage = React.createClass({
           {
             name: 'onBlur',
             header: 'function(event)',
-            desc: 'Callback function that is fired when the textfield loses' +
+            desc: 'Callback function that is fired when the selectfield loses' +
                   'focus.',
           },
           {
             name: 'onChange',
-            header: 'function(event)',
-            desc: 'Callback function that is fired when the textfield\'s value ' +
+            header: 'function(name, event)',
+            desc: 'Callback function that is fired when the selectfield\'s value ' +
                   'changes.',
           },
           {
             name: 'onFocus',
             header: 'function(event)',
-            desc: 'Callback function that is fired when the textfield gains ' +
+            desc: 'Callback function that is fired when the selectfield gains ' +
                   'focus.',
           },
         ],
@@ -230,6 +190,7 @@ const SelectFieldsPage = React.createClass({
       {id:5, name:'Weekly'},
     ];
 
+
     let styles = this.getStyles();
 
     return (
@@ -250,30 +211,39 @@ const SelectFieldsPage = React.createClass({
 
         <CodeExample code={Code}>
           <ClearFix>
-              <SelectField
-                style={styles.textfield}
-                value={this.state.selectValue}
-                onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
-                hintText="Hint Text"
-                menuItems={menuItems} /><br/>
-              <SelectField
-                valueLink={this.linkState('selectValueLinkValue')}
-                floatingLabelText="Float Label Text"
-                valueMember="id"
-                displayMember="name"
-                menuItems={arbitraryArrayMenuItems} /><br/>
-              <SelectField
-                valueLink={this.linkState('selectValueLinkValue2')}
-                floatingLabelText="Float Custom Label Text"
-                floatingLabelStyle={{color: "red"}}
-                valueMember="id"
-                displayMember="name"
-                menuItems={arbitraryArrayMenuItems} /><br/>
-              <SelectField
-                style={styles.textfield}
-                value={this.state.selectValue2}
-                onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
-                menuItems={arbitraryArrayMenuItems} />
+            <SelectField
+              style={styles.textfield}
+              value={this.state.selectValue}
+              onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
+              hintText="Hint Text"
+              menuItems={menuItems} /><br/>
+            <SelectField
+              valueLink={this.linkState('selectValueLinkValue')}
+              floatingLabelText="Float Label Text"
+              valueMember="id"
+              displayMember="name"
+              menuItems={arbitraryArrayMenuItems} /><br/>
+            <SelectField
+              valueLink={this.linkState('selectValueLinkValue2')}
+              floatingLabelText="Float Custom Label Text"
+              floatingLabelStyle={{color: "red"}}
+              valueMember="id"
+              displayMember="name"
+              menuItems={arbitraryArrayMenuItems} /><br/>
+            <SelectField
+              floatingLabelText="With default value"
+              style={styles.textfield}
+              value={this.state.selectValue2}
+              valueMember="id"
+              displayMember="name"
+              onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
+              menuItems={arbitraryArrayMenuItems} /><br/>
+            <SelectField
+              floatingLabelText="Disabled"
+              disabled={true}
+              value={'4'}
+              style={styles.textfield}
+              menuItems={menuItems} />
           </ClearFix>
         </CodeExample>
       </ComponentDoc>
@@ -284,7 +254,7 @@ const SelectFieldsPage = React.createClass({
     let change = {};
     change[name] = e.target.value;
     this.setState(change);
-  }
+  },
 });
 
 module.exports = SelectFieldsPage;
