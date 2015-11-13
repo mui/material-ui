@@ -20,6 +20,8 @@ const Tabs = React.createClass({
     initialSelectedIndex: React.PropTypes.number,
     inkBarStyle: React.PropTypes.object,
     tabItemContainerStyle: React.PropTypes.object,
+    tabTemplate: React.PropTypes.func,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -36,6 +38,7 @@ const Tabs = React.createClass({
   getDefaultProps() {
     return {
       initialSelectedIndex : 0,
+      tabTemplate: TabTemplate,
     };
   },
 
@@ -85,6 +88,7 @@ const Tabs = React.createClass({
       style,
       tabWidth,
       tabItemContainerStyle,
+      tabTemplate,
       ...other,
     } = this.props;
 
@@ -118,7 +122,7 @@ const Tabs = React.createClass({
         }
 
         tabContent.push(tab.props.children ?
-          React.createElement(TabTemplate, {
+          React.createElement(tabTemplate, {
             key: index,
             selected: this._getSelected(tab, index),
           }, tab.props.children) : undefined);

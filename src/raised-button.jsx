@@ -3,6 +3,7 @@ const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const Transitions = require('./styles/transitions');
 const ColorManipulator = require('./utils/color-manipulator');
+const Children = require('./utils/children');
 const Typography = require('./styles/typography');
 const EnhancedButton = require('./enhanced-raisedbutton');
 const Paper = require('./paper');
@@ -40,6 +41,10 @@ const RaisedButton = React.createClass({
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     label: validateLabel,
+    labelPosition: React.PropTypes.oneOf([
+      'before',
+      'after',
+    ]),
     onMouseDown: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
@@ -53,6 +58,13 @@ const RaisedButton = React.createClass({
     disabledBackgroundColor: React.PropTypes.string,
     disabledLabelColor: React.PropTypes.string,
     fullWidth: React.PropTypes.bool,
+    style: React.PropTypes.object,
+  },
+
+  getDefaultProps: function() {
+    return {
+      labelPosition: 'before', // Should be after but we keep it like for now (prevent breaking changes)
+    };
   },
 
   getInitialState() {
@@ -111,7 +123,6 @@ const RaisedButton = React.createClass({
     let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
     let styles = {
       root: {
-        backgroundColor: 'none',
         display: 'inline-block',
         minWidth: this.props.fullWidth ? '100%' : this.getThemeButton().minWidth,
         height: this.getThemeButton().height,
@@ -162,18 +173,22 @@ const RaisedButton = React.createClass({
 
   render() {
     let {
+      children,
       disabled,
       label,
+      labelPosition,
+      labelStyle,
       primary,
       secondary,
-      ...other } = this.props;
+      ...other,
+    } = this.props;
 
     let styles = this.getStyles();
 
     let labelElement;
     if (label) {
       labelElement = (
-        <span style={this.prepareStyles(styles.label, this.props.labelStyle)}>
+        <span style={this.prepareStyles(styles.label, labelStyle)}>
           {label}
         </span>
       );
@@ -191,6 +206,13 @@ const RaisedButton = React.createClass({
       onTouchEnd: this._handleTouchEnd,
       onKeyboardFocus: this._handleKeyboardFocus,
     };
+
+    // Place label before or after children.
+    const childrenFragment = labelPosition === 'before' ?
+      { labelElement, children }
+      :
+      { children, labelElement };
+    const enhancedButtonChildren = Children.create(childrenFragment);
 
     return (
       <Paper
@@ -210,8 +232,7 @@ const RaisedButton = React.createClass({
                   styles.overlay,
                   (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
                 )}>
-                  {labelElement}
-                  {this.props.children}
+                  {enhancedButtonChildren}
               </div>
           </EnhancedButton>
       </Paper>

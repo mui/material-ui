@@ -1,17 +1,21 @@
-let React = require('react');
-let CodeExample = require('../../code-example/code-example');
-let {IconButton, Slider, Styles, Tab, Tabs } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let { Colors, Typography } = Styles;
-let Code = require('tabs-code');
-
+const React = require('react');
+const CodeExample = require('../../code-example/code-example');
+const {IconButton, Slider, Styles, Tab, Tabs, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const { Colors, Typography } = Styles;
+const Code = require('tabs-code');
+const SwipeableViews = require('react-swipeable-views');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class TabsPage extends React.Component {
 
   constructor(props) {
     super(props);
     this._handleTabActive = this._handleTabActive.bind(this);
-    this.state = {tabsValue: 'a'};
+    this.state = {
+      tabsValue: 'a',
+      slideIndex: 0,
+    };
   }
 
   render(){
@@ -56,8 +60,14 @@ export default class TabsPage extends React.Component {
             desc: 'Override the inline-styles of the tab-labels container.',
           },
           {
+            name: 'tabTemplate',
+            type: 'ReactClass',
+            header: 'optional',
+            desc: 'Override the default tab template used to wrap the content of each tab element.',
+          },
+          {
             name: 'value',
-            type: 'string or number',
+            type: 'oneOfType [string, number]',
             header: 'optional',
             desc: 'Makes Tabs controllable and selects the tab whose value prop matches this prop.',
           },
@@ -144,6 +154,9 @@ export default class TabsPage extends React.Component {
         position: 'relative',
         paddingLeft: padding,
       },
+      slide: {
+        padding: 10,
+      },
     };
 
     return (
@@ -151,6 +164,17 @@ export default class TabsPage extends React.Component {
         name="Tabs"
         desc={desc}
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst Tabs = require(\'material-ui/lib/tabs/tabs\');\n' +
+            'const Tab = require(\'material-ui/lib/tabs/tab\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <Tabs>
             <Tab label="Item One" >
@@ -221,9 +245,39 @@ export default class TabsPage extends React.Component {
                 </Tab>
               </Tabs>
           </div>
+          <br />
+          <Tabs onChange={this._handleChangeTabs.bind(this)} value={this.state.slideIndex + ''}>
+            <Tab label="Tab One" value="0" />
+            <Tab label="Tab Two" value="1" />
+            <Tab label="Tab Three" value="2" />
+          </Tabs>
+          <SwipeableViews index={this.state.slideIndex} onChangeIndex={this._handleChangeIndex.bind(this)}>
+            <div>
+              <h2 style={styles.headline}>Tabs with slide effect</h2>
+              Swipe to see the next slide.<br />
+            </div>
+            <div style={styles.slide}>
+              slide n°2
+            </div>
+            <div style={styles.slide}>
+              slide n°3
+            </div>
+          </SwipeableViews>
         </CodeExample>
       </ComponentDoc>
     );
+  }
+
+  _handleChangeIndex(index) {
+    this.setState({
+      slideIndex: index,
+    });
+  }
+
+  _handleChangeTabs(value) {
+    this.setState({
+      slideIndex: parseInt(value, 10),
+    });
   }
 
   _handleButtonClick() {

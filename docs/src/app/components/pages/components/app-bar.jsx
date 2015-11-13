@@ -1,14 +1,21 @@
-let React = require('react');
-let { AppBar, DropDownMenu } = require('material-ui');
-let IconButton = require('icon-button');
-let NavigationClose = require('svg-icons/navigation/close');
-let FlatButton = require('flat-button');
-let ComponentDoc = require('../../component-doc');
-let CodeExample = require('../../code-example/code-example');
-let Code = require('app-bar-code');
+const React = require('react');
+const { AppBar, DropDownMenu, Paper } = require('material-ui');
+const IconButton = require('icon-button');
+const NavigationClose = require('svg-icons/navigation/close');
+const FlatButton = require('flat-button');
+const ComponentDoc = require('../../component-doc');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
+const Code = require('app-bar-code');
 const IconMenu = require('menus/icon-menu');
 const MenuItem = require('menus/menu-item');
 const MoreVertIcon = require('svg-icons/navigation/more-vert');
+
+const styles = {
+  title: {
+    cursor: 'pointer',
+  },
+};
 
 export default class AppBarPage extends React.Component {
 
@@ -63,11 +70,11 @@ export default class AppBarPage extends React.Component {
             name: 'style',
             type: 'object',
             header: 'optional',
-            desc: 'Override the inline-styles of the app bars\'s root element.',
+            desc: 'Override the inline-styles of the app bar\'s root element.',
           },
           {
             name: 'showMenuIconButton',
-            type: 'boolean',
+            type: 'bool',
             header: 'default: true',
             desc: 'Determines whether or not to display the Menu icon next to ' +
                   'the title. Setting this prop to false will hide the icon.',
@@ -80,7 +87,7 @@ export default class AppBarPage extends React.Component {
           },
           {
             name: 'zDepth',
-            type: 'number',
+            type: 'oneOf [0,1,2,3,4,5]',
             header: 'default: 1',
             desc: 'The zDepth of the app bar. The shadow of the app bar is also ' +
                   'dependent on this property.',
@@ -102,6 +109,12 @@ export default class AppBarPage extends React.Component {
             desc: 'Callback function for when the right icon is selected via ' +
                   'a touch tap.',
           },
+          {
+            name: 'onTitleTouchTap',
+            header: 'AppBar.onTitleTouchTap(e)',
+            desc: 'Callback function for when the title text is selected via ' +
+                  'a touch tap.',
+          },
         ],
       },
     ];
@@ -113,13 +126,23 @@ export default class AppBarPage extends React.Component {
         name="AppBar"
         desc={this.desc}
         componentInfo={this.componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst AppBar = require(\'material-ui/lib/app-bar\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <AppBar
             title="Title"
             iconClassNameRight="muidocs-icon-navigation-expand-more" />
           <br />
           <AppBar
-            title="Title"
+            title={<span style={styles.title} onTouchTap={this._onTouchTap}>Title</span>}
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             iconElementRight={<FlatButton label="Save" />} />
           <br />
@@ -138,6 +161,10 @@ export default class AppBarPage extends React.Component {
         </CodeExample>
       </ComponentDoc>
     );
+  }
+
+  _onTouchTap() {
+    alert('onTouchTap triggered on the title component');
   }
 
 }

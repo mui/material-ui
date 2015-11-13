@@ -47,6 +47,7 @@ const DropDownMenu = React.createClass({
     labelStyle:React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
     openImmediately: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -315,12 +316,12 @@ const DropDownMenu = React.createClass({
   },
 
   _onMenuItemClick(e, key, payload) {
-    if (this.props.onChange && this.state.selectedIndex !== key) {
-      let selectedItem = this.props.menuItems[key];
-      if (selectedItem) {
-        e.target.value = selectedItem[this.props.valueMember];
-      }
+    let selectedItem = this.props.menuItems[key];
+    if (selectedItem) {
+      e.target.value = selectedItem[this.props.valueMember];
+    }
 
+    if (this.props.onChange && (this.state.selectedIndex !== key || e.target.value !== this.props.value)) {
       if (this.props.valueLink) {
         this.props.valueLink.requestChange(e.target.value);
       }

@@ -20,7 +20,7 @@ describe(`Calendar`, () => {
 
     describe(`Next Month Button`, () => {
         it(`should initially be disabled if the current month is the same as the month in the maxDate prop`, () => {
-            let initialDate = new Date();
+            let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
             let maxDate = new Date(initialDate.toDateString());
 
             let render = TestUtils.renderIntoDocument(
@@ -38,9 +38,9 @@ describe(`Calendar`, () => {
         });
 
         it(`should initially be disabled if the current month is after the month in the maxDate prop`, () => {
-            let initialDate = new Date();
+            let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
             let maxDate = new Date(initialDate.toDateString());
-            maxDate.setMonth(maxDate.getMonth() - 1);
+            maxDate = DateTime.addMonths(maxDate, -1);
 
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
@@ -56,9 +56,9 @@ describe(`Calendar`, () => {
         });
 
         it(`should initially enable the next month button if the current month is before the maxDate prop`, () => {
-            let initialDate = new Date();
+            let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
             let maxDate = new Date(initialDate.toDateString());
-            maxDate.setMonth(maxDate.getMonth() + 1);
+            maxDate = DateTime.addMonths(maxDate, 1);
 
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
@@ -75,7 +75,7 @@ describe(`Calendar`, () => {
         });
 
         it(`should reenable the next month button when the current month is before the maxDate prop`, () => {
-            let initialDate = new Date();
+            let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
             let maxDate = new Date(initialDate.toDateString());
 
             let render = TestUtils.renderIntoDocument(
@@ -96,9 +96,9 @@ describe(`Calendar`, () => {
         });
 
         it(`should redisable the next month button when the current month is the same as the maxDate prop`, () => {
-            let initialDate = new Date();
+            let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
             let maxDate = new Date(initialDate.toDateString());
-            maxDate.setMonth(maxDate.getMonth() + 1);
+            maxDate = DateTime.addMonths(maxDate, 1);
 
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
@@ -120,7 +120,7 @@ describe(`Calendar`, () => {
 
     describe('Previous Month Button', () => {
         it(`should initially disable the previous month button if the current month is the same as the minDate month prop`, () => {
-            let initialDate = new Date();
+            let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
             let minDate = new Date(initialDate.toDateString());
 
             let render = TestUtils.renderIntoDocument(
@@ -137,9 +137,9 @@ describe(`Calendar`, () => {
         });
 
         it(`should initially disable the previous month button if the current month is before the minDate month prop`, () => {
-            let initialDate = new Date();
+            let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
             let minDate = new Date(initialDate.toDateString());
-            minDate.setMonth(initialDate.getMonth() + 1);
+            minDate = DateTime.addMonths(initialDate, 1);
 
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
@@ -155,9 +155,9 @@ describe(`Calendar`, () => {
         });
 
         it(`should initially enable the previous month button if the current month is after the minDate month prop`, () => {
-            let initialDate = new Date();
+            let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
             let minDate = new Date(initialDate.toDateString());
-            minDate.setMonth(initialDate.getMonth() - 1);
+            minDate = DateTime.addMonths(initialDate, -1);
 
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar
@@ -173,7 +173,7 @@ describe(`Calendar`, () => {
         });
 
         it(`should enable the previous month button when the current month is after the minDate month prop`, () => {
-            let initialDate = new Date();
+            let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
             let minDate = new Date(initialDate.toDateString());
 
             let render = TestUtils.renderIntoDocument(
@@ -193,9 +193,9 @@ describe(`Calendar`, () => {
         });
 
         it(`should disable the previous month button when the current month is the same as the minDate month prop`, () => {
-            let initialDate = new Date();
+            let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
             let minDate = new Date(initialDate.toDateString());
-            minDate.setMonth(minDate.getMonth() - 1);
+            minDate = DateTime.addMonths(minDate, -1);
 
             let render = TestUtils.renderIntoDocument(
                 <ThemedCalendar

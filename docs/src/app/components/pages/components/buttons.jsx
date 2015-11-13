@@ -1,25 +1,27 @@
-let React = require('react');
-let ComponentDoc = require('../../component-doc');
-let mui = require('material-ui');
-let ToggleStar = require('svg-icons/toggle/star');
+const React = require('react');
+const ComponentDoc = require('../../component-doc');
+const mui = require('material-ui');
+const ToggleStar = require('svg-icons/toggle/star');
 
-let {
+const {
   ClearFix,
   FlatButton,
   FloatingActionButton,
   FontIcon,
   RaisedButton,
+  Paper,
   Styles,
   Tab,
   Tabs,
   Utils,
 } = mui;
-let extend = Utils.Extend;
-let { Colors, Typography } = Styles;
-let RaisedButtonCode = require('raised-button-code');
-let FloatingActionButtonCode = require('floating-action-button-code');
-let FlatButtonCode = require('flat-button-code');
-let CodeExample = require('../../code-example/code-example');
+const extend = Utils.Extend;
+const { Colors, Typography } = Styles;
+const RaisedButtonCode = require('raised-button-code');
+const FloatingActionButtonCode = require('floating-action-button-code');
+const FlatButtonCode = require('flat-button-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
 
 export default class ButtonPage extends React.Component {
@@ -69,6 +71,12 @@ export default class ButtonPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of the button\'s label element.',
+          },
+          {
+            name: 'labelPosition',
+            type: 'oneOf ["before", "after"]',
+            header: 'default: "before"',
+            desc: 'Place label before or after the passed children',
           },
           {
             name: 'linkButton',
@@ -319,7 +327,6 @@ export default class ButtonPage extends React.Component {
         height: '100%',
         display: 'inline-block',
         verticalAlign: 'middle',
-        float: 'left',
         paddingLeft: '12px',
         lineHeight: '36px',
         color: Colors.cyan500,
@@ -347,12 +354,25 @@ export default class ButtonPage extends React.Component {
     return (
       <div>
         <h2 style={styles.headline}>Buttons</h2>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statements:\nconst FlatButton = require(\'material-ui/lib/flat-button\');\n' +
+            'const RaisedButton = require(\'material-ui/lib/raised-button\');\n' +
+            'const FloatingActionButton = require(\'material-ui/lib/floating-action-button\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <Tabs>
           <Tab label="Flat Buttons">
             <ComponentDoc
               name=""
               desc={this.desc}
               componentInfo={this.componentInfo.slice(0, 1)}>
+
               <CodeExample code={FlatButtonCode}>
                 <div style={styles.group}>
                   <div style={styles.container}>
@@ -375,7 +395,17 @@ export default class ButtonPage extends React.Component {
                     <FlatButton
                       linkButton={true}
                       href="https://github.com/callemall/material-ui"
-                      secondary={true} label="GitHub"
+                      secondary={true}
+                      label="GitHub"
+                      labelStyle={styles.buttonLabel}>
+                      <FontIcon style={styles.exampleFlatButtonIcon} className="muidocs-icon-custom-github"/>
+                    </FlatButton>
+                  </div>
+                  <div style={styles.container}>
+                    <FlatButton
+                      secondary={true}
+                      label="Label after"
+                      labelPosition="after"
                       labelStyle={styles.buttonLabel}>
                       <FontIcon style={styles.exampleFlatButtonIcon} className="muidocs-icon-custom-github"/>
                     </FlatButton>
@@ -416,6 +446,15 @@ export default class ButtonPage extends React.Component {
                       href="https://github.com/callemall/material-ui"
                       secondary={true}
                       label="Github"
+                      labelStyle={styles.buttonLabel}>
+                      <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>
+                    </RaisedButton>
+                  </div>
+                  <div style={styles.container}>
+                    <RaisedButton
+                      secondary={true}
+                      label="Label after"
+                      labelPosition="after"
                       labelStyle={styles.buttonLabel}>
                       <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>
                     </RaisedButton>

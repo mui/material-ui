@@ -1,51 +1,18 @@
-let React = require('react');
-let { GridList, GridTile } = require('material-ui');
+const React = require('react');
+const { GridList, GridTile, Paper } = require('material-ui');
 
-let StarBorder = require('svg-icons/toggle/star-border');
-let IconButton = require('icon-button');
+const StarBorder = require('svg-icons/toggle/star-border');
+const IconButton = require('icon-button');
 
-let ComponentDoc = require('../../component-doc');
-
+const ComponentDoc = require('../../component-doc');
+const Code = require('grid-list-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
 class GridListPage extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.code = `
-{/* Basic grid list with mostly default options */}
-<GridList
-  cellHeight={200}
-  style={{width: 320, height: 640, overflowY: 'auto'}}
-  >
-  {
-    tilesData.map(tile => <GridTile
-      title={tile.title}
-      subtitle={<span>by <b>{tile.author}</b></span>}
-      actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-      ><img src={tile.img} /></GridTile>)
-  }
-</GridList>
-{/* Grid list with all possible overrides */}
-<GridList
-  cols={2}
-  cellHeight={200}
-  padding={1}
-  style={{width: 320, height: 640, overflowY: 'auto'}}
-  >
-  {
-    tilesData.map(tile => <GridTile
-      title={tile.title}
-      actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-      actionPosition="left"
-      titlePosition="top"
-      titleBackground={gradientBg}
-      cols={tile.featured ? 2 : 1}
-      rows={tile.featured ? 2 : 1}
-      ><img src={tile.img} /></GridTile>)
-  }
-</GridList>
-    `;
 
     this.desc = <p>Simple flex-box based <a
                   href="https://www.google.com/design/spec/components/grid-lists.html"
@@ -77,6 +44,12 @@ class GridListPage extends React.Component {
             header: 'optional',
             desc: 'Number of px for one cell height. Defaults to 180.',
           },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the grid list\'s root element.',
+          },
         ],
       },
       {
@@ -84,7 +57,7 @@ class GridListPage extends React.Component {
         infoArray: [
           {
             name: 'title',
-            type: 'string',
+            type: 'node',
             header: 'optional',
             desc: 'Title to be displayed on tile.',
           },
@@ -96,7 +69,7 @@ class GridListPage extends React.Component {
           },
           {
             name: 'titlePosition',
-            type: '"top"|"bottom"',
+            type: 'oneOf ["top", "bottom"]',
             header: 'optional',
             desc: 'Position of the title bar (container of title, subtitle and action icon). Defaults to "bottom".',
           },
@@ -114,7 +87,7 @@ class GridListPage extends React.Component {
           },
           {
             name: 'actionPosition',
-            type: '"left"|"right"',
+            type: 'oneOf ["left", "right"]',
             header: 'optional',
             desc: 'Position of secondary action IconButton. Defaults to "right".',
           },
@@ -129,6 +102,12 @@ class GridListPage extends React.Component {
             type: 'number',
             header: 'optional',
             desc: 'Height of the tile in number of grid cells. Defaults to 1.',
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the grid tile\'s root element.',
           },
           {
             name: 'rootClass',
@@ -199,7 +178,7 @@ class GridListPage extends React.Component {
       },
     ];
 
-    let gradientBg = 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%);';
+    let gradientBg = 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)';
 
     return (
       <ComponentDoc
@@ -207,40 +186,55 @@ class GridListPage extends React.Component {
         code={this.code}
         desc={this.desc}
         componentInfo={this.componentInfo}>
-        <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-          {/* Basic grid list with mostly default options */}
-          <GridList
-            cellHeight={200}
-            style={{width: 320, height: 640, overflowY: 'auto', marginBottom: 24}}
-            >
-            {
-              tilesData.map(tile => <GridTile
-                title={tile.title}
-                subtitle={<span>by <b>{tile.author}</b></span>}
-                actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-                ><img src={tile.img} /></GridTile>)
-            }
-          </GridList>
-          {/* Grid list with all possible overrides */}
-          <GridList
-            cols={2}
-            cellHeight={200}
-            padding={1}
-            style={{width: 320, height: 640, overflowY: 'auto', marginBottom: 24}}
-            >
-            {
-              tilesData.map(tile => <GridTile
-                title={tile.title}
-                actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-                actionPosition="left"
-                titlePosition="top"
-                titleBackground={gradientBg}
-                cols={tile.featured ? 2 : 1}
-                rows={tile.featured ? 2 : 1}
-                ><img src={tile.img} /></GridTile>)
-            }
-          </GridList>
-        </div>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst GridList = require(\'material-ui/lib/grid-list/grid-list\');\n' +
+            'const GridTile = require(\'material-ui/lib/grid-list/grid-tile\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
+        <CodeExample code={Code}>
+          <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+            {/* Basic grid list with mostly default options */}
+            <GridList
+              cellHeight={200}
+              style={{width: 320, height: 640, overflowY: 'auto', marginBottom: 24}}
+              >
+              {
+                tilesData.map(tile => <GridTile
+                  key={tile.img}
+                  title={tile.title}
+                  subtitle={<span>by <b>{tile.author}</b></span>}
+                  actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
+                  ><img src={tile.img} /></GridTile>)
+              }
+            </GridList>
+            {/* Grid list with all possible overrides */}
+            <GridList
+              cols={2}
+              cellHeight={200}
+              padding={1}
+              style={{width: 320, height: 640, overflowY: 'auto', marginBottom: 24}}
+              >
+              {
+                tilesData.map(tile => <GridTile
+                  key={tile.img}
+                  title={tile.title}
+                  actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
+                  actionPosition="left"
+                  titlePosition="top"
+                  titleBackground={gradientBg}
+                  cols={tile.featured ? 2 : 1}
+                  rows={tile.featured ? 2 : 1}
+                  ><img src={tile.img} /></GridTile>)
+              }
+            </GridList>
+          </div>
+        </CodeExample>
       </ComponentDoc>
     );
   }

@@ -19,10 +19,11 @@ const styles = {
     // Overflow also needed to here to remove the extra row
     // added to textareas in Firefox.
     overflow: 'hidden',
+    // Visibility needed to hide the extra text area on ipads
+    visibility: 'hidden',
     font: 'inherit',
     padding: 0,
     position: 'absolute',
-    opacity: 0,
   },
 };
 
@@ -51,6 +52,7 @@ const EnhancedTextarea = React.createClass({
     textareaStyle: React.PropTypes.object,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

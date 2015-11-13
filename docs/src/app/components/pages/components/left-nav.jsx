@@ -1,9 +1,9 @@
-let React = require('react');
-let { LeftNav, MenuItem, RaisedButton } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let Code = require('left-nav-code');
-let CodeExample = require('../../code-example/code-example');
-
+const React = require('react');
+const { LeftNav, MenuItem, RaisedButton, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const Code = require('left-nav-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class LeftNavPage extends React.Component {
 
@@ -11,7 +11,7 @@ export default class LeftNavPage extends React.Component {
     super();
     this._showLeftNavClick = this._showLeftNavClick.bind(this);
     this._toggleDockedLeftNavClick = this._toggleDockedLeftNavClick.bind(this);
-
+    this._showLeftNavChildrenClick = this._showLeftNavChildrenClick.bind(this);
     this.state = {
       isDocked: false,
     };
@@ -56,12 +56,12 @@ export default class LeftNavPage extends React.Component {
           {
             name: 'menuItems',
             type: 'array',
-            header: 'required',
+            header: 'optional',
             desc: 'JSON data representing all menu items to render.',
           },
           {
             name: 'openRight',
-            type: 'boole',
+            type: 'bool',
             header: 'default: false',
             desc: 'Positions the LeftNav to open from the right side.',
           },
@@ -141,12 +141,30 @@ export default class LeftNavPage extends React.Component {
       <ComponentDoc
         name="Left Nav"
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst LeftNav = require(\'material-ui/lib/left-nav\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <div>
-            <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
-            <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} />
+            <div>
+              <RaisedButton label="Toggle Docked Left Nav" onTouchTap={this._toggleDockedLeftNavClick} /><br/><br/>
+              <RaisedButton label="Show Hideable Left Nav" onTouchTap={this._showLeftNavClick} /><br/><br/>
+              <RaisedButton label="Show Hideable Children Left Nav" onTouchTap={this._showLeftNavChildrenClick} /><br/><br/>
+            </div>
+
             <LeftNav ref="dockedLeftNav" docked={this.state.isDocked} menuItems={menuItems} />
             <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+            <LeftNav ref="leftNavChildren" docked={false}>
+              <MenuItem index={0}>Menu Item</MenuItem>
+              <MenuItem index={1}><a href="/link">Link</a></MenuItem>
+            </LeftNav>
           </div>
         </CodeExample>
       </ComponentDoc>
@@ -156,7 +174,9 @@ export default class LeftNavPage extends React.Component {
   _showLeftNavClick() {
     this.refs.leftNav.toggle();
   }
-
+  _showLeftNavChildrenClick() {
+    this.refs.leftNavChildren.toggle();
+  }
   _toggleDockedLeftNavClick() {
     this.refs.dockedLeftNav.toggle();
     this.setState({

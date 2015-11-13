@@ -34,6 +34,7 @@ const DropDownIcon = React.createClass({
     iconStyle: React.PropTypes.object,
     iconClassName: React.PropTypes.string,
     iconLigature: React.PropTypes.string,
+    style: React.PropTypes.object,
   },
 
   getInitialState() {

@@ -23,3 +23,12 @@
   DateTimeFormat={Intl.DateTimeFormat}
   wordings={{ok: 'OK', cancel: 'Annuler'}}
   locale="fr" />
+//Inline Picker
+<DatePicker
+  hintText="Inline"
+  container="inline" />
+//Inline Picker (AutoOk)
+<DatePicker
+  hintText="Inline (AutoOk)"
+  container="inline"
+  autoOk={true} />

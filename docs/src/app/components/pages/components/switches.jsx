@@ -1,11 +1,11 @@
-let React = require('react');
-let mui = require('material-ui');
-let CodeExample = require('../../code-example/code-example');
-let ComponentDoc = require('../../component-doc');
-let ToggleStar = require('svg-icons/toggle/star');
-let ToggleStarBorder = require('svg-icons/toggle/star-border');
+const React = require('react');
+const mui = require('material-ui');
+const CodeExample = require('../../code-example/code-example');
+const ComponentDoc = require('../../component-doc');
+const ToggleStar = require('svg-icons/toggle/star');
+const ToggleStarBorder = require('svg-icons/toggle/star-border');
 
-let {
+const {
   Checkbox,
   ClearFix,
   RadioButton,
@@ -15,12 +15,13 @@ let {
   Tab,
   Tabs,
   Toggle,
+  Paper,
 } = mui;
-let { Typography } = Styles;
-let CheckboxCode = require('checkbox-code');
-let RadioButtonCode = require('radio-buttons-code');
-let ToggleCode = require('toggle-code');
-
+const { Typography } = Styles;
+const CheckboxCode = require('checkbox-code');
+const RadioButtonCode = require('radio-buttons-code');
+const ToggleCode = require('toggle-code');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class SwitchesPage extends React.Component {
 
@@ -43,7 +44,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'defaultChecked',
-          type: 'boolean',
+          type: 'bool',
           header: 'default:false',
           desc: 'The default state of our checkbox component.',
         },
@@ -55,7 +56,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'label',
-          type: 'string',
+          type: 'node',
           header: 'optional',
           desc: 'The text that is displayed beside the checkbox.',
         },
@@ -67,7 +68,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'labelPosition',
-          type: 'string',
+          type: 'oneOf ["left", "right"]',
           header: 'default:"right"',
           desc: 'Where the label will be placed next to the checkbox. Options include ' +
                 '"left" and "right" (case-sensitive). Default option is "right".',
@@ -118,7 +119,7 @@ export default class SwitchesPage extends React.Component {
       infoArray: [
         {
           name: 'defaultChecked',
-          type: 'boolean',
+          type: 'bool',
           header: 'default:false',
           desc: 'The default value of the radio button when the page finishes loading.',
         },
@@ -130,7 +131,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'label',
-          type: 'string',
+          type: 'node',
           header: 'optional',
           desc: 'The text that is displayed beside the radio button.',
         },
@@ -142,7 +143,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'labelPosition',
-          type: 'string',
+          type: 'oneOf ["left", "right"]',
           header: 'default:"right"',
           desc: 'Where the label will be placed next to the radio button. Options include ' +
                 '"left" and "right" (case-sensitive). Default option is "right".',
@@ -174,7 +175,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'labelPosition',
-          type: 'string',
+          type: 'oneOf ["left", "right"]',
           header: 'optional',
           desc: 'Where the label will be placed for all radio buttons. Options include ' +
                 '"left" and "right" (case-sensitive). This will override any labelPosition ' +
@@ -239,7 +240,7 @@ export default class SwitchesPage extends React.Component {
       infoArray: [
         {
           name: 'defaultToggled',
-          type: 'boolean',
+          type: 'bool',
           header: 'default:false',
           desc: 'The value of the toggle button. Is true when toggle has been turned on. ' +
             'False otherwise.',
@@ -252,7 +253,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'label',
-          type: 'string',
+          type: 'node',
           header: 'optional',
           desc: 'The text that is displayed beside the toggle switch.',
         },
@@ -264,7 +265,7 @@ export default class SwitchesPage extends React.Component {
         },
         {
           name: 'labelPosition',
-          type: 'string',
+          type: 'oneOf ["left", "right"]',
           header: 'default:"left"',
           desc: 'Where the label will be placed next to the toggle switch. Options include ' +
                 '"left" and "right" (case-sensitive). Default option is "left".',
@@ -347,6 +348,19 @@ export default class SwitchesPage extends React.Component {
     return (
       <div>
       <h2 style={this.getStyles().headline}>Switches</h2>
+
+      <Paper style = {{marginBottom: '22px'}}>
+        <CodeBlock>
+        {
+          '//Import statements:\nconst Checkbox = require(\'material-ui/lib/checkbox\');\n' +
+          'const RadioButton = require(\'material-ui/lib/radio-button\');\n' +
+          'const RadioButtonGroup = require(\'material-ui/lib/radio-button-group\');\n' +
+          'const Toggle = require(\'material-ui/lib/toggle\');\n\n' +
+          '//See material-ui/lib/index.js for more\n'
+        }
+        </CodeBlock>
+      </Paper>
+
       <Tabs>
         <Tab label="Checkbox">
           <ComponentDoc

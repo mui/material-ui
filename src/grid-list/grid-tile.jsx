@@ -13,7 +13,7 @@ const GridTile = React.createClass({
   },
 
   propTypes: {
-    title: React.PropTypes.string,
+    title: React.PropTypes.node,
     subtitle: React.PropTypes.node,
     titlePosition: React.PropTypes.oneOf(['top', 'bottom']),
     titleBackground: React.PropTypes.string,
@@ -21,6 +21,7 @@ const GridTile = React.createClass({
     actionPosition: React.PropTypes.oneOf(['left', 'right']),
     cols: React.PropTypes.number,
     rows: React.PropTypes.number,
+    style: React.PropTypes.object,
     rootClass: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.object,

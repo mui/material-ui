@@ -3,6 +3,8 @@ const StylePropable = require('../mixins/style-propable');
 const WindowListenable = require('../mixins/window-listenable');
 const TimePickerDialog = require('./time-picker-dialog');
 const TextField = require('../text-field');
+const ThemeManager = require('../styles/theme-manager');
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 
 
 let emptyTime = new Date();
@@ -24,6 +26,12 @@ const TimePicker = React.createClass({
     onChange: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    style: React.PropTypes.object,
+    textFieldStyle: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -36,6 +44,7 @@ const TimePicker = React.createClass({
       format: 'ampm',
       pedantic: false,
       autoOk: false,
+      style: {},
     };
   },
 
@@ -43,6 +52,7 @@ const TimePicker = React.createClass({
     return {
       time: this.props.defaultTime || emptyTime,
       dialogTime: new Date(),
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -84,6 +94,8 @@ const TimePicker = React.createClass({
       onTouchTap,
       onShow,
       onDismiss,
+      style,
+      textFieldStyle,
       ...other,
     } = this.props;
 
@@ -94,9 +106,10 @@ const TimePicker = React.createClass({
     }
 
     return (
-      <div>
+      <div style={this.prepareStyles(style)}>
         <TextField
           {...other}
+          style={textFieldStyle}
           ref="input"
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}

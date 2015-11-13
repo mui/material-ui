@@ -30,6 +30,7 @@ const IconMenu = React.createClass({
     onMouseUp: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
+    style: React.PropTypes.object,
     touchTapCloseDelay: React.PropTypes.number,
   },
 

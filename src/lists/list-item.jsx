@@ -46,6 +46,7 @@ const ListItem = React.createClass({
     rightIconButton: React.PropTypes.element,
     rightToggle: React.PropTypes.element,
     primaryText: React.PropTypes.node,
+    style: React.PropTypes.object,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2]),
   },
