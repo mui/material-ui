@@ -35,7 +35,7 @@
     "react-tap-event-plugin": "^0.2.0",
     "react-addons-transition-group": "^0.14.0",
     "react-addons-update": "^0.14.0",
-    "react-addons-create-fragment": "^0.14.0",
+    "react-addons-create-fragment": "^0.14.0"
   },
   "peerDependencies": {
     "react": "^0.14.0",
