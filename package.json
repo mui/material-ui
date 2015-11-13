@@ -33,7 +33,6 @@
     "inline-style-prefixer": "^0.3.3",
     "lodash.throttle": "~3.0.4",
     "lodash.debounce": "~3.1.1",
-    "react-tap-event-plugin": "^0.2.0",
     "react-addons-transition-group": "^0.14.0",
     "react-addons-update": "^0.14.0",
     "react-addons-create-fragment": "^0.14.0",
@@ -42,7 +41,8 @@
   },
   "peerDependencies": {
     "react": "^0.14.0",
-    "react-dom": "^0.14.0"
+    "react-dom": "^0.14.0",
+    "react-tap-event-plugin": "^0.2.0"
   },
   "devDependencies": {
     "babel": "^5.4.3",
@@ -73,6 +73,7 @@
     "phantomjs": "^1.9.17",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-tap-event-plugin": "^0.2.0",
     "react-hot-loader": "^1.2.8",
     "react-router": "^1.0.0-rc1",
     "recursive-readdir-sync": "^1.0.6",
