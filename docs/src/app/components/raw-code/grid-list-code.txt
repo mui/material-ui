@@ -1,0 +1,32 @@
+{/* Basic grid list with mostly default options */}
+<GridList
+  cellHeight={200}
+  style={{width: 320, height: 640, overflowY: 'auto'}}
+  >
+  {
+    tilesData.map(tile => <GridTile
+      title={tile.title}
+      subtitle={<span>by <b>{tile.author}</b></span>}
+      actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
+      ><img src={tile.img} /></GridTile>)
+  }
+</GridList>
+{/* Grid list with all possible overrides */}
+<GridList
+  cols={2}
+  cellHeight={200}
+  padding={1}
+  style={{width: 320, height: 640, overflowY: 'auto'}}
+  >
+  {
+    tilesData.map(tile => <GridTile
+      title={tile.title}
+      actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
+      actionPosition="left"
+      titlePosition="top"
+      titleBackground={gradientBg}
+      cols={tile.featured ? 2 : 1}
+      rows={tile.featured ? 2 : 1}
+      ><img src={tile.img} /></GridTile>)
+  }
+</GridList>

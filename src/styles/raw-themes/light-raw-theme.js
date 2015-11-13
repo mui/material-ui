@@ -10,26 +10,27 @@ let Spacing = require('../spacing');
  *  in a custom theme will default to these values.
  */
 
- module.exports = {
-   spacing: Spacing,
-   fontFamily: 'Roboto, sans-serif',
-   palette: {
+module.exports = {
+  spacing: Spacing,
+  fontFamily: 'Roboto, sans-serif',
+  palette: {
      primaryTextColor: Colors.white,
      secondaryTextColor: Colors.pesca,
      transparent: Colors.transparent,
 
      primary1Color: Colors.pesca,
      primary2Color: Colors.caffelatte,
-     primary3Color: Colors.lightBlack,
+    primary3Color: Colors.lightBlack,
      accent1Color: Colors.pesca,
-     accent2Color: Colors.grey100,
-     accent3Color: Colors.grey500,
-     textColor: Colors.darkBlack,
-     alternateTextColor: Colors.white,
-     canvasColor: Colors.white,
-     borderColor: Colors.grey300,
+    accent2Color: Colors.grey100,
+    accent3Color: Colors.grey500,
+    textColor: Colors.darkBlack,
+    alternateTextColor: Colors.white,
+    canvasColor: Colors.white,
+    borderColor: Colors.grey300,
      disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
-   },
+  },
 
 
 };
+

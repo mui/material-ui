@@ -16,7 +16,7 @@ const ContextPure = require('./mixins/context-pure');
  * @returns True if the string provided is valid, false otherwise.
  */
 function isValid(value) {
-  return value || value === 0;
+  return Boolean(value || value === 0);
 }
 
 const TextField = React.createClass({
@@ -55,6 +55,7 @@ const TextField = React.createClass({
     underlineStyle: React.PropTypes.object,
     underlineFocusStyle: React.PropTypes.object,
     underlineDisabledStyle: React.PropTypes.object,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -160,6 +161,7 @@ const TextField = React.createClass({
         height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
         display: 'inline-block',
         position: 'relative',
+        backgroundColor: backgroundColor,
         fontFamily: this.state.muiTheme.rawTheme.fontFamily,
         transition: Transitions.easeOut('200ms', 'height'),
       },
@@ -187,7 +189,7 @@ const TextField = React.createClass({
         height: '100%',
         border: 'none',
         outline: 'none',
-        backgroundColor: backgroundColor,
+        backgroundColor: 'transparent',
         color: props.disabled ? disabledTextColor : textColor,
         font: 'inherit',
       },
@@ -228,6 +230,7 @@ const TextField = React.createClass({
       top: 38,
       bottom: 'none',
       opacity: 1,
+      zIndex: 1, // Needed to display label above Chrome's autocomplete field background
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top',
     });
@@ -331,7 +334,8 @@ const TextField = React.createClass({
       inputProps.onChange = this._handleInputChange;
     }
     if (this.props.children) {
-      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props});
+      let childInputStyle = this.mergeStyles(inputStyle, this.props.children.style);
+      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props, style:childInputStyle});
     }
     else {
       inputElement = multiLine ? (

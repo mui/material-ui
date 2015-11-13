@@ -6,7 +6,7 @@ const NavigationMenu = require('./svg-icons/navigation/menu');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 const Paper = require('./paper');
-
+const PropTypes = require('./utils/prop-types');
 
 const AppBar = React.createClass({
 
@@ -30,6 +30,7 @@ const AppBar = React.createClass({
   propTypes: {
     onLeftIconButtonTouchTap: React.PropTypes.func,
     onRightIconButtonTouchTap: React.PropTypes.func,
+    onTitleTouchTap: React.PropTypes.func,
     showMenuIconButton: React.PropTypes.bool,
     style: React.PropTypes.object,
     iconClassNameLeft: React.PropTypes.string,
@@ -38,7 +39,7 @@ const AppBar = React.createClass({
     iconElementRight: React.PropTypes.element,
     iconStyleRight: React.PropTypes.object,
     title: React.PropTypes.node,
-    zDepth: React.PropTypes.number,
+    zDepth: PropTypes.zDepth,
   },
 
   getInitialState () {
@@ -87,6 +88,7 @@ const AppBar = React.createClass({
     let flatButtonSize = 36;
     let styles = {
       root: {
+        position: 'relative',
         zIndex: 5,
         width: '100%',
         display: '-webkit-box; display: -webkit-flex; display: flex',
@@ -161,8 +163,8 @@ const AppBar = React.createClass({
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
       titleElement = typeof title === 'string' || title instanceof String ?
-        <h1 style={this.prepareStyles(styles.title, styles.mainElement)}>{title}</h1> :
-        <div style={this.prepareStyles(styles.mainElement)}>{title}</div>;
+        <h1 onTouchTap={this._onTitleTouchTap} style={this.prepareStyles(styles.title, styles.mainElement)}>{title}</h1> :
+        <div onTouchTap={this._onTitleTouchTap} style={this.prepareStyles(styles.title, styles.mainElement)}>{title}</div>;
     }
 
     if (showMenuIconButton) {
@@ -250,6 +252,12 @@ const AppBar = React.createClass({
   _onRightIconButtonTouchTap(event) {
     if (this.props.onRightIconButtonTouchTap) {
       this.props.onRightIconButtonTouchTap(event);
+    }
+  },
+
+  _onTitleTouchTap(event) {
+    if (this.props.onTitleTouchTap) {
+      this.props.onTitleTouchTap(event);
     }
   },
 

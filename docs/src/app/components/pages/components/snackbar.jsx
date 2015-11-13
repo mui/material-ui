@@ -1,19 +1,21 @@
-let React = require('react');
-let { RaisedButton, Snackbar, TextField } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let Code = require('snackbars-code');
-let CodeExample = require('../../code-example/code-example');
-
+const React = require('react');
+const { RaisedButton, Snackbar, TextField, Paper } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const Code = require('snackbars-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class SnackbarPage extends React.Component {
 
   constructor() {
     super();
     this._handleClick = this._handleClick.bind(this);
+    this._handleClickDouble = this._handleClickDouble.bind(this);
     this._updateAutoHideDuration = this._updateAutoHideDuration.bind(this);
 
     this.state = {
       autoHideDuration: 0,
+      message: 'Event added to your calendar',
     };
   }
 
@@ -52,6 +54,12 @@ export default class SnackbarPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of the Snackbar\'s root element.',
+          },
+          {
+            name: 'bodyStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the Snackbar\'s body element.',
           },
         ],
       },
@@ -96,10 +104,27 @@ export default class SnackbarPage extends React.Component {
       <ComponentDoc
         name="Snackbar"
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst Snackbar = require(\'material-ui/lib/snackbar\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <RaisedButton
             onTouchTap={this._handleClick}
             label="Add to my calendar" />
+
+          <br />
+          <br />
+
+          <RaisedButton
+            onTouchTap={this._handleClickDouble}
+            label="Add to my calendar two times" />
 
           <br />
 
@@ -110,7 +135,7 @@ export default class SnackbarPage extends React.Component {
 
           <Snackbar
             ref="snackbar"
-            message="Event added to your calendar"
+            message={this.state.message}
             action="undo"
             autoHideDuration={this.state.autoHideDuration}
             onActionTouchTap={this._handleAction} />
@@ -121,6 +146,18 @@ export default class SnackbarPage extends React.Component {
 
   _handleClick() {
     this.refs.snackbar.show();
+  }
+
+  _handleClickDouble() {
+    this.refs.snackbar.show();
+
+    const duration = this.state.autoHideDuration / 2 || 2000;
+
+    setTimeout(() => {
+      this.setState({
+        message: 'Event ' + Math.round(Math.random() * 100) + ' added to your calendar',
+      });
+    }, duration);
   }
 
   _handleAction() {

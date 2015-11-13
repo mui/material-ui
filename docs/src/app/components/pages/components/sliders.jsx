@@ -1,9 +1,9 @@
-let React = require('react');
-let { Slider } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let Code = require('sliders-code');
-let CodeExample = require('../../code-example/code-example');
-
+const React = require('react');
+const { Paper, Slider } = require('material-ui');
+const ComponentDoc = require('../../component-doc');
+const Code = require('sliders-code');
+const CodeExample = require('../../code-example/code-example');
+const CodeBlock = require('../../code-example/code-block');
 
 export default class SlidersPage extends React.Component {
 
@@ -37,7 +37,7 @@ export default class SlidersPage extends React.Component {
           },
           {
             name: 'disabled',
-            type: 'boolean',
+            type: 'bool',
             header: 'default: false',
             desc: 'If true, the slider will not be interactable.',
           },
@@ -63,7 +63,7 @@ export default class SlidersPage extends React.Component {
           },
           {
             name: 'required',
-            type: 'boolean',
+            type: 'bool',
             header: 'default: true',
             desc: 'Whether or not the slider is required in a form.',
           },
@@ -129,6 +129,16 @@ export default class SlidersPage extends React.Component {
       <ComponentDoc
         name="Sliders"
         componentInfo={componentInfo}>
+
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nconst Slider = require(\'material-ui/lib/slider\');\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+
         <CodeExample code={Code}>
           <Slider name="slider1" />
           <Slider name="slider2" defaultValue={0.5} step={0.10} />

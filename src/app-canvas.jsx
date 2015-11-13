@@ -51,9 +51,9 @@ const AppCanvas = React.createClass({
       switch (currentChild.type.displayName) {
         case 'AppBar' :
           return React.cloneElement(currentChild, {
-            style: this.mergeStyles({
+            style: this.mergeStyles(currentChild.props.style, {
               position: 'fixed',
-            }, currentChild.props.style),
+            }),
           });
         default:
           return currentChild;

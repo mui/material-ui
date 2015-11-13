@@ -19,6 +19,7 @@ const FocusRipple = React.createClass({
     innerStyle: React.PropTypes.object,
     opacity: React.PropTypes.number,
     show: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -97,14 +98,14 @@ const FocusRipple = React.createClass({
 
     const startScale = 'scale(1)';
     const endScale = 'scale(0.85)';
-    let currentScale = innerCircle.style[AutoPrefix.single('transform')];
+    let currentScale = innerCircle.style.transform;
     let nextScale;
 
     currentScale = currentScale || startScale;
     nextScale = currentScale === startScale ?
       endScale : startScale;
 
-    innerCircle.style[AutoPrefix.single('transform')] = nextScale;
+    AutoPrefix.set(innerCircle.style, 'transform', nextScale);
     this._timeout = setTimeout(this._pulsate, pulsateDuration);
   },
 
