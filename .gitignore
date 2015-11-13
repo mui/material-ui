@@ -4,7 +4,6 @@ build
 coverage
 
 # Exclude compiled files
-lib
 icon-builder/js
 icon-builder/jsx
 
