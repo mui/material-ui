@@ -39,6 +39,7 @@ const Paper = require('./components/pages/components/paper');
 const Popover = require('./components/pages/components/popover');
 const Progress = require('./components/pages/components/progress');
 const RefreshIndicator = require('./components/pages/components/refresh-indicator');
+const SelectFields = require('./components/pages/components/select-fields');
 const Sliders = require('./components/pages/components/sliders');
 const Snackbar = require('./components/pages/components/snackbar');
 const Switches = require('./components/pages/components/switches');
@@ -96,6 +97,7 @@ const AppRoutes = (
       <Route path="popover" component={Popover} />
       <Route path="progress" component={Progress} />
       <Route path="refresh-indicator" component={RefreshIndicator} />
+      <Route path="select-fields" component={SelectFields} />
       <Route path="sliders" component={Sliders} />
       <Route path="switches" component={Switches} />
       <Route path="snackbar" component={Snackbar} />

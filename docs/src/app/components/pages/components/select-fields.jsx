@@ -1,45 +1,31 @@
 const React = require('react');
-const { ClearFix, Mixins, TextField, Styles, Paper } = require('material-ui');
+const { ClearFix, Mixins, SelectField, Styles, Paper } = require('material-ui');
 const ComponentDoc = require('../../component-doc');
-const { Colors } = Styles;
 const { StyleResizable } = Mixins;
-const Code = require('text-fields-code');
+const Code = require('select-fields-code');
 const CodeExample = require('../../code-example/code-example');
 const LinkedStateMixin = require('react-addons-linked-state-mixin');
 const CodeBlock = require('../../code-example/code-block');
 
-const TextFieldsPage = React.createClass({
+const SelectFieldsPage = React.createClass({
 
   mixins: [StyleResizable, LinkedStateMixin],
 
   getInitialState() {
     return {
-      errorText: 'This field is required.',
-      error2Text: 'This field must be numeric.',
-      floatingErrorText: 'This field is required.',
-      floatingError2Text: 'This field must be numeric.',
-      propValue: 'Prop Value',
-      floatingPropValue: 'Prop Value',
-      valueLinkValue: 'Value Link',
-      floatingValueLinkValue: 'Value Link',
+      selectValue: undefined,
+      selectValue2: undefined,
+      selectValueLinkValue: 4,
+      selectValueLinkValue2: 3,
     };
   },
 
   getStyles() {
     let styles = {
-      group: {
-        width: '100%',
-        float: 'left',
-        marginBottom: 32,
-      },
       textfield: {
         marginTop: 24,
       },
     };
-
-    if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
-      styles.group.width = '50%';
-    }
 
     return styles;
   },
@@ -229,18 +215,34 @@ const TextFieldsPage = React.createClass({
       },
     ];
 
+    let menuItems = [
+      { payload: '1', text: 'Never' },
+      { payload: '2', text: 'Every Night' },
+      { payload: '3', text: 'Weeknights' },
+      { payload: '4', text: 'Weekends' },
+      { payload: '5', text: 'Weekly' },
+    ];
+    let arbitraryArrayMenuItems = [
+      {id:1, name:'Never'},
+      {id:2, name:'Every Night'},
+      {id:3, name:'Weeknights'},
+      {id:4, name:'Weekends'},
+      {id:5, name:'Weekly'},
+    ];
+
     let styles = this.getStyles();
 
     return (
       <ComponentDoc
-        name="Text Field"
+        name="Select Field"
         desc={desc}
         componentInfo={componentInfo}>
 
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst TextField = require(\'material-ui/lib/text-field\');\n\n' +
+            '//Import statement:\n' +
+            'const SelectField = require(\'material-ui/lib/select-field\');\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
@@ -248,169 +250,41 @@ const TextFieldsPage = React.createClass({
 
         <CodeExample code={Code}>
           <ClearFix>
-            <div style={styles.group}>
-              <TextField
+              <SelectField
                 style={styles.textfield}
-                hintText="Hint Text" /><br/>
-              <TextField
-                style={styles.textfield}
-                hintText="Styled Hint Text"
-                hintStyle={{color: 'red'}} /><br/>
-              <TextField
-                style={styles.textfield}
+                value={this.state.selectValue}
+                onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
                 hintText="Hint Text"
-                defaultValue="Default Value" /><br/>
-              <TextField
+                menuItems={menuItems} /><br/>
+              <SelectField
+                valueLink={this.linkState('selectValueLinkValue')}
+                floatingLabelText="Float Label Text"
+                valueMember="id"
+                displayMember="name"
+                menuItems={arbitraryArrayMenuItems} /><br/>
+              <SelectField
+                valueLink={this.linkState('selectValueLinkValue2')}
+                floatingLabelText="Float Custom Label Text"
+                floatingLabelStyle={{color: "red"}}
+                valueMember="id"
+                displayMember="name"
+                menuItems={arbitraryArrayMenuItems} /><br/>
+              <SelectField
                 style={styles.textfield}
-                hintText="Custom Underline Color"
-                value={this.state.propValue}
-                underlineStyle={{borderColor:Colors.green500}}
-                onChange={this._handleInputChange} /><br/>
-              <TextField
-                style={styles.textfield}
-                hintText="Custom Underline Focus Color"
-                underlineFocusStyle={{borderColor: Colors.amber900}} /><br />
-              <TextField
-                style={styles.textfield}
-                disabled={true}
-                hintText="Custom Underline Disabled Style"
-                underlineDisabledStyle={{borderColor:Colors.purple500, borderBottom: 'solid 1px'}} /><br />
-              <TextField
-                style={styles.textfield}
-                hintText="Hint Text"
-                valueLink={this.linkState('valueLinkValue')} /><br/>
-              <TextField
-                style={styles.textfield}
-                hintText="Hint Text (MultiLine)"
-                multiLine={true} /><br/>
-              <TextField
-                style={styles.textfield}
-                hintText="The hint text can be as long as you want, it will wrap."
-                multiLine={true} /><br/>
-              <TextField
-                style={styles.textfield}
-                rows={2}
-                rowsMax={4}
-                hintText="Hint Text (MultiLine) with rows: 2 and rowsMax: 4."
-                multiLine={true} /><br/>
-              <TextField
-                style={styles.textfield}
-                hintText="Hint Text"
-                errorText="The error text can be as long as you want, it will wrap." /><br/>
-              <TextField
-                style={styles.textfield}
-                hintText="Hint Text"
-                errorText={this.state.errorText}
-                onChange={this._handleErrorInputChange} /><br/>
-              <TextField
-                style={styles.textfield}
-                hintText="Hint Text (custom error color)"
-                errorText={this.state.error2Text}
-                errorStyle={{color:Colors.orange500}}
-                onChange={this._handleError2InputChange}
-                defaultValue="Custom error color" /><br/>
-              <TextField
-                style={styles.textfield}
-                hintText="Disabled Hint Text"
-                disabled={true} /><br/>
-              <TextField
-                style={styles.textfield}
-                hintText="Disabled Hint Text"
-                disabled={true}
-                defaultValue="Disabled With Value" />
-            </div>
-            <div style={styles.group}>
-              <TextField
-                hintText="Hint Text"
-                floatingLabelText="Floating Label Text" /><br/>
-              <TextField
-                hintText="Hint Text"
-                defaultValue="Default Value"
-                floatingLabelText="Floating Label Text" /><br/>
-              <TextField
-                hintText="Hint Text"
-                floatingLabelText="Floating Label Text"
-                value={this.state.floatingPropValue}
-                onChange={this._handleFloatingInputChange} /><br/>
-              <TextField
-                hintText="Hint Text"
-                floatingLabelText="Floating Label Text"
-                valueLink={this.linkState('floatingValueLinkValue')} /><br/>
-              <TextField
-                hintText="Hint Text (MultiLine)"
-                floatingLabelText="Floating Label Text"
-                multiLine={true} /><br/>
-              <TextField
-                hintText="Hint Text"
-                errorText={this.state.floatingErrorText}
-                floatingLabelText="Floating Label Text"
-                onChange={this._handleFloatingErrorInputChange} /><br/>
-              <TextField
-                hintText="Hint Text"
-                errorText={this.state.floatingError2Text}
-                defaultValue="abc"
-                floatingLabelText="Floating Label Text"
-                onChange={this._handleFloating2ErrorInputChange} /><br/>
-              <TextField
-                hintText="Disabled Hint Text"
-                disabled={true}
-                floatingLabelText="Floating Label Text" /><br/>
-              <TextField
-                hintText="Disabled Hint Text"
-                disabled={true}
-                defaultValue="Disabled With Value"
-                floatingLabelText="Floating Label Text" /><br/>
-              <TextField
-                hintText="Password Field"
-                floatingLabelText="Password"
-                type="password" /><br/>
-            </div>
+                value={this.state.selectValue2}
+                onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
+                menuItems={arbitraryArrayMenuItems} />
           </ClearFix>
         </CodeExample>
       </ComponentDoc>
     );
   },
 
-  _handleErrorInputChange(e) {
-    this.setState({
-      errorText: e.target.value ? '' : 'This field is required.',
-    });
-  },
-
-  _handleError2InputChange(e) {
-    let value = e.target.value;
-    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
-    this.setState({
-      error2Text: isNumeric ? '' : 'This field must be numeric.',
-    });
-  },
-
-  _handleFloatingErrorInputChange(e) {
-    this.setState({
-      floatingErrorText: e.target.value ? '' : 'This field is required.',
-    });
-  },
-
-  _handleFloating2ErrorInputChange(e) {
-    let value = e.target.value;
-    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
-    this.setState({
-      floatingError2Text: isNumeric ? '' : 'This field must be numeric.',
-    });
-  },
-
-  _handleInputChange(e) {
-    this.setState({
-      propValue: e.target.value,
-    });
-  },
-
-  _handleFloatingInputChange(e) {
-    this.setState({
-      floatingPropValue: e.target.value,
-    });
-  },
-
+  _handleSelectValueChange(name, e) {
+    let change = {};
+    change[name] = e.target.value;
+    this.setState(change);
+  }
 });
 
-module.exports = TextFieldsPage;
+module.exports = SelectFieldsPage;
