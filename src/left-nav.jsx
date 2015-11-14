@@ -81,12 +81,13 @@ const LeftNav = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({
-      muiTheme: newMuiTheme,
-      open: (this.props.docked !== nextProps.docked) ? nextProps.docked : this.state.open,
-    });
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newState = { muiTheme: newMuiTheme };
+
+    if (this.props.docked !== nextProps.docked) newState.open = nextProps.docked;
+
+    this.setState(newState);
   },
 
   componentDidMount() {
