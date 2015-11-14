@@ -15,6 +15,9 @@ module.exports = {
       userAgent = navigator.userAgent;
     }
 
+    // FIXME: Set visitor client id
+    userAgent = 'chrome';
+
     // Get prefixing instance for this user agent
     let prefixer = prefixers[userAgent];
     // None found, create a new instance
