@@ -2,18 +2,16 @@ import InlineStylePrefixer from 'inline-style-prefixer';
 
 const prefixers = {};
 
-module.exports = {
+export default {
 
   getPrefixer() {
-    let userAgent;
-
     // Server-side renderer needs to supply user agent
     if (typeof navigator === 'undefined') {
       console.warn(`Material-UI expects the global navigator.userAgent to be defined for server-side rendering. Set this property when receiving the request headers.`)
-      userAgent = '*';
-    } else {
-      userAgent = navigator.userAgent;
+      return null;
     }
+
+    const userAgent = navigator.userAgent;
 
     // Get prefixing instance for this user agent
     let prefixer = prefixers[userAgent];
@@ -22,24 +20,49 @@ module.exports = {
       prefixer = new InlineStylePrefixer(userAgent);
       prefixers[userAgent] = prefixer;
     }
+
     return prefixer;
   },
 
-  all(styles) {
-    if (!styles)
+  all(style) {
+    if (!style) {
       return {};
-    return this.getPrefixer().prefix(styles);
+    }
+
+    const prefixer = this.getPrefixer();
+
+    if (prefixer) {
+      return prefixer.prefix(style);
+    } else {
+      return InlineStylePrefixer.prefixAll(style);
+    }
   },
 
   set(style, key, value) {
     style[key] = value;
-    style = this.getPrefixer().prefix(style);
+
+    const prefixer = this.getPrefixer();
+
+    if (prefixer) {
+      style = prefixer.prefix(style);
+    } else {
+      style = InlineStylePrefixer.prefixAll(style);
+    }
   },
 
   getPrefix(key) {
     let style = {};
     style[key] = true;
-    let prefixes = Object.keys(this.getPrefixer().prefix(style));
+
+    const prefixer = this.getPrefixer();
+    let prefixes;
+
+    if (prefixer) {
+      prefixes = Object.keys(prefixer.prefix(style));
+    } else {
+      prefixes = Object.keys(InlineStylePrefixer.prefixAll(style));
+    }
+
     return prefixes ? prefixes[0] : key;
   },
 
