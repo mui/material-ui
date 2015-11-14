@@ -1,4 +1,7 @@
 ## 0.13.2
+
+- Add hardcoded userAgent
+
 ###### _Nov 9, 2015_
 
 ##### General
@@ -103,7 +106,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
   - Fix theme display switch problem in doc (#1696)
   - Fix typo in src/card-expandable.jsx (#1724)
   - Fix broken link to v0.12.0 release tag
-- Use correct require calls 
+- Use correct require calls
   - for react addons (#1729)
   - for raw themes (#1742)
 - Remove hard-coded color values from theme-manager
