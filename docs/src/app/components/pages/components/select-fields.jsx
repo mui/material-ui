@@ -243,6 +243,10 @@ const SelectFieldsPage = React.createClass({
               disabled={true}
               value={'4'}
               style={styles.textfield}
+              menuItems={menuItems} /><br/>
+            <SelectField
+              value={this.state.selectValue}
+              onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
               menuItems={menuItems} />
           </ClearFix>
         </CodeExample>
