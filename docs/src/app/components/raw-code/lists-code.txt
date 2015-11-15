@@ -98,11 +98,20 @@
   />
 </List>
 
-// List with selected indicator
-<List
-  selectedLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}}
+// List with selected indicator based on HOC
+<SelectableList
+  valueLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}}
   subheader="Contacts">
-  <ListItem index={1} primaryText="Brendan Lim" />
-  <ListItem index={2} primaryText="Grace Ng" />
-  <ListItem index={3} primaryText="Kerem Suer" />
-</List>
+  <ListItem
+    value={1}
+    primaryText="Brendan Lim"
+    leftAvatar={<Avatar src="images/ok-128.jpg" />}/>
+  <ListItem
+    value={2}
+    primaryText="Grace Ng"
+    leftAvatar={<Avatar src="images/uxceo-128.jpg" />} />
+  <ListItem
+    value={3}
+    primaryText="Kerem Suer"
+    leftAvatar={<Avatar src="images/kerem-128.jpg" />} />
+</SelectableList>

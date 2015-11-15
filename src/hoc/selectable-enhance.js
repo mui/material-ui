@@ -1,11 +1,10 @@
-/*eslint-disable */
 const React = require('react');
 const ThemeManager = require('../styles/theme-manager');
 const StylePropable = require('../mixins/style-propable');
 const ColorManipulator = require('../utils/color-manipulator');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 
-export var SelectableContainerEnhance = (Component) => { // eslint-disable-line no-var
+export const SelectableContainerEnhance = (Component) => {
   let composed = React.createClass({
 
     mixins: [StylePropable],
@@ -97,7 +96,9 @@ export var SelectableContainerEnhance = (Component) => { // eslint-disable-line 
       let newChildren = listItems;
 
       return (
-        <Component {...this.props} {...this.state} children={newChildren}  />
+        <Component {...this.props} {...this.state}>
+          {newChildren}
+        </Component>
       );
     },
 

@@ -14,6 +14,7 @@ const ContentSend = require('svg-icons/content/send');
 const EditorInsertChart = require('svg-icons/editor/insert-chart');
 const FileFolder = require('svg-icons/file/folder');
 const MoreVertIcon = require('svg-icons/navigation/more-vert');
+import { SelectableContainerEnhance } from 'material-ui/hoc/selectable-enhance';
 
 const {
   Avatar,
@@ -34,18 +35,66 @@ const { Colors } = Styles;
 const Code = require('lists-code');
 const CodeExample = require('../../code-example/code-example');
 const CodeBlock = require('../../code-example/code-block');
+let SelectableList = SelectableContainerEnhance(List);
+
+const Typography = Styles.Typography;
+let styles = {
+     headline: {
+       fontSize: '24px',
+       lineHeight: '32px',
+       paddingTop: '16px',
+       marginBottom: '12px',
+       letterSpacing: '0',
+       fontWeight: Typography.fontWeightNormal,
+       color: Typography.textDarkBlack,
+     },
+     subheadline: {
+       fontSize: '18px',
+       lineHeight: '27px',
+       paddingTop: '12px',
+       marginBottom: '9px',
+       letterSpacing: '0',
+       fontWeight: Typography.fontWeightNormal,
+       color: Typography.textDarkBlack,
+     },
+     codeblock: {
+       padding: '24px', 
+       marginBottom: '32px',
+     },
+}
+
+function wrapState(ComposedComponent) {
+  const StateWrapper = React.createClass({
+    getInitialState() {
+      return { selectedIndex: 1 };
+    },
+    handleUpdateSelectedIndex(e, index) {
+      this.setState({
+        selectedIndex: index,
+      });
+    },
+    render() {
+      return <ComposedComponent {...this.props} {...this.state}
+              valueLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}} />;
+    },
+  });
+  return StateWrapper;
+}
+
+SelectableList = wrapState(SelectableList);
+
 
 export default class ListsPage extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = { selectedIndex: 1 }
-  }
 
-  handleUpdateSelectedIndex = (index) => {
-    this.setState({
-      selectedIndex: index,
-    });
+    this.handleUpdateSelectedIndex = (e, index) => {
+      this.setState({
+        selectedIndex: index,
+      });
+    }
   }
 
   render() {
@@ -59,6 +108,12 @@ export default class ListsPage extends React.Component {
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the subheader will be indented by 72px.',
+          },
+          {
+            name: 'selectedItemStyle',
+            type: 'object',
+            header: 'optional, only available if HOC SelectableContainerEnhance is used',
+            desc: 'Override the choosen inline-styles to indicate a <ListItem> is highlighted. You can set e.g. the background color here like this way: {{backgroundColor: #da4e49}}.',
           },
           {
             name: 'style',
@@ -79,9 +134,9 @@ export default class ListsPage extends React.Component {
             desc: 'The style object to override subheader styles.',
           },
           {
-            name: 'selectedLink',
+            name: 'valueLink',
             type: 'valueLink',
-            header: 'optional',
+            header: 'optional, only available if HOC SelectableContainerEnhance is used',
             desc: 'Makes List controllable. Highlights the ListItem whose index prop matches this "selectedLink.value". ' +
               '"selectedLink.requestChange" represents a callback function to change that value (e.g. in state).',
           },
@@ -107,13 +162,6 @@ export default class ListsPage extends React.Component {
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the children will be indented by 72px. Only needed if there is no left avatar or left icon.',
-          },
-          {
-            name: 'index',
-            type: 'number',
-            header: 'optional',
-            desc: 'If selectedLink prop is passed to List component, this index prop is also required. It assigns a number ' +
-              'to the tab so that it can be hightlighted by the List.',
           },
           {
             name: 'leftAvatar',
@@ -202,6 +250,13 @@ export default class ListsPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of the list item\'s root element.',
+          },
+          {
+            name: 'value',
+            type: 'number',
+            header: 'optional, only available if HOC SelectableContainerEnhance is used',
+            desc: 'If valueLink prop is passed to List component, this prop is also required. It assigns an identifier ' +
+              'to the listItem so that it can be hightlighted by the List.',
           },
         ],
       },
@@ -688,30 +743,104 @@ export default class ListsPage extends React.Component {
             </List>
           </MobileTearSheet>
           <MobileTearSheet>
-            <List
-              selectedLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}}
-              subheader="Contacts">
+            <SelectableList
+              value={3}
+              subheader="SelectableContacts">
+
               <ListItem
-                index={1}
+                value={1}
                 primaryText="Brendan Lim"
                 leftAvatar={<Avatar src="images/ok-128.jpg" />} />
-              <ListItem index={2}
+              <ListItem value={2}
                 primaryText="Grace Ng"
                 leftAvatar={<Avatar src="images/uxceo-128.jpg" />} />
-              <ListItem index={3}
+              <ListItem value={3}
                 primaryText="Kerem Suer"
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />} />
-              <ListItem index={4}
+              <ListItem value={4}
                 primaryText="Eric Hoffman"
                 leftAvatar={<Avatar src="images/kolage-128.jpg" />} />
-              <ListItem index={5}
+              <ListItem value={5}
                 primaryText="Raquel Parrado"
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />} />
-            </List>
+            </SelectableList>
           </MobileTearSheet>
         </CodeExample>
+
+        <Paper style={{padding: '24px', marginBottom: '32px'}}>
+        <div>
+          <h2 style={styles.headline}>Selectable Lists</h2>
+          <p>
+            Basically three steps are needed:
+          </p>
+          <ul>
+            <li>enhance <code>&lt;List&gt;</code> with HOC</li>
+            <li>decide where to put state</li>
+            <li>implement and set valueLink</li>
+          </ul>
+
+
+          <h3 style={styles.subheadline}> Enhance List</h3>
+          <p>
+            Wrapping the <code>&lt;List&gt;</code> component with the higher order component "SelectableEnhance" enables
+            the clicked <code>&lt;ListItem&gt;</code> to be highlighted.
+          </p>
+          <div style={styles.codeblock}>
+            <CodeBlock>
+ {`import { SelectableContainerEnhance } from 'material-ui/lib/hoc/selectable-enhance';
+.
+.
+.
+var SelectableList = SelectableContainerEnhance(List);
+`}
+            </CodeBlock>
+          </div>
+
+
+          <h3 style={styles.subheadline}>Where to put state</h3>
+          <p>
+            If this component is used in conjunction with flux or redux this is a no-brainer. The callback-handler 
+            just has to update the store. Otherwise the state can be held within e.g the parent, but it is to be to 
+            considered that each time a <code>&lt;ListItem&gt;</code> is clicked, the state will update and the parent - including it's 
+            children - will rerender.
+          </p>
+          <p>
+            A possible solution for this is to use another hoc. An example can be found in the sourcecode 
+            of <code>docs/src/app/components/pages/components/lists.jsx</code>.
+          </p>
+          <h3 style={styles.subheadline}>The valueLink</h3>
+          <p>
+            The prop 'valueLink' of <code>&lt;List&gt;</code> has to be set, to make the highlighting controllable:
+          </p>
+          <div style={styles.codeblock}>
+            <CodeBlock>
+{`valueLink={{
+    value: this.state.selectedIndex,
+    requestChange: this.handleUpdateSelectedIndex}}
+`}
+            </CodeBlock>
+          </div>
+          A sample implementation might look like this.
+          <div style={styles.codeblock}>
+            <CodeBlock>
+{`getInitialState() {
+ return { selectedIndex: 1 };
+},
+handleUpdateSelectedIndex(e,index) {
+  this.setState({
+    selectedIndex: index,
+});
+`}
+            </CodeBlock>
+          </div>
+          <h3 style={styles.subheadline}>Adjust the <code>&lt;ListItem&gt;</code></h3>
+          <p>
+            The prop "value" on each ListItem has to be set. This makes the item addressable for the callback.
+          </p>
+        </div>
+        </Paper>
       </ComponentDoc>
     );
-  }
 
+}
 }

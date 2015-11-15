@@ -84,10 +84,6 @@ var config = {
             include: [__dirname, path.resolve(__dirname, '../src')], //include these files
             exclude: [nodeModulesPath]  //exclude node_modules so that they are not all compiled
           },
-          {
-            test: /\.css$/, // Only .css files
-            loader: 'style!css' // Run both loaders
-          }
         ]
   },
   eslint: {
