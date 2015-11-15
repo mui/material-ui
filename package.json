@@ -30,7 +30,7 @@
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
-    "inline-style-prefixer": "^0.3.3",
+    "inline-style-prefixer": "^0.5.1",
     "lodash.throttle": "~3.0.4",
     "lodash.debounce": "~3.1.1",
     "react-addons-transition-group": "^0.14.0",
