@@ -30,12 +30,12 @@ export default class ButtonPage extends React.Component {
     super(props);
 
     this.desc = 'This component generates a button element and all props except for ' +
-                'the custom props below will be passed down to the button element. Also, ' +
-                'focus styles will happen on tab but not on click.';
+                'the custom props listed below. Also, ' +
+                'focus styles will be applied on tab (and not on click).';
 
     this.componentInfo = [
       {
-        name: 'Flat Button',
+        name: 'Flat Button Props',
         infoArray: [
           {
             name: 'containerElement',
@@ -111,7 +111,7 @@ export default class ButtonPage extends React.Component {
         ],
       },
       {
-        name: 'Raised Button',
+        name: 'Raised Button Props',
         infoArray: [
           {
             name: 'containerElement',
@@ -205,7 +205,7 @@ export default class ButtonPage extends React.Component {
         ],
       },
       {
-        name: 'Floating Action Button',
+        name: 'Floating Action Button Props',
         infoArray: [
           {
             name: 'backgroundColor',
@@ -273,6 +273,17 @@ export default class ButtonPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of the button\'s root element.',
+          },
+        ],
+      },
+      {
+        name: 'Button Events',
+        infoArray: [
+          {
+            name: 'onTouchTap',
+            type: 'function(event)',
+            header: 'optional',
+            desc: 'Called when a touch tap event occures on the button.',
           },
         ],
       },
@@ -470,7 +481,7 @@ export default class ButtonPage extends React.Component {
             <ComponentDoc
               name=""
               desc={this.desc}
-              componentInfo={this.componentInfo.slice(2)}>
+              componentInfo={this.componentInfo.slice(2, 3)}>
               <CodeExample code={FloatingActionButtonCode}>
                 <div style={styles.groupFloatingAction}>
                   <div style={styles.container}>
@@ -506,6 +517,11 @@ export default class ButtonPage extends React.Component {
             </ComponentDoc>
           </Tab>
         </Tabs>
+        <ComponentDoc
+          name=""
+          desc=""
+          componentInfo={this.componentInfo.slice(3)}>
+        </ComponentDoc>
       </div>
     );
   }
