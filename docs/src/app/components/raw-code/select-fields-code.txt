@@ -1,0 +1,37 @@
+<SelectField
+  style={styles.textfield}
+  value={this.state.selectValue}
+  onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
+  hintText="Hint Text"
+  menuItems={menuItems} /><br/>
+<SelectField
+  valueLink={this.linkState('selectValueLinkValue')}
+  floatingLabelText="Float Label Text"
+  valueMember="id"
+  displayMember="name"
+  menuItems={arbitraryArrayMenuItems} /><br/>
+<SelectField
+  valueLink={this.linkState('selectValueLinkValue2')}
+  floatingLabelText="Float Custom Label Text"
+  floatingLabelStyle={{color: "red"}}
+  valueMember="id"
+  displayMember="name"
+  menuItems={arbitraryArrayMenuItems} /><br/>
+<SelectField
+  floatingLabelText="With default value"
+  style={styles.textfield}
+  value={this.state.selectValue2}
+  valueMember="id"
+  displayMember="name"
+  onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
+  menuItems={arbitraryArrayMenuItems} /><br/>
+<SelectField
+  floatingLabelText="Disabled"
+  disabled={true}
+  value={'4'}
+  style={styles.textfield}
+  menuItems={menuItems} /><br/>
+<SelectField
+  value={this.state.selectValue}
+  onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
+  menuItems={menuItems} />

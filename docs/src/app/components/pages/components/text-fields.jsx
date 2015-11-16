@@ -1,5 +1,5 @@
 const React = require('react');
-const { ClearFix, Mixins, SelectField, TextField, Styles, Paper } = require('material-ui');
+const { ClearFix, Mixins, TextField, Styles, Paper } = require('material-ui');
 const ComponentDoc = require('../../component-doc');
 const { Colors } = Styles;
 const { StyleResizable } = Mixins;
@@ -21,10 +21,6 @@ const TextFieldsPage = React.createClass({
       propValue: 'Prop Value',
       floatingPropValue: 'Prop Value',
       valueLinkValue: 'Value Link',
-      selectValue: undefined,
-      selectValue2: undefined,
-      selectValueLinkValue: 4,
-      selectValueLinkValue2: 3,
       floatingValueLinkValue: 'Value Link',
     };
   },
@@ -234,20 +230,6 @@ const TextFieldsPage = React.createClass({
     ];
 
     let styles = this.getStyles();
-    let menuItems = [
-      { payload: '1', text: 'Never' },
-      { payload: '2', text: 'Every Night' },
-      { payload: '3', text: 'Weeknights' },
-      { payload: '4', text: 'Weekends' },
-      { payload: '5', text: 'Weekly' },
-    ];
-    let arbitraryArrayMenuItems = [
-      {id:1, name:'Never'},
-      {id:2, name:'Every Night'},
-      {id:3, name:'Weeknights'},
-      {id:4, name:'Weekends'},
-      {id:5, name:'Weekly'},
-    ];
 
     return (
       <ComponentDoc
@@ -258,8 +240,7 @@ const TextFieldsPage = React.createClass({
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst TextField = require(\'material-ui/lib/text-field\');\n' +
-            'const SelectField = require(\'material-ui/lib/select-field\');\n\n' +
+            '//Import statement:\nconst TextField = require(\'material-ui/lib/text-field\');\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
@@ -336,31 +317,7 @@ const TextFieldsPage = React.createClass({
                 style={styles.textfield}
                 hintText="Disabled Hint Text"
                 disabled={true}
-                defaultValue="Disabled With Value" /><br/>
-              <SelectField
-                style={styles.textfield}
-                value={this.state.selectValue}
-                onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
-                hintText="Hint Text"
-                menuItems={menuItems} /><br/>
-              <SelectField
-                valueLink={this.linkState('selectValueLinkValue')}
-                floatingLabelText="Float Label Text"
-                valueMember="id"
-                displayMember="name"
-                menuItems={arbitraryArrayMenuItems} /><br/>
-              <SelectField
-                valueLink={this.linkState('selectValueLinkValue2')}
-                floatingLabelText="Float Custom Label Text"
-                floatingLabelStyle={{color: "red"}}
-                valueMember="id"
-                displayMember="name"
-                menuItems={arbitraryArrayMenuItems} /><br/>
-              <SelectField
-                style={styles.textfield}
-                value={this.state.selectValue2}
-                onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
-                menuItems={arbitraryArrayMenuItems} />
+                defaultValue="Disabled With Value" />
             </div>
             <div style={styles.group}>
               <TextField
@@ -446,12 +403,6 @@ const TextFieldsPage = React.createClass({
     this.setState({
       propValue: e.target.value,
     });
-  },
-
-  _handleSelectValueChange(name, e) {
-    let change = {};
-    change[name] = e.target.value;
-    this.setState(change);
   },
 
   _handleFloatingInputChange(e) {
