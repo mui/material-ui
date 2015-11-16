@@ -20,7 +20,7 @@ module.exports = {
 
      primary1Color: Colors.pesca,
      primary2Color: Colors.caffelatte,
-    primary3Color: Colors.lightBlack,
+    primary3Color: Colors.grey400,
      accent1Color: Colors.pesca,
     accent2Color: Colors.grey100,
     accent3Color: Colors.grey500,
