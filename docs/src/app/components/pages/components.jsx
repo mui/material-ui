@@ -6,6 +6,7 @@ export default class Components extends React.Component {
   render() {
     let menuItems = [
       { route: '/components/appbar', text: 'AppBar'},
+      { route: '/components/auto-complete', text: 'Auto Complete'},
       { route: '/components/avatars', text: 'Avatars'},
       { route: '/components/badge', text: 'Badge'},
       { route: '/components/buttons', text: 'Buttons'},

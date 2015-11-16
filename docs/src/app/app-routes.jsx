@@ -21,6 +21,7 @@ const InlineStyles = require('./components/pages/customization/inline-styles');
 
 const Components = require('./components/pages/components');
 const AppBar = require('./components/pages/components/app-bar');
+const AutoComplete = require('./components/pages/components/auto-complete');
 const Avatars = require('./components/pages/components/avatars');
 const Badge = require('./components/pages/components/badge');
 const Buttons = require('./components/pages/components/buttons');
@@ -78,6 +79,7 @@ const AppRoutes = (
     <Redirect from="components" to="/components/appbar" />
     <Route path="components" component={Components}>
       <Route path="appbar" component={AppBar} />
+      <Route path="auto-complete" component={AutoComplete} />
       <Route path="avatars" component={Avatars} />
       <Route path="badge" component={Badge} />
       <Route path="buttons" component={Buttons} />
