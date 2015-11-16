@@ -1,6 +1,6 @@
 {
   "name": "material-ui-example",
-  "version": "0.8.0",
+  "version": "0.13.2",
   "description": "Sample project that uses material-ui",
   "repository": {
     "type": "git",
@@ -9,6 +9,7 @@
   "scripts": {
     "start": "gulp"
   },
+  "private": true,
   "devDependencies": {
     "babelify": "^6.1.2",
     "browser-sync": "^1.8.1",
@@ -26,10 +27,6 @@
     "material-ui": "^0.13.0",
     "react": "^0.14.0",
     "react-dom":"^0.14.0",
-    "react-tap-event-plugin": "^0.2.1",
-    "react-addons-create-fragment": "^0.14.0",
-    "react-addons-pure-render-mixin": "^0.14.0",
-    "react-addons-transition-group": "^0.14.0",
-    "react-addons-update": "^0.14.0"
+    "react-tap-event-plugin": "^0.2.1"
   }
 }
