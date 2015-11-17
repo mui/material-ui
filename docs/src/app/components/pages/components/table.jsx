@@ -145,7 +145,7 @@ export default class TablePage extends React.Component {
             desc: 'Set to true to indicate that all rows should be selected.',
           },
           {
-            name: 'deselectOnClickAway',
+            name: 'deselectOnClickaway',
             type: 'bool',
             header: 'default: true',
             desc: 'Controls whether or not to deselect all selected rows after clicking outside the table.',
