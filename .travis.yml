@@ -5,3 +5,28 @@ sudo: false
 script:
   - npm run lint
   - npm test
+before_install:
+  # install @ehealthafrica/xxx packages from our npm enterprise
+  - echo "//npme.eocng.org/:_authToken=$NPM_TOKEN" >> .npmrc
+before_script:
+  - npm prune
+after_success:
+  - npm run semantic-release
+branches:
+  except:
+    # ignore git tags created by semantic-release, like "v1.2.3"
+    - /^v\d+\.\d+\.\d+$/
+script:
+  - npm run lint
+  - npm test
+before_install:
+  # install @ehealthafrica/xxx packages from our npm enterprise
+  - echo "//npme.eocng.org/:_authToken=$NPM_TOKEN" >> .npmrc
+before_script:
+  - npm prune
+after_success:
+  - npm run semantic-release
+branches:
+  except:
+    # ignore git tags created by semantic-release, like "v1.2.3"
+    - /^v\d+\.\d+\.\d+$/

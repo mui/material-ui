@@ -1,5 +1,5 @@
 {
-  "name": "material-ui",
+  "name": "@ehealthafrica/material-ui",
   "author": "Call-em-all Engineering Team",
   "version": "0.13.3",
   "description": "Material Design UI components built with React",
@@ -9,9 +9,13 @@
     "test-watch": "npm run test-base -- --auto-watch",
     "test-base": "./node_modules/.bin/karma start",
     "prebuild": "rimraf lib",
+    "eslint": "gulp eslint",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "lint": "gulp eslint",
     "build": "babel ./src --out-dir ./lib",
-    "prepublish": "npm run build"
+    "eslint": "gulp eslint",
+    "prepublish": "npm run build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [
     "react",
@@ -22,11 +26,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
+    "url": "https://github.com/eHealthAfrica/material-ui.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/callemall/material-ui/issues"
+    "url": "https://github.com/eHealthAfrica/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
@@ -81,6 +85,10 @@
     "sinon": "^1.15.4",
     "sinon-chai": "^2.8.0",
     "transfer-webpack-plugin": "^0.1.4",
-    "webpack": "^1.11.0"
+    "webpack": "^1.11.0",
+    "semantic-release": "^4.3.5"
+  },
+  "publishConfig": {
+    "registry": "https://npme.eocng.org/"
   }
 }
