@@ -1,3 +1,20 @@
+## 0.13.3
+###### _Nov 17, 2015_
+
+##### General
+- [Snackbar] add bodyStyle prop to style child div (#2104)
+- [DatePicker] add container prop to display DatePicker in-line or inside Dialog (#2120 and #2153)
+- [AppBar] add relative positioning for z-index to take effect (#1478)
+- [AppBar] add onTitleTouchTap prop to AppBar (#2125)
+- [Popover] new component! (#2043) (thanks @chrismcv)
+- Split [SelectField] and [TextField] doc pages (#2161)
+
+##### Component Fixes / Enhancements
+- [SelectField] onChange triggered consistently when using value prop (#1610)
+- [Dialog] fix page scrolling behind dialog after resizing (#1946)
+- [DatePicker] fix calendar height (#2141)
+- [TimePicker] allow to set time to null (#2108)
+
 ## 0.13.2
 ###### _Nov 9, 2015_
 
