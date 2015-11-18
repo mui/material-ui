@@ -44,6 +44,7 @@ module.exports = {
   RefreshIndicator: require('./refresh-indicator'),
   Ripples: require('./ripples/'),
   SelectField: require('./select-field'),
+  SelectableContainerEnhance: require('./hoc/selectable-enhance'),
   Slider: require('./slider'),
   SvgIcon: require('./svg-icon'),
   Icons: {

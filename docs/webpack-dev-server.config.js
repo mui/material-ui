@@ -83,7 +83,7 @@ var config = {
             loader:'babel-loader?optional=runtime&stage=0', //react-hot is like browser sync and babel loads jsx and es6-7
             include: [__dirname, path.resolve(__dirname, '../src')], //include these files
             exclude: [nodeModulesPath]  //exclude node_modules so that they are not all compiled
-          }
+          },
         ]
   },
   eslint: {
