@@ -40,9 +40,11 @@ const RadioButton = React.createClass({
   },
 
   propTypes: {
+    checkedIcon: React.PropTypes.element,
     iconStyle: React.PropTypes.object,
     labelStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func,
+    unCheckedIcon: React.PropTypes.element,
   },
 
   getTheme() {
@@ -94,7 +96,9 @@ const RadioButton = React.createClass({
 
   render() {
     let {
+      checkedIcon,
       onCheck,
+      unCheckedIcon,
       ...other,
     } = this.props;
 
@@ -112,10 +116,22 @@ const RadioButton = React.createClass({
         this.props.iconStyle,
         this.props.disabled && styles.fillWhenDisabled);
 
+    let checkedElement = checkedIcon ? React.cloneElement(checkedIcon, {
+      style: this.mergeAndPrefix(onStyles, checkedIcon.props.style),
+    }) : React.createElement(RadioButtonOn, {
+      style: onStyles,
+    });
+
+    let unCheckedElement = unCheckedIcon ? React.cloneElement(unCheckedIcon, {
+      style: this.mergeAndPrefix(offStyles, unCheckedIcon.props.style),
+    }) : React.createElement(RadioButtonOff, {
+      style: offStyles,
+    });
+
     let radioButtonElement = (
       <div>
-          <RadioButtonOff style={onStyles} />
-          <RadioButtonOn style={offStyles} />
+        {unCheckedElement}
+        {checkedElement}
       </div>
     );
 
