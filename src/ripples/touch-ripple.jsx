@@ -20,6 +20,12 @@ const TouchRipple = React.createClass({
   },
 
   getInitialState() {
+    //Touch start produces a mouse down event for compat reasons. To avoid
+    //showing ripples twice we skip showing a ripple for the first mouse down
+    //after a touch start. Note we don't store ignoreNextMouseDown in this.state
+    //to avoid re-rendering when we change it
+    this._ignoreNextMouseDown = false;
+
     return {
       //This prop allows us to only render the ReactTransitionGroup
       //on the first click of the component, making the inital
@@ -74,15 +80,12 @@ const TouchRipple = React.createClass({
   },
 
   start(e, isRippleTouchGenerated) {
-    let ripples = this.state.ripples;
-
-    //Do nothing if we're starting a click-event-generated ripple
-    //while having touch-generated ripples
-    if (!isRippleTouchGenerated) {
-      for (let i = 0; i < ripples.length; i++) {
-        if (ripples[i].props.touchGenerated) return;
-      }
+    if (this._ignoreNextMouseDown && !isRippleTouchGenerated) {
+      this._ignoreNextMouseDown = false;
+      return;
     }
+
+    let ripples = this.state.ripples;
 
     //Add a ripple to the ripples array
     ripples = ImmutabilityHelper.push(ripples, (
@@ -94,6 +97,7 @@ const TouchRipple = React.createClass({
         touchGenerated={isRippleTouchGenerated} />
     ));
 
+    this._ignoreNextMouseDown = isRippleTouchGenerated;
     this.setState({
       hasRipples: true,
       nextKey: this.state.nextKey + 1,
