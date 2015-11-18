@@ -19,6 +19,7 @@
     "react-addons-perf": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-motion": "^0.3.1",
+    "react-router": "^1.0.0-rc1",
     "react-swipeable-views": "^0.3.0"
   },
   "devDependencies": {
