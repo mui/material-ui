@@ -172,7 +172,7 @@ class DatePickerPage extends React.Component {
 
           <DatePicker
             hintText="With Disabled Dates"
-            shouldDisableDate={date => date.getTime() > Date.now()}
+            maxDate={new Date()}
             onChange={this._handleChange.bind(this)} />
 
           <DatePicker
