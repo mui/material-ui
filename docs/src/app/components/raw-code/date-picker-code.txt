@@ -12,6 +12,7 @@
   value={this.state.controlledDate}
   onChange={this._handleChange} />
 
+//With Disabled Dates
 <DatePicker
   hintText="With Disabled Dates"
   maxDate={new Date()} />
