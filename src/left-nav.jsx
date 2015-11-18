@@ -105,8 +105,7 @@ const LeftNav = React.createClass({
   },
 
   toggle() {
-    (this.state.open) ? this.close() : this.open();
-    return this;
+    return (this.state.open) ? this.close() : this.open();
   },
 
   close() {
