@@ -73,9 +73,9 @@ const TextFieldsPage = React.createClass({
           },
           {
             name: 'errorText',
-            type: 'string',
+            type: 'node',
             header: 'optional',
-            desc: 'The error text string to display.',
+            desc: 'The error content to display.',
           },
           {
             name: 'floatingLabelStyle',
@@ -85,9 +85,9 @@ const TextFieldsPage = React.createClass({
           },
           {
             name: 'floatingLabelText',
-            type: 'string',
+            type: 'node',
             header: 'optional',
-            desc: 'The text string to use for the floating label element.',
+            desc: 'The content to use for the floating label element.',
           },
           {
             name: 'fullWidth',
@@ -103,9 +103,9 @@ const TextFieldsPage = React.createClass({
           },
           {
             name: 'hintText',
-            type: 'string',
+            type: 'node',
             header: 'optional',
-            desc: 'The hint text string to display.',
+            desc: 'The hint content to display.',
           },
           {
             name: 'inputStyle',
