@@ -14,6 +14,7 @@ const ClockPointer = React.createClass({
   propTypes: {
     value: React.PropTypes.number,
     type: React.PropTypes.oneOf(['hour', 'minute']),
+    hourFormat: React.PropTypes.oneOf(['ampm', '24hr']),
   },
 
   //for passing default theme context to children
@@ -38,6 +39,7 @@ const ClockPointer = React.createClass({
     return {
       value: null,
       type: 'minute',
+      hourFormat: 'ampm',
       hasSelected: false,
     };
   },
@@ -51,10 +53,10 @@ const ClockPointer = React.createClass({
   },
 
   isInner(value) {
-    if (this.props.type !== "hour" ) {
+    if (this.props.type !== "hour") {
       return false;
     }
-    return value < 1 || value > 12 ;
+    return this.props.hourFormat === "24hr" && value >= 1 && value <= 12;
   },
 
   getAngle() {
