@@ -22,6 +22,8 @@ const RefreshIndicator = React.createClass({
     status: React.PropTypes.oneOf(['ready', 'loading', 'hide']),
     style: React.PropTypes.object,
     top: React.PropTypes.number.isRequired,
+    color: React.PropTypes.string,
+    loadingColor: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -199,7 +201,7 @@ const RefreshIndicator = React.createClass({
       style: {
         strokeDasharray: arcLen + ', ' + (perimeter - arcLen),
         strokeDashoffset: dashOffset,
-        stroke: (isLoading || this.props.percentage === 100) ? theme.loadingStrokeColor : theme.strokeColor,
+        stroke: (isLoading || this.props.percentage === 100) ? (this.props.loadingColor || theme.loadingStrokeColor) : (this.props.color || theme.strokeColor),
         strokeLinecap: 'round',
         opacity: p1,
         strokeWidth: circle.strokeWidth * p1,
@@ -227,7 +229,7 @@ const RefreshIndicator = React.createClass({
     const theme = this._getTheme();
     return {
       style: {
-        fill: this.props.percentage === 100 ? theme.loadingStrokeColor : theme.strokeColor,
+        fill: this.props.percentage === 100 ? (this.props.loadingColor || theme.loadingStrokeColor) : (this.props.color || theme.strokeColor),
         transform: `rotate(${endDeg}deg)`,
         transformOrigin: `${circle.originX}px ${circle.originY}px`,
         opacity: p1,

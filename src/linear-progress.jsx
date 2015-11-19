@@ -15,6 +15,7 @@ const LinearProgress = React.createClass({
     min:  React.PropTypes.number,
     max:  React.PropTypes.number,
     style: React.PropTypes.object,
+    color: React.PropTypes.string,
   },
 
   contextTypes: {
@@ -134,7 +135,7 @@ const LinearProgress = React.createClass({
     if (this.props.mode === "indeterminate") {
       styles.barFragment1 = {
         position: "absolute",
-        backgroundColor: this.getTheme().primary1Color,
+        backgroundColor: this.props.color || this.getTheme().primary1Color,
         top: 0,
         left: 0,
         bottom: 0,
@@ -143,7 +144,7 @@ const LinearProgress = React.createClass({
 
       styles.barFragment2 = {
         position: "absolute",
-        backgroundColor: this.getTheme().primary1Color,
+        backgroundColor: this.props.color || this.getTheme().primary1Color,
         top: 0,
         left: 0,
         bottom: 0,
@@ -151,7 +152,7 @@ const LinearProgress = React.createClass({
       };
     }
     else {
-      styles.bar.backgroundColor= this.getTheme().primary1Color;
+      styles.bar.backgroundColor= this.props.color || this.getTheme().primary1Color;
       styles.bar.transition = Transitions.create("width", ".3s", null, "linear");
       styles.bar.width = this._getRelativeValue() + "%";
     }
