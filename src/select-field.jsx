@@ -27,22 +27,13 @@ const SelectField = React.createClass({
   },
 
   propTypes: {
-    errorText: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
-    ]),
-    floatingLabelText: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
-    ]),
+    errorText: React.PropTypes.node,
+    floatingLabelText: React.PropTypes.node,
     selectFieldRoot: React.PropTypes.object,
     underlineStyle: React.PropTypes.object,
     labelStyle: React.PropTypes.object,
     errorStyle: React.PropTypes.object,
-    hintText: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
-    ]),
+    hintText: React.PropTypes.node,
     id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
     onBlur: React.PropTypes.func,

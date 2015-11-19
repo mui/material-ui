@@ -32,20 +32,11 @@ const TextField = React.createClass({
 
   propTypes: {
     errorStyle: React.PropTypes.object,
-    errorText: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
-    ]),
+    errorText: React.PropTypes.node,
     floatingLabelStyle: React.PropTypes.object,
-    floatingLabelText: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
-    ]),
+    floatingLabelText: React.PropTypes.node,
     fullWidth: React.PropTypes.bool,
-    hintText: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
-    ]),
+    hintText: React.PropTypes.node,
     hintStyle: React.PropTypes.object,
     id: React.PropTypes.string,
     inputStyle: React.PropTypes.object,
