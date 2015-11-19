@@ -89,12 +89,12 @@ const RenderToLayer = React.createClass({
   },
 
   _unrenderLayer: function() {
-    if (this.layerWillUnmount) {
-        this.layerWillUnmount(this._layer);
-    }
     if (!this.reactUnmount)
       this.reactUnmount = debounce(() => {
         if (this._layer) {
+          if (this.layerWillUnmount) {
+              this.layerWillUnmount(this._layer);
+          }
           ReactDOM.unmountComponentAtNode(this._layer);
           document.body.removeChild(this._layer);
           this._layer = null;
