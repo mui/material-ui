@@ -104,8 +104,10 @@ const RenderToLayer = React.createClass({
   },
 
   _bindClickAway() {
-    this.canClickAway = true;
-    Events.on(window, 'blur', this._checkClickAway);
+    if (typeof(this.canClickAway) === "undefined") {
+      this.canClickAway = true;
+    }
+    Events.on(window, 'focus', this._checkClickAway);
     Events.on(document, 'mousedown', this._checkClickAway);
     Events.on(document, 'touchend', this._checkClickAway);
     Events.on(document, 'popOverOnShow', this._preventClickAway);
@@ -113,7 +115,7 @@ const RenderToLayer = React.createClass({
   },
 
   _unbindClickAway() {
-    Events.off(window, 'blur', this._checkClickAway);
+    Events.off(window, 'focus', this._checkClickAway);
     Events.off(document, 'mousedown', this._checkClickAway);
     Events.off(document, 'touchend', this._checkClickAway);
     Events.off(document, 'popOverOnShow', this._preventClickAway);
