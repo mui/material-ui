@@ -1,10 +1,12 @@
 //Linear
 <LinearProgress mode="determinate" value={60} />
 <LinearProgress mode="indeterminate"  />
+<LinearProgress mode="determinate" color={"#4CAF50"} value={60} />
+
 //Circular
 <CircularProgress mode="determinate" value={60} />
 <CircularProgress mode="determinate" value={60} size={1.5} />
 <CircularProgress mode="determinate" value={60} size={2} />
 <CircularProgress mode="indeterminate" />
 <CircularProgress mode="indeterminate" size={1.5} />
-<CircularProgress mode="indeterminate" size={2} />
+<CircularProgress mode="indeterminate" color={"red"} size={2} />

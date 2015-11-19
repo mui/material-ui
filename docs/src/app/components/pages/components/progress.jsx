@@ -72,6 +72,12 @@ const ProgressPage = React.createClass({
             header: 'optional',
             desc: 'Override the inline-styles of the progress\'s root element.',
           },
+          {
+            name: 'color',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the progress\'s color.',
+          },
         ],
       },
     ];
@@ -102,7 +108,10 @@ const ProgressPage = React.createClass({
             Indeterminate
           </p>
           <LinearProgress mode="indeterminate"  />
-
+          <p>
+            Overriding the theme's color
+          </p>
+          <LinearProgress mode="determinate" color={"#4CAF50"} value={this.state.completed} />
           <br/><br/>
           <h2>Circular Progress</h2>
           <p>
@@ -116,7 +125,7 @@ const ProgressPage = React.createClass({
           </p>
           <CircularProgress mode="indeterminate"  />
           <CircularProgress mode="indeterminate" size={1.5} />
-          <CircularProgress mode="indeterminate" size={2} />
+          <CircularProgress mode="indeterminate" color={"red"} size={2} />
         </CodeExample>
       </ComponentDoc>
     );
