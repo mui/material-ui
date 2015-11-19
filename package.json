@@ -75,7 +75,6 @@
     "react-dom": "^0.14.0",
     "react-tap-event-plugin": "^0.2.0",
     "react-hot-loader": "^1.2.8",
-    "react-router": "^1.0.0-rc1",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.4.3",
     "sinon": "^1.15.4",

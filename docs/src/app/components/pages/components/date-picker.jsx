@@ -5,6 +5,11 @@ const Code = require('date-picker-code');
 const CodeExample = require('../../code-example/code-example');
 const CodeBlock = require('../../code-example/code-block');
 
+if (!window.Intl) {
+  require('intl');
+  require('intl/locale-data/jsonp/fr');
+}
+
 export default class DatePickerPage extends React.Component {
   constructor(props) {
     super(props);
@@ -247,7 +252,8 @@ export default class DatePickerPage extends React.Component {
           <DatePicker
             hintText="fr version"
             DateTimeFormat={Intl.DateTimeFormat}
-            // Intl is defined by the browser see http://caniuse.com/#search=intl
+            // Intl is supported by most modern browsers, see http://caniuse.com/#search=intl
+            // for browsers that don't support it use this polyfill https://github.com/andyearnshaw/Intl.js
             wordings={{ok: 'OK', cancel: 'Annuler'}}
             locale="fr" />
 
