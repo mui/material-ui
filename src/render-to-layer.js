@@ -27,9 +27,8 @@ const RenderToLayer = React.createClass({
       return;
     }
     const el = this._layer;
-    if (e.target !== el &&
-        !Dom.isDescendant(el, e.target) &&
-        document.documentElement.contains(e.target)) {
+    if (e.target !== el && (e.target === window)
+        || (document.documentElement.contains(e.target) && !Dom.isDescendant(el, e.target))) {
       if (this.props.componentClickAway) {
         this.props.componentClickAway(e);
       }
@@ -90,12 +89,12 @@ const RenderToLayer = React.createClass({
   },
 
   _unrenderLayer: function() {
-    if (this.layerWillUnmount) {
-        this.layerWillUnmount(this._layer);
-    }
     if (!this.reactUnmount)
       this.reactUnmount = debounce(() => {
         if (this._layer) {
+          if (this.layerWillUnmount) {
+              this.layerWillUnmount(this._layer);
+          }
           ReactDOM.unmountComponentAtNode(this._layer);
           document.body.removeChild(this._layer);
           this._layer = null;
@@ -105,7 +104,10 @@ const RenderToLayer = React.createClass({
   },
 
   _bindClickAway() {
-    this.canClickAway = true;
+    if (typeof(this.canClickAway) === "undefined") {
+      this.canClickAway = true;
+    }
+    Events.on(window, 'focus', this._checkClickAway);
     Events.on(document, 'mousedown', this._checkClickAway);
     Events.on(document, 'touchend', this._checkClickAway);
     Events.on(document, 'popOverOnShow', this._preventClickAway);
@@ -113,6 +115,7 @@ const RenderToLayer = React.createClass({
   },
 
   _unbindClickAway() {
+    Events.off(window, 'focus', this._checkClickAway);
     Events.off(document, 'mousedown', this._checkClickAway);
     Events.off(document, 'touchend', this._checkClickAway);
     Events.off(document, 'popOverOnShow', this._preventClickAway);
