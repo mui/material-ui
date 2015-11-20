@@ -16,6 +16,7 @@ import FileFolder from 'material-ui/svg-icons/file/folder';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import {SelectableContainerEnhance} from 'material-ui/hoc/selectable-enhance';
 
+
 const {
   Avatar,
   Checkbox,
@@ -25,7 +26,6 @@ const {
   ListItem,
   Styles,
   Toggle,
-  Paper,
 } = mui;
 
 import IconMenu from 'menus/icon-menu';
@@ -33,35 +33,12 @@ import MenuItem from 'menus/menu-item';
 
 const {Colors} = Styles;
 import Code from 'lists-code';
+import ListsDocMainSection from '../../markdown/lists/main';
+import ListsDocPropsSection from '../../markdown/lists/props';
+import ListsDocIntro from '../../markdown/lists/intro';
+import MarkdownElement from '../../markdown-element';
 import CodeExample from '../../code-example/code-example';
-import CodeBlock from '../../code-example/code-block';
 let SelectableList = SelectableContainerEnhance(List);
-
-const Typography = Styles.Typography;
-let styles = {
-  headline: {
-    fontSize: '24px',
-    lineHeight: '32px',
-    paddingTop: '16px',
-    marginBottom: '12px',
-    letterSpacing: '0',
-    fontWeight: Typography.fontWeightNormal,
-    color: Typography.textDarkBlack,
-  },
-  subheadline: {
-    fontSize: '18px',
-    lineHeight: '27px',
-    paddingTop: '12px',
-    marginBottom: '9px',
-    letterSpacing: '0',
-    fontWeight: Typography.fontWeightNormal,
-    color: Typography.textDarkBlack,
-  },
-  codeblock: {
-    padding: '24px',
-    marginBottom: '32px',
-  },
-};
 
 function wrapState(ComposedComponent) {
   const StateWrapper = React.createClass({
@@ -98,7 +75,6 @@ export default class ListsPage extends React.Component {
   }
 
   render() {
-
     let componentInfo = [
       {
         name: 'List Props',
@@ -322,22 +298,10 @@ export default class ListsPage extends React.Component {
 
     return (
       <ComponentDoc
-        name="Lists"
+        name=""
         componentInfo={componentInfo}>
 
-        <Paper style = {{marginBottom: '22px'}}>
-          <CodeBlock>
-          {
-            `//Import statement:
-import List from 'material-ui/lib/lists/list';
-import ListDivider from 'material-ui/lib/lists/list-divider';
-import ListItem from 'material-ui/lib/lists/list-item';
-
-//See material-ui/lib/index.js for more
-            `
-          }
-          </CodeBlock>
-        </Paper>
+        <MarkdownElement text={ListsDocIntro} />
 
         <CodeExample code={Code}>
           <MobileTearSheet>
@@ -770,78 +734,10 @@ import ListItem from 'material-ui/lib/lists/list-item';
           </MobileTearSheet>
         </CodeExample>
 
-        <Paper style={{padding: '24px', marginBottom: '32px'}}>
-        <div>
-          <h2 style={styles.headline}>Selectable Lists</h2>
-          <p>
-            Basically three steps are needed:
-          </p>
-          <ul>
-            <li>enhance <code>&lt;List&gt;</code> with HOC</li>
-            <li>decide where to put state</li>
-            <li>implement and set valueLink</li>
-          </ul>
+        <MarkdownElement text={ListsDocMainSection} />
 
+        <MarkdownElement text={ListsDocPropsSection} />
 
-          <h3 style={styles.subheadline}> Enhance List</h3>
-          <p>
-            Wrapping the <code>&lt;List&gt;</code> component with the higher order component "SelectableEnhance" enables
-            the clicked <code>&lt;ListItem&gt;</code> to be highlighted.
-          </p>
-          <div style={styles.codeblock}>
-            <CodeBlock>
- {`import { SelectableContainerEnhance } from 'material-ui/lib/hoc/selectable-enhance';
-.
-.
-.
-var SelectableList = SelectableContainerEnhance(List);
-`}
-            </CodeBlock>
-          </div>
-
-
-          <h3 style={styles.subheadline}>Where to put state</h3>
-          <p>
-            If this component is used in conjunction with flux or redux this is a no-brainer. The callback-handler
-            just has to update the store. Otherwise the state can be held within e.g the parent, but it is to be to
-            considered that each time a <code>&lt;ListItem&gt;</code> is clicked, the state will update and the parent - including it's
-            children - will rerender.
-          </p>
-          <p>
-            A possible solution for this is to use another hoc. An example can be found in the sourcecode
-            of <code>docs/src/app/components/pages/components/lists.jsx</code>.
-          </p>
-          <h3 style={styles.subheadline}>The valueLink</h3>
-          <p>
-            The prop 'valueLink' of <code>&lt;List&gt;</code> has to be set, to make the highlighting controllable:
-          </p>
-          <div style={styles.codeblock}>
-            <CodeBlock>
-{`valueLink={{
-    value: this.state.selectedIndex,
-    requestChange: this.handleUpdateSelectedIndex}}
-`}
-            </CodeBlock>
-          </div>
-          A sample implementation might look like this.
-          <div style={styles.codeblock}>
-            <CodeBlock>
-{`getInitialState() {
- return { selectedIndex: 1 };
-},
-handleUpdateSelectedIndex(e,index) {
-  this.setState({
-    selectedIndex: index,
-});
-`}
-            </CodeBlock>
-          </div>
-          <h3 style={styles.subheadline}>Adjust the <code>&lt;ListItem&gt;</code></h3>
-          <p>
-            The prop "value" on each ListItem has to be set. This makes the item addressable for the callback.
-          </p>
-        </div>
-        </Paper>
       </ComponentDoc>
     );
 
