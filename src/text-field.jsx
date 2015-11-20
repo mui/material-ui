@@ -228,6 +228,7 @@ const TextField = React.createClass({
       bottom: 'none',
       opacity: 1,
       zIndex: 1, // Needed to display label above Chrome's autocomplete field background
+      cursor: 'text',
       transform: 'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top',
     });
@@ -309,7 +310,8 @@ const TextField = React.createClass({
     let floatingLabelTextElement = floatingLabelText ? (
       <label
         style={this.prepareStyles(styles.floatingLabel, this.props.floatingLabelStyle)}
-        htmlFor={inputId}>
+        htmlFor={inputId}
+        onTouchTap={this.focus}>
         {floatingLabelText}
       </label>
     ) : null;
