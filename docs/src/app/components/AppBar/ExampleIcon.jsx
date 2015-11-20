@@ -1,13 +1,15 @@
 import React from 'react';
-import AppBar from 'material-ui/app-bar';
+import AppBar from 'material-ui/lib/app-bar';
 
-const AppBarExampleIcon = () => {
-  return (
-    <AppBar
-      title="Title"
-      iconClassNameRight="muidocs-icon-navigation-expand-more"
-    />
-  );
-};
+const AppBarExampleIcon = React.createClass({
+  render() {
+    return (
+      <AppBar
+        title="Title"
+        iconClassNameRight="muidocs-icon-navigation-expand-more"
+      />
+    );
+  },
+});
 
 export default AppBarExampleIcon;

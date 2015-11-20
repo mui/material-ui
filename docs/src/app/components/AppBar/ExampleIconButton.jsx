@@ -1,8 +1,8 @@
 import React from 'react';
-import AppBar from 'material-ui/app-bar';
-import IconButton from 'material-ui/icon-button';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import FlatButton from 'material-ui/flat-button';
+import AppBar from 'material-ui/lib/app-bar';
+import IconButton from 'material-ui/lib/icon-button';
+import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
+import FlatButton from 'material-ui/lib/flat-button';
 
 function handleTouchTap() {
   alert('onTouchTap triggered on the title component');
@@ -14,14 +14,16 @@ const styles = {
   },
 };
 
-const AppBarExampleIconButton = () => {
-  return (
-    <AppBar
-      title={<span style={styles.title} onTouchTap={handleTouchTap}>Title</span>}
-      iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-      iconElementRight={<FlatButton label="Save" />}
-    />
- );
-};
+const AppBarExampleIconButton = React.createClass({
+  render() {
+    return (
+      <AppBar
+        title={<span style={styles.title} onTouchTap={handleTouchTap}>Title</span>}
+        iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+        iconElementRight={<FlatButton label="Save" />}
+      />
+   );
+  },
+});
 
 export default AppBarExampleIconButton;

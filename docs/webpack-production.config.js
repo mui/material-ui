@@ -13,11 +13,11 @@ var config = {
   //Webpack config options on how to obtain modules
   resolve: {
     //When requiring, you don't need to add these extensions
-    extensions: ["", ".js", ".jsx", ".txt"],
+    extensions: ["", ".js", ".jsx", ".md", ".txt"],
     alias: {
       //material-ui requires will be searched in src folder, not in node_modules
+      'material-ui/lib': path.resolve(__dirname, '../src'),
       'material-ui': path.resolve(__dirname, '../src'),
-      codemirror: path.resolve(__dirname, 'node_modules/codemirror')
     },
     //Modules will be searched for in these directories
     modulesDirectories: [
@@ -25,7 +25,8 @@ var config = {
       "node_modules",
       path.resolve(__dirname, '../src'),
       path.resolve(__dirname, '../node_modules'),
-      path.resolve(__dirname, 'src/app/components/raw-code')
+      path.resolve(__dirname, 'src/app/components/raw-code'),
+      path.resolve(__dirname, 'src/app/components')
     ]
   },
   devtool: 'source-map',
@@ -63,6 +64,7 @@ var config = {
     ], path.resolve(__dirname,"src"))
   ],
   module: {
+        noParse: [/autoit.js/],
         //eslint loader
         preLoaders: [
           {
@@ -84,6 +86,15 @@ var config = {
             test:/\.txt$/,
             loader: 'raw-loader',
             include: path.resolve(__dirname, 'src/app/components/raw-code')
+          },
+          {
+            test:/\.md$/,
+            loader: 'raw-loader',
+            include: path.resolve(__dirname, 'src/app/components/markdown')
+          },
+          {
+            test: /\.css$/,
+            loader: "style-loader!css-loader"
           },
         ]
   },
