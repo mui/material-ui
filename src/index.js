@@ -1,6 +1,7 @@
 module.exports = {
   AppBar: require('./app-bar'),
   AppCanvas: require('./app-canvas'),
+  AutoComplete: require('./auto-complete'),
   Avatar: require('./avatar'),
   Badge: require('./badge'),
   BeforeAfterWrapper: require('./before-after-wrapper'),
