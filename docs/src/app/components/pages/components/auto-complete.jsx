@@ -10,6 +10,11 @@ class AutoCompletePage extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      input1: [],
+      input2: [],
+      input3: [],
+    }
   }
 
   render() {
@@ -26,20 +31,23 @@ class AutoCompletePage extends React.Component {
 
         <CodeExample code={Code}>
           <AutoComplete
-            onUpdateInput={(t) => {console.log(t); return [t, t+t, t+t+t];}}
+            dataSource= {this.state.input1}
+            onUpdateInput={(t) => {console.log(t); this.setState({input1: [t, t+t, t+t+t]});}}
             onNewRequest={(t) => {console.log('request:'+t);}} />
 
           <AutoComplete
             fullWidth = {true}
             hintText = "hint"
-            onUpdateInput={(t) => {console.log(t); return [t, t+t, t+t+t];}}
+            dataSource= {this.state.input2}
+            onUpdateInput={(t) => {console.log(t); this.setState({input2: [t, t+t, t+t+t]});}}
             onNewRequest={(t) => {console.log('request:'+t);}} />
 
           <AutoComplete
             fullWidth={true}
             searchText= "***************"
             errorText= "error message"
-            onUpdateInput={(t) => {console.log(t); return [t, t+t, t+t+t];}}
+            dataSource= {this.state.input3}
+            onUpdateInput={(t) => {console.log(t); this.setState({input3: [t, t+t, t+t+t]});}}
             onNewRequest={(t) => {console.log('request:'+t);}} />
 
           <AutoComplete
@@ -47,11 +55,12 @@ class AutoCompletePage extends React.Component {
             hintText = "type here"
             onUpdateInput={(t) => {
               console.log(t);
-              return [
-                 (<AutoComplete.Item primaryText={t} secondaryText="&#9786;" />),
-                 (<AutoComplete.Divider/>),
-                 (<AutoComplete.Item primaryText={t.toUpperCase()} secondaryText="&#9885;" />),
-                 ];
+            }}
+            showAllItems = {true}
+            dataSource={{
+                 a:(<AutoComplete.Item primaryText={'a'} secondaryText="&#9786;" />),
+                 divider:(<AutoComplete.Divider/>),
+                 b:(<AutoComplete.Item primaryText={'b'} secondaryText="&#9885;" />),
             }}
             onNewRequest={(t, index) => {console.log('request:'+index);}} />
 
@@ -62,8 +71,8 @@ class AutoCompletePage extends React.Component {
 
           <AutoComplete
             fullWidth={true}
-            floatingLabelText = "auto"
-            auto = {true}
+            floatingLabelText = "showAllItems"
+            showAllItems = {true}
             animated = {false}
             dataSource = {["12345", "23456", "34567"]} />
 

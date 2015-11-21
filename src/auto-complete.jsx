@@ -26,15 +26,19 @@ const AutoComplete = React.createClass({
     errorStyle: React.PropTypes.object,
     hintText: React.PropTypes.string,
     searchText: React.PropTypes.string,
-    dataSource: React.PropTypes.array,
+    dataSource: React.PropTypes.oneOfType([
+      React.PropTypes.array,
+      React.PropTypes.object,
+    ]),
     updateWhenFocused: React.PropTypes.bool,
-    auto: React.PropTypes.bool,
+    showAllItems: React.PropTypes.bool,
     menuStyle: React.PropTypes.object,
     listStyle: React.PropTypes.object,
     menuProps: React.PropTypes.object,
     menuCloseDelay: React.PropTypes.number,
     onUpdateInput: React.PropTypes.func,
     onNewRequest: React.PropTypes.func,
+    filter: React.PropTypes.func,
     disableFocusRipple: React.PropTypes.bool,
   },
 
@@ -43,31 +47,32 @@ const AutoComplete = React.createClass({
       animated: true,
       fullWidth: false,
       open: false,
-      auto: false,
+      showAllItems: false,
       searchText: '',
       menuCloseDelay: 100,
       disableFocusRipple: true,
       updateWhenFocused: false,
       onUpdateInput: () => {},
       onNewRequest: () => {},
+      filter: (searchText, key, value) => key.includes(searchText),
     };
   },
 
   getInitialState() {
     return {
       searchText: this.props.searchText,
-      requestsList: this.props.dataSource && this.props.auto
-                      ? this.props.dataSource : null,
       open: this.props.open,
     };
   },
   
   componentWillMount(){
     this.focusOnInput = false;
+    this.requestsList = [];
   },
 
   componentClickAway() {
     this.setState({open:false});
+    this.focusOnInput = false;
   },
 
   render() {
@@ -81,11 +86,9 @@ const AutoComplete = React.createClass({
       menuStyle,
       menuProps,
       listStyle,
-      auto,
+      showAllItems,
       ...other,
     } = this.props;
-
-    let requestsList = this.state.requestsList;
 
     let styles = {
       root: {
@@ -121,7 +124,38 @@ const AutoComplete = React.createClass({
     let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
 
-    let menu = this.state.open && (this.state.searchText !== '' || auto)
+
+    if(Array.isArray(this.props.dataSource)){
+
+      if(this.props.showAllItems && this.state.searchText === ''){
+        this.requestsList = this.props.dataSource;
+      }
+      else{
+        this.requestsList = this.props.dataSource.filter((s) => this.props.filter(this.state.searchText, s));
+      }
+
+    }
+    else{
+      let list = [];
+      if(this.props.showAllItems && this.state.searchText === ''){
+        for(let k in this.props.dataSource){
+            list.push(this.props.dataSource[k]);
+        }
+      }
+      else{
+        for(let k in this.props.dataSource){
+          if(this.props.filter(this.state.searchText, k, this.props.dataSource[k])){
+            list.push(this.props.dataSource[k]);
+          }
+        }
+      }
+      this.requestsList = list;
+    }
+
+
+    let requestsList = this.requestsList;
+
+    let menu = this.state.open && (this.state.searchText !== '' || showAllItems)
                && requestsList && requestsList.length > 0 ? (
       <Menu
         {...menuProps}
@@ -185,7 +219,7 @@ const AutoComplete = React.createClass({
                 this.refs.searchTextField.focus();
             }}
             onFocus={()=>{
-              if(!this.state.open && ( auto ||
+              if(!this.state.open && ( showAllItems ||
                   this.props.updateWhenFocused || this.state.searchText !== '')){
                 this._updateRequests(this.state.searchText);
               }
@@ -213,47 +247,13 @@ const AutoComplete = React.createClass({
 
     this.setState({
       searchText:searchText,
+      open: true,
     });
+
     this.focusOnInput = true;
 
-    if(this.props.dataSource){
-      this.props.onUpdateInput(searchText);
+    this.props.onUpdateInput(searchText, this.props.dataSource);
 
-      let list = this.props.dataSource.filter((v) => v.includes(searchText));
-
-      if(this.props.auto && searchText === ''){
-        list = this.props.dataSource;
-      }
-      this.setState({
-        requestsList: list,
-        open: true,
-      })
-
-      return;
-    }
-
-
-    let requestsListPromise = new Promise((resolve, reject) => {
-      let list = this.props.onUpdateInput(searchText, this.state.requestsList);
-      if(list){
-        resolve(list);
-      }
-      else{
-        reject();
-      }
-    });
-
-    requestsListPromise.then(list => {
-      this.setState({
-        requestsList:list,
-        open: true,
-      });
-    }, ()=>{
-      this.setState({
-        requestsList:null,
-        open: false,
-      });
-    });
   },
 
   _handleItemTouchTap(e, child) {
@@ -261,12 +261,15 @@ const AutoComplete = React.createClass({
       this.setState({open:false});
     }, this.props.touchTapCloseDelay);
 
-    let index=parseInt(child.key, 10);
+    let dataSource = this.props.dataSource;
+    let chosenRequest=this.requestsList[parseInt(child.key, 10)];
 
-    let chosenRequest=this.state.requestsList[index];
-    this.setState({searchText:typeof chosenRequest === 'string' ?
-          chosenRequest : chosenRequest.props.value});
-    this.props.onNewRequest(chosenRequest, index, this.state.requestsList);
+    let index = Array.isArray(dataSource) ? dataSource.indexOf(chosenRequest) :
+                  Object.keys(dataSource).filter((key) => chosenRequest === dataSource[key])[0];
+    
+    this.setState({searchText: Array.isArray(dataSource) ? dataSource[index] : index});
+
+    this.props.onNewRequest(chosenRequest, index, dataSource);
 
   },
 
