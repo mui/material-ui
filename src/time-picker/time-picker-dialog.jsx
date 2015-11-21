@@ -76,6 +76,7 @@ const TimePickerDialog = React.createClass({
       },
       dialogContent: {
         width: 280,
+        height: 64,
       },
       body: {
         padding:0,
