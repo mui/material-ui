@@ -52,6 +52,7 @@ const FloatingActionButton = React.createClass({
     onTouchStart: React.PropTypes.func,
     secondary: React.PropTypes.bool,
     style: React.PropTypes.object,
+    onMouseEnter: React.PropTypes.func,
   },
 
   getInitialState() {

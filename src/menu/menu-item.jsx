@@ -37,6 +37,9 @@ const MenuItem = React.createClass({
     selected: React.PropTypes.bool,
     style: React.PropTypes.object,
     active: React.PropTypes.bool,
+    onMouseLeave: React.PropTypes.func,
+    onMouseEnter: React.PropTypes.func,
+    icon: React.PropTypes.node,
   },
 
   //for passing default theme context to children

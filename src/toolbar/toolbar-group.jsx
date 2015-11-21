@@ -16,6 +16,8 @@ const ToolbarGroup = React.createClass({
     className: React.PropTypes.string,
     float: React.PropTypes.string,
     style: React.PropTypes.object,
+    lastChild: React.PropTypes.bool,
+    firstChild: React.PropTypes.bool,
   },
 
   //for passing default theme context to children

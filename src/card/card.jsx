@@ -15,6 +15,8 @@ const Card = React.createClass({
     expandable: React.PropTypes.bool,
     initiallyExpanded: React.PropTypes.bool,
     onExpandChange: React.PropTypes.func,
+    actAsExpander: React.PropTypes.bool,
+    showExpandableButton: React.PropTypes.bool,
   },
 
   _onExpandable() {

@@ -43,6 +43,10 @@ const RadioButton = React.createClass({
     iconStyle: React.PropTypes.object,
     labelStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func,
+    checked: React.PropTypes.bool,
+    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    disabled: React.PropTypes.bool,
+    value: React.PropTypes.bool,
   },
 
   getTheme() {
