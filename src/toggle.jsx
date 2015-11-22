@@ -115,6 +115,7 @@ const Toggle = React.createClass({
   render() {
     let {
       onToggle,
+      valueLink,
       ...other,
     } = this.props;
 
@@ -178,7 +179,7 @@ const Toggle = React.createClass({
       switched: this.state.switched,
       onSwitch: this._handleToggle,
       onParentShouldUpdate: this._handleStateChange,
-      defaultSwitched: this.props.defaultToggled,
+      defaultSwitched: this.props.defaultToggled || (this.props.valueLink && this.props.valueLink.value) || false,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "left",
     };
 
@@ -201,6 +202,7 @@ const Toggle = React.createClass({
 
   _handleToggle(e, isInputChecked) {
     if (this.props.onToggle) this.props.onToggle(e, isInputChecked);
+    if (this.props.valueLink) this.props.valueLink.requestChange(isInputChecked);
   },
 
   _handleStateChange(newSwitched) {
