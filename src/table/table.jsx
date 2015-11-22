@@ -26,6 +26,7 @@ const Table = React.createClass({
     onRowSelection: React.PropTypes.func,
     selectable: React.PropTypes.bool,
     style: React.PropTypes.object,
+    wrapperStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -99,6 +100,7 @@ const Table = React.createClass({
       fixedFooter,
       fixedHeader,
       style,
+      wrapperStyle,
       ...other,
     } = this.props;
     let classes = 'mui-table';
@@ -155,7 +157,7 @@ const Table = React.createClass({
     }
 
     return (
-      <div className="mui-table-wrapper" style={this.prepareStyles(styles.tableWrapper)}>
+      <div className="mui-table-wrapper" style={this.prepareStyles(styles.tableWrapper, wrapperStyle)}>
         {headerTable}
         <div className="mui-body-table" style={this.prepareStyles(styles.bodyTable)} ref="tableDiv">
           <table className={classes} style={mergedTableStyle} ref="tableBody">
