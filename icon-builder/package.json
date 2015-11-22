@@ -36,7 +36,7 @@
     "grunt-mocha-test": "^0.12.7",
     "load-grunt-tasks": "^3.2.0",
     "lodash": "^3.10.0",
-    "material-design-icons": "^2.0.0",
+    "material-design-icons": "^2.1.0",
     "mkdirp": "^0.5.1",
     "mocha": "^2.2.5",
     "mustache": "^2.1.2",
