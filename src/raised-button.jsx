@@ -59,6 +59,7 @@ const RaisedButton = React.createClass({
     disabledLabelColor: React.PropTypes.string,
     fullWidth: React.PropTypes.bool,
     style: React.PropTypes.object,
+    onMouseEnter: React.PropTypes.func,
   },
 
   getDefaultProps: function() {

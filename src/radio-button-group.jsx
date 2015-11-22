@@ -30,6 +30,7 @@ const RadioButtonGroup = React.createClass({
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
     onChange: React.PropTypes.func,
     style: React.PropTypes.object,
+    className: React.PropTypes.string,
   },
 
   _hasCheckAttribute(radioButton) {

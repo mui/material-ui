@@ -13,6 +13,7 @@ const ToolbarSeparator = React.createClass({
 
   propTypes: {
     style: React.PropTypes.object,
+    className: React.PropTypes.string,
   },
   
   //for passing default theme context to children

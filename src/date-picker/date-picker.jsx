@@ -48,6 +48,7 @@ const DatePicker = React.createClass({
     showYearSelector: React.PropTypes.bool,
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
+    value: React.PropTypes.object,
   },
 
   windowListeners: {

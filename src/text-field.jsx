@@ -53,6 +53,9 @@ const TextField = React.createClass({
     underlineFocusStyle: React.PropTypes.object,
     underlineDisabledStyle: React.PropTypes.object,
     style: React.PropTypes.object,
+    disabled: React.PropTypes.bool,
+    defaultValue: React.PropTypes.string,
+    value: React.PropTypes.string,
   },
 
   //for passing default theme context to children

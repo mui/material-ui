@@ -116,6 +116,12 @@ let Dialog = React.createClass({
     title: React.PropTypes.node,
     defaultOpen: React.PropTypes.bool,
     open: React.PropTypes.bool,
+    modal: React.PropTypes.bool,
+    onDismiss: React.PropTypes.func,
+    onShow: React.PropTypes.func,
+    onRequestClose: React.PropTypes.func,
+    actionFocus: React.PropTypes.string, 
+    titleStyle: React.PropTypes.object,
   },
 
   windowListeners: {

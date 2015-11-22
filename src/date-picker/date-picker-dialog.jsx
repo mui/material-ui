@@ -54,6 +54,8 @@ const DatePickerDialog = React.createClass({
     style: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
     showYearSelector: React.PropTypes.bool,
+    autoOk: React.PropTypes.bool,
+    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
   },
 
   //for passing default theme context to children

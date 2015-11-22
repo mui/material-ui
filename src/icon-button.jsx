@@ -66,6 +66,8 @@ const IconButton = React.createClass({
     tooltipPosition: PropTypes.cornersAndCenter,
     touch: React.PropTypes.bool,
     style: React.PropTypes.object,
+    onMouseLeave: React.PropTypes.func,
+    onMouseEnter: React.PropTypes.func,
   },
 
   getInitialState() {

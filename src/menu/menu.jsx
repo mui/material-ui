@@ -34,6 +34,8 @@ const NestedMenuItem = React.createClass({
     onItemTap: React.PropTypes.func,
     menuItemStyle: React.PropTypes.object,
     style: React.PropTypes.object,
+    onMouseOver: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func,
   },
 
   getDefaultProps() {
@@ -233,6 +235,7 @@ const Menu = React.createClass({
     menuItemClassName: React.PropTypes.string,
     menuItemClassNameSubheader: React.PropTypes.string,
     menuItemClassNameLink: React.PropTypes.string,
+    onItemToggle: React.PropTypes.func,
   },
 
   //for passing default theme context to children

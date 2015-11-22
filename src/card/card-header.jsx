@@ -50,6 +50,7 @@ const CardHeader = React.createClass({
     expandable: React.PropTypes.bool,
     actAsExpander: React.PropTypes.bool,
     showExpandableButton: React.PropTypes.bool,
+    avatar: React.PropTypes.node,
   },
 
   getDefaultProps() {
