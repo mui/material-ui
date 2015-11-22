@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const SvgIcon = {{{ muiRequireStmt }}};
 
 const {{className}} = React.createClass({
