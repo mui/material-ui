@@ -9,7 +9,6 @@ const IconButtonCode = require('icons-code');
 const SvgIconsCode = require('svg-icons-code');
 const CodeExample = require('../../code-example/code-example');
 
-
 export default class FontIconPage extends React.Component {
 
   getStyles() {
@@ -48,14 +47,31 @@ export default class FontIconPage extends React.Component {
     );
 
     let svgIconDesc = (
-      <p style={this.getStyles()}>
-        Alternatively, it is possible to include svg icons using mui.SvgIcon to
-        create a custom svg component. Here we are creating the ActionHome
-        SvgIcon for this docs site, and using it in some seperate component.
-        Custom SvgIcon components can be included as children for other Material
-        UI components that use icons such as <a title="Example of SvgIcon usage"
-        href="#/components/icon-buttons">IconButtons</a>.
-      </p>
+      <div>
+        <p style={this.getStyles()}>
+          Alternatively, it is possible to include svg icons using mui.SvgIcon to
+          create a custom svg component. Here we are creating the ActionHome
+          SvgIcon for this docs site, and using it in some seperate component.
+          Custom SvgIcon components can be included as children for other Material
+          UI components that use icons such as <a title="Example of SvgIcon usage"
+          href="#/components/icon-buttons">IconButtons</a>.
+        </p>
+        <p>
+          For all of the Google's Material Design Icons prebuild SvgIcon components 
+          exist. They can be used this way:
+        </p>
+          <CodeBlock>
+            {`
+const SocialNotificationsActive = require('material-ui/lib/svg-icons/social/notifications-active');
+...
+  render: function() {
+    return (
+      <SocialNotificationsActive />
+    );
+  }
+`}
+          </CodeBlock>
+      </div>
     );
 
     let componentInfo = [
