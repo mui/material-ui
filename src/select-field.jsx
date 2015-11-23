@@ -140,6 +140,8 @@ const SelectField = React.createClass({
       hintText,
       fullWidth,
       errorText,
+      onFocus,
+      onBlur,
       ...other,
     } = this.props;
 
@@ -151,6 +153,8 @@ const SelectField = React.createClass({
       fullWidth: fullWidth,
       errorText: errorText,
       errorStyle: this.mergeAndPrefix(styles.error, errorStyle),
+      onFocus: onFocus,
+      onBlur: onBlur,
     };
     const dropDownMenuProps = {
       menuItems: menuItems,

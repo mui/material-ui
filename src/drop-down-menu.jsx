@@ -178,8 +178,6 @@ const DropDownMenu = React.createClass({
     const {
       autoWidth,
       className,
-      onFocus,
-      onBlur,
       style,
       displayMember,
       valueMember,
@@ -226,8 +224,6 @@ const DropDownMenu = React.createClass({
         {...other}
         ref="root"
         onKeyDown={this._onKeyDown}
-        onFocus={onFocus}
-        onBlur={onBlur}
         className={className}
         style={this.prepareStyles(
           styles.root,
