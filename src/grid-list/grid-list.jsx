@@ -56,6 +56,7 @@ const GridList = React.createClass({
       root: {
         display: '-webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex',
         flexWrap: 'wrap',
+        WebkitFlexWrap: 'wrap',
         margin: `-${this.props.padding/2}px`,
       },
       item: {
