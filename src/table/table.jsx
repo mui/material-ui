@@ -27,6 +27,9 @@ const Table = React.createClass({
     selectable: React.PropTypes.bool,
     style: React.PropTypes.object,
     wrapperStyle: React.PropTypes.object,
+    headerStyle: React.PropTypes.object,
+    bodyStyle: React.PropTypes.object,
+    footerStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -101,6 +104,9 @@ const Table = React.createClass({
       fixedHeader,
       style,
       wrapperStyle,
+      headerStyle,
+      bodyStyle,
+      footerStyle,
       ...other,
     } = this.props;
     let classes = 'mui-table';
@@ -131,7 +137,7 @@ const Table = React.createClass({
     let inlineHeader, inlineFooter;
     if (fixedHeader) {
       headerTable = (
-        <div className="mui-header-table">
+        <div className="mui-header-table" style={this.prepareStyles(headerStyle)}>
           <table className={className} style={mergedTableStyle}>
             {tHead}
           </table>
@@ -144,7 +150,7 @@ const Table = React.createClass({
     if (tFoot !== undefined) {
       if (fixedFooter) {
         footerTable = (
-          <div className="mui-footer-table">
+          <div className="mui-footer-table" style={this.prepareStyles(footerStyle)}>
             <table className={className} style={mergedTableStyle}>
               {tFoot}
             </table>
@@ -159,7 +165,7 @@ const Table = React.createClass({
     return (
       <div className="mui-table-wrapper" style={this.prepareStyles(styles.tableWrapper, wrapperStyle)}>
         {headerTable}
-        <div className="mui-body-table" style={this.prepareStyles(styles.bodyTable)} ref="tableDiv">
+        <div className="mui-body-table" style={this.prepareStyles(styles.bodyTable, bodyStyle)} ref="tableDiv">
           <table className={classes} style={mergedTableStyle} ref="tableBody">
             {inlineHeader}
             {inlineFooter}

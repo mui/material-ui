@@ -57,6 +57,12 @@ export default class TablePage extends React.Component {
             desc: 'Set to true to indicate that all rows should be selected.',
           },
           {
+            name: 'bodyStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the body\'s table element.',
+          },
+          {
             name: 'fixedFooter',
             type: 'bool',
             header: 'optional',
@@ -67,6 +73,18 @@ export default class TablePage extends React.Component {
             type: 'bool',
             header: 'optional',
             desc: 'If true, the header will appear fixed above the table. The default value is true.',
+          },
+          {
+            name: 'footerStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the footer\'s table element.',
+          },
+          {
+            name: 'headerStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the header\'s table element.',
           },
           {
             name: 'height',
