@@ -387,6 +387,7 @@ const wrapperStyle = {position:'fixed', top:0, left:0, zIndex:20};
 const Dialog = React.createClass({
 
   propTypes: {
+    actionFocus: React.PropTypes.string, 
     actions: React.PropTypes.array,
     autoDetectWindowHeight: React.PropTypes.bool,
     autoScrollBodyContent: React.PropTypes.bool,
@@ -395,12 +396,15 @@ const Dialog = React.createClass({
     contentStyle: React.PropTypes.object,
     defaultOpen: React.PropTypes.bool,
     modal: React.PropTypes.bool,
+    onDismiss: React.PropTypes.func,
     onRequestClose: React.PropTypes.func,
+    onShow: React.PropTypes.func,
     open: React.PropTypes.bool,
     openImmediately: React.PropTypes.bool,
     repositionOnUpdate: React.PropTypes.bool,
     style: React.PropTypes.object,
     title: React.PropTypes.node,
+    titleStyle: React.PropTypes.object,
   },
 
   getInitialState() {
