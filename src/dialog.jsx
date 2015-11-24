@@ -47,6 +47,10 @@ const TransitionItem = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
+  componentWillEnter(callback) {
+    this.componentWillAppear(callback);
+  },
+
   componentWillAppear(callback) {
     let spacing = this.state.muiTheme.rawTheme.spacing;
 
@@ -111,10 +115,10 @@ const DialogInline = React.createClass({
     bodyStyle: React.PropTypes.object,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
+    open: React.PropTypes.bool.isRequired,
     repositionOnUpdate: React.PropTypes.bool,
     style: React.PropTypes.object,
     title: React.PropTypes.node,
-    open: React.PropTypes.bool.isRequired,
   },
 
   windowListeners: {
@@ -221,7 +225,9 @@ const DialogInline = React.createClass({
 
     return (
       <div ref="container" style={this.prepareStyles(styles.main)}>
-        <ReactTransitionGroup component="div" ref="dialogWindow" transitionAppear={true} transitionAppearTimeout={450}>
+        <ReactTransitionGroup component="div" ref="dialogWindow" 
+          transitionAppear={true} transitionAppearTimeout={450}
+          transitionEnter={true} transitionEnterTimeout={450}>
           {this.props.open &&
             <TransitionItem
               className={this.props.contentClassName}
@@ -348,7 +354,8 @@ const DialogInline = React.createClass({
   },
 
   _requestClose(buttonClicked) {
-    if (!buttonClicked || this.props.modal) {
+    
+    if (!buttonClicked && this.props.modal) {
       return;
     }
 
@@ -386,13 +393,14 @@ const Dialog = React.createClass({
     bodyStyle: React.PropTypes.object,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
+    defaultOpen: React.PropTypes.bool,
+    modal: React.PropTypes.bool,
+    onRequestClose: React.PropTypes.func,
+    open: React.PropTypes.bool,
     openImmediately: React.PropTypes.bool,
-    onClickAway: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
     style: React.PropTypes.object,
     title: React.PropTypes.node,
-    defaultOpen: React.PropTypes.bool,
-    open: React.PropTypes.bool,
   },
 
   getInitialState() {
@@ -416,6 +424,7 @@ const Dialog = React.createClass({
     return {
       open:null,
       defaultOpen:false,
+      modal:false,
     }
   },
 
@@ -446,7 +455,7 @@ const Dialog = React.createClass({
   renderLayer() {
     return (
       <div style={wrapperStyle}>
-          <DialogInline {...this.props} onRequestClose={this.props.onRequestClose} open={this.props.open} />
+        <DialogInline {...this.props} onRequestClose={this.props.onRequestClose} open={this.state.open} />
       </div>
     );
   },
