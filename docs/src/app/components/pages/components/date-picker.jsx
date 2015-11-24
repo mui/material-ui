@@ -64,6 +64,12 @@ export default class DatePickerPage extends React.Component {
             desc: 'Wordings used inside the button of the dialog.',
           },
           {
+            name: 'weekDayTitles',
+            type: 'object',
+            header: 'default: {sun: \'S\', mon: \'M\', tue: \'T\', wed: \'W\', thu: \'T\', fri: \'F\', sat: \'S\'}',
+            desc: 'Gives you ability to redefine week day titles.',
+          },
+          {
             name: 'autoOk',
             type: 'bool',
             header: 'default: false',

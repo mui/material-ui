@@ -49,6 +49,7 @@ const DatePicker = React.createClass({
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
     value: React.PropTypes.object,
+    weekDayTitles: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -103,6 +104,7 @@ const DatePicker = React.createClass({
       style,
       textFieldStyle,
       valueLink,
+      weekDayTitles,
       ...other,
     } = this.props;
 
@@ -131,7 +133,8 @@ const DatePicker = React.createClass({
           autoOk={autoOk}
           showYearSelector={showYearSelector}
           shouldDisableDate={this.props.shouldDisableDate}
-          hideToolbarYearChange={this.props.hideToolbarYearChange} />
+          hideToolbarYearChange={this.props.hideToolbarYearChange}
+          weekDayTitles={weekDayTitles} />
       </div>
 
     );

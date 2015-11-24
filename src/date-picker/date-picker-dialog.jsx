@@ -56,6 +56,7 @@ const DatePickerDialog = React.createClass({
     showYearSelector: React.PropTypes.bool,
     autoOk: React.PropTypes.bool,
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
+    weekDayTitles: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -110,6 +111,7 @@ const DatePickerDialog = React.createClass({
       container,
       onDismiss,
       onShow,
+      weekDayTitles,
       ...other,
     } = this.props;
 
@@ -182,7 +184,8 @@ const DatePickerDialog = React.createClass({
           maxDate={this.props.maxDate}
           shouldDisableDate={this.props.shouldDisableDate}
           showYearSelector={this.props.showYearSelector}
-          mode={this.props.mode} />
+          mode={this.props.mode}
+          weekDayTitles={weekDayTitles} />
       </Container>
     );
   },
