@@ -22,6 +22,12 @@ const AppLeftNav = React.createClass({
     muiTheme: React.PropTypes.object,
     router: React.PropTypes.func,
   },
+  
+  getInitialState () {
+    return {
+      leftNavOpen: false,
+    };
+  },
 
   getStyles() {
     return {
@@ -49,7 +55,8 @@ const AppLeftNav = React.createClass({
       <LeftNav
         ref="leftNav"
         docked={false}
-        isInitiallyOpen={false}
+        open={this.state.leftNavOpen}
+        onChangeRequest={this._onLeftNavChangeRequest}
         header={header}
         menuItems={menuItems}
         selectedIndex={this._getSelectedIndex()}
@@ -58,7 +65,7 @@ const AppLeftNav = React.createClass({
   },
 
   toggle() {
-    this.refs.leftNav.toggle();
+    this.setState({leftNavOpen: !this.state.leftNavOpen});
   },
 
   _getSelectedIndex() {
@@ -70,13 +77,17 @@ const AppLeftNav = React.createClass({
     }
   },
 
+  _onLeftNavChangeRequest(open) {
+    this.setState({leftNavOpen: open});
+  },
+
   _onLeftNavChange(e, key, payload) {
     this.props.history.pushState(null, payload.route);
   },
 
   _onHeaderClick() {
     this.props.history.pushState(null, '/');
-    this.refs.leftNav.close();
+    this.setState({leftNavOpen: false});
   },
 
 });

@@ -20,17 +20,21 @@ menuItems = [
   },
 ];
 
-//Toggle the LeftNav
-this.refs.leftNav.toggle();
-
 //Docked Left Nav
 <LeftNav ref="leftNav" menuItems={menuItems} />
 
-//Hideable Left Nav
-<LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+//Controlled and docked Left Nav. Can only be opened and close by changing the open prop.
+<LeftNav open={this.state.navOpen} menuItems={menuItems} />
 
-//Hideable Left Nav with Nested Children
-<LeftNav ref="leftNavChildren" docked={false}>
+//Controlled and docked Left Nav with nested children
+<LeftNav ref="leftNavChildren" open={this.state.navWithChildrenOpen} docked={false}>
   <MenuItem index={0}>Menu Item</MenuItem>
   <MenuItem index={1}><a href="/link">Link</a></MenuItem>
 </LeftNav>
+
+//Controlled and undocked Left Nav.
+<LeftNav 
+  open={this.state.undockedNavOpen} 
+  onChangeRequest={this._handleLeftNavChanged}
+  docked={false} 
+  menuItems={menuItems} />

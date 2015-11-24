@@ -1,5 +1,7 @@
 const isBrowser = require('./utils/is-browser');
 
+const warning = require('warning');
+
 let Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
 
 const React = require('react');
@@ -41,9 +43,11 @@ const LeftNav = React.createClass({
     className: React.PropTypes.string,
     disableSwipeToOpen: React.PropTypes.bool,
     docked: React.PropTypes.bool,
+    open: React.PropTypes.bool,
     header: React.PropTypes.element,
     menuItems: React.PropTypes.array,
     onChange: React.PropTypes.func,
+    onChangeRequest: React.PropTypes.func,
     onNavOpen: React.PropTypes.func,
     onNavClose: React.PropTypes.func,
     openRight: React.PropTypes.bool,
@@ -63,6 +67,7 @@ const LeftNav = React.createClass({
     return {
       disableSwipeToOpen: false,
       docked: true,
+      open: null,
     };
   },
 
@@ -72,8 +77,10 @@ const LeftNav = React.createClass({
     this._touchStartY = null;
     this._swipeStartX = null;
 
+    this._testDeprecations();
+
     return {
-      open: this.props.docked,
+      open: (this.props.open !== null ) ? this.props.open : this.props.docked,
       swiping: null,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -84,8 +91,14 @@ const LeftNav = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     const newState = { muiTheme: newMuiTheme };
-
+    
+    this._testDeprecations();
+    
+    // If docked is changed, change the open state for when uncontrolled.
     if (this.props.docked !== nextProps.docked) newState.open = nextProps.docked;
+
+    // If controlled then the open prop takes precedence.
+    if (nextProps.open !== null) newState.open = nextProps.open;
 
     this.setState(newState);
   },
@@ -105,16 +118,21 @@ const LeftNav = React.createClass({
   },
 
   toggle() {
-    return (this.state.open) ? this.close() : this.open();
+    warning(false, 'using methods on left nav has been deprecated. Please refer to documentations.');  
+    if (this.state.open) this.close(); 
+    else this.open();
+    return this;
   },
 
   close() {
+    warning(false, 'using methods on left nav has been deprecated. Please refer to documentations.');
     this.setState({ open: false });
     if (this.props.onNavClose) this.props.onNavClose();
     return this;
   },
 
   open() {
+    warning(false, 'using methods on left nav has been deprecated. Please refer to documentations.');
     this.setState({ open: true });
     if (this.props.onNavOpen) this.props.onNavOpen();
     return this;
@@ -149,6 +167,9 @@ const LeftNav = React.createClass({
         height: '100%',
         borderRadius: '0',
       },
+      overlay: {
+        pointerEvents: this.state.open ? 'auto' : 'none', // Bypass mouse events when left nav is closing.
+      },
       menuItem: {
         height: this.state.muiTheme.rawTheme.spacing.desktopLeftNavMenuItemHeight,
         lineHeight: this.state.muiTheme.rawTheme.spacing.desktopLeftNavMenuItemHeight + 'px',
@@ -180,7 +201,8 @@ const LeftNav = React.createClass({
       overlay = (
         <Overlay
           ref="overlay"
-          show={this.state.open || !!this.state.swiping}
+          show={this._shouldShow()}
+          style={styles.overlay}
           transitionEnabled={!this.state.swiping}
           onTouchTap={this._onOverlayTouchTap} />
       );
@@ -225,6 +247,30 @@ const LeftNav = React.createClass({
     );
   },
 
+  _testDeprecations() {
+    warning(!(typeof this.props.onNavClose === 'function'),
+      'onNavClose will be removed in favor of onChangeRequest');
+
+    warning(!(typeof this.props.onNavOpen === 'function'),
+      'onNavOpen will be removed in favor of onChangeRequest');
+  },
+
+  _shouldShow() {
+    return this.state.open || !!this.state.swiping;  // component is swiping
+  },
+  
+  _close(reason) {
+    if (this.props.open === null) this.setState({ open: false });
+    if (this.props.onChangeRequest) this.props.onChangeRequest(false, reason);
+    return this;
+  },
+
+  _open(reason) {
+    if (this.props.open === null) this.setState({ open: true });
+    if (this.props.onChangeRequest) this.props.onChangeRequest(true, reason);
+    return this;
+  },
+
   _updateMenuHeight() {
     if (this.props.header) {
       const menu = ReactDOM.findDOMNode(this.refs.menuItems);
@@ -240,18 +286,18 @@ const LeftNav = React.createClass({
     if (this.props.onChange && this.props.selectedIndex !== key) {
       this.props.onChange(e, key, payload);
     }
-    if (!this.props.docked) this.close();
+    if (!this.props.docked) this._close('clickaway');
   },
 
   _onOverlayTouchTap() {
-    this.close();
+    this._close('clickaway');
   },
 
   _onWindowKeyUp(e) {
     if (e.keyCode === KeyCode.ESC &&
         !this.props.docked &&
         this.state.open) {
-      this.close();
+      this._close('escape');
     }
   },
 
@@ -370,12 +416,12 @@ const LeftNav = React.createClass({
         if (swiping === 'opening') {
           this._setPosition(this._getMaxTranslateX());
         } else {
-          this.close();
+          this._close('swipe');
         }
       }
       else {
         if (swiping === 'opening') {
-          this.open();
+          this._open('swipe');
         } else {
           this._setPosition(0);
         }
