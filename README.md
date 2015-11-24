@@ -1,3 +1,7 @@
+#### Note
+
+For *how-to* questions and other non-issues, please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
+
 #[Material-UI](http://callemall.github.io/material-ui/)
 [![npm package](https://img.shields.io/npm/v/material-ui.svg?style=flat-square)](https://www.npmjs.org/package/material-ui)
 [![Build Status](https://travis-ci.org/callemall/material-ui.svg?branch=master)](https://travis-ci.org/callemall/material-ui)
