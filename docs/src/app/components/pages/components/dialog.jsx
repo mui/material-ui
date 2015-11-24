@@ -212,6 +212,7 @@ export default class DialogPage extends React.Component {
             title="Dialog With Standard Actions"
             actions={standardActions}
             actionFocus="submit"
+            modal={this.state.modal}
             open={this.state.openDialogStandardActions}
             onRequestClose={this._handleRequestClose}>
             The actions in this window are created from the json that&#39;s passed in.
@@ -221,6 +222,7 @@ export default class DialogPage extends React.Component {
             ref="customDialog"
             title="Dialog With Custom Actions"
             actions={customActions}
+            modal={this.state.modal}
             open={this.state.openDialogCustomActions}
             onRequestClose={this._handleRequestClose}>
             The actions in this window were passed in as an array of react objects.
@@ -235,6 +237,7 @@ export default class DialogPage extends React.Component {
             ref="scrollableContentDialog"
             title="Dialog With Scrollable Content"
             actions={scrollableCustomActions}
+            modal={this.state.modal}
             autoDetectWindowHeight={true}
             autoScrollBodyContent={true}
             open={this.state.openDialogScrollable}
