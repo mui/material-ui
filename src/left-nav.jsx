@@ -331,16 +331,30 @@ const LeftNav = React.createClass({
     }
   },
 
-  _onBodyTouchStart(e) {
+  _onBodyTouchStart(e) {  
+  
+    const swipeAreaWidth = 30;
+  
+    let touchStartX = e.touches[0].pageX;
+    let touchStartY = e.touches[0].pageY;
+    
+    // Open only if swiping from far left (or right) while closed
+    if (!this.state.open) {
+      if (this.props.openRight) {
+        // If openRight is true calculate from the far right
+        if (touchStartX < document.body.offsetWidth - swipeAreaWidth) return;
+      } else {
+        // If openRight is false calculate from the far left
+        if (touchStartX > swipeAreaWidth) return;
+      }
+    }
+    
     if (!this.state.open &&
          (openNavEventHandler !== this._onBodyTouchStart ||
           this.props.disableSwipeToOpen)
        ) {
       return;
     }
-
-    let touchStartX = e.touches[0].pageX;
-    let touchStartY = e.touches[0].pageY;
 
     this._maybeSwiping = true;
     this._touchStartX = touchStartX;
