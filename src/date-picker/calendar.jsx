@@ -138,7 +138,7 @@ const Calendar = React.createClass({
     const weekTitleDayStyle = this.prepareStyles(styles.weekTitleDay);
     const {
       DateTimeFormat,
-      locale
+      locale,
     } = this.props;
     
     let weekDayTitles =
@@ -151,7 +151,7 @@ const Calendar = React.createClass({
         wed: 'W',
         thu: 'T',
         fri: 'F',
-        sat: 'S'
+        sat: 'S',
       };
 
     return (
