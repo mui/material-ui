@@ -1,7 +1,7 @@
-const React = require('react');
-const { ClearFix, Mixins, Styles } = require('material-ui');
-const CodeExample = require('./code-example/code-example');
-const ComponentInfo = require('./component-info');
+import React from 'react';
+import { ClearFix, Mixins, Styles } from 'material-ui';
+import CodeExample from './code-example/code-example';
+import ComponentInfo from './component-info';
 const Typography = Styles.Typography;
 const { Classable, StylePropable } = Mixins;
 const ThemeManager = Styles.ThemeManager;

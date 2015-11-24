@@ -1,5 +1,5 @@
-const React = require('react');
-const {Mixins} = require('material-ui');
+import React from 'react';
+import {Mixins} from 'material-ui';
 const { StylePropable } = Mixins;
 
 

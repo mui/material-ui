@@ -1,9 +1,9 @@
-const React = require('react');
-const mui = require('material-ui');
-const CodeBlock = require('../../code-example/code-block');
-const ComponentDoc = require('../../component-doc');
-const ComponentInfo = require('../../component-info');
-const CodeExample = require('../../code-example/code-example');
+import React from 'react';
+import mui from 'material-ui';
+import CodeBlock from '../../code-example/code-block';
+import ComponentDoc from '../../component-doc';
+import ComponentInfo from '../../component-info';
+import CodeExample from '../../code-example/code-example';
 
 const {
   Checkbox,
@@ -158,10 +158,10 @@ const ThemesPage = React.createClass({
   render() {
 
     let lightRawTheme =
-      'let Colors = require(\'material-ui/lib/styles/colors\');\n' +
-      'let ColorManipulator = require(\'material-ui/lib/utils/color-manipulator\');\n' +
-      'let Spacing = require(\'material-ui/lib/styles/spacing\');\n\n' +
-      'module.exports = {\n' +
+      'import Colors from \'material-ui/lib/styles/colors\';\n' +
+      'import ColorManipulator from \'material-ui/lib/utils/color-manipulator\';\n' +
+      'import Spacing from \'material-ui/lib/styles/spacing\';\n\n' +
+      'export default {\n' +
       '  spacing: Spacing,\n' +
       '  fontFamily: \'Roboto, sans-serif\',\n' +
       '  palette: {\n' +
@@ -180,12 +180,12 @@ const ThemesPage = React.createClass({
       '};\n';
 
     let reactContextExampleCode =
-      'const React = require(\'react\');\n' +
-      'const AppBar = require(\'material-ui\/lib\/app-bar\');\n' +
-      'const RaisedButton = require(\'material-ui\/lib\/raised-button\');\n\n' +
+      'import React from \'react\';\n' +
+      'import AppBar from \'material-ui\/lib\/app-bar\';\n' +
+      'import RaisedButton from \'material-ui\/lib\/raised-button\';\n\n' +
 
-      'const ThemeManager = require(\'material-ui\/lib\/styles\/theme-manager\');\n' +
-      'const MyRawTheme = require(\'path\/to\/your\/raw\/theme\/file\');\n\n' +
+      'import ThemeManager from \'material-ui\/lib\/styles\/theme-manager\';\n' +
+      'import MyRawTheme from \'path\/to\/your\/raw\/theme\/file\';\n\n' +
 
       'const MySampleAppComponent = React.createClass({\n\n' +
 
@@ -211,16 +211,16 @@ const ThemesPage = React.createClass({
       '    );\n' +
       '  },\n' +
       '});\n\n' +
-      'module.exports = MySampleAppComponent;\n';
+      'export default MySampleAppComponent;\n';
 
     let decoratorExampleCode =
-      'const React = require(\'react\');\n' +
-      'const AppBar = require(\'material-ui\/lib\/app-bar\');\n' +
-      'const RaisedButton = require(\'material-ui\/lib\/raised-button\');\n\n' +
+      'import React from \'react\';\n' +
+      'import AppBar from \'material-ui\/lib\/app-bar\';\n' +
+      'import RaisedButton from \'material-ui\/lib\/raised-button\';\n\n' +
 
-      'const MyRawTheme = require(\'path\/to\/your\/raw\/theme\/file\');\n' +
-      'const ThemeManager = require(\'material-ui\/lib\/styles\/theme-manager\');\n' +
-      'const ThemeDecorator = require(\'material-ui\/lib\/styles\/theme-decorator\');\n\n' +
+      'import MyRawTheme from \'path\/to\/your\/raw\/theme\/file\';\n' +
+      'import ThemeManager from \'material-ui\/lib\/styles\/theme-manager\';\n' +
+      'import ThemeDecorator from \'material-ui\/lib\/styles\/theme-decorator\';\n\n' +
 
       '@ThemeDecorator(ThemeManager.getMuiTheme(MyRawTheme))\n' +
       'class MySampleAppComponent extends React.Component {\n\n' +
@@ -241,7 +241,7 @@ const ThemesPage = React.createClass({
       '  }\n' +
       '}\n\n' +
 
-      'module.exports = MySampleAppComponent;\n';
+      'export default MySampleAppComponent;\n';
 
     let receiveThemeInContextCode =
       'const SpecificPageInApp = React.createClass({\n\n' +
@@ -660,4 +660,4 @@ const ThemesPage = React.createClass({
   },
 });
 
-module.exports = ThemesPage;
+export default ThemesPage;

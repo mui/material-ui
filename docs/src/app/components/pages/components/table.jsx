@@ -1,8 +1,8 @@
-const React = require('react');
-const CodeExample = require('../../code-example/code-example');
-const Router = require('react-router');
-const ComponentDoc = require('../../component-doc');
-const {
+import React from 'react';
+import CodeExample from '../../code-example/code-example';
+import Router from 'react-router';
+import ComponentDoc from '../../component-doc';
+import {
   Table,
   TableBody,
   TableHeader,
@@ -13,10 +13,10 @@ const {
   TextField,
   Toggle,
   Paper,
-} = require('material-ui');
+} from 'material-ui';
 
-const Code = require('table-code');
-const CodeBlock = require('../../code-example/code-block');
+import Code from 'table-code';
+import CodeBlock from '../../code-example/code-block';
 
 export default class TablePage extends React.Component {
 
@@ -415,13 +415,13 @@ export default class TablePage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statements:\nconst Table = require(\'material-ui/lib/table/table\');\n' +
-            'const TableBody = require(\'material-ui/lib/table/table-body\');\n' +
-            'const TableFooter = require(\'material-ui/lib/table/table-footer\');\n' +
-            'const TableHeader = require(\'material-ui/lib/table/table-header\');\n' +
-            'const TableHeaderColumn = require(\'material-ui/lib/table/table-header-column\');\n' +
-            'const TableRow = require(\'material-ui/lib/table/table-row\');\n' +
-            'const TableRowColumn = require(\'material-ui/lib/table/table-row-column\');\n\n' +
+            '//Import statements:\nimport Table from \'material-ui/lib/table/table\';\n' +
+            'import TableBody from \'material-ui/lib/table/table-body\';\n' +
+            'import TableFooter from \'material-ui/lib/table/table-footer\';\n' +
+            'import TableHeader from \'material-ui/lib/table/table-header\';\n' +
+            'import TableHeaderColumn from \'material-ui/lib/table/table-header-column\';\n' +
+            'import TableRow from \'material-ui/lib/table/table-row\';\n' +
+            'import TableRowColumn from \'material-ui/lib/table/table-row-column\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

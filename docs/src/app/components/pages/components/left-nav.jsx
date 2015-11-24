@@ -1,9 +1,9 @@
-const React = require('react');
-const { LeftNav, MenuItem, RaisedButton, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const Code = require('left-nav-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import { LeftNav, MenuItem, RaisedButton, Paper } from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'left-nav-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class LeftNavPage extends React.Component {
 
@@ -145,8 +145,11 @@ export default class LeftNavPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst LeftNav = require(\'material-ui/lib/left-nav\');\n\n' +
-            '//See material-ui/lib/index.js for more\n'
+            `//Import statement:
+import LeftNav from 'material-ui/lib/left-nav/';
+
+//See material-ui/lib/index.js for more
+            `
           }
           </CodeBlock>
         </Paper>

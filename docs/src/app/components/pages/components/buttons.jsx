@@ -1,7 +1,7 @@
-const React = require('react');
-const ComponentDoc = require('../../component-doc');
-const mui = require('material-ui');
-const ToggleStar = require('svg-icons/toggle/star');
+import React from 'react';
+import ComponentDoc from '../../component-doc';
+import mui from 'material-ui';
+import ToggleStar from 'svg-icons/toggle/star';
 
 const {
   ClearFix,
@@ -17,11 +17,11 @@ const {
 } = mui;
 const extend = Utils.Extend;
 const { Colors, Typography } = Styles;
-const RaisedButtonCode = require('raised-button-code');
-const FloatingActionButtonCode = require('floating-action-button-code');
-const FlatButtonCode = require('flat-button-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import RaisedButtonCode from 'raised-button-code';
+import FloatingActionButtonCode from 'floating-action-button-code';
+import FlatButtonCode from 'flat-button-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 
 export default class ButtonPage extends React.Component {
@@ -369,9 +369,9 @@ export default class ButtonPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statements:\nconst FlatButton = require(\'material-ui/lib/flat-button\');\n' +
-            'const RaisedButton = require(\'material-ui/lib/raised-button\');\n' +
-            'const FloatingActionButton = require(\'material-ui/lib/floating-action-button\');\n\n' +
+            '//Import statements:\nimport FlatButton from \'material-ui/lib/flat-button\';\n' +
+            'import RaisedButton from \'material-ui/lib/raised-button\';\n' +
+            'import FloatingActionButton from \'material-ui/lib/floating-action-button\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

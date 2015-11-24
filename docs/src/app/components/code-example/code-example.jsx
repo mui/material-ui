@@ -1,17 +1,17 @@
-const React = require('react');
+import React from 'react';
 
-const {
+import {
   ClearFix,
   Paper,
   Styles,
-} = require('material-ui');
+} from 'material-ui';
 
 const {
   Spacing,
   Typography,
 } = Styles;
 
-const CodeBlock = require('./code-block');
+import CodeBlock from './code-block';
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 

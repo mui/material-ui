@@ -1,10 +1,10 @@
-const React = require('react');
+import React from 'react';
 
-const { AutoComplete } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const CodeExample = require('../../code-example/code-example');
+import { AutoComplete } from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import CodeExample from '../../code-example/code-example';
 
-const Code = require('auto-complete-code');
+import Code from 'auto-complete-code';
 
 class AutoCompletePage extends React.Component {
 

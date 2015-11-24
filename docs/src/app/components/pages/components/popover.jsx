@@ -1,8 +1,8 @@
-let React = require('react');
-let { Popover, RadioButton, RaisedButton, SelectField, TextField } = require('material-ui');
-let ComponentDoc = require('../../component-doc');
-let Code = require('popover-code');
-let CodeExample = require('../../code-example/code-example');
+import React from 'react';
+import { Popover, RadioButton, RaisedButton, SelectField, TextField } from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'popover-code';
+import CodeExample from '../../code-example/code-example';
 
 
 let PopoverPage = React.createClass({

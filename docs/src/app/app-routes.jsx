@@ -1,54 +1,54 @@
-const React = require('react');
-const {
+import React from 'react';
+import {
   Route,
   Redirect,
   IndexRoute,
-} = require('react-router');
+} from 'react-router';
 
 // Here we define all our material-ui ReactComponents.
-const Master = require('./components/master');
-const Home = require('./components/pages/home');
+import Master from './components/master';
+import Home from './components/pages/home';
 
-const GetStarted = require('./components/pages/get-started');
-const Prerequisites = require('./components/pages/get-started/prerequisites');
-const Installation = require('./components/pages/get-started/installation');
-const Examples = require('./components/pages/get-started/examples');
+import GetStarted from './components/pages/get-started';
+import Prerequisites from './components/pages/get-started/prerequisites';
+import Installation from './components/pages/get-started/installation';
+import Examples from './components/pages/get-started/examples';
 
-const Customization = require('./components/pages/customization');
-const Colors = require('./components/pages/customization/colors');
-const Themes = require('./components/pages/customization/themes');
-const InlineStyles = require('./components/pages/customization/inline-styles');
+import Customization from './components/pages/customization';
+import Colors from './components/pages/customization/colors';
+import Themes from './components/pages/customization/themes';
+import InlineStyles from './components/pages/customization/inline-styles';
 
-const Components = require('./components/pages/components');
-const AppBar = require('./components/pages/components/app-bar');
-const AutoComplete = require('./components/pages/components/auto-complete');
-const Avatars = require('./components/pages/components/avatars');
-const Badge = require('./components/pages/components/badge');
-const Buttons = require('./components/pages/components/buttons');
-const Cards = require('./components/pages/components/cards');
-const DatePicker = require('./components/pages/components/date-picker');
-const Dialog = require('./components/pages/components/dialog');
-const DropDownMenu = require('./components/pages/components/drop-down-menu');
-const GridList = require('./components/pages/components/grid-list');
-const Icons = require('./components/pages/components/icons');
-const IconButtons = require('./components/pages/components/icon-buttons');
-const IconMenus = require('./components/pages/components/icon-menus');
-const LeftNav = require('./components/pages/components/left-nav');
-const Lists = require('./components/pages/components/lists');
-const Menus = require('./components/pages/components/menus');
-const Paper = require('./components/pages/components/paper');
-const Popover = require('./components/pages/components/popover');
-const Progress = require('./components/pages/components/progress');
-const RefreshIndicator = require('./components/pages/components/refresh-indicator');
-const SelectFields = require('./components/pages/components/select-fields');
-const Sliders = require('./components/pages/components/sliders');
-const Snackbar = require('./components/pages/components/snackbar');
-const Switches = require('./components/pages/components/switches');
-const Table = require('./components/pages/components/table');
-const Tabs = require('./components/pages/components/tabs');
-const TextFields = require('./components/pages/components/text-fields');
-const TimePicker = require('./components/pages/components/time-picker');
-const Toolbars = require('./components/pages/components/toolbars');
+import Components from './components/pages/components';
+import AppBar from './components/pages/components/app-bar';
+import AutoComplete from './components/pages/components/auto-complete';
+import Avatars from './components/pages/components/avatars';
+import Badge from './components/pages/components/badge';
+import Buttons from './components/pages/components/buttons';
+import Cards from './components/pages/components/cards';
+import DatePicker from './components/pages/components/date-picker';
+import Dialog from './components/pages/components/dialog';
+import DropDownMenu from './components/pages/components/drop-down-menu';
+import GridList from './components/pages/components/grid-list';
+import Icons from './components/pages/components/icons';
+import IconButtons from './components/pages/components/icon-buttons';
+import IconMenus from './components/pages/components/icon-menus';
+import LeftNav from './components/pages/components/left-nav';
+import Lists from './components/pages/components/lists';
+import Menus from './components/pages/components/menus';
+import Paper from './components/pages/components/paper';
+import Popover from './components/pages/components/popover';
+import Progress from './components/pages/components/progress';
+import RefreshIndicator from './components/pages/components/refresh-indicator';
+import SelectFields from './components/pages/components/select-fields';
+import Sliders from './components/pages/components/sliders';
+import Snackbar from './components/pages/components/snackbar';
+import Switches from './components/pages/components/switches';
+import Table from './components/pages/components/table';
+import Tabs from './components/pages/components/tabs';
+import TextFields from './components/pages/components/text-fields';
+import TimePicker from './components/pages/components/time-picker';
+import Toolbars from './components/pages/components/toolbars';
 
 
 /**

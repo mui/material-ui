@@ -1,21 +1,21 @@
-const React = require('react');
-const ReactTransitionGroup = require('react-addons-transition-group');
-const Paper = require('paper');
-const Menu = require('menus/menu');
-const MenuItem = require('menus/menu-item');
-const MenuDivider = require('menus/menu-divider');
-const ComponentDoc = require('../../component-doc');
+import React from 'react';
+import ReactTransitionGroup from 'react-addons-transition-group';
+import Paper from 'paper';
+import Menu from 'menus/menu';
+import MenuItem from 'menus/menu-item';
+import MenuDivider from 'menus/menu-divider';
+import ComponentDoc from '../../component-doc';
 
-const ArrowDropRight = require('svg-icons/navigation-arrow-drop-right');
-const ContentCopy = require('svg-icons/content/content-copy');
-const ContentLink = require('svg-icons/content/link');
-const Delete = require('svg-icons/action/delete');
-const Download = require('svg-icons/file/file-download');
-const PersonAdd = require('svg-icons/social/person-add');
-const RemoveRedEye = require('svg-icons/image/remove-red-eye');
-const Code = require('menus-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import ArrowDropRight from 'svg-icons/navigation-arrow-drop-right';
+import ContentCopy from 'svg-icons/content/content-copy';
+import ContentLink from 'svg-icons/content/link';
+import Delete from 'svg-icons/action/delete';
+import Download from 'svg-icons/file/file-download';
+import PersonAdd from 'svg-icons/social/person-add';
+import RemoveRedEye from 'svg-icons/image/remove-red-eye';
+import Code from 'menus-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class MenusPage extends React.Component {
 
@@ -220,10 +220,13 @@ export default class MenusPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst Menu = require(\'material-ui/lib/menus/menu\');\n' +
-            'const MenuItem = require(\'material-ui/lib/menus/menu-item\');\n' +
-            'const MenuDivider = require(\'material-ui/lib/menus/menu-divider\');\n\n' +
-            '//See material-ui/lib/index.js for more\n'
+            `//Import statement:
+import Menu from 'material-ui/lib/menus/menu';
+import MenuItem from 'material-ui/lib/menus/menu-item';
+import MenuDivider from 'material-ui/lib/menus/menu-divider';
+
+//See material-ui/lib/index.js for more
+          `
           }
           </CodeBlock>
         </Paper>

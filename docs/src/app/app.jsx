@@ -1,9 +1,9 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const {Router} = require('react-router');
-const AppRoutes = require('./app-routes.jsx');
-const injectTapEventPlugin = require('react-tap-event-plugin');
-const createHistory = require('history/lib/createHashHistory');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Router} from 'react-router';
+import AppRoutes from './app-routes.jsx';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import createHistory from 'history/lib/createHashHistory';
 
 //Helpers for debugging
 window.React = React;

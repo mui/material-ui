@@ -1,9 +1,9 @@
-const React = require('react');
-const { RaisedButton, Snackbar, TextField, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const Code = require('snackbars-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import { RaisedButton, Snackbar, TextField, Paper } from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'snackbars-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class SnackbarPage extends React.Component {
 
@@ -108,7 +108,7 @@ export default class SnackbarPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst Snackbar = require(\'material-ui/lib/snackbar\');\n\n' +
+            '//Import statement:\nimport Snackbar from \'material-ui/lib/snackbar\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

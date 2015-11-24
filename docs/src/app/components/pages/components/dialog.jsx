@@ -1,9 +1,9 @@
-const React = require('react');
-const { Dialog, FlatButton, RaisedButton, Paper, Toggle } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const Code = require('dialog-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import { Dialog, FlatButton, RaisedButton, Paper, Toggle } from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'dialog-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class DialogPage extends React.Component {
 
@@ -194,7 +194,7 @@ export default class DialogPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst Dialog = require(\'material-ui/lib/dialog\');\n\n' +
+            '//Import statement:\nimport Dialog from \'material-ui/lib/dialog\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

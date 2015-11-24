@@ -1,6 +1,6 @@
-let React = require('react');
-let {Link} = require('react-router');
-let { Paper, Mixins, Styles } = require('material-ui');
+import React from 'react';
+import {Link} from 'react-router';
+import { Paper, Mixins, Styles } from 'material-ui';
 
 let { StylePropable, StyleResizable } = Mixins;
 let { Colors, Spacing, Transitions, Typography } = Styles;

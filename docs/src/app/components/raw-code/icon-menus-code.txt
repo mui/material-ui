@@ -2,8 +2,8 @@
 //If you'd like to use the new menu before our migration is complete, please directly
 //require them like this:
 
-let MenuItem = require('material-ui/lib/menus/menu-item');
-let MenuDivider = require('material-ui/lib/menus/menu-divider');
+import MenuItem from 'material-ui/lib/menus/menu-item';
+import MenuDivider from 'material-ui/lib/menus/menu-divider';
 
 <IconMenu iconButtonElement={iconButtonElement}>
   <MenuItem primaryText="Refresh" />

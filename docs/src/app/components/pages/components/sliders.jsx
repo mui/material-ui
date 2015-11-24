@@ -1,9 +1,9 @@
-const React = require('react');
-const { Paper, Slider } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const Code = require('sliders-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import { Paper, Slider } from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'sliders-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class SlidersPage extends React.Component {
 
@@ -133,7 +133,7 @@ export default class SlidersPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst Slider = require(\'material-ui/lib/slider\');\n\n' +
+            '//Import statement:\nimport Slider from \'material-ui/lib/slider\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

@@ -1,11 +1,11 @@
-const React = require('react');
-const { Avatar, FontIcon, List, ListItem, Styles, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const FileFolder = require('svg-icons/file/folder');
+import React from 'react';
+import { Avatar, FontIcon, List, ListItem, Styles, Paper } from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import FileFolder from 'svg-icons/file/folder';
 const { Colors } = Styles;
-const Code = require('avatars-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import Code from 'avatars-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 
 export default class AvatarsPage extends React.Component {
@@ -75,7 +75,7 @@ export default class AvatarsPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst Avatar = require(\'material-ui/lib/avatar\');\n\n' +
+            '//Import statement:\nimport Avatar from \'material-ui/lib/avatar\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

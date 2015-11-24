@@ -1,8 +1,8 @@
-const React = require('react');
-const Router = require('react-router');
-const AppLeftNav = require('./app-left-nav');
-const FullWidthSection = require('./full-width-section');
-const { AppBar,
+import React from 'react';
+import Router from 'react-router';
+import AppLeftNav from './app-left-nav';
+import FullWidthSection from './full-width-section';
+import { AppBar,
       AppCanvas,
       FontIcon,
       IconButton,
@@ -13,7 +13,7 @@ const { AppBar,
       Styles,
       Tab,
       Tabs,
-      Paper} = require('material-ui');
+      Paper} from 'material-ui';
 
 const { StylePropable } = Mixins;
 const { Colors, Spacing, Typography } = Styles;

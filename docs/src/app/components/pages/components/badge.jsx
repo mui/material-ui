@@ -1,13 +1,13 @@
-const React = require('react');
-const { FontIcon, IconButton, Badge, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const Code = require('badge-code');
-const CodeExample = require('../../code-example/code-example');
-const NotificationsIcon = require('svg-icons/social/notifications');
-const ShoppingCartIcon = require('svg-icons/action/shopping-cart');
-const FolderIcon = require('svg-icons/file/folder-open');
-const UploadIcon = require('svg-icons/file/cloud-upload');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import { FontIcon, IconButton, Badge, Paper } from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'badge-code';
+import CodeExample from '../../code-example/code-example';
+import NotificationsIcon from 'svg-icons/social/notifications';
+import ShoppingCartIcon from 'svg-icons/action/shopping-cart';
+import FolderIcon from 'svg-icons/file/folder-open';
+import UploadIcon from 'svg-icons/file/cloud-upload';
+import CodeBlock from '../../code-example/code-block';
 
 export default class BadgePage extends React.Component {
   constructor(props) {
@@ -64,14 +64,17 @@ export default class BadgePage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst Badge = require(\'material-ui/lib/badge\');\n\n' +
-            '//See material-ui/lib/index.js for more\n'
+            `//Import statement:
+import Badge from 'material-ui/lib/badge';
+
+//See material-ui/lib/index.js for more
+            `
           }
           </CodeBlock>
         </Paper>
 
         <CodeExample code={Code}>
-          
+
           <Badge badgeContent={4} primary={true}>
             <NotificationsIcon />
           </Badge>

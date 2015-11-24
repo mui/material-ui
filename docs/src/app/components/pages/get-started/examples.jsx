@@ -1,5 +1,5 @@
-const React = require('react');
-const { Paper, Styles } = require('material-ui');
+import React from 'react';
+import { Paper, Styles } from 'material-ui';
 
 const { Spacing, Typography } = Styles;
 const ThemeManager = Styles.ThemeManager;

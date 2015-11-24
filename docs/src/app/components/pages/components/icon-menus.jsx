@@ -1,22 +1,22 @@
-const React = require('react');
-const { IconButton, Paper } = require('material-ui');
-const IconMenu = require('menus/icon-menu');
-const MenuItem = require('menus/menu-item');
-const MenuDivider = require('menus/menu-divider');
-const MoreVertIcon = require('svg-icons/navigation/more-vert');
-const ComponentDoc = require('../../component-doc');
+import React from 'react';
+import { IconButton, Paper } from 'material-ui';
+import IconMenu from 'menus/icon-menu';
+import MenuItem from 'menus/menu-item';
+import MenuDivider from 'menus/menu-divider';
+import MoreVertIcon from 'svg-icons/navigation/more-vert';
+import ComponentDoc from '../../component-doc';
 
-const ContentCopy = require('svg-icons/content/content-copy');
-const ContentFilter = require('svg-icons/content/filter-list');
-const ContentLink = require('svg-icons/content/link');
-const Delete = require('svg-icons/action/delete');
-const Download = require('svg-icons/file/file-download');
-const MapsPlace = require('svg-icons/maps/place');
-const PersonAdd = require('svg-icons/social/person-add');
-const RemoveRedEye = require('svg-icons/image/remove-red-eye');
-const Code = require('icon-menus-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import ContentCopy from 'svg-icons/content/content-copy';
+import ContentFilter from 'svg-icons/content/filter-list';
+import ContentLink from 'svg-icons/content/link';
+import Delete from 'svg-icons/action/delete';
+import Download from 'svg-icons/file/file-download';
+import MapsPlace from 'svg-icons/maps/place';
+import PersonAdd from 'svg-icons/social/person-add';
+import RemoveRedEye from 'svg-icons/image/remove-red-eye';
+import Code from 'icon-menus-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class IconMenus extends React.Component {
 
@@ -156,8 +156,8 @@ export default class IconMenus extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst IconMenu = require(\'material-ui/lib/menus/icon-menu\');\n' +
-            'const MenuItem = require(\'material-ui/lib/menus/menu-item\');\n\n' +
+            '//Import statement:\nimport IconMenu from \'material-ui/lib/menus/icon-menu\';\n' +
+            'import MenuItem from \'material-ui/lib/menus/menu-item\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

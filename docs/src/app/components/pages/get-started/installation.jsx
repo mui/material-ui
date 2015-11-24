@@ -1,6 +1,6 @@
-const React = require('react');
-const { Paper, Styles } = require('material-ui');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import { Paper, Styles } from 'material-ui';
+import CodeBlock from '../../code-example/code-block';
 
 const { Spacing, Typography } = Styles;
 const ThemeManager = Styles.ThemeManager;
@@ -70,8 +70,8 @@ const Installation = React.createClass({
     let usageCode =
         '//Basic React component that renders a material-ui\n' +
         '//raised button with the text \"Default\"\n\n' +
-        'const React = require(\'react\');\n' +
-        'const RaisedButton = require(\'material-ui/lib/raised-button\');\n\n' +
+        'import React from \'react\';\n' +
+        'import RaisedButton from \'material-ui/lib/raised-button\';\n\n' +
         'const MyAwesomeReactComponent = React.createClass({\n' +
         '  render() {\n' +
         '    return (\n' +
@@ -88,7 +88,7 @@ const Installation = React.createClass({
         '@import "node_modules/material-ui/src/less/components.less";',
 
       usageNotesCode =
-        'let injectTapEventPlugin = require("react-tap-event-plugin");\n\n' +
+        'import injectTapEventPlugin from "react-tap-event-plugin";\n\n' +
         '//Needed for onTouchTap\n' +
         '//Can go away when react 1.0 release\n' +
         '//Check this repo:\n' +
@@ -96,10 +96,10 @@ const Installation = React.createClass({
         'injectTapEventPlugin();\n',
 
       noticeCode1 =
-        'const RaisedButton = require(\'material-ui/lib/raised-button\');\n',
+        'import RaisedButton from \'material-ui/lib/raised-button\';\n',
 
       noticeCode2 =
-        'const Mui = require(\'material-ui\');\n' +
+        'import Mui from \'material-ui\';\n' +
         'const RaisedButton = Mui.RaisedButton;\n';
 
     let styles = this.getStyles();
