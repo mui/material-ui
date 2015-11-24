@@ -1,3 +1,20 @@
+## 0.13.4
+###### _Nov 24, 2015_
+
+##### General
+- Introduced SelectableEnhance HOC to wrap List with valueLink (#1976)
+- Added color prop to LinearProgress and RefreshIndicator (#2206)
+- [AutoComplete] new component! (#2187) (thanks @yongxu)
+- [Table] added wrapperStyle prop to override table wrapper's styles (#2238)
+- Updated SVG icons (#2240)
+- [Table] added props for headerStyle, bodyStyle and footerStyle (#2246)
+
+##### Component Fixes / Enhancements
+- Fixed double ripple due to compat mouse down (#2216)
+- [RenderToLayer] iframe support for clickaway (#2210)
+- [TextField] Fixed floating label element not allowing focus (#2228)
+- [SelectField] onFocus and onBlur handlers passed to underlying TextField component (#2102)
+
 ## 0.13.3
 ###### _Nov 17, 2015_
 
