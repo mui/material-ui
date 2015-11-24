@@ -41,6 +41,7 @@ const LeftNav = React.createClass({
     className: React.PropTypes.string,
     disableSwipeToOpen: React.PropTypes.bool,
     docked: React.PropTypes.bool,
+    initialOpen: React.PropTypes.bool,
     header: React.PropTypes.element,
     menuItems: React.PropTypes.array,
     onChange: React.PropTypes.func,
@@ -73,7 +74,9 @@ const LeftNav = React.createClass({
     this._swipeStartX = null;
 
     return {
-      open: this.props.docked,
+      open: typeof this.props.initialOpen === "boolean" ?
+        this.props.initialOpen :
+        this.props.docked,
       swiping: null,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
