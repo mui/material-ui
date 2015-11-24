@@ -1,5 +1,5 @@
-let React = require('react');
-let PageWithNav = require('./page-with-nav');
+import React from 'react';
+import PageWithNav from './page-with-nav';
 
 
 export default class GetStarted extends React.Component {

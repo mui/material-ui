@@ -1,8 +1,8 @@
-const React = require('react');
-const {History} = require('react-router');
-const { Mixins, RaisedButton, Styles } = require('material-ui');
-const HomeFeature = require('./home-feature');
-const FullWidthSection = require('../full-width-section');
+import React from 'react';
+import {History} from 'react-router';
+import { Mixins, RaisedButton, Styles } from 'material-ui';
+import HomeFeature from './home-feature';
+import FullWidthSection from '../full-width-section';
 
 const { StylePropable, StyleResizable } = Mixins;
 const { Colors, Spacing, Typography } = Styles;

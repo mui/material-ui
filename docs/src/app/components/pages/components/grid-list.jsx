@@ -1,13 +1,13 @@
-const React = require('react');
-const { GridList, GridTile, Paper } = require('material-ui');
+import React from 'react';
+import { GridList, GridTile, Paper } from 'material-ui';
 
-const StarBorder = require('svg-icons/toggle/star-border');
-const IconButton = require('icon-button');
+import StarBorder from 'svg-icons/toggle/star-border';
+import IconButton from 'icon-button';
 
-const ComponentDoc = require('../../component-doc');
-const Code = require('grid-list-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import ComponentDoc from '../../component-doc';
+import Code from 'grid-list-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 class GridListPage extends React.Component {
 
@@ -190,8 +190,8 @@ class GridListPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst GridList = require(\'material-ui/lib/grid-list/grid-list\');\n' +
-            'const GridTile = require(\'material-ui/lib/grid-list/grid-tile\');\n\n' +
+            '//Import statement:\nimport GridList from \'material-ui/lib/grid-list/grid-list\';\n' +
+            'import GridTile from \'material-ui/lib/grid-list/grid-tile\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

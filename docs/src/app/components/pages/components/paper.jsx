@@ -1,11 +1,11 @@
-const React = require('react');
-const { ClearFix, Mixins, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
+import React from 'react';
+import { ClearFix, Mixins, Paper } from 'material-ui';
+import ComponentDoc from '../../component-doc';
 
 const { StyleResizable } = Mixins;
-const Code = require('paper-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import Code from 'paper-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 const PaperPage = React.createClass ({
 
@@ -88,8 +88,11 @@ const PaperPage = React.createClass ({
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst Paper = require(\'material-ui/lib/paper\');\n\n' +
-            '//See material-ui/lib/index.js for more\n'
+            `//Import statement:
+import Paper from 'material-ui/lib/paper';
+
+//See material-ui/lib/index.js for more
+            `
           }
           </CodeBlock>
         </Paper>

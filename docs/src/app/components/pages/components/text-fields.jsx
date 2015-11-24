@@ -1,12 +1,12 @@
-const React = require('react');
-const { ClearFix, Mixins, TextField, Styles, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
+import React from 'react';
+import { ClearFix, Mixins, TextField, Styles, Paper } from 'material-ui';
+import ComponentDoc from '../../component-doc';
 const { Colors } = Styles;
 const { StyleResizable } = Mixins;
-const Code = require('text-fields-code');
-const CodeExample = require('../../code-example/code-example');
-const LinkedStateMixin = require('react-addons-linked-state-mixin');
-const CodeBlock = require('../../code-example/code-block');
+import Code from 'text-fields-code';
+import CodeExample from '../../code-example/code-example';
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import CodeBlock from '../../code-example/code-block';
 
 const TextFieldsPage = React.createClass({
 
@@ -240,7 +240,7 @@ const TextFieldsPage = React.createClass({
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst TextField = require(\'material-ui/lib/text-field\');\n\n' +
+            '//Import statement:\nimport TextField from \'material-ui/lib/text-field\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

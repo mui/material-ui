@@ -1,19 +1,19 @@
-const React = require('react');
-const mui = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const MobileTearSheet = require('../../mobile-tear-sheet');
-const ActionAssignment = require('svg-icons/action/assignment');
-const ActionGrade = require('svg-icons/action/grade');
-const ActionInfo = require('svg-icons/action/info');
-const CommunicationCall = require('svg-icons/communication/call');
-const CommunicationChatBubble = require('svg-icons/communication/chat-bubble');
-const CommunicationEmail = require('svg-icons/communication/email');
-const ContentDrafts = require('svg-icons/content/drafts');
-const ContentInbox = require('svg-icons/content/inbox');
-const ContentSend = require('svg-icons/content/send');
-const EditorInsertChart = require('svg-icons/editor/insert-chart');
-const FileFolder = require('svg-icons/file/folder');
-const MoreVertIcon = require('svg-icons/navigation/more-vert');
+import React from 'react';
+import mui from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import MobileTearSheet from '../../mobile-tear-sheet';
+import ActionAssignment from 'svg-icons/action/assignment';
+import ActionGrade from 'svg-icons/action/grade';
+import ActionInfo from 'svg-icons/action/info';
+import CommunicationCall from 'svg-icons/communication/call';
+import CommunicationChatBubble from 'svg-icons/communication/chat-bubble';
+import CommunicationEmail from 'svg-icons/communication/email';
+import ContentDrafts from 'svg-icons/content/drafts';
+import ContentInbox from 'svg-icons/content/inbox';
+import ContentSend from 'svg-icons/content/send';
+import EditorInsertChart from 'svg-icons/editor/insert-chart';
+import FileFolder from 'svg-icons/file/folder';
+import MoreVertIcon from 'svg-icons/navigation/more-vert';
 import { SelectableContainerEnhance } from 'material-ui/hoc/selectable-enhance';
 
 const {
@@ -28,13 +28,13 @@ const {
   Paper,
 } = mui;
 
-const IconMenu = require('menus/icon-menu');
-const MenuItem = require('menus/menu-item');
+import IconMenu from 'menus/icon-menu';
+import MenuItem from 'menus/menu-item';
 
 const { Colors } = Styles;
-const Code = require('lists-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import Code from 'lists-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 let SelectableList = SelectableContainerEnhance(List);
 
 const Typography = Styles.Typography;
@@ -58,7 +58,7 @@ let styles = {
        color: Typography.textDarkBlack,
      },
      codeblock: {
-       padding: '24px', 
+       padding: '24px',
        marginBottom: '32px',
      },
 }
@@ -328,10 +328,13 @@ export default class ListsPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst List = require(\'material-ui/lib/lists/list\');\n' +
-            'const ListDivider = require(\'material-ui/lib/lists/list-divider\');\n' +
-            'const ListItem = require(\'material-ui/lib/lists/list-item\');\n\n' +
-            '//See material-ui/lib/index.js for more\n'
+            `//Import statement:
+import List from 'material-ui/lib/lists/list';
+import ListDivider from 'material-ui/lib/lists/list-divider';
+import ListItem from 'material-ui/lib/lists/list-item';
+
+//See material-ui/lib/index.js for more
+            `
           }
           </CodeBlock>
         </Paper>
@@ -799,13 +802,13 @@ var SelectableList = SelectableContainerEnhance(List);
 
           <h3 style={styles.subheadline}>Where to put state</h3>
           <p>
-            If this component is used in conjunction with flux or redux this is a no-brainer. The callback-handler 
-            just has to update the store. Otherwise the state can be held within e.g the parent, but it is to be to 
-            considered that each time a <code>&lt;ListItem&gt;</code> is clicked, the state will update and the parent - including it's 
+            If this component is used in conjunction with flux or redux this is a no-brainer. The callback-handler
+            just has to update the store. Otherwise the state can be held within e.g the parent, but it is to be to
+            considered that each time a <code>&lt;ListItem&gt;</code> is clicked, the state will update and the parent - including it's
             children - will rerender.
           </p>
           <p>
-            A possible solution for this is to use another hoc. An example can be found in the sourcecode 
+            A possible solution for this is to use another hoc. An example can be found in the sourcecode
             of <code>docs/src/app/components/pages/components/lists.jsx</code>.
           </p>
           <h3 style={styles.subheadline}>The valueLink</h3>

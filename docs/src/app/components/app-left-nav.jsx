@@ -1,10 +1,10 @@
-let React = require('react');
-let Router = require('react-router');
-let { MenuItem, LeftNav, Mixins, Styles } = require('material-ui');
-let { Colors, Spacing, Typography } = Styles;
-let { StylePropable } = Mixins;
+import React from 'react';
+import Router from 'react-router';
+import { MenuItem, LeftNav, Mixins, Styles } from 'material-ui';
+const { Colors, Spacing, Typography } = Styles;
+const { StylePropable } = Mixins;
 
-let menuItems = [
+const menuItems = [
     { route: 'get-started', text: 'Get Started' },
     { route: 'customization', text: 'Customization' },
     { route: 'components', text: 'Components' },
@@ -15,9 +15,9 @@ let menuItems = [
   ];
 
 
-let AppLeftNav = React.createClass({
+const AppLeftNav = React.createClass({
   mixins: [StylePropable],
-  
+
   contextTypes: {
     muiTheme: React.PropTypes.object,
     router: React.PropTypes.func,
@@ -78,7 +78,7 @@ let AppLeftNav = React.createClass({
     this.props.history.pushState(null, '/');
     this.refs.leftNav.close();
   },
-  
+
 });
 
 module.exports = AppLeftNav;

@@ -1,11 +1,11 @@
-const React = require('react');
-const { ClearFix, Mixins, SelectField, Styles, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
+import React from 'react';
+import { ClearFix, Mixins, SelectField, Styles, Paper } from 'material-ui';
+import ComponentDoc from '../../component-doc';
 const { StyleResizable } = Mixins;
-const Code = require('select-fields-code');
-const CodeExample = require('../../code-example/code-example');
-const LinkedStateMixin = require('react-addons-linked-state-mixin');
-const CodeBlock = require('../../code-example/code-block');
+import Code from 'select-fields-code';
+import CodeExample from '../../code-example/code-example';
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import CodeBlock from '../../code-example/code-block';
 
 const SelectFieldsPage = React.createClass({
 
@@ -203,7 +203,7 @@ const SelectFieldsPage = React.createClass({
           <CodeBlock>
           {
             '//Import statement:\n' +
-            'const SelectField = require(\'material-ui/lib/select-field\');\n\n' +
+            'import SelectField from \'material-ui/lib/select-field\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

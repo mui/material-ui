@@ -1,9 +1,9 @@
-const React = require('react');
-const { DatePicker, TextField, Paper, Toggle } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const Code = require('date-picker-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import { DatePicker, TextField, Paper, Toggle } from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'date-picker-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 if (!window.Intl) {
   require('intl');
@@ -213,8 +213,8 @@ export default class DatePickerPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statements:\nconst DatePicker = require(\'material-ui/lib/date-picker/date-picker\');\n' +
-            'const DatePickerDialog = require(\'material-ui/lib/date-picker/date-picker-dialog\');\n\n' +
+            '//Import statements:\nimport DatePicker from \'material-ui/lib/date-picker/date-picker\';\n' +
+            'import DatePickerDialog from \'material-ui/lib/date-picker/date-picker-dialog\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

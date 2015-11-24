@@ -1,15 +1,15 @@
-const React = require('react');
-const { AppBar, DropDownMenu, Paper } = require('material-ui');
-const IconButton = require('icon-button');
-const NavigationClose = require('svg-icons/navigation/close');
-const FlatButton = require('flat-button');
-const ComponentDoc = require('../../component-doc');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
-const Code = require('app-bar-code');
-const IconMenu = require('menus/icon-menu');
-const MenuItem = require('menus/menu-item');
-const MoreVertIcon = require('svg-icons/navigation/more-vert');
+import React from 'react';
+import { AppBar, DropDownMenu, Paper } from 'material-ui';
+import IconButton from 'icon-button';
+import NavigationClose from 'svg-icons/navigation/close';
+import FlatButton from 'flat-button';
+import ComponentDoc from '../../component-doc';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
+import Code from 'app-bar-code';
+import IconMenu from 'menus/icon-menu';
+import MenuItem from 'menus/menu-item';
+import MoreVertIcon from 'svg-icons/navigation/more-vert';
 
 const styles = {
   title: {
@@ -130,8 +130,11 @@ export default class AppBarPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst AppBar = require(\'material-ui/lib/app-bar\');\n\n' +
-            '//See material-ui/lib/index.js for more\n'
+            `//Import statement:
+import AppBar from 'material-ui/lib/app-bar';
+
+//See material-ui/lib/index.js for more
+            `
           }
           </CodeBlock>
         </Paper>

@@ -1,5 +1,5 @@
-let React = require('react');
-let { ClearFix, Mixins, Styles } = require('material-ui');
+import React from 'react';
+import { ClearFix, Mixins, Styles } from 'material-ui';
 let { StylePropable, StyleResizable } = Mixins;
 let DesktopGutter = Styles.Spacing.desktopGutter;
 

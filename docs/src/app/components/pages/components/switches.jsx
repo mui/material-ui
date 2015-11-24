@@ -1,9 +1,9 @@
-const React = require('react');
-const mui = require('material-ui');
-const CodeExample = require('../../code-example/code-example');
-const ComponentDoc = require('../../component-doc');
-const ToggleStar = require('svg-icons/toggle/star');
-const ToggleStarBorder = require('svg-icons/toggle/star-border');
+import React from 'react';
+import mui from 'material-ui';
+import CodeExample from '../../code-example/code-example';
+import ComponentDoc from '../../component-doc';
+import ToggleStar from 'svg-icons/toggle/star';
+import ToggleStarBorder from 'svg-icons/toggle/star-border';
 
 const {
   Checkbox,
@@ -18,10 +18,10 @@ const {
   Paper,
 } = mui;
 const { Typography } = Styles;
-const CheckboxCode = require('checkbox-code');
-const RadioButtonCode = require('radio-buttons-code');
-const ToggleCode = require('toggle-code');
-const CodeBlock = require('../../code-example/code-block');
+import CheckboxCode from 'checkbox-code';
+import RadioButtonCode from 'radio-buttons-code';
+import ToggleCode from 'toggle-code';
+import CodeBlock from '../../code-example/code-block';
 
 export default class SwitchesPage extends React.Component {
 
@@ -352,10 +352,10 @@ export default class SwitchesPage extends React.Component {
       <Paper style = {{marginBottom: '22px'}}>
         <CodeBlock>
         {
-          '//Import statements:\nconst Checkbox = require(\'material-ui/lib/checkbox\');\n' +
-          'const RadioButton = require(\'material-ui/lib/radio-button\');\n' +
-          'const RadioButtonGroup = require(\'material-ui/lib/radio-button-group\');\n' +
-          'const Toggle = require(\'material-ui/lib/toggle\');\n\n' +
+          '//Import statements:\nimport Checkbox from \'material-ui/lib/checkbox\';\n' +
+          'import RadioButton from \'material-ui/lib/radio-button\';\n' +
+          'import RadioButtonGroup from \'material-ui/lib/radio-button-group\';\n' +
+          'import Toggle from \'material-ui/lib/toggle\';\n\n' +
           '//See material-ui/lib/index.js for more\n'
         }
         </CodeBlock>

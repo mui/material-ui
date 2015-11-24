@@ -1,6 +1,6 @@
-let React = require('react');
-let {State, History} = require('react-router');
-let { Menu, Mixins, Styles } = require('material-ui');
+import React from 'react';
+import {State, History} from 'react-router';
+import { Menu, Mixins, Styles } from 'material-ui';
 
 let { Spacing, Colors } = Styles;
 let { StyleResizable, StylePropable } = Mixins;

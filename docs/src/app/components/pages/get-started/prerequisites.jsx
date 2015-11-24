@@ -1,6 +1,6 @@
-const React = require('react');
-const { Paper, Styles } = require('material-ui');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import { Paper, Styles } from 'material-ui';
+import CodeBlock from '../../code-example/code-block';
 
 const { Spacing, Typography } = Styles;
 const ThemeManager = Styles.ThemeManager;

@@ -1,13 +1,13 @@
-const React = require('react');
-const { ClearFix, FontIcon, Styles, Paper } = require('material-ui');
-const CodeBlock = require('../../code-example/code-block');
-const ComponentDoc = require('../../component-doc');
-const ActionHome = require('svg-icons/action/home');
+import React from 'react';
+import { ClearFix, FontIcon, Styles, Paper } from 'material-ui';
+import CodeBlock from '../../code-example/code-block';
+import ComponentDoc from '../../component-doc';
+import ActionHome from 'svg-icons/action/home';
 
 const { Colors, Typography } = Styles;
-const IconButtonCode = require('icons-code');
-const SvgIconsCode = require('svg-icons-code');
-const CodeExample = require('../../code-example/code-example');
+import IconButtonCode from 'icons-code';
+import SvgIconsCode from 'svg-icons-code';
+import CodeExample from '../../code-example/code-example';
 
 export default class FontIconPage extends React.Component {
 
@@ -57,12 +57,12 @@ export default class FontIconPage extends React.Component {
           href="#/components/icon-buttons">IconButtons</a>.
         </p>
         <p>
-          For all of the Google's Material Design Icons prebuild SvgIcon components 
+          For all of the Google's Material Design Icons prebuild SvgIcon components
           exist. They can be used this way:
         </p>
           <CodeBlock>
             {`
-const SocialNotificationsActive = require('material-ui/lib/svg-icons/social/notifications-active');
+import SocialNotificationsActive from 'material-ui/lib/svg-icons/social/notifications-active';
 ...
   render: function() {
     return (
@@ -139,7 +139,7 @@ const SocialNotificationsActive = require('material-ui/lib/svg-icons/social/noti
           <Paper style = {{marginBottom: '22px'}}>
             <CodeBlock>
             {
-              '//Import statement:\nconst FontIcon = require(\'material-ui/lib/font-icon\');\n\n' +
+              '//Import statement:\nimport FontIcon from \'material-ui/lib/font-icon\';\n\n' +
               '//See material-ui/lib/index.js for more\n'
             }
             </CodeBlock>

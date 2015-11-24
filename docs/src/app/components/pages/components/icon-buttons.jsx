@@ -1,11 +1,11 @@
-const React = require('react');
-const { FontIcon, IconButton, NavigationMenu, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const ActionGrade = require('svg-icons/action/grade');
-const ActionHome = require('svg-icons/action/home');
-const Code = require('icon-buttons-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import { FontIcon, IconButton, NavigationMenu, Paper } from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import ActionGrade from 'svg-icons/action/grade';
+import ActionHome from 'svg-icons/action/home';
+import Code from 'icon-buttons-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class IconButtonsPage extends React.Component {
 
@@ -119,7 +119,7 @@ export default class IconButtonsPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst IconButton = require(\'material-ui/lib/icon-button\');\n\n' +
+            '//Import statement:\nimport IconButton from \'material-ui/lib/icon-button\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>

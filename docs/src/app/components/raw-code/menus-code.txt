@@ -2,9 +2,9 @@
 //If you'd like to use the new menu before our migration is complete, please directly
 //require them like this:
 
-let Menu = require('material-ui/lib/menus/menu');
-let MenuItem = require('material-ui/lib/menus/menu-item');
-let MenuDivider = require('material-ui/lib/menus/menu-divider');
+import Menu from 'material-ui/lib/menus/menu';
+import MenuItem from 'material-ui/lib/menus/menu-item';
+import MenuDivider from 'material-ui/lib/menus/menu-divider';
 
 <Menu>
   <MenuItem primaryText="Maps" />

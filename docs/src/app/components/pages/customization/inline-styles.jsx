@@ -1,7 +1,7 @@
-const React = require('react');
-const { Checkbox, Styles } = require('material-ui');
-const CodeBlock = require('../../code-example/code-block');
-const CodeExample = require('../../code-example/code-example');
+import React from 'react';
+import { Checkbox, Styles } from 'material-ui';
+import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../code-example/code-example';
 
 const { Typography } = Styles;
 
