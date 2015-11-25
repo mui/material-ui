@@ -34,7 +34,7 @@ const GridList = React.createClass({
     return {
       cols: 2,
       padding: 4,
-      cellHeight: 180
+      cellHeight: 180,
     };
   },
 
