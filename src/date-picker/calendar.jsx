@@ -43,6 +43,7 @@ const Calendar = React.createClass({
     maxDate: React.PropTypes.object,
     onDayTouchTap: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
+    weekDayTitles: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -139,6 +140,19 @@ const Calendar = React.createClass({
       DateTimeFormat,
       locale,
     } = this.props;
+    
+    let weekDayTitles =
+      !!this.props.weekDayTitles
+      ? this.props.weekDayTitles
+      : {
+        sun: 'S',
+        mon: 'M',
+        tue: 'T',
+        wed: 'W',
+        thu: 'T',
+        fri: 'F',
+        sat: 'S',
+      };
 
     return (
       <ClearFix style={this.mergeStyles(styles.root)}>
@@ -165,13 +179,13 @@ const Calendar = React.createClass({
           <ClearFix
             elementType="ul"
             style={styles.weekTitle}>
-            <li style={weekTitleDayStyle}>S</li>
-            <li style={weekTitleDayStyle}>M</li>
-            <li style={weekTitleDayStyle}>T</li>
-            <li style={weekTitleDayStyle}>W</li>
-            <li style={weekTitleDayStyle}>T</li>
-            <li style={weekTitleDayStyle}>F</li>
-            <li style={weekTitleDayStyle}>S</li>
+            <li style={weekTitleDayStyle}>{weekDayTitles.sun}</li>
+            <li style={weekTitleDayStyle}>{weekDayTitles.mon}</li>
+            <li style={weekTitleDayStyle}>{weekDayTitles.tue}</li>
+            <li style={weekTitleDayStyle}>{weekDayTitles.wed}</li>
+            <li style={weekTitleDayStyle}>{weekDayTitles.thu}</li>
+            <li style={weekTitleDayStyle}>{weekDayTitles.fri}</li>
+            <li style={weekTitleDayStyle}>{weekDayTitles.sat}</li>
           </ClearFix>
           <SlideInTransitionGroup
             direction={this.state.transitionDirection}>
