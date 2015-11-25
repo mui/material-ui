@@ -15,6 +15,7 @@ const GridList = React.createClass({
     cols: React.PropTypes.number,
     padding: React.PropTypes.number,
     cellHeight: React.PropTypes.number,
+    cellWidth: React.PropTypes.number,
     style: React.PropTypes.object,
   },
 
@@ -33,7 +34,7 @@ const GridList = React.createClass({
     return {
       cols: 2,
       padding: 4,
-      cellHeight: 180,
+      cellHeight: 180
     };
   },
 
@@ -71,6 +72,7 @@ const GridList = React.createClass({
       cols,
       padding,
       cellHeight,
+      cellWidth,
       children,
       style,
       ...other,
@@ -84,8 +86,8 @@ const GridList = React.createClass({
       const childCols = currentChild.props.cols || 1;
       const childRows = currentChild.props.rows || 1;
       const itemStyle = this.mergeStyles(styles.item, {
-        width: (100 / cols * childCols) + '%',
-        height: cellHeight * childRows + padding,
+        width: cellWidth ? (cellWidth + padding) * childCols  :(100 / cols * childCols) + '%',
+        height: (cellHeight + padding) * childRows,
       });
 
       return <div style={this.prepareStyles(itemStyle)}>{currentChild}</div>;
