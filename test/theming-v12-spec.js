@@ -137,7 +137,7 @@ const AppBarDarkUsingContext = React.createClass({
 
 	getChildContext() {
 		return {
-			muiTheme: ThemeManager.getMuiTheme(DarkRawTheme)
+			muiTheme: ThemeManager.getMuiTheme(DarkRawTheme),
 		};
 	},
 

@@ -1,11 +1,11 @@
 // "react-stub-context": "^0.3.0",
 
-var React = require('react');
+const React = require('react');
 
 function stubContext(BaseComponent, context) {
   if(typeof context === 'undefined' || context === null) context = {};
 
-  var _contextTypes = {}, _context = context;
+  let _contextTypes = {}, _context = context;
 
   try {
     Object.keys(_context).forEach(function(key) {
@@ -15,7 +15,7 @@ function stubContext(BaseComponent, context) {
     throw new TypeError('createdStubbedContextComponent requires an object');
   }
 
-  var StubbedContextParent = React.createClass({
+  let StubbedContextParent = React.createClass({
     displayName: 'StubbedContextParent',
     childContextTypes: _contextTypes,
     getChildContext() { return _context; },
@@ -23,10 +23,10 @@ function stubContext(BaseComponent, context) {
 
     render() {
       return React.Children.only(this.props.children);
-    }
+    },
   });
 
-  var StubbedContextHandler = React.createClass({
+  let StubbedContextHandler = React.createClass({
     displayName: 'StubbedContextHandler',
     childContextTypes: _contextTypes,
     getChildContext() { return _context; },
@@ -39,7 +39,7 @@ function stubContext(BaseComponent, context) {
       this._wrappedParentElement = <StubbedContextParent>{this._wrappedElement}</StubbedContextParent>;
 
       return this._wrappedParentElement;
-    }
+    },
   });
 
   BaseComponent.contextTypes = Object.assign({}, BaseComponent.contextTypes, _contextTypes);
