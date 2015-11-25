@@ -283,7 +283,7 @@ export default class ButtonPage extends React.Component {
             name: 'onTouchTap',
             type: 'function(event)',
             header: 'optional',
-            desc: 'Called when a touch tap event occures on the button.',
+            desc: 'Called when a touch tap event occurs on the button.',
           },
         ],
       },
