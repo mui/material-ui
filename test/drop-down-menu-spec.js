@@ -15,16 +15,16 @@ describe('DropDownMenu', () => {
         let menuItems = [
             {
                 text: 'Text1',
-                payload: 0
+                payload: 0,
             },
             {
                 text: 'Text2',
-                payload: 1
+                payload: 1,
             },
             {
                 text: 'Text3',
-                payload: 2
-            }
+                payload: 2,
+            },
         ];
 
         let value = 0;
