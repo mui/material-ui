@@ -106,6 +106,11 @@ export default class IconButtonsPage extends React.Component {
             header: 'IconButton.onFocus(e)',
             desc: 'Callback function for when the component gains focus.',
           },
+          {
+            name: 'onTouchTap',
+            header: 'IconButton.onTouchTap(e)',
+            desc: 'Callback function for when a touch tap / click event occurs on the button.',
+          },
         ],
       },
     ];
