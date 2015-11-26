@@ -76,6 +76,14 @@ module.exports = {
   getFirstDayOfMonth(d) {
     return new Date(d.getFullYear(), d.getMonth(), 1);
   },
+  
+  getLocalizedWeekdayTitle(weekday, locale, weekdayFormat) {
+    let weekdayFormatter = new Intl.DateTimeFormat(locale, { weekday: weekdayFormat });
+    let now = new Date();
+    let firstDayOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
+    
+    return weekdayFormatter.format(this.addDays(firstDayOfWeek, weekday));
+  },
 
   getWeekArray(d) {
     let dayArray = [];

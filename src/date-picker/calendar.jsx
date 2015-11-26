@@ -43,6 +43,7 @@ const Calendar = React.createClass({
     maxDate: React.PropTypes.object,
     onDayTouchTap: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
+    weekdayFormat: React.PropTypes.string,
   },
 
   windowListeners: {
@@ -55,6 +56,7 @@ const Calendar = React.createClass({
       initialDate: new Date(),
       minDate: DateTime.addYears(new Date(), -100),
       maxDate: DateTime.addYears(new Date(), 100),
+      weekdayFormat: 'narrow',
     };
   },
 
@@ -138,6 +140,7 @@ const Calendar = React.createClass({
     const {
       DateTimeFormat,
       locale,
+      weekdayFormat,
     } = this.props;
 
     return (
@@ -165,13 +168,13 @@ const Calendar = React.createClass({
           <ClearFix
             elementType="ul"
             style={styles.weekTitle}>
-            <li style={weekTitleDayStyle}>S</li>
-            <li style={weekTitleDayStyle}>M</li>
-            <li style={weekTitleDayStyle}>T</li>
-            <li style={weekTitleDayStyle}>W</li>
-            <li style={weekTitleDayStyle}>T</li>
-            <li style={weekTitleDayStyle}>F</li>
-            <li style={weekTitleDayStyle}>S</li>
+            <li style={weekTitleDayStyle}>{DateTime.getLocalizedWeekdayTitle(0, locale, weekdayFormat)}</li>
+            <li style={weekTitleDayStyle}>{DateTime.getLocalizedWeekdayTitle(1, locale, weekdayFormat)}</li>
+            <li style={weekTitleDayStyle}>{DateTime.getLocalizedWeekdayTitle(2, locale, weekdayFormat)}</li>
+            <li style={weekTitleDayStyle}>{DateTime.getLocalizedWeekdayTitle(3, locale, weekdayFormat)}</li>
+            <li style={weekTitleDayStyle}>{DateTime.getLocalizedWeekdayTitle(4, locale, weekdayFormat)}</li>
+            <li style={weekTitleDayStyle}>{DateTime.getLocalizedWeekdayTitle(5, locale, weekdayFormat)}</li>
+            <li style={weekTitleDayStyle}>{DateTime.getLocalizedWeekdayTitle(6, locale, weekdayFormat)}</li>
           </ClearFix>
           <SlideInTransitionGroup
             direction={this.state.transitionDirection}>
