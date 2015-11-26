@@ -114,7 +114,9 @@ const Menu = React.createClass({
     });
   },
 
-  componentClickAway() {
+  componentClickAway(e) {
+    if (e.defaultPrevented) 
+      return;
     this._setFocusIndex(-1, false);
   },
 

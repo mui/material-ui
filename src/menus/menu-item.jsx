@@ -61,6 +61,7 @@ const MenuItem = React.createClass({
   componentWillReceiveProps (nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+    
     if (this.state.open && nextProps.focusState === "none") {
       this._onRequestClose();
     }
