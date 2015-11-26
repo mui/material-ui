@@ -5,6 +5,10 @@ const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'
 const monthLongList = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
 
+if (!window.Intl) {
+  require('intl');
+}
+
 function DateTimeFormat(locale, options) {
   if (process.env.NODE_ENV !== 'production' && locale !== 'en-US') {
     console.warn('Wrong usage of DateTimeFormat. The ' + locale +' locale is not supported.');
