@@ -101,6 +101,27 @@ export default class MenusPage extends React.Component {
         ],
       },
       {
+        name: 'Menu Events',
+        infoArray: [
+          {
+            name: 'onEscKeyDown',
+            header: 'function(event)',
+            desc: 'Fired when an Esc key is keyed down.',
+          },
+          {
+            name: 'onItemTouchTap',
+            header: 'function(event, item)',
+            desc: 'Fired when a menu item is touchTapped.',
+          },
+          {
+            name: 'onChange',
+            header: 'function(event, value)',
+            desc: 'Fired when a menu item is touchTapped and the menu item value ' +
+              'is not equal to the current menu value.',
+          },
+        ],
+      },
+      {
         name: 'MenuItem Props',
         infoArray: [
           {
@@ -174,23 +195,12 @@ export default class MenusPage extends React.Component {
         ],
       },
       {
-        name: 'Events',
+        name: 'Menu Item Events',
         infoArray: [
           {
-            name: 'onEscKeyDown',
-            header: 'function(event)',
-            desc: 'Fired when an Esc key is keyed down.',
-          },
-          {
-            name: 'onItemTouchTap',
+            name: 'onTouchTap',
             header: 'function(event, item)',
             desc: 'Fired when a menu item is touchTapped.',
-          },
-          {
-            name: 'onChange',
-            header: 'function(event, value)',
-            desc: 'Fired when a menu item is touchTapped and the menu item value ' +
-              'is not equal to the current menu value.',
           },
         ],
       },
@@ -320,7 +330,18 @@ import MenuDivider from 'material-ui/lib/menus/menu-divider';
             <MenuItem primaryText="Single" insetChildren={true} />
             <MenuItem primaryText="1.15" insetChildren={true} />
             <MenuItem primaryText="Double" insetChildren={true} />
-            <MenuItem primaryText="Custom: 1.2" checked={true} rightIcon={<ArrowDropRight />} />
+            <MenuItem primaryText="Custom: 1.2" checked={true} rightIcon={<ArrowDropRight />} menuItems={[
+                <MenuItem primaryText="Show" rightIcon={<ArrowDropRight />} menuItems={[
+                  <MenuItem primaryText="Show Level 2" />,
+                  <MenuItem primaryText="Grid lines" checked={true} />,
+                  <MenuItem primaryText="Page breaks" insetChildren={true} />,
+                  <MenuItem primaryText="Rules" checked={true} />,
+                  ]}/>,
+                <MenuItem primaryText="Grid lines" checked={true} />,
+                <MenuItem primaryText="Page breaks" insetChildren={true} />,
+                <MenuItem primaryText="Rules" checked={true} />,
+              ]}>
+            </MenuItem>
             <MenuDivider />
             <MenuItem primaryText="Add space before paragraph" />
             <MenuItem primaryText="Add space after paragraph" />

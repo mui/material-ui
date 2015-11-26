@@ -3,6 +3,7 @@ const ReactDOM = require('react-dom');
 const update = require('react-addons-update');
 const Controllable = require('../mixins/controllable');
 const StylePropable = require('../mixins/style-propable');
+const ClickAwayable = require('../mixins/click-awayable');
 const AutoPrefix = require('../styles/auto-prefix');
 const Transitions = require('../styles/transitions');
 const KeyCode = require('../utils/key-code');
@@ -14,7 +15,11 @@ const ThemeManager = require('../styles/theme-manager');
 
 const Menu = React.createClass({
 
-  mixins: [StylePropable, Controllable],
+  mixins: [
+    StylePropable,
+    Controllable,
+    ClickAwayable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -109,6 +114,12 @@ const Menu = React.createClass({
     });
   },
 
+  componentClickAway(e) {
+    if (e.defaultPrevented) 
+      return;
+    this._setFocusIndex(-1, false);
+  },
+
   render() {
     let {
       animated,
@@ -185,7 +196,7 @@ const Menu = React.createClass({
     let menuItemIndex = 0;
     let newChildren = React.Children.map(children, (child) => {
 
-      let childIsADivider = child.type.displayName === 'MenuDivider';
+      let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
       let childIsDisabled = child.props.disabled;
       let childrenContainerStyles = {};
 
@@ -259,7 +270,6 @@ const Menu = React.createClass({
   },
 
   _cloneMenuItem(child, childIndex, styles) {
-
     let {
       desktop,
       selectedMenuItemStyle,
@@ -322,7 +332,7 @@ const Menu = React.createClass({
     //max menu height
     React.Children.forEach(children, (child) => {
       if (currentHeight < maxHeight) {
-        let childIsADivider = child.type.displayName === 'MenuDivider';
+        let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
 
         currentHeight += childIsADivider ? 16 : menuItemHeight;
         count++;
@@ -336,7 +346,7 @@ const Menu = React.createClass({
   _getMenuItemCount() {
     let menuItemCount = 0;
     React.Children.forEach(this.props.children, (child) => {
-      let childIsADivider = child.type.displayName === 'MenuDivider';
+      let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
       let childIsDisabled = child.props.disabled;
       if (!childIsADivider && !childIsDisabled) menuItemCount++;
     });
@@ -351,7 +361,7 @@ const Menu = React.createClass({
     let menuItemIndex = 0;
 
     React.Children.forEach(children, (child) => {
-      let childIsADivider = child.type.displayName === 'MenuDivider';
+      let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
 
       if (this._isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;
@@ -391,6 +401,9 @@ const Menu = React.createClass({
     let valueLink = this.getValueLink(this.props);
     let menuValue = valueLink.value;
     let itemValue = item.props.value;
+    let focusIndex = this.props.children.indexOf(item);
+
+    this._setFocusIndex(focusIndex, false);
 
     if (multiple) {
       let index = menuValue.indexOf(itemValue);
