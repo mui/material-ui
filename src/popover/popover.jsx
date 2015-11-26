@@ -166,9 +166,6 @@ const Popover = React.createClass({
   _showInternal(anchorEl) {
     this.anchorEl = anchorEl || this.props.anchorEl;
     this.setState({open: true});
-    const popOverShowEvent = new CustomEvent('popOverOnShow', {detail: this});
-    document.dispatchEvent(popOverShowEvent);
-
   },
 
   _hideInternal() {
@@ -178,9 +175,7 @@ const Popover = React.createClass({
     this.setState({
       open: false,
     }, () => {
-      this._animateClose();
-      const popOverHideEvent = new CustomEvent('popOverOnHide');
-      document.dispatchEvent(popOverHideEvent);
+      this._animateClose();      
     });
   },
 
