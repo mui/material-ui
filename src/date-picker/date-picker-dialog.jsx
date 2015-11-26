@@ -156,6 +156,15 @@ const DatePickerDialog = React.createClass({
           onTouchTap={this._handleOKTouchTap} />
       );
     }
+
+    // Those two properties are deprecated, we will remove them at some point
+    if (typeof onDismiss === 'function') {
+      other.onDismiss = onDismiss;
+    }
+    if (typeof onShow === 'function') {
+      other.onShow = onShow;
+    }
+
     // will change later when Popover is available.
     const Container = (container === 'inline' ? DatePickerInline : Dialog);
     return (
@@ -166,8 +175,6 @@ const DatePickerDialog = React.createClass({
         contentStyle={styles.dialogContent}
         bodyStyle={styles.dialogBodyContent}
         actions={actions}
-        onDismiss={typeof onDismiss === 'function' && onDismiss}
-        onShow={typeof onShow === 'function' && onShow}
         repositionOnUpdate={false}
         open={this.state.open}
         onRequestClose={this.dismiss}>
