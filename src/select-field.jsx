@@ -51,6 +51,7 @@ const SelectField = React.createClass({
     menuItemStyle: React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
     style: React.PropTypes.object,
+    displayMemberOnLabel: React.PropTypes.string,
   },
 
   //for passing default theme context to children
@@ -164,6 +165,7 @@ const SelectField = React.createClass({
       iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
       underlineStyle: this.mergeAndPrefix(styles.underline, underlineStyle),
       autoWidth: false,
+      displayMemberOnLabel: this.props.displayMemberOnLabel || null,
     };
 
     return (
