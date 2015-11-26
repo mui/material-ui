@@ -64,6 +64,12 @@ export default class DatePickerPage extends React.Component {
             desc: 'Wordings used inside the button of the dialog.',
           },
           {
+            name: 'weekdayFormat',
+            type: 'string',
+            header: 'default: \'narrow\'',
+            desc: 'Specifies weekday title format. Can be either \'narrow\' (one letter) or \'short\' (2-3 letters).',
+          },
+          {
             name: 'autoOk',
             type: 'bool',
             header: 'default: false',

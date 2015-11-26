@@ -49,6 +49,7 @@ const DatePicker = React.createClass({
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
     value: React.PropTypes.object,
+    weekdayFormat: React.PropTypes.string,
   },
 
   windowListeners: {
@@ -103,6 +104,7 @@ const DatePicker = React.createClass({
       style,
       textFieldStyle,
       valueLink,
+      weekdayFormat,
       ...other,
     } = this.props;
 
@@ -120,6 +122,7 @@ const DatePicker = React.createClass({
           ref="dialogWindow"
           DateTimeFormat={DateTimeFormat}
           locale={locale}
+          weekdayFormat={weekdayFormat}
           wordings={wordings}
           mode={mode}
           initialDate={this.state.dialogDate}
