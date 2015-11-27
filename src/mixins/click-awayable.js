@@ -17,13 +17,15 @@ module.exports = {
   },
 
   _checkClickAway(event) {
-    let el = ReactDOM.findDOMNode(this);
+    if (this.isMounted()) {
+      let el = ReactDOM.findDOMNode(this);
 
-    // Check if the target is inside the current component
-    if (event.target !== el &&
-        !Dom.isDescendant(el, event.target) &&
-        document.documentElement.contains(event.target)) {
-      if (this.componentClickAway) this.componentClickAway(event);
+      // Check if the target is inside the current component
+      if (event.target !== el &&
+          !Dom.isDescendant(el, event.target) &&
+          document.documentElement.contains(event.target)) {
+        if (this.componentClickAway) this.componentClickAway(event);
+      }
     }
   },
 
