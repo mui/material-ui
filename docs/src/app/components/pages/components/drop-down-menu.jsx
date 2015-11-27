@@ -36,6 +36,13 @@ export default class DropDownMenuPage extends React.Component {
               'property you can choose another name.',
           },
           {
+            name: 'labelMember',
+            type: 'string',
+            header: 'default: text',
+            desc: 'DropDownMenu will use text as default value, with this ' +
+              'property you can choose another name.',
+          },
+          {
             name: 'autoWidth',
             type: 'bool',
             header: 'default: true',

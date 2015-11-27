@@ -49,7 +49,7 @@ const DropDownMenu = React.createClass({
     openImmediately: React.PropTypes.bool,
     style: React.PropTypes.object,
     value: React.PropTypes.object,
-    displayMemberOnLabel: React.PropTypes.string,
+    labelMember: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -59,7 +59,7 @@ const DropDownMenu = React.createClass({
       valueMember: 'payload',
       displayMember: 'text',
       openImmediately: false,
-      displayMemberOnLabel: null,
+      labelMember: 'text',
     };
   },
 
@@ -188,7 +188,7 @@ const DropDownMenu = React.createClass({
       iconStyle,
       underlineStyle,
       menuItemStyle,
-      displayMemberOnLabel,
+      labelMember,
       ...other,
     } = this.props;
 
@@ -213,7 +213,7 @@ const DropDownMenu = React.createClass({
 
     let selectedItem = this.props.menuItems[selectedIndex];
     if (selectedItem) {
-      displayValue = selectedItem[displayMemberOnLabel || displayMember];
+      displayValue = selectedItem[labelMember || displayMember];
     }
 
     let menuItems = this.props.menuItems.map((item) => {
