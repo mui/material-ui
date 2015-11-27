@@ -17,7 +17,7 @@ let tabPressed = false;
 function injectStyle() {
   if (!styleInjected) {
     // Remove inner padding and border in Firefox 4+.
-    let style = document.createElement("style");
+    let style = document.createElement('style');
     style.innerHTML = `
       button::-moz-focus-inner,
       input::-moz-focus-inner {
@@ -33,7 +33,7 @@ function injectStyle() {
 
 function listenForTabPresses() {
   if (!listening) {
-    Events.on(window, 'keydown', (e) =>{
+    Events.on(window, 'keydown', (e) => {
       tabPressed = e.keyCode === KeyCode.TAB;
     });
     listening = true;
@@ -53,7 +53,7 @@ const EnhancedButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -233,7 +233,7 @@ const EnhancedButton = React.createClass({
       touchRippleColor,
       touchRippleOpacity,
     } = this.props;
-    const { isKeyboardFocused } = this.state;
+    const {isKeyboardFocused} = this.state;
 
     //Focus Ripple
     const focusRipple = isKeyboardFocused && !disabled && !disableFocusRipple && !disableKeyboardFocus ? (

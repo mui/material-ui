@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, FlatButton, RaisedButton, Paper, Toggle } from 'material-ui';
+import {Dialog, FlatButton, RaisedButton, Paper, Toggle} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'dialog-code';
 import CodeExample from '../../code-example/code-example';
@@ -157,8 +157,8 @@ export default class DialogPage extends React.Component {
     ];
 
     let standardActions = [
-      { text: 'Cancel' },
-      { text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit' },
+      {text: 'Cancel'},
+      {text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit'},
     ];
 
     let customActions = [

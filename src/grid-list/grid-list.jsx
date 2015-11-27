@@ -23,7 +23,7 @@ const GridList = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -37,7 +37,7 @@ const GridList = React.createClass({
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -45,7 +45,7 @@ const GridList = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -56,11 +56,11 @@ const GridList = React.createClass({
       root: {
         display: '-webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex',
         flexWrap: 'wrap',
-        margin: `-${this.props.padding/2}px`,
+        margin: `-${this.props.padding / 2}px`,
       },
       item: {
         boxSizing: 'border-box',
-        padding: `${this.props.padding/2}px`,
+        padding: `${this.props.padding / 2}px`,
       },
     };
   },

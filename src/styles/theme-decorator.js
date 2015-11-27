@@ -10,7 +10,7 @@ module.exports = (customTheme) => {
         muiTheme: React.PropTypes.object,
       },
 
-      getChildContext () {
+      getChildContext() {
         return {
           muiTheme: customTheme,
         };
@@ -22,4 +22,4 @@ module.exports = (customTheme) => {
     });
 
   };
-}
+};

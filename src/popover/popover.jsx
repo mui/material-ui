@@ -108,7 +108,7 @@ const Popover = React.createClass({
 
     const anchorEl = this.props.anchorEl || this.anchorEl;
     let anchor = this.getAnchorPosition(anchorEl);
-    let horizontal = targetOrigin.horizontal.replace("middle", "vertical");
+    let horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
 
     let wrapperStyle = {
       position: 'fixed',
@@ -129,7 +129,7 @@ const Popover = React.createClass({
       overflowY:'auto',
       transform:'scaleX(0)',
       opacity:1,
-      transition: animated ? Transitions.easeOut('250ms', ['transform', 'opacity']): null,
+      transition: animated ? Transitions.easeOut('250ms', ['transform', 'opacity']) : null,
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
     };
 
@@ -138,7 +138,7 @@ const Popover = React.createClass({
       transform:'scaleY(0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
       transition: animated ? Transitions.easeOut('500ms', ['transform', 'opacity']) : null,
-    }
+    };
 
     return (
       <Paper style={wrapperStyle} zDepth={zDepth} className={className} >
@@ -181,12 +181,12 @@ const Popover = React.createClass({
     this.setState({
       open: false,
     }, () => {
-      this._animateClose();      
+      this._animateClose();
     });
   },
 
   _animateClose() {
-    if (!this.refs.layer || !this.refs.layer.getLayer()){
+    if (!this.refs.layer || !this.refs.layer.getLayer()) {
       return;
     }
     let el = this.refs.layer.getLayer().children[0];
@@ -251,7 +251,7 @@ const Popover = React.createClass({
       left:0,
       middle:targetEl.offsetWidth / 2,
       right:targetEl.offsetWidth,
-    }
+    };
   },
 
   setPlacement(el) {
@@ -276,7 +276,7 @@ const Popover = React.createClass({
     let targetPosition = {
       top: anchor[anchorOrigin.vertical] - target[targetOrigin.vertical],
       left: anchor[anchorOrigin.horizontal] - target[targetOrigin.horizontal],
-    }
+    };
 
     if (this.props.autoCloseWhenOffScreen)
       this.autoCloseWhenOffScreen(anchor);
@@ -289,7 +289,7 @@ const Popover = React.createClass({
 
     targetEl.style.top = targetPosition.top + 'px';
     targetEl.style.left = targetPosition.left + 'px';
-    this._animateOpen(targetEl)
+    this._animateOpen(targetEl);
   },
 
   autoCloseWhenOffScreen(anchorPosition) {
@@ -305,11 +305,11 @@ const Popover = React.createClass({
 
   applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition) {
     if (targetPosition.top + target.bottom > window.innerHeight) {
-      let positions = ["top", "center", "bottom"]
+      let positions = ['top', 'center', 'bottom']
         .filter((position) => position !== targetOrigin.vertical);
 
       let newTop = anchor[anchorOrigin.vertical] - target[positions[0]];
-      if (newTop + target.bottom  <= window.innerHeight)
+      if (newTop + target.bottom <= window.innerHeight)
         targetPosition.top = Math.max(0, newTop);
       else {
         newTop = anchor[anchorOrigin.vertical] - target[positions[1]];
@@ -318,11 +318,11 @@ const Popover = React.createClass({
       }
     }
     if (targetPosition.left + target.right > window.innerWidth) {
-      let positions = ["left", "middle", "right"]
+      let positions = ['left', 'middle', 'right']
         .filter((position) => position !== targetOrigin.horizontal);
 
       let newLeft = anchor[anchorOrigin.horizontal] - target[positions[0]];
-      if (newLeft + target.right  <= window.innerWidth)
+      if (newLeft + target.right <= window.innerWidth)
         targetPosition.left = Math.max(0, newLeft);
       else {
         newLeft = anchor[anchorOrigin.horizontal] - target[positions[1]];

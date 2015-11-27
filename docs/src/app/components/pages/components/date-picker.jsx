@@ -1,5 +1,5 @@
 import React from 'react';
-import { DatePicker, TextField, Paper, Toggle } from 'material-ui';
+import {DatePicker, TextField, Paper, Toggle} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'date-picker-code';
 import CodeExample from '../../code-example/code-example';
@@ -16,9 +16,9 @@ export default class DatePickerPage extends React.Component {
 
     let minDate = new Date();
     let maxDate = new Date();
-    minDate.setFullYear(minDate.getFullYear() -1);
+    minDate.setFullYear(minDate.getFullYear() - 1);
     minDate.setHours(0, 0, 0, 0);
-    maxDate.setFullYear(maxDate.getFullYear() +1);
+    maxDate.setFullYear(maxDate.getFullYear() + 1);
     maxDate.setHours(0, 0, 0, 0);
 
     this.state = {
@@ -39,7 +39,7 @@ export default class DatePickerPage extends React.Component {
             type: 'one of: dialog, inline',
             header: 'default: dialog',
             desc: 'Used to control how the DatePicker will be displayed when a user tries to set ' +
-            'a date. `dialog` (default) displays the DatePicker as a dialog with a modal. `inline` '+
+            'a date. `dialog` (default) displays the DatePicker as a dialog with a modal. `inline` ' +
             'displays the DatePicker below the input field (similar to auto complete)',
           },
           {

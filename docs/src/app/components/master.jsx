@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'react-router';
 import AppLeftNav from './app-left-nav';
 import FullWidthSection from './full-width-section';
-import { AppBar,
+import {AppBar,
       AppCanvas,
       FontIcon,
       IconButton,
@@ -15,8 +15,8 @@ import { AppBar,
       Tabs,
       Paper} from 'material-ui';
 
-const { StylePropable } = Mixins;
-const { Colors, Spacing, Typography } = Styles;
+const {StylePropable} = Mixins;
+const {Colors, Spacing, Typography} = Styles;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 
@@ -24,7 +24,7 @@ const DefaultRawTheme = Styles.LightRawTheme;
 const Master = React.createClass({
   mixins: [StylePropable],
 
-  getInitialState () {
+  getInitialState() {
     let muiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
     // To switch to RTL...
     // muiTheme.isRtl = true;
@@ -61,12 +61,12 @@ const Master = React.createClass({
       },
       github: {
         position: 'fixed',
-        right: Spacing.desktopGutter/2,
+        right: Spacing.desktopGutter / 2,
         top: 8,
         zIndex: 5,
         color: 'white',
       },
-       iconButton: {
+      iconButton: {
         color: darkWhite,
       },
     };
@@ -120,7 +120,7 @@ const Master = React.createClass({
     return (
       <AppCanvas>
         {githubButton}
-        {this.state.renderTabs ? this._getTabs(): this._getAppBar()}
+        {this.state.renderTabs ? this._getTabs() : this._getAppBar()}
 
         {this.props.children}
         <AppLeftNav ref="leftNav" history={this.props.history} />
@@ -135,52 +135,52 @@ const Master = React.createClass({
     );
   },
 
- _getTabs() {
+  _getTabs() {
     let styles = {
       root: {
-        backgroundColor: Colors.cyan500,
-        position: 'fixed',
-        height: 64,
-        top: 0,
-        right: 0,
-        zIndex: 4,
-        width: '100%',
-      },
+       backgroundColor: Colors.cyan500,
+       position: 'fixed',
+       height: 64,
+       top: 0,
+       right: 0,
+       zIndex: 4,
+       width: '100%',
+     },
       container: {
-        position: 'absolute',
-        right: (Spacing.desktopGutter/2) + 48,
-        bottom: 0,
-      },
+       position: 'absolute',
+       right: (Spacing.desktopGutter / 2) + 48,
+       bottom: 0,
+     },
       span: {
-        color: Colors.white,
-        fontWeight: Typography.fontWeightLight,
-        left: 45,
-        top: 22,
-        position: 'absolute',
-        fontSize: 26,
-      },
+       color: Colors.white,
+       fontWeight: Typography.fontWeightLight,
+       left: 45,
+       top: 22,
+       position: 'absolute',
+       fontSize: 26,
+     },
       svgLogoContainer: {
-        position: 'fixed',
-        width: 300,
-        left: Spacing.desktopGutter,
-      },
+       position: 'fixed',
+       width: 300,
+       left: Spacing.desktopGutter,
+     },
       svgLogo: {
-        width: 65,
-        backgroundColor: Colors.cyan500,
-        position: 'absolute',
-        top: 20,
-      },
+       width: 65,
+       backgroundColor: Colors.cyan500,
+       position: 'absolute',
+       top: 20,
+     },
       tabs: {
-        width: 425,
-        bottom:0,
-      },
+       width: 425,
+       bottom:0,
+     },
       tab: {
-        height: 64,
-      },
+       height: 64,
+     },
 
     };
 
-    let materialIcon= this.state.tabIndex !== '0' ? (
+    let materialIcon = this.state.tabIndex !== '0' ? (
       <EnhancedButton
         style={styles.svgLogoContainer}
         linkButton={true}
@@ -189,7 +189,7 @@ const Master = React.createClass({
         <span style={this.prepareStyles(styles.span)}>material ui</span>
       </EnhancedButton>) : null;
 
-    return(
+    return (
       <div>
         <Paper
           zDepth={0}

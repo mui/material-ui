@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgIcon } from 'mui';
+import {SvgIcon} from 'mui';
 
 
 class EditorInsertChart extends React.Component {

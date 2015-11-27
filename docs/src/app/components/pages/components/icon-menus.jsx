@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, Paper } from 'material-ui';
+import {IconButton, Paper} from 'material-ui';
 import IconMenu from 'menus/icon-menu';
 import MenuItem from 'menus/menu-item';
 import MenuDivider from 'menus/menu-divider';
@@ -50,7 +50,7 @@ export default class IconMenus extends React.Component {
             header: 'optional',
             desc:
               'This is the point on the icon where the menu targetOrigin will stick to.\n' +
-              'Options:\n'+
+              'Options:\n' +
               'vertical: [top, middle, bottom]\n' +
               'horizontal: [left, center, right]\n',
           },
@@ -60,7 +60,7 @@ export default class IconMenus extends React.Component {
             header: 'optional',
             desc:
               'This is the point on the menu which will stick to the menu origin.' +
-              'Options:'+
+              'Options:' +
               'vertical: [top, middle, bottom]' +
               'horizontal: [left, center, right]',
           },
@@ -293,9 +293,9 @@ export default class IconMenus extends React.Component {
           <div>
             <IconMenu
               iconButtonElement={mapsButtonElement}
-              maxHeight={272}        
+              maxHeight={272}
               anchorOrigin={{horizontal:'right', vertical:'top'}}
-              targetOrigin={{horizontal:'right', vertical:'top'}}      
+              targetOrigin={{horizontal:'right', vertical:'top'}}
               valueLink={usStateValueLink}>
               <MenuItem value="AL" primaryText="Alabama" />
               <MenuItem value="AK" primaryText="Alaska" />

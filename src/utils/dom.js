@@ -23,7 +23,7 @@ module.exports = {
     let attrStyle = el.style[attr];
     let attrNum = 0;
     if (attrStyle && attrStyle.length) {
-        attrNum = parseInt(attrStyle);
+      attrNum = parseInt(attrStyle);
     }
 
     return attrNum;

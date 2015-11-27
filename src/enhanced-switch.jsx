@@ -25,36 +25,36 @@ const EnhancedSwitch = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   propTypes: {
-      id: React.PropTypes.string,
-      inputType: React.PropTypes.string.isRequired,
-      switchElement: React.PropTypes.element.isRequired,
-      onParentShouldUpdate: React.PropTypes.func.isRequired,
-      switched: React.PropTypes.bool.isRequired,
-      rippleStyle: React.PropTypes.object,
-      rippleColor: React.PropTypes.string,
-      iconStyle: React.PropTypes.object,
-      thumbStyle: React.PropTypes.object,
-      trackStyle: React.PropTypes.object,
-      labelStyle: React.PropTypes.object,
-      name: React.PropTypes.string,
-      value: React.PropTypes.string,
-      label: React.PropTypes.node,
-      onSwitch: React.PropTypes.func,
-      required: React.PropTypes.bool,
-      disabled: React.PropTypes.bool,
-      defaultSwitched: React.PropTypes.bool,
-      labelPosition: React.PropTypes.oneOf(['left', 'right']),
-      disableFocusRipple: React.PropTypes.bool,
-      disableTouchRipple: React.PropTypes.bool,
-      style: React.PropTypes.object,
-    },
+    id: React.PropTypes.string,
+    inputType: React.PropTypes.string.isRequired,
+    switchElement: React.PropTypes.element.isRequired,
+    onParentShouldUpdate: React.PropTypes.func.isRequired,
+    switched: React.PropTypes.bool.isRequired,
+    rippleStyle: React.PropTypes.object,
+    rippleColor: React.PropTypes.string,
+    iconStyle: React.PropTypes.object,
+    thumbStyle: React.PropTypes.object,
+    trackStyle: React.PropTypes.object,
+    labelStyle: React.PropTypes.object,
+    name: React.PropTypes.string,
+    value: React.PropTypes.string,
+    label: React.PropTypes.node,
+    onSwitch: React.PropTypes.func,
+    required: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
+    defaultSwitched: React.PropTypes.bool,
+    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    disableFocusRipple: React.PropTypes.bool,
+    disableTouchRipple: React.PropTypes.bool,
+    style: React.PropTypes.object,
+  },
 
   windowListeners: {
     keydown: '_handleWindowKeydown',
@@ -69,7 +69,7 @@ const EnhancedSwitch = React.createClass({
     };
   },
 
-  getEvenWidth(){
+  getEvenWidth() {
     return (
       parseInt(window
         .getComputedStyle(ReactDOM.findDOMNode(this.refs.root))
@@ -83,13 +83,13 @@ const EnhancedSwitch = React.createClass({
       this.props.onParentShouldUpdate(inputNode.checked);
     }
 
-    window.addEventListener("resize", this._handleResize);
+    window.addEventListener('resize', this._handleResize);
 
     this._handleResize();
   },
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this._handleResize);
+    window.removeEventListener('resize', this._handleResize);
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -228,7 +228,7 @@ const EnhancedSwitch = React.createClass({
     ) : null;
 
     let inputProps = {
-      ref: "checkbox",
+      ref: 'checkbox',
       type: this.props.inputType,
       style: this.prepareStyles(styles.input),
       name: this.props.name,
@@ -298,7 +298,7 @@ const EnhancedSwitch = React.createClass({
 
     // Position is left if not defined or invalid.
     let elementsInOrder = (labelPositionExist &&
-      (this.props.labelPosition.toUpperCase() === "RIGHT")) ? (
+      (this.props.labelPosition.toUpperCase() === 'RIGHT')) ? (
         <ClearFix style={styles.controls}>
           {switchElement}
           {labelElement}

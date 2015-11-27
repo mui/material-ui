@@ -1,10 +1,10 @@
 import React from 'react';
-import { ClearFix, FontIcon, Styles, Paper } from 'material-ui';
+import {ClearFix, FontIcon, Styles, Paper} from 'material-ui';
 import CodeBlock from '../../code-example/code-block';
 import ComponentDoc from '../../component-doc';
 import ActionHome from 'svg-icons/action/home';
 
-const { Colors, Typography } = Styles;
+const {Colors, Typography} = Styles;
 import IconButtonCode from 'icons-code';
 import SvgIconsCode from 'svg-icons-code';
 import CodeExample from '../../code-example/code-example';

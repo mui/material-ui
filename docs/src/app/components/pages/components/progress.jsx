@@ -1,5 +1,5 @@
 import React from 'react';
-import { CircularProgress, LinearProgress, Paper } from 'material-ui';
+import {CircularProgress, LinearProgress, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'progress-code';
 import CodeExample from '../../code-example/code-example';
@@ -7,7 +7,7 @@ import CodeBlock from '../../code-example/code-block';
 
 const ProgressPage = React.createClass({
 
-  getInitialState () {
+  getInitialState() {
     return {
       completed: 0,
     };
@@ -107,7 +107,7 @@ const ProgressPage = React.createClass({
           <p>
             Indeterminate
           </p>
-          <LinearProgress mode="indeterminate"  />
+          <LinearProgress mode="indeterminate" />
           <p>
             Overriding the theme's color
           </p>
@@ -123,7 +123,7 @@ const ProgressPage = React.createClass({
           <p>
             Indeterminate
           </p>
-          <CircularProgress mode="indeterminate"  />
+          <CircularProgress mode="indeterminate" />
           <CircularProgress mode="indeterminate" size={1.5} />
           <CircularProgress mode="indeterminate" color={"red"} size={2} />
         </CodeExample>

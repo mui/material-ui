@@ -29,7 +29,7 @@ const Tooltip = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -42,7 +42,7 @@ const Tooltip = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     this._setTooltipPosition();
 
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
@@ -63,7 +63,7 @@ const Tooltip = React.createClass({
   getStyles() {
     let verticalPosition = this.props.verticalPosition;
     let horizontalPosition = this.props.horizontalPosition;
-    let touchMarginOffset = this.props.touch ? 10: 0;
+    let touchMarginOffset = this.props.touch ? 10 : 0;
     let touchOffsetTop = this.props.touch ? -20 : -10;
     let offset = verticalPosition === 'bottom' ?
       14 + touchMarginOffset : -14 - touchMarginOffset;
@@ -95,8 +95,8 @@ const Tooltip = React.createClass({
       },
       ripple: {
         position: 'absolute',
-        left: horizontalPosition ==='center' ? '50%' :
-          horizontalPosition ==='left' ? '100%' : '0%',
+        left: horizontalPosition === 'center' ? '50%' :
+          horizontalPosition === 'left' ? '100%' : '0%',
         top: verticalPosition === 'bottom' ? 0 : '100%',
         transform: 'translate(-50%, -50%)',
         borderRadius: '50%',
@@ -136,7 +136,7 @@ const Tooltip = React.createClass({
   render() {
     let {
       label,
-      ...other } = this.props;
+      ...other} = this.props;
     let styles = this.getStyles();
     return (
       <div {...other}
@@ -159,9 +159,9 @@ const Tooltip = React.createClass({
   _setRippleSize() {
     let ripple = ReactDOM.findDOMNode(this.refs.ripple);
     let tooltip = window.getComputedStyle(ReactDOM.findDOMNode(this));
-    let tooltipWidth = parseInt(tooltip.getPropertyValue("width"), 10) /
+    let tooltipWidth = parseInt(tooltip.getPropertyValue('width'), 10) /
       (this.props.horizontalPosition === 'center' ? 2 : 1);
-    let tooltipHeight = parseInt(tooltip.getPropertyValue("height"), 10);
+    let tooltipHeight = parseInt(tooltip.getPropertyValue('height'), 10);
 
     let rippleDiameter = Math.ceil((Math.sqrt(Math.pow(tooltipHeight, 2) +
                                     Math.pow(tooltipWidth, 2) ) * 2));

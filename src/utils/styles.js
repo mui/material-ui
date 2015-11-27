@@ -12,7 +12,7 @@ module.exports = {
     return AutoPrefix.all(mergedStyles);
   },
 
-  // This function ensures that `style` supports both ltr and rtl directions by checking 
+  // This function ensures that `style` supports both ltr and rtl directions by checking
   //   `styleConstants` in `muiTheme` and replacing attribute keys if necessary.
   ensureDirection(muiTheme, style) {
     if (process.env.NODE_ENV !== 'production') {
@@ -25,7 +25,7 @@ module.exports = {
     }
 
     // Left to right is the default. No need to flip anything.
-    if (!muiTheme.isRtl) return style; 
+    if (!muiTheme.isRtl) return style;
 
     const flippedAttributes = {
       // Keys and their replacements.
@@ -44,7 +44,7 @@ module.exports = {
     Object.keys(style).forEach(function(attribute) {
       let value = style[attribute];
       let key = attribute;
-      
+
       if (flippedAttributes.hasOwnProperty(attribute)) {
         key = flippedAttributes[attribute];
       }
@@ -54,25 +54,25 @@ module.exports = {
         case 'textAlign':
           if (value === 'right') {
             value = 'left';
-          } else if(value === 'left') {
+          } else if (value === 'left') {
             value = 'right';
           }
           break;
         case 'direction':
           if (value === 'ltr') {
             value = 'rtl';
-          } else if(value === 'rtl') {
+          } else if (value === 'rtl') {
             value = 'ltr';
           }
           break;
         case 'transform':
           let matches;
           if ((matches = value.match(reTranslate))) {
-            value = value.replace(matches[0], matches[1] + (- parseFloat(matches[4])) );
+            value = value.replace(matches[0], matches[1] + (-parseFloat(matches[4])) );
           }
           if ((matches = value.match(reSkew))) {
-            value = value.replace(matches[0], matches[1] + (- parseFloat(matches[4])) + matches[5] + 
-              matches[6] ? ',' + (- parseFloat(matches[7])) + matches[8] : ''
+            value = value.replace(matches[0], matches[1] + (-parseFloat(matches[4])) + matches[5] +
+              matches[6] ? ',' + (-parseFloat(matches[7])) + matches[8] : ''
             );
           }
           break;

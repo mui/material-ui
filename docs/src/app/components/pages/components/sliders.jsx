@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Slider } from 'material-ui';
+import {Paper, Slider} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'sliders-code';
 import CodeExample from '../../code-example/code-example';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontIcon, IconButton, NavigationMenu, Paper } from 'material-ui';
+import {FontIcon, IconButton, NavigationMenu, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import ActionGrade from 'svg-icons/action/grade';
 import ActionHome from 'svg-icons/action/home';
@@ -131,7 +131,7 @@ export default class IconButtonsPage extends React.Component {
         </Paper>
 
         <CodeExample code={Code}>
-          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-right"  tooltipPosition = "bottom-right" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-right" tooltipPosition = "bottom-right" />
 
           <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-center" tooltipPosition = "bottom-center" />
 

@@ -13,11 +13,11 @@ const SubheaderMenuItem = React.createClass({
   },
 
   propTypes: {
-      index: React.PropTypes.number.isRequired,
-      text: React.PropTypes.string.isRequired,
-      firstChild: React.PropTypes.bool,
-      className: React.PropTypes.string,
-      style: React.PropTypes.object,
+    index: React.PropTypes.number.isRequired,
+    text: React.PropTypes.string.isRequired,
+    firstChild: React.PropTypes.bool,
+    className: React.PropTypes.string,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -25,13 +25,13 @@ const SubheaderMenuItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -39,7 +39,7 @@ const SubheaderMenuItem = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },

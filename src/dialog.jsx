@@ -27,7 +27,7 @@ const TransitionItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -42,7 +42,7 @@ const TransitionItem = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -102,7 +102,7 @@ const DialogInline = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -184,12 +184,12 @@ const DialogInline = React.createClass({
 
     let gutter = spacing.desktopGutter + 'px ';
     let title = {
-        margin: 0,
-        padding: gutter + gutter + '0 ' + gutter,
-        color: this.state.muiTheme.rawTheme.palette.textColor,
-        fontSize: 24,
-        lineHeight: '32px',
-        fontWeight: '400',
+      margin: 0,
+      padding: gutter + gutter + '0 ' + gutter,
+      color: this.state.muiTheme.rawTheme.palette.textColor,
+      fontSize: 24,
+      lineHeight: '32px',
+      fontWeight: '400',
     };
 
 
@@ -225,7 +225,7 @@ const DialogInline = React.createClass({
 
     return (
       <div ref="container" style={this.prepareStyles(styles.main)}>
-        <ReactTransitionGroup component="div" ref="dialogWindow" 
+        <ReactTransitionGroup component="div" ref="dialogWindow"
           transitionAppear={true} transitionAppearTimeout={450}
           transitionEnter={true} transitionEnterTimeout={450}>
           {this.props.open &&
@@ -354,7 +354,7 @@ const DialogInline = React.createClass({
   },
 
   _requestClose(buttonClicked) {
-    
+
     if (!buttonClicked && this.props.modal) {
       return;
     }
@@ -387,7 +387,7 @@ const wrapperStyle = {position:'fixed', top:0, left:0, zIndex:20};
 const Dialog = React.createClass({
 
   propTypes: {
-    actionFocus: React.PropTypes.string, 
+    actionFocus: React.PropTypes.string,
     actions: React.PropTypes.array,
     autoDetectWindowHeight: React.PropTypes.bool,
     autoScrollBodyContent: React.PropTypes.bool,
@@ -429,12 +429,12 @@ const Dialog = React.createClass({
       open:null,
       defaultOpen:false,
       modal:false,
-    }
+    };
   },
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 

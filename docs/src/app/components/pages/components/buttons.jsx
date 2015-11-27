@@ -16,7 +16,7 @@ const {
   Utils,
 } = mui;
 const extend = Utils.Extend;
-const { Colors, Typography } = Styles;
+const {Colors, Typography} = Styles;
 import RaisedButtonCode from 'raised-button-code';
 import FloatingActionButtonCode from 'floating-action-button-code';
 import FlatButtonCode from 'flat-button-code';
@@ -61,9 +61,9 @@ export default class ButtonPage extends React.Component {
             name: 'label or children',
             type: 'string (label) or HTML/React elements (children)',
             header: 'required',
-            desc: 'This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed.'+
-            ' Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />'+
-            'and a span that acts as our label to be displayed.) '+
+            desc: 'This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed.' +
+            ' Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />' +
+            'and a span that acts as our label to be displayed.) ' +
             'This only applies to flat and raised buttons.',
           },
           {
@@ -137,9 +137,9 @@ export default class ButtonPage extends React.Component {
             name: 'label or children',
             type: 'string (label) or HTML/React elements (children)',
             header: 'required',
-            desc: 'This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed.'+
-            ' Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />'+
-            'and a span that acts as our label to be displayed.) '+
+            desc: 'This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed.' +
+            ' Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />' +
+            'and a span that acts as our label to be displayed.) ' +
             'This only applies to flat and raised buttons.',
           },
           {
@@ -520,8 +520,7 @@ export default class ButtonPage extends React.Component {
         <ComponentDoc
           name=""
           desc=""
-          componentInfo={this.componentInfo.slice(3)}>
-        </ComponentDoc>
+          componentInfo={this.componentInfo.slice(3)} />
       </div>
     );
   }

@@ -331,17 +331,16 @@ import MenuDivider from 'material-ui/lib/menus/menu-divider';
             <MenuItem primaryText="1.15" insetChildren={true} />
             <MenuItem primaryText="Double" insetChildren={true} />
             <MenuItem primaryText="Custom: 1.2" checked={true} rightIcon={<ArrowDropRight />} menuItems={[
-                <MenuItem primaryText="Show" rightIcon={<ArrowDropRight />} menuItems={[
-                  <MenuItem primaryText="Show Level 2" />,
-                  <MenuItem primaryText="Grid lines" checked={true} />,
-                  <MenuItem primaryText="Page breaks" insetChildren={true} />,
-                  <MenuItem primaryText="Rules" checked={true} />,
-                  ]}/>,
+              <MenuItem primaryText="Show" rightIcon={<ArrowDropRight />} menuItems={[
+                <MenuItem primaryText="Show Level 2" />,
                 <MenuItem primaryText="Grid lines" checked={true} />,
                 <MenuItem primaryText="Page breaks" insetChildren={true} />,
                 <MenuItem primaryText="Rules" checked={true} />,
-              ]}>
-            </MenuItem>
+              ]}/>,
+              <MenuItem primaryText="Grid lines" checked={true} />,
+              <MenuItem primaryText="Page breaks" insetChildren={true} />,
+              <MenuItem primaryText="Rules" checked={true} />,
+            ]} />
             <MenuDivider />
             <MenuItem primaryText="Add space before paragraph" />
             <MenuItem primaryText="Add space after paragraph" />

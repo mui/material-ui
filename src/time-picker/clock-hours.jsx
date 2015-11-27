@@ -1,8 +1,8 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const StylePropable = require('../mixins/style-propable');
-const ClockNumber = require("./clock-number");
-const ClockPointer = require("./clock-pointer");
+const ClockNumber = require('./clock-number');
+const ClockPointer = require('./clock-pointer');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
 
@@ -37,13 +37,13 @@ const ClockHours = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -51,7 +51,7 @@ const ClockHours = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -66,7 +66,7 @@ const ClockHours = React.createClass({
   basePoint: {x: 0, y: 0},
 
   isMousePressed(e) {
-    if (typeof e.buttons === "undefined") {
+    if (typeof e.buttons === 'undefined') {
       return e.nativeEvent.which;
     }
 
@@ -148,8 +148,8 @@ const ClockHours = React.createClass({
     let distance = Math.sqrt(delta);
 
     value = value || 12;
-    if (this.props.format === "24hr"){
-      if (distance < 90){
+    if (this.props.format === '24hr') {
+      if (distance < 90) {
         value += 12;
         value %= 24;
       }
@@ -164,7 +164,7 @@ const ClockHours = React.createClass({
   _getSelected() {
     let hour = this.props.initialHours;
 
-    if (this.props.format === "ampm"){
+    if (this.props.format === 'ampm') {
       hour %= 12;
       hour = hour || 12;
     }
@@ -174,12 +174,12 @@ const ClockHours = React.createClass({
 
   _getHourNumbers() {
     let style = {
-      pointerEvents: "none",
+      pointerEvents: 'none',
     };
     let hourSize = this.props.format === 'ampm' ? 12 : 24;
 
     let hours = [];
-    for(let i = 1; i <= hourSize; i++){
+    for (let i = 1; i <= hourSize; i++) {
       hours.push(i % 24);
     }
 
@@ -193,18 +193,18 @@ const ClockHours = React.createClass({
   render() {
     let styles = {
       root: {
-        height: "100%",
-        width: "100%",
-        borderRadius: "100%",
-        position: "relative",
-        pointerEvents: "none",
-        boxSizing: "border-box",
+        height: '100%',
+        width: '100%',
+        borderRadius: '100%',
+        position: 'relative',
+        pointerEvents: 'none',
+        boxSizing: 'border-box',
       },
 
       hitMask: {
-        height: "100%",
-        width: "100%",
-        pointerEvents: "auto",
+        height: '100%',
+        width: '100%',
+        pointerEvents: 'auto',
       },
     };
 

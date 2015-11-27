@@ -1,5 +1,5 @@
 import React from 'react';
-import { TimePicker, Paper } from 'material-ui';
+import {TimePicker, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'time-picker-code';
 import CodeExample from '../../code-example/code-example';
@@ -152,7 +152,7 @@ const TimePickerPage = React.createClass({
             ref="picker24hr"
             format="24hr"
             hintText="24hr Format"
-            onChange={this._changeTimePicker12}  />
+            onChange={this._changeTimePicker12} />
 
           <TimePicker
             ref="pickerAutoOk"
@@ -164,23 +164,23 @@ const TimePickerPage = React.createClass({
             ref="pickerTextfieldStyle"
             format="24hr"
             hintText="Override text field style"
-            textFieldStyle={{ fontSize: 'x-large' }} />
+            textFieldStyle={{fontSize: 'x-large'}} />
 
           <TimePicker
             ref="pickerStyle"
             format="24hr"
             hintText="Override style"
-            textFieldStyle={{ width: '80%' }}
-            style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#d1d1d1' }} />
+            textFieldStyle={{width: '80%'}}
+            style={{padding: '5px', borderRadius: '5px', backgroundColor: '#d1d1d1'}} />
 
         </CodeExample>
       </ComponentDoc>
     );
   },
-  _changeTimePicker24(err, t){
+  _changeTimePicker24(err, t) {
     this.refs.picker24hr.setTime(t);
   },
-  _changeTimePicker12(err, t){
+  _changeTimePicker12(err, t) {
     this.refs.picker12hr.setTime(t);
   },
 

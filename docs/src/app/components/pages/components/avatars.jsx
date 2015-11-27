@@ -1,8 +1,8 @@
 import React from 'react';
-import { Avatar, FontIcon, List, ListItem, Styles, Paper } from 'material-ui';
+import {Avatar, FontIcon, List, ListItem, Styles, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import FileFolder from 'svg-icons/file/folder';
-const { Colors } = Styles;
+const {Colors} = Styles;
 import Code from 'avatars-code';
 import CodeExample from '../../code-example/code-example';
 import CodeBlock from '../../code-example/code-block';

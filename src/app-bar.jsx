@@ -21,7 +21,7 @@ const AppBar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -42,7 +42,7 @@ const AppBar = React.createClass({
     zDepth: PropTypes.zDepth,
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -50,7 +50,7 @@ const AppBar = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -183,7 +183,7 @@ const AppBar = React.createClass({
           </div>
         );
       } else {
-        let child = (iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeStyles(styles.iconButton.iconStyle)}/>;
+        let child = iconClassNameLeft ? '' : <NavigationMenu style={this.mergeStyles(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
             style={this.mergeStyles(styles.iconButton.style)}
@@ -223,8 +223,7 @@ const AppBar = React.createClass({
           style={iconRightStyle}
           iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
           iconClassName={iconClassNameRight}
-          onTouchTap={this._onRightIconButtonTouchTap}>
-        </IconButton>
+          onTouchTap={this._onRightIconButtonTouchTap} />
       );
     }
 

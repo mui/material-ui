@@ -1,8 +1,8 @@
 import React from 'react';
-import { Mixins, Styles } from 'material-ui';
+import {Mixins, Styles} from 'material-ui';
 
-const { StyleResizable, StylePropable } = Mixins;
-const { Typography, Spacing, Colors } = Styles;
+const {StyleResizable, StylePropable} = Mixins;
+const {Typography, Spacing, Colors} = Styles;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 
@@ -24,13 +24,13 @@ const ComponentInfo = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -38,7 +38,7 @@ const ComponentInfo = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -133,7 +133,7 @@ const ComponentInfo = React.createClass({
     styles.desc = this.mergeStyles(styles.td, styles.desc);
     styles.header = this.mergeStyles(styles.p, styles.header);
 
-    Object.keys(styles).forEach(function (currentKey) {
+    Object.keys(styles).forEach(function(currentKey) {
       styles[currentKey].boxSizing = 'border-box';
     });
 

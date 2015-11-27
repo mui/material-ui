@@ -1,5 +1,5 @@
 import React from 'react';
-import { LeftNav, MenuItem, RaisedButton, Paper } from 'material-ui';
+import {LeftNav, MenuItem, RaisedButton, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'left-nav-code';
 import CodeExample from '../../code-example/code-example';
@@ -22,16 +22,16 @@ export default class LeftNavPage extends React.Component {
 
   render() {
     let menuItems = [
-      { route: 'get-started', text: 'Get Started' },
-      { route: 'customization', text: 'Customization' },
-      { route: 'components', text: 'Components' },
-      { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
-      { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
-      { text: 'Disabled', disabled: true },
-      { type: MenuItem.Types.LINK, payload: 'https://www.google.com', text: 'Disabled Link', disabled: true },
+      {route: 'get-started', text: 'Get Started'},
+      {route: 'customization', text: 'Customization'},
+      {route: 'components', text: 'Components'},
+      {type: MenuItem.Types.SUBHEADER, text: 'Resources'},
+      {type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub'},
+      {text: 'Disabled', disabled: true},
+      {type: MenuItem.Types.LINK, payload: 'https://www.google.com', text: 'Disabled Link', disabled: true},
     ];
-    
-    this.desc = 'The api of Left Nav has been changed to be declarative. ' + 
+
+    this.desc = 'The api of Left Nav has been changed to be declarative. ' +
                 'The methods close, open and toggle have been deprecated. ' +
                 'In order to control the Left Nav use the open property and handle ' +
                 'the onChangeRequest event. Also, as you have noticed there are no examples ' +
@@ -169,8 +169,8 @@ export default class LeftNavPage extends React.Component {
           {
             name: 'onChangeRequest',
             header: 'function(open, reason)',
-            desc: 'Callback function that is fired when the ' + 
-              'open state of the left nav is requested to be changed. ' + 
+            desc: 'Callback function that is fired when the ' +
+              'open state of the left nav is requested to be changed. ' +
               'The provided open argument determines whether the left nav is ' +
               'requested to be opened or closed. Also, the reason argument states why the ' +
               'left nav got closed or opend. It can be either \'clickaway\' for menuItem and ' +
@@ -212,10 +212,10 @@ import LeftNav from 'material-ui/lib/left-nav/';
               <MenuItem index={1}><a href="/link">Link</a></MenuItem>
             </LeftNav>
             <LeftNav open={this.state.navOpen} menuItems={menuItems} />
-            <LeftNav 
-              open={this.state.undockedNavOpen} 
+            <LeftNav
+              open={this.state.undockedNavOpen}
               onChangeRequest={this._changeLeftNavUndockedControlledClick}
-              docked={false} 
+              docked={false}
               menuItems={menuItems} />
           </div>
         </CodeExample>
@@ -228,19 +228,19 @@ import LeftNav from 'material-ui/lib/left-nav/';
       navWithChildrenOpen: !this.state.navWithChildrenOpen,
     });
   }
-  
+
   _toggleLeftNavControlledClick() {
     this.setState({
       navOpen: !this.state.navOpen,
     });
   }
-  
+
   _showLeftNavUndockedControlledClick() {
     this.setState({
       undockedNavOpen: true,
     });
   }
-  
+
   _changeLeftNavUndockedControlledClick(open) {
     this.setState({
       undockedNavOpen: open,

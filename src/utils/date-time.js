@@ -7,7 +7,7 @@ const monthLongList = ['January', 'February', 'March', 'April', 'May', 'June',
 
 function DateTimeFormat(locale, options) {
   if (process.env.NODE_ENV !== 'production' && locale !== 'en-US') {
-    console.warn('Wrong usage of DateTimeFormat. The ' + locale +' locale is not supported.');
+    console.warn('Wrong usage of DateTimeFormat. The ' + locale + ' locale is not supported.');
   }
 
   this.format = function(date) {

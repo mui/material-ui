@@ -92,17 +92,17 @@ export default class ToolbarPage extends React.Component {
     ];
 
     let filterOptions = [
-      { payload: '1', text: 'All Broadcasts' },
-      { payload: '2', text: 'All Voice' },
-      { payload: '3', text: 'All Text' },
-      { payload: '4', text: 'Complete Voice' },
-      { payload: '5', text: 'Complete Text' },
-      { payload: '6', text: 'Active Voice' },
-      { payload: '7', text: 'Active Text' },
+      {payload: '1', text: 'All Broadcasts'},
+      {payload: '2', text: 'All Voice'},
+      {payload: '3', text: 'All Text'},
+      {payload: '4', text: 'Complete Voice'},
+      {payload: '5', text: 'Complete Text'},
+      {payload: '6', text: 'Active Voice'},
+      {payload: '7', text: 'Active Text'},
     ];
     let iconMenuItems = [
-      { payload: '1', text: 'Download' },
-      { payload: '2', text: 'More Info' },
+      {payload: '1', text: 'Download'},
+      {payload: '2', text: 'More Info'},
     ];
 
     return (

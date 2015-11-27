@@ -64,8 +64,8 @@ const AutoComplete = React.createClass({
       open: this.props.open,
     };
   },
-  
-  componentWillMount(){
+
+  componentWillMount() {
     this.focusOnInput = false;
     this.requestsList = [];
   },
@@ -101,7 +101,7 @@ const AutoComplete = React.createClass({
       error: {
       },
       menu: {
-        top: this.props.floatingLabelText? 64 : 40,
+        top: this.props.floatingLabelText ? 64 : 40,
         left: 0,
         width: '100%',
       },
@@ -125,26 +125,26 @@ const AutoComplete = React.createClass({
 
 
 
-    if(Array.isArray(this.props.dataSource)){
+    if (Array.isArray(this.props.dataSource)) {
 
-      if(this.props.showAllItems && this.state.searchText === ''){
+      if (this.props.showAllItems && this.state.searchText === '') {
         this.requestsList = this.props.dataSource;
       }
-      else{
+      else {
         this.requestsList = this.props.dataSource.filter((s) => this.props.filter(this.state.searchText, s));
       }
 
     }
-    else{
+    else {
       let list = [];
-      if(this.props.showAllItems && this.state.searchText === ''){
-        for(let k in this.props.dataSource){
-            list.push(this.props.dataSource[k]);
+      if (this.props.showAllItems && this.state.searchText === '') {
+        for (let k in this.props.dataSource) {
+          list.push(this.props.dataSource[k]);
         }
       }
-      else{
-        for(let k in this.props.dataSource){
-          if(this.props.filter(this.state.searchText, k, this.props.dataSource[k])){
+      else {
+        for (let k in this.props.dataSource) {
+          if (this.props.filter(this.state.searchText, k, this.props.dataSource[k])) {
             list.push(this.props.dataSource[k]);
           }
         }
@@ -164,14 +164,14 @@ const AutoComplete = React.createClass({
         animated={animated}
         autoWidth={false}
         initiallyKeyboardFocused={false}
-        onEscKeyDown={()=>this.setState({open:false})}
+        onEscKeyDown={() => this.setState({open:false})}
         onItemTouchTap={this._handleItemTouchTap}
         listStyle={this.mergeAndPrefix(styles.list, listStyle)}
         openDirection="bottom-left"
         style={mergedMenuStyles}>
         {
           requestsList.map((request, index) => {
-            switch(typeof request){
+            switch (typeof request) {
               case 'string':
                 return (<MenuItem
                           disableFocusRipple={this.props.disableFocusRipple}
@@ -182,9 +182,9 @@ const AutoComplete = React.createClass({
                           />);
               case 'object':
                 return React.cloneElement(request, {
-                        key: index,
-                        disableFocusRipple: this.props.disableFocusRipple,
-                      });
+                  key: index,
+                  disableFocusRipple: this.props.disableFocusRipple,
+                });
               default:
                 return null;
             }
@@ -204,23 +204,23 @@ const AutoComplete = React.createClass({
             {...other}
             ref="searchTextField"
             value={this.state.searchText}
-            onEnterKeyDown={()=>{
-                 setTimeout(() => {
-                   this.setState({open:false});
-                 }, this.props.touchTapCloseDelay);
-                this.props.onNewRequest(this.state.searchText);
+            onEnterKeyDown={() => {
+              setTimeout(() => {
+                this.setState({open:false});
+              }, this.props.touchTapCloseDelay);
+              this.props.onNewRequest(this.state.searchText);
             }}
-            onChange={(e)=>{
-                let searchText = e.target.value;
-                this._updateRequests(searchText);
+            onChange={(e) => {
+              let searchText = e.target.value;
+              this._updateRequests(searchText);
             }}
-            onBlur={()=>{
-              if(this.focusOnInput && this.state.open)
+            onBlur={() => {
+              if (this.focusOnInput && this.state.open)
                 this.refs.searchTextField.focus();
             }}
-            onFocus={()=>{
-              if(!this.state.open && ( showAllItems ||
-                  this.props.updateWhenFocused || this.state.searchText !== '')){
+            onFocus={() => {
+              if (!this.state.open && ( showAllItems ||
+                  this.props.updateWhenFocused || this.state.searchText !== '')) {
                 this._updateRequests(this.state.searchText);
               }
               this.focusOnInput = true;
@@ -243,7 +243,7 @@ const AutoComplete = React.createClass({
     return this.state.searchText;
   },
 
-  _updateRequests(searchText){
+  _updateRequests(searchText) {
 
     this.setState({
       searchText:searchText,
@@ -262,31 +262,31 @@ const AutoComplete = React.createClass({
     }, this.props.touchTapCloseDelay);
 
     let dataSource = this.props.dataSource;
-    let chosenRequest=this.requestsList[parseInt(child.key, 10)];
+    let chosenRequest = this.requestsList[parseInt(child.key, 10)];
 
     let index = Array.isArray(dataSource) ? dataSource.indexOf(chosenRequest) :
                   Object.keys(dataSource).filter((key) => chosenRequest === dataSource[key])[0];
-    
+
     this.setState({searchText: Array.isArray(dataSource) ? dataSource[index] : index});
 
     this.props.onNewRequest(chosenRequest, index, dataSource);
 
   },
 
-  _handleKeyDown(e){
-   switch(e.keyCode){
-     case KeyCode.ESC:
-       this.setState({open:false});
-       break;
-     case KeyCode.DOWN:
-       if(this.focusOnInput && this.state.open){
-         e.preventDefault();
-         this.focusOnInput = false;
-         this.setState({open:true});
-       }
-       break;
-     default:
-       break;
+  _handleKeyDown(e) {
+    switch (e.keyCode) {
+      case KeyCode.ESC:
+        this.setState({open:false});
+        break;
+      case KeyCode.DOWN:
+        if (this.focusOnInput && this.state.open) {
+          e.preventDefault();
+          this.focusOnInput = false;
+          this.setState({open:true});
+        }
+        break;
+      default:
+        break;
     }
   },
 

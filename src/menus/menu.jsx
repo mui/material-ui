@@ -61,7 +61,7 @@ const Menu = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -115,7 +115,7 @@ const Menu = React.createClass({
   },
 
   componentClickAway(e) {
-    if (e.defaultPrevented) 
+    if (e.defaultPrevented)
       return;
     this._setFocusIndex(-1, false);
   },
@@ -191,7 +191,7 @@ const Menu = React.createClass({
     //Cascade children opacity
     let cumulativeDelay = openDown ? 175 : 325;
     let cascadeChildrenCount = this._getCascadeChildrenCount();
-    let cumulativeDelayIncrement = Math.ceil(150/cascadeChildrenCount);
+    let cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
 
     let menuItemIndex = 0;
     let newChildren = React.Children.map(children, (child) => {

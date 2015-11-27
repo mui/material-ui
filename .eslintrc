@@ -1,5 +1,5 @@
 # So parent files don't get applied
-root: true 
+root: true
 
 env:
   es6: true
@@ -8,42 +8,87 @@ env:
 
 rules:
   # Errors
+  array-bracket-spacing: [2, never]
+  arrow-spacing: 2
+  block-spacing: [2, always]
+  brace-style: 0 # Wishlist, one day
   comma-dangle: [2, always-multiline]
-  no-var: 2
-  no-dupe-keys: 2
-  eqeqeq: [2, allow-null]
-  eol-last: 2
-  yoda: 2
-  no-unused-expressions: 2
+  comma-style: [2, last]
+  computed-property-spacing: [2, never]
+  consistent-this: [2, self]
+  consistent-return: 0
   dot-notation: 2
   dot-location: [2, property]
-  no-undef: 2
-  comma-spacing: 2
+  eqeqeq: [2, smart]
+  eol-last: 2
+  indent: [0, 2, {SwitchCase: 1}] # Wishlist, one day
   jsx-quotes: [2, prefer-double]
+  key-spacing: 0 # Wishlist, one day
+  max-len: [0, 120, 4] # Wishlist, one day
+  new-cap: [0, {capIsNew: true, newIsCap: true}] # Wishlist, one day
+  no-unused-expressions: 2
+  no-unused-vars: 0 # Wishlist, one day
+  no-shadow: 0 # Wishlist, one day
+  no-spaced-func: 2
+  no-multi-spaces: 0 # Wishlist, one day
+  no-undef: 2
+  no-empty-pattern: 2
+  no-dupe-keys: 2
+  no-dupe-args: 2
+  no-duplicate-case: 2
+  no-cond-assign: 2
+  no-extra-semi: 2
+  no-extra-boolean-cast: 2
+  no-trailing-spaces: 2
+  no-unreachable: 2
+  no-var: 2
+  object-curly-spacing: [2, never]
+  prefer-arrow-callback: 0 # Wishlist, one day
+  prefer-const: 0 # Wishlist, one day
+  quotes: [2, single, avoid-escape]
+  semi: [2, always]
+  space-after-keywords: [2, always]
+  space-before-blocks: [2, always]
+  space-before-function-paren: [2, never]
+  space-before-keywords: [2, always]
+  space-infix-ops: 2
+  space-return-throw-case: 2
+  space-unary-ops: [0, { words: true, nonwords: false }]
+  yoda: 2
 
   # Disabled
-  key-spacing: 0
-  no-underscore-dangle: 0
-  no-shadow: 0
-  no-shadow-restricted-names: 0
-  no-extend-native: 0
-  curly: 0
-  new-cap: 0
-  quotes: 0
-  semi-spacing: 0
-  space-unary-ops: 0
-  space-infix-ops: 0
-  consistent-return: 0
   strict: 0
 
   # React
+  react/display-name: [2, {acceptTranspilerName: true}]
+  react/jsx-boolean-value: [2, always]
   react/jsx-curly-spacing: 2
+  react/jsx-indent-props: [0, 2] # Wishlist, one day
   react/jsx-max-props-per-line: [2, {maximum: 4}]
   react/jsx-no-duplicate-props: 2
+  react/jsx-no-literals: 0 # Wishlist, one day
   react/jsx-no-undef: 2
+  react/jsx-sort-prop-types: 0 # Wishlist, one day
+  react/jsx-uses-react: 2
+  react/jsx-uses-vars: 2
+  react/no-danger: 2
+  react/no-did-mount-set-state: 2
+  react/no-did-update-set-state: 2
+  react/no-direct-mutation-state: 2
+  react/no-multi-comp: 0 # Wishlist, one day
+  react/no-unknown-property: 2
+  react/prop-types: 0 # Wishlist, one day
+  react/react-in-jsx-scope: 2
+  react/require-extension: 2
+  react/self-closing-comp: 2
+  react/sort-comp: 0 # Wishlist, one day
+  react/wrap-multilines: 0 # Wishlist, one day
 
-  # React disabled
-  react/jsx-boolean-value: 0
+  # Disabled
+  react/jsx-no-bind: 0
+  react/jsx-closing-bracket-location: 0
+  react/jsx-sort-props: 0
+  react/no-set-state: 0
 
 parser: babel-eslint
 

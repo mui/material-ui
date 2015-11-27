@@ -30,7 +30,7 @@ module.exports = {
     duration = duration || '450ms';
     property = property || 'all';
     delay = delay || '0ms';
-    easeFunction = easeFunction || "linear";
+    easeFunction = easeFunction || 'linear';
 
     return property + ' ' +
       duration + ' ' +

@@ -7,8 +7,8 @@ module.exports = {
     let listeners = this.windowListeners;
 
     for (let eventName in listeners) {
-       let callbackName = listeners[eventName];
-       Events.on(window, eventName, this[callbackName]);
+      let callbackName = listeners[eventName];
+      Events.on(window, eventName, this[callbackName]);
     }
   },
 
@@ -16,8 +16,8 @@ module.exports = {
     let listeners = this.windowListeners;
 
     for (let eventName in listeners) {
-       let callbackName = listeners[eventName];
-       Events.off(window, eventName, this[callbackName]);
+      let callbackName = listeners[eventName];
+      Events.off(window, eventName, this[callbackName]);
     }
   },
 
