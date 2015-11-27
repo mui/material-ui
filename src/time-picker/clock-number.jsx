@@ -14,6 +14,7 @@ const ClockNumber = React.createClass({
   propTypes: {
     value: React.PropTypes.number,
     type: React.PropTypes.oneOf(['hour', 'minute']),
+    hourFormat: React.PropTypes.oneOf(['ampm', '24hr']),
     onSelected: React.PropTypes.func,
     isSelected: React.PropTypes.bool,
   },
@@ -46,6 +47,7 @@ const ClockNumber = React.createClass({
     return {
       value: 0,
       type: 'minute',
+      hourFormat: 'ampm',
       isSelected: false,
     };
   },
@@ -58,12 +60,11 @@ const ClockNumber = React.createClass({
     let pos = this.props.value;
     let inner = false;
 
-    if (this.props.type === "hour") {
-      inner = pos < 1 || pos > 12;
-      pos %= 12;
-    }
-    else {
+    if (this.props.type === "minute") {
       pos = pos / 5;
+    } else if (this.props.type === "hour") {
+      inner = this.props.hourFormat === "24hr" && pos >= 1 && pos <= 12;
+      pos %= 12;
     }
 
     let positions = [
@@ -132,8 +133,13 @@ const ClockNumber = React.createClass({
 
     styles.root.transform = "translate(" + x + "px, " + y + "px)";
 
+    let text = this.props.value;
+    if (this.props.type === "minute" || this.props.value < 1 || this.props.value > 12) {
+      text = ("0" + this.props.value).slice(-2);
+    }
+
     return (
-        <span style={this.prepareStyles(styles.root)}>{this.props.value}</span>
+        <span style={this.prepareStyles(styles.root)}>{text}</span>
     );
   },
 });
