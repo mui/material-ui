@@ -132,40 +132,42 @@ const AutoComplete = React.createClass({
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
     let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
-
+    let displayFilter = showAllItems ? () => true : this.props.filter;
+    let requestsList = [];
 
     if (Array.isArray(this.props.dataSource)) {
-
-      if (this.props.showAllItems && this.state.searchText === '') {
-        this.requestsList = this.props.dataSource;
-      }
-      else {
-        this.requestsList = this.props.dataSource.filter((s) => this.props.filter(this.state.searchText, s));
-      }
-
+      this.props.dataSource.map((item, index) => {
+        switch (typeof item) {
+              case 'string':
+                if (displayFilter(this.state.searchText, item, item)) {
+                  requestsList.push(item);
+                }
+                break;
+              case 'object':
+                if (typeof item.text === 'string') {
+                  if (displayFilter(this.state.searchText, item.text, item.value)) {
+                    requestsList.push(item);
+                  }
+                  else if (item.display) {
+                    requestsList.push(item);
+                  }
+                }
+                break;
+        }
+      });
     }
     else {
-      let list = [];
-      if (this.props.showAllItems && this.state.searchText === '') {
-        for (let k in this.props.dataSource) {
-          list.push(this.props.dataSource[k]);
+      for (let k in this.props.dataSource) {
+        if (displayFilter(this.state.searchText, k, this.props.dataSource[k])) {
+          requestsList.push(this.props.dataSource[k]);
         }
       }
-      else {
-        for (let k in this.props.dataSource) {
-          if (this.props.filter(this.state.searchText, k, this.props.dataSource[k])) {
-            list.push(this.props.dataSource[k]);
-          }
-        }
-      }
-      this.requestsList = list;
     }
 
-
-    let requestsList = this.requestsList;
+    this.requestsList = requestsList;
 
     let menu = this.state.open && (this.state.searchText !== '' || showAllItems)
-               && requestsList && requestsList.length > 0 ? (
+               && requestsList.length > 0 ? (
       <Menu
         {...menuProps}
         ref="menu"
@@ -190,6 +192,12 @@ const AutoComplete = React.createClass({
                           primaryText={request}
                           />);
               case 'object':
+                if (typeof request.text === 'string') {
+                  return React.cloneElement(request.value, {
+                          key: request.text,
+                          disableFocusRipple: this.props.disableFocusRipple,
+                        });
+                }
                 return React.cloneElement(request, {
                   key: index,
                   disableFocusRipple: this.props.disableFocusRipple,
@@ -271,12 +279,28 @@ const AutoComplete = React.createClass({
     }, this.props.touchTapCloseDelay);
 
     let dataSource = this.props.dataSource;
-    let chosenRequest = this.requestsList[parseInt(child.key, 10)];
 
-    let index = Array.isArray(dataSource) ? dataSource.indexOf(chosenRequest) :
-                  Object.keys(dataSource).filter((key) => chosenRequest === dataSource[key])[0];
+    let chosenRequest, index, searchText;
+    if (Array.isArray(dataSource)) {
+      if (typeof dataSource[0] === 'string') {
+        chosenRequest = this.requestsList[parseInt(child.key, 10)];
+        index = dataSource.indexOf(chosenRequest);
+        searchText = dataSource[index];
+      }
+      else {
+        chosenRequest = child.key;
+        index = dataSource.indexOf(
+            dataSource.filter((item) => chosenRequest === item.text)[0]);
+        searchText = chosenRequest;
+      }
+    }
+    else {
+      chosenRequest = this.requestsList[parseInt(child.key, 10)];
+      index = Object.keys(dataSource).filter((key) => chosenRequest === dataSource[key])[0];
+      searchText = index;
+    }
 
-    this.setState({searchText: Array.isArray(dataSource) ? dataSource[index] : index});
+    this.setState({searchText: searchText});
 
     this.props.onNewRequest(chosenRequest, index, dataSource);
 

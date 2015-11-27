@@ -52,6 +52,25 @@ class AutoCompletePage extends React.Component {
 
           <AutoComplete
             fullWidth={true}
+            hintText = "text-value data"
+            onUpdateInput={(t) => {
+              console.log(t);
+            }}
+            showAllItems = {true}
+            dataSource={[
+                {
+                  text: 'text-value1',
+                  value:(<AutoComplete.Item primaryText={'text-value1'} secondaryText="&#9786;" />),
+                },
+                {
+                  text: 'text-value2',
+                  value:(<AutoComplete.Item primaryText={'text-value2'} secondaryText="&#9786;" />),
+                },
+            ]}
+            onNewRequest={(t, index) => {console.log('request:'+index);}} />
+
+          <AutoComplete
+            fullWidth={true}
             hintText = "type here"
             onUpdateInput={(t) => {
               console.log(t);
