@@ -54,6 +54,7 @@ const TextField = React.createClass({
     underlineDisabledStyle: React.PropTypes.object,
     style: React.PropTypes.object,
     disabled: React.PropTypes.bool,
+    readOnly: React.PropTypes.bool,
     defaultValue: React.PropTypes.string,
     value: React.PropTypes.string,
   },
@@ -328,6 +329,7 @@ const TextField = React.createClass({
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
       disabled: this.props.disabled,
+      readOnly: this.props.readOnly,
       onKeyDown: this._handleInputKeyDown,
     };
     const inputStyle = this.mergeStyles(styles.input, this.props.inputStyle);
@@ -363,7 +365,12 @@ const TextField = React.createClass({
     ) : (
       <hr style={this.prepareStyles(styles.underline)}/>
     );
-    let focusUnderlineElement = <hr style={this.prepareStyles(styles.focusUnderline)} />;
+
+    let focusUnderlineElement = this.props.readOnly ? (
+      <hr style={this.prepareStyles(styles.underline)}/>
+    ) : (
+      <hr style={this.prepareStyles(styles.focusUnderline)} />
+    );
 
     return (
       <div className={className} style={this.prepareStyles(styles.root, this.props.style)}>
@@ -438,7 +445,7 @@ const TextField = React.createClass({
   },
 
   _handleInputFocus(e) {
-    if (this.props.disabled)
+    if (this.props.disabled || this.props.readOnly)
       return;
     this.setState({isFocused: true});
     if (this.props.onFocus) this.props.onFocus(e);
